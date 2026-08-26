@@ -1,0 +1,160 @@
+{
+  "timestamp": "2026-08-24T11:17:05.196764",
+  "case_path": "/home/epmq-cyber/Área de Trabalho/projects/Methodology-main/02_CASES/Case_01_TinyTask_SaaS",
+  "mode": "legacy",
+  "lints": [
+    {
+      "id": "use_cases",
+      "name": "Use Cases Catalog (Doc 13)",
+      "status": "PASSED",
+      "errors": [],
+      "warnings": [
+        "Found 29 orphan UCs without relationships: UC-1.1, UC-2.1.3, UC-5.1, UC-2.6, UC-4"
+      ],
+      "metrics": {
+        "total_use_cases": 29,
+        "total_packages": 6,
+        "priority_distribution": {},
+        "with_actors": 27,
+        "with_regulation": 17,
+        "with_description": 23,
+        "relationships_include": 0,
+        "relationships_extend": 0,
+        "variability_specializations": 0,
+        "variability_alternatives": 0,
+        "variability_options": 0,
+        "orphan_use_cases": 29,
+        "documents_found": 2
+      }
+    },
+    {
+      "id": "relationships",
+      "name": "Use Case Relationships (Doc 13a)",
+      "status": "PASSED",
+      "errors": [],
+      "warnings": [
+        "Insufficient data: no relationships found (Phase 3 may not be started)"
+      ],
+      "metrics": {
+        "total_relationships": 0,
+        "include_relationships": 0,
+        "refine_relationships": 0,
+        "extend_relationships": 0,
+        "coexistence_violations": 0,
+        "level_violations": 0,
+        "orphan_use_cases": 0,
+        "documents_found": 2,
+        "has_sufficient_data": false
+      }
+    },
+    {
+      "id": "variability",
+      "name": "Use Case Variability (Doc 13b)",
+      "status": "PASSED",
+      "errors": [],
+      "warnings": [
+        "UCs in variability doc but not in use cases catalog: UC-TINYTASK-2026",
+        "Insufficient data: no variability items found (Phase 3 may not be started)"
+      ],
+      "metrics": {
+        "total_specializations": 0,
+        "total_alternatives": 0,
+        "total_options": 0,
+        "specializations_with_regulation": 0,
+        "alternatives_with_criteria": 0,
+        "options_with_condition": 0,
+        "regulations_with_variants": 2,
+        "documents_found": 2,
+        "has_sufficient_data": false
+      }
+    },
+    {
+      "id": "nodes",
+      "name": "Architectural Nodes (Doc 14)",
+      "status": "PASSED",
+      "errors": [],
+      "warnings": [
+        "Nodes reference UCs not found in Doc 13: UC-TINYTASK-2026",
+        "Insufficient data: no nodes found (Phase 3 may not be started)"
+      ],
+      "metrics": {
+        "total_nodes": 0,
+        "by_type": {},
+        "by_track": {},
+        "with_source_uc": 1,
+        "documents_found": 2,
+        "has_sufficient_data": false
+      }
+    },
+    {
+      "id": "allocation",
+      "name": "Requirements Allocation (Doc 15)",
+      "status": "PASSED",
+      "errors": [],
+      "warnings": [
+        "No use case source references found. Each allocation SHOULD trace to a UC."
+      ],
+      "metrics": {
+        "total_allocations": 51,
+        "unique_rules_allocated": 30,
+        "unique_nodes_allocated": 0,
+        "unique_uc_sources": 0,
+        "by_verification": {},
+        "by_allocation_type": {},
+        "documents_found": 2,
+        "has_sufficient_data": true
+      }
+    },
+    {
+      "id": "gates",
+      "name": "Compliance Gates (Doc 16)",
+      "status": "PASSED",
+      "errors": [],
+      "warnings": [
+        "No target node references found in gates",
+        "No source use case references found in gates. Each gate SHOULD trace to a UC."
+      ],
+      "metrics": {
+        "total_gates": 41,
+        "by_status": {},
+        "by_verification": {},
+        "with_node_ref": 0,
+        "with_uc_ref": 0,
+        "with_evidence": 3,
+        "documents_found": 2,
+        "has_sufficient_data": true
+      }
+    },
+    {
+      "id": "functional_tree",
+      "name": "Functional Tree (Doc 17)",
+      "status": "PASSED",
+      "errors": [],
+      "warnings": [
+        "No node ID references found in tree",
+        "Insufficient data: no tree nodes found (Phase 3 may not be started)"
+      ],
+      "metrics": {
+        "total_nodes_in_tree": 0,
+        "levels_found": {
+          "L1": 34,
+          "L2": 38,
+          "L3": 49,
+          "ROOT": 9
+        },
+        "mermaid_diagrams": 1,
+        "subdomains_covered": 10,
+        "uc_sources": 0,
+        "track_tags": 0,
+        "documents_found": 2,
+        "has_sufficient_data": false
+      }
+    }
+  ],
+  "summary": {
+    "total": 7,
+    "passed": 7,
+    "failed": 0,
+    "warnings": 11
+  }
+}

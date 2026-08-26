@@ -1,0 +1,22 @@
+/home/epmq-cyber/Área de Trabalho/projects/Methodology-main/01_IMPLEMENTATION_TOOLS/lints/phase3/lint_13b_variability.py:123: SyntaxWarning: invalid escape sequence '\s'
+  for reg in ['GDPR', 'CRA', 'NIS.?2', 'DORA', 'AI\s*Act']:
+🔍 Phase 3 Lints — TinyTask SaaS
+📂 /home/epmq-cyber/Área de Trabalho/projects/Methodology-main/02_CASES/Case_01_TinyTask_SaaS
+📋 7 lint(s) available
+============================================================
+  Running: Use Cases Catalog (Doc 13)... ✅ PASSED
+  Running: Use Case Relationships (Doc 13a)... ✅ PASSED
+  Running: Use Case Variability (Doc 13b)... ✅ PASSED
+  Running: Architectural Nodes (Doc 14)... ✅ PASSED
+  Running: Requirements Allocation (Doc 15)... ✅ PASSED
+  Running: Compliance Gates (Doc 16)... ✅ PASSED
+  Running: Functional Tree (Doc 17)... ✅ PASSED
+
+📄 Reports generated:
+   JSON: 02_CASES/Case_01_TinyTask_SaaS/03_PHASE3_DECOMPOSITION_RICH/validation/lint_report_phase3_20260824_111655.json
+   Markdown: 02_CASES/Case_01_TinyTask_SaaS/03_PHASE3_DECOMPOSITION_RICH/validation/lint_report_phase3_20260824_111655.md
+
+============================================================
+📊 Summary: 7/7 passed
+⚠️ 11 warning(s)
+✅ All Phase 3 lints passed!

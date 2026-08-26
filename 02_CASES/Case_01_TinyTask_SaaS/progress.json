@@ -1,0 +1,156 @@
+{
+  "_schema": "AEGIS Progress Tracking Schema v1.0",
+  "_description": "Immutable progress tracking for AEGIS case studies. Updated by validation scripts, not by agents directly.",
+  "_rules": [
+    "Status values: pending, in_progress, complete, blocked",
+    "lint_passed is boolean — set ONLY by lint script output",
+    "validated_by is the script/agent name that performed validation",
+    "validation_timestamp is ISO 8601 UTC",
+    "An agent MUST NOT set status=complete without lint_passed=true",
+    "An agent MUST NOT modify a document with status=complete without user approval"
+  ],
+  "case": "Case_01_TinyTask_SaaS",
+  "phase": 3,
+  "session": {
+    "current_turn_count": 0,
+    "max_turns_per_session": 15,
+    "documents_created_this_session": 0,
+    "max_docs_per_session": 3,
+    "last_context_reset": null
+  },
+  "phases": {
+    "phase_1": {
+      "status": "complete",
+      "gate": "P1_PASS",
+      "completed_at": "2026-04-01",
+      "documents": {
+        "04_Company_Context_Assessment": {
+          "status": "complete",
+          "lint_passed": true,
+          "validated_by": "lint_04_company_context.py",
+          "validation_timestamp": "2026-04-01T00:00:00Z"
+        },
+        "05_Regulatory_Applicability": {
+          "status": "complete",
+          "lint_passed": true,
+          "validated_by": "lint_05_regulatory_applicability.py",
+          "validation_timestamp": "2026-04-01T00:00:00Z"
+        },
+        "06_Clause_Mapping_Matrix": {
+          "status": "complete",
+          "lint_passed": true,
+          "validated_by": "lint_06_clause_mapping.py",
+          "validation_timestamp": "2026-04-01T00:00:00Z"
+        },
+        "07_Structured_Compliance_Matrix": {
+          "status": "complete",
+          "lint_passed": true,
+          "validated_by": "lint_07_compliance_matrix.py",
+          "validation_timestamp": "2026-04-01T00:00:00Z"
+        }
+      }
+    },
+    "phase_2": {
+      "status": "complete",
+      "gate": "P2_PASS",
+      "completed_at": "2026-04-02",
+      "documents": {
+        "08_Obligation_Derivation": {
+          "status": "complete",
+          "lint_passed": true,
+          "validated_by": "lint_08_obligation_derivation.py",
+          "validation_timestamp": "2026-04-02T00:00:00Z"
+        },
+        "09_Strategic_Tensions_Report": {
+          "status": "complete",
+          "lint_passed": true,
+          "validated_by": "lint_09_strategic_tensions.py",
+          "validation_timestamp": "2026-04-02T00:00:00Z"
+        },
+        "10_Privacy_Security_Objectives": {
+          "status": "complete",
+          "lint_passed": true,
+          "validated_by": "lint_10_goals.py",
+          "validation_timestamp": "2026-04-02T00:00:00Z"
+        },
+        "11_Rules_Catalog": {
+          "status": "complete",
+          "lint_passed": true,
+          "validated_by": "lint_11_rules_catalog.py",
+          "validation_timestamp": "2026-04-02T00:00:00Z"
+        },
+        "12_Rules_Catalog": {
+          "status": "complete",
+          "lint_passed": true,
+          "validated_by": "lint_12_rules_catalog_xlsx.py",
+          "validation_timestamp": "2026-04-02T00:00:00Z"
+        }
+      }
+    },
+    "phase_3": {
+      "status": "complete",
+      "gate": "P3_PASS",
+      "completed_at": "2026-04-08",
+      "documents": {
+        "13_Use_Cases_Catalog": {
+          "status": "complete",
+          "lint_passed": true,
+          "validated_by": "lint_13_use_cases.py",
+          "validation_timestamp": "2026-04-08T00:00:00Z"
+        },
+        "14_Architectural_Nodes": {
+          "status": "complete",
+          "lint_passed": true,
+          "validated_by": "lint_14_nodes.py",
+          "validation_timestamp": "2026-04-08T00:00:00Z"
+        },
+        "15_Requirements_Allocation": {
+          "status": "complete",
+          "lint_passed": true,
+          "validated_by": "lint_15_allocation.py",
+          "validation_timestamp": "2026-04-08T00:00:00Z"
+        },
+        "16_Compliance_Gates_Report": {
+          "status": "complete",
+          "lint_passed": true,
+          "validated_by": "lint_16_gates.py",
+          "validation_timestamp": "2026-04-08T00:00:00Z"
+        },
+        "17_Functional_Tree": {
+          "status": "complete",
+          "lint_passed": true,
+          "validated_by": "lint_17_functional_tree.py",
+          "validation_timestamp": "2026-04-08T00:00:00Z"
+        },
+        "23_Functional_Requirements": {
+          "status": "complete",
+          "lint_passed": true,
+          "validated_by": "manual_review",
+          "validation_timestamp": "2026-04-08T00:00:00Z"
+        },
+        "24_Non_Functional_Requirements": {
+          "status": "complete",
+          "lint_passed": true,
+          "validated_by": "manual_review",
+          "validation_timestamp": "2026-04-08T00:00:00Z"
+        },
+        "25_Risk_Analysis": {
+          "status": "complete",
+          "lint_passed": true,
+          "validated_by": "manual_review",
+          "validation_timestamp": "2026-04-08T00:00:00Z"
+        }
+      }
+    }
+  },
+  "active_contracts": [],
+  "change_log": [
+    {
+      "timestamp": "2026-04-30T00:00:00Z",
+      "event": "progress_json_created",
+      "phase": "all",
+      "result": "Initial progress.json created to match Case_02/03 structure",
+      "action_taken": "Created from scratch matching schema v1.0"
+    }
+  ]
+}

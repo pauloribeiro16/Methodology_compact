@@ -1,0 +1,265 @@
+# AEGIS Methodology Dependency Graph (corr-008)
+#
+# Maps template-level dependencies for the AEGIS methodology core.
+# This graph is distinct from `01_IMPLEMENTATION_TOOLS/evals/dependency_graph.yaml`
+# which is the case-level graph consumed by `workflow_gate.py --check --file X --case Y`.
+#
+# Scope: METHODOLOGY TEMPLATES under `00_METHODOLOGY/TEMPLATES/`,
+# `00_METHODOLOGY/REFERENCE/`, and `00_METHODOLOGY/AGENTS.md`.
+#
+# Structure:
+#   documents:
+#     "<filename/path>":
+#       phase: 1 | 2 | 3 | cross-phase
+#       depends_on: [list of templates/REFERENCE files]
+#       depended_by: [list of case documents that instantiate this template]
+#       required_sections: [section headings that must exist]
+#       required_id_namespaces: [list of ID prefixes that must appear]
+#       deprecated_ids: [list of legacy IDs that may appear with DEPRECATED marker]
+#       validation_rules: [list of rules to validate after modification]
+
+documents:
+
+  # ─── CORPUS (READ-ONLY) ────────────────────────────────────────────────
+  # Frozen regulatory baseline. Not editable under corr-008.
+
+  "00_METHODOLOGY/PREPROCESSING_by_domain/":
+    phase: 0
+    depends_on: []
+    depended_by:
+      - "07c_Adjusted_Goals.md"
+      - "10_Privacy_Security_Objectives.md"
+      - "11_Rules_Catalog.md"
+      - "18_Framework_Mappings.md"
+    required_sections: []
+    validation_rules:
+      - "no_modification_in_corr_008 = true"
+      - "all_38_subdomains_have_corpus_so = true"
+
+  "00_METHODOLOGY/PREPROCESSING/":
+    phase: 0
+    depends_on: []
+    depended_by:
+      - "18_Framework_Mappings.md"
+    required_sections: []
+
+  # ─── REFERENCE ────────────────────────────────────────────────────────
+
+  "00_METHODOLOGY/REFERENCE/key_concepts.md":
+    phase: cross-phase
+    depends_on: []
+    depended_by:
+      - "07c_Adjusted_Goals.md"
+      - "10_Privacy_Security_Objectives.md"
+      - "11_Rules_Catalog.md"
+      - "18_Framework_Mappings.md"
+    required_sections:
+      - "Canonical Taxonomy"
+      - "Normative Intensity"
+      - "Traceability Chain"
+      - "Three-Layer Architecture"
+      - "ID Hierarchy (corr-008, since 2026-08-10)"
+    required_id_namespaces:
+      - "SO-D-XX.Y.{HL,GDPR,CRA,NIS2,DORA,AI_Act}"
+      - "AO-D-XX.X-NNN"
+      - "PO-D-XX.X-NNN"
+      - "SO-D-XX.X-NNN"
+      - "RULE-D-XX.X-NNN"
+      - "REQ-D-XX.X-NNN"
+    deprecated_ids:
+      - "PG-D-XX.X-NNN"
+      - "SG-D-XX.X-NNN"
+      - "CR-D-XX.X-NNN"
+      - "BPR-D-XX.X-NNN"
+      - "GOAL-PRIV-NN"
+      - "GOAL-SEC-NN"
+
+  "00_METHODOLOGY/AGENTS.md":
+    phase: cross-phase
+    depends_on:
+      - "00_METHODOLOGY/REFERENCE/key_concepts.md"
+    depended_by: []
+    required_sections:
+      - "ID Hierarchy (corr-008)"
+    required_id_namespaces:
+      - "AO-D-XX.X-NNN"
+      - "PO-D-XX.X-NNN"
+      - "SO-D-XX.X-NNN"
+      - "RULE-D-XX.X-NNN"
+      - "REQ-D-XX.X-NNN"
+
+  "00_METHODOLOGY/README.md":
+    phase: cross-phase
+    depends_on:
+      - "00_METHODOLOGY/REFERENCE/key_concepts.md"
+    depended_by: []
+
+  # ─── PHASE 1 TEMPLATES ────────────────────────────────────────────────
+
+  "07c_Adjusted_Goals.md":
+    phase: 1
+    depends_on:
+      - "00_METHODOLOGY/PREPROCESSING_by_domain/"
+      - "00_METHODOLOGY/REFERENCE/key_concepts.md"
+    depended_by:
+      - "10_Privacy_Security_Objectives.md"
+      - "11_Rules_Catalog.md"
+    required_sections:
+      - "§0 Document Purpose"
+      - "§1 Generic Baseline (preserved from corpus, READ-ONLY)"
+      - "§2 High-Level Adjusted Objectives per Sub-Domain"
+      - "§3 GDPR-Driven Adjusted Objectives per Sub-Domain"
+      - "§4 CRA-Driven Adjusted Objectives per Sub-Domain"
+      - "§5 Tensions Resolved (tech-free, max-SLA routing)"
+      - "§6 Track B Decision Trail"
+      - "§7 Cross-References"
+      - "§8 Validation"
+      - "§9 Version History"
+      - "Appendix A — Reference Implementation Examples (DEPRECATED)"
+    required_id_namespaces:
+      - "SO-D-XX.Y.{HL,GDPR,CRA}"  # corpus, in §1
+      - "AO-D-XX.X-NNN"            # in §2-§4
+    required_counts:
+      corpus_rows: 38
+      high_level_AO_rows: 35
+      gdpr_AO_rows_populated: 28
+      gdpr_AO_rows_na: 7
+      cra_AO_rows_populated: 34
+      cra_AO_rows_na: 1
+      unique_AO_ids_total: 97
+    deprecated_ids:
+      - "PG-D-XX.X-NNN"  # via formerly_known_as aliases in Appendix A
+      - "SG-D-XX.X-NNN"
+
+  # ─── PHASE 2 TEMPLATES ────────────────────────────────────────────────
+
+  "10_Privacy_Security_Objectives.md":
+    phase: 2
+    depends_on:
+      - "07c_Adjusted_Goals.md"
+      - "00_METHODOLOGY/REFERENCE/key_concepts.md"
+    depended_by:
+      - "11_Rules_Catalog.md"
+      - "18_Framework_Mappings.md"
+    required_sections:
+      - "§1 PSO and SO Catalog per Sub-Domain"
+      - "§2 Rule Catalog (RULE-D-XX.X-NNN)"
+      - "§3 PSO Derivation Logic"
+      - "§4 Rule Derivation Logic"
+      - "§5 Provenance Schema per ID"
+      - "§6 Validation"
+      - "§7 Version History"
+      - "§7.5 ID Migration Aliases (corr-007 → corr-008)"
+    required_id_namespaces:
+      - "AO-D-XX.X-NNN"
+      - "PO-D-XX.X-NNN"
+      - "SO-D-XX.X-NNN"
+      - "RULE-D-XX.X-NNN"
+    required_counts:
+      PO_rows: 27
+      SO_rows: 33
+      RULE_rows: 36
+
+  "11_Rules_Catalog.md":
+    phase: 2
+    depends_on:
+      - "07c_Adjusted_Goals.md"
+      - "10_Privacy_Security_Objectives.md"
+      - "00_METHODOLOGY/REFERENCE/key_concepts.md"
+    depended_by:
+      - "18_Framework_Mappings.md"
+    required_sections:
+      - "§1 Catalog Metadata"
+      - "§2 Rule Definition Structure"
+      - "§3 Regulation-Derived Rules Catalog"
+      - "§4 Framework-Derived Rules Catalog"
+      - "§5 Rules Summary Dashboard"
+      - "§6 Rules by Sub-Domain Distribution"
+      - "§7 Traceability Summary"
+      - "§11 Version History"
+      - "§11.5 ID Migration Aliases (corr-007 → corr-008)"
+    required_id_namespaces:
+      - "RULE-D-XX.X-NNN"
+      - "RULE-D-XX.X-100"  # framework-derived rows
+    required_counts:
+      regulation_derived_rules: 35
+      framework_derived_rules: 17
+      total_rules: 52
+    deprecated_ids:
+      - "CR-D-XX.X-NNN"  # via formerly_known_as aliases in §11.5
+      - "BPR-D-XX.X-NNN"
+
+  "18_Framework_Mappings.md":
+    phase: 2
+    depends_on:
+      - "07c_Adjusted_Goals.md"
+      - "10_Privacy_Security_Objectives.md"
+      - "11_Rules_Catalog.md"
+      - "00_METHODOLOGY/PREPROCESSING/"  # for framework subcategory catalogs
+    depended_by: []
+    required_sections:
+      - "Sheet 1: NIST CSF 2.0"
+      - "Sheet 2: NIST Privacy Framework 1.0"
+      - "Sheet 3: NIST AI Risk Management Framework (AI RMF 1.0)"
+
+  # ─── VALIDATION TOOLING ───────────────────────────────────────────────
+
+  "01_IMPLEMENTATION_TOOLS/scripts/validate_aegis_ids.py":
+    phase: cross-phase
+    depends_on:
+      - "00_METHODOLOGY/REFERENCE/key_concepts.md"
+    depended_by: []
+    required_sections: []
+    validation_rules:
+      - "scans_00_METHODOLOGY_and_02_CASES = true"
+      - "excludes_PREPROCESSING_corpus = true"
+      - "validates_corr_008_regex_set = true"
+
+# ─── CROSS-PHASE RULES (corr-008) ────────────────────────────────────────
+
+cross_phase_rules:
+  - name: "corr-008 schema migration"
+    description: >
+      All Phase 1, 2, and 3 documents must use the corr-008 ID schema.
+      Legacy PG-/SG-/CR-/BPR- IDs may appear only in DEPRECATED sections
+      with explicit `formerly_known_as` aliases.
+    trigger: "modify 07c_Adjusted_Goals.md OR 10_Privacy_Security_Objectives.md OR 11_Rules_Catalog.md"
+    check: "all_ids_follow_corr_008_regex OR appear_in_deprecated_section_with_alias"
+
+  - name: "phase_2_validation_depends_on_phase_1"
+    description: >
+      Doc 10 (Phase 2) requires Doc 07c (Phase 1) to exist and be validated.
+    trigger: "modify 10_Privacy_Security_Objectives.md"
+    check: "07c_Adjusted_Goals.md validated against corr-008 schema"
+
+  - name: "framework_mapping_depends_on_phase_2_catalog"
+    description: >
+      Doc 18 requires Doc 10 + Doc 11 to exist with corr-008 schema.
+    trigger: "modify 18_Framework_Mappings.md"
+    check: "10_Privacy_Security_Objectives.md AND 11_Rules_Catalog.md validated"
+
+  - name: "linter_regex_out_of_scope"
+    description: >
+      The Phase 2 linters (`lint_10_goals.py`, `lint_11_rules_catalog.py`)
+      enforce the legacy PG/SG/CR/BPR regex. Updating them to corr-008 is
+      a separate contract. Until then, applying corr-008 to case docs will
+      cause the linters to fail.
+    trigger: "modify 02_CASES/Case_0X/Phase_2"
+    check: "flag_linter_regex_migration_pending = true"
+
+# ─── DEPRECATION POLICY ───────────────────────────────────────────────────
+
+deprecation_policy:
+  scope: "ID formats"
+  trigger_date: "2026-08-10"
+  replaces:
+    PG-D-XX.X-NNN: AO-D-XX.X-NNN (Phase 1) OR PO-D-XX.X-NNN (Phase 2)
+    SG-D-XX.X-NNN: AO-D-XX.X-NNN (Phase 1) OR SO-D-XX.X-NNN (Phase 2)
+    CR-D-XX.X-NNN: RULE-D-XX.X-NNN (same number, regulation-derived)
+    BPR-D-XX.X-NNN: RULE-D-XX.X-NNN (number + 100, framework-derived)
+    GOAL-PRIV-NN: (removed)
+    GOAL-SEC-NN: (removed)
+  preservation_rule: >
+    Legacy IDs may appear in DEPRECATED sections with `formerly_known_as`
+    aliases for traceability. They may NOT appear in new content as primary IDs.
+  validator: "01_IMPLEMENTATION_TOOLS/scripts/validate_aegis_ids.py"

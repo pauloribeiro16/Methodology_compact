@@ -1,0 +1,1948 @@
+# AEGIS Phase 1 Case Ontology — Case_02_SecureBorder_Solutions
+# Schema: phase1_schema.yaml v1.0
+# Generated: 2026-07-09
+#
+# This ontology is the canonical source for clause_id -> maps_to_subdomain
+# references in this case. Do not duplicate this mapping elsewhere.
+# Total clauses: 28 (GDPR) + 26 (CRA) + 29 (NIS 2) + 29 (AI_Act) = 112.
+#
+# ⚠️ RECONCILIATION (v1.1, 2026-08-06, Sprint 1):
+#   - Tension IDs T-006/T-007/T-008 added to extend ontology beyond T-001–T-005.
+#     Doc 07 §5.4 Compound Event Scenarios references T-006/T-007/T-008 as
+#     RESOURCE_CONFLICT tensions (supplier security, SDLC, security awareness).
+#     The legacy ontology v1.0 only declared T-001–T-005; this v1.1 extends to T-008.
+#   - Version bumped 1.0 → 1.1 (Sprint 1, I-01 partial fix).
+#   - Generated date updated to 2026-08-06.
+#   - All other sections preserved verbatim for diff-ability with the legacy
+#     `00_COMMON/phase1_ontology.yaml` (read-only, frozen).
+
+header:
+  case_id: "Case_02_SecureBorder_Solutions"
+  phase: 1
+  version: "2.0"
+  generated_from:
+    - "AEGIS-COMMON-00"  # Taxonomy Reference
+    - "AEGIS-COMMON-01"  # Company Context
+    - "AEGIS-P1-05"      # Regulatory Applicability
+    - "AEGIS-P1-06"      # Clause Mapping Matrix
+  generated_date: "2026-08-10"
+  author: "AEGIS Implementation (corr-Case02 Commit F)"
+  reconciliation:
+    sprint: 9
+    role: final_migration
+    base_doc: ../00_COMMON/phase1_ontology.yaml (legacy, frozen v1.0)
+    changes:
+      - "Tension IDs extended: T-006, T-007, T-008 added (RESOURCE_CONFLICT)."
+      - "Version bumped: 1.0 → 1.1."
+      - "Generated date updated: 2026-07-09 → 2026-08-06."
+      - "v1.3 (corr-Case02 Commit B, 2026-08-10): T-009 added (D-10.1 monitoring opt-out SCOPE_CONFLICT; F-03 RESOLVED); F-04 RESOLVED (AI Act Art. 12 → Art. 19(1) in T-002 citations); F-06 RESOLVED (AI_Act casing normalization across Case_02). Lint rule AI_ACT_CASING added."
+      - "v2.0 (corr-Case02 Commit F, 2026-08-10): FINAL MIGRATION MARKER. Phase 1 RICH complete (35 ACTIVE subdomains, 07c tech-free). Phase 2 migration complete (89 PSOs = 34 PO + 55 SO; 63 rules = 38 CR + 25 BPR). Phase 3 harmonisation complete (UC/FR/NFR + AO/PSO linkage). 13_Framework_Mappings.xlsx created (3 sheets: NIST CSF + Privacy + AI RMF). Case root README.md authored. Author updated to corr-Case02 Commit F. sprint updated 1 → 9; role updated reconciliation → final_migration."
+
+# ============================================================
+# COMPANY
+# ============================================================
+
+company:
+  id: "CC-SECUREBORDER-2026-001"
+  name: "SecureBorder Solutions B.V."
+  sector: "Defense/Security/Critical Infrastructure"
+  size: "medium-large"
+  employees: 450
+  revenue_eur: 120000000
+  jurisdiction: "Netherlands (EU)"
+  legal_structure: "B.V."
+  tech_stack:
+    - "Edge AI inference (on-device)"
+    - "EU cloud (model updates, telemetry)"
+    - "Signed OTA firmware updates"
+    - "PKI for kiosk identity"
+    - "Government border-control integration (legacy)"
+  data_types:
+    - "facial biometric templates (Art. 9 special category)"
+    - "passport data (eMRTD)"
+    - "watchlist data"
+    - "audit logs (10-year retention)"
+    - "AI model updates"
+  criticality_level: "critical"
+  complexity_tier: "HIGH"
+
+# ============================================================
+# REGULATIONS (All 5 EU regulations with applicability)
+# ============================================================
+
+regulations:
+  - id: "REG-GDPR"
+    abbreviation: "GDPR"
+    name: "General Data Protection Regulation"
+    eu_reference: "Regulation (EU) 2016/679"
+    applicable: true
+    obligated_party: ["controller", "processor"]
+    reason: "processes_personal_data = true (biometric Art. 9 + EU data subjects)"
+    clause_count: 28
+    key_articles: [5, 9, 25, 28, 30, 32, 33, 34, 35, 37, 44]
+    obligated_party_rationale:
+      controller: "SecureBorder is controller for audit logs and compliance data (legal basis: legal obligation Art. 6(1)(c))."
+      processor: "SecureBorder is processor for biometric facial templates processed on behalf of government authorities (Art. 28 DPA). Art. 32(1) addresses both controller and processor; Art. 32(2) is processor-specific."
+    key_clauses_in_scope: "GDPR-C01 through GDPR-C28 (all 28 applicable)"
+
+  - id: "REG-CRA"
+    abbreviation: "CRA"
+    name: "Cyber Resilience Act"
+    eu_reference: "Regulation (EU) 2024/2847"
+    applicable: true
+    obligated_party: "manufacturer"
+    reason: "places_digital_products_eu = true (GuardianGate eGate kiosks)"
+    clause_count: 26
+    key_articles: [1, 2, 5, 6, 7, 8, 9, 11, 12, 13, 14, 18, 19, 20, 21, 22, 23, 24, 25, 32]
+    product_class: "Critical Class — border control security function"
+    key_clauses_in_scope: "CRA-C01 through CRA-C26 (all 26 applicable)"
+
+  - id: "REG-NIS2"
+    abbreviation: "NIS 2"
+    name: "Network and Information Systems Directive 2"
+    eu_reference: "Directive (EU) 2022/2555"
+    applicable: true
+    obligated_party: "essential_entity_supplier"
+    reason: "nis2_sector = Defense/Security + size (450 employees, 120M EUR) + supplier to essential entities (government border control)"
+    clause_count: 29
+    key_articles: [21, 23]
+    sector: "Defense/Security/Critical Infrastructure"
+    key_clauses_in_scope: "NIS2-C01 through NIS2-C29 (all 29 applicable)"
+    supplementary_acts:
+      - "Commission Implementing Regulation (EU) 2024/2690"
+
+  - id: "REG-DORA"
+    abbreviation: "DORA"
+    name: "Digital Operational Resilience Act"
+    eu_reference: "Regulation (EU) 2022/2554"
+    applicable: false
+    reason: "not_financial_entity (dora_financial_entity = false)"
+    clause_count: 0
+    non_applicability_evidence:
+      - "SecureBorder is not a financial entity per DORA Art. 2 (not bank, insurance, payment institution, investment firm, etc.)"
+      - "Products are border control systems, not financial services"
+
+  - id: "REG-AIAct"
+    abbreviation: "AI_Act"
+    name: "Artificial Intelligence Act"
+    eu_reference: "Regulation (EU) 2024/1689"
+    applicable: true
+    obligated_party: "provider"
+    reason: "aiact_high_risk_system = true (Edge AI for border control — Annex III)"
+    clause_count: 29
+    key_articles: [5, 9, 10, 11, 12, 13, 14, 15, 25, 26, 27, 43, 49, 61, 72, 73]
+    high_risk_category: "Annex III §1 — migration, asylum and border control management"
+    prohibited_practices_check: "Art. 5 negative analysis — GuardianGate performs 1:1 verification (not 1:N identification); no prohibited practices (a)-(h) apply"
+    key_clauses_in_scope: "AI-C01 through AI-C29 (all 29 applicable)"
+
+# ============================================================
+# DOMAINS (All 10 security control domains)
+# ============================================================
+
+domains:
+  - id: "D-01"
+    name: "Data Protection & Encryption"
+    description: "Data protection and cryptographic controls"
+    primary_regulatory_driver: "GDPR"
+    subdomain_count: 4
+
+  - id: "D-02"
+    name: "Vulnerability Management"
+    description: "Vulnerability identification and patch management"
+    primary_regulatory_driver: "CRA"
+    subdomain_count: 4
+
+  - id: "D-03"
+    name: "Access Control"
+    description: "Identity management and access control mechanisms"
+    primary_regulatory_driver: "GDPR"
+    subdomain_count: 4
+
+  - id: "D-04"
+    name: "Incident Response"
+    description: "Security incident detection, response, and recovery"
+    primary_regulatory_driver: "GDPR"
+    subdomain_count: 4
+
+  - id: "D-05"
+    name: "Data Lifecycle"
+    description: "Data minimization, retention, and erasure"
+    primary_regulatory_driver: "GDPR"
+    subdomain_count: 4
+
+  - id: "D-06"
+    name: "Supply Chain"
+    description: "Vendor risk and supply chain security"
+    primary_regulatory_driver: "DORA"
+    subdomain_count: 4
+
+  - id: "D-07"
+    name: "Secure Development"
+    description: "Secure development lifecycle and coding practices"
+    primary_regulatory_driver: "CRA"
+    subdomain_count: 4
+
+  - id: "D-08"
+    name: "Human Factors"
+    description: "Security awareness and training"
+    primary_regulatory_driver: "NIS 2"
+    subdomain_count: 3
+
+  - id: "D-09"
+    name: "Governance & Documentation"
+    description: "Security policies and documentation"
+    primary_regulatory_driver: "GDPR"
+    subdomain_count: 4
+
+  - id: "D-10"
+    name: "Monitoring & Audit"
+    description: "Security monitoring and compliance testing"
+    primary_regulatory_driver: "DORA"
+    subdomain_count: 3
+
+# ============================================================
+# SUB-DOMAINS (All 38 sub-domains; 35 covered + 3 DORA-exclusive)
+# ============================================================
+
+subdomains:
+  covered:
+    # D-01: Data Protection & Encryption
+    - id: "D-01.1"
+      domain_id: "D-01"
+      name: "Data at Rest Encryption"
+      source_regulations: ["GDPR", "CRA", "NIS 2", "AI_Act"]
+      clause_count: 4
+
+    - id: "D-01.2"
+      domain_id: "D-01"
+      name: "Data in Transit Encryption"
+      source_regulations: ["GDPR", "CRA", "NIS 2", "AI_Act"]
+      clause_count: 4
+
+    - id: "D-01.3"
+      domain_id: "D-01"
+      name: "Cryptographic Key Management"
+      source_regulations: ["CRA", "NIS 2", "AI_Act"]
+      clause_count: 3
+
+    - id: "D-01.4"
+      domain_id: "D-01"
+      name: "Data Integrity Mechanisms"
+      source_regulations: ["GDPR", "CRA", "AI_Act"]
+      clause_count: 3
+
+    # D-02: Vulnerability Management
+    - id: "D-02.1"
+      domain_id: "D-02"
+      name: "Vulnerability Identification"
+      source_regulations: ["CRA", "NIS 2", "AI_Act"]
+      clause_count: 3
+
+    - id: "D-02.2"
+      domain_id: "D-02"
+      name: "Patch Management & Updates"
+      source_regulations: ["CRA", "NIS 2"]
+      clause_count: 2
+
+    - id: "D-02.3"
+      domain_id: "D-02"
+      name: "Coordinated Vulnerability Disclosure"
+      source_regulations: ["CRA", "NIS 2"]
+      clause_count: 2
+      sole_authority_regulation: "CRA"
+
+    - id: "D-02.4"
+      domain_id: "D-02"
+      name: "Threat-Led Penetration Testing"
+      source_regulations: ["NIS 2", "AI_Act"]
+      clause_count: 2
+
+    # D-03: Access Control
+    - id: "D-03.1"
+      domain_id: "D-03"
+      name: "Identity Lifecycle Management"
+      source_regulations: ["CRA", "NIS 2", "AI_Act"]
+      clause_count: 3
+
+    - id: "D-03.2"
+      domain_id: "D-03"
+      name: "Multi-Factor Authentication"
+      source_regulations: ["CRA", "NIS 2", "AI_Act"]
+      clause_count: 3
+
+    - id: "D-03.3"
+      domain_id: "D-03"
+      name: "Authorization & Least Privilege"
+      source_regulations: ["GDPR", "NIS 2", "AI_Act"]
+      clause_count: 3
+
+    - id: "D-03.4"
+      domain_id: "D-03"
+      name: "Secure System Defaults"
+      source_regulations: ["CRA"]
+      clause_count: 1
+
+    # D-04: Incident Response
+    - id: "D-04.1"
+      domain_id: "D-04"
+      name: "Incident Detection & Triage"
+      source_regulations: ["CRA", "NIS 2", "AI_Act"]
+      clause_count: 3
+
+    - id: "D-04.2"
+      domain_id: "D-04"
+      name: "Containment & Mitigation"
+      source_regulations: ["GDPR", "CRA", "NIS 2"]
+      clause_count: 3
+
+    - id: "D-04.3"
+      domain_id: "D-04"
+      name: "Regulatory Notification"
+      source_regulations: ["GDPR", "CRA", "NIS 2", "AI_Act"]
+      clause_count: 4
+
+    - id: "D-04.4"
+      domain_id: "D-04"
+      name: "Data Restoration & Recovery"
+      source_regulations: ["GDPR", "NIS 2"]
+      clause_count: 2
+
+    # D-05: Data Lifecycle
+    - id: "D-05.1"
+      domain_id: "D-05"
+      name: "Data Minimization"
+      source_regulations: ["GDPR", "CRA", "AI_Act"]
+      clause_count: 3
+
+    - id: "D-05.2"
+      domain_id: "D-05"
+      name: "Retention & Archiving"
+      source_regulations: ["GDPR", "AI_Act"]
+      clause_count: 2
+
+    - id: "D-05.3"
+      domain_id: "D-05"
+      name: "Right to Erasure"
+      source_regulations: ["GDPR", "CRA"]
+      clause_count: 2
+
+    - id: "D-05.4"
+      domain_id: "D-05"
+      name: "Data Portability"
+      source_regulations: ["GDPR"]
+      clause_count: 1
+      sole_authority_regulation: "GDPR"
+
+    # D-06: Supply Chain
+    - id: "D-06.1"
+      domain_id: "D-06"
+      name: "Vendor Risk Assessment"
+      source_regulations: ["GDPR", "NIS 2"]
+      clause_count: 2
+
+    - id: "D-06.2"
+      domain_id: "D-06"
+      name: "Software Bill of Materials (SBOM)"
+      source_regulations: ["CRA"]
+      clause_count: 1
+      sole_authority_regulation: "CRA"
+
+    - id: "D-06.3"
+      domain_id: "D-06"
+      name: "Contractual Security Obligations"
+      source_regulations: ["GDPR", "NIS 2", "AI_Act"]
+      clause_count: 3
+
+    - id: "D-06.4"
+      domain_id: "D-06"
+      name: "Third-Party Boundary Management"
+      source_regulations: ["NIS 2"]
+      clause_count: 1
+
+    # D-07: Secure Development
+    - id: "D-07.1"
+      domain_id: "D-07"
+      name: "Secure-by-Design Principles"
+      source_regulations: ["GDPR", "CRA", "NIS 2", "AI_Act"]
+      clause_count: 4
+
+    - id: "D-07.2"
+      domain_id: "D-07"
+      name: "Secure Coding Practices"
+      source_regulations: ["CRA", "NIS 2"]
+      clause_count: 2
+
+    - id: "D-07.3"
+      domain_id: "D-07"
+      name: "CI/CD Pipeline Security"
+      source_regulations: ["NIS 2"]
+      clause_count: 1
+
+    - id: "D-07.4"
+      domain_id: "D-07"
+      name: "Change Management"
+      source_regulations: ["NIS 2"]
+      clause_count: 1
+
+    # D-08: Human Factors
+    - id: "D-08.1"
+      domain_id: "D-08"
+      name: "General Security Awareness"
+      source_regulations: ["GDPR", "NIS 2"]
+      clause_count: 2
+
+    - id: "D-08.2"
+      domain_id: "D-08"
+      name: "Role-Specific Competence"
+      source_regulations: ["GDPR", "NIS 2", "AI_Act"]
+      clause_count: 3
+
+    - id: "D-08.3"
+      domain_id: "D-08"
+      name: "Management Board Training"
+      source_regulations: ["NIS 2"]
+      clause_count: 1
+
+    # D-09: Governance & Documentation
+    - id: "D-09.1"
+      domain_id: "D-09"
+      name: "Information Security Policies"
+      source_regulations: ["GDPR", "CRA", "NIS 2", "AI_Act"]
+      clause_count: 4
+
+    - id: "D-09.2"
+      domain_id: "D-09"
+      name: "Impact & Risk Assessments"
+      source_regulations: ["GDPR", "CRA", "NIS 2", "AI_Act"]
+      clause_count: 4
+
+    - id: "D-09.3"
+      domain_id: "D-09"
+      name: "Asset Inventories"
+      source_regulations: ["NIS 2"]
+      clause_count: 1
+
+    - id: "D-09.4"
+      domain_id: "D-09"
+      name: "Records of Processing"
+      source_regulations: ["GDPR", "AI_Act"]
+      clause_count: 2
+
+    # D-10: Monitoring & Audit
+    - id: "D-10.1"
+      domain_id: "D-10"
+      name: "Continuous Security Monitoring"
+      source_regulations: ["CRA", "NIS 2", "AI_Act"]
+      clause_count: 3
+
+    - id: "D-10.2"
+      domain_id: "D-10"
+      name: "Audit Logging & Traceability"
+      source_regulations: ["CRA", "NIS 2", "AI_Act"]
+      clause_count: 3
+
+    - id: "D-10.3"
+      domain_id: "D-10"
+      name: "Compliance Testing"
+      source_regulations: ["GDPR", "CRA", "NIS 2", "AI_Act"]
+      clause_count: 4
+
+  not_covered: []
+  # Note: All 38 sub-domains are covered by at least one of the 4 applicable
+  # regulations (GDPR, CRA, NIS 2, AI_Act). DORA-exclusive sub-domains
+  # (D-07.2 Secure Coding, D-07.4 Change Management, D-09.3 Asset Inventories)
+  # are covered by NIS 2 (Art. 21(2)(s), (m), (l)) and/or CRA (Art. 7 SBOM
+  # contributes to asset visibility), so no formal gaps remain. The 3 DORA-
+  # exclusive gaps declared in 05_Regulatory_Applicability.md §8 reflect the
+  # strictest possible interpretation (sole authority of DORA); for
+  # SecureBorder, NIS 2 and CRA cover them in practice.
+
+# ============================================================
+# APPLICABILITY ASSESSMENTS
+# ============================================================
+
+applicability_assessments:
+  - company_id: "CC-SECUREBORDER-2026-001"
+    regulation_id: "REG-GDPR"
+    assessment: "applicable"
+    confidence: "high"
+    obligated_party: ["controller", "processor"]
+    evidence:
+      - "Q22: processes special category personal data (biometric facial templates, Art. 9)"
+      - "Q1: EU data subjects (Schengen travelers)"
+      - "Q27: large-scale processing (millions of crossings annually)"
+      - "Q57: B2G contract — controller for audit logs, processor for biometric data"
+    reasoning: "SecureBorder processes special category data (Art. 9 biometric facial templates) on behalf of government border control authorities. As processor, GDPR obligations apply via Art. 28 DPA. Additionally, SecureBorder is a controller for audit logs and compliance data (Art. 6(1)(c) legal basis). Large-scale Art. 9 processing triggers mandatory DPIA (Art. 35)."
+
+  - company_id: "CC-SECUREBORDER-2026-001"
+    regulation_id: "REG-CRA"
+    assessment: "applicable"
+    confidence: "high"
+    obligated_party: "manufacturer"
+    evidence:
+      - "Q1: EU customers (Schengen border control authorities)"
+      - "Q7: GuardianGate eGate — digital product placed on EU market"
+      - "Q60: hardware+software with Edge AI — digital element present"
+      - "Q70: Critical Class — border control security function"
+    reasoning: "GuardianGate eGate systems are digital products with critical security functions for border control. As manufacturer, SecureBorder must comply with CRA Essential Requirements (Annex I Parts I and II). Critical Class classification requires third-party conformity assessment by a notified body (Art. 32(3) until Art. 8 certification scheme exists)."
+
+  - company_id: "CC-SECUREBORDER-2026-001"
+    regulation_id: "REG-NIS2"
+    assessment: "applicable"
+    confidence: "high"
+    obligated_party: "essential_entity_supplier"
+    evidence:
+      - "Q2: 450 employees (medium enterprise, >=50 threshold)"
+      - "Q3: 120M EUR revenue (medium enterprise, >=10M threshold)"
+      - "Q4: Defense/Security/Critical Infrastructure sector (Annex I)"
+      - "Q47: essential entity supplier (supplies government border control)"
+    reasoning: "SecureBorder qualifies as a medium-sized enterprise (450 employees, 120M EUR revenue) operating in the defense/security sector. As a supplier of critical systems to government border control (essential entities), NIS 2 supply chain security obligations apply (Art. 21(2)(d)). Management liability applies for non-compliance (Art. 21(4))."
+
+  - company_id: "CC-SECUREBORDER-2026-001"
+    regulation_id: "REG-DORA"
+    assessment: "not_applicable"
+    confidence: "high"
+    reason: "not_financial_entity"
+    evidence:
+      - "Q6: No regulated financial operations (not bank, insurance, payment institution, investment firm)"
+      - "Q18: Products are border control, not financial services"
+    reasoning: "SecureBorder is not a financial entity as defined by DORA Art. 2. Products are border control systems, not financial services. DORA does not apply."
+
+  - company_id: "CC-SECUREBORDER-2026-001"
+    regulation_id: "REG-AIAct"
+    assessment: "applicable"
+    confidence: "high"
+    obligated_party: "provider"
+    evidence:
+      - "Q8: Edge AI system present (face matching, liveness detection)"
+      - "Q39: Annex III §1 use case (migration, asylum, border control)"
+      - "Q40: biometric categorization (facial recognition — verification, not identification)"
+      - "Q41: no prohibited Art. 5 practices apply"
+    reasoning: "GuardianGate uses Edge AI for automated border control (face matching, liveness detection). This falls explicitly under AI_Act Annex III §1 (migration, asylum and border control management) as a high-risk AI system. Conformity assessment required before EU market placement (Art. 43(4) — third-party assessment for Annex III). Post-market monitoring system mandatory (Art. 72)."
+
+# ============================================================
+# CLAUSE MAPPINGS (112 clauses: 28 GDPR + 26 CRA + 29 NIS 2 + 29 AI_Act)
+# ============================================================
+
+clause_mappings:
+  # ----- GDPR (28 clauses) -----
+  - clause_id: "GDPR-C01"
+    regulation_id: "REG-GDPR"
+    article: "Art. 5(1)(a)"
+    description: "Lawfulness, fairness, transparency of processing"
+    maps_to_subdomain: "D-05.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: ["controller", "processor"]
+
+  - clause_id: "GDPR-C02"
+    regulation_id: "REG-GDPR"
+    article: "Art. 5(1)(b)"
+    description: "Purpose limitation"
+    maps_to_subdomain: "D-05.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "GDPR-C03"
+    regulation_id: "REG-GDPR"
+    article: "Art. 5(1)(c)"
+    description: "Data minimisation"
+    maps_to_subdomain: "D-05.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "GDPR-C04"
+    regulation_id: "REG-GDPR"
+    article: "Art. 5(1)(d)"
+    description: "Accuracy"
+    maps_to_subdomain: "D-05.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "GDPR-C05"
+    regulation_id: "REG-GDPR"
+    article: "Art. 5(1)(e)"
+    description: "Storage limitation"
+    maps_to_subdomain: "D-05.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "GDPR-C06"
+    regulation_id: "REG-GDPR"
+    article: "Art. 5(1)(f)"
+    description: "Integrity and confidentiality (encryption)"
+    maps_to_subdomain: "D-01.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: ["controller", "processor"]
+
+  - clause_id: "GDPR-C07"
+    regulation_id: "REG-GDPR"
+    article: "Art. 5(2)"
+    description: "Accountability"
+    maps_to_subdomain: "D-09.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "GDPR-C08"
+    regulation_id: "REG-GDPR"
+    article: "Art. 9"
+    description: "Processing of special categories (biometric Art. 9(1))"
+    maps_to_subdomain: "D-05.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "GDPR-C09"
+    regulation_id: "REG-GDPR"
+    article: "Art. 25"
+    description: "Data protection by design and by default"
+    maps_to_subdomain: "D-07.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: ["controller", "processor"]
+
+  - clause_id: "GDPR-C10"
+    regulation_id: "REG-GDPR"
+    article: "Art. 28"
+    description: "Processor obligations (DPA, sub-processor auth)"
+    maps_to_subdomain: "D-06.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: ["controller", "processor"]
+
+  - clause_id: "GDPR-C11"
+    regulation_id: "REG-GDPR"
+    article: "Art. 30"
+    description: "Records of processing activities (ROPA)"
+    maps_to_subdomain: "D-09.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "GDPR-C12"
+    regulation_id: "REG-GDPR"
+    article: "Art. 32(1)"
+    description: "Security of processing — technical and organisational measures"
+    maps_to_subdomain: "D-01.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: ["controller", "processor"]
+
+  - clause_id: "GDPR-C13"
+    regulation_id: "REG-GDPR"
+    article: "Art. 32(2)"
+    description: "Adherence to approved codes of conduct / certification (processor)"
+    maps_to_subdomain: "D-09.1"
+    normative_strength: 2
+    obligation_type: "conditional"
+
+  - clause_id: "GDPR-C14"
+    regulation_id: "REG-GDPR"
+    article: "Art. 32(1)(a)"
+    description: "Pseudonymisation and encryption"
+    maps_to_subdomain: "D-01.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "GDPR-C15"
+    regulation_id: "REG-GDPR"
+    article: "Art. 32(1)(b)"
+    description: "Ongoing confidentiality, integrity, availability, resilience"
+    maps_to_subdomain: "D-10.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "GDPR-C16"
+    regulation_id: "REG-GDPR"
+    article: "Art. 32(1)(c)"
+    description: "Restore availability and access in a timely manner (backup/recovery)"
+    maps_to_subdomain: "D-04.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "GDPR-C17"
+    regulation_id: "REG-GDPR"
+    article: "Art. 32(1)(d)"
+    description: "Regular testing and evaluating effectiveness"
+    maps_to_subdomain: "D-10.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "GDPR-C18"
+    regulation_id: "REG-GDPR"
+    article: "Art. 33(1)"
+    description: "Breach notification to supervisory authority within 72h"
+    maps_to_subdomain: "D-04.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "controller"
+
+  - clause_id: "GDPR-C19"
+    regulation_id: "REG-GDPR"
+    article: "Art. 33(2)"
+    description: "Breach notification by processor to controller without undue delay"
+    maps_to_subdomain: "D-04.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "processor"
+
+  - clause_id: "GDPR-C20"
+    regulation_id: "REG-GDPR"
+    article: "Art. 33(3)"
+    description: "Breach notification content requirements"
+    maps_to_subdomain: "D-04.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "GDPR-C21"
+    regulation_id: "REG-GDPR"
+    article: "Art. 34(1)"
+    description: "Communication of breach to data subject when high risk"
+    maps_to_subdomain: "D-04.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "controller"
+
+  - clause_id: "GDPR-C22"
+    regulation_id: "REG-GDPR"
+    article: "Art. 35(1)"
+    description: "DPIA when high risk to data subjects"
+    maps_to_subdomain: "D-09.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "controller"
+
+  - clause_id: "GDPR-C23"
+    regulation_id: "REG-GDPR"
+    article: "Art. 35(3)(b)"
+    description: "DPIA mandatory for large-scale Art. 9 processing (biometric)"
+    maps_to_subdomain: "D-09.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "controller"
+
+  - clause_id: "GDPR-C24"
+    regulation_id: "REG-GDPR"
+    article: "Art. 35(7)"
+    description: "DPIA content requirements"
+    maps_to_subdomain: "D-09.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "GDPR-C25"
+    regulation_id: "REG-GDPR"
+    article: "Art. 36(1)"
+    description: "Prior consultation with supervisory authority"
+    maps_to_subdomain: "D-09.2"
+    normative_strength: 3
+    obligation_type: "conditional"
+
+  - clause_id: "GDPR-C26"
+    regulation_id: "REG-GDPR"
+    article: "Art. 37(1)(c)"
+    description: "DPO designation for large-scale Art. 9 processing (controller AND processor)"
+    maps_to_subdomain: "D-08.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: ["controller", "processor"]
+
+  - clause_id: "GDPR-C27"
+    regulation_id: "REG-GDPR"
+    article: "Art. 44"
+    description: "Cross-border data transfer — general principle"
+    maps_to_subdomain: "D-05.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "GDPR-C28"
+    regulation_id: "REG-GDPR"
+    article: "Art. 5(2)+32"
+    description: "Combined accountability + security (audit-log processing as controller)"
+    maps_to_subdomain: "D-09.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "controller"
+
+  # ----- CRA (26 clauses) -----
+  - clause_id: "CRA-C01"
+    regulation_id: "REG-CRA"
+    article: "Art. 1"
+    description: "Subject matter and scope"
+    maps_to_subdomain: "D-09.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C02"
+    regulation_id: "REG-CRA"
+    article: "Art. 2"
+    description: "Definitions (manufacturer, digital element, critical product)"
+    maps_to_subdomain: "D-09.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C03"
+    regulation_id: "REG-CRA"
+    article: "Annex I §1"
+    description: "Secure by design — properties of the product"
+    maps_to_subdomain: "D-03.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C04"
+    regulation_id: "REG-CRA"
+    article: "Annex I §2"
+    description: "Vulnerability handling process"
+    maps_to_subdomain: "D-02.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C05"
+    regulation_id: "REG-CRA"
+    article: "Annex I §3"
+    description: "Security updates (timely, free)"
+    maps_to_subdomain: "D-02.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C06"
+    regulation_id: "REG-CRA"
+    article: "Art. 13(8)"
+    description: "Support period minimum 5 years"
+    maps_to_subdomain: "D-10.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C07"
+    regulation_id: "REG-CRA"
+    article: "Art. 13(9)"
+    description: "Security update retention 10 years or support period (whichever longer)"
+    maps_to_subdomain: "D-10.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C08"
+    regulation_id: "REG-CRA"
+    article: "Art. 13(13)"
+    description: "Technical documentation retention 10 years after placement on market"
+    maps_to_subdomain: "D-09.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C09"
+    regulation_id: "REG-CRA"
+    article: "Art. 5 + Annex I §2(g)"
+    description: "Coordinated vulnerability disclosure policy"
+    maps_to_subdomain: "D-02.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    sole_authority_regulation: "CRA"
+
+  - clause_id: "CRA-C10"
+    regulation_id: "REG-CRA"
+    article: "Art. 6 + Annex I §2"
+    description: "Vulnerability identification (SBOM, monitoring)"
+    maps_to_subdomain: "D-02.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C11"
+    regulation_id: "REG-CRA"
+    article: "Art. 7"
+    description: "Software Bill of Materials (SBOM)"
+    maps_to_subdomain: "D-06.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    sole_authority_regulation: "CRA"
+
+  - clause_id: "CRA-C12"
+    regulation_id: "REG-CRA"
+    article: "Art. 8 + Annex I §3"
+    description: "Timely security updates for Critical Class products"
+    maps_to_subdomain: "D-02.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C13"
+    regulation_id: "REG-CRA"
+    article: "Art. 13(1)"
+    description: "Technical documentation (Annex II content)"
+    maps_to_subdomain: "D-09.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C14"
+    regulation_id: "REG-CRA"
+    article: "Art. 14(1)-(2)"
+    description: "Actively exploited vulnerabilities — 24h early warning to CSIRT/ENISA, 72h notification, 14d final report"
+    maps_to_subdomain: "D-04.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C15"
+    regulation_id: "REG-CRA"
+    article: "Art. 14(3)-(5)"
+    description: "Severe incidents impacting product security — 24h/72h/1 month"
+    maps_to_subdomain: "D-04.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C16"
+    regulation_id: "REG-CRA"
+    article: "Art. 20(1)"
+    description: "Conformity assessment procedure (default Module A)"
+    maps_to_subdomain: "D-10.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C17"
+    regulation_id: "REG-CRA"
+    article: "Art. 32(1)-(2)"
+    description: "Critical Class conformity — full quality assurance + EU-type examination by notified body (Art. 32(3) where no scheme)"
+    maps_to_subdomain: "D-10.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C18"
+    regulation_id: "REG-CRA"
+    article: "Art. 18"
+    description: "CE marking obligations"
+    maps_to_subdomain: "D-01.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C19"
+    regulation_id: "REG-CRA"
+    article: "Art. 19"
+    description: "Market surveillance cooperation"
+    maps_to_subdomain: "D-06.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C20"
+    regulation_id: "REG-CRA"
+    article: "Art. 21"
+    description: "Authorised representatives"
+    maps_to_subdomain: "D-06.3"
+    normative_strength: 2
+    obligation_type: "conditional"
+
+  - clause_id: "CRA-C21"
+    regulation_id: "REG-CRA"
+    article: "Art. 22"
+    description: "Importer obligations"
+    maps_to_subdomain: "D-06.3"
+    normative_strength: 2
+    obligation_type: "conditional"
+
+  - clause_id: "CRA-C22"
+    regulation_id: "REG-CRA"
+    article: "Art. 23"
+    description: "Distributor obligations"
+    maps_to_subdomain: "D-06.3"
+    normative_strength: 2
+    obligation_type: "conditional"
+
+  - clause_id: "CRA-C23"
+    regulation_id: "REG-CRA"
+    article: "Art. 25"
+    description: "Free movement of conforming products"
+    maps_to_subdomain: "D-09.1"
+    normative_strength: 2
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C24"
+    regulation_id: "REG-CRA"
+    article: "Art. 11 + Annex I §1(m)"
+    description: "Secure deletion / transfer of data on disposal or transfer"
+    maps_to_subdomain: "D-05.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C25"
+    regulation_id: "REG-CRA"
+    article: "Art. 12"
+    description: "Authentication and access control mechanisms"
+    maps_to_subdomain: "D-03.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C26"
+    regulation_id: "REG-CRA"
+    article: "Art. 9 + Annex I §1(f)"
+    description: "Integrity protection mechanisms"
+    maps_to_subdomain: "D-01.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  # ----- NIS 2 (29 clauses) -----
+  - clause_id: "NIS2-C01"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(1)"
+    description: "Risk management measures — general requirement"
+    maps_to_subdomain: "D-09.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "essential_entity_supplier"
+
+  - clause_id: "NIS2-C02"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(a)"
+    description: "Policies on risk analysis and information system security"
+    maps_to_subdomain: "D-09.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "NIS2-C03"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(b)"
+    description: "Incident handling (prevention, detection, response)"
+    maps_to_subdomain: "D-04.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "NIS2-C04"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(c)"
+    description: "Business continuity and crisis management"
+    maps_to_subdomain: "D-04.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "NIS2-C05"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(d)"
+    description: "Supply chain security (including supplier-specific measures)"
+    maps_to_subdomain: "D-06.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "NIS2-C06"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(e)"
+    description: "Vulnerability handling and disclosure"
+    maps_to_subdomain: "D-02.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "NIS2-C07"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(f)"
+    description: "Cryptography and encryption"
+    maps_to_subdomain: "D-01.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "NIS2-C08"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(g)"
+    description: "Access control and asset management"
+    maps_to_subdomain: "D-03.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "NIS2-C09"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(h)"
+    description: "Multi-factor authentication and continuous authentication"
+    maps_to_subdomain: "D-03.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "NIS2-C10"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(i)"
+    description: "Secure voice / video / text communications"
+    maps_to_subdomain: "D-01.2"
+    normative_strength: 2
+    obligation_type: "conditional"
+
+  - clause_id: "NIS2-C11"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(j)"
+    description: "Human resources security, awareness and training"
+    maps_to_subdomain: "D-08.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "NIS2-C12"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(j)-2"
+    description: "Role-specific competence (engineering, management)"
+    maps_to_subdomain: "D-08.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "NIS2-C13"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(j)-3"
+    description: "Management board training on cyber risk"
+    maps_to_subdomain: "D-08.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "NIS2-C14"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(k)"
+    description: "Procurement / contract security clauses"
+    maps_to_subdomain: "D-06.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "NIS2-C15"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(l)"
+    description: "Asset inventories and management"
+    maps_to_subdomain: "D-09.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "NIS2-C16"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(m)"
+    description: "Change management"
+    maps_to_subdomain: "D-07.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "NIS2-C17"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(n)"
+    description: "Monitoring and logging (security monitoring)"
+    maps_to_subdomain: "D-10.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "NIS2-C18"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(o)"
+    description: "System testing (penetration, vulnerability, audits)"
+    maps_to_subdomain: "D-10.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "NIS2-C19"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(p)"
+    description: "Threat-led penetration testing (TLPT)"
+    maps_to_subdomain: "D-02.4"
+    normative_strength: 2
+    obligation_type: "conditional"
+
+  - clause_id: "NIS2-C20"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(q)"
+    description: "Backup and disaster recovery"
+    maps_to_subdomain: "D-04.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "NIS2-C21"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(r)"
+    description: "Secure system development lifecycle (SDL)"
+    maps_to_subdomain: "D-07.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "NIS2-C22"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(s)"
+    description: "Secure coding practices and CI/CD security"
+    maps_to_subdomain: "D-07.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "NIS2-C23"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(t)"
+    description: "Effectiveness assessment and review"
+    maps_to_subdomain: "D-09.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "NIS2-C24"
+    regulation_id: "REG-NIS2"
+    article: "Art. 23(4)(a)"
+    description: "Early warning to CSIRT — 24h without undue delay"
+    maps_to_subdomain: "D-04.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "NIS2-C25"
+    regulation_id: "REG-NIS2"
+    article: "Art. 23(4)(b)"
+    description: "Incident notification to CSIRT — 72h"
+    maps_to_subdomain: "D-04.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "NIS2-C26"
+    regulation_id: "REG-NIS2"
+    article: "Art. 23(4)(c)"
+    description: "Final report to CSIRT — 1 month"
+    maps_to_subdomain: "D-04.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "NIS2-C27"
+    regulation_id: "REG-NIS2"
+    article: "Art. 23(4)(e)"
+    description: "Interim/progress report while incident ongoing"
+    maps_to_subdomain: "D-04.3"
+    normative_strength: 3
+    obligation_type: "conditional"
+
+  - clause_id: "NIS2-C28"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(4)"
+    description: "Management accountability and liability"
+    maps_to_subdomain: "D-09.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "NIS2-C29"
+    regulation_id: "REG-NIS2"
+    article: "IR (EU) 2024/2690"
+    description: "Technical/methodological specifications supplementing Art. 21(2) for specific sectors"
+    maps_to_subdomain: "D-09.1"
+    normative_strength: 2
+    obligation_type: "conditional"
+
+  # ----- AI_Act (29 clauses) -----
+  - clause_id: "AI-C01"
+    regulation_id: "REG-AIAct"
+    article: "Art. 5"
+    description: "Prohibited AI practices (negative analysis — no prohibited practice applies to GuardianGate)"
+    maps_to_subdomain: "D-09.1"
+    normative_strength: 3
+    obligation_type: "conditional"
+
+  - clause_id: "AI-C02"
+    regulation_id: "REG-AIAct"
+    article: "Art. 9(1)"
+    description: "Risk management system throughout AI system lifecycle"
+    maps_to_subdomain: "D-09.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "provider"
+
+  - clause_id: "AI-C03"
+    regulation_id: "REG-AIAct"
+    article: "Art. 9(2)"
+    description: "Risk management — identify and analyse known and reasonably foreseeable risks"
+    maps_to_subdomain: "D-09.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "AI-C04"
+    regulation_id: "REG-AIAct"
+    article: "Art. 9(3)"
+    description: "Estimate and evaluate risks emerging after development"
+    maps_to_subdomain: "D-09.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "AI-C05"
+    regulation_id: "REG-AIAct"
+    article: "Art. 9(4)"
+    description: "Adopt risk management measures across lifecycle (testing, post-market)"
+    maps_to_subdomain: "D-09.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "AI-C06"
+    regulation_id: "REG-AIAct"
+    article: "Art. 10(1)"
+    description: "Training data governance — quality and relevance"
+    maps_to_subdomain: "D-07.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "AI-C07"
+    regulation_id: "REG-AIAct"
+    article: "Art. 10(2)"
+    description: "Training, validation and testing datasets"
+    maps_to_subdomain: "D-07.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "AI-C08"
+    regulation_id: "REG-AIAct"
+    article: "Art. 11"
+    description: "Technical documentation per Annex IV"
+    maps_to_subdomain: "D-09.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "AI-C09"
+    regulation_id: "REG-AIAct"
+    article: "Art. 12(1)"
+    description: "Automatic logging (traceability of functioning)"
+    maps_to_subdomain: "D-10.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "AI-C10"
+    regulation_id: "REG-AIAct"
+    article: "Art. 12(2)"
+    description: "Logging capabilities enabling post-market monitoring"
+    maps_to_subdomain: "D-10.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "AI-C11"
+    regulation_id: "REG-AIAct"
+    article: "Art. 13(1)"
+    description: "Transparency — instructions for use"
+    maps_to_subdomain: "D-09.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "AI-C12"
+    regulation_id: "REG-AIAct"
+    article: "Art. 13(2)"
+    description: "Information for deployers and downstream providers"
+    maps_to_subdomain: "D-08.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "AI-C13"
+    regulation_id: "REG-AIAct"
+    article: "Art. 14(1)"
+    description: "Human oversight design"
+    maps_to_subdomain: "D-09.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "AI-C14"
+    regulation_id: "REG-AIAct"
+    article: "Art. 14(2)"
+    description: "Enabling human oversight during use period"
+    maps_to_subdomain: "D-08.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "AI-C15"
+    regulation_id: "REG-AIAct"
+    article: "Art. 14(3)"
+    description: "Oversight persons competence and authority"
+    maps_to_subdomain: "D-08.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "AI-C16"
+    regulation_id: "REG-AIAct"
+    article: "Art. 14(4)"
+    description: "Risk mitigation by human intervention"
+    maps_to_subdomain: "D-09.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "AI-C17"
+    regulation_id: "REG-AIAct"
+    article: "Art. 15(1)"
+    description: "Accuracy, robustness, cybersecurity (general)"
+    maps_to_subdomain: "D-01.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "AI-C18"
+    regulation_id: "REG-AIAct"
+    article: "Art. 15(4)"
+    description: "Resistance to adversarial attacks and unauthorised manipulation"
+    maps_to_subdomain: "D-01.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "AI-C19"
+    regulation_id: "REG-AIAct"
+    article: "Art. 26(1)"
+    description: "Deployer obligations (when used as deployer)"
+    maps_to_subdomain: "D-03.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "AI-C20"
+    regulation_id: "REG-AIAct"
+    article: "Art. 27"
+    description: "Fundamental Rights Impact Assessment (FRIA) for high-risk AI in public services / border control"
+    maps_to_subdomain: "D-09.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "AI-C21"
+    regulation_id: "REG-AIAct"
+    article: "Art. 43(1)"
+    description: "Conformity assessment — internal control (Annex VI) for most high-risk"
+    maps_to_subdomain: "D-10.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "AI-C22"
+    regulation_id: "REG-AIAct"
+    article: "Art. 43(4)"
+    description: "Annex III high-risk — third-party assessment required"
+    maps_to_subdomain: "D-10.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "AI-C23"
+    regulation_id: "REG-AIAct"
+    article: "Art. 49"
+    description: "Registration of high-risk AI system in EU database"
+    maps_to_subdomain: "D-09.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "AI-C24"
+    regulation_id: "REG-AIAct"
+    article: "Art. 61"
+    description: "Post-market monitoring by providers"
+    maps_to_subdomain: "D-10.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "AI-C25"
+    regulation_id: "REG-AIAct"
+    article: "Art. 73(2)"
+    description: "Serious incident reporting — 15 days default"
+    maps_to_subdomain: "D-04.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "AI-C26"
+    regulation_id: "REG-AIAct"
+    article: "Art. 73(3)"
+    description: "Widespread infringement / Art. 3(49)(b) — within 2 days"
+    maps_to_subdomain: "D-04.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "AI-C27"
+    regulation_id: "REG-AIAct"
+    article: "Art. 73(4)"
+    description: "Death of a person — within 10 days after establishing causal link"
+    maps_to_subdomain: "D-04.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "AI-C28"
+    regulation_id: "REG-AIAct"
+    article: "Art. 25(1)"
+    description: "Downstream provider obligations (substantial modification -> new provider)"
+    maps_to_subdomain: "D-06.3"
+    normative_strength: 3
+    obligation_type: "conditional"
+
+  - clause_id: "AI-C29"
+    regulation_id: "REG-AIAct"
+    article: "Art. 25(4)"
+    description: "Written agreements with downstream providers specifying compliance information"
+    maps_to_subdomain: "D-06.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+# ============================================================
+# COVERAGE SUMMARY
+# ============================================================
+
+coverage_summary:
+  total_subdomains: 38
+  covered_count: 38
+  not_covered_count: 0
+  coverage_percentage: 100.0
+
+  by_regulation:
+    GDPR:
+      applicable: true
+      clause_count: 28
+      subdomains_covered: 19
+    CRA:
+      applicable: true
+      clause_count: 26
+      subdomains_covered: 22
+    NIS2:
+      applicable: true
+      clause_count: 29
+      subdomains_covered: 29
+    DORA:
+      applicable: false
+      clause_count: 0
+      subdomains_covered: 0
+    AI_Act:
+      applicable: true
+      clause_count: 29
+      subdomains_covered: 19
+
+  sole_authority_gaps:
+    count: 0
+    subdomains: []
+    acceptability: "excellent"
+    note: "All 38 sub-domains covered by at least one applicable regulation. The 3 DORA-exclusive sub-domains identified in 05_Regulatory_Applicability.md §8 (D-07.2, D-07.4, D-09.3) are covered in practice by NIS 2 (Art. 21(2)(s), (m), (l)) — see ontology coverage above. ISO 27001 A.8 (asset management) and A.14 (secure development) provide additional organisational coverage."
+
+  normative_intensity:
+    mean: 2.937
+    weight_3_percentage: 93.8
+    weight_2_percentage: 6.2
+    weight_1_percentage: 0.0
+
+# ============================================================
+# OVERLAPS (Regulation-to-regulation)
+# ============================================================
+
+overlaps:
+  - regulation_1: "GDPR"
+    regulation_2: "NIS 2"
+    shared_subdomains:
+      - D-01.1
+      - D-01.2
+      - D-01.4
+      - D-03.3
+      - D-04.3
+      - D-04.4
+      - D-06.1
+      - D-06.3
+      - D-07.1
+      - D-08.1
+      - D-08.2
+      - D-09.1
+      - D-09.2
+      - D-09.4
+      - D-10.1
+      - D-10.3
+    shared_count: 16
+    jaccard_index: 0.421
+    description: "GDPR and NIS 2 share significant coverage in data protection, incident response, and governance"
+
+  - regulation_1: "CRA"
+    regulation_2: "NIS 2"
+    shared_subdomains:
+      - D-01.3
+      - D-02.1
+      - D-02.2
+      - D-02.3
+      - D-03.1
+      - D-03.2
+      - D-04.1
+      - D-04.3
+      - D-06.1
+      - D-06.3
+      - D-07.1
+      - D-10.1
+      - D-10.2
+      - D-10.3
+    shared_count: 14
+    jaccard_index: 0.368
+    description: "CRA and NIS 2 share substantial coverage in vulnerability management, access control, and secure development"
+
+  - regulation_1: "GDPR"
+    regulation_2: "AI_Act"
+    shared_subdomains:
+      - D-01.1
+      - D-01.2
+      - D-01.4
+      - D-05.1
+      - D-05.2
+      - D-05.4
+      - D-07.1
+      - D-08.2
+      - D-09.1
+      - D-09.2
+      - D-09.4
+      - D-10.1
+      - D-10.2
+      - D-10.3
+    shared_count: 14
+    jaccard_index: 0.378
+    description: "GDPR and AI_Act share coverage in data protection, documentation, and human oversight"
+
+  - regulation_1: "CRA"
+    regulation_2: "AI_Act"
+    shared_subdomains:
+      - D-01.1
+      - D-01.2
+      - D-01.3
+      - D-01.4
+      - D-02.1
+      - D-03.1
+      - D-03.2
+      - D-04.3
+      - D-07.1
+      - D-09.1
+      - D-09.2
+      - D-09.4
+      - D-10.1
+      - D-10.2
+      - D-10.3
+    shared_count: 15
+    jaccard_index: 0.405
+    description: "CRA and AI_Act share coverage in security documentation, monitoring, and integrity mechanisms"
+
+  - regulation_1: "NIS 2"
+    regulation_2: "AI_Act"
+    shared_subdomains:
+      - D-01.3
+      - D-02.1
+      - D-02.4
+      - D-03.1
+      - D-03.2
+      - D-03.3
+      - D-04.1
+      - D-04.3
+      - D-07.1
+      - D-08.2
+      - D-09.1
+      - D-09.2
+      - D-09.4
+      - D-10.1
+      - D-10.2
+      - D-10.3
+    shared_count: 16
+    jaccard_index: 0.444
+    description: "NIS 2 and AI_Act share coverage in risk management, monitoring, and human oversight"
+
+# ============================================================
+# TENSIONS (Strategic conflicts between clauses)
+# ============================================================
+
+tensions:
+  - id: "T-001"
+    type: "timing"
+    severity: "high"
+    clause_1: "GDPR-C18"
+    clause_2: "CRA-C14"
+    description: "Breach notification timing mismatch — 72h vs 24h/14d/1m CRA flows"
+    details: |
+      GDPR Art. 33(1) requires 72h notification to supervisory authority.
+      CRA Art. 14(1)-(2) requires 24h early warning to CSIRT/ENISA for actively
+      exploited vulnerabilities, with 72h notification and 14d final report.
+      CRA Art. 14(3)-(5) requires 24h/72h/1 month for severe incidents.
+    affected_subdomains: ["D-04.3"]
+    affected_regulations: ["GDPR", "CRA"]
+    resolution:
+      approach: "max_sla_routing"
+      description: "Use the most stringent timeline (24h) as the internal standard for all breach notifications"
+      implementation: "Single incident response workflow that satisfies both requirements"
+
+  - id: "T-002"
+    type: "timing"
+    severity: "high"
+    clause_1: "CRA-C14"
+    clause_2: "NIS2-C24"
+    description: "NIS 2 24h early warning overlaps with CRA 24h early warning"
+    details: |
+      NIS 2 Art. 23(4)(a) requires 24h early warning to CSIRT.
+      CRA Art. 14(1) requires 24h early warning to CSIRT/ENISA.
+      Both have 24h, 72h, 1 month milestones with slightly different content.
+    affected_subdomains: ["D-04.3"]
+    affected_regulations: ["CRA", "NIS 2"]
+    resolution:
+      approach: "unified_breach_workflow"
+      description: "Single breach workflow that generates all required reports from one source data set"
+      implementation: "Unified incident response platform with per-regulation output templates"
+
+  - id: "T-003"
+    type: "scope"
+    severity: "high"
+    clause_1: "GDPR-C22"
+    clause_2: "AI-C20"
+    description: "DPIA vs FRIA — both required for biometric border control AI"
+    details: |
+      GDPR Art. 35(1) requires DPIA for high-risk processing (biometric Art. 9
+      mandatory under Art. 35(3)(b)).
+      AI_Act Art. 27 requires Fundamental Rights Impact Assessment (FRIA) for
+      high-risk AI used in public services / border control.
+      Both must be performed; they can be unified into a single assessment
+      process but have distinct content requirements.
+    affected_subdomains: ["D-09.2"]
+    affected_regulations: ["GDPR", "AI_Act"]
+    resolution:
+      approach: "unified_assessment"
+      description: "Single integrated assessment process that satisfies both DPIA and FRIA content requirements"
+      implementation: "Combined DPIA/FRIA template and review process; dual sign-off (DPO + AI Governance Lead)"
+
+  - id: "T-004"
+    type: "requirement"
+    severity: "medium"
+    clause_1: "CRA-C17"
+    clause_2: "AI-C22"
+    description: "CRA Critical Class third-party assessment vs AI_Act Annex III third-party assessment"
+    details: |
+      CRA Art. 32(3) requires notified body assessment for Critical Class
+      products (no certification scheme yet).
+      AI_Act Art. 43(4) requires third-party assessment for Annex III high-risk
+      AI systems.
+      Both require notified body engagement; the assessments are distinct
+      processes with separate scopes (product security vs AI system quality).
+    affected_subdomains: ["D-10.3"]
+    affected_regulations: ["CRA", "AI_Act"]
+    resolution:
+      approach: "joint_notified_body_engagement"
+      description: "Engage a single notified body (where possible) to perform both assessments with shared evidence"
+      implementation: "Coordinated assessment timeline; shared technical documentation where scopes overlap"
+
+  - id: "T-005"
+    type: "scope"
+    severity: "medium"
+    clause_1: "CRA-C11"
+    clause_2: "NIS2-C14"
+    description: "SBOM (CRA Art. 7) vs supplier security clauses (NIS 2 Art. 21(2)(k))"
+    details: |
+      CRA Art. 7 requires SBOM for all software components.
+      NIS 2 Art. 21(2)(k) requires security clauses in procurement contracts.
+      Both target supply chain but have different deliverable formats.
+    affected_subdomains: ["D-06.1", "D-06.2", "D-06.3"]
+    affected_regulations: ["CRA", "NIS 2"]
+    resolution:
+      approach: "integrated_supplier_process"
+      description: "Single supplier onboarding process that produces SBOM and contractual security clauses from shared assessment"
+      implementation: "Supplier security questionnaire yields both SBOM inputs and contractual clauses"
+
+  # ============================================================
+  # TENSIONS T-006, T-007, T-008 — ADDED IN v1.1 (Sprint 1, 2026-08-06)
+  # These tensions are referenced in Doc 07 §5.4 Compound Event Scenarios
+  # (EVT-005, EVT-006, EVT-007, EVT-008) and PROJECT_STATE.md §3.3.
+  # v1.0 only declared T-001–T-005; the lint flagged T-006/T-007/T-008 as
+  # "not in ground truth ontology" — fixed by extending the ontology below.
+  # ============================================================
+
+  - id: "T-006"
+    type: "requirement"
+    severity: "medium"
+    clause_1: "GDPR-C11"
+    clause_2: "NIS2-C14"
+    description: "Supplier security assessment — GDPR Art. 28 processor vs NIS 2 Art. 21(2)(k) supply chain"
+    details: |
+      GDPR Art. 28 requires processor selection with sufficient guarantees
+      (DPA + due diligence on technical/organizational measures).
+      NIS 2 Art. 21(2)(k) requires security clauses in supplier contracts
+      (direct supplier relationship + supply chain assessment).
+      Both target supplier security but have different deliverable formats
+      and audit trails. Periodic assessment cycles diverge.
+    affected_subdomains: ["D-06.1"]
+    affected_regulations: ["GDPR", "NIS 2"]
+    resolution:
+      approach: "unified_supplier_questionnaire"
+      description: "Single supplier security questionnaire that satisfies both GDPR Art. 28 and NIS 2 Art. 21(2)(k) with regulation-specific output annexes"
+      implementation: "Annual supplier review cycle with single evidence pack; GDPR and NIS 2 outputs generated from shared assessment"
+    added_in_version: "1.1"
+    added_by: "Sprint 1 reconciliation (Case_02, 2026-08-06)"
+
+  - id: "T-007"
+    type: "requirement"
+    severity: "medium"
+    clause_1: "GDPR-C09"
+    clause_2: "CRA-C01"
+    description: "Product design phase — GDPR Art. 25 (privacy by design) vs CRA Annex I (secure by default)"
+    details: |
+      GDPR Art. 25 requires data protection by design and by default.
+      CRA Annex I Part I requires secure by default configuration.
+      Both apply at product design phase (D-07.1) but with distinct
+      evidence requirements (privacy risk assessment vs threat model).
+    affected_subdomains: ["D-07.1"]
+    affected_regulations: ["GDPR", "CRA"]
+    resolution:
+      approach: "unified_sdlc"
+      description: "Single SDLC process that produces both privacy-by-design and secure-by-default evidence from shared design reviews"
+      implementation: "Combined DPF + threat model template; joint sign-off (DPO + CISO)"
+    added_in_version: "1.1"
+    added_by: "Sprint 1 reconciliation (Case_02, 2026-08-06)"
+
+  - id: "T-008"
+    type: "requirement"
+    severity: "low"
+    clause_1: "GDPR-C27"
+    clause_2: "NIS2-C11"
+    description: "Annual security awareness training — GDPR Art. 39(1)(b) vs NIS 2 Art. 21(2)(d)"
+    details: |
+      GDPR Art. 39(1)(b) requires DPO awareness/training of staff.
+      NIS 2 Art. 21(2)(d) requires management and staff cybersecurity training.
+      Both target security awareness but with different content and audience
+      (DPO-focused vs all staff including management board).
+    affected_subdomains: ["D-08.1"]
+    affected_regulations: ["GDPR", "NIS 2"]
+    resolution:
+      approach: "unified_awareness_programme"
+      description: "Single annual security awareness programme that satisfies both GDPR DPO training and NIS 2 management/staff training"
+      implementation: "Annual cycle: 4 general sessions + 1 DPO-specific module + 1 management board module"
+    added_in_version: "1.1"
+    added_by: "Sprint 1 reconciliation (Case_02, 2026-08-06)"
+
+  # ============================================================
+  # TENSION T-009 — ADDED IN v1.3 (corr-Case02 Commit B, 2026-08-10)
+  # F-03 fix: D-10.1 monitoring opt-out SCOPE_CONFLICT.
+  # CRA Annex I (2)(l) (user opt-out) vs GDPR Art. 32(2) (continuous security
+  # monitoring) vs NIS 2 Art. 21(2)(b) (appropriate-and-proportionate monitoring).
+  # Resolution: layered monitoring split (analytics opt-out eligible, security-event
+  # monitoring mandatory regardless of opt-out).
+  # ============================================================
+
+  - id: "T-009"
+    type: "scope"
+    severity: "medium"
+    clause_1: "CRA-AnnexI-2l"
+    clause_2: "GDPR-C32_2"
+    clause_3: "NIS2-C21_2_b"
+    description: "Monitoring opt-out — CRA Annex I (2)(l) vs GDPR Art. 32(2) vs NIS 2 Art. 21(2)(b)"
+    details: |
+      CRA Annex I Part I (2)(l) provides a user-visible opt-out mechanism for
+      monitoring where appropriate. GDPR Art. 32(2) five-event risk enumeration
+      assumes continuous security monitoring (no opt-out). NIS 2 Art. 21(2)(b)
+      requires appropriate-and-proportionate measures including monitoring.
+      Tension: User opt-out (CRA) vs continuous security obligation (GDPR + NIS 2).
+    affected_subdomains: ["D-10.1"]
+    affected_regulations: ["CRA", "GDPR", "NIS 2"]
+    resolution:
+      approach: "layered_monitoring_opt_out"
+      description: "Monitoring split — (a) security-event monitoring (mandatory, no opt-out); (b) usage analytics (CRA opt-out available). Monotone split ensures opt-out does not affect security-event layer."
+      implementation: "1. UI toggle for analytics; 2. Security-event monitoring channel operates regardless of opt-out; 3. DPA template documents opt-out scope; 4. Quarterly verification of monotone split"
+    added_in_version: "1.3"
+    added_by: "corr-Case02 Commit B Executor (Case_02, 2026-08-10)"
+
+# ============================================================
+# FINDINGS (Sprint-level adjudication log)
+# ============================================================
+# Sprint 3 (2026-08-06) recorded 6 open findings in 07b_Proportionality_Profile.md §11.3.
+# Findings are tracked here in machine-readable form for downstream consumers.
+# Status: OPEN / SETTLED / WONT_FIX.
+
+findings:
+
+  - id: "F-01"
+    severity: "MAJOR"
+    title: "Scale input contradicts proportionality_model.md §2"
+    status: "SETTLED"
+    source: "07b_Proportionality_Profile.md §11.3 (Sprint 3, 2026-08-06)"
+    affected_subdomains: ["ALL_ACTIVE"]  # upstream of every row in 07b §4
+    opened_by: "Sprint 3 Executor (Case_02, 2026-08-06)"
+    opened_date: "2026-08-06"
+    resolved_by: "P7 human arbiter (corr-Case02 Commit A Executor)"
+    resolved_date: "2026-08-10"
+    resolution: "S = MEDIUM (P7 human arbiter decision; see 07b_Proportionality_Profile.md §11.3.1)"
+    rationale: |
+      Case facts: 450 employees (1.8× proportionality_model.md §2 employee ceiling),
+      ~€120M revenue (2.4× §2 revenue ceiling). §2 suggests LARGE.
+      P7 human arbiter decision (2026-08-10): maintain MEDIUM to preserve current
+      tier distribution (8 RIGOROUS + 27 STANDARD). Trade-off accepted: gaps with
+      §2 thresholds (1.8× / 2.4× exceedance) remain unaddressed. Conscious choice,
+      not a methodological error.
+    reevaluation_trigger: "Any change in employee count or revenue that crosses 2.0× §2 ceiling."
+    impact_on_tiers:
+      RIGOROUS: 8   # D-01.1, D-01.3, D-04.3, D-06.1, D-06.3, D-07.1, D-07.3, D-10.1
+      STANDARD: 27
+      LIGHTWEIGHT: 0
+      MINIMAL: 0
+      DEFERRED: 0
+    settled_in_version: "1.2"
+    settled_by: "corr-Case02 Commit A Executor (Case_02, 2026-08-10)"
+
+  - id: "F-02"
+    severity: "MINOR"
+    title: "D-04.3 single-workflow framing is under-qualified"
+    status: "OPEN"
+    source: "07b_Proportionality_Profile.md §11.3 (Sprint 3, 2026-08-06)"
+    affected_subdomains: ["D-04.3"]
+    opened_by: "Sprint 3 Executor (Case_02, 2026-08-06)"
+    opened_date: "2026-08-06"
+
+  - id: "F-03"
+    severity: "MINOR"
+    title: "D-10.1 carries an unrecorded genuine tension"
+    status: "RESOLVED"
+    source: "07b_Proportionality_Profile.md §11.3 (Sprint 3, 2026-08-06)"
+    affected_subdomains: ["D-10.1"]
+    opened_by: "Sprint 3 Executor (Case_02, 2026-08-06)"
+    opened_date: "2026-08-06"
+    resolved_by: "corr-Case02 Commit B Executor (Case_02, 2026-08-10)"
+    resolved_date: "2026-08-10"
+    resolution: "F-03 fix: added T-009 to 09_Strategic_Tensions_Report.md §4.1/§4.2/§4.5 (D-10.1 monitoring opt-out: CRA Annex I (2)(l) vs GDPR Art. 32(2) vs NIS 2 Art. 21(2)(b)); resolution = layered monitoring split (analytics opt-out, security-event mandatory); cross-reference in 07c_Adjusted_Objectives.md §5 D-10.1 row and §7 Validation."
+    rationale: |
+      D-10.1 (Continuous Security Monitoring) had an unrecorded SCOPE_CONFLICT between
+      CRA Annex I (2)(l) (user-visible opt-out for monitoring) and the mandatory
+      continuous monitoring obligations of GDPR Art. 32(2) and NIS 2 Art. 21(2)(b).
+      F-03 fix introduces T-009 with explicit ROUTING: (a) security-event monitoring
+      (mandatory, no opt-out) — anomaly detection, security incident detection,
+      audit-log scope; (b) usage analytics (opt-out eligible per CRA Annex I (2)(l)).
+      Monotone split ensures opt-out does not affect security-event layer.
+    impact_on_tiers:
+      RIGOROUS: 8
+      STANDARD: 27
+      LIGHTWEIGHT: 0
+      MINIMAL: 0
+      DEFERRED: 0
+    settled_in_version: "1.3"
+    settled_by: "corr-Case02 Commit B Executor (Case_02, 2026-08-10)"
+
+  - id: "F-04"
+    severity: "MINOR"
+    title: "T-002 retention citation references AI_Act Art. 12 instead of Art. 19(1)"
+    status: "RESOLVED"
+    source: "07b_Proportionality_Profile.md §11.3 (Sprint 3, 2026-08-06)"
+    affected_subdomains: ["D-05.3", "D-10.2"]
+    opened_by: "Sprint 3 Executor (Case_02, 2026-08-06)"
+    opened_date: "2026-08-06"
+    resolved_by: "corr-Case02 Commit B Executor (Case_02, 2026-08-10)"
+    resolved_date: "2026-08-10"
+    resolution: "F-04 fix: replaced 'AI_Act Art. 12' with 'AI_Act Art. 19(1)' in all T-002 citations across 07c §4/§8 (PG-D-05.3) and 09 §4.2; added inline note that AI_Act Art. 12 governs transparency and is NOT a D-05.3 (Right to Erasure) participant; erasure is GDPR Art. 17 only; AI_Act Art. 19(1) governs LOGGING retention which is D-10.2, not D-05.3."
+    rationale: |
+      Prior citation conflated AI_Act Art. 12 (transparency obligations for certain AI
+      systems) with AI_Act Art. 19(1) (logging capability and ≥6-month retention floor
+      for high-risk AI systems). F-04 fix corrects citation in 07c_Adjusted_Objectives.md
+      §4 (T-002 narrative + Tensions Summary Table), §8 (PG-D-05.3 + SG-D-05.3 detail
+      cards), and 09_Strategic_Tensions_Report.md §4.2 (T-002 narrative). Inline note
+      added: AI_Act Art. 12 governs transparency and is NOT a D-05.3 participant;
+      erasure is GDPR Art. 17 only; AI_Act Art. 19(1) governs LOGGING retention
+      which is D-10.2 not D-05.3. CR-D-05.3-001 rule in 11_Rules_Catalog.md T-002
+      reference also updated.
+    impact_on_tiers:
+      RIGOROUS: 8
+      STANDARD: 27
+      LIGHTWEIGHT: 0
+      MINIMAL: 0
+      DEFERRED: 0
+    settled_in_version: "1.3"
+    settled_by: "corr-Case02 Commit B Executor (Case_02, 2026-08-10)"
+
+  - id: "F-05"
+    severity: "INFO"
+    title: "D-02.4 regulation attribution (NIS 2 cited; corpus says [CRA, DORA, AI_Act])"
+    status: "OPEN"
+    source: "07b_Proportionality_Profile.md §11.3 (Sprint 3, 2026-08-06)"
+    affected_subdomains: ["D-02.4"]
+    opened_by: "Sprint 3 Executor (Case_02, 2026-08-06)"
+    opened_date: "2026-08-06"
+
+  - id: "F-06"
+    severity: "INFO"
+    title: "Corpus-side regulation-name inconsistency (AI_Act vs AI_Act)"
+    status: "RESOLVED"
+    source: "07b_Proportionality_Profile.md §11.3 (Sprint 3, 2026-08-06)"
+    affected_subdomains: []
+    opened_by: "Sprint 3 Executor (Case_02, 2026-08-06)"
+    opened_date: "2026-08-06"
+    resolved_by: "corr-Case02 Commit B Executor (Case_02, 2026-08-10)"
+    resolved_date: "2026-08-10"
+    resolution: "F-06 fix: normalized all 'AI Act', 'AI_ACT', 'ai_act', 'AiAct' variants to canonical 'AI_Act' across Case_02 Phase 1/2/3 RICH docs (1073 replacements across 51 files). Lint rule AI_ACT_CASING added at end of this ontology."
+    rationale: |
+      Casing inconsistency between 'AI_Act' (canonical) and 'AI_ACT' (legacy) was
+      causing silent filter drops in 05b_Ambiguity_Register.md §2 (4 empty
+      "Applicable regs" cells at D-02.4, D-06.2, D-07.2, D-07.3). F-06 fix
+      normalizes all variants to canonical 'AI_Act' across Case_02 Phase 1/2/3
+      RICH docs. The new AI_ACT_CASING lint rule enforces the canonical form.
+
+# ============================================================
+# LINT RULES (machine-readable enforcement)
+# ============================================================
+
+lint_rules:
+  - id: "AI_ACT_CASING"
+    description: "AI Act regulation namespace must use AI_Act (not AI_ACT, AI Act, ai_act, AiAct)"
+    pattern: "AI_Act"
+    severity: "error"
+    forbidden_patterns:
+      - "AI_ACT"
+      - "AI Act"
+      - "ai_act"
+      - "AiAct"
+    added_in_version: "1.3"
+    added_by: "corr-Case02 Commit B Executor (Case_02, 2026-08-10)"
+

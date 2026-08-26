@@ -1,0 +1,21 @@
+Phase 3 Lints [RICH] — TinyTask SaaS
+Case path: /home/epmq-cyber/Área de Trabalho/projects/Methodology-main/02_CASES/Case_01_TinyTask_SaaS
+Rich folder: 02_CASES/Case_01_TinyTask_SaaS/03_PHASE3_DECOMPOSITION_RICH
+7 lint(s) available
+============================================================
+  Running: Use Cases Catalog (Doc 13)... FAIL FAILED
+  Running: Use Case Relationships (Doc 13a)... OK PASSED
+  Running: Use Case Variability (Doc 13b)... OK PASSED
+  Running: Architectural Nodes (Doc 14)... OK PASSED
+  Running: Requirements Allocation (Doc 15)... OK PASSED
+  Running: Compliance Gates (Doc 16)... OK PASSED
+  Running: Functional Tree (Doc 17)... FAIL FAILED
+
+Reports generated:
+   JSON: 02_CASES/Case_01_TinyTask_SaaS/03_PHASE3_DECOMPOSITION_RICH/validation/lint_report_phase3_rich_20260824_111658.json
+   Markdown: 02_CASES/Case_01_TinyTask_SaaS/03_PHASE3_DECOMPOSITION_RICH/validation/lint_report_phase3_rich_20260824_111658.md
+
+============================================================
+Summary: 5/7 passed
+6 warning(s)
+2 lint(s) failed

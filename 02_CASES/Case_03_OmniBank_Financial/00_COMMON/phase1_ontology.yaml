@@ -1,0 +1,1696 @@
+# AEGIS Phase 1 Case Ontology — Case_03_OmniBank_Financial
+# Machine-readable representation of Phase 1 regulatory applicability and clause mappings
+# Schema: phase1_schema.yaml v1.0
+#
+# 2026-07-03 — Re-derivation of GDPR `obligated_party` enum (fix/gdpr-processor-enum)
+#   - REG-GDPR `obligated_party` expanded from "controller" → ["controller", "processor"]
+#   - Per-clause classification mirrors `02_Regulatory_Mapping_Master.md` re-derivation
+#   - Article-to-role mapping follows Art. 4(7)/(8), Art. 28-30, Art. 31-33, Art. 37, Art. 39
+#   - See `00_METHODOLOGY/SCHEMA/obligated_party.yaml` for canonical enum and audit note
+
+header:
+  case_id: "Case_03_OmniBank_Financial"
+  phase: 1
+  version: "1.0"
+  generated_from:
+    - "AEGIS-COMMON-00"
+    - "AEGIS-COMMON-01"
+    - "AEGIS-P1-05"
+    - "AEGIS-P1-06"
+  generated_date: "2026-07-03"
+  author: "AEGIS Implementation"
+
+# ============================================================
+# COMPANY
+# ============================================================
+
+company:
+  id: "CC-OMNIBANK-2026-001"
+  name: "OmniBank Financial Systems S.A."
+  sector: "Banking and Financial Services"
+  size: "large"
+  employees: 5000
+  revenue_eur: 1500000000
+  jurisdiction: "Germany (EU)"
+  legal_structure: "Société Anonyme (S.A.)"
+  tech_stack:
+    - "Hybrid (on-premise core + cloud)"
+    - "Mobile banking app + web platform"
+  data_types:
+    - "customer_pii"
+    - "financial_transactions"
+    - "credit_scores"
+    - "biometric_authentication"
+  criticality_level: "essential"
+
+# ============================================================
+# REGULATIONS (All 5 EU regulations applicable — MAXIMUM complexity)
+# ============================================================
+
+regulations:
+  - id: "REG-GDPR"
+    abbreviation: "GDPR"
+    name: "General Data Protection Regulation"
+    eu_reference: "Regulation (EU) 2016/679"
+    applicable: true
+    obligated_party: ["controller", "processor"]
+    reason: "processes_personal_data = true; processor role for regulatory reporting to BaFin/ECB per 01_Company_Context.md §3.1 and §7 Role Matrix"
+    clause_count: 28
+    key_articles: [5, 6, 7, 12, 13, 14, 15, 17, 20, 25, 28, 30, 32, 33, 34, 35, 37, 39]
+
+  - id: "REG-CRA"
+    abbreviation: "CRA"
+    name: "Cyber Resilience Act"
+    eu_reference: "Regulation (EU) 2024/2847"
+    applicable: true
+    obligated_party: "manufacturer"
+    reason: "places_digital_products_eu = true (mobile app + web platform, default class)"
+    clause_count: 26
+    key_articles: ["Annex I Part I", "Annex I Part II", 13, 14]
+
+  - id: "REG-NIS2"
+    abbreviation: "NIS2"
+    name: "Network and Information Systems Directive 2"
+    eu_reference: "Directive (EU) 2022/2555"
+    applicable: true
+    obligated_party: "essential_entity"
+    reason: "banking_sector = true (Annex I); employees >= 50 (5000+)"
+    clause_count: 29
+    key_articles: [21, 23]
+
+  - id: "REG-DORA"
+    abbreviation: "DORA"
+    name: "Digital Operational Resilience Act"
+    eu_reference: "Regulation (EU) 2022/2554"
+    applicable: true
+    obligated_party: "financial_entity"
+    reason: "credit_institution = true per Art. 2(1)"
+    clause_count: 38
+    key_articles: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33]
+
+  - id: "REG-AIACT"
+    abbreviation: "AI Act"
+    name: "Artificial Intelligence Act"
+    eu_reference: "Regulation (EU) 2024/1689"
+    applicable: true
+    obligated_party: ["provider", "deployer"]
+    reason: "annex_iii_high_risk = true (credit scoring AI per Q39); provider+deployer per Q73"
+    clause_count: 29
+    key_articles: [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+
+# ============================================================
+# DOMAINS (All 10 security control domains)
+# ============================================================
+
+domains:
+  - id: "D-01"
+    name: "Data Protection & Encryption"
+    primary_regulatory_driver: "GDPR"
+    subdomain_count: 4
+  - id: "D-02"
+    name: "Vulnerability Management"
+    primary_regulatory_driver: "CRA"
+    subdomain_count: 4
+  - id: "D-03"
+    name: "Access Control"
+    primary_regulatory_driver: "GDPR"
+    subdomain_count: 4
+  - id: "D-04"
+    name: "Incident Response"
+    primary_regulatory_driver: "NIS2"
+    subdomain_count: 4
+  - id: "D-05"
+    name: "Data Lifecycle"
+    primary_regulatory_driver: "GDPR"
+    subdomain_count: 4
+  - id: "D-06"
+    name: "Supply Chain"
+    primary_regulatory_driver: "DORA"
+    subdomain_count: 4
+  - id: "D-07"
+    name: "Secure Development"
+    primary_regulatory_driver: "CRA"
+    subdomain_count: 4
+  - id: "D-08"
+    name: "Human Factors"
+    primary_regulatory_driver: "NIS2"
+    subdomain_count: 3
+  - id: "D-09"
+    name: "Governance & Documentation"
+    primary_regulatory_driver: "DORA"
+    subdomain_count: 4
+  - id: "D-10"
+    name: "Monitoring & Audit"
+    primary_regulatory_driver: "DORA"
+    subdomain_count: 3
+
+# ============================================================
+# SUB-DOMAINS (All 38 covered for OmniBank — 100% coverage)
+# ============================================================
+
+subdomains:
+  covered:
+    - id: "D-01.1"
+      domain_id: "D-01"
+      name: "Data at Rest Encryption"
+      source_regulations: ["GDPR", "CRA", "NIS2", "DORA", "AI_Act"]
+      clause_count: 5
+    - id: "D-01.2"
+      domain_id: "D-01"
+      name: "Data in Transit Encryption"
+      source_regulations: ["GDPR", "CRA", "DORA"]
+      clause_count: 3
+    - id: "D-01.3"
+      domain_id: "D-01"
+      name: "Cryptographic Key Management"
+      source_regulations: ["CRA", "DORA"]
+      clause_count: 2
+    - id: "D-01.4"
+      domain_id: "D-01"
+      name: "Data Integrity Mechanisms"
+      source_regulations: ["GDPR", "CRA", "AI_Act"]
+      clause_count: 3
+    - id: "D-02.1"
+      domain_id: "D-02"
+      name: "Vulnerability Identification"
+      source_regulations: ["CRA", "NIS2", "DORA", "AI_Act"]
+      clause_count: 4
+    - id: "D-02.2"
+      domain_id: "D-02"
+      name: "Patch Management & Updates"
+      source_regulations: ["CRA", "NIS2", "DORA"]
+      clause_count: 3
+    - id: "D-02.3"
+      domain_id: "D-02"
+      name: "Coordinated Vuln. Disclosure"
+      source_regulations: ["CRA"]
+      clause_count: 2
+      sole_authority_regulation: "CRA"
+    - id: "D-02.4"
+      domain_id: "D-02"
+      name: "Threat-Led Penetration Testing"
+      source_regulations: ["DORA", "AI_Act"]
+      clause_count: 3
+    - id: "D-03.1"
+      domain_id: "D-03"
+      name: "Identity Lifecycle Management"
+      source_regulations: ["CRA", "NIS2", "DORA", "AI_Act"]
+      clause_count: 4
+    - id: "D-03.2"
+      domain_id: "D-03"
+      name: "Multi-Factor Authentication"
+      source_regulations: ["CRA", "NIS2", "DORA"]
+      clause_count: 3
+    - id: "D-03.3"
+      domain_id: "D-03"
+      name: "Authorization & Least Privilege"
+      source_regulations: ["GDPR", "NIS2", "DORA"]
+      clause_count: 3
+    - id: "D-03.4"
+      domain_id: "D-03"
+      name: "Secure System Defaults"
+      source_regulations: ["CRA"]
+      clause_count: 1
+      sole_authority_regulation: "CRA"
+    - id: "D-04.1"
+      domain_id: "D-04"
+      name: "Incident Detection & Triage"
+      source_regulations: ["CRA", "NIS2", "DORA"]
+      clause_count: 3
+    - id: "D-04.2"
+      domain_id: "D-04"
+      name: "Containment & Mitigation"
+      source_regulations: ["GDPR", "CRA", "NIS2", "DORA"]
+      clause_count: 4
+    - id: "D-04.3"
+      domain_id: "D-04"
+      name: "Regulatory Notification"
+      source_regulations: ["GDPR", "CRA", "NIS2", "DORA", "AI_Act"]
+      clause_count: 6
+    - id: "D-04.4"
+      domain_id: "D-04"
+      name: "Data Restoration & Recovery"
+      source_regulations: ["GDPR", "NIS2", "DORA"]
+      clause_count: 3
+    - id: "D-05.1"
+      domain_id: "D-05"
+      name: "Data Minimization"
+      source_regulations: ["GDPR", "CRA", "AI_Act"]
+      clause_count: 3
+    - id: "D-05.2"
+      domain_id: "D-05"
+      name: "Retention & Archiving"
+      source_regulations: ["GDPR", "AI_Act"]
+      clause_count: 3
+    - id: "D-05.3"
+      domain_id: "D-05"
+      name: "Right to Erasure"
+      source_regulations: ["GDPR", "CRA"]
+      clause_count: 2
+    - id: "D-05.4"
+      domain_id: "D-05"
+      name: "Data Portability"
+      source_regulations: ["GDPR"]
+      clause_count: 1
+      sole_authority_regulation: "GDPR"
+    - id: "D-06.1"
+      domain_id: "D-06"
+      name: "Vendor Risk Assessment"
+      source_regulations: ["GDPR", "NIS2", "DORA"]
+      clause_count: 3
+    - id: "D-06.2"
+      domain_id: "D-06"
+      name: "Software Bill of Materials (SBOM)"
+      source_regulations: ["CRA"]
+      clause_count: 1
+      sole_authority_regulation: "CRA"
+    - id: "D-06.3"
+      domain_id: "D-06"
+      name: "Contractual Security Obligations"
+      source_regulations: ["GDPR", "NIS2", "DORA"]
+      clause_count: 3
+    - id: "D-06.4"
+      domain_id: "D-06"
+      name: "Third-Party Boundary Management"
+      source_regulations: ["NIS2", "DORA"]
+      clause_count: 2
+    - id: "D-07.1"
+      domain_id: "D-07"
+      name: "Secure-by-Design Principles"
+      source_regulations: ["GDPR", "CRA"]
+      clause_count: 3
+    - id: "D-07.2"
+      domain_id: "D-07"
+      name: "Secure Coding Practices"
+      source_regulations: ["NIS2", "DORA"]
+      clause_count: 2
+    - id: "D-07.3"
+      domain_id: "D-07"
+      name: "CI/CD Pipeline Security"
+      source_regulations: ["NIS2", "DORA"]
+      clause_count: 2
+    - id: "D-07.4"
+      domain_id: "D-07"
+      name: "Change Management"
+      source_regulations: ["NIS2", "DORA"]
+      clause_count: 2
+    - id: "D-08.1"
+      domain_id: "D-08"
+      name: "General Security Awareness"
+      source_regulations: ["GDPR", "NIS2"]
+      clause_count: 2
+    - id: "D-08.2"
+      domain_id: "D-08"
+      name: "Role-Specific Competence"
+      source_regulations: ["GDPR", "NIS2", "AI_Act"]
+      clause_count: 3
+    - id: "D-08.3"
+      domain_id: "D-08"
+      name: "Management Board Training"
+      source_regulations: ["NIS2", "DORA"]
+      clause_count: 2
+    - id: "D-09.1"
+      domain_id: "D-09"
+      name: "Information Security Policies"
+      source_regulations: ["GDPR", "CRA", "NIS2", "DORA", "AI_Act"]
+      clause_count: 7
+    - id: "D-09.2"
+      domain_id: "D-09"
+      name: "Impact & Risk Assessments"
+      source_regulations: ["GDPR", "CRA", "NIS2", "DORA", "AI_Act"]
+      clause_count: 6
+    - id: "D-09.3"
+      domain_id: "D-09"
+      name: "Asset Inventories"
+      source_regulations: ["NIS2", "DORA"]
+      clause_count: 2
+    - id: "D-09.4"
+      domain_id: "D-09"
+      name: "Records of Processing"
+      source_regulations: ["GDPR", "DORA", "AI_Act"]
+      clause_count: 3
+    - id: "D-10.1"
+      domain_id: "D-10"
+      name: "Continuous Security Monitoring"
+      source_regulations: ["CRA", "NIS2", "DORA", "AI_Act"]
+      clause_count: 5
+    - id: "D-10.2"
+      domain_id: "D-10"
+      name: "Audit Logging & Traceability"
+      source_regulations: ["CRA", "NIS2", "DORA", "AI_Act"]
+      clause_count: 4
+    - id: "D-10.3"
+      domain_id: "D-10"
+      name: "Compliance Testing"
+      source_regulations: ["GDPR", "CRA", "NIS2", "DORA", "AI_Act"]
+      clause_count: 6
+
+  not_covered: []
+
+# ============================================================
+# APPLICABILITY ASSESSMENTS
+# ============================================================
+
+applicability_assessments:
+  - company_id: "CC-OMNIBANK-2026-001"
+    regulation_id: "REG-GDPR"
+    assessment: "applicable"
+    confidence: "high"
+    obligated_party: "controller+processor"
+    evidence:
+      - "Q22: Customer PII + financial transaction data + credit scores"
+      - "Q1: EU jurisdiction (Germany, BaFin/ECB)"
+      - "Q27: Large-scale processing triggers DPIA"
+      - "Q73: Controller for customer PII; Processor for regulatory reporting"
+    reasoning: "OmniBank processes personal data of EU data subjects as a financial institution. GDPR applies fully as data controller for customer/account data and as data processor for regulatory reporting to BaFin/ECB. The processor role is native (Q75: 'Processor has direct Art. 32 obligations'), not contractual."
+
+  - company_id: "CC-OMNIBANK-2026-001"
+    regulation_id: "REG-CRA"
+    assessment: "applicable"
+    confidence: "high"
+    obligated_party: "manufacturer"
+    evidence:
+      - "Q1: EU customers"
+      - "Q7: Mobile app + web platform placed on EU market"
+      - "Q69: Default CRA class (not Critical)"
+    reasoning: "OmniBank manufactures and places digital products (mobile banking app, web platform) on the EU market. CRA applies as manufacturer in default class; self-assessment conformity."
+
+  - company_id: "CC-OMNIBANK-2026-001"
+    regulation_id: "REG-NIS2"
+    assessment: "applicable"
+    confidence: "high"
+    obligated_party: "essential_entity"
+    evidence:
+      - "Q2: 5000+ employees"
+      - "Q4: Banking sector (Annex I — essential)"
+      - "Q47-Q52: SOC + CSIRT + BCP + supply chain programme"
+    reasoning: "Banking sector essential entity under NIS 2; well above 50-employee threshold. 24h early warning + BaFin/ENISA reporting."
+
+  - company_id: "CC-OMNIBANK-2026-001"
+    regulation_id: "REG-DORA"
+    assessment: "applicable"
+    confidence: "high"
+    obligated_party: "financial_entity"
+    evidence:
+      - "Q6: Credit institution per Art. 2(1)"
+      - "Q53-Q56: ICT risk framework, third-party register, TLPT, ISAC member"
+    reasoning: "Credit institution per DORA Art. 2(1). TLPT required (Art. 26-27). 100% Weight 3 (unconditional mandatory)."
+
+  - company_id: "CC-OMNIBANK-2026-001"
+    regulation_id: "REG-AIACT"
+    assessment: "applicable"
+    confidence: "high"
+    obligated_party: "provider+deployer"
+    evidence:
+      - "Q8: Credit scoring AI, fraud detection AI"
+      - "Q39: Annex III (credit scoring = financial access)"
+      - "Q73: Provider for in-house AI; deployer for credit decisions"
+    reasoning: "High-risk AI per Annex III. Both provider (develops AI models in-house) and deployer (operates credit scoring for lending decisions)."
+
+# ============================================================
+# CLAUSE MAPPINGS (150 clauses: 28 GDPR + 26 CRA + 29 NIS2 + 38 DORA + 29 AI Act)
+# Source: 01_PHASE1_CONTEXT/scripts/create_clause_mapping_omnibank_v3.py
+# Article numbers and sub-domain mapping per Case_03 v3 script
+# ============================================================
+
+clause_mappings:
+  # GDPR Clauses (28 total) — 2026-07-03 re-derivation
+  - clause_id: "GDPR-C01"
+    regulation_id: "REG-GDPR"
+    article: "Art. 5(1)(c)"
+    description: "Data minimisation"
+    maps_to_subdomain: "D-05.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "controller"
+  - clause_id: "GDPR-C02"
+    regulation_id: "REG-GDPR"
+    article: "Art. 5(1)(b)"
+    description: "Purpose limitation"
+    maps_to_subdomain: "D-05.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "controller"
+  - clause_id: "GDPR-C03"
+    regulation_id: "REG-GDPR"
+    article: "Art. 5(1)(e)"
+    description: "Storage limitation"
+    maps_to_subdomain: "D-05.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "controller"
+  - clause_id: "GDPR-C04"
+    regulation_id: "REG-GDPR"
+    article: "Art. 5(1)(f)"
+    description: "Integrity & confidentiality (encryption at rest)"
+    maps_to_subdomain: "D-01.1"
+    normative_strength: 2
+    obligation_type: "mandatory"
+    obligated_party: ["controller", "processor"]
+  - clause_id: "GDPR-C05"
+    regulation_id: "REG-GDPR"
+    article: "Art. 5(1)(f)"
+    description: "Data integrity"
+    maps_to_subdomain: "D-01.4"
+    normative_strength: 2
+    obligation_type: "mandatory"
+    obligated_party: "controller"
+  - clause_id: "GDPR-C06"
+    regulation_id: "REG-GDPR"
+    article: "Art. 17"
+    description: "Right to erasure"
+    maps_to_subdomain: "D-05.3"
+    normative_strength: 3
+    obligation_type: "triggered"
+    obligated_party: ["controller", "processor"]
+  - clause_id: "GDPR-C07"
+    regulation_id: "REG-GDPR"
+    article: "Art. 20"
+    description: "Data portability"
+    maps_to_subdomain: "D-05.4"
+    normative_strength: 3
+    obligation_type: "triggered"
+    obligated_party: "controller"
+  - clause_id: "GDPR-C08"
+    regulation_id: "REG-GDPR"
+    article: "Art. 24(1)"
+    description: "Controller responsibility"
+    maps_to_subdomain: "D-09.1"
+    normative_strength: 2
+    obligation_type: "mandatory"
+    obligated_party: "controller"
+  - clause_id: "GDPR-C09"
+    regulation_id: "REG-GDPR"
+    article: "Art. 25(1)"
+    description: "Privacy by design"
+    maps_to_subdomain: "D-07.1"
+    normative_strength: 2
+    obligation_type: "mandatory"
+    obligated_party: "controller"
+  - clause_id: "GDPR-C10"
+    regulation_id: "REG-GDPR"
+    article: "Art. 25(2)"
+    description: "Data protection by default (least privilege)"
+    maps_to_subdomain: "D-03.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: ["controller", "processor"]
+  - clause_id: "GDPR-C11"
+    regulation_id: "REG-GDPR"
+    article: "Art. 28(1)"
+    description: "Processor selection obligations"
+    maps_to_subdomain: "D-06.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: ["controller", "processor"]
+  - clause_id: "GDPR-C12"
+    regulation_id: "REG-GDPR"
+    article: "Art. 28(3)"
+    description: "Data Processing Agreement clauses"
+    maps_to_subdomain: "D-06.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: ["controller", "processor"]
+  - clause_id: "GDPR-C13"
+    regulation_id: "REG-GDPR"
+    article: "Art. 30"
+    description: "Records of processing (Art. 30(1) controller + Art. 30(2) processor)"
+    maps_to_subdomain: "D-09.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: ["controller", "processor"]
+  - clause_id: "GDPR-C14"
+    regulation_id: "REG-GDPR"
+    article: "Art. 32(1)(a)"
+    description: "Encryption at rest (security of processing)"
+    maps_to_subdomain: "D-01.1"
+    normative_strength: 2
+    obligation_type: "mandatory"
+    obligated_party: ["controller", "processor"]
+  - clause_id: "GDPR-C15"
+    regulation_id: "REG-GDPR"
+    article: "Art. 32(1)(a)"
+    description: "Encryption in transit (security of processing)"
+    maps_to_subdomain: "D-01.2"
+    normative_strength: 2
+    obligation_type: "mandatory"
+    obligated_party: ["controller", "processor"]
+  - clause_id: "GDPR-C16"
+    regulation_id: "REG-GDPR"
+    article: "Art. 32(1)(c)"
+    description: "Timely restore availability"
+    maps_to_subdomain: "D-04.4"
+    normative_strength: 2
+    obligation_type: "triggered"
+    obligated_party: ["controller", "processor"]
+  - clause_id: "GDPR-C17"
+    regulation_id: "REG-GDPR"
+    article: "Art. 32(1)(b)"
+    description: "Confidentiality (access control)"
+    maps_to_subdomain: "D-03.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: ["controller", "processor"]
+  - clause_id: "GDPR-C18"
+    regulation_id: "REG-GDPR"
+    article: "Art. 32(1)(c)"
+    description: "Incident recovery (containment/mitigation)"
+    maps_to_subdomain: "D-04.2"
+    normative_strength: 2
+    obligation_type: "triggered"
+    obligated_party: ["controller", "processor"]
+  - clause_id: "GDPR-C19"
+    regulation_id: "REG-GDPR"
+    article: "Art. 32(1)(d)"
+    description: "Regular security testing"
+    maps_to_subdomain: "D-10.3"
+    normative_strength: 3
+    obligation_type: "periodic"
+    obligated_party: ["controller", "processor"]
+  - clause_id: "GDPR-C20"
+    regulation_id: "REG-GDPR"
+    article: "Art. 32(2)"
+    description: "Risk assessment prior to security measures"
+    maps_to_subdomain: "D-09.2"
+    normative_strength: 2
+    obligation_type: "periodic"
+    obligated_party: "controller"
+  - clause_id: "GDPR-C21"
+    regulation_id: "REG-GDPR"
+    article: "Art. 33(1)"
+    description: "Breach notification to supervisory authority (72h)"
+    maps_to_subdomain: "D-04.3"
+    normative_strength: 3
+    obligation_type: "triggered"
+    obligated_party: ["controller", "processor"]
+  - clause_id: "GDPR-C22"
+    regulation_id: "REG-GDPR"
+    article: "Art. 33(3)"
+    description: "Breach documentation"
+    maps_to_subdomain: "D-09.4"
+    normative_strength: 3
+    obligation_type: "triggered"
+    obligated_party: "controller"
+  - clause_id: "GDPR-C23"
+    regulation_id: "REG-GDPR"
+    article: "Art. 34(1)"
+    description: "Breach notification to data subject"
+    maps_to_subdomain: "D-04.3"
+    normative_strength: 3
+    obligation_type: "triggered"
+    obligated_party: ["controller", "processor"]
+  - clause_id: "GDPR-C24"
+    regulation_id: "REG-GDPR"
+    article: "Art. 35(1)"
+    description: "DPIA (high-risk processing)"
+    maps_to_subdomain: "D-09.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "controller"
+  - clause_id: "GDPR-C25"
+    regulation_id: "REG-GDPR"
+    article: "Art. 35(7)"
+    description: "DPIA content requirements"
+    maps_to_subdomain: "D-09.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "controller"
+  - clause_id: "GDPR-C26"
+    regulation_id: "REG-GDPR"
+    article: "Art. 37"
+    description: "DPO designation (large-scale systematic monitoring Art. 37(1)(b))"
+    maps_to_subdomain: "D-09.1"
+    normative_strength: 2
+    obligation_type: "mandatory"
+    obligated_party: ["controller", "processor"]
+  - clause_id: "GDPR-C27"
+    regulation_id: "REG-GDPR"
+    article: "Art. 39(1)(b)"
+    description: "Staff training (general security awareness)"
+    maps_to_subdomain: "D-08.1"
+    normative_strength: 3
+    obligation_type: "periodic"
+    obligated_party: ["controller", "processor"]
+  - clause_id: "GDPR-C28"
+    regulation_id: "REG-GDPR"
+    article: "Art. 39(1)(b)"
+    description: "Role-specific training"
+    maps_to_subdomain: "D-08.2"
+    normative_strength: 3
+    obligation_type: "periodic"
+    obligated_party: ["controller", "processor"]
+
+  # CRA Clauses (26 total)
+  - clause_id: "CRA-C01"
+    regulation_id: "REG-CRA"
+    article: "Annex I Part I §2(a)"
+    description: "Vulnerability-free delivery"
+    maps_to_subdomain: "D-02.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "manufacturer"
+  - clause_id: "CRA-C02"
+    regulation_id: "REG-CRA"
+    article: "Annex I Part I §2(b)"
+    description: "Secure by default"
+    maps_to_subdomain: "D-07.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "manufacturer"
+  - clause_id: "CRA-C03"
+    regulation_id: "REG-CRA"
+    article: "Annex I Part I §2(b)"
+    description: "Secure default configuration"
+    maps_to_subdomain: "D-03.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "manufacturer"
+  - clause_id: "CRA-C04"
+    regulation_id: "REG-CRA"
+    article: "Annex I Part I §2(c)"
+    description: "Security updates (automatic updates)"
+    maps_to_subdomain: "D-02.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "manufacturer"
+  - clause_id: "CRA-C05"
+    regulation_id: "REG-CRA"
+    article: "Annex I Part I §2(d)"
+    description: "Access control (authentication)"
+    maps_to_subdomain: "D-03.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "manufacturer"
+  - clause_id: "CRA-C06"
+    regulation_id: "REG-CRA"
+    article: "Annex I Part I §2(d)"
+    description: "MFA"
+    maps_to_subdomain: "D-03.2"
+    normative_strength: 2
+    obligation_type: "mandatory"
+    obligated_party: "manufacturer"
+  - clause_id: "CRA-C07"
+    regulation_id: "REG-CRA"
+    article: "Annex I Part I §2(e)"
+    description: "Encryption at rest"
+    maps_to_subdomain: "D-01.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "manufacturer"
+  - clause_id: "CRA-C08"
+    regulation_id: "REG-CRA"
+    article: "Annex I Part I §2(e)"
+    description: "Encryption in transit"
+    maps_to_subdomain: "D-01.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "manufacturer"
+  - clause_id: "CRA-C09"
+    regulation_id: "REG-CRA"
+    article: "Annex I Part I §2(f)"
+    description: "Data integrity"
+    maps_to_subdomain: "D-01.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "manufacturer"
+  - clause_id: "CRA-C10"
+    regulation_id: "REG-CRA"
+    article: "Annex I Part I §2(g)"
+    description: "Data minimisation"
+    maps_to_subdomain: "D-05.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "manufacturer"
+  - clause_id: "CRA-C11"
+    regulation_id: "REG-CRA"
+    article: "Annex I Part I §2(h)"
+    description: "Availability protection (DoS resilience)"
+    maps_to_subdomain: "D-04.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "manufacturer"
+  - clause_id: "CRA-C12"
+    regulation_id: "REG-CRA"
+    article: "Annex I Part I §2(i)"
+    description: "Attack surface minimisation"
+    maps_to_subdomain: "D-10.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "manufacturer"
+  - clause_id: "CRA-C13"
+    regulation_id: "REG-CRA"
+    article: "Annex I Part I §2(j)"
+    description: "Incident impact reduction (fail-safe)"
+    maps_to_subdomain: "D-04.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "manufacturer"
+  - clause_id: "CRA-C14"
+    regulation_id: "REG-CRA"
+    article: "Annex I Part I §2(k)"
+    description: "Activity logging"
+    maps_to_subdomain: "D-10.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "manufacturer"
+  - clause_id: "CRA-C15"
+    regulation_id: "REG-CRA"
+    article: "Annex I Part I §2(l)"
+    description: "Secure updates (cryptographic integrity)"
+    maps_to_subdomain: "D-01.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "manufacturer"
+  - clause_id: "CRA-C16"
+    regulation_id: "REG-CRA"
+    article: "Annex I Part I §2(m)"
+    description: "Secure data removal"
+    maps_to_subdomain: "D-05.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "manufacturer"
+  - clause_id: "CRA-C17"
+    regulation_id: "REG-CRA"
+    article: "Annex I Part II §1"
+    description: "Vulnerability tracking"
+    maps_to_subdomain: "D-02.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "manufacturer"
+  - clause_id: "CRA-C18"
+    regulation_id: "REG-CRA"
+    article: "Annex I Part II §1"
+    description: "SBOM"
+    maps_to_subdomain: "D-06.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "manufacturer"
+  - clause_id: "CRA-C19"
+    regulation_id: "REG-CRA"
+    article: "Annex I Part II §2"
+    description: "Prompt remediation"
+    maps_to_subdomain: "D-02.2"
+    normative_strength: 3
+    obligation_type: "triggered"
+    obligated_party: "manufacturer"
+  - clause_id: "CRA-C20"
+    regulation_id: "REG-CRA"
+    article: "Annex I Part II §3"
+    description: "Regular testing"
+    maps_to_subdomain: "D-10.3"
+    normative_strength: 2
+    obligation_type: "periodic"
+    obligated_party: "manufacturer"
+  - clause_id: "CRA-C21"
+    regulation_id: "REG-CRA"
+    article: "Annex I Part II §4"
+    description: "Vulnerability disclosure policy"
+    maps_to_subdomain: "D-02.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "manufacturer"
+  - clause_id: "CRA-C22"
+    regulation_id: "REG-CRA"
+    article: "Art. 13(1)"
+    description: "Manufacturer obligation (Annex I compliance)"
+    maps_to_subdomain: "D-07.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "manufacturer"
+  - clause_id: "CRA-C23"
+    regulation_id: "REG-CRA"
+    article: "Art. 13(2)"
+    description: "Risk assessment before market"
+    maps_to_subdomain: "D-09.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "manufacturer"
+  - clause_id: "CRA-C24"
+    regulation_id: "REG-CRA"
+    article: "Art. 13(5)"
+    description: "Technical documentation (10 years)"
+    maps_to_subdomain: "D-09.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "manufacturer"
+  - clause_id: "CRA-C25"
+    regulation_id: "REG-CRA"
+    article: "Art. 14(1)"
+    description: "Vulnerability notification (24h)"
+    maps_to_subdomain: "D-04.3"
+    normative_strength: 3
+    obligation_type: "triggered"
+    obligated_party: "manufacturer"
+  - clause_id: "CRA-C26"
+    regulation_id: "REG-CRA"
+    article: "Art. 14(2)"
+    description: "Severe incident reporting"
+    maps_to_subdomain: "D-02.3"
+    normative_strength: 3
+    obligation_type: "triggered"
+    obligated_party: "manufacturer"
+
+  # NIS 2 Clauses (29 total)
+  - clause_id: "NIS2-C01"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(1)"
+    description: "Security policies"
+    maps_to_subdomain: "D-09.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "essential_entity"
+  - clause_id: "NIS2-C02"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(a)"
+    description: "Management training"
+    maps_to_subdomain: "D-08.3"
+    normative_strength: 3
+    obligation_type: "periodic"
+    obligated_party: "essential_entity"
+  - clause_id: "NIS2-C03"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(b)"
+    description: "Risk analysis"
+    maps_to_subdomain: "D-09.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "essential_entity"
+  - clause_id: "NIS2-C04"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(c)"
+    description: "Incident handling"
+    maps_to_subdomain: "D-09.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "essential_entity"
+  - clause_id: "NIS2-C05"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(d)"
+    description: "Business continuity"
+    maps_to_subdomain: "D-04.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "essential_entity"
+  - clause_id: "NIS2-C06"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(e)"
+    description: "Disaster recovery"
+    maps_to_subdomain: "D-04.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "essential_entity"
+  - clause_id: "NIS2-C07"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(f)"
+    description: "Asset management (inventories)"
+    maps_to_subdomain: "D-09.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "essential_entity"
+  - clause_id: "NIS2-C08"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(g)"
+    description: "Supply chain security"
+    maps_to_subdomain: "D-06.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "essential_entity"
+  - clause_id: "NIS2-C09"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(h)"
+    description: "Supplier contracts"
+    maps_to_subdomain: "D-06.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "essential_entity"
+  - clause_id: "NIS2-C10"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(i)"
+    description: "Change management"
+    maps_to_subdomain: "D-07.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "essential_entity"
+  - clause_id: "NIS2-C11"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(j)"
+    description: "CI/CD security"
+    maps_to_subdomain: "D-07.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "essential_entity"
+  - clause_id: "NIS2-C12"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(k)"
+    description: "Vulnerability management"
+    maps_to_subdomain: "D-02.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "essential_entity"
+  - clause_id: "NIS2-C13"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(l)"
+    description: "Security testing"
+    maps_to_subdomain: "D-10.3"
+    normative_strength: 3
+    obligation_type: "periodic"
+    obligated_party: "essential_entity"
+  - clause_id: "NIS2-C14"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(m)"
+    description: "Security training (general)"
+    maps_to_subdomain: "D-08.1"
+    normative_strength: 3
+    obligation_type: "periodic"
+    obligated_party: "essential_entity"
+  - clause_id: "NIS2-C15"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(n)"
+    description: "Role-based training"
+    maps_to_subdomain: "D-08.2"
+    normative_strength: 3
+    obligation_type: "periodic"
+    obligated_party: "essential_entity"
+  - clause_id: "NIS2-C16"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(3)"
+    description: "Access control"
+    maps_to_subdomain: "D-03.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "essential_entity"
+  - clause_id: "NIS2-C17"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(3)"
+    description: "MFA"
+    maps_to_subdomain: "D-03.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "essential_entity"
+  - clause_id: "NIS2-C18"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(3)"
+    description: "Encryption (at rest and transit)"
+    maps_to_subdomain: "D-01.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "essential_entity"
+  - clause_id: "NIS2-C19"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(3)"
+    description: "Identity management"
+    maps_to_subdomain: "D-03.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "essential_entity"
+  - clause_id: "NIS2-C20"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(3)"
+    description: "Least privilege"
+    maps_to_subdomain: "D-03.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "essential_entity"
+  - clause_id: "NIS2-C21"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(3)"
+    description: "Security monitoring"
+    maps_to_subdomain: "D-10.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "essential_entity"
+  - clause_id: "NIS2-C22"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(3)"
+    description: "Audit logging"
+    maps_to_subdomain: "D-10.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "essential_entity"
+  - clause_id: "NIS2-C23"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(3)"
+    description: "Vendor management"
+    maps_to_subdomain: "D-06.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "essential_entity"
+  - clause_id: "NIS2-C24"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(3)"
+    description: "Third-party boundaries"
+    maps_to_subdomain: "D-06.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "essential_entity"
+  - clause_id: "NIS2-C25"
+    regulation_id: "REG-NIS2"
+    article: "Art. 23(1)"
+    description: "Early warning (24h)"
+    maps_to_subdomain: "D-04.3"
+    normative_strength: 3
+    obligation_type: "triggered"
+    obligated_party: "essential_entity"
+  - clause_id: "NIS2-C26"
+    regulation_id: "REG-NIS2"
+    article: "Art. 23(2)"
+    description: "Incident notification (72h)"
+    maps_to_subdomain: "D-04.3"
+    normative_strength: 3
+    obligation_type: "triggered"
+    obligated_party: "essential_entity"
+  - clause_id: "NIS2-C27"
+    regulation_id: "REG-NIS2"
+    article: "Art. 23(3)"
+    description: "Final report (1 month)"
+    maps_to_subdomain: "D-04.3"
+    normative_strength: 3
+    obligation_type: "triggered"
+    obligated_party: "essential_entity"
+  - clause_id: "NIS2-C28"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(c)"
+    description: "Incident detection"
+    maps_to_subdomain: "D-04.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "essential_entity"
+  - clause_id: "NIS2-C29"
+    regulation_id: "REG-NIS2"
+    article: "Art. 21(2)(c)"
+    description: "Continuous monitoring"
+    maps_to_subdomain: "D-10.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "essential_entity"
+
+  # DORA Clauses (38 total)
+  - clause_id: "DORA-C01"
+    regulation_id: "REG-DORA"
+    article: "Art. 5(1)"
+    description: "ICT risk framework"
+    maps_to_subdomain: "D-09.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C02"
+    regulation_id: "REG-DORA"
+    article: "Art. 5(2)"
+    description: "Management oversight"
+    maps_to_subdomain: "D-08.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C03"
+    regulation_id: "REG-DORA"
+    article: "Art. 6(1)"
+    description: "ICT policies"
+    maps_to_subdomain: "D-09.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C04"
+    regulation_id: "REG-DORA"
+    article: "Art. 6(2)"
+    description: "ICT risk assessment"
+    maps_to_subdomain: "D-09.2"
+    normative_strength: 3
+    obligation_type: "periodic"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C05"
+    regulation_id: "REG-DORA"
+    article: "Art. 7(1)"
+    description: "ICT asset inventory"
+    maps_to_subdomain: "D-09.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C06"
+    regulation_id: "REG-DORA"
+    article: "Art. 8(1)"
+    description: "Change management"
+    maps_to_subdomain: "D-07.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C07"
+    regulation_id: "REG-DORA"
+    article: "Art. 9(1)"
+    description: "Continuous ICT monitoring"
+    maps_to_subdomain: "D-10.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C08"
+    regulation_id: "REG-DORA"
+    article: "Art. 10(1)"
+    description: "Vulnerability management"
+    maps_to_subdomain: "D-02.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C09"
+    regulation_id: "REG-DORA"
+    article: "Art. 10(2)"
+    description: "Encryption at rest"
+    maps_to_subdomain: "D-01.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C10"
+    regulation_id: "REG-DORA"
+    article: "Art. 10(3)"
+    description: "Encryption in transit"
+    maps_to_subdomain: "D-01.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C11"
+    regulation_id: "REG-DORA"
+    article: "Art. 11(1)"
+    description: "ICT access control"
+    maps_to_subdomain: "D-03.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C12"
+    regulation_id: "REG-DORA"
+    article: "Art. 11(2)"
+    description: "ICT audit logging"
+    maps_to_subdomain: "D-10.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C13"
+    regulation_id: "REG-DORA"
+    article: "Art. 12(1)"
+    description: "Patch management"
+    maps_to_subdomain: "D-02.2"
+    normative_strength: 3
+    obligation_type: "triggered"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C14"
+    regulation_id: "REG-DORA"
+    article: "Art. 13(1)"
+    description: "Least privilege"
+    maps_to_subdomain: "D-03.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C15"
+    regulation_id: "REG-DORA"
+    article: "Art. 14(1)"
+    description: "Identity management"
+    maps_to_subdomain: "D-03.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C16"
+    regulation_id: "REG-DORA"
+    article: "Art. 15(1)"
+    description: "MFA"
+    maps_to_subdomain: "D-03.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C17"
+    regulation_id: "REG-DORA"
+    article: "Art. 16(1)"
+    description: "Key management"
+    maps_to_subdomain: "D-01.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C18"
+    regulation_id: "REG-DORA"
+    article: "Art. 17(1)"
+    description: "ICT incident detection"
+    maps_to_subdomain: "D-04.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C19"
+    regulation_id: "REG-DORA"
+    article: "Art. 17(2)"
+    description: "ICT incident response"
+    maps_to_subdomain: "D-04.2"
+    normative_strength: 3
+    obligation_type: "triggered"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C20"
+    regulation_id: "REG-DORA"
+    article: "Art. 18(1)"
+    description: "CI/CD security"
+    maps_to_subdomain: "D-07.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C21"
+    regulation_id: "REG-DORA"
+    article: "Art. 19(1)"
+    description: "ICT incident triage"
+    maps_to_subdomain: "D-04.1"
+    normative_strength: 3
+    obligation_type: "triggered"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C22"
+    regulation_id: "REG-DORA"
+    article: "Art. 20(1)"
+    description: "ICT containment"
+    maps_to_subdomain: "D-04.2"
+    normative_strength: 3
+    obligation_type: "triggered"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C23"
+    regulation_id: "REG-DORA"
+    article: "Art. 21(1)"
+    description: "ICT recovery procedures"
+    maps_to_subdomain: "D-04.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C24"
+    regulation_id: "REG-DORA"
+    article: "Art. 22(1)"
+    description: "ICT business continuity"
+    maps_to_subdomain: "D-04.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C25"
+    regulation_id: "REG-DORA"
+    article: "Art. 23(1)"
+    description: "Backup systems"
+    maps_to_subdomain: "D-04.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C26"
+    regulation_id: "REG-DORA"
+    article: "Art. 24(1)"
+    description: "Resilience testing"
+    maps_to_subdomain: "D-10.3"
+    normative_strength: 3
+    obligation_type: "periodic"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C27"
+    regulation_id: "REG-DORA"
+    article: "Art. 25(1)"
+    description: "Vulnerability scanning"
+    maps_to_subdomain: "D-02.4"
+    normative_strength: 3
+    obligation_type: "periodic"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C28"
+    regulation_id: "REG-DORA"
+    article: "Art. 26(1)"
+    description: "Penetration testing"
+    maps_to_subdomain: "D-10.3"
+    normative_strength: 3
+    obligation_type: "periodic"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C29"
+    regulation_id: "REG-DORA"
+    article: "Art. 27(1)"
+    description: "Threat-led pen testing (TLPT, every 3 years)"
+    maps_to_subdomain: "D-02.4"
+    normative_strength: 3
+    obligation_type: "periodic"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C30"
+    regulation_id: "REG-DORA"
+    article: "Art. 28(1)"
+    description: "ICT third-party risk"
+    maps_to_subdomain: "D-06.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C31"
+    regulation_id: "REG-DORA"
+    article: "Art. 29(1)"
+    description: "Contractual ICT safeguards"
+    maps_to_subdomain: "D-06.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C32"
+    regulation_id: "REG-DORA"
+    article: "Art. 30(1)"
+    description: "ICT vendor due diligence"
+    maps_to_subdomain: "D-06.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C33"
+    regulation_id: "REG-DORA"
+    article: "Art. 31(1)"
+    description: "ICT exit strategies"
+    maps_to_subdomain: "D-06.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C34"
+    regulation_id: "REG-DORA"
+    article: "Art. 32(1)"
+    description: "ICT concentration risk"
+    maps_to_subdomain: "D-06.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C35"
+    regulation_id: "REG-DORA"
+    article: "Art. 17(3)"
+    description: "ICT incident reporting (24h)"
+    maps_to_subdomain: "D-04.3"
+    normative_strength: 3
+    obligation_type: "triggered"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C36"
+    regulation_id: "REG-DORA"
+    article: "Art. 17(4)"
+    description: "ICT incident report (72h)"
+    maps_to_subdomain: "D-04.3"
+    normative_strength: 3
+    obligation_type: "triggered"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C37"
+    regulation_id: "REG-DORA"
+    article: "Art. 17(5)"
+    description: "ICT final report (1 month)"
+    maps_to_subdomain: "D-04.3"
+    normative_strength: 3
+    obligation_type: "triggered"
+    obligated_party: "financial_entity"
+  - clause_id: "DORA-C38"
+    regulation_id: "REG-DORA"
+    article: "Art. 33(1)"
+    description: "ICT record keeping"
+    maps_to_subdomain: "D-09.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "financial_entity"
+
+  # AI Act Clauses (29 total)
+  - clause_id: "AI-C01"
+    regulation_id: "REG-AIACT"
+    article: "Art. 9(1)"
+    description: "AI risk management system"
+    maps_to_subdomain: "D-09.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "provider"
+  - clause_id: "AI-C02"
+    regulation_id: "REG-AIACT"
+    article: "Art. 9(2)"
+    description: "AI risk assessment"
+    maps_to_subdomain: "D-09.2"
+    normative_strength: 3
+    obligation_type: "periodic"
+    obligated_party: "provider"
+  - clause_id: "AI-C03"
+    regulation_id: "REG-AIACT"
+    article: "Art. 10(1)"
+    description: "Data governance (training data quality)"
+    maps_to_subdomain: "D-02.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "provider"
+  - clause_id: "AI-C04"
+    regulation_id: "REG-AIACT"
+    article: "Art. 10(2)"
+    description: "Bias and error testing"
+    maps_to_subdomain: "D-02.4"
+    normative_strength: 3
+    obligation_type: "periodic"
+    obligated_party: "provider"
+  - clause_id: "AI-C05"
+    regulation_id: "REG-AIACT"
+    article: "Art. 10(3)"
+    description: "Training data relevance"
+    maps_to_subdomain: "D-05.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "provider"
+  - clause_id: "AI-C06"
+    regulation_id: "REG-AIACT"
+    article: "Art. 10(4)"
+    description: "Training data representativeness"
+    maps_to_subdomain: "D-05.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "provider"
+  - clause_id: "AI-C07"
+    regulation_id: "REG-AIACT"
+    article: "Art. 10(5)"
+    description: "Training data retention"
+    maps_to_subdomain: "D-05.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "provider"
+  - clause_id: "AI-C08"
+    regulation_id: "REG-AIACT"
+    article: "Art. 11(1)"
+    description: "AI technical documentation"
+    maps_to_subdomain: "D-09.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "provider"
+  - clause_id: "AI-C09"
+    regulation_id: "REG-AIACT"
+    article: "Art. 12(1)"
+    description: "Automatic logging"
+    maps_to_subdomain: "D-10.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "provider"
+  - clause_id: "AI-C10"
+    regulation_id: "REG-AIACT"
+    article: "Art. 12(2)"
+    description: "Log retention (6 months minimum)"
+    maps_to_subdomain: "D-10.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "provider"
+  - clause_id: "AI-C11"
+    regulation_id: "REG-AIACT"
+    article: "Art. 12(3)"
+    description: "Traceability"
+    maps_to_subdomain: "D-09.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "provider"
+  - clause_id: "AI-C12"
+    regulation_id: "REG-AIACT"
+    article: "Art. 13(1)"
+    description: "Transparency to users"
+    maps_to_subdomain: "D-09.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "provider"
+  - clause_id: "AI-C13"
+    regulation_id: "REG-AIACT"
+    article: "Art. 13(2)"
+    description: "Instructions for use"
+    maps_to_subdomain: "D-09.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "provider"
+  - clause_id: "AI-C14"
+    regulation_id: "REG-AIACT"
+    article: "Art. 14(1)"
+    description: "Human oversight by design"
+    maps_to_subdomain: "D-08.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "provider"
+  - clause_id: "AI-C15"
+    regulation_id: "REG-AIACT"
+    article: "Art. 14(2)"
+    description: "Overseer competence"
+    maps_to_subdomain: "D-03.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "provider"
+  - clause_id: "AI-C16"
+    regulation_id: "REG-AIACT"
+    article: "Art. 15(1)"
+    description: "Accuracy"
+    maps_to_subdomain: "D-02.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "provider"
+  - clause_id: "AI-C17"
+    regulation_id: "REG-AIACT"
+    article: "Art. 15(2)"
+    description: "AI cybersecurity"
+    maps_to_subdomain: "D-01.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "provider"
+  - clause_id: "AI-C18"
+    regulation_id: "REG-AIACT"
+    article: "Art. 15(3)"
+    description: "AI resilience"
+    maps_to_subdomain: "D-01.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "provider"
+  - clause_id: "AI-C19"
+    regulation_id: "REG-AIACT"
+    article: "Art. 15(4)"
+    description: "Fallback plans"
+    maps_to_subdomain: "D-10.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "provider"
+  - clause_id: "AI-C20"
+    regulation_id: "REG-AIACT"
+    article: "Art. 16(a)"
+    description: "Conformity assessment"
+    maps_to_subdomain: "D-09.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "provider"
+  - clause_id: "AI-C21"
+    regulation_id: "REG-AIACT"
+    article: "Art. 16(b)"
+    description: "Post-market monitoring"
+    maps_to_subdomain: "D-10.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "provider"
+  - clause_id: "AI-C22"
+    regulation_id: "REG-AIACT"
+    article: "Art. 16(c)"
+    description: "AI incident reporting"
+    maps_to_subdomain: "D-09.2"
+    normative_strength: 3
+    obligation_type: "triggered"
+    obligated_party: "provider"
+  - clause_id: "AI-C23"
+    regulation_id: "REG-AIACT"
+    article: "Art. 17"
+    description: "Quality management system"
+    maps_to_subdomain: "D-09.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "provider"
+  - clause_id: "AI-C24"
+    regulation_id: "REG-AIACT"
+    article: "Art. 18"
+    description: "AI staff competence"
+    maps_to_subdomain: "D-08.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "provider"
+  - clause_id: "AI-C25"
+    regulation_id: "REG-AIACT"
+    article: "Art. 19"
+    description: "AI monitoring systems"
+    maps_to_subdomain: "D-10.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "provider"
+  - clause_id: "AI-C26"
+    regulation_id: "REG-AIACT"
+    article: "Art. 20"
+    description: "Market surveillance cooperation"
+    maps_to_subdomain: "D-04.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "provider"
+  - clause_id: "AI-C27"
+    regulation_id: "REG-AIACT"
+    article: "Art. 21"
+    description: "Periodic AI evaluation"
+    maps_to_subdomain: "D-10.3"
+    normative_strength: 3
+    obligation_type: "periodic"
+    obligated_party: "provider"
+  - clause_id: "AI-C28"
+    regulation_id: "REG-AIACT"
+    article: "Art. 22"
+    description: "Fundamental Rights Impact Assessment (FRIA)"
+    maps_to_subdomain: "D-09.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "provider"
+  - clause_id: "AI-C29"
+    regulation_id: "REG-AIACT"
+    article: "Art. 23"
+    description: "EU database registration"
+    maps_to_subdomain: "D-04.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "provider"
+
+# ============================================================
+# COVERAGE SUMMARY
+# ============================================================
+
+coverage_summary:
+  total_subdomains: 38
+  covered_count: 38
+  not_covered_count: 0
+  coverage_percentage: 100.0
+  by_regulation:
+    GDPR:
+      applicable: true
+      clause_count: 28
+      subdomains_covered: 19
+      subdomains: ["D-01.1", "D-01.2", "D-01.4", "D-03.3", "D-04.2", "D-04.3", "D-04.4", "D-05.1", "D-05.2", "D-05.3", "D-05.4", "D-06.1", "D-06.3", "D-07.1", "D-08.1", "D-08.2", "D-09.1", "D-09.2", "D-09.4", "D-10.3"]
+    CRA:
+      applicable: true
+      clause_count: 26
+      subdomains_covered: 22
+    NIS2:
+      applicable: true
+      clause_count: 29
+      subdomains_covered: 24
+    DORA:
+      applicable: true
+      clause_count: 38
+      subdomains_covered: 29
+    AI_Act:
+      applicable: true
+      clause_count: 29
+      subdomains_covered: 13
+  sole_authority_gaps:
+    count: 0
+    subdomains: []
+    acceptability: "acceptable"
+    note: "All 38 sub-domains have at least one applicable regulation. No sole-authority gaps at MAXIMUM complexity."
+  normative_intensity:
+    mean: 2.858
+    weight_3_percentage: 88.0
+    weight_2_percentage: 12.0
+    weight_1_percentage: 0.0
+
+# ============================================================
+# INFERENCE METADATA
+# ============================================================
+
+inference:
+  version: "1.0"
+  generated_by: "AEGIS Phase 1 Ontology Generator"
+  generation_date: "2026-07-03"
+
+  ai_agent_instructions:
+    - "Use this YAML as the canonical source for Phase 1 facts"
+    - "Questions about regulatory applicability should query applicability_assessments"
+    - "Questions about sub-domain coverage should query subdomains.covered"
+    - "Questions about clause mappings should query clause_mappings"
+    - "Questions about obligated_party should use the canonical enum from 00_METHODOLOGY/SCHEMA/obligated_party.yaml"
+    - "GDPR has dual role: CONTROLLER (customer PII) + PROCESSOR (regulatory reporting to BaFin/ECB) per 01_Company_Context.md §3.1 and Q73"
+
+  relationship_paths:
+    - path: "company -> ASSESSES -> regulation"
+      description: "Check which regulations apply to company"
+    - path: "regulation -> OVERLAPS_WITH -> regulation"
+      description: "Find shared sub-domains between regulations"
+    - path: "clause -> MAPS_TO -> subdomain"
+      description: "Find which sub-domain a clause covers"
+    - path: "subdomain -> BELONGS_TO -> domain"
+      description: "Find parent domain of a sub-domain"
+    - path: "clause -> HAS_OBLIGATED_PARTY -> role"
+      description: "Find which obligated_party roles (controller, processor, etc.) apply to a clause"

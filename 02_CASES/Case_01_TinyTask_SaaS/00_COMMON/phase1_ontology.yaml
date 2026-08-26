@@ -1,0 +1,1164 @@
+# AEGIS Phase 1 Case Ontology — Case_01_TinyTask_SaaS
+# Machine-readable representation of Phase 1 regulatory applicability and clause mappings
+# Schema: phase1_schema.yaml v1.0
+#
+# ⚠️ KNOWN DATA INTEGRITY ISSUE — REQUIRES HUMAN DECISION
+# The clause IDs in this ontology YAML do NOT match the script Python files
+# (e.g., create_clause_mapping.py, create_clause_mapping_complete.py).
+# Specifically:
+#   - Script: GDPR-C08 = Art. 24(1) → D-09.1
+#   - Ontology: GDPR-C08 = Art. 9 → D-05.3
+# This means the ontology and scripts have DIFFERENT content for the same clause IDs.
+# Fixing this requires deciding which source is canonical and re-aligning all
+# downstream documents (clause mapping matrix, obligation derivation, rules catalog).
+# DO NOT attempt automated fixes — scope spans 10+ documents.
+
+header:
+  case_id: "Case_01_TinyTask_SaaS"
+  phase: 1
+  version: "1.0"
+  generated_from:
+    - "AEGIS-COMMON-00"  # Taxonomy Reference
+    - "AEGIS-COMMON-01"  # Company Context
+    - "AEGIS-P1-05"      # Regulatory Applicability
+    - "AEGIS-P1-06"      # Clause Mapping Matrix
+  generated_date: "2026-04-16"
+  author: "AEGIS Implementation"
+
+# ============================================================
+# COMPANY
+# ============================================================
+
+company:
+  id: "CC-TINYTASK-2026-001"
+  name: "TinyTask Lda."
+  sector: "Technology/Software"
+  size: "micro"
+  employees: 8
+  revenue_eur: 2000000
+  jurisdiction: "Portugal (EU)"
+  legal_structure: "Private Limited Company (Lda.)"
+  tech_stack:
+    - "AWS"
+    - "Firebase"
+    - "GitHub Actions"
+  data_types:
+    - "email"
+    - "name"
+    - "password"
+    - "task_content"
+  criticality_level: "non-critical"
+
+# ============================================================
+# REGULATIONS (All 5 EU regulations with applicability)
+# ============================================================
+
+regulations:
+  - id: "REG-GDPR"
+    abbreviation: "GDPR"
+    name: "General Data Protection Regulation"
+    eu_reference: "Regulation (EU) 2016/679"
+    applicable: true
+    obligated_party: ["controller", "processor"]
+    reason: "processes_personal_data = true (dual role: CONTROLLER for own business data, PROCESSOR for B2B client content)"
+    clause_count: 28
+    key_articles: [1, 2, 5, 6, 7, 8, 9, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 30, 31, 32, 33, 34]
+    obligated_party_rationale:
+      controller: "TinyTask processes account/billing/employee personal data — Act 6 lawful basis, Act 13/14 transparency, Act 15-22 DSRs all addressed by the controller role."
+      processor: "B2B clients upload personal data of their end-users to the SaaS platform; TinyTask processes on their behalf (Art. 28 DPA). Art. 32, Art. 30(2), Art. 33(2) obligations apply to the processor role."
+
+  - id: "REG-CRA"
+    abbreviation: "CRA"
+    name: "Cyber Resilience Act"
+    eu_reference: "Regulation (EU) 2024/2847"
+    applicable: true
+    obligated_party: "manufacturer"
+    reason: "places_digital_products_eu = true"
+    clause_count: 26
+    key_articles: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
+
+  - id: "REG-NIS2"
+    abbreviation: "NIS2"
+    name: "Network and Information Systems Directive 2"
+    eu_reference: "Directive (EU) 2022/2555"
+    applicable: false
+    reason: "below_threshold (8 employees < 50 threshold)"
+    clause_count: 0
+    non_applicability_evidence:
+      - "Q2: 8 employees (threshold is 50 for medium enterprises)"
+      - "Q4: Technology sector (threshold met but size not)"
+
+  - id: "REG-DORA"
+    abbreviation: "DORA"
+    name: "Digital Operational Resilience Act"
+    eu_reference: "Regulation (EU) 2022/2554"
+    applicable: false
+    reason: "not_financial_entity (dora_financial_entity = false)"
+    clause_count: 0
+    non_applicability_evidence:
+      - "Q6: No regulated financial operations"
+      - "Q18: Payment data handled by Stripe (third-party)"
+
+  - id: "REG-AIACT"
+    abbreviation: "AI Act"
+    name: "Artificial Intelligence Act"
+    eu_reference: "Regulation (EU) 2024/1689"
+    applicable: false
+    reason: "no_ai_systems (aiact_high_risk_system = false)"
+    clause_count: 0
+    non_applicability_evidence:
+      - "Q8: No AI/ML systems deployed"
+
+# ============================================================
+# DOMAINS (All 10 security control domains)
+# ============================================================
+
+domains:
+  - id: "D-01"
+    name: "Data Protection & Encryption"
+    description: "Data protection and cryptographic controls"
+    primary_regulatory_driver: "GDPR"
+    subdomain_count: 4
+
+  - id: "D-02"
+    name: "Vulnerability Management"
+    description: "Vulnerability identification and patch management"
+    primary_regulatory_driver: "CRA"
+    subdomain_count: 4
+
+  - id: "D-03"
+    name: "Access Control"
+    description: "Identity management and access control mechanisms"
+    primary_regulatory_driver: "GDPR"
+    subdomain_count: 4
+
+  - id: "D-04"
+    name: "Incident Response"
+    description: "Security incident detection, response, and recovery"
+    primary_regulatory_driver: "GDPR"
+    subdomain_count: 4
+
+  - id: "D-05"
+    name: "Data Lifecycle"
+    description: "Data minimization, retention, and erasure"
+    primary_regulatory_driver: "GDPR"
+    subdomain_count: 4
+
+  - id: "D-06"
+    name: "Supply Chain"
+    description: "Vendor risk and supply chain security"
+    primary_regulatory_driver: "DORA"
+    subdomain_count: 4
+
+  - id: "D-07"
+    name: "Secure Development"
+    description: "Secure development lifecycle and coding practices"
+    primary_regulatory_driver: "CRA"
+    subdomain_count: 4
+
+  - id: "D-08"
+    name: "Human Factors"
+    description: "Security awareness and training"
+    primary_regulatory_driver: "NIS2"
+    subdomain_count: 3
+
+  - id: "D-09"
+    name: "Governance & Documentation"
+    description: "Security policies and documentation"
+    primary_regulatory_driver: "GDPR"
+    subdomain_count: 4
+
+  - id: "D-10"
+    name: "Monitoring & Audit"
+    description: "Security monitoring and compliance testing"
+    primary_regulatory_driver: "DORA"
+    subdomain_count: 3
+
+# ============================================================
+# SUB-DOMAINS (All 38 security control sub-domains)
+# ============================================================
+
+subdomains:
+  covered:
+    # D-01: Data Protection & Encryption
+    - id: "D-01.1"
+      domain_id: "D-01"
+      name: "Data at Rest Encryption"
+      source_regulations: ["GDPR", "CRA"]
+      clause_count: 2
+
+    - id: "D-01.2"
+      domain_id: "D-01"
+      name: "Data in Transit Encryption"
+      source_regulations: ["GDPR", "CRA"]
+      clause_count: 2
+
+    - id: "D-01.3"
+      domain_id: "D-01"
+      name: "Cryptographic Key Management"
+      source_regulations: ["CRA"]
+      clause_count: 1
+
+    - id: "D-01.4"
+      domain_id: "D-01"
+      name: "Data Integrity Mechanisms"
+      source_regulations: ["GDPR", "CRA"]
+      clause_count: 2
+
+    # D-02: Vulnerability Management
+    - id: "D-02.1"
+      domain_id: "D-02"
+      name: "Vulnerability Identification"
+      source_regulations: ["CRA"]
+      clause_count: 2
+
+    - id: "D-02.2"
+      domain_id: "D-02"
+      name: "Patch Management & Updates"
+      source_regulations: ["CRA"]
+      clause_count: 2
+
+    - id: "D-02.3"
+      domain_id: "D-02"
+      name: "Coordinated Vuln. Disclosure"
+      source_regulations: ["CRA"]
+      clause_count: 1
+      sole_authority_regulation: "CRA"
+
+    # D-03: Access Control
+    - id: "D-03.1"
+      domain_id: "D-03"
+      name: "Identity Lifecycle Management"
+      source_regulations: ["CRA"]
+      clause_count: 1
+
+    - id: "D-03.2"
+      domain_id: "D-03"
+      name: "Multi-Factor Authentication"
+      source_regulations: ["CRA"]
+      clause_count: 1
+
+    - id: "D-03.3"
+      domain_id: "D-03"
+      name: "Authorization & Least Privilege"
+      source_regulations: ["GDPR"]
+      clause_count: 2
+
+    - id: "D-03.4"
+      domain_id: "D-03"
+      name: "Secure System Defaults"
+      source_regulations: ["CRA"]
+      clause_count: 1
+      sole_authority_regulation: "CRA"
+
+    # D-04: Incident Response
+    - id: "D-04.1"
+      domain_id: "D-04"
+      name: "Incident Detection & Triage"
+      source_regulations: ["CRA"]
+      clause_count: 1
+
+    - id: "D-04.2"
+      domain_id: "D-04"
+      name: "Containment & Mitigation"
+      source_regulations: ["GDPR", "CRA"]
+      clause_count: 2
+
+    - id: "D-04.3"
+      domain_id: "D-04"
+      name: "Regulatory Notification"
+      source_regulations: ["GDPR", "CRA"]
+      clause_count: 2
+
+    - id: "D-04.4"
+      domain_id: "D-04"
+      name: "Data Restoration & Recovery"
+      source_regulations: ["GDPR"]
+      clause_count: 2
+
+    # D-05: Data Lifecycle
+    - id: "D-05.1"
+      domain_id: "D-05"
+      name: "Data Minimization"
+      source_regulations: ["GDPR"]
+      clause_count: 2
+
+    - id: "D-05.2"
+      domain_id: "D-05"
+      name: "Retention & Archiving"
+      source_regulations: ["GDPR"]
+      clause_count: 2
+
+    - id: "D-05.3"
+      domain_id: "D-05"
+      name: "Right to Erasure"
+      source_regulations: ["GDPR"]
+      clause_count: 2
+
+    - id: "D-05.4"
+      domain_id: "D-05"
+      name: "Data Portability"
+      source_regulations: ["GDPR"]
+      clause_count: 1
+      sole_authority_regulation: "GDPR"
+
+    # D-06: Supply Chain
+    - id: "D-06.1"
+      domain_id: "D-06"
+      name: "Vendor Risk Assessment"
+      source_regulations: ["GDPR"]
+      clause_count: 1
+
+    - id: "D-06.2"
+      domain_id: "D-06"
+      name: "Software Bill of Materials (SBOM)"
+      source_regulations: ["CRA"]
+      clause_count: 1
+      sole_authority_regulation: "CRA"
+
+    - id: "D-06.3"
+      domain_id: "D-06"
+      name: "Contractual Security Obligations"
+      source_regulations: ["GDPR"]
+      clause_count: 1
+
+# D-07: Secure Development
+    - id: "D-07.1"
+      domain_id: "D-07"
+      name: "Secure-by-Design Principles"
+      source_regulations: ["GDPR", "CRA"]
+      clause_count: 3
+
+    - id: "D-07.2"
+      domain_id: "D-07"
+      name: "Secure Coding Practices"
+      source_regulations: ["CRA"]
+      clause_count: 1
+
+    - id: "D-07.3"
+      domain_id: "D-07"
+      name: "CI/CD Pipeline Security"
+      source_regulations: ["CRA"]
+      clause_count: 1
+
+    - id: "D-07.4"
+      domain_id: "D-07"
+      name: "Change Management"
+      source_regulations: ["CRA"]
+      clause_count: 1
+
+    # D-08: Human Factors
+    - id: "D-08.1"
+      domain_id: "D-08"
+      name: "General Security Awareness"
+      source_regulations: ["GDPR"]
+      clause_count: 1
+
+    - id: "D-08.2"
+      domain_id: "D-08"
+      name: "Role-Specific Competence"
+      source_regulations: ["GDPR"]
+      clause_count: 1
+
+    # D-09: Governance & Documentation
+    - id: "D-09.1"
+      domain_id: "D-09"
+      name: "Information Security Policies"
+      source_regulations: ["GDPR", "CRA"]
+      clause_count: 1
+
+    - id: "D-09.2"
+      domain_id: "D-09"
+      name: "Impact & Risk Assessments"
+      source_regulations: ["GDPR"]
+      clause_count: 2
+
+    - id: "D-09.4"
+      domain_id: "D-09"
+      name: "Records of Processing"
+      source_regulations: ["GDPR"]
+      clause_count: 2
+
+    # D-10: Monitoring & Audit
+    - id: "D-10.1"
+      domain_id: "D-10"
+      name: "Continuous Security Monitoring"
+      source_regulations: ["CRA"]
+      clause_count: 1
+
+    - id: "D-10.2"
+      domain_id: "D-10"
+      name: "Audit Logging & Traceability"
+      source_regulations: ["CRA"]
+      clause_count: 1
+
+    - id: "D-10.3"
+      domain_id: "D-10"
+      name: "Compliance Testing"
+      source_regulations: ["GDPR", "CRA"]
+      clause_count: 2
+
+  not_covered:
+    - id: "D-02.4"
+      domain_id: "D-02"
+      name: "Threat-Led Penetration Testing"
+      sole_authority_regulation: "DORA"
+      reason: "DORA not applicable (not financial entity)"
+      gap_severity: "medium"
+
+    - id: "D-06.4"
+      domain_id: "D-06"
+      name: "Third-Party Boundary Management"
+      sole_authority_regulation: "DORA"
+      reason: "DORA not applicable (not financial entity)"
+      gap_severity: "medium"
+
+    - id: "D-08.3"
+      domain_id: "D-08"
+      name: "Management Board Training"
+      sole_authority_regulation: "NIS2"
+      reason: "NIS2 not applicable (below 50 employees)"
+      gap_severity: "low"
+
+    - id: "D-09.3"
+      domain_id: "D-09"
+      name: "Asset Inventories"
+      sole_authority_regulation: "DORA"
+      reason: "DORA not applicable (not financial entity)"
+      gap_severity: "medium"
+
+# ============================================================
+# APPLICABILITY ASSESSMENTS
+# ============================================================
+
+applicability_assessments:
+  - company_id: "CC-TINYTASK-2026-001"
+    regulation_id: "REG-GDPR"
+    assessment: "applicable"
+    confidence: "high"
+    obligated_party: ["controller", "processor"]
+    evidence:
+      - "Q22: processes personal data (email, name, password)"
+      - "Q1: EU jurisdiction"
+      - "Q27: IP addresses in server logs"
+      - "Q57: B2B SaaS — clients upload personal data of their end-users to the platform (Art. 28(3) PROCESSOR role)"
+    reasoning: "TinyTask processes personal data of EU data subjects as a B2B SaaS provider. GDPR applies fully as data CONTROLLER for account/billing/employee data and as PROCESSOR for B2B client content (Art. 28). Per-clause allocation is recorded in the clause_mappings below; see also 02_Regulatory_Mapping_Master.md §GDPR PER-CLAUSE OBLIGATED PARTY ALLOCATION. PROCESSOR role is the corrective change for audit finding 2026-07-03 (hardcoded subset bug — root cause: data validation enum restricted to CONTROLLER only)."
+
+  - company_id: "CC-TINYTASK-2026-001"
+    regulation_id: "REG-CRA"
+    assessment: "applicable"
+    confidence: "high"
+    obligated_party: "manufacturer"
+    evidence:
+      - "Q1: EU customers"
+      - "Q7: SaaS product placed on EU market"
+      - "Q60: digital product classification"
+    reasoning: "TinyTask manufactures and places digital products (SaaS) on the EU market. CRA applies as manufacturer."
+
+  - company_id: "CC-TINYTASK-2026-001"
+    regulation_id: "REG-NIS2"
+    assessment: "not_applicable"
+    confidence: "high"
+    reason: "below_threshold"
+    evidence:
+      - "Q2: 8 employees (below 50 employee threshold)"
+      - "Q4: Technology sector"
+    reasoning: "Micro-enterprise below NIS 2 threshold (fewer than 50 employees)."
+
+  - company_id: "CC-TINYTASK-2026-001"
+    regulation_id: "REG-DORA"
+    assessment: "not_applicable"
+    confidence: "high"
+    reason: "not_financial_entity"
+    evidence:
+      - "Q6: No regulated financial operations"
+      - "Q18: Payment data handled by Stripe"
+    reasoning: "Not a financial entity as defined by DORA. Payments processed by Stripe."
+
+  - company_id: "CC-TINYTASK-2026-001"
+    regulation_id: "REG-AIACT"
+    assessment: "not_applicable"
+    confidence: "high"
+    reason: "no_ai_systems"
+    evidence:
+      - "Q8: No AI/ML systems"
+    reasoning: "No high-risk AI systems deployed. Deterministic task management app only."
+
+
+# ============================================================
+# CLAUSE MAPPINGS (54 clauses: 28 GDPR + 26 CRA)
+# ============================================================
+
+clause_mappings:
+  # GDPR Clauses (28 total)
+  - clause_id: "GDPR-C01"
+    regulation_id: "REG-GDPR"
+    article: "Art. 1"
+    description: "Lawfulness of processing"
+    maps_to_subdomain: "D-05.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "controller"
+
+  - clause_id: "GDPR-C02"
+    regulation_id: "REG-GDPR"
+    article: "Art. 2"
+    description: "Material scope"
+    maps_to_subdomain: "D-05.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "GDPR-C03"
+    regulation_id: "REG-GDPR"
+    article: "Art. 3"
+    description: "Territorial scope"
+    maps_to_subdomain: "D-09.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "GDPR-C04"
+    regulation_id: "REG-GDPR"
+    article: "Art. 5"
+    description: "Principles relating to processing"
+    maps_to_subdomain: "D-01.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: ["controller", "processor"]  # Art. 5(2) accountability = controller; processor implements principles on instructions
+
+  - clause_id: "GDPR-C05"
+    regulation_id: "REG-GDPR"
+    article: "Art. 6"
+    description: "Lawfulness of processing"
+    maps_to_subdomain: "D-05.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "GDPR-C06"
+    regulation_id: "REG-GDPR"
+    article: "Art. 7"
+    description: "Conditions for consent"
+    maps_to_subdomain: "D-05.1"
+    normative_strength: 3
+    obligation_type: "conditional"
+
+  - clause_id: "GDPR-C07"
+    regulation_id: "REG-GDPR"
+    article: "Art. 8"
+    description: "Conditions for child's consent"
+    maps_to_subdomain: "D-05.1"
+    normative_strength: 2
+    obligation_type: "conditional"
+
+  - clause_id: "GDPR-C08"
+    regulation_id: "REG-GDPR"
+    article: "Art. 9"
+    description: "Processing of special categories"
+    maps_to_subdomain: "D-05.3"
+    normative_strength: 3
+    obligation_type: "prohibited"
+
+  - clause_id: "GDPR-C09"
+    regulation_id: "REG-GDPR"
+    article: "Art. 12"
+    description: "Transparent information and communication"
+    maps_to_subdomain: "D-09.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "GDPR-C10"
+    regulation_id: "REG-GDPR"
+    article: "Art. 13"
+    description: "Information to be provided"
+    maps_to_subdomain: "D-09.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "GDPR-C11"
+    regulation_id: "REG-GDPR"
+    article: "Art. 14"
+    description: "Information to be provided to data subject"
+    maps_to_subdomain: "D-09.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "GDPR-C12"
+    regulation_id: "REG-GDPR"
+    article: "Art. 15"
+    description: "Right of access by data subject"
+    maps_to_subdomain: "D-05.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "GDPR-C13"
+    regulation_id: "REG-GDPR"
+    article: "Art. 16"
+    description: "Right to rectification"
+    maps_to_subdomain: "D-05.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "GDPR-C14"
+    regulation_id: "REG-GDPR"
+    article: "Art. 17"
+    description: "Right to erasure"
+    maps_to_subdomain: "D-05.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "GDPR-C15"
+    regulation_id: "REG-GDPR"
+    article: "Art. 18"
+    description: "Right to restriction of processing"
+    maps_to_subdomain: "D-05.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "GDPR-C16"
+    regulation_id: "REG-GDPR"
+    article: "Art. 19"
+    description: "Notification obligation"
+    maps_to_subdomain: "D-04.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "GDPR-C17"
+    regulation_id: "REG-GDPR"
+    article: "Art. 20"
+    description: "Right to data portability"
+    maps_to_subdomain: "D-05.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "GDPR-C18"
+    regulation_id: "REG-GDPR"
+    article: "Art. 21"
+    description: "Right to object"
+    maps_to_subdomain: "D-05.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "GDPR-C19"
+    regulation_id: "REG-GDPR"
+    article: "Art. 22"
+    description: "Automated decision-making"
+    maps_to_subdomain: "D-03.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "GDPR-C20"
+    regulation_id: "REG-GDPR"
+    article: "Art. 25"
+    description: "Data protection by design"
+    maps_to_subdomain: "D-07.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: ["controller", "processor"]  # Art. 25(1) controller (means); Art. 28(3)(a) processor implements approved measures on instructions
+
+  - clause_id: "GDPR-C21"
+    regulation_id: "REG-GDPR"
+    article: "Art. 28"
+    description: "Processor clauses (DPA, sub-processor auth, processing on instructions, security, audit, assistance)"
+    maps_to_subdomain: "D-06.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: ["controller", "processor"]  # Art. 28(1)/(3) controller (select/instruct); Art. 28(2)/(3) processor (authorise, follow instructions, sub-processor controls, audit, assistance)
+
+  - clause_id: "GDPR-C22"
+    regulation_id: "REG-GDPR"
+    article: "Art. 30"
+    description: "Records of processing activities (Art. 30(1) controller, Art. 30(2) processor's own records)"
+    maps_to_subdomain: "D-09.4"
+    normative_strength: 2
+    obligation_type: "mandatory"
+    obligated_party: ["controller", "processor"]  # Art. 30(1) controller maintains ROPA; Art. 30(2) processor maintains own records
+
+  - clause_id: "GDPR-C23"
+    regulation_id: "REG-GDPR"
+    article: "Art. 31"
+    description: "Cooperation with supervisory authority"
+    maps_to_subdomain: "D-04.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: ["controller", "processor"]  # Art. 31(1) controller cooperates directly; Art. 28(3)(g) processor cooperates where lawful/instructed
+
+  - clause_id: "GDPR-C24"
+    regulation_id: "REG-GDPR"
+    article: "Art. 32"
+    description: "Security of processing (Art. 32(1) controller+processor; Art. 32(2) processor adherance to approved codes/certification)"
+    maps_to_subdomain: "D-01.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: ["controller", "processor"]  # Art. 32(1) addresses both controller and processor; Art. 32(2) is processor-specific
+
+  - clause_id: "GDPR-C25"
+    regulation_id: "REG-GDPR"
+    article: "Art. 33"
+    description: "Breach notification — Art. 33(1) controller to SA within 72h; Art. 33(2) processor to controller without undue delay"
+    maps_to_subdomain: "D-04.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: ["controller", "processor"]  # Art. 33(1) controller 72h SA clock; Art. 33(2) processor separate "without undue delay" clock to controller (distinct SLA)
+
+  - clause_id: "GDPR-C26"
+    regulation_id: "REG-GDPR"
+    article: "Art. 34"
+    description: "Breach notification to data subject"
+    maps_to_subdomain: "D-04.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "GDPR-C27"
+    regulation_id: "REG-GDPR"
+    article: "Art. 35"
+    description: "Data protection impact assessment"
+    maps_to_subdomain: "D-09.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "GDPR-C28"
+    regulation_id: "REG-GDPR"
+    article: "Art. 37"
+    description: "Designation of DPO"
+    maps_to_subdomain: "D-08.2"
+    normative_strength: 2
+    obligation_type: "conditional"
+    obligated_party: ["controller", "processor"]  # Art. 37(1) controller and processor each designate DPO under listed conditions; Art. 37(4)-(5) processor DPO duties
+
+  # CRA Clauses (26 total)
+  - clause_id: "CRA-C01"
+    regulation_id: "REG-CRA"
+    article: "Art. 1"
+    description: "Subject matter and scope"
+    maps_to_subdomain: "D-07.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+    obligated_party: "manufacturer"
+
+  - clause_id: "CRA-C02"
+    regulation_id: "REG-CRA"
+    article: "Art. 2"
+    description: "Definitions"
+    maps_to_subdomain: "D-07.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C03"
+    regulation_id: "REG-CRA"
+    article: "Art. 3"
+    description: "Security requirements"
+    maps_to_subdomain: "D-03.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C04"
+    regulation_id: "REG-CRA"
+    article: "Art. 4"
+    description: "Vulnerability handling"
+    maps_to_subdomain: "D-02.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C05"
+    regulation_id: "REG-CRA"
+    article: "Art. 5"
+    description: "Security updates"
+    maps_to_subdomain: "D-02.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C06"
+    regulation_id: "REG-CRA"
+    article: "Art. 6"
+    description: "Incident reporting"
+    maps_to_subdomain: "D-04.1"
+    normative_strength: 2
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C07"
+    regulation_id: "REG-CRA"
+    article: "Art. 7"
+    description: "Supply chain security"
+    maps_to_subdomain: "D-06.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C08"
+    regulation_id: "REG-CRA"
+    article: "Art. 8"
+    description: "Secure defaults"
+    maps_to_subdomain: "D-03.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C09"
+    regulation_id: "REG-CRA"
+    article: "Art. 9"
+    description: "Password security"
+    maps_to_subdomain: "D-03.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C10"
+    regulation_id: "REG-CRA"
+    article: "Art. 10"
+    description: "Identity authentication"
+    maps_to_subdomain: "D-03.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C11"
+    regulation_id: "REG-CRA"
+    article: "Art. 11"
+    description: "Data erasure"
+    maps_to_subdomain: "D-05.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C12"
+    regulation_id: "REG-CRA"
+    article: "Art. 12"
+    description: "Availability at end of support"
+    maps_to_subdomain: "D-10.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C13"
+    regulation_id: "REG-CRA"
+    article: "Art. 13"
+    description: "Technical documentation"
+    maps_to_subdomain: "D-09.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C14"
+    regulation_id: "REG-CRA"
+    article: "Art. 14"
+    description: "Conformity assessment"
+    maps_to_subdomain: "D-10.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C15"
+    regulation_id: "REG-CRA"
+    article: "Art. 15"
+    description: "CE marking"
+    maps_to_subdomain: "D-01.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C16"
+    regulation_id: "REG-CRA"
+    article: "Art. 16"
+    description: "Market surveillance"
+    maps_to_subdomain: "D-06.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C17"
+    regulation_id: "REG-CRA"
+    article: "Art. 17"
+    description: "Essential requirements for ICT products"
+    maps_to_subdomain: "D-02.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C18"
+    regulation_id: "REG-CRA"
+    article: "Art. 18"
+    description: "Security by design"
+    maps_to_subdomain: "D-07.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C19"
+    regulation_id: "REG-CRA"
+    article: "Art. 19"
+    description: "Vulnerability handling and disclosure"
+    maps_to_subdomain: "D-02.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C20"
+    regulation_id: "REG-CRA"
+    article: "Art. 20"
+    description: "Reporting incidents"
+    maps_to_subdomain: "D-04.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C21"
+    regulation_id: "REG-CRA"
+    article: "Art. 21"
+    description: "EU declarative conformity"
+    maps_to_subdomain: "D-10.3"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C22"
+    regulation_id: "REG-CRA"
+    article: "Art. 22"
+    description: "Traceability"
+    maps_to_subdomain: "D-10.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C23"
+    regulation_id: "REG-CRA"
+    article: "Art. 23"
+    description: "Software security"
+    maps_to_subdomain: "D-07.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C24"
+    regulation_id: "REG-CRA"
+    article: "Art. 24"
+    description: "Encrypted data storage"
+    maps_to_subdomain: "D-01.1"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C25"
+    regulation_id: "REG-CRA"
+    article: "Art. 25"
+    description: "Unauthorised access prevention"
+    maps_to_subdomain: "D-01.2"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+  - clause_id: "CRA-C26"
+    regulation_id: "REG-CRA"
+    article: "Art. 26"
+    description: "Resilience to outages"
+    maps_to_subdomain: "D-04.4"
+    normative_strength: 3
+    obligation_type: "mandatory"
+
+# ============================================================
+# COVERAGE SUMMARY
+# ============================================================
+
+coverage_summary:
+  total_subdomains: 38
+  covered_count: 34
+  not_covered_count: 4
+  coverage_percentage: 89.5
+
+  by_regulation:
+    GDPR:
+      applicable: true
+      clause_count: 28
+      subdomains_covered: 19
+      subdomains: ["D-01.1", "D-01.2", "D-01.4", "D-03.3", "D-04.2", "D-04.3", "D-04.4", "D-05.1", "D-05.2", "D-05.3", "D-05.4", "D-06.1", "D-06.3", "D-07.1", "D-08.1", "D-08.2", "D-09.1", "D-09.2", "D-09.4", "D-10.3"]
+
+    CRA:
+      applicable: true
+      clause_count: 26
+      subdomains_covered: 22
+      subdomains: ["D-01.1", "D-01.2", "D-01.3", "D-01.4", "D-02.1", "D-02.2", "D-02.3", "D-03.1", "D-03.2", "D-03.4", "D-04.1", "D-04.2", "D-04.3", "D-05.3", "D-06.2", "D-07.1", "D-07.2", "D-07.3", "D-07.4", "D-10.1", "D-10.2", "D-10.3"]
+    
+    NIS2:
+      applicable: false
+      clause_count: 0
+      subdomains_covered: 0
+    
+    DORA:
+      applicable: false
+      clause_count: 0
+      subdomains_covered: 0
+    
+    AI_Act:
+      applicable: false
+      clause_count: 0
+      subdomains_covered: 0
+
+  sole_authority_gaps:
+    count: 1
+    subdomains:
+      - id: "D-09.3"
+        name: "Asset Inventories"
+        sole_authority: "DORA"
+        risk: "medium"
+        mitigation: "Maintain asset inventory as part of general security hygiene"
+
+    acceptability: "acceptable"
+    note: "1 remaining gap (D-09.3 DORA exclusive); D-07.2/3/4 were sole-authority DORA/NIS2 but are now CRA-covered per Doc 07 §3 (P7 orphan fix, Sprint 6+ contract); see Doc 08 §2 reconciliation note."
+
+  normative_intensity:
+    mean: 2.778
+    weight_3_percentage: 81.5
+    weight_2_percentage: 18.5
+    weight_1_percentage: 0.0
+
+# ============================================================
+# OVERLAPS (Regulation-to-regulation)
+# ============================================================
+
+overlaps:
+  - regulation_1: "GDPR"
+    regulation_2: "CRA"
+    shared_subdomains:
+      - id: "D-01.1"
+        name: "Data at Rest Encryption"
+        gdpr_clauses: ["GDPR-C04", "GDPR-C24"]
+        cra_clauses: ["CRA-C24"]
+      
+      - id: "D-01.2"
+        name: "Data in Transit Encryption"
+        gdpr_clauses: ["GDPR-C15"]
+        cra_clauses: ["CRA-C25"]
+      
+      - id: "D-04.2"
+        name: "Containment & Mitigation"
+        gdpr_clauses: ["GDPR-C18"]
+        cra_clauses: ["CRA-C11"]
+      
+      - id: "D-04.3"
+        name: "Regulatory Notification"
+        gdpr_clauses: ["GDPR-C23", "GDPR-C25", "GDPR-C26"]
+        cra_clauses: ["CRA-C20"]
+      
+      - id: "D-05.3"
+        name: "Right to Erasure"
+        gdpr_clauses: ["GDPR-C14", "GDPR-C17"]
+        cra_clauses: ["CRA-C11"]
+      
+      - id: "D-07.1"
+        name: "Secure-by-Design Principles"
+        gdpr_clauses: ["GDPR-C20"]
+        cra_clauses: ["CRA-C01", "CRA-C18", "CRA-C23"]
+      
+      - id: "D-10.3"
+        name: "Compliance Testing"
+        gdpr_clauses: ["GDPR-C19"]
+        cra_clauses: ["CRA-C14", "CRA-C21"]
+    
+    shared_count: 7
+    jaccard_index: 0.367
+    description: "GDPR and CRA share significant coverage in data protection, incident response, and secure development domains"
+
+  - regulation_1: "GDPR"
+    regulation_2: "NIS2"
+    shared_subdomains: []
+    shared_count: 0
+    jaccard_index: 0.0
+    note: "NIS2 not applicable to TinyTask"
+
+  - regulation_1: "CRA"
+    regulation_2: "NIS2"
+    shared_subdomains: []
+    shared_count: 0
+    note: "NIS2 not applicable to TinyTask"
+
+# ============================================================
+# TENSIONS (Strategic conflicts between clauses)
+# ============================================================
+
+tensions:
+  - id: "T-001"
+    type: "timing"
+    severity: "high"
+    clause_1: "GDPR-C25"
+    clause_2: "CRA-C20"
+    description: "Breach notification timing mismatch"
+    details: |
+      GDPR requires 72-hour notification to supervisory authority after becoming aware of a personal data breach.
+      CRA requires 24-hour notification to ENISA after becoming aware of a significant incident.
+    
+    affected_subdomains: ["D-04.3"]
+    affected_regulations: ["GDPR", "CRA"]
+    
+    resolution:
+      approach: "max_sla_routing"
+      description: "Use the most stringent timeline (24h) as the internal standard for all breach notifications"
+      implementation: "Single incident response workflow that satisfies both requirements"
+
+  - id: "T-002"
+    type: "scope"
+    severity: "medium"
+    clause_1: "GDPR-C21"
+    clause_2: "CRA-C07"
+    description: "Processor vs Manufacturer obligations"
+    details: |
+      GDPR Art. 28 requires processor clauses in contracts with downstream processors.
+      CRA Art. 7 requires supply chain security assessments.
+    
+    affected_subdomains: ["D-06.1", "D-06.3"]
+    affected_regulations: ["GDPR", "CRA"]
+    
+    resolution:
+      approach: "unified_vendor_management"
+      description: "Single vendor risk assessment template that addresses both GDPR Art. 28 and CRA Art. 7 requirements"
+      implementation: "Enhanced vendor due diligence process"
+
+  - id: "T-003"
+    type: "requirement"
+    severity: "medium"
+    clause_1: "GDPR-C13"
+    clause_2: "CRA-C13"
+    description: "Records documentation overlap"
+    details: |
+      GDPR Art. 30 requires records of processing activities.
+      CRA Art. 13 requires technical documentation for products.
+    
+    affected_subdomains: ["D-09.4", "D-09.1"]
+    affected_regulations: ["GDPR", "CRA"]
+    
+    resolution:
+      approach: "integrated_documentation"
+      description: "Maintain unified records system that satisfies both record-keeping requirements"
+      implementation: "Single documentation repository with compliance mappings"
+
+  - id: "T-004"
+    type: "intensity"
+    severity: "low"
+    clause_1: "GDPR-C28"
+    clause_2: "CRA-C21"
+    description: "DPO vs Security team competence"
+    details: |
+      GDPR requires DPO with data protection competence.
+      CRA requires security team with product security competence.
+    
+    affected_subdomains: ["D-08.2"]
+    affected_regulations: ["GDPR", "CRA"]
+    
+    resolution:
+      approach: "competency_matrix"
+      description: "Define competency requirements that address both data protection and product security"
+      implementation: "Training matrix covering GDPR and CRA requirements"
+
+# ============================================================
+# INFERENCE METADATA
+# ============================================================
+
+inference:
+  version: "1.0"
+  generated_by: "AEGIS Phase 1 Ontology Generator"
+  generation_date: "2026-04-16"
+  
+  ai_agent_instructions:
+    - "Use this YAML as the canonical source for Phase 1 facts"
+    - "Questions about regulatory applicability should query applicability_assessments"
+    - "Questions about sub-domain coverage should query subdomains.covered"
+    - "Questions about clause mappings should query clause_mappings"
+    - "Questions about gaps should query coverage_summary.sole_authority_gaps"
+    - "Questions about conflicts should query tensions"
+  
+  relationship_paths:
+    - path: "company -> ASSESSES -> regulation"
+      description: "Check which regulations apply to company"
+    
+    - path: "regulation -> OVERLAPS_WITH -> regulation"
+      description: "Find shared sub-domains between regulations"
+    
+    - path: "clause -> MAPS_TO -> subdomain"
+      description: "Find which sub-domain a clause covers"
+    
+    - path: "subdomain -> BELONGS_TO -> domain"
+      description: "Find parent domain of a sub-domain"
+    
+    - path: "company -> COVERS -> subdomain"
+      description: "Find all sub-domains covered by company's applicable regulations"
+    
+    - path: "clause -> HAS_TENSION_WITH -> clause"
+      description: "Find conflicting clauses requiring resolution"
