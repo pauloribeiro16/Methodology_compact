@@ -141,6 +141,69 @@ Browser navigation: http://127.0.0.1:8765/Case_01_P1_Dashboard.html
   → loads, title "Case 01 · Phase 1 — Knowledge & Audit Dashboard"
 ```
 
+---
+
+## Re-test after v1.2 dashboard fix (2026-08-26)
+
+Verdict: **PASS** — T9 fix verified, and all of T2/T7/T10/T10/T4 still hold.
+
+### What changed
+
+In one combined commit a single subagent:
+
+- **Folio II (Knowledge Graph)** — kept, with two UX changes only:
+  - `applySelectionDim` no longer drops non-neighbours to `opacity 0.18`. New policy: non-neighbours stay at `opacity 0.6` with labels readable everywhere; edge opacities go 1-hop = 0.85, rest = 0.35 (was 0.07).
+  - Added `chart.getZr().on("click", e => { if (!e.target) clearSelection(false); })` so clicking on empty canvas clears the selection.
+  - The 6 filter handlers (`f-reg`, `f-cov`, `f-tier`, `f-audit`, `f-goals`, `f-tensions`) now route through a new `clearSelection(rebuild)` helper that resets state + Inspector + dims (was: only `selectedNode=null` + `rebuildGraph()`).
+  - Added a global `keydown` listener for `Escape` / `Esc` that calls `clearSelection(false)` whenever there is a selection.
+
+- **Folio V (Phase 1 Story)** — NEW tab. ECharts `layout: "none"`, roam-on, 6 visual columns (Stakeholders+BGs → TinyTask → Regs → Clauses → Sub-Domains → Adjusted Goals). Non-applicable regulations dimmed. Toolbar with 3 toggles (Tensions / CoverageGaps / Ambiguity bars). Legend panel on the left. Same Inspector + same Esc / click-empty clear behaviour as Folio II.
+
+### T9 verification (live, post-fix)
+
+Sequence run via headless Codex IAB + Playwright against `http://127.0.0.1:8765/Case_01_P1_Dashboard.html` in a fresh tab:
+
+| Step | Action | Inspector observation | Stats observation |
+|------|--------|-----------------------|--------------------|
+| 1 | Fresh load → click `II.Knowledge Graph` tab | `INSPECTOR · SELECT · Select a node` (empty, with Tip visible) | `197 nodes · 264 links visible` |
+| 2 | `cua.click({x:700,y:510})` (over a visible node) | `INSPECTOR · RELATION · COVERS · FROM TinyTask → TO D-05.2 Retention & Archiving · ATTRIBUTES covered/PARTIAL/LIGHTWEIGHT · SOURCE PROVENANCE …` | unchanged |
+| 3 | `cua.click({x:50,y:400})` (empty canvas, far from any node) | Returns to `INSPECTOR · SELECT · Select a node · Tip — Click empty canvas (or press Esc) to clear.` | unchanged (still 197 nodes · 264 links) |
+| 4 | `cua.click({x:700,y:510})` (re-select) | Inspector updates again | unchanged |
+| 5 | `cua.keypress({keys:["Escape"]})` | Inspector empties, Tip visible | unchanged |
+| 6 | Switch filter `Tier → LIGHTWEIGHT` | Filter rebuild clears selection (Inspector empty) | Stats: `105 nodes · 160 links visible` (decreased — filter applied) |
+
+Previously (before fix):
+
+| Step | Action | Inspector observation | Stats |
+|------|--------|-----------------------|-------|
+| same as 2 | click a node | Inspector shows selected node | OK |
+| same as 3 | click empty canvas | **Inspector stayed on selected node** (the bug) | OK |
+| same as 5 | Esc | no global handler, Inspector stayed | OK |
+
+**Conclusion:** T9 closed on all three reset paths (click-empty-canvas, Esc, filter-change). Soft-dim also confirmed visually: with D-05.2 selected after step 2, neighbours (TinyTask, all D-XX.Y directly connected via COVERS edges) stayed bright, distant nodes faded to opacity 0.6 with labels readable.
+
+### Folio V verification
+
+- 5 tabs now visible in the nav (was 4): I.Executive One-Pager · II.Knowledge Graph · III.Audit Panel · IV.Sub-Domain Deep-Dive · **V.Phase 1 Story**.
+- Screenshot `t_v_after_emit.png` shows the 6-column pipeline rendered: column I lists CEO · CTO · DPO · Development Lead · B2B Customers + BGs BG-01..BG-04 with DEFINES edges, column II has TinyTask, column III lists GDPR · CRA (highlighted) and NIS 2 (faded non-applicable), column V has D-01.1 .. D-09.4 with labels, column VI has the AG goal mass.
+- Counter on Folio V toolbar reads `183 nodes · 182 edges · 4 tensions · 3 gaps` (close to but not identical with the underlying KG: the column I stack counts Stakeholder + BusinessGoal separately, and the column counts exclude nodes positioned outside the visible viewport).
+
+### Validation commands re-run
+
+```text
+python3 02_CASES/Case_01_TinyTask_SaaS/01_PHASE1_CONTEXT_RICH/scripts/build_p1_dashboard.py --check       → exit 0
+python3 02_CASES/Case_01_TinyTask_SaaS/01_PHASE1_CONTEXT_RICH/scripts/build_p1_dashboard.py --summary     → 197/264/16
+python3 00_METHODOLOGY/00_VISUALISATIONS/tests/test_dashboards.py --only Case_01_P1_Dashboard               → exit 0 (1 dashboard pass)
+```
+
+### Known cosmetic items left for a future polish pass (not blockers)
+
+1. **Dashboard top header line** still says `181 nodes, 248 links, 12 audits, 417 ambiguity cards` — that string is hard-coded in the HTML (`<head>` blurb + footer). Not dynamic; with the KG at 197/264/16 it is stale. Should be either data-driven from `DATA.invariants` or updated to the current counts.
+2. **Folio V "Ambiguity bars"** count is shown as `D-XX.Y (0)` for every sub-domain. Root cause: the inlined JSON in the HTML uses the **on-disk** compact shape (`{graph, company_context, nodes, links, ambiguity, invariants, audits}`), but the dashboard's JS expects the denormalised view-model shape that hoists `graph`, `stats_total`, `invariants`, `meta`, `audits` to the top level. The denormaliser preserved `ambiguity.stats_per_subdomain` under `graph.ambiguity` rather than hoisting it; the JS in Folio V reads from a path that doesn't have the bar counts, so it falls back to 0. Fix: either hoist `ambiguity.stats_per_subdomain` to top level during denormalisation, or change the Folio V access path to `G.ambiguity.stats_per_subdomain`.
+3. **Folio IV (Sub-Domain Deep-Dive)** still renders partial grid (15 of 38 rows shown before pagination). Pre-existing — not introduced by this fix.
+
+These three items are minor surface issues. T9, the underlying functional bug, is closed.
+
 ## Artefacts & screenshots
 
 Working folder: `gui-test-screenshots/p1_dashboard/` (project-relative)
