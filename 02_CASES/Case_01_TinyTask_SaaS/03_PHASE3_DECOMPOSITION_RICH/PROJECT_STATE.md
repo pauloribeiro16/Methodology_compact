@@ -2,62 +2,93 @@
 document_id: AEGIS-P3-RICH-STATE
 title: Project State — Phase 3 Rich Mode (Case_01)
 phase: 3
-version: 2.0
+version: 3.0
 created: 2026-08-24
-updated: 2026-08-24
-author: Sprint 5 Executor (paulo@methodology.pt)
-status: DEEP_ENRICHED
+updated: 2026-08-26
+author: Sprint 6 Executor (paulo@methodology.pt)
+status: REWRITTEN_PRODUCT_BASELINE
 case: Case_01_TinyTask_SaaS
 tier: MICRO
 sibling_of: ../03_PHASE3_DECOMPOSITION/
 branch: feature/aegis-p3-case01-rich
-sprint: 5
-sprint_role: deep_enrichment_per_card
-sprints_complete: [0, 1, 2, 3, 4, 5]
-sprints_pending: [Validator]
-sprint_in_progress: 5
+sprint: 6
+sprint_role: product_baseline_rewrite
+sprints_complete: [0, 1, 2, 3, 4, 5, 6]
+sprints_pending: []
+sprint_in_progress: 6
 verdict: PASS_WITH_FINDINGS
-sprint5_deep_enrichment_score: PASS
+sprint6_validator_report: validation/VALIDATOR_SPRINT6.md
+sprint6_resolved_findings: [F-S5-02]
+sprint6_open_findings: [F-NEW-S6-01 — KG E4 rebuild logged as follow-up]
 applicable_regs: [GDPR, CRA]
 active_subdomains: 30
 freeze_total_rules: 46        # 30 CR + 16 BPR per P2-RICH Doc 11
-freeze_total_objectives: 31   # 11 PO + 20 SO per P2-RICH Doc 10 (F-04a/b applied)
-freeze_total_use_cases_l1: 35
-freeze_total_use_cases_references: 62  # 35 L1 + 27 L2 expansions per Doc 16 §5B SC2
-freeze_total_functional_requirements: 30  # FR-01..FR-30 (F-00b RESOLVED)
-freeze_total_non_functional_requirements: 46  # NFR-01..NFR-46 (F-00b RESOLVED)
+freeze_total_objectives: 31   # 11 PO + 20 SO per P2-RICH Doc 10
+freeze_total_use_cases_l1: 35        # security/compliance U.C.1-6 — preserved
+freeze_total_use_cases_functional: 23  # functional U.C.7-11 — Sprint 6 NEW
+freeze_total_use_cases_total: 58     # 35 + 23
+freeze_total_misuse_cases: 8         # MUC-01..08 — Sprint 6 NEW
+freeze_total_use_cases_references: 62  # 35 L1 + 27 L2 expansions (Doc 16 §5B SC2) — unchanged
+freeze_total_functional_requirements: 30
+freeze_total_non_functional_requirements: 46
 freeze_total_risks: 10
 freeze_total_threats: 38
 freeze_total_nodes: 49
-freeze_total_allocations: 30   # 1:1 with CR (Doc 15 §4)
-freeze_total_gates: 30         # 1:1 with CR (Doc 16 §5)
-# Sprint 5 DEEP enrichment — formula applied
-total_detail_cards: 276       # UC(35) + NODE(49) + DN(30) + GATE(30) + FR(30) + NFR(46) + RISK+THR(48) + SYNTH(8)
-total_cells_sprint5: 3917     # 17*121 + 12*155 (formula applied per detail_cards_count)
+freeze_total_allocations: 30
+freeze_total_gates: 30
+freeze_total_relationships: 91       # 16 «include» + 8 «extend» + 35 «constrains» + 8 «threatens» + 24 «mitigated by»
+freeze_total_constrains_edges: 35
+freeze_total_threats_edges: 8
+freeze_total_mitigated_by_edges: 24
+freeze_total_variants: 26            # V-01..V-18 (security) + V-19..V-26 (functional)
+total_detail_cards: 276        # Sprint 5 baseline (35 UC + 49 NODE + 30 DN + 30 GATE + 30 FR + 46 NFR + 48 RISK+THR + 8 SYNTH)
+total_cells_sprint5: 3917
 fields_per_card_sprint5: 17|12|tiered
-schema_columns_sprint4: 6
-schema_columns_list: [Owner, Verification Criteria, Maturity, Priority, Stakeholders, Reporting]
-xlsx_sheets_sprint3: 10
-xlsx_total_rows_sprint3: 330
-drawio_vertices_sprint3: 42
-drawio_edges_sprint3: 41
+schema_columns_sprint6: 7
+schema_columns_list: [Primary Actor, Stakeholders, Preconditions, Trigger, Main Success Scenario, Extensions, Postconditions]
+annex_schema_columns: 7
+annex_schema_columns_list: [Owner, Verification Criteria, NIST Anchors, Dependencies, Risk, Reporting, Maturity]
+xlsx_sheets_sprint6: 12
+xlsx_total_rows_sprint6: ~480
+drawio_vertices_sprint6: 79
+drawio_edges_sprint6: 77
+# Sprint 6 REWRITTEN_PRODUCT_BASELINE — catalogue reorganised
+sprint6_changes:
+  - "Doc20 v3.0: 35 U.C.1-6 preserved verbatim; +23 U.C.7-11 functional; +8 MUCs"
+  - "Doc21 v1.0: 24 legacy edges preserved; +67 new edges (constrains/threatens/mitigated_by/functional include)"
+  - "Doc22 v1.0: V-01..V-18 preserved; +V-19..V-26 functional variants"
+  - "RULE_FREEZE v2.0: §5 extended with functional U.C. + MUC freeze"
+  - "22_Traceability_Matrix.xlsx: 12 sheets (was 10); +FUNCUC_TO_SECUC +MUC_TO_MITIGATION"
+  - "Doc26 v2.0: product-root tree; 79 nodes / 77 edges in drawio (was 42 / 41)"
+  - "F-S5-02 RESOLVED (actors catalogue + Primary Actor field)"
+  - "F-NEW-S6-01 OPEN — KG E4 incremental rebuild on Deucalion (~14h), human approval required (P7)"
+sprint6_per_doc:
+  - {file: "Doc20_Use_Cases_Catalog.md", status: "REWRITTEN_PRODUCT_BASELINE", cards: 58, mucs: 8}
+  - {file: "Doc21_Use_Case_Relationships.md", status: "EXTENDED_PRODUCT_BASELINE", edges: 91}
+  - {file: "Doc22_Use_Case_Variability.md", status: "EXTENDED_PRODUCT_BASELINE", variants: 26}
+  - {file: "Doc26_Functional_Tree.md", status: "PRODUCT_ROOT_REWRITE", nodes: 79, edges: 77}
+  - {file: "RULE_FREEZE.md", status: "FROZEN_WITH_PRODUCT_BASELINE", version: "2.0"}
+  - {file: "22_Traceability_Matrix.xlsx", status: "REGENERATED", sheets: 12}
+  - {file: "validation/VALIDATOR_SPRINT6.md", status: "PASS_WITH_FINDINGS", verdict: "PASS"}
 sprint5_per_doc:
-  - {file: "13_Use_Cases_Catalog.md", cards: 35, cells: 475}
-  - {file: "14_Architectural_Nodes.md", cards: 49, cells: 648}
-  - {file: "15_Requirements_Allocation.md", cards: 30, cells: 455}
-  - {file: "16_Compliance_Gates_Report.md", cards: 30, cells: 445}
+  - {file: "13_Use_Cases_Catalog.md (renamed Doc20)", cards: 35, cells: 475}
+  - {file: "14_Architectural_Nodes.md (renamed Doc23)", cards: 49, cells: 648}
+  - {file: "15_Requirements_Allocation.md (renamed Doc24)", cards: 30, cells: 455}
+  - {file: "16_Compliance_Gates_Report.md (renamed Doc25)", cards: 30, cells: 445}
   - {file: "Phase_3_Functional_Decomposition_Synthesis.md", cards: 8, cells: 96}
-  - {file: "requirements/23_Functional_Requirements.md", cards: 30, cells: 480}
-  - {file: "requirements/24_Non_Functional_Requirements.md", cards: 46, cells: 692}
-  - {file: "25_Risk_Analysis.md", cards: 48, cells: 626}
+  - {file: "requirements/Doc29_Functional_Requirements.md", cards: 30, cells: 480}
+  - {file: "requirements/Doc31_Non_Functional_Requirements.md", cards: 46, cells: 692}
+  - {file: "Doc27_Risk_Analysis.md", cards: 48, cells: 626}
 related_deliverables:
-  - RULE_FREEZE.md
+  - RULE_FREEZE.md (v2.0)
   - CORPUS_LINKAGE.md
   - NIST_ANCHORS.md
   - KG_CHAINS.md
-  - 22_Traceability_Matrix.xlsx (Sprint 3)
-  - 18_Functional_Tree.drawio (Sprint 3)
+  - 22_Traceability_Matrix.xlsx (Sprint 6 — 12 sheets)
+  - 18_Functional_Tree.drawio (Sprint 6 — 79 nodes / 77 edges)
   - validation/SPRINT1_REPORT.md
+  - validation/SPRINT5_REPORT.md
+  - validation/VALIDATOR_SPRINT6.md
   - validation/SPRINT2_REPORT.md
   - validation/SPRINT3_REPORT.md
   - validation/SPRINT4_REPORT.md

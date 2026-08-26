@@ -141,6 +141,74 @@
           "validation_timestamp": "2026-04-08T00:00:00Z"
         }
       }
+    },
+    "phase_3_rich": {
+      "status": "complete",
+      "gate": "P3_RICH_PASS_WITH_FINDINGS",
+      "completed_at": "2026-08-26",
+      "branch": "feature/aegis-p3-case01-rich",
+      "sprint": 6,
+      "documents": {
+        "Doc20_Use_Cases_Catalog": {
+          "status": "complete",
+          "lint_passed": true,
+          "validated_by": "manual_review_sprint6",
+          "validation_timestamp": "2026-08-26T00:00:00Z",
+          "version": "3.0",
+          "freeze_total_uc": 58,
+          "freeze_total_muc": 8,
+          "note": "REWRITTEN_PRODUCT_BASELINE — 35 U.C.1-6 preserved verbatim; +23 U.C.7-11 functional; +8 MUCs. F-S5-02 RESOLVED."
+        },
+        "Doc21_Use_Case_Relationships": {
+          "status": "complete",
+          "lint_passed": true,
+          "validated_by": "manual_review_sprint6",
+          "validation_timestamp": "2026-08-26T00:00:00Z",
+          "version": "1.0",
+          "freeze_total_edges": 91
+        },
+        "Doc22_Use_Case_Variability": {
+          "status": "complete",
+          "lint_passed": true,
+          "validated_by": "manual_review_sprint6",
+          "validation_timestamp": "2026-08-26T00:00:00Z",
+          "version": "1.0",
+          "freeze_total_variants": 26
+        },
+        "Doc26_Functional_Tree": {
+          "status": "complete",
+          "lint_passed": true,
+          "validated_by": "manual_review_sprint6",
+          "validation_timestamp": "2026-08-26T00:00:00Z",
+          "version": "2.0",
+          "drawio_nodes": 79,
+          "drawio_edges": 77
+        },
+        "RULE_FREEZE": {
+          "status": "complete",
+          "lint_passed": true,
+          "validated_by": "manual_review_sprint6",
+          "validation_timestamp": "2026-08-26T00:00:00Z",
+          "version": "2.0"
+        },
+        "22_Traceability_Matrix": {
+          "status": "complete",
+          "lint_passed": true,
+          "validated_by": "build_traceability_matrix_rich.py (Sprint 6 — 12 sheets)",
+          "validation_timestamp": "2026-08-26T00:00:00Z",
+          "sheets": 12
+        },
+        "VALIDATOR_SPRINT6": {
+          "status": "complete",
+          "lint_passed": true,
+          "validated_by": "Validator (paulo@methodology.pt)",
+          "validation_timestamp": "2026-08-26T00:00:00Z",
+          "verdict": "PASS_WITH_FINDINGS"
+        }
+      },
+      "open_follow_ups": [
+        "F-NEW-S6-01 — KG E4 incremental rebuild on Deucalion (~14h cluster) for new U.C.7-11 + MUC nodes; human approval required (P7)."
+      ]
     }
   },
   "active_contracts": [],
@@ -151,6 +219,13 @@
       "phase": "all",
       "result": "Initial progress.json created to match Case_02/03 structure",
       "action_taken": "Created from scratch matching schema v1.0"
+    },
+    {
+      "timestamp": "2026-08-26T00:00:00Z",
+      "event": "phase_3_rich_sprint6_complete",
+      "phase": "3_rich",
+      "result": "PASS_WITH_FINDINGS — Doc20 v3.0 (REWRITTEN_PRODUCT_BASELINE) + Doc21/22 v1.0 + RULE_FREEZE v2.0 + 12-sheet xlsx + Doc26 v2.0 (product-root tree). 23 functional U.C.7-11 + 8 MUCs added; 35 security U.C.1-6 preserved verbatim (P5). F-S5-02 RESOLVED.",
+      "action_taken": "5 commits (Doc20, Doc21/22, xlsx+freeze, Doc26+drawio, validator+states)"
     }
   ]
 }

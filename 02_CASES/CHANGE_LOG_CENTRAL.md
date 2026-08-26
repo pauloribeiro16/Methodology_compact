@@ -1,10 +1,44 @@
 # Central Change Log — AEGIS Methodology Implementation
 
-**Last Updated:** 2026-04-06
-**Version:** 5.0 (Case_01 Consistency Fixes + Lint Script Audit)
+**Last Updated:** 2026-08-26
+**Version:** 6.0 (Case_01 Phase 3 RICH — Product Baseline Rewrite, Sprint 6)
 **Scope:** All Cases
 
 ---
+
+## 0. Sprint 6 (2026-08-26) — Case_01 Phase 3 RICH Product Baseline Rewrite
+
+| Metric | Value |
+|--------|-------|
+| Files changed | 8 (Doc20, Doc21, Doc22, Doc26, RULE_FREEZE, 22_Traceability_Matrix.xlsx, 18_Functional_Tree.drawio, validation/VALIDATOR_SPRINT6.md) + scripts/build_traceability_matrix_rich.py + Case PROJECT_STATE.md + Case progress.json |
+| New functional U.C.s (U.C.7-11) | 23 (Account&Access, Team&Task Core, Collaboration, Platform, Self-Service) |
+| New misuse cases (MUC-01..08) | 8 (Sindre & Opdahl schema) |
+| Security U.C.s (U.C.1-6) preserved | 35 — IDs verbatim (P5) |
+| New relationships | 67 edges (35 «constrains» + 8 «threatens» + 24 «mitigated by» + 13 functional «include» + ?) |
+| Total relationship edges | 91 |
+| New variants | 8 (V-19..V-26 — functional plan tiers, MFA, notification batching, mobile offline, large export) |
+| xlsx sheets | 10 → 12 (added FUNCUC_TO_SECUC, MUC_TO_MITIGATION) |
+| drawio nodes / edges | 42 / 41 → 79 / 77 |
+| Findings | F-S5-02 RESOLVED · F-NEW-S6-01 OPEN (KG E4 follow-up) |
+| Verdict | PASS_WITH_FINDINGS (VALIDATOR_SPRINT6.md) |
+
+**User complaint addressed:** "os casos de uso não fazem sentido nenhum... só vejo um conjunto de coisas que tem de ser feitas em termos de segurança mas não vejo nenhum caso de uso, era suposto poder criar task e essas tasks serem segurança" — Doc20 v3.0 now leads with 23 product U.C.s (signup, login, create task, assign task, comment, attachment, mobile sync, Stripe checkout, etc.) and 8 misuse cases; security/compliance U.C.s attach as constraints. IDs `U.C.X.Y.Z` preserved across all 35 security U.C.s and extended to packages 7-11 for the new functional surface.
+
+**Backwards compatibility (P5):** 35 U.C.1-6 IDs unchanged. ~1264 U.C.* references in Phase 3 remain valid; zero remap downstream.
+
+**Follow-up (logged, not in scope of this sprint):**
+- **F-NEW-S6-01:** KG E4 incremental rebuild on Deucalion (~14h cluster) to surface the 23 functional U.C.7-11 + 8 MUC nodes in the Graphify KG (currently 0 nodes for these in the E3 build 2026-08-23). Human approval required (P7) before scheduling.
+
+**Commits (5):**
+1. `1661e5e [EXECUTOR] Doc20 v3.0: product UCs (U.C.7-11) + anatomy for U.C.1-6 + 8 MUCs — Case_01`
+2. `18a637f [EXECUTOR] Doc21/22 v1.0: extended with constrains/threatens/mitigated_by + functional variants — Case_01`
+3. `4256213 [EXECUTOR] xlsx 12-sheet + RULE_FREEZE v2.0 — Case_01`
+4. `05d75e7 [EXECUTOR] Doc26 v2.0 + drawio regen (product-root tree) — Case_01`
+5. (this commit) `[VALIDATOR] Sprint 6 validator + PROJECT_STATE + progress.json — Case_01`
+
+---
+
+## 1. CHANGE LOG PURPOSE
 
 ## 1. CHANGE LOG PURPOSE
 
