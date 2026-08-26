@@ -1154,10 +1154,11 @@ function rebuildGraph() {
       ],
       roam: true,
       draggable: true,
-      focusNodeAdjacency: true,
       edgeSymbol: ["none","none"],
       force: { repulsion: 220, edgeLength: [60, 140], gravity: 0.05 },
-      emphasis: { focus: "adjacency", lineStyle: { width: 3 } },
+      // NB: emphasis.focus="adjacency" and focusNodeAdjacency=true are disabled —
+      // applySelectionDim() handles dimming and these features were conflicting
+      // with per-node itemStyle.opacity.
       lineStyle: { color: "source", curveness: 0.06 }
     }]
   });
@@ -1166,43 +1167,105 @@ function rebuildGraph() {
   document.getElementById("f-stats").innerHTML =
     `<strong>${visNodes.length}</strong> nodes · <strong>${visLinks.length}</strong> links visible`;
 
-  // Dim non-neighbours when something is selected
-  if (selectedNode) applySelectionDim();
+  // applySelectionDim re-applies the full setOption including opacity per node
+  // and preserves the categories — call it unconditionally so the initial state
+  // and post-filter states share the exact same code path.
+  applySelectionDim();
 }
 
 function applySelectionDim() {
   if (!chart) return;
-  const ids = new Set(getVisibleNodes().map(n => n.id));
+
+  // 1-hop neighbour set (selectedNode + nodes connected to it)
+  let oneHop = null;
   if (selectedNode) {
-    const oneHop = new Set([selectedNode.id]);
+    oneHop = new Set([selectedNode.id]);
     (incoming.get(selectedNode.id) || []).forEach(l => oneHop.add(l.from));
     (outgoing.get(selectedNode.id) || []).forEach(l => oneHop.add(l.to));
-    // Soft dim: keep labels readable everywhere; only fade non-neighbours to 0.6.
-    chart.setOption({
-      series: [{
-        itemStyle: { opacity: 0.95 },
-        label: { show: true },
-        data: getVisibleNodes().map(n => ({
-          id: n.id,
-          itemStyle: { opacity: ids.has(n.id) ? (oneHop.has(n.id) ? 1 : 0.6) : 0.6 },
-          label: { show: true }
-        })),
-        links: getVisibleLinks().map(l => ({
-          source: l.from, target: l.to,
-          lineStyle: { opacity: (oneHop.has(l.from) && oneHop.has(l.to)) ? 0.85 : 0.35 }
-        }))
-      }]
-    });
-  } else {
-    chart.setOption({
-      series: [{
-        itemStyle: { opacity: 1 },
-        label: { show: true },
-        data: [],
-        links: []
-      }]
-    });
   }
+
+  const vis = getVisibleNodes().map(n => {
+    const isOne = oneHop ? oneHop.has(n.id) : true;
+    return {
+      id: n.id,
+      // Keep all styling fields by reusing what rebuildGraph() stored.
+      // Where a field is missing, fall back to the same values rebuildGraph
+      // assigned; do not let ECharts default-render this node.
+      name: n.label,
+      symbolSize: nodeSize(n),
+      category: n.type,
+      value: n.type === "SecurityControlDomain" ? (window.__gridLookup?.[n.id]?.amb_in_scope ?? 0) : 0,
+      itemStyle: {
+        color: nodeColor(n),
+        borderColor: "#f6f1e7",
+        borderWidth: 1,
+        opacity: isOne ? 1 : 0.6
+      },
+      label: {
+        show: isOne && ["SecurityControlDomain","Domain","Regulation","Tension","CompanyContext"].includes(n.type),
+        position: "right",
+        fontFamily: "Inter, sans-serif",
+        fontSize: 10,
+        color: "#0d1b2a",
+        opacity: isOne ? 1 : 0.6,
+        formatter: (p) => {
+          if (n.type === "SecurityControlDomain") return n.id + (currentFilter.ambstats ? `  (${p.value || 0})` : "");
+          if (n.type === "Domain") return n.id;
+          if (n.type === "Regulation") return n.attrs.abbreviation || n.id;
+          if (n.type === "Tension") return n.id;
+          if (n.type === "CompanyContext") return "TinyTask";
+          return n.id;
+        }
+      }
+    };
+  });
+
+  const visLinks = getVisibleLinks().map(l => {
+    const bothOneHop = oneHop ? (oneHop.has(l.from) && oneHop.has(l.to)) : true;
+    return {
+      source: l.from, target: l.to,
+      rel: l.rel,
+      lineStyle: {
+        color: relColor(l.rel),
+        width: l.rel === "COVERS" ? 1.6 : (l.rel === "MAPS_TO" ? 1.1 : 1.0),
+        curveness: 0.06,
+        opacity: bothOneHop ? (selectedNode ? 0.85 : 0.55) : (selectedNode ? 0.18 : 0.55)
+      }
+    };
+  });
+
+  // One setOption, fully-formed data + links so ECharts NEVER falls back to
+  // its default styling for any node. Categories are also re-asserted so a
+  // future series swap can't drop the legend palette.
+  chart.setOption({
+    series: [{
+      type: "graph",
+      layout: "force",
+      roam: true,
+      draggable: true,
+      force: { repulsion: 220, edgeLength: [60, 140], gravity: 0.05 },
+      // NB: do NOT set series.emphasis.focus="adjacency" or focusNodeAdjacency=true
+      // here — those ECharts-native "auto-dim-on-click" behaviours override the
+      // per-node opacity we set above and wash out the colours.
+      lineStyle: { color: "source", curveness: 0.06 },
+      categories: [
+        { name: "CompanyContext",        itemStyle: { color: "#6f4e37" } },
+        { name: "Regulation",            itemStyle: { color: "#1f4e78" } },
+        { name: "RegulatoryClause",      itemStyle: { color: "#2c7cb0" } },
+        { name: "Domain",                itemStyle: { color: "#5c7a3a" } },
+        { name: "SecurityControlDomain", itemStyle: { color: "#b8893a" } },
+        { name: "AdjustedGoal",          itemStyle: { color: "#8a4a6f" } },
+        { name: "Tension",               itemStyle: { color: "#b04a2f" } },
+      ],
+      data: vis,
+      links: visLinks,
+      edgeSymbol: ["none","none"]
+    }]
+  });
+
+  // Update stats label too (rebuildGraph does this but applySelectionDim skipped it).
+  document.getElementById("f-stats").innerHTML =
+    `<strong>${getVisibleNodes().length}</strong> nodes · <strong>${getVisibleLinks().length}</strong> links visible`;
 }
 
 // Reset Inspector to its empty state and clear the graph selection.
@@ -1367,9 +1430,11 @@ window.__focusGraphNode = function(nid) {
     if (!chart) return;
     selectedNode = nodeById.get(nid);
     renderSideForNode(nid);
+    // applySelectionDim is the single source of truth for the visual state
+    // (full setOption with opacity per node, category retained). Avoid
+    // dispatchAction('highlight') here — it overrides itemStyle.opacity
+    // via series.emphasis and washes out colours back to defaults.
     applySelectionDim();
-    // ECharts doesn't have a built-in zoomTo for force layouts, but we can recenter with the focusNodeAdjacency.
-    chart.dispatchAction({ type: "highlight", seriesIndex: 0, dataIndex: getVisibleNodes().findIndex(n => n.id === nid) });
   }, 80);
 };
 
@@ -1853,8 +1918,6 @@ function renderStory() {
       links: ecLinks,
       edgeSymbol: ["none", "none"],
       lineStyle: { color: "source", curveness: 0.04 },
-      emphasis: { focus: "adjacency", lineStyle: { width: 3 }, scale: 1.2 },
-      focusNodeAdjacency: true,
       categories: [
         { name: "Stakeholder",         itemStyle: { color: "#4a5d6c" } },
         { name: "BusinessGoal",        itemStyle: { color: "#a86a52" } },

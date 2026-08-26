@@ -204,6 +204,60 @@ python3 00_METHODOLOGY/00_VISUALISATIONS/tests/test_dashboards.py --only Case_01
 
 These three items are minor surface issues. T9, the underlying functional bug, is closed.
 
+---
+
+## Re-test after a SECOND fix pass (2026-08-26 evening)
+
+Verdict: **PASS** — colours preserved end-to-end through the focus flow.
+
+### What was still broken (false-positive in the previous report)
+
+A user-supplied screenshot showed the Folio II graph washed out to a near-uniform pale blue after focusing a node (`D-05.1 Data Minimization`) — even though the Inspector correctly displayed the node's attributes, related links, and source provenance. I had initially dismissed this as a screenshot timing issue. On a re-check via my own browser it reproduced exactly: the graph went pale when ANY node was focused, despite my "soft-dim" code being in place.
+
+### Real root cause (one layer deeper)
+
+`rebuildGraph()` AND `applySelectionDim()` were each calling `chart.setOption({series: [{...}]})` with:
+
+```js
+emphasis: { focus: "adjacency", lineStyle: { width: 3 } },
+focusNodeAdjacency: true
+```
+
+ECharts' native `focusNodeAdjacency: true` + `emphasis.focus: "adjacency"` does its own auto-dim pass when a node is focused — and that pass **overrides** the per-node `itemStyle.opacity` that `applySelectionDim` carefully set, falling back to ECharts' default-emphasis colour. Compounding this, `__focusGraphNode()` ALSO called `chart.dispatchAction({type: "highlight", seriesIndex: 0, dataIndex: ...})` after `applySelectionDim()`, which again forces a state override.
+
+In effect the three mechanisms were fighting each other and the dim one won.
+
+### The fix
+
+Three lines removed (or with their content reworded). All inside `Case_01_P1_Dashboard.html`:
+
+1. **`rebuildGraph()` (line 1157)**: drop `focusNodeAdjacency: true` and `emphasis: {focus: "adjacency", ...}` from the `series[0]` definition.
+2. **`applySelectionDim()` (line 1260)**: same removal in its setOption.
+3. **`__focusGraphNode()` (line 1424)**: drop the trailing `chart.dispatchAction({type: "highlight", ...})` — `applySelectionDim` is the single source of truth.
+4. **`initStory()` Folio V series definition (line 1922)**: same removal for symmetry — the Folio V graph had the same double-dim with same root cause.
+
+`applySelectionDim()` also got rewritten to build a fully-formed per-node item (`name`, `symbolSize`, `category`, `value`, `itemStyle.{color,borderColor,borderWidth,opacity}`, `label.{show,position,color,formatter,opacity}`) before `setOption`, so that any future re-render can never fall back to ECharts defaults. Categories array re-asserted on every dim pass.
+
+### T9 verification (live, post-second-fix)
+
+Sequence via headless Codex IAB on `http://127.0.0.1:8765/Case_01_P1_Dashboard.html`:
+
+1. Fresh load → click `II.Knowledge Graph` tab. Graph renders in full colour (TinyTask brown, GDPR/CRA navy, D-XX.Y gilt, Domain nodes moss, clauses cerulean, AdjustedGoals mauve).
+2. Switch to `III.Audit Panel`. Click `CFL-001` card → detail renders (severity · HIGH · 4 nodes affected).
+3. Scroll the right panel down to the *Affected nodes* row, then click the `GDPR-C08` chip. This invokes `__focusGraphNode("GDPR-C08")` which switches tab to Folio II and runs `applySelectionDim`.
+4. **Screenshot `p4_folio_ii_focus_FIXED.png`**: Inspector displays "REGULATORY CLAUSE · GDPR-C08 · Art. 9 — Processing of special categories" with all attributes, source provenance (2: `phase1_ontology.yaml@clause_mappings`, `Doc10 §8.1 (GDPR) / §8.2 (CRA)`), 3 related links and CFL-001 audit. The graph — crucially — **retains its colours**: TinyTask brown, GDPR/CRA navy gold-rimmed for the 1-hop neighbour `D-05.3`, all other sub-domains still gold, all clauses still cerulean, all D-XX.Y sub-domains still slightly dimmed (opacity 0.6) but colour-saturated.
+5. Press Esc on the same selection → Inspector empties to Tip; graph back to full opacity, fully coloured.
+
+Prior to fix: step 4 rendered a near-uniform pale-blue canvas with the only labelled node being the GDPR-C08 in the Inspector header — confirming the wash was the problem the user reported.
+
+### Acceptance
+
+- `python3 00_METHODOLOGY/00_VISUALISATIONS/tests/test_dashboards.py --only Case_01_P1_Dashboard` → exit 0.
+- Visual confirmation (preserved screenshot): all seven categories render with their assigned colours and a soft focus behaviour that keeps neighbours visible while dimming 2-hop nodes only.
+- T9 fully closed. Cosmetic items (1)–(3) unchanged.
+
+Working folder for the new screenshot: `gui-test-screenshots/p1_dashboard/p4_folio_ii_focus_FIXED.png`.
+
 ## Artefacts & screenshots
 
 Working folder: `gui-test-screenshots/p1_dashboard/` (project-relative)
