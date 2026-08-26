@@ -4,15 +4,15 @@ _Generated 2026-08-26 by `scripts/dream/adoption_audit.py` — deterministic (no
 
 ## Activity
 
-- **Project exchanges scanned:** 0 user messages
-- **Exchanges with KG usage:** 0
+- **Project exchanges scanned:** 79 user messages
+- **Exchanges with KG usage:** 1
 - **Exchanges with mandated skill:** 0
 
 ## KG subcommand distribution (from session transcripts)
 
 | Subcommand | Count |
 |---|---|
-| _(none)_ | 0 |
+| `nist` | 1 |
 
 ## Mandated skill invocations
 
@@ -46,17 +46,24 @@ _Logged by `.zcode/hooks/guard-bash.sh` (every Bash call, including denials are 
 
 | Leading verb | Count |
 |---|---|
+| `cd` | 107 |
+| `grep` | 12 |
+| `cp` | 9 |
+| `python3` | 6 |
+| `sleep` | 5 |
+| `git` | 4 |
+| `ls` | 2 |
+| `cat` | 1 |
 | `bash` | 1 |
-| `scripts/kg.sh` | 1 |
-| `python3` | 1 |
+| `mkdir` | 1 |
 
-_Window:_ 2026-08-26T14:44:11+01:00 → 2026-08-26T14:44:11+01:00 (3 calls)
+_Window:_ 2026-08-26T15:04:37+01:00 → 2026-08-26T23:55:35+01:00 (149 calls)
 
 ## Case progress snapshot (ground truth)
 
 | Case | Current phase | Phase statuses |
 |---|---|---|
-| Case_01_TinyTask_SaaS | 3 | phase_1=complete, phase_2=complete, phase_3=complete |
+| Case_01_TinyTask_SaaS | 3 | phase_1=complete, phase_2=complete, phase_3=complete, phase_3_rich=complete |
 | Case_02_SecureBorder_Solutions | 3 | phase_1=complete, phase_2=complete, phase_3=complete |
 | Case_03_OmniBank_Financial | 2 | phase_1=complete, phase_2=complete, phase_3=complete |
 
@@ -77,7 +84,17 @@ Either:
   (b) Drop the mandatory items from pre-flight if the human prefers to invoke manually.
 ```
 
-### 2. Invoke case-context-loader at the start of any case session
+### 2. Document the pre-flight checklist as a tool-call contract
+
+**Rationale:** Pre-flight is text-only; an agent may follow it silently and produce no detectable signal. Codifying 'if you didn't run X, your output is invalid' as a self-check rule would make it enforceable.
+
+**Proposed patch:**
+
+```
+Add to each pre-flight item: a short machine-checkable assertion. E.g. 'If touching an ID-bearing doc: scripts/kg.sh impact <ID> must appear in tool calls of this turn'.
+```
+
+### 3. Invoke case-context-loader at the start of any case session
 
 **Rationale:** 3 case(s) tracked in 02_CASES/. case-context-loader is the only skill that bootstraps a session with the actual current state. Use it before planning case work.
 
@@ -87,7 +104,7 @@ Either:
 Add to the 'Where to start' section: 'Always start by running case-context-loader — the in-line read of GLOBAL+case+progress.json+phases below is the manual fallback, not the default.'
 ```
 
-### 3. Log hook firings for the dream to consume
+### 4. Log hook firings for the dream to consume
 
 **Rationale:** The kg-reminder hook fires once per session and the script writes nothing. For adoption measurement we need a side-effect log line per fire (e.g. `echo "$(date -Iseconds) kg-reminder" >> dream/STATE/hook.log`).
 
