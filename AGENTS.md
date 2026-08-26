@@ -102,7 +102,11 @@ AEGIS repeatable workflows live as versioned skills in `skills/` (format: `SKILL
 - **Case work (pre-flight)** → `case-context-loader` — loads GLOBAL → case → phase state chain
 - **Writing/editing any methodology document** → `doc-conventions` — ID hierarchy corr-008, frontmatter, naming, citation rules
 
-**External skill hub (consumer):** search/download via the `skillnet` MCP server (registered in `.zcode/config.json`) or `skillnet search|download` CLI. Search results carry the hub's 5-axis quality scores. **P7 rule:** external skills are third-party code+prompts — human approval before any enters the AEGIS workflow. `evaluate`/`create` deferred (needs LLM backend; see `skills/SKILLNET.md`).
+**External skill hub (consumer):** search/download via the `skillnet` MCP server (registered **user-scope** in `~/.zcode/cli/config.json` → `mcp.servers.skillnet` so it's available across all workspaces) or `skillnet search|download` CLI. Search results carry the hub's 5-axis quality scores. **P7 rule:** external skills are third-party code+prompts — human approval before any enters the AEGIS workflow. `evaluate`/`create` deferred (needs LLM backend; see `skills/SKILLNET.md`).
+
+### ZCode config split (visibility)
+
+MCP = user-scope (generic hub); hooks = workspace-scope (AEGIS-specific). **Restart ZCode** after editing workspace config (re-read only at session start). See `skills/SKILLNET.md` for the full table.
 
 ---
 
