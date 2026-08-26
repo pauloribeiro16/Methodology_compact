@@ -12,7 +12,7 @@ status: ACTIVE
 
 Scoped instructions for the methodology core directory. The root `AGENTS.md` governs the whole repository. This file adds rules specific to `00_METHODOLOGY/`.
 
-> **Tooling reminder.** The lint runner, eval suite, and `kg.sh` live in the main AEGIS repo and are **not available here**. Validation against the full suite must happen there. In this compact repo, validation is manual and follows the ID hierarchy and conventions below.
+> **Tooling reminder.** The lint runner and eval suite live in the main AEGIS repo and are **not available here** — validation against the full suite must happen there. The **Knowledge Graph** (`scripts/kg.sh` + `kg/E3_2026-08-23/graphify-out/graph.json`) **is available here**; see the cheat sheet below. In this compact repo, document-level validation is manual and follows the ID hierarchy and conventions below.
 
 ---
 
@@ -58,7 +58,29 @@ Authoritative schema for all AEGIS IDs.
 
 **DEPRECATED legacy IDs (corr-007).** `PG-D-`, `SG-D-`, `CR-D-`, `BPR-D-` — see legacy alias tables in Doc 10 §7.5 and Doc 11 §11.5. **New content MUST use corr-008.**
 
-> ⚠️ The cross-document ID validator (`01_IMPLEMENTATION_TOOLS/scripts/validate_aegis_ids.py`) lives in the main repo. In this compact repo, manually verify: ID prefix matches the doc that hosts it, no orphans in `grep -r`, no duplicates.
+> ⚠️ The cross-document ID validator (`01_IMPLEMENTATION_TOOLS/scripts/validate_aegis_ids.py`) lives in the main repo. In this compact repo, manually verify: ID prefix matches the doc that hosts it, no orphans in `grep -r`, no duplicates, and the affected subgraph looks consistent via `scripts/kg.sh impact <ID>`.
+
+---
+
+## Knowledge Graph (cheat sheet)
+
+The KG is available in this repo at `kg/E3_2026-08-23/graphify-out/graph.json` (5.95 MB, build E3 2026-08-23, 3,882 nodes / 11,232 links / 1,025 hyperedges, 0 dangling, 90.2% EXTRACTED). Full protocol: `kg/GRAPHIFY.md`.
+
+| Intent | Command | Pattern |
+|---|---|---|
+| Ripple cost before changing an ID | `scripts/kg.sh impact <ID>` | **RP-1** (P5: escalate if >50 nodes) |
+| Find docs on a topic | `scripts/kg.sh where "<topic>"` | N1 |
+| Shortest path between two concepts | `scripts/kg.sh trace "<A>" "<B>"` | RP-4/N4 |
+| What depends on a document | `scripts/kg.sh doc "<label>"` | N6 |
+| Reading order for a domain | `scripts/kg.sh domain D-XX` | N3 |
+| Thematic community map | `scripts/kg.sh map` | N2 |
+| Top connected nodes | `scripts/kg.sh hub` | RP-7 |
+| Inbound refs for a NIST control | `scripts/kg.sh nist <ctrl-id>` | RP-3 |
+| Navigate hyperedge clusters | `scripts/kg.sh hyper "<topic>"` | L3 |
+| Graph integrity metrics | `scripts/kg.sh audit` | — |
+| Browser viewer | open `kg/E3_2026-08-23/graphify-out/graph.html` | — |
+
+**Integrity reminders** (see `kg/GRAPHIFY.md` for full text): EXTRACTED ≠ truth (grep the cited `source_location`); INFERRED is hypothesis only (mark `[INFERRED — needs verification]`); the deterministic YAML/lints win over Graphify disagreements (P1); ignore the malformed orphan `d_07_1`; phantom nodes (`synthetic: true`) are acceptable as targets but never as evidence.
 
 ---
 
@@ -68,7 +90,7 @@ Authoritative schema for all AEGIS IDs.
 
 - Follow the root AGENTS.md design principles P0–P7
 - Read the relevant case's `PROJECT_STATE.md` (chain: case root → phase root) before editing case artefacts
-- When changing an ID-bearing document, consult `00_METHODOLOGY/dependency_graph.yaml` and `grep -r` the ID across the affected subtree (P5)
+- When changing an ID-bearing document, query `scripts/kg.sh impact <ID>` first (P5, RP-1); cross-check `00_METHODOLOGY/dependency_graph.yaml` and `grep -r`
 - Maintain source-faithfulness: every regulatory claim cites Article + paragraph
 - Distinguish the two security-rationale perspectives (P1): compliance rationale ≠ security rationale
 - Use Mermaid for all diagrams and respect `diagrams/README.md` style rules
@@ -116,5 +138,5 @@ See `diagrams/README.md` for the full guide. Highlights:
 
 ---
 
-**Version:** 2.0 (compact-repo rewrite, 2026-08-26)
-**See also:** [`../AGENTS.md`](../AGENTS.md) (root), [`diagrams/README.md`](diagrams/README.md) (diagram decisions)
+**Version:** 2.1 (added KG cheat sheet, 2026-08-26)
+**See also:** [`../AGENTS.md`](../AGENTS.md) (root), [`kg/GRAPHIFY.md`](../kg/GRAPHIFY.md) (KG protocol), [`diagrams/README.md`](diagrams/README.md) (diagram decisions)

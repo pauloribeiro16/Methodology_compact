@@ -1,0 +1,21 @@
+{
+  "hooks": {
+    "enabled": true,
+    "timeoutMs": 5000,
+    "events": {
+      "UserPromptSubmit": [
+        {
+          "matcher": "(SR-NIS2-[0-9]+|SO-NIS2-[0-9]+|RULE-D-[0-9.]+|REQ-D-[0-9.]+|D-[0-9]+\\.[0-9]+|NIST-(CSF|PF))",
+          "hooks": [
+            {
+              "type": "command",
+              "command": "bash \"${CLAUDE_PROJECT_DIR}/.zcode/hooks/kg-reminder.sh\"",
+              "timeout": 5,
+              "statusMessage": "Checking graphify reminder cache"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -22,14 +22,17 @@ This is a PhD research methodology mapping 5 EU regulations (GDPR, CRA, NIS 2, D
 
 **Tools that live in the main repo and are NOT available here:**
 - Lint runner (`run_all_lints.py`), evals (`eval_runner.py`, `quality_gate.py`, `workflow_gate.py`, `validate_doc.py`)
-- Knowledge Graph CLI (`scripts/kg.sh`)
 - Branch-workflow scripts (`scripts/create-feature.sh`, `test-quick.sh`, `finish-feature.sh`, `merge-feature.sh`)
 - Pre-commit / pre-push hooks
 - GitHub Actions CI, MiniMax review bots
-- `01_IMPLEMENTATION_TOOLS/`, `00_METHODOLOGY/REFERENCE/`, `CONTEXT/`, `QUALITY/`, `GUIDES/`, `TEMPLATES/`
+- `01_IMPLEMENTATION_TOOLS/`, `CONTEXT/`, `QUALITY/`, `GUIDES/`, `TEMPLATES/`
 - `aegis-phase1` Python package and `tests/`
 
-**Implication:** document validation against the full linter suite must be run in the main repo, not here. Here, validation is done by `Validator` reviewing the structure and citations manually against the project's ID conventions.
+**Tools that ARE available here (ported from the main repo):**
+- **Knowledge Graph** — `scripts/kg.sh` reads `kg/E3_2026-08-23/graphify-out/graph.json` (build E3, 3,882 nodes / 11,232 links / 1,025 hyperedges, 0 dangling, 90.2% EXTRACTED). 6 of 10 subcommands (`where`, `domain`, `map`, `nist`, `hyper`, `audit`) are stdlib-only. `impact`, `trace`, `doc`, `hub` require the external `graphifyy` CLI (`~/.venvs/graphify/bin/graphify`, overridable via `GRAPHIFY_BIN`). Protocol: `kg/GRAPHIFY.md`.
+- **Knowledge Graph reminder hook** — `.zcode/hooks/kg-reminder.sh` (UserPromptSubmit, fires once per session when AEGIS IDs detected).
+
+**Implication:** document validation against the full linter suite must be run in the main repo, not here. The KG **is** available here and is the primary tool for cross-reference navigation (P5). Here, document-level validation is done by `Validator` reviewing the structure and citations manually against the project's ID conventions.
 
 ---
 
@@ -38,6 +41,13 @@ This is a PhD research methodology mapping 5 EU regulations (GDPR, CRA, NIS 2, D
 ```
 Methodology_compact/
 ├── AGENTS.md                          This file
+├── scripts/                           Local tooling (no branch workflow, no hooks)
+│   └── kg.sh                          Knowledge Graph wrapper (auto-discovers ./kg/*/graph.json)
+├── kg/                                Graphify Knowledge Graph (E3 build, 2026-08-23)
+│   ├── GRAPHIFY.md                    KG protocol (RP-1..RP-8, integrity rules, rebuild)
+│   └── E3_2026-08-23/graphify-out/
+│       ├── graph.json                 5.95 MB (the index)
+│       └── graph.html                 6.22 MB (browser viewer, no server)
 ├── 00_METHODOLOGY/                    Methodology core
 │   ├── AGENTS.md                      Scoped instructions (ID hierarchy, boundaries, code style)
 │   ├── dependency_graph.yaml          Manual impact map for ID-bearing documents
@@ -48,6 +58,8 @@ Methodology_compact/
 │   ├── diagrams/                      Mermaid class models + flux diagrams (phase1/2/3)
 │   ├── 00_NIS2_Mapping/               NIS 2 ↔ NIST CSF × SP 800-53r5 mapping xlsx + build scripts
 │   └── 00_VISUALISATIONS/             Dashboards (.html) and Case_01 workbook
+├── 02_CASES/                          Three case studies
+└── .zcode/                            ZCode hooks (kg-reminder only)
 └── 02_CASES/                          Three case studies
     ├── README.md                      Case index (contains some outdated main-repo refs — read with filter)
     ├── GLOBAL_PROJECT_STATE.md        Top-level cross-case state (also contains outdated refs)
@@ -104,8 +116,8 @@ Executor and Validator don't produce isolated opinions. Share proposals, challen
 
 ### P5 — Change propagation — every change has a ripple cost
 Before any change to an ID-bearing document (`SR-*`, `SO-*`, `RULE-*`, `REQ-*`, `D-XX.Y`):
-- Identify affected documents in `00_METHODOLOGY/dependency_graph.yaml`
-- Cross-check with `grep -r '<ID>'` in the impacted subtree
+- Query the Knowledge Graph: `scripts/kg.sh impact <ID>` (RP-1 — if >50 nodes impacted, **escalate to the human before writing**)
+- Cross-check with `00_METHODOLOGY/dependency_graph.yaml` and `grep -r '<ID>'` in the impacted subtree
 - Warn the user if >3 documents affected
 - Escalate if the affected set is large or unclear
 
@@ -125,7 +137,7 @@ Before doing any work:
 - [ ] Mode confirmed (Plan vs Build)
 - [ ] Case and phase identified (or confirmed it's methodology-level)
 - [ ] Read the relevant `PROJECT_STATE.md` chain (case root → phase root) for current status
-- [ ] If touching an ID-bearing doc (`SR-*`/`SO-*`/`RULE-*`/`REQ-*`/`D-XX.Y`): consulted `dependency_graph.yaml` and grep — propagation assessed
+- [ ] If touching an ID-bearing doc (`SR-*`/`SO-*`/`RULE-*`/`REQ-*`/`D-XX.Y`): consulted `scripts/kg.sh impact <ID>` (P5); cross-checked `dependency_graph.yaml` and grep
 - [ ] If uncertain about ANY of the above → STOP and ask
 
 ---
@@ -147,6 +159,10 @@ Heavyweight lint gates and KG validation belong in the main repo, not here.
 | Purpose | File |
 |---|---|
 | Scoped methodology rules (IDs, boundaries, code style) | `00_METHODOLOGY/AGENTS.md` |
+| Knowledge Graph wrapper | `scripts/kg.sh` (run `help` for subcommands) |
+| KG protocol (RP-1..RP-8, integrity rules) | `kg/GRAPHIFY.md` |
+| KG data (build E3) | `kg/E3_2026-08-23/graphify-out/graph.json` |
+| KG browser viewer | `kg/E3_2026-08-23/graphify-out/graph.html` |
 | Impact map for ID-bearing changes | `00_METHODOLOGY/dependency_graph.yaml` |
 | Domain index | `00_METHODOLOGY/PREPROCESSING_by_domain/domains/index.md` |
 | NIST controls | `00_METHODOLOGY/PREPROCESSING_by_domain/CONTROLS/` |
@@ -159,4 +175,4 @@ Heavyweight lint gates and KG validation belong in the main repo, not here.
 
 ---
 
-**Version:** 4.0 (compact-repo rewrite, 2026-08-26)
+**Version:** 4.1 (Graphify port: scripts/kg.sh + kg/, 2026-08-26)
