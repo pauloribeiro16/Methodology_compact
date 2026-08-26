@@ -95,21 +95,21 @@ The Sprint 0 plan below was superseded during execution — themes were resequen
 
 | # | Doc | New in Rich? | Status | Lines |
 |---|-----|--------------|--------|------:|
-| 00 | [`00_Taxonomy_Reference.md`](00_Taxonomy_Reference.md) | no (was in `00_COMMON/`) | RECONCILED | 256 |
-| 01 | [`01_INTAKE_FORM.md`](01_INTAKE_FORM.md) | no (renamed from `01_Company_Context.md`) | RECONCILED | 611 |
-| 04 | [`04_Company_Context_Assessment.md`](04_Company_Context_Assessment.md) | no | RECONCILED | 337 |
-| 04a | [`04a_Architecture_DataInventory.md`](04a_Architecture_DataInventory.md) | no | ENRICHED (Sprint 2) | 316 |
-| 04b | [`04b_Security_Posture.md`](04b_Security_Posture.md) | no | ENRICHED (Sprint 2) | 379 |
-| 04c | [`04c_ThirdParty_Landscape.md`](04c_ThirdParty_Landscape.md) | no | ENRICHED (Sprint 2) | 303 |
-| 04d | [`04d_Org_Roles_RACI.md`](04d_Org_Roles_RACI.md) | no | ENRICHED (Sprint 2) | 414 |
-| 05 | [`05_Regulatory_Applicability.md`](05_Regulatory_Applicability.md) | no | RECONCILED | 443 |
-| **05b** | [`05b_Ambiguity_Register.md`](05b_Ambiguity_Register.md) | **YES** | COMPLETE (Sprint 2) | 632 |
-| 06 | [`06_Clause_Mapping_Matrix.md`](06_Clause_Mapping_Matrix.md) | no | RECONCILED | 301 |
-| 07 | [`07_Structured_Compliance_Matrix.md`](07_Structured_Compliance_Matrix.md) | no | RECONCILED | 444 |
-| **07b** | [`07b_Proportionality_Profile.md`](07b_Proportionality_Profile.md) | **YES** | ACTIVE + cross-checked (Sprint 3) | 308 |
-| **07c** | [`07c_Adjusted_Objectives.md`](07c_Adjusted_Objectives.md) | **YES** | ⚠️ **PLACEHOLDER** — Sprint 4 | 53 |
+| 00 | [`00_Taxonomy_Reference.md`](Doc01_Taxonomy_Reference.md) | no (was in `00_COMMON/`) | RECONCILED | 256 |
+| 01 | [`01_INTAKE_FORM.md`](Doc02_INTAKE_FORM.md) | no (renamed from `01_Company_Context.md`) | RECONCILED | 611 |
+| 04 | [`04_Company_Context_Assessment.md`](Doc03_Company_Context_Assessment.md) | no | RECONCILED | 337 |
+| 04a | [`04a_Architecture_DataInventory.md`](Doc04_Architecture_DataInventory.md) | no | ENRICHED (Sprint 2) | 316 |
+| 04b | [`04b_Security_Posture.md`](Doc05_Security_Posture.md) | no | ENRICHED (Sprint 2) | 379 |
+| 04c | [`04c_ThirdParty_Landscape.md`](Doc06_ThirdParty_Landscape.md) | no | ENRICHED (Sprint 2) | 303 |
+| 04d | [`04d_Org_Roles_RACI.md`](Doc07_Org_Roles_RACI.md) | no | ENRICHED (Sprint 2) | 414 |
+| 05 | [`05_Regulatory_Applicability.md`](Doc08_Regulatory_Applicability.md) | no | RECONCILED | 443 |
+| **05b** | [`05b_Ambiguity_Register.md`](Doc09_Ambiguity_Register.md) | **YES** | COMPLETE (Sprint 2) | 632 |
+| 06 | [`06_Clause_Mapping_Matrix.md`](Doc10_Clause_Mapping_Matrix.md) | no | RECONCILED | 301 |
+| 07 | [`07_Structured_Compliance_Matrix.md`](Doc12_Structured_Compliance_Matrix.md) | no | RECONCILED | 444 |
+| **07b** | [`07b_Proportionality_Profile.md`](Doc13_Proportionality_Profile.md) | **YES** | ACTIVE + cross-checked (Sprint 3) | 308 |
+| **07c** | [`07c_Adjusted_Objectives.md`](Doc13_Adjusted_Objectives.md) | **YES** | ⚠️ **PLACEHOLDER** — Sprint 4 | 53 |
 | **—** | [`Citation_Index.md`](Citation_Index.md) | **YES** | COMPLETE (Sprint 2) | 127 |
-| — | [`corpus_field_map.md`](corpus_field_map.md) | yes | DRAFT (Sprint 0) | 211 |
+| — | [`corpus_field_map.md`](Corpus_Field_Map.md) | yes | DRAFT (Sprint 0) | 211 |
 | — | `README.md` | this file | ACTIVE | — |
 
 ### Supporting artefacts

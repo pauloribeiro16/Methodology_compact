@@ -42,9 +42,13 @@ status: <DRAFT|ACTIVE|DEPRECATED>
 
 ## File naming
 
-- Case artefacts / templates: `NN_Topic_Name.md` (e.g. `11_Rules_Catalog.md`)
-- Phase scripts: `phase{N}_{purpose}.md`
+- **Case deliverables** (in `02_CASES/Case_0X/<phase>/`): `DocNN_Nome.md` — zero-padded, continuous per case (P1 → P2 → P3), PascalCase underscores, acronyms in caps (e.g. `Doc20_Rules_Catalog.md`, `Doc19_Privacy_Security_Goals_NIST_Implications.md`).
+- **Operational files** (governance/validation): PascalCase underscores, no Doc prefix (e.g. `Project_State.md`, `Sprint3_Report.md`, `Validator_Sprint5.md`, `Rule_Freeze.md`).
+- `README.md` stays as-is.
+- Phase scripts: `phase{N}_{purpose}.md` *(not used in the compact repo)*
 - Domain corpus: `D-XX.Y.md` + `_index.md` + `.manifest.json` + `articles/`
+
+**Note (2026-08-26)**: the previous convention `NN_Topic_Name.md` (with literal numeric prefix) was replaced by `DocNN_Nome.md` to absorb sub-letter variants (`04a-d`, `07c`, `10b`, `13ab`) into a clean continuous sequence. The Methodology_compact repo has been migrated; see `dream/LESSONS.md` for the rationale and `dream/RENAME_MAPPING.tsv` for the full mapping applied to the corpus.
 
 ## Citation rules (source-faithfulness)
 
@@ -61,7 +65,7 @@ status: <DRAFT|ACTIVE|DEPRECATED>
 
 1. Correct ID prefix for the hosting document (table above)?
 2. Frontmatter complete (all 8 fields)?
-3. File name follows `NN_Topic_Name.md`?
+3. File name follows the **File naming** section above (`DocNN_Nome.md` for deliverables, PascalCase for operational, `README.md` stays)?
 4. Regulatory claims cite Art. + paragraph?
 5. If the doc mentions existing IDs: `scripts/kg.sh impact <ID>` run first (P5)?
 6. English only (language policy); conversation may match the user's language.
