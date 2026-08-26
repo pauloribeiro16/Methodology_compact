@@ -30,6 +30,30 @@
             }
           ]
         }
+      ],
+      "PreToolUse": [
+        {
+          "matcher": "Write|Edit",
+          "hooks": [
+            {
+              "type": "command",
+              "command": "bash \"${CLAUDE_PROJECT_DIR}/.zcode/hooks/guard-protected-files.sh\"",
+              "timeout": 5,
+              "statusMessage": "PreToolUse guard"
+            }
+          ]
+        },
+        {
+          "matcher": "Bash",
+          "hooks": [
+            {
+              "type": "command",
+              "command": "bash \"${CLAUDE_PROJECT_DIR}/.zcode/hooks/guard-bash.sh\"",
+              "timeout": 5,
+              "statusMessage": "PreToolUse guard"
+            }
+          ]
+        }
       ]
     }
   }

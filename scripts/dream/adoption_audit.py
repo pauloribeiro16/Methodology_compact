@@ -45,6 +45,44 @@ def read_kg_usage_log(path: Path) -> list[dict]:
     return out
 
 
+def read_bash_use_log(path: Path) -> dict:
+    """Read the bash_use.log emitted by .zcode/hooks/guard-bash.sh.
+
+    Returns aggregate counts of bash invocations broken down by leading verb
+    (first token of the truncated_command). Used as a secondary adoption
+    signal — high bash use during a session is itself a signal that the
+    agent is executing work rather than reasoning only.
+    """
+    if not path.exists():
+        return {"total": 0, "by_leading_verb": {}, "first_ts": None, "last_ts": None}
+    counts: dict[str, int] = {}
+    first_ts = last_ts = None
+    total = 0
+    for line in path.read_text(encoding="utf-8").splitlines():
+        try:
+            d = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        cmd = (d.get("truncated_command") or "").strip()
+        if not cmd:
+            continue
+        total += 1
+        verb = cmd.split(maxsplit=1)[0] if cmd else "(empty)"
+        counts[verb] = counts.get(verb, 0) + 1
+        ts = d.get("ts")
+        if ts:
+            if first_ts is None or ts < first_ts:
+                first_ts = ts
+            if last_ts is None or ts > last_ts:
+                last_ts = ts
+    return {
+        "total": total,
+        "by_leading_verb": dict(sorted(counts.items(), key=lambda x: -x[1])),
+        "first_ts": first_ts,
+        "last_ts": last_ts,
+    }
+
+
 def read_progress_summary(repo_root: Path) -> dict:
     """Read each case's progress.json phase statuses (deterministic ground truth)."""
     cases_dir = repo_root / "02_CASES"
@@ -159,8 +197,9 @@ def mine_amendments(metrics: dict, kg_log: list[dict], progress: dict, repo_root
 
 # --------------------- rendering ---------------------
 
-def render_report(*, metrics: dict, kg_log: list[dict], progress: dict,
-                  proposals: list[dict], repo_root: Path, since: str | None) -> str:
+def render_report(*, metrics: dict, kg_log: list[dict], bash_log: dict,
+                  progress: dict, proposals: list[dict], repo_root: Path,
+                  since: str | None) -> str:
     today = dt.date.today().isoformat()
     lines = [
         f"# Adoption Report — AEGIS Methodology_compact",
@@ -207,6 +246,23 @@ def render_report(*, metrics: dict, kg_log: list[dict], progress: dict,
             lines.append(f"- `{e['ts']}` `{e['subcommand']} {e['rest']}`")
     else:
         lines.append("_(empty)_")
+
+    lines += ["", "## Bash invocations (from PreToolUse hook log)",
+              "",
+              "_Logged by `.zcode/hooks/guard-bash.sh` (every Bash call, including denials are not logged). "
+              "Use as a signal of execution intensity; cross-check with the transcript for which calls were useful._",
+              "",
+              "| Leading verb | Count |",
+              "|---|---|"]
+    bv = bash_log["by_leading_verb"]
+    if bv:
+        for verb, n in list(bv.items())[:10]:
+            lines.append(f"| `{verb}` | {n} |")
+    else:
+        lines.append("| _(none yet)_ | 0 |")
+    if bash_log["first_ts"]:
+        lines.append("")
+        lines.append(f"_Window:_ {bash_log['first_ts']} → {bash_log['last_ts']} ({bash_log['total']} calls)")
 
     lines += ["", "## Case progress snapshot (ground truth)",
               "",
@@ -266,13 +322,15 @@ def main() -> int:
 
     metrics = project_metrics(exchanges)
     kg_log = read_kg_usage_log(ROOT / "scripts" / ".kg_usage.log")
+    bash_log = read_bash_use_log(ROOT / "dream" / "STATE" / "bash_use.log")
     progress = read_progress_summary(ROOT)
     proposals = mine_amendments(metrics, kg_log, progress, ROOT)
 
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(render_report(metrics=metrics, kg_log=kg_log, progress=progress,
-                                 proposals=proposals, repo_root=ROOT, since=args.since),
+    out.write_text(render_report(metrics=metrics, kg_log=kg_log, bash_log=bash_log,
+                                 progress=progress, proposals=proposals,
+                                 repo_root=ROOT, since=args.since),
                    encoding="utf-8")
     print(f"adoption_audit: wrote {out} ({out.stat().st_size} bytes, {len(proposals)} proposals)")
     return 0

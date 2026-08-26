@@ -106,15 +106,19 @@ AEGIS repeatable workflows live as versioned skills in `skills/` (format: `SKILL
 
 ### ZCode config split (visibility)
 
-MCP + agents + generic skills = user-scope (available across projects); hooks + repo-specific skills = workspace-scope (AEGIS-only). **Restart ZCode** after editing workspace config (re-read only at session start).
+MCP + agents + generic skills + commands = user-scope (available across projects); hooks + repo-specific skills = workspace-scope (AEGIS-only). **Restart ZCode** after editing workspace config (re-read only at session start).
 
 | Resource | Scope | Path |
 |---|---|---|
 | `skillnet` MCP server | user | `~/.zcode/cli/config.json` |
 | `web-frontend` subagent | user | `~/.zcode/agents/web-frontend.md` |
 | `web-debug` skill | user | `~/.zcode/skills/web-debug/SKILL.md` |
-| `kg-reminder` + `brief` hooks | workspace | `<repo>/.zcode/config.json` |
+| `~/.zcode/AGENTS.md` user defaults | user | `~/.zcode/AGENTS.md` |
+| `/dream`, `/case`, `/doc-check` commands | user | `~/.zcode/commands/*.md` |
+| `kg-reminder` + `brief` + `guard-protected-files` + `guard-bash` hooks | workspace | `<repo>/.zcode/config.json` |
 | `case-context-loader` + `doc-conventions` skills | user (symlink) | `~/.zcode/skills/...` → `repo/skills/...` |
+
+**PreToolUse guardrails (workspace):** `guard-protected-files.sh` denies `Write|Edit` on `00_METHODOLOGY/PREPROCESSING_by_domain/domains/**`, `kg/.../graph.json|graph.html`, and `.git/**`. `guard-bash.sh` denies a narrow set of destructive bash commands and always logs one JSON line per allowed call to `dream/STATE/bash_use.log` (consumed by `adoption_audit.py`). Both are workspace-scoped so the protection applies specifically to AEGIS work.
 
 ---
 
@@ -223,4 +227,4 @@ Heavyweight lint gates and KG validation belong in the main repo, not here.
 
 ---
 
-**Version:** 4.5 (Web: web-frontend subagent + web-debug skill + dashboard smoke gate, 2026-08-26)
+**Version:** 4.6 (Harness: user-scope commands + user AGENTS.md + PreToolUse guardrails + skill pruning, 2026-08-26)
