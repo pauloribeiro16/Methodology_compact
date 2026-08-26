@@ -1,24 +1,25 @@
 #!/usr/bin/env python3
 """
-build_traceability_matrix_rich.py — Phase 3 Rich Mode (Sprint 3, REAL)
+build_traceability_matrix_rich.py — Phase 3 Rich Mode (Sprint 6, REAL)
 
-Produces `22_Traceability_Matrix.xlsx` with 10 sheets for the Case_01 Rich folder:
+Produces `22_Traceability_Matrix.xlsx` with 12 sheets for the Case_01 Rich folder:
 
-  1. COVER
-  2. FULL_TRACEABILITY
-  3. NFR_TO_FR
-  4. FR_TO_UC
-  5. UC_TO_REGULATION
-  6. RULES_SATISFACTION
-  7. GATES_STATUS
-  8. COVERAGE_DASHBOARD
-  9. RULE_FREEZE          (NEW — 46 rules canonical table)
-  10. KG_CHAINS            (NEW — 12 chains from KG_CHAINS.md)
+  1.  COVER
+  2.  FULL_TRACEABILITY
+  3.  NFR_TO_FR
+  4.  FR_TO_UC
+  5.  UC_TO_REGULATION
+  6.  RULES_SATISFACTION
+  7.  GATES_STATUS
+  8.  COVERAGE_DASHBOARD
+  9.  RULE_FREEZE             (NEW — 46 rules canonical table)
+  10. KG_CHAINS               (NEW — 12 chains from KG_CHAINS.md)
+  11. FUNCUC_TO_SECUC         (Sprint 6 NEW — Functional UC → Security UC bridge)
+  12. MUC_TO_MITIGATION       (Sprint 6 NEW — MUC → Security UC that mitigates)
 
-The script REGEX-parses the .md RICH files in this folder for IDs. When docs
-are still at status CORPUS_ENRICHED (Sprint 3), the script writes the freeze
-values from `RULE_FREEZE.md` §1 (46 rules, 35 UCs L1, 30 FRs, 46 NFRs, 30
-gates). Sprint 5 will replace placeholder cells with deep-enriched data.
+Sprint 6 (2026-08-26): added 23 functional U.C.7-11 + 8 MUCs from Doc20 v3.0
+(REWRITTEN_PRODUCT_BASELINE). 35 security U.C.1-6 preserved verbatim from v2.0
+(P5 — downstream U.C.* IDs unchanged).
 
 Usage:
   python3 scripts/build_traceability_matrix_rich.py
@@ -128,6 +129,84 @@ UC_FREEZE = [
     ("U.C.6.1.1", "TRN", "D-08.1", "Annual Awareness Training"),
     ("U.C.6.2.1", "TRN", "D-08.2", "Role-Specific Training"),
     ("U.C.6.3.1", "TRN", "D-08.1", "Phishing Simulation"),
+]
+
+# Sprint 6 NEW: Functional U.C.7-11 (product baseline). No D-XX.Y (product, not security sub-domain).
+FUNCTIONAL_UC_FREEZE = [
+    ("U.C.7.1.1", "ACC", "—", "Sign Up & Account Creation"),
+    ("U.C.7.1.2", "ACC", "—", "Login (email/password + optional SSO)"),
+    ("U.C.7.1.3", "ACC", "—", "Password Reset & Recovery"),
+    ("U.C.7.2.1", "ACC", "—", "Session Management (timeout, logout-everywhere)"),
+    ("U.C.7.5.1", "ACC", "—", "Invite Member & Assign Role"),
+    ("U.C.8.1.1", "CORE", "—", "Create Workspace"),
+    ("U.C.8.1.2", "CORE", "—", "Create Project"),
+    ("U.C.8.2.1", "CORE", "—", "Create Task"),
+    ("U.C.8.2.2", "CORE", "—", "Assign Task"),
+    ("U.C.8.2.3", "CORE", "—", "Change Task Status & Due Date"),
+    ("U.C.8.3.1", "CORE", "—", "View Project Board (Kanban)"),
+    ("U.C.9.1.1", "COLAB", "—", "Comment on Task"),
+    ("U.C.9.2.1", "COLAB", "—", "@Mention & In-App Notification"),
+    ("U.C.9.3.1", "COLAB", "—", "Attach File to Task"),
+    ("U.C.9.4.1", "COLAB", "—", "Search & Filter Tasks"),
+    ("U.C.9.5.1", "COLAB", "—", "Activity Feed (recent events)"),
+    ("U.C.10.1.1", "PLAT", "—", "Mobile Sync (offline-first)"),
+    ("U.C.10.2.1", "PLAT", "—", "Stripe Checkout (Upgrade Plan)"),
+    ("U.C.10.3.1", "PLAT", "—", "Workspace Admin Console"),
+    ("U.C.10.3.2", "PLAT", "—", "Enterprise SSO"),
+    ("U.C.11.1.1", "SELF", "—", "View My Account (data held)"),
+    ("U.C.11.2.1", "SELF", "—", "Export My Data (GDPR portability)"),
+    ("U.C.11.3.1", "SELF", "—", "Delete My Account / Workspace"),
+]
+
+# Sprint 6 NEW: 8 Misuse Cases (Sindre & Opdahl)
+MUC_FREEZE = [
+    ("MUC-01", "A-MIS-01", "U.C.7.1.2, U.C.7.1.3", "U.C.3.1.1, U.C.3.1.2, U.C.2.4.1, U.C.3.5.1", "Credential Stuffing Against Login"),
+    ("MUC-02", "A-MIS-03", "U.C.7.5.1, U.C.10.3.1", "U.C.3.2.1, U.C.3.5.1, U.C.5.1.2", "Privilege Escalation via Invite/Roles"),
+    ("MUC-03", "A-MIS-01/A-MIS-03", "U.C.8.1.2, U.C.8.2.1, U.C.8.3.1, U.C.8.1.1, U.C.10.1.1", "U.C.3.3.1, U.C.3.2.1, U.C.2.1.1, U.C.4.2.1", "Cross-Tenant Data Injection/Read"),
+    ("MUC-04", "A-MIS-03", "U.C.11.2.1, U.C.9.4.1", "U.C.1.3.1, U.C.1.5.1, U.C.2.4.2, U.C.3.5.1", "Bulk Data Extraction via Export Endpoint"),
+    ("MUC-05", "A-MIS-04", "U.C.10.2.1, U.C.7.1.2", "U.C.5.4.1, U.C.5.5.1, U.C.3.1.1", "Compromised Third-Party Integration"),
+    ("MUC-06", "A-MIS-02", "All U.C.7-11 (data plane)", "U.C.3.1.2, U.C.3.2.1, U.C.3.5.1, U.C.2.4.1", "Malicious Insider Exfiltration"),
+    ("MUC-07", "A-MIS-01", "U.C.8.3.1, All U.C.7-11 (availability)", "U.C.2.4.2, U.C.4.4.1, U.C.2.6.1", "Board / Service DoS"),
+    ("MUC-08", "A-MIS-01", "U.C.9.3.1", "U.C.2.4.1, U.C.3.5.1, U.C.4.2.1", "Malicious Attachment Upload"),
+]
+
+# Sprint 6 NEW: Functional UC → Security UC constraints (primary). Total = 35 (1 per security UC).
+CONSTRAINS_EDGES = [
+    ("U.C.1.1.1", "U.C.11.1.1, U.C.11.2.1, U.C.11.3.1"),
+    ("U.C.1.1.2", "U.C.11.1.1"),
+    ("U.C.1.2.1", "U.C.11.3.1"),
+    ("U.C.1.3.1", "U.C.11.2.1"),
+    ("U.C.1.4.1", "U.C.7.1.1, U.C.11.1.1"),
+    ("U.C.1.5.1", "U.C.11.2.1"),
+    ("U.C.2.1.1", "U.C.8.2.1, U.C.9.3.1"),
+    ("U.C.2.2.1", "All U.C.7-11"),
+    ("U.C.2.3.1", "All U.C.7-11"),
+    ("U.C.2.4.1", "U.C.8.2.1, U.C.9.3.1"),
+    ("U.C.2.4.2", "All U.C.7-11"),
+    ("U.C.2.5.1", "All U.C.7-11"),
+    ("U.C.2.6.1", "All U.C.7-11"),
+    ("U.C.3.1.1", "U.C.7.1.1, U.C.7.1.2, U.C.7.1.3, U.C.7.2.1, U.C.10.1.1"),
+    ("U.C.3.1.2", "U.C.10.3.2, U.C.10.3.1"),
+    ("U.C.3.2.1", "U.C.7.5.1, U.C.8.*, U.C.10.3.1"),
+    ("U.C.3.3.1", "All U.C.7-11"),
+    ("U.C.3.4.1", "All U.C.7-11"),
+    ("U.C.3.5.1", "All U.C.7-11"),
+    ("U.C.3.6.1", "All U.C.7-11"),
+    ("U.C.4.1.1", "U.C.8.*, U.C.10.*"),
+    ("U.C.4.2.1", "U.C.8.*, U.C.9.3.1"),
+    ("U.C.4.3.1", "All U.C.7-11"),
+    ("U.C.4.4.1", "U.C.8.3.1, U.C.9.4.1, U.C.10.1.1"),
+    ("U.C.4.5.1", "U.C.10.2.1, U.C.10.3.2, U.C.11.x"),
+    ("U.C.5.1.1", "All U.C.7-11"),
+    ("U.C.5.1.2", "All U.C.7-11"),
+    ("U.C.5.2.1", "U.C.10.2.1, U.C.10.3.2, U.C.11.x"),
+    ("U.C.5.3.1", "All U.C.7-11"),
+    ("U.C.5.4.1", "U.C.10.2.1, U.C.7.1.2"),
+    ("U.C.5.5.1", "U.C.10.2.1, U.C.7.1.2"),
+    ("U.C.5.6.1", "U.C.8.*, U.C.10.*"),
+    ("U.C.6.1.1", "All U.C.7-11 (human-driven)"),
+    ("U.C.6.2.1", "U.C.7.5.1, U.C.10.3.1"),
+    ("U.C.6.3.1", "U.C.7.1.1, U.C.7.1.2"),
 ]
 
 NIST_BY_RULE: Dict[str, Tuple[str, str]] = {
@@ -326,28 +405,35 @@ def build_cover(wb: Workbook, freeze_total: Dict[str, int]) -> None:
         ("Phase", "3"),
         ("Case", "Case_01_TinyTask_SaaS"),
         ("Tier", "MICRO"),
-        ("Status", "CORPUS_ENRICHED (Sprint 3 — placeholder cells; Sprint 5 deep-fills)"),
-        ("Version", "0.3"),
-        ("Sprint", "3"),
+        ("Status", "REWRITTEN_PRODUCT_BASELINE (Sprint 6 — 35 security U.C. + 23 functional U.C. + 8 MUCs)"),
+        ("Version", "1.0"),
+        ("Sprint", "6"),
         ("Generation Timestamp", dt.datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")),
         ("Source of truth — Rules", "02_PHASE2_RULES_RICH/11_Rules_Catalog.md (46 rules)"),
         ("Source of truth — Goals", "02_PHASE2_RULES_RICH/10_Privacy_Security_Objectives.md (31 goals)"),
-        ("Source of truth — Freeze", "03_PHASE3_DECOMPOSITION_RICH/RULE_FREEZE.md (Sprint 1 frozen)"),
+        ("Source of truth — Freeze", "03_PHASE3_DECOMPOSITION_RICH/RULE_FREEZE.md v2.0 (Sprint 6 frozen)"),
+        ("Source of truth — UC catalog", "03_PHASE3_DECOMPOSITION_RICH/Doc20_Use_Cases_Catalog.md v3.0 (35 SEC + 23 FUNC + 8 MUC)"),
+        ("Source of truth — Relationships", "03_PHASE3_DECOMPOSITION_RICH/Doc21_Use_Case_Relationships.md v1.0 (91 edges)"),
+        ("Source of truth — Variability", "03_PHASE3_DECOMPOSITION_RICH/Doc22_Use_Case_Variability.md v1.0 (26 variants)"),
         ("Corpus linkage", "03_PHASE3_DECOMPOSITION_RICH/CORPUS_LINKAGE.md (344 artefacts)"),
         ("NIST anchors", "03_PHASE3_DECOMPOSITION_RICH/NIST_ANCHORS.md (46 rules + 31 goals)"),
-        ("KG chains", "03_PHASE3_DECOMPOSITION_RICH/KG_CHAINS.md (12 chains)"),
-        ("Total Sheets", "10"),
-        ("Sheets", "COVER, FULL_TRACEABILITY, NFR_TO_FR, FR_TO_UC, UC_TO_REGULATION, RULES_SATISFACTION, GATES_STATUS, COVERAGE_DASHBOARD, RULE_FREEZE, KG_CHAINS"),
+        ("KG chains", "03_PHASE3_DECOMPOSITION_RICH/KG_CHAINS.md (12 chains; KG E4 incremental rebuild logged as follow-up)"),
+        ("Total Sheets", "12"),
+        ("Sheets", "COVER, FULL_TRACEABILITY, NFR_TO_FR, FR_TO_UC, UC_TO_REGULATION, RULES_SATISFACTION, GATES_STATUS, COVERAGE_DASHBOARD, RULE_FREEZE, KG_CHAINS, FUNCUC_TO_SECUC, MUC_TO_MITIGATION"),
         ("Freeze — Rules (CR + BPR)", str(freeze_total["rules"])),
-        ("Freeze — UCs (L1 cards)", str(freeze_total["ucs"])),
+        ("Freeze — Security U.C.s (L1)", str(freeze_total["ucs"])),
+        ("Freeze — Functional U.C.s (new)", str(freeze_total["funcucs"])),
+        ("Freeze — MUCs (new)", str(freeze_total["mucs"])),
         ("Freeze — FRs", str(freeze_total["frs"])),
         ("Freeze — NFRs", str(freeze_total["nfrs"])),
         ("Freeze — Gates", str(freeze_total["gates"])),
         ("Freeze — Nodes", str(freeze_total["nodes"])),
         ("Freeze — Risks + Threats", str(freeze_total["risks"]) + " + " + str(freeze_total["threats"])),
+        ("Freeze — Constrains edges", str(freeze_total["constrains"])),
+        ("Freeze — MUC mitigations", str(freeze_total["muc_mitigations"])),
         ("Generator script", "scripts/build_traceability_matrix_rich.py"),
-        ("Validator script (light)", "scripts/verify_rich.py (verify_xlsx() real; full verify Sprint 5)"),
-        ("Author", "Sprint 3 Executor (paulo@methodology.pt)"),
+        ("Validator script (light)", "scripts/verify_rich.py (verify_xlsx() real; full verify Sprint 6)"),
+        ("Author", "Sprint 6 Executor (paulo@methodology.pt)"),
         ("Branch", "feature/aegis-p3-case01-rich"),
     ]
     _write_header(ws, ["Attribute", "Value"])
@@ -475,7 +561,11 @@ def build_coverage_dashboard(wb: Workbook) -> None:
         ("CR Rules", len(RULE_FREEZE["CR"]), 30, "FROZEN per RULE_FREEZE.md §1"),
         ("BPR Rules", len(RULE_FREEZE["BPR"]), 16, "FROZEN per RULE_FREEZE.md §1"),
         ("Total Rules", len(RULE_FREEZE["CR"]) + len(RULE_FREEZE["BPR"]), 46, "30 CR + 16 BPR"),
-        ("UC L1 cards", len(UC_FREEZE), 35, "FROZEN per RULE_FREEZE.md §5"),
+        ("UC L1 cards (security)", len(UC_FREEZE), 35, "FROZEN per RULE_FREEZE.md §5"),
+        ("Functional U.C.s (new)", len(FUNCTIONAL_UC_FREEZE), 23, "Sprint 6 product baseline"),
+        ("Misuse cases (new)", len(MUC_FREEZE), 8, "Sprint 6 Sindre & Opdahl"),
+        ("Constrains edges", len(CONSTRAINS_EDGES), 35, "Sprint 6 security→functional bridge"),
+        ("MUC→mitigation edges", sum(1 for _ in MUC_FREEZE), 8, "Sprint 6 threat model"),
         ("FR cards", len(FR_TO_CR), 30, "FROZEN per RULE_FREEZE.md §6"),
         ("NFR cards", len(NFR_TO_FR), 46, "FROZEN per RULE_FREEZE.md §7"),
         ("DN rows", len(CR_TO_DN), 30, "Doc 15 §4, 1:1 with CR"),
@@ -514,6 +604,32 @@ def build_rule_freeze_sheet(wb: Workbook) -> None:
     for rid, sub, title, kind, src, status, note in all_rules:
         ws.append([counter, rid, sub, title, kind, src, status, note])
         counter += 1
+    _autosize(ws)
+
+
+def build_funcuc_to_secuc(wb: Workbook) -> None:
+    """Sprint 6 NEW: Functional UC ↔ Security UC bridge."""
+    ws = wb.create_sheet("FUNCUC_TO_SECUC")
+    _write_header(ws, ["#", "Security UC", "Constrains Functional UC(s)", "Constraint type"])
+    for i, (sec_uc, func_ucs) in enumerate(CONSTRAINS_EDGES, start=1):
+        ctype = (
+            "Rights enforcement" if sec_uc.startswith("U.C.1.")
+            else "Availability / release gating" if sec_uc.startswith("U.C.2.")
+            else "Authn/Authz" if sec_uc.startswith("U.C.3.")
+            else "Secure development" if sec_uc.startswith("U.C.4.")
+            else "Governance / DPA" if sec_uc.startswith("U.C.5.")
+            else "Awareness"
+        )
+        ws.append([i, sec_uc, func_ucs, ctype])
+    _autosize(ws)
+
+
+def build_muc_to_mitigation(wb: Workbook) -> None:
+    """Sprint 6 NEW: MUC → Security UC bridge (threat model)."""
+    ws = wb.create_sheet("MUC_TO_MITIGATION")
+    _write_header(ws, ["#", "MUC", "Misactor", "Threatens Functional UC(s)", "Mitigated by Security UC(s)", "Title"])
+    for i, (muc, misactor, threatens, mitigated, title) in enumerate(MUC_FREEZE, start=1):
+        ws.append([i, muc, misactor, threatens, mitigated, title])
     _autosize(ws)
 
 
@@ -586,6 +702,10 @@ def main() -> int:
     freeze_total = {
         "rules": len(RULE_FREEZE["CR"]) + len(RULE_FREEZE["BPR"]),
         "ucs": len(UC_FREEZE),
+        "funcucs": len(FUNCTIONAL_UC_FREEZE),
+        "mucs": len(MUC_FREEZE),
+        "constrains": len(CONSTRAINS_EDGES),
+        "muc_mitigations": len(MUC_FREEZE),
         "frs": len(FR_TO_CR),
         "nfrs": len(NFR_TO_FR),
         "gates": len(CR_TO_GATE),
@@ -605,13 +725,18 @@ def main() -> int:
     build_coverage_dashboard(wb)
     build_rule_freeze_sheet(wb)
     build_kg_chains_sheet(wb, base / "KG_CHAINS.md")
+    build_funcuc_to_secuc(wb)
+    build_muc_to_mitigation(wb)
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
     wb.save(out_path)
-    print(f"[ok] wrote {out_path} with 10 sheets")
-    print(f"[stats] rules={freeze_total['rules']} ucs={freeze_total['ucs']} frs={freeze_total['frs']} "
-          f"nfrs={freeze_total['nfrs']} gates={freeze_total['gates']} nodes={freeze_total['nodes']} "
-          f"risks={freeze_total['risks']} threats={freeze_total['threats']}")
+    print(f"[ok] wrote {out_path} with 12 sheets")
+    print(f"[stats] rules={freeze_total['rules']} sec_ucs={freeze_total['ucs']} "
+          f"func_ucs={freeze_total['funcucs']} mucs={freeze_total['mucs']} "
+          f"frs={freeze_total['frs']} nfrs={freeze_total['nfrs']} "
+          f"gates={freeze_total['gates']} nodes={freeze_total['nodes']} "
+          f"risks={freeze_total['risks']} threats={freeze_total['threats']} "
+          f"constrains={freeze_total['constrains']}")
     return 0
 
 

@@ -1,12 +1,12 @@
 ---
 document_id: AEGIS-P3-RICH-RULE-FREEZE
-title: Phase 3 Rule Freeze — Canonical Reconciliation (Sprint 1)
+title: Phase 3 Rule Freeze — Canonical Reconciliation (Sprint 6 v2.0)
 phase: 3
-version: 1.0
+version: 2.0
 created: 2026-08-24
-updated: 2026-08-24
-author: Sprint 1 Executor (paulo@methodology.pt)
-status: FROZEN
+updated: 2026-08-26
+author: Sprint 6 Executor (paulo@methodology.pt)
+status: FROZEN_WITH_PRODUCT_BASELINE
 case: Case_01_TinyTask_SaaS
 tier: MICRO
 sprint: 1
@@ -243,20 +243,40 @@ Cross-case contamination where Case_02 artefacts (Border Control AI / AI Act / B
 
 ---
 
-## §5 UC enumeration (62 vs 35 vs 33)
+## §5 UC enumeration (Sprint 6 v2.0)
+
+> **Sprint 6 (2026-08-26) update.** The catalogue was rewritten as REWRITTEN_PRODUCT_BASELINE (`Doc20_Use_Cases_Catalog.md` v3.0) to introduce product functional U.C.s alongside the security/compliance U.C.s. The freeze below preserves the v1.0 (Sprint 1) security U.C. counts verbatim and adds the new functional + MUC families.
 
 | Source | Claim | Composition | Disposition |
 |--------|-------|-------------|-------------|
-| Legacy `13_Use_Cases_Catalog.md` §5 | 17 Leave UCs (U.C.1.1.1 through U.C.6.1.1) | only Leave UCs counted in §5 narrative | UNDER-COUNT — §7 mentions more, §6/§7 imply 35+ |
-| Legacy `13_Use_Cases_Catalog.md` §3.3 (Synthesis ref) | 35 UCs total | DP=6 + SEC=7 + IAM=7 + DEV=5 + GOV=7 + TRN=3 = 35 | source-of-truth composition |
-| Legacy `16_Compliance_Gates_Report.md` §5B SC2 | **62 UCs** | 35 L1 + 27 L2 expansions | matches "operational norm" |
-| Legacy `13_Use_Cases_Catalog.md` §8 | 17 Leave UCs (CRITICAL/HIGH/MEDIUM breakdown) | inconsistent with §3.3 | under-count |
+| Legacy `13_Use_Cases_Catalog.md` §5 | 17 Leave UCs | only Leave UCs counted | UNDER-COUNT |
+| Legacy `13_Use_Cases_Catalog.md` §3.3 | 35 UCs total | DP=6 + SEC=7 + IAM=7 + DEV=5 + GOV=7 + TRN=3 = 35 | **Sprint 1 freeze** — preserved |
+| Legacy `16_Compliance_Gates_Report.md` §5B SC2 | 62 UCs | 35 L1 + 27 L2 expansions | preserved in traceability matrix |
 
-**Sprint 1 freeze:** **35 L1 cards** (root + system level; atomic + actionable per §3.3 Synthesis).
-L2 expansions remain embedded inside parent cards (62 total references, 35 enriched in Sprint 5).
+**Sprint 6 v2.0 freeze (preserves v1.0 + adds product baseline):**
 
-> **F-00b UC → RESOLVED.** Sprint 5 RICH cards will materialise 35 L1 use cases.
-> The 62 reference count represents L1 + L2 expansions and is preserved in the traceability matrix (workbook sheet).
+| Family | Package(s) | Count | Status |
+|--------|-----------|------:|--------|
+| Security/Compliance U.C.s (v1.0) | PKG-DP, PKG-SEC, PKG-IAM, PKG-DEV, PKG-GOV, PKG-TRN | **35** | FROZEN — IDs preserved verbatim |
+| Functional U.C.s (Sprint 6 NEW) | PKG-7 Account&Access, PKG-8 Team&Task Core, PKG-9 Collaboration, PKG-10 Platform, PKG-11 Self-service | **23** | NEW — see `Doc20_Use_Cases_Catalog.md` §2 |
+| Misuse Cases (Sprint 6 NEW) | n/a (threat model) | **8** | NEW — see `Doc20_Use_Cases_Catalog.md` §4 |
+| **Total L1+Functional+MUCs** | | **66** | |
+
+**Composition of new 23 functional U.C.s** (5 + 6 + 5 + 4 + 3):
+- PKG-7 Account & Access (5): U.C.7.1.1 signup · U.C.7.1.2 login · U.C.7.1.3 password reset · U.C.7.2.1 session mgmt · U.C.7.5.1 invite+roles.
+- PKG-8 Team & Task Core (6): U.C.8.1.1 workspace · U.C.8.1.2 project · U.C.8.2.1 create task · U.C.8.2.2 assign task · U.C.8.2.3 status/due · U.C.8.3.1 board view.
+- PKG-9 Collaboration (5): U.C.9.1.1 comment · U.C.9.2.1 mention+notify · U.C.9.3.1 attachment · U.C.9.4.1 search · U.C.9.5.1 activity feed.
+- PKG-10 Platform (4): U.C.10.1.1 mobile sync · U.C.10.2.1 Stripe checkout · U.C.10.3.1 admin console · U.C.10.3.2 enterprise SSO.
+- PKG-11 Self-Service (3): U.C.11.1.1 view account · U.C.11.2.1 export data · U.C.11.3.1 delete account/workspace.
+
+**Composition of 8 MUCs** (Sindre & Opdahl):
+- MUC-01 credential stuffing · MUC-02 privilege escalation · MUC-03 cross-tenant injection · MUC-04 bulk extraction · MUC-05 compromised integration · MUC-06 insider exfiltration · MUC-07 board DoS · MUC-08 malicious attachment.
+
+**Backwards compatibility (P5):** the 35 security U.C. IDs (U.C.1.1.1 … U.C.6.3.1) are preserved verbatim — all 746 downstream references remain valid. New IDs introduce 23 functional + 8 MUC entries, none of which collide with existing IDs (packages 7–11 were previously empty).
+
+> **F-S5-02 ("0 actors defined") → RESOLVED.** Sprint 6 introduces Primary Actor as a mandatory field on every UC card; the actor catalogue (`Doc20` §1) defines 14 actors across product / internal / misactor categories.
+
+> **KG E4 follow-up (logged, not in scope).** The Graphify KG E3 build (2026-08-23) has 0 nodes for the 23 new functional U.C.s and 8 MUCs. Rebuild E4 incremental on Deucalion (~14h cluster) is logged as a follow-up; human approval required (P7) before scheduling.
 
 ---
 
