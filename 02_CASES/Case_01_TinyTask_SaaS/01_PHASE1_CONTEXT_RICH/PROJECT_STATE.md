@@ -2,10 +2,10 @@
 document_id: AEGIS-P1-RICH-STATE
 title: Project State — Phase 1 Rich Mode
 phase: 1
-version: 1.0
+version: 1.1
 created: 2026-08-06
-updated: 2026-08-06
-author: Sprint 3 Executor
+updated: 2026-08-26
+author: Sprint 3 Executor (+ Knowledge Articulation addendum)
 status: FINAL
 case: Case_01_TinyTask_SaaS
 ---
@@ -39,6 +39,7 @@ case: Case_01_TinyTask_SaaS
 | Sprint 3 corpus cross-check (07b §11) | `01_PHASE1_CONTEXT_RICH/07b_Proportionality_Profile.md` | COMPLETE (10/10 rows PASS) |
 | 3 script stubs | `01_PHASE1_CONTEXT_RICH/scripts/*.py` | COMPLETE |
 | 7 validation reports (Sprint 0-2) + 2 NEW (Sprint 3) | `01_PHASE1_CONTEXT_RICH/validation/*.md` | COMPLETE (9 reports total) |
+| **Knowledge Articulation addendum (2026-08-26)** | see §5 below | COMPLETE (additive — no source doc edited) |
 
 ## §3 Sprint History
 
@@ -61,6 +62,37 @@ case: Case_01_TinyTask_SaaS
 **Lint command:** `python3 01_IMPLEMENTATION_TOOLS/lints/run_phase1_lints.py --case "Case_01_TinyTask_SaaS" --quiet`
 
 **Latest report:** `01_IMPLEMENTATION_TOOLS/lints/reports/lint_report_phase1_20260806_120303.md`
+
+---
+
+## §5 Knowledge Articulation addendum (2026-08-26)
+
+Articulates the Phase 1 corpus (13 docs + ontology) into a single navigable view. **Additive — no source `.md` doc edited.** Validator verdict: CONDITIONAL PASS (9/12 audits PASS, 3 upstream drifts flagged for the human under P7).
+
+| Artefact | Path | Note |
+|---|---|---|
+| Canonical graph (181 nodes / 248 links / 12 audits) | `01_PHASE1_CONTEXT_RICH/data/phase1_graph.json` | JSON, with per-node+per-link `source[]` provenance |
+| Reproducible generator (Python literals, locked to v1.1 ontology) | `01_PHASE1_CONTEXT_RICH/scripts/build_p1_graph.py` | Re-emits the JSON deterministically |
+| Companion validator + emit (`--check` / `--summary` / `--emit`) | `01_PHASE1_CONTEXT_RICH/scripts/build_p1_dashboard.py` | Inlines JSON into the dashboard for `file://` use |
+| Validator report | `01_PHASE1_CONTEXT_RICH/validation/P1_graph_json_validation.md` | Spot-checks, audit verification, GDPR-C28 alignment appendix |
+| Phase 1 dashboard (Folio I–IV) | `00_METHODOLOGY/00_VISUALISATIONS/Case_01/Case_01_P1_Dashboard.html` | **Replaces** legacy doc-browser; views: one-pager / graph / audits / sub-domain grid |
+
+**Reconciliation picks made:** clause numbering → ontology canonical (CFL-001); subdomain counts → 38 in JSON with `covered`/`active` flags (CFL-002); coverage summary drift → JSON uses `clause_mappings` union (CFL-003); NI mean → Doc10 §5 (2.819) canonical (CFL-004); active status → Doc12 §3 (37 ACTIVE) canonical (BLN-002).
+
+**Upstream findings flagged for human decision (do NOT auto-fix):**
+
+| Audit | Source drift |
+|---|---|
+| CFL-001 | Doc10 §3 summary table still references legacy `GDPR-C08` for D-09; §8.1 already canonical → Doc10 §3 refresh recommended |
+| CFL-003 | `phase1_ontology.yaml@coverage_summary` label/list drift (GDPR label 19 / list 20; CRA label 22 / list 19) → ontology fix recommended |
+| BLN-002 | Doc13 §0 vs Doc12 §4 disagrees on D-02.4 / D-06.4 / D-08.3 active status → one of the two sources must be updated |
+
+**Validation commands:**
+
+```bash
+python3 01_PHASE1_CONTEXT_RICH/scripts/build_p1_dashboard.py --check     # invariants + audit node_ids resolve
+python3 00_METHODOLOGY/00_VISUALISATIONS/tests/test_dashboards.py --only Case_01_P1_Dashboard  # smoke gate
+```
 
 ## §5 Branch
 

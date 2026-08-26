@@ -1,0 +1,7025 @@
+{
+  "meta": {
+    "case_id": "Case_01_TinyTask_SaaS",
+    "phase": 1,
+    "generated": "2026-08-26",
+    "schema_version": "1.0",
+    "canonical_sources": [
+      "phase1_ontology.yaml@01_PHASE1_CONTEXT_RICH v1.1",
+      "Doc08 §4 + §9",
+      "Doc10 §8",
+      "Doc11 §3 + §4",
+      "Doc12 §3 + §4",
+      "Doc13 §2-4 + App. A.0",
+      "Doc09 §1-3",
+      "Doc02-03"
+    ]
+  },
+  "company_context": {
+    "node": {
+      "id": "CC-TINYTASK-2026-001",
+      "type": "CompanyContext",
+      "label": "TinyTask Lda.",
+      "attrs": {
+        "scale": "MICRO",
+        "tier_v1_1": "MEDIUM",
+        "employees": 8,
+        "security_fte": 0.85,
+        "hq": "Lisbon, PT (EU)",
+        "sector": "Technology / Software B2B SaaS",
+        "product": "Team Organizer",
+        "stack": [
+          "AWS eu-west-1",
+          "Firebase Auth",
+          "Stripe",
+          "GitHub Actions"
+        ],
+        "data_types": [
+          "email",
+          "name",
+          "password",
+          "task_content",
+          "ip_address (server logs)"
+        ],
+        "roles": {
+          "GDPR": [
+            "CONTROLLER",
+            "PROCESSOR"
+          ],
+          "CRA": [
+            "MANUFACTURER (Default class)"
+          ]
+        },
+        "criticality": "Non-Critical"
+      },
+      "source": [
+        "Doc02 §2/§3",
+        "Doc03 §4",
+        "phase1_ontology.yaml@company"
+      ]
+    }
+  },
+  "nodes": [
+    {
+      "id": "CC-TINYTASK-2026-001",
+      "type": "CompanyContext",
+      "label": "TinyTask Lda.",
+      "attrs": {
+        "scale": "MICRO",
+        "tier_v1_1": "MEDIUM",
+        "employees": 8,
+        "security_fte": 0.85,
+        "hq": "Lisbon, PT (EU)",
+        "sector": "Technology / Software B2B SaaS",
+        "product": "Team Organizer",
+        "stack": [
+          "AWS eu-west-1",
+          "Firebase Auth",
+          "Stripe",
+          "GitHub Actions"
+        ],
+        "data_types": [
+          "email",
+          "name",
+          "password",
+          "task_content",
+          "ip_address (server logs)"
+        ],
+        "roles": {
+          "GDPR": [
+            "CONTROLLER",
+            "PROCESSOR"
+          ],
+          "CRA": [
+            "MANUFACTURER (Default class)"
+          ]
+        },
+        "criticality": "Non-Critical"
+      },
+      "source": [
+        "Doc02 §2/§3",
+        "Doc03 §4",
+        "phase1_ontology.yaml@company"
+      ]
+    },
+    {
+      "id": "REG-GDPR",
+      "type": "Regulation",
+      "label": "GDPR — Reg. (EU) 2016/679",
+      "attrs": {
+        "abbreviation": "GDPR",
+        "name": "General Data Protection Regulation",
+        "eu_reference": "Regulation (EU) 2016/679",
+        "applicable": true,
+        "obligated_party": [
+          "CONTROLLER",
+          "PROCESSOR"
+        ],
+        "clause_count": 28,
+        "reason": "processes_personal_data = true (dual role: CONTROLLER + PROCESSOR)"
+      },
+      "source": [
+        "Doc08 §3.1 + §4",
+        "phase1_ontology.yaml@regulations[REG-GDPR]"
+      ]
+    },
+    {
+      "id": "REG-CRA",
+      "type": "Regulation",
+      "label": "CRA — Reg. (EU) 2024/2847",
+      "attrs": {
+        "abbreviation": "CRA",
+        "name": "Cyber Resilience Act",
+        "eu_reference": "Regulation (EU) 2024/2847",
+        "applicable": true,
+        "obligated_party": [
+          "MANUFACTURER"
+        ],
+        "clause_count": 26,
+        "reason": "places_digital_products_eu = true"
+      },
+      "source": [
+        "Doc08 §3.2 + §4",
+        "phase1_ontology.yaml@regulations[REG-CRA]"
+      ]
+    },
+    {
+      "id": "REG-NIS2",
+      "type": "Regulation",
+      "label": "NIS 2 — Dir. (EU) 2022/2555",
+      "attrs": {
+        "abbreviation": "NIS 2",
+        "name": "Network and Information Systems Directive 2",
+        "eu_reference": "Directive (EU) 2022/2555",
+        "applicable": false,
+        "obligated_party": [],
+        "clause_count": 0,
+        "reason": "below_threshold (8 employees < 50 threshold)"
+      },
+      "source": [
+        "Doc08 §3.3 + §4",
+        "phase1_ontology.yaml@regulations[REG-NIS2]"
+      ]
+    },
+    {
+      "id": "REG-DORA",
+      "type": "Regulation",
+      "label": "DORA — Reg. (EU) 2022/2554",
+      "attrs": {
+        "abbreviation": "DORA",
+        "name": "Digital Operational Resilience Act",
+        "eu_reference": "Regulation (EU) 2022/2554",
+        "applicable": false,
+        "obligated_party": [],
+        "clause_count": 0,
+        "reason": "not_financial_entity"
+      },
+      "source": [
+        "Doc08 §3.4 + §4",
+        "phase1_ontology.yaml@regulations[REG-DORA]"
+      ]
+    },
+    {
+      "id": "REG-AIACT",
+      "type": "Regulation",
+      "label": "AI Act — Reg. (EU) 2024/1689",
+      "attrs": {
+        "abbreviation": "AI Act",
+        "name": "Artificial Intelligence Act",
+        "eu_reference": "Regulation (EU) 2024/1689",
+        "applicable": false,
+        "obligated_party": [],
+        "clause_count": 0,
+        "reason": "no_ai_systems (aiact_high_risk_system = false)"
+      },
+      "source": [
+        "Doc08 §3.5 + §4",
+        "phase1_ontology.yaml@regulations[REG-AIACT]"
+      ]
+    },
+    {
+      "id": "D-01",
+      "type": "Domain",
+      "label": "Data Protection & Encryption",
+      "attrs": {
+        "primary_regulatory_driver": "GDPR",
+        "subdomain_count": 4
+      },
+      "source": [
+        "phase1_ontology.yaml@domains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "id": "D-02",
+      "type": "Domain",
+      "label": "Vulnerability Management",
+      "attrs": {
+        "primary_regulatory_driver": "CRA",
+        "subdomain_count": 4
+      },
+      "source": [
+        "phase1_ontology.yaml@domains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "id": "D-03",
+      "type": "Domain",
+      "label": "Access Control",
+      "attrs": {
+        "primary_regulatory_driver": "GDPR",
+        "subdomain_count": 4
+      },
+      "source": [
+        "phase1_ontology.yaml@domains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "id": "D-04",
+      "type": "Domain",
+      "label": "Incident Response",
+      "attrs": {
+        "primary_regulatory_driver": "GDPR",
+        "subdomain_count": 4
+      },
+      "source": [
+        "phase1_ontology.yaml@domains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "id": "D-05",
+      "type": "Domain",
+      "label": "Data Lifecycle",
+      "attrs": {
+        "primary_regulatory_driver": "GDPR",
+        "subdomain_count": 4
+      },
+      "source": [
+        "phase1_ontology.yaml@domains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "id": "D-06",
+      "type": "Domain",
+      "label": "Supply Chain",
+      "attrs": {
+        "primary_regulatory_driver": "DORA",
+        "subdomain_count": 4
+      },
+      "source": [
+        "phase1_ontology.yaml@domains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "id": "D-07",
+      "type": "Domain",
+      "label": "Secure Development",
+      "attrs": {
+        "primary_regulatory_driver": "CRA",
+        "subdomain_count": 4
+      },
+      "source": [
+        "phase1_ontology.yaml@domains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "id": "D-08",
+      "type": "Domain",
+      "label": "Human Factors",
+      "attrs": {
+        "primary_regulatory_driver": "NIS2",
+        "subdomain_count": 3
+      },
+      "source": [
+        "phase1_ontology.yaml@domains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "id": "D-09",
+      "type": "Domain",
+      "label": "Governance & Documentation",
+      "attrs": {
+        "primary_regulatory_driver": "GDPR",
+        "subdomain_count": 4
+      },
+      "source": [
+        "phase1_ontology.yaml@domains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "id": "D-10",
+      "type": "Domain",
+      "label": "Monitoring & Audit",
+      "attrs": {
+        "primary_regulatory_driver": "DORA",
+        "subdomain_count": 3
+      },
+      "source": [
+        "phase1_ontology.yaml@domains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "id": "D-01.1",
+      "type": "SecurityControlDomain",
+      "label": "D-01.1 Data at Rest Encryption",
+      "attrs": {
+        "domain_id": "D-01",
+        "name": "Data at Rest Encryption",
+        "covered": true,
+        "active": true,
+        "coverage_level": "SUBSTANTIVE",
+        "proportionality_tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR",
+          "CRA"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-01.2",
+      "type": "SecurityControlDomain",
+      "label": "D-01.2 Data in Transit Encryption",
+      "attrs": {
+        "domain_id": "D-01",
+        "name": "Data in Transit Encryption",
+        "covered": true,
+        "active": true,
+        "coverage_level": "SUBSTANTIVE",
+        "proportionality_tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR",
+          "CRA"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-01.3",
+      "type": "SecurityControlDomain",
+      "label": "D-01.3 Cryptographic Key Management",
+      "attrs": {
+        "domain_id": "D-01",
+        "name": "Cryptographic Key Management",
+        "covered": true,
+        "active": true,
+        "coverage_level": "SUBSTANTIVE",
+        "proportionality_tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "CRA"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-01.4",
+      "type": "SecurityControlDomain",
+      "label": "D-01.4 Data Integrity Mechanisms",
+      "attrs": {
+        "domain_id": "D-01",
+        "name": "Data Integrity Mechanisms",
+        "covered": true,
+        "active": true,
+        "coverage_level": "SUBSTANTIVE",
+        "proportionality_tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR",
+          "CRA"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-02.1",
+      "type": "SecurityControlDomain",
+      "label": "D-02.1 Vulnerability Identification",
+      "attrs": {
+        "domain_id": "D-02",
+        "name": "Vulnerability Identification",
+        "covered": true,
+        "active": true,
+        "coverage_level": "PARTIAL",
+        "proportionality_tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "CRA"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-02.2",
+      "type": "SecurityControlDomain",
+      "label": "D-02.2 Patch Management & Updates",
+      "attrs": {
+        "domain_id": "D-02",
+        "name": "Patch Management & Updates",
+        "covered": true,
+        "active": true,
+        "coverage_level": "PARTIAL",
+        "proportionality_tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "CRA"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-02.3",
+      "type": "SecurityControlDomain",
+      "label": "D-02.3 Coordinated Vuln. Disclosure",
+      "attrs": {
+        "domain_id": "D-02",
+        "name": "Coordinated Vuln. Disclosure",
+        "covered": true,
+        "active": true,
+        "coverage_level": "PARTIAL",
+        "proportionality_tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "CRA"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-02.4",
+      "type": "SecurityControlDomain",
+      "label": "D-02.4 Threat-Led Penetration Testing",
+      "attrs": {
+        "domain_id": "D-02",
+        "name": "Threat-Led Penetration Testing",
+        "covered": false,
+        "active": true,
+        "coverage_level": "NOT_ADDRESSED",
+        "proportionality_tier": "DEFERRED",
+        "sole_authority_regulation": "DORA",
+        "gap_reason": "DORA not applicable (not financial entity)"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-03.1",
+      "type": "SecurityControlDomain",
+      "label": "D-03.1 Identity Lifecycle Management",
+      "attrs": {
+        "domain_id": "D-03",
+        "name": "Identity Lifecycle Management",
+        "covered": true,
+        "active": true,
+        "coverage_level": "SUBSTANTIVE",
+        "proportionality_tier": "MINIMAL",
+        "source_regulations": [
+          "CRA"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-03.2",
+      "type": "SecurityControlDomain",
+      "label": "D-03.2 Multi-Factor Authentication",
+      "attrs": {
+        "domain_id": "D-03",
+        "name": "Multi-Factor Authentication",
+        "covered": true,
+        "active": true,
+        "coverage_level": "SUBSTANTIVE",
+        "proportionality_tier": "MINIMAL",
+        "source_regulations": [
+          "CRA"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-03.3",
+      "type": "SecurityControlDomain",
+      "label": "D-03.3 Authorization & Least Privilege",
+      "attrs": {
+        "domain_id": "D-03",
+        "name": "Authorization & Least Privilege",
+        "covered": true,
+        "active": true,
+        "coverage_level": "PARTIAL",
+        "proportionality_tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-03.4",
+      "type": "SecurityControlDomain",
+      "label": "D-03.4 Secure System Defaults",
+      "attrs": {
+        "domain_id": "D-03",
+        "name": "Secure System Defaults",
+        "covered": true,
+        "active": true,
+        "coverage_level": "PARTIAL",
+        "proportionality_tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "CRA"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-04.1",
+      "type": "SecurityControlDomain",
+      "label": "D-04.1 Incident Detection & Triage",
+      "attrs": {
+        "domain_id": "D-04",
+        "name": "Incident Detection & Triage",
+        "covered": true,
+        "active": true,
+        "coverage_level": "SUBSTANTIVE",
+        "proportionality_tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "CRA"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-04.2",
+      "type": "SecurityControlDomain",
+      "label": "D-04.2 Containment & Mitigation",
+      "attrs": {
+        "domain_id": "D-04",
+        "name": "Containment & Mitigation",
+        "covered": true,
+        "active": true,
+        "coverage_level": "SUBSTANTIVE",
+        "proportionality_tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR",
+          "CRA"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-04.3",
+      "type": "SecurityControlDomain",
+      "label": "D-04.3 Regulatory Notification",
+      "attrs": {
+        "domain_id": "D-04",
+        "name": "Regulatory Notification",
+        "covered": true,
+        "active": true,
+        "coverage_level": "SUBSTANTIVE",
+        "proportionality_tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR",
+          "CRA"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-04.4",
+      "type": "SecurityControlDomain",
+      "label": "D-04.4 Data Restoration & Recovery",
+      "attrs": {
+        "domain_id": "D-04",
+        "name": "Data Restoration & Recovery",
+        "covered": true,
+        "active": true,
+        "coverage_level": "PARTIAL",
+        "proportionality_tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-05.1",
+      "type": "SecurityControlDomain",
+      "label": "D-05.1 Data Minimization",
+      "attrs": {
+        "domain_id": "D-05",
+        "name": "Data Minimization",
+        "covered": true,
+        "active": true,
+        "coverage_level": "SUBSTANTIVE",
+        "proportionality_tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-05.2",
+      "type": "SecurityControlDomain",
+      "label": "D-05.2 Retention & Archiving",
+      "attrs": {
+        "domain_id": "D-05",
+        "name": "Retention & Archiving",
+        "covered": true,
+        "active": true,
+        "coverage_level": "PARTIAL",
+        "proportionality_tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-05.3",
+      "type": "SecurityControlDomain",
+      "label": "D-05.3 Right to Erasure",
+      "attrs": {
+        "domain_id": "D-05",
+        "name": "Right to Erasure",
+        "covered": true,
+        "active": true,
+        "coverage_level": "SUBSTANTIVE",
+        "proportionality_tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-05.4",
+      "type": "SecurityControlDomain",
+      "label": "D-05.4 Data Portability",
+      "attrs": {
+        "domain_id": "D-05",
+        "name": "Data Portability",
+        "covered": true,
+        "active": true,
+        "coverage_level": "PARTIAL",
+        "proportionality_tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-06.1",
+      "type": "SecurityControlDomain",
+      "label": "D-06.1 Vendor Risk Assessment",
+      "attrs": {
+        "domain_id": "D-06",
+        "name": "Vendor Risk Assessment",
+        "covered": true,
+        "active": true,
+        "coverage_level": "PARTIAL",
+        "proportionality_tier": "MINIMAL",
+        "source_regulations": [
+          "GDPR"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-06.2",
+      "type": "SecurityControlDomain",
+      "label": "D-06.2 Software Bill of Materials (SBOM)",
+      "attrs": {
+        "domain_id": "D-06",
+        "name": "Software Bill of Materials (SBOM)",
+        "covered": true,
+        "active": true,
+        "coverage_level": "PARTIAL",
+        "proportionality_tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "CRA"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-06.3",
+      "type": "SecurityControlDomain",
+      "label": "D-06.3 Contractual Security Obligations",
+      "attrs": {
+        "domain_id": "D-06",
+        "name": "Contractual Security Obligations",
+        "covered": true,
+        "active": true,
+        "coverage_level": "PARTIAL",
+        "proportionality_tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-06.4",
+      "type": "SecurityControlDomain",
+      "label": "D-06.4 Third-Party Boundary Management",
+      "attrs": {
+        "domain_id": "D-06",
+        "name": "Third-Party Boundary Management",
+        "covered": false,
+        "active": true,
+        "coverage_level": "NOT_ADDRESSED",
+        "proportionality_tier": "MINIMAL",
+        "sole_authority_regulation": "DORA",
+        "gap_reason": "DORA not applicable (not financial entity)"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-07.1",
+      "type": "SecurityControlDomain",
+      "label": "D-07.1 Secure-by-Design Principles",
+      "attrs": {
+        "domain_id": "D-07",
+        "name": "Secure-by-Design Principles",
+        "covered": true,
+        "active": true,
+        "coverage_level": "SUBSTANTIVE",
+        "proportionality_tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "CRA",
+          "GDPR"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-07.2",
+      "type": "SecurityControlDomain",
+      "label": "D-07.2 Secure Coding Practices",
+      "attrs": {
+        "domain_id": "D-07",
+        "name": "Secure Coding Practices",
+        "covered": true,
+        "active": true,
+        "coverage_level": "PARTIAL",
+        "proportionality_tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "CRA"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-07.3",
+      "type": "SecurityControlDomain",
+      "label": "D-07.3 CI/CD Pipeline Security",
+      "attrs": {
+        "domain_id": "D-07",
+        "name": "CI/CD Pipeline Security",
+        "covered": true,
+        "active": true,
+        "coverage_level": "PARTIAL",
+        "proportionality_tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "CRA"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-07.4",
+      "type": "SecurityControlDomain",
+      "label": "D-07.4 Change Management",
+      "attrs": {
+        "domain_id": "D-07",
+        "name": "Change Management",
+        "covered": true,
+        "active": true,
+        "coverage_level": "PARTIAL",
+        "proportionality_tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "CRA"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-08.1",
+      "type": "SecurityControlDomain",
+      "label": "D-08.1 General Security Awareness",
+      "attrs": {
+        "domain_id": "D-08",
+        "name": "General Security Awareness",
+        "covered": true,
+        "active": true,
+        "coverage_level": "PARTIAL",
+        "proportionality_tier": "MINIMAL",
+        "source_regulations": [
+          "GDPR"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-08.2",
+      "type": "SecurityControlDomain",
+      "label": "D-08.2 Role-Specific Competence",
+      "attrs": {
+        "domain_id": "D-08",
+        "name": "Role-Specific Competence",
+        "covered": true,
+        "active": true,
+        "coverage_level": "PARTIAL",
+        "proportionality_tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-08.3",
+      "type": "SecurityControlDomain",
+      "label": "D-08.3 Management Board Training",
+      "attrs": {
+        "domain_id": "D-08",
+        "name": "Management Board Training",
+        "covered": false,
+        "active": false,
+        "coverage_level": "NOT_ADDRESSED",
+        "sole_authority_regulation": "NIS2",
+        "gap_reason": "NIS2 not applicable (below 50 employees)",
+        "inactive_reason": "NIS2 not applicable (below 50 employees)"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-09.1",
+      "type": "SecurityControlDomain",
+      "label": "D-09.1 Information Security Policies",
+      "attrs": {
+        "domain_id": "D-09",
+        "name": "Information Security Policies",
+        "covered": true,
+        "active": true,
+        "coverage_level": "SUBSTANTIVE",
+        "proportionality_tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR",
+          "CRA"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-09.2",
+      "type": "SecurityControlDomain",
+      "label": "D-09.2 Impact & Risk Assessments",
+      "attrs": {
+        "domain_id": "D-09",
+        "name": "Impact & Risk Assessments",
+        "covered": true,
+        "active": true,
+        "coverage_level": "SUBSTANTIVE",
+        "proportionality_tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-09.3",
+      "type": "SecurityControlDomain",
+      "label": "D-09.3 Asset Inventories",
+      "attrs": {
+        "domain_id": "D-09",
+        "name": "Asset Inventories",
+        "covered": true,
+        "active": true,
+        "coverage_level": "PARTIAL",
+        "proportionality_tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "CRA"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-09.4",
+      "type": "SecurityControlDomain",
+      "label": "D-09.4 Records of Processing",
+      "attrs": {
+        "domain_id": "D-09",
+        "name": "Records of Processing",
+        "covered": true,
+        "active": true,
+        "coverage_level": "PARTIAL",
+        "proportionality_tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-10.1",
+      "type": "SecurityControlDomain",
+      "label": "D-10.1 Continuous Security Monitoring",
+      "attrs": {
+        "domain_id": "D-10",
+        "name": "Continuous Security Monitoring",
+        "covered": true,
+        "active": true,
+        "coverage_level": "PARTIAL",
+        "proportionality_tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "CRA"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-10.2",
+      "type": "SecurityControlDomain",
+      "label": "D-10.2 Audit Logging & Traceability",
+      "attrs": {
+        "domain_id": "D-10",
+        "name": "Audit Logging & Traceability",
+        "covered": true,
+        "active": true,
+        "coverage_level": "SUBSTANTIVE",
+        "proportionality_tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "CRA"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "D-10.3",
+      "type": "SecurityControlDomain",
+      "label": "D-10.3 Compliance Testing",
+      "attrs": {
+        "domain_id": "D-10",
+        "name": "Compliance Testing",
+        "covered": true,
+        "active": true,
+        "coverage_level": "SUBSTANTIVE",
+        "proportionality_tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR",
+          "CRA"
+        ]
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3",
+        "Doc12 §4"
+      ]
+    },
+    {
+      "id": "GDPR-C01",
+      "type": "RegulatoryClause",
+      "label": "GDPR-C01 Art. 1 — Lawfulness of processing",
+      "attrs": {
+        "regulation_id": "REG-GDPR",
+        "article": "Art. 1",
+        "description": "Lawfulness of processing",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "controller",
+        "maps_to_subdomain": "D-05.1"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "GDPR-C02",
+      "type": "RegulatoryClause",
+      "label": "GDPR-C02 Art. 2 — Material scope",
+      "attrs": {
+        "regulation_id": "REG-GDPR",
+        "article": "Art. 2",
+        "description": "Material scope",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "controller",
+        "maps_to_subdomain": "D-05.1"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "GDPR-C03",
+      "type": "RegulatoryClause",
+      "label": "GDPR-C03 Art. 3 — Territorial scope",
+      "attrs": {
+        "regulation_id": "REG-GDPR",
+        "article": "Art. 3",
+        "description": "Territorial scope",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "controller",
+        "maps_to_subdomain": "D-09.2"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "GDPR-C04",
+      "type": "RegulatoryClause",
+      "label": "GDPR-C04 Art. 5 — Principles relating to processing",
+      "attrs": {
+        "regulation_id": "REG-GDPR",
+        "article": "Art. 5",
+        "description": "Principles relating to processing",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": [
+          "controller",
+          "processor"
+        ],
+        "maps_to_subdomain": "D-01.1"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "GDPR-C05",
+      "type": "RegulatoryClause",
+      "label": "GDPR-C05 Art. 6 — Lawfulness of processing",
+      "attrs": {
+        "regulation_id": "REG-GDPR",
+        "article": "Art. 6",
+        "description": "Lawfulness of processing",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "controller",
+        "maps_to_subdomain": "D-05.1"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "GDPR-C06",
+      "type": "RegulatoryClause",
+      "label": "GDPR-C06 Art. 7 — Conditions for consent",
+      "attrs": {
+        "regulation_id": "REG-GDPR",
+        "article": "Art. 7",
+        "description": "Conditions for consent",
+        "normative_weight": 3,
+        "obligation_type": "conditional",
+        "obligated_party": "controller",
+        "maps_to_subdomain": "D-05.1"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "GDPR-C07",
+      "type": "RegulatoryClause",
+      "label": "GDPR-C07 Art. 8 — Conditions for child's consent",
+      "attrs": {
+        "regulation_id": "REG-GDPR",
+        "article": "Art. 8",
+        "description": "Conditions for child's consent",
+        "normative_weight": 2,
+        "obligation_type": "conditional",
+        "obligated_party": "controller",
+        "maps_to_subdomain": "D-05.1"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "GDPR-C08",
+      "type": "RegulatoryClause",
+      "label": "GDPR-C08 Art. 9 — Processing of special categories",
+      "attrs": {
+        "regulation_id": "REG-GDPR",
+        "article": "Art. 9",
+        "description": "Processing of special categories",
+        "normative_weight": 3,
+        "obligation_type": "prohibited",
+        "obligated_party": [
+          "controller",
+          "processor"
+        ],
+        "maps_to_subdomain": "D-05.3"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "GDPR-C09",
+      "type": "RegulatoryClause",
+      "label": "GDPR-C09 Art. 12 — Transparent information and communication",
+      "attrs": {
+        "regulation_id": "REG-GDPR",
+        "article": "Art. 12",
+        "description": "Transparent information and communication",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "controller",
+        "maps_to_subdomain": "D-09.4"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "GDPR-C10",
+      "type": "RegulatoryClause",
+      "label": "GDPR-C10 Art. 13 — Information to be provided",
+      "attrs": {
+        "regulation_id": "REG-GDPR",
+        "article": "Art. 13",
+        "description": "Information to be provided",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "controller",
+        "maps_to_subdomain": "D-09.4"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "GDPR-C11",
+      "type": "RegulatoryClause",
+      "label": "GDPR-C11 Art. 14 — Information to data subject (indirect)",
+      "attrs": {
+        "regulation_id": "REG-GDPR",
+        "article": "Art. 14",
+        "description": "Information to data subject (indirect)",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "controller",
+        "maps_to_subdomain": "D-09.4"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "GDPR-C12",
+      "type": "RegulatoryClause",
+      "label": "GDPR-C12 Art. 15 — Right of access by data subject",
+      "attrs": {
+        "regulation_id": "REG-GDPR",
+        "article": "Art. 15",
+        "description": "Right of access by data subject",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "controller",
+        "maps_to_subdomain": "D-05.4"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "GDPR-C13",
+      "type": "RegulatoryClause",
+      "label": "GDPR-C13 Art. 16 — Right to rectification",
+      "attrs": {
+        "regulation_id": "REG-GDPR",
+        "article": "Art. 16",
+        "description": "Right to rectification",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "controller",
+        "maps_to_subdomain": "D-05.3"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "GDPR-C14",
+      "type": "RegulatoryClause",
+      "label": "GDPR-C14 Art. 17 — Right to erasure",
+      "attrs": {
+        "regulation_id": "REG-GDPR",
+        "article": "Art. 17",
+        "description": "Right to erasure",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "controller",
+        "maps_to_subdomain": "D-05.3"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "GDPR-C15",
+      "type": "RegulatoryClause",
+      "label": "GDPR-C15 Art. 18 — Right to restriction of processing",
+      "attrs": {
+        "regulation_id": "REG-GDPR",
+        "article": "Art. 18",
+        "description": "Right to restriction of processing",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "controller",
+        "maps_to_subdomain": "D-05.3"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "GDPR-C16",
+      "type": "RegulatoryClause",
+      "label": "GDPR-C16 Art. 19 — Notification obligation (Art.19 rectif.)",
+      "attrs": {
+        "regulation_id": "REG-GDPR",
+        "article": "Art. 19",
+        "description": "Notification obligation (Art.19 rectif.)",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "controller",
+        "maps_to_subdomain": "D-04.4"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "GDPR-C17",
+      "type": "RegulatoryClause",
+      "label": "GDPR-C17 Art. 20 — Right to data portability",
+      "attrs": {
+        "regulation_id": "REG-GDPR",
+        "article": "Art. 20",
+        "description": "Right to data portability",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "controller",
+        "maps_to_subdomain": "D-05.4"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "GDPR-C18",
+      "type": "RegulatoryClause",
+      "label": "GDPR-C18 Art. 21 — Right to object",
+      "attrs": {
+        "regulation_id": "REG-GDPR",
+        "article": "Art. 21",
+        "description": "Right to object",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "controller",
+        "maps_to_subdomain": "D-05.1"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "GDPR-C19",
+      "type": "RegulatoryClause",
+      "label": "GDPR-C19 Art. 22 — Automated decision-making",
+      "attrs": {
+        "regulation_id": "REG-GDPR",
+        "article": "Art. 22",
+        "description": "Automated decision-making",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "controller",
+        "maps_to_subdomain": "D-03.3"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "GDPR-C20",
+      "type": "RegulatoryClause",
+      "label": "GDPR-C20 Art. 25 — Data protection by design",
+      "attrs": {
+        "regulation_id": "REG-GDPR",
+        "article": "Art. 25",
+        "description": "Data protection by design",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": [
+          "controller",
+          "processor"
+        ],
+        "maps_to_subdomain": "D-07.1"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "GDPR-C21",
+      "type": "RegulatoryClause",
+      "label": "GDPR-C21 Art. 28 — Processor clauses (DPA, sub-processor,...)",
+      "attrs": {
+        "regulation_id": "REG-GDPR",
+        "article": "Art. 28",
+        "description": "Processor clauses (DPA, sub-processor,...)",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": [
+          "controller",
+          "processor"
+        ],
+        "maps_to_subdomain": "D-06.3"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "GDPR-C22",
+      "type": "RegulatoryClause",
+      "label": "GDPR-C22 Art. 30 — Records of processing activities",
+      "attrs": {
+        "regulation_id": "REG-GDPR",
+        "article": "Art. 30",
+        "description": "Records of processing activities",
+        "normative_weight": 2,
+        "obligation_type": "mandatory",
+        "obligated_party": [
+          "controller",
+          "processor"
+        ],
+        "maps_to_subdomain": "D-09.4"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "GDPR-C23",
+      "type": "RegulatoryClause",
+      "label": "GDPR-C23 Art. 31 — Cooperation with supervisory authority",
+      "attrs": {
+        "regulation_id": "REG-GDPR",
+        "article": "Art. 31",
+        "description": "Cooperation with supervisory authority",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": [
+          "controller",
+          "processor"
+        ],
+        "maps_to_subdomain": "D-04.3"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "GDPR-C24",
+      "type": "RegulatoryClause",
+      "label": "GDPR-C24 Art. 32 — Security of processing",
+      "attrs": {
+        "regulation_id": "REG-GDPR",
+        "article": "Art. 32",
+        "description": "Security of processing",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": [
+          "controller",
+          "processor"
+        ],
+        "maps_to_subdomain": "D-01.1"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "GDPR-C25",
+      "type": "RegulatoryClause",
+      "label": "GDPR-C25 Art. 33 — Breach notification (controller→SA 72h, processor→controller)",
+      "attrs": {
+        "regulation_id": "REG-GDPR",
+        "article": "Art. 33",
+        "description": "Breach notification (controller→SA 72h, processor→controller)",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": [
+          "controller",
+          "processor"
+        ],
+        "maps_to_subdomain": "D-04.3"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "GDPR-C26",
+      "type": "RegulatoryClause",
+      "label": "GDPR-C26 Art. 34 — Breach notification to data subject",
+      "attrs": {
+        "regulation_id": "REG-GDPR",
+        "article": "Art. 34",
+        "description": "Breach notification to data subject",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "controller",
+        "maps_to_subdomain": "D-04.3"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "GDPR-C27",
+      "type": "RegulatoryClause",
+      "label": "GDPR-C27 Art. 35 — Data protection impact assessment",
+      "attrs": {
+        "regulation_id": "REG-GDPR",
+        "article": "Art. 35",
+        "description": "Data protection impact assessment",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "controller",
+        "maps_to_subdomain": "D-09.2"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "GDPR-C28",
+      "type": "RegulatoryClause",
+      "label": "GDPR-C28 Art. 35(1) — Data protection impact assessment (DPIA)",
+      "attrs": {
+        "regulation_id": "REG-GDPR",
+        "article": "Art. 35(1)",
+        "description": "Data protection impact assessment (DPIA)",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "controller",
+        "maps_to_subdomain": "D-09.2"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "CRA-C01",
+      "type": "RegulatoryClause",
+      "label": "CRA-C01 Art. 1 — Subject matter and scope",
+      "attrs": {
+        "regulation_id": "REG-CRA",
+        "article": "Art. 1",
+        "description": "Subject matter and scope",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "manufacturer",
+        "maps_to_subdomain": "D-07.1"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "CRA-C02",
+      "type": "RegulatoryClause",
+      "label": "CRA-C02 Art. 2 — Definitions",
+      "attrs": {
+        "regulation_id": "REG-CRA",
+        "article": "Art. 2",
+        "description": "Definitions",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "manufacturer",
+        "maps_to_subdomain": "D-07.1"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "CRA-C03",
+      "type": "RegulatoryClause",
+      "label": "CRA-C03 Art. 3 — Security requirements",
+      "attrs": {
+        "regulation_id": "REG-CRA",
+        "article": "Art. 3",
+        "description": "Security requirements",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "manufacturer",
+        "maps_to_subdomain": "D-03.4"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "CRA-C04",
+      "type": "RegulatoryClause",
+      "label": "CRA-C04 Art. 4 — Vulnerability handling",
+      "attrs": {
+        "regulation_id": "REG-CRA",
+        "article": "Art. 4",
+        "description": "Vulnerability handling",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "manufacturer",
+        "maps_to_subdomain": "D-02.2"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "CRA-C05",
+      "type": "RegulatoryClause",
+      "label": "CRA-C05 Art. 5 — Security updates",
+      "attrs": {
+        "regulation_id": "REG-CRA",
+        "article": "Art. 5",
+        "description": "Security updates",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "manufacturer",
+        "maps_to_subdomain": "D-02.1"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "CRA-C06",
+      "type": "RegulatoryClause",
+      "label": "CRA-C06 Art. 6 — Incident reporting",
+      "attrs": {
+        "regulation_id": "REG-CRA",
+        "article": "Art. 6",
+        "description": "Incident reporting",
+        "normative_weight": 2,
+        "obligation_type": "mandatory",
+        "obligated_party": "manufacturer",
+        "maps_to_subdomain": "D-04.1"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "CRA-C07",
+      "type": "RegulatoryClause",
+      "label": "CRA-C07 Art. 7 — Supply chain security",
+      "attrs": {
+        "regulation_id": "REG-CRA",
+        "article": "Art. 7",
+        "description": "Supply chain security",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "manufacturer",
+        "maps_to_subdomain": "D-06.2"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "CRA-C08",
+      "type": "RegulatoryClause",
+      "label": "CRA-C08 Art. 8 — Secure defaults",
+      "attrs": {
+        "regulation_id": "REG-CRA",
+        "article": "Art. 8",
+        "description": "Secure defaults",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "manufacturer",
+        "maps_to_subdomain": "D-03.4"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "CRA-C09",
+      "type": "RegulatoryClause",
+      "label": "CRA-C09 Art. 9 — Password security",
+      "attrs": {
+        "regulation_id": "REG-CRA",
+        "article": "Art. 9",
+        "description": "Password security",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "manufacturer",
+        "maps_to_subdomain": "D-03.2"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "CRA-C10",
+      "type": "RegulatoryClause",
+      "label": "CRA-C10 Art. 10 — Identity authentication",
+      "attrs": {
+        "regulation_id": "REG-CRA",
+        "article": "Art. 10",
+        "description": "Identity authentication",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "manufacturer",
+        "maps_to_subdomain": "D-03.1"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "CRA-C11",
+      "type": "RegulatoryClause",
+      "label": "CRA-C11 Art. 11 — Data erasure",
+      "attrs": {
+        "regulation_id": "REG-CRA",
+        "article": "Art. 11",
+        "description": "Data erasure",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "manufacturer",
+        "maps_to_subdomain": "D-05.3"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "CRA-C12",
+      "type": "RegulatoryClause",
+      "label": "CRA-C12 Art. 12 — Availability at end of support",
+      "attrs": {
+        "regulation_id": "REG-CRA",
+        "article": "Art. 12",
+        "description": "Availability at end of support",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "manufacturer",
+        "maps_to_subdomain": "D-10.1"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "CRA-C13",
+      "type": "RegulatoryClause",
+      "label": "CRA-C13 Art. 13 — Technical documentation",
+      "attrs": {
+        "regulation_id": "REG-CRA",
+        "article": "Art. 13",
+        "description": "Technical documentation",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "manufacturer",
+        "maps_to_subdomain": "D-09.1"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "CRA-C14",
+      "type": "RegulatoryClause",
+      "label": "CRA-C14 Art. 14 — Conformity assessment",
+      "attrs": {
+        "regulation_id": "REG-CRA",
+        "article": "Art. 14",
+        "description": "Conformity assessment",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "manufacturer",
+        "maps_to_subdomain": "D-10.3"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "CRA-C15",
+      "type": "RegulatoryClause",
+      "label": "CRA-C15 Art. 15 — CE marking",
+      "attrs": {
+        "regulation_id": "REG-CRA",
+        "article": "Art. 15",
+        "description": "CE marking",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "manufacturer",
+        "maps_to_subdomain": "D-01.3"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "CRA-C16",
+      "type": "RegulatoryClause",
+      "label": "CRA-C16 Art. 16 — Market surveillance",
+      "attrs": {
+        "regulation_id": "REG-CRA",
+        "article": "Art. 16",
+        "description": "Market surveillance",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "manufacturer",
+        "maps_to_subdomain": "D-06.3"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "CRA-C17",
+      "type": "RegulatoryClause",
+      "label": "CRA-C17 Art. 17 — Essential requirements for ICT products",
+      "attrs": {
+        "regulation_id": "REG-CRA",
+        "article": "Art. 17",
+        "description": "Essential requirements for ICT products",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "manufacturer",
+        "maps_to_subdomain": "D-02.1"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "CRA-C18",
+      "type": "RegulatoryClause",
+      "label": "CRA-C18 Art. 18 — Security by design",
+      "attrs": {
+        "regulation_id": "REG-CRA",
+        "article": "Art. 18",
+        "description": "Security by design",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "manufacturer",
+        "maps_to_subdomain": "D-07.1"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "CRA-C19",
+      "type": "RegulatoryClause",
+      "label": "CRA-C19 Art. 19 — Vulnerability handling and disclosure",
+      "attrs": {
+        "regulation_id": "REG-CRA",
+        "article": "Art. 19",
+        "description": "Vulnerability handling and disclosure",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "manufacturer",
+        "maps_to_subdomain": "D-02.3"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "CRA-C20",
+      "type": "RegulatoryClause",
+      "label": "CRA-C20 Art. 20 — Reporting incidents",
+      "attrs": {
+        "regulation_id": "REG-CRA",
+        "article": "Art. 20",
+        "description": "Reporting incidents",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "manufacturer",
+        "maps_to_subdomain": "D-04.3"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "CRA-C21",
+      "type": "RegulatoryClause",
+      "label": "CRA-C21 Art. 21 — EU declarative conformity",
+      "attrs": {
+        "regulation_id": "REG-CRA",
+        "article": "Art. 21",
+        "description": "EU declarative conformity",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "manufacturer",
+        "maps_to_subdomain": "D-10.3"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "CRA-C22",
+      "type": "RegulatoryClause",
+      "label": "CRA-C22 Art. 22 — Traceability",
+      "attrs": {
+        "regulation_id": "REG-CRA",
+        "article": "Art. 22",
+        "description": "Traceability",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "manufacturer",
+        "maps_to_subdomain": "D-10.2"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "CRA-C23",
+      "type": "RegulatoryClause",
+      "label": "CRA-C23 Art. 23 — Software security",
+      "attrs": {
+        "regulation_id": "REG-CRA",
+        "article": "Art. 23",
+        "description": "Software security",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "manufacturer",
+        "maps_to_subdomain": "D-07.1"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "CRA-C24",
+      "type": "RegulatoryClause",
+      "label": "CRA-C24 Art. 24 — Encrypted data storage",
+      "attrs": {
+        "regulation_id": "REG-CRA",
+        "article": "Art. 24",
+        "description": "Encrypted data storage",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "manufacturer",
+        "maps_to_subdomain": "D-01.1"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "CRA-C25",
+      "type": "RegulatoryClause",
+      "label": "CRA-C25 Art. 25 — Unauthorised access prevention",
+      "attrs": {
+        "regulation_id": "REG-CRA",
+        "article": "Art. 25",
+        "description": "Unauthorised access prevention",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "manufacturer",
+        "maps_to_subdomain": "D-01.2"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "CRA-C26",
+      "type": "RegulatoryClause",
+      "label": "CRA-C26 Art. 26 — Resilience to outages",
+      "attrs": {
+        "regulation_id": "REG-CRA",
+        "article": "Art. 26",
+        "description": "Resilience to outages",
+        "normative_weight": 3,
+        "obligation_type": "mandatory",
+        "obligated_party": "manufacturer",
+        "maps_to_subdomain": "D-04.4"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8.1 (GDPR) / §8.2 (CRA)"
+      ]
+    },
+    {
+      "id": "AG-D-01.1-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-01.1-001 (HL/GDPR-driven)",
+      "attrs": {
+        "subdomain_id": "D-01.1",
+        "slot": "001",
+        "track": "GDPR",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §2 (HL) + §3 (GDPR-driven)"
+      ]
+    },
+    {
+      "id": "AG-D-01.2-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-01.2-001 (HL/GDPR-driven)",
+      "attrs": {
+        "subdomain_id": "D-01.2",
+        "slot": "001",
+        "track": "GDPR",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §2 (HL) + §3 (GDPR-driven)"
+      ]
+    },
+    {
+      "id": "AG-D-01.3-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-01.3-001 (HL/GDPR-driven)",
+      "attrs": {
+        "subdomain_id": "D-01.3",
+        "slot": "001",
+        "track": "GDPR",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §2 (HL) + §3 (GDPR-driven)"
+      ]
+    },
+    {
+      "id": "AG-D-01.4-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-01.4-001 (HL/GDPR-driven)",
+      "attrs": {
+        "subdomain_id": "D-01.4",
+        "slot": "001",
+        "track": "GDPR",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §2 (HL) + §3 (GDPR-driven)"
+      ]
+    },
+    {
+      "id": "AG-D-02.1-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-02.1-001 (HL/GDPR-driven)",
+      "attrs": {
+        "subdomain_id": "D-02.1",
+        "slot": "001",
+        "track": "GDPR",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §2 (HL) + §3 (GDPR-driven)"
+      ]
+    },
+    {
+      "id": "AG-D-02.2-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-02.2-001 (HL)",
+      "attrs": {
+        "subdomain_id": "D-02.2",
+        "slot": "001",
+        "track": "HL",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §2 (HL row)"
+      ]
+    },
+    {
+      "id": "AG-D-02.3-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-02.3-001 (HL)",
+      "attrs": {
+        "subdomain_id": "D-02.3",
+        "slot": "001",
+        "track": "HL",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §2 (HL row)"
+      ]
+    },
+    {
+      "id": "AG-D-03.1-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-03.1-001 (HL/GDPR-driven)",
+      "attrs": {
+        "subdomain_id": "D-03.1",
+        "slot": "001",
+        "track": "GDPR",
+        "priority": "MUST",
+        "tier": "MINIMAL"
+      },
+      "source": [
+        "Doc13 §2 (HL) + §3 (GDPR-driven)"
+      ]
+    },
+    {
+      "id": "AG-D-03.2-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-03.2-001 (HL/GDPR-driven)",
+      "attrs": {
+        "subdomain_id": "D-03.2",
+        "slot": "001",
+        "track": "GDPR",
+        "priority": "MUST",
+        "tier": "MINIMAL"
+      },
+      "source": [
+        "Doc13 §2 (HL) + §3 (GDPR-driven)"
+      ]
+    },
+    {
+      "id": "AG-D-03.3-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-03.3-001 (HL/GDPR-driven)",
+      "attrs": {
+        "subdomain_id": "D-03.3",
+        "slot": "001",
+        "track": "GDPR",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §2 (HL) + §3 (GDPR-driven)"
+      ]
+    },
+    {
+      "id": "AG-D-03.4-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-03.4-001 (HL/GDPR-driven)",
+      "attrs": {
+        "subdomain_id": "D-03.4",
+        "slot": "001",
+        "track": "GDPR",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §2 (HL) + §3 (GDPR-driven)"
+      ]
+    },
+    {
+      "id": "AG-D-04.1-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-04.1-001 (HL/GDPR-driven)",
+      "attrs": {
+        "subdomain_id": "D-04.1",
+        "slot": "001",
+        "track": "GDPR",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §2 (HL) + §3 (GDPR-driven)"
+      ]
+    },
+    {
+      "id": "AG-D-04.2-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-04.2-001 (HL/GDPR-driven)",
+      "attrs": {
+        "subdomain_id": "D-04.2",
+        "slot": "001",
+        "track": "GDPR",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §2 (HL) + §3 (GDPR-driven)"
+      ]
+    },
+    {
+      "id": "AG-D-04.3-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-04.3-001 (HL/GDPR-driven)",
+      "attrs": {
+        "subdomain_id": "D-04.3",
+        "slot": "001",
+        "track": "GDPR",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §2 (HL) + §3 (GDPR-driven)"
+      ]
+    },
+    {
+      "id": "AG-D-04.4-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-04.4-001 (HL/GDPR-driven)",
+      "attrs": {
+        "subdomain_id": "D-04.4",
+        "slot": "001",
+        "track": "GDPR",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §2 (HL) + §3 (GDPR-driven)"
+      ]
+    },
+    {
+      "id": "AG-D-05.1-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-05.1-001 (HL/GDPR-driven)",
+      "attrs": {
+        "subdomain_id": "D-05.1",
+        "slot": "001",
+        "track": "GDPR",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §2 (HL) + §3 (GDPR-driven)"
+      ]
+    },
+    {
+      "id": "AG-D-05.2-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-05.2-001 (HL/GDPR-driven)",
+      "attrs": {
+        "subdomain_id": "D-05.2",
+        "slot": "001",
+        "track": "GDPR",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §2 (HL) + §3 (GDPR-driven)"
+      ]
+    },
+    {
+      "id": "AG-D-05.3-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-05.3-001 (HL/GDPR-driven)",
+      "attrs": {
+        "subdomain_id": "D-05.3",
+        "slot": "001",
+        "track": "GDPR",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §2 (HL) + §3 (GDPR-driven)"
+      ]
+    },
+    {
+      "id": "AG-D-05.4-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-05.4-001 (HL/GDPR-driven)",
+      "attrs": {
+        "subdomain_id": "D-05.4",
+        "slot": "001",
+        "track": "GDPR",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §2 (HL) + §3 (GDPR-driven)"
+      ]
+    },
+    {
+      "id": "AG-D-06.1-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-06.1-001 (HL/GDPR-driven)",
+      "attrs": {
+        "subdomain_id": "D-06.1",
+        "slot": "001",
+        "track": "GDPR",
+        "priority": "MUST",
+        "tier": "MINIMAL"
+      },
+      "source": [
+        "Doc13 §2 (HL) + §3 (GDPR-driven)"
+      ]
+    },
+    {
+      "id": "AG-D-06.2-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-06.2-001 (HL)",
+      "attrs": {
+        "subdomain_id": "D-06.2",
+        "slot": "001",
+        "track": "HL",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §2 (HL row)"
+      ]
+    },
+    {
+      "id": "AG-D-06.3-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-06.3-001 (HL/GDPR-driven)",
+      "attrs": {
+        "subdomain_id": "D-06.3",
+        "slot": "001",
+        "track": "GDPR",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §2 (HL) + §3 (GDPR-driven)"
+      ]
+    },
+    {
+      "id": "AG-D-07.1-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-07.1-001 (HL/GDPR-driven)",
+      "attrs": {
+        "subdomain_id": "D-07.1",
+        "slot": "001",
+        "track": "GDPR",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §2 (HL) + §3 (GDPR-driven)"
+      ]
+    },
+    {
+      "id": "AG-D-07.2-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-07.2-001 (HL)",
+      "attrs": {
+        "subdomain_id": "D-07.2",
+        "slot": "001",
+        "track": "HL",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §2 (HL row)"
+      ]
+    },
+    {
+      "id": "AG-D-07.3-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-07.3-001 (HL)",
+      "attrs": {
+        "subdomain_id": "D-07.3",
+        "slot": "001",
+        "track": "HL",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §2 (HL row)"
+      ]
+    },
+    {
+      "id": "AG-D-07.4-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-07.4-001 (HL)",
+      "attrs": {
+        "subdomain_id": "D-07.4",
+        "slot": "001",
+        "track": "HL",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §2 (HL row)"
+      ]
+    },
+    {
+      "id": "AG-D-08.1-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-08.1-001 (HL/GDPR-driven)",
+      "attrs": {
+        "subdomain_id": "D-08.1",
+        "slot": "001",
+        "track": "GDPR",
+        "priority": "MUST",
+        "tier": "MINIMAL"
+      },
+      "source": [
+        "Doc13 §2 (HL) + §3 (GDPR-driven)"
+      ]
+    },
+    {
+      "id": "AG-D-08.2-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-08.2-001 (HL/GDPR-driven)",
+      "attrs": {
+        "subdomain_id": "D-08.2",
+        "slot": "001",
+        "track": "GDPR",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §2 (HL) + §3 (GDPR-driven)"
+      ]
+    },
+    {
+      "id": "AG-D-09.1-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-09.1-001 (HL/GDPR-driven)",
+      "attrs": {
+        "subdomain_id": "D-09.1",
+        "slot": "001",
+        "track": "GDPR",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §2 (HL) + §3 (GDPR-driven)"
+      ]
+    },
+    {
+      "id": "AG-D-09.2-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-09.2-001 (HL/GDPR-driven)",
+      "attrs": {
+        "subdomain_id": "D-09.2",
+        "slot": "001",
+        "track": "GDPR",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §2 (HL) + §3 (GDPR-driven)"
+      ]
+    },
+    {
+      "id": "AG-D-09.3-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-09.3-001 (HL)",
+      "attrs": {
+        "subdomain_id": "D-09.3",
+        "slot": "001",
+        "track": "HL",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §2 (HL row)"
+      ]
+    },
+    {
+      "id": "AG-D-09.4-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-09.4-001 (HL/GDPR-driven)",
+      "attrs": {
+        "subdomain_id": "D-09.4",
+        "slot": "001",
+        "track": "GDPR",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §2 (HL) + §3 (GDPR-driven)"
+      ]
+    },
+    {
+      "id": "AG-D-10.1-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-10.1-001 (HL/GDPR-driven)",
+      "attrs": {
+        "subdomain_id": "D-10.1",
+        "slot": "001",
+        "track": "GDPR",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §2 (HL) + §3 (GDPR-driven)"
+      ]
+    },
+    {
+      "id": "AG-D-10.2-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-10.2-001 (HL/GDPR-driven)",
+      "attrs": {
+        "subdomain_id": "D-10.2",
+        "slot": "001",
+        "track": "GDPR",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §2 (HL) + §3 (GDPR-driven)"
+      ]
+    },
+    {
+      "id": "AG-D-10.3-001",
+      "type": "AdjustedGoal",
+      "label": "AG-D-10.3-001 (HL/GDPR-driven)",
+      "attrs": {
+        "subdomain_id": "D-10.3",
+        "slot": "001",
+        "track": "GDPR",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §2 (HL) + §3 (GDPR-driven)"
+      ]
+    },
+    {
+      "id": "AG-D-01.1-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-01.1-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-01.1",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-01.2-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-01.2-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-01.2",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-01.3-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-01.3-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-01.3",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-01.4-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-01.4-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-01.4",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-02.1-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-02.1-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-02.1",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-02.2-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-02.2-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-02.2",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-02.3-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-02.3-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-02.3",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-03.1-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-03.1-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-03.1",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "MINIMAL"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-03.2-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-03.2-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-03.2",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "MINIMAL"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-03.3-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-03.3-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-03.3",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-03.4-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-03.4-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-03.4",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-04.1-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-04.1-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-04.1",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-04.2-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-04.2-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-04.2",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-04.3-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-04.3-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-04.3",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-04.4-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-04.4-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-04.4",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-05.1-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-05.1-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-05.1",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-05.2-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-05.2-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-05.2",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-05.3-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-05.3-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-05.3",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-06.1-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-06.1-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-06.1",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "MINIMAL"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-06.2-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-06.2-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-06.2",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-06.3-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-06.3-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-06.3",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-07.1-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-07.1-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-07.1",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-07.2-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-07.2-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-07.2",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-07.3-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-07.3-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-07.3",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-07.4-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-07.4-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-07.4",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-08.1-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-08.1-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-08.1",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "MINIMAL"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-08.2-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-08.2-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-08.2",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-09.1-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-09.1-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-09.1",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-09.2-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-09.2-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-09.2",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-09.3-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-09.3-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-09.3",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-09.4-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-09.4-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-09.4",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-10.1-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-10.1-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-10.1",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-10.2-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-10.2-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-10.2",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "AG-D-10.3-002",
+      "type": "AdjustedGoal",
+      "label": "AG-D-10.3-002 (CRA-driven)",
+      "attrs": {
+        "subdomain_id": "D-10.3",
+        "slot": "002",
+        "track": "CRA",
+        "priority": "MUST",
+        "tier": "LIGHTWEIGHT"
+      },
+      "source": [
+        "Doc13 §4 (CRA-driven row)"
+      ]
+    },
+    {
+      "id": "T-001",
+      "type": "Tension",
+      "label": "Breach notification timing mismatch (GDPR 72h vs CRA 24h)",
+      "attrs": {
+        "kind": "timing",
+        "severity": "high",
+        "clause_1": "GDPR-C25",
+        "clause_2": "CRA-C20",
+        "affected_subdomains": [
+          "D-04.3"
+        ],
+        "affected_regulations": [
+          "GDPR",
+          "CRA"
+        ],
+        "resolution_approach": "max_sla_routing",
+        "resolution_detail": "Use the most stringent timeline (24h) as the internal standard for all breach notifications"
+      },
+      "source": [
+        "phase1_ontology.yaml@tensions[T-001]",
+        "Doc11 §5.4 EVT-001"
+      ]
+    },
+    {
+      "id": "T-002",
+      "type": "Tension",
+      "label": "Processor vs Manufacturer obligations (vendor scope)",
+      "attrs": {
+        "kind": "scope",
+        "severity": "medium",
+        "clause_1": "GDPR-C21",
+        "clause_2": "CRA-C07",
+        "affected_subdomains": [
+          "D-06.1",
+          "D-06.3"
+        ],
+        "affected_regulations": [
+          "GDPR",
+          "CRA"
+        ],
+        "resolution_approach": "unified_vendor_management",
+        "resolution_detail": "Single vendor risk assessment template that addresses both GDPR Art. 28 and CRA Art. 7"
+      },
+      "source": [
+        "phase1_ontology.yaml@tensions[T-002]",
+        "Doc11 §5.4 EVT-002"
+      ]
+    },
+    {
+      "id": "T-003",
+      "type": "Tension",
+      "label": "Records documentation overlap (RoPA + technical documentation)",
+      "attrs": {
+        "kind": "requirement",
+        "severity": "medium",
+        "clause_1": "GDPR-C13",
+        "clause_2": "CRA-C13",
+        "affected_subdomains": [
+          "D-09.4",
+          "D-09.1"
+        ],
+        "affected_regulations": [
+          "GDPR",
+          "CRA"
+        ],
+        "resolution_approach": "integrated_documentation",
+        "resolution_detail": "Unified records system that satisfies both record-keeping requirements"
+      },
+      "source": [
+        "phase1_ontology.yaml@tensions[T-003]",
+        "Doc11 §5.4 EVT-003"
+      ]
+    },
+    {
+      "id": "T-004",
+      "type": "Tension",
+      "label": "DPO vs Security team competence",
+      "attrs": {
+        "kind": "intensity",
+        "severity": "low",
+        "clause_1": "GDPR-C28",
+        "clause_2": "CRA-C21",
+        "affected_subdomains": [
+          "D-08.2"
+        ],
+        "affected_regulations": [
+          "GDPR",
+          "CRA"
+        ],
+        "resolution_approach": "competency_matrix",
+        "resolution_detail": "Competency requirements that address both data protection and product security"
+      },
+      "source": [
+        "phase1_ontology.yaml@tensions[T-004]"
+      ]
+    }
+  ],
+  "links": [
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "REG-GDPR",
+      "rel": "ASSESSES",
+      "attrs": {
+        "obligated_party": [
+          "CONTROLLER",
+          "PROCESSOR"
+        ],
+        "applicable": true
+      },
+      "source": [
+        "phase1_ontology.yaml@applicability_assessments",
+        "Doc08 §4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "REG-CRA",
+      "rel": "ASSESSES",
+      "attrs": {
+        "obligated_party": [
+          "MANUFACTURER"
+        ],
+        "applicable": true
+      },
+      "source": [
+        "phase1_ontology.yaml@applicability_assessments",
+        "Doc08 §4"
+      ]
+    },
+    {
+      "from": "GDPR-C01",
+      "to": "D-05.1",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 1"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "GDPR-C02",
+      "to": "D-05.1",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 2"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "GDPR-C03",
+      "to": "D-09.2",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 3"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "GDPR-C04",
+      "to": "D-01.1",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 5"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "GDPR-C05",
+      "to": "D-05.1",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 6"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "GDPR-C06",
+      "to": "D-05.1",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 7"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "GDPR-C07",
+      "to": "D-05.1",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 8"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "GDPR-C08",
+      "to": "D-05.3",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 9"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "GDPR-C09",
+      "to": "D-09.4",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 12"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "GDPR-C10",
+      "to": "D-09.4",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 13"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "GDPR-C11",
+      "to": "D-09.4",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 14"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "GDPR-C12",
+      "to": "D-05.4",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 15"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "GDPR-C13",
+      "to": "D-05.3",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 16"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "GDPR-C14",
+      "to": "D-05.3",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 17"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "GDPR-C15",
+      "to": "D-05.3",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 18"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "GDPR-C16",
+      "to": "D-04.4",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 19"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "GDPR-C17",
+      "to": "D-05.4",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 20"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "GDPR-C18",
+      "to": "D-05.1",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 21"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "GDPR-C19",
+      "to": "D-03.3",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 22"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "GDPR-C20",
+      "to": "D-07.1",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 25"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "GDPR-C21",
+      "to": "D-06.3",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 28"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "GDPR-C22",
+      "to": "D-09.4",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 30"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "GDPR-C23",
+      "to": "D-04.3",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 31"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "GDPR-C24",
+      "to": "D-01.1",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 32"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "GDPR-C25",
+      "to": "D-04.3",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 33"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "GDPR-C26",
+      "to": "D-04.3",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 34"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "GDPR-C27",
+      "to": "D-09.2",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 35"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "GDPR-C28",
+      "to": "D-09.2",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 35(1)"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "CRA-C01",
+      "to": "D-07.1",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 1"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "CRA-C02",
+      "to": "D-07.1",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 2"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "CRA-C03",
+      "to": "D-03.4",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 3"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "CRA-C04",
+      "to": "D-02.2",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 4"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "CRA-C05",
+      "to": "D-02.1",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 5"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "CRA-C06",
+      "to": "D-04.1",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 6"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "CRA-C07",
+      "to": "D-06.2",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 7"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "CRA-C08",
+      "to": "D-03.4",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 8"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "CRA-C09",
+      "to": "D-03.2",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 9"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "CRA-C10",
+      "to": "D-03.1",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 10"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "CRA-C11",
+      "to": "D-05.3",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 11"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "CRA-C12",
+      "to": "D-10.1",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 12"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "CRA-C13",
+      "to": "D-09.1",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 13"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "CRA-C14",
+      "to": "D-10.3",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 14"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "CRA-C15",
+      "to": "D-01.3",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 15"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "CRA-C16",
+      "to": "D-06.3",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 16"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "CRA-C17",
+      "to": "D-02.1",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 17"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "CRA-C18",
+      "to": "D-07.1",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 18"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "CRA-C19",
+      "to": "D-02.3",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 19"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "CRA-C20",
+      "to": "D-04.3",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 20"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "CRA-C21",
+      "to": "D-10.3",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 21"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "CRA-C22",
+      "to": "D-10.2",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 22"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "CRA-C23",
+      "to": "D-07.1",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 23"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "CRA-C24",
+      "to": "D-01.1",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 24"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "CRA-C25",
+      "to": "D-01.2",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 25"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "CRA-C26",
+      "to": "D-04.4",
+      "rel": "MAPS_TO",
+      "attrs": {
+        "article": "Art. 26"
+      },
+      "source": [
+        "phase1_ontology.yaml@clause_mappings",
+        "Doc10 §8"
+      ]
+    },
+    {
+      "from": "D-01.1",
+      "to": "D-01",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-01.2",
+      "to": "D-01",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-01.3",
+      "to": "D-01",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-01.4",
+      "to": "D-01",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-02.1",
+      "to": "D-02",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-02.2",
+      "to": "D-02",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-02.3",
+      "to": "D-02",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-02.4",
+      "to": "D-02",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-03.1",
+      "to": "D-03",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-03.2",
+      "to": "D-03",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-03.3",
+      "to": "D-03",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-03.4",
+      "to": "D-03",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-04.1",
+      "to": "D-04",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-04.2",
+      "to": "D-04",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-04.3",
+      "to": "D-04",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-04.4",
+      "to": "D-04",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-05.1",
+      "to": "D-05",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-05.2",
+      "to": "D-05",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-05.3",
+      "to": "D-05",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-05.4",
+      "to": "D-05",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-06.1",
+      "to": "D-06",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-06.2",
+      "to": "D-06",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-06.3",
+      "to": "D-06",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-06.4",
+      "to": "D-06",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-07.1",
+      "to": "D-07",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-07.2",
+      "to": "D-07",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-07.3",
+      "to": "D-07",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-07.4",
+      "to": "D-07",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-08.1",
+      "to": "D-08",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-08.2",
+      "to": "D-08",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-08.3",
+      "to": "D-08",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-09.1",
+      "to": "D-09",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-09.2",
+      "to": "D-09",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-09.3",
+      "to": "D-09",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-09.4",
+      "to": "D-09",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-10.1",
+      "to": "D-10",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-10.2",
+      "to": "D-10",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-10.3",
+      "to": "D-10",
+      "rel": "BELONGS_TO",
+      "attrs": {},
+      "source": [
+        "phase1_ontology.yaml@subdomains",
+        "Doc11 §3"
+      ]
+    },
+    {
+      "from": "D-01.1",
+      "to": "AG-D-01.1-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "GDPR"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-01.2",
+      "to": "AG-D-01.2-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "GDPR"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-01.3",
+      "to": "AG-D-01.3-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "GDPR"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-01.4",
+      "to": "AG-D-01.4-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "GDPR"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-02.1",
+      "to": "AG-D-02.1-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "GDPR"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-02.2",
+      "to": "AG-D-02.2-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "HL"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-02.3",
+      "to": "AG-D-02.3-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "HL"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-03.1",
+      "to": "AG-D-03.1-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "GDPR"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-03.2",
+      "to": "AG-D-03.2-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "GDPR"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-03.3",
+      "to": "AG-D-03.3-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "GDPR"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-03.4",
+      "to": "AG-D-03.4-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "GDPR"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-04.1",
+      "to": "AG-D-04.1-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "GDPR"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-04.2",
+      "to": "AG-D-04.2-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "GDPR"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-04.3",
+      "to": "AG-D-04.3-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "GDPR"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-04.4",
+      "to": "AG-D-04.4-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "GDPR"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-05.1",
+      "to": "AG-D-05.1-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "GDPR"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-05.2",
+      "to": "AG-D-05.2-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "GDPR"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-05.3",
+      "to": "AG-D-05.3-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "GDPR"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-05.4",
+      "to": "AG-D-05.4-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "GDPR"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-06.1",
+      "to": "AG-D-06.1-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "GDPR"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-06.2",
+      "to": "AG-D-06.2-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "HL"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-06.3",
+      "to": "AG-D-06.3-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "GDPR"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-07.1",
+      "to": "AG-D-07.1-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "GDPR"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-07.2",
+      "to": "AG-D-07.2-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "HL"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-07.3",
+      "to": "AG-D-07.3-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "HL"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-07.4",
+      "to": "AG-D-07.4-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "HL"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-08.1",
+      "to": "AG-D-08.1-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "GDPR"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-08.2",
+      "to": "AG-D-08.2-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "GDPR"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-09.1",
+      "to": "AG-D-09.1-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "GDPR"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-09.2",
+      "to": "AG-D-09.2-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "GDPR"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-09.3",
+      "to": "AG-D-09.3-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "HL"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-09.4",
+      "to": "AG-D-09.4-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "GDPR"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-10.1",
+      "to": "AG-D-10.1-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "GDPR"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-10.2",
+      "to": "AG-D-10.2-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "GDPR"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-10.3",
+      "to": "AG-D-10.3-001",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "001",
+        "track": "GDPR"
+      },
+      "source": [
+        "Doc13 §2/§3"
+      ]
+    },
+    {
+      "from": "D-01.1",
+      "to": "AG-D-01.1-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-01.2",
+      "to": "AG-D-01.2-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-01.3",
+      "to": "AG-D-01.3-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-01.4",
+      "to": "AG-D-01.4-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-02.1",
+      "to": "AG-D-02.1-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-02.2",
+      "to": "AG-D-02.2-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-02.3",
+      "to": "AG-D-02.3-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-03.1",
+      "to": "AG-D-03.1-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-03.2",
+      "to": "AG-D-03.2-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-03.3",
+      "to": "AG-D-03.3-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-03.4",
+      "to": "AG-D-03.4-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-04.1",
+      "to": "AG-D-04.1-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-04.2",
+      "to": "AG-D-04.2-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-04.3",
+      "to": "AG-D-04.3-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-04.4",
+      "to": "AG-D-04.4-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-05.1",
+      "to": "AG-D-05.1-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-05.2",
+      "to": "AG-D-05.2-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-05.3",
+      "to": "AG-D-05.3-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-06.1",
+      "to": "AG-D-06.1-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-06.2",
+      "to": "AG-D-06.2-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-06.3",
+      "to": "AG-D-06.3-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-07.1",
+      "to": "AG-D-07.1-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-07.2",
+      "to": "AG-D-07.2-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-07.3",
+      "to": "AG-D-07.3-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-07.4",
+      "to": "AG-D-07.4-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-08.1",
+      "to": "AG-D-08.1-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-08.2",
+      "to": "AG-D-08.2-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-09.1",
+      "to": "AG-D-09.1-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-09.2",
+      "to": "AG-D-09.2-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-09.3",
+      "to": "AG-D-09.3-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-09.4",
+      "to": "AG-D-09.4-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-10.1",
+      "to": "AG-D-10.1-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-10.2",
+      "to": "AG-D-10.2-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "D-10.3",
+      "to": "AG-D-10.3-002",
+      "rel": "YIELDS",
+      "attrs": {
+        "slot": "002",
+        "track": "CRA"
+      },
+      "source": [
+        "Doc13 §4"
+      ]
+    },
+    {
+      "from": "REG-GDPR",
+      "to": "REG-CRA",
+      "rel": "OVERLAPS_WITH",
+      "attrs": {
+        "shared_subdomains_count": 7,
+        "shared_subdomains": [
+          "D-01.1",
+          "D-01.2",
+          "D-04.2",
+          "D-04.3",
+          "D-05.3",
+          "D-07.1",
+          "D-10.3"
+        ],
+        "jaccard_index": 0.367
+      },
+      "source": [
+        "phase1_ontology.yaml@overlaps[GDPR-CRA]"
+      ]
+    },
+    {
+      "from": "GDPR-C25",
+      "to": "CRA-C20",
+      "rel": "HAS_TENSION_WITH",
+      "attrs": {
+        "kind": "timing",
+        "severity": "high",
+        "resolution_approach": "max_sla_routing"
+      },
+      "source": [
+        "phase1_ontology.yaml@tensions[T-001]",
+        "Doc11 §5.4 EVT-001"
+      ]
+    },
+    {
+      "from": "GDPR-C21",
+      "to": "CRA-C07",
+      "rel": "HAS_TENSION_WITH",
+      "attrs": {
+        "kind": "scope",
+        "severity": "medium",
+        "resolution_approach": "unified_vendor_management"
+      },
+      "source": [
+        "phase1_ontology.yaml@tensions[T-002]",
+        "Doc11 §5.4 EVT-002"
+      ]
+    },
+    {
+      "from": "GDPR-C13",
+      "to": "CRA-C13",
+      "rel": "HAS_TENSION_WITH",
+      "attrs": {
+        "kind": "requirement",
+        "severity": "medium",
+        "resolution_approach": "integrated_documentation"
+      },
+      "source": [
+        "phase1_ontology.yaml@tensions[T-003]",
+        "Doc11 §5.4 EVT-003"
+      ]
+    },
+    {
+      "from": "GDPR-C28",
+      "to": "CRA-C21",
+      "rel": "HAS_TENSION_WITH",
+      "attrs": {
+        "kind": "intensity",
+        "severity": "low",
+        "resolution_approach": "competency_matrix"
+      },
+      "source": [
+        "phase1_ontology.yaml@tensions[T-004]"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-01.1",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "SUBSTANTIVE",
+        "tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR",
+          "CRA"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-01.2",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "SUBSTANTIVE",
+        "tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR",
+          "CRA"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-01.3",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "SUBSTANTIVE",
+        "tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "CRA"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-01.4",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "SUBSTANTIVE",
+        "tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR",
+          "CRA"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-02.1",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "PARTIAL",
+        "tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "CRA"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-02.2",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "PARTIAL",
+        "tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "CRA"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-02.3",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "PARTIAL",
+        "tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "CRA"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-02.4",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": false,
+        "coverage_level": "NOT_ADDRESSED",
+        "tier": "DEFERRED",
+        "source_regulations": []
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-03.1",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "SUBSTANTIVE",
+        "tier": "MINIMAL",
+        "source_regulations": [
+          "CRA"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-03.2",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "SUBSTANTIVE",
+        "tier": "MINIMAL",
+        "source_regulations": [
+          "CRA"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-03.3",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "PARTIAL",
+        "tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-03.4",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "PARTIAL",
+        "tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "CRA"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-04.1",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "SUBSTANTIVE",
+        "tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "CRA"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-04.2",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "SUBSTANTIVE",
+        "tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR",
+          "CRA"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-04.3",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "SUBSTANTIVE",
+        "tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR",
+          "CRA"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-04.4",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "PARTIAL",
+        "tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-05.1",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "SUBSTANTIVE",
+        "tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-05.2",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "PARTIAL",
+        "tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-05.3",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "SUBSTANTIVE",
+        "tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-05.4",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "PARTIAL",
+        "tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-06.1",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "PARTIAL",
+        "tier": "MINIMAL",
+        "source_regulations": [
+          "GDPR"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-06.2",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "PARTIAL",
+        "tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "CRA"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-06.3",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "PARTIAL",
+        "tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-06.4",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": false,
+        "coverage_level": "NOT_ADDRESSED",
+        "tier": "MINIMAL",
+        "source_regulations": []
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-07.1",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "SUBSTANTIVE",
+        "tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "CRA",
+          "GDPR"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-07.2",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "PARTIAL",
+        "tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "CRA"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-07.3",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "PARTIAL",
+        "tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "CRA"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-07.4",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "PARTIAL",
+        "tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "CRA"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-08.1",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "PARTIAL",
+        "tier": "MINIMAL",
+        "source_regulations": [
+          "GDPR"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-08.2",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "PARTIAL",
+        "tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-09.1",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "SUBSTANTIVE",
+        "tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR",
+          "CRA"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-09.2",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "SUBSTANTIVE",
+        "tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-09.3",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "PARTIAL",
+        "tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "CRA"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-09.4",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "PARTIAL",
+        "tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-10.1",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "PARTIAL",
+        "tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "CRA"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-10.2",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "SUBSTANTIVE",
+        "tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "CRA"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "CC-TINYTASK-2026-001",
+      "to": "D-10.3",
+      "rel": "COVERS",
+      "attrs": {
+        "covered": true,
+        "coverage_level": "SUBSTANTIVE",
+        "tier": "LIGHTWEIGHT",
+        "source_regulations": [
+          "GDPR",
+          "CRA"
+        ]
+      },
+      "source": [
+        "Doc11 §3 (CONSOLIDATED_VIEW)",
+        "Doc12 §3-§4"
+      ]
+    },
+    {
+      "from": "REG-GDPR",
+      "to": "D-01.1",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "SUBSTANTIVE"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-CRA",
+      "to": "D-01.1",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "SUBSTANTIVE"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-GDPR",
+      "to": "D-01.2",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "SUBSTANTIVE"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-CRA",
+      "to": "D-01.2",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "SUBSTANTIVE"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-CRA",
+      "to": "D-01.3",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "SUBSTANTIVE"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-GDPR",
+      "to": "D-01.4",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "SUBSTANTIVE"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-CRA",
+      "to": "D-01.4",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "SUBSTANTIVE"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-CRA",
+      "to": "D-02.1",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "PARTIAL"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-CRA",
+      "to": "D-02.2",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "PARTIAL"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-CRA",
+      "to": "D-02.3",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "PARTIAL"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-CRA",
+      "to": "D-03.1",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "SUBSTANTIVE"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-CRA",
+      "to": "D-03.2",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "SUBSTANTIVE"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-GDPR",
+      "to": "D-03.3",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "PARTIAL"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-CRA",
+      "to": "D-03.4",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "PARTIAL"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-CRA",
+      "to": "D-04.1",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "SUBSTANTIVE"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-GDPR",
+      "to": "D-04.2",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "SUBSTANTIVE"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-CRA",
+      "to": "D-04.2",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "SUBSTANTIVE"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-GDPR",
+      "to": "D-04.3",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "SUBSTANTIVE"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-CRA",
+      "to": "D-04.3",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "SUBSTANTIVE"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-GDPR",
+      "to": "D-04.4",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "PARTIAL"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-GDPR",
+      "to": "D-05.1",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "SUBSTANTIVE"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-GDPR",
+      "to": "D-05.2",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "PARTIAL"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-GDPR",
+      "to": "D-05.3",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "SUBSTANTIVE"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-GDPR",
+      "to": "D-05.4",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "PARTIAL"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-GDPR",
+      "to": "D-06.1",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "PARTIAL"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-CRA",
+      "to": "D-06.2",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "PARTIAL"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-GDPR",
+      "to": "D-06.3",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "PARTIAL"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-CRA",
+      "to": "D-07.1",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "SUBSTANTIVE"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-GDPR",
+      "to": "D-07.1",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "SUBSTANTIVE"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-CRA",
+      "to": "D-07.2",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "PARTIAL"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-CRA",
+      "to": "D-07.3",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "PARTIAL"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-CRA",
+      "to": "D-07.4",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "PARTIAL"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-GDPR",
+      "to": "D-08.1",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "PARTIAL"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-GDPR",
+      "to": "D-08.2",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "PARTIAL"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-GDPR",
+      "to": "D-09.1",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "SUBSTANTIVE"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-CRA",
+      "to": "D-09.1",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "SUBSTANTIVE"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-GDPR",
+      "to": "D-09.2",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "SUBSTANTIVE"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-CRA",
+      "to": "D-09.3",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "PARTIAL"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-GDPR",
+      "to": "D-09.4",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "PARTIAL"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-CRA",
+      "to": "D-10.1",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "PARTIAL"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-CRA",
+      "to": "D-10.2",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "SUBSTANTIVE"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-GDPR",
+      "to": "D-10.3",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "SUBSTANTIVE"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    },
+    {
+      "from": "REG-CRA",
+      "to": "D-10.3",
+      "rel": "COVERS",
+      "attrs": {
+        "coverage_level": "SUBSTANTIVE"
+      },
+      "source": [
+        "phase1_ontology.yaml@subdomains.covered.source_regulations"
+      ]
+    }
+  ],
+  "ambiguity": {
+    "stats_total": {
+      "cards_in_scope": 417,
+      "by_severity": {
+        "S1": 0,
+        "S2": 251,
+        "S3": 252
+      },
+      "by_regulation": {
+        "GDPR": 276,
+        "CRA": 141
+      }
+    },
+    "stats_per_subdomain": [
+      {
+        "subdomain_id": "D-01.1",
+        "in_scope": 12,
+        "total": 46,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-01.2",
+        "in_scope": 7,
+        "total": 33,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-01.3",
+        "in_scope": 7,
+        "total": 11,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-01.4",
+        "in_scope": 11,
+        "total": 18,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-02.1",
+        "in_scope": 13,
+        "total": 70,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-02.2",
+        "in_scope": 6,
+        "total": 9,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-02.3",
+        "in_scope": 5,
+        "total": 32,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-02.4",
+        "in_scope": 2,
+        "total": 7,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-03.1",
+        "in_scope": 21,
+        "total": 75,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-03.2",
+        "in_scope": 2,
+        "total": 27,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-03.3",
+        "in_scope": 6,
+        "total": 35,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-03.4",
+        "in_scope": 6,
+        "total": 12,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-04.1",
+        "in_scope": 6,
+        "total": 34,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-04.2",
+        "in_scope": 10,
+        "total": 43,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-04.3",
+        "in_scope": 34,
+        "total": 94,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-04.4",
+        "in_scope": 6,
+        "total": 41,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-05.1",
+        "in_scope": 27,
+        "total": 38,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-05.2",
+        "in_scope": 7,
+        "total": 14,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-05.3",
+        "in_scope": 12,
+        "total": 20,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-05.4",
+        "in_scope": 3,
+        "total": 6,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-06.1",
+        "in_scope": 4,
+        "total": 31,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-06.2",
+        "in_scope": 2,
+        "total": 5,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-06.3",
+        "in_scope": 23,
+        "total": 76,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-06.4",
+        "in_scope": 9,
+        "total": 36,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-07.1",
+        "in_scope": 17,
+        "total": 53,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-07.2",
+        "in_scope": 2,
+        "total": 5,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-07.3",
+        "in_scope": 2,
+        "total": 5,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-07.4",
+        "in_scope": 5,
+        "total": 12,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-08.1",
+        "in_scope": 6,
+        "total": 39,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-08.2",
+        "in_scope": 3,
+        "total": 33,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-08.3",
+        "in_scope": 0,
+        "total": 0,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-09.1",
+        "in_scope": 53,
+        "total": 131,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-09.2",
+        "in_scope": 23,
+        "total": 87,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-09.3",
+        "in_scope": 3,
+        "total": 61,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-09.4",
+        "in_scope": 33,
+        "total": 116,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-10.1",
+        "in_scope": 11,
+        "total": 66,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-10.2",
+        "in_scope": 9,
+        "total": 23,
+        "source": "Doc09 §2"
+      },
+      {
+        "subdomain_id": "D-10.3",
+        "in_scope": 9,
+        "total": 39,
+        "source": "Doc09 §2"
+      }
+    ],
+    "top_cards": [
+      {
+        "card_id": 1,
+        "corpus_clause_id": "GDPR-RT16",
+        "article": "Art. 21(1)",
+        "subdomain_id": "D-01.1",
+        "severity": "S3",
+        "type": "VAG",
+        "recommended_variant": "R2 (EDPB Guidelines on legitimate interests)",
+        "source": "Doc09 §3 D-01.1 Card #1"
+      },
+      {
+        "card_id": 2,
+        "corpus_clause_id": "GDPR-CP02",
+        "article": "Art. 25(1)",
+        "subdomain_id": "D-01.1",
+        "severity": "S3",
+        "type": "VAG",
+        "recommended_variant": "R2 (Strict reading — ENISA/EDPB state-of-the-art)",
+        "source": "Doc09 §3 D-01.1 Card #2"
+      },
+      {
+        "card_id": 3,
+        "corpus_clause_id": "GDPR-CP15",
+        "article": "Art. 32(1)",
+        "subdomain_id": "D-01.1",
+        "severity": "S3",
+        "type": "VAG",
+        "recommended_variant": "R2 (EDPB Guidelines 7/2019 — timely = as-soon-as-practicable)",
+        "source": "Doc09 §3 D-01.1 Card #3"
+      },
+      {
+        "card_id": 4,
+        "corpus_clause_id": "GDPR-CL23",
+        "article": "Art. 9(2)(g)",
+        "subdomain_id": "D-01.1",
+        "severity": "S3",
+        "type": "VAG",
+        "recommended_variant": "R1 (Per manufacturer instructions — Annex II §8)",
+        "source": "Doc09 §3 D-01.1 Card #4"
+      },
+      {
+        "card_id": 5,
+        "corpus_clause_id": "CRA-CL02",
+        "article": "Art. 6(a) proviso",
+        "subdomain_id": "D-01.1",
+        "severity": "S3",
+        "type": "VAG",
+        "recommended_variant": "R2 (All security updates — Annex I Part II §3)",
+        "source": "Doc09 §3 D-01.1 Card #5"
+      },
+      {
+        "card_id": 6,
+        "corpus_clause_id": "GDPR-RT16",
+        "article": "Art. 21(1)",
+        "subdomain_id": "D-01.2",
+        "severity": "S3",
+        "type": "VAG",
+        "recommended_variant": "R2 (EDPB Guidelines on legitimate interests)",
+        "source": "Doc09 §3 D-01.2 Card #6"
+      },
+      {
+        "card_id": 7,
+        "corpus_clause_id": "GDPR-CP15",
+        "article": "Art. 32(1)",
+        "subdomain_id": "D-01.2",
+        "severity": "S3",
+        "type": "VAG",
+        "recommended_variant": "R2 (EDPB Guidelines 7/2019 — timely = as-soon-as-practicable)",
+        "source": "Doc09 §3 D-01.2 Card #7"
+      },
+      {
+        "card_id": 8,
+        "corpus_clause_id": "GDPR-CL23",
+        "article": "Art. 9(2)(g)",
+        "subdomain_id": "D-01.2",
+        "severity": "S3",
+        "type": "VAG",
+        "recommended_variant": "R2 (EDPB Guidelines on legitimate interests)",
+        "source": "Doc09 §3 D-01.2 Card #8"
+      },
+      {
+        "card_id": 9,
+        "corpus_clause_id": "GDPR-CP02",
+        "article": "Art. 25(1)",
+        "subdomain_id": "D-01.3",
+        "severity": "S3",
+        "type": "VAG",
+        "recommended_variant": "R2 (Strict reading — ENISA/EDPB state-of-the-art)",
+        "source": "Doc09 §3 D-01.3 Card #9"
+      },
+      {
+        "card_id": 10,
+        "corpus_clause_id": "GDPR-CP15",
+        "article": "Art. 32(1)",
+        "subdomain_id": "D-01.3",
+        "severity": "S3",
+        "type": "VAG",
+        "recommended_variant": "R2 (EDPB Guidelines 7/2019 — timely = as-soon-as-practicable)",
+        "source": "Doc09 §3 D-01.3 Card #10"
+      },
+      {
+        "card_id": 11,
+        "corpus_clause_id": "GDPR-CP19",
+        "article": "Art. 34(1)",
+        "subdomain_id": "D-01.3",
+        "severity": "S3",
+        "type": "POLY+VAG",
+        "recommended_variant": "R1 (EDPB Guidelines 9/2022 — 'high risk' = objectively elevated)",
+        "source": "Doc09 §3 D-01.3 Card #11"
+      },
+      {
+        "card_id": 12,
+        "corpus_clause_id": "GDPR-CP20",
+        "article": "Art. 34(3)",
+        "subdomain_id": "D-01.3",
+        "severity": "S3",
+        "type": "VAG",
+        "recommended_variant": "R3 (Per Annex I — comprehensive unintelligibility + disproportionate effort test)",
+        "source": "Doc09 §3 D-01.3 Card #12"
+      },
+      {
+        "card_id": 13,
+        "corpus_clause_id": "CRA-CL02",
+        "article": "Art. 6(a) proviso",
+        "subdomain_id": "D-01.3",
+        "severity": "S3",
+        "type": "VAG",
+        "recommended_variant": "R1 (Per manufacturer instructions — Annex II §8)",
+        "source": "Doc09 §3 D-01.3 Card #13"
+      },
+      {
+        "card_id": 14,
+        "corpus_clause_id": "GDPR-RT12",
+        "article": "Art. 16",
+        "subdomain_id": "D-01.4",
+        "severity": "S3",
+        "type": "POLY",
+        "recommended_variant": "R2 (Strict reading — supplementary statement required upon request)",
+        "source": "Doc09 §3 D-01.4 Card #14"
+      },
+      {
+        "card_id": 15,
+        "corpus_clause_id": "GDPR-CP15",
+        "article": "Art. 32(1)",
+        "subdomain_id": "D-01.4",
+        "severity": "S3",
+        "type": "VAG",
+        "recommended_variant": "R2 (EDPB Guidelines 7/2019 — timely = as-soon-as-practicable)",
+        "source": "Doc09 §3 D-01.4 Card #15"
+      },
+      {
+        "card_id": 16,
+        "corpus_clause_id": "GDPR-CL23",
+        "article": "Art. 9(2)(g)",
+        "subdomain_id": "D-01.4",
+        "severity": "S3",
+        "type": "VAG",
+        "recommended_variant": "R2 (EDPB Guidelines on legitimate interests)",
+        "source": "Doc09 §3 D-01.4 Card #16"
+      },
+      {
+        "card_id": 17,
+        "corpus_clause_id": "GDPR-RT16",
+        "article": "Art. 21(1)",
+        "subdomain_id": "D-02.1",
+        "severity": "S3",
+        "type": "VAG",
+        "recommended_variant": "R2 (EDPB Guidelines on legitimate interests)",
+        "source": "Doc09 §3 D-02.1 Card #17"
+      },
+      {
+        "card_id": 18,
+        "corpus_clause_id": "GDPR-CP15",
+        "article": "Art. 32(1)",
+        "subdomain_id": "D-02.1",
+        "severity": "S3",
+        "type": "VAG",
+        "recommended_variant": "R2 (EDPB Guidelines 7/2019 — timely = as-soon-as-practicable)",
+        "source": "Doc09 §3 D-02.1 Card #18"
+      },
+      {
+        "card_id": 19,
+        "corpus_clause_id": "GDPR-CL23",
+        "article": "Art. 9(2)(g)",
+        "subdomain_id": "D-02.1",
+        "severity": "S3",
+        "type": "VAG",
+        "recommended_variant": "R2 (EDPB Guidelines on legitimate interests)",
+        "source": "Doc09 §3 D-02.1 Card #19"
+      },
+      {
+        "card_id": 20,
+        "corpus_clause_id": "CRA-CL02",
+        "article": "Art. 6(a) proviso",
+        "subdomain_id": "D-02.1",
+        "severity": "S3",
+        "type": "VAG",
+        "recommended_variant": "R1 (Per manufacturer instructions — Annex II §8)",
+        "source": "Doc09 §3 D-02.1 Card #20"
+      }
+    ]
+  },
+  "invariants": {
+    "regulations_total": 5,
+    "regulations_applicable": 2,
+    "domains": 10,
+    "subdomains_total": 38,
+    "subdomains_covered": 31,
+    "subdomains_active": 37,
+    "clauses_total": 54,
+    "goals_total": 69,
+    "tensions_total": 4,
+    "ambiguity_cards_in_scope": 417
+  },
+  "audits": [
+    {
+      "id": "CFL-001",
+      "kind": "cross_doc_conflict",
+      "severity": "high",
+      "title": "GDPR-C08 / GDPR-C11 article assignments diverge between ontology and Doc10 §8.1",
+      "detail": "phase1_ontology.yaml maps GDPR-C08 = Art. 9 → D-05.3 and re-assigns Art. 24(1) to GDPR-C11. Doc10 §8.1 row GDPR-C11 also maps Art. 24(1) → D-09.1 (consistent with ontology) BUT Doc10 §3 summary table §3 row 'D-09' lists 'GDPR-C08, C13, C20, C22' which contradicts the ontology — Doc10 §3 was a legacy pre-Sprint-1 reconciliation summary and has NOT been refreshed. Downstream consumers must use the ontology mapping (Art. 9 → D-05.3) per Sprint 1 resolution.",
+      "evidence": [
+        "phase1_ontology.yaml v1.1 preamble (lines 1-31): canonical Art. 9 → D-05.3",
+        "Doc10 §8.1 row GDPR-C08: Art. 9 → D-05.3 (consistent)",
+        "Doc10 §8.1 row GDPR-C11: Art. 24(1) → D-09.1 (consistent)",
+        "Doc10 §3 GDPR Mapping summary table row 'D-09' lists 'GDPR-C08' (legacy drift — uncorrected)"
+      ],
+      "node_ids": [
+        "GDPR-C08",
+        "GDPR-C11",
+        "D-05.3",
+        "D-09.1"
+      ],
+      "recommendation": "Human (P7) — refresh Doc10 §3 summary table or formally supersede it with §8.1 (already RECONCILED per frontmatter). Either fix Doc10 §3 or pin §8.1 as sole source and mark §3 legacy."
+    },
+    {
+      "id": "CFL-002",
+      "kind": "cross_doc_conflict",
+      "severity": "high",
+      "title": "Subdomain count cascade: 38 / 37 / 35 across docs",
+      "detail": "phase1_ontology.yaml defines 38 subdomains total; Doc12 §3 reports 37 ACTIVE (D-08.3 INACTIVE); Doc13 §0 reports 35 ACTIVE (additionally excludes D-02.4 and D-06.4 from its 35-row tables). Each subtraction cascades into different coverage, goal, and audit totals downstream. Reconciliation: ontology 38 = universe; Doc12 37 ACTIVE (D-08.3 out-of-scope); Doc13 35 ACTIVE-in-Scope (excludes D-08.3 + D-02.4 + D-06.4 because the corpus provides no GDPR Sub-SO for D-02.4/D-06.4 and §3 lists them only as narrative 'Not applicable' rows).",
+      "evidence": [
+        "phase1_ontology.yaml@subdomains.covered (31) + not_covered (7) = 38",
+        "Doc12 §3: '37 ACTIVE sub-domains (D-08.3 INACTIVE)'",
+        "Doc13 §0: '35 sub-domains are ACTIVE' (also lists D-02.4, D-06.4 as NOT_ADDRESSED)",
+        "Doc11 §3 lists 38 rows with 35 SUBSTANTIVE/PARTIAL + 3 NOT_ADDRESSED"
+      ],
+      "node_ids": [
+        "D-02.4",
+        "D-06.4",
+        "D-08.3"
+      ],
+      "recommendation": "Human (P7) — decide authoritative count for dashboards: 38 universe, 37 active post-D-08.3, 35 with regulatory goal. JSON records all 38 subdomains with covered/active flags so consumers can slice."
+    },
+    {
+      "id": "CFL-003",
+      "kind": "cross_doc_conflict",
+      "severity": "medium",
+      "title": "phase1_ontology.yaml coverage_summary subdomains_covered labels disagree with their own lists",
+      "detail": "phase1_ontology.yaml@coverage_summary.by_regulation.GDPR.subdomains_covered = 19 but the .subdomains list contains 20 distinct IDs (D-01.1, D-01.2, D-01.4, D-03.3, D-04.2, D-04.3, D-04.4, D-05.1, D-05.2, D-05.3, D-05.4, D-06.1, D-06.3, D-07.1, D-08.1, D-08.2, D-09.1, D-09.2, D-09.4, D-10.3). CRA: label 22, list contains 19 (D-01.1, D-01.2, D-01.3, D-01.4, D-02.1, D-02.2, D-02.3, D-03.1, D-03.2, D-03.4, D-04.1, D-04.2, D-04.3, D-05.3, D-06.2, D-07.1, D-10.1, D-10.2, D-10.3). Internal label/list drift in the same YAML file.",
+      "evidence": [
+        "phase1_ontology.yaml@coverage_summary.by_regulation.GDPR.subdomains_covered label: 19",
+        "phase1_ontology.yaml@coverage_summary.by_regulation.GDPR.subdomains list: 20 distinct IDs",
+        "phase1_ontology.yaml@coverage_summary.by_regulation.CRA.subdomains_covered label: 22",
+        "phase1_ontology.yaml@coverage_summary.by_regulation.CRA.subdomains list: 19 distinct IDs"
+      ],
+      "node_ids": [
+        "REG-GDPR",
+        "REG-CRA"
+      ],
+      "recommendation": "Human (P7) — fix the label or fix the list. Either recode to label=20 (GDPR) / label=19 (CRA), or trim the lists to 19/22 respectively. JSON uses authoritative ontology clause_mappings count (28 + 26 = 54) and ignores the conflicting coverage_summary labels."
+    },
+    {
+      "id": "CFL-004",
+      "kind": "cross_doc_conflict",
+      "severity": "medium",
+      "title": "Normative Intensity: Doc10 §5 (2.819 combined) vs Doc11 §4 (2.947)",
+      "detail": "Doc10 §5 reports Mean NI combined = 2.819 (GDPR 2.714 + CRA 2.923 weighted). Doc11 §4 reports Average Normative Intensity = 2.947. The discrepancy arises because Doc10 computes per-regulation means then combines; Doc11 computes over the 38-row NI column where several rows show NI=3.0 uniformly (Doc11 §3 sets NI=3.0 for all 38 rows, which is itself suspect). Different aggregation methods, different values — pick one as canonical.",
+      "evidence": [
+        "Doc10 §5: 'COMBINED (TinyTask) NI = 2.819' (per-regulation means)",
+        "Doc11 §4: 'Average Normative Intensity = 2.947' (column average over 38 rows)",
+        "Doc11 §3: every row NI column = 3.0 (likely a Doc11 §3 artefact — no row differentiation)"
+      ],
+      "node_ids": [
+        "D-04.3",
+        "D-09.2"
+      ],
+      "recommendation": "Human (P7) — adopt Doc10 §5 (2.819) as canonical for compliance dashboards; Doc11 §4 2.947 is an artifact of the all-3.0 NI column and should be corrected in a future Doc11 revision."
+    },
+    {
+      "id": "BLN-001",
+      "kind": "broken_link",
+      "severity": "medium",
+      "title": "Doc10 §8 corpus clause IDs marked (verify) — Sprint 2 deliverable still open",
+      "detail": "Doc10 §8.1 (GDPR 28 rows) and §8.2 (CRA 26 rows) carry '(verify)' markers on 14 GDPR + 28 CRA corpus clause IDs (e.g., 'GDPR-CL09 (verify)', 'CRA-CL01 (verify)'). Sprint 2 must resolve by reading D-XX.Y.md Part 4 **Clause:** metadata lines. 8 GDPR rows map to corpus EMPTY sub-domains (D-05.2, D-08.2, D-09.1, D-09.2, D-09.4, D-10.3) with no D-XX.Y.md to verify against — Sprint 2 must either generate the missing 8 .md files OR mark the corpus-form as 'TBD — corpus EMPTY'.",
+      "evidence": [
+        "Doc10 §8.1: 14 GDPR rows carry '(verify)' corpus clause IDs (rows GDPR-C01..C03, C08, C11..C16, C23, C24, C28)",
+        "Doc10 §8.2: 28 CRA rows carry '(verify)' corpus clause IDs (all 26 rows; 2 duplicate rows marked)",
+        "Doc10 §8.3 Migration Notes: '14 GDPR + 28 CRA rows carry a corpus-form (verify) marker — Sprint 2 must resolve'",
+        "Corpus_Field_Map.md §3.4: 8 subdomains declared EMPTY"
+      ],
+      "node_ids": [
+        "GDPR-C01",
+        "GDPR-C02",
+        "GDPR-C03",
+        "CRA-C01"
+      ],
+      "recommendation": "Human (P7) — Sprint 2 (or current sprint) must decide: (a) generate 8 missing D-XX.Y.md files, OR (b) downgrade all 42 (verify) corpus IDs to TBD/EMPTY and mark Doc10 §8 as deprecated-in-favor-of-ontology-clause-only. JSON records case-form canonical IDs from ontology only."
+    },
+    {
+      "id": "BLN-002",
+      "kind": "broken_link",
+      "severity": "high",
+      "title": "Doc13 §0 references D-02.4 / D-06.4 as NOT_ADDRESSED but Doc12 §4 lists them as ACTIVE with LIGHTWEIGHT tier",
+      "detail": "Doc13 §0 frontmatter and body both list D-02.4, D-06.4, D-08.3 as not_addressed_subdomains. But Doc12 §4 assigns D-02.4 a LIGHTWEIGHT tier in §3 (then DEFERRED in §12 rationale) and D-06.4 a MINIMAL tier — both rows are present in the per-subdomain proportionality table. Doc12 also activates D-08.3 as part of its 37 ACTIVE count via the proportionality table entry (then marks it INACTIVE in §0 note). JSON harmonises by following Doc12 (which is the proportionality/Tier-B authoritative doc): D-02.4 = DEFERRED, D-06.4 = MINIMAL, D-08.3 = inactive (no AG goal).",
+      "evidence": [
+        "Doc13 §0 not_addressed_subdomains: [D-02.4, D-06.4, D-08.3]",
+        "Doc12 §3: '37 ACTIVE sub-domains (D-08.3 INACTIVE)'",
+        "Doc12 §4: D-02.4 row = LIGHTWEIGHT (DEFERRED per §5.2); D-06.4 row = MINIMAL INHERIT",
+        "Doc12 §4 explicitly omits D-08.3 ('D-08.3 is omitted by design')"
+      ],
+      "node_ids": [
+        "D-02.4",
+        "D-06.4",
+        "D-08.3"
+      ],
+      "recommendation": "Human (P7) — align Doc13 with Doc12: drop D-02.4 and D-06.4 from not_addressed_subdomains (they have Doc12 tiers) and add a 'goal_status' field to AG nodes for subdomains with DEFERRED/MINIMAL/INACTIVE goal coverage. Document the consistent scope decision."
+    },
+    {
+      "id": "CVG-001",
+      "kind": "coverage_gap",
+      "severity": "high",
+      "title": "3 NOT_ADDRESSED subdomains remain uncovered by applicable regulations",
+      "detail": "D-02.4 (Threat-Led Penetration Testing), D-06.4 (Third-Party Boundary Management), D-08.3 (Management Board Training) — sole authority is DORA/NIS2 (not applicable). D-02.4 has CRA Annex I Part II §3 ('effective and regular tests') as a residual text-interpretation gap per Doc13 §4 row D-01.3 — but no formal clause coverage. Risk: MICRO scale + FTE 0.85 + SHOULD priority → DEFERRED per proportionality_model §5.2; documented acceptable per ontology@sole_authority_gaps.",
+      "evidence": [
+        "phase1_ontology.yaml@subdomains.not_covered — 7 entries: D-02.4, D-06.4, D-07.2, D-07.3, D-07.4, D-08.3, D-09.3",
+        "Doc11 §3: 3 NOT_ADDRESSED rows (D-02.4, D-06.4, D-08.3)",
+        "Doc12 §4: D-02.4 DEFERRED, D-06.4 MINIMAL, D-08.3 omitted",
+        "phase1_ontology.yaml@coverage_summary.sole_authority_gaps: 'count 4' (D-07.2, D-07.3, D-07.4, D-09.3)"
+      ],
+      "node_ids": [
+        "D-02.4",
+        "D-06.4",
+        "D-08.3"
+      ],
+      "recommendation": "Human (P7) — accept ontology's 'acceptable' classification per sole_authority_gaps.note; OR escalate to add a CRA/Annex VIII internal-production-control evidence artefact covering threat-led testing as residual Annex I Part II §3."
+    },
+    {
+      "id": "CVG-002",
+      "kind": "coverage_gap",
+      "severity": "high",
+      "title": "GAP-001..004 from Doc11 §7 remain unmitigated",
+      "detail": "GAP-001 (D-09.4 Art.30 RoPA, HIGH), GAP-002 (D-01 Art.32 formal security policy, MEDIUM), GAP-003 (D-06.2 SBOM, HIGH), GAP-004 (D-02.3 vuln disclosure process, MEDIUM). None are tracked in §13 Goals or in any AdjustedGoal node; they live only in Doc11 §7 narrative + Doc08 §8. Risk: a downstream Phase 2 deliverable may miss the GAP annotations when tracing obligation→requirement.",
+      "evidence": [
+        "Doc11 §7 GAP-001..004 table",
+        "Doc08 §8 GAP-001..004 table",
+        "Doc12 §5 row 6 ('SBOM (CRA, GAP-003)') + row 7 ('security.txt (CRA, GAP-004)')",
+        "Doc12 §5 row 11 ('4h containment playbook') and row 12 ('DSAR/erasure')",
+        "No GAP-* node or audit flag in the JSON"
+      ],
+      "node_ids": [
+        "D-09.4",
+        "D-01.1",
+        "D-06.2",
+        "D-02.3"
+      ],
+      "recommendation": "Human (P7) — add an explicit GAP node type to the JSON schema, OR adopt Doc12 §5 as the GAP closure record (every Doc11 §7 GAP has a Doc12 §5 row that realises it). Phase 2 lints should cross-check GAP-* IDs against Doc12 §5 row numbers."
+    },
+    {
+      "id": "CVG-003",
+      "kind": "coverage_gap",
+      "severity": "medium",
+      "title": "Subdomain D-07.2/3/4 + D-09.3 have no regulatory clause mapping under GDPR",
+      "detail": "Phase1 ontology lists D-07.2, D-07.3, D-07.4, D-09.3 as not_covered with sole_authority DORA/NIS2 — but Doc12 §4 assigns them LIGHTWEIGHT tiers via CRA-only sourcing. Result: 4 subdomains have CRA-side AG (§4) but no GDPR-side AG (§3 N/A). They are not 'uncovered' in the JSON sense — but Doc11 §3 reports them as PARTIAL coverage with CRA-only checkmark, while Doc13 §3 marks them as 'corpus CRA-only' / no GDPR Sub-SO. JSON captures them as covered=True via CRA.",
+      "evidence": [
+        "phase1_ontology.yaml@subdomains.not_covered: D-07.2, D-07.3, D-07.4, D-09.3",
+        "Doc12 §4 rows: D-07.2 BUILD (CRA only), D-07.3 BUILD (CRA only), D-07.4 BUILD (CRA only), D-09.3 BUILD (CRA partial)",
+        "Doc13 §3: D-07.2/D-07.3/D-07.4/D-09.3 listed as 'N/A — corpus CRA-only'",
+        "Doc13 §4: D-07.2, D-07.3, D-07.4, D-09.3 each have a populated slot-002 CRA goal"
+      ],
+      "node_ids": [
+        "D-07.2",
+        "D-07.3",
+        "D-07.4",
+        "D-09.3"
+      ],
+      "recommendation": "Human (P7) — accept Doc12/13 treatment (CRA-only coverage, no GDPR goal) OR escalate that these subdomains should be flagged NOT_ADDRESSED for the GDPR-applicable case (since their sole driver is non-applicable regs). Current JSON carries covered=True per Doc12."
+    },
+    {
+      "id": "CVG-004",
+      "kind": "coverage_gap",
+      "severity": "low",
+      "title": "Doc09 per-subdomain in-scope card counts may exceed Doc09 §2 'total' column for some subdomains",
+      "detail": "Doc09 §2 per-subdomain breakdown shows e.g. D-02.3 in-scope=5 total=32 (ratio 16%). The 'total' column represents the corpus ambiguity card count for the subdomain, not a per-case limit — so 'in-scope > total' would be impossible by construction. But several rows have 'in-scope' close to half of 'total' (D-09.1: 53/131 = 40%), indicating significant filtering. Some subdomains have NO in-scope cards even though GDPR+CRA both apply (D-08.3: 0/0 — flagged INACTIVE). Audit confirms no cardinality violation.",
+      "evidence": [
+        "Doc09 §2 row D-09.1: 53 / 131 (in-scope / total) = 40.5% of corpus cards",
+        "Doc09 §2 row D-09.4: 33 / 116 (in-scope / total) = 28.4%",
+        "Doc09 §2 row D-04.3: 34 / 94 = 36.2%",
+        "Doc09 §2 row D-08.3: 0 / 0 — explicitly INACTIVE",
+        "Doc09 §1 total: 417 in-scope cards; sum of per-row in-scope = 12+7+7+11+13+6+5+2+21+2+6+6+6+10+34+6+27+7+12+3+4+2+23+9+17+2+2+5+6+3+0+53+23+3+33+11+9+9 = 417 ✓"
+      ],
+      "node_ids": [
+        "D-09.1",
+        "D-04.3",
+        "D-09.4"
+      ],
+      "recommendation": "Human (P7) — no action; sum check passes (417 = 417). Informational only: D-09.1, D-04.3, D-09.4 are the top-3 carriers of unresolved ambiguity and deserve priority attention in Phase 2 ambiguity-resolution work."
+    },
+    {
+      "id": "BAM-001",
+      "kind": "blocking_ambiguity",
+      "severity": "high",
+      "title": "397 of 417 ambiguity cards have no Resolution block in Doc09",
+      "detail": "Doc09 §3 lists the top-20 severity-sorted cards WITH per-card Resolution (variant chosen + rationale + stakeholder impact + risk). The remaining 397 cards (417 - 20) carry corpus source data + case-impact narrative but NO Resolution block. Doc09 §0 calls itself 'DEEP_ENRICHED' with 'resolution_sections_added: 20' — confirming the structural blindspot. Top-3 unresolved domains by card count: D-09.1 (53 cards), D-04.3 (34 cards), D-09.4 (33 cards).",
+      "evidence": [
+        "Doc09 §0 frontmatter: 'resolution_sections_added: 20'",
+        "Doc09 §3 narrative: 'Top 20 Ambiguity Cards (severity-sorted)'",
+        "Doc09 §1: 'ambiguity_cards_top20: 20'",
+        "Doc09 §1: 'ambiguity_cards_total: 417'",
+        "Doc09 §2 per-subdomain in-scope counts sum = 417"
+      ],
+      "node_ids": [
+        "D-09.1",
+        "D-04.3",
+        "D-09.4"
+      ],
+      "recommendation": "Human (P7) — extend Doc09 §3 to cover all 417 cards, OR split into a separate resolution-tracking doc, OR mark Phase 2 as 'top-20 only' as an explicit scope decision. JSON surfaces the structural gap; downstream consumers must not assume all 417 are resolved."
+    },
+    {
+      "id": "BAM-002",
+      "kind": "blocking_ambiguity",
+      "severity": "medium",
+      "title": "Doc09 §3 top-20 ambiguity cards all carry S3 (high) severity — no S1/S2 visibility",
+      "detail": "Doc09 §1 reports 0 S1 + 251 S2 + 252 S3 = 503 instances across 417 cards. Doc09 §3 ranks by 'maximum instance severity' so all 20 top cards have at least one S3 instance. The structural consequence: the top-20 is S3-only and S2-only cards are deprioritised in §3 even when S2 cards materially affect Phase 2 obligation derivation. Risk: S2 cards on D-01.x (encryption design choices), D-08.x (training scope) may have material impact without resolution tracking.",
+      "evidence": [
+        "Doc09 §1: 'Severity S1 (low): 0; S2 (medium): 251; S3 (high): 252'",
+        "Doc09 §3: 'Selection rule: cards ranked by maximum instance severity (S3 > S2 > S1), then by sub-domain ID'",
+        "Doc09 §3: all 20 listed cards report severity S3"
+      ],
+      "node_ids": [
+        "D-01.1",
+        "D-01.2",
+        "D-01.3",
+        "D-01.4"
+      ],
+      "recommendation": "Human (P7) — adopt Doc09 §3 top-20 as S3-only cohort and add a separate §3b for S2 cards (at least top-20 by sub-domain coverage impact), OR add a severity-tier filter to Phase 2 lints that flags S2 cards touching Sub-SOs without a Resolution block."
+    }
+  ]
+}
