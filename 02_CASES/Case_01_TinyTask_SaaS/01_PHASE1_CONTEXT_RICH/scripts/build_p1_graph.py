@@ -16,6 +16,7 @@ JSON can be regenerated or reviewed independently of the dashboard inlining.
 
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 from pathlib import Path
@@ -31,8 +32,11 @@ META = {
     "phase": 1,
     "generated": "2026-08-26",
     "schema_version": "1.0",
+    # NOTE: existing 8 entries retained verbatim; only the ontology version
+    # bumped 1.1 → 1.2 (Sprint 6 appended the kg_ontology section).
+    # No entry was added or reordered.
     "canonical_sources": [
-        "phase1_ontology.yaml@01_PHASE1_CONTEXT_RICH v1.1",
+        "phase1_ontology.yaml@01_PHASE1_CONTEXT_RICH v1.2",
         "Doc08 §4 + §9",
         "Doc10 §8",
         "Doc11 §3 + §4",
@@ -812,7 +816,412 @@ AUDITS = [
         "node_ids": ["D-01.1", "D-01.2", "D-01.3", "D-01.4"],
         "recommendation": "Human (P7) — adopt Doc09 §3 top-20 as S3-only cohort and add a separate §3b for S2 cards (at least top-20 by sub-domain coverage impact), OR add a severity-tier filter to Phase 2 lints that flags S2 cards touching Sub-SOs without a Resolution block.",
     },
+    # ---- Sprint 6 (kg_ontology v1.2) — new cross-doc findings from Sprint 6 ingestion
+    {
+        "id": "CFL-005",
+        "kind": "cross_doc_conflict",
+        "severity": "medium",
+        "title": "GAP-002 affected_subdomain_ids cites Domain 'D-01' which is not a SecurityControlDomain",
+        "detail": (
+            "Doc11 §7 row GAP-002 cites 'D-01' as the affected sub-domain. The ontology v1.2 "
+            "kg_ontology.id_patterns.SecurityControlDomain regex is '^D-\\d{2}\\.\\d{1}$' which "
+            "requires a subdomain dimension (e.g. D-01.1, D-01.2, D-01.3, D-01.4). 'D-01' is a "
+            "Domain (parent cluster id), not a SecurityControlDomain. The JSON faithfully stores "
+            "affected_subdomain_ids=['D-01'] verbatim, but no FLAGS edge can be emitted because "
+            "there is no SecurityControlDomain node with id='D-01'. Doc08 §8 carries the same "
+            "value. Downstream consumers must reconcile by either (a) expanding the reference to "
+            "D-01.x subdomains, OR (b) softening the regex to allow Domain-grained gap references."
+        ),
+        "evidence": [
+            "Doc11 §7 GAP-002 row: 'Sub-Domain D-01, Regulation GDPR, Clause Art.32, PARTIAL_COVERAGE, MEDIUM'",
+            "Doc08 §8 GAP-002 row: 'Gap ID GAP-002 | Regulation GDPR | Clause Art.32 | Sub-Domain D-01'",
+            "phase1_ontology.yaml@kg_ontology.id_patterns.SecurityControlDomain: '^D-\\d{2}\\.\\d{1}$'",
+            "phase1_ontology.yaml@kg_ontology.classes.SecurityControlDomain.example: 'D-05.3'",
+        ],
+        "node_ids": ["GAP-002", "D-01", "D-01.1", "D-01.2", "D-01.3", "D-01.4"],
+        "recommendation": "Human (P7) — pick one: (a) update Doc11 §7 + Doc08 §8 to expand D-01 reference to the 4 subdomains (D-01.1..D-01.4) so JSON can emit 4 FLAGS edges, OR (b) add a Domain-typed FLAGS variant to the ontology (subclass of CoverageGap.FLAGS) and emit one FLAGS-Cluster edge to D-01. Default stays: GAP-002 has zero FLAGS edges; this audit documents the gap.",
+    },
+    {
+        "id": "CVG-005",
+        "kind": "coverage_gap",
+        "severity": "low",
+        "title": "Doc03 §4 BG Owner labels 'Lead Dev' and 'Procurement' do not have unambiguous STK-ID mapping",
+        "detail": (
+            "The 7-stakeholder register (Doc03 §3.1) does NOT contain a 'Lead Dev' or "
+            "'Procurement' stakeholder; STK-DEVP-01's row Name is 'Development Team' "
+            "(a multi-person team, not a single Lead) and there is no Procurement stakeholder. "
+            "Doc03 §4 BG-02/04 cite 'Lead Dev' in Owner; BG-05 cites 'Procurement' in Owner + "
+            "Affected. Per the brief's 'if inferred, NOT ADDED as an edge' constraint, these "
+            "BG→Stakeholder relationships are NOT encoded as DEFINES edges. Risk: downstream "
+            "Phase 2 RACI derivation will see CTO/CUSTOMER as the only owners of BG-02/04/05 "
+            "and may misallocate work. Acknowledged limitation of the 7-stakeholder register."
+        ),
+        "evidence": [
+            "Doc03 §3.1: 7 stakeholder rows; none has Name='Lead Dev' or Name='Procurement'",
+            "Doc03 §3.1 row 4: STK-DEVP-01 Name='Development Team' (team, not single lead)",
+            "Doc03 §4 BG-02 Owner='Lead Dev'; BG-04 Owner='Lead Dev + CTO'; BG-05 Owner='CTO + Procurement'",
+            "Doc03 §4 BG-05 Affected Stakeholders='CTO, Procurement, B2B clients (procurement)'",
+        ],
+        "node_ids": ["STK-DEVP-01", "BG-02", "BG-04", "BG-05"],
+        "recommendation": "Human (P7) — either (a) extend the stakeholder register with STK-LEADDEV-01 + STK-PROCUREMENT-01 (and re-emit 3 more DEFINES edges), OR (b) split STK-DEVP-01 into 'STK-DEVP-LEAD-01' + 'STK-DEVP-TEAM-01' to disambiguate single-lead vs team responsibilities. Default stays: 13 DEFINES edges emitted (only 1-step-unambiguous mappings).",
+    },
+    {
+        "id": "BAM-003",
+        "kind": "blocking_ambiguity",
+        "severity": "low",
+        "title": "BG-02 'Affected Stakeholders' cites 'EU market-surveillance authorities' with no STK-ID mapping",
+        "detail": (
+            "Doc03 §4 BG-02 row Affected Stakeholders column reads "
+            "'CTO, Lead Dev, B2B clients (procurement), EU market-surveillance authorities'. "
+            "The 7-stakeholder register carries no entry for market-surveillance authorities. "
+            "The downstream JSON relationship graph therefore cannot trace the BG-02 ↔ "
+            "EU-authorities dependency via STK-IDs. This is a blocking ambiguity for any "
+            "Phase 2 deliverable that wants to compute 'regulators as stakeholders' (e.g. "
+            "Doc07 RACI for incident notification timelines under CRA Art.14)."
+        ),
+        "evidence": [
+            "Doc03 §4 BG-02 row: 'Affected Stakeholders | CTO, Lead Dev, B2B clients (procurement), EU market-surveillance authorities'",
+            "Doc03 §3.1: 7 stakeholder rows; none references market-surveillance or authorities",
+            "phase1_ontology.yaml@kg_ontology.relations: SUPPORTS (Stakeholder→Regulation, external only) is 'deferred' status",
+        ],
+        "node_ids": ["BG-02"],
+        "recommendation": "Human (P7) — if downstream needs the EU-authorities ↔ BG-02 relationship, add an 'STK-AUTHORITY-EU-01' External stakeholder row to Doc03 §3.1 + a JSON emit. Currently no STK-ID exists, so no edge is emitted; this audit documents the missing node.",
+    },
+    {
+        "id": "BLN-003",
+        "kind": "broken_link",
+        "severity": "low",
+        "title": "Doc03 §3.1 Contact column is '—' for 6 of 7 stakeholders (only Stripe has an email)",
+        "detail": (
+            "The Stakeholder class ontology attrs do not mandate a contact channel, so this "
+            "is informational only. However, downstream task-tracking tools (e.g. Phase 2 "
+            "Doc07 RACI for 'Who do we email when X happens?') will not have a contact "
+            "field on 6/7 stakeholders. SP-augmented attrs should consider adding a nullable "
+            "'contact_channel' field to the Stakeholder class in a future ontology revision "
+            "(v1.3 or later)."
+        ),
+        "evidence": [
+            "Doc03 §3.1 Contact column: STK-CEO-01='—', STK-CTO-01='—', STK-DPO-01='—', STK-DEVP-01='—', STK-CUSTOMER-01='—', STK-STRIPE-01='compliance@stripe.com', STK-AWS-01='—'",
+            "phase1_ontology.yaml@kg_ontology.classes.Stakeholder.attrs: id/name/role/type/department_or_relationship/note — no contact_channel field",
+        ],
+        "node_ids": ["STK-CEO-01", "STK-CTO-01", "STK-DPO-01", "STK-DEVP-01", "STK-CUSTOMER-01", "STK-STRIPE-01", "STK-AWS-01"],
+        "recommendation": "Human (P7) — no JSON fix required (informational). For Phase 2 RACI work, treat the 6 '—' stakeholders as 'no direct contact channel documented' and use Doc07 §? organigram instead. Optionally extend ontology with 'contact_channel: String(nullable)' in v1.3.",
+    },
 ]
+
+# ---------------------------------------------------------------------------
+# 10. Sprint 6 — Stakeholders + BusinessGoals + CoverageGaps
+#     Sources: Doc03 §3.1 (7 stakeholders), Doc03 §4 (5 BGs),
+#              Doc11 §7 + Doc08 §8 (4 coverage gaps).
+#     Schema: phase1_ontology.yaml@kg_ontology.classes v1.2
+#     ID patterns (verified by build_p1_dashboard.py --check id_patterns):
+#       Stakeholder:           ^STK-[A-Z]+-\d{2}$
+#       BusinessGoal:          ^BG-\d{2}$
+#       CoverageGap:           ^GAP-\d{3}$
+# ---------------------------------------------------------------------------
+
+STAKEHOLDERS = [
+    {
+        "id": "STK-CEO-01",
+        "label": "CEO",
+        "attrs": {
+            "name": "CEO (implicit)",
+            "type": "Internal",
+            "department_or_relationship": "TinyTask Lda.",
+            "note": "Business strategy, compliance accountability",
+        },
+        "source": ["Doc03 §3.1 (Stakeholder Register, row 1)",
+                   "phase1_ontology.yaml@kg_ontology.classes.Stakeholder"],
+    },
+    {
+        "id": "STK-CTO-01",
+        "label": "CTO",
+        "attrs": {
+            "name": "CTO (implicit)",
+            "type": "Internal",
+            "department_or_relationship": "TinyTask Lda.",
+            "note": "Technical leadership, security architecture",
+        },
+        "source": ["Doc03 §3.1 (Stakeholder Register, row 2)",
+                   "phase1_ontology.yaml@kg_ontology.classes.Stakeholder"],
+    },
+    {
+        "id": "STK-DPO-01",
+        "label": "DPO",
+        "attrs": {
+            "name": "DPO (implicit)",
+            "type": "Internal",
+            "department_or_relationship": "TinyTask Lda.",
+            "note": "Data protection oversight, GDPR compliance",
+        },
+        "source": ["Doc03 §3.1 (Stakeholder Register, row 3)",
+                   "phase1_ontology.yaml@kg_ontology.classes.Stakeholder"],
+    },
+    {
+        "id": "STK-DEVP-01",
+        "label": "Development Team",
+        "attrs": {
+            "name": "Development Team",
+            "type": "Internal",
+            "department_or_relationship": "TinyTask Lda.",
+            "note": "Secure development, implementation",
+        },
+        "source": ["Doc03 §3.1 (Stakeholder Register, row 4)",
+                   "phase1_ontology.yaml@kg_ontology.classes.Stakeholder"],
+    },
+    {
+        "id": "STK-CUSTOMER-01",
+        "label": "B2B Customers",
+        "attrs": {
+            "name": "B2B Customers",
+            "type": "External",
+            "department_or_relationship": "Client organizations",
+            "note": "Data controllers; recipient of breach notifications",
+        },
+        "source": ["Doc03 §3.1 (Stakeholder Register, row 5)",
+                   "phase1_ontology.yaml@kg_ontology.classes.Stakeholder"],
+    },
+    {
+        "id": "STK-STRIPE-01",
+        "label": "Stripe",
+        "attrs": {
+            "name": "Stripe",
+            "type": "External",
+            "department_or_relationship": "Stripe Technologies",
+            "note": "Payment processing; PCI-DSS compliance",
+        },
+        "source": ["Doc03 §3.1 (Stakeholder Register, row 6)",
+                   "phase1_ontology.yaml@kg_ontology.classes.Stakeholder"],
+    },
+    {
+        "id": "STK-AWS-01",
+        "label": "AWS",
+        "attrs": {
+            "name": "AWS",
+            "type": "External",
+            "department_or_relationship": "Amazon Web Services",
+            "note": "Cloud infrastructure; inherited security controls",
+        },
+        "source": ["Doc03 §3.1 (Stakeholder Register, row 7)",
+                   "phase1_ontology.yaml@kg_ontology.classes.Stakeholder"],
+    },
+]
+assert len(STAKEHOLDERS) == 7
+
+BUSINESS_GOALS = [
+    {
+        "id": "BG-01",
+        "label": "BG-01 GDPR Compliance Baseline",
+        "attrs": {
+            "description": (
+                "Establish baseline GDPR compliance for all personal data "
+                "processing activities (Zero audit findings; RoPA complete)."
+            ),
+            "priority": "HIGH",
+            "status": "IN_PROGRESS",
+            "stakeholders": ["STK-CEO-01", "STK-CTO-01", "STK-DPO-01", "STK-CUSTOMER-01"],
+            "strategic_alignment": "Aligns with Doc 07c_Adjusted_Goals §1 (Generic Baseline) + §2 (HL, 35 rows) + §3 (GDPR-driven, 28 rows).",
+        },
+        "source": ["Doc03 §4 Business Goals Catalog (BG-01 row)",
+                   "phase1_ontology.yaml@kg_ontology.classes.BusinessGoal"],
+    },
+    {
+        "id": "BG-02",
+        "label": "BG-02 CRA Conformity",
+        "attrs": {
+            "description": (
+                "Achieve CRA conformity for Team Organizer SaaS product "
+                "(SBOM published; security.txt active)."
+            ),
+            "priority": "HIGH",
+            "status": "TODO",
+            "stakeholders": ["STK-CTO-01", "STK-CUSTOMER-01"],
+            "strategic_alignment": "Aligns with Doc 07c_Adjusted_Goals §4 (CRA-driven, 34 rows) + D-02.x / D-06.2 / D-07.x.",
+        },
+        "source": ["Doc03 §4 Business Goals Catalog (BG-02 row)",
+                   "phase1_ontology.yaml@kg_ontology.classes.BusinessGoal"],
+    },
+    {
+        "id": "BG-03",
+        "label": "BG-03 Data Subject Rights",
+        "attrs": {
+            "description": (
+                "Enable data export and erasure for all users "
+                "(<30d DSAR turnaround; JSON export endpoint live within 90 days)."
+            ),
+            "priority": "MEDIUM",
+            "status": "TODO",
+            "stakeholders": ["STK-DPO-01", "STK-CTO-01", "STK-CUSTOMER-01"],
+            "strategic_alignment": "Aligns with Doc 07c_Adjusted_Goals §3 GDPR-driven D-05.3 / D-05.4 (LIGHTWEIGHT).",
+        },
+        "source": ["Doc03 §4 Business Goals Catalog (BG-03 row)",
+                   "phase1_ontology.yaml@kg_ontology.classes.BusinessGoal"],
+    },
+    {
+        "id": "BG-04",
+        "label": "BG-04 Security by Design",
+        "attrs": {
+            "description": (
+                "Integrate security into development lifecycle "
+                "(SAST in CI by end of quarter; zero CRITICAL findings on main branch)."
+            ),
+            "priority": "MEDIUM",
+            "status": "IN_PROGRESS",
+            "stakeholders": ["STK-CTO-01", "STK-CUSTOMER-01"],
+            "strategic_alignment": "Aligns with Doc 07c_Adjusted_Goals §4 CRA-driven D-02.1 + D-07.x (LIGHTWEIGHT); §3 GDPR-driven AG-D-02.1-001.",
+        },
+        "source": ["Doc03 §4 Business Goals Catalog (BG-04 row)",
+                   "phase1_ontology.yaml@kg_ontology.classes.BusinessGoal"],
+    },
+    {
+        "id": "BG-05",
+        "label": "BG-05 Supplier Due Diligence",
+        "attrs": {
+            "description": (
+                "Maintain SOC 2/ISO 27001 evidence from cloud providers "
+                "(Annual review of AWS SOC 2, Stripe PCI-DSS, Firebase security docs)."
+            ),
+            "priority": "MEDIUM",
+            "status": "IN_PROGRESS",
+            "stakeholders": ["STK-CTO-01", "STK-CUSTOMER-01"],
+            "strategic_alignment": "Aligns with Doc 07c_Adjusted_Goals §3 + §4 GDPR/CRA-driven D-06.1 (MINIMAL INHERIT); T-002.",
+        },
+        "source": ["Doc03 §4 Business Goals Catalog (BG-05 row)",
+                   "phase1_ontology.yaml@kg_ontology.classes.BusinessGoal"],
+    },
+]
+assert len(BUSINESS_GOALS) == 5
+
+COVERAGE_GAPS = [
+    {
+        "id": "GAP-001",
+        "label": "GAP-001 RoPA missing (D-09.4 / GDPR Art.30)",
+        "attrs": {
+            "title": "No records of processing activities (RoPA)",
+            "severity": "high",
+            "regulation": "REG-GDPR",
+            "affected_subdomain_ids": ["D-09.4"],
+            "description": (
+                "GAP-001 from Doc11 §7: D-09.4 (Records of Processing) NOT_ADDRESSED "
+                "with risk level HIGH. Recommended action: create RoPA template. "
+                "Cross-evidence: Doc08 §8 GAP-001 row identical."
+            ),
+            "status": "open",
+        },
+        "source": ["Doc11 §7 Identified Gaps Summary (GAP-001 row)",
+                   "Doc08 §8 Regulatory Gaps Identified (cross-evidence)",
+                   "phase1_ontology.yaml@kg_ontology.classes.CoverageGap"],
+    },
+    {
+        "id": "GAP-002",
+        "label": "GAP-002 Formal security controls missing (D-01 / GDPR Art.32)",
+        "attrs": {
+            "title": "No formal security policy (Art.32 documentation)",
+            "severity": "medium",
+            "regulation": "REG-GDPR",
+            # Doc11 §7 lists "D-01" which is a Domain (NOT a SecurityControlDomain
+            # whose id_pattern is "^D-\\d{2}\\.\\d{1}$"). Documented verbatim;
+            # the type mismatch is flagged by CFL-005 audit. No FLAGS edge is
+            # emitted because no SecurityControlDomain with id="D-01" exists.
+            "affected_subdomain_ids": ["D-01"],
+            "description": (
+                "GAP-002 from Doc11 §7: cited at Domain granularity (D-01 Data "
+                "Protection & Encryption) rather than SecurityControlDomain "
+                "granularity (D-01.1..D-01.4). PARTIAL_COVERAGE with risk MEDIUM. "
+                "Recommended action: document security controls. Cross-evidence: "
+                "Doc08 §8 GAP-002 row identical."
+            ),
+            "status": "open",
+        },
+        "source": ["Doc11 §7 Identified Gaps Summary (GAP-002 row)",
+                   "Doc08 §8 Regulatory Gaps Identified (cross-evidence)",
+                   "phase1_ontology.yaml@kg_ontology.classes.CoverageGap"],
+    },
+    {
+        "id": "GAP-003",
+        "label": "GAP-003 SBOM missing (D-06.2 / CRA Art.18)",
+        "attrs": {
+            "title": "No SBOM (Software Bill of Materials)",
+            "severity": "high",
+            "regulation": "REG-CRA",
+            "affected_subdomain_ids": ["D-06.2"],
+            "description": (
+                "GAP-003 from Doc11 §7: D-06.2 (SBOM) NOT_ADDRESSED with risk "
+                "level HIGH. Recommended action: implement SBOM tooling. "
+                "Cross-evidence: Doc08 §8 GAP-003 row identical."
+            ),
+            "status": "open",
+        },
+        "source": ["Doc11 §7 Identified Gaps Summary (GAP-003 row)",
+                   "Doc08 §8 Regulatory Gaps Identified (cross-evidence)",
+                   "phase1_ontology.yaml@kg_ontology.classes.CoverageGap"],
+    },
+    {
+        "id": "GAP-004",
+        "label": "GAP-004 Vulnerability disclosure missing (D-02.3 / CRA Art.21)",
+        "attrs": {
+            "title": "No vulnerability disclosure process",
+            "severity": "medium",
+            "regulation": "REG-CRA",
+            "affected_subdomain_ids": ["D-02.3"],
+            "description": (
+                "GAP-004 from Doc11 §7: D-02.3 (Coordinated Vuln. Disclosure) "
+                "NOT_ADDRESSED with risk level MEDIUM. Recommended action: create "
+                "security.txt. Cross-evidence: Doc08 §8 GAP-004 row identical."
+            ),
+            "status": "open",
+        },
+        "source": ["Doc11 §7 Identified Gaps Summary (GAP-004 row)",
+                   "Doc08 §8 Regulatory Gaps Identified (cross-evidence)",
+                   "phase1_ontology.yaml@kg_ontology.classes.CoverageGap"],
+    },
+]
+assert len(COVERAGE_GAPS) == 4
+
+# DEFINES edges: Stakeholder → BusinessGoal
+# Constraint: ONLY edges where Doc03 §4 explicitly names the stakeholder role
+# (Owner + Affected Stakeholders columns), with §3.1 register mapping the role
+# label to STK-ID performed in a single unambiguous step.
+# SKIPPED (inferred, not added):
+#   - BG-02/04 "Lead Dev" Owner — §3.1 row Name is "Development Team" (not
+#     "Lead Dev"); label mismatch is interpretation, not 1-step derivation.
+#   - BG-05 "Procurement" — no STK-ID exists in the 7-stakeholder register.
+#   - BG-02 "EU market-surveillance authorities" Affected — no STK-ID exists.
+# See audit CVG-005 below for the cross-doc-gap.
+DEFINES_EDGES = [
+    # BG-01 Owner: CTO + DPO; Affected: CEO, CTO, DPO, B2B clients (data controllers)
+    ("STK-CEO-01",     "BG-01", "Doc03 §4 BG-01 row, Affected Stakeholders column: 'CEO, CTO, DPO, all B2B clients (data controllers)'"),
+    ("STK-CTO-01",     "BG-01", "Doc03 §4 BG-01 row, Owner column: 'CTO + DPO'"),
+    ("STK-DPO-01",     "BG-01", "Doc03 §4 BG-01 row, Owner column: 'CTO + DPO'"),
+    ("STK-CUSTOMER-01","BG-01", "Doc03 §4 BG-01 row, Affected Stakeholders column: 'CEO, CTO, DPO, all B2B clients (data controllers)'"),
+    # BG-02 Owner: Lead Dev (no STK-ID via single-step mapping — see CVG-005);
+    # Affected: CTO, Lead Dev, B2B clients (procurement), EU market-surveillance
+    # authorities (latter no STK-ID).
+    ("STK-CTO-01",     "BG-02", "Doc03 §4 BG-02 row, Affected Stakeholders column: 'CTO, Lead Dev, B2B clients (procurement), EU market-surveillance authorities'"),
+    ("STK-CUSTOMER-01","BG-02", "Doc03 §4 BG-02 row, Affected Stakeholders column: 'CTO, Lead Dev, B2B clients (procurement), EU market-surveillance authorities'"),
+    # BG-03 Owner: DPO + CTO; Affected: Customers (data subjects), DPO, B2B client controllers
+    ("STK-DPO-01",     "BG-03", "Doc03 §4 BG-03 row, Owner column: 'DPO + CTO'"),
+    ("STK-CTO-01",     "BG-03", "Doc03 §4 BG-03 row, Owner column: 'DPO + CTO'"),
+    ("STK-CUSTOMER-01","BG-03", "Doc03 §4 BG-03 row, Affected Stakeholders column: 'Customers (data subjects), DPO, B2B client controllers'"),
+    # BG-04 Owner: Lead Dev + CTO; Affected: CTO, Lead Dev, B2B clients (security review)
+    ("STK-CTO-01",     "BG-04", "Doc03 §4 BG-04 row, Owner column: 'Lead Dev + CTO'"),
+    ("STK-CUSTOMER-01","BG-04", "Doc03 §4 BG-04 row, Affected Stakeholders column: 'CTO, Lead Dev, B2B clients (security review)'"),
+    # BG-05 Owner: CTO + Procurement (no STK-ID for Procurement); Affected: CTO, Procurement, B2B clients (procurement)
+    ("STK-CTO-01",     "BG-05", "Doc03 §4 BG-05 row, Owner column: 'CTO + Procurement'"),
+    ("STK-CUSTOMER-01","BG-05", "Doc03 §4 BG-05 row, Affected Stakeholders column: 'CTO, Procurement, B2B clients (procurement)'"),
+]
+assert len(DEFINES_EDGES) == 13
+
+# FLAGS edges: CoverageGap → SecurityControlDomain. Each tuple = (gap_id, subdomain_id, source_section).
+# Note: GAP-002.cite affected_subdomain_ids=['D-01'] does NOT match the
+# SecurityControlDomain id_pattern; no FLAGS edge is emitted for it (see CFL-005).
+FLAGS_EDGES = [
+    ("GAP-001", "D-09.4", "Doc11 §7 GAP-001 row: Sub-Domain D-09.4, Clause Art.30, Regulation GDPR"),
+    ("GAP-003", "D-06.2", "Doc11 §7 GAP-003 row: Sub-Domain D-06.2, Clause Art.18, Regulation CRA"),
+    ("GAP-004", "D-02.3", "Doc11 §7 GAP-004 row: Sub-Domain D-02.3, Clause Art.21, Regulation CRA"),
+]
+assert len(FLAGS_EDGES) == 3
+
 
 # ---------------------------------------------------------------------------
 # 9. Build nodes + links
@@ -944,6 +1353,27 @@ def build() -> dict:
             "attrs": t["attrs"], "source": t["source"],
         })
 
+    # Stakeholders (7) — Sprint 6 / ontology v1.2
+    for stk in STAKEHOLDERS:
+        nodes.append({
+            "id": stk["id"], "type": "Stakeholder", "label": stk["label"],
+            "attrs": stk["attrs"], "source": stk["source"],
+        })
+
+    # BusinessGoals (5)
+    for bg in BUSINESS_GOALS:
+        nodes.append({
+            "id": bg["id"], "type": "BusinessGoal", "label": bg["label"],
+            "attrs": bg["attrs"], "source": bg["source"],
+        })
+
+    # CoverageGaps (4)
+    for gap in COVERAGE_GAPS:
+        nodes.append({
+            "id": gap["id"], "type": "CoverageGap", "label": gap["label"],
+            "attrs": gap["attrs"], "source": gap["source"],
+        })
+
     # ----- Links -----
     # ASSESSES: CompanyContext --applies--> Regulation (2 applicable regs)
     for r in REGULATIONS:
@@ -1048,6 +1478,33 @@ def build() -> dict:
                     "source": ["phase1_ontology.yaml@subdomains.covered.source_regulations"],
                 })
 
+    # DEFINES: Stakeholder → BusinessGoal (each BG mapped to stakeholder(s)
+    # explicitly named in Doc03 §4 Owner + Affected Stakeholders columns;
+    # role labels that do not map unambiguously to an STK-ID are SKIPPED
+    # — see CVE-005 audit and Doc03 §4 verbatim).
+    for (stk_id, bg_id, evidence) in DEFINES_EDGES:
+        links.append({
+            "from": stk_id, "to": bg_id, "rel": "DEFINES",
+            "attrs": {"evidence": evidence},
+            "source": ["Doc03 §4 BG table", "phase1_ontology.yaml@kg_ontology.classes.BusinessGoal"],
+        })
+
+    # FLAGS: CoverageGap → SecurityControlDomain. Each gap's
+    # affected_subdomain_ids is iterated; only IDs that resolve to an
+    # existing SecurityControlDomain node produce an edge. GAP-002 has
+    # affected_subdomain_ids=["D-01"] (Domain, not subdomain) — that
+    # ID does not match the SecurityControlDomain pattern, so no FLAGS
+    # edge is emitted; the type mismatch is flagged by CFL-005 audit.
+    sd_ids = {n["id"] for n in nodes if n["type"] == "SecurityControlDomain"}
+    for (gap_id, sub_id, source_section) in FLAGS_EDGES:
+        if sub_id not in sd_ids:
+            continue
+        links.append({
+            "from": gap_id, "to": sub_id, "rel": "FLAGS",
+            "attrs": {"severity": next(g["attrs"]["severity"] for g in COVERAGE_GAPS if g["id"] == gap_id)},
+            "source": [source_section, "phase1_ontology.yaml@kg_ontology.classes.CoverageGap"],
+        })
+
     # ----- Ambiguity block -----
     ambiguity = {
         "stats_total": {
@@ -1074,6 +1531,10 @@ def build() -> dict:
         "goals_total": 69,
         "tensions_total": 4,
         "ambiguity_cards_in_scope": 417,
+        # Sprint 6 (kg_ontology v1.2) — new counts per ontology@invariants.counts
+        "stakeholders_total": 7,
+        "business_goals_total": 5,
+        "coverage_gaps_total": 4,
     }
 
     return {
@@ -1088,14 +1549,51 @@ def build() -> dict:
 
 
 def main(argv: list[str]) -> int:
+    parser = argparse.ArgumentParser(description="Phase 1 graph builder")
+    parser.add_argument("--emit", action="store_true",
+                        help="Print the JSON to stdout (for piping into jq / curl).")
+    parser.add_argument("--summary", action="store_true",
+                        help="Print a one-line JSON summary to stdout.")
+    args = parser.parse_args(argv[1:])
+
     OUT.parent.mkdir(parents=True, exist_ok=True)
     graph = build()
-    # Sanity counts
+    # Sanity counts (always to stderr so they don't pollute --emit stdout)
     by_type = {}
     for n in graph["nodes"]:
         by_type[n["type"]] = by_type.get(n["type"], 0) + 1
     print("nodes by type:", by_type, file=sys.stderr)
     print("link count:", len(graph["links"]), file=sys.stderr)
+    print("audits count:", len(graph.get("audits", [])), file=sys.stderr)
+
+    if args.emit:
+        # JSON to stdout (no indent — keeps pipe-output compact)
+        sys.stdout.write(json.dumps(graph, ensure_ascii=False))
+        sys.stdout.write("\n")
+        # Also write to the canonical file path so file consumers are in sync
+        OUT.write_text(json.dumps(graph, indent=2, ensure_ascii=False), encoding="utf-8")
+        return 0
+    if args.summary:
+        kinds: dict = {}
+        for a in graph.get("audits", []):
+            kinds[a["kind"]] = kinds.get(a["kind"], 0) + 1
+        rels: dict = {}
+        for l in graph["links"]:
+            rels[l["rel"]] = rels.get(l["rel"], 0) + 1
+        summary = {
+            "nodes_count": sum(by_type.values()),
+            "nodes_by_type": by_type,
+            "links_count": len(graph["links"]),
+            "links_by_rel": rels,
+            "audits_count": len(graph.get("audits", [])),
+            "audits_by_kind": kinds,
+        }
+        sys.stdout.write(json.dumps(summary, indent=2, ensure_ascii=False))
+        sys.stdout.write("\n")
+        OUT.write_text(json.dumps(graph, indent=2, ensure_ascii=False), encoding="utf-8")
+        return 0
+
+    # Default: write to canonical file path
     OUT.write_text(json.dumps(graph, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"wrote {OUT}", file=sys.stderr)
     return 0

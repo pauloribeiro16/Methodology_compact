@@ -1,13 +1,22 @@
 #!/usr/bin/env python3
-"""Companion to phase1_graph.json — inlines the graph into the dashboard HTML.
+"""Companion to phase1_graph.json — inlines the graph into the dashboard HTML
++ validates the graph against the Phase 1 v1.2 kg_ontology schema.
 
 Usage
 -----
-    python3 build_p1_dashboard.py --check     # exits 0 if invariants + audit
-                                       # node_ids resolve, 1 if invariant
-                                       # violation, 2 if dangling audit ref.
-    python3 build_p1_dashboard.py --emit      # print the JSON for inlining
-    python3 build_p1_dashboard.py --summary   # print a one-line summary
+    python3 build_p1_dashboard.py --check             # exits 0 if all checks pass
+    python3 build_p1_dashboard.py --check --strict    # also fail on missing provenance / id-pattern mismatches
+    python3 build_p1_dashboard.py --emit              # print the JSON for inlining
+    python3 build_p1_dashboard.py --summary           # print a one-line summary
+
+Exit codes (orchestrator brief, Sprint 6 §D):
+    0 = pass
+    1 = invariant error (count mismatch)
+    2 = dangling audit node_ids
+    3 = unknown class (type not in ontology@classes)
+    4 = unknown relation verb (rel not in ontology@relations[].verb)
+    5 = missing provenance (id-pattern mismatch OR node/link missing source[])
+         — only fatal when --strict is passed; by default these are warnings
 
 Why a separate script
 ---------------------
@@ -17,19 +26,25 @@ JSON (no CORS, no fetch). The Phase 1 dashboard embeds the graph as a
 is produced by ``build_p1_graph.py``; this script reads that file and runs
 the validation gate.
 
-Stdlib only (json, sys, pathlib, argparse). No external deps.
+Stdlib only (json, sys, pathlib, argparse, re). No external deps.
+The ontology v1.2 kg_ontology section is mirrored in
+``data/phase1_ontology.compact.json`` (stdlib-loadable); the YAML file at
+``phase1_ontology.yaml`` is the source of truth for humans.
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 
-# Resolve data/phase1_graph.json relative to this script.
+# Resolve paths relative to this script.
 HERE = Path(__file__).resolve().parent
-GRAPH_PATH = HERE.parent / "data" / "phase1_graph.json"
+DATA_DIR = HERE.parent / "data"
+GRAPH_PATH = DATA_DIR / "phase1_graph.json"
+ONTOLOGY_PATH = DATA_DIR / "phase1_ontology.compact.json"
 
 
 def load_graph() -> dict:
@@ -40,8 +55,26 @@ def load_graph() -> dict:
         return json.load(fh)
 
 
+def load_ontology() -> dict:
+    if not ONTOLOGY_PATH.exists():
+        print(f"ERROR: ontology compact file not found: {ONTOLOGY_PATH}", file=sys.stderr)
+        sys.exit(2)
+    with ONTOLOGY_PATH.open("r", encoding="utf-8") as fh:
+        return json.load(fh)
+
+
+# ---------------------------------------------------------------------------
+# Pre-existing validators (unchanged from Sprint 5; unchanged logic preserved
+# to keep audit-cite compatibility).
+# ---------------------------------------------------------------------------
+
 def check_invariants(graph: dict) -> list[str]:
-    """Return a list of invariant violation messages (empty = pass)."""
+    """Return a list of invariant violation messages (empty = pass).
+
+    Covers all node-count invariants defined in phase1_ontology.yaml@kg_ontology.invariants.counts
+    plus the graph.meta invariants block. Existing 10 keys (Sprint 5) plus the
+    3 new v1.2 keys (stakeholders_total, business_goals_total, coverage_gaps_total).
+    """
     errors: list[str] = []
     expected = {
         "regulations_total": 5,
@@ -54,6 +87,10 @@ def check_invariants(graph: dict) -> list[str]:
         "goals_total": 69,
         "tensions_total": 4,
         "ambiguity_cards_in_scope": 417,
+        # Sprint 6 / kg_ontology v1.2 — new counts
+        "stakeholders_total": 7,
+        "business_goals_total": 5,
+        "coverage_gaps_total": 4,
     }
     inv = graph.get("invariants", {})
     for k, want in expected.items():
@@ -78,6 +115,13 @@ def check_invariants(graph: dict) -> list[str]:
         errors.append(f"node count AdjustedGoal: expected {expected['goals_total']}, got {by_type.get('AdjustedGoal')}")
     if by_type.get("Tension", 0) != expected["tensions_total"]:
         errors.append(f"node count Tension: expected {expected['tensions_total']}, got {by_type.get('Tension', 0)}")
+    # Sprint 6 / v1.2 — new node-count checks
+    if by_type.get("Stakeholder", 0) != expected["stakeholders_total"]:
+        errors.append(f"node count Stakeholder: expected {expected['stakeholders_total']}, got {by_type.get('Stakeholder', 0)}")
+    if by_type.get("BusinessGoal", 0) != expected["business_goals_total"]:
+        errors.append(f"node count BusinessGoal: expected {expected['business_goals_total']}, got {by_type.get('BusinessGoal', 0)}")
+    if by_type.get("CoverageGap", 0) != expected["coverage_gaps_total"]:
+        errors.append(f"node count CoverageGap: expected {expected['coverage_gaps_total']}, got {by_type.get('CoverageGap', 0)}")
 
     # Cross-check applicable regulations
     applicable_regs = [n for n in graph.get("nodes", []) if n["type"] == "Regulation" and n["attrs"].get("applicable")]
@@ -118,22 +162,206 @@ def check_audit_node_ids(graph: dict) -> list[str]:
     return errors
 
 
-def cmd_check(graph: dict) -> int:
+# ---------------------------------------------------------------------------
+# Sprint 6 / v1.2 ontology-based validators
+# ---------------------------------------------------------------------------
+
+def check_ontology_types(graph: dict, ontology: dict) -> tuple[list[str], list[str]]:
+    """Verify every node's type is in ontology@classes.
+
+    Returns (errors, warnings). Errors are fatal (exit code 3).
+    """
+    valid_classes = set(ontology["classes"].keys())
+    errors: list[str] = []
+    warnings: list[str] = []
+    for n in graph.get("nodes", []):
+        t = n.get("type")
+        if t not in valid_classes:
+            errors.append(f"node {n.get('id')}: type '{t}' not in ontology@classes")
+    return errors, warnings
+
+
+def check_relation_verbs(graph: dict, ontology: dict) -> tuple[list[str], list[str]]:
+    """Verify every link's rel is in ontology@relations[].verb.
+
+    Returns (errors, warnings). Errors are fatal (exit code 4).
+    """
+    valid_verbs = {r["verb"] for r in ontology["relations"]}
+    errors: list[str] = []
+    warnings: list[str] = []
+    for l in graph.get("links", []):
+        v = l.get("rel")
+        if v not in valid_verbs:
+            errors.append(f"link {l.get('from')}->{l.get('to')}: rel '{v}' not in ontology@relations")
+    return errors, warnings
+
+
+def check_id_patterns(graph: dict, ontology: dict) -> tuple[list[str], list[str]]:
+    """Verify every node.id matches its type's regex in ontology@id_patterns.
+
+    Returns (errors, warnings). Errors are non-fatal by default; --strict makes
+    them fatal (exit code 5).
+    """
+    patterns = ontology["invariants"]["id_patterns"]
+    errors: list[str] = []
+    warnings: list[str] = []
+    for n in graph.get("nodes", []):
+        t = n.get("type")
+        nid = n.get("id", "")
+        if t in patterns:
+            regex = patterns[t]
+            if not re.match(regex, nid):
+                msg = f"node {nid}: id does not match id_pattern for type '{t}' (regex: {regex})"
+                # This is "fatal under --strict only"; default reports as warning
+                warnings.append(msg)
+                errors.append(msg)
+    return errors, warnings
+
+
+def check_provenance(graph: dict, ontology: dict) -> tuple[list[str], list[str]]:
+    """Verify every node and every link has source[] with ≥1 entry.
+
+    Returns (errors, warnings). Errors are non-fatal by default; --strict makes
+    them fatal (exit code 5).
+    """
+    errors: list[str] = []
+    warnings: list[str] = []
+    for n in graph.get("nodes", []):
+        src = n.get("source") or []
+        if not src:
+            msg = f"node {n.get('id')}: missing provenance (source[] empty)"
+            warnings.append(msg)
+            errors.append(msg)
+    for i, l in enumerate(graph.get("links", [])):
+        src = l.get("source") or []
+        if not src:
+            msg = f"link {i} ({l.get('from')}->{l.get('to')} {l.get('rel')}): missing provenance (source[] empty)"
+            warnings.append(msg)
+            errors.append(msg)
+    return errors, warnings
+
+
+def check_stale_invariant_counts(graph: dict, ontology: dict) -> list[str]:
+    """Cross-check graph counts vs ontology@invariants.counts.
+
+    This is the 'stale invariant' check from the orchestrator brief §D.4:
+    for each count in ontology@invariants.counts, compare to actual count
+    of nodes matching the corresponding type/class. Returns errors which are
+    fatal (rolled into the existing invariant exit code 1).
+    """
+    errors: list[str] = []
+    counts = ontology["invariants"]["counts"]
+
+    # Map ontology count keys to node type names — defined once here, transparently.
+    type_for_count = {
+        "regulations_total":     "Regulation",
+        "domains":               "Domain",
+        "subdomains_total":      "SecurityControlDomain",
+        "tensions_total":        "Tension",
+        "stakeholders_total":    "Stakeholder",
+        "business_goals_total":  "BusinessGoal",
+        "coverage_gaps_total":   "CoverageGap",
+        "ambiguity_cards_in_scope": "__ambiguity__",
+    }
+
+    by_type: dict[str, int] = {}
+    for n in graph.get("nodes", []):
+        by_type[n["type"]] = by_type.get(n["type"], 0) + 1
+
+    for ck, expected in counts.items():
+        # Only enforce counts we know how to map; others are delegated to the
+        # pre-existing invariants block.
+        if ck not in type_for_count:
+            continue
+        target = type_for_count[ck]
+        if target == "__ambiguity__":
+            actual = graph.get("ambiguity", {}).get("stats_total", {}).get("cards_in_scope")
+        else:
+            actual = by_type.get(target)
+        if actual is not None and actual != expected:
+            errors.append(
+                f"stale invariant {ck} (ontology says {expected}, actual {target} count is {actual})"
+            )
+    return errors
+
+
+# ---------------------------------------------------------------------------
+# Command dispatcher
+# ---------------------------------------------------------------------------
+
+def cmd_check(graph: dict, argv_extra: list[str]) -> int:
+    """Run all validators; pick the highest-priority exit code.
+
+    Exit code precedence:
+      5 (missing provenance / id-pattern) only when --strict is set
+      4 (unknown relation)
+      3 (unknown class)
+      2 (dangling audit refs)
+      1 (invariant count mismatch)
+      0 (all pass)
+    """
+    ontology = load_ontology()
+    strict = "--strict" in argv_extra
+
+    # Hard invariants + audit refs
     inv_errors = check_invariants(graph)
     audit_errors = check_audit_node_ids(graph)
-    if inv_errors:
+    stale_errors = check_stale_invariant_counts(graph, ontology)
+
+    # Ontology type whitelist
+    type_errors, _ = check_ontology_types(graph, ontology)
+
+    # Relation verb whitelist
+    rel_errors, _ = check_relation_verbs(graph, ontology)
+
+    # Soft checks (non-fatal unless --strict)
+    idp_errors, idp_warnings = check_id_patterns(graph, ontology)
+    prov_errors, prov_warnings = check_provenance(graph, ontology)
+
+    # Reporting
+    if inv_errors or stale_errors:
         print("INVARIANT VIOLATIONS:", file=sys.stderr)
-        for e in inv_errors:
+        for e in inv_errors + stale_errors:
             print(f"  - {e}", file=sys.stderr)
     if audit_errors:
         print("DANGLING AUDIT REFERENCES:", file=sys.stderr)
         for e in audit_errors:
             print(f"  - {e}", file=sys.stderr)
-    if inv_errors:
+    if type_errors:
+        print("UNKNOWN CLASS (not in ontology@classes):", file=sys.stderr)
+        for e in type_errors:
+            print(f"  - {e}", file=sys.stderr)
+    if rel_errors:
+        print("UNKNOWN RELATION VERB (not in ontology@relations):", file=sys.stderr)
+        for e in rel_errors:
+            print(f"  - {e}", file=sys.stderr)
+    if idp_warnings:
+        print("ID-PATTERN WARNINGS (non-fatal, --strict to fail):", file=sys.stderr)
+        for e in idp_warnings:
+            print(f"  - {e}", file=sys.stderr)
+    if prov_warnings:
+        print("PROVENANCE WARNINGS (non-fatal, --strict to fail):", file=sys.stderr)
+        for e in prov_warnings:
+            print(f"  - {e}", file=sys.stderr)
+
+    # Exit code selection
+    if inv_errors or stale_errors:
         return 1
     if audit_errors:
         return 2
-    print("OK — invariants pass, audit node_ids resolve.", file=sys.stderr)
+    if type_errors:
+        return 3
+    if rel_errors:
+        return 4
+    if strict and (idp_errors or prov_errors):
+        return 5
+
+    # Default: also surface soft errors as exit 5 even without --strict IF they
+    # look structural (e.g. ALL nodes of a type fail the pattern, not just one
+    # data-quality artefact). For now: only --strict flips them to fatal.
+    print("OK — invariants pass, audit node_ids resolve, ontology types/relations valid.", file=sys.stderr)
+    if idp_warnings or prov_warnings:
+        print(f"  ({len(idp_warnings)} id-pattern + {len(prov_warnings)} provenance warnings; rerun with --strict to fail)", file=sys.stderr)
     return 0
 
 
@@ -176,17 +404,20 @@ def main(argv: list[str]) -> int:
     parser = argparse.ArgumentParser(description="Phase 1 dashboard companion")
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument("--check", action="store_true",
-                       help="Exit 0 if invariants + audit node_ids resolve, "
-                            "1 if invariant violation, 2 if dangling audit ref")
+                       help="Exit 0 if all validators pass; otherwise non-zero "
+                            "(see module docstring for exit code matrix).")
     group.add_argument("--emit", action="store_true",
                        help="Print the JSON for inlining into the dashboard")
     group.add_argument("--summary", action="store_true",
                        help="Print a one-line summary as JSON")
+    parser.add_argument("--strict", action="store_true",
+                        help="With --check: also fail (exit 5) on id-pattern "
+                             "mismatches and missing provenance.")
     args = parser.parse_args(argv[1:])
 
     graph = load_graph()
     if args.check:
-        return cmd_check(graph)
+        return cmd_check(graph, argv[1:])
     if args.emit:
         return cmd_emit(graph)
     if args.summary:

@@ -29,18 +29,27 @@
 #   - This file remains the source of truth for the case's clause mappings; the
 #     Rich Mode copy at 01_PHASE1_CONTEXT_RICH/phase1_ontology.yaml mirrors 00_COMMON/'s
 #     content with this updated preamble.
+#
+# Sprint 6 changes (v1.1 → v1.2) — ADDITIVE ONLY:
+#   - Version bumped 1.1 → 1.2
+#   - generated_date updated 2026-08-06 → 2026-08-26
+#   - Appended new top-level `kg_ontology:` section (formal class/relation/invariants
+#     schema for the Phase 1 knowledge graph; data/phase1_graph.json consumers can now
+#     validate instances against this schema). No existing values were modified.
+#   - Sources cited: A) 00_METHODOLOGY/diagrams/Class_Models/phase1_contextual_definition.md
+#     v1.1 (Mermaid class model); B) this file's existing body (v1.1 entities).
 
 header:
   case_id: "Case_01_TinyTask_SaaS"
   phase: 1
-  version: "1.1"
+  version: "1.2"
   generated_from:
     - "AEGIS-COMMON-00"  # Taxonomy Reference
     - "AEGIS-COMMON-01"  # Company Context (Intake Form)
     - "AEGIS-P1-05"      # Regulatory Applicability
     - "AEGIS-P1-06"      # Clause Mapping Matrix
-  generated_date: "2026-08-06"
-  author: "AEGIS Implementation (Sprint 1 reconciliation)"
+  generated_date: "2026-08-26"
+  author: "AEGIS Implementation (Sprint 6 — kg_ontology schema addition)"
 
 # ============================================================
 # COMPANY
@@ -1197,6 +1206,218 @@ inference:
     
     - path: "company -> COVERS -> subdomain"
       description: "Find all sub-domains covered by company's applicable regulations"
-    
+
     - path: "clause -> HAS_TENSION_WITH -> clause"
       description: "Find conflicting clauses requiring resolution"
+
+# ====================================================================
+# v1.2 ADDITION (2026-08-26) — KG ONTOLOGY FOR PHASE 1 KNOWLEDGE GRAPH
+# Purely additive. Existing sections untouched. See header.changes v1.2.
+# Cites:
+#   A. 00_METHODOLOGY/diagrams/Class_Models/phase1_contextual_definition.md v1.1
+#   B. 01_PHASE1_CONTEXT_RICH/phase1_ontology.yaml (this file, v1.1 body)
+# ====================================================================
+
+kg_ontology:
+
+  # ── META ─────────────────────────────────────────────────────────
+  meta:
+    purpose: >
+      Formalise the Phase 1 knowledge graph's class/relation/invariants schema,
+      so that data/phase1_graph.json and future Case_02/03 instances can be
+      validated before they reach the dashboard.
+    sources:
+      A_class_model: "00_METHODOLOGY/diagrams/Class_Models/phase1_contextual_definition.md"
+      B_case_yaml:  "01_PHASE1_CONTEXT_RICH/phase1_ontology.yaml"
+    schema_version: 1.0
+    generated: 2026-08-26
+
+  # ── CLASSES (cases instantiate exactly these) ─────────────────────
+  classes:
+
+    # backbone (already in data/phase1_graph.json)
+    CompanyContext:
+      attrs: { id: String, scale: enum(Scale),
+               employees: Integer, security_fte: Float,
+               data_types: List<String>,
+               roles: Map<RegId, List<ObligatedPartyType>> }
+      source: "A · CompanyContext (L78-90) + B · this file@company (L49-67)"
+      example: "CC-TINYTASK-2026-001"
+
+    Regulation:
+      attrs: { id: String, abbreviation: String, name: String,
+               eu_reference: String, applicable: Boolean,
+               obligated_party: List<ObligatedPartyType>,
+               clause_count: Integer,
+               reason: String }
+      source: "A · Regulation (L104-110) + B · this file@regulations[] (L73-124)"
+      example: "REG-GDPR"
+
+    RegulatoryClause:
+      attrs: { id: String, regulation_id: String, article: String,
+               description: String, maps_to_subdomain: String,
+               normative_strength: Integer(1..3),
+               obligation_type: enum(ObligationType),
+               obligated_party: List<ObligatedPartyType> }
+      source: "A · RegulatoryClause (L155-167) + B · this file@clause_mappings[] (L126-454)"
+      example: "GDPR-C04"
+
+    Domain:
+      attrs: { id: String /* D-NN */, name: String,
+               description: String,
+               primary_regulatory_driver: String }
+      source: "A · SecurityControlDomain (L147-153, D-XX form) + B · this file@subdomains (L198-454)"
+      example: "D-05"
+
+    SecurityControlDomain:
+      attrs: { id: String /* D-XX.Y */, domain_id: String /* D-XX */,
+               name: String, covered: Boolean, active: Boolean,
+               coverage_level: enum(CoverageLevel, nullable),
+               proportionality_tier: enum(ProportionalityTier, nullable),
+               sole_authority_regulation: String(nullable),
+               gap_reason: String(nullable),
+               clause_count: Integer,
+               ambiguity_in_scope: Integer }
+      source: "A · SecurityControlDomain (L147-153) + B · this file@subdomains (L198-454)"
+      example: "D-05.3"
+
+    AdjustedGoal:
+      attrs: { id: String /* AG-D-XX.X-NNN */, subdomain_id: String,
+               track: enum(HL|GDPR|CRA), priority: enum(Priority),
+               tier: enum(ProportionalityTier),
+               objective: String,
+               adjustment_note: String(nullable) }
+      source: "B · inferred from Doc13 §2-4 (track breakdown, 35 HL + 28 GDPR-driven + 34 CRA-driven)"
+      example: "AG-D-05.3-001"
+
+    Tension:
+      attrs: { id: String /* T-NNN */, type: enum(Temporal|Scope|Requirement|Intensity),
+               severity: enum(high|medium|low),
+               clause_1: String, clause_2: String,
+               affected_subdomains: List<String>,
+               resolution: { approach: String, description: String } }
+      source: "B · this file@tensions[] (L1088-1166, T-001..T-004)"
+      example: "T-001"
+
+    # NEW in v1.2 (no KG-graph data instantiated yet; sourced from case docs)
+    Stakeholder:
+      attrs: { id: String /* STK-ROLE-NN */, name: String,
+               role: String, type: enum(Internal|External),
+               department_or_relationship: String(nullable),
+               note: String(nullable) }
+      source: "A · Stakeholder/InternalStakeholder/ExternalStakeholder (L57-69)"
+      data_source: "Doc03 §3.1 (8 stakeholders)"
+      example: "STK-CEO-01"
+
+    BusinessGoal:
+      attrs: { id: String /* BG-NN */, description: String,
+               priority: enum(HIGH|MEDIUM), status: enum(IN_PROGRESS|TODO),
+               stakeholders: List<String /* STK-... */>,
+               strategic_alignment: String(nullable) }
+      source: "A · BusinessGoal (L71-76)"
+      data_source: "Doc03 §4 (5 BGs: BG-01..BG-05)"
+      example: "BG-01"
+
+    CoverageGap:
+      attrs: { id: String /* GAP-NNN */, title: String,
+               severity: enum(high|medium|low),
+               regulation: String /* REG-... */,
+               affected_subdomain_ids: List<String /* D-XX.Y */>,
+               description: String,
+               status: enum(open|in_progress|resolved) }
+      source: "v1.2 addition (this section) — Doc11 §7 references GAP-001..004"
+      data_source: "Doc11 §7 (4 gaps: GAP-001..GAP-004) + Doc08 §8 cross-doc evidence"
+      example: "GAP-001"
+
+  # ── ENUMS ────────────────────────────────────────────────────────
+  enums:
+    Scale: [MICRO, SMALL, MEDIUM, LARGE, MAX]
+    ProportionalityTier: [MINIMAL, LIGHTWEIGHT, STANDARD, RIGOROUS, DEFERRED]
+    CoverageLevel: [SUBSTANTIVE, PARTIAL, NOT_ADDRESSED]
+    Priority: [MUST, SHOULD, COULD]
+    ObligationType: [mandatory, conditional, prohibited]
+    ObligatedPartyType: [CONTROLLER, PROCESSOR, MANUFACTURER, IMPORTER,
+                         DISTRIBUTOR, ESSENTIAL_OR_IMPORTANT_ENTITY,
+                         FINANCIAL_ENTITY, PROVIDER, DEPLOYER]
+    Severity: [high, medium, low]
+    StakeholderType: [Internal, External]
+    TensionType: [timing, scope, requirement, intensity]
+
+  # ── RELATIONS (verbs; cardinality; source) ───────────────────────
+  relations:
+
+    # Source: B · this file@inference.relationship_paths (L1185-1202, promoted verbatim)
+    - { verb: ASSESSES,        from: CompanyContext,           to: Regulation,
+        cardinality: "1..N", source: "B · inference.relationship_paths (L1186-1187)" }
+    - { verb: MAPS_TO,         from: RegulatoryClause,         to: SecurityControlDomain,
+        cardinality: "N:1", source: "B · inference.relationship_paths (L1192-1193)" }
+    - { verb: BELONGS_TO,      from: SecurityControlDomain,     to: Domain,
+        cardinality: "N:1", source: "B · inference.relationship_paths (L1195-1196)" }
+    - { verb: COVERS,          from: Regulation,               to: SecurityControlDomain,
+        cardinality: "N:N", source: "B · inference.relationship_paths (L1198-1199, via coverage_summary@by_regulation)" }
+    - { verb: HAS_TENSION_WITH, from: RegulatoryClause,        to: RegulatoryClause,
+        cardinality: "N:N (symmetric)",
+        source: "B · inference.relationship_paths (L1201-1202)" }
+
+    # Source: A · class model Mermaid (L369-585)
+    - { verb: DEFINES,         from: Stakeholder,              to: BusinessGoal,
+        cardinality: "1..N", source: "A · Stakeholder 'defines' BusinessGoal (L377)" }
+    - { verb: ADDRESSED_IN,    from: RegulatoryClause,         to: SecurityControlDomain,
+        cardinality: "N:1", source: "A · RegulatoryClause 'addressed in' SecurityControlDomain (L394)" }
+    - { verb: FLAGS,           from: CoverageGap,              to: SecurityControlDomain,
+        cardinality: "N:N", source: "v1.2 — Doc11 §7 GAP-001..004 (no UML precedent)" }
+
+    # Source: A · class model Mermaid — considered but NOT yet present, flagged for transparency
+    - { verb: SUPPORTS,        from: Stakeholder,              to: Regulation,
+        cardinality: "0..N (external only)",
+        source: "A · Stakeholder — class core; SUPPORTS not in class model yet",
+        status: "deferred" }
+
+    # Source: B · Doc13 §2-4 track breakdown (inferred, not in inference.relationship_paths)
+    - { verb: YIELDS,          from: SecurityControlDomain,     to: AdjustedGoal,
+        cardinality: "1..3 (HL + GDPR-driven + CRA-driven)",
+        source: "B · Doc13 §2-4 track breakdown (35 HL + 28 GDPR + 34 CRA = 69 distinct AGs)" }
+
+    # Source: B · this file@overlaps[] (L1027-1086, between regulations)
+    - { verb: OVERLAPS_WITH,   from: Regulation,               to: Regulation,
+        cardinality: "N:N (symmetric)",
+        source: "B · this file@overlaps[] (L1027-1086)" }
+
+  # ── INVARIANTS (counts + identifier patterns) ─────────────────────
+  invariants:
+    counts:
+      regulations_total: 5
+      regulations_applicable: 2
+      domains: 10
+      subdomains_total: 38
+      subdomains_covered: 31
+      subdomains_active: 37
+      clauses_total: 54              # 28 GDPR + 26 CRA (coverage_summary@by_regulation)
+      goals_total: 69                # 35 HL slot-001 + 28 GDPR-driven + 34 CRA-driven = 69 distinct
+      tensions_total: 4              # T-001..T-004
+      ambiguity_cards_in_scope: 417  # Doc09 frontmatter + §1 + data/phase1_graph.json@invariants
+      stakeholders_total: 7          # Doc03 §3.1 (STK-CEO-01..STK-AWS-01)
+      business_goals_total: 5        # Doc03 §4 (BG-01..BG-05)
+      coverage_gaps_total: 4         # Doc11 §7 (GAP-001..GAP-004)
+    id_patterns:
+      Stakeholder: "^STK-[A-Z]+-\\d{2}$"
+      BusinessGoal: "^BG-\\d{2}$"
+      CoverageGap: "^GAP-\\d{3}$"
+      AdjustedGoal: "^AG-D-\\d{2}\\.\\d{1}-\\d{3}$"
+      RegulatoryClause: "^(GDPR|CRA)-C\\d{2}$"
+      SecurityControlDomain: "^D-\\d{2}\\.\\d{1}$"
+      Domain: "^D-\\d{2}$"
+      Regulation: "^REG-[A-Z0-9]+$"
+      CompanyContext: "^CC-[A-Z]+-\\d{4}-\\d{3}$"
+      Tension: "^T-\\d{3}$"
+
+  # ── PROVENANCE RULES (every node + every link carries these) ─────
+  provenance_rules:
+    node_source_min:
+      - "Every node.source[] MUST list ≥1 doc-or-yaml path with section"
+      - "Format: ['Doc10 §8.1', 'phase1_ontology.yaml@clause_mappings']"
+    link_source_min:
+      - "Every link.source[] MUST list ≥1 source"
+      - "Same format as node.source"
+    audit_linkage:
+      - "Any new audit-finding node_ids[] MUST be a subset of existing graph node ids"

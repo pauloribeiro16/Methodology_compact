@@ -1,0 +1,78 @@
+{
+  "_provenance": {
+    "source_yaml": "01_PHASE1_CONTEXT_RICH/phase1_ontology.yaml v1.2 (kg_ontology section, lines 1221-1423)",
+    "schema_version": "1.0",
+    "generated": "2026-08-26",
+    "purpose": "Compact JSON sibling of phase1_ontology.yaml@kg_ontology — lets stdlib-only Python (json.load) validate phase1_graph.json nodes/links against the v1.2 schema without a YAML parser. Maintained in lock-step with the YAML body.",
+    "sibling_yaml_section": "kg_ontology"
+  },
+  "classes": {
+    "CompanyContext":          {"attrs": ["id", "scale", "employees", "security_fte", "data_types", "roles"]},
+    "Regulation":              {"attrs": ["id", "abbreviation", "name", "eu_reference", "applicable", "obligated_party", "clause_count", "reason"]},
+    "RegulatoryClause":        {"attrs": ["id", "regulation_id", "article", "description", "maps_to_subdomain", "normative_weight", "obligation_type", "obligated_party"]},
+    "Domain":                  {"attrs": ["id", "name", "description", "primary_regulatory_driver"]},
+    "SecurityControlDomain":   {"attrs": ["id", "domain_id", "name", "covered", "active", "coverage_level", "proportionality_tier", "sole_authority_regulation", "gap_reason", "clause_count", "ambiguity_in_scope"]},
+    "AdjustedGoal":            {"attrs": ["id", "subdomain_id", "track", "priority", "tier", "objective", "adjustment_note"]},
+    "Tension":                 {"attrs": ["id", "type", "severity", "clause_1", "clause_2", "affected_subdomains", "resolution"]},
+    "Stakeholder":             {"attrs": ["id", "name", "role", "type", "department_or_relationship", "note"]},
+    "BusinessGoal":            {"attrs": ["id", "description", "priority", "status", "stakeholders", "strategic_alignment"]},
+    "CoverageGap":             {"attrs": ["id", "title", "severity", "regulation", "affected_subdomain_ids", "description", "status"]}
+  },
+  "relations": [
+    {"verb": "ASSESSES",        "from": "CompanyContext",       "to": "Regulation"},
+    {"verb": "MAPS_TO",         "from": "RegulatoryClause",     "to": "SecurityControlDomain"},
+    {"verb": "BELONGS_TO",      "from": "SecurityControlDomain","to": "Domain"},
+    {"verb": "COVERS",          "from": "Regulation",           "to": "SecurityControlDomain"},
+    {"verb": "HAS_TENSION_WITH","from": "RegulatoryClause",     "to": "RegulatoryClause"},
+    {"verb": "DEFINES",         "from": "Stakeholder",          "to": "BusinessGoal"},
+    {"verb": "ADDRESSED_IN",    "from": "RegulatoryClause",     "to": "SecurityControlDomain"},
+    {"verb": "FLAGS",           "from": "CoverageGap",          "to": "SecurityControlDomain"},
+    {"verb": "YIELDS",          "from": "SecurityControlDomain","to": "AdjustedGoal"},
+    {"verb": "OVERLAPS_WITH",   "from": "Regulation",           "to": "Regulation"}
+  ],
+  "enums": {
+    "Scale":                ["MICRO", "SMALL", "MEDIUM", "LARGE", "MAX"],
+    "ProportionalityTier":  ["MINIMAL", "LIGHTWEIGHT", "STANDARD", "RIGOROUS", "DEFERRED"],
+    "CoverageLevel":        ["SUBSTANTIVE", "PARTIAL", "NOT_ADDRESSED"],
+    "Priority":             ["MUST", "SHOULD", "COULD"],
+    "ObligationType":       ["mandatory", "conditional", "prohibited"],
+    "ObligatedPartyType":   ["CONTROLLER", "PROCESSOR", "MANUFACTURER", "IMPORTER", "DISTRIBUTOR", "ESSENTIAL_OR_IMPORTANT_ENTITY", "FINANCIAL_ENTITY", "PROVIDER", "DEPLOYER"],
+    "Severity":             ["high", "medium", "low"],
+    "StakeholderType":      ["Internal", "External"],
+    "TensionType":          ["timing", "scope", "requirement", "intensity"]
+  },
+  "invariants": {
+    "counts": {
+      "regulations_total": 5,
+      "regulations_applicable": 2,
+      "domains": 10,
+      "subdomains_total": 38,
+      "subdomains_covered": 31,
+      "subdomains_active": 37,
+      "clauses_total": 54,
+      "goals_total": 69,
+      "tensions_total": 4,
+      "ambiguity_cards_in_scope": 417,
+      "stakeholders_total": 7,
+      "business_goals_total": 5,
+      "coverage_gaps_total": 4
+    },
+    "id_patterns": {
+      "Stakeholder":           "^STK-[A-Z]+-\\d{2}$",
+      "BusinessGoal":          "^BG-\\d{2}$",
+      "CoverageGap":           "^GAP-\\d{3}$",
+      "AdjustedGoal":          "^AG-D-\\d{2}\\.\\d{1}-\\d{3}$",
+      "RegulatoryClause":      "^(GDPR|CRA)-C\\d{2}$",
+      "SecurityControlDomain": "^D-\\d{2}\\.\\d{1}$",
+      "Domain":                "^D-\\d{2}$",
+      "Regulation":            "^REG-[A-Z0-9]+$",
+      "CompanyContext":        "^CC-[A-Z]+-\\d{4}-\\d{3}$",
+      "Tension":               "^T-\\d{3}$"
+    }
+  },
+  "provenance_rules": {
+    "node_source_min":   ["Every node.source[] MUST list >=1 doc-or-yaml path with section."],
+    "link_source_min":   ["Every link.source[] MUST list >=1 source."],
+    "audit_linkage":     ["Any new audit-finding node_ids[] MUST be a subset of existing graph node ids."]
+  }
+}
