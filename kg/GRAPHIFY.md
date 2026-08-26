@@ -90,6 +90,14 @@ A green `EXTRACTED` confidence does NOT prove correctness — it only means the 
 | Coverage: 4 large files (`D-07.3.md`, `D-07.4.md`, `D-09.3.md`, `D-09.4.md` ≈ 1.1MB total) generated no nodes despite re-run | those are composite "deep analysis" docs; expect them to need a dedicated `graphify label --mode deep` rebuild if their absence becomes material |
 | 79 isolated nodes (1.6%) | mostly singleton concepts; expected; not actionable |
 
+### Query workarounds (validated 2026-08-26)
+
+Findings from a 10-query navigability test run against the compact repo (9/10 queries returned useful results):
+
+1. **NIST sub-controls in `nist` depend on file-derived labels.** `nist PR.DS-01` resolves (file-derived nodes carry that label), but `PR.AC-01` / `PR.AC` return "no node labelled" — after the 2026-08-24 NIST-id dedup, canonical nodes are synthetic `nist_*` and only some sub-controls have file-derived label counterparts. **Workaround:** run `where "<ID-prefix>"` (e.g. `where "PR.AC"`) to find the canonical/file-derived nodes that do exist, then `doc "<full label>"` for context.
+2. **`trace` with ambiguous labels proceeds silently on the best score.** The CLI prints `warning: source match was ambiguous (top score X, runner-up Y)` and continues with the top candidate — the chosen node is not restated in the path output. **Mitigation:** use full unambiguous labels; target specific article clauses (`GDPR Art. 32(1)(c): Timely Restoration of Availability`, not `GDPR Art. 32`), consistent with the RP-4 critical lesson. If the warning appears, re-run with a more specific label before citing the chain.
+3. **Read (relation, confidence) as a pair.** Conceptual relations (`conceptually_related_to`) can carry `EXTRACTED` confidence — EXTRACTED means "grounded in source text at the cited location", not "deterministically true". Hop counts like RP-8's "4 of 5 hops EXTRACTED" count the confidence field, not the relation type. When citing a chain downstream, always quote relation + confidence together (e.g. `[conceptually_related_to — EXTRACTED]`).
+
 ---
 
 ## Reasoning patterns (validated 2026-08-24)
