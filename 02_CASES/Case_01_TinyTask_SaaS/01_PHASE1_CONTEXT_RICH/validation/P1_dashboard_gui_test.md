@@ -319,6 +319,72 @@ Sequence via headless Codex IAB on `http://127.0.0.1:8765/Case_01_P1_Dashboard.h
 
 Working folder for the new screenshot: `gui-test-screenshots/p1_dashboard/p4_folio_v_focus_FIXED.png`.
 
+---
+
+## Re-test after a FOURTH fix pass (2026-08-26 evening) — Folio IV grid
+
+Verdict: **PASS** — 38 rows rendered, goal-id chips clickable, jump to Folio II working.
+
+### What was broken
+
+The Folio IV (Sub-Domain Deep-Dive) tab showed a header row plus the explanatory footnote but **zero of 38 rows populated**. A user-supplied screenshot confirmed the empty table.
+
+### Root cause
+
+The dashboard used `const GRID = DATA.grid;` (line 903 of `Case_01_P1_Dashboard.html`) — assuming a top-level `grid` field in the inlined JSON. The earlier "denormalise" pass that stuffed `graph`/`stats_total`/`invariants`/`meta`/`audits` into the top level had **never hoisted `grid`** — the emit executor flagged this honestly at the time but the dashboard was not updated to compensate, so `GRID` was `undefined`, `Object.entries(GRID)` returned `[]`, and the table rendered 0 rows.
+
+### The fix
+
+Replace the `DATA.grid` assignment with a runtime builder that derives the same shape from `NODES` + `LINKS` + `G.ambiguity.stats_per_subdomain`:
+
+```js
+const GRID = (() => {
+  // Two indexes needed because the verb directions differ:
+  //   MAPS_TO clause→sd  (so clauses live at linkByTo[sd])
+  //   YIELDS    sd→goal  (so goals live at linkByFrom[sd])
+  const linkByTo   = new Map(); LINKS.forEach(l => { if (!linkByTo.has(l.to))   linkByTo.set(l.to,   []); linkByTo.get(l.to).push(l); });
+  const linkByFrom = new Map(); LINKS.forEach(l => { if (!linkByFrom.has(l.from)) linkByFrom.set(l.from, []); linkByFrom.get(l.from).push(l); });
+  ...
+  NODES.filter(n => n.type === "SecurityControlDomain").forEach(n => {
+    const clauseLinks  = (linkByTo.get(n.id)   || []).filter(l => l.rel === "MAPS_TO");
+    const yieldLinks   = (linkByFrom.get(n.id) || []).filter(l => l.rel === "YIELDS");
+    // ni_avg: mean of clause normative_weight; source_regs: from incoming MAPS_TO; amb: from G.ambiguity.stats_per_subdomain
+    // Goals: slot 001 → HL goal (Doc13 §2) which doubles as the GDPR-driven goal (Doc13 §3, track=GDPR);
+    //        slot 002 → CRA-driven goal (Doc13 §4, track=CRA).
+    out[n.id] = { ..., hl: slot001[0], gdpr: slot001[0], cra: slot002[0] };
+  });
+})();
+```
+
+The HL/GDPR distinction comes from how Doc13 chapters re-use the same `AG-D-XX.X-001` node id (§2 HL list and §3 GDPR-driven list share the slot). The dashboard now reflects that nuance correctly: HL GOAL and GDPR GOAL columns point at the same node id (slot-001), while CRA GOAL points at the slot-002 node.
+
+### Verification
+
+Live test in headless Codex IAB on `http://127.0.0.1:8765/Case_01_P1_Dashboard.html`:
+
+1. Fresh load → click `IV.Sub-Domain Deep-Dive`. Table shows the **15-row first page** (pageLength=15 of 38 entries); pagination footer "Showing 1 to 15 of 38 entries · Previous 1 2 3 Next". All columns populated — CODE (`D-01.1` etc.), NAME, REG COV (`GDPR, CRA` or `CRA` or `—`), NI (1–3 integer or `—`), COVERAGE (`SUBSTANTIVE`/`PARTIAL`/`NOT_ADDRESSED`), TIER (`LIGHTWEIGHT`/`MINIMAL`/`DEFERRED`), **HL GOAL (`AG-D-XX.X-001` in orange)**, **GDPR GOAL (same id, blue)**, **CRA GOAL (`AG-D-XX.X-002` in mauve)**, ACTIVE (●/○), AMBIG IN SCOPE (`X / Y` from Doc09 §2), SOURCE DOCS (`Doc11 §3 · Doc12 §4`). D-02.4 correctly shows `—` for goals (NOT_ADDRESSED, DEFERRED — goal-less by design).
+2. Click the first HL goal chip `AG-D-01.1-001`. Active tab switches to `II.Knowledge Graph` and the Inspector reads: `INSPECTOR · ADJUSTED GOAL · AG-D-01.1-001 (HL/GDPR-driven) · ATTRIBUTES (subdomain_id=D-01.1, slot=001, track=GDPR, priority=MUST, tier=LIGHTWEIGHT) · SOURCE PROVENANCE: Doc13 §2 (HL) + §3 (GDPR-driven) · RELATED LINKS: ← YIELDS D-01.1`. Pipeline confirmed — confirmation of T8 from the very first GUI test.
+
+### Final acceptance
+
+- `python3 00_METHODOLOGY/00_VISUALISATIONS/tests/test_dashboards.py --only Case_01_P1_Dashboard` → exit 0.
+- Visual confirmation (preserved screenshot): all 38 sub-domains are reachable from the Folio IV table (page 1 of 3 shown above).
+- The 3 cosmetic items tracked in the prior report (static header line, ambiguity bars showing `(0)` in Folio V, partial Folio IV view) are now down to **2** — the Folio IV fix removes the third item by construction.
+- Scope deliberately held narrow: the fix does not hoist `grid` into the inlined JSON (that would require extending the build/diff pipeline), it rebuilds the table view from the canonical KG JSON that IS available, which is the more durable solution.
+
+Working folder for the new screenshot: `gui-test-screenshots/p1_dashboard/p4_folio_iv_FIXED.png`.
+
+---
+
+## Final summary of the four GUI test fix passes (2026-08-26)
+
+| Pass | Folio affected | Symptom | Root cause | Fix | Commit |
+|------|----------------|---------|------------|-----|--------|
+| 1 | II (KG) | Click empty canvas didn't clear Inspector; filter change left Inspector stale | No `else` branch on `chart.on("click", …)`; filter handlers reset `selectedNode` but not Inspector | `chart.getZr().on("click", e => clearSelection(false))`; new `clearSelection(rebuild)` helper for filter handlers; global Esc keydown; Inspector empty-state tip | `b6c58aa` |
+| 2 | II (KG) | Graph washes out to pale blue after focus | ECharts native `focusNodeAdjacency: true` + `emphasis.focus: "adjacency"` + `dispatchAction('highlight')` overrode `applySelectionDim` opacity | Removed all three ECharts-native auto-dim mechanisms; rewrote `applySelectionDim` to spread full per-node specs | `8ab1688` |
+| 3 | V (Phase 1 Story) | Pipeline graph collapsed to origin after focus | `applyStoryDim` `setOption` sent data with only `{id, itemStyle}` — loss of `x, y` keys under `layout: "none"` | `applyStoryDim` spreads the original item, overrides only `itemStyle.opacity` and `label.opacity` | `b11ff4c` |
+| 4 | IV (Sub-Domain Deep-Dive) | Table rendered 0 of 38 rows | `DATA.grid` not hoisted in inlined JSON | `GRID` rebuilt at runtime from `NODES`, `LINKS`, `G.ambiguity.stats_per_subdomain`; `linkByTo` + `linkByFrom` indexes handle verbs in either direction | this commit |
+
 ## Artefacts & screenshots
 
 Working folder: `gui-test-screenshots/p1_dashboard/` (project-relative)

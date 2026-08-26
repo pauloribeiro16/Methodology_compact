@@ -900,9 +900,72 @@ const G = DATA.graph;
 const NODES = G.nodes;
 const LINKS = G.links;
 const AUDITS = G.audits;
-const GRID = DATA.grid;
 const STATS = DATA.stats_total;
 const INV = DATA.invariants;
+
+// ---- Build GRID dynamically (data.grid is NOT hoisted in the inlined JSON shape).
+// For each SecurityControlDomain node, compute ni_avg / clause_count / source_regs
+// from the MAPS_TO links and the goal ids from the YIELDS links. Read coverage
+// level, proportionality_tier and active from node.attrs. Read ambiguity stats
+// from graph.ambiguity.stats_per_subdomain.
+const GRID = (() => {
+  const out = {};
+  // Build indexes for both link directions because different verbs travel
+  // different directions: MAPS_TO clause→sd, COVERS reg/empresa→sd,
+  // YIELDS sd→goal (goal lives OUTSIDE the sub-domain — linkByTo[sd] misses it).
+  const linkByTo = new Map();
+  const linkByFrom = new Map();
+  LINKS.forEach(l => {
+    if (!linkByTo.has(l.to))   linkByTo.set(l.to, []);
+    if (!linkByFrom.has(l.from)) linkByFrom.set(l.from, []);
+    linkByTo.get(l.to).push(l);
+    linkByFrom.get(l.from).push(l);
+  });
+  const ambStats = (G.ambiguity && G.ambiguity.stats_per_subdomain) || [];
+  const ambBy = new Map(ambStats.map(a => [a.subdomain_id, a]));
+
+  NODES.filter(n => n.type === "SecurityControlDomain").forEach(n => {
+    const incomingAll  = linkByTo.get(n.id)   || [];   // clauses + regs + empresa → sd
+    const outgoingAll  = linkByFrom.get(n.id) || [];  // sd → goal (YIELDS), sd → domain (BELONGS_TO)
+    const clauseLinks  = incomingAll.filter(l => l.rel === "MAPS_TO");
+    const yieldLinks   = outgoingAll.filter(l => l.rel === "YIELDS");
+    const weightSum = clauseLinks.reduce((s, l) => {
+      const ln = NODES.find(x => x.id === l.from);
+      return s + (ln && ln.attrs && typeof ln.attrs.normative_weight === "number" ? ln.attrs.normative_weight : 0);
+    }, 0);
+    const ni_avg = clauseLinks.length ? +(weightSum / clauseLinks.length).toFixed(2) : null;
+    const source_regs = Array.from(new Set(clauseLinks.map(l => {
+      const ln = NODES.find(x => x.id === l.from);
+      return ln && ln.attrs && ln.attrs.regulation_id;
+    }).filter(Boolean)));
+    const amb = ambBy.get(n.id) || { in_scope: 0, total: 0 };
+
+    // Goals per slot. AdjustedGoals carry `slot` ("001" | "002") and
+    // `track` (HL | GDPR | CRA). Per Doc13 §2-4, slot-001 is the HL goal
+    // (and Doc13 §3 reuses AG-D-XX.X-001 for the GDPR-driven goal when the
+    // track is GDPR); slot-002 is the CRA-driven goal.
+    const goalIds = new Set(yieldLinks.map(l => l.to));
+    const goals = NODES.filter(nn => goalIds.has(nn.id));
+    const slot001 = goals.filter(g => g.attrs && g.attrs.slot === "001").map(g => g.id);
+    const slot002 = goals.filter(g => g.attrs && g.attrs.slot === "002").map(g => g.id);
+
+    out[n.id] = {
+      label: n.label,
+      coverage_level: (n.attrs && n.attrs.coverage_level) || "NOT_ADDRESSED",
+      proportionality_tier: (n.attrs && n.attrs.proportionality_tier) || null,
+      active: !!((n.attrs && n.attrs.active) === true),
+      clause_count: clauseLinks.length,
+      ni_avg,
+      source_regulations: source_regs.map(r => (r === "REG-GDPR" ? "GDPR" : r === "REG-CRA" ? "CRA" : r)),
+      amb_in_scope: amb.in_scope || 0,
+      amb_total: amb.total || 0,
+      hl:   slot001[0] || null,    // Doc13 §2 HL goal — share id with the GDPR-driven entry
+      gdpr: slot001[0] || null,   // Doc13 §3 GDPR-driven goal (same AG-D-XX.X-001 node, track=GDPR)
+      cra:  slot002[0] || null    // Doc13 §4 CRA-driven goal (AG-D-XX.X-002, track=CRA)
+    };
+  });
+  return out;
+})();
 
 // -------- Index nodes + links by id ---------------------------------
 const nodeById = new Map(NODES.map(n => [n.id, n]));
