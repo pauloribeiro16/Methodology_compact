@@ -112,7 +112,7 @@ MCP = user-scope (generic hub); hooks = workspace-scope (AEGIS-specific). **Rest
 
 ## Dream (offline conversation processing)
 
-Nightly + on-demand background processing — adapted from Anthropic's Dreams feature. At every session start, `scripts/dream/brief.sh` runs as a `SessionStart` hook (registered in `.zcode/config.json`) and injects the brief as `additionalContext`. The dream produces `dream/ADOPTION_REPORT.md` (KG/skill usage + AGENTS.md amendment proposals) and `dream/RECONCILIATION.md` (git vs state-file drift). Hand-curated gotchas live in `dream/LESSONS.md`. **P7 rule:** the dream proposes diffs but never edits AGENTS.md, state files or methodology docs directly — humans apply changes. Full doc: `dream/README.md`.
+Nightly + on-demand background processing — **offline conversation consolidation** pattern: re-read session transcripts + the memory store, deduplicate, reorganize, propose (never auto-apply). At every session start, `scripts/dream/brief.sh` runs as a `SessionStart` hook (registered in `.zcode/config.json`) and injects the brief as `additionalContext`. The dream produces `dream/ADOPTION_REPORT.md` (KG/skill usage + AGENTS.md amendment proposals) and `dream/RECONCILIATION.md` (git vs state-file drift). Hand-curated gotchas live in `dream/LESSONS.md`. **P7 rule:** the dream proposes diffs but never edits AGENTS.md, state files or methodology docs directly — humans apply changes. Full doc: `dream/README.md`.
 
 ---
 

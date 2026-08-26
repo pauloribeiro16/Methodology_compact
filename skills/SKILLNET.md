@@ -10,9 +10,9 @@
 Open infrastructure that treats **agent skills as software assets** — searchable,
 installable, inspectable, evaluable, composable (zjunlp / Zhejiang University NLP;
 MIT; paper arXiv:2603.04448; hub with 600K+ indexed GitHub skills). Skill format =
-portable folder `SKILL.md + scripts/ + references/` (anthropics/skills convention)
-— the **same format ZCode skills already use**, so AEGIS skills authored here are
-valid SkillNet skills and vice-versa.
+portable folder `SKILL.md + scripts/ + references/` (the same `SKILL.md` convention
+that several open-agent projects adopted — the AEGIS skills in this repo follow it
+too, so they are valid SkillNet skills and vice-versa).
 
 ## Roles adopted here
 

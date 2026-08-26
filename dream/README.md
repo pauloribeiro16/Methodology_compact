@@ -1,6 +1,6 @@
 # Dream — offline conversation processing
 
-> Inspired by Anthropic's "Dreams" / "Auto-dream" feature for Claude (https://platform.claude.com/docs/en/managed-agents/dreams): background jobs that re-read session transcripts and reorganize the project's memory store + state files. Adapted for this repo: deterministic scripts run nightly + on demand; LLM-free for the audit/reconcile/brief layer, leaving consolidation (LLM-assisted summarization) as a future step that uses the same scheduled session.
+> Pattern: **offline conversation consolidation**. Background jobs re-read session transcripts + the project's memory store and reorganize them (deduplicate, refresh, prune). The general idea appears in the AI memory literature (e.g. as "memory consolidation" in long-running agents). Adapted here as a deterministic-first, propose-only subsystem with an LLM-assisted nightly step.
 
 ---
 
@@ -43,6 +43,8 @@ Adoption is measured, not assumed. The KG has a `.kg_usage.log`; the dream makes
 
 ## Sources / background
 
-- Anthropic Dreams (official): https://platform.claude.com/docs/en/managed-agents/dreams
-- Anthropic Dreams for Claude Code: https://dev.to/akari_iku/does-claude-code-need-sleep-inside-the-unreleased-auto-dream-feature-2n7m
+The "offline memory consolidation" idea is shared across long-running-agent designs; the closest publicly documented implementations live at:
+
+- Memory consolidation in long-running agents — general background (search: "ai agent offline memory consolidation")
+- SkillNet paper for the skills-as-assets framing that this repo also uses: https://arxiv.org/abs/2603.04448
 - Critical take ("memory debt management"): https://ai.plainenglish.io/claude-dreaming-is-not-self-improvement-it-is-memory-debt-management-with-better-branding-d31de83b2437
