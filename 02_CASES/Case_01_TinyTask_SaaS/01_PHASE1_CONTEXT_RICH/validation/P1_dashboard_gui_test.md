@@ -258,6 +258,67 @@ Prior to fix: step 4 rendered a near-uniform pale-blue canvas with the only labe
 
 Working folder for the new screenshot: `gui-test-screenshots/p1_dashboard/p4_folio_ii_focus_FIXED.png`.
 
+---
+
+## Re-test after a THIRD fix pass (2026-08-26 evening) — Folio V canvas collapse
+
+Verdict: **PASS** — Folio V pipeline now survives a focus click.
+
+### What was still broken
+
+A user-supplied screenshot showed the **Folio V (Phase 1 Story)** canvas completely empty after a node was selected: Inspector correctly populated (REGULATORY CLAUSE · GDPR-C02 · Art. 2 — Material scope), legend rendered, column headers visible (`I · STK+BG … VI · GOALS`), but the six-column pipeline graph produced **zero nodes**. Previously dismissed as "different from Folio II" — re-check confirmed it was the same anti-pattern, with a more dramatic failure mode.
+
+### Real root cause (parallel to Folio II)
+
+Same bug as Folio II but on the Folio V path. `applyStoryDim()` (Folio V's `selectNode`-equivalent) called:
+
+```js
+storyChart.setOption({
+  series: [{
+    itemStyle: { opacity: 0.95 },
+    data: data.map(d => ({ id: d.id, itemStyle: { opacity: oneHop.has(d.id) ? 1 : 0.55 } })),
+    links: links.map(l => ({ source: l.source, target: l.target,
+      lineStyle: { opacity: (oneHop.has(l.source) && oneHop.has(l.target)) ? 0.95 : 0.2 } }))
+  }]
+});
+```
+
+The `data.map(d => ({ id: d.id, itemStyle: {...} }))` line replaces each ECharts node spec with a partial object — fine for Folio II's force layout (ECharts redraws at the new positions), **fatal for Folio V's `layout: "none"`** because the original `x, y` coordinates are not part of the new spec, so ECharts teleports every node to the origin (0, 0). Pipeline visually collapses; only the legend, headers and Inspector survive.
+
+### The fix
+
+Rewrote `applyStoryDim()` to spread each original item, then override only `itemStyle.opacity` and `label.opacity`. Fix kept under `Case_01_P1_Dashboard.html` only, line ~1965.
+
+```js
+const visData = data.map(d => ({
+  ...d,                                       // preserves x, y, name, symbolSize, category, color, label.formatter
+  itemStyle: { ...(d.itemStyle || {}), opacity: !oneHop ? 1 : (oneHop.has(d.id) ? 1 : 0.55) },
+  label:      { ...(d.label || {}),      opacity: !oneHop ? 1 : (oneHop.has(d.id) ? 1 : 0.55) }
+}));
+```
+
+Same merge pattern for `visLinks` — original `lineStyle` preserved, opacity replaced.
+
+### Verification (live)
+
+Sequence via headless Codex IAB on `http://127.0.0.1:8765/Case_01_P1_Dashboard.html`:
+
+1. Fresh load → click `V.Phase 1 Story`. Folio V paints six columns of coloured nodes (Stakeholders, BGs, TinyTask, Regulations, Clauses, Sub-Domains, Adjusted Goals) at full opacity. Counter `183 nodes · 182 edges · 4 tensions · 3 gaps`.
+2. Click directly on the TinyTask node via canvas `cua.click({x:720,y:540})`. This invokes Folio V's `storyChart.on("click")` → `renderSideForNode` + `mirrorSideToStory` + **`applyStoryDim`**.
+3. **Screenshot `p4_folio_v_focus_FIXED.png`**: Inspector shows "RELATION · COVERS · FROM REGULATORYCLAUSE (GDPR-C05 Art. 6 — Lawfulness of processing) → TO SECURITYCONTROLDOMAIN (D-05.1 Data Minimization) · Attributes: Art. 6 · Source provenance: phase1_ontology.yaml@clause_mappings · Doc10 §8". Tooltip line "GDPR-C05 → D-05.1" floats. All six columns of the pipeline remain painted, with the 1-hop neighbours (the TinyTask, the clicked edge endpoints) at full opacity and the rest at `opacity = 0.55` but **still at their original positions**, not at the origin. The pipeline reads correctly.
+
+### Acceptance
+
+- `python3 00_METHODOLOGY/00_VISUALISATIONS/tests/test_dashboards.py --only Case_01_P1_Dashboard` → exit 0.
+- Visual confirmation: pipeline rendering preserved across the focus transition.
+- T9 closed for Folio V as well as Folio II.
+- Cosmetic items (1)–(3) from the previous report still open:
+  - Header line `181 nodes, 248 links, 12 audits` is static text, not data-driven.
+  - Folio V ambiguity bars show `(0)` for every sub-domain because `ambiguity.stats_per_subdomain` is not hoisted on the denormalise path.
+  - Folio IV grid shows only the first page of 38 sub-domains (the `GRID = DATA.grid` access path uses the un-hoisted JSON shape).
+
+Working folder for the new screenshot: `gui-test-screenshots/p1_dashboard/p4_folio_v_focus_FIXED.png`.
+
 ## Artefacts & screenshots
 
 Working folder: `gui-test-screenshots/p1_dashboard/` (project-relative)

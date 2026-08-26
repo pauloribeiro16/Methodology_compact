@@ -1966,28 +1966,48 @@ function applyStoryDim() {
   if (!storyChart) return;
   const data = storyChart.getOption().series[0].data;
   const links = storyChart.getOption().series[0].links || [];
-  if (!storySelectedNode) {
-    storyChart.setOption({
-      series: [{ itemStyle: { opacity: 1 }, data: data.map(d => ({ id: d.id, itemStyle: { opacity: 1 } })) }]
+
+  // Compute 1-hop neighbourhood if something is selected.
+  let oneHop = null;
+  if (storySelectedNode) {
+    oneHop = new Set([storySelectedNode.id]);
+    links.forEach(l => {
+      if (l.source === storySelectedNode.id) oneHop.add(l.target);
+      if (l.target === storySelectedNode.id) oneHop.add(l.source);
     });
-    return;
   }
-  const oneHop = new Set([storySelectedNode.id]);
-  links.forEach(l => {
-    if (l.source === storySelectedNode.id) oneHop.add(l.target);
-    if (l.target === storySelectedNode.id) oneHop.add(l.source);
-  });
+
+  // Build fully-formed per-node items so ECharts NEVER falls back to default
+  // styling (the Folio II equivalent bug). For the Folio V pipeline the
+  // critical preserved fields are x, y, symbolSize, itemStyle.color and the
+  // label config — losing these would teleport the whole layout to the origin
+  // and render the graph empty.
+  const visData = data.map(d => ({
+    ...d,
+    itemStyle: { ...(d.itemStyle || {}), opacity: !oneHop ? 1 : (oneHop.has(d.id) ? 1 : 0.55) },
+    label: { ...(d.label || {}), opacity: !oneHop ? 1 : (oneHop.has(d.id) ? 1 : 0.55) }
+  }));
+
+  const visLinks = links.map(l => ({
+    source: l.source, target: l.target,
+    lineStyle: {
+      ...(l.lineStyle || {}),
+      opacity: !oneHop
+        ? (l.lineStyle && l.lineStyle.opacity != null ? l.lineStyle.opacity : 0.55)
+        : (oneHop.has(l.source) && oneHop.has(l.target) ? 0.95 : 0.18)
+    }
+  }));
+
   storyChart.setOption({
     series: [{
-      itemStyle: { opacity: 0.95 },
-      data: data.map(d => ({
-        id: d.id,
-        itemStyle: { opacity: oneHop.has(d.id) ? 1 : 0.55 }
-      })),
-      links: links.map(l => ({
-        source: l.source, target: l.target,
-        lineStyle: { opacity: (oneHop.has(l.source) && oneHop.has(l.target)) ? 0.95 : 0.2 }
-      }))
+      type: "graph",
+      layout: "none",
+      roam: true,
+      draggable: false,
+      data: visData,
+      links: visLinks,
+      edgeSymbol: ["none", "none"],
+      lineStyle: { color: "source", curveness: 0.04 }
     }]
   });
 }
