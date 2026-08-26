@@ -58,15 +58,13 @@ Methodology_compact/
 │   ├── diagrams/                      Mermaid class models + flux diagrams (phase1/2/3)
 │   ├── 00_NIS2_Mapping/               NIS 2 ↔ NIST CSF × SP 800-53r5 mapping xlsx + build scripts
 │   └── 00_VISUALISATIONS/             Dashboards (.html) and Case_01 workbook
-├── 02_CASES/                          Three case studies
-└── .zcode/                            ZCode hooks (kg-reminder only)
-└── 02_CASES/                          Three case studies
-    ├── README.md                      Case index (contains some outdated main-repo refs — read with filter)
-    ├── GLOBAL_PROJECT_STATE.md        Top-level cross-case state (also contains outdated refs)
-    ├── CHANGE_LOG_CENTRAL.md          Cross-case change log
-    └── Case_01_TinyTask_SaaS/         Phase 1–3 deliverables
-    └── Case_02_SecureBorder_Solutions/
-    └── Case_03_OmniBank_Financial/
+├── skills/                          AEGIS agent skills (SkillNet-compatible) + SKILLNET.md
+├── 02_CASES/                        Three case studies
+│   ├── README.md                      Case index (contains some outdated main-repo refs — read with filter)
+│   ├── GLOBAL_PROJECT_STATE.md        Top-level cross-case state (also contains outdated refs)
+│   ├── CHANGE_LOG_CENTRAL.md          Cross-case change log
+│   └── Case_01_TinyTask_SaaS/ … Case_03_OmniBank_Financial/
+└── .zcode/                          ZCode config: kg-reminder hook + skillnet MCP server
 ```
 
 **Naming inconsistency (known):** `Case_01` uses `03_PHASE3_DECOMPOSITION_RICH/`; `Case_02` and `Case_03` use `03_PHASE3_DECOMPOSITION/`. When iterating over phases, handle both.
@@ -84,14 +82,27 @@ Methodology_compact/
 
 **For continuing case work (the primary use of this repo):**
 
-1. `02_CASES/GLOBAL_PROJECT_STATE.md` — what was done across all cases, last update, blockers
-2. Pick a case → `02_CASES/Case_0X/PROJECT_STATE.md` + `02_CASES/Case_0X/progress.json` — phase-level status
-3. Within a phase → `02_CASES/Case_0X/0N_PHASEN_*/PROJECT_STATE.md` — that phase's status
-4. The actual artefacts (docs, validation reports, scripts) sit next to each phase's `PROJECT_STATE.md`
+1. Run `skills/case-context-loader/scripts/load_case_context.sh <case>` (or the `case-context-loader` skill) — it prints the whole status chain below in one step
+2. `02_CASES/GLOBAL_PROJECT_STATE.md` — what was done across all cases, last update, blockers
+3. Pick a case → `02_CASES/Case_0X/PROJECT_STATE.md` + `02_CASES/Case_0X/progress.json` — phase-level status
+4. Within a phase → `02_CASES/Case_0X/0N_PHASEN_*/PROJECT_STATE.md` — that phase's status
+5. The actual artefacts (docs, validation reports, scripts) sit next to each phase's `PROJECT_STATE.md`
 
 **For domain/methodology questions:** `00_METHODOLOGY/PREPROCESSING_by_domain/domains/index.md`, then drill into `D-XX.Y.md` for the sub-domain.
 
-**For impact analysis on IDs:** read `00_METHODOLOGY/dependency_graph.yaml`. It has no live query tool here — use `grep -r` for `SR-*`/`SO-*`/`RULE-*`/`REQ-*`/`D-XX.Y` across the affected subtree.
+**For impact analysis on IDs:** `scripts/kg.sh impact <ID>` (primary, RP-1); cross-check `00_METHODOLOGY/dependency_graph.yaml` and `grep -r` for `SR-*`/`SO-*`/`RULE-*`/`REQ-*`/`D-XX.Y` across the affected subtree.
+
+---
+
+## Skills (SkillNet-compatible)
+
+AEGIS repeatable workflows live as versioned skills in `skills/` (format: `SKILL.md` + `scripts/` — same convention as the SkillNet hub). Install into ZCode with `bash scripts/install_skills.sh` (symlinks into `~/.zcode/skills/`; restart the session). Full integration doc: `skills/SKILLNET.md`.
+
+**Mandatory invocation points:**
+- **Case work (pre-flight)** → `case-context-loader` — loads GLOBAL → case → phase state chain
+- **Writing/editing any methodology document** → `doc-conventions` — ID hierarchy corr-008, frontmatter, naming, citation rules
+
+**External skill hub (consumer):** search/download via the `skillnet` MCP server (registered in `.zcode/config.json`) or `skillnet search|download` CLI. Search results carry the hub's 5-axis quality scores. **P7 rule:** external skills are third-party code+prompts — human approval before any enters the AEGIS workflow. `evaluate`/`create` deferred (needs LLM backend; see `skills/SKILLNET.md`).
 
 ---
 
@@ -136,6 +147,8 @@ Before doing any work:
 - [ ] Intent confirmed with user
 - [ ] Mode confirmed (Plan vs Build)
 - [ ] Case and phase identified (or confirmed it's methodology-level)
+- [ ] Case work: context loaded via `case-context-loader` (skill or script)
+- [ ] Doc writing/editing: `doc-conventions` skill consulted
 - [ ] Read the relevant `PROJECT_STATE.md` chain (case root → phase root) for current status
 - [ ] If touching an ID-bearing doc (`SR-*`/`SO-*`/`RULE-*`/`REQ-*`/`D-XX.Y`): consulted `scripts/kg.sh impact <ID>` (P5); cross-checked `dependency_graph.yaml` and grep
 - [ ] If uncertain about ANY of the above → STOP and ask
@@ -172,7 +185,8 @@ Heavyweight lint gates and KG validation belong in the main repo, not here.
 | Cross-case change log | `02_CASES/CHANGE_LOG_CENTRAL.md` |
 | Case index | `02_CASES/README.md` |
 | Executor brief for domain parser | `00_METHODOLOGY/PREPROCESSING_by_domain/PARSE_DOMAIN_EXECUTION_BRIEF.md` |
+| SkillNet integration (skills + hub channels) | `skills/SKILLNET.md` |
 
 ---
 
-**Version:** 4.1 (Graphify port: scripts/kg.sh + kg/, 2026-08-26)
+**Version:** 4.2 (SkillNet integration: skills/ + MCP/CLI channels, 2026-08-26)

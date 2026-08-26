@@ -17,5 +17,16 @@
         }
       ]
     }
+  },
+  "mcp": {
+    "servers": {
+      "skillnet": {
+        "command": "node",
+        "args": [
+          "/home/epmq-cyber/.local/share/skillnet-mcp/index.js"
+        ],
+        "env": {}
+      }
+    }
   }
 }
