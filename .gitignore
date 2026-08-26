@@ -4,3 +4,4 @@ __pycache__/
 .DS_Store
 scripts/.kg_usage.log
 dream/STATE/
+00_METHODOLOGY/00_VISUALISATIONS/tests/screenshots/

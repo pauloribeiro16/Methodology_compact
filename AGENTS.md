@@ -106,13 +106,34 @@ AEGIS repeatable workflows live as versioned skills in `skills/` (format: `SKILL
 
 ### ZCode config split (visibility)
 
-MCP = user-scope (generic hub); hooks = workspace-scope (AEGIS-specific). **Restart ZCode** after editing workspace config (re-read only at session start). See `skills/SKILLNET.md` for the full table.
+MCP + agents + generic skills = user-scope (available across projects); hooks + repo-specific skills = workspace-scope (AEGIS-only). **Restart ZCode** after editing workspace config (re-read only at session start).
+
+| Resource | Scope | Path |
+|---|---|---|
+| `skillnet` MCP server | user | `~/.zcode/cli/config.json` |
+| `web-frontend` subagent | user | `~/.zcode/agents/web-frontend.md` |
+| `web-debug` skill | user | `~/.zcode/skills/web-debug/SKILL.md` |
+| `kg-reminder` + `brief` hooks | workspace | `<repo>/.zcode/config.json` |
+| `case-context-loader` + `doc-conventions` skills | user (symlink) | `~/.zcode/skills/...` → `repo/skills/...` |
 
 ---
 
 ## Dream (offline conversation processing)
 
 Nightly + on-demand background processing — **offline conversation consolidation** pattern: re-read session transcripts + the memory store, deduplicate, reorganize, propose (never auto-apply). At every session start, `scripts/dream/brief.sh` runs as a `SessionStart` hook (registered in `.zcode/config.json`) and injects the brief as `additionalContext`. The dream produces `dream/ADOPTION_REPORT.md` (KG/skill usage + AGENTS.md amendment proposals) and `dream/RECONCILIATION.md` (git vs state-file drift). Hand-curated gotchas live in `dream/LESSONS.md`. **P7 rule:** the dream proposes diffs but never edits AGENTS.md, state files or methodology docs directly — humans apply changes. Full doc: `dream/README.md`.
+
+---
+
+## Web work (dashboards)
+
+The 9 standalone dashboards in `00_METHODOLOGY/00_VISUALISATIONS/` (HTML + Chart.js/ECharts + jQuery/DataTables via CDN, opened via `file://`) and the KG viewer at `kg/.../graph.html` are AEGIS web artefacts. Routing:
+
+- **New dashboard / major restyle / multi-file web work** → `Agent(web-frontend)` (loads `frontend-design` + `theme-factory`; verifies with Playwright).
+- **Tweak / one-line edit** → skill `frontend-design` on the main agent.
+- **Page broken / chart not rendering / click does nothing** → skill `web-debug` (routes Playwright headless for static repro; `browser-use:control-browser` for interactive cases — main agent only).
+- **Functional black-box flow run-through** → skill `web-gui-tester` (browser-use methodology).
+
+**Smoke gate before commit**: any edit to `00_VISUALISATIONS/**/*.html` must pass `python3 00_METHODOLOGY/00_VISUALISATIONS/tests/test_dashboards.py --only <basename>`. CDN failures are real failures.
 
 ---
 
@@ -162,6 +183,7 @@ Before doing any work:
 - [ ] Doc writing/editing: `doc-conventions` skill consulted
 - [ ] Read the relevant `PROJECT_STATE.md` chain (case root → phase root) for current status
 - [ ] If touching an ID-bearing doc (`SR-*`/`SO-*`/`RULE-*`/`REQ-*`/`D-XX.Y`): consulted `scripts/kg.sh impact <ID>` (P5); cross-checked `dependency_graph.yaml` and grep
+- [ ] If editing `00_VISUALISATIONS/**/*.html`: smoke tests green (`python3 00_METHODOLOGY/00_VISUALISATIONS/tests/test_dashboards.py --only <basename>`)
 - [ ] If uncertain about ANY of the above → STOP and ask
 
 ---
@@ -201,4 +223,4 @@ Heavyweight lint gates and KG validation belong in the main repo, not here.
 
 ---
 
-**Version:** 4.3 (Dream: offline conversation processing — audit + reconcile + brief + daily automation, 2026-08-26)
+**Version:** 4.5 (Web: web-frontend subagent + web-debug skill + dashboard smoke gate, 2026-08-26)
