@@ -106,6 +106,12 @@ AEGIS repeatable workflows live as versioned skills in `skills/` (format: `SKILL
 
 ---
 
+## Dream (offline conversation processing)
+
+Nightly + on-demand background processing — adapted from Anthropic's Dreams feature. At every session start, `scripts/dream/brief.sh` runs as a `SessionStart` hook (registered in `.zcode/config.json`) and injects the brief as `additionalContext`. The dream produces `dream/ADOPTION_REPORT.md` (KG/skill usage + AGENTS.md amendment proposals) and `dream/RECONCILIATION.md` (git vs state-file drift). Hand-curated gotchas live in `dream/LESSONS.md`. **P7 rule:** the dream proposes diffs but never edits AGENTS.md, state files or methodology docs directly — humans apply changes. Full doc: `dream/README.md`.
+
+---
+
 ## Design Principles (P0–P7)
 
 These supersede any individual rule when conflicts arise. **All agents (Orchestrator, Executor, Validator) must follow them.**
@@ -147,6 +153,7 @@ Before doing any work:
 - [ ] Intent confirmed with user
 - [ ] Mode confirmed (Plan vs Build)
 - [ ] Case and phase identified (or confirmed it's methodology-level)
+- [ ] Session brief reviewed (auto-injected by SessionStart hook — `dream/README.md`)
 - [ ] Case work: context loaded via `case-context-loader` (skill or script)
 - [ ] Doc writing/editing: `doc-conventions` skill consulted
 - [ ] Read the relevant `PROJECT_STATE.md` chain (case root → phase root) for current status
@@ -186,7 +193,8 @@ Heavyweight lint gates and KG validation belong in the main repo, not here.
 | Case index | `02_CASES/README.md` |
 | Executor brief for domain parser | `00_METHODOLOGY/PREPROCESSING_by_domain/PARSE_DOMAIN_EXECUTION_BRIEF.md` |
 | SkillNet integration (skills + hub channels) | `skills/SKILLNET.md` |
+| Dream (offline processing) — reports, rules, hook | `dream/README.md` |
 
 ---
 
-**Version:** 4.2 (SkillNet integration: skills/ + MCP/CLI channels, 2026-08-26)
+**Version:** 4.3 (Dream: offline conversation processing — audit + reconcile + brief + daily automation, 2026-08-26)
