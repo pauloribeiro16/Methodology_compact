@@ -38,6 +38,8 @@ Piloto para **um domínio** (D-01.1). Se correr bem, escala para os 38 domínios
    ```
    → Seguir o padrão `re.search(r'^---\n(.*?)\n---', content, re.DOTALL)` + `yaml.safe_load`.
 
+> ⚠️ **Contexto do compact repo (2026-08-26).** Itens 2, 3 e 4 residem no **repo principal AEGIS**, **não no compacto**. Antes de os consultar, sincronize do repositório principal ou peça-os ao Orchestrator. Se for implementar o parser só com base neste corpus, declare explicitamente a limitação ao Orchestrator antes de escrever código.
+
 ### 2.2 Stack tecnológica — OBRIGATÓRIA
 
 - **Python 3.9+** (não assumir 3.10+ — usar `from typing import List, Dict, Optional` em vez de `list[str]`)
