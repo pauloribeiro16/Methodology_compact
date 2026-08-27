@@ -491,6 +491,72 @@ Previous report's two open items: (1) header static line `181 nodes, 248 links, 
 
 Ready to start Phase C (Maturity+Verification — Doc08 §9 verification criteria + Doc12 §4 proportionality attrs as enriched columns on the existing nodes; no new node types expected) on the user's signal. Same ritual: ontology v1.5 → KG attrs → dashboard cols → smoke → commit.
 
+---
+
+## Re-test after Phase C — Maturity + Verification (2026-08-27)
+
+Verdict: **PASS** — Folio IV gains 7 toggleable columns (Maturity, Verification, Evidence, Owner, Risk, Priority, I/P) populated from Doc12 §4; Folio II Inspector surfaces 5 verification attrs on clauses + 13 proportionality attrs on sub-domains; Folio III grows from 26 → 29 audit cards (NEW-06/07/08). No regressions.
+
+### What changed (Phase C scope)
+
+Phase C is **attrs-only** — no new node types or relations. We enriched:
+
+- **RegulatoryClause (54 nodes)** — added 5 attrs: `verification_criteria`, `evidence_type`, `risk_if_not_met`, `maturity_cur`, `maturity_tgt`. Source: Doc08 §9 (54-row per-article breakdown).
+- **SecurityControlDomain (37 active nodes)** — added 13 attrs: `i`, `p`, `tier`, `satisfaction_pattern`, `evidence_depth`, `verification_method`, `ownership`, `example_controls`, `notes`, `risk_if_not_met`, `maturity_cur`, `maturity_tgt`, `implementation_priority`. Source: Doc12 §4 (37-row per-subdomain proportionality).
+- 2 new invariants (`articles_with_verification=54`, `subdomains_with_proportionality=37`).
+- 3 new audits: **NEW-06** (cross_doc_conflict, medium) — Doc08 §9 Art. 35/Art. 37 asymmetry vs `phase1_graph.json` clauses; **NEW-07** (broken_link, low) — non-canonical `evidence_type` strings; **NEW-08** (coverage_gap, low) — uniform 2/4→3/4 maturity across 36 of 37 rows.
+- One dynamic accumulator (CFL-006 — tier vs proportionality_tier drift) built but currently zero-counted.
+
+Total: **272 / 785 / 29**. Original 272/785/26 byte-identical except for the attrs additions and the 3 new audits. Report: `validation/P1_graph_phase_c_validation.md` (verdict: PASS).
+
+### Verification (live)
+
+`http://127.0.0.1:8765/Case_01_P1_Dashboard.html` opened fresh (with reload to bust cache).
+
+- **Folio IV with Phase C enrichment** — **PASS**. Header strap reads "38 ROWS · 19 COLUMNS · PHASE C ENRICHMENT". A "Show columns" toggle bar appears above the table with 7 checkboxes (Maturity cur→tgt, Verification method, Evidence depth, Owner, Risk, Priority, I/P Build·Must) — all default ON. Toggle off → column hidden; toggle back on → column re-appears. Sample row D-01.1: Maturity `2 → 3` (amber badge), Verification `DEMONSTRATE + INSPECT`, Evidence `Managed-service config documented + annual review; no dedi…` (truncated at 60 chars with full-text tooltip on hover), Owner `Shared (AWS + company)`, Risk `HIGH` (red), Priority `HIGH` (red), I/P `BUILD` (blue pill) + `MUST` (red pill). Saved: `p7_folio_IV_phase_C.png`.
+
+- **Folio II Inspector for clause** — **PASS**. Click on GDPR-C04 → Inspector renders the 5 new attrs in alphabetical order: `evidence_type='INSPECT (config audit + annual review)'`, `maturity_cur=2`, `maturity_tgt=3`, `risk_if_not_met='HIGH'`, `verification_criteria='Operational check per Doc 07c Appendix A §A.1.1/D-01.1'`. Plus the existing 7 attrs.
+
+- **Folio II Inspector for sub-domain** — **PASS**. Click on D-01.1 → Inspector renders all 13 proportionality attrs: i=BUILD, p=MUST, tier=LIGHTWEIGHT, satisfaction_pattern=BUY_MANAGED, evidence_depth='Managed-service config documented + annual review; no dedicated in-house program', verification_method='DEMONSTRATE + INSPECT', ownership='Shared (AWS + company)', example_controls='AWS S3 / DynamoDB SSE-KMS enabled (AES-256 default); no company-owned KMS program', notes='Unified AES-256 baseline satisfies SAME pair', risk_if_not_met='HIGH', maturity_cur=2, maturity_tgt=3, implementation_priority='HIGH'. Click on D-02.4 → DEFERRED markers (`tier='DEFERRED'`, evidence_depth='—', etc.).
+
+- **Folio III 29 audit cards** — **PASS**. 29 cards in two columns (CFL/BLN/CVG/BAM). NEW-06 detail panel mentions Art. 35 + GDPR-C28 with the three P7 human-pickable resolutions documented (expand Doc08 §9 / drop GDPR-C28 / duplicate the §9 row).
+
+- **Folio V regression** — **PASS**. 6 columns preserved; no collapse (fix #3 still holds).
+- **Folio VI RACI regression** — **PASS**. 43×11 matrix renders (including the 3 new Phase-C attrs where applicable).
+- **Folio VII Architecture+ThirdParties regression** — **PASS**. Diagram + 6 vendor risk register + coverage map.
+- **Arch+RACI toggle on Folio II** — **PASS**. Off/Off: 197/264; Arch only: 223/544; RACI only: 246/505; Both on: 272/785 (exact match to JSON totals).
+
+### Acceptance
+
+- `python3 00_METHODOLOGY/00_VISUALISATIONS/tests/test_dashboards.py --only Case_01_P1_Dashboard` → exit 0.
+- `python3 scripts/build_p1_dashboard.py --check` → exit 0.
+- `python3 scripts/build_p1_dashboard.py --summary` → `nodes_count: 272`, `links_count: 785`, `audits_count: 29`, `invariant_pass: true`.
+- Visual confirmation (preserved screenshots in `gui-test-screenshots/p1_dashboard/` — `phaseC_tN_*.png` plus `p7_folio_IV_phase_C.png`).
+
+### Critical decision surfaced for human review (P7)
+
+**NEW-06 — Art. 35 / Art. 37 asymmetry.** Doc08 §9 carries 1 row for Art. 35 (DPIA, D-09.2) and 1 row for Art. 37 (DPO, D-08.2). `phase1_graph.json` carries TWO Art. 35 nodes (GDPR-C27 = "Art. 35" and GDPR-C28 = "Art. 35(1)") and ZERO Art. 37 nodes. Ordinal mapping forced the §9 Art. 37 row onto GDPR-C28 — a topic drift (the verification attributes for GDPR-C28 describe Art. 37 / DPO, not Art. 35(1) / DPIA). Audit panel surfaces three P7 human-pickable resolutions:
+
+(a) Expand Doc08 §9 to 2 rows for Art. 35 (Art. 35 (1) + Art. 35 (7)/(11)) and add an Art. 37 row.
+(b) Drop GDPR-C28 from CLAUSES and add GDPR-C29 = Art. 37.
+(c) Duplicate the Art. 35 ART_VERIFICATION row to both GDPR-C27 and GDPR-C28.
+
+**Hard constraint** of Phase C forbids editing source docs, so the audit is the delivery vehicle for human decision.
+
+### Known cosmetic state
+
+Previous report's one open item: header static line — still partially open. The Phase C fix updated the strap from `181 nodes, 248 links, 12 audits` to `272 nodes, 785 links, 29 audits` (now reads from `g.invariants` indirectly — though there's still hardcoded text in some places; not exhaustive).
+
+### Phase C artefacts & screenshots
+
+- New: `validation/P1_graph_phase_c_validation.md`
+- Updated: `scripts/build_p1_graph.py` (Phase C literals + merge logic + 3 audits + 2 invariants), `scripts/build_p1_dashboard.py` (check_phase_c sub-checks), `data/phase1_graph.json` (regenerated), `data/phase1_ontology.compact.json` (refreshed mirror), `Case_01_P1_Dashboard.html` (re-emit + column toggles + Inspector attrs + audit detail), `validation/P1_dashboard_gui_test.md` (this block).
+- Working folder for this session's screenshots: `gui-test-screenshots/p1_dashboard/` — `phaseC_tN_*.png` (14 files) plus `p7_folio_IV_phase_C.png`.
+
+### Next phase
+
+Ready to start Phase D (NIST CSF/PF/AI-RMF — Doc13 §7; cross-check via `kg.sh nist`) on the user's signal. Same ritual: ontology v1.5 (this time REAL — adding new classes/relations for NistCsfControl, NistPfControl, NistAiRmfControl + ALIGNS_TO relations) → KG nodes/edges → dashboard layer toggle on Folio II → smoke → commit.
+
 ## Artefacts & screenshots
 
 Working folder: `gui-test-screenshots/p1_dashboard/` (project-relative)
