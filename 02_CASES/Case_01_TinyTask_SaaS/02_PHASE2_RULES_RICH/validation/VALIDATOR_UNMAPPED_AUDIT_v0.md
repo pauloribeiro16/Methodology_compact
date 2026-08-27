@@ -125,3 +125,24 @@ CSF-side, unrelated to UNMAPPED: `ID.AM-08` (frozen CSF list tops at ID.AM-07; a
      - Doc18 status distribution non-uniform and evidence-backed.
      - `control_set.yaml` successfully generated and validated (46 controls).
    - **`GATE PASS`** (Exit code 0).
+
+
+## 8. Addendum: Gate v0.3 Real & Report Alignment
+
+**Date:** 2026-08-27  
+**Validator:** Gate v0.3 (`check_unmapped.py`) — **GATE PASS** (Exit 0)
+
+### Scope of Real Gate v0.3 Checks (`02_PHASE2_RULES_RICH/validation/check_unmapped.py`):
+1. **UNMAPPED Marker & ID Integrity:**
+   - Zero pseudo-ranges (`UNMAPPED_PF..P4`).
+   - Every `UNMAPPED_PF` carries explicit inline/table justification context.
+   - 100% of PF subcategories match the canonical 100 subcategories of NIST PF 1.0.
+   - CSF subcategories validated against frozen CSF 2.0 list (5 waived pre-existing drift IDs documented in §5).
+   - Doc19 AI RMF placeholder uniformity: 30/30 CR rows carry `pending Case_02/03`.
+2. **Repository & Posture Hygiene:**
+   - **Zero `/maturi/i` terms** in deliverable markdown files outside explicit deprecation/historical waivers.
+   - **Zero `sprint:` keys** in YAML frontmatters of deliverables.
+   - **Doc18 Card Posture:** Exactly 46 CSF (Field 21) + 46 Privacy (Field 22) status fields present with non-uniform distributions (CSF: 5 Implemented / 24 Partial / 17 Not Implemented; Privacy: 3 Implemented / 29 Partial / 9 Not Implemented / 5 N/A).
+3. **Automated Control Set Generator Integration:**
+   - Auto-executes `validation/build_control_set.py` on every gate run.
+   - Verifies exit code 0 and verifies `control_set.yaml` contains 46 controls with complete schema.

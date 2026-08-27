@@ -142,7 +142,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Lead Dev, ENISA.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -218,7 +218,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Lead Dev, ENISA.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -240,7 +240,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 21. **Implementation Status (CSF):** IMPLEMENTED (TLS 1.3 active - FLOW-01/05)
 
-22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+22. **Implementation Status (Privacy):** IMPLEMENTED (TLS 1.3 active - FLOW-01/05)
 
 23. **Traceability:**
     - Legal: ** GDPR Art. 5(1)(f) + Art. 32(1)(a); CRA Art. 25
@@ -295,7 +295,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Lead Dev, ENISA.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -372,7 +372,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Lead Dev, ENISA.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -464,7 +464,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 12. **Affected Stakeholders:** Customers, DPO, CTO, Lead Dev, Procurement, ENISA.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -556,7 +556,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 12. **Affected Stakeholders:** Customers, DPO, CTO, Lead Dev, Procurement, ENISA.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -648,7 +648,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 12. **Affected Stakeholders:** Customers, security researchers, DPO, CTO, Lead Dev
     ENISA, PT CSIRT (CNCS).
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -741,7 +741,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 12. **Affected Stakeholders:** Customers, data subjects, CTO, Lead Dev, DPO, ENISA.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -834,7 +834,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=2 (SHOULD))
 
 12. **Affected Stakeholders:** Customers, data subjects, CTO, Lead Dev, DPO, ENISA.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -859,7 +859,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=2 (SHOULD))
 
 21. **Implementation Status (CSF):** IMPLEMENTED (Auth0 admin MFA enforced - Doc 04a §1.4)
 
-22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+22. **Implementation Status (Privacy):** IMPLEMENTED (Auth0 admin MFA enforced - Doc 04a §1.4)
 
 23. **Traceability:**
     - Legal: ** CRA Art. 9 (source clause CRA-C06); related GDPR security
@@ -930,7 +930,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Lead Dev, ENISA.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -1023,7 +1023,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 12. **Affected Stakeholders:** Customers, data subjects, CTO, Lead Dev, DPO, ENISA.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -1116,7 +1116,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Lead Dev, ENISA.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -1210,7 +1210,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Lead Dev, ENISA.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -1305,7 +1305,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 12. **Affected Stakeholders:** Customers, data subjects, B2B controllers, DPO, CTO
     Compliance Lead, CNPD, ENISA, PT CSIRT (CNCS).
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -1400,7 +1400,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 12. **Affected Stakeholders:** Customers, data subjects, B2B controllers, DPO, CTO
     Lead Dev, ENISA.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -1493,7 +1493,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Lead Dev, ENISA.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -1515,7 +1515,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 21. **Implementation Status (CSF):** IMPLEMENTED (Data minimisation in product design & Stripe isolation)
 
-22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+22. **Implementation Status (Privacy):** IMPLEMENTED (Data minimisation in product design & Stripe isolation)
 
 23. **Traceability:**
     - Legal: ** GDPR Art. 5(1)(c); CRA Annex I §1.2(c)
@@ -1586,7 +1586,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Lead Dev, CNPD.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -1608,7 +1608,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 21. **Implementation Status (CSF):** NOT IMPLEMENTED (What's missing: formal retention approval)
 
-22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+22. **Implementation Status (Privacy):** NOT IMPLEMENTED (What missing: formal retention schedule approval)
 
 23. **Traceability:**
     - Legal: ** GDPR Art. 5(1)(e) (source clauses GDPR-C02, GDPR-C03).
@@ -1678,7 +1678,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Lead Dev, CNPD.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -1700,7 +1700,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 21. **Implementation Status (CSF):** PARTIAL (What's missing: erasure cascade automation)
 
-22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+22. **Implementation Status (Privacy):** NOT IMPLEMENTED (What missing: erasure cascade automation)
 
 23. **Traceability:**
     - Legal: ** GDPR Art. 17; CRA Art. 11
@@ -1769,7 +1769,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=2 (SHOULD))
 
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Lead Dev, CNPD.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -1863,7 +1863,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Procurement
     managed hosting, managed identity, payment processor, CNPD.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -1885,7 +1885,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 21. **Implementation Status (CSF):** PARTIAL (What's missing: standardized vendor ISO 27001 register)
 
-22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+22. **Implementation Status (Privacy):** NOT IMPLEMENTED (What missing: complete ISMS policy set)
 
 23. **Traceability:**
     - Legal: ** GDPR Art. 28(1); related CRA supply-chain rationale:
@@ -1955,7 +1955,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 12. **Affected Stakeholders:** Customers, CTO, Lead Dev, Procurement, suppliers, ENISA.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -2050,7 +2050,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Procurement
     processors, CNPD.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -2072,7 +2072,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 21. **Implementation Status (CSF):** PARTIAL (What's missing: B2B processor DPA template execution)
 
-22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+22. **Implementation Status (Privacy):** N/A — product-security deliverable (SSDF RV.1)
 
 23. **Traceability:**
     - Legal: ** GDPR Art. 28(3); related CRA supply-chain rationale:
@@ -2145,7 +2145,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Lead Dev, DevOps
     ENISA.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -2238,7 +2238,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 12. **Affected Stakeholders:** All staff, contractors, customers, data subjects, DPO
     CTO, HR, CNPD.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -2333,7 +2333,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=2 (SHOULD))
 12. **Affected Stakeholders:** All staff, contractors, customers, DPO, CTO, HR
     Lead Dev, CNPD, ENISA.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -2427,7 +2427,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 12. **Affected Stakeholders:** Customers, DPO, CTO, Compliance Lead, Legal, CEO
     CNPD, ENISA.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -2449,7 +2449,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 21. **Implementation Status (CSF):** NOT IMPLEMENTED (What's missing: complete ISMS policy set)
 
-22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+22. **Implementation Status (Privacy):** NOT IMPLEMENTED (What missing: formal risk register & DPIA)
 
 23. **Traceability:**
     - Legal: ** GDPR Art. 5(2) + Art. 24; CRA Art. 13 + Annex VII
@@ -2521,7 +2521,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Compliance Lead
     Legal, CEO, CNPD, ENISA.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -2543,7 +2543,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 21. **Implementation Status (CSF):** NOT IMPLEMENTED (What's missing: formal risk register & DPIA)
 
-22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+22. **Implementation Status (Privacy):** NOT IMPLEMENTED (What missing: standardized vendor ISO 27001 register & B2B DPA)
 
 23. **Traceability:**
     - Legal: ** GDPR Art. 32(2) + Art. 35 + Art. 36; CRA Art. 13(5)
@@ -2615,7 +2615,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 12. **Affected Stakeholders:** Customers, data subjects, B2B controllers, DPO, CTO
     Compliance Lead, Legal, CNPD.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -2637,7 +2637,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 21. **Implementation Status (CSF):** NOT IMPLEMENTED (What's missing: operational RoPA maintenance)
 
-22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+22. **Implementation Status (Privacy):** NOT IMPLEMENTED (What missing: operational RoPA maintenance)
 
 23. **Traceability:**
     - Legal: ** GDPR Art. 30 + Art. 33(5)
@@ -2708,7 +2708,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Lead Dev, auditors
     CNPD, ENISA.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -2801,7 +2801,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Lead Dev, auditors
     CNPD, ENISA.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -2823,7 +2823,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 21. **Implementation Status (CSF):** NOT IMPLEMENTED (What's missing: annual pen test & control test plan)
 
-22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+22. **Implementation Status (Privacy):** NOT IMPLEMENTED (What missing: annual pen test & control test plan)
 
 23. **Traceability:**
     - Legal: ** GDPR Art. 32(1)(d) + Art. 28(3)(h); CRA Art. 14 + Art. 21
@@ -2893,7 +2893,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 
 12. **Affected Stakeholders:** Customers, data subjects, CTO, Lead Dev, DPO, auditors.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -2981,7 +2981,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 
 12. **Affected Stakeholders:** Customers, data subjects, CTO, Lead Dev, DPO, auditors.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -3071,7 +3071,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 
 12. **Affected Stakeholders:** Customers, CTO, Lead Dev, Procurement, DPO, auditors.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -3162,7 +3162,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 
 12. **Affected Stakeholders:** Customers, CTO, Lead Dev, Procurement, DPO, auditors.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -3252,7 +3252,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 
 12. **Affected Stakeholders:** Customers, data subjects, CTO, Lead Dev, DPO, auditors.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -3343,7 +3343,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 12. **Affected Stakeholders:** CTO, Lead Dev, support administrators, customers, DPO
     auditors.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -3434,7 +3434,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 
 12. **Affected Stakeholders:** Customers, CTO, Lead Dev, DPO, managed hosting, auditors.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -3526,7 +3526,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 12. **Affected Stakeholders:** Customers, data subjects, B2B controllers, CTO, DPO
     Compliance Lead, CNPD, ENISA, PT CSIRT (CNCS).
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -3619,7 +3619,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 12. **Affected Stakeholders:** Customers, B2B controllers, CTO, DPO, Compliance Lead
     CNPD, ENISA, PT CSIRT (CNCS), auditors.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -3710,7 +3710,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 
 12. **Affected Stakeholders:** Customers, data subjects, CTO, DPO, managed hosting, auditors.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -3731,7 +3731,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 
 21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+22. **Implementation Status (Privacy):** NOT IMPLEMENTED (What missing: restriction flag workflow)
 
 23. **Traceability:**
     - Legal: N/A — Best Practice Rule (derived from A.8.24 / PR.DS-10, PR.DS-10, GV.SC-04, ID.AM-08)
@@ -3802,7 +3802,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 
 12. **Affected Stakeholders:** Customers, CTO, Lead Dev, DevOps, DPO, suppliers, auditors.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -3894,7 +3894,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 12. **Affected Stakeholders:** Customers, data subjects, CTO, Lead Dev, DevOps, DPO
     auditors.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -3986,7 +3986,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 12. **Affected Stakeholders:** CEO, customers, CTO, DPO, Compliance Lead, Legal
     suppliers, auditors.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -4007,7 +4007,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 
 21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+22. **Implementation Status (Privacy):** NOT IMPLEMENTED (What missing: role-specific privacy training)
 
 23. **Traceability:**
     - Legal: N/A — Best Practice Rule (derived from A.8.24 / GV.PO-01, GV.PO-02, GV.RM-01, GV.OV-01, GV.OV-03)
@@ -4077,7 +4077,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 12. **Affected Stakeholders:** Customers, DPO, CTO, Lead Dev, incident responders
     auditors, CNPD, ENISA.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -4168,7 +4168,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 12. **Affected Stakeholders:** Customers, data subjects, CTO, Lead Dev, DPO, test team
     auditors.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
@@ -4259,7 +4259,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 12. **Affected Stakeholders:** Customers, data subjects, CTO, Lead Dev, DPO, test team
     auditors.
 
-13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+14. **Implementation Priority:** HIGH
 
 14. **Implementation Priority:** HIGH
 
