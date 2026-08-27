@@ -23,7 +23,6 @@ fields_per_card_sprint5: 17
 sibling_of: ../02_PHASE2_RULES/
 sprints_complete: [0, 1, 2, 3, 4, 5]
 sprints_pending: []
-sprint_in_progress: none
 verdict: PASS_WITH_FINDINGS
 branch: feature/aegis-p2-case01-rich
 ---

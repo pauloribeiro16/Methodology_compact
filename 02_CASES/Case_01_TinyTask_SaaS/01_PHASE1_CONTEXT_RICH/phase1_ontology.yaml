@@ -2,7 +2,7 @@
 # Machine-readable representation of Phase 1 regulatory applicability and clause mappings
 # Schema: phase1_schema.yaml v1.0
 #
-# ⚠️ KNOWN DATA INTEGRITY ISSUE — RESOLVED IN v1.1 (Sprint 1, 2026-08-06)
+# ⚠️ KNOWN DATA INTEGRITY ISSUE — RESOLVED IN v1.1 (Fase de Especificação 1, 2026-08-06)
 # Original issue (v1.0, 2026-04-16): The clause IDs in this ontology YAML did NOT match
 # the script Python files (e.g., create_clause_mapping.py, create_clause_mapping_complete.py).
 # Specifically:
@@ -10,7 +10,7 @@
 #   - Ontology: GDPR-C08 = Art. 9    → D-05.3
 # This meant the ontology and scripts had DIFFERENT content for the same clause IDs.
 #
-# Sprint 1 resolution (2026-08-06): The ONTOLOGY mapping is now CANONICAL.
+# Fase de Especificação 1 resolution (2026-08-06): The ONTOLOGY mapping is now CANONICAL.
 #   - Canonical: GDPR-C08 = Art. 9 → D-05.3 (per this YAML v1.1, unchanged from v1.0)
 #   - Deprecated: Script mapping GDPR-C08 = Art. 24(1) → D-09.1 (legacy scripts that
 #     used the wrong mapping must be re-aligned; the canonical `06_Clause_Mapping_Matrix`
@@ -19,7 +19,7 @@
 #     clause ID: **GDPR-C11** (NOT GDPR-C08), preserving the legacy 01-28 sequential
 #     numbering for the other 27 GDPR articles. See `06_Clause_Mapping_Matrix.md §8.1`.
 #
-# Sprint 1 changes (v1.0 → v1.1):
+# Fase de Especificação 1 changes (v1.0 → v1.1):
 #   - Version bumped 1.0 → 1.1
 #   - generated_date updated 2026-04-16 → 2026-08-06
 #   - active_subdomains normalized to 37 across all dependent docs
@@ -30,7 +30,7 @@
 #     Rich Mode copy at 01_PHASE1_CONTEXT_RICH/phase1_ontology.yaml mirrors 00_COMMON/'s
 #     content with this updated preamble.
 #
-# Sprint 6 changes (v1.1 → v1.2) — ADDITIVE ONLY:
+# Fase de Especificação 6 changes (v1.1 → v1.2) — ADDITIVE ONLY:
 #   - Version bumped 1.1 → 1.2
 #   - generated_date updated 2026-08-06 → 2026-08-26
 #   - Appended new top-level `kg_ontology:` section (formal class/relation/invariants
@@ -39,7 +39,7 @@
 #   - Sources cited: A) 00_METHODOLOGY/diagrams/Class_Models/phase1_contextual_definition.md
 #     v1.1 (Mermaid class model); B) this file's existing body (v1.1 entities).
 #
-# Sprint 7 changes (v1.2 → v1.3) — ADDITIVE ONLY (RACI Phase A — Doc07):
+# Fase de Especificação 7 changes (v1.2 → v1.3) — ADDITIVE ONLY (RACI Phase A — Doc07):
 #   - Version bumped 1.2 → 1.3
 #   - Added kg_ontology.classes.RaciRole, RaciActivity + relations RACI, APPLIES_TO
 #     (RACI phase A — Doc07). Additive.

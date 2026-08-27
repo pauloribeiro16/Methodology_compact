@@ -12,7 +12,6 @@ detail_cards_count: 46
 cells_count: 692
 fields_per_card: 17|12|tiered
 tier_distribution: "NFR cards (28 with 17 fields + 18 with 12 fields)"
-sprint_role: deep_enrichment_per_card
 case: Case_01_TinyTask_SaaS
 tier: MICRO
 inputs: [11_Rules_Catalog.md, 23_Functional_Requirements.md, RULE_FREEZE.md]

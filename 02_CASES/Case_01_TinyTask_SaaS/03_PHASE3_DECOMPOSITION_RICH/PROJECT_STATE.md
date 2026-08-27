@@ -11,10 +11,8 @@ case: Case_01_TinyTask_SaaS
 tier: MICRO
 sibling_of: ../03_PHASE3_DECOMPOSITION/
 branch: feature/aegis-p3-case01-rich
-sprint_role: product_baseline_rewrite
 sprints_complete: [0, 1, 2, 3, 4, 5, 6]
 sprints_pending: []
-sprint_in_progress: 6
 verdict: PASS_WITH_FINDINGS
 sprint6_validator_report: validation/VALIDATOR_SPRINT6.md
 sprint6_resolved_findings: [F-S5-02]

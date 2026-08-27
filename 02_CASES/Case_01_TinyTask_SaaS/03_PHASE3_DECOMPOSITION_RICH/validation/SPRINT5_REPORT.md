@@ -9,7 +9,6 @@ author: Fase de Especificação 5 Executor (paulo@methodology.pt)
 status: DEEP_ENRICHED
 case: Case_01_TinyTask_SaaS
 tier: MICRO
-sprint_role: deep_enrichment_per_card
 branch: feature/aegis-p3-case01-rich
 verdict: PASS_WITH_FINDINGS
 sprints_complete: [0, 1, 2, 3, 4, 5]

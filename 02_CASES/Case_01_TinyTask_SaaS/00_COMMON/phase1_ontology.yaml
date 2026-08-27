@@ -982,7 +982,7 @@ coverage_summary:
         mitigation: "Maintain asset inventory as part of general security hygiene"
 
     acceptability: "acceptable"
-    note: "1 remaining gap (D-09.3 DORA exclusive); D-07.2/3/4 were sole-authority DORA/NIS2 but are now CRA-covered per Doc 07 §3 (P7 orphan fix, Sprint 6+ contract); see Doc 08 §2 reconciliation note."
+    note: "1 remaining gap (D-09.3 DORA exclusive); D-07.2/3/4 were sole-authority DORA/NIS2 but are now CRA-covered per Doc 07 §3 (P7 orphan fix, Fase de Especificação 6+ contract); see Doc 08 §2 reconciliation note."
 
   normative_intensity:
     mean: 2.778

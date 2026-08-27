@@ -9,7 +9,6 @@ author: Fase de Especificação 2 Executor (paulo@methodology.pt)
 status: ACTIVE
 case: Case_01_TinyTask_SaaS
 tier: MICRO
-sprint_role: kg_chains
 branch: feature/aegis-p3-case01-rich
 kg_source: /home/epmq-cyber/Área de Trabalho/projects/Deucalion/results/graphify/E3_2026-08-23/graphify-out/graph.json
 kg_node_count: 3882

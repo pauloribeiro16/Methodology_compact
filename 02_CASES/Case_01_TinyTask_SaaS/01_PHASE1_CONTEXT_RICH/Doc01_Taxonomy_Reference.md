@@ -8,7 +8,6 @@ author: "[AEGIS Research Team] (Fase de Especificação 1 reconciliation)"
 status: RECONCILED
 source: Taxonomia.txt + Regulatory_Complementary_Mapping_Updated.txt (T6)
 traceability: PhD Thesis Chapter 5, Section 5.7
-sprint_role: reconciled_from_legacy
 inputs: []
 outputs: [Doc02_INTAKE_FORM.md]
 ---

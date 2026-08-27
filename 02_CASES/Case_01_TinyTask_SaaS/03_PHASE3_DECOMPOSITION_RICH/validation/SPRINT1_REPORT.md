@@ -9,7 +9,6 @@ author: Fase de Especificação 1 Executor
 status: COMPLETE
 case: Case_01_TinyTask_SaaS
 tier: MICRO
-sprint_role: reconciliation
 branch: feature/aegis-p3-case01-rich
 verdict: PASS_WITH_FINDINGS
 inputs:

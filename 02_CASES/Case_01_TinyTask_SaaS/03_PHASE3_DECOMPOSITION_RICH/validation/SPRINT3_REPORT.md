@@ -9,7 +9,6 @@ author: Fase de Especificação 3 Executor (paulo@methodology.pt)
 status: CORPUS_ENRICHED
 case: Case_01_TinyTask_SaaS
 tier: MICRO
-sprint_role: final_docs_and_xlsx
 branch: feature/aegis-p3-case01-rich
 verdict: PASS_WITH_FINDINGS
 sprints_complete: [0, 1, 2, 3]

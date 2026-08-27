@@ -9,7 +9,6 @@ author: Fase de Especificação 2 Executor (paulo@methodology.pt)
 status: ACTIVE
 case: Case_01_TinyTask_SaaS
 tier: MICRO
-sprint_role: corpus_linkage
 branch: feature/aegis-p3-case01-rich
 inputs:
   - RULE_FREEZE.md §1 (46 rules), §2 (31 goals), §5-§7 (UC/FR/NFR/Risk/Node/Gate counts)

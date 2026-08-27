@@ -56,7 +56,7 @@ Per-BG enrichment data:
 | BG-04 Security by Design | Lead Dev + CTO | IN_PROGRESS | MEDIUM |
 | BG-05 Supplier Due Diligence | CTO + Procurement | IN_PROGRESS | MEDIUM |
 
-**Frontmatter updated:** version 2.1 → 2.2, status RECONCILED → DEEP_ENRICHED, sprint 1 → 5, sprint_role → deep_enrichment_bg_table.
+**Frontmatter updated:** version 2.1 → 2.2, status RECONCILED → DEEP_ENRICHED, fase de especificação 1 → 5, sprint_role → deep_enrichment_bg_table.
 
 ### §2.2 Doc 05 — `05_Regulatory_Applicability.md`
 
@@ -75,7 +75,7 @@ Per-BG enrichment data:
 
 **§10 Version History (Fase de Especificação 5 addition)** added with row v2.0.
 
-**Frontmatter updated:** version 1.1 → 2.0, status RECONCILED → DEEP_ENRICHED, sprint 1 → 5, sprint_role → deep_enrichment_per_article.
+**Frontmatter updated:** version 1.1 → 2.0, status RECONCILED → DEEP_ENRICHED, fase de especificação 1 → 5, sprint_role → deep_enrichment_per_article.
 
 ### §2.3 Doc 05b — `05b_Ambiguity_Register.md`
 
@@ -113,7 +113,7 @@ Risk heuristic (HIGH cases):
 
 **§8 Version History** added Fase de Especificação 5 row v1.4.
 
-**Frontmatter updated:** version 1.3 → 1.4, status ACTIVE → DEEP_ENRICHED, sprint 4 → 5, sprint_role → deep_enrichment_per_subdomain.
+**Frontmatter updated:** version 1.3 → 1.4, status ACTIVE → DEEP_ENRICHED, fase de especificação 4 → 5, sprint_role → deep_enrichment_per_subdomain.
 
 ### §2.5 Doc 07c — `07c_Adjusted_Objectives.md`
 
@@ -162,7 +162,7 @@ Each tension has 8 fields:
 8. **Stakeholder Alignment** (CTO + DPO + etc.)
 9. **Status** (AGREED per Doc 05 §7 + phase1_ontology.yaml)
 
-**Frontmatter updated:** version 1.0 → 2.0, status ADJUSTED_OBJECTIVES → DEEP_ENRICHED, sprint 4 → 5, sprint_role → deep_enrichment_per_subdomain.
+**Frontmatter updated:** version 1.0 → 2.0, status ADJUSTED_OBJECTIVES → DEEP_ENRICHED, fase de especificação 4 → 5, sprint_role → deep_enrichment_per_subdomain.
 
 ---
 

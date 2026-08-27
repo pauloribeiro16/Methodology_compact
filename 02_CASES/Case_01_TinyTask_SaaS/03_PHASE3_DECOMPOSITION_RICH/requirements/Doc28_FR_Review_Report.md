@@ -7,7 +7,6 @@ created: 2026-08-24
 updated: 2026-08-24
 author: Fase de Especificação 4 Executor (paulo@methodology.pt)
 status: ADJUSTED_FIELDS
-sprint_role: schema_adjustment
 case: Case_01_TinyTask_SaaS
 tier: MICRO
 sibling_of: ../03_PHASE3_DECOMPOSITION/requirements/23_FR_Review_Report.md

@@ -8,7 +8,6 @@ author: Validator (independent verification)
 status: ACTIVE
 case: Case_01_TinyTask_SaaS
 verdict: CONDITIONAL_PASS
-sprint_1_readiness: READY (with caveats)
 ---
 
 # Validator Fase de Especificação 0 Closure Verdict — Independent Verification

@@ -11,7 +11,6 @@ case: Case_01_TinyTask_SaaS
 tier: MICRO
 sibling_of: ../03_PHASE3_DECOMPOSITION/
 branch: feature/aegis-p3-case01-rich
-sprint_role: schema_adjustment
 sibling_doc: ../03_PHASE3_DECOMPOSITION/
 schema_columns: 6
 schema_columns_list: [Owner, Verification Criteria, Implementation Status, Priority, Stakeholders, Reporting]

@@ -9,7 +9,6 @@ author: Fase de Especificação 2 Executor (paulo@methodology.pt)
 status: COMPLETE
 case: Case_01_TinyTask_SaaS
 tier: MICRO
-sprint_role: corpus_enrichment
 branch: feature/aegis-p3-case01-rich
 verdict: PASS_WITH_FINDINGS
 inputs:

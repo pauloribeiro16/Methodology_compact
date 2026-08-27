@@ -10,7 +10,6 @@ status: ACTIVE
 case: Case_01_TinyTask_SaaS
 sibling_of: 01_PHASE1_CONTEXT/
 corpus_source: 00_METHODOLOGY/PREPROCESSING_by_domain/domains/
-sprint_role: final_validation
 ---
 
 # Phase 1 Rich Mode — Case 01 (TinyTask SaaS)

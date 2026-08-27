@@ -9,7 +9,6 @@ author: Validator sub-agent
 status: COMPLETE
 case: Case_01_TinyTask_SaaS
 tier: MICRO
-sprint_role: validation
 branch: feature/aegis-p3-case01-rich
 inputs:
   - ./SPRINT5_REPORT.md (Executor Fase de Especificação 5)

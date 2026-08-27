@@ -8,7 +8,6 @@ updated: 2026-08-06
 author: Fase de Especificação 3 Executor
 status: FINAL
 case: Case_01_TinyTask_SaaS
-sprint_role: final_validation
 inputs:
   - validation/SPRINT1_REPORT.md
   - validation/SPRINT2_ENRICHMENT_REPORT_EXISTING.md
@@ -58,7 +57,7 @@ related_documents:
 - Added **§4 Quick-Start for Reviewers** (9-step orientation path)
 - Added **§6 Corpus Linkage Summary** (4-row table)
 - Updated **§9 Outstanding Items** with 5 post-Fase de Especificação 3 items
-- Frontmatter: version 0.2 → 1.0, status IN_PROGRESS → ACTIVE, sprint 1 → 3, sprint_role updated
+- Frontmatter: version 0.2 → 1.0, status IN_PROGRESS → ACTIVE, fase de especificação 1 → 3, sprint_role updated
 
 **Verification:** `grep -c "## " README.md` returns all expected section headers; Sprint Status Dashboard shows ✅✅✅🚧.
 
@@ -86,7 +85,7 @@ related_documents:
 **Output:** `01_PHASE1_CONTEXT_RICH/07b_Proportionality_Profile.md` (209 lines → **277 lines**, +68 lines)
 
 **Changes:**
-- Frontmatter: version 1.1 → **1.2**, sprint 1 → **3**, sprint_role `reconciled_from_legacy` → `cross_checked_against_corpus`, added `cross_checked_against_corpus: true` + `cross_check_date: 2026-08-06`
+- Frontmatter: version 1.1 → **1.2**, fase de especificação 1 → **3**, sprint_role `reconciled_from_legacy` → `cross_checked_against_corpus`, added `cross_checked_against_corpus: true` + `cross_check_date: 2026-08-06`
 - New **Fase de Especificação 3 Corpus Cross-Check Note** added below Fase de Especificação 1 reconciliation note (top of file)
 - New **§11 Fase de Especificação 3 Corpus Cross-Check** section added (4 subsections):
   - §11.1 Cross-Check Table (10-row table: D-01.1, D-02.2, D-02.4, D-03.1, D-04.3, D-04.4, D-06.1, D-06.2, D-09.2, D-10.2)

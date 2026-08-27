@@ -6,7 +6,6 @@ version: 1.0
 created: 2026-08-06
 updated: 2026-08-10
 author: Fase de Especificação 4 Executor (self-verification)
-sprint_8_note: Fase de Especificação 8 Executor (corr-009 ao-migration historical-context)
 status: HISTORICAL
 historical_note: Historical self-verification report from corr-007 era. Current 07c version is v4.0 with AO ID model (corr-008 supersedes corr-007). Content below preserved verbatim.
 case: Case_01_TinyTask_SaaS

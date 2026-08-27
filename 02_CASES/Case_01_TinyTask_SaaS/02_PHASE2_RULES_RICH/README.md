@@ -11,7 +11,6 @@ case: Case_01_TinyTask_SaaS
 tier: MICRO
 sibling_of: ../02_PHASE2_RULES/
 branch: feature/aegis-p2-case01-rich
-sprint_role: deep_enrichment_validator
 sprints_complete: [0, 1, 2, 3, 4, 5]
 sprints_pending: []
 verdict: PASS_WITH_FINDINGS

@@ -8,7 +8,6 @@ author: Fase de Especificação 1 Executor (lint-runner)
 status: RECONCILED
 case: Case_01_TinyTask_SaaS
 target: 01_PHASE1_CONTEXT_RICH/ (Rich Mode)
-sprint_role: reconciled
 ---
 
 # Lint Report — Post-Reconciliation (Fase de Especificação 1, Rich Mode)

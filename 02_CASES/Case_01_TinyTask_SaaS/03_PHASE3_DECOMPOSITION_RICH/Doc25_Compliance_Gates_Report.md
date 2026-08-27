@@ -12,7 +12,6 @@ detail_cards_count: 30
 cells_count: 445
 fields_per_card: 17|12|tiered
 tier_distribution: "GATE cards (17 with 17 fields + 13 with 12 fields)"
-sprint_role: deep_enrichment_per_card
 case: Case_01_TinyTask_SaaS
 tier: MICRO
 inputs: [15_Requirements_Allocation.md, 14_Architectural_Nodes.md, 11_Rules_Catalog.md, RULE_FREEZE.md]

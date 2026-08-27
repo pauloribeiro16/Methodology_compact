@@ -20,13 +20,6 @@ related_documents: 03_Design_Decisions_Log.md
 case: Case_01_TinyTask_SaaS
 tier: MICRO
 branch: feature/aegis-p1-corrections-batch-001
-sprint_1_scope: cross-check 30 objectives ↔ 30 obligations ↔ 30 CR rules; verify PO/SO distribution; ID integrity
-sprint_4_scope: port legacy §3 PG catalog (11 PG × 6 cols) + legacy §4 SG catalog (20 SG × 6 cols) into Rich §3.1/§4.1 with 12 cols each (6 legacy + 6 new Fase de Especificação 4 fields); resolve F-04a/b (31 not 30)
-sprint_4_verdict: PASS_WITH_FINDINGS — see §5.7 carried findings F-01/F-02
-sprint_5_scope: append §6 with 31 Objective Detail Cards (11 PO + 20 SO), each with 15 fields (Description, Scope, Out of Scope, Source Article, NIST CSF Anchors, Verification Criteria, Verification Method, Owner, Status, Dependencies, Risk if not met, Affected Stakeholders, Implementation Status, Implementation Priority, Case_01 Reporting/Auditor/Supervisory Body composite = 15 cells per card)
-sprint_5_verdict: PASS — see §6.3 verdict (31 cards × 15 fields = 465 cells populated)
-sprint_9_scope: corr-012 migration — rename all PG-D-XX.X-NNN → PO-D-XX.X-NNN (Privacy Goal → Privacy Operational Objective) and SG-D-XX.X-NNN → SO-D-XX.X-NNN (Security Goal → Security Operational Objective); tech-strip all §6 detail card descriptions, scopes, verifications of vendor/tool/mechanism references; preserve regulatory citations (Art. X, Annex I §Y, NIST CSF/PRIV anchors) and abstract operational concepts; add Appendix A preserving legacy PG/SG aliases (DEPRECATED, for traceability with Phase 1 07c Appendix A)
-sprint_9_verdict: PASS — see §7.2 sprint 9 verdict
 status_history:
   - 1.0: 2026-08-07 Fase de Especificação 1 baseline
   - 2.0: 2026-08-07 Fase de Especificação 5 deep enrichment (31 detail cards × 15 fields)
@@ -2308,7 +2301,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 | Case_01-specific reporting (CNPD/ENISA/PT CSIRT) per card | **PASS** |
 | Verification criteria operationalised | **PASS** |
 | F-01 (D-01.3 key mgmt no PO card) acknowledged | **PASS** (intentional Phase 2 catalog scoping — Phase 1 has PO-D-01.3-001) |
-| Frontmatter updated (v2.0, DEEP_ENRICHED, sprint 5) | **PASS** |
+| Frontmatter updated (v2.0, DEEP_ENRICHED, fase de especificação 5) | **PASS** |
 
 **Fase de Especificação 5 verdict for Doc 10:** **PASS** — 31 cards × 15 fields = **465 cells** populated. No Fase de Especificação 5 blockers. F-01 (D-01.3 Key Management) is acknowledged and cross-referenced to Phase 1 Rich `07c_Adjusted_Goals.md` Appendix A §A.1.1 (where PO-D-01.3-001 lives).
 

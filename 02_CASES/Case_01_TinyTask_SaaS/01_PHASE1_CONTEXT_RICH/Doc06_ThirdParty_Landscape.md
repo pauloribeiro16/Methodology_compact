@@ -8,7 +8,6 @@ updated: 2026-08-06
 author: Executor (Fase de Especificação 1 reconciliation; Fase de Especificação 2 corpus enrichment)
 status: CORPUS_ENRICHED
 case_study: TinyTask Lda.
-sprint_role: reconciled_from_legacy
 inputs:
   - Doc03_Company_Context_Assessment.md
   - Doc04_Architecture_DataInventory.md

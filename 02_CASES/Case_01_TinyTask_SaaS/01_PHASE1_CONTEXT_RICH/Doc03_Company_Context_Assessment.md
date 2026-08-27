@@ -6,15 +6,11 @@ version: 2.4
 created: 2026-04-17
 updated: 2026-08-10
 author: Fase de Especificação 5 Executor (deep-enrichment-builder)
-sprint_1_author: Compliance Lead (Fase de Especificação 1 reconciliation)
-sprint_8_author: Fase de Especificação 8 Executor (corr-009 ao-id-alias-update)
-sprint_9_author: Fase de Especificação 9 Executor (corr-015 ao-canonical-ids cross-refs)
 status: DEEP_ENRICHED
 deep_enrichment_date: 2026-08-06
 ao_id_alias_update_date: 2026-08-10
 corr_015_crossref_update_date: 2026-08-10
 bg_table_cols_added: 6
-sprint_role: ao_id_alias_update_bg03_bg04
 inputs: [Doc02_INTAKE_FORM.md]
 outputs: [Doc08_Regulatory_Applicability.md]
 traceability: AEGIS Class Model -> CompanyContext, ComplianceContext classes

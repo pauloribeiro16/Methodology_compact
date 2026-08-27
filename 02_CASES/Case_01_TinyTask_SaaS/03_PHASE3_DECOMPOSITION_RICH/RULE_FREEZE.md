@@ -9,7 +9,6 @@ author: Fase de Especificação 6 Executor (paulo@methodology.pt)
 status: FROZEN_WITH_PRODUCT_BASELINE
 case: Case_01_TinyTask_SaaS
 tier: MICRO
-sprint_role: reconciliation
 branch: feature/aegis-p3-case01-rich
 inputs:
   - ../02_PHASE2_RULES_RICH/08_Obligation_Derivation.md (v3.1, DEEP_ENRICHED)

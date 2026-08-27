@@ -27,9 +27,6 @@ expected_fields_per_card: 22
 detail_cards_count: 46
 fields_per_card: 22
 branch: feature/aegis-p2-case01-csf2-priv
-sprint_1_scope: cross-check 30 CR rules ↔ 30 obligations; verify 16 BPR distribution; framework sources; implementation distribution
-sprint_4_scope: port legacy §4 CR catalog (30 CR × 11 cols) + legacy §5 BPR catalog (16 BPR × 9 cols) into Rich §4/§5 with 17/15 cols (CR adds 6 new Fase de Especificação 4 fields; BPR adds 6 new fields, omits NI and Source vs CR); resolve F-10 NI divergence
-sprint_4_verdict: PASS_WITH_FINDINGS — see §6.7 carried findings F-03
 ---
 
 # Rules Catalog — Rich Mode

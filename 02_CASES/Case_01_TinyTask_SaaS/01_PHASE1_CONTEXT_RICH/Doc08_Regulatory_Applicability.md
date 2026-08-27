@@ -6,14 +6,11 @@ version: 2.1
 created: 2026-04-01
 updated: 2026-08-10
 author: Fase de Especificação 5 Executor (deep-enrichment-builder)
-sprint_1_author: Compliance Lead (Fase de Especificação 1 reconciliation)
-sprint_8_author: Fase de Especificação 8 Executor (corr-009 ao-id-cross-ref-note)
 status: DEEP_ENRICHED
 deep_enrichment_date: 2026-08-06
 ao_id_cross_ref_note_date: 2026-08-10
 per_article_rows: 54
 fields_excluded: [Effort Estimate, Cost Estimate, Target Timeline]
-sprint_role: ao_id_cross_ref_note
 inputs: [Doc03_Company_Context_Assessment.md]
 outputs: [Doc10_Clause_Mapping_Matrix.md]
 traceability: AEGIS Class Model → ComplianceContext, RegulatoryClause classes

@@ -6,7 +6,6 @@ version: 1.4
 created: 2026-07-13
 updated: 2026-08-06
 author: Fase de Especificação 5 Executor (deep-enrichment-builder)
-sprint_4_author: Compliance Lead (Fase de Especificação 1 reconciliation) / Fase de Especificação 3 corpus cross-check / Fase de Especificação 4 extensions
 status: DEEP_ENRICHED
 status_history:
   - { date: 2026-08-06, status: DRAFT, sprint: 0, by: 'Fase de Especificação 0 skeleton' }
@@ -16,7 +15,6 @@ status_history:
   - { date: 2026-08-06, status: DEEP_ENRICHED, sprint: 5, by: 'Fase de Especificação 5 DEEP enrichment' }
 deep_enrichment_date: 2026-08-06
 cols_added_to_section_4: 3
-sprint_role: deep_enrichment_per_subdomain
 cross_checked_against_corpus: true
 cross_check_date: 2026-08-06
 inputs: [Doc03_Company_Context_Assessment.md, Doc08_Regulatory_Applicability.md, Doc11_Structured_Compliance_Matrix.md, ../../../../../00_METHODOLOGY/REFERENCE/proportionality_model.md, ../../../../../00_METHODOLOGY/PREPROCESSING_by_domain/domains/]

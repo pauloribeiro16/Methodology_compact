@@ -7,7 +7,6 @@ created: 2026-08-06
 author: Fase de Especificação 1 Executor
 status: COMPLETE
 case: Case_01_TinyTask_SaaS
-sprint_role: reconciliation
 inputs:
   - LINT_REPORT_BEFORE.md
   - corpus_field_map.md

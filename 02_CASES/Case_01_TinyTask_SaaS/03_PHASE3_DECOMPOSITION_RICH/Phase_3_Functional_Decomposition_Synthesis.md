@@ -12,7 +12,6 @@ detail_cards_count: 8
 cells_count: 96
 fields_per_card: 17|12|tiered
 tier_distribution: "SYNTH highlights (8×12 fields)"
-sprint_role: deep_enrichment_per_card
 case: Case_01_TinyTask_SaaS
 tier: MICRO
 inputs: [13_Use_Cases_Catalog.md, 13a_Use_Case_Relationships.md, 13b_Use_Case_Variability.md, 14_Architectural_Nodes.md, 15_Requirements_Allocation.md, 16_Compliance_Gates_Report.md, 17_Functional_Tree.md, 23_Functional_Requirements.md, 24_Non_Functional_Requirements.md, 25_Risk_Analysis.md, RULE_FREEZE.md]

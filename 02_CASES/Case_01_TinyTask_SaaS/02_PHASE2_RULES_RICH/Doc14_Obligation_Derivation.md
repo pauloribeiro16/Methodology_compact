@@ -7,7 +7,6 @@ created: 2026-08-07
 updated: 2026-08-10
 author: "Fase de Especificação 5 + Fase de Especificação 9 + Fase de Especificação 6+ Executor (deep-enrichment-per-card + corr-012 PO/SO migration + tech-strip + P7 orphan fix)"
 status: DEEP_ENRICHED
-sprint_role: deep_enrichment_per_card
 deep_enrichment_date: 2026-08-07
 detail_cards_count: 34
 fields_per_card: 17
@@ -21,14 +20,6 @@ expected_obligations: 34
 expected_fields_per_card: 17
 fields_excluded: ["Effort Estimate", "Cost Estimate", "Target Timeline"]
 branch: feature/aegis-case01-p7-orphan-fix
-sprint_1_scope: cross-check 30 obligations ↔ 30 goals ↔ 30 CR rules; verify NI propagation; ID integrity; ontology cross-ref (28 GDPR + 26 CRA)
-sprint_3_scope: regenerate 12_Rules_Catalog.xlsx (14 sheets) — DONE in Fase de Especificação 3
-sprint_4_scope: port legacy §4 catalog table (30 obligations × 11 cols) into Rich §4 + add 6 new cols (Owner, Verification Criteria, Posture, Priority, Stakeholders, Reporting); resolve F-10 NI divergence for OBL-D-01.4-001 and OBL-D-09.1-001
-sprint_4_verdict: "PASS_WITH_FINDINGS — see §4.1 NI Reconciliation and §3.7 carried findings F-01/F-02"
-sprint_5_scope: "populate 17-field detail cards for all 30 obligations (510 cells: 30 × 17); 12 base + 3 Case_01-specific + 2 context fields"
-sprint_5_verdict: "PASS — see §5 cards; 30/30 cards × 17/17 fields; cross-references to Doc 09 (T-001/T-H-001/T-M-001/T-M-002) and Fase de Especificação 1 findings (F-01/F-03/F-10) integrated"
-sprint_6_scope: "P7 orphan fix — add 4 OBLs (D-07.2/3/4, D-10.1; CRA sole authority); correct phase1_ontology.yaml (move D-07.x from not_covered to covered; covered_count 31→34, not_covered_count 7→4); update Doc 08 §2 note + §3 reconciliation tables + §4 catalog rows + §5 detail cards (cells 510→578); new findings F-07/F-08/F-09 (cross-doc orphans + twin-ontology + taxonomy-reference divergence for follow-on contracts)"
-sprint_6_verdict: "CONDITIONAL_PASS — 30 existing OBLs unchanged; 4 new OBLs added with CRA sole-authority; PO/SO/CR-D-XX.X-001 placeholders parallel F-01/F-03 carry-over; Doc 08 internally consistent; F-07/F-08/F-09 flag follow-on contract work"
 ---
 
 # Obligation Derivation Report — Rich Mode

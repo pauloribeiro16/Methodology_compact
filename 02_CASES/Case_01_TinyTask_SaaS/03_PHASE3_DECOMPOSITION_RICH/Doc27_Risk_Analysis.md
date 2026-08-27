@@ -12,7 +12,6 @@ detail_cards_count: 48
 cells_count: 626
 fields_per_card: 17|12|tiered
 tier_distribution: "RISK (10×17 fields) + THR (38×12 fields)"
-sprint_role: deep_enrichment_per_card
 case: Case_01_TinyTask_SaaS
 tier: MICRO
 inputs: [13_Use_Cases_Catalog.md, 23_Functional_Requirements.md, RULE_FREEZE.md]

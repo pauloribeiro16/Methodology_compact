@@ -6,12 +6,6 @@ version: 7.0
 created: 2026-08-06
 updated: 2026-08-14
 author: Fase de Especificação 7 Executor (tech-free-restructure)
-sprint_11_author: Fase de Especificação 11 Executor (§3-nist-controls-full-coverage)
-sprint_10_author: Fase de Especificação 10 Executor (corr-016-nist-controls-layer)
-sprint_8_author: Fase de Especificação 8 Executor (corr-009-ao-migration)
-sprint_9_author: Fase de Especificação 9 Executor (corr-015-ao-canonical-ids)
-sprint_5_author: Fase de Especificação 5 Executor (deep-enrichment-builder)
-sprint_4_author: Fase de Especificação 4 Executor (adjusted-objectives-builder)
 status: COMPLETE
 id_format: AG-D-XX.X-NNN (canonical Phase 1)
 ao_canonical_ids_count: 35
@@ -60,7 +54,6 @@ ao_count_in_main: 66
 tensions_expanded_count: 4
 case: Case_01_TinyTask_SaaS
 applicable_regs: [GDPR, CRA]
-sprint_role: ao_id_migration_phase1
 cross_checked_against: [07_Structured_Compliance_Matrix.md, 07b_Proportionality_Profile.md, 10_Privacy_Security_Objectives.md, proportionality_model.md, phase1_ontology.yaml]
 inputs: [Doc03_Company_Context_Assessment.md, Doc08_Regulatory_Applicability.md, Doc11_Structured_Compliance_Matrix.md, Doc12_Proportionality_Profile.md, phase1_ontology.yaml, ../../../../../00_METHODOLOGY/REFERENCE/proportionality_model.md]
 outputs: [11_Rules_Catalog.md]

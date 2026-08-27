@@ -9,7 +9,6 @@ author: Fase de Especificação 0 Executor
 status: COMPLETE
 case: Case_01_TinyTask_SaaS
 tier: MICRO
-sprint_role: skeleton_lint_baseline
 branch: feature/aegis-p3-case01-rich
 verdict: PASS
 related_deliverables: [README.md, PROJECT_STATE.md, RICH_VS_LEGACY.md, 13_Use_Cases_Catalog.md, 13a_Use_Case_Relationships.md, 13b_Use_Case_Variability.md, 14_Architectural_Nodes.md, 15_Requirements_Allocation.md, 16_Compliance_Gates_Report.md, 17_Functional_Tree.md, requirements/23_Functional_Requirements.md, requirements/24_Non_Functional_Requirements.md, requirements/23_FR_Review_Report.md, requirements/24_NFR_Review_Report.md, 25_Risk_Analysis.md, Phase_3_Functional_Decomposition_Synthesis.md, annexes/A_Use_Case_Diagrams.md, annexes/D_KG_Inference_Examples.md, scripts/build_traceability_matrix_rich.py, scripts/verify_rich.py, scripts/gen_drawio.py, validation/LINT_REPORT_BEFORE.md, validation/RICH_LINT_BASELINE.md]

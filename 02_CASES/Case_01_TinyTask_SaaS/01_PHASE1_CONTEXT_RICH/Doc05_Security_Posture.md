@@ -16,7 +16,6 @@ note: >
   A avaliação de postura foi movida para
   02_PHASE2_RULES_RICH/13_Framework_Mapping_Matrix.md §4-5.
 case_study: TinyTask Lda.
-sprint_role: reconciled_from_legacy
 inputs:
   - Doc03_Company_Context_Assessment.md
   - Doc04_Architecture_DataInventory.md

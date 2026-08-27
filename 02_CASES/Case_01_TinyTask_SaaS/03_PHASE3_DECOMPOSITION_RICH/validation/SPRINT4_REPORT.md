@@ -9,7 +9,6 @@ author: Fase de Especificação 4 Executor (paulo@methodology.pt)
 status: ADJUSTED_FIELDS
 case: Case_01_TinyTask_SaaS
 tier: MICRO
-sprint_role: schema_adjustment
 branch: feature/aegis-p3-case01-rich
 verdict: PASS
 sprints_complete: [0, 1, 2, 3, 4]

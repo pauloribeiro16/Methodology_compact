@@ -7,7 +7,6 @@ created: 2026-04-01
 updated: 2026-08-06
 author: Compliance Lead (Fase de Especificação 1 reconciliation)
 status: RECONCILED
-sprint_role: reconciled_from_legacy
 inputs: [Doc03_Company_Context_Assessment.md, Doc08_Regulatory_Applicability.md, Doc10_Clause_Mapping_Matrix.md]
 outputs: [08_Obligation_Derivation.md]
 traceability: AEGIS Class Model → ComplianceContext, DomainCoverageEntry classes

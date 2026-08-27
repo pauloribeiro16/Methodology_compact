@@ -9,7 +9,6 @@ author: Fase de Especificação 0 Executor
 status: BASELINE
 case: Case_01_TinyTask_SaaS
 branch: feature/aegis-p3-case01-rich
-sprint_role: rich_runner_baseline
 sibling_doc: ../03_PHASE3_DECOMPOSITION/
 related_documents: [LINT_REPORT_BEFORE.md]
 ---

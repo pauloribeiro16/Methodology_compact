@@ -21,7 +21,6 @@ inactive_regs: [DORA, NIS2, AI_Act]
 expected_tensions: 4
 expected_fields_per_tension: 8
 expected_cells: 32
-sprint_role: multi_paragraph_tension_expansion
 branch: feature/aegis-p2-case01-rich
 fields_excluded: [Effort Estimate, Cost Estimate, Target Timeline]
 tension_ids_preserved: [TENSION-H-001, TENSION-M-001, TENSION-M-002, TENSION-L-001]
@@ -632,7 +631,7 @@ This taxonomy aligns with AEGIS Class Model `ConflictResolution.type ∈ {OPERAT
 | Verification = 3 criteria | ✅ | Per §5.1.6, §5.2.6, §5.3.6, §5.4.6 |
 | Frontmatter `document_id: AEGIS-P2-RICH-09` | ✅ | Per YAML frontmatter |
 | Frontmatter `status: SKELETON → CORPUS_ENRICHED` | ✅ | Updated with status_history |
-| Frontmatter `version: 1.0 → 1.1` and `sprint: 0 → 2` | ✅ | Updated with sprint 2 |
+| Frontmatter `version: 1.0 → 1.1` and `sprint: 0 → 2` | ✅ | Updated with fase de especificação 2 |
 | Tension IDs preserved (T-001, T-M-001, T-M-002, T-L-001) | ✅ | All 4 IDs match legacy TENSION-H-001/M-001/M-002/L-001 |
 | No git commits (orchestrator responsibility) | ✅ | Working tree dirty, no commits made |
 

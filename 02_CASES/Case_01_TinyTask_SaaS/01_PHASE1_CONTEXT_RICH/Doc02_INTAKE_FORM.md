@@ -6,7 +6,6 @@ created: 2026-04-01
 updated: 2026-08-06
 author: Compliance Lead (Fase de Especificação 1 reconciliation)
 status: RECONCILED
-sprint_role: reconciled_from_legacy
 inputs: [Doc01_Taxonomy_Reference.md]
 outputs: [Doc03_Company_Context_Assessment.md]
 <!-- Note: 02_Regulatory_Mapping_Master.md is DEPRECATED as of Phase 1 v1.2 (2026-07-13). Use 00_METHODOLOGY/PREPROCESSING_by_domain/domains/ corpus or 00_Taxonomy_Reference.md instead. -->

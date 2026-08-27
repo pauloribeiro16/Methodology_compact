@@ -9,7 +9,6 @@ author: Fase de Especificação 2 Executor (paulo@methodology.pt)
 status: ACTIVE
 case: Case_01_TinyTask_SaaS
 tier: MICRO
-sprint_role: nist_anchors
 branch: feature/aegis-p3-case01-rich
 inputs:
   - 02_PHASE2_RULES_RICH/11_Rules_Catalog.md §7.1 (CR CSF anchors) + §7.2 (BPR CSF anchors)
