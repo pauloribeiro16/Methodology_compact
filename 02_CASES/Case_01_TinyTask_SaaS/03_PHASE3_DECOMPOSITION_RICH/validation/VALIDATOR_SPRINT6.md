@@ -1,12 +1,11 @@
 ---
 document_id: AEGIS-P3-RICH-VAL-S6
-title: Validator Sprint 6 — Product Baseline Rewrite of Doc20 (REWRITTEN_PRODUCT_BASELINE)
+title: Validator Fase de Especificação 6 — Product Baseline Rewrite of Doc20 (REWRITTEN_PRODUCT_BASELINE)
 phase: 3
 version: 1.0
 created: 2026-08-26
 author: Validator (paulo@methodology.pt)
 status: PASS_WITH_FINDINGS
-sprint: 6
 case: Case_01_TinyTask_SaaS
 tier: MICRO
 verdict: PASS_WITH_FINDINGS
@@ -14,7 +13,7 @@ inputs: [Doc20_Use_Cases_Catalog.md v3.0, Doc21_Use_Case_Relationships.md v1.0, 
 related_documents: [Doc20_Use_Cases_Catalog.md, Doc21_Use_Case_Relationships.md, Doc22_Use_Case_Variability.md, RULE_FREEZE.md, Doc26_Functional_Tree.md, scripts/build_traceability_matrix_rich.py, scripts/gen_drawio.py]
 ---
 
-# Validator Sprint 6 — Product Baseline Rewrite
+# Validator Fase de Especificação 6 — Product Baseline Rewrite
 
 > **Verdict:** **PASS_WITH_FINDINGS** — the rewrite of Doc20 introduces a product-first baseline (23 functional U.C.7-11 + 8 MUCs) while preserving all 35 security/compliance U.C.1-6 IDs verbatim. Backwards compatibility (P5) holds: zero remap of the ~746 downstream references.
 >
@@ -24,7 +23,7 @@ related_documents: [Doc20_Use_Cases_Catalog.md, Doc21_Use_Case_Relationships.md,
 
 ## §1 Scope of validation
 
-This validator sprint reviews Sprint 6 changes:
+This validator sprint reviews Fase de Especificação 6 changes:
 
 | Deliverable | Version | Status |
 |-------------|---------|--------|
@@ -45,8 +44,8 @@ This validator sprint reviews Sprint 6 changes:
 | Family | Count | Status |
 |--------|------:|--------|
 | Security/compliance U.C. (U.C.1-6) | 35 | PRESERVED — IDs unchanged from v2.0 |
-| Functional U.C. (U.C.7-11) | 23 | NEW — Sprint 6 |
-| Misuse cases (MUC-01..08) | 8 | NEW — Sprint 6 |
+| Functional U.C. (U.C.7-11) | 23 | NEW |
+| Misuse cases (MUC-01..08) | 8 | NEW |
 | **Total unique U.C.s** | **61** (excluding MUC) | |
 | **Total U.C. + MUC** | **69** | |
 
@@ -153,7 +152,7 @@ V-09 SSO re-anchored to U.C.10.3.2 (Enterprise SSO) explicitly, with a footnote 
 
 | ID | Sprint | Description | Status | Resolution |
 |----|--------|-------------|--------|------------|
-| F-S5-01 | 5 | Legacy `## 5.` headers vs `## §N` | OPEN | Cosmetic; out of rewrite scope. **Preserved from Sprint 5.** |
+| F-S5-01 | 5 | Legacy `## 5.` headers vs `## §N` | OPEN | Cosmetic; out of rewrite scope. **Preserved from Fase de Especificação 5.** |
 | F-S5-02 | 5 | "0 actors defined" — lint regex doesn't match `**Owner:**` | **RESOLVED** | Primary Actor field now mandatory on every UC card; actor catalogue (Doc20 §1) defines 14 actors. |
 | F-NEW-S6-01 | 6 | KG E3 build (2026-08-23) has 0 nodes for the 23 functional U.C.7-11 and 8 MUCs. | OPEN | KG E4 incremental rebuild on Deucalion (~14h cluster) logged as follow-up in RULE_FREEZE §5, Doc20 §8, Doc26 §3; human approval required (P7). |
 
@@ -190,15 +189,15 @@ V-09 SSO re-anchored to U.C.10.3.2 (Enterprise SSO) explicitly, with a footnote 
 
 ## §6 Verdict
 
-**Sprint 6 verdict: PASS_WITH_FINDINGS.**
+**Fase de Especificação 6 verdict: PASS_WITH_FINDINGS.**
 
 - The user's complaint ("os casos de uso não fazem sentido nenhum... só vejo um conjunto de coisas que tem de ser feitas em termos de segurança mas não vejo nenhum caso de uso") is **addressed**: 23 functional U.C.7-11 introduce the application functionality (workspace, project, task CRUD, comments, mobile, billing, self-service), with 8 MUCs providing the threat model.
 - P5 (backwards compatibility) is **preserved**: the 35 U.C.1-6 IDs remain valid; no downstream document requires remapping.
 - F-S5-02 ("0 actors defined") is **RESOLVED**.
 - F-NEW-S6-01 (KG nodes for new U.C.s) is **logged as follow-up** for human approval (P7).
 
-This validator signs off Sprint 6 as the new Phase 3 RICH baseline (status: REWRITTEN_PRODUCT_BASELINE).
+This validator signs off Fase de Especificação 6 as the new Phase 3 RICH baseline (status: REWRITTEN_PRODUCT_BASELINE).
 
 ---
 
-**End of Validator Sprint 6 (PASS_WITH_FINDINGS)**
+**End of Validator Fase de Especificação 6 (PASS_WITH_FINDINGS)**

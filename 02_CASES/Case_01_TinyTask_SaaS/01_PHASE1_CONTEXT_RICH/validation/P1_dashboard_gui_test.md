@@ -393,7 +393,7 @@ Verdict: **PASS** — Phase A lands cleanly. Six tabs, Folio VI RACI Matrix rend
 
 ### What changed (Phase A scope)
 
-The user accepted a multi-phase roadmap. Phase A added the RACI (Doc07) entities. The next phases — Architecture+Third Parties (B), Maturity+Verification (C), NIST mapping (D), Ambiguity detail+Citations (E) — are still on the table.
+The user accepted a multi-phase roadmap. Phase A added the RACI (Doc07) entities. The next phases — Architecture+Third Parties (B), Posture+Verification (C), NIST mapping (D), Ambiguity detail+Citations (E) — are still on the table.
 
 - **Ontology v1.3** (additive to v1.2): 2 new classes (`RaciRole`, `RaciActivity`), 3 new relations (`RACI`, `APPLIES_TO`, `MAPS_TO_STK deferred`), 1 new enum (`RaciLetter`), 7 new counts, 2 new id_patterns. Validator diff: 59 insertions, 1 deletion (the version string); all 10 v1.2 classes + 12 v1.2 relations + 9 v1.2 enums unchanged. Report: `validation/P1_ontology_v1.3_validation.md`.
 - **KG extension** (additive to v1.2): 6 `RaciRole` nodes (DPO/CISO/DEV/LEGAL/HR/BOARD) + 43 `RaciActivity` nodes (41 active, 2 inactive) + 206 `RACI` edges (200 single-letter + 3 composite R/A split into 2 each = 6 composite edges) + 35 `APPLIES_TO` edges + 5 new `coverage_gap` audits (`GAP-RACI-01..05`). Validator spot-checked 6 roles + 6 activities + 10 RACI + 3 APPLIES_TO + 5 audits; report: `validation/P1_raci_extension_v1.3_validation.md`. Original 197/264/16 byte-identical.
@@ -489,22 +489,22 @@ Previous report's two open items: (1) header static line `181 nodes, 248 links, 
 
 ### Next phase
 
-Ready to start Phase C (Maturity+Verification — Doc08 §9 verification criteria + Doc12 §4 proportionality attrs as enriched columns on the existing nodes; no new node types expected) on the user's signal. Same ritual: ontology v1.5 → KG attrs → dashboard cols → smoke → commit.
+Ready to start Phase C (Posture+Verification — Doc08 §9 verification criteria + Doc12 §4 proportionality attrs as enriched columns on the existing nodes; no new node types expected) on the user's signal. Same ritual: ontology v1.5 → KG attrs → dashboard cols → smoke → commit.
 
 ---
 
-## Re-test after Phase C — Maturity + Verification (2026-08-27)
+## Re-test after Phase C — Posture + Verification (2026-08-27)
 
-Verdict: **PASS** — Folio IV gains 7 toggleable columns (Maturity, Verification, Evidence, Owner, Risk, Priority, I/P) populated from Doc12 §4; Folio II Inspector surfaces 5 verification attrs on clauses + 13 proportionality attrs on sub-domains; Folio III grows from 26 → 29 audit cards (NEW-06/07/08). No regressions.
+Verdict: **PASS** — Folio IV gains 7 toggleable columns (Posture, Verification, Evidence, Owner, Risk, Priority, I/P) populated from Doc12 §4; Folio II Inspector surfaces 5 verification attrs on clauses + 13 proportionality attrs on sub-domains; Folio III grows from 26 → 29 audit cards (NEW-06/07/08). No regressions.
 
 ### What changed (Phase C scope)
 
 Phase C is **attrs-only** — no new node types or relations. We enriched:
 
-- **RegulatoryClause (54 nodes)** — added 5 attrs: `verification_criteria`, `evidence_type`, `risk_if_not_met`, `maturity_cur`, `maturity_tgt`. Source: Doc08 §9 (54-row per-article breakdown).
-- **SecurityControlDomain (37 active nodes)** — added 13 attrs: `i`, `p`, `tier`, `satisfaction_pattern`, `evidence_depth`, `verification_method`, `ownership`, `example_controls`, `notes`, `risk_if_not_met`, `maturity_cur`, `maturity_tgt`, `implementation_priority`. Source: Doc12 §4 (37-row per-subdomain proportionality).
+- **RegulatoryClause (54 nodes)** — added 5 attrs: `verification_criteria`, `evidence_type`, `risk_if_not_met`, `posture_cur`, `posture_tgt`. Source: Doc08 §9 (54-row per-article breakdown).
+- **SecurityControlDomain (37 active nodes)** — added 13 attrs: `i`, `p`, `tier`, `satisfaction_pattern`, `evidence_depth`, `verification_method`, `ownership`, `example_controls`, `notes`, `risk_if_not_met`, `posture_cur`, `posture_tgt`, `implementation_priority`. Source: Doc12 §4 (37-row per-subdomain proportionality).
 - 2 new invariants (`articles_with_verification=54`, `subdomains_with_proportionality=37`).
-- 3 new audits: **NEW-06** (cross_doc_conflict, medium) — Doc08 §9 Art. 35/Art. 37 asymmetry vs `phase1_graph.json` clauses; **NEW-07** (broken_link, low) — non-canonical `evidence_type` strings; **NEW-08** (coverage_gap, low) — uniform 2/4→3/4 maturity across 36 of 37 rows.
+- 3 new audits: **NEW-06** (cross_doc_conflict, medium) — Doc08 §9 Art. 35/Art. 37 asymmetry vs `phase1_graph.json` clauses; **NEW-07** (broken_link, low) — non-canonical `evidence_type` strings; **NEW-08** (coverage_gap, low) — uniform 2/4→3/4 posture across 36 of 37 rows.
 - One dynamic accumulator (CFL-006 — tier vs proportionality_tier drift) built but currently zero-counted.
 
 Total: **272 / 785 / 29**. Original 272/785/26 byte-identical except for the attrs additions and the 3 new audits. Report: `validation/P1_graph_phase_c_validation.md` (verdict: PASS).
@@ -513,11 +513,11 @@ Total: **272 / 785 / 29**. Original 272/785/26 byte-identical except for the att
 
 `http://127.0.0.1:8765/Case_01_P1_Dashboard.html` opened fresh (with reload to bust cache).
 
-- **Folio IV with Phase C enrichment** — **PASS**. Header strap reads "38 ROWS · 19 COLUMNS · PHASE C ENRICHMENT". A "Show columns" toggle bar appears above the table with 7 checkboxes (Maturity cur→tgt, Verification method, Evidence depth, Owner, Risk, Priority, I/P Build·Must) — all default ON. Toggle off → column hidden; toggle back on → column re-appears. Sample row D-01.1: Maturity `2 → 3` (amber badge), Verification `DEMONSTRATE + INSPECT`, Evidence `Managed-service config documented + annual review; no dedi…` (truncated at 60 chars with full-text tooltip on hover), Owner `Shared (AWS + company)`, Risk `HIGH` (red), Priority `HIGH` (red), I/P `BUILD` (blue pill) + `MUST` (red pill). Saved: `p7_folio_IV_phase_C.png`.
+- **Folio IV with Phase C enrichment** — **PASS**. Header strap reads "38 ROWS · 19 COLUMNS · PHASE C ENRICHMENT". A "Show columns" toggle bar appears above the table with 7 checkboxes (Implementation Posture, Verification method, Evidence depth, Owner, Risk, Priority, I/P Build·Must) — all default ON. Toggle off → column hidden; toggle back on → column re-appears. Sample row D-01.1: Posture `2 → 3` (amber badge), Verification `DEMONSTRATE + INSPECT`, Evidence `Managed-service config documented + annual review; no dedi…` (truncated at 60 chars with full-text tooltip on hover), Owner `Shared (AWS + company)`, Risk `HIGH` (red), Priority `HIGH` (red), I/P `BUILD` (blue pill) + `MUST` (red pill). Saved: `p7_folio_IV_phase_C.png`.
 
-- **Folio II Inspector for clause** — **PASS**. Click on GDPR-C04 → Inspector renders the 5 new attrs in alphabetical order: `evidence_type='INSPECT (config audit + annual review)'`, `maturity_cur=2`, `maturity_tgt=3`, `risk_if_not_met='HIGH'`, `verification_criteria='Operational check per Doc 07c Appendix A §A.1.1/D-01.1'`. Plus the existing 7 attrs.
+- **Folio II Inspector for clause** — **PASS**. Click on GDPR-C04 → Inspector renders the 5 new attrs in alphabetical order: `evidence_type='INSPECT (config audit + annual review)'`, `posture_cur=2`, `posture_tgt=3`, `risk_if_not_met='HIGH'`, `verification_criteria='Operational check per Doc 07c Appendix A §A.1.1/D-01.1'`. Plus the existing 7 attrs.
 
-- **Folio II Inspector for sub-domain** — **PASS**. Click on D-01.1 → Inspector renders all 13 proportionality attrs: i=BUILD, p=MUST, tier=LIGHTWEIGHT, satisfaction_pattern=BUY_MANAGED, evidence_depth='Managed-service config documented + annual review; no dedicated in-house program', verification_method='DEMONSTRATE + INSPECT', ownership='Shared (AWS + company)', example_controls='AWS S3 / DynamoDB SSE-KMS enabled (AES-256 default); no company-owned KMS program', notes='Unified AES-256 baseline satisfies SAME pair', risk_if_not_met='HIGH', maturity_cur=2, maturity_tgt=3, implementation_priority='HIGH'. Click on D-02.4 → DEFERRED markers (`tier='DEFERRED'`, evidence_depth='—', etc.).
+- **Folio II Inspector for sub-domain** — **PASS**. Click on D-01.1 → Inspector renders all 13 proportionality attrs: i=BUILD, p=MUST, tier=LIGHTWEIGHT, satisfaction_pattern=BUY_MANAGED, evidence_depth='Managed-service config documented + annual review; no dedicated in-house program', verification_method='DEMONSTRATE + INSPECT', ownership='Shared (AWS + company)', example_controls='AWS S3 / DynamoDB SSE-KMS enabled (AES-256 default); no company-owned KMS program', notes='Unified AES-256 baseline satisfies SAME pair', risk_if_not_met='HIGH', posture_cur=2, posture_tgt=3, implementation_priority='HIGH'. Click on D-02.4 → DEFERRED markers (`tier='DEFERRED'`, evidence_depth='—', etc.).
 
 - **Folio III 29 audit cards** — **PASS**. 29 cards in two columns (CFL/BLN/CVG/BAM). NEW-06 detail panel mentions Art. 35 + GDPR-C28 with the three P7 human-pickable resolutions documented (expand Doc08 §9 / drop GDPR-C28 / duplicate the §9 row).
 
@@ -603,7 +603,7 @@ Phase D is the largest extension since the initial Folio II/IV/V visuals landed.
 ### Operational notes (lessons applied)
 
 - The first subagent attempt to extend the dashboard inlined the pre-Phase-D JSON, which the orchestrator caught. The orchestrator re-emitted the inlined block from the live on-disk JSON directly so the dashboard reads the true 389/1298/31 state. A single .replace call on the `<script type="application/json" id="phase1-graph-data">` block.
-- The first subagent attempt also introduced 47 `EvidenceItem` nodes + 5 `HAS_EVIDENCE` / `CITES_CLAUSE` / `CITES_OUTCOME` edges + drift into 5 Phase-2 doc files + `00_METHODOLOGY/MATURITY_MODEL_CSF_STRICT.md` (none of which the brief asked for). The orchestrator reverted all of those via `git checkout --` + `git clean -fd` before re-dispatching the work with a stricter brief (no EvidenceItem, no Phase-2 mods, no new files outside the phase directory).
+- The first subagent attempt also introduced 47 `EvidenceItem` nodes + 5 `HAS_EVIDENCE` / `CITES_CLAUSE` / `CITES_OUTCOME` edges + drift into 5 Phase-2 doc files + `00_METHODOLOGY/POSTURE_MODEL_CSF_STRICT.md` (none of which the brief asked for). The orchestrator reverted all of those via `git checkout --` + `git clean -fd` before re-dispatching the work with a stricter brief (no EvidenceItem, no Phase-2 mods, no new files outside the phase directory).
 - Per the established pattern: each new layer (RACI, Arch, NIST) gets one new colour token, one new toolbar checkbox, and one additive `applySelectionDim` path that respects the soft-dim invariants from fixes #2 and #3. None of those fixes regressed.
 
 ### Working folder

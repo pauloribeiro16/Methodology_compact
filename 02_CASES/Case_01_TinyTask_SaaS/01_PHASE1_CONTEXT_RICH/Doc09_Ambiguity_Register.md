@@ -5,10 +5,9 @@ phase: 1
 version: 2.0
 created: 2026-08-06
 updated: 2026-08-06
-author: Sprint 2 Executor (ambiguity-register-builder)
+author: Fase de Especificação 2 Executor (ambiguity-register-builder)
 status: DEEP_ENRICHED
 deep_enrichment_date: 2026-08-06
-deep_enrichment_sprint: 5
 resolution_sections_added: 20
 fields_per_resolution: 3
 case: Case_01_TinyTask_SaaS
@@ -1094,10 +1093,10 @@ Two card variants appear in the corpus:
 
 Both variants are preserved verbatim in §3; readers should note that CRA cards require reading the `analysis_text` block to extract the R1/R2/R3 readings.
 
-## §7 Gate Criteria (Sprint 3 readiness)
+## §7 Gate Criteria (Fase de Especificação 3 readiness)
 
 - [x] Ambiguity register methodology documented (§5, §6)
 - [x] At least 1 example entry with full provenance (§3 — 20 entries with full provenance)
 - [x] All open ambiguities catalogued by sub-domain (§2 — 37 sub-domains)
 - [x] Top 5 disambiguation priorities ranked (§4)
-- [ ] All ambiguities resolved (deferred to Sprint 3 with human review)
+- [ ] All ambiguities resolved (deferred to Fase de Especificação 3 with human review)

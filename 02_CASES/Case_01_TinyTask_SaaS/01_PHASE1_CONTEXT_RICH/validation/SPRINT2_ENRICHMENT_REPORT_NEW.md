@@ -1,4 +1,4 @@
-# Sprint 2 Enrichment Report (Round 2)
+# Fase de Especificação 2 Enrichment Report (Round 2)
 
 > **Updated 2026-08-06** — this report supersedes the prior version, which was generated before the corpus augmentation commit (c101676, "Corpus augmentation (38/38 sub-domain .md, 48 manifests, 38 sidecars, 623 articles)"). All numbers reflect the post-augmentation corpus.
 
@@ -121,14 +121,14 @@ The corpus (c101676) contains 623 CRA Articles + GDPR Articles + NIS 2 Articles 
 - [x] Verbatim corpus phrasing preserved in 05b §3 (R1/R2/R3 readings, analysis_text, ambiguous phrases)
 - [x] Status flipped PLACEHOLDER → CORPUS_ENRICHED on both target files
 
-## 8. Sprint 3 readiness (Round 2 partial)
+## 8. Fase de Especificação 3 readiness (Round 2 partial)
 
 **PARTIAL_READY**:
 - [x] 05b Ambiguity Register CORPUS_ENRICHED (417 cards catalogued, top 20 documented with verbatim phrasing)
 - [x] Citation Index CORPUS_ENRICHED (18 unique refs mapped, 3 coverage gaps identified)
-- [ ] All ambiguities resolved — deferred to Sprint 3 (human review required per §4 priority)
-- [ ] Spot-check audit on 10% of citations — deferred to Sprint 3 (human verification)
-- [ ] CRA Annex I/VII corpus augmentation — out-of-scope for Sprint 2; recommend corpus-side fix
+- [ ] All ambiguities resolved — deferred to Fase de Especificação 3 (human review required per §4 priority)
+- [ ] Spot-check audit on 10% of citations — deferred to Fase de Especificação 3 (human verification)
+- [ ] CRA Annex I/VII corpus augmentation — out-of-scope for Fase de Especificação 2; recommend corpus-side fix
 
 **Status flip summary:**
 - 05b_Ambiguity_Register.md: PLACEHOLDER → CORPUS_ENRICHED ✓

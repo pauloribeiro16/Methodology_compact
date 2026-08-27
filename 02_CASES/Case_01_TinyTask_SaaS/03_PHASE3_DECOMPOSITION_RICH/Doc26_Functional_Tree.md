@@ -5,9 +5,8 @@ phase: 3
 version: 2.0
 created: 2026-08-24
 updated: 2026-08-26
-author: Sprint 6 Executor (paulo@methodology.pt)
+author: Fase de Especificação 6 Executor (paulo@methodology.pt)
 status: PRODUCT_ROOT_REWRITE
-sprint: 6
 case: Case_01_TinyTask_SaaS
 tier: MICRO
 inputs: [Doc20_Use_Cases_Catalog.md, Doc21_Use_Case_Relationships.md, RULE_FREEZE.md]
@@ -18,20 +17,20 @@ freeze_total_l1: 11
 freeze_total_l2_functional: 23
 freeze_total_l2_security: 35
 freeze_total_muc: 8
-reconciliation_note: "Sprint 6 v2.0: tree re-rooted at 'TinyTask Team Organizer' (product-first). L1 = 11 packages (5 functional PKG-7..11 + 6 security PKG-DP/SEC/IAM/DEV/GOV/TRN). L2 = 23 functional U.C.s + 35 security U.C.s. MUCs shown as transversal threat-model layer (cross-package)."
-sprint6_note: "Sprint 6: PRODUCT-ROOT. Old v0.4 tree had compliance-only L0 ('TinyTask Compliance Map'); replaced with product-rooted L0 with compliance as a transversal layer."
+reconciliation_note: "Fase de Especificação 6 v2.0: tree re-rooted at 'TinyTask Team Organizer' (product-first). L1 = 11 packages (5 functional PKG-7..11 + 6 security PKG-DP/SEC/IAM/DEV/GOV/TRN). L2 = 23 functional U.C.s + 35 security U.C.s. MUCs shown as transversal threat-model layer (cross-package)."
+sprint6_note: "Fase de Especificação 6: PRODUCT-ROOT. Old v0.4 tree had compliance-only L0 ('TinyTask Compliance Map'); replaced with product-rooted L0 with compliance as a transversal layer."
 ---
 
 # Functional Tree — TinyTask Team Organizer (Phase 3 RICH)
 
-> **Status (Sprint 6):** PRODUCT_ROOT_REWRITE.
+> **Status:** PRODUCT_ROOT_REWRITE.
 > The functional tree is now rooted at the **product** (TinyTask Team Organizer), with security/compliance as a transversal layer. L0 = 1 product root. L1 = 11 packages (5 functional PKG-7..11 + 6 security PKG-DP/SEC/IAM/DEV/GOV/TRN). L2 = 23 functional U.C.s + 35 security U.C.s. MUCs (8) rendered as transversal threat-model layer.
 
 ---
 
 ## §1 Reconciliation Notes
 
-The functional tree is the visual root of the Phase 3 decomposition. In Sprint 6 we re-root from the old "TinyTask Compliance Map" (compliance-only) to "TinyTask Team Organizer" (product-first), so the tree reads as a product decomposition with security as a transversal layer.
+The functional tree is the visual root of the Phase 3 decomposition. In Fase de Especificação 6 we re-root from the old "TinyTask Compliance Map" (compliance-only) to "TinyTask Team Organizer" (product-first), so the tree reads as a product decomposition with security as a transversal layer.
 
 **Authoritative sources:**
 - `Doc20_Use_Cases_Catalog.md` §2 (functional U.C.7-11) + §3 (security U.C.1-6) + §4 (MUCs).
@@ -240,4 +239,4 @@ python3 scripts/gen_drawio.py --input Doc26_Functional_Tree.md --output 18_Funct
 
 ---
 
-**End of Functional Tree (Phase 3 RICH, PRODUCT_ROOT_REWRITE, v2.0 — Sprint 6)**
+**End of Functional Tree (Phase 3 RICH, PRODUCT_ROOT_REWRITE, v2.0)**

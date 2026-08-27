@@ -5,9 +5,8 @@ phase: 3
 version: 0.3
 created: 2026-08-24
 updated: 2026-08-24
-author: Sprint 4 Executor (paulo@methodology.pt)
+author: Fase de Especificação 4 Executor (paulo@methodology.pt)
 status: ADJUSTED_FIELDS
-sprint: 4
 sprint_role: schema_adjustment
 case: Case_01_TinyTask_SaaS
 tier: MICRO
@@ -22,17 +21,17 @@ expected_compact_columns: 12
 schema_columns: 6
 schema_columns_list: [Owner, Verification Criteria, Implementation Status, Priority, Stakeholders, Reporting]
 reconciliation_note: "Ported from legacy 24_NFR_Review_Report.md (2026-04-02). F-00b NFR RESOLVED — 46 NFRs (NFR-01..NFR-46) confirmed by §3 row re-count, NOT stale 45 figure; F-S1-09 KG contamination (concept_ai_model_security / nfr_avail_category) recorded."
-sprint4_note: "Sprint 4: review-report status bumped RECONCILED → ADJUSTED_FIELDS. Review tables remain as legacy-port (no markdown restructuring) — Sprint 5 will harmonise with Doc 24 §2 schema."
+sprint4_note: "Fase de Especificação 4: review-report status bumped RECONCILED → ADJUSTED_FIELDS. Review tables remain as legacy-port (no markdown restructuring) will harmonise with Doc 24 §2 schema."
 ---
 
-> **PORTED FROM LEGACY on 2026-08-24 for Sprint 1; reconciled to P2-RICH upstream.**
+> **PORTED FROM LEGACY on 2026-08-24 for Fase de Especificação 1; reconciled to P2-RICH upstream.**
 >
 > This document is a verbatim port of the legacy `03_PHASE3_DECOMPOSITION/requirements/24_NFR_Review_Report.md`
 > (286 lines, dated 2026-04-02, reviewer: Security Architect).
-> It is preserved for traceability — Sprint 5 will produce an amendment §10 listing the corrected
+> It is preserved for traceability will produce an amendment §10 listing the corrected
 > NFR count (46, not 45) and re-confirming the §3.4 verdict. The legacy review's verdict
 > (APPROVED WITH MINOR REVISIONS) is preserved as-is; it speaks to the v1.0 NFR catalog,
-> not the post-Sprint 1 freeze.
+> not the post-Fase de Especificação 1 freeze.
 
 # NFR Catalog Review & Validation Report
 
@@ -103,11 +102,11 @@ sprint4_note: "Sprint 4: review-report status bumped RECONCILED → ADJUSTED_FIE
 | Compliance | 8 | ≥5 | ✅ Complete |
 | **TOTAL** | **46** | ≥33 | ✅ Complete |
 
-> **Sprint 1 reconciliation note (F-00b NFR RESOLVED):** Re-counted the NFR table rows in legacy Doc 24 §3:
+> **Fase de Especificação 1 reconciliation note (F-00b NFR RESOLVED):** Re-counted the NFR table rows in legacy Doc 24 §3:
 > CONF (7) + INT (7) + AVAIL (7) + PRIV (10) + ACC (7) + COMP (8) = **46 NFRs** (NFR-01..NFR-46).
 > The legacy §5.1 cross-doc table says "45/46 NFRs satisfied (98%)" referring to a phantom
 > `NFR-PRIV-04` process-control NFR that doesn't exist in §3 — this is a legacy summary
-> drift, not a real gap. Sprint 5 will populate **46 detail cards × 17 fields = 782 cells**
+> drift, not a real gap. Fase de Especificação 5 will populate **46 detail cards × 17 fields = 782 cells**
 > per RULE_FREEZE.md §7.
 
 **Assessment:** All categories have sufficient coverage
@@ -151,7 +150,7 @@ sprint4_note: "Sprint 4: review-report status bumped RECONCILED → ADJUSTED_FIE
 | Use Cases with NFRs | 24 | 24 | ✅ 100% |
 | NFRs with Use Cases | 46 | 46 | ✅ 100% |
 
-> **Sprint 1 reconciliation note:** UC count = 35 L1 cards (per Doc 16 §5B SC2 + Synthesis §3.3);
+> **Fase de Especificação 1 reconciliation note:** UC count = 35 L1 cards (per Doc 16 §5B SC2 + Synthesis §3.3);
 > the §3.4 "24 Use Cases" figure refers to a subset of Use Cases that appear in the NFR table
 > §5.2 (UCs with at least one NFR mapping), not the full UC catalog. Both figures are
 > internally consistent at the freeze.
@@ -335,7 +334,7 @@ sprint4_note: "Sprint 4: review-report status bumped RECONCILED → ADJUSTED_FIE
 
 ---
 
-> **Sprint 1 reconciliation footer (2026-08-24):** Ported as-is from legacy for traceability.
+> **Fase de Especificação 1 reconciliation footer (2026-08-24):** Ported as-is from legacy for traceability.
 > F-00b NFR CLOSED (46 NFRs confirmed), F-S1-09 KG contamination (`concept_ai_model_security`, `nfr_avail_category`)
 > recorded in RULE_FREEZE.md §4 (KG artefacts, NOT in markdown source).
-> Sprint 5 will produce a §10 amendment listing the corrected NFR count and KG cleanup actions.
+> Fase de Especificação 5 will produce a §10 amendment listing the corrected NFR count and KG cleanup actions.

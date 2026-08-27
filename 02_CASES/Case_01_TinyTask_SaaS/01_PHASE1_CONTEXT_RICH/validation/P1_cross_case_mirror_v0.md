@@ -15,7 +15,7 @@ From `02_CASES/GLOBAL_PROJECT_STATE.md` v6.3 (2026-08-24):
 - All 3 cases: **Phase 1 Complete** (per §3.1 — 8/8 documents, lints passed for Case_01 only; Case_02/03 lints not run).
 - Phase 2: Case_01 "Pending" (note: this contradicts `progress.json` which marks Case_01 `phase_2` complete — see triage §6 below), Case_02/03 complete.
 - Phase 3: Case_01 complete 78.6% (v2.0) + Phase 3 RICH PASS_WITH_FINDINGS; Case_02 85.2%; Case_03 99.2%.
-- Case_01 only: has a `03_PHASE3_DECOMPOSITION_RICH/` worktree validated in Sprint 5/6.
+- Case_01 only: has a `03_PHASE3_DECOMPOSITION_RICH/` worktree validated in Fase de Especificação 5/6.
 
 The `README.md` is structurally stale: it still lists `Case_02_Medium_Complexity` as the directory name (the directory was renamed to `Case_02_SecureBorder_Solutions` per `CHANGE_LOG_CENTRAL.md` 2026-04-03). Drift source: directory rename did not propagate to `02_CASES/README.md`.
 
@@ -36,10 +36,10 @@ Legend for classification:
 | # | File | Classif. | Purpose? | AG- | AO- | PG- | SG- | Orphan refs |
 |---|------|----------|----------|-----|-----|-----|-----|-------------|
 | 01 | Doc01_Taxonomy_Reference.md | FLOW-NATIVE | Y | 0 | 0 | 0 | 0 | none |
-| 02 | Doc02_INTAKE_FORM.md | ORPHAN (Sprint 1 stub-only) | Y | 0 | 0 | 0 | 0 | none |
+| 02 | Doc02_INTAKE_FORM.md | ORPHAN (Fase de Especificação 1 stub-only) | Y | 0 | 0 | 0 | 0 | none |
 | 03 | Doc03_Company_Context_Assessment.md | FLOW-NATIVE | Y | 5 | 0 | 1 | 1 | refs `Doc 07c_Adjusted_Goals` (legacy alias; replaced by Doc13) |
 | 04 | Doc04_Architecture_DataInventory.md | FLOW-NATIVE | **N** | 0 | 0 | 0 | 0 | none |
-| 05 | Doc05_Security_Posture.md | JUSTIFIED-EXTENSION (maturity lens) | **N** | 0 | 0 | 0 | 0 | none |
+| 05 | Doc05_Security_Posture.md | JUSTIFIED-EXTENSION (posture lens) | **N** | 0 | 0 | 0 | 0 | none |
 | 06 | Doc06_ThirdParty_Landscape.md | JUSTIFIED-EXTENSION | **N** | 0 | 0 | 0 | 0 | none |
 | 07 | Doc07_Org_Roles_RACI.md | JUSTIFIED-EXTENSION (RACI lens) | **N** | 0 | 0 | 0 | 0 | none |
 | 08 | Doc08_Regulatory_Applicability.md | FLOW-NATIVE | Y | 0 | 0 | 0 | 0 | refs `Doc 07c` §A.1.1 (legacy alias) |
@@ -169,11 +169,11 @@ File-level counts (`grep -liE` per case, Doc*.md only):
 | Theme | Case_01 | Case_02 | Case_03 |
 |-------|---------|---------|---------|
 | RACI | 4 files | 4 files | 8 files |
-| Maturidade/maturity | 9 files | 8 files | 10 files |
+| Maturidade/posture | 9 files | 8 files | 10 files |
 | Third-party | 11 files | 11 files | 14 files |
 | Ambiguidade/ambiguity | 3 files | 3 files | 7 files |
 
-**All themes are present in all 3 cases.** RACI, third-party and ambiguity are each anchored in a single dedicated Doc (Doc07, Doc06, Doc09 respectively) but are cross-referenced from other docs (Doc08 cites maturity in Case_01; Doc12 in Case_03 cites maturity multiple times).
+**All themes are present in all 3 cases.** RACI, third-party and ambiguity are each anchored in a single dedicated Doc (Doc07, Doc06, Doc09 respectively) but are cross-referenced from other docs (Doc08 cites posture in Case_01; Doc12 in Case_03 cites posture multiple times).
 
 **Goal-references from these "lens" docs:**
 - Case_01: Doc03 (Company Context) cites **AG-/PG-/SG-** directly in BG-01..BG-05. Doc05/Doc06/Doc07/Doc09 themselves contain zero goal-ID refs — they are content sources, not goal consumers. **Universal drift: only Doc03 (and Doc13) anchor goals; the lens docs are isolated.**
@@ -194,7 +194,7 @@ Cell notation: `✓ file | goal-link | dangling-refs`.
 | 02 | Intake Form (orphan) | Doc02 ✓ \| 0 \| none | Doc02 ✓ \| 0 \| none | Doc02 ✓ \| 0 \| none |
 | 03 | Company Context Assessment | Doc03 ✓ \| **AG=5, PG=1, SG=1** \| legacy Doc07c alias | Doc03 ✓ \| 0 \| none | Doc03 ✓ \| 0 \| none |
 | 04 | Architecture / Data Inventory | Doc04 (no purpose) \| 0 \| none | Doc04 (no purpose) \| 0 \| none | Doc04 (no purpose) \| 0 \| none |
-| 05 | Security Posture (maturity) | Doc05 (no purpose) \| 0 \| none | Doc05 (no purpose) \| 0 \| none | Doc05 (no purpose) \| 0 \| none |
+| 05 | Security Posture (posture) | Doc05 (no purpose) \| 0 \| none | Doc05 (no purpose) \| 0 \| none | Doc05 (no purpose) \| 0 \| none |
 | 06 | Third-Party Landscape | Doc06 (no purpose) \| 0 \| none | Doc06 (no purpose) \| 0 \| none | Doc06 (no purpose) \| 0 \| none |
 | 07 | Org Roles / RACI | Doc07 (no purpose) \| 0 \| none | Doc07 (no purpose) \| 0 \| none | Doc07 (no purpose) \| 0 \| none |
 | 08 | Regulatory Applicability | Doc08 ✓ \| 0 \| legacy Doc07c alias | Doc08 ✓ \| 0 \| none | Doc08 ✓ \| 0 \| none |
@@ -219,7 +219,7 @@ Cell notation: `✓ file | goal-link | dangling-refs`.
 
 1. **Sprint artifacts (sprint5_report / SPRINT1..5_REPORT, VALIDATOR_*, P1_*_validation.md, CORPUS_AUGMENTATION_REPORT, FIX_TIER1_REPORT, LINT_REPORT_*, data/phase1_graph.json, scripts/build_p1_graph.py).** No equivalent in Case_02/03 `validation/` dirs (Case_02/03 `validation/` dirs do exist but contain a different minimal set: VALIDATOR_TIER1/2, VALIDATOR_SPRINT5). Only Case_01 has the full P1 dashboard + graph + ontology validation lineage.
 2. **Legacy Doc07c alias.** `Doc03` and `Doc08` of Case_01 cite `Doc 07c_Adjusted_Goals` (legacy alias) — Case_02/03 do not have this alias pattern. Drift: Case_01 doc body was not fully migrated to Doc13 naming after the 13-doc re-numbering.
-3. **`phase_3_rich` block in progress.json.** Unique to Case_01 (Sprint 6 PASS_WITH_FINDINGS).
+3. **`phase_3_rich` block in progress.json.** Unique to Case_01 (Fase de Especificação 6 PASS_WITH_FINDINGS).
 4. **Doc03 has goal cross-refs.** Only Case_01's Doc03 carries AG-/PG-/SG- anchors; Case_02/03 Doc03 are pure prose.
 
 ### 4.2 Transversal drift (methodology-level gap)
@@ -227,7 +227,7 @@ Cell notation: `✓ file | goal-link | dangling-refs`.
 1. **No `00_METHODOLOGY/diagrams/fluxdiagram/phase1/` references inside any case.** The fluxdiagram is methodology-level but no Phase 1 doc cites it. None of the 3 cases embed a mermaid block. The "production flow" narrative is not traceable from case docs to methodology docs. **This is a methodology gap, not a case gap.**
 2. **No `AO-D-` prefix anywhere.** Methodology intent (or at least the brief's mental model) mentions AO (Adjusted Objectives) — but no case uses it. Case_02 uses PG/SG, Case_01/03 use AG. **AO is documented nowhere in any case.**
 3. **Doc13 slot + naming inconsistency.** Case_01/03 call the slot 13 (or 14) "Adjusted_Goals"; Case_02 calls it "Adjusted_Objectives". All three should align on `Adjusted_Goals` per corr-010 standardisation (per Case_03 README §6 note) but Case_02 was never renamed.
-4. **Lens docs (Doc05/06/07/09) never cite goal IDs.** Across all 3 cases, the maturity / third-party / RACI / ambiguity lenses do not anchor to AG-/PG-/SG- IDs. Methodology gap: no rule forces these "input lens" docs to produce goal-bindable artefacts.
+4. **Lens docs (Doc05/06/07/09) never cite goal IDs.** Across all 3 cases, the posture / third-party / RACI / ambiguity lenses do not anchor to AG-/PG-/SG- IDs. Methodology gap: no rule forces these "input lens" docs to produce goal-bindable artefacts.
 5. **Doc10 Clause_Mapping_Matrix — purpose-section drift.** Case_01/02 have it; Case_03 lacks it (Case_03 Doc10 is the same role but no PURPOSE heading).
 6. **progress.json schema mismatch.** All 3 cases use `phase_1` key, but Case_01 has an extra `phase_3_rich`. There is no `phase_1_rich` even though Phase 1 has a RICH corpus (the README distinguishes "14 files" — i.e. RICH).
 7. **Case_01 progress.json falsely claims Doc06 linted** while Case_02/03 explicitly disclaim this — one of the three is wrong.
@@ -237,7 +237,7 @@ Cell notation: `✓ file | goal-link | dangling-refs`.
 1. **Purpose-section absence on Doc04, Doc05, Doc06, Doc07, Doc09.** Same 5 doc slots lack the canonical `^## \d+\. (DOCUMENT )?PURPOSE` heading in all 3 cases. (Doc13/14 uses `## §0 Document Purpose` / `## §1 Document Purpose` — non-canonical format that doesn't match the numeric regex, but the prose does exist.)
 2. **Doc02 INTAKE_FORM classification as orphan.** All 3 cases include this doc, but it is not in the canonical Phase 1 named flow (`phase1_contextual_definition.md` slot a/b/c). It is a methodology-level questionnaire that has no clear home in the case-level phase 1 flow.
 3. **No mermaid / no PRODUCTION_FLOW in any case.** The "Phase 1 production flow" is documented only at the methodology level; no case localises it.
-4. **Lens docs (Doc05 maturity / Doc06 third-party / Doc07 RACI / Doc09 ambiguity) have no `goal_ref` slot in any case.** The methodology defines these lenses but doesn't bind them to the goal taxonomy.
+4. **Lens docs (Doc05 posture / Doc06 third-party / Doc07 RACI / Doc09 ambiguity) have no `goal_ref` slot in any case.** The methodology defines these lenses but doesn't bind them to the goal taxonomy.
 5. **Citation_Index.md and Corpus_Field_Map.md exist in all 3 cases but never cross-link to goal IDs.** They are bookkeeping, not goal-aware.
 6. **`02_CASES/README.md` is structurally stale** (lists `Case_02_Medium_Complexity` which was renamed 2026-04-03).
 
@@ -248,7 +248,7 @@ Cell notation: `✓ file | goal-link | dangling-refs`.
 1. **Universal: enforce purpose-section template** (e.g. via doc-conventions skill lint) on Doc04, Doc05, Doc06, Doc07, Doc09 — all 3 cases. This is the single highest-leverage, lowest-cost fix.
 2. **Transversal: decide AG vs PG/SG once and migrate.** Either rename Case_02 Doc13 to `Adjusted_Goals.md` and add AG- IDs (matching corr-010), or re-introduce PG/SG in Case_01/03. The brief asks about `AO-` but AO is unused everywhere — either drop the AO intent from the prompt layer or instantiate it.
 3. **Transversal: add a single Phase 1 mermaid / fluxdiagram embed** in each case's `README.md` (point to `00_METHODOLOGY/diagrams/fluxdiagram/phase1/phase1_contextual_definition.md`). Closes the "no fluxdiagram ref" gap.
-4. **Case_01-specific: replace Doc07c legacy alias** in Doc03 (5 occurrences) and Doc08 (Sprint 5 banner) with Doc13. Tiny edit, high signal.
+4. **Case_01-specific: replace Doc07c legacy alias** in Doc03 (5 occurrences) and Doc08 (Fase de Especificação 5 banner) with Doc13. Tiny edit, high signal.
 5. **Case_01-specific: reconcile progress.json phase_1** Doc06 entry vs Case_02/03 `_notes` (which say "no lint script for .xlsx"). Either document the missing lint script for all 3 cases or remove Case_01's false-positive lint_passed.
 6. **Universal: link Doc05/06/07/09 lens outputs to goal IDs** — either by adding a `related_goals:` block to each doc's frontmatter or by emitting a small table in each doc. Currently the lens docs are detached from the goal taxonomy.
 7. **Universal: add a Phase 1 PRODUCTION_FLOW.md** in each case (or a single one in `00_METHODOLOGY/` that all cases point to) that localises `fluxdiagram/phase1/phase1_contextual_definition.md` with case-specific doc IDs.

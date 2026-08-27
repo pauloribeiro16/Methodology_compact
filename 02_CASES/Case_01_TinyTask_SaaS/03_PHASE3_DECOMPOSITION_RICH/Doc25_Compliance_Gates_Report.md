@@ -5,9 +5,8 @@ phase: 3
 version: 2.0
 created: 2026-08-24
 updated: 2026-08-24
-author: Sprint 4 Executor (paulo@methodology.pt)
+author: Fase de Especificação 4 Executor (paulo@methodology.pt)
 status: DEEP_ENRICHED
-sprint: 5
 deep_enrichment_date: 2026-08-24
 detail_cards_count: 30
 cells_count: 445
@@ -26,12 +25,12 @@ schema_columns_list: [Owner, Verification Criteria, Implementation Status, Prior
 freeze_total_gates: 30
 freeze_total_crs: 30
 reconciliation_note: "30 GATE rows (1:1 with CR); SC1 stale 38-rule claim RESOLVED; 4 orphan refs flagged F-S1-04/05/06/07."
-sprint5_note: "Sprint 5: DEEP enrichment — 30 cards (17×17 fields + 13×12 fields) = 445 cells. Frontmatter status DEEP_ENRICHED, version 2.0."
+sprint5_note: "Fase de Especificação 5: DEEP enrichment — 30 cards (17×17 fields + 13×12 fields) = 445 cells. Frontmatter status DEEP_ENRICHED, version 2.0."
 ---
 
 # Compliance Gates Report — TinyTask SaaS (Phase 3 RICH)
 
-> **Status:** ADJUSTED_FIELDS (Sprint 4). 30 GATE rows, 1:1 with 30 CR (per Doc 16 §5). All gates `PLANNED`; Sprint 5 verifies PASS/FAIL.
+> **Status:** ADJUSTED_FIELDS. 30 GATE rows, 1:1 with 30 CR (per Doc 16 §5). All gates `PLANNED`; Fase de Especificação 5 verifies PASS/FAIL.
 
 ---
 
@@ -825,4 +824,4 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 
 ---
 
-**End of Compliance Gates Report (Phase 3 RICH, ADJUSTED_FIELDS, Sprint 4)**
+**End of Compliance Gates Report (Phase 3 RICH, ADJUSTED_FIELDS, Fase de Especificação 4)**

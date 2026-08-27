@@ -5,22 +5,21 @@ phase: 2
 version: 3.0
 created: 2026-08-07
 updated: 2026-08-10
-author: Sprint 1+3+4+6 + Sprint 9 Executor (corr-012 PO/SO migration in Related Goals column)
+author: Fase de Especificação 1+3+4+6 + Fase de Especificação 9 Executor (corr-012 PO/SO migration in Related Goals column)
 status: DEEP_ENRICHED
-sprint: 9
 inputs: [08_Obligation_Derivation.md, 09_Strategic_Tensions_Report.md, 10_Privacy_Security_Objectives.md, ../02_PHASE2_RULES/11_Rules_Catalog.md, 13_Framework_Mapping_Matrix.md]
 outputs: [Phase 3 inputs, 12_Rules_Catalog.xlsx]
 traceability: AEGIS Class Model → RulesCatalog, AbstractRule, ComplianceRule, BestPracticeRule classes
 related_documents: 12_Rules_Catalog.xlsx, 00_Taxonomy_Reference.md, 13_Framework_Mapping_Matrix.md
 case: Case_01_TinyTask_SaaS
 tier: MICRO
-# fields 1-17 unchanged; 18 (NI), 19 (CSF), 20 (Privacy), 21 (CSF maturity), 22 (Privacy maturity) appended in Blocos B + D.
+# fields 1-17 unchanged; 18 (NI), 19 (CSF), 20 (Privacy), 21 (CSF posture), 22 (Privacy posture) appended in Blocos B + D.
 normative_intensity_rule: AVG
 dr_002_resolution: >
   DR-002 definido como AVG (não MAX). MAX mata diferenciação (AP-P2-09).
   AVG preserva SHOULD. Aplicado retroactivamente a todos os 46 cartões.
 frameworks_mapped: [NIST_CSF_2.0, NIST_Privacy_FW_1.0]
-maturity_dual: true   # per D11; two independent scores per control
+posture_dual: true   # per D11; two independent scores per control
 expected_compliance_rules: 30
 expected_best_practice_rules: 16
 expected_total_rules: 46
@@ -29,13 +28,13 @@ detail_cards_count: 46
 fields_per_card: 22
 branch: feature/aegis-p2-case01-csf2-priv
 sprint_1_scope: cross-check 30 CR rules ↔ 30 obligations; verify 16 BPR distribution; framework sources; implementation distribution
-sprint_4_scope: port legacy §4 CR catalog (30 CR × 11 cols) + legacy §5 BPR catalog (16 BPR × 9 cols) into Rich §4/§5 with 17/15 cols (CR adds 6 new Sprint 4 fields; BPR adds 6 new fields, omits NI and Source vs CR); resolve F-10 NI divergence
+sprint_4_scope: port legacy §4 CR catalog (30 CR × 11 cols) + legacy §5 BPR catalog (16 BPR × 9 cols) into Rich §4/§5 with 17/15 cols (CR adds 6 new Fase de Especificação 4 fields; BPR adds 6 new fields, omits NI and Source vs CR); resolve F-10 NI divergence
 sprint_4_verdict: PASS_WITH_FINDINGS — see §6.7 carried findings F-03
 ---
 
 # Rules Catalog — Rich Mode
 
-> **Sprint 5 deep enrichment** — this Rich Mode sibling now contains the reconciled
+> **Fase de Especificação 5 deep enrichment** — this Rich Mode sibling now contains the reconciled
 > catalogs plus 46 operational rule detail cards (30 CR + 16 BPR).
 
 ---
@@ -87,7 +86,7 @@ This is the Rich Mode version of the Rules Catalog. It consolidates 46 rules (30
 
 ## 3. RULE DEFINITION STRUCTURE
 
-> **Sprint 4 (this sprint):** Added rule structure definition (ported from legacy §3) to anchor the field schema for the catalog tables. The legacy 10-field structure is now superseded by the 17-field (CR) / 15-field (BPR) Rich schema; the 6 Sprint 4 new fields are appended at the end of each row.
+> **Fase de Especificação 4 (this sprint):** Added rule structure definition (ported from legacy §3) to anchor the field schema for the catalog tables. The legacy 10-field structure is now superseded by the 17-field (CR) / 15-field (BPR) Rich schema; the 6 Fase de Especificação 4 new fields are appended at the end of each row.
 
 ### 3.1 Canonical Rule Field Schema
 
@@ -106,17 +105,17 @@ This is the Rich Mode version of the Rules Catalog. It consolidates 46 rules (30
 | 10 | Implementation Tier | LIGHTWEIGHT / MINIMAL | LIGHTWEIGHT | ✓ | ✓ |
 | 11 | Proportional Priority | P1 (proportionality-adjusted) | P1 | ✓ | ✓ |
 | **12** | **Owner** | **Operational owner (sub-domain heuristic)** | **CTO + Lead Dev** | **✓** | **✓** |
-| **13** | **Verification Criteria** | **1-line test/check criterion (Sprint 4)** | **strong symmetric encryption + key rotation audit** | **✓** | **✓** |
-| **14** | **Implementation Status (CSF)** | **Doc 07b §4 LIGHTWEIGHT target (Sprint 4)** | **PARTIAL** | **✓** | **✓** |
-| **15** | **Implementation Priority** | **Doc 07b §4 LIGHTWEIGHT priority (Sprint 4)** | **HIGH** | **✓** | **✓** |
-| **16** | **Affected Stakeholders** | **Cross-ref Sheet 12 + Doc 04d RACI (Sprint 4)** | **Customers, DPO, CTO, ENISA** | **✓** | **✓** |
-| **17** | **Regulatory Reporting** | **Doc 08 §4 sub-domain heuristic (Sprint 4)** | **Internal audit only** | **✓** | **✓ (uniform)** |
+| **13** | **Verification Criteria** | **1-line test/check criterion** | **strong symmetric encryption + key rotation audit** | **✓** | **✓** |
+| **14** | **Implementation Status (CSF)** | **Doc 07b §4 LIGHTWEIGHT target** | **PARTIAL** | **✓** | **✓** |
+| **15** | **Implementation Priority** | **Doc 07b §4 LIGHTWEIGHT priority** | **HIGH** | **✓** | **✓** |
+| **16** | **Affected Stakeholders** | **Cross-ref Sheet 12 + Doc 04d RACI** | **Customers, DPO, CTO, ENISA** | **✓** | **✓** |
+| **17** | **Regulatory Reporting** | **Doc 08 §4 sub-domain heuristic** | **Internal audit only** | **✓** | **✓ (uniform)** |
 
-**Bold rows** are the 6 new Sprint 4 fields. The "uniform" notation on field 17 means BPR Regulatory Reporting is uniformly `Internal audit only` (BPR has no regulatory mandate; only internal audit applies).
+**Bold rows** are the 6 new Fase de Especificação 4 fields. The "uniform" notation on field 17 means BPR Regulatory Reporting is uniformly `Internal audit only` (BPR has no regulatory mandate; only internal audit applies).
 
 **Field cardinality:**
 
-| Catalog | Total cols | Legacy cols | New cols (Sprint 4) |
+| Catalog | Total cols | Legacy cols | New cols |
 |---------|-----------:|------------:|--------------------:|
 | CR | 17 | 11 | 6 |
 | BPR | 15 | 9 | 6 |
@@ -139,9 +138,9 @@ Example: BPR-D-04.3-001
 
 ---
 
-## 4. COMPLIANCE RULES CATALOG (Sprint 4 — ported from legacy §4)
+## 4. COMPLIANCE RULES CATALOG (Fase de Especificação 4 — ported from legacy §4)
 
-> **Sprint 4 (this sprint):** Ported legacy `02_PHASE2_RULES/11_Rules_Catalog.md` §4 CR tables into Rich Mode with 17 columns (11 legacy fields + 6 new Sprint 4 fields). **30 CR × 17 cols = 510 cells** (6 new cols contribute 30 × 6 = **180 cells**). The 6 new Sprint 4 columns are: **Owner, Verification Criteria, Maturity Score, Implementation Priority, Affected Stakeholders, Regulatory Reporting**. NI values for `CR-D-01.4-001` and `CR-D-09.1-001` use the **recomputed DR-002 AVG = 2.500** (per F-10 reconciliation in Doc 08 §4.1).
+> **Fase de Especificação 4 (this sprint):** Ported legacy `02_PHASE2_RULES/11_Rules_Catalog.md` §4 CR tables into Rich Mode with 17 columns (11 legacy fields + 6 new Fase de Especificação 4 fields). **30 CR × 17 cols = 510 cells** (6 new cols contribute 30 × 6 = **180 cells**). The 6 new Fase de Especificação 4 columns are: **Owner, Verification Criteria, Implementation Posture, Implementation Priority, Affected Stakeholders, Regulatory Reporting**. NI values for `CR-D-01.4-001` and `CR-D-09.1-001` use the **recomputed DR-002 AVG = 2.500** (per F-10 reconciliation in Doc 08 §4.1).
 
 ### D-01: Data Protection & Encryption (4 CR)
 
@@ -223,7 +222,7 @@ Example: BPR-D-04.3-001
 
 | Rule ID | Rule Description | Source | Sub-Domain | NI | Priority | Verification | Implementation | Related Goals | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
 |---------|------------------|--------|------------|---:|----------|--------------|----------------|---------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| CR-D-07.1-001 | Integrate data protection and security into design from outset; secure by default | GDPR-C09, CRA-C02, CRA-C22 | D-07.1 | 2.667 | P1 | INSPECT | NATIVE | PO-D-07.1-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev | secure-development-framework + maturity assessment | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| CR-D-07.1-001 | Integrate data protection and security into design from outset; secure by default | GDPR-C09, CRA-C02, CRA-C22 | D-07.1 | 2.667 | P1 | INSPECT | NATIVE | PO-D-07.1-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev | secure-development-framework + posture assessment | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
 
 **D-07 Summary:** 1 rule | Avg NI: 2.667 | NATIVE | **Tension T-004 resolved:** Follow CRA standard
 
@@ -263,9 +262,9 @@ Example: BPR-D-04.3-001
 
 ---
 
-## 5. BEST PRACTICE RULES CATALOG (Sprint 4 — ported from legacy §5)
+## 5. BEST PRACTICE RULES CATALOG (Fase de Especificação 4 — ported from legacy §5)
 
-> **Sprint 4 (this sprint):** Ported legacy `02_PHASE2_RULES/11_Rules_Catalog.md` §5 BPR tables into Rich Mode. BPR columns = 15 (9 legacy fields minus Source/NI replaced by Framework + 6 new Sprint 4 fields). **16 BPR × 15 cols = 240 cells** (6 new cols contribute 16 × 6 = **96 cells**). BPR has no regulatory reporting — Reporting column is uniformly `Internal audit only` (BPR derives from frameworks, not regulations).
+> **Fase de Especificação 4 (this sprint):** Ported legacy `02_PHASE2_RULES/11_Rules_Catalog.md` §5 BPR tables into Rich Mode. BPR columns = 15 (9 legacy fields minus Source/NI replaced by Framework + 6 new Fase de Especificação 4 fields). **16 BPR × 15 cols = 240 cells** (6 new cols contribute 16 × 6 = **96 cells**). BPR has no regulatory reporting — Reporting column is uniformly `Internal audit only` (BPR derives from frameworks, not regulations).
 
 ### D-01: Data Protection & Encryption (2 BPR)
 
@@ -329,7 +328,7 @@ Example: BPR-D-04.3-001
 
 ## 6. RECONCILIATION CROSS-CHECKS (SPRINT 1)
 
-> Sprint 1 scope: cross-check the 46 rules (30 Compliance Rules + 16 Best Practice Rules) against the 30 obligations (Doc 08), verify the BPR distribution across 8 sub-domains, confirm framework sources (ISO 27001 / NIST / OWASP / CIS), and check NATIVE vs INHERITED implementation distribution. Legacy `02_PHASE2_RULES/` files are **read-only** and not modified by this section.
+> Fase de Especificação 1 scope: cross-check the 46 rules (30 Compliance Rules + 16 Best Practice Rules) against the 30 obligations (Doc 08), verify the BPR distribution across 8 sub-domains, confirm framework sources (ISO 27001 / NIST / OWASP / CIS), and check NATIVE vs INHERITED implementation distribution. Legacy `02_PHASE2_RULES/` files are **read-only** and not modified by this section.
 
 ### 6.1 Rule Count Verification
 
@@ -469,11 +468,11 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 | NI distribution | PASS |
 | ID integrity | PASS |
 
-**Sprint 1 verdict for Doc 11:** **PASS** — proceeds to Sprint 4 (adjusted fields) and Sprint 5 (DEEP enrichment) for all 46 rules. The only outstanding finding (F-03) depends on Doc 10 F-01 resolution (add PO-D-01.3-001 or update CR reference).
+**Fase de Especificação 1 verdict for Doc 11:** **PASS** — proceeds to Fase de Especificação 4 (adjusted fields) and Fase de Especificação 5 (DEEP enrichment) for all 46 rules. The only outstanding finding (F-03) depends on Doc 10 F-01 resolution (add PO-D-01.3-001 or update CR reference).
 
 ---
 
-## 7. RULE DETAIL CAmanaged relational database (Rich Mode — Sprint 5)
+## 7. RULE DETAIL CAmanaged relational database (Rich Mode)
 
 > This section contains the implementation-rule layer for all 46 catalog entries.
 > Each card preserves the upstream obligation or framework traceability and adds
@@ -542,7 +541,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** PR.DS-P1 (CIA of data-at-rest protected) (backups created + protected + maintained + tested) (resilience mechanisms for adverse situations)
 
-21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+21. **Implementation Status (CSF):** IMPLEMENTED (AWS KMS encryption active - STORE-01/02)
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
@@ -604,7 +603,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** PR.DS-P2 (CIA of data-in-transit protected) (networks protected from unauthorised access)
 
-21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+21. **Implementation Status (CSF):** IMPLEMENTED (TLS 1.3 active - FLOW-01/05)
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
@@ -667,7 +666,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** PR.DS-P1 (CIA of data-at-rest protected), CT.DP-P2 (de-identification + tokenisation techniques)
 
-21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+21. **Implementation Status (CSF):** PARTIAL (What's missing: key lifecycle policy)
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
@@ -730,7 +729,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** CT.DM-P1 (data elements accessible for review), CT.DM-P3 (data elements accessible for alteration)
 
-21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+21. **Implementation Status (CSF):** PARTIAL (What's missing: integrity verification schedule)
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
@@ -808,7 +807,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** ID.RA-P3 (problematic data actions identified), ID.RA-P5 (risk responses prioritised + implemented)
 
-21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+21. **Implementation Status (CSF):** NOT IMPLEMENTED (What's missing: zero-CVE release gate)
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
@@ -886,7 +885,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** — (product-security deliverable; SSDF RV.2 anchored; no PF 1.0 scope)
 
-21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+21. **Implementation Status (CSF):** NOT IMPLEMENTED (What's missing: automated 72h patch SLA)
 
 22. **Implementation Status (Privacy):** N/A — product-security deliverable (SSDF RV.2)
 
@@ -964,7 +963,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** — (product-security deliverable; SSDF RV.1 anchored; no PF 1.0 scope)
 
-21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+21. **Implementation Status (CSF):** NOT IMPLEMENTED (What's missing: published security.txt & CVD policy)
 
 22. **Implementation Status (Privacy):** N/A — product-security deliverable (SSDF RV.1)
 
@@ -1043,7 +1042,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** PR.AC-P1 (identities/credentials issued, managed, verified, revoked, audited — maps PR.AA-01/02), PR.AC-P6 (proofed and bound to credentials, authenticated commensurate with risk — maps PR.AA-03), PR.AC-P4 (access permissions, least privilege + SoD — maps PR.AA-05/06); UNMAPPED_PF (ID.AM-01 hardware inventories + PR.DS-10 risk-strategy data mgmt — no PF 1.0 analogue; unmapped_pf_justification: PF 1.0 inventories are data-ecosystem-scoped only)
 
-21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+21. **Implementation Status (CSF):** IMPLEMENTED (Auth0 managed IAM - SYS-02)
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
@@ -1125,7 +1124,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** PR.AC-P6 (authentication commensurate with risk), PR.AC-P4 (least-privilege access), GV.AT-P1 (workforce informed/trained); UNMAPPED_PF (PR.AA-04 identity assertions — no PF 1.0 subcategory; concept exists only in non-final PF 1.1 draft)
 
-21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+21. **Implementation Status (CSF):** IMPLEMENTED (Auth0 admin MFA enforced - Doc 04a §1.4)
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
@@ -1204,7 +1203,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** CT.PO-P1 (data-processing authorisation policies)
 
-21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+21. **Implementation Status (CSF):** PARTIAL (What's missing: quarterly access review evidence)
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
@@ -1283,7 +1282,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** CT.DP-P4 (selective collection/disclosure configurable), CT.PO-P4 (data lifecycle aligned with SDLC)
 
-21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+21. **Implementation Status (CSF):** PARTIAL (What's missing: hardened baseline documentation)
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
@@ -1362,7 +1361,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** CM.AW-P7 (privacy breach/event notifications) (privacy performance measured + reviewed)
 
-21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+21. **Implementation Status (CSF):** PARTIAL (What's missing: automated containment playbooks)
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
@@ -1442,7 +1441,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** PR.PO-P7 (incident response + recovery plans maintained), CT.DM-P10 (technical measures tested + assessed)
 
-21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+21. **Implementation Status (CSF):** PARTIAL (What's missing: DDoS restoration drills)
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
@@ -1523,7 +1522,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** CM.AW-P7 (privacy breach/event notifications), CM.AW-P8 (mitigation mechanisms offered to individuals), CM.PO-P1 (transparency policies for data processing), CM.PO-P2 (comms roles + responsibilities established) (contracts implement privacy programme measures)
 
-21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+21. **Implementation Status (CSF):** PARTIAL (What's missing: tested 24h CRA breach workflow)
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
@@ -1604,7 +1603,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** PR.DS-P1 (data-at-rest protected), PR.PO-P7 (response/recovery plans established — maps PR.IR-03), PR.DS-P4 (adequate resource capacity — maps PR.IR-04), PR.PT-P4 (resilience mechanisms); UNMAPPED_PF (RC.RP-* recovery execution + PR.DS-10 risk-strategy mgmt — PF 1.0 has no Respond/Recover axis; unmapped_pf_justification: no PF 1.0 subcategories match)
 
-21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+21. **Implementation Status (CSF):** PARTIAL (What's missing: backup restore drills evidence)
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
@@ -1683,7 +1682,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** CT.PO-P4 (data lifecycle aligned with SDLC), CT.DP-P4 (selective collection/disclosure configurable), ID.RA-P3 (problematic data actions identified)
 
-21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+21. **Implementation Status (CSF):** IMPLEMENTED (Data minimisation in product design & Stripe isolation)
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
@@ -1762,7 +1761,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** CT.PO-P4 (data lifecycle aligned with SDLC), CT.DM-P5 (data destroyed according to policy)
 
-21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+21. **Implementation Status (CSF):** NOT IMPLEMENTED (What's missing: formal retention approval)
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
@@ -1840,7 +1839,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** CT.DM-P4 (data elements accessible for deletion), CT.DM-P5 (data destroyed according to policy) (contracts implement privacy programme measures)
 
-21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+21. **Implementation Status (CSF):** PARTIAL (What's missing: erasure cascade automation)
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
@@ -1917,7 +1916,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** CT.DM-P1 (data elements accessible for review), CT.DM-P6 (data transmitted via standardised formats)
 
-21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+21. **Implementation Status (CSF):** PARTIAL (What's missing: automated JSON export routine)
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
@@ -1997,7 +1996,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** ID.IM-P2 (owners/operators + roles inventoried)
 
-21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+21. **Implementation Status (CSF):** PARTIAL (What's missing: standardized vendor ISO 27001 register)
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
@@ -2075,7 +2074,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** — (product-security deliverable; SSDF PS.3 anchored; no PF 1.0 scope)
 
-21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+21. **Implementation Status (CSF):** NOT IMPLEMENTED (What's missing: machine-readable CycloneDX SBOM)
 
 22. **Implementation Status (Privacy):** N/A — product-security deliverable (SSDF PS.3)
 
@@ -2156,7 +2155,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** ID.DE-P3 (contracts with ecosystem parties implement privacy-programme measures), ID.DE-P4 (interoperability frameworks for ecosystem privacy); UNMAPPED_PF (ecosystem risk integrated into enterprise risk — no dedicated PF 1.0 subcategory; covered indirectly by GV.PO-P6)
 
-21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+21. **Implementation Status (CSF):** PARTIAL (What's missing: B2B processor DPA template execution)
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
@@ -2237,7 +2236,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** GV.PO-P2 (privacy values in SDLC processes established), CT.PO-P4 (data lifecycle aligned with SDLC), CT.DP-P2 (de-identification + tokenisation techniques), CT.DP-P4 (selective collection/disclosure configurable), CT.DP-P5 (attribute substitution (derived values))
 
-21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+21. **Implementation Status (CSF):** PARTIAL (What's missing: formal threat model per release)
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
@@ -2316,7 +2315,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** GV.AT-P1 (personnel awareness + training on privacy tasks), GV.AT-P2 (specialised roles privacy awareness + training)
 
-21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+21. **Implementation Status (CSF):** PARTIAL (What's missing: phishing drills & tracking)
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
@@ -2397,7 +2396,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** GV.AT-P1 (personnel awareness + training on privacy tasks), GV.AT-P2 (specialised roles privacy awareness + training)
 
-21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+21. **Implementation Status (CSF):** PARTIAL (What's missing: role-specific curriculum)
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
@@ -2477,7 +2476,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** GV.PO-P1 (privacy values + policies established + enforced), GV.PO-P5 (legal/regulatory privacy reqs understood + managed) (privacy risk-response strategic direction) (adequate resources for privacy risk strategy), CM.PO-P1 (transparency policies for data processing)
 
-21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+21. **Implementation Status (CSF):** NOT IMPLEMENTED (What's missing: complete ISMS policy set)
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
@@ -2557,7 +2556,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** ID.RA-P3 (problematic data actions identified), ID.RA-P4 (likelihoods + impacts prioritise risk), ID.RA-P5 (risk responses prioritised + implemented) (privacy strategy reviewed for requirements + risks)
 
-21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+21. **Implementation Status (CSF):** NOT IMPLEMENTED (What's missing: formal risk register & DPIA)
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
@@ -2637,7 +2636,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** ID.IM-P1 (systems/products/services that process data inventoried), ID.IM-P4 (data actions of systems/services inventoried), ID.IM-P6 (data elements within data actions inventoried), ID.IM-P8 (data processing mapped incl roles + interactions)
 
-21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+21. **Implementation Status (CSF):** NOT IMPLEMENTED (What's missing: operational RoPA maintenance)
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
@@ -2716,7 +2715,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** CT.DM-P9 (log records per policy (data minimisation)), CT.DM-P4 (data elements accessible for deletion)
 
-21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+21. **Implementation Status (CSF):** PARTIAL (What's missing: log review cadence & 7y audit store)
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
@@ -2795,7 +2794,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** ID.RA-P3 (problematic data actions identified), ID.RA-P5 (risk responses prioritised + implemented) (privacy strategy reviewed for requirements + risks)
 
-21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+21. **Implementation Status (CSF):** NOT IMPLEMENTED (What's missing: annual pen test & control test plan)
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
@@ -4036,13 +4035,13 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 ## 8. NEXT STEPS
 
-- [x] **Sprint 1:** Cross-check 30 CR rules ↔ 30 obligations; verify 16 BPR — DONE with PASS verdict
-- [x] **Sprint 3:** Regenerate 12_Rules_Catalog.xlsx (14 sheets, Sheet 2 = Rules_Catalog with 46 rows) — DONE
-- [x] **Sprint 4 (this sprint):** Port legacy §4 CR catalog (30 CR × 11 cols) + legacy §5 BPR catalog (16 BPR × 9 cols) into Rich §4/§5 with 17/15 cols (180 + 96 = 276 new Sprint 4 cells); resolve F-10 NI for CR-D-01.4-001 and CR-D-09.1-001 — DONE
-- [x] **Sprint 5:** Populate 15 fields per rule × 46 cards = 690 cells — DONE
-- [ ] Sprint 5 follow-up: Resolve F-03 (phantom PO-D-01.3-001 reference) — same root cause as Doc 08/10 F-01
+- [x] **Fase de Especificação 1:** Cross-check 30 CR rules ↔ 30 obligations; verify 16 BPR — DONE with PASS verdict
+- [x] **Fase de Especificação 3:** Regenerate 12_Rules_Catalog.xlsx (14 sheets, Sheet 2 = Rules_Catalog with 46 rows) — DONE
+- [x] **Fase de Especificação 4 (this sprint):** Port legacy §4 CR catalog (30 CR × 11 cols) + legacy §5 BPR catalog (16 BPR × 9 cols) into Rich §4/§5 with 17/15 cols (180 + 96 = 276 new Fase de Especificação 4 cells); resolve F-10 NI for CR-D-01.4-001 and CR-D-09.1-001 — DONE
+- [x] **Fase de Especificação 5:** Populate 15 fields per rule × 46 cards = 690 cells — DONE
+- [ ] Fase de Especificação 5 follow-up: Resolve F-03 (phantom PO-D-01.3-001 reference) — same root cause as Doc 08/10 F-01
 
-### 8.1 Sprint 4 — Rules Catalog Port Summary
+### 8.1 Fase de Especificação 4 — Rules Catalog Port Summary
 
 **Catalog tables added (§4 + §5):**
 
@@ -4052,7 +4051,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 | **BPR catalog (§5)** | D-01 (2), D-02 (2), D-03 (3), D-04 (2), D-05 (1), D-07 (2), D-09 (1), D-10 (3) | 16 | 15 | 240 | 96 (16 × 6) |
 | **TOTAL** | — | **46** | — | **750** | **276** |
 
-**6 new Sprint 4 columns applied to each row (CR + BPR):**
+**6 new Fase de Especificação 4 columns applied to each row (CR + BPR):**
 
 | Column | CR value source | BPR value source |
 |--------|-----------------|------------------|
@@ -4070,8 +4069,8 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 | CR-D-01.4-001 | **2.500** | 3.000 | DR-002 AVG(2,3) = 2.500 |
 | CR-D-09.1-001 | **2.500** | 2.750 | DR-002 AVG(2,3,2,3) = 2.500 |
 
-The other 28 CR NI values match legacy (Doc 08 §6). Average NI recomputed with F-10 fix = **2.800** (vs legacy 2.842 and Sprint 1 2.817).
+The other 28 CR NI values match legacy (Doc 08 §6). Average NI recomputed with F-10 fix = **2.800** (vs legacy 2.842 and Fase de Especificação 1 2.817).
 
 ---
 
-**End of Sprint 5c Deep Enrichment — Doc 11**
+**End of Fase de Especificação 5c Deep Enrichment — Doc 11**

@@ -177,7 +177,7 @@ All 4 cells match Doc07 §4 verbatim, including the `INACTIVE` literal for ACT-3
 | GAP-RACI-02 | medium | ['D-08.2', 'ACT-28', 'ACT-32', 'ROLE-DEV', 'ROLE-CISO'] | L311 "No formal secure-coding curriculum for developers (reliance on code review + Snyk feedback) \| MEDIUM \| D-08.2" | **OK** |
 | GAP-RACI-03 | low | ['D-08.2', 'ACT-33', 'ROLE-DPO', 'ROLE-LEGAL'] | L312 "DPO refresher cycle not cadence-locked (last done 2025-Q4 informally; next target 2026-Q4) \| LOW \| D-08.2" | **OK** |
 | GAP-RACI-04 | low | ['D-08.3', 'ACT-34', 'ACT-35', 'ROLE-BOARD'] | L313 "D-08.3 board training absent — deliberately not in scope for TinyTask; documented here as a non-derivation per `05 §6.3` \| LOW (informational only) \| D-08.3 (INACTIVE)" | **OK** |
-| GAP-RACI-05 | low | ['D-09.1', 'ROLE-DPO', 'ROLE-CISO', 'ROLE-BOARD'] | L314 "Single DPO/CISO-individual concentration risk; backup is the other founder, which is operationally OK but not optimised for board independence \| LOW \| D-09.1 (governance maturity)" | **OK** |
+| GAP-RACI-05 | low | ['D-09.1', 'ROLE-DPO', 'ROLE-CISO', 'ROLE-BOARD'] | L314 "Single DPO/CISO-individual concentration risk; backup is the other founder, which is operationally OK but not optimised for board independence \| LOW \| D-09.1 (governance posture)" | **OK** |
 
 All 5 audits correctly registered with `severity` ∈ {medium, low} matching Doc07 §7 column, `title` matching Doc07 §7 column, and `node_ids` referencing the correct sub-domain + activity + role entities.
 
@@ -226,7 +226,7 @@ All 16 audit IDs and titles from the v1.2 baseline are preserved verbatim:
 | CFL-003 | medium | "phase1_ontology.yaml coverage_summary subdomains_covered labels disagree with Doc11 §6" |
 | CFL-004 | medium | "Normative Intensity: Doc10 §5 (2.819 combined) vs Doc11 §4 (2.947)" |
 | CFL-005 | medium | "GAP-002 affected_subdomain_ids cites Domain 'D-01' which is not a SecurityControlDomain" |
-| BLN-001 | medium | "Doc10 §8 corpus clause IDs marked (verify) — Sprint 2 deliverable still open" |
+| BLN-001 | medium | "Doc10 §8 corpus clause IDs marked (verify) deliverable still open" |
 | BLN-002 | high | "Doc13 §0 references D-02.4 / D-06.4 as NOT_ADDRESSED but Doc12 §4 lists them COVERED" |
 | BLN-003 | low | "Doc03 §3.1 Contact column is '—' for 6 of 7 stakeholders (only Stripe has an entry)" |
 | CVG-001 | high | "3 NOT_ADDRESSED subdomains remain uncovered by applicable regulations" |

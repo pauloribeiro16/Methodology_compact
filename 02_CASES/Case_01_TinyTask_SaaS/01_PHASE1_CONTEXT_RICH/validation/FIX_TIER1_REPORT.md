@@ -44,11 +44,11 @@ related: [validation/VALIDATOR_TIER1.md, 07b_Proportionality_Profile.md, 07c_Adj
   ```yaml
   status: DEEP_ENRICHED
   status_history:
-    - { date: 2026-08-06, status: DRAFT, sprint: 0, by: 'Sprint 0 skeleton' }
-    - { date: 2026-08-06, status: RECONCILED, sprint: 1, by: 'Sprint 1 reconciliation' }
-    - { date: 2026-08-06, status: CORPUS_ENRICHED, sprint: 2, by: 'Sprint 2 corpus enrichment' }
-    - { date: 2026-08-06, status: ADJUSTED_OBJECTIVES, sprint: 4, by: 'Sprint 4 adjusted objectives' }
-    - { date: 2026-08-06, status: DEEP_ENRICHED, sprint: 5, by: 'Sprint 5 DEEP enrichment' }
+    - { date: 2026-08-06, status: DRAFT, sprint: 0, by: 'Fase de Especificação 0 skeleton' }
+    - { date: 2026-08-06, status: RECONCILED, sprint: 1, by: 'Fase de Especificação 1 reconciliation' }
+    - { date: 2026-08-06, status: CORPUS_ENRICHED, sprint: 2, by: 'Fase de Especificação 2 corpus enrichment' }
+    - { date: 2026-08-06, status: ADJUSTED_OBJECTIVES, sprint: 4, by: 'Fase de Especificação 4 adjusted objectives' }
+    - { date: 2026-08-06, status: DEEP_ENRICHED, sprint: 5, by: 'Fase de Especificação 5 DEEP enrichment' }
   ```
 
 - **Materialises the previously missing ADJUSTED_OBJECTIVES intermediate state without altering the current status.** Both files now show the full progression chronologically.

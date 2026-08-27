@@ -344,7 +344,7 @@ python lints/run_all_lints.py --case "TinyTask SaaS"
 
 | Date | Document | Change Type | Description | Impact |
 |------|----------|-------------|-------------|--------|
-| 2026-08-27 | Case_01 Markdown Docs | MODEL TRANSITION | Replaced legacy 0-4 maturity scales & Tiers with Implementation Posture Model v2.0 (IMPLEMENTED/PARTIAL/NOT IMPLEMENTED + evidence & gap requirements); Gate v0.2 PASS | High |
+| 2026-08-27 | Case_01 Markdown Docs | MODEL TRANSITION | Replaced legacy 0-4 posture scales & Tiers with Implementation Posture Model v2.0 (IMPLEMENTED/PARTIAL/NOT IMPLEMENTED + evidence & gap requirements); Gate v0.2 PASS | High |
 | 2026-04-06 | lint_11_rules_catalog.py | TOOL FIX | Rewritten from dead code to proper Rules Catalog validation (11 checks) | High |
 | 2026-04-06 | 11_Rules_Catalog.md | DATA FIX | Dashboard 38→46 (30 CR + 16 BPR) across 9 sections | High |
 | 2026-04-06 | 15_Requirements_Allocation.md | DATA FIX | 10 phantom rule derivation nodes removed | High |
@@ -513,15 +513,15 @@ python lints/run_all_lints.py --case "TinyTask SaaS"
 
 | F-id | Status | Description |
 |---|---|---|
-| F-00a..F-00d | RESOLVED (Sprint 1) | UC format, counts reconciled, orphan check, stale 38-rule claim |
-| F-00e | RESOLVED (Sprint 5) | Uniform 17/12-field schema across 276 cards |
-| F-00f | CLOSED (Sprint 0) | `--rich` flag + `doc_path` param verified |
-| F-S1-01..03 | INFORMATIVELY-RESOLVED (Sprint 5) | Doc 14 orphan CR-D refs mapped in card Source field; P7 arbiter decision still PENDING for formal close |
-| F-S1-04..07 | INFORMATIVELY-REFERENCED (Sprint 5) | Doc 16 §4 explicitly carries orphan-ref table; P7 arbiter decision still PENDING |
+| F-00a..F-00d | RESOLVED | UC format, counts reconciled, orphan check, stale 38-rule claim |
+| F-00e | RESOLVED | Uniform 17/12-field schema across 276 cards |
+| F-00f | CLOSED | `--rich` flag + `doc_path` param verified |
+| F-S1-01..03 | INFORMATIVELY-RESOLVED | Doc 14 orphan CR-D refs mapped in card Source field; P7 arbiter decision still PENDING for formal close |
+| F-S1-04..07 | INFORMATIVELY-REFERENCED | Doc 16 §4 explicitly carries orphan-ref table; P7 arbiter decision still PENDING |
 | F-S1-08 | CARRIED to follow-on contract | Doc 08 has 34 OBLs (post Sprint 6+ fix); Doc 11 has 30 CR — drift acknowledged |
 | **F-S1-09** | **STILL OPEN** | 14 Case_02 contamination nodes in Graphify KG pointing at Case_01 paths; **KG re-run needed** — out of Sprint 5 scope |
-| F-S1-10/11 | CLOSED (Sprint 1) | Doc 11 §8 cosmetic; Doc 16 SC3 confirmed |
-| F-S2-02/S-2-03 | RESOLVED (Sprint 5) | FR-16 → CR-D-04.3-001; FR-23 → CR-D-06.2-001 remaps in Doc 23 card Source field |
+| F-S1-10/11 | CLOSED | Doc 11 §8 cosmetic; Doc 16 SC3 confirmed |
+| F-S2-02/S-2-03 | RESOLVED | FR-16 → CR-D-04.3-001; FR-23 → CR-D-06.2-001 remaps in Doc 23 card Source field |
 | F-S5-01 | NEW OPEN | Doc 13 uses `## §N`; lint 13 expects `## 5.`/`## 6.` — out of Sprint 5 scope |
 | F-S5-02 | NEW OPEN | Lint regex `Actors?:` vs card field `**Owner:**` — schema by design, lint regex stale |
 | **F-V-1..8 (v1 validator run)** | **INVALIDATED** | Based on `git log` false-fail (no commits exist on this branch; orchestrator owns commits) |

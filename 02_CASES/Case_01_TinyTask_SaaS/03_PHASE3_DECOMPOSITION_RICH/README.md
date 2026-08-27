@@ -5,13 +5,12 @@ phase: 3
 version: 0.5
 created: 2026-08-24
 updated: 2026-08-24
-author: Sprint 4 Executor (paulo@methodology.pt)
+author: Fase de Especificação 4 Executor (paulo@methodology.pt)
 status: ADJUSTED_FIELDS
 case: Case_01_TinyTask_SaaS
 tier: MICRO
 sibling_of: ../03_PHASE3_DECOMPOSITION/
 branch: feature/aegis-p3-case01-rich
-sprint: 4
 sprint_role: schema_adjustment
 sibling_doc: ../03_PHASE3_DECOMPOSITION/
 schema_columns: 6
@@ -23,7 +22,7 @@ schema_columns_list: [Owner, Verification Criteria, Implementation Status, Prior
 > Phase 3 Rich Mode — corpus-enriched sibling of legacy `03_PHASE3_DECOMPOSITION/`.
 > Pattern: replicate the Phase 1 and Phase 2 Rich Mode successes, apply DEEP enrichment to all Phase 3 documents (13, 13a, 13b, 14, 15, 16, 17 + 23/24/25 + Synthesis + Annexes).
 >
-> **Sprint 4 status: ADJUSTED_FIELDS.** All 11 core docs + 2 review reports + synthesis + 2 annexes had 6 columns appended to their index tables. Sprint 5 will fill the per-card values.
+> **Fase de Especificação 4 status: ADJUSTED_FIELDS.** All 11 core docs + 2 review reports + synthesis + 2 annexes had 6 columns appended to their index tables. Fase de Especificação 5 will fill the per-card values.
 
 ---
 
@@ -31,17 +30,17 @@ schema_columns_list: [Owner, Verification Criteria, Implementation Status, Prior
 
 | Sprint | Date | Theme | Status |
 |--------|------|-------|:------:|
-| **Sprint 0** | 2026-08-24 | Skeleton + lint baseline + 15 placeholders | PASS |
-| **Sprint 1** | 2026-08-24 | Port legacy → Rich siblings + reconciliation | PASS_WITH_FINDINGS |
-| **Sprint 2** | 2026-08-24 | Corpus linkage + NIST anchors + KG chains | PASS_WITH_FINDINGS |
-| **Sprint 3** | 2026-08-24 | Final docs + traceability matrix + README + drawio | **PASS_WITH_FINDINGS** (this sprint) |
-| Sprint 4 | TBD | Adjusted fields per row | ⏳ PENDING |
-| Sprint 5 | TBD | DEEP enrichment (17 fields × N cards) | ⏳ PENDING |
-| Validator | TBD | Sprint 5 self-verification | ⏳ PENDING |
+| **Fase de Especificação 0** | 2026-08-24 | Skeleton + lint baseline + 15 placeholders | PASS |
+| **Fase de Especificação 1** | 2026-08-24 | Port legacy → Rich siblings + reconciliation | PASS_WITH_FINDINGS |
+| **Fase de Especificação 2** | 2026-08-24 | Corpus linkage + NIST anchors + KG chains | PASS_WITH_FINDINGS |
+| **Fase de Especificação 3** | 2026-08-24 | Final docs + traceability matrix + README + drawio | **PASS_WITH_FINDINGS** (this sprint) |
+| Fase de Especificação 4 | TBD | Adjusted fields per row | ⏳ PENDING |
+| Fase de Especificação 5 | TBD | DEEP enrichment (17 fields × N cards) | ⏳ PENDING |
+| Validator | TBD | Fase de Especificação 5 self-verification | ⏳ PENDING |
 
 ---
 
-## §2 Deliverables Map (Sprint 0 placeholders)
+## §2 Deliverables Map (Fase de Especificação 0 placeholders)
 
 | Path | Sprint | Status | Lines |
 |------|:------:|:------:|------:|
@@ -70,7 +69,7 @@ schema_columns_list: [Owner, Verification Criteria, Implementation Status, Prior
 | `validation/RICH_LINT_BASELINE.md` | 0 | drafted | — |
 | `validation/SPRINT0_REPORT.md` | 0 | drafted | — |
 
-All counts (use cases, nodes, allocations, gates, FR, NFR, risks) are **TBD** at Sprint 0.
+All counts (use cases, nodes, allocations, gates, FR, NFR, risks) are **TBD** at Fase de Especificação 0.
 
 ---
 
@@ -86,7 +85,7 @@ The Phase 3 Rich schema follows the 17-field pattern from Phase 2 Rich Mode:
 
 ---
 
-## §3a Implementation Status (Sprint 3)
+## §3a Implementation Status
 
 ### Status ladder
 
@@ -94,12 +93,12 @@ Per `AGENTS.md` conventions, status escalates: `SKELETON → RECONCILED → CORP
 
 | Ladder step | Meaning | Sprint achieved |
 |-------------|---------|:---------------:|
-| **SKELETON** | Frontmatter + placeholder body | Sprint 0 |
-| **RECONCILED** | Sprint 1 freeze references + reconciliation footer | Sprint 1 |
-| **CORPUS_ENRICHED** | Real structured content + freeze cross-references | **Sprint 3 (current)** |
-| **DEEP_ENRICHED** | 17-field schema per card (~3,995 cells) | Sprint 5 |
+| **SKELETON** | Frontmatter + placeholder body | Fase de Especificação 0 |
+| **RECONCILED** | Fase de Especificação 1 freeze references + reconciliation footer | Fase de Especificação 1 |
+| **CORPUS_ENRICHED** | Real structured content + freeze cross-references | **Fase de Especificação 3 (current)** |
+| **DEEP_ENRICHED** | 17-field schema per card (~3,995 cells) | Fase de Especificação 5 |
 
-### Sprint 3 deliverables (NEW)
+### Fase de Especificação 3 deliverables (NEW)
 
 - `scripts/build_traceability_matrix_rich.py` — **REAL** implementation. Produces `22_Traceability_Matrix.xlsx` with **10 sheets**:
   1. COVER (29 rows)
@@ -115,13 +114,13 @@ Per `AGENTS.md` conventions, status escalates: `SKELETON → RECONCILED → CORP
   - Total: **330 rows** across all sheets.
 - `22_Traceability_Matrix.xlsx` — generated (8 legacy sheets mirrored + 2 new).
 - `scripts/gen_drawio.py` — **REAL** implementation. Parses Mermaid from `17_Functional_Tree.md` and emits `18_Functional_Tree.drawio` (42 vertices + 41 edges).
-- `18_Functional_Tree.drawio` — generated (F-00e RESOLVED in Sprint 3).
-- `scripts/verify_rich.py` — **light stub with `verify_xlsx()` real**. Full DEEP validation arrives in Sprint 5.
+- `18_Functional_Tree.drawio` — generated (F-00e RESOLVED in Fase de Especificação 3).
+- `scripts/verify_rich.py` — **light stub with `verify_xlsx()` real**. Full DEEP validation arrives in Fase de Especificação 5.
 - 11 core docs — real content (~1.7k new markdown lines).
 - Annexes A + D — light fill (Mermaid diagrams + 3 KG chains + 10 SPARQL examples).
-- `validation/SPRINT3_REPORT.md` — Sprint 3 completion report.
+- `validation/SPRINT3_REPORT.md` completion report.
 
-### Status per artefact (Sprint 3)
+### Status per artefact
 
 | Artefact | Status | Sprint |
 |----------|:------:|:------:|
@@ -149,38 +148,38 @@ Per `AGENTS.md` conventions, status escalates: `SKELETON → RECONCILED → CORP
 
 ## §4 Sprint Plan
 
-### Sprint 0 — Skeleton ✅
+### Fase de Especificação 0 — Skeleton ✅
 - 15 placeholders + 3 orchestration docs + 3 script stubs + 5 lint ports + 1 new runner
 - Legacy lint baseline captured; new RICH runner baseline produced
 
-### Sprint 1 — Reconciliation ✅
+### Fase de Especificação 1 — Reconciliation ✅
 - Port legacy `13/13a/13b/14/15/16/17/23/24/25/Synthesis + 4 annexes` → Rich siblings
 - Verify cross-document invariants (UC ↔ Node ↔ Allocation ↔ Gate ↔ FR/NFR ↔ Risk ↔ Synthesis)
 - Produce `SPRINT1_REPORT.md` (PASS_WITH_FINDINGS; F-00a/b/c/d RESOLVED)
 
-### Sprint 2 — Corpus linkage + NIST anchors + KG chains ✅
+### Fase de Especificação 2 — Corpus linkage + NIST anchors + KG chains ✅
 - `CORPUS_LINKAGE.md` (344 artefacts → D-XX.Y mapping)
 - `NIST_ANCHORS.md` (46 rules + 31 goals anchored)
 - `KG_CHAINS.md` (12 inference chains; 11/12 spot-checks PASS)
 - Produce `SPRINT2_REPORT.md` (PASS_WITH_FINDINGS)
 
-### Sprint 3 — Final docs + traceability matrix ✅ (this sprint)
+### Fase de Especificação 3 — Final docs + traceability matrix ✅ (this sprint)
 - README v0.4, RICH_VS_LEGACY.md updated, `22_Traceability_Matrix.xlsx` (10 sheets, 330 rows)
 - Implement `build_traceability_matrix_rich.py` (619 lines, REAL) and `gen_drawio.py` (155 lines, REAL)
 - 11 core docs + 2 annexes with real content (~1.9k markdown lines)
 - `18_Functional_Tree.drawio` generated (F-00e RESOLVED)
 - Produce `SPRINT3_REPORT.md` (PASS_WITH_FINDINGS)
 
-### Sprint 4 — Adjusted fields per row ⏳
+### Fase de Especificação 4 — Adjusted fields per row ⏳
 - Add 6 new columns to existing tables
 
-### Sprint 5 — DEEP enrichment ⏳
+### Fase de Especificação 5 — DEEP enrichment ⏳
 - 17 fields × N cards
 - Frontmatter `status: DEEP_ENRICHED`, `version: 2.0`
 - Implement `verify_rich.py`
 
 ### Validator — Self-verification ⏳
-- Sprint 5 self-verification (acceptance criteria)
+- Fase de Especificação 5 self-verification (acceptance criteria)
 
 ---
 
@@ -201,11 +200,11 @@ Per `AGENTS.md` conventions, status escalates: `SKELETON → RECONCILED → CORP
 
 - `PROJECT_STATE.md` — Phase 3 Rich project snapshot
 - `RICH_VS_LEGACY.md` — Rich vs legacy diff summary
-- `validation/SPRINT0_REPORT.md` — Sprint 0 completion
+- `validation/SPRINT0_REPORT.md` completion
 - `validation/LINT_REPORT_BEFORE.md` — legacy Phase 3 baseline
 - `validation/RICH_LINT_BASELINE.md` — RICH runner baseline (post-port)
 - `../03_PHASE3_DECOMPOSITION/` — legacy Phase 3 (read-only)
 
 ---
 
-**End of README — Sprint 0 skeleton (Phase 3 Rich Mode SKELETON)**
+**End of README skeleton (Phase 3 Rich Mode SKELETON)**

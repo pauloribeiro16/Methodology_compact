@@ -31,11 +31,11 @@ $ git diff --shortstat HEAD -- 02_CASES/Case_01_TinyTask_SaaS/01_PHASE1_CONTEXT_
 The 4 deletions are exactly the header preamble lines the Executor reported:
 - `version: "1.1"` → `version: "1.2"` (L43 of old file)
 - `generated_date: "2026-08-06"` → `generated_date: "2026-08-26"` (L46 of old file)
-- `author: "AEGIS Implementation (Sprint 1 reconciliation)"` → `author: "AEGIS Implementation (Sprint 6 — kg_ontology schema addition)"` (L47 of old file)
+- `author: "AEGIS Implementation (Fase de Especificação 1 reconciliation)"` → `author: "AEGIS Implementation (Fase de Especificação 6 — kg_ontology schema addition)"` (L47 of old file)
 - One blank-line collapse in `inference.relationship_paths` (purely cosmetic, no semantic change).
 
 The only diff regions in the body are:
-1. Header (L29-52): added `Sprint 6 changes` comment + the 3 metadata line replacements above.
+1. Header (L29-52): added `Fase de Especificação 6 changes` comment + the 3 metadata line replacements above.
 2. A single whitespace-only line collapse in `inference.relationship_paths` near L1209 (the `clause -> HAS_TENSION_WITH -> clause` block: an empty line was rewritten to no trailing whitespace).
 3. A new trailing section (`kg_ontology:`) starting at L1221.
 
@@ -75,7 +75,7 @@ For each class with a `kg_ontology.classes.<X>` declaration, the named attribute
 
 | Class | YAML body section | Attributes claimed in kg_ontology | Attributes actually in body |
 |---|---|---|---|
-| `CompanyContext` | `company:` L58-77 | `id`, `scale` (via `size`), `employees`, `security_fte` (via `revenue_eur`? — see note), `data_types`, `roles` | `id`, `name`, `sector`, `size`, `employees`, `revenue_eur`, `jurisdiction`, `legal_structure`, `tech_stack`, `data_types`, `criticality_level`. `security_fte` is **not** in the company block. ⚠️ Soft mismatch — schema declares a field the body lacks. **Conditional item, not a fabrication**: the field is plausibly desired for Sprint 6 work, just not yet in the body. |
+| `CompanyContext` | `company:` L58-77 | `id`, `scale` (via `size`), `employees`, `security_fte` (via `revenue_eur`? — see note), `data_types`, `roles` | `id`, `name`, `sector`, `size`, `employees`, `revenue_eur`, `jurisdiction`, `legal_structure`, `tech_stack`, `data_types`, `criticality_level`. `security_fte` is **not** in the company block. ⚠️ Soft mismatch — schema declares a field the body lacks. **Conditional item, not a fabrication**: the field is plausibly desired for Fase de Especificação 6 work, just not yet in the body. |
 | `Regulation` | `regulations[]` L83-136 | `id, abbreviation, name, eu_reference, applicable, obligated_party, clause_count, reason` | All six present. ✓ |
 | `RegulatoryClause` | `clause_mappings[]` L521+ | `id (clause_id), regulation_id, article, description, maps_to_subdomain, normative_strength, obligation_type, obligated_party` | All eight present in the 54-clause block. ✓ |
 | `Domain` | `domains[]` L142-201 | `id, name, description, primary_regulatory_driver` | All four present. ✓ |

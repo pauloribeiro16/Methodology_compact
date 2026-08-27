@@ -5,9 +5,8 @@ phase: 3
 version: 0.4
 created: 2026-08-24
 updated: 2026-08-24
-author: Sprint 4 Executor (paulo@methodology.pt)
+author: Fase de Especificação 4 Executor (paulo@methodology.pt)
 status: ADJUSTED_FIELDS
-sprint: 4
 sprint_role: schema_adjustment
 case: Case_01_TinyTask_SaaS
 tier: MICRO
@@ -22,8 +21,8 @@ expected_card_columns: 17
 expected_compact_columns: 12
 schema_columns: 6
 schema_columns_list: [Owner, Verification Criteria, Implementation Status, Priority, Stakeholders, Reporting]
-reconciliation_note: "10 SPARQL examples from legacy preserved; 3 Sprint 2 KG chains prepended in §A; F-S1-09 (14 contamination nodes) catalogued; Sprint 4 schema addendum §E added (no markdown tables in this annex; chains presented as code blocks)."
-sprint4_note: "Sprint 4: no markdown index tables in this annex; schema addendum §E references the 6 columns inherited from KG_CHAINS.md / Doc 16."
+reconciliation_note: "10 SPARQL examples from legacy preserved; 3 Fase de Especificação 2 KG chains prepended in §A; F-S1-09 (14 contamination nodes) catalogued; Fase de Especificação 4 schema addendum §E added (no markdown tables in this annex; chains presented as code blocks)."
+sprint4_note: "Fase de Especificação 4: no markdown index tables in this annex; schema addendum §E references the 6 columns inherited from KG_CHAINS.md / Doc 16."
 ---
 
 # Annex D — KG Inference Examples (Phase 3 RICH)
@@ -32,7 +31,7 @@ sprint4_note: "Sprint 4: no markdown index tables in this annex; schema addendum
 
 ---
 
-## §A KG Chain Examples (Sprint 2)
+## §A KG Chain Examples
 
 > 3 examples reproduced from `KG_CHAINS.md` §1. Format: `Start → hop [relation] → ... → End | EXTRACTED/INFERRED`
 
@@ -65,7 +64,7 @@ START: node_proc_001_unified_incident_response
   →[references, INFERRED, Doc 14 §8 NODE-PROC-001]→
 END:   02_phase2_rules_rich_11_rules_catalog_cr_d_04_3_001
 EXTRACTED=0 / INFERRED=1
-NOTE: KG-inferred; Sprint 5 verifies by reading Doc 14 §8 NODE-PROC-001.
+NOTE: KG-inferred; Fase de Especificação 5 verifies by reading Doc 14 §8 NODE-PROC-001.
 ```
 
 ---
@@ -227,7 +226,7 @@ ORDER BY uc_count DESC
 
 The Graphify KG carries 14 Case_02 contamination nodes (AI Act, Biometric, Border Control AI, IPSARA, FRIA) pointing at Case_01 Phase 3 paths. Verified by direct grep of legacy Phase 3 markdown: contamination is NOT in the source text. Legacy Doc 13a §5 explicitly disconfirms AI Act applicability for TinyTask ("No NIS 2, DORA, or AI Act applies.").
 
-**Action:** Sprint 5 re-runs Graphify on Case_01 in isolation (Case_02 ontology disabled). If contamination persists, escalate to P7 human arbiter for ontology remediation. See `RULE_FREEZE.md` §4 for full inventory.
+**Action:** Fase de Especificação 5 re-runs Graphify on Case_01 in isolation (Case_02 ontology disabled). If contamination persists, escalate to P7 human arbiter for ontology remediation. See `RULE_FREEZE.md` §4 for full inventory.
 
 ---
 
@@ -240,15 +239,15 @@ The Graphify KG carries 14 Case_02 contamination nodes (AI Act, Biometric, Borde
 
 ---
 
-## §E Schema addendum (Sprint 4)
+## §E Schema addendum
 
-This annex contains 12 KG inference chains and 10 SPARQL examples presented as code blocks (no markdown index tables). The chain-summary schema inherited from `KG_CHAINS.md` §1 covers the 6-column Sprint 4 addition. The canonical chain card fields now include:
+This annex contains 12 KG inference chains and 10 SPARQL examples presented as code blocks (no markdown index tables). The chain-summary schema inherited from `KG_CHAINS.md` §1 covers the 6-column Fase de Especificação 4 addition. The canonical chain card fields now include:
 
 | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |-------|-----------------------|----------|----------|--------------|-----------|
 
-These 6 columns are present on the per-chain and per-gate tables in `KG_CHAINS.md` and `16_Compliance_Gates_Report.md` §2 (gates) / §3 (SC1-SC5). Card-level values will be populated in Sprint 5.
+These 6 columns are present on the per-chain and per-gate tables in `KG_CHAINS.md` and `16_Compliance_Gates_Report.md` §2 (gates) / §3 (SC1-SC5). Card-level values will be populated in Fase de Especificação 5.
 
 ---
 
-**End of Annex D — KG Inference Examples (Phase 3 RICH, ADJUSTED_FIELDS, Sprint 4)**
+**End of Annex D — KG Inference Examples (Phase 3 RICH, ADJUSTED_FIELDS, Fase de Especificação 4)**

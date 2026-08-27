@@ -4,7 +4,7 @@ title: Lint Baseline Report — Pre-Rich Enrichment
 phase: 1
 version: 1.0
 created: 2026-08-06
-author: Sprint 0 Executor (lint-runner)
+author: Fase de Especificação 0 Executor (lint-runner)
 status: DRAFT
 case: Case_01_TinyTask_SaaS
 target: 01_PHASE1_CONTEXT/ (legacy)
@@ -12,7 +12,7 @@ target: 01_PHASE1_CONTEXT/ (legacy)
 
 # Lint Baseline — Pre-Rich Enrichment
 
-> Snapshot of Phase 1 lint state BEFORE Sprint 1 reconciliation.
+> Snapshot of Phase 1 lint state BEFORE Fase de Especificação 1 reconciliation.
 > Used as the comparison baseline for `LINT_REPORT_AFTER_RECONCILE.md`.
 
 ## Run Metadata
@@ -151,7 +151,7 @@ target: 01_PHASE1_CONTEXT/ (legacy)
 
 ## Known Issues Catalog
 
-Distinct issues the Sprint 1 reconciliation must resolve (or document as accepted):
+Distinct issues the Fase de Especificação 1 reconciliation must resolve (or document as accepted):
 
 1. **Cross-document: Doc 07 coverage matrix over-counts (41 vs 38 expected).**
    Doc 07 lists 41 entries for the 38 sub-domains — possible duplicates or sub-domain mis-naming.
@@ -391,11 +391,11 @@ $ head -30 02_CASES/Case_01_TinyTask_SaaS/01_PHASE1_CONTEXT_RICH/validation/LINT
 [front-matter + opening]
 ```
 
-## Notes for Sprint 1
+## Notes for Fase de Especificação 1
 
 - **All 6 lints PASS** at the aggregate level, so no linter changes are blocking the rich-mode build.
-- **31 warnings** must be triaged by Sprint 1:
-  - **Template-compliance warnings (20)** are the largest category; most correspond to legacy documents being richer than the canonical template (extra architecture inventory, stakeholders section, etc.). Sprint 1 should decide whether to update the template or trim the documents.
+- **31 warnings** must be triaged by Fase de Especificação 1:
+  - **Template-compliance warnings (20)** are the largest category; most correspond to legacy documents being richer than the canonical template (extra architecture inventory, stakeholders section, etc.). Fase de Especificação 1 should decide whether to update the template or trim the documents.
   - **Ground-truth obligated-party warnings (6)** are likely parser false-positives caused by markdown table headers being scanned as obligated-party values — recommend investigating the regex before mutating `02_Regulatory_Mapping_Master.md`.
   - **The single sole-authority mismatch (D-02.3 GDPR vs CRA)** is a substantive content question for the orchestrator to arbitrate (P7).
   - **Cross-document warnings (2)** reflect real reconciliation work needed between the ontology and Doc 07.

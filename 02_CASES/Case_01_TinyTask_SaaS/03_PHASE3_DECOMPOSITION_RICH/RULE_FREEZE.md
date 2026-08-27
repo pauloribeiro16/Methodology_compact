@@ -1,15 +1,14 @@
 ---
 document_id: AEGIS-P3-RICH-RULE-FREEZE
-title: Phase 3 Rule Freeze — Canonical Reconciliation (Sprint 6 v2.0)
+title: Phase 3 Rule Freeze — Canonical Reconciliation (Fase de Especificação 6 v2.0)
 phase: 3
 version: 2.0
 created: 2026-08-24
 updated: 2026-08-26
-author: Sprint 6 Executor (paulo@methodology.pt)
+author: Fase de Especificação 6 Executor (paulo@methodology.pt)
 status: FROZEN_WITH_PRODUCT_BASELINE
 case: Case_01_TinyTask_SaaS
 tier: MICRO
-sprint: 1
 sprint_role: reconciliation
 branch: feature/aegis-p3-case01-rich
 inputs:
@@ -17,7 +16,7 @@ inputs:
   - ../02_PHASE2_RULES_RICH/10_Privacy_Security_Objectives.md (v5.0, DEEP_ENRICHED)
   - ../02_PHASE2_RULES_RICH/11_Rules_Catalog.md (v3.0, DEEP_ENRICHED)
   - ../03_PHASE3_DECOMPOSITION/ (13, 13a, 13b, 14, 15, 16, 17, 23, 24, 25, Synthesis) — read-only
-upstream_verdict: 30/30 OBL ↔ 30/30 CR verified (Sprint 1 Phase 2 RICH), NI 30/30 PASS
+upstream_verdict: 30/30 OBL ↔ 30/30 CR verified (Fase de Especificação 1 Phase 2 RICH), NI 30/30 PASS
 related_deliverables:
   - SPRINT1_REPORT.md
   - PROJECT_STATE.md
@@ -25,10 +24,10 @@ related_deliverables:
   - ../02_PHASE2_RULES_RICH/validation/SPRINT1_REPORT.md
 ---
 
-# Phase 3 Rule Freeze — Canonical Reconciliation (Sprint 1)
+# Phase 3 Rule Freeze — Canonical Reconciliation
 
 > **Purpose.** Freeze the canonical rule, goal, and enumeration values that Phase 3 Rich Mode
-> Sprint 5 (DEEP enrichment) and the traceability matrix workbook must respect.
+> Fase de Especificação 5 (DEEP enrichment) and the traceability matrix workbook must respect.
 > Source of truth: **Phase 2 RICH** (`../02_PHASE2_RULES_RICH/`), not legacy Phase 3.
 > Legacy Phase 3 (`../03_PHASE3_DECOMPOSITION/`) is **read-only** and was not modified.
 >
@@ -101,7 +100,7 @@ Format `CR-D-XX.X-NNN` / `BPR-D-XX.X-NNN`. Source: `02_PHASE2_RULES_RICH/11_Rule
 **Sub-domain totals (BPR):** D-01=2 | D-02=2 | D-03=3 | D-04=2 | D-05=1 | D-07=2 | D-09=1 | D-10=3 | **TOTAL=16**.
 
 **Implementation mode (Doc 11 §6.5 / §6.6):** CR: 27 NATIVE + 3 INHERITED. BPR: 13 NATIVE + 3 INHERITED.
-**Carried Phase 2 findings (do not re-litigate in Sprint 2):** F-01 (phantom PO-D-01.3), F-02 (dual PO/SO for D-09.1/09.2), F-03 (CR-D-01.3 references phantom PO), F-10 (NI recompute 2.500 for D-01.4 / D-09.1).
+**Carried Phase 2 findings (do not re-litigate in Fase de Especificação 2):** F-01 (phantom PO-D-01.3), F-02 (dual PO/SO for D-09.1/09.2), F-03 (CR-D-01.3 references phantom PO), F-10 (NI recompute 2.500 for D-01.4 / D-09.1).
 
 ---
 
@@ -195,15 +194,15 @@ P5 says: "Before proposing ANY change: identify affected documents via `dependen
 
 - 4 legacy Phase 3 docs (13, 14, 15, 16) reference 7 orphan CR-D IDs + 0 orphan BPR-D IDs.
 - Propagation cost: medium — Doc 16 has the most orphans (4); Docs 14/15 reference 3/0; Doc 13 reference 0 orphans.
-- **Recommended disposition (NOT applied in Sprint 1):** when porting legacy Phase 3 docs into Rich siblings during Sprint 3 (or per-Doc Sprint 1 enrichment in Sprint 5), re-map orphans to the closest frozen rule, OR escalate to human arbiter for a decision on whether the orphans represent work that should be ADDED back to Doc 11. **Defer to P7 human decision — Sprint 2 will reference this.**
+- **Recommended disposition (NOT applied in Fase de Especificação 1):** when porting legacy Phase 3 docs into Rich siblings during Fase de Especificação 3 (or per-Doc Fase de Especificação 1 enrichment in Fase de Especificação 5), re-map orphans to the closest frozen rule, OR escalate to human arbiter for a decision on whether the orphans represent work that should be ADDED back to Doc 11. **Defer to P7 human decision will reference this.**
 
-### §3.4 F-00d resolution (Sprint 0 legacy claim "23 CR + 15 BPR = 38")
+### §3.4 F-00d resolution (Fase de Especificação 0 legacy claim "23 CR + 15 BPR = 38")
 
 Legacy `16_Compliance_Gates_Report.md` §5B states: *"Total Compliance Rules (CR-D-): 23 / Rules mapped to ≥1 UC: 23 / SC1 Decision: ✅ PASS — All 38 rules mapped to UCs."*
 
 This is a **stale rule count from Phase 2 v1.x** (before Doc 11 matured to the current 46-rule catalog). The current canonical Phase 2 RICH Doc 11 has **30 CR + 16 BPR = 46 rules**. The 8-rule discrepancy (38 → 46) is not a Phase 3 issue; it is a Phase 2 version drift that has already been resolved in Phase 2 RICH v3.0.
 
-**F-00d → RESOLVED.** The Rich Mode Phase 3 Sprint 5 freeze value is **46 rules (30 CR + 16 BPR)**, not 38.
+**F-00d → RESOLVED.** The Rich Mode Phase 3 Fase de Especificação 5 freeze value is **46 rules (30 CR + 16 BPR)**, not 38.
 
 ---
 
@@ -234,8 +233,8 @@ Cross-case contamination where Case_02 artefacts (Border Control AI / AI Act / B
 
 **All 14 contamination nodes are KG-extraction artefacts, not source-document contamination.** Verified by direct grep of legacy Phase 3 markdown. The legacy Phase 3 docs **explicitly disclaim** AI Act applicability (Doc 13a §5 line 104: "TinyTask has only GDPR + CRA. No NIS 2, DORA, or AI Act applies.").
 
-**Action — REPORT (no removal in Sprint 1):**
-- Sprint 1 records these as a contamination register for the orchestrator / Validator to action.
+**Action — REPORT (no removal in Fase de Especificação 1):**
+- Fase de Especificação 1 records these as a contamination register for the orchestrator / Validator to action.
 - Re-running Graphify on Case_01 Phase 3 docs in isolation (Case_02 ontology disabled) should resolve the false positives.
 - If contamination persists after re-run, escalate to P7 human arbiter for ontology remediation.
 
@@ -243,23 +242,23 @@ Cross-case contamination where Case_02 artefacts (Border Control AI / AI Act / B
 
 ---
 
-## §5 UC enumeration (Sprint 6 v2.0)
+## §5 UC enumeration (Fase de Especificação 6 v2.0)
 
-> **Sprint 6 (2026-08-26) update.** The catalogue was rewritten as REWRITTEN_PRODUCT_BASELINE (`Doc20_Use_Cases_Catalog.md` v3.0) to introduce product functional U.C.s alongside the security/compliance U.C.s. The freeze below preserves the v1.0 (Sprint 1) security U.C. counts verbatim and adds the new functional + MUC families.
+> **Fase de Especificação 6 (2026-08-26) update.** The catalogue was rewritten as REWRITTEN_PRODUCT_BASELINE (`Doc20_Use_Cases_Catalog.md` v3.0) to introduce product functional U.C.s alongside the security/compliance U.C.s. The freeze below preserves the v1.0 security U.C. counts verbatim and adds the new functional + MUC families.
 
 | Source | Claim | Composition | Disposition |
 |--------|-------|-------------|-------------|
 | Legacy `13_Use_Cases_Catalog.md` §5 | 17 Leave UCs | only Leave UCs counted | UNDER-COUNT |
-| Legacy `13_Use_Cases_Catalog.md` §3.3 | 35 UCs total | DP=6 + SEC=7 + IAM=7 + DEV=5 + GOV=7 + TRN=3 = 35 | **Sprint 1 freeze** — preserved |
+| Legacy `13_Use_Cases_Catalog.md` §3.3 | 35 UCs total | DP=6 + SEC=7 + IAM=7 + DEV=5 + GOV=7 + TRN=3 = 35 | **Fase de Especificação 1 freeze** — preserved |
 | Legacy `16_Compliance_Gates_Report.md` §5B SC2 | 62 UCs | 35 L1 + 27 L2 expansions | preserved in traceability matrix |
 
-**Sprint 6 v2.0 freeze (preserves v1.0 + adds product baseline):**
+**Fase de Especificação 6 v2.0 freeze (preserves v1.0 + adds product baseline):**
 
 | Family | Package(s) | Count | Status |
 |--------|-----------|------:|--------|
 | Security/Compliance U.C.s (v1.0) | PKG-DP, PKG-SEC, PKG-IAM, PKG-DEV, PKG-GOV, PKG-TRN | **35** | FROZEN — IDs preserved verbatim |
-| Functional U.C.s (Sprint 6 NEW) | PKG-7 Account&Access, PKG-8 Team&Task Core, PKG-9 Collaboration, PKG-10 Platform, PKG-11 Self-service | **23** | NEW — see `Doc20_Use_Cases_Catalog.md` §2 |
-| Misuse Cases (Sprint 6 NEW) | n/a (threat model) | **8** | NEW — see `Doc20_Use_Cases_Catalog.md` §4 |
+| Functional U.C.s (Fase de Especificação 6 NEW) | PKG-7 Account&Access, PKG-8 Team&Task Core, PKG-9 Collaboration, PKG-10 Platform, PKG-11 Self-service | **23** | NEW — see `Doc20_Use_Cases_Catalog.md` §2 |
+| Misuse Cases (Fase de Especificação 6 NEW) | n/a (threat model) | **8** | NEW — see `Doc20_Use_Cases_Catalog.md` §4 |
 | **Total L1+Functional+MUCs** | | **66** | |
 
 **Composition of new 23 functional U.C.s** (5 + 6 + 5 + 4 + 3):
@@ -274,7 +273,7 @@ Cross-case contamination where Case_02 artefacts (Border Control AI / AI Act / B
 
 **Backwards compatibility (P5):** the 35 security U.C. IDs (U.C.1.1.1 … U.C.6.3.1) are preserved verbatim — all 746 downstream references remain valid. New IDs introduce 23 functional + 8 MUC entries, none of which collide with existing IDs (packages 7–11 were previously empty).
 
-> **F-S5-02 ("0 actors defined") → RESOLVED.** Sprint 6 introduces Primary Actor as a mandatory field on every UC card; the actor catalogue (`Doc20` §1) defines 14 actors across product / internal / misactor categories.
+> **F-S5-02 ("0 actors defined") → RESOLVED.** Fase de Especificação 6 introduces Primary Actor as a mandatory field on every UC card; the actor catalogue (`Doc20` §1) defines 14 actors across product / internal / misactor categories.
 
 > **KG E4 follow-up (logged, not in scope).** The Graphify KG E3 build (2026-08-23) has 0 nodes for the 23 new functional U.C.s and 8 MUCs. Rebuild E4 incremental on Deucalion (~14h cluster) is logged as a follow-up; human approval required (P7) before scheduling.
 
@@ -289,10 +288,10 @@ Cross-case contamination where Case_02 artefacts (Border Control AI / AI Act / B
 | Legacy `23_FR_Review_Report.md` §3.1 | 60 FRs verified | reuses §9 figure | STALE — review report also stale |
 | Legacy `Phase_3_Functional_Decomposition_Synthesis.md` §1.4 / §4.1 | 60 FRs across 6 domains | aggregate of IAM=10+DP=12+SEC=15+DEV=10+GOV=10+TRN=3 | STALE — pre-dates FR catalog trim |
 
-**Sprint 1 freeze:** **30 FRs** (FR-01..FR-30). The 60 figure is stale; the actual FR-IDs are FR-01..FR-30.
-Sprint 5 will produce 30 FR detail cards × 17 fields = 510 cells.
+**Fase de Especificação 1 freeze:** **30 FRs** (FR-01..FR-30). The 60 figure is stale; the actual FR-IDs are FR-01..FR-30.
+Fase de Especificação 5 will produce 30 FR detail cards × 17 fields = 510 cells.
 
-> **F-00b FR → RESOLVED.** Sprint 5 freeze value is **30 FRs / 510 cells**.
+> **F-00b FR → RESOLVED.** Fase de Especificação 5 freeze value is **30 FRs / 510 cells**.
 
 ---
 
@@ -304,15 +303,15 @@ Sprint 5 will produce 30 FR detail cards × 17 fields = 510 cells.
 | Legacy `24_Non_Functional_Requirements.md` §4.1 | 46 NFRs (100% measurable) | re-confirms row count | consistent |
 | Legacy `Phase_3_Synthesis.md` §8 | "45/46 NFRs mapped (98%)" — NFR-PRIV-04 is process | refers to a phantom NFR-PRIV-04 that doesn't exist in §3 | minor legacy inconsistency, not a freeze issue |
 
-**Sprint 1 freeze:** **46 NFRs** (NFR-01..NFR-46). Sprint 5 will produce 46 NFR detail cards × 17 fields = 782 cells.
+**Fase de Especificação 1 freeze:** **46 NFRs** (NFR-01..NFR-46). Fase de Especificação 5 will produce 46 NFR detail cards × 17 fields = 782 cells.
 
-> **F-00b NFR → RESOLVED.** Sprint 5 freeze value is **46 NFRs / 782 cells**.
+> **F-00b NFR → RESOLVED.** Fase de Especificação 5 freeze value is **46 NFRs / 782 cells**.
 
 ### §7.1 Risk enumeration (Doc 25)
 
-Legacy `25_Risk_Analysis.md` carries risks in 3 sections: §3 (operational, RISK-01..), §4 (security), and additional risk tables. **Sprint 1 freeze:** the explicit **10 risk cards** in the synthesis count plus **38 threat models** (THR-*) referenced in the source are the freeze values. **Action for Sprint 5:** re-derive exact risk/threat counts from Doc 25 tables; placeholders do not require pre-counting now (P5 propagation: changing Doc 25 requires a re-port).
+Legacy `25_Risk_Analysis.md` carries risks in 3 sections: §3 (operational, RISK-01..), §4 (security), and additional risk tables. **Fase de Especificação 1 freeze:** the explicit **10 risk cards** in the synthesis count plus **38 threat models** (THR-*) referenced in the source are the freeze values. **Action for Fase de Especificação 5:** re-derive exact risk/threat counts from Doc 25 tables; placeholders do not require pre-counting now (P5 propagation: changing Doc 25 requires a re-port).
 
-> **F-00a (UC format) → RESOLVED.** Legacy UCs are in `U.C.X.Y.Z` format; Sprint 5 uses the same format.
+> **F-00a (UC format) → RESOLVED.** Legacy UCs are in `U.C.X.Y.Z` format; Fase de Especificação 5 uses the same format.
 > **F-00c (orphan node check) → no orphans found** in Doc 14 nodes traceable to UC sources; 1 KG-level orphan reported in §4 (node_sys_007 KG label = "Border Control AI" vs Doc 14 text "PAM System").
 
 ---
@@ -326,68 +325,68 @@ Per AGENTS.md P5, if Rule IDs referenced in Phase 3 don't exist in Phase 2 RICH,
 - Doc 11 has 30 CR + 16 BPR = 46 rules (canonical).
 - Legacy Phase 3 references 7 orphan CR-D IDs (see §3.2): `CR-D-02.4`, `CR-D-06.4`, `CR-D-07.3`, `CR-D-07.4`, `CR-D-08.3`, `CR-D-09.3`, `CR-D-10.1`.
 - All 7 orphans are also **absent from Doc 11 v3.0** (Phase 2 RICH) — i.e. they were DROPPED between Phase 2 v1.x (38 rules) and Phase 2 RICH v3.0 (46 rules).
-- None of the orphans are blocking — they are **legacy drift, not violations**. The Sprint 5 port will re-map them or flag them as deprecated.
+- None of the orphans are blocking — they are **legacy drift, not violations**. The Fase de Especificação 5 port will re-map them or flag them as deprecated.
 
 ### §8.2 Doc 08 vs Doc 11 cross-check
 
 Per AGENTS.md P5: if Doc 11 ≠ Doc 08, escalate.
 
-- Doc 08 (Phase 2 RICH v3.1) has 34 OBLs (30 legacy + 4 Sprint 6+ additions: D-07.2, D-07.3, D-07.4, D-10.1).
-- Doc 11 (Phase 2 RICH v3.0) has 30 CR mapped 1:1 to Doc 08's original 30 OBLs. **The 4 Sprint 6+ OBLs do NOT yet have matching CR entries in Doc 11.**
-- This is consistent with the Phase 2 Sprint 6+ P7 orphan fix note: "PO/SO/CR-D-XX.X-001 placeholders parallel F-01/F-03 carry-over; Doc 08 internally consistent; F-07/F-08/F-09 flag follow-on contract work."
+- Doc 08 (Phase 2 RICH v3.1) has 34 OBLs (30 legacy + 4 Fase de Especificação 6+ additions: D-07.2, D-07.3, D-07.4, D-10.1).
+- Doc 11 (Phase 2 RICH v3.0) has 30 CR mapped 1:1 to Doc 08's original 30 OBLs. **The 4 Fase de Especificação 6+ OBLs do NOT yet have matching CR entries in Doc 11.**
+- This is consistent with the Phase 2 Fase de Especificação 6+ P7 orphan fix note: "PO/SO/CR-D-XX.X-001 placeholders parallel F-01/F-03 carry-over; Doc 08 internally consistent; F-07/F-08/F-09 flag follow-on contract work."
 
 ### §8.3 Escalation decision
 
-**NONE — proceed to Sprint 2.**
+**NONE — proceed to Fase de Especificação 2.**
 
-Reasoning: both anomalies above are **carry-over from the Phase 2 P7 orphan fix** (documented as F-07/F-08/F-09 in `02_PHASE2_RULES_RICH/validation/SPRINT1_REPORT.md`) and have been **acknowledged by the orchestrator at Phase 2 completion**. The Phase 3 freeze does not block on them. Sprint 2 will not need new rules or rule renumbering (per CRITICAL RULES), so the absence of CR entries for D-07.2/3/4/10.1 OBLs will not affect Phase 3 corpus work. Sprint 5 will surface this as F-S1-08 (carry-over to follow-on contract).
+Reasoning: both anomalies above are **carry-over from the Phase 2 P7 orphan fix** (documented as F-07/F-08/F-09 in `02_PHASE2_RULES_RICH/validation/SPRINT1_REPORT.md`) and have been **acknowledged by the orchestrator at Phase 2 completion**. The Phase 3 freeze does not block on them. Fase de Especificação 2 will not need new rules or rule renumbering (per CRITICAL RULES), so the absence of CR entries for D-07.2/3/4/10.1 OBLs will not affect Phase 3 corpus work. Fase de Especificação 5 will surface this as F-S1-08 (carry-over to follow-on contract).
 
 ---
 
 ## §9 Findings register (F-register)
 
-Sprint 1 maintains a single canonical F-register for Phase 3 Rich Mode. Statuses: `OPEN`, `MITIGATED`, `CLOSED`, `CARRIED` (carried into Sprint 5 / follow-on contract), `RESOLVED` (resolution documented in this freeze).
+Fase de Especificação 1 maintains a single canonical F-register for Phase 3 Rich Mode. Statuses: `OPEN`, `MITIGATED`, `CLOSED`, `CARRIED` (carried into Fase de Especificação 5 / follow-on contract), `RESOLVED` (resolution documented in this freeze).
 
 | F-id | Severity | Description | Status | Sprint |
 |------|----------|-------------|:------:|:------:|
-| F-00a | INFO | Legacy `13_Use_Cases_Catalog.md` carries `U.C.X.Y.Z` format (not flat UC-XX); Sprint 5 will preserve the MaaS format. | **RESOLVED** (§5) | 1 |
+| F-00a | INFO | Legacy `13_Use_Cases_Catalog.md` carries `U.C.X.Y.Z` format (not flat UC-XX); Fase de Especificação 5 will preserve the MaaS format. | **RESOLVED** (§5) | 1 |
 | F-00b | INFO | Legacy counts (35 UCs / 30 FRs / 46 NFRs vs 62 / 60 / 45 stale summaries) need reconciliation. | **RESOLVED** (§5, §6, §7) | 1 |
-| F-00c | INFO | Sprint 1 needs to surface any node IDs that don't trace back to UC source (orphan check). | **RESOLVED** (§4 — 1 KG-level orphan reported) | 1 |
-| F-00d | INFO | Sprint 1 needs to verify all gate IDs in `16_Compliance_Gates_Report.md` have status; legacy may carry TBDs. | **RESOLVED** (§3.4 — SC1 stale 38-rule claim resolved) | 1 |
-| F-00e | INFO | Sprint 5 must ensure all FR/NFR/Risk cards uniformly use the 17-field schema. | OPEN (Sprint 5) | 5 |
-| F-00f | INFO | Sprint 0 must NOT silently merge legacy + Rich via the runner; the `--rich` flag and explicit `doc_path` parameter are required to avoid double-match. | **CLOSED** (Sprint 0; verified by `documents_found=1` in RICH_LINT_BASELINE) | 0 |
-| F-S1-01 | MEDIUM | Legacy Doc 14 references `CR-D-07.3-001` (orphan; freeze has no D-07.3 CR). Disposition: P5 escalation, P7 defer. | OPEN (Sprint 5 port) | 1→5 |
-| F-S1-02 | MEDIUM | Legacy Doc 14 references `CR-D-07.4-001` (orphan). | OPEN (Sprint 5 port) | 1→5 |
-| F-S1-03 | MEDIUM | Legacy Doc 14 references `CR-D-10.1-001` (orphan). | OPEN (Sprint 5 port) | 1→5 |
-| F-S1-04 | LOW | Legacy Doc 16 references `CR-D-02.4-001` (orphan). | OPEN (Sprint 5 port) | 1→5 |
-| F-S1-05 | LOW | Legacy Doc 16 references `CR-D-06.4-001` (orphan). | OPEN (Sprint 5 port) | 1→5 |
-| F-S1-06 | LOW | Legacy Doc 16 references `CR-D-08.3-001` (orphan). | OPEN (Sprint 5 port) | 1→5 |
-| F-S1-07 | LOW | Legacy Doc 16 references `CR-D-09.3-001` (orphan by design; DORA sole authority). | OPEN (Sprint 5 port) | 1→5 |
-| F-S1-08 | LOW | Doc 08 has 34 OBLs (post-Sprint 6+ fix); Doc 11 has 30 CR; the 4 added OBLs (D-07.2/3/4, D-10.1) lack matching CR entries. **CARRIED** from Phase 2 F-07/F-08/F-09; will be addressed in follow-on Phase 2 contract. | CARRIED | 1→follow-on |
+| F-00c | INFO | Fase de Especificação 1 needs to surface any node IDs that don't trace back to UC source (orphan check). | **RESOLVED** (§4 — 1 KG-level orphan reported) | 1 |
+| F-00d | INFO | Fase de Especificação 1 needs to verify all gate IDs in `16_Compliance_Gates_Report.md` have status; legacy may carry TBDs. | **RESOLVED** (§3.4 — SC1 stale 38-rule claim resolved) | 1 |
+| F-00e | INFO | Fase de Especificação 5 must ensure all FR/NFR/Risk cards uniformly use the 17-field schema. | OPEN | 5 |
+| F-00f | INFO | Fase de Especificação 0 must NOT silently merge legacy + Rich via the runner; the `--rich` flag and explicit `doc_path` parameter are required to avoid double-match. | **CLOSED** (Fase de Especificação 0; verified by `documents_found=1` in RICH_LINT_BASELINE) | 0 |
+| F-S1-01 | MEDIUM | Legacy Doc 14 references `CR-D-07.3-001` (orphan; freeze has no D-07.3 CR). Disposition: P5 escalation, P7 defer. | OPEN (Fase de Especificação 5 port) | 1→5 |
+| F-S1-02 | MEDIUM | Legacy Doc 14 references `CR-D-07.4-001` (orphan). | OPEN (Fase de Especificação 5 port) | 1→5 |
+| F-S1-03 | MEDIUM | Legacy Doc 14 references `CR-D-10.1-001` (orphan). | OPEN (Fase de Especificação 5 port) | 1→5 |
+| F-S1-04 | LOW | Legacy Doc 16 references `CR-D-02.4-001` (orphan). | OPEN (Fase de Especificação 5 port) | 1→5 |
+| F-S1-05 | LOW | Legacy Doc 16 references `CR-D-06.4-001` (orphan). | OPEN (Fase de Especificação 5 port) | 1→5 |
+| F-S1-06 | LOW | Legacy Doc 16 references `CR-D-08.3-001` (orphan). | OPEN (Fase de Especificação 5 port) | 1→5 |
+| F-S1-07 | LOW | Legacy Doc 16 references `CR-D-09.3-001` (orphan by design; DORA sole authority). | OPEN (Fase de Especificação 5 port) | 1→5 |
+| F-S1-08 | LOW | Doc 08 has 34 OBLs (post-Fase de Especificação 6+ fix); Doc 11 has 30 CR; the 4 added OBLs (D-07.2/3/4, D-10.1) lack matching CR entries. **CARRIED** from Phase 2 F-07/F-08/F-09; will be addressed in follow-on Phase 2 contract. | CARRIED | 1→follow-on |
 | F-S1-09 | INFO | Graphify KG carries 14 Case_02 contamination nodes pointing at Case_01 Phase 3 paths (AI Act, Biometric, Border Control AI, IPSARA, FRIA). Not in markdown source. Disposition: REPORT. | OPEN (KG re-run) | 1→2 |
 | F-S1-10 | INFO | Doc 11 §8 traceability summary says "StrategicTension Resolution: 3 (6.5%)" — cosmetic only. Carried from Phase 2 F-08. | CLOSED | 1 |
 | F-S1-11 | INFO | Doc 16 SC3 says "8 complex UCs refined to L2" — confirmed against §5B. No drift. | CLOSED | 1 |
 
-**Sprint 1 verdict:** **PASS_WITH_FINDINGS** — 4 F-00x RESOLVED + 7 F-S1 orphan OPEN (Sprint 5 port) + 1 F-S1-08 CARRIED + 1 F-S1-09 KG artefact + 2 F-S1-10/11 CLOSED.
+**Fase de Especificação 1 verdict:** **PASS_WITH_FINDINGS** — 4 F-00x RESOLVED + 7 F-S1 orphan OPEN (Fase de Especificação 5 port) + 1 F-S1-08 CARRIED + 1 F-S1-09 KG artefact + 2 F-S1-10/11 CLOSED.
 
 ---
 
-## §10 Freeze handoff (Sprint 2 → Sprint 5)
+## §10 Freeze handoff (Fase de Especificação 2 → Fase de Especificação 5)
 
-| Artefact | Sprint 5 freeze value |
+| Artefact | Fase de Especificação 5 freeze value |
 |----------|----------------------|
 | Use cases (Doc 13 L1 cards) | **35** |
-| Architectural nodes (Doc 14) | 49 (per legacy §8) — verify in Sprint 5 |
+| Architectural nodes (Doc 14) | 49 (per legacy §8) — verify in Fase de Especificação 5 |
 | Requirement allocations (Doc 15) | 30 DN rows (1:1 with CR) — verify |
 | Compliance gates (Doc 16) | 30 GATE rows (1:1 with CR) — verify |
 | FR detail cards (Doc 23) | **30** |
 | NFR detail cards (Doc 24) | **46** |
-| Risk/Threat cards (Doc 25) | 10 risks + 38 threats (verify counts in Sprint 5) |
+| Risk/Threat cards (Doc 25) | 10 risks + 38 threats (verify counts in Fase de Especificação 5) |
 | Goal detail cards (Doc 10 carry-over, not Phase 3) | 31 (11 PO + 20 SO) — not Phase 3 |
-| Total Phase 3 detail cards (Sprint 5 target) | **30 FR + 46 NFR + 10 R + 38 T + ~62 UC L1+L2 + 49 nodes = 235** |
+| Total Phase 3 detail cards (Fase de Especificação 5 target) | **30 FR + 46 NFR + 10 R + 38 T + ~62 UC L1+L2 + 49 nodes = 235** |
 
-Cells formula: `~17 fields × N cards` = **~3,995 cells** (conservative; Sprint 5 will refine).
+Cells formula: `~17 fields × N cards` = **~3,995 cells** (conservative; Fase de Especificação 5 will refine).
 
 ---
 
-**End of RULE_FREEZE.md v1.0 — Phase 3 Rich Mode reconciliation frozen, Sprint 2 unblocked.**
+**End of RULE_FREEZE.md v1.0 — Phase 3 Rich Mode reconciliation frozen, Fase de Especificação 2 unblocked.**

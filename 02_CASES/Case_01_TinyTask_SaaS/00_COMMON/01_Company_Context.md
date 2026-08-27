@@ -265,7 +265,7 @@ START: Does the company develop/deploy/use AI systems?
 | B1: AI Governance | AI Act applicable | NOT APPLICABLE | Q39-Q46 |
 | B2: NIS 2 / SOC | NIS 2 applicable | NOT APPLICABLE | Q47-Q52 |
 | B3: DORA Financial | DORA applicable | NOT APPLICABLE | Q53-Q56 |
-| B4: Security Org | size ≥50 OR maturity ≥Managed | NOT APPLICABLE | Q57-Q61 |
+| B4: Security Org | size ≥50 OR posture ≥Managed | NOT APPLICABLE | Q57-Q61 |
 | B5: Special Category Data | GDPR + special category data | NOT APPLICABLE | Q62-Q65 |
 | **B6: Supply Chain** | supplyChainVisibility = Low | **ACTIVATED** | Q66-Q68 |
 | **B7: CRA Classification** | CRA applicable | **ACTIVATED** | Q69-Q72 |
@@ -275,7 +275,7 @@ START: Does the company develop/deploy/use AI systems?
 > Block B1: NOT APPLICABLE — AI Act not applicable
 > Block B2: NOT APPLICABLE — NIS 2 not applicable
 > Block B3: NOT APPLICABLE — DORA not applicable
-> Block B4: NOT APPLICABLE — 8 employees, securityMaturity = None
+> Block B4: NOT APPLICABLE — 8 employees, securityPosture = None
 > Block B5: NOT APPLICABLE — No special category data
 > Block B6: **ACTIVATED** — supplyChainVisibility = Low (open source not tracked)
 > Block B7: **ACTIVATED** — CRA applicable (Default class)

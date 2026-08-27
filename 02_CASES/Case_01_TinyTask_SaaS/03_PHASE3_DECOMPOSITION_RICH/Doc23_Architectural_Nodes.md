@@ -5,9 +5,8 @@ phase: 3
 version: 2.0
 created: 2026-08-24
 updated: 2026-08-24
-author: Sprint 4 Executor (paulo@methodology.pt)
+author: Fase de Especificação 4 Executor (paulo@methodology.pt)
 status: DEEP_ENRICHED
-sprint: 5
 deep_enrichment_date: 2026-08-24
 detail_cards_count: 49
 cells_count: 648
@@ -28,12 +27,12 @@ freeze_total_node_tech: 17
 freeze_total_node_proc: 20
 freeze_total_node_role: 12
 reconciliation_note: "49 nodes freeze (17 TECH + 20 PROC + 12 ROLE); 3 orphan CR-D refs flagged F-S1-01/02/03."
-sprint5_note: "Sprint 5: DEEP enrichment — 49 cards (12×17 fields + 37×12 fields) = 648 cells. Frontmatter status DEEP_ENRICHED, version 2.0."
+sprint5_note: "Fase de Especificação 5: DEEP enrichment — 49 cards (12×17 fields + 37×12 fields) = 648 cells. Frontmatter status DEEP_ENRICHED, version 2.0."
 ---
 
 # Architectural Nodes — TinyTask SaaS (Phase 3 RICH)
 
-> **Status:** ADJUSTED_FIELDS (Sprint 4). 49 nodes: 17 NODE-SYS (TECH) + 20 NODE-PROC (PROC) + 12 NODE-ROLE.
+> **Status:** ADJUSTED_FIELDS. 49 nodes: 17 NODE-SYS (TECH) + 20 NODE-PROC (PROC) + 12 NODE-ROLE.
 
 ---
 
@@ -1189,4 +1188,4 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 
 
 
-**End of Architectural Nodes (Phase 3 RICH, ADJUSTED_FIELDS, Sprint 4)**
+**End of Architectural Nodes (Phase 3 RICH, ADJUSTED_FIELDS, Fase de Especificação 4)**

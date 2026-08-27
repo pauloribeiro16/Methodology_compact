@@ -7,7 +7,6 @@ created: 2026-08-07
 updated: 2026-08-27
 author: Executor (Bloco C)
 status: ACTIVE
-sprint: 6
 inputs:
   - 11_Rules_Catalog.md
   - ../../../03_REFERENCE_MATERIAL/Framework_Mappings/Framework_Crosswalk_ARM.md
@@ -35,7 +34,7 @@ ni_avg_rule_note: >
   CR-D-08.2-001 (NI=2 SHOULD). 16 BPR all NI=2 SHOULD.
 implementation_posture_decision: >
   Implementation Posture Model (IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0):
-  3 states (IMPLEMENTED, PARTIAL, NOT IMPLEMENTED) per control, replacing numerical maturity (0-4) and Tiers.
+  3 states (IMPLEMENTED, PARTIAL, NOT IMPLEMENTED) per control, replacing numerical posture (0-4) and Tiers.
 governance_view_decision: >
   §2 fuses CSF GV + Privacy FW GV-P + AI RMF GOVERN into one view
   per SPEC §4.4. 6 governance concepts x 3 frameworks (AI RMF placeholder).
@@ -938,7 +937,7 @@ PR.DS/ID.DE families reinstated; see §6.2).
 > canonical subcategories (out of 100) are not used in Case_01 - either
 > because no Case_01 CR/BPR addresses that concept, or because the concept is
 > GDPR-untouched in the baseline. `N/A-PF (draft-1.1)` rows are CSF-mirror
-> maturity scales for concepts that exist only in the non-final PF 1.1
+> posture scales for concepts that exist only in the non-final PF 1.1
 > draft; they are not canonical mapping targets.
 
 ### §4.4 Tabela de avaliacao por-Function Case_01
@@ -950,7 +949,7 @@ PR.DS/ID.DE families reinstated; see §6.2).
 
 | CSF Function | cur_tier | tgt_tier | Rationale (per 04b posture + 07b Track B) |
 |--------------|---------:|---------:|-------------------------------------------|
-| GV (Govern)  | 2        | 3        | 04b: policies basic, no ISMS; 07b §4 row D-09.1 LIGHTWEIGHT BUY_MANAGED. Track B expects 3 at LIGHTWEIGHT for MUST domains. Current state from Sprint 2 enrichment is partial documentation, no periodic review. |
+| GV (Govern)  | 2        | 3        | 04b: policies basic, no ISMS; 07b §4 row D-09.1 LIGHTWEIGHT BUY_MANAGED. Track B expects 3 at LIGHTWEIGHT for MUST domains. Current state from Fase de Especificação 2 enrichment is partial documentation, no periodic review. |
 | ID (Identify)| 2        | 3        | 04b: 04a architecture inventory exists; 07b D-09.3 LIGHTWEIGHT + D-09.4 LIGHTWEIGHT. Track B 3 expected. Current: inventory partial, RoPA absent. |
 | PR (Protect) | 2        | 3        | 04b: encryption + transit implemented (strong symmetric encryption, current transport cryptographic standard); gaps in key lifecycle + restore tests. 07b D-01.x LIGHTWEIGHT + D-03.x MINIMAL. Track B 3 expected. |
 | DE (Detect)  | 1        | 3        | 04b: managed monitoring alarms present but no centralized audit-log management, no 24/7, no documented alert taxonomy. 07b D-04.1 LIGHTWEIGHT + D-10.1 LIGHTWEIGHT. MICRO + 8 FTE -> tier 3 at LIGHTWEIGHT (BUY_MANAGED managed monitoring). |
@@ -959,8 +958,8 @@ PR.DS/ID.DE families reinstated; see §6.2).
 
 #### Privacy FW Functions (Tier T1-T4 applied at program/Function level - mirror)
 
-> Per D11: do NOT aggregate maturity into one score. Per-function tier here
-> summarises the privacy posture; per-control maturity scores are kept
+> Per D11: do NOT aggregate posture into one score. Per-function tier here
+> summarises the privacy posture; per-control implementation postures are kept
 > separate in §5.
 
 | Privacy Function   | cur_tier | tgt_tier | Rationale (per 04b posture + 07b Track B + GDPR baseline) |
@@ -985,12 +984,12 @@ PR.DS/ID.DE families reinstated; see §6.2).
 
 ## §5 - Aplicacao ao Case_01
 
-### §5.1 Per-control table (46 rows x 8 maturity columns)
+### §5.1 Per-control table (46 rows x 8 posture columns)
 
 > Schema: `[rule_id, sub_domain, cur_csf, tgt_csf, cur_priv, tgt_priv, gap_csf, gap_priv]`.
 > Seeding rule (footnote 1): `cur_csf` seeded from Doc 11 field 13
-> `Maturity Score` (`1/4 -> 3/4`); for CR the canonical seed is `cur_csf=1`
-> (consistent with 04b §3 dashboard and Sprint 2 enrichment), bumped where
+> `Implementation Posture` (`1/4 -> 3/4`); for CR the canonical seed is `cur_csf=1`
+> (consistent with 04b §3 dashboard and Fase de Especificação 2 enrichment), bumped where
 > Track B justifies a higher starting state. `tgt_csf` aligned to Track B
 > LIGHTWEIGHT target (3) - bumped only if Track B is DEFERRED or MINIMAL
 > with strong inheritance. For BPR not mapped to a CSF subcategory,
@@ -1093,7 +1092,7 @@ PR.DS/ID.DE families reinstated; see §6.2).
 | Privacy FW PR-P        | 2        | 3        | 1   | 04b §2 D-01: encryption operational (mirrors CSF PR). 07b §4 D-01.x LIGHTWEIGHT. CR-D-01.x + BPR-D-01.x. Gap: de-identification by design (CT.DP-P2) + pseudonymisation pattern. |
 
 > **Note on aggregation:** per-Function tiers are a program-level summary;
-> per-control maturity scores in §5.1 stay disaggregated (D11). The
+> per-control implementation postures in §5.1 stay disaggregated (D11). The
 > gap-csf column in §5.1 is the source of truth for the per-control heatmap.
 
 ---
@@ -1285,7 +1284,7 @@ PR.DS/ID.DE families reinstated; see §6.2).
 
 **Subtotal (§6.2.3):** 10 documented gaps (5 actual, 5 covered indirectly).
 
-### §6.3 Sub-domains with low target maturity (tgt < 3)
+### §6.3 Sub-domains with low target posture (tgt < 3)
 
 > Per orchestrator decision: list sub-domains where `tgt_csf < 3` (or where
 > Track B is DEFERRED / no target), justify with Track B proportion (07b
@@ -1293,13 +1292,13 @@ PR.DS/ID.DE families reinstated; see §6.2).
 
 | Sub-domain   | tgt_csf | Rationale (07b Track B + MICRO) |
 |--------------|--------:|---------------------------------|
-| D-02.4       | no target | DEFERRED per 07b §5.2 (MICRO + FTE <= 1.0 + SHOULD -> DEFERRED). No target maturity because no Case_01 control is active. |
-| D-05.2       | 2        | Track B LIGHTWEIGHT with target 3 but 07b §4 example_controls note retention policy as "policy-light and manually operated" (04b §2 D-05 maturity=1, target=2). The formal 3-level policy is over-proportional for MICRO 8-person team. Justified by 04b §2 (D-05 Data Lifecycle maturity=1, target=2). |
+| D-02.4       | no target | DEFERRED per 07b §5.2 (MICRO + FTE <= 1.0 + SHOULD -> DEFERRED). No target posture because no Case_01 control is active. |
+| D-05.2       | 2        | Track B LIGHTWEIGHT with target 3 but 07b §4 example_controls note retention policy as "policy-light and manually operated" (04b §2 D-05 posture=1, target=2). The formal 3-level policy is over-proportional for MICRO 8-person team. Justified by 04b §2 (D-05 Data Lifecycle posture=1, target=2). |
 | D-05.4       | 2        | Track B LIGHTWEIGHT target 3 but 07b notes D-05.4 + D-05.3 share GDPR Art. 20-17 sub-SO pair; for MICRO the support-assisted export (04b §2) is sufficient. Target 2 reflects the JSON export endpoint being operational without full self-service automation. |
 
 > **Other sub-domains (D-03.x) where Track B is MINIMAL but target is still
 > 3:** D-03.1, D-03.2, D-06.1, D-06.4, D-08.1 — these are MINIMAL per 07b
-> §4 (INHERITABLE + MUST + MICRO), but the target maturity is still 3 per
+> §4 (INHERITABLE + MUST + MICRO), but the target posture is still 3 per
 > proportionality_model.md §5.3 floor rule (every MUST >= MINIMAL, but the
 > *target* tracks the LIGHTWEIGHT default for consistency). Documented as
 > expected Track-B variance.
@@ -1373,7 +1372,7 @@ graph LR
 ## §8 — Visualizations (Bloco F)
 
 > **Block F deliverable.** Four visualizations per SPEC §5.7, sourced from
-> §1 (unified matrix), §3 (n:m mapping YAML), §5.1 (per-control maturity
+> §1 (unified matrix), §3 (n:m mapping YAML), §5.1 (per-control posture
 > table), and the active sub-domain list (37 entries — D-08.3 INACTIVE per
 > Doc 13 §6.1.4). Renders in markdown for non-YAML readers; the same data
 > is mirrored in `12_Rules_Catalog.xlsx` sheets (Block F Excel side).
@@ -1527,7 +1526,7 @@ graph LR
 > | (d) | Design-time | CR-D-07.1-001 | CRA Art. 13(1) → CRA-C22 → PR.PS-06 → SSDF PO.1 |
 > | (e) | Records | CR-D-09.4-001 | GDPR Art. 30 (C13+C22) → GV.PO-02 + GV.PO-P5 → ISO A.5.33 |
 
-### §8.4 — V4 Heatmap de Maturidade
+### §8.4 — V4 Heatmap de Postura
 
 > 37 rows × 9 columns (one per active sub-domain; D-08.3 INACTIVE).
 > Heatmap formula per SPEC §7.5: `gap_display = MIN(gap_csf, gap_priv)` with
@@ -1596,12 +1595,12 @@ graph LR
 > Block F closes the Case_01 unified matrix deliverable. Block G (Validator)
 > runs Tier 1 (completeness/consistency) and Tier 2 (realism/alignment) per
 > SPEC §9 criteria. The 6 new Excel sheets (`Unified_Matrix`,
-> `Govern_Consolidated`, `Mapping_nm`, `Maturity_Dual`, `Cov_Function`,
-> `Heatmap_Maturity`) ship in `12_Rules_Catalog.xlsx` (Block F Excel side)
+> `Govern_Consolidated`, `Mapping_nm`, `Posture_Dual`, `Cov_Function`,
+> `Heatmap_Posture`) ship in `12_Rules_Catalog.xlsx` (Block F Excel side)
 > and mirror this §8 visualisation set for spreadsheet consumers.
 
 
 > Next contract blocks: Block D (extend Doc 11 fields 19-22 with the
-> mapping data from §3 and the maturity scores from §5.1); Block E
+> mapping data from §3 and the implementation postures from §5.1); Block E
 > (deprecate Doc 04b to input-only); Block F (add 6 new sheets to
 > Doc 12 + 4 visualisations + V4 heatmap from §5.1).

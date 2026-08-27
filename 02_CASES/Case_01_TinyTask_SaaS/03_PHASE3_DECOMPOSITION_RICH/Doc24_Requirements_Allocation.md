@@ -5,9 +5,8 @@ phase: 3
 version: 2.0
 created: 2026-08-24
 updated: 2026-08-24
-author: Sprint 4 Executor (paulo@methodology.pt)
+author: Fase de Especificação 4 Executor (paulo@methodology.pt)
 status: DEEP_ENRICHED
-sprint: 5
 deep_enrichment_date: 2026-08-24
 detail_cards_count: 30
 cells_count: 455
@@ -26,12 +25,12 @@ schema_columns_list: [Owner, Verification Criteria, Implementation Status, Prior
 freeze_total_dn_rows: 30
 freeze_total_rules_with_dn: 30
 reconciliation_note: "30 DN rows (1:1 with CR); no orphan refs in legacy Doc 15; BPR rules have no DN rows (Doc 15 §4)."
-sprint5_note: "Sprint 5: DEEP enrichment — 30 cards (19×17 fields + 11×12 fields) = 455 cells. Frontmatter status DEEP_ENRICHED, version 2.0."
+sprint5_note: "Fase de Especificação 5: DEEP enrichment — 30 cards (19×17 fields + 11×12 fields) = 455 cells. Frontmatter status DEEP_ENRICHED, version 2.0."
 ---
 
 # Requirements Allocation — TinyTask SaaS (Phase 3 RICH)
 
-> **Status:** ADJUSTED_FIELDS (Sprint 4). 30 DN rows, 1:1 with 30 CR (per Doc 15 §4). 16 BPR have no DN rows (BPR are best-practice, not binding allocations).
+> **Status:** ADJUSTED_FIELDS. 30 DN rows, 1:1 with 30 CR (per Doc 15 §4). 16 BPR have no DN rows (BPR are best-practice, not binding allocations).
 
 ---
 
@@ -818,4 +817,4 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 
 ---
 
-**End of Requirements Allocation (Phase 3 RICH, ADJUSTED_FIELDS, Sprint 4)**
+**End of Requirements Allocation (Phase 3 RICH, ADJUSTED_FIELDS, Fase de Especificação 4)**

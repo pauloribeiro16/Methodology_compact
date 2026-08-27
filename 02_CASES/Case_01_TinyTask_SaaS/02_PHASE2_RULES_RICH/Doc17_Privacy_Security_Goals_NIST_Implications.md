@@ -7,7 +7,6 @@ created: 2026-08-07
 updated: 2026-08-10
 author: Orchestrator (Case_01 implications)
 status: ACTIVE
-sprint: 9
 case: Case_01_TinyTask_SaaS
 tier: MICRO
 inputs:
@@ -21,7 +20,7 @@ outputs: [11_Rules_Catalog.md (forward-link), Phase 3 inputs]
 traceability: PO/SO -> sub_domain -> NIST mapping (CSF for SO, CSF+PF for PO)
 related_documents: 10_Privacy_Security_Objectives.md, 11_Rules_Catalog.md
 forward_looking_note: >
-  NI (AVG) and dual-maturity implications reference SPEC_NIST_MATRIX_UNIFIED.md
+  NI (AVG) and dual-posture implications reference SPEC_NIST_MATRIX_UNIFIED.md
   decisions. Case_01 is MICRO tier, GDPR+RA apply; AI RMF N/A (no AI systems).
 coverage:
   objectives: 31  # 11 PO + 20 SO
@@ -46,9 +45,9 @@ coverage:
 > **Four implication dimensions (per goal):**
 > 1. **Technical (controls):** specific TinyTask-relevant controls implied by the
 >    NIST subcategories (e.g. managed object-storage encryption for PR.DS-P1, consent UI for CT.PO-P3).
-> 2. **Maturity [PENDENTE SPEC]:** dual-maturity target (current→target) for the goal,
+> 2. **Posture (Implementation Posture):** dual-posture target (current→target) for the goal,
 >    consistent with MICRO proportionality.
-> 3. **Priority/NI [PENDENTE SPEC]:** AVG(NI) over the goal's source clauses,
+> 3. **Priority/NI (Implementation Posture):** AVG(NI) over the goal's source clauses,
 >    bucketed to P1/P2/P3 (MUST/SHOULD/COULD).
 > 4. **Dependencies:** goals sharing NIST subcats → consolidation candidates.
 
@@ -93,8 +92,8 @@ subcategories: CT.*-P data decisions, GV.*-P governance, CM.*-P communication).
   implications:
     technical_rationale: |
       `PR.DS-P1`: Data-at-rest are protected (privacy-specific confidentiality control).
-    maturity_target_micro: |
-      [PENDENTE SPEC §7] Maturidade-alvo para MICRO: CSF 2/4 → 3/4;
+    posture_note_micro: |
+      (Implementation Posture Model v2.0) Posture-target para MICRO: CSF 2/4 → 3/4;
       PF 1/4 → 2/4. Consistente com LIGHTWEIGHT Track B.
     ni_note: |
       [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. Tipicamente MUST (P1) para
@@ -119,8 +118,8 @@ subcategories: CT.*-P data decisions, GV.*-P governance, CM.*-P communication).
   implications:
     technical_rationale: |
       `PR.DS-P2`: Data-in-transit are protected (privacy-specific transit confidentiality).
-    maturity_target_micro: |
-      [PENDENTE SPEC §7] Maturidade-alvo para MICRO: CSF 2/4 → 3/4;
+    posture_note_micro: |
+      (Implementation Posture Model v2.0) Posture-target para MICRO: CSF 2/4 → 3/4;
       PF 1/4 → 2/4. Consistente com LIGHTWEIGHT Track B.
     ni_note: |
       [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. Tipicamente MUST (P1) para
@@ -146,8 +145,8 @@ subcategories: CT.*-P data decisions, GV.*-P governance, CM.*-P communication).
     technical_rationale: |
       `CT.DM-P1`: Data elements can be accessed for review (privacy integrity review).
       `CT.DM-P3`: Data elements can be accessed for alteration (privacy integrity edit).
-    maturity_target_micro: |
-      [PENDENTE SPEC §7] Maturidade-alvo para MICRO: CSF 2/4 → 3/4;
+    posture_note_micro: |
+      (Implementation Posture Model v2.0) Posture-target para MICRO: CSF 2/4 → 3/4;
       PF 1/4 → 2/4. Consistente com LIGHTWEIGHT Track B.
     ni_note: |
       [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. Tipicamente MUST (P1) para
@@ -174,8 +173,8 @@ subcategories: CT.*-P data decisions, GV.*-P governance, CM.*-P communication).
       `CT.DP-P4`: Selective collection/disclosure configurations (data minimisation).
       `CT.PO-P4`: Data lifecycle aligned with SDLC (privacy lifecycle integration).
       `ID.RA-P3`: Potential problematic data actions identified (risk identification).
-    maturity_target_micro: |
-      [PENDENTE SPEC §7] Maturidade-alvo para MICRO: CSF 2/4 → 3/4;
+    posture_note_micro: |
+      (Implementation Posture Model v2.0) Posture-target para MICRO: CSF 2/4 → 3/4;
       PF 1/4 → 2/4. Consistente com LIGHTWEIGHT Track B.
     ni_note: |
       [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. Tipicamente MUST (P1) para
@@ -201,8 +200,8 @@ subcategories: CT.*-P data decisions, GV.*-P governance, CM.*-P communication).
     technical_rationale: |
       `CT.DM-P5`: Data are destroyed according to policy (privacy retention enforcement).
       `CT.PO-P4`: Data lifecycle aligned with SDLC (privacy lifecycle integration).
-    maturity_target_micro: |
-      [PENDENTE SPEC §7] Maturidade-alvo para MICRO: CSF 2/4 → 3/4;
+    posture_note_micro: |
+      (Implementation Posture Model v2.0) Posture-target para MICRO: CSF 2/4 → 3/4;
       PF 1/4 → 2/4. Consistente com LIGHTWEIGHT Track B.
     ni_note: |
       [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. Tipicamente MUST (P1) para
@@ -228,8 +227,8 @@ subcategories: CT.*-P data decisions, GV.*-P governance, CM.*-P communication).
     technical_rationale: |
       `CT.DM-P4`: Data elements can be accessed for deletion (right-to-erasure).
       `CT.DM-P5`: Data are destroyed according to policy (destruction enforcement).
-    maturity_target_micro: |
-      [PENDENTE SPEC §7] Maturidade-alvo para MICRO: CSF 2/4 → 3/4;
+    posture_note_micro: |
+      (Implementation Posture Model v2.0) Posture-target para MICRO: CSF 2/4 → 3/4;
       PF 1/4 → 2/4. Consistente com LIGHTWEIGHT Track B.
     ni_note: |
       [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. Tipicamente MUST (P1) para
@@ -255,8 +254,8 @@ subcategories: CT.*-P data decisions, GV.*-P governance, CM.*-P communication).
     technical_rationale: |
       `CT.DM-P1`: Data elements can be accessed for review (data portability access).
       `CT.DM-P6`: Data are transmitted using standardised formats (machine-readable export).
-    maturity_target_micro: |
-      [PENDENTE SPEC §7] Maturidade-alvo para MICRO: CSF 2/4 → 3/4;
+    posture_note_micro: |
+      (Implementation Posture Model v2.0) Posture-target para MICRO: CSF 2/4 → 3/4;
       PF 1/4 → 2/4. Consistente com LIGHTWEIGHT Track B.
     ni_note: |
       [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. Tipicamente MUST (P1) para
@@ -285,8 +284,8 @@ subcategories: CT.*-P data decisions, GV.*-P governance, CM.*-P communication).
       `CT.DP-P5`: Attribute references substituted for attribute values (privacy-by-design).
       `CT.PO-P4`: Data lifecycle aligned with SDLC (privacy lifecycle integration).
       `GV.PO-P2`: Privacy values instilled in development/operations (privacy-by-design governance).
-    maturity_target_micro: |
-      [PENDENTE SPEC §7] Maturidade-alvo para MICRO: CSF 2/4 → 3/4;
+    posture_note_micro: |
+      (Implementation Posture Model v2.0) Posture-target para MICRO: CSF 2/4 → 3/4;
       PF 1/4 → 3/4 (privacy-by-design é high-leverage para D-07.1). Consistente com LIGHTWEIGHT Track B.
     ni_note: |
       [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. Tipicamente MUST (P1) para
@@ -313,8 +312,8 @@ subcategories: CT.*-P data decisions, GV.*-P governance, CM.*-P communication).
       `CM.PO-P1`: Transparency policies for data processing purposes/practices established.
       `GV.PO-P1`: Organizational privacy values and policies established and communicated.
       `GV.PO-P5`: Legal, regulatory, and contractual privacy requirements understood and managed.
-    maturity_target_micro: |
-      [PENDENTE SPEC §7] Maturidade-alvo para MICRO: CSF 2/4 → 3/4;
+    posture_note_micro: |
+      (Implementation Posture Model v2.0) Posture-target para MICRO: CSF 2/4 → 3/4;
       PF 1/4 → 2/4. Consistente com LIGHTWEIGHT Track B.
     ni_note: |
       [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. Tipicamente MUST (P1) para
@@ -341,8 +340,8 @@ subcategories: CT.*-P data decisions, GV.*-P governance, CM.*-P communication).
       `ID.RA-P3`: Potential problematic data actions identified (DPIA identification phase).
       `ID.RA-P4`: Problematic data actions, likelihoods, impacts determine/prioritise risk (DPIA scoring).
       `ID.RA-P5`: Risk responses identified, prioritised, implemented (DPIA treatment).
-    maturity_target_micro: |
-      [PENDENTE SPEC §7] Maturidade-alvo para MICRO: CSF 2/4 → 3/4;
+    posture_note_micro: |
+      (Implementation Posture Model v2.0) Posture-target para MICRO: CSF 2/4 → 3/4;
       PF 1/4 → 3/4 (DPIA é core privacy control). Consistente com LIGHTWEIGHT Track B.
     ni_note: |
       [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. Tipicamente MUST (P1) para
@@ -370,8 +369,8 @@ subcategories: CT.*-P data decisions, GV.*-P governance, CM.*-P communication).
       `ID.IM-P4`: Data actions of the systems/products/services are inventoried (RoPA actions).
       `ID.IM-P6`: Data elements within data actions are inventoried (RoPA elements).
       `ID.IM-P8`: Data processing is mapped (RoPA data flow mapping).
-    maturity_target_micro: |
-      [PENDENTE SPEC §7] Maturidade-alvo para MICRO: CSF 2/4 → 3/4;
+    posture_note_micro: |
+      (Implementation Posture Model v2.0) Posture-target para MICRO: CSF 2/4 → 3/4;
       PF 1/4 → 3/4 (RoPA é core GDPR Art. 30 control). Consistente com LIGHTWEIGHT Track B.
     ni_note: |
       [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. Tipicamente MUST (P1) para
@@ -435,8 +434,8 @@ apply where the security control also has a privacy dimension (e.g. access contr
       PF overlap: `ID.RA-P3` (potential problematic data actions identified), `ID.RA-P5`
       (risk responses identified, prioritised, implemented). Privacy dimension applies because
       vulnerability handling may surface personal data (e.g., user IDs in crash dumps).
-    maturity_target_micro: |
-      [PENDENTE SPEC §7] Maturidade-alvo MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+    posture_note_micro: |
+      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
     ni_note: |
       [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
       (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
@@ -458,8 +457,8 @@ apply where the security control also has a privacy dimension (e.g. access contr
   pf_overlap: []
   implications:
     technical_rationale: |
-    maturity_target_micro: |
-      [PENDENTE SPEC §7] Maturidade-alvo MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+    posture_note_micro: |
+      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
     ni_note: |
       [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
       (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
@@ -481,8 +480,8 @@ apply where the security control also has a privacy dimension (e.g. access contr
   pf_overlap: []
   implications:
     technical_rationale: |
-    maturity_target_micro: |
-      [PENDENTE SPEC §7] Maturidade-alvo MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+    posture_note_micro: |
+      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
     ni_note: |
       [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
       (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
@@ -509,8 +508,8 @@ apply where the security control also has a privacy dimension (e.g. access contr
       `PR.AA-02`: Identities are proofed and bound to credentials based on the context of interactions
       `PR.AA-03`: Users, services, and hardware are authenticated
       `PR.DS-10`: Data is managed consistent with the organization's risk strategy to protect the confi
-    maturity_target_micro: |
-      [PENDENTE SPEC §7] Maturidade-alvo MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+    posture_note_micro: |
+      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
     ni_note: |
       [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
       (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
@@ -532,8 +531,8 @@ apply where the security control also has a privacy dimension (e.g. access contr
   pf_overlap: []
   implications:
     technical_rationale: |
-    maturity_target_micro: |
-      [PENDENTE SPEC §7] Maturidade-alvo MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+    posture_note_micro: |
+      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
     ni_note: |
       [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
       (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
@@ -561,8 +560,8 @@ apply where the security control also has a privacy dimension (e.g. access contr
       PF overlap: `CT.PO-P1` (policies for authorizing data processing, including access-based
       authorization). Privacy dimension applies because least-privilege control directly governs
       who can process which personal data.
-    maturity_target_micro: |
-      [PENDENTE SPEC §7] Maturidade-alvo MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+    posture_note_micro: |
+      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
     ni_note: |
       [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
       (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
@@ -590,8 +589,8 @@ apply where the security control also has a privacy dimension (e.g. access contr
       PF overlap: `CT.DP-P4` (selective collection/disclosure configurations), `CT.PO-P4`
       (data lifecycle aligned with SDLC). Privacy dimension applies because hardening defaults
       (disable ports, services) reduces the personal-data attack surface.
-    maturity_target_micro: |
-      [PENDENTE SPEC §7] Maturidade-alvo MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+    posture_note_micro: |
+      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
     ni_note: |
       [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
       (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
@@ -621,8 +620,8 @@ apply where the security control also has a privacy dimension (e.g. access contr
       PF overlap: `CM.AW-P7` (impacted individuals/organizations notified about privacy breach/event).
       Privacy dimension applies because monitoring may detect breaches involving personal data,
       triggering breach-notification obligations.
-    maturity_target_micro: |
-      [PENDENTE SPEC §7] Maturidade-alvo MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+    posture_note_micro: |
+      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
     ni_note: |
       [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
       (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
@@ -650,8 +649,8 @@ apply where the security control also has a privacy dimension (e.g. access contr
       PF overlap: `CT.DM-P10` (stakeholder privacy preferences in algorithmic design), `PR.PO-P7`
       (response plans established). Privacy dimension applies because DoS attacks may degrade
       availability of personal-data services, triggering data-subject impact.
-    maturity_target_micro: |
-      [PENDENTE SPEC §7] Maturidade-alvo MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+    posture_note_micro: |
+      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
     ni_note: |
       [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
       (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
@@ -682,8 +681,8 @@ apply where the security control also has a privacy dimension (e.g. access contr
       (individuals provided with mitigation mechanisms), `CM.PO-P1`/`CM.PO-P2` (transparency
       policies/roles for breach communication). Privacy dimension is central: dual-notification
       (CNPD 72h + ENISA 24h) per CRA Art. 14 + GDPR Art. 33.
-    maturity_target_micro: |
-      [PENDENTE SPEC §7] Maturidade-alvo MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+    posture_note_micro: |
+      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
     ni_note: |
       [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
       (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
@@ -708,8 +707,8 @@ apply where the security control also has a privacy dimension (e.g. access contr
       `PR.DS-01`: Backups of data are created, protected, maintained, and tested
       `PR.IR-04`: Adequate resource capacity to ensure availability is maintained
       `RC.RP-04`: Critical mission functions and services are restored through the implementation of th
-    maturity_target_micro: |
-      [PENDENTE SPEC §7] Maturidade-alvo MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+    posture_note_micro: |
+      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
     ni_note: |
       [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
       (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
@@ -736,8 +735,8 @@ apply where the security control also has a privacy dimension (e.g. access contr
       PF overlap: `ID.IM-P2` (owners/operators of systems and their roles inventoried). Privacy
       dimension applies because processors under DPA are owners/operators of personal data
       (GDPR Art. 28 obligations require documented roles).
-    maturity_target_micro: |
-      [PENDENTE SPEC §7] Maturidade-alvo MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+    posture_note_micro: |
+      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
     ni_note: |
       [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
       (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
@@ -759,8 +758,8 @@ apply where the security control also has a privacy dimension (e.g. access contr
   pf_overlap: []
   implications:
     technical_rationale: |
-    maturity_target_micro: |
-      [PENDENTE SPEC §7] Maturidade-alvo MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+    posture_note_micro: |
+      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
     ni_note: |
       [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
       (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
@@ -787,8 +786,8 @@ apply where the security control also has a privacy dimension (e.g. access contr
       `GV.RR-02`: Roles, responsibilities, authorities, and accountabilities related to cybersecurity r
       `GV.SC-01`: A cybersecurity supply chain risk management program, strategy, objectives, policies,
       `GV.SC-02`: Suppliers and other third parties are known, prioritized, and assessed using a cybers
-    maturity_target_micro: |
-      [PENDENTE SPEC §7] Maturidade-alvo MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+    posture_note_micro: |
+      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
     ni_note: |
       [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
       (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
@@ -818,8 +817,8 @@ apply where the security control also has a privacy dimension (e.g. access contr
       PF overlap: `GV.AT-P1` (workforce informed/trained on privacy roles), `GV.AT-P2`
       (senior executives understand privacy roles). Privacy dimension applies because
       security-awareness training must include privacy breach recognition and notification duties.
-    maturity_target_micro: |
-      [PENDENTE SPEC §7] Maturidade-alvo MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+    posture_note_micro: |
+      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
     ni_note: |
       [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
       (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
@@ -846,8 +845,8 @@ apply where the security control also has a privacy dimension (e.g. access contr
       PF overlap: `GV.AT-P1`/`GV.AT-P2` (privacy roles training for workforce + executives).
       Privacy dimension applies because role-specific training for personal-data handlers
       must cover data minimisation and purpose-limitation duties.
-    maturity_target_micro: |
-      [PENDENTE SPEC §7] Maturidade-alvo MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+    posture_note_micro: |
+      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
     ni_note: |
       [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
       (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
@@ -878,8 +877,8 @@ apply where the security control also has a privacy dimension (e.g. access contr
       values/policies established), `GV.PO-P5` (legal/regulatory privacy requirements managed).
       Privacy dimension applies because technical documentation must include privacy-related
       design decisions and DPIA outcomes.
-    maturity_target_micro: |
-      [PENDENTE SPEC §7] Maturidade-alvo MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+    posture_note_micro: |
+      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
     ni_note: |
       [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
       (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
@@ -909,8 +908,8 @@ apply where the security control also has a privacy dimension (e.g. access contr
       PF overlap: `ID.RA-P3`/`P4`/`P5` (privacy risk identification/prioritisation/response).
       Privacy dimension applies because the cybersecurity risk assessment must include
       privacy risk (DPIA-style) per GDPR Art. 35 + CRA Art. 13.
-    maturity_target_micro: |
-      [PENDENTE SPEC §7] Maturidade-alvo MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+    posture_note_micro: |
+      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
     ni_note: |
       [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
       (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
@@ -941,8 +940,8 @@ apply where the security control also has a privacy dimension (e.g. access contr
       `CT.DM-P9` (technical measures for data processing tested/assessed). Privacy dimension
       applies because audit logs may contain personal data and need retention/deletion controls
       (GDPR Art. 5(1)(e)).
-    maturity_target_micro: |
-      [PENDENTE SPEC §7] Maturidade-alvo MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+    posture_note_micro: |
+      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
     ni_note: |
       [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
       (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
@@ -972,8 +971,8 @@ apply where the security control also has a privacy dimension (e.g. access contr
       PF overlap: `ID.RA-P3` (problematic data actions identified), `ID.RA-P5` (risk responses
       identified/prioritised/implemented). Privacy dimension applies because security testing
       (e.g., code review, pen-tests) may surface privacy issues (e.g., data leakage).
-    maturity_target_micro: |
-      [PENDENTE SPEC §7] Maturidade-alvo MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+    posture_note_micro: |
+      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
     ni_note: |
       [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
       (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
@@ -987,10 +986,10 @@ apply where the security control also has a privacy dimension (e.g. access contr
 
 1. **AI RMF not applicable.** Case_01 has no AI systems. The AI Act → AI RMF
    implications (baseline 01b AI Act) are inherited as `pending` but do not apply.
-2. **Dual-maturity [PENDENTE SPEC §7].** When the unified matrix (Doc 13) is built,
+2. **Dual-posture (Implementation Posture Model v2.0).** When the unified matrix (Doc 13) is built,
    each PO will have CSF + Privacy scores; each SO primarily CSF (PF overlap where
    applicable). This file pre-positions the goals for that integration.
-3. **MICRO proportionality.** All target maturities assume LIGHTWEIGHT Track B
+3. **MICRO proportionality.** All target postures assume LIGHTWEIGHT Track B
    (typical MICRO pattern). Higher targets require explicit justification.
 4. **Same goal ID namespace.** No new goals created — implications only on the
    existing 31 PO/SO from 10_Privacy_Security_Objectives.md.

@@ -5,7 +5,7 @@ phase: 1
 version: 1.1
 created: 2026-07-11
 updated: 2026-08-07
-author: Executor (Sprint 1 reconciliation; Sprint 2 corpus enrichment; Implementation Posture transition)
+author: Executor (Fase de Especificação 1 reconciliation; Fase de Especificação 2 corpus enrichment; Implementation Posture transition)
 status: DEPRECATED_FOR_POSTURE
 status_history:
   - { date: '2026-08-07', from: CORPUS_ENRICHED, to: DEPRECATED_FOR_POSTURE,
@@ -16,7 +16,6 @@ note: >
   A avaliação de postura foi movida para
   02_PHASE2_RULES_RICH/13_Framework_Mapping_Matrix.md §4-5.
 case_study: TinyTask Lda.
-sprint: 1
 sprint_role: reconciled_from_legacy
 inputs:
   - Doc03_Company_Context_Assessment.md
@@ -39,12 +38,12 @@ related_documents:
 > mantém-se como input qualitativo (postura observada). Ver `status_history`
 > no frontmatter.
 
-> **Sprint 1 Reconciliation Note (2026-08-06)**
-> Rich Mode copy of legacy `01_PHASE1_CONTEXT/04b_Security_Posture.md` (v1.0). Sprint 1 changes:
-> - **I-10 (status DRAFT → RECONCILED):** Sprint 1 milestone.
-> - Body content unchanged from legacy. Sprint 2 will replace `SubDomains/` paths with the new `PREPROCESSING_by_domain/domains/` corpus paths.
+> **Fase de Especificação 1 Reconciliation Note (2026-08-06)**
+> Rich Mode copy of legacy `01_PHASE1_CONTEXT/04b_Security_Posture.md` (v1.0). Fase de Especificação 1 changes:
+> - **I-10 (status DRAFT → RECONCILED):** Fase de Especificação 1 milestone.
+> - Body content unchanged from legacy. Fase de Especificação 2 will replace `SubDomains/` paths with the new `PREPROCESSING_by_domain/domains/` corpus paths.
 >
-> **Sprint 2 Enrichment Note (2026-08-06)**
+> **Fase de Especificação 2 Enrichment Note (2026-08-06)**
 > - **Status: RECONCILED → CORPUS_ENRICHED.** Section 2 (Per-Macro-Domain Assessment) extended with two corpus-derived fields per macro-domain: **Target fit_criterion** (verbatim from `D-XX.Y.json` `requirements.high_level.yaml.fit_criterion`, truncated to ~100 chars) and **Verification Method** (from same path, `verification_method` field). One representative sub-domain selected per macro-domain (D-01.1, D-02.1, D-03.2, D-04.3, D-05.2, D-06.1, D-07.3, D-08.1, D-09.4, D-10.2). New §7 Corpus Provenance documents the selection rationale and sources. 10 macro-domain sections enriched.
 
 # Security Posture Assessment
@@ -259,10 +258,10 @@ Assessment evidence is drawn from `04a_Architecture_DataInventory.md`, `04_Compa
 | Summary dashboard populated | PASS | Section 3 |
 | Top 5 gaps identified | PASS | Section 4 |
 | SubDomains references included | PASS | Each macro-domain section links to active Regulatory Baseline files |
-| Target fit_criterion extracted per macro-domain | PASS | Section 2 (Sprint 2 enrichment) |
-| Verification Method extracted per macro-domain | PASS | Section 2 (Sprint 2 enrichment) |
+| Target fit_criterion extracted per macro-domain | PASS | Section 2 (Fase de Especificação 2 enrichment) |
+| Verification Method extracted per macro-domain | PASS | Section 2 (Fase de Especificação 2 enrichment) |
 
-## 7. Corpus Provenance (Sprint 2 Enrichment)
+## 7. Corpus Provenance (Fase de Especificação 2 Enrichment)
 
 The **Target fit_criterion** and **Verification Method** fields added to Section 2 were extracted from the per-sub-domain JSON sidecars at `00_METHODOLOGY/PREPROCESSING_by_domain/domains/<D-XX_Domain>/D-XX.Y/D-XX.Y.json`, specifically from the nested path `requirements.high_level.yaml.fit_criterion` and `requirements.high_level.yaml.verification_method`.
 

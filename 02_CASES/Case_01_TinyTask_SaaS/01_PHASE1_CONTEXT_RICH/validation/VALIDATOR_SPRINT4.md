@@ -1,19 +1,18 @@
 ---
 document_id: AEGIS-P1-RICH-VALIDATOR-SPRINT4
-title: Sprint 4 — Self-Verification Report (Executor)
+title: Fase de Especificação 4 — Self-Verification Report (Executor)
 phase: 1
 version: 1.0
 created: 2026-08-06
 updated: 2026-08-10
-author: Sprint 4 Executor (self-verification)
-sprint_8_note: Sprint 8 Executor (corr-009 ao-migration historical-context)
+author: Fase de Especificação 4 Executor (self-verification)
+sprint_8_note: Fase de Especificação 8 Executor (corr-009 ao-migration historical-context)
 status: HISTORICAL
 historical_note: Historical self-verification report from corr-007 era. Current 07c version is v4.0 with AO ID model (corr-008 supersedes corr-007). Content below preserved verbatim.
-sprint: 4
 case: Case_01_TinyTask_SaaS
 ---
 
-# Sprint 4 — Self-Verification Report
+# Fase de Especificação 4 — Self-Verification Report
 
 > **Note:** This is the Executor's self-verification (P0 reasoned-disagreement pre-check). The Validator sub-agent will independently verify next. Self-verification is **necessary but not sufficient** — independent Validator review is the authoritative verdict.
 
@@ -28,9 +27,9 @@ case: Case_01_TinyTask_SaaS
 | Doc 07b version bumped 1.2 → 1.3 | yes | frontmatter updated | ✅ PASS |
 | Doc 07b related_documents includes Doc 07c | yes | updated | ✅ PASS |
 | Doc 04 BG cross-refs added | 5 BGs | 5 BGs (BG-01..BG-05) | ✅ PASS |
-| README Sprint 4 row added | 1 row | 1 row | ✅ PASS |
+| README Fase de Especificação 4 row added | 1 row | 1 row | ✅ PASS |
 | RICH_VS_LEGACY 07c entry added | 1 row | 1 row + 07b delta updated + totals recalculated | ✅ PASS |
-| Lints 6/6 PASS | yes | 6/6 PASS, 44 warnings (unchanged from Sprint 3 baseline) | ✅ PASS |
+| Lints 6/6 PASS | yes | 6/6 PASS, 44 warnings (unchanged from Fase de Especificação 3 baseline) | ✅ PASS |
 
 ## §2 Track B Decision Table Check
 
@@ -66,27 +65,27 @@ case: Case_01_TinyTask_SaaS
 $ python3 01_IMPLEMENTATION_TOOLS/lints/run_phase1_lints.py --case "Case_01_TinyTask_SaaS"
 
 Summary: 6/6 passed
-Warnings: 44 (unchanged from Sprint 3 baseline)
+Warnings: 44 (unchanged from Fase de Especificação 3 baseline)
 Errors: 0
 ```
 
 - ✅ PASS — 6/6 lints pass
-- Warning delta: 0 (Sprint 4 added no new warnings)
-- Lint scope: legacy `01_PHASE1_CONTEXT/` + `00_COMMON/` only (RICH folder is lint-safe by design — verified by Sprint 3 corpus cross-check methodology)
+- Warning delta: 0 (Fase de Especificação 4 added no new warnings)
+- Lint scope: legacy `01_PHASE1_CONTEXT/` + `00_COMMON/` only (RICH folder is lint-safe by design — verified by Fase de Especificação 3 corpus cross-check methodology)
 
-## §6 Files Inventory (Sprint 4 deliverables)
+## §6 Files Inventory (Fase de Especificação 4 deliverables)
 
 | Path | Size | Lines | Status |
 |------|-----:|------:|--------|
 | `02_CASES/Case_01_TinyTask_SaaS/01_PHASE1_CONTEXT_RICH/07c_Adjusted_Objectives.md` | 29.3KB | 292 | NEW |
 | `02_CASES/Case_01_TinyTask_SaaS/01_PHASE1_CONTEXT_RICH/07b_Proportionality_Profile.md` | ~36KB | 378 | v1.2 → v1.3 (+169 lines) |
 | `02_CASES/Case_01_TinyTask_SaaS/01_PHASE1_CONTEXT_RICH/04_Company_Context_Assessment.md` | ~9.6KB | 192 | +5 lines (BG table expansion) |
-| `02_CASES/Case_01_TinyTask_SaaS/01_PHASE1_CONTEXT_RICH/README.md` | (this folder) | 168 | +1 line (Sprint 4 row) |
+| `02_CASES/Case_01_TinyTask_SaaS/01_PHASE1_CONTEXT_RICH/README.md` | (this folder) | 168 | +1 line (Fase de Especificação 4 row) |
 | `02_CASES/Case_01_TinyTask_SaaS/01_PHASE1_CONTEXT_RICH/RICH_VS_LEGACY.md` | (this folder) | 132 | +5 lines (07c entry + 07b delta + totals) |
 | `02_CASES/Case_01_TinyTask_SaaS/01_PHASE1_CONTEXT_RICH/validation/SPRINT4_REPORT.md` | (this file) | (this file) | NEW |
 | `02_CASES/Case_01_TinyTask_SaaS/01_PHASE1_CONTEXT_RICH/validation/VALIDATOR_SPRINT4.md` | (this file) | (this file) | NEW (self-verification) |
 
-**Total Sprint 4 output:** 7 files (1 new doc, 4 updated docs, 2 new reports).
+**Total Fase de Especificação 4 output:** 7 files (1 new doc, 4 updated docs, 2 new reports).
 
 ## §7 Final Verdict (Executor self-verdict)
 
@@ -103,9 +102,9 @@ All 11 completeness checks pass. All 4 Track B decision-table checks pass. All 5
 
 ## §8 See also
 
-- `SPRINT4_REPORT.md` — Sprint 4 deliverables report
-- `07c_Adjusted_Objectives.md` — Sprint 4 NEW doc
+- `SPRINT4_REPORT.md` deliverables report
+- `07c_Adjusted_Objectives.md` NEW doc
 - `07b_Proportionality_Profile.md` — extended with §12-§14
 - `04_Company_Context_Assessment.md` §4 — BG cross-refs
 - `validation/SPRINT3_REPORT.md` — prior sprint (baseline 6/6 PASS, 44W)
-- `01_IMPLEMENTATION_TOOLS/lints/reports/lint_report_phase1_20260806_123331.md` — Sprint 4 lint baseline (6/6 PASS, 44W unchanged)
+- `01_IMPLEMENTATION_TOOLS/lints/reports/lint_report_phase1_20260806_123331.md` lint baseline (6/6 PASS, 44W unchanged)

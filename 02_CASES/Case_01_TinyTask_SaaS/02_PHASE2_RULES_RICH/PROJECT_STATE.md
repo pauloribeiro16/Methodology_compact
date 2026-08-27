@@ -40,7 +40,7 @@ branch: feature/aegis-p2-case01-rich
 | Phase | Legacy | Rich `02_PHASE2_RULES_RICH/` |
 |-------|--------|------------------------------|
 | Phase 1 (Context) | ✅ COMPLETE (frozen 2026-04-01) | ✅ COMPLETE (Rich sibling 2026-08-06) |
-| Phase 2 (Obligations) | ✅ COMPLETE (30 obligations, 4 tensions, 46 rules) | ✅ **COMPLETE** — DEEP_ENRICHED (Sprint 5) |
+| Phase 2 (Obligations) | ✅ COMPLETE (30 obligations, 4 tensions, 46 rules) | ✅ **COMPLETE** — DEEP_ENRICHED |
 | Phase 3 (Architecture & Rules) | ✅ COMPLETE (35 use cases, 78.6% QG) | ⏳ NOT STARTED (Rich scope deferred) |
 | **Aggregate** | **Phase 1+2+3 COMPLETE** | **Phase 2 Rich Mode: DEEP_ENRICHED, ready for orchestrator PR review** |
 
@@ -107,7 +107,7 @@ branch: feature/aegis-p2-case01-rich
 | Sprint 5 | PASS_WITH_FINDINGS | 12/12 acceptance criteria met; 1,819 cells delivered (uniform 17-field schema); 1 new finding F-11 (frontmatter scalar stale on Doc 10/11) |
 | Validator | PASS_WITH_FINDINGS | All functional + lint + invariant + consistency checks PASS; F-12 (re-raise of F-11) for orchestrator |
 
-**Aggregate metrics (final — Sprint 5 + Validator):**
+**Aggregate metrics (final + Validator):**
 
 | Metric | Sprint 3 | Sprint 4 | Sprint 5 | Final |
 |--------|--------:|--------:|--------:|------:|
@@ -139,7 +139,7 @@ branch: feature/aegis-p2-case01-rich
 | 11 | Dependencies | list | per card |
 | 12 | Risk if not met | H/M/L + 1-line | per card |
 | 13 | Affected Stakeholders | list | per card |
-| 14 | Maturity Score | Cur X/4 → Tgt Y/4 | per card |
+| 14 | Implementation Posture | Cur X/4 → Tgt Y/4 | per card |
 | 15 | Implementation Priority | HIGH/MEDIUM/LOW | per card |
 
 **Case_01-specific (3 fields per card):**
@@ -184,14 +184,14 @@ branch: feature/aegis-p2-case01-rich
 
 | ID | Severity | Raised | Summary | Status |
 |----|----------|:------:|---------|--------|
-| F-01 / F-03 | LOW | Sprint 1 | `OBL-D-01.3-001` has no PG/SG; `CR-D-01.3-001` references phantom `PG-D-01.3-001` | **CARRIED** — Sprint 5 cards annotate in `Dependencies` fields; resolution deferred to human arbiter per P7 |
+| F-01 / F-03 | LOW | Sprint 1 | `OBL-D-01.3-001` has no PG/SG; `CR-D-01.3-001` references phantom `PG-D-01.3-001` | **CARRIED** cards annotate in `Dependencies` fields; resolution deferred to human arbiter per P7 |
 | F-02 | MEDIUM | Sprint 1 | `OBL-D-09.1-001` / `OBL-D-09.2-001` carry both a PG and an SG | **CARRIED** — documented as intentional in Doc 10 §3.2 mapping definition |
 | F-04a / F-04b | LOW | Sprint 1 | Legacy Doc 10 summaries (12 PG / 18 SG) contradict its own rows (11 / 20) | **RESOLVED** by Sprint 4 §3.1/§4.1 catalog tables |
 | F-05 | INFO | Sprint 1 | Known `GDPR-C08` mapping discrepancy in `phase1_ontology.yaml` | Cosmetic (no card impact) |
 | F-06 / F-08 / F-09 | INFO | Sprint 1 | Cosmetic stale references and summary counts | Cosmetic (no card impact) |
 | F-10 | LOW | Sprint 3 | NI for `OBL-D-01.4-001` and `OBL-D-09.1-001` differs between legacy Doc 11 (3.000 / 2.750) and DR-002 recomputation (2.500 / 2.500) | **RESOLVED** by Sprint 4 §4.1 NI Reconciliation |
 | **F-11** | LOW | **Sprint 5** | Doc 10 and Doc 11 frontmatter `fields_per_card: 15` is stale; actual content uses 17 fields per card | **NEW** — Validator re-raised as F-12; orchestrator to re-emit YAML scalar at merge time |
-| **F-12** | LOW | **Validator (Sprint 5)** | Independent confirmation of F-11 | **NEW** — same disposition as F-11 |
+| **F-12** | LOW | **Validator** | Independent confirmation of F-11 | **NEW** — same disposition as F-11 |
 
 **Resolution status:** 5 findings RESOLVED (F-04a / F-04b / F-10 by Sprint 4; F-05/F-06/F-08/F-09 cosmetic; F-11/F-12 are documentation cleanups, not content blockers), 3 findings CARRIED (F-01/F-03, F-02 — both deferred to human arbiter per P7). No finding blocks Phase 2 Rich Mode DEEP_ENRICHED status.
 
@@ -205,10 +205,10 @@ branch: feature/aegis-p2-case01-rich
 - `09_Strategic_Tensions_Report.md` — 4 multi-paragraph tensions ✅ (Sprint 2, 32 cells)
 - `10_Privacy_Security_Objectives.md` — v2.0 DEEP_ENRICHED, 31 goal rows (11 PG + 20 SG) × 17 fields = 527 cells
 - `11_Rules_Catalog.md` — v2.0 DEEP_ENRICHED, 46 rules (30 CR + 16 BPR) × 17 fields = 782 cells
-- `12_Rules_Catalog.xlsx` — 14 sheets (Sprint 3)
+- `12_Rules_Catalog.xlsx` — 14 sheets
 - `validation/SPRINT*_REPORT.md` — sprint completion reports (0, 1, 2, 3, 3+4, 5)
 - `validation/VALIDATOR_SPRINT5.md` — Validator sub-agent verdict (PASS_WITH_FINDINGS)
-- `validation/LINT_REPORT_BEFORE.md` — Sprint 0 baseline
+- `validation/LINT_REPORT_BEFORE.md` baseline
 - `../02_PHASE2_RULES/` — legacy (read-only, Phase 2 complete)
 - `../01_PHASE1_CONTEXT_RICH/` — Phase 1 Rich (template precedent)
 - `../../../00_METHODOLOGY/AGENTS.md` — root methodology
@@ -227,7 +227,7 @@ branch: feature/aegis-p2-case01-rich
 | Sprint 5 | ✅ PASS_WITH_FINDINGS | **1,819** (17 fields × 107 cards) | Doc 08/10/11 v2.0 DEEP_ENRICHED; F-11 raised |
 | **Validator** | ✅ **PASS_WITH_FINDINGS** | (audit) | 12/12 acceptance criteria met; F-12 (re-raise of F-11) |
 
-**Aggregate sprint acceptance:** 5 ✅ PASS / 1 ✅ PASS_WITH_FINDINGS (Sprint 5) / 1 ✅ PASS_WITH_FINDINGS (Validator) / 1 ⚠ CONDITIONAL_PASS (Sprint 1, carried findings only — no content blockers) / 0 ❌ FAIL.
+**Aggregate sprint acceptance:** 5 ✅ PASS / 1 ✅ PASS_WITH_FINDINGS / 1 ✅ PASS_WITH_FINDINGS (Validator) / 1 ⚠ CONDITIONAL_PASS (Sprint 1, carried findings only — no content blockers) / 0 ❌ FAIL.
 
 **Phase 2 Rich Mode overall verdict:** ✅ **DEEP_ENRICHED — ready for Orchestrator PR review.**
 

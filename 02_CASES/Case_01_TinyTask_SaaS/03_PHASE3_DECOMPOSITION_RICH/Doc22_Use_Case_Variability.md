@@ -5,9 +5,8 @@ phase: 3
 version: 1.0
 created: 2026-08-24
 updated: 2026-08-26
-author: Sprint 6 Executor (paulo@methodology.pt)
+author: Fase de Especificação 6 Executor (paulo@methodology.pt)
 status: EXTENDED_PRODUCT_BASELINE
-sprint: 6
 case: Case_01_TinyTask_SaaS
 tier: MICRO
 inputs: [Doc20_Use_Cases_Catalog.md, Doc21_Use_Case_Relationships.md]
@@ -15,16 +14,16 @@ outputs: [Doc23_Architectural_Nodes.md]
 related_documents: [Doc20_Use_Cases_Catalog.md, Doc21_Use_Case_Relationships.md, RULE_FREEZE.md]
 freeze_total_variants: 18
 freeze_total_functional_variants: 8
-reconciliation_note: "Sprint 6: 18 legacy variants preserved verbatim (V-01..V-18 over security U.C.); +8 functional variants (V-19..V-26 over U.C.7-11) introduced for product-level variability (plan tiers, quotas, MFA enforcement, etc.)."
-sprint6_note: "Sprint 6: EXTENDED. Functional variants anchor V-09 SSO to U.C.10.3.2 (Enterprise SSO) explicitly."
+reconciliation_note: "Fase de Especificação 6: 18 legacy variants preserved verbatim (V-01..V-18 over security U.C.); +8 functional variants (V-19..V-26 over U.C.7-11) introduced for product-level variability (plan tiers, quotas, MFA enforcement, etc.)."
+sprint6_note: "Fase de Especificação 6: EXTENDED. Functional variants anchor V-09 SSO to U.C.10.3.2 (Enterprise SSO) explicitly."
 ---
 
 # Use Case Variability — TinyTask Team Organizer (Phase 3 RICH)
 
-> **Status (Sprint 6):** EXTENDED_PRODUCT_BASELINE.
+> **Status:** EXTENDED_PRODUCT_BASELINE.
 > Two families of variants:
 > 1. **Security/compliance variants** (V-01..V-18, preserved from v2.0) — regulatory timelines, severity thresholds, customer SLAs.
-> 2. **Product variants** (V-19..V-26, new in Sprint 6) — plan tiers, MFA enforcement, mobile sync policy, notification batching.
+> 2. **Product variants** (V-19..V-26, new in Fase de Especificação 6) — plan tiers, MFA enforcement, mobile sync policy, notification batching.
 
 ---
 
@@ -62,11 +61,11 @@ Variability points are conditions under which a U.C.'s behaviour branches. They 
 | V-17 | U.C.6.1.1 | **V.New-hire** | Onboarding | Training within 30 days of start |
 | V-18 | U.C.6.3.1 | **V.External-tool** | Phishing provider | Third-party simulation acceptable (per DPA) |
 
-> **Sprint 6 note:** V-09 (SSO) re-anchored from the generic `U.C.3.1.1` to the **Enterprise SSO functional U.C. `U.C.10.3.2`** for clearer product anchoring. The security U.C.3.1.1 variant V-09 still stands (the customer-level SSO path).
+> **Fase de Especificação 6 note:** V-09 (SSO) re-anchored from the generic `U.C.3.1.1` to the **Enterprise SSO functional U.C. `U.C.10.3.2`** for clearer product anchoring. The security U.C.3.1.1 variant V-09 still stands (the customer-level SSO path).
 
 ---
 
-## §3 Functional Variability Catalogue (8 variants × 6 base U.C.7-11 — Sprint 6 new)
+## §3 Functional Variability Catalogue (8 variants × 6 base U.C.7-11 new)
 
 | # | Base UC | Variant | Trigger | Effect |
 |---|---------|---------|---------|--------|
@@ -104,4 +103,4 @@ All variants trace back to a base U.C. that exists in `Doc20_Use_Cases_Catalog.m
 
 ---
 
-**End of Use Case Variability (Phase 3 RICH, EXTENDED_PRODUCT_BASELINE, v1.0 — Sprint 6)**
+**End of Use Case Variability (Phase 3 RICH, EXTENDED_PRODUCT_BASELINE, v1.0)**

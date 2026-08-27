@@ -6,7 +6,7 @@ version: 1.0
 created: 2026-08-06
 updated: 2026-08-10
 author: Sprint Validator (tier1-verifier)
-sprint_8_note: Sprint 8 Executor (corr-009 ao-migration historical-context)
+sprint_8_note: Fase de Especificação 8 Executor (corr-009 ao-migration historical-context)
 status: HISTORICAL
 historical_note: Historical report from corr-007 era. Current 07c version is v4.0 with AO ID model (corr-008 supersedes corr-007). Content below preserved verbatim; see `07c_Adjusted_Objectives.md` §9 Version History for the v4.0 AO ID migration entry.
 case: Case_01_TinyTask_SaaS
@@ -177,7 +177,7 @@ active_subdomains: 37
     - `07b_Proportionality_Profile.md:10` — DEEP_ENRICHED
     - `07c_Adjusted_Objectives.md` frontmatter — `status: DEEP_ENRICHED`
     - `Citation_Index.md:9` — CORPUS_ENRICHED
-  - **Gap:** The intermediate `ADJUSTED_OBJECTIVES` status (Sprint 4 marker per AGENTS.md / README) was NEVER materialised in any frontmatter. Doc 07c was created in Sprint 4 directly with `status: DEEP_ENRICHED` (jumping from non-existent → DEEP_ENRICHED via Sprint 5 enrichment). Doc 07b jumped from RECONCILED → DEEP_ENRICHED (Sprint 5) without an `ADJUSTED_OBJECTIVES` intermediate state. The Sprint 4 *work* is fully present (74 adjusted objectives in §2-§3, 4 tensions in §4, 37-row decision table in §5, 07b §12-§14); only the **status label** is missing.
+  - **Gap:** The intermediate `ADJUSTED_OBJECTIVES` status (Fase de Especificação 4 marker per AGENTS.md / README) was NEVER materialised in any frontmatter. Doc 07c was created in Fase de Especificação 4 directly with `status: DEEP_ENRICHED` (jumping from non-existent → DEEP_ENRICHED via Fase de Especificação 5 enrichment). Doc 07b jumped from RECONCILED → DEEP_ENRICHED without an `ADJUSTED_OBJECTIVES` intermediate state. The Fase de Especificação 4 *work* is fully present (74 adjusted objectives in §2-§3, 4 tensions in §4, 37-row decision table in §5, 07b §12-§14); only the **status label** is missing.
   - No DRAFTs exist in the active case-form 14 Phase 1 docs (`corpus_field_map.md:9` is DRAFT but is a meta-doc).
 - **Gap detail:** Functional progression is monotonic forward (no regressions); the missing intermediate label is a documentation gap, not a content gap.
 - **Severity:** LOW (work is complete; only the status metadata is missing the ADJUSTED_OBJECTIVES state).
@@ -308,7 +308,7 @@ No HIGH-severity gaps detected across any of the 13 Tier 1 criteria. Both PARTIA
 
 1. **C1.3 — Document corpus Annex gaps explicitly in Doc 07c cards.** The 12 cards that reference CRA Annex I (D-01.4, D-02.4, D-05.1, D-05.2, D-06.2, D-09.2, D-09.3) and CRA Annex VII (D-09.1, D-09.3, D-10.3) could add a `Note:` line saying "Annex not yet in corpus — see Citation_Index §6". This makes the gap visible at point-of-use rather than only in Citation_Index. **Severity: LOW; cosmetic; no functional impact.**
 
-2. **C2.4 — Materialise the ADJUSTED_OBJECTIVES status in frontmatter.** Add a one-line Sprint 4 commit to set `status: ADJUSTED_OBJECTIVES` on Doc 07c (and optionally Doc 07b) at the Sprint 4 milestone, then bump to DEEP_ENRICHED in Sprint 5. This would make the frontmatter status progression strictly monotonic through all 5 named states (DRAFT → RECONCILED → CORPUS_ENRICHED → ADJUSTED_OBJECTIVES → DEEP_ENRICHED). **Severity: LOW; metadata-only; Sprint 4 work is fully present.**
+2. **C2.4 — Materialise the ADJUSTED_OBJECTIVES status in frontmatter.** Add a one-line Fase de Especificação 4 commit to set `status: ADJUSTED_OBJECTIVES` on Doc 07c (and optionally Doc 07b) at the Fase de Especificação 4 milestone, then bump to DEEP_ENRICHED in Fase de Especificação 5. This would make the frontmatter status progression strictly monotonic through all 5 named states (DRAFT → RECONCILED → CORPUS_ENRICHED → ADJUSTED_OBJECTIVES → DEEP_ENRICHED). **Severity: LOW; metadata-only; Fase de Especificação 4 work is fully present.**
 
 3. **C2.2 — Add hypertext anchors in Doc 04 §4 cross-ref column.** Replace the textual `→ Doc 07c Appendix A §A.1 (PG table, 37 rows)` with link `→ [Doc 07c Appendix A §A.1](#pg-table)` and per-card anchor links like `→ [D-05.3 erasure card](#pg-D-05-3-001)`. Improves navigability. **Severity: LOW; functional cross-refs already work.**
 
@@ -323,7 +323,7 @@ No HIGH-severity gaps detected across any of the 13 Tier 1 criteria. Both PARTIA
 The user has explicitly deferred lower tiers to a next iteration. Future Tier 2/3 validation should cover:
 
 - **Tier 2 — Realism**: Does the implementation match real AWS / Firebase / Stripe / GitHub primitives cited in Doc 07b example_controls? Are the verification methods (DEMONSTRATE + INSPECT) implementable by an 8-person team?
-- **Tier 2 — Business**: Is the cost/feasibility realistic? Does the FTE=0.85 budget accommodate the 74 PG/SG × 12-field cards? (Sprint 5 explicitly excluded Effort/Cost/Timeline per scope.)
+- **Tier 2 — Business**: Is the cost/feasibility realistic? Does the FTE=0.85 budget accommodate the 74 PG/SG × 12-field cards? (Fase de Especificação 5 explicitly excluded Effort/Cost/Timeline per scope.)
 - **Tier 2 — Regulatory**: Are the GDPR Art. 32 + Art. 28 multi-actor obligations correctly differentiated between CONTROLLER and PROCESSOR roles? Is CRA Art. 13(8) 5-year support period correctly interpreted for SaaS?
 - **Tier 3 — Track B**: Does the (S, I, P) → Tier mapping in Doc 07b §12 / Doc 07c §5 correctly apply proportionality_model.md §5.1-§5.3? Is the floor rule (§5.3) preserved?
 - **Tier 3 — Traceability**: For each of 74 PG/SG, is there a complete chain clause_id → sub-domain → PG/SG → tier → example_control → owner → verification? Are any chains broken?
@@ -334,13 +334,13 @@ These are out of scope for Tier 1.
 
 ## §7 See also
 
-- `validation/VALIDATOR_SPRINT0.md` — Sprint 0 skeleton validator
-- `validation/VALIDATOR_SPRINT3.md` — Sprint 3 corpus-cross-check validator
-- `validation/VALIDATOR_SPRINT4.md` — Sprint 4 adjusted-objectives validator
-- `validation/VALIDATOR_SPRINT5.md` — Sprint 5 deep-enrichment validator
-- `validation/SPRINT3_REPORT.md` — Sprint 3 final report (lint status, cross-check summary)
-- `validation/SPRINT4_REPORT.md` — Sprint 4 adjusted objectives report (74 PG/SG + 4 tensions)
-- `validation/SPRINT5_REPORT.md` — Sprint 5 deep enrichment report (74 detail cards × 12 fields)
+- `validation/VALIDATOR_SPRINT0.md` skeleton validator
+- `validation/VALIDATOR_SPRINT3.md` corpus-cross-check validator
+- `validation/VALIDATOR_SPRINT4.md` adjusted-objectives validator
+- `validation/VALIDATOR_SPRINT5.md` deep-enrichment validator
+- `validation/SPRINT3_REPORT.md` final report (lint status, cross-check summary)
+- `validation/SPRINT4_REPORT.md` adjusted objectives report (74 PG/SG + 4 tensions)
+- `validation/SPRINT5_REPORT.md` deep enrichment report (74 detail cards × 12 fields)
 - `01_IMPLEMENTATION_TOOLS/lints/reports/lint_report_phase1_20260806_183516.md` — live lint run (6/6 PASS)
 - `00_METHODOLOGY/REFERENCE/proportionality_model.md` §1 (invariant) + §5 (decision table) + §6 (tier attributes) — Track B spec
 - `00_METHODOLOGY/PREPROCESSING_by_domain/domains/` — corpus source (38 sub-domains × 4 layers)

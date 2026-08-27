@@ -3,7 +3,7 @@
 > **Agent:** EXECUTOR (sub-agent)
 > **Date:** 2026-08-06
 > **Branch:** `feature/aegis-p1-case01-rich`
-> **Objective:** Complete the corpus at `00_METHODOLOGY/PREPROCESSING_by_domain/domains/` to 38/38 sub-domain `.md` files + 86/86 JSON manifests so Sprint 2 (Corpus Enrichment) can proceed at full fidelity.
+> **Objective:** Complete the corpus at `00_METHODOLOGY/PREPROCESSING_by_domain/domains/` to 38/38 sub-domain `.md` files + 86/86 JSON manifests so Fase de Especificação 2 (Corpus Enrichment) can proceed at full fidelity.
 
 ---
 
@@ -206,7 +206,7 @@ The prescribed `git stash show -p stash@{0} | git apply --include='...'` command
 - [x] No commits made.
 - [x] Branch unchanged (`feature/aegis-p1-case01-rich`).
 
-**Sprint 2 (Corpus Enrichment) can proceed at full fidelity.**
+**Fase de Especificação 2 (Corpus Enrichment) can proceed at full fidelity.**
 
 ---
 

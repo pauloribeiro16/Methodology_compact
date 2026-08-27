@@ -5,9 +5,8 @@ phase: 3
 version: 1.0
 created: 2026-08-24
 updated: 2026-08-26
-author: Sprint 6 Executor (paulo@methodology.pt)
+author: Fase de Especificação 6 Executor (paulo@methodology.pt)
 status: EXTENDED_PRODUCT_BASELINE
-sprint: 6
 case: Case_01_TinyTask_SaaS
 tier: MICRO
 inputs: [Doc20_Use_Cases_Catalog.md]
@@ -17,13 +16,13 @@ freeze_total_relationships: 24
 freeze_total_constrains_edges: 35
 freeze_total_threats_edges: 8
 freeze_total_mitigated_by_edges: 24
-reconciliation_note: "Sprint 6: 24 legacy «include»/«extend» edges preserved verbatim; +35 «constrains» edges (security U.C. → functional U.C.); +8 «threatens» edges (MUC → functional U.C.); +24 «mitigated_by» edges (MUC → security U.C.). Total edge catalogue: 91."
-sprint6_note: "Sprint 6: EXTENDED. New edge types introduced for product baseline and misuse-case threat modelling. Existing U.C.* IDs untouched; new U.C.7-11 + MUC-01..08 referenced as sources/targets."
+reconciliation_note: "Fase de Especificação 6: 24 legacy «include»/«extend» edges preserved verbatim; +35 «constrains» edges (security U.C. → functional U.C.); +8 «threatens» edges (MUC → functional U.C.); +24 «mitigated_by» edges (MUC → security U.C.). Total edge catalogue: 91."
+sprint6_note: "Fase de Especificação 6: EXTENDED. New edge types introduced for product baseline and misuse-case threat modelling. Existing U.C.* IDs untouched; new U.C.7-11 + MUC-01..08 referenced as sources/targets."
 ---
 
 # Use Case Relationships — TinyTask Team Organizer (Phase 3 RICH)
 
-> **Status (Sprint 6):** EXTENDED_PRODUCT_BASELINE.
+> **Status:** EXTENDED_PRODUCT_BASELINE.
 > Three edge families:
 > 1. **Functional** — `«include»` / `«extend»` between U.C.1-6 (security/compliance) preserved verbatim from v2.0 (24 edges).
 > 2. **Security constraints** — `«constrains»` from each security U.C.1-6 to the functional U.C.7-11 it restricts (35 edges; 1-to-1 mapping for primary constraints; some functional UCs are constrained by multiple security UCs).
@@ -84,7 +83,7 @@ sprint6_note: "Sprint 6: EXTENDED. New edge types introduced for product baselin
 
 ---
 
-## §4 `«constrains»` Relationships (Sprint 6 new — Security U.C. → Functional U.C.)
+## §4 `«constrains»` Relationships (Fase de Especificação 6 new — Security U.C. → Functional U.C.)
 
 > One row per security U.C. with its **primary** functional U.C. constraint (the UC the security control is designed to safeguard). Many functional U.C.s are constrained by multiple security U.C.s — the "primary" link is shown here for navigability; the full bridge lives in `Doc24_Requirements_Allocation.md` and `22_Traceability_Matrix.xlsx` (sheets FUNCUC_TO_SECUC + MUC_TO_MITIGATION).
 
@@ -128,7 +127,7 @@ sprint6_note: "Sprint 6: EXTENDED. New edge types introduced for product baselin
 
 ---
 
-## §5 `«threatens»` Relationships (MUC → Functional U.C., 8 edges — Sprint 6 new)
+## §5 `«threatens»` Relationships (MUC → Functional U.C., 8 edges new)
 
 | MUC | Threatens | Attack vector |
 |-----|-----------|---------------|
@@ -143,7 +142,7 @@ sprint6_note: "Sprint 6: EXTENDED. New edge types introduced for product baselin
 
 ---
 
-## §6 `«mitigated by»` Relationships (MUC → Security U.C., 24 edges — Sprint 6 new)
+## §6 `«mitigated by»` Relationships (MUC → Security U.C., 24 edges new)
 
 | MUC | Mitigated by (security U.C.) |
 |-----|------------------------------|
@@ -209,4 +208,4 @@ Package membership matches `Doc20_Use_Cases_Catalog.md` §2/§3. No U.C. spans m
 
 ---
 
-**End of Use Case Relationships (Phase 3 RICH, EXTENDED_PRODUCT_BASELINE, v1.0 — Sprint 6)**
+**End of Use Case Relationships (Phase 3 RICH, EXTENDED_PRODUCT_BASELINE, v1.0)**

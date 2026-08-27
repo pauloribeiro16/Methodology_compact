@@ -5,9 +5,8 @@ phase: 3
 version: 2.0
 created: 2026-08-24
 updated: 2026-08-24
-author: Sprint 4 Executor (paulo@methodology.pt)
+author: Fase de Especificação 4 Executor (paulo@methodology.pt)
 status: DEEP_ENRICHED
-sprint: 5
 deep_enrichment_date: 2026-08-24
 detail_cards_count: 30
 cells_count: 480
@@ -24,13 +23,13 @@ expected_compact_columns: 12
 schema_columns: 6
 schema_columns_list: [Owner, Verification Criteria, Implementation Status, Priority, Stakeholders, Reporting]
 freeze_total_frs: 30
-reconciliation_note: "30 FR freeze (F-00b RESOLVED — legacy 60 figure was stale); FR-16/FR-23 semantic remap flagged F-S2-02/F-S2-03 for Sprint 5."
-sprint5_note: "Sprint 5: DEEP enrichment — 30 cards (24×17 fields + 6×12 fields) = 480 cells. Frontmatter status DEEP_ENRICHED, version 2.0."
+reconciliation_note: "30 FR freeze (F-00b RESOLVED — legacy 60 figure was stale); FR-16/FR-23 semantic remap flagged F-S2-02/F-S2-03 for Fase de Especificação 5."
+sprint5_note: "Fase de Especificação 5: DEEP enrichment — 30 cards (24×17 fields + 6×12 fields) = 480 cells. Frontmatter status DEEP_ENRICHED, version 2.0."
 ---
 
 # Functional Requirements — TinyTask SaaS (Phase 3 RICH)
 
-> **Status:** ADJUSTED_FIELDS (Sprint 4). 30 FR cards freeze. Sprint 5 deep-fills the 17-field per-card schema.
+> **Status:** ADJUSTED_FIELDS. 30 FR cards freeze. Fase de Especificação 5 deep-fills the 17-field per-card schema.
 
 ---
 
@@ -46,15 +45,15 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 
 **Legacy drift disposition:**
 - Legacy `60 FRs` figure is **stale** (F-00b RESOLVED) — freeze is 30.
-- FR-16 (regulatory notification) → mapped to CR-D-04.3-001 in this sprint (legacy Doc 23 §3 had CR-D-01.1-001; F-S2-02 OPEN for Sprint 5 confirmation).
-- FR-23 (SBOM) → mapped to CR-D-06.2-001 in this sprint (legacy Doc 23 §3 had CR-D-02.1-001; F-S2-03 OPEN for Sprint 5 confirmation).
+- FR-16 (regulatory notification) → mapped to CR-D-04.3-001 in this sprint (legacy Doc 23 §3 had CR-D-01.1-001; F-S2-02 OPEN for Fase de Especificação 5 confirmation).
+- FR-23 (SBOM) → mapped to CR-D-06.2-001 in this sprint (legacy Doc 23 §3 had CR-D-02.1-001; F-S2-03 OPEN for Fase de Especificação 5 confirmation).
 
 ---
 
 ## §2 Functional Requirements Catalogue (30 cards)
 
 > **Format:** `FR-NN | Domain | Requirement statement | Source UCs | Source NFRs | Source CR | Verification | Priority | NIST`
-> Card detail (17-field schema) fills in Sprint 5.
+> Card detail (17-field schema) fills in Fase de Especificação 5.
 
 ### §2.1 IAM domain (FR-01..FR-06)
 
@@ -943,4 +942,4 @@ See `NIST_ANCHORS.md` §3.2 for the full table. Summary:
 
 ---
 
-**End of Functional Requirements (Phase 3 RICH, ADJUSTED_FIELDS, Sprint 4)**
+**End of Functional Requirements (Phase 3 RICH, ADJUSTED_FIELDS, Fase de Especificação 4)**

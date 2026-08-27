@@ -5,9 +5,8 @@ phase: 3
 version: 2.0
 created: 2026-08-24
 updated: 2026-08-24
-author: Sprint 4 Executor (paulo@methodology.pt)
+author: Fase de Especificação 4 Executor (paulo@methodology.pt)
 status: DEEP_ENRICHED
-sprint: 5
 deep_enrichment_date: 2026-08-24
 detail_cards_count: 8
 cells_count: 96
@@ -23,13 +22,13 @@ expected_card_columns: 17
 expected_compact_columns: 12
 schema_columns: 6
 schema_columns_list: [Owner, Verification Criteria, Implementation Status, Priority, Stakeholders, Reporting]
-reconciliation_note: "Synthesis aggregates Sprint 1+2+3+4 outputs; 30 FR freeze (legacy 60 figure stale, F-00b RESOLVED); 6 FRs unparented to CR are process/admin; Sprint 4 schema adjustment applied to all index tables in §2, §5, §8."
-sprint5_note: "Sprint 5: DEEP enrichment — 8 cards (0×17 fields + 8×12 fields) = 96 cells. Frontmatter status DEEP_ENRICHED, version 2.0."
+reconciliation_note: "Synthesis aggregates Fase de Especificação 1+2+3+4 outputs; 30 FR freeze (legacy 60 figure stale, F-00b RESOLVED); 6 FRs unparented to CR are process/admin; Fase de Especificação 4 schema adjustment applied to all index tables in §2, §5, §8."
+sprint5_note: "Fase de Especificação 5: DEEP enrichment — 8 cards (0×17 fields + 8×12 fields) = 96 cells. Frontmatter status DEEP_ENRICHED, version 2.0."
 ---
 
 # Phase 3 Functional Decomposition Synthesis — TinyTask SaaS (Phase 3 RICH)
 
-> **Status:** ADJUSTED_FIELDS (Sprint 4). Synthesis document. Aggregates all Phase 3 Rich artefacts.
+> **Status:** ADJUSTED_FIELDS. Synthesis document. Aggregates all Phase 3 Rich artefacts.
 
 ---
 
@@ -42,7 +41,7 @@ This Synthesis consolidates the Phase 3 Rich Mode outputs from Sprints 1, 2, and
 - `CORPUS_LINKAGE.md` — artefact-to-D-XX.Y mapping (344/345 artefacts).
 - `NIST_ANCHORS.md` — per-artefact NIST CSF 2.0 + PF 1.0.
 - `KG_CHAINS.md` — 12 KG inference chains.
-- `22_Traceability_Matrix.xlsx` — 10-sheet workbook (Sprint 3 deliverable).
+- `22_Traceability_Matrix.xlsx` — 10-sheet workbook (Fase de Especificação 3 deliverable).
 
 ---
 
@@ -67,7 +66,7 @@ This Synthesis consolidates the Phase 3 Rich Mode outputs from Sprints 1, 2, and
 
 ---
 
-## §2a DEEP-enrichment highlights (Sprint 5)
+## §2a DEEP-enrichment highlights
 
 ### SYNTH-D-01.1 — D-01.1 Encryption at Rest — Most Critical Control [priority=HIGH, fields=12]
 
@@ -243,7 +242,7 @@ L0: TinyTask Compliance Map (1 node)
 TOTAL L2: 35 UC IDs
 ```
 
-See `17_Functional_Tree.md` for the Mermaid source + `18_Functional_Tree.drawio` (Sprint 3, `gen_drawio.py`).
+See `17_Functional_Tree.md` for the Mermaid source + `18_Functional_Tree.drawio` (Fase de Especificação 3, `gen_drawio.py`).
 
 ---
 
@@ -295,21 +294,21 @@ Per `CORPUS_LINKAGE.md` §10, Phase 3 Rich covers 24 active D-XX.Y sub-domains (
 
 ---
 
-## §8 F-register summary (Sprint 3 status)
+## §8 F-register summary (Fase de Especificação 3 status)
 
 | Status | Count | Examples | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |--------|------:|---------|-------|-----------------------|----------|----------|--------------|-----------|
 | **RESOLVED** | 4 | F-00a, F-00b, F-00c, F-00d | | | | | | |
-| **OPEN (Sprint 5)** | 7 | F-S1-01..07 (orphan CR-D refs) | | | | | | |
+| **OPEN** | 7 | F-S1-01..07 (orphan CR-D refs) | | | | | | |
 | **CARRIED** | 1 | F-S1-08 (Doc 08 ↔ Doc 11 OBL drift) | | | | | | |
 | **OPEN (KG re-run)** | 1 | F-S1-09 (14 contamination nodes) | | | | | | |
 | **CLOSED** | 4 | F-00f, F-S1-10, F-S1-11, F-00e (drawio generator live) | | | | | | |
 | **NOTED** | 1 | F-S2-01 (KG label mismatch) | | | | | | |
-| **OPEN (Sprint 5 remap)** | 2 | F-S2-02 (FR-16), F-S2-03 (FR-23) | | | | | | |
+| **OPEN (Fase de Especificação 5 remap)** | 2 | F-S2-02 (FR-16), F-S2-03 (FR-23) | | | | | | |
 
 ---
 
-## §9 Invariants respected (Sprint 3)
+## §9 Invariants respected
 
 - Legacy `03_PHASE3_DECOMPOSITION/` untouched (`git diff --stat` empty).
 - Legacy `02_PHASE2_RULES/` untouched.
@@ -317,18 +316,18 @@ Per `CORPUS_LINKAGE.md` §10, Phase 3 Rich covers 24 active D-XX.Y sub-domains (
 - Corpus files (`00_METHODOLOGY/PREPROCESSING_by_domain/`) untouched.
 - No new rules, no rule renumbering, no Effort/Cost/Timeline cards added.
 - Document IDs: `AEGIS-P3-RICH-*` (parallel to legacy `ARM-P3-*`).
-- Status: `CORPUS_ENRICHED` maintained across all 11 placeholders (Sprint 4 changes it to `ADJUSTED_FIELDS`).
+- Status: `CORPUS_ENRICHED` maintained across all 11 placeholders (Fase de Especificação 4 changes it to `ADJUSTED_FIELDS`).
 
 ---
 
-## §10 Sprint 3 deliverables (NEW)
+## §10 Fase de Especificação 3 deliverables (NEW)
 
 1. **`scripts/build_traceability_matrix_rich.py`** — REAL implementation. Produces 10-sheet xlsx.
 2. **`22_Traceability_Matrix.xlsx`** — generated; 10 sheets; 330 total rows.
 3. **`scripts/gen_drawio.py`** — REAL implementation. Consumes Mermaid from Doc 17.
 4. **`18_Functional_Tree.drawio`** — generated; 42 vertices + 41 edges.
-5. **`scripts/verify_rich.py`** — `verify_xlsx()` real (one function); full verify Sprint 5.
-6. **`validation/SPRINT3_REPORT.md`** — Sprint 3 completion report.
+5. **`scripts/verify_rich.py`** — `verify_xlsx()` real (one function); full verify Fase de Especificação 5.
+6. **`validation/SPRINT3_REPORT.md`** completion report.
 7. **`README.md` v0.4** — updated with Implementation Status section.
 8. **Annex A + Annex D** — light fill (Mermaid diagrams; KG chain examples).
 9. **11 core docs** — real content (this sprint).
@@ -338,9 +337,9 @@ Per `CORPUS_LINKAGE.md` §10, Phase 3 Rich covers 24 active D-XX.Y sub-domains (
 
 ## §11 Next sprints
 
-- **Sprint 4** — Adjusted-fields-per-row (+6 columns).
-- **Sprint 5** — DEEP enrichment (17 fields × ~235 cards = ~3,995 cells).
-- **Validator** — Self-verification (Sprint 5 → `VALIDATOR_SPRINT5.md`).
+- **Fase de Especificação 4** — Adjusted-fields-per-row (+6 columns).
+- **Fase de Especificação 5** — DEEP enrichment (17 fields × ~235 cards = ~3,995 cells).
+- **Validator** — Self-verification (Fase de Especificação 5 → `VALIDATOR_SPRINT5.md`).
 
 ---
 
@@ -364,4 +363,4 @@ Per `CORPUS_LINKAGE.md` §10, Phase 3 Rich covers 24 active D-XX.Y sub-domains (
 
 ---
 
-**End of Phase 3 Functional Decomposition Synthesis (Phase 3 RICH, ADJUSTED_FIELDS, Sprint 4)**
+**End of Phase 3 Functional Decomposition Synthesis (Phase 3 RICH, ADJUSTED_FIELDS, Fase de Especificação 4)**

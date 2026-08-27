@@ -5,11 +5,10 @@ phase: 3
 version: 1.0
 created: 2026-08-24
 updated: 2026-08-24
-author: Sprint 2 Executor (paulo@methodology.pt)
+author: Fase de Especificação 2 Executor (paulo@methodology.pt)
 status: ACTIVE
 case: Case_01_TinyTask_SaaS
 tier: MICRO
-sprint: 2
 sprint_role: kg_chains
 branch: feature/aegis-p3-case01-rich
 kg_source: /home/epmq-cyber/Área de Trabalho/projects/Deucalion/results/graphify/E3_2026-08-23/graphify-out/graph.json
@@ -36,7 +35,7 @@ related_deliverables: [CORPUS_LINKAGE.md, NIST_ANCHORS.md, validation/SPRINT2_RE
 >
 > **Tally.** 12 chains, 18 total edges (15 EXTRACTED + 3 INFERRED). 11/12 spot-checks PASS via grep of cited `source_location` in `source_file`.
 >
-> **Integrity (per AGENTS.md P5).** EXTRACTED edges are direct citations from cited `source_file`; INFERRED edges are flagged `[needs verification]` and must be verified in Sprint 5 by reading the cited §-anchor. Chains with broken edges are listed at end of §3.
+> **Integrity (per AGENTS.md P5).** EXTRACTED edges are direct citations from cited `source_file`; INFERRED edges are flagged `[needs verification]` and must be verified in Fase de Especificação 5 by reading the cited §-anchor. Chains with broken edges are listed at end of §3.
 
 ---
 
@@ -107,18 +106,18 @@ Format: `Start node ID | hop1 [relation, confidence, source_location] | hop2 [..
 | 1 | `02_phase2_rules_rich_11_rules_catalog_bpr_d_01_1_001` → `02_phase2_rules_rich_11_rules_catalog_cr_d_01_1_001` | references | EXTRACTED | `§7.2 BPR-D-01.1-001 field 10 Dependencies` | `02_PHASE2_RULES_RICH/11_Rules_Catalog.md` |
 | 2 | `02_phase2_rules_rich_11_rules_catalog_cr_d_01_1_001` → `gdpr` | references | EXTRACTED | `§7.1 CR-D-01.1-001 field 4` | `02_PHASE2_RULES_RICH/11_Rules_Catalog.md` |
 
-### CH-08: CR-D-01.1 → Dual Maturity Model → CSF 2.0 (RP-3)
+### CH-08: CR-D-01.1 → Dual Posture Model → CSF 2.0 (RP-3)
 
 - **Pattern**: RP-3
 - **Tally**: EXTRACTED=2 / INFERRED=0
 - **Spot-check (1st edge)**: ✓ PASS — EXTRACTED ✓ (fuzzy "CR-D-01.1-001" found in 02_PHASE2_RULES_RICH/11_Rules_Catalog.md)
 
-**Chain**: `02_phase2_rules_rich_11_rules_catalog_cr_d_01_1_001` | [references, EXTRACTED, `§7.1 CR-D-01.1-001 fields 21-22`] | `02_phase2_rules_rich_11_rules_catalog_maturity_dual` | [references, EXTRACTED, `field 21`] | `concept_nist_csf_2_0` | | 2 EXTRACTED / 0 INFERRED
+**Chain**: `02_phase2_rules_rich_11_rules_catalog_cr_d_01_1_001` | [references, EXTRACTED, `§7.1 CR-D-01.1-001 fields 21-22`] | `02_phase2_rules_rich_11_rules_catalog_posture_dual` | [references, EXTRACTED, `field 21`] | `concept_nist_csf_2_0` | | 2 EXTRACTED / 0 INFERRED
 
 | Hop | Source → Target | Relation | Confidence | Source Location | Source File |
 |-----|-----------------|----------|------------|-----------------|-------------|
-| 1 | `02_phase2_rules_rich_11_rules_catalog_cr_d_01_1_001` → `02_phase2_rules_rich_11_rules_catalog_maturity_dual` | references | EXTRACTED | `§7.1 CR-D-01.1-001 fields 21-22` | `02_PHASE2_RULES_RICH/11_Rules_Catalog.md` |
-| 2 | `02_phase2_rules_rich_11_rules_catalog_maturity_dual` → `concept_nist_csf_2_0` | references | EXTRACTED | `field 21` | `02_PHASE2_RULES_RICH/11_Rules_Catalog.md` |
+| 1 | `02_phase2_rules_rich_11_rules_catalog_cr_d_01_1_001` → `02_phase2_rules_rich_11_rules_catalog_posture_dual` | references | EXTRACTED | `§7.1 CR-D-01.1-001 fields 21-22` | `02_PHASE2_RULES_RICH/11_Rules_Catalog.md` |
+| 2 | `02_phase2_rules_rich_11_rules_catalog_posture_dual` → `concept_nist_csf_2_0` | references | EXTRACTED | `field 21` | `02_PHASE2_RULES_RICH/11_Rules_Catalog.md` |
 
 ### CH-09: FR-29 (Universal Notification per KG) → UC-25 (RP-7)
 
@@ -176,7 +175,7 @@ Format: `Start node ID | hop1 [relation, confidence, source_location] | hop2 [..
 - **Pattern**: RP-4
 - **Tally**: EXTRACTED=0 / INFERRED=1
 - **Spot-check (1st edge)**: ✓ PASS — EXTRACTED ✓ (fuzzy)
-- **Note**: Cross-doc: Doc 14 → Doc 11. INFERRED (KG-inferred; verify in Sprint 5 by reading Doc 14 §8 NODE-PROC-001).
+- **Note**: Cross-doc: Doc 14 → Doc 11. INFERRED (KG-inferred; verify in Fase de Especificação 5 by reading Doc 14 §8 NODE-PROC-001).
 
 **Chain**: `node_proc_001_unified_incident_response` | [references, INFERRED, `Doc 14 §8 NODE-PROC-001`] | `02_phase2_rules_rich_11_rules_catalog_cr_d_04_3_001` | | 0 EXTRACTED / 1 INFERRED
 
@@ -208,7 +207,7 @@ Format: `Start node ID | hop1 [relation, confidence, source_location] | hop2 [..
 | RP-7 (god-nodes) | 4 | CH-07, CH-09, CH-10, CH-12 |
 | RP-8 (cross-domain) | 2 | CH-06, CH-13 |
 
-**God-nodes used**: `concept_nist_csf_2_0`, `gdpr`, `cra`, `privacy_fw_1_0`, `02_phase2_rules_rich_11_rules_catalog_maturity_dual`.
+**God-nodes used**: `concept_nist_csf_2_0`, `gdpr`, `cra`, `privacy_fw_1_0`, `02_phase2_rules_rich_11_rules_catalog_posture_dual`.
 
 ---
 ## §3 Broken Chains (none)
@@ -218,12 +217,12 @@ All 12 chains above had all hops successfully resolved in the Graphify KG. No ch
 ---
 ## §4 F-S1-09 Disposition (KG Contamination)
 
-Sprint 1 reported 14 Case_02 contamination KG nodes (AI Act, Biometric, Border Control AI, IPSARA, FRIA) in the Graphify KG. Per Sprint 1 §4.2, contamination is NOT in markdown source (verified by direct grep). Disposition: REPORT.
+Fase de Especificação 1 reported 14 Case_02 contamination KG nodes (AI Act, Biometric, Border Control AI, IPSARA, FRIA) in the Graphify KG. Per Fase de Especificação 1 §4.2, contamination is NOT in markdown source (verified by direct grep). Disposition: REPORT.
 
-Sprint 2 status:
-- KG re-run on Case_01 in isolation: NOT performed in Sprint 2 (deferred to Sprint 5 / dedicated contract).
+Fase de Especificação 2 status:
+- KG re-run on Case_01 in isolation: NOT performed in Fase de Especificação 2 (deferred to Fase de Especificação 5 / dedicated contract).
 - The 14 contamination nodes do NOT appear in any of the 12 chains above (verified by inspection of edge endpoints).
-- **F-S1-09 remains OPEN** (Sprint 5 action).
+- **F-S1-09 remains OPEN** (Fase de Especificação 5 action).
 
 ---
 ## §5 Methodology / KG inspection commands

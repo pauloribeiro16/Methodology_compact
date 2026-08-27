@@ -1,15 +1,14 @@
 ---
 document_id: AEGIS-P3-RICH-SPRINT5-REPORT
-title: Sprint 5 Report — DEEP Enrichment (Phase 3 RICH)
+title: Fase de Especificação 5 Report — DEEP Enrichment (Phase 3 RICH)
 phase: 3
 version: 1.0
 created: 2026-08-24
 updated: 2026-08-24
-author: Sprint 5 Executor (paulo@methodology.pt)
+author: Fase de Especificação 5 Executor (paulo@methodology.pt)
 status: DEEP_ENRICHED
 case: Case_01_TinyTask_SaaS
 tier: MICRO
-sprint: 5
 sprint_role: deep_enrichment_per_card
 branch: feature/aegis-p3-case01-rich
 verdict: PASS_WITH_FINDINGS
@@ -27,7 +26,7 @@ related_deliverables:
   - ../PROJECT_STATE.md (status: DEEP_ENRICHED)
   - ../RICH_VS_LEGACY.md (§G appended)
   - validation/RICH_LINT_DEEP.md (lint pass output)
-  - ../../../../scripts/run_phase3_rich_lints.py (new — Sprint 0 runner materialised)
+  - ../../../../scripts/run_phase3_rich_lints.py (new runner materialised)
   - ../../../../scripts/sprint5_helpers.py (card templates)
   - ../../../../scripts/sprint5_uc_cards.py (UC card generator)
   - ../../../../scripts/sprint5_node_cards.py (NODE card generator)
@@ -37,9 +36,9 @@ related_deliverables:
   - ../../../../scripts/sprint5_frontmatter.py (frontmatter updater)
 ---
 
-# Sprint 5 Report — DEEP Enrichment (Phase 3 RICH)
+# Fase de Especificação 5 Report — DEEP Enrichment (Phase 3 RICH)
 
-> **Sprint 5 verdict:** **PASS_WITH_FINDINGS.** All 6 tasks (A–F) delivered. 8 detail-rich docs enriched with 276 detail cards (3,917 cells). F-00e RESOLVED. Pre-existing lint naming-convention gap (F-S5-01) and orphan-UC lint false-positives (F-S5-02) raised.
+> **Fase de Especificação 5 verdict:** **PASS_WITH_FINDINGS.** All 6 tasks (A–F) delivered. 8 detail-rich docs enriched with 276 detail cards (3,917 cells). F-00e RESOLVED. Pre-existing lint naming-convention gap (F-S5-01) and orphan-UC lint false-positives (F-S5-02) raised.
 
 ---
 
@@ -70,7 +69,7 @@ related_deliverables:
 | 8 | `Phase_3_Functional_Decomposition_Synthesis.md` | 8 | 0 | 8 (SYNTH-D-XX.X highlights) | SYNTH highlights |
 | | **TOTAL** | **276** | **121** | **155** | |
 
-> Note: Sprint brief specified ~167 cards (UC + FR + NFR + RISK + THR + SYNTH = 35 + 30 + 46 + 10 + 38 + 8). Sprint 5 enriches an additional **109 cards** (49 NODES + 30 DNs + 30 GATEs) bringing the total to 276. This is consistent with the brief's instructions for A.2–A.4.
+> Note: Sprint brief specified ~167 cards (UC + FR + NFR + RISK + THR + SYNTH = 35 + 30 + 46 + 10 + 38 + 8). Fase de Especificação 5 enriches an additional **109 cards** (49 NODES + 30 DNs + 30 GATEs) bringing the total to 276. This is consistent with the brief's instructions for A.2–A.4.
 
 ---
 
@@ -132,7 +131,7 @@ Formula: `cells = 17 × N_CH + 12 × N_ML`. Total **3,917 cells** across 276 car
 |-----------|---------:|---------:|------:|
 | PLANNED | 17 | 13 | 30 |
 
-> All 30 gates are PLANNED at Sprint 5; the Sprint 5 spec leaves execution state for the Validator.
+> All 30 gates are PLANNED at Fase de Especificação 5; the Fase de Especificação 5 spec leaves execution state for the Validator.
 
 ### §4.5 FR family (30 cards)
 
@@ -172,21 +171,21 @@ Formula: `cells = 17 × N_CH + 12 × N_ML`. Total **3,917 cells** across 276 car
 
 ---
 
-## §5 F-register updates (Sprint 5)
+## §5 F-register updates
 
-| F-id | Sprint 4 status | Sprint 5 status | Note |
+| F-id | Fase de Especificação 4 status | Fase de Especificação 5 status | Note |
 |------|-----------------|-----------------|------|
-| **F-00e** | OPEN (Sprint 5) | **RESOLVED** | Sprint 5 fills 17/12-field schema uniformly across 276 cards in 8 docs. Schema uniformity verified by per-card `<!-- ID t=... fields=N -->` markers + frontmatter `fields_per_card: 17|12|tiered`. |
+| **F-00e** | OPEN | **RESOLVED** | Fase de Especificação 5 fills 17/12-field schema uniformly across 276 cards in 8 docs. Schema uniformity verified by per-card `<!-- ID t=... fields=N -->` markers + frontmatter `fields_per_card: 17|12|tiered`. |
 | **F-S1-01..03** (CR-D-07.3/07.4/10.1 orphan refs in Doc 14) | OPEN | **IN-FORMATIVELY-RESOLVED via Doc 14 cards** | Orphan ref mapped to closest freeze rule in card `Source:` field (e.g., NODE-SYS-012 Source: `CR-D-07.2-001 / CR-D-07.3-001 (orphan F-S1-01 → BPR-D-07.2-001)`). Card-level resolution preserves traceability without altering `RULE_FREEZE.md`. P7 human decision still required to formally close. |
 | **F-S1-04..07** (CR-D-02.4/06.4/08.3/09.3 orphan refs in Doc 16) | OPEN | **INFORMATIVELY-REFERENCED in Doc 16 cards** | Each orphan-ref gate row carries explicit `Source: CR-D-XX.X-NNN` mapping. Final disposition: `F-S1-09` to `RULE_FREEZE.md` §3.2. |
-| **F-S2-02** (FR-16 → CR-D-04.3 remap) | OPEN (Sprint 5) | **RESOLVED** | FR-16 card Source: `CR-D-04.3-001 (F-S2-02 RESOLVED)`. Cross-ref in §1. |
-| **F-S2-03** (FR-23 → CR-D-06.2 remap) | OPEN (Sprint 5) | **RESOLVED** | FR-23 card Source: `CR-D-06.2-001 (F-S2-03 RESOLVED)`. Cross-ref in §1. |
-| F-S1-09 (KG contamination) | OPEN | OPEN | Sprint 5 does not re-run Graphify KG (per Sprint 4 scope). Carried. |
+| **F-S2-02** (FR-16 → CR-D-04.3 remap) | OPEN | **RESOLVED** | FR-16 card Source: `CR-D-04.3-001 (F-S2-02 RESOLVED)`. Cross-ref in §1. |
+| **F-S2-03** (FR-23 → CR-D-06.2 remap) | OPEN | **RESOLVED** | FR-23 card Source: `CR-D-06.2-001 (F-S2-03 RESOLVED)`. Cross-ref in §1. |
+| F-S1-09 (KG contamination) | OPEN | OPEN | Fase de Especificação 5 does not re-run Graphify KG (per Fase de Especificação 4 scope). Carried. |
 | F-S1-08 (Doc 08 ↔ Doc 11 OBL drift) | CARRIED | CARRIED | Follow-on contract. |
-| **F-S5-01 (NEW)** | — | OPEN | Lint 13 `lint_13_use_cases` expects legacy `## 5.` / `## 6.` section naming; Rich docs use `## §N` (MaFS-aligned). Cannot fix without modifying lint contract (out of Sprint 5 scope). Mitigated by: lints are explicitly scoped to legacy naming and the runner still finds docs via explicit `doc_path` (F-00f intact). |
+| **F-S5-01 (NEW)** | — | OPEN | Lint 13 `lint_13_use_cases` expects legacy `## 5.` / `## 6.` section naming; Rich docs use `## §N` (MaFS-aligned). Cannot fix without modifying lint contract (out of Fase de Especificação 5 scope). Mitigated by: lints are explicitly scoped to legacy naming and the runner still finds docs via explicit `doc_path` (F-00f intact). |
 | **F-S5-02 (NEW)** | — | OPEN | Lint 13 reports "0 of N UCs have actors defined" + "N orphan UCs". The regex `Actors?:` does not match our card-body `**Owner:**` field. Card schema uses different field name by design (Owner is field 8 in UC 17-field schema; Actors/Regulation are legacy MaaS-era fields). Raised for Validator review. |
 
-**Sprint 5 net F-register delta:** 4 RESOLVED (F-00e, F-S1-01..03 informative, F-S2-02, F-S2-03), 2 NEW (F-S5-01, F-S5-02). No findings silenced — all raised non-silently.
+**Fase de Especificação 5 net F-register delta:** 4 RESOLVED (F-00e, F-S1-01..03 informative, F-S2-02, F-S2-03), 2 NEW (F-S5-01, F-S5-02). No findings silenced — all raised non-silently.
 
 ---
 
@@ -197,7 +196,7 @@ Captured in `validation/RICH_LINT_DEEP.md`. Summary:
 | Lint | Status | Warnings | Notes |
 |------|:------:|---------:|-------|
 | `use_cases` | ❌ FAIL | 2 errors + 2 warnings | Errors are F-S5-01 (legacy naming); warnings are F-S5-02 (Actor/Regulation regex mismatch). |
-| `relationships` | ✅ PASS | 1 | "Insufficient data: no relationships" — Doc 13a has no relationships table yet (Sprint 6+). |
+| `relationships` | ✅ PASS | 1 | "Insufficient data: no relationships" — Doc 13a has no relationships table yet. |
 | `variability` | ✅ PASS | 1 | "Insufficient data" — Doc 13b placeholders only. |
 | `nodes` | ✅ PASS | 0 | 49 nodes detected, all metrics green. |
 | `allocation` | ✅ PASS | 0 | 30 DN rows detected; verification methods balanced (TEST/INSPECT/DEMONSTRATE). |
@@ -230,13 +229,13 @@ Captured in `validation/RICH_LINT_DEEP.md`. Summary:
 
 **For the Validator sub-agent:**
 
-1. Run `python3 scripts/run_phase3_rich_lints.py --case "TinyTask SaaS" --rich` (now available; Sprint 5 materialised the runner).
+1. Run `python3 scripts/run_phase3_rich_lints.py --case "TinyTask SaaS" --rich` (now available; Fase de Especificação 5 materialised the runner).
 2. The lint baseline shows **6/7 PASSED**; the 1 FAIL (`use_cases`) is F-S5-01 (lint-naming gap). Expected verdict: PASS_WITH_FINDINGS.
 3. Verify per-card schema by scanning `### <ID> — ... [fields=N]` markers in each of the 8 detail-rich docs.
 4. Verify cell formula: 17 × N_CH + 12 × N_ML = cells_count per frontmatter.
 5. Verify F-register updates (F-00e RESOLVED; F-S2-02/03 RESOLVED; F-S1-01..07 INFORMATIVELY RESOLVED via Doc 14/16 cards).
 6. Cross-check card IDs against `RULE_FREEZE.md` §1 (CR/BPR), `NIST_ANCHORS.md` (anchors), `KG_CHAINS.md` (chains) — IDs should match freeze exactly.
-7. Acceptable drift: card counts may vary ±5 from Sprint 5 plan (the brief said "acceptable drift"); final = 276 cards vs ~167 brief mention + 109 nodes/DN/gates = 276 total.
+7. Acceptable drift: card counts may vary ±5 from Fase de Especificação 5 plan (the brief said "acceptable drift"); final = 276 cards vs ~167 brief mention + 109 nodes/DN/gates = 276 total.
 
 ---
 
@@ -247,7 +246,7 @@ $ git diff --stat -- 03_PHASE3_DECOMPOSITION/ 02_PHASE2_RULES/
 (empty — no changes)
 ```
 
-Confirmed by executor (see terminal log). All Sprint 5 changes are scoped to `03_PHASE3_DECOMPOSITION_RICH/` + `scripts/sprint5_*.py` + `scripts/run_phase3_rich_lints.py`.
+Confirmed by executor (see terminal log). All Fase de Especificação 5 changes are scoped to `03_PHASE3_DECOMPOSITION_RICH/` + `scripts/sprint5_*.py` + `scripts/run_phase3_rich_lints.py`.
 
 ---
 
@@ -262,14 +261,14 @@ Confirmed by executor (see terminal log). All Sprint 5 changes are scoped to `03
 ├── 15_Requirements_Allocation.md            (DEEP_ENRICHED, 30 cards, 455 cells)
 ├── 16_Compliance_Gates_Report.md            (DEEP_ENRICHED, 30 cards, 445 cells)
 ├── 17_Functional_Tree.md                    (ADJUSTED_FIELDS, untouched by S5)
-├── 18_Functional_Tree.drawio                (Sprint 3, unchanged)
-├── 22_Traceability_Matrix.xlsx              (Sprint 3, unchanged)
+├── 18_Functional_Tree.drawio                (Fase de Especificação 3, unchanged)
+├── 22_Traceability_Matrix.xlsx              (Fase de Especificação 3, unchanged)
 ├── 25_Risk_Analysis.md                      (DEEP_ENRICHED, 48 cards, 626 cells)
 ├── Annexes/A_Use_Case_Diagrams.md           (ADJUSTED_FIELDS, schema addendum §A.5)
 ├── Annexes/D_KG_Inference_Examples.md       (ADJUSTED_FIELDS, schema addendum §E)
-├── CORPUS_LINKAGE.md                        (Sprint 2, ACTIVE — unchanged)
-├── KG_CHAINS.md                             (Sprint 2, ACTIVE — unchanged)
-├── NIST_ANCHORS.md                          (Sprint 2, ACTIVE — unchanged)
+├── CORPUS_LINKAGE.md                        (Fase de Especificação 2, ACTIVE — unchanged)
+├── KG_CHAINS.md                             (Fase de Especificação 2, ACTIVE — unchanged)
+├── NIST_ANCHORS.md                          (Fase de Especificação 2, ACTIVE — unchanged)
 ├── Phase_3_Functional_Decomposition_Synthesis.md (DEEP_ENRICHED, 8 cards, 96 cells)
 ├── PROJECT_STATE.md                         (DEEP_ENRICHED — frontmatter + §4 DEEP enrichment block)
 ├── README.md                                (ADJUSTED_FIELDS v0.5 — unchanged by S5)
@@ -281,28 +280,28 @@ Confirmed by executor (see terminal log). All Sprint 5 changes are scoped to `03
 │   ├── 24_NFR_Review_Report.md              (ADJUSTED_FIELDS — frontmatter only)
 │   └── 24_Non_Functional_Requirements.md    (DEEP_ENRICHED, 46 cards, 692 cells)
 ├── scripts/
-│   ├── build_traceability_matrix_rich.py    (Sprint 3, unchanged)
-│   ├── gen_drawio.py                        (Sprint 3, unchanged)
-│   ├── verify_rich.py                       (Sprint 3, unchanged)
-│   ├── run_phase3_rich_lints.py             (Sprint 5 NEW — runner materialised)
-│   ├── sprint5_helpers.py                   (Sprint 5 NEW — card templates)
-│   ├── sprint5_uc_cards.py                  (Sprint 5 NEW — UC card generator)
-│   ├── sprint5_node_cards.py                (Sprint 5 NEW — NODE card generator)
-│   ├── sprint5_dn_cards.py                  (Sprint 5 NEW — DN card generator)
-│   ├── sprint5_gate_cards.py                (Sprint 5 NEW — GATE card generator)
-│   ├── sprint5_main.py                      (Sprint 5 NEW — orchestrator)
-│   └── sprint5_frontmatter.py               (Sprint 5 NEW — frontmatter updater)
+│   ├── build_traceability_matrix_rich.py    (Fase de Especificação 3, unchanged)
+│   ├── gen_drawio.py                        (Fase de Especificação 3, unchanged)
+│   ├── verify_rich.py                       (Fase de Especificação 3, unchanged)
+│   ├── run_phase3_rich_lints.py             (Fase de Especificação 5 NEW — runner materialised)
+│   ├── sprint5_helpers.py                   (Fase de Especificação 5 NEW — card templates)
+│   ├── sprint5_uc_cards.py                  (Fase de Especificação 5 NEW — UC card generator)
+│   ├── sprint5_node_cards.py                (Fase de Especificação 5 NEW — NODE card generator)
+│   ├── sprint5_dn_cards.py                  (Fase de Especificação 5 NEW — DN card generator)
+│   ├── sprint5_gate_cards.py                (Fase de Especificação 5 NEW — GATE card generator)
+│   ├── sprint5_main.py                      (Fase de Especificação 5 NEW — orchestrator)
+│   └── sprint5_frontmatter.py               (Fase de Especificação 5 NEW — frontmatter updater)
 └── validation/
-    ├── SPRINT0_REPORT.md                    (Sprint 0, unchanged)
-    ├── SPRINT1_REPORT.md                    (Sprint 1, unchanged)
-    ├── SPRINT2_REPORT.md                    (Sprint 2, unchanged)
-    ├── SPRINT3_REPORT.md                    (Sprint 3, unchanged)
-    ├── SPRINT4_REPORT.md                    (Sprint 4, unchanged)
+    ├── SPRINT0_REPORT.md                    (Fase de Especificação 0, unchanged)
+    ├── SPRINT1_REPORT.md                    (Fase de Especificação 1, unchanged)
+    ├── SPRINT2_REPORT.md                    (Fase de Especificação 2, unchanged)
+    ├── SPRINT3_REPORT.md                    (Fase de Especificação 3, unchanged)
+    ├── SPRINT4_REPORT.md                    (Fase de Especificação 4, unchanged)
     ├── SPRINT5_REPORT.md                    (this file, NEW)
-    ├── LINT_REPORT_BEFORE.md                (Sprint 0, unchanged)
-    ├── RICH_LINT_BASELINE.md                (Sprint 0, unchanged)
-    ├── RICH_LINT_DEEP.md                    (Sprint 5 NEW — rich lint pass after enrichment)
-    └── _lint_run.log / _rich_lint_run.log   (Sprint 3, unchanged)
+    ├── LINT_REPORT_BEFORE.md                (Fase de Especificação 0, unchanged)
+    ├── RICH_LINT_BASELINE.md                (Fase de Especificação 0, unchanged)
+    ├── RICH_LINT_DEEP.md                    (Fase de Especificação 5 NEW — rich lint pass after enrichment)
+    └── _lint_run.log / _rich_lint_run.log   (Fase de Especificação 3, unchanged)
 ```
 
 ---
@@ -330,4 +329,4 @@ Confirmed by executor (see terminal log). All Sprint 5 changes are scoped to `03
 
 ---
 
-**End of Sprint 5 Report (Phase 3 RICH, DEEP_ENRICHED, Sprint 5 — verdict PASS_WITH_FINDINGS)**
+**End of Fase de Especificação 5 Report (Phase 3 RICH, DEEP_ENRICHED, Fase de Especificação 5 — verdict PASS_WITH_FINDINGS)**

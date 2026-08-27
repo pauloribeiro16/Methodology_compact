@@ -1,10 +1,10 @@
-# Sprint 2 Enrichment Report (Existing Docs)
+# Fase de Especificação 2 Enrichment Report (Existing Docs)
 
 > **Agent:** EXECUTOR (sub-agent)
 > **Date:** 2026-08-06
 > **Branch:** `feature/aegis-p1-case01-rich`
 > **Scope:** Enrich 4 existing Phase 1 Rich docs (04a, 04b, 04c, 04d) from the corpus at `00_METHODOLOGY/PREPROCESSING_by_domain/domains/`.
-> **Companion:** This report sits alongside `SPRINT2_ENRICHMENT_REPORT_NEW.md` (Round 2 enrichment of `05b_Ambiguity_Register.md` + `Citation_Index.md`). Together they complete Sprint 2 enrichment of all six Rich Phase 1 docs that touch the corpus.
+> **Companion:** This report sits alongside `SPRINT2_ENRICHMENT_REPORT_NEW.md` (Round 2 enrichment of `05b_Ambiguity_Register.md` + `Citation_Index.md`). Together they complete Fase de Especificação 2 enrichment of all six Rich Phase 1 docs that touch the corpus.
 
 ---
 
@@ -20,7 +20,7 @@
 
 **Total corpus JSON lookups performed:** ~92 distinct reads (37 per-sub-domain manifests for NIST anchors in 04a; 10 JSON sidecars for fit_criterion in 04b; 4 D-06.x manifests for paths in 04c; 38 per-sub-domain manifests for req_id + manifest paths in 04d — 37 active + 1 D-08.3 inactive path; 3 verbatim quote extractions from `_by_regulation/` and `_archive_unmatched/` in 04c).
 
-**`active_subdomains: 37` verified** in frontmatter of all 4 docs (Sprint 1 I-02 reconciliation preserved; D-08.3 inactive).
+**`active_subdomains: 37` verified** in frontmatter of all 4 docs (Fase de Especificação 1 I-02 reconciliation preserved; D-08.3 inactive).
 
 ---
 
@@ -39,13 +39,13 @@
 - Notes the 37 active sub-domain scope (D-08.3 excluded).
 - Flags the corpus-annotation carry-through in some entries (e.g., `PR.DS-12 (+ PR.DS-02 for the second limb)`) preserved verbatim.
 
-**Frontmatter:** `status: RECONCILED → CORPUS_ENRICHED`; `author` updated to indicate Sprint 2 corpus enrichment; `related_documents` extended with two new corpus paths (D-01.1 and D-09.4 manifests as representative).
+**Frontmatter:** `status: RECONCILED → CORPUS_ENRICHED`; `author` updated to indicate Fase de Especificação 2 corpus enrichment; `related_documents` extended with two new corpus paths (D-01.1 and D-09.4 manifests as representative).
 
-**Reconciliation note (top of file):** new Sprint 2 enrichment bullet added below Sprint 1 reconciliation note.
+**Reconciliation note (top of file):** new Fase de Especificação 2 enrichment bullet added below Fase de Especificação 1 reconciliation note.
 
 ### 2.2 `04b_Security_Posture.md`
 
-**Section 2 (Per-Macro-Domain Assessment)** — every one of the 10 macro-domain sections now carries two new fields after **Target maturity** + **Gap**:
+**Section 2 (Per-Macro-Domain Assessment)** — every one of the 10 macro-domain sections now carries two new fields after **Target posture** + **Gap**:
 
 - **Target fit_criterion** (verbatim from corpus `D-XX.Y.json` → `requirements.high_level.yaml.fit_criterion`, truncated to ~100 chars + `...`)
 - **Verification Method** (from corpus `requirements.high_level.yaml.verification_method`, uniformly `TEST` at high-level aggregation)
@@ -60,7 +60,7 @@
 
 **Frontmatter:** status flip + author update.
 
-**Reconciliation note (top of file):** new Sprint 2 enrichment bullet added.
+**Reconciliation note (top of file):** new Fase de Especificação 2 enrichment bullet added.
 
 ### 2.3 `04c_ThirdParty_Landscape.md`
 
@@ -81,7 +81,7 @@
 
 **Frontmatter:** status flip + author update.
 
-**Reconciliation note (top of file):** new Sprint 2 enrichment bullet added.
+**Reconciliation note (top of file):** new Fase de Especificação 2 enrichment bullet added.
 
 ### 2.4 `04d_Org_Roles_RACI.md`
 
@@ -96,11 +96,11 @@
 - Documents the `req_id` extraction pattern (`sub_requirements_by_regulation.GDPR[]?.req_id?` + `.CRA[]?.req_id?`).
 - Provides a 30-row activity → sub-domain mapping table with rationale for each.
 - Coverage statistics: 30 RACI rows enriched, 7 mapping rows enriched, 37 req_id lookups + 38 manifest-path lookups (37 active + D-08.3 inactive path).
-- `active_subdomains: 37` verified (Sprint 1 I-02 fix preserved; Sprint 2 re-verified).
+- `active_subdomains: 37` verified (Fase de Especificação 1 I-02 fix preserved; Fase de Especificação 2 re-verified).
 
 **Frontmatter:** status flip + author update.
 
-**Reconciliation note (top of file):** new Sprint 2 enrichment bullet added.
+**Reconciliation note (top of file):** new Fase de Especificação 2 enrichment bullet added.
 
 ---
 
@@ -184,23 +184,23 @@ This is the exact P0 pattern: surface the disagreement with reasoning, then comp
 
 **Issue:** All 10 macro-domain `requirements.high_level.yaml.verification_method` values returned `TEST` in the corpus.
 
-**Resolution:** Documented in 04b §7 Corpus Provenance that the high-level fit_criterion is the multi-reg aggregation point; per-reg decomposition (which can return `INSPECTION`, `DEMONSTRATION`, etc.) lives in `requirements.sub_requirements[]`. For TinyTask's maturity assessment purpose, the high-level `TEST` is sufficient because all 10 macro-domains require test evidence (config audit, key-custody review, etc.) as the verification floor. If per-reg variation becomes needed, Phase 3 consumers should pull from `sub_requirements[]`.
+**Resolution:** Documented in 04b §7 Corpus Provenance that the high-level fit_criterion is the multi-reg aggregation point; per-reg decomposition (which can return `INSPECTION`, `DEMONSTRATION`, etc.) lives in `requirements.sub_requirements[]`. For TinyTask's posture assessment purpose, the high-level `TEST` is sufficient because all 10 macro-domains require test evidence (config audit, key-custody review, etc.) as the verification floor. If per-reg variation becomes needed, Phase 3 consumers should pull from `sub_requirements[]`.
 
-### 4.4 `active_subdomains: 37` was already fixed in Sprint 1
+### 4.4 `active_subdomains: 37` was already fixed in Fase de Especificação 1
 
 **Issue (resolved):** Per the brief, verify `active_subdomains: 37` in frontmatter.
 
-**Verification:** Confirmed `active_subdomains: 37` in frontmatter of all 4 docs (lines 21, 21, 22, 24 respectively). The Sprint 1 I-02 fix (commented in 04d line 24) is preserved. D-08.3 inactive path retained in 04d Section 6 mapping table for traceability (the path is real, just inactive).
+**Verification:** Confirmed `active_subdomains: 37` in frontmatter of all 4 docs (lines 21, 21, 22, 24 respectively). The Fase de Especificação 1 I-02 fix (commented in 04d line 24) is preserved. D-08.3 inactive path retained in 04d Section 6 mapping table for traceability (the path is real, just inactive).
 
-### 4.5 No Sprint 3 blockers identified
+### 4.5 No Fase de Especificação 3 blockers identified
 
 All 4 docs are CORPUS_ENRICHED, internally consistent (active_subdomains: 37 across all 4), and reference the corpus paths rather than the legacy `PREPROCESSING/SubDomains/` paths. Legacy paths preserved in column 6 of 04a for backwards compatibility (legacy 04b / 04c / 04d also retain legacy paths in their inline references).
 
 ---
 
-## 5. Sprint 3 Readiness
+## 5. Fase de Especificação 3 Readiness
 
-### 5.1 What Sprint 2 produced
+### 5.1 What Fase de Especificação 2 produced
 
 - **6 docs enriched** (this report covers 4 existing; companion `SPRINT2_ENRICHMENT_REPORT_NEW.md` covers 2 new — `05b_Ambiguity_Register.md` and `Citation_Index.md`).
 - **13 tables extended** with corpus-derived columns.
@@ -212,7 +212,7 @@ All 4 docs are CORPUS_ENRICHED, internally consistent (active_subdomains: 37 acr
 - **0 git commits created** (orchestrator owns commit workflow).
 - **0 emojis added** (Language Policy + AGENTS.md compliance).
 
-### 5.2 What Sprint 3 should validate
+### 5.2 What Fase de Especificação 3 should validate
 
 1. **Lint pass** with `01_IMPLEMENTATION_TOOLS/lints/phase1/`:
    - `lint_regulatory_mapping.py` — confirm NIST anchors + req_id columns parse cleanly.
@@ -223,15 +223,15 @@ All 4 docs are CORPUS_ENRICHED, internally consistent (active_subdomains: 37 acr
 3. **Sample-read audit** — Validator should spot-check at least 3 randomly-selected rows from 04a §3, 04d §4.x to confirm NIST anchors + req_id values match the corpus.
 4. **Verbatim quote audit** — Validator should confirm the GDPR Art. 28 + CRA Art. 7 + CRA Art. 13(5)/(6) quotes in 04c match the corpus source byte-for-byte (or marked-up-by-emphasis-byte-for-byte).
 
-### 5.3 Outstanding items not in Sprint 2 scope
+### 5.3 Outstanding items not in Fase de Especificação 2 scope
 
 - **04a / 04b / 04c legacy `SubDomains/` path references** — preserved alongside new `PREPROCESSING_by_domain/` paths. Phase 3 migration can deprecate the legacy paths once `PREPROCESSING/SubDomains/` directory itself is removed from the corpus (separate corpus task, not Executor scope here).
 - **NIST control annotation deduplication** — some corpus entries have duplicates or parenthetical notes (e.g., `PR.PS-02; ID.RA-05`, `PR.PS-01, PR.PS-01`). Preserved as-is for fidelity. Future corpus-cleanup sprint can normalise.
 - **Verbatim Art. 28 quote truncation** — Art. 28(3)(a) parenthetical `(...)` is preserved literally because the corpus file itself uses this ellipsis notation (the sub-clauses (a)–(h) are not all in one paragraph in the OJ text). Validator should confirm this is acceptable.
 
-### 5.4 Sprint 2 sign-off
+### 5.4 Fase de Especificação 2 sign-off
 
-- Executor (this agent): **READY for Sprint 3 validator review.**
+- Executor (this agent): **READY for Fase de Especificação 3 validator review.**
 - All deliverables in `02_CASES/Case_01_TinyTask_SaaS/01_PHASE1_CONTEXT_RICH/` are CORPUS_ENRICHED and internally consistent.
 - No commits created; orchestrator should commit via `./scripts/finish-feature.sh` after Validator passes.
 
@@ -239,7 +239,7 @@ All 4 docs are CORPUS_ENRICHED, internally consistent (active_subdomains: 37 acr
 
 ## See also
 
-- **Sprint 2 companion:** `SPRINT2_ENRICHMENT_REPORT_NEW.md` (Round 2 enrichment of `05b_Ambiguity_Register.md` + `Citation_Index.md`).
-- **Sprint 1 report:** `SPRINT1_REPORT.md` (Sprint 1 reconciliation — `active_subdomains: 37` fix + status flips to RECONCILED).
+- **Fase de Especificação 2 companion:** `SPRINT2_ENRICHMENT_REPORT_NEW.md` (Round 2 enrichment of `05b_Ambiguity_Register.md` + `Citation_Index.md`).
+- **Fase de Especificação 1 report:** `SPRINT1_REPORT.md` (Fase de Especificação 1 reconciliation — `active_subdomains: 37` fix + status flips to RECONCILED).
 - **Corpus augmentation report:** `CORPUS_AUGMENTATION_REPORT.md` (38/38 sub-domain files + 48 manifests + 38 sidecars + 623 articles).
 - **Lint reports:** `LINT_REPORT_BEFORE.md`, `LINT_REPORT_AFTER_RECONCILE.md`.

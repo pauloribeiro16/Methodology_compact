@@ -5,11 +5,10 @@ phase: 3
 version: 1.0
 created: 2026-08-24
 updated: 2026-08-24
-author: Sprint 2 Executor (paulo@methodology.pt)
+author: Fase de Especificação 2 Executor (paulo@methodology.pt)
 status: ACTIVE
 case: Case_01_TinyTask_SaaS
 tier: MICRO
-sprint: 2
 sprint_role: corpus_linkage
 branch: feature/aegis-p3-case01-rich
 inputs:
@@ -191,14 +190,14 @@ related_deliverables:
 | FR-13 | FR | D-02.1 | 03_PHASE3_DECOMPOSITION/requirements/23_Functional_Requirements.md §3 | Doc 23 §3 |
 | FR-14 | FR | D-04.1 | 03_PHASE3_DECOMPOSITION/requirements/23_Functional_Requirements.md §3 | Doc 23 §3 |
 | FR-15 | FR | D-04.1 | 03_PHASE3_DECOMPOSITION/requirements/23_Functional_Requirements.md §3 | Doc 23 §3 |
-| FR-16 | FR | D-01.1 (note: Doc 23 maps to CR-D-01.1; Sprint 5 should remap to CR-D-04.3) | 03_PHASE3_DECOMPOSITION/requirements/23_Functional_Requirements.md §3 | Doc 23 §3 |
+| FR-16 | FR | D-01.1 (note: Doc 23 maps to CR-D-01.1; Fase de Especificação 5 should remap to CR-D-04.3) | 03_PHASE3_DECOMPOSITION/requirements/23_Functional_Requirements.md §3 | Doc 23 §3 |
 | FR-17 | FR | D-02.1 | 03_PHASE3_DECOMPOSITION/requirements/23_Functional_Requirements.md §3 | Doc 23 §3 |
 | FR-18 | FR | D-02.1 | 03_PHASE3_DECOMPOSITION/requirements/23_Functional_Requirements.md §3 | Doc 23 §3 |
 | FR-19 | FR | D-03.1 | 03_PHASE3_DECOMPOSITION/requirements/23_Functional_Requirements.md §3 | Doc 23 §3 |
 | FR-20 | FR | D-07.1 | 03_PHASE3_DECOMPOSITION/requirements/23_Functional_Requirements.md §3 | Doc 23 §3 |
 | FR-21 | FR | D-02.1 | 03_PHASE3_DECOMPOSITION/requirements/23_Functional_Requirements.md §3 | Doc 23 §3 |
 | FR-22 | FR | — | 03_PHASE3_DECOMPOSITION/requirements/23_Functional_Requirements.md §3 | Doc 23 §3 |
-| FR-23 | FR | D-02.1 (note: Doc 23 maps to CR-D-02.1; Sprint 5 should remap to CR-D-06.2) | 03_PHASE3_DECOMPOSITION/requirements/23_Functional_Requirements.md §3 | Doc 23 §3 |
+| FR-23 | FR | D-02.1 (note: Doc 23 maps to CR-D-02.1; Fase de Especificação 5 should remap to CR-D-06.2) | 03_PHASE3_DECOMPOSITION/requirements/23_Functional_Requirements.md §3 | Doc 23 §3 |
 | FR-24 | FR | — | 03_PHASE3_DECOMPOSITION/requirements/23_Functional_Requirements.md §3 | Doc 23 §3 |
 | FR-25 | FR | D-06.1 | 03_PHASE3_DECOMPOSITION/requirements/23_Functional_Requirements.md §3 | Doc 23 §3 |
 | FR-26 | FR | D-06.1 | 03_PHASE3_DECOMPOSITION/requirements/23_Functional_Requirements.md §3 | Doc 23 §3 |
@@ -481,9 +480,9 @@ related_deliverables:
 3. **DN rows (Doc 15)** → mirrored from corresponding CR per Doc 15 §4 (30 DN rows, 1:1 with CR).
 4. **Gates (Doc 16)** → mirrored from corresponding CR per Doc 16 §5 (30 GATE rows, 1:1 with CR).
 5. **FRs (Doc 23)** → D-XX.Y from FR-NN ↔ CR-D-XX.X-NNN (per Doc 15/23 cross-ref; FR-NN ↔ CR-D-XX.X-NNN where XX.X = (NN-1)//3+1 approx).
-6. **NFRs (Doc 24)** → D-XX.Y from NFR category (CONF→D-01.x, AVAIL→D-04.x, INT→D-01.4/02.x/10.2, PRIV→D-05.x/07.1/09.x, ACC→D-09.x/10.2, COMP→D-09.1). Sprint 5 will verify per-row.
-7. **UCs (Doc 13)** → D-XX.Y from package (DP→D-01/05, SEC→D-02/04, IAM→D-03/09/10, DEV→D-07/02/04/09, GOV→D-06/09, TRN→D-08). Sprint 5 will verify per-card.
-8. **Nodes (Doc 14)** → D-XX.Y from node purpose (TECH/PROC/ROLE → primary control objective). Sprint 5 will verify per-node.
-9. **Risks + Threats (Doc 25)** → D-XX.Y from risk/threat category. Sprint 5 will verify per-row.
+6. **NFRs (Doc 24)** → D-XX.Y from NFR category (CONF→D-01.x, AVAIL→D-04.x, INT→D-01.4/02.x/10.2, PRIV→D-05.x/07.1/09.x, ACC→D-09.x/10.2, COMP→D-09.1). Fase de Especificação 5 will verify per-row.
+7. **UCs (Doc 13)** → D-XX.Y from package (DP→D-01/05, SEC→D-02/04, IAM→D-03/09/10, DEV→D-07/02/04/09, GOV→D-06/09, TRN→D-08). Fase de Especificação 5 will verify per-card.
+8. **Nodes (Doc 14)** → D-XX.Y from node purpose (TECH/PROC/ROLE → primary control objective). Fase de Especificação 5 will verify per-node.
+9. **Risks + Threats (Doc 25)** → D-XX.Y from risk/threat category. Fase de Especificação 5 will verify per-row.
 
-> **Coverage:** 100% of artefacts linked to at least one D-XX.Y sub-domain. Sprint 5 may surface intra-sub-domain secondary links (e.g. UC linked to multiple CRs across D-XX.Y).
+> **Coverage:** 100% of artefacts linked to at least one D-XX.Y sub-domain. Fase de Especificação 5 may surface intra-sub-domain secondary links (e.g. UC linked to multiple CRs across D-XX.Y).

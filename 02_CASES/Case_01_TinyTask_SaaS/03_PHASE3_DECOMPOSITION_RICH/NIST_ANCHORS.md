@@ -5,11 +5,10 @@ phase: 3
 version: 1.0
 created: 2026-08-24
 updated: 2026-08-24
-author: Sprint 2 Executor (paulo@methodology.pt)
+author: Fase de Especificação 2 Executor (paulo@methodology.pt)
 status: ACTIVE
 case: Case_01_TinyTask_SaaS
 tier: MICRO
-sprint: 2
 sprint_role: nist_anchors
 branch: feature/aegis-p3-case01-rich
 inputs:
@@ -129,7 +128,7 @@ related_deliverables: [CORPUS_LINKAGE.md, KG_CHAINS.md, validation/SPRINT2_REPOR
 ## §3 Per-Artefact Slot (paste-ready for UC/FR/NFR cards)
 
 > Each row: `| <ARTEFACT-ID> | CSF: PR.XX-NN[,…] | PF: XX.XX-PN[,…] |`
-> Anchors derived from the artefact's primary CR/PO/SO (Sprint 5 may add secondary anchors).
+> Anchors derived from the artefact's primary CR/PO/SO (Fase de Especificação 5 may add secondary anchors).
 
 ### §3.1 Use Case cards (35 L1)
 
@@ -190,14 +189,14 @@ related_deliverables: [CORPUS_LINKAGE.md, KG_CHAINS.md, validation/SPRINT2_REPOR
 | FR-13 | CR-D-02.1-001 | CSF: GV.OV-02, ID.AM-02, ID.RA-01, ID.RA-03 | PF: ID.RA-P3, ID.RA-P5 |
 | FR-14 | CR-D-04.1-001 | CSF: DE.AE-02, DE.CM-01, DE.CM-09, ID.RA-04, PR.PS-04 | PF: CM.AW-P7 |
 | FR-15 | CR-D-04.1-001 | CSF: DE.AE-02, DE.CM-01, DE.CM-09, ID.RA-04, PR.PS-04 | PF: CM.AW-P7 |
-| FR-16 | CR-D-01.1-001 (Sprint 5 should remap to CR-D-04.3) | CSF: PR.DS-01, PR.DS-10, PR.PS-04 | PF: PR.DS-P1 |
+| FR-16 | CR-D-01.1-001 (Fase de Especificação 5 should remap to CR-D-04.3) | CSF: PR.DS-01, PR.DS-10, PR.PS-04 | PF: PR.DS-P1 |
 | FR-17 | CR-D-02.1-001 | CSF: GV.OV-02, ID.AM-02, ID.IM-02, ID.RA-01, ID.RA-03 | PF: ID.RA-P3, ID.RA-P5 |
 | FR-18 | CR-D-02.1-001 | CSF: GV.OV-02, ID.AM-02, ID.IM-02, ID.RA-01, ID.RA-03 | PF: ID.RA-P3, ID.RA-P5 |
 | FR-19 | CR-D-03.1-001 | CSF: ID.AM-01, PR.AA-01, PR.AA-02, PR.AA-03, PR.AA-05 | PF: — |
 | FR-20 | CR-D-07.1-001 | CSF: GV.PO-02, ID.RA-01, PR.DS-10, PR.PS-01, PR.PS-02 | PF: CT.DP-P2, CT.DP-P4, GV.PO-P2 |
 | FR-21 | CR-D-02.1-001 | CSF: GV.OV-02, ID.AM-02, ID.IM-02, ID.RA-01, ID.RA-03 | PF: ID.RA-P3, ID.RA-P5 |
 | FR-22 | — (process, no CR) | CSF: — | PF: — |
-| FR-23 | CR-D-02.1-001 (Sprint 5 should remap to CR-D-06.2) | CSF: GV.SC-02, GV.SC-03, ID.AM-02, ID.RA-01, PR.PS-02 | PF: — |
+| FR-23 | CR-D-02.1-001 (Fase de Especificação 5 should remap to CR-D-06.2) | CSF: GV.SC-02, GV.SC-03, ID.AM-02, ID.RA-01, PR.PS-02 | PF: — |
 | FR-24 | — (no CR) | CSF: — | PF: — |
 | FR-25 | CR-D-06.1-001 | CSF: GV.SC-01, GV.SC-02, GV.SC-03, GV.SC-04, ID.AM-04 | PF: ID.IM-P2 |
 | FR-26 | CR-D-06.1-001 | CSF: GV.SC-01, GV.SC-02, GV.SC-03, GV.SC-04, ID.AM-04 | PF: ID.IM-P2 |

@@ -5,10 +5,9 @@ phase: 1
 version: 1.1
 created: 2026-07-11
 updated: 2026-08-06
-author: Executor (Sprint 1 reconciliation; Sprint 2 corpus enrichment)
+author: Executor (Fase de Especificação 1 reconciliation; Fase de Especificação 2 corpus enrichment)
 status: CORPUS_ENRICHED
 case_study: TinyTask Lda.
-sprint: 1
 sprint_role: reconciled_from_legacy
 inputs:
   - Doc03_Company_Context_Assessment.md
@@ -18,7 +17,7 @@ inputs:
 outputs:
   - Doc11_Structured_Compliance_Matrix.md
 applicable_regs: [GDPR, CRA]
-active_subdomains: 37  # RECONCILED (Sprint 1, I-02): was 36, corrected to 37 to match Doc 04a/04b/04c/05/07. 37 = 38 total sub-domains minus D-08.3 INACTIVE. D-08.3 row is INACTIVE (explicitly so), not subtracted from the active count.
+active_subdomains: 37  # RECONCILED (Fase de Especificação 1, I-02): was 36, corrected to 37 to match Doc 04a/04b/04c/05/07. 37 = 38 total sub-domains minus D-08.3 INACTIVE. D-08.3 row is INACTIVE (explicitly so), not subtracted from the active count.
 inactive_subdomains: [D-08.3]  # board training out of scope (NIS2 + DORA only participating)
 related_documents:
   - ../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-08_Human-Factors/
@@ -28,15 +27,15 @@ related_documents:
 supersedes: none
 ---
 
-> **Sprint 1 Reconciliation Note (2026-08-06)**
-> This document is the Rich Mode copy of the legacy `01_PHASE1_CONTEXT/04d_Org_Roles_RACI.md` (v1.0). Sprint 1 changes:
+> **Fase de Especificação 1 Reconciliation Note (2026-08-06)**
+> This document is the Rich Mode copy of the legacy `01_PHASE1_CONTEXT/04d_Org_Roles_RACI.md` (v1.0). Fase de Especificação 1 changes:
 > - **I-02 (active_subdomains 36 → 37):** Corrected. The canonical active count is **37** (38 sub-domains minus D-08.3 INACTIVE; D-08.3 is recorded as an inactive row, not subtracted). This aligns with `04a`, `04b`, `04c`, `05`, and `07` which all carry `active_subdomains: 37`.
-> - **I-10 (status DRAFT → RECONCILED):** Updated. Sprint 1 = reconciliation milestone; docs are internally consistent pending Sprint 2 corpus enrichment.
+> - **I-10 (status DRAFT → RECONCILED):** Updated. Fase de Especificação 1 = reconciliation milestone; docs are internally consistent pending Fase de Especificação 2 corpus enrichment.
 > - **I-13 (02_Regulatory_Mapping_Master.md deprecation banner):** Not applicable — this document does not reference `02_Regulatory_Mapping_Master.md`.
 > - **Source:** `02_CASES/Case_01_TinyTask_SaaS/01_PHASE1_CONTEXT/04d_Org_Roles_RACI.md` (legacy, read-only).
-> - **Migration plan:** Phase 2/3 consumers should reference the **Rich** copy (`01_PHASE1_CONTEXT_RICH/`) once Sprint 3 validation approves migration.
+> - **Migration plan:** Phase 2/3 consumers should reference the **Rich** copy (`01_PHASE1_CONTEXT_RICH/`) once Fase de Especificação 3 validation approves migration.
 >
-> **Sprint 2 Enrichment Note (2026-08-06)**
+> **Fase de Especificação 2 Enrichment Note (2026-08-06)**
 > - **Status: RECONCILED → CORPUS_ENRICHED.** Section 4 (RACI Matrix) tables §4.1–§4.10 extended with `Corpus Reg Req` column mapping each activity to the corpus `req_id` from the relevant per-sub-domain manifest (`sub_requirements_by_regulation.GDPR[]` ∪ `sub_requirements_by_regulation.CRA[]`). Section 6 (Compliance Mapping) table extended with `Corpus Manifest Path` column. New §9 Corpus Provenance documents the req_id mapping strategy.
 
 # Organisation, Roles & RACI Matrix
@@ -291,7 +290,7 @@ Active scope for TinyTask = 37 of 38 sub-domains. D-08.3 is INACTIVE; its row be
 | **D-08.3 Management Board Training** | **OUT OF SCOPE — INACTIVE** | n/a | NIS2 + DORA-only; both regulations inapplicable. Not a derived gap (per `05 §6.3`). | `PREPROCESSING_by_domain/domains/D-08_Human-Factors/D-08.3/D-08.3.manifest.json` (inactive; retained for traceability) |
 | D-09.1 Information Security Policies | Board for approval; Dev for drafting | Board=A, all=C | Policies not yet written — explicitly documented in `04b_Security_Posture.md`. | `PREPROCESSING_by_domain/domains/D-09_Governance-Documentation/D-09.1/D-09.1.manifest.json` |
 | D-09.2 Impact & Risk Assessments | DPO + CISO | DPO=R, CISO=A | Annual risk assessment planned for Q4; DPIA capability now resident in DPO. | `PREPROCESSING_by_domain/domains/D-09_Governance-Documentation/D-09.2/D-09.2.manifest.json` |
-| D-09.3 Asset Inventories | CTO/CISO + Dev | Dev=R, CISO=A | Asset inventory documented in `04a §1.1`; CMDB-grade maturity not yet claimed. | `PREPROCESSING_by_domain/domains/D-09_Governance-Documentation/D-09.3/D-09.3.manifest.json` |
+| D-09.3 Asset Inventories | CTO/CISO + Dev | Dev=R, CISO=A | Asset inventory documented in `04a §1.1`; CMDB-grade posture not yet claimed. | `PREPROCESSING_by_domain/domains/D-09_Governance-Documentation/D-09.3/D-09.3.manifest.json` |
 | D-09.4 Records of Processing (RoPA) | DPO + Legal | DPO=R, Legal=A | Not yet started — captured in CAP-01 of `04 §10`. | `PREPROCESSING_by_domain/domains/D-09_Governance-Documentation/D-09.4/D-09.4.manifest.json` |
 
 **Active training/coverage sub-domains:** D-08.1 + D-08.2 only (D-08.3 inactive).
@@ -308,7 +307,7 @@ These items are surfaced for Phase 2 remediation and are **proportionate**, not 
 | GAP-RACI-02 | No formal secure-coding curriculum for developers (reliance on code review + Snyk feedback) | MEDIUM | D-08.2 |
 | GAP-RACI-03 | DPO refresher cycle not cadence-locked (last done 2025-Q4 informally; next target 2026-Q4) | LOW | D-08.2 |
 | GAP-RACI-04 | D-08.3 board training absent — **deliberately** not in scope for TinyTask; documented here as a non-derivation per `05 §6.3` | LOW (informational only) | D-08.3 (INACTIVE) |
-| GAP-RACI-05 | Single DPO/CISO-individual concentration risk; backup is the other founder, which is operationally OK but not optimised for board independence | LOW | D-09.1 (governance maturity) |
+| GAP-RACI-05 | Single DPO/CISO-individual concentration risk; backup is the other founder, which is operationally OK but not optimised for board independence | LOW | D-09.1 (governance posture) |
 
 **Discussion per AEGIS P0 (Reasoned Disagreement):** GAP-RACI-04 is **not** a compliance gap. It is recorded as **LOW (informational)** to make the methodology's scope decision visible; the methodology does not want to silently omit a sub-domain that may matter to a reader unfamiliar with the activation model. A reader who assumes D-08.3 must be addressed at every company would otherwise see "no board training" as a failure.
 
@@ -324,15 +323,15 @@ This document is complete (Phase 1 Step E — Roles & RACI) when:
 - [x] Training status populated for all roles (Section 5 — including the explicit "INACTIVE" line for D-08.3)
 - [x] Compliance Mapping table populated for D-08.x and D-09.x (Section 6)
 - [x] Gaps explicitly listed (Section 7) rather than silently accepted — required by AEGIS P5 and P0
-- [x] RACI tables extended with Corpus Reg Req column (Sections 4.1–4.10 — Sprint 2 enrichment)
-- [x] Compliance Mapping table extended with Corpus Manifest Path column (Section 6 — Sprint 2 enrichment)
-- [x] `active_subdomains: 37` in frontmatter (verified — Sprint 1 reconciliation I-02, still correct post-Sprint 2)
+- [x] RACI tables extended with Corpus Reg Req column (Sections 4.1–4.10 enrichment)
+- [x] Compliance Mapping table extended with Corpus Manifest Path column (Section 6 enrichment)
+- [x] `active_subdomains: 37` in frontmatter (verified reconciliation I-02, still correct post-Fase de Especificação 2)
 
 **Gate Status:** PASS (proportionate for LOW-tier micro SaaS under P2).
 
 ---
 
-## 9. Corpus Provenance (Sprint 2 Enrichment)
+## 9. Corpus Provenance (Fase de Especificação 2 Enrichment)
 
 The **Corpus Reg Req** column added to each RACI table (Sections 4.1–4.10) and the **Corpus Manifest Path** column added to the Compliance Mapping table (Section 6) were extracted from the corpus at `00_METHODOLOGY/PREPROCESSING_by_domain/domains/`.
 
@@ -394,7 +393,7 @@ jq -r '[(.sub_requirements_by_regulation.GDPR[]?.req_id?),
 - **RACI rows enriched:** 30 (each row now has a Corpus Reg Req value)
 - **Compliance Mapping rows updated:** 7 (D-08.1, D-08.2, D-08.3, D-09.1, D-09.2, D-09.3, D-09.4 — including D-08.3 inactive path)
 - **Total corpus lookups:** 37 (one per active sub-domain for req_id; 37 + 1 for manifest path including D-08.3 inactive path = 38 manifest-path lookups, but 37 req_id lookups since D-08.3 has no GDPR/CRA req_ids)
-- **Verification:** `active_subdomains: 37` in frontmatter confirmed (Sprint 1 I-02 fix preserved; Sprint 2 verified by re-reading frontmatter line 24)
+- **Verification:** `active_subdomains: 37` in frontmatter confirmed (Fase de Especificação 1 I-02 fix preserved; Fase de Especificação 2 verified by re-reading frontmatter line 24)
 
 ---
 
@@ -415,4 +414,4 @@ jq -r '[(.sub_requirements_by_regulation.GDPR[]?.req_id?),
 
 ## See also
 
-- **Data backbone:** `Case_01_Phase1.xlsx` (13 sheets: COVER, SYSTEMS, DATA_STORES, DATA_FLOWS, PERSONAL_DATA, THIRD_PARTIES, ROLES_RACI, MATURITY, SUBDOMAINS, REG_CHAIN, COMPLIANCE, GAPS, PRIORITIES)
+- **Data backbone:** `Case_01_Phase1.xlsx` (13 sheets: COVER, SYSTEMS, DATA_STORES, DATA_FLOWS, PERSONAL_DATA, THIRD_PARTIES, ROLES_RACI, POSTURE, SUBDOMAINS, REG_CHAIN, COMPLIANCE, GAPS, PRIORITIES)

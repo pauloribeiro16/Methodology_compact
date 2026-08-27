@@ -5,9 +5,8 @@ phase: 1
 version: 1.1
 created: 2026-04-01
 updated: 2026-08-06
-author: Compliance Lead (Sprint 1 reconciliation)
+author: Compliance Lead (Fase de Especificação 1 reconciliation)
 status: RECONCILED
-sprint: 1
 sprint_role: reconciled_from_legacy
 inputs: [Doc03_Company_Context_Assessment.md, Doc08_Regulatory_Applicability.md, Doc10_Clause_Mapping_Matrix.md]
 outputs: [08_Obligation_Derivation.md]
@@ -15,12 +14,12 @@ traceability: AEGIS Class Model → ComplianceContext, DomainCoverageEntry class
 related_documents: 00_Taxonomy_Reference.md
 ---
 
-> **Sprint 1 Reconciliation Note (2026-08-06)**
-> Rich Mode copy of legacy `01_PHASE1_CONTEXT/07_Structured_Compliance_Matrix.md` (v1.0). Sprint 1 changes:
-> - **I-10 (status DRAFT → RECONCILED):** Sprint 1 milestone.
+> **Fase de Especificação 1 Reconciliation Note (2026-08-06)**
+> Rich Mode copy of legacy `01_PHASE1_CONTEXT/07_Structured_Compliance_Matrix.md` (v1.0). Fase de Especificação 1 changes:
+> - **I-10 (status DRAFT → RECONCILED):** Fase de Especificação 1 milestone.
 > - **input pointer:** Changed `06_Clause_Mapping_Matrix.xlsx` → `06_Clause_Mapping_Matrix.md` (Rich Mode uses the markdown shim table from the new §8 Cross-Reference as primary; the xlsx remains authoritative for the underlying numeric matrix in `Case_01_Phase1.xlsx → GDPR_MAPPING` / `CRA_MAPPING` sheets but is now an additional reference, not the primary).
 > - **I-13 (02_Regulatory_Mapping_Master.md deprecation):** Not referenced. N/A.
-> - Body content unchanged from legacy. Sprint 2 will reconcile the D-07 coverage matrix (41 entries vs 38 expected — see LINT_REPORT_BEFORE.md issue 1) and the 4 missing sole-authority gap rows.
+> - Body content unchanged from legacy. Fase de Especificação 2 will reconcile the D-07 coverage matrix (41 entries vs 38 expected — see LINT_REPORT_BEFORE.md issue 1) and the 4 missing sole-authority gap rows.
 
 # Structured Compliance Matrix
 

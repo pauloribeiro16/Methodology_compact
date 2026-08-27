@@ -5,17 +5,14 @@ phase: 1
 version: 2.1
 created: 2026-04-01
 updated: 2026-08-10
-author: Sprint 5 Executor (deep-enrichment-builder)
-sprint_1_author: Compliance Lead (Sprint 1 reconciliation)
-sprint_8_author: Sprint 8 Executor (corr-009 ao-id-cross-ref-note)
+author: Fase de Especificação 5 Executor (deep-enrichment-builder)
+sprint_1_author: Compliance Lead (Fase de Especificação 1 reconciliation)
+sprint_8_author: Fase de Especificação 8 Executor (corr-009 ao-id-cross-ref-note)
 status: DEEP_ENRICHED
 deep_enrichment_date: 2026-08-06
-deep_enrichment_sprint: 5
 ao_id_cross_ref_note_date: 2026-08-10
-ao_id_cross_ref_note_sprint: 8
 per_article_rows: 54
 fields_excluded: [Effort Estimate, Cost Estimate, Target Timeline]
-sprint: 8
 sprint_role: ao_id_cross_ref_note
 inputs: [Doc03_Company_Context_Assessment.md]
 outputs: [Doc10_Clause_Mapping_Matrix.md]
@@ -26,11 +23,11 @@ ao_id_migration_note: Each row's `Operational check per Doc 07c Appendix A §A.1
 
 <!-- Note: 02_Regulatory_Mapping_Master.md is DEPRECATED as of Phase 1 v1.2 (2026-07-13). Use 00_METHODOLOGY/PREPROCESSING_by_domain/domains/ corpus or 00_Taxonomy_Reference.md instead. -->
 
-> **Sprint 1 Reconciliation Note (2026-08-06)**
-> Rich Mode copy of legacy `01_PHASE1_CONTEXT/05_Regulatory_Applicability.md` (v1.2, the "v1.1" + Art. 32/33(2)/CRA Art. 13 updates from April). Sprint 1 changes:
-> - **I-10 (status DRAFT → RECONCILED):** Sprint 1 milestone.
+> **Fase de Especificação 1 Reconciliation Note (2026-08-06)**
+> Rich Mode copy of legacy `01_PHASE1_CONTEXT/05_Regulatory_Applicability.md` (v1.2, the "v1.1" + Art. 32/33(2)/CRA Art. 13 updates from April). Fase de Especificação 1 changes:
+> - **I-10 (status DRAFT → RECONCILED):** Fase de Especificação 1 milestone.
 > - **I-13 (02_Regulatory_Mapping_Master.md deprecation):** Banner added. The legacy `02_Regulatory_Mapping_Master.md` (00_COMMON) is deprecated as a master mapping source; the Rich equivalent is the corpus + `00_Taxonomy_Reference.md`.
-> - Body content unchanged from legacy. Sprint 2 will add L1 participant lists per sub-domain.
+> - Body content unchanged from legacy. Fase de Especificação 2 will add L1 participant lists per sub-domain.
 
 > **Mapping to Phase 1 Strategy:** This document is the artifact of
 > **Filter 1 (Regulation Applicability — binary predicates)** in
@@ -273,7 +270,7 @@ Based on applicable regulations (GDPR + CRA):
 
 ## §9 Per-Article Detailed Breakdown (54 articles)
 
-> Sprint 5 enrichment — per-article table mapping each clause to its sub-domain, obligated party, verification criteria, evidence type, risk, and maturity score. Source: `phase1_ontology.yaml:clause_mappings[]` (28 GDPR + 26 CRA = 54 articles). **NO Effort/Cost/Timeline fields added per Sprint 5 scope.**
+> Fase de Especificação 5 enrichment — per-article table mapping each clause to its sub-domain, obligated party, verification criteria, evidence type, risk, and implementation posture. Source: `phase1_ontology.yaml:clause_mappings[]` (28 GDPR + 26 CRA = 54 articles). **NO Effort/Cost/Timeline fields added per Fase de Especificação 5 scope.**
 
 | Stat | Value |
 |------|-------|
@@ -284,8 +281,8 @@ Based on applicable regulations (GDPR + CRA):
 
 | Article | Topic | Sub-Domains | Obligated Party | Verification Criteria | Evidence Type | Risk if not met | Implementation Status |
 |---------|-------|-------------|-----------------|----------------------|---------------|------------------|---------------------|
-| Art. 1 | Subject matter and scope | D-07.1 | manufacturer | Operational check per Doc 07c Appendix A §A.1.1/D-07.1 | DEMONSTRATE + INSPECT (SSDF checklist + SAMM maturity) | MEDIUM | PARTIAL |
-| Art. 2 | Definitions | D-07.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-07.1 | DEMONSTRATE + INSPECT (SSDF checklist + SAMM maturity) | MEDIUM | PARTIAL |
+| Art. 1 | Subject matter and scope | D-07.1 | manufacturer | Operational check per Doc 07c Appendix A §A.1.1/D-07.1 | DEMONSTRATE + INSPECT (SSDF checklist + SAMM posture) | MEDIUM | PARTIAL |
+| Art. 2 | Definitions | D-07.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-07.1 | DEMONSTRATE + INSPECT (SSDF checklist + SAMM posture) | MEDIUM | PARTIAL |
 | Art. 3 | Security requirements | D-03.4 | — | Operational check per Doc 07c Appendix A §A.1.1/D-03.4 | DEMONSTRATE + INSPECT (account-level block + Firebase config) | MEDIUM | PARTIAL |
 | Art. 4 | Vulnerability handling | D-02.2 | — | Operational check per Doc 07c Appendix A §A.1.1/D-02.2 | DEMONSTRATE + INSPECT (Patch Manager logs + patch log) | MEDIUM | PARTIAL |
 | Art. 5 | Security updates | D-02.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-02.1 | DEMONSTRATE + INSPECT (CI scan output + advisory feed) | MEDIUM | PARTIAL |
@@ -301,12 +298,12 @@ Based on applicable regulations (GDPR + CRA):
 | Art. 15 | CE marking | D-01.3 | — | Operational check per Doc 07c Appendix A §A.1.1/D-01.3 | INSPECT (KMS rotation status + key-custody review) | MEDIUM | PARTIAL |
 | Art. 16 | Market surveillance | D-06.3 | — | Operational check per Doc 07c Appendix A §A.1.1/D-06.3 | DEMONSTRATE + INSPECT (DPA template + sub-processor list) | HIGH | PARTIAL |
 | Art. 17 | Essential requirements for ICT products | D-02.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-02.1 | DEMONSTRATE + INSPECT (CI scan output + advisory feed) | MEDIUM | PARTIAL |
-| Art. 18 | Security by design | D-07.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-07.1 | DEMONSTRATE + INSPECT (SSDF checklist + SAMM maturity) | MEDIUM | PARTIAL |
+| Art. 18 | Security by design | D-07.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-07.1 | DEMONSTRATE + INSPECT (SSDF checklist + SAMM posture) | MEDIUM | PARTIAL |
 | Art. 19 | Vulnerability handling and disclosure | D-02.3 | — | Operational check per Doc 07c Appendix A §A.1.1/D-02.3 | INSPECT (security.txt 200 + CVD page test email) | MEDIUM | PARTIAL |
 | Art. 20 | Reporting incidents | D-04.3 | — | Operational check per Doc 07c Appendix A §A.1.1/D-04.3 | DEMONSTRATE + INSPECT (tabletop 24h notification drill) | HIGH | PARTIAL |
 | Art. 21 | EU declarative conformity | D-10.3 | — | Operational check per Doc 07c Appendix A §A.1.1/D-10.3 | DEMONSTRATE + INSPECT (quarterly checklist + annual self-attestation) | HIGH | PARTIAL |
 | Art. 22 | Traceability | D-10.2 | — | Operational check per Doc 07c Appendix A §A.1.1/D-10.2 | DEMONSTRATE + INSPECT (CloudTrail + Object Lock + 7y) | HIGH | PARTIAL |
-| Art. 23 | Software security | D-07.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-07.1 | DEMONSTRATE + INSPECT (SSDF checklist + SAMM maturity) | MEDIUM | PARTIAL |
+| Art. 23 | Software security | D-07.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-07.1 | DEMONSTRATE + INSPECT (SSDF checklist + SAMM posture) | MEDIUM | PARTIAL |
 | Art. 24 | Encrypted data storage | D-01.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-01.1 | INSPECT (config audit + annual review) | HIGH | PARTIAL |
 | Art. 25 | Unauthorised access prevention | D-01.2 | — | Operational check per Doc 07c Appendix A §A.1.1/D-01.2 | INSPECT (config audit + annual cert renewal) | HIGH | PARTIAL |
 | Art. 26 | Resilience to outages | D-04.4 | — | Operational check per Doc 07c Appendix A §A.1.1/D-04.4 | DEMONSTRATE + INSPECT (AWS Backup + quarterly DR test) | HIGH | PARTIAL |
@@ -329,7 +326,7 @@ Based on applicable regulations (GDPR + CRA):
 | Art. 20 | Right to data portability | D-05.4 | — | Operational check per Doc 07c Appendix A §A.1.1/D-05.4 | DEMONSTRATE + INSPECT (export endpoint + format check) | MEDIUM | PARTIAL |
 | Art. 21 | Right to object | D-05.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-05.1 | DEMONSTRATE + INSPECT (schema validation + log scrub review) | MEDIUM | PARTIAL |
 | Art. 22 | Automated decision-making | D-03.3 | — | Operational check per Doc 07c Appendix A §A.1.1/D-03.3 | DEMONSTRATE + INSPECT (IAM policies + RBAC matrix review) | MEDIUM | PARTIAL |
-| Art. 25 | Data protection by design | D-07.1 | controller + processor | Operational check per Doc 07c Appendix A §A.1.1/D-07.1 | DEMONSTRATE + INSPECT (SSDF checklist + SAMM maturity) | MEDIUM | PARTIAL |
+| Art. 25 | Data protection by design | D-07.1 | controller + processor | Operational check per Doc 07c Appendix A §A.1.1/D-07.1 | DEMONSTRATE + INSPECT (SSDF checklist + SAMM posture) | MEDIUM | PARTIAL |
 | Art. 28 | Processor clauses (DPA, sub-processor auth, processing on instructions, security | D-06.3 | controller + processor | Operational check per Doc 07c Appendix A §A.1.1/D-06.3 | DEMONSTRATE + INSPECT (DPA template + sub-processor list) | HIGH | PARTIAL |
 | Art. 30 | Records of processing activities (Art. 30(1) controller, Art. 30(2) processor's  | D-09.4 | controller + processor | Operational check per Doc 07c Appendix A §A.1.1/D-09.4 | DEMONSTRATE + INSPECT (RoPA + 10y retention check) | HIGH | PARTIAL |
 | Art. 31 | Cooperation with supervisory authority | D-04.3 | controller + processor | Operational check per Doc 07c Appendix A §A.1.1/D-04.3 | DEMONSTRATE + INSPECT (tabletop 24h notification drill) | HIGH | PARTIAL |
@@ -351,20 +348,20 @@ Based on applicable regulations (GDPR + CRA):
 - **Implementation Status** — Current 2/4 → Target 3/4 for MUST LIGHTWEIGHT; NOT IMPLEMENTED for DEFERRED (D-02.4).
 
 **Cross-references:**
-- Each sub-domain maps to Doc 07c Appendix A §A.1.1 (PG detail card) or §A.2.1 (SG detail card) — Sprint 5 enrichment.
+- Each sub-domain maps to Doc 07c Appendix A §A.1.1 (PG detail card) or §A.2.1 (SG detail card) enrichment.
 - Each tier inherits from Doc 07b §4 + §12 Track B Decision Table.
 - Each clause ID (`GDPR-C01`..`GDPR-C28`, `CRA-C01`..`CRA-C26`) matches `phase1_ontology.yaml:clause_mappings[].clause_id` for full traceability.
 
 ---
 
-## §10 Version History (Sprint 5 addition)
+## §10 Version History (Fase de Especificação 5 addition)
 
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
 | 1.0 | 2026-04-01 | Compliance Lead | Initial release - TinyTask SaaS case |
 | 1.1 | 2026-04-11 | Compliance Lead | Added GDPR Art. 32 Processor obligations (NativeCompliance, not via DPA); Multi-Actor note for Controller + Processor roles |
 | 1.2 | 2026-04-11 | Compliance Lead | Added GDPR Art. 33(2) "without undue delay" processor→controller distinction; Added CRA Art. 13(8) 5-year minimum support period, Art. 13(9) 10-year security update retention, Art. 13(13) 10-year documentation retention |
-| 2.0 | 2026-08-06 | Sprint 5 Executor | **Deep enrichment — §6 Per-Article Detailed Breakdown** (54 rows: 28 GDPR + 26 CRA) with 8 fields per row: Article, Topic, Sub-Domains, Obligated Party, Verification Criteria, Evidence Type, Risk if not met, Implementation Status. **NO Effort/Cost/Timeline fields added** per Sprint 5 scope. Frontmatter updated: status → DEEP_ENRICHED, sprint → 5. |
+| 2.0 | 2026-08-06 | Fase de Especificação 5 Executor | **Deep enrichment — §6 Per-Article Detailed Breakdown** (54 rows: 28 GDPR + 26 CRA) with 8 fields per row: Article, Topic, Sub-Domains, Obligated Party, Verification Criteria, Evidence Type, Risk if not met, Implementation Status. **NO Effort/Cost/Timeline fields added** per Fase de Especificação 5 scope. Frontmatter updated: status → DEEP_ENRICHED, sprint → 5. |
 
 ---
 

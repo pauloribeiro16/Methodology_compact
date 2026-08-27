@@ -5,9 +5,8 @@ phase: 2
 version: 3.1
 created: 2026-08-07
 updated: 2026-08-10
-author: "Sprint 5 + Sprint 9 + Sprint 6+ Executor (deep-enrichment-per-card + corr-012 PO/SO migration + tech-strip + P7 orphan fix)"
+author: "Fase de Especificação 5 + Fase de Especificação 9 + Fase de Especificação 6+ Executor (deep-enrichment-per-card + corr-012 PO/SO migration + tech-strip + P7 orphan fix)"
 status: DEEP_ENRICHED
-sprint: 9
 sprint_role: deep_enrichment_per_card
 deep_enrichment_date: 2026-08-07
 detail_cards_count: 34
@@ -23,25 +22,25 @@ expected_fields_per_card: 17
 fields_excluded: ["Effort Estimate", "Cost Estimate", "Target Timeline"]
 branch: feature/aegis-case01-p7-orphan-fix
 sprint_1_scope: cross-check 30 obligations ↔ 30 goals ↔ 30 CR rules; verify NI propagation; ID integrity; ontology cross-ref (28 GDPR + 26 CRA)
-sprint_3_scope: regenerate 12_Rules_Catalog.xlsx (14 sheets) — DONE in Sprint 3
-sprint_4_scope: port legacy §4 catalog table (30 obligations × 11 cols) into Rich §4 + add 6 new cols (Owner, Verification Criteria, Maturity, Priority, Stakeholders, Reporting); resolve F-10 NI divergence for OBL-D-01.4-001 and OBL-D-09.1-001
+sprint_3_scope: regenerate 12_Rules_Catalog.xlsx (14 sheets) — DONE in Fase de Especificação 3
+sprint_4_scope: port legacy §4 catalog table (30 obligations × 11 cols) into Rich §4 + add 6 new cols (Owner, Verification Criteria, Posture, Priority, Stakeholders, Reporting); resolve F-10 NI divergence for OBL-D-01.4-001 and OBL-D-09.1-001
 sprint_4_verdict: "PASS_WITH_FINDINGS — see §4.1 NI Reconciliation and §3.7 carried findings F-01/F-02"
 sprint_5_scope: "populate 17-field detail cards for all 30 obligations (510 cells: 30 × 17); 12 base + 3 Case_01-specific + 2 context fields"
-sprint_5_verdict: "PASS — see §5 cards; 30/30 cards × 17/17 fields; cross-references to Doc 09 (T-001/T-H-001/T-M-001/T-M-002) and Sprint 1 findings (F-01/F-03/F-10) integrated"
+sprint_5_verdict: "PASS — see §5 cards; 30/30 cards × 17/17 fields; cross-references to Doc 09 (T-001/T-H-001/T-M-001/T-M-002) and Fase de Especificação 1 findings (F-01/F-03/F-10) integrated"
 sprint_6_scope: "P7 orphan fix — add 4 OBLs (D-07.2/3/4, D-10.1; CRA sole authority); correct phase1_ontology.yaml (move D-07.x from not_covered to covered; covered_count 31→34, not_covered_count 7→4); update Doc 08 §2 note + §3 reconciliation tables + §4 catalog rows + §5 detail cards (cells 510→578); new findings F-07/F-08/F-09 (cross-doc orphans + twin-ontology + taxonomy-reference divergence for follow-on contracts)"
 sprint_6_verdict: "CONDITIONAL_PASS — 30 existing OBLs unchanged; 4 new OBLs added with CRA sole-authority; PO/SO/CR-D-XX.X-001 placeholders parallel F-01/F-03 carry-over; Doc 08 internally consistent; F-07/F-08/F-09 flag follow-on contract work"
 ---
 
 # Obligation Derivation Report — Rich Mode
 
-> **Sprint 0/6+ placeholder** — this document is the Rich Mode sibling of legacy `02_PHASE2_RULES/08_Obligation_Derivation.md`.
-> Will be enriched in Sprint 1 (reconciliation) + Sprint 5 (15 fields × 30 obligations). **Sprint 6+ P7 orphan fix:** 4 OBLs added (D-07.2/3/4, D-10.1); obligation count is now 34.
+> **Fase de Especificação 0/6+ placeholder** — this document is the Rich Mode sibling of legacy `02_PHASE2_RULES/08_Obligation_Derivation.md`.
+> Will be enriched in Fase de Especificação 1 (reconciliation) + Fase de Especificação 5 (15 fields × 30 obligations). **Fase de Especificação 6+ P7 orphan fix:** 4 OBLs added (D-07.2/3/4, D-10.1); obligation count is now 34.
 
 ---
 
 ## 1. DOCUMENT PURPOSE
 
-This is the Rich Mode version of the Obligation Derivation Report. It consolidates 34 obligations (from 54 source clauses: 28 GDPR + 26 CRA; 30 active in legacy + 4 added in Sprint 6+) into 15-field detail cards with multi-paragraph descriptions, scope/out-of-scope, NIST CSF anchors, and operational metadata.
+This is the Rich Mode version of the Obligation Derivation Report. It consolidates 34 obligations (from 54 source clauses: 28 GDPR + 26 CRA; 30 active in legacy + 4 added in Fase de Especificação 6+) into 15-field detail cards with multi-paragraph descriptions, scope/out-of-scope, NIST CSF anchors, and operational metadata.
 
 **Phase 2 Step:** B (Obligation Derivation)
 **Gate Criteria:** All 34 applicable obligations mapped to clauses with NI propagation + 15-field detail cards
@@ -50,7 +49,7 @@ This is the Rich Mode version of the Obligation Derivation Report. It consolidat
 
 ## 2. OBLIGATION CATALOG INHERITED FROM LEGACY (SPRINT 0 BASELINE + 4 SPRINT 6+)
 
-The 34 obligations are inherited from legacy `02_PHASE2_RULES/08_Obligation_Derivation.md` §4 (30 OBLs: D-01 through D-10 sub-domains) **plus** 4 Sprint 6+ additions (D-07.2/3/4, D-10.1) per the P7 orphan fix.
+The 34 obligations are inherited from legacy `02_PHASE2_RULES/08_Obligation_Derivation.md` §4 (30 OBLs: D-01 through D-10 sub-domains) **plus** 4 Fase de Especificação 6+ additions (D-07.2/3/4, D-10.1) per the P7 orphan fix.
 
 **Verified obligation inventory (canonical):**
 
@@ -68,13 +67,13 @@ The 34 obligations are inherited from legacy `02_PHASE2_RULES/08_Obligation_Deri
 | D-10 | 3 | OBL-D-10.1-001, OBL-D-10.2-001, OBL-D-10.3-001 |
 | **TOTAL** | **34** | — |
 
-**Note (Sprint 6+ — P7 orphan fix):** D-09.3 is absent by design (sole authority DORA; not applicable per ontology). **D-07.2, D-07.3, D-07.4, D-10.1 ARE in scope** as of Sprint 6 (P7 orphan fix); these were previously misclassified as DORA/NIS 2 exclusive in `phase1_ontology.yaml` `subdomains.not_covered` but Doc 07 §3 (compliance matrix) shows CRA coverage for these sub-domains. The ontology YAML has been corrected (see `00_COMMON/phase1_ontology.yaml`); 4 OBLs (D-07.2/07.3/07.4/10.1) are added below with CRA sole-authority mapping. See §3.5 gap analysis + §3.7 finding F-07 for the cross-doc orphan risk on Doc 10/11 (PO/SO/CR equivalents to be added in follow-on contract — current OBLs link directly to CR-D-XX.X-001 placeholders).
+**Note (Fase de Especificação 6+ — P7 orphan fix):** D-09.3 is absent by design (sole authority DORA; not applicable per ontology). **D-07.2, D-07.3, D-07.4, D-10.1 ARE in scope** as of Fase de Especificação 6 (P7 orphan fix); these were previously misclassified as DORA/NIS 2 exclusive in `phase1_ontology.yaml` `subdomains.not_covered` but Doc 07 §3 (compliance matrix) shows CRA coverage for these sub-domains. The ontology YAML has been corrected (see `00_COMMON/phase1_ontology.yaml`); 4 OBLs (D-07.2/07.3/07.4/10.1) are added below with CRA sole-authority mapping. See §3.5 gap analysis + §3.7 finding F-07 for the cross-doc orphan risk on Doc 10/11 (PO/SO/CR equivalents to be added in follow-on contract — current OBLs link directly to CR-D-XX.X-001 placeholders).
 
 ---
 
 ## 3. RECONCILIATION CROSS-CHECKS (SPRINT 1)
 
-> Sprint 1 scope: cross-check the 30 obligations against the 30 goals (Doc 10) and 30 CR rules (Doc 11), verify Normative Intensity (NI) propagation, confirm ID integrity, and cross-reference the Phase 1 ontology (28 GDPR + 26 CRA clauses). Legacy `02_PHASE2_RULES/` files are **read-only** and not modified by this section. **Sprint 6+ update:** OBL count raised to 34 after P7 orphan fix (D-07.2/3/4, D-10.1 added); cross-checks reflect 34.
+> Fase de Especificação 1 scope: cross-check the 30 obligations against the 30 goals (Doc 10) and 30 CR rules (Doc 11), verify Normative Intensity (NI) propagation, confirm ID integrity, and cross-reference the Phase 1 ontology (28 GDPR + 26 CRA clauses). Legacy `02_PHASE2_RULES/` files are **read-only** and not modified by this section. **Fase de Especificação 6+ update:** OBL count raised to 34 after P7 orphan fix (D-07.2/3/4, D-10.1 added); cross-checks reflect 34.
 
 ### 3.1 Obligation Count Verification
 
@@ -126,11 +125,11 @@ Each of the 34 obligations maps to **at least 1** objective (PO or SO). Strict 1
 | OBL-D-10.2-001 | SO-D-10.2-001 | yes | PASS |
 | OBL-D-10.3-001 | SO-D-10.3-001 | yes | PASS |
 
-**Summary (post Sprint 6+ P7 fix):** 27 OBLs (79%) have strict 1:1 goal mapping; 2 OBLs (D-09.1, D-09.2) have 2:1 mapping; **5 OBLs** (D-01.3 + D-07.2/D-07.3/D-07.4/D-10.1) have no goal — D-01.3 is a known carry-over (F-01/F-03, deferred to human arbiter); the 4 Sprint 6 additions are F-07 cross-doc orphans awaiting Doc 10 PO/SO additions in a follow-on contract. Total goal entries covering OBLs = 31 (11 PO + 20 SO); 4 new OBLs link directly to CR-D-XX.X-001 placeholders (see §3.3). See §3.7 for findings.
+**Summary (post Fase de Especificação 6+ P7 fix):** 27 OBLs (79%) have strict 1:1 goal mapping; 2 OBLs (D-09.1, D-09.2) have 2:1 mapping; **5 OBLs** (D-01.3 + D-07.2/D-07.3/D-07.4/D-10.1) have no goal — D-01.3 is a known carry-over (F-01/F-03, deferred to human arbiter); the 4 Fase de Especificação 6 additions are F-07 cross-doc orphans awaiting Doc 10 PO/SO additions in a follow-on contract. Total goal entries covering OBLs = 31 (11 PO + 20 SO); 4 new OBLs link directly to CR-D-XX.X-001 placeholders (see §3.3). See §3.7 for findings.
 
 ### 3.3 CR-Rule-to-Obligation Mapping (OBL → CR)
 
-Each of the 34 obligations maps to **exactly 1** Compliance Rule in Doc 11 §4. The mapping is strict 1:1 by ID suffix. **Note:** 4 OBLs added in Sprint 6+ (D-07.2/3/4, D-10.1) reference CR-D-XX.X-001 placeholders that do not yet exist in Doc 11 §4 — these are F-07 cross-doc orphans awaiting Doc 11 additions in a follow-on contract (analogous to the F-01/F-03 phantom-PO situation for D-01.3).
+Each of the 34 obligations maps to **exactly 1** Compliance Rule in Doc 11 §4. The mapping is strict 1:1 by ID suffix. **Note:** 4 OBLs added in Fase de Especificação 6+ (D-07.2/3/4, D-10.1) reference CR-D-XX.X-001 placeholders that do not yet exist in Doc 11 §4 — these are F-07 cross-doc orphans awaiting Doc 11 additions in a follow-on contract (analogous to the F-01/F-03 phantom-PO situation for D-01.3).
 
 | OBL ID | CR Rule | Status |
 |--------|---------|:------:|
@@ -173,7 +172,7 @@ Each of the 34 obligations maps to **exactly 1** Compliance Rule in Doc 11 §4. 
 
 ### 3.4 Normative Intensity (NI) Propagation
 
-NI propagation follows rule **DR-002**: `obligationNI = AVG(clauseNIs)` (legacy Doc 08 §3.1). All 34 obligations verified against legacy §6 table (Sprint 6+ adds 4 OBLs each with single CRA source → NI=3.000).
+NI propagation follows rule **DR-002**: `obligationNI = AVG(clauseNIs)` (legacy Doc 08 §3.1). All 34 obligations verified against legacy §6 table (Fase de Especificação 6+ adds 4 OBLs each with single CRA source → NI=3.000).
 
 | OBL ID | Source Clause NIs | Derived NI | Propagation Rule | Status |
 |--------|-------------------|-----------:|------------------|:------:|
@@ -212,7 +211,7 @@ NI propagation follows rule **DR-002**: `obligationNI = AVG(clauseNIs)` (legacy 
 | OBL-D-10.2-001 | 3 | 3.000 | Single source (CRA-C14) | PASS |
 | OBL-D-10.3-001 | 3, 2 | 2.500 | AVG(3,2) | PASS |
 
-**NI distribution (matches legacy §6 + Sprint 6+ additions):**
+**NI distribution (matches legacy §6 + Fase de Especificação 6+ additions):**
 
 | Weight | Count | Percentage |
 |--------|------:|-----------:|
@@ -222,7 +221,7 @@ NI propagation follows rule **DR-002**: `obligationNI = AVG(clauseNIs)` (legacy 
 | <2.000 | 0 | 0.0% |
 | **TOTAL** | **34** | **100%** |
 
-**Note:** Legacy §6 reports "Weight 3 Obligations: 20 (87.0%) / Weight 2 Obligations: 3 (13.0%)" — this conflates raw count (20) with legacy "weight-3 bucket" semantics. Sprint 6+ adds 4 OBLs each with NI=3.000 (single CRA source), pushing the Weight-3 bucket from 20 → 24 OBLs. The fine-grained distribution above is authoritative for both Sprint 1 baseline + Sprint 6+ additions.
+**Note:** Legacy §6 reports "Weight 3 Obligations: 20 (87.0%) / Weight 2 Obligations: 3 (13.0%)" — this conflates raw count (20) with legacy "weight-3 bucket" semantics. Fase de Especificação 6+ adds 4 OBLs each with NI=3.000 (single CRA source), pushing the Weight-3 bucket from 20 → 24 OBLs. The fine-grained distribution above is authoritative for both Fase de Especificação 1 baseline + Fase de Especificação 6+ additions.
 
 ### 3.5 ID Integrity Check
 
@@ -234,13 +233,13 @@ NI propagation follows rule **DR-002**: `obligationNI = AVG(clauseNIs)` (legacy 
 | Gap analysis (any sub-domain skipped) | D-09.3 only (DORA exclusive) | matches corrected ontology | PASS |
 
 **Sub-domain gaps (expected, not findings):**
-- `D-09.3` (Asset Inventories) — sole authority DORA, not applicable to TinyTask per ontology (Sprint 6+ after P7 fix removes D-07.2/3/4 and D-10.1 from gaps)
-- ~~`D-10.1` (Continuous Security Monitoring) — partially covered via BPR-D-10.2-001 (inherited managed audit-trail) but no dedicated OBL~~ **RESOLVED (Sprint 6+):** D-10.1 now has OBL-D-10.1-001 (added below; CRA sole-authority NI=3.000)
-- ~~`D-07.2`, `D-07.3`, `D-07.4` (Secure Coding / CI/CD / Change Mgmt)~~ **RESOLVED (Sprint 6+):** all three now have dedicated OBLs (added below; CRA sole-authority NI=3.000 each)
+- `D-09.3` (Asset Inventories) — sole authority DORA, not applicable to TinyTask per ontology (Fase de Especificação 6+ after P7 fix removes D-07.2/3/4 and D-10.1 from gaps)
+- ~~`D-10.1` (Continuous Security Monitoring) — partially covered via BPR-D-10.2-001 (inherited managed audit-trail) but no dedicated OBL~~ **RESOLVED:** D-10.1 now has OBL-D-10.1-001 (added below; CRA sole-authority NI=3.000)
+- ~~`D-07.2`, `D-07.3`, `D-07.4` (Secure Coding / CI/CD / Change Mgmt)~~ **RESOLVED:** all three now have dedicated OBLs (added below; CRA sole-authority NI=3.000 each)
 
 ### 3.6 Phase 1 Ontology Cross-Reference (28 GDPR + 26 CRA)
 
-The 34 obligations derive from 54 source clauses per legacy Doc 08 §5 traceability matrix (Sprint 6+ adds 4 OBLs using shared CRA clause IDs CRA-C02/C22/C12 — dedicated clause allocation deferred to follow-on contract per F-07). These must match the Phase 1 ontology (`00_COMMON/phase1_ontology.yaml` — updated by this contract to `covered_count=34, not_covered_count=4`).
+The 34 obligations derive from 54 source clauses per legacy Doc 08 §5 traceability matrix (Fase de Especificação 6+ adds 4 OBLs using shared CRA clause IDs CRA-C02/C22/C12 — dedicated clause allocation deferred to follow-on contract per F-07). These must match the Phase 1 ontology (`00_COMMON/phase1_ontology.yaml` — updated by this contract to `covered_count=34, not_covered_count=4`).
 
 | Regulation | Clauses in Ontology | Clauses in Doc 08 §5 | Status |
 |------------|--------------------:|---------------------:|:------:|
@@ -286,23 +285,23 @@ The 34 obligations derive from 54 source clauses per legacy Doc 08 §5 traceabil
 | D-09.1 | GDPR-C08, GDPR-C25, GDPR-C26 | CRA-C24 | 1 |
 | D-09.2 | GDPR-C20, GDPR-C24 | CRA-C23 | 1 |
 | D-09.4 | GDPR-C13, GDPR-C22 | — | 1 |
-| D-10.1 | — | CRA-C12 (per `00_Taxonomy_Reference.md` §3 D-10 mapping; unmapped in Doc 08 prior to Sprint 6+) | 1 |
+| D-10.1 | — | CRA-C12 (per `00_Taxonomy_Reference.md` §3 D-10 mapping; unmapped in Doc 08 prior to Fase de Especificação 6+) | 1 |
 | D-10.2 | — | CRA-C14 | 1 |
 | D-10.3 | GDPR-C19 | CRA-C20 | 1 |
 
-**Known ontology issue (preserved from ontology file header):** The ontology YAML notes a data integrity issue where `GDPR-C08` is mapped to different articles in the ontology vs the Python scripts. Doc 08 §5 follows the ontology mapping (GDPR-C08 → D-09.1). This is out of scope for Sprint 1 and is documented in the ontology file.
+**Known ontology issue (preserved from ontology file header):** The ontology YAML notes a data integrity issue where `GDPR-C08` is mapped to different articles in the ontology vs the Python scripts. Doc 08 §5 follows the ontology mapping (GDPR-C08 → D-09.1). This is out of scope for Fase de Especificação 1 and is documented in the ontology file.
 
 ### 3.7 Findings — Flagged for Human Review
 
 | ID | Severity | Description | Recommendation |
 |----|----------|-------------|----------------|
-| **F-01** | LOW | OBL-D-01.3-001 (Cryptographic Key Management) has no corresponding PO or SO in Doc 10. CR-D-01.3-001 exists and references `PO-D-01.3-001` — but that goal ID does not exist in Doc 10. | Either (a) add PO-D-01.3-001 to Doc 10, or (b) update CR-D-01.3-001 to reference an alternative goal. Sprint 5 DEEP enrichment cannot proceed for this OBL until resolved. |
+| **F-01** | LOW | OBL-D-01.3-001 (Cryptographic Key Management) has no corresponding PO or SO in Doc 10. CR-D-01.3-001 exists and references `PO-D-01.3-001` — but that goal ID does not exist in Doc 10. | Either (a) add PO-D-01.3-001 to Doc 10, or (b) update CR-D-01.3-001 to reference an alternative goal. Fase de Especificação 5 DEEP enrichment cannot proceed for this OBL until resolved. |
 | **F-02** | MEDIUM | OBL-D-09.1-001 and OBL-D-09.2-001 each have BOTH a PO and an SO. The strict 1:1 mapping rule is violated for these 2 OBLs. | Acceptable as-designed (D-09 governance covers both privacy policy and security policy objectives); document the dual-coverage as intentional in the 1:1 mapping definition. |
 | **F-03** | LOW | Doc 11 §4 row for `CR-D-01.3-001` references `PO-D-01.3-001` in the "Related Goals" column — but no PO-D-01.3-001 exists. | Same root cause as F-01. Fixing the goal either creates or removes this reference. |
 | **F-04** | INFO | Doc 10 §3.2 summary claims "12 Privacy Operational Objectives" but §3.1 lists only 11; Doc 10 §4.2 summary claims "18 Security Operational Objectives" but §4.1 lists 20. Total goal IDs = 31, not 30. | Stale summary counts from Doc 10 v1.0/v1.1. Doc 10 §3 has its own §3 findings. |
-| **F-05** | INFO | Ontology file (`phase1_ontology.yaml` header) flags a known `GDPR-C08` mapping discrepancy between the YAML and Python scripts. Doc 08 follows the YAML. | Out of scope for Sprint 1. Tracked as legacy data integrity issue per ontology file. |
+| **F-05** | INFO | Ontology file (`phase1_ontology.yaml` header) flags a known `GDPR-C08` mapping discrepancy between the YAML and Python scripts. Doc 08 follows the YAML. | Out of scope for Fase de Especificação 1. Tracked as legacy data integrity issue per ontology file. |
 | **F-06** | INFO | Stale `SO-D-02.4-001` reference in Doc 10 §10 version history (renamed to `SO-D-06.2-001` in v1.1). | Cosmetic only — version history note, not a data row. |
-| **F-07** | MEDIUM | **Sprint 6+ (P7 orphan fix):** 4 new OBLs added (D-07.2/3/4, D-10.1) reference placeholder PO/SO/CR-D-XX.X-001 IDs that do not yet exist in Doc 10 §3/§4 (no PO/SO-D-07.2/3/4 or D-10.1) or Doc 11 §4 (no CR-D-07.2/3/4 or CR-D-10.1). Cross-doc orphan risk is structural until the follow-on contract populates Doc 10 + Doc 11. | Add PO-D-07.2-001 to Doc 10 §3.1; add SO-D-07.3-001, SO-D-07.4-001, SO-D-10.1-001 to Doc 10 §4.1; add CR-D-07.2-001, CR-D-07.3-001, CR-D-07.4-001, CR-D-10.1-001 to Doc 11 §4 in a follow-on contract. Current Doc 08 entries use `(TBD)` markers explicitly so validators do not flag false-positive orphan cycles. |
+| **F-07** | MEDIUM | **Fase de Especificação 6+ (P7 orphan fix):** 4 new OBLs added (D-07.2/3/4, D-10.1) reference placeholder PO/SO/CR-D-XX.X-001 IDs that do not yet exist in Doc 10 §3/§4 (no PO/SO-D-07.2/3/4 or D-10.1) or Doc 11 §4 (no CR-D-07.2/3/4 or CR-D-10.1). Cross-doc orphan risk is structural until the follow-on contract populates Doc 10 + Doc 11. | Add PO-D-07.2-001 to Doc 10 §3.1; add SO-D-07.3-001, SO-D-07.4-001, SO-D-10.1-001 to Doc 10 §4.1; add CR-D-07.2-001, CR-D-07.3-001, CR-D-07.4-001, CR-D-10.1-001 to Doc 11 §4 in a follow-on contract. Current Doc 08 entries use `(TBD)` markers explicitly so validators do not flag false-positive orphan cycles. |
 | **F-08** | INFO | `phase1_ontology.yaml` exists in both `00_COMMON/` (canonical, updated by this contract) and `01_PHASE1_CONTEXT_RICH/` (Rich Mode twin, NOT updated by this contract — out-of-scope per user constraint). Doc 08 now references the corrected 00_COMMON ontology (covered_count=34, not_covered_count=4). | Update `01_PHASE1_CONTEXT_RICH/phase1_ontology.yaml` in a follow-on contract to restore twin consistency. |
 | **F-09** | INFO | `00_Taxonomy_Reference.md` §3 lines 117-119 still classifies D-07.2/3/4 as "DORA sole authority" / "NIS 2 sole authority" — contradicts the corrected ontology (which now classifies them as CRA-covered per Doc 07 §3). The reference is the canonical taxonomy outside Case_01 scope; Doc 08 is internally consistent against the corrected ontology. | Reconcile `00_Taxonomy_Reference.md` §3 with the per-case ontology correction in a follow-on cross-case contract. |
 
@@ -317,13 +316,13 @@ The 34 obligations derive from 54 source clauses per legacy Doc 08 §5 traceabil
 | Phase 1 ontology cross-reference (54 clauses) | PASS |
 | OBL ↔ Goal mapping (strict 1:1) | **CONDITIONAL_PASS** (F-01 carry-over + F-07 cross-doc orphans) |
 
-**Sprint 6+ verdict for Doc 08 (post P7 orphan fix):** **CONDITIONAL_PASS** — 30 OBLs unchanged from Sprint 5; 4 new OBLs (D-07.2/3/4, D-10.1) added with CRA sole-authority mapping and `(TBD)` placeholders for PO/SO/CR. F-07 cross-doc orphan tracking is explicit and parallels F-01/F-03 carry-over. Doc 08 is internally consistent against the corrected `phase1_ontology.yaml` (`covered_count=34, not_covered_count=4`); F-08/F-09 flag out-of-scope follow-on contracts for the twin ontology + Taxonomy Reference.
+**Fase de Especificação 6+ verdict for Doc 08 (post P7 orphan fix):** **CONDITIONAL_PASS** — 30 OBLs unchanged from Fase de Especificação 5; 4 new OBLs (D-07.2/3/4, D-10.1) added with CRA sole-authority mapping and `(TBD)` placeholders for PO/SO/CR. F-07 cross-doc orphan tracking is explicit and parallels F-01/F-03 carry-over. Doc 08 is internally consistent against the corrected `phase1_ontology.yaml` (`covered_count=34, not_covered_count=4`); F-08/F-09 flag out-of-scope follow-on contracts for the twin ontology + Taxonomy Reference.
 
 ---
 
 ## 4. REGULATORY OBLIGATIONS CATALOG
 
-> **Sprint 4 (this sprint):** Ported legacy `02_PHASE2_RULES/08_Obligation_Derivation.md` §4 catalog tables into Rich Mode with 17 columns (11 legacy fields + 6 new Sprint 4 fields: Owner, Verification Criteria, Implementation Status, Implementation Priority, Affected Stakeholders, Regulatory Reporting). 30 obligations × 17 columns = 510 cells (Sprint 4 baseline; Sprint 6+ adds 4 OBLs → 34 × 17 = 578 cells). The 6 new columns contribute 30 × 6 = **180 cells** (the Sprint 4 deliverable count).
+> **Fase de Especificação 4 (this sprint):** Ported legacy `02_PHASE2_RULES/08_Obligation_Derivation.md` §4 catalog tables into Rich Mode with 17 columns (11 legacy fields + 6 new Fase de Especificação 4 fields: Owner, Verification Criteria, Implementation Status, Implementation Priority, Affected Stakeholders, Regulatory Reporting). 30 obligations × 17 columns = 510 cells (Fase de Especificação 4 baseline; Fase de Especificação 6+ adds 4 OBLs → 34 × 17 = 578 cells). The 6 new columns contribute 30 × 6 = **180 cells** (the Fase de Especificação 4 deliverable count).
 
 ### D-01: Data Protection & Encryption Obligations
 
@@ -407,7 +406,7 @@ The 34 obligations derive from 54 source clauses per legacy Doc 08 §5 traceabil
 
 | Obligation ID | Obligation Description | Source Clauses | Sub-Domain | NI | obligationType | obligatedParty | implementation_tier | evidence_depth | control_selection | Activation Nature | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors |
 | --------------- | ------------------------ | ---------------- | ------------ | ----: | ---------------- | ---------------- | --------------------- | ---------------- | ------------------- | ------------------- | ------- | ---------------------- | --------------- | ------------------------ | ---------------------- | ---------------------- | --- |
-| OBL-D-07.1-001 | Integrate data protection and security into design from outset; secure by default | GDPR-C09, CRA-C02, CRA-C22 | D-07.1 | 2.667 | ONE_TIME | CONTROLLER, PROCESSOR, MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | secure-development-framework + maturity assessment baseline | STRUCTURAL (always active — both regulations apply during any design phase) | CTO + Lead Dev | secure-development-framework + maturity assessment | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.DS-01, PR.DS-10, PR.PS-01, PR.PS-06 |
+| OBL-D-07.1-001 | Integrate data protection and security into design from outset; secure by default | GDPR-C09, CRA-C02, CRA-C22 | D-07.1 | 2.667 | ONE_TIME | CONTROLLER, PROCESSOR, MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | secure-development-framework + posture assessment baseline | STRUCTURAL (always active — both regulations apply during any design phase) | CTO + Lead Dev | secure-development-framework + posture assessment | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.DS-01, PR.DS-10, PR.PS-01, PR.PS-06 |
 | OBL-D-07.2-001 | Apply secure coding standards to product source code; limit attack surface through code review and static analysis | CRA-C02 (shared with D-07.1 — dedicated TBD) | D-07.2 | 3.000 | CONTINUOUS | MANUFACTURER | LIGHTWEIGHT | Managed dependency scan + SAST + PR review evidence | secure coding standards + SAST + peer review | STRUCTURAL | CTO + Lead Dev | secure-coding-standards + SAST + peer-review evidence | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.PS-01, PR.PS-02, PR.IP-12 (legacy CSF 1.1; PR.PS-02 CSF 2.0) |
 | OBL-D-07.3-001 | Implement security gates in CI/CD pipeline; ensure build-time artefact integrity; SBOM gate | CRA-C22 (shared with D-07.1 — dedicated TBD) | D-07.3 | 3.000 | CONTINUOUS | MANUFACTURER | LIGHTWEIGHT | GitHub Actions workflow + SBOM artefact on each release | CI security gates + SBOM generation + dependency gate | STRUCTURAL | CTO + Lead Dev | CI security gates pass + SBOM on every release | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.IP-12 (legacy CSF 1.1; PR.PS-02 CSF 2.0), ID.SC-04 |
 | OBL-D-07.4-001 | Implement documented change management procedures; secure update delivery channel | CRA-C22 (shared with D-07.1 — dedicated TBD) | D-07.4 | 3.000 | CONTINUOUS | MANUFACTURER | LIGHTWEIGHT | CAB approval log + signed release artefacts | CAB approval + signed artefacts + change-management log | STRUCTURAL | CTO + Lead Dev | CAB approval + signed artefacts on every production release | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.IP-12 (legacy CSF 1.1; PR.PS-02 CSF 2.0), ID.SC-04 |
@@ -457,7 +456,7 @@ The 34 obligations derive from 54 source clauses per legacy Doc 08 §5 traceabil
 
 ### 4.1 NI Reconciliation Notes (Resolves F-10)
 
-> **Sprint 4 sub-section.** This sub-section documents the deliberate divergence between Rich §4 NI values and legacy `02_PHASE2_RULES/08_Obligation_Derivation.md` §6 / `02_PHASE2_RULES/11_Rules_Catalog.md` §4 NI values. The Rich Mode adopts the **DR-002 recomputed values** (`AVG(clauseNIs)`) per the derivation rule in legacy §3.1.
+> **Fase de Especificação 4 sub-section.** This sub-section documents the deliberate divergence between Rich §4 NI values and legacy `02_PHASE2_RULES/08_Obligation_Derivation.md` §6 / `02_PHASE2_RULES/11_Rules_Catalog.md` §4 NI values. The Rich Mode adopts the **DR-002 recomputed values** (`AVG(clauseNIs)`) per the derivation rule in legacy §3.1.
 
 **NI divergence table (Rich vs Legacy):**
 
@@ -473,16 +472,16 @@ The 34 obligations derive from 54 source clauses per legacy Doc 08 §5 traceabil
 | CR-D-01.4-001 | 2.500 | 3.000 | NI column in Doc 11 §4 will be 2.500 (carried into §4 catalog port in Doc 11) |
 | CR-D-09.1-001 | 2.500 | 2.750 | NI column in Doc 11 §4 will be 2.500 |
 
-**Catalog average NI recomputed:** Legacy Doc 11 §6 dashboard reports 2.842; Sprint 1 §3.4 reports 2.817 (DR-002 AVG recompute). With the F-10 reconciliation applied (Rich values authoritative), the average NI = **2.800** (lower than both legacy 2.842 and Sprint 1 2.817 because both F-10 corrections pull the average down: 3.000→2.500 is −0.500, 2.750→2.500 is −0.250; impact = (−0.500 + −0.250) / 30 = −0.025).
+**Catalog average NI recomputed:** Legacy Doc 11 §6 dashboard reports 2.842; Fase de Especificação 1 §3.4 reports 2.817 (DR-002 AVG recompute). With the F-10 reconciliation applied (Rich values authoritative), the average NI = **2.800** (lower than both legacy 2.842 and Fase de Especificação 1 2.817 because both F-10 corrections pull the average down: 3.000→2.500 is −0.500, 2.750→2.500 is −0.250; impact = (−0.500 + −0.250) / 30 = −0.025).
 
-**Human arbiter decision (recorded for Sprint 5):** Rich Mode uses **DR-002 AVG = 2.500** as authoritative for OBL-D-01.4-001 and OBL-D-09.1-001. If legacy is later ratified as authoritative, the two rows revert; for now, all downstream Sprint 5 priority fields derive from the Rich NI values.
+**Human arbiter decision (recorded for Fase de Especificação 5):** Rich Mode uses **DR-002 AVG = 2.500** as authoritative for OBL-D-01.4-001 and OBL-D-09.1-001. If legacy is later ratified as authoritative, the two rows revert; for now, all downstream Fase de Especificação 5 priority fields derive from the Rich NI values.
 
 ---
 
-## 5. OBLIGATION DETAIL CARDS (Rich Mode — Sprint 5)
+## 5. OBLIGATION DETAIL CARDS (Rich Mode)
 
 
-> **Sprint 5/6+ scope.** Each of the 34 obligations enumerated in §4 has a dedicated detail card below with 17 fields: description (2–3 paragraphs covering what + why + corpus-derived context), scope, out-of-scope, source article, NIST CSF anchors, verification criteria, verification method, owner, status, dependencies, risk-if-not-met, affected stakeholders, maturity score, implementation priority, regulatory reporting, external auditor, and supervisory body. Total cells populated = 34 cards × 17 fields = 578 cells (was 510 before Sprint 6+; +68 cells from 4 new OBLs).
+> **Fase de Especificação 5/6+ scope.** Each of the 34 obligations enumerated in §4 has a dedicated detail card below with 17 fields: description (2–3 paragraphs covering what + why + corpus-derived context), scope, out-of-scope, source article, NIST CSF anchors, verification criteria, verification method, owner, status, dependencies, risk-if-not-met, affected stakeholders, implementation posture, implementation priority, regulatory reporting, external auditor, and supervisory body. Total cells populated = 34 cards × 17 fields = 578 cells (was 510 before Fase de Especificação 6+; +68 cells from 4 new OBLs).
 
 
 > **Reporting routing defaults:** D-04.3 → max-SLA 24h (both CNPD 72h and ENISA 24h routed simultaneously per T-001); D-04 (others) → CNPD 72h (GDPR); D-02 → ENISA 24h (CRA); D-09 → CNPD + ENISA periodic; all others → Internal audit only.
@@ -491,16 +490,16 @@ The 34 obligations derive from 54 source clauses per legacy Doc 08 §5 traceabil
 > **Owner matrix (consistent across docs):** D-01 → CTO + Lead Dev | D-02 → CTO + Lead Dev + Procurement | D-03 → CTO + Lead Dev | D-04 → CTO + DPO + Compliance Lead | D-05 → CTO + DPO | D-06 → CTO + Lead Dev + Procurement | D-07 → CTO + Lead Dev | D-08 → CTO + HR + DPO | D-09 → CTO + DPO + Compliance Lead + Legal | D-10 → CTO + Lead Dev.
 
 
-> **Maturity + Priority defaults:** Maturity = PARTIAL (LIGHTWEIGHT target); Priority = HIGH for all P1 obligations, MEDIUM where proportionality allows (P2). Reporting routing per the rules above. External auditor is uniformly managed hosting provider ISO 27001 attestation leveraged under the managed-service configuration model.
+> **Posture + Priority defaults:** Posture = PARTIAL (LIGHTWEIGHT target); Priority = HIGH for all P1 obligations, MEDIUM where proportionality allows (P2). Reporting routing per the rules above. External auditor is uniformly managed hosting provider ISO 27001 attestation leveraged under the managed-service configuration model.
 
 
-> **F-10 NI reconciliation (from Sprint 4 §4.1):** OBL-D-01.4-001 and OBL-D-09.1-001 use Rich NI = 2.500 (DR-002 AVG) as authoritative. Priority for these two cards is HIGH (not MEDIUM) because the AVG pulls down from a CRA NI=3 component, which is the operationally dominant driver.
+> **F-10 NI reconciliation (from Fase de Especificação 4 §4.1):** OBL-D-01.4-001 and OBL-D-09.1-001 use Rich NI = 2.500 (DR-002 AVG) as authoritative. Priority for these two cards is HIGH (not MEDIUM) because the AVG pulls down from a CRA NI=3 component, which is the operationally dominant driver.
 
 
 ---
 
 
-### 5.0 Sprint 5 Detail-Card Index
+### 5.0 Fase de Especificação 5 Detail-Card Index
 
 
 Compact navigation table — for the full 17-field card, jump to the corresponding subsection below.
@@ -543,7 +542,7 @@ Compact navigation table — for the full 17-field card, jump to the correspondi
 | OBL-D-10.2-001 | D-10.2 | Security Audit Logging | CTO + Lead Dev | HIGH | PARTIAL | TODO | Internal audit only |
 | OBL-D-10.3-001 | D-10.3 | Regular Security Testing | CTO + Lead Dev | HIGH | PARTIAL | TODO | Internal audit only |
 
-**Total obligations:** 34 across 10 sub-domains (D-01..D-10) — Sprint 6+ count (was 30, +4 from P7 orphan fix). **Total cells populated in detail cards:** 34 × 17 = 578.
+**Total obligations:** 34 across 10 sub-domains (D-01..D-10) count (was 30, +4 from P7 orphan fix). **Total cells populated in detail cards:** 34 × 17 = 578.
 
 
 **Card-to-cross-reference mapping (verified in §3 of this document):**
@@ -554,7 +553,7 @@ Compact navigation table — for the full 17-field card, jump to the correspondi
 | OBL-D-01.1-001 | PO-D-01.1-001 | CR-D-01.1-001 |  |
 | OBL-D-01.2-001 | PO-D-01.2-001 | CR-D-01.2-001 |  |
 | OBL-D-01.3-001 | — (F-01 finding: no PO; CR references phantom PO-D-01.3-001 — see §3.7 F-03) | CR-D-01.3-001 | CRA sole-authority key-management obligation; PO-D-01.3-001 absent by design |
-| OBL-D-01.4-001 | PO-D-01.4-001 | CR-D-01.4-001 | Rich NI = 2.500 (F-10 reconciliation, Sprint 4 §4.1) |
+| OBL-D-01.4-001 | PO-D-01.4-001 | CR-D-01.4-001 | Rich NI = 2.500 (F-10 reconciliation, Fase de Especificação 4 §4.1) |
 | OBL-D-02.1-001 | SO-D-02.1-001 | CR-D-02.1-001 | CRA sole authority; SBOM cross-ref to OBL-D-06.2-001 |
 | OBL-D-02.2-001 | SO-D-02.2-001 | CR-D-02.2-001 | CRA 5-year support + 10-year update retention noted |
 | OBL-D-02.3-001 | SO-D-02.3-001 | CR-D-02.3-001 | security.txt + ENISA 24h routing |
@@ -573,13 +572,13 @@ Compact navigation table — for the full 17-field card, jump to the correspondi
 | OBL-D-06.1-001 | SO-D-06.1-001 | CR-D-06.1-001 | Provider ISO 27001 attestation register |
 | OBL-D-06.2-001 | SO-D-06.2-001 | CR-D-06.2-001 | CRA sole authority; machine-readable SBOM |
 | OBL-D-06.3-001 | SO-D-06.3-001 | CR-D-06.3-001 | DPA template |
-| OBL-D-07.1-001 | PO-D-07.1-001 | CR-D-07.1-001 | T-M-002: GDPR NI=2 vs CRA NI=3; secure-development-framework alignment + maturity assessment L2+ |
+| OBL-D-07.1-001 | PO-D-07.1-001 | CR-D-07.1-001 | T-M-002: GDPR NI=2 vs CRA NI=3; secure-development-framework alignment + posture assessment L2+ |
 | OBL-D-07.2-001 | — (F-07 TBD — PO-D-07.2-001 to be added in follow-on contract) | CR-D-07.2-001 (TBD — F-07) | CRA sole authority; secure-coding standards + SAST + peer review |
 | OBL-D-07.3-001 | — (F-07 TBD — SO-D-07.3-001 to be added in follow-on contract) | CR-D-07.3-001 (TBD — F-07) | CRA sole authority; CI security gates + SBOM generation |
 | OBL-D-07.4-001 | — (F-07 TBD — SO-D-07.4-001 to be added in follow-on contract) | CR-D-07.4-001 (TBD — F-07) | CRA sole authority; CAB approval + signed artefacts |
 | OBL-D-08.1-001 | SO-D-08.1-001 | CR-D-08.1-001 | Annual awareness + quarterly phishing drill |
 | OBL-D-08.2-001 | SO-D-08.2-001 | CR-D-08.2-001 | Role-specific (CTO/Dev/DPO) |
-| OBL-D-09.1-001 | PO-D-09.1-001 + SO-D-09.1-001 | CR-D-09.1-001 | Rich NI = 2.500 (F-10 reconciliation, Sprint 4 §4.1); ISMS docs |
+| OBL-D-09.1-001 | PO-D-09.1-001 + SO-D-09.1-001 | CR-D-09.1-001 | Rich NI = 2.500 (F-10 reconciliation, Fase de Especificação 4 §4.1); ISMS docs |
 | OBL-D-09.2-001 | PO-D-09.2-001 + SO-D-09.2-001 | CR-D-09.2-001 | T-M-001: unified DPIA + CRA risk assessment |
 | OBL-D-09.4-001 | PO-D-09.4-001 | CR-D-09.4-001 | RoPA + breach log |
 | OBL-D-10.1-001 | — (F-07 TBD — SO-D-10.1-001 to be added in follow-on contract) | CR-D-10.1-001 (TBD — F-07) | CRA sole authority; managed monitoring + alert taxonomy + monthly review |
@@ -593,7 +592,7 @@ Compact navigation table — for the full 17-field card, jump to the correspondi
 ### 5.1 D-01 — Data Protection & Encryption (4 cards)
 
 
-D-01 covers the confidentiality and integrity pillars of data protection. All four obligations are STRUCTURAL and CONTINUOUS — they operate at every read and every write. The implementation is fully delegated to managed hosting services (managed object storage encryption with managed key custody, managed database encryption with managed key custody) with the LIGHTWEIGHT implementation tier justified by the absence of a dedicated in-house key custody program. F-10 NI reconciliation: OBL-D-01.4-001 uses Rich NI = 2.500 (DR-002 AVG of GDPR-C05=2 and CRA-C09=3) per Sprint 4 §4.1.
+D-01 covers the confidentiality and integrity pillars of data protection. All four obligations are STRUCTURAL and CONTINUOUS — they operate at every read and every write. The implementation is fully delegated to managed hosting services (managed object storage encryption with managed key custody, managed database encryption with managed key custody) with the LIGHTWEIGHT implementation tier justified by the absence of a dedicated in-house key custody program. F-10 NI reconciliation: OBL-D-01.4-001 uses Rich NI = 2.500 (DR-002 AVG of GDPR-C05=2 and CRA-C09=3) per Fase de Especificação 4 §4.1.
 
 
 ### OBL-D-01.1-001 — Data Encryption at Rest
@@ -684,7 +683,7 @@ D-01 covers the confidentiality and integrity pillars of data protection. All fo
 
 ### OBL-D-01.3-001 — Cryptographic Key Management
 
-1. **Description:** Implement secure cryptographic key management with authentication and integrity verification. For TinyTask, this obligation is met through managed key custody — a managed key custody service that handles key generation, storage, rotation, and access control — without standing up an in-house key custody program. The justification is the LIGHTWEIGHT implementation tier and the MICRO budget; bringing up a self-hosted secret-storage service or hardware security module is a documented deliberate non-choice. The corpus derivation (`00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-01_Data-Protection/D-01.3/D-01.3.json`) treats key management as the second-order control underpinning both at-rest and in-transit encryption. Without it, encrypted data is only as secure as the lifecycle of the key that protects it. CRA-C15 (Annex I §1(3) and §2) is the sole authority here — GDPR does not impose a comparable key-management obligation directly, hence the NI=3.000 (CRA-only, high intensity) and the absence of a corresponding PO-D-01.3-001 (the goal layer is privacy-centric; see Sprint 1 finding F-01). At MICRO scale, the implementation is configuration-driven: managed cryptographic key custody with rotation enabled (annual cadence for symmetric keys), managed identity policies restricting decrypt operations to the application service roles, and managed audit-trail logging of every key-use event. The obligation is STRUCTURAL and CONTINUOUS — every cryptographic operation must trace to an authenticated, authorised key under managed key custody control.
+1. **Description:** Implement secure cryptographic key management with authentication and integrity verification. For TinyTask, this obligation is met through managed key custody — a managed key custody service that handles key generation, storage, rotation, and access control — without standing up an in-house key custody program. The justification is the LIGHTWEIGHT implementation tier and the MICRO budget; bringing up a self-hosted secret-storage service or hardware security module is a documented deliberate non-choice. The corpus derivation (`00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-01_Data-Protection/D-01.3/D-01.3.json`) treats key management as the second-order control underpinning both at-rest and in-transit encryption. Without it, encrypted data is only as secure as the lifecycle of the key that protects it. CRA-C15 (Annex I §1(3) and §2) is the sole authority here — GDPR does not impose a comparable key-management obligation directly, hence the NI=3.000 (CRA-only, high intensity) and the absence of a corresponding PO-D-01.3-001 (the goal layer is privacy-centric; see Fase de Especificação 1 finding F-01). At MICRO scale, the implementation is configuration-driven: managed cryptographic key custody with rotation enabled (annual cadence for symmetric keys), managed identity policies restricting decrypt operations to the application service roles, and managed audit-trail logging of every key-use event. The obligation is STRUCTURAL and CONTINUOUS — every cryptographic operation must trace to an authenticated, authorised key under managed key custody control.
 
 2. **Scope:** All cryptographic keys used by TinyTask: managed object storage bucket keys, managed NoSQL table keys, managed database storage encryption keys, managed audit-trail log encryption key, managed secrets custody (for database credentials and API keys to payment processor/managed messaging service).
 
@@ -727,7 +726,7 @@ D-01 covers the confidentiality and integrity pillars of data protection. All fo
 
 ### OBL-D-01.4-001 — Data Integrity Protection
 
-1. **Description:** Protect personal and product data against unauthorised manipulation (intentional tampering by attackers or malicious insiders) and accidental loss (data corruption, erroneous deletion, replication gaps). For TinyTask, the implementation uses HMAC signatures on critical application objects, managed database constraint enforcement (UNIQUE, CHECK, FOREIGN KEY), and managed object storage Object Lock for tamper-evident retention of audit-relevant artifacts. The corpus derivation (`00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-01_Data-Protection/D-01.4/D-01.4.json`) treats integrity as the third pillar of data protection alongside confidentiality (D-01.1, D-01.2) and availability (D-04.4). GDPR Art. 5(1)(d) frames accuracy and integrity as a substantive principle; CRA-C09 (Annex I §1(4)) lifts the same requirement onto product data. The Rich Mode NI = 2.500 (DR-002 AVG of GDPR-C05=2 and CRA-C09=3), resolved as authoritative in Sprint 4 §4.1. The obligation is STRUCTURAL and CONTINUOUS — every write operation must enforce integrity, and every read must verify it. The implementation strategy intentionally avoids blockchain-style append-only ledgers (over-engineered) but does use managed object storage Object Lock in compliance mode for the breach log and audit log buckets, which are the artifacts most likely to be targeted by tampering.
+1. **Description:** Protect personal and product data against unauthorised manipulation (intentional tampering by attackers or malicious insiders) and accidental loss (data corruption, erroneous deletion, replication gaps). For TinyTask, the implementation uses HMAC signatures on critical application objects, managed database constraint enforcement (UNIQUE, CHECK, FOREIGN KEY), and managed object storage Object Lock for tamper-evident retention of audit-relevant artifacts. The corpus derivation (`00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-01_Data-Protection/D-01.4/D-01.4.json`) treats integrity as the third pillar of data protection alongside confidentiality (D-01.1, D-01.2) and availability (D-04.4). GDPR Art. 5(1)(d) frames accuracy and integrity as a substantive principle; CRA-C09 (Annex I §1(4)) lifts the same requirement onto product data. The Rich Mode NI = 2.500 (DR-002 AVG of GDPR-C05=2 and CRA-C09=3), resolved as authoritative in Fase de Especificação 4 §4.1. The obligation is STRUCTURAL and CONTINUOUS — every write operation must enforce integrity, and every read must verify it. The implementation strategy intentionally avoids blockchain-style append-only ledgers (over-engineered) but does use managed object storage Object Lock in compliance mode for the breach log and audit log buckets, which are the artifacts most likely to be targeted by tampering.
 
 2. **Scope:** All production data stores where data subject rights or product functionality depend on integrity: customer PII in managed relational database (CHECK + UNIQUE constraints), managed object storage customer-uploaded assets (managed Object Lock in compliance mode for the audit-trail subset), managed NoSQL streams (per-record checksum), managed backup snapshots (verified at restore time).
 
@@ -1150,7 +1149,7 @@ D-03 covers authentication and access-control. Two obligations are CRA sole auth
 ### 5.4 D-04 — Incident Response (4 cards)
 
 
-D-04 covers the full incident lifecycle: severity limitation (D-04.1), containment (D-04.2), notification (D-04.3), restoration (D-04.4). D-04.3 is the CONTEXTUAL obligation — it activates only on a compound event (personal-data breach AND exploited vulnerability). T-001 (Doc 09) and T-H-001 (Sprint 1 §3.5) document the max-SLA 24h routing decision: both CNPD and ENISA are notified within the tighter 24h clock.
+D-04 covers the full incident lifecycle: severity limitation (D-04.1), containment (D-04.2), notification (D-04.3), restoration (D-04.4). D-04.3 is the CONTEXTUAL obligation — it activates only on a compound event (personal-data breach AND exploited vulnerability). T-001 (Doc 09) and T-H-001 (Fase de Especificação 1 §3.5) document the max-SLA 24h routing decision: both CNPD and ENISA are notified within the tighter 24h clock.
 
 
 ### OBL-D-04.1-001 — Exploit Severity Limitation
@@ -1241,7 +1240,7 @@ D-04 covers the full incident lifecycle: severity limitation (D-04.1), containme
 
 ### OBL-D-04.3-001 — Breach Notification (T-001)
 
-1. **Description:** Notify the supervisory authority within 72 hours (GDPR Art. 33) of a personal-data breach, and within 24 hours (CRA Art. 14) of awareness of an exploited vulnerability that has caused or may cause significant harm. As a processor for B2B client content, also notify controllers 'without undue delay' (GDPR Art. 33(2)). For TinyTask, this obligation is met through a unified incident-response workflow that routes every qualifying incident to the max-SLA clock (24h) and triggers both the CNPD notification (GDPR) and the ENISA report (CRA) in a single coordinated notification. The corpus derivation (`00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-04_Incident/D-04.3/D-04.3.json`) frames D-04.3 as the CONTEXTUAL obligation par excellence: it is STRUCTURAL in the sense that the workflow must always be ready, but it is TRIGGERED by a compound event (personal-data breach AND exploited vulnerability simultaneously) that activates both GDPR and CRA clocks in tension. Tension T-H-001 (Sprint 1 §3.5) and T-001 (Doc 09) document the routing decision: max-SLA wins, both regulators notified. The obligation is TRIGGERED only — there is no continuous activity. The workflow itself is STRUCTURAL. At MICRO scale, the workflow is a single Markdown runbook + a managed messaging service channel + a Contact List that includes CNPD, ENISA, and CNCS.
+1. **Description:** Notify the supervisory authority within 72 hours (GDPR Art. 33) of a personal-data breach, and within 24 hours (CRA Art. 14) of awareness of an exploited vulnerability that has caused or may cause significant harm. As a processor for B2B client content, also notify controllers 'without undue delay' (GDPR Art. 33(2)). For TinyTask, this obligation is met through a unified incident-response workflow that routes every qualifying incident to the max-SLA clock (24h) and triggers both the CNPD notification (GDPR) and the ENISA report (CRA) in a single coordinated notification. The corpus derivation (`00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-04_Incident/D-04.3/D-04.3.json`) frames D-04.3 as the CONTEXTUAL obligation par excellence: it is STRUCTURAL in the sense that the workflow must always be ready, but it is TRIGGERED by a compound event (personal-data breach AND exploited vulnerability simultaneously) that activates both GDPR and CRA clocks in tension. Tension T-H-001 (Fase de Especificação 1 §3.5) and T-001 (Doc 09) document the routing decision: max-SLA wins, both regulators notified. The obligation is TRIGGERED only — there is no continuous activity. The workflow itself is STRUCTURAL. At MICRO scale, the workflow is a single Markdown runbook + a managed messaging service channel + a Contact List that includes CNPD, ENISA, and CNCS.
 
 2. **Scope:** All qualifying personal-data breaches (GDPR Art. 4(12) definition); all exploited vulnerabilities with significant harm (CRA Art. 14(1) trigger); all processor→controller notifications for B2B client breaches (GDPR Art. 33(2)). Notification templates pre-staged for CNPD, ENISA, and customer-controller variants.
 
@@ -1713,7 +1712,7 @@ D-07 covers secure-by-design — the meta-control that all other controls depend
 
 ### OBL-D-07.1-001 — Secure-by-Design (T-M-002)
 
-1. **Description:** Integrate data protection and security into the design from the outset, with secure-by-default configurations. For TinyTask, this obligation is met through the application of NIST SSDF (Secure Software Development Framework) practices and OWASP SAMM Level 2+ maturity across the development lifecycle: threat modelling at design time, secure-coding standards enforced in CI, dependency scanning on every build, and security review as a PR merge gate. The corpus derivation (`00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-07_Secure-Dev/D-07.1/D-07.1.json`) treats secure-by-design as the meta-control that all other controls depend on: without it, the system accumulates vulnerabilities faster than D-02.1 can remediate. GDPR-C09 (Art. 25 — data protection by design and by default), CRA-C02 (Annex I §1 — secure by default), and CRA-C22 (Art. 13 — secure development obligations) jointly drive the obligation with NI=2.667. Tension T-M-002 (GDPR NI=2 vs CRA NI=3) is structural and always active; the CRA higher intensity wins operationally. At MICRO scale, secure-by-design is realised through CI gates and PR review discipline rather than a dedicated security team. The obligation is ONE_TIME in design but operates CONTINUOUSLY through the CI gates. The LIGHTWEIGHT implementation tier is justified by the absence of a dedicated security engineer; the role is held by the CTO + Lead Dev.
+1. **Description:** Integrate data protection and security into the design from the outset, with secure-by-default configurations. For TinyTask, this obligation is met through the application of NIST SSDF (Secure Software Development Framework) practices and OWASP SAMM Level 2+ posture across the development lifecycle: threat modelling at design time, secure-coding standards enforced in CI, dependency scanning on every build, and security review as a PR merge gate. The corpus derivation (`00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-07_Secure-Dev/D-07.1/D-07.1.json`) treats secure-by-design as the meta-control that all other controls depend on: without it, the system accumulates vulnerabilities faster than D-02.1 can remediate. GDPR-C09 (Art. 25 — data protection by design and by default), CRA-C02 (Annex I §1 — secure by default), and CRA-C22 (Art. 13 — secure development obligations) jointly drive the obligation with NI=2.667. Tension T-M-002 (GDPR NI=2 vs CRA NI=3) is structural and always active; the CRA higher intensity wins operationally. At MICRO scale, secure-by-design is realised through CI gates and PR review discipline rather than a dedicated security team. The obligation is ONE_TIME in design but operates CONTINUOUSLY through the CI gates. The LIGHTWEIGHT implementation tier is justified by the absence of a dedicated security engineer; the role is held by the CTO + Lead Dev.
 
 2. **Scope:** All new feature design (threat model required before merge); all production code (CI gates: SAST, dependency scan, secret scan); all infrastructure-as-code (Terraform plan reviewed for security before apply); all PRs (security review required for changes touching authentication, authorisation, encryption, or PII handling).
 
@@ -1729,7 +1728,7 @@ D-07 covers secure-by-design — the meta-control that all other controls depend
 
    - PR review checklist: every PR touching auth/authz/encryption/PII requires CTO + Lead Dev review; verified by GitHub branch protection rules.
 
-   - Annual secure-development maturity self-assessment: OWASP SAMM Level 2+ across all practices; gaps documented in Doc 09 family.
+   - Annual secure-development posture self-assessment: OWASP SAMM Level 2+ across all practices; gaps documented in Doc 09 family.
 
 7. **Verification Method:** TEST (CI gates pass) + INSPECT (SAMM self-assessment + PR review sample) + DEMONSTRATE (live threat-model walkthrough for a new feature)
 
@@ -1908,7 +1907,7 @@ D-07 covers secure-by-design — the meta-control that all other controls depend
 
 
 
-**D-07 Verification Cross-Walk (updated post Sprint 6+ — 4 OBLs):**
+**D-07 Verification Cross-Walk (updated post Fase de Especificação 6+ — 4 OBLs):**
 
 
 | OBL ID | Verification Criteria Count | Method Mix | Primary NIST Anchor | Cadence |
@@ -1918,7 +1917,7 @@ D-07 covers secure-by-design — the meta-control that all other controls depend
 | OBL-D-07.3-001 | 3 | TEST + INSPECT + DEMONSTRATE | PR.PS-02 | Per-PR + per-release |
 | OBL-D-07.4-001 | 3 | INSPECT + DEMONSTRATE + TEST | PR.IP-12 (CSF 1.1; PR.PS-02 CSF 2.0) | Per-release + quarterly audit |
 
-**D-07 Owner-Responsibility Decomposition (updated post Sprint 6+ — 4 OBLs):**
+**D-07 Owner-Responsibility Decomposition (updated post Fase de Especificação 6+ — 4 OBLs):**
 
 
 | Role | Primary Responsibility in this Sub-Domain | Backup / Approver |
@@ -2051,7 +2050,7 @@ D-09 covers governance: ISMS documentation (D-09.1), unified risk assessment (D-
 
 ### OBL-D-09.1-001 — ISMS Documentation
 
-1. **Description:** Implement appropriate technical and organisational measures; document policies; maintain technical documentation for 10 years. For TinyTask, this obligation is met through the Information Security Management System (ISMS) documentation set: security policy, access-control policy, incident-response policy, data-protection policy, business-continuity policy, supplier-security policy — all aligned to ISO 27001 Annex A controls (proportionally scoped to MICRO tier). The corpus derivation (`00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-09_Governance/D-09.1/D-09.1.json`) treats ISMS documentation as the structural backbone of every other governance obligation: without it, there is no auditable evidence of 'appropriate measures'. GDPR-C08 (Art. 32 — appropriate measures), GDPR-C25 (Art. 5(2) — accountability principle), GDPR-C26 (Art. 24 — controller accountability), and CRA-C24 (Art. 13 — technical documentation) jointly drive the obligation. Rich NI = 2.500 (DR-002 AVG of GDPR-C08=2, GDPR-C25=3, GDPR-C26=2, CRA-C24=3), resolved as authoritative in Sprint 4 §4.1. At MICRO scale, ISMS documentation is a set of Markdown policies in `docs/policies/` reviewed annually by DPO + Compliance Lead + Legal. The obligation is mixed CONTINUOUS (policies must always be current) + ONE_TIME (initial drafting).
+1. **Description:** Implement appropriate technical and organisational measures; document policies; maintain technical documentation for 10 years. For TinyTask, this obligation is met through the Information Security Management System (ISMS) documentation set: security policy, access-control policy, incident-response policy, data-protection policy, business-continuity policy, supplier-security policy — all aligned to ISO 27001 Annex A controls (proportionally scoped to MICRO tier). The corpus derivation (`00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-09_Governance/D-09.1/D-09.1.json`) treats ISMS documentation as the structural backbone of every other governance obligation: without it, there is no auditable evidence of 'appropriate measures'. GDPR-C08 (Art. 32 — appropriate measures), GDPR-C25 (Art. 5(2) — accountability principle), GDPR-C26 (Art. 24 — controller accountability), and CRA-C24 (Art. 13 — technical documentation) jointly drive the obligation. Rich NI = 2.500 (DR-002 AVG of GDPR-C08=2, GDPR-C25=3, GDPR-C26=2, CRA-C24=3), resolved as authoritative in Fase de Especificação 4 §4.1. At MICRO scale, ISMS documentation is a set of Markdown policies in `docs/policies/` reviewed annually by DPO + Compliance Lead + Legal. The obligation is mixed CONTINUOUS (policies must always be current) + ONE_TIME (initial drafting).
 
 2. **Scope:** All security policies (security policy, access-control, incident-response, data-protection, business-continuity, supplier-security); all technical documentation (architecture diagrams, data-flow diagrams, DPIA records, supplier-attestation register); all meeting minutes (security steering committee, if any); all audit reports.
 
@@ -2209,7 +2208,7 @@ D-10 covers monitoring and audit: continuous security monitoring (D-10.1, CRA so
 
 ### OBL-D-10.1-001 — Continuous Security Monitoring
 
-1. **Description:** Establish continuous security monitoring for the product and supporting systems, and operate the CRA Art. 14 vulnerability-handling workflow. For TinyTask, this obligation is met through: managed monitoring service (logs from SYS-01 → managed monitoring subprocessor) with an alert taxonomy of severity-severity tiers; monthly review of alerts with cross-reference to incident log (OBL-D-04.3-001) and customer-support tickets; documented vulnerability-handling workflow that routes exploited vulnerabilities to ENISA 24h reporting and contained vulnerabilities to the patch-management cadence (OBL-D-02.2-001). The corpus derivation (`00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-10_Monitoring/D-10.1/D-10.1.json`) treats continuous monitoring as the detection layer: it converts runtime telemetry into actionable alerts and creates the evidence trail for compliance reporting. CRA-C12 (Annex I Part I §2(l) + Part II §1) drives the obligation with NI=3.000 (CRA sole authority). CRA-C12 was unmapped in Doc 08 §3.6 prior to Sprint 6+ because there was no dedicated OBL; the taxonomy reference (`00_Taxonomy_Reference.md` §3 line 142) already lists CRA-C12 as the D-10.1 driver, so this OBL closes the gap. The obligation is CONTINUOUS — monitoring is always-on; vulnerability-handling is triggered by detected events. The LIGHTWEIGHT implementation tier is justified by managed monitoring + monthly review being sufficient at MICRO scale (no in-house SIEM required).
+1. **Description:** Establish continuous security monitoring for the product and supporting systems, and operate the CRA Art. 14 vulnerability-handling workflow. For TinyTask, this obligation is met through: managed monitoring service (logs from SYS-01 → managed monitoring subprocessor) with an alert taxonomy of severity-severity tiers; monthly review of alerts with cross-reference to incident log (OBL-D-04.3-001) and customer-support tickets; documented vulnerability-handling workflow that routes exploited vulnerabilities to ENISA 24h reporting and contained vulnerabilities to the patch-management cadence (OBL-D-02.2-001). The corpus derivation (`00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-10_Monitoring/D-10.1/D-10.1.json`) treats continuous monitoring as the detection layer: it converts runtime telemetry into actionable alerts and creates the evidence trail for compliance reporting. CRA-C12 (Annex I Part I §2(l) + Part II §1) drives the obligation with NI=3.000 (CRA sole authority). CRA-C12 was unmapped in Doc 08 §3.6 prior to Fase de Especificação 6+ because there was no dedicated OBL; the taxonomy reference (`00_Taxonomy_Reference.md` §3 line 142) already lists CRA-C12 as the D-10.1 driver, so this OBL closes the gap. The obligation is CONTINUOUS — monitoring is always-on; vulnerability-handling is triggered by detected events. The LIGHTWEIGHT implementation tier is justified by managed monitoring + monthly review being sufficient at MICRO scale (no in-house SIEM required).
 
 2. **Scope:** All production infrastructure (managed hosting, managed CI/CD, managed monitoring); the TinyTask SaaS application (frontend + backend + workers); managed identity service; payment processor. Scope includes: alert taxonomy, monthly review cadence, vulnerability-handling workflow, ENISA 24h reporting routing for exploited vulnerabilities (CRA Art. 14).
 
@@ -2339,7 +2338,7 @@ D-10 covers monitoring and audit: continuous security monitoring (D-10.1, CRA so
 
 
 
-**D-10 Verification Cross-Walk (for human reviewer — updated post Sprint 6+ to 3 OBLs):**
+**D-10 Verification Cross-Walk (for human reviewer — updated post Fase de Especificação 6+ to 3 OBLs):**
 
 
 | OBL ID | Verification Criteria Count | Method Mix | Primary NIST Anchor | Cadence |
@@ -2348,7 +2347,7 @@ D-10 covers monitoring and audit: continuous security monitoring (D-10.1, CRA so
 | OBL-D-10.2-001 | 3 | INSPECT + TEST + DEMONSTRATE | PR.PS-04 | Continuous + monthly review |
 | OBL-D-10.3-001 | 3 | TEST + INSPECT + DEMONSTRATE | DE.CM-01 | Quarterly + annual pen |
 
-**D-10 Owner-Responsibility Decomposition (updated post Sprint 6+ to 3 OBLs):**
+**D-10 Owner-Responsibility Decomposition (updated post Fase de Especificação 6+ to 3 OBLs):**
 
 
 | Role | Primary Responsibility in this Sub-Domain | Backup / Approver |
@@ -2360,29 +2359,29 @@ D-10 covers monitoring and audit: continuous security monitoring (D-10.1, CRA so
 ---
 
 
-### 5.11 Sprint 5 Summary Statistics
+### 5.11 Fase de Especificação 5 Summary Statistics
 
 
 | Metric | Value | Notes |
 |--------|-------|-------|
-| Total detail cards | 34 | One per obligation enumerated in §4 (was 30; +4 OBL-D-07.2/3/4/10.1 from Sprint 6+ P7 orphan fix) |
-| Fields per card | 17 | Items 1–17 of the template (description, scope, OOS, source, NIST, verification, method, owner, status, deps, risk, stakeholders, maturity, priority, reporting, auditor, supervisor) |
+| Total detail cards | 34 | One per obligation enumerated in §4 (was 30; +4 OBL-D-07.2/3/4/10.1 from Fase de Especificação 6+ P7 orphan fix) |
+| Fields per card | 17 | Items 1–17 of the template (description, scope, OOS, source, NIST, verification, method, owner, status, deps, risk, stakeholders, posture, priority, reporting, auditor, supervisor) |
 | Total cells populated | 578 | 34 × 17 (was 30 × 17 = 510; +68 cells) |
 | HIGH priority cards | 30 | All P1 obligations (was 26; +4 from new OBLs) |
 | MEDIUM priority cards | 4 | OBL-D-03.2-001, OBL-D-08.1-001, OBL-D-08.2-001 (proportionality flexibility) |
 | Cards reporting to CNPD only | 0 | All D-04.3 cards route to both CNPD + ENISA; D-04 (others) report to CNPD; see below |
 | Cards reporting to CNPD + ENISA (max-SLA) | 1 | OBL-D-04.3-001 only (T-001 routing) |
 | Cards reporting to CNPD only (GDPR Art. 33) | 3 | OBL-D-04.1-001, OBL-D-04.2-001, OBL-D-04.4-001 |
-| Cards reporting to ENISA only (CRA) | 4 | OBL-D-02.1-001, OBL-D-02.2-001, OBL-D-02.3-001, **OBL-D-10.1-001** (CRA Art. 14 — Sprint 6+ addition) |
+| Cards reporting to ENISA only (CRA) | 4 | OBL-D-02.1-001, OBL-D-02.2-001, OBL-D-02.3-001, **OBL-D-10.1-001** (CRA Art. 14 addition) |
 | Cards reporting to CNPD + ENISA (periodic) | 3 | OBL-D-09.1-001, OBL-D-09.2-001, OBL-D-09.4-001 |
 <| Cards reporting internal-audit-only | 22 | All D-01, D-03, D-05, D-06, D-07, D-08, D-10 (except D-04 + new D-10.1) |
 | External auditor | Managed hosting provider documented third-party security attestation | Leveraged under managed-service configuration model |
 | Supervisory bodies | CNPD (lead GDPR SA), ENISA (CRA), CNCS (PT CSIRT) | Multi-body routing per Doc 09 tensions T-001 / T-H-001 |
 
-**Status field default:** all 30 cards are TODO at Sprint 5 completion — the Sprint 5 scope is enumeration and verification-criteria design, not implementation. Sprint 6+ (out of scope) will move cards to IN_PROGRESS as work begins; DONE only after the verification criteria have been independently witnessed.
+**Status field default:** all 30 cards are TODO at Fase de Especificação 5 completion — the Fase de Especificação 5 scope is enumeration and verification-criteria design, not implementation. Fase de Especificação 6+ (out of scope) will move cards to IN_PROGRESS as work begins; DONE only after the verification criteria have been independently witnessed.
 
 
-**Maturity score basis:** 1/4 is the as-is state at Sprint 5 (managed-service configuration documented but no quarterly verification cadence yet); 3/4 is the LIGHTWEIGHT target after one full cycle of the verification criteria (typically 12-18 months from Sprint 5).
+**Posture score basis:** 1/4 is the as-is state at Fase de Especificação 5 (managed-service configuration documented but no quarterly verification cadence yet); 3/4 is the LIGHTWEIGHT target after one full cycle of the verification criteria (typically 12-18 months from Fase de Especificação 5).
 
 
 ### 5.12 Corpus-Domain Traceability
@@ -2424,25 +2423,25 @@ Each obligation traces to a specific corpus domain file under `00_METHODOLOGY/PR
 | OBL-D-10.2-001 | `domains/D-10_Monitoring/D-10.2/` | SO-D-10.2.CRA | FROZEN (CRA sole authority) |
 | OBL-D-10.3-001 | `domains/D-10_Monitoring/D-10.3/` | SO-D-10.3.GDPR-CRA | FROZEN |
 
-**F-01 / F-03 finding status:** OBL-D-01.3-001 carries no corresponding PO (Phase 1 finding F-01) but the corpus Sub-SO `SO-D-01.3.CRA` is preserved verbatim per `proportionality_model.md §1`. The CR-D-01.3-001 rule in Doc 11 §4 references the phantom PO-D-01.3-001 — this is finding F-03, deferred to human arbiter per Sprint 4 §3.7. The obligation card itself is complete and actionable; only the goal-to-rule linkage in Doc 11 requires human decision.
+**F-01 / F-03 finding status:** OBL-D-01.3-001 carries no corresponding PO (Phase 1 finding F-01) but the corpus Sub-SO `SO-D-01.3.CRA` is preserved verbatim per `proportionality_model.md §1`. The CR-D-01.3-001 rule in Doc 11 §4 references the phantom PO-D-01.3-001 — this is finding F-03, deferred to human arbiter per Fase de Especificação 4 §3.7. The obligation card itself is complete and actionable; only the goal-to-rule linkage in Doc 11 requires human decision.
 
 
 ### 5.13 Tension & Finding Propagation
 
 
-Detail cards surface the tensions and findings documented in `09_Strategic_Tensions_Report.md` and Sprint 1 §3.7.
+Detail cards surface the tensions and findings documented in `09_Strategic_Tensions_Report.md` and Fase de Especificação 1 §3.7.
 
 
 | OBL ID | Affected Tensions | Affected Findings | Disposition |
 |--------|-------------------|-------------------|-------------|
-| OBL-D-01.4-001 | — | F-10 (NI divergence — Rich NI 2.500 authoritative) | RESOLVED in Sprint 4 §4.1 |
-| OBL-D-04.3-001 | T-001 (Doc 09), T-H-001 (Sprint 1 §3.5) | — | max-SLA 24h routing applied; both CNPD + ENISA notified |
+| OBL-D-01.4-001 | — | F-10 (NI divergence — Rich NI 2.500 authoritative) | RESOLVED in Fase de Especificação 4 §4.1 |
+| OBL-D-04.3-001 | T-001 (Doc 09), T-H-001 (Fase de Especificação 1 §3.5) | — | max-SLA 24h routing applied; both CNPD + ENISA notified |
 | OBL-D-01.3-001 | — | F-01 (no PO-D-01.3-001), F-03 (CR-D-01.3-001 references phantom PO) | DEFERRED to human arbiter |
 | OBL-D-07.1-001 | T-M-002 (GDPR NI=2 vs CRA NI=3) | — | CRA higher intensity operationally dominant; structural, always active |
-| OBL-D-09.1-001 | — | F-10 (NI divergence — Rich NI 2.500 authoritative) | RESOLVED in Sprint 4 §4.1 |
+| OBL-D-09.1-001 | — | F-10 (NI divergence — Rich NI 2.500 authoritative) | RESOLVED in Fase de Especificação 4 §4.1 |
 | OBL-D-09.2-001 | T-M-001 (frequency alignment) | — | Unified DPIA + CRA risk-assessment template |
 
-All other 24 obligations have no current tension or finding linkages — they pass cleanly through Sprint 4 reconciliation.
+All other 24 obligations have no current tension or finding linkages — they pass cleanly through Fase de Especificação 4 reconciliation.
 
 
 ### 5.14 Verification Cadence Rollup (Operational Calendar)
@@ -2465,7 +2464,7 @@ Aggregated verification activities across all 30 obligations, mapped to an annua
 **Capacity estimate (LIGHTWEIGHT tier):** The quarterly cycle alone is the binding constraint — ~14 activities × ~2 person-days each ≈ 28 person-days per quarter, or roughly 30% of a single FTE-equivalent. This is consistent with the LIGHTWEIGHT proportionality choice and confirms the absence of a dedicated security/privacy headcount.
 
 
-### 5.15 Documented Out-of-Scope Decisions (Sprint 5)
+### 5.15 Documented Out-of-Scope Decisions
 
 
 The 30 detail cards deliberately exclude the following fields that were considered but rejected for the MICRO/LIGHTWEIGHT tier:
@@ -2542,20 +2541,20 @@ Cumulative count of verification methods across all 30 cards. Multiple methods p
 **Method distribution observation:** The bias toward INSPECT + DEMONSTRATE reflects the managed-service configuration model — verification is more about proving the configuration is correct than running novel attack scenarios. TEST is concentrated on the D-02 vulnerability gates and D-04 DR drills; ANALYZE is reserved for structural verification (DB integrity, IAM least-privilege).
 
 
-### 5.18 Status Roadmap (Sprint 5 → Sprint 6+)
+### 5.18 Status Roadmap (Fase de Especificação 5 → Fase de Especificação 6+)
 
 
-All 30 cards begin at TODO. The status transitions are governed by Sprint 6+ (out of Sprint 5 scope) but are recorded here for traceability.
+All 30 cards begin at TODO. The status transitions are governed by Fase de Especificação 6+ (out of Fase de Especificação 5 scope) but are recorded here for traceability.
 
 
 | Status Transition | Trigger | Owner | Out-of-Sprint-5 Scope |
 |-------------------|---------|-------|----------------------|
-| TODO → IN_PROGRESS | Implementation work begins for the verification criteria (e.g., enabling a Config rule, configuring MFA, drafting a policy) | Card owner per §8 | Sprint 6 (execution phase) |
-| IN_PROGRESS → DONE | Verification criteria independently witnessed by a second party (DPO, Compliance Lead, External auditor) | Witness per RACI | Sprint 7 (verification phase) |
+| TODO → IN_PROGRESS | Implementation work begins for the verification criteria (e.g., enabling a Config rule, configuring MFA, drafting a policy) | Card owner per §8 | Fase de Especificação 6 (execution phase) |
+| IN_PROGRESS → DONE | Verification criteria independently witnessed by a second party (DPO, Compliance Lead, External auditor) | Witness per RACI | Fase de Especificação 7 (verification phase) |
 | DONE → REGRESSION | Material change to underlying obligation (regulation amendment, sub-domain re-classification, owner change) | Doc 09 governance trigger | Ongoing (continuous) |
 | REGRESSION → IN_PROGRESS | Re-implementation required after regression trigger | Card owner | Triggered |
 
-**Sprint 5 deliverable scope reminder:** Sprint 5 is enumeration + verification-criteria design only. Implementation is deferred. The Sprint 5 verdict is PASS if all 30 cards are present, all 17 fields per card are populated, and the cross-references to Doc 09 / Doc 10 / Doc 11 / phase1_ontology.yaml are accurate.
+**Fase de Especificação 5 deliverable scope reminder:** Fase de Especificação 5 is enumeration + verification-criteria design only. Implementation is deferred. The Fase de Especificação 5 verdict is PASS if all 30 cards are present, all 17 fields per card are populated, and the cross-references to Doc 09 / Doc 10 / Doc 11 / phase1_ontology.yaml are accurate.
 
 
 ### 5.19 Cross-Document Reference Snapshot
@@ -2597,29 +2596,29 @@ For each of the 30 obligations, the table below records the downstream reference
 | OBL-D-10.2-001 | 07_Structured_Compliance_Matrix §3 | — | SO-D-10.2-001 | CR-D-10.2-001 | Sheet 10 (Monitoring) |
 | OBL-D-10.3-001 | 07_Structured_Compliance_Matrix §3 | — | SO-D-10.3-001 | CR-D-10.3-001 | Sheet 10 |
 
-**Cross-reference completeness:** 30/30 obligations trace to Doc 07, Doc 11, and Doc 12 (the canonical compliance-artifact chain). Doc 09 (tensions) and Doc 10 (goals) have intentional gaps that are themselves documented (F-01, F-02, F-03 from Sprint 1 §3.7; T-001, T-H-001, T-M-001, T-M-002 from Sprint 1 §3.5; F-10 from Sprint 4 §4.1). The gaps are tracked and not silently accepted.
+**Cross-reference completeness:** 30/30 obligations trace to Doc 07, Doc 11, and Doc 12 (the canonical compliance-artifact chain). Doc 09 (tensions) and Doc 10 (goals) have intentional gaps that are themselves documented (F-01, F-02, F-03 from Fase de Especificação 1 §3.7; T-001, T-H-001, T-M-001, T-M-002 from Fase de Especificação 1 §3.5; F-10 from Fase de Especificação 4 §4.1). The gaps are tracked and not silently accepted.
 
 
 ### 5.20 Conclusion and Handoff
 
 
-This §5 closes Sprint 5a (Doc 08 Obligation Detail Cards) and Sprint 6+ (P7 orphan fix). The deliverable summary:
+This §5 closes Fase de Especificação 5a (Doc 08 Obligation Detail Cards) and Fase de Especificação 6+ (P7 orphan fix). The deliverable summary:
 
 
-- **34 detail cards** populated, one per obligation enumerated in §4 (was 30 at Sprint 5; +4 OBL-D-07.2/3/4/10.1 from Sprint 6+). Each card carries 17 fields covering description (with corpus-derived context), scope, out-of-scope, source article, NIST CSF anchors, verification criteria, verification method, owner, status, dependencies, risk-if-not-met, affected stakeholders, maturity score, implementation priority, regulatory reporting, external auditor, and supervisory body.
+- **34 detail cards** populated, one per obligation enumerated in §4 (was 30 at Fase de Especificação 5; +4 OBL-D-07.2/3/4/10.1 from Fase de Especificação 6+). Each card carries 17 fields covering description (with corpus-derived context), scope, out-of-scope, source article, NIST CSF anchors, verification criteria, verification method, owner, status, dependencies, risk-if-not-met, affected stakeholders, implementation posture, implementation priority, regulatory reporting, external auditor, and supervisory body.
 
-- **578 cells** of structured obligation metadata, equivalent to 34 × 17 (was 30 × 17 = 510; +68 cells from Sprint 6+ additions).
+- **578 cells** of structured obligation metadata, equivalent to 34 × 17 (was 30 × 17 = 510; +68 cells from Fase de Especificação 6+ additions).
 
 - **Cross-references** to Doc 07 (compliance matrix), Doc 09 (tensions), Doc 10 (goals), Doc 11 (CR rules), Doc 12 (catalog), and the corpus domain files are documented in §5.19 and §5.12.
 
 - **Operational rollup** (§5.14) maps verification activities to an annual calendar; capacity estimate (~30% of one FTE-equivalent per quarter) is consistent with the LIGHTWEIGHT proportionality choice.
 
-- **Tension and finding propagation** (§5.13) confirms that F-01 / F-03 are deferred to human arbiter, F-10 is resolved in Sprint 4 §4.1, and T-001 / T-H-001 / T-M-001 / T-M-002 are surfaced in the affected cards.
+- **Tension and finding propagation** (§5.13) confirms that F-01 / F-03 are deferred to human arbiter, F-10 is resolved in Fase de Especificação 4 §4.1, and T-001 / T-H-001 / T-M-001 / T-M-002 are surfaced in the affected cards.
 
 - **NIST CSF 2.0 coverage** (§5.16) confirms every active sub-category anchors to at least one obligation; no coverage gaps requiring additional obligations.
 
 
-Sprint 5a is a content-only delivery; no commits are produced by this Executor. The Validator is expected to verify the 30-card count, the 17-field completeness per card (sample 3 random cards), the frontmatter update, and the cross-reference integrity. The verdict is PASS if all four checks succeed; CONDITIONAL_PASS if minor cosmetic issues are found; FAIL if any card is missing a required field or any cross-reference is broken.
+Fase de Especificação 5a is a content-only delivery; no commits are produced by this Executor. The Validator is expected to verify the 30-card count, the 17-field completeness per card (sample 3 random cards), the frontmatter update, and the cross-reference integrity. The verdict is PASS if all four checks succeed; CONDITIONAL_PASS if minor cosmetic issues are found; FAIL if any card is missing a required field or any cross-reference is broken.
 
 
 ### 5.21 Regulatory Penalty Exposure Reference
@@ -2647,10 +2646,10 @@ For the DPO and Legal reviewer, the table below summarises the regulatory penalt
 **Operational mitigation:** The 30 cards' Risk-if-not-met field uses H/M/L rather than monetary values because the proportionality model intentionally avoids cost quantification at the MICRO tier (see §5.15). The H/M/L is calibrated against the operational likelihood of detection (HIGH = likely detected by regulator or auditor within 12 months; MEDIUM = detectable on a customer-initiated complaint or incident; LOW = detectable only on internal review).
 
 
-### 5.22 Owner-Workload Heatmap (Sprint 6 Planning Input)
+### 5.22 Owner-Workload Heatmap (Fase de Especificação 6 Planning Input)
 
 
-The Owner column (field 8) maps each card to one or more owners. The heatmap below aggregates the total cards per owner to inform Sprint 6 capacity planning. Multiple owners per card share the work; this is a primary-count metric (each card counts once per named owner).
+The Owner column (field 8) maps each card to one or more owners. The heatmap below aggregates the total cards per owner to inform Fase de Especificação 6 capacity planning. Multiple owners per card share the work; this is a primary-count metric (each card counts once per named owner).
 
 
 | Owner | Cards (Primary) | Cards (Co-owner) | Total Touch-Points | Notes |
@@ -2667,13 +2666,13 @@ The Owner column (field 8) maps each card to one or more owners. The heatmap bel
 **Capacity implication:** CTO + Lead Dev carry the implementation load (52 of 85 touch-points = ~61%); DPO + Compliance Lead + Legal carry the governance + reporting load (25 of 85 = ~29%); Procurement + HR carry the supplier + people load (8 of 85 = ~10%). The CTO-as-universal-primary pattern is intentional — it reflects the single-person security-engineering reality at MICRO — and is itself documented as a proportionality consideration (single-point-of-failure mitigated by named backups).
 
 
-**Backup / approver decomposition:** Per the Owner-Responsibility Decomposition tables above, every primary owner has a named backup. CTO ↔ Lead Dev is the most common pairing; DPO ↔ Legal for governance; DPO ↔ Compliance Lead for incident classification. This decomposition is the input to Sprint 6 RACI construction.
+**Backup / approver decomposition:** Per the Owner-Responsibility Decomposition tables above, every primary owner has a named backup. CTO ↔ Lead Dev is the most common pairing; DPO ↔ Legal for governance; DPO ↔ Compliance Lead for incident classification. This decomposition is the input to Fase de Especificação 6 RACI construction.
 
 
-### 5.23 Implementation Hints by Sub-Domain (Sprint 6 Planning Input)
+### 5.23 Implementation Hints by Sub-Domain (Fase de Especificação 6 Planning Input)
 
 
-A condensed implementation playbook for the Sprint 6 execution phase. The objective is to give the Sprint 6 Executor a fast-start reference that does not require re-reading all 30 cards.
+A condensed implementation playbook for the Fase de Especificação 6 execution phase. The objective is to give the Fase de Especificação 6 Executor a fast-start reference that does not require re-reading all 30 cards.
 
 
 **D-01 (Data Protection) — 4 cards, 4 sprints (S6-S9):**
@@ -2740,20 +2739,20 @@ A condensed implementation playbook for the Sprint 6 execution phase. The object
 - S17: Managed audit-trail multi-region trail + tamper-evident managed object storage log bucket + quarterly compliance review + annual pen-test engagement (covers both)
 
 
-**Total Sprint 6+ scope:** ~17 sub-sprints covering all 30 cards. Implementation is out of Sprint 5 scope; this is the hand-off brief for the Sprint 6 Executor.
+**Total Fase de Especificação 6+ scope:** ~17 sub-sprints covering all 30 cards. Implementation is out of Fase de Especificação 5 scope; this is the hand-off brief for the Fase de Especificação 6 Executor.
 
 
 ## 6. NEXT STEPS
 
-- [x] **Sprint 1:** Cross-check 30 obligations ↔ 30 goals ↔ 30 CR rules — DONE with CONDITIONAL_PASS verdict
-- [x] **Sprint 3:** Regenerate 12_Rules_Catalog.xlsx (14 sheets) — DONE
-- [x] **Sprint 4:** Port legacy §4 catalog table (30 obligations × 11 cols) + 6 new cols (180 cells) into Rich §4; resolve F-10 NI for OBL-D-01.4-001 and OBL-D-09.1-001 — DONE
-- [x] **Sprint 5a (this sprint):** Populate 17-field detail cards for all 30 obligations (510 cells: 30 × 17) — DONE; see §5
-- [x] **Sprint 6+ (this contract — P7 orphan fix):** Add 4 new OBLs (D-07.2/3/4 + D-10.1 — CRA sole authority; +68 cells → 578 total); correct `phase1_ontology.yaml` `not_covered` to remove 3 false sole-authority gaps; update §2/§3 reconciliation tables + introduce findings F-07/F-08/F-09 — DONE; F-07 (cross-doc orphan on Doc 10 PO/SO + Doc 11 CR for the 4 new sub-domains) tracked for follow-on contract
-- [ ] Sprint 5b: Resolve findings F-01/F-03 (PO-D-01.3-001 missing) — defer to human arbiter
-- [ ] Sprint 6+ follow-on: Add PO-D-07.2 + SO-D-07.3/4 + SO-D-10.1 to Doc 10; add CR-D-07.2/3/4 + CR-D-10.1 to Doc 11; resolve F-07. Reconcile `01_PHASE1_CONTEXT_RICH/phase1_ontology.yaml` (twin ontology) and `00_Taxonomy_Reference.md` §3 (cross-case reference) — F-08/F-09.
+- [x] **Fase de Especificação 1:** Cross-check 30 obligations ↔ 30 goals ↔ 30 CR rules — DONE with CONDITIONAL_PASS verdict
+- [x] **Fase de Especificação 3:** Regenerate 12_Rules_Catalog.xlsx (14 sheets) — DONE
+- [x] **Fase de Especificação 4:** Port legacy §4 catalog table (30 obligations × 11 cols) + 6 new cols (180 cells) into Rich §4; resolve F-10 NI for OBL-D-01.4-001 and OBL-D-09.1-001 — DONE
+- [x] **Fase de Especificação 5a (this sprint):** Populate 17-field detail cards for all 30 obligations (510 cells: 30 × 17) — DONE; see §5
+- [x] **Fase de Especificação 6+ (this contract — P7 orphan fix):** Add 4 new OBLs (D-07.2/3/4 + D-10.1 — CRA sole authority; +68 cells → 578 total); correct `phase1_ontology.yaml` `not_covered` to remove 3 false sole-authority gaps; update §2/§3 reconciliation tables + introduce findings F-07/F-08/F-09 — DONE; F-07 (cross-doc orphan on Doc 10 PO/SO + Doc 11 CR for the 4 new sub-domains) tracked for follow-on contract
+- [ ] Fase de Especificação 5b: Resolve findings F-01/F-03 (PO-D-01.3-001 missing) — defer to human arbiter
+- [ ] Fase de Especificação 6+ follow-on: Add PO-D-07.2 + SO-D-07.3/4 + SO-D-10.1 to Doc 10; add CR-D-07.2/3/4 + CR-D-10.1 to Doc 11; resolve F-07. Reconcile `01_PHASE1_CONTEXT_RICH/phase1_ontology.yaml` (twin ontology) and `00_Taxonomy_Reference.md` §3 (cross-case reference) — F-08/F-09.
 
 
 ---
 
-**End of Sprint 1 + Sprint 4 + Sprint 5a + Sprint 6+ (P7 orphan fix) — Doc 08**
+**End of Fase de Especificação 1 + Fase de Especificação 4 + Fase de Especificação 5a + Fase de Especificação 6+ (P7 orphan fix) — Doc 08**

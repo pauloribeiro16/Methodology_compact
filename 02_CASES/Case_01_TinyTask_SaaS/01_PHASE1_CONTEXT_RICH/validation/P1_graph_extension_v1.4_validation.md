@@ -202,7 +202,7 @@ All 21 pre-Phase-B audits are preserved with their original IDs and titles (verb
 | 02 | CFL-002 | Subdomain count cascade: 38 / 37 / 35 across docs |
 | 03 | CFL-003 | phase1_ontology.yaml coverage_summary subdomains_covered labels disagree with their own lists |
 | 04 | CFL-004 | Normative Intensity: Doc10 §5 (2.819 combined) vs Doc11 §4 (2.947) |
-| 05 | BLN-001 | Doc10 §8 corpus clause IDs marked (verify) — Sprint 2 deliverable still open |
+| 05 | BLN-001 | Doc10 §8 corpus clause IDs marked (verify) deliverable still open |
 | 06 | BLN-002 | Doc13 §0 references D-02.4 / D-06.4 as NOT_ADDRESSED but Doc12 §4 lists them as ACTIVE with LIGHTWEIGHT tier |
 | 07 | CVG-001 | 3 NOT_ADDRESSED subdomains remain uncovered by applicable regulations |
 | 08 | CVG-002 | GAP-001..004 from Doc11 §7 remain unmitigated |

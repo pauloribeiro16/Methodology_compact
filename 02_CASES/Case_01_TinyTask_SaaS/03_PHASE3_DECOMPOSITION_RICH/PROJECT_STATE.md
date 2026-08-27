@@ -11,7 +11,6 @@ case: Case_01_TinyTask_SaaS
 tier: MICRO
 sibling_of: ../03_PHASE3_DECOMPOSITION/
 branch: feature/aegis-p3-case01-rich
-sprint: 6
 sprint_role: product_baseline_rewrite
 sprints_complete: [0, 1, 2, 3, 4, 5, 6]
 sprints_pending: []
@@ -25,9 +24,9 @@ active_subdomains: 30
 freeze_total_rules: 46        # 30 CR + 16 BPR per P2-RICH Doc 11
 freeze_total_objectives: 31   # 11 PO + 20 SO per P2-RICH Doc 10
 freeze_total_use_cases_l1: 35        # security/compliance U.C.1-6 — preserved
-freeze_total_use_cases_functional: 23  # functional U.C.7-11 — Sprint 6 NEW
+freeze_total_use_cases_functional: 23  # functional U.C.7-11 NEW
 freeze_total_use_cases_total: 58     # 35 + 23
-freeze_total_misuse_cases: 8         # MUC-01..08 — Sprint 6 NEW
+freeze_total_misuse_cases: 8         # MUC-01..08 NEW
 freeze_total_use_cases_references: 62  # 35 L1 + 27 L2 expansions (Doc 16 §5B SC2) — unchanged
 freeze_total_functional_requirements: 30
 freeze_total_non_functional_requirements: 46
@@ -47,7 +46,7 @@ fields_per_card_sprint5: 17|12|tiered
 schema_columns_sprint6: 7
 schema_columns_list: [Primary Actor, Stakeholders, Preconditions, Trigger, Main Success Scenario, Extensions, Postconditions]
 annex_schema_columns: 7
-annex_schema_columns_list: [Owner, Verification Criteria, NIST Anchors, Dependencies, Risk, Reporting, Maturity]
+annex_schema_columns_list: [Owner, Verification Criteria, NIST Anchors, Dependencies, Risk, Reporting, Posture]
 xlsx_sheets_sprint6: 12
 xlsx_total_rows_sprint6: ~480
 drawio_vertices_sprint6: 79
@@ -133,24 +132,24 @@ sibling_doc: ../03_PHASE3_DECOMPOSITION/
 | Path | Status | Sprint | Lines | Description |
 |------|:------:|:------:|------:|-------------|
 | `README.md` | SKELETON | 0 | ~120 | Orientation, dashboard, schema reminder (Sprint 3 → v1.0) |
-| `PROJECT_STATE.md` | RECONCILED | 1 | this file | Project state snapshot — Sprint 1 freeze values |
+| `PROJECT_STATE.md` | RECONCILED | 1 | this file | Project state snapshot freeze values |
 | `RICH_VS_LEGACY.md` | APPENDED | 1 | ~50 → ~150 | Diff summary (Sprint 1 §A/§B/§C appended) |
 | `RULE_FREEZE.md` | FROZEN | 1 | ~430 | Canonical rule + goal + enumeration tables |
-| `13_Use_Cases_Catalog.md` | **DEEP_ENRICHED** | 5 | ~954 | 35 UC cards (475 cells) — Sprint 5 deep-fill complete |
-| `13a_Use_Case_Relationships.md` | ADJUSTED_FIELDS | 2 | ~10 | Placeholder — Sprint 3 deep |
-| `13b_Use_Case_Variability.md` | ADJUSTED_FIELDS | 2 | ~10 | Placeholder — Sprint 3 deep |
-| `14_Architectural_Nodes.md` | **DEEP_ENRICHED** | 5 | ~1187 | 49 NODE cards (648 cells) — Sprint 5 deep-fill complete |
-| `15_Requirements_Allocation.md` | **DEEP_ENRICHED** | 5 | ~816 | 30 DN cards (455 cells) — Sprint 5 deep-fill complete |
-| `16_Compliance_Gates_Report.md` | **DEEP_ENRICHED** | 5 | ~823 | 30 GATE cards (445 cells) — Sprint 5 deep-fill complete |
-| `17_Functional_Tree.md` | ADJUSTED_FIELDS | 2 | ~10 | Placeholder — Sprint 3 deep |
-| `requirements/23_Functional_Requirements.md` | **DEEP_ENRICHED** | 5 | ~941 | 30 FR cards (480 cells) — Sprint 5 deep-fill complete |
-| `requirements/24_Non_Functional_Requirements.md` | **DEEP_ENRICHED** | 5 | ~1381 | 46 NFR cards (692 cells) — Sprint 5 deep-fill complete |
+| `13_Use_Cases_Catalog.md` | **DEEP_ENRICHED** | 5 | ~954 | 35 UC cards (475 cells) deep-fill complete |
+| `13a_Use_Case_Relationships.md` | ADJUSTED_FIELDS | 2 | ~10 | Placeholder deep |
+| `13b_Use_Case_Variability.md` | ADJUSTED_FIELDS | 2 | ~10 | Placeholder deep |
+| `14_Architectural_Nodes.md` | **DEEP_ENRICHED** | 5 | ~1187 | 49 NODE cards (648 cells) deep-fill complete |
+| `15_Requirements_Allocation.md` | **DEEP_ENRICHED** | 5 | ~816 | 30 DN cards (455 cells) deep-fill complete |
+| `16_Compliance_Gates_Report.md` | **DEEP_ENRICHED** | 5 | ~823 | 30 GATE cards (445 cells) deep-fill complete |
+| `17_Functional_Tree.md` | ADJUSTED_FIELDS | 2 | ~10 | Placeholder deep |
+| `requirements/23_Functional_Requirements.md` | **DEEP_ENRICHED** | 5 | ~941 | 30 FR cards (480 cells) deep-fill complete |
+| `requirements/24_Non_Functional_Requirements.md` | **DEEP_ENRICHED** | 5 | ~1381 | 46 NFR cards (692 cells) deep-fill complete |
 | `requirements/23_FR_Review_Report.md` | ADJUSTED_FIELDS + LEGACY PORTED | 1 | ~370 | Legacy 309 lines verbatim + reconciliation footer; schema in frontmatter |
 | `requirements/24_NFR_Review_Report.md` | ADJUSTED_FIELDS + LEGACY PORTED | 1 | ~340 | Legacy 286 lines verbatim + reconciliation footer; schema in frontmatter |
-| `25_Risk_Analysis.md` | **DEEP_ENRICHED** | 5 | ~1127 | 48 RISK+THR cards (626 cells) — Sprint 5 deep-fill complete |
-| `Phase_3_Functional_Decomposition_Synthesis.md` | **DEEP_ENRICHED** | 5 | ~362 | 8 SYNTH highlight cards (96 cells) — Sprint 5 deep-fill complete |
-| `annexes/A_Use_Case_Diagrams.md` | ADJUSTED_FIELDS | 1 | ~10 | Placeholder — Sprint 3 deep |
-| `annexes/D_KG_Inference_Examples.md` | ADJUSTED_FIELDS | 1 | ~10 | Placeholder — Sprint 2/3 deep |
+| `25_Risk_Analysis.md` | **DEEP_ENRICHED** | 5 | ~1127 | 48 RISK+THR cards (626 cells) deep-fill complete |
+| `Phase_3_Functional_Decomposition_Synthesis.md` | **DEEP_ENRICHED** | 5 | ~362 | 8 SYNTH highlight cards (96 cells) deep-fill complete |
+| `annexes/A_Use_Case_Diagrams.md` | ADJUSTED_FIELDS | 1 | ~10 | Placeholder deep |
+| `annexes/D_KG_Inference_Examples.md` | ADJUSTED_FIELDS | 1 | ~10 | Placeholder/3 deep |
 | `CORPUS_LINKAGE.md` | NEW | 2 | ~490 | Artefact-to-D-XX.Y mapping (344 artefacts) |
 | `NIST_ANCHORS.md` | NEW | 2 | ~290 | NIST CSF 2.0 + PF 1.0 anchors (46+31 rules/goals + 111 card slots) |
 | `KG_CHAINS.md` | NEW | 2 | ~245 | 12 KG inference chains with spot-checks |
@@ -190,7 +189,7 @@ sibling_doc: ../03_PHASE3_DECOMPOSITION/
 
 ---
 
-## §3a Schema adjustment (Sprint 4)
+## §3a Schema adjustment
 
 **Sprint 4 deliverable:** 6 columns added to ~95% (effectively 100% of in-scope) index tables in 11 core docs + synthesis + 2 annexes; FR/NFR review reports carry the schema in frontmatter only (legacy-port preserved). Total tables extended: **~45** across the folder.
 
@@ -199,7 +198,7 @@ The 6 added columns are:
 | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |-------|-----------------------|----------|----------|--------------|-----------|
 
-Frontmatter `schema_columns: 6` + `schema_columns_list` declared in 15 docs. No row values filled yet — Sprint 5 populates per-card.
+Frontmatter `schema_columns: 6` + `schema_columns_list` declared in 15 docs. No row values filled yet populates per-card.
 
 Coverage stats (see `validation/SPRINT4_REPORT.md` §2-§3 for full breakdown):
 
@@ -239,9 +238,9 @@ Coverage stats (see `validation/SPRINT4_REPORT.md` §2-§3 for full breakdown):
 | Risks (Doc 25) | 10 | (verify in Sprint 5) |
 | Threats (Doc 25) | 38 | (verify in Sprint 5) |
 | **Detail cards (Sprint 5 target)** | **~235** | sum: 30 FR + 46 NFR + 10 R + 38 T + 62 UC + 49 nodes |
-| **Total cells (Sprint 5)** | **~3,995** | 17 fields × 235 cards (formula; verify in S5) |
+| **Total cells** | **~3,995** | 17 fields × 235 cards (formula; verify in S5) |
 
-> **Sprint 5 cells formula:** `17 × N_cards`. Sprint 5 will pre-fill exact card counts once per-doc enumeration is complete. The freeze values above are authoritative for Phase 3 planning; downstream counts in the `22_Traceability_Matrix.xlsx` workbook (Sprint 3) will mirror these numbers.
+> **Sprint 5 cells formula:** `17 × N_cards`. Sprint 5 will pre-fill exact card counts once per-doc enumeration is complete. The freeze values above are authoritative for Phase 3 planning; downstream counts in the `22_Traceability_Matrix.xlsx` workbook will mirror these numbers.
 
 ---
 
@@ -312,7 +311,7 @@ Coverage stats (see `validation/SPRINT4_REPORT.md` §2-§3 for full breakdown):
 | No git commits by executors | PASS |
 | 17 fields per detail card (planned) | PASS — schema reminder in README §3 |
 | Document IDs: `AEGIS-P3-RICH-*` | PASS — 15 placeholders + 3 orch docs |
-| Frontmatter status: `ADJUSTED_FIELDS` | PASS — all 13 docs updated (Sprint 4) |
+| Frontmatter status: `ADJUSTED_FIELDS` | PASS — all 13 docs updated |
 
 ---
 
@@ -325,7 +324,7 @@ Coverage stats (see `validation/SPRINT4_REPORT.md` §2-§3 for full breakdown):
 | F-00c | INFO | Sprint 1 needs to surface any node IDs that don't trace back to UC source (orphan check). | **RESOLVED** (1 KG-level orphan reported F-S1-09) |
 | F-00d | INFO | Sprint 1 needs to verify all gate IDs in `16_Compliance_Gates_Report.md` have status; legacy may carry TBDs. | **RESOLVED** (SC1 stale 38-rule claim resolved → 46 freeze) |
 | F-00e | INFO | Sprint 5 must ensure all FR/NFR/Risk cards uniformly use the 17-field schema. | **RESOLVED** (Sprint 5: 276 cards uniform 17/12-field) |
-| F-00f | INFO | Sprint 0 must NOT silently merge legacy + Rich via the runner; `--rich` flag and `doc_path` param. | **CLOSED** (Sprint 0) |
+| F-00f | INFO | Sprint 0 must NOT silently merge legacy + Rich via the runner; `--rich` flag and `doc_path` param. | **CLOSED** |
 | F-S1-01..07 | MEDIUM/LOW | 7 orphan CR-D refs in legacy Phase 3 (D-02.4/06.4/07.3/07.4/08.3/09.3/10.1). | INFORMATIVELY RESOLVED (Sprint 5: Doc 14/16 cards carry explicit Source mapping; P7 formal close still required) |
 | F-S1-08 | LOW | Doc 08 has 34 OBLs post-Sprint 6+ fix; Doc 11 has 30 CR; the 4 added OBLs lack matching CR entries. CARRIED from Phase 2 F-07/F-08/F-09. | CARRIED (follow-on contract) |
 | F-S1-09 | INFO | 14 Case_02 contamination nodes in Graphify KG (AI Act, Biometric, Border Control AI, IPSARA, FRIA). NOT in markdown source. | OPEN (Sprint 5 KG re-run in isolation) |
@@ -336,7 +335,7 @@ Coverage stats (see `validation/SPRINT4_REPORT.md` §2-§3 for full breakdown):
 | **F-S2-03** | LOW | Doc 23 §3 maps FR-23 (SBOM) → CR-D-02.1-001; semantically belongs to CR-D-06.2-001. Legacy drift. Sprint 5 should re-map. | **RESOLVED** (Sprint 5: FR-23 card Source updated) |
 | **F-S5-01** | LOW | Lint 13 expects legacy `## 5.` / `## 6.` section headers; Rich docs use `## §N`. Cannot fix without modifying lint contract. | OPEN (Sprint 5 NEW) |
 | **F-S5-02** | LOW | Lint 13 reports "0 actors defined" + "N orphan UCs"; regex `Actors?:` does not match our `**Owner:**` field. By design (Owner is field 8 in UC 17-field schema). | OPEN (Sprint 5 NEW) |
-| **F-S2-04** | LOW | KG edge source_location format uses row numbers; spot-check fuzzy-fails when not verbatim. Replace with §-anchored semantic locators. | OPEN (Sprint 5) |
+| **F-S2-04** | LOW | KG edge source_location format uses row numbers; spot-check fuzzy-fails when not verbatim. Replace with §-anchored semantic locators. | OPEN |
 
 Full details in `RULE_FREEZE.md §9` + `validation/SPRINT2_REPORT.md §5`. Findings are **non-silent**: each is reported in the sprint that observes it and tracked here. None blocks Sprint 3.
 
@@ -367,7 +366,7 @@ Full details in `RULE_FREEZE.md §9` + `validation/SPRINT2_REPORT.md §5`. Findi
 
 - `README.md` — orientation + status dashboard + schema reminder
 - `RICH_VS_LEGACY.md` — Rich vs legacy diff summary
-- `validation/SPRINT0_REPORT.md` — Sprint 0 completion
+- `validation/SPRINT0_REPORT.md` completion
 - `validation/LINT_REPORT_BEFORE.md` — legacy Phase 3 baseline
 - `validation/RICH_LINT_BASELINE.md` — RICH runner baseline
 - `../03_PHASE3_DECOMPOSITION/` — legacy Phase 3 (read-only)

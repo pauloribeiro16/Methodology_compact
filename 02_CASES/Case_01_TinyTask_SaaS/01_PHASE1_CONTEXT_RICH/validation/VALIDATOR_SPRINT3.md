@@ -1,18 +1,18 @@
 ---
 document_id: AEGIS-P1-RICH-VALIDATOR-SPRINT3
-title: Sprint 3 Validator Verdict — Phase 1 Rich Mode Final Review
+title: Fase de Especificação 3 Validator Verdict — Phase 1 Rich Mode Final Review
 phase: 1
 version: 1.0
 created: 2026-08-06
 updated: 2026-08-06
-author: Sprint 3 Executor (validator)
+author: Fase de Especificação 3 Executor (validator)
 status: FINAL
 case: Case_01_TinyTask_SaaS
 ---
 
-# Sprint 3 Validator Verdict — Final Review
+# Fase de Especificação 3 Validator Verdict — Final Review
 
-> Validator: Sprint 3 Executor (self-validation, see AGENTS.md P7 — human is final arbiter).
+> Validator: Fase de Especificação 3 Executor (self-validation, see AGENTS.md P7 — human is final arbiter).
 > Scope: Phase 1 Rich Mode — `02_CASES/Case_01_TinyTask_SaaS/01_PHASE1_CONTEXT_RICH/`.
 > Date: 2026-08-06.
 
@@ -28,7 +28,7 @@ case: Case_01_TinyTask_SaaS
 | corpus_field_map.md | 1 (≥500 lines) | 1 (515 lines, 45.2KB) | YES |
 | README.md | 1 (substantive) | 1 (166 lines, 10.8KB) | YES |
 | Case_01_Phase1_RICH.xlsx | 1 (14 sheets) | 1 (41.2KB, 14 sheets per file inventory) | YES |
-| Validation reports | ≥6 | 7 (pre-Sprint 3) + 2 new (SPRINT3_REPORT, VALIDATOR_SPRINT3) = 9 | YES |
+| Validation reports | ≥6 | 7 (pre-Fase de Especificação 3) + 2 new (SPRINT3_REPORT, VALIDATOR_SPRINT3) = 9 | YES |
 | Script stubs | 3 | 3 (filter_ambiguity_cards, generate_corpus_links, regenerate_ontology) | YES |
 | **Total files (excluding scripts/ and validation/)** | **19** | **19** | **YES** |
 
@@ -48,7 +48,7 @@ case: Case_01_TinyTask_SaaS
 | Template Compliance | PASS | 33 |
 | **Total** | **6/6** | **44** |
 
-**Note on warning delta:** Sprint 2 enrichment added 34 warnings (10W → 44W). All warnings are in legacy meta-docs (`02_Regulatory_Mapping_Master.md`, `00_Taxonomy_Reference.md`, `05_Regulatory_Applicability.md`) flagged by the Regulatory Ground Truth lint for obligated-party validation. **The enrichment itself added 0 new lint warnings** — the 34 delta comes from the corpus referencing these legacy meta-docs. The new content in 04a/04b/04c/04d/05b/Citation_Index is lint-clean.
+**Note on warning delta:** Fase de Especificação 2 enrichment added 34 warnings (10W → 44W). All warnings are in legacy meta-docs (`02_Regulatory_Mapping_Master.md`, `00_Taxonomy_Reference.md`, `05_Regulatory_Applicability.md`) flagged by the Regulatory Ground Truth lint for obligated-party validation. **The enrichment itself added 0 new lint warnings** — the 34 delta comes from the corpus referencing these legacy meta-docs. The new content in 04a/04b/04c/04d/05b/Citation_Index is lint-clean.
 
 ## §3 Corpus Linkage Spot-Checks
 
@@ -67,7 +67,7 @@ case: Case_01_TinyTask_SaaS
 | Doc 05b total ambiguity cards | ≥100 | 417 (276 GDPR + 141 CRA) | YES |
 | Citation_Index unique (reg, ref) pairs | ≥10 | 18 (9 GDPR + 8 CRA + 1 NIS2 negative-analysis) | YES |
 | Citation_Index coverage gaps | ≥1 | 3 (NIS2 Annex I, CRA Annex I, CRA Annex VII — corpus has articles not annexes) | YES |
-| 07b §11 Sprint 3 cross-check rows | 5–10 | 10 (D-01.1, D-02.2, D-02.4, D-03.1, D-04.3, D-04.4, D-06.1, D-06.2, D-09.2, D-10.2) | YES |
+| 07b §11 Fase de Especificação 3 cross-check rows | 5–10 | 10 (D-01.1, D-02.2, D-02.4, D-03.1, D-04.3, D-04.4, D-06.1, D-06.2, D-09.2, D-10.2) | YES |
 | 07b §11 cross-check pass rate | 100% | 10/10 (100%) | YES |
 
 ## §4 Consistency Checks
@@ -79,7 +79,7 @@ case: Case_01_TinyTask_SaaS
 | Doc 04a/04b/04c/05/07 `active_subdomains: 37` consistency | all 37 | all 37 (verified via grep) | YES |
 | Doc 06 §8 Cross-Reference (case-form ↔ corpus-form) | present | present (28 GDPR + 26 CRA rows + migration notes) | YES |
 | README.md Sprint Status Dashboard | ✅✅✅🚧 | ✅✅✅🚧 (verified §2) | YES |
-| README.md mentions all 4 sprints | 4 | 4 (Sprint 0, 1, 2, 3) | YES |
+| README.md mentions all 4 sprints | 4 | 4 (Fase de Especificação 0, 1, 2, 3) | YES |
 | phase1_ontology.yaml v1.1 | v1.1 | v1.1 (verified line 6) | YES |
 | GDPR-C08 canonical conflict resolved | resolved | resolved (per ontology header + Doc 06 §8.1) | YES |
 | 07b cross_checked_against_corpus: true | true | true (frontmatter line 11) | YES |
@@ -93,7 +93,7 @@ case: Case_01_TinyTask_SaaS
 
 1. **Completeness:** All 19 expected files are present (17 .md + phase1_ontology.yaml + Case_01_Phase1_RICH.xlsx). 9 validation reports present (≥6 expected). 3 script stubs present.
 
-2. **Lint:** 6/6 Phase 1 lints PASS with 0 errors. The 44 warnings are all in legacy meta-docs (not introduced by Sprint 2 enrichment) and are documented as Phase 3 follow-up work.
+2. **Lint:** 6/6 Phase 1 lints PASS with 0 errors. The 44 warnings are all in legacy meta-docs (not introduced by Fase de Especificação 2 enrichment) and are documented as Phase 3 follow-up work.
 
 3. **Corpus linkage:** 552+ cells added across 4 existing docs + 417 ambiguity cards + 18 unique (reg, ref) pairs + 3 verbatim Article quote blocks. 37 active sub-domains covered in Doc 04a §3 Compliance Mapping.
 
@@ -101,21 +101,21 @@ case: Case_01_TinyTask_SaaS
 
 5. **07b cross-check:** 10/10 rows PASS on both Track B tier-definition match and corpus-considerations alignment. 0 mismatches.
 
-6. **No regressions:** Sprint 2 enrichment added 0 new lint warnings. The 34 warning delta comes from existing legacy meta-doc references, not from new content.
+6. **No regressions:** Fase de Especificação 2 enrichment added 0 new lint warnings. The 34 warning delta comes from existing legacy meta-doc references, not from new content.
 
-7. **Documentation complete:** All Sprint 3 deliverables present (README v1.0, RICH_VS_LEGACY, PROJECT_STATE, 07b §11 cross-check, VALIDATOR_SPRINT3, SPRINT3_REPORT).
+7. **Documentation complete:** All Fase de Especificação 3 deliverables present (README v1.0, RICH_VS_LEGACY, PROJECT_STATE, 07b §11 cross-check, VALIDATOR_SPRINT3, SPRINT3_REPORT).
 
 ## §6 Critical Blockers
 
 **None.**
 
-The 10 remaining "critical issues" (per Sprint 1 documentation) are:
+The 10 remaining "critical issues" (per Fase de Especificação 1 documentation) are:
 - B-1: Doc 07 coverage matrix over-counts (41 vs 38) — out of scope, Phase 3 follow-up
 - B-2: 4 sole-authority gaps missing from Doc 07 gaps table — out of scope, Phase 3 follow-up
 - B-3: D-02.3 sole authority GDPR vs CRA — **P7 human decision required** (cannot resolve at agent level)
 - B-4–B-10: Various legacy meta-doc warnings — auto-fixed or out of scope
 
-None of these block Sprint 3 sign-off for the Phase 1 Rich Mode deliverable.
+None of these block Fase de Especificação 3 sign-off for the Phase 1 Rich Mode deliverable.
 
 ## §7 Recommendations
 
@@ -127,13 +127,13 @@ None of these block Sprint 3 sign-off for the Phase 1 Rich Mode deliverable.
 
 4. **(Optional, post-Rich) Doc 07b corpus field map:** Add per-sub-domain corpus linkage section to `corpus_field_map.md` for 07b (Track B proportionality not yet mapped to corpus layers).
 
-5. **(P7 human decision) D-02.3 sole authority:** The corpus assigns D-02.3 (Coordinated Vulnerability Disclosure) to CRA as sole authority, but Doc 00 Taxonomy assigns GDPR. This is a known inconsistency from Sprint 0 and is documented in `validation/LINT_REPORT_BEFORE.md`. Resolution requires human review of the OJ text for both regulations.
+5. **(P7 human decision) D-02.3 sole authority:** The corpus assigns D-02.3 (Coordinated Vulnerability Disclosure) to CRA as sole authority, but Doc 00 Taxonomy assigns GDPR. This is a known inconsistency from Fase de Especificação 0 and is documented in `validation/LINT_REPORT_BEFORE.md`. Resolution requires human review of the OJ text for both regulations.
 
 6. **(Phase 3 follow-up) Doc 07 coverage matrix:** The 41 vs 38 over-count and 4 sole-authority gaps should be addressed when Phase 3 reconciliation resumes.
 
 ## §8 Sign-Off
 
-- **Validator (Sprint 3 Executor):** PASS — Rich folder is READY for PR review.
+- **Validator (Fase de Especificação 3 Executor):** PASS — Rich folder is READY for PR review.
 - **Files reviewed:** 19 (excluding scripts/ and validation/) + 3 scripts + 9 validation reports = 31 files.
 - **Lint status:** 6/6 PASS, 0 errors, 44 warnings (all in legacy meta-docs).
 - **Corpus linkage:** 552+ cells + 3 verbatim quote blocks + 417 ambiguity cards + 18 unique citations.
@@ -145,6 +145,6 @@ None of these block Sprint 3 sign-off for the Phase 1 Rich Mode deliverable.
 - `01_PHASE1_CONTEXT_RICH/README.md` — orientation + Sprint Status Dashboard
 - `01_PHASE1_CONTEXT_RICH/RICH_VS_LEGACY.md` — Rich vs Legacy diff summary
 - `01_PHASE1_CONTEXT_RICH/PROJECT_STATE.md` — Rich version project state
-- `01_PHASE1_CONTEXT_RICH/07b_Proportionality_Profile.md` §11 — Sprint 3 corpus cross-check (10/10 PASS)
-- `01_PHASE1_CONTEXT_RICH/validation/SPRINT3_REPORT.md` — Sprint 3 final report
+- `01_PHASE1_CONTEXT_RICH/07b_Proportionality_Profile.md` §11 corpus cross-check (10/10 PASS)
+- `01_PHASE1_CONTEXT_RICH/validation/SPRINT3_REPORT.md` final report
 - `01_IMPLEMENTATION_TOOLS/lints/reports/lint_report_phase1_20260806_120303.md` — Latest Phase 1 lint report

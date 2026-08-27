@@ -4,21 +4,20 @@ title: Security Control Domain Taxonomy Reference
 version: 1.1
 created: 2026-03-26
 updated: 2026-08-06
-author: "[AEGIS Research Team] (Sprint 1 reconciliation)"
+author: "[AEGIS Research Team] (Fase de Especificação 1 reconciliation)"
 status: RECONCILED
 source: Taxonomia.txt + Regulatory_Complementary_Mapping_Updated.txt (T6)
 traceability: PhD Thesis Chapter 5, Section 5.7
-sprint: 1
 sprint_role: reconciled_from_legacy
 inputs: []
 outputs: [Doc02_INTAKE_FORM.md]
 ---
 
-> **Sprint 1 Reconciliation Note (2026-08-06)**
-> Rich Mode copy of legacy `02_CASES/Case_01_TinyTask_SaaS/00_COMMON/00_Taxonomy_Reference.md` (v1.0). Sprint 1 changes:
-> - **I-10 (status DRAFT → RECONCILED):** Sprint 1 = reconciliation milestone.
+> **Fase de Especificação 1 Reconciliation Note (2026-08-06)**
+> Rich Mode copy of legacy `02_CASES/Case_01_TinyTask_SaaS/00_COMMON/00_Taxonomy_Reference.md` (v1.0). Fase de Especificação 1 changes:
+> - **I-10 (status DRAFT → RECONCILED):** Fase de Especificação 1 = reconciliation milestone.
 > - **I-13 (02_Regulatory_Mapping_Master.md deprecation):** This document does not reference that file. No banner added.
-> - Body content unchanged from legacy. Sprint 2 will add L1/L2/L3/L4 corpus paths per sub-domain.
+> - Body content unchanged from legacy. Fase de Especificação 2 will add L1/L2/L3/L4 corpus paths per sub-domain.
 
 # Security Control Domain Taxonomy Reference
 

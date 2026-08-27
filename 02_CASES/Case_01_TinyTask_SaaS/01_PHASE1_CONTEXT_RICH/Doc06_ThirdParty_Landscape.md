@@ -5,10 +5,9 @@ phase: 1
 version: 1.1
 created: 2026-07-11
 updated: 2026-08-06
-author: Executor (Sprint 1 reconciliation; Sprint 2 corpus enrichment)
+author: Executor (Fase de Especificação 1 reconciliation; Fase de Especificação 2 corpus enrichment)
 status: CORPUS_ENRICHED
 case_study: TinyTask Lda.
-sprint: 1
 sprint_role: reconciled_from_legacy
 inputs:
   - Doc03_Company_Context_Assessment.md
@@ -27,12 +26,12 @@ related_documents:
 supersedes: none
 ---
 
-> **Sprint 1 Reconciliation Note (2026-08-06)**
-> Rich Mode copy of legacy `01_PHASE1_CONTEXT/04c_ThirdParty_Landscape.md` (v1.0). Sprint 1 changes:
-> - **I-10 (status DRAFT → RECONCILED):** Sprint 1 milestone.
-> - Body content unchanged from legacy. Sprint 2 will replace `SubDomains/` paths with the new `PREPROCESSING_by_domain/domains/` corpus paths.
+> **Fase de Especificação 1 Reconciliation Note (2026-08-06)**
+> Rich Mode copy of legacy `01_PHASE1_CONTEXT/04c_ThirdParty_Landscape.md` (v1.0). Fase de Especificação 1 changes:
+> - **I-10 (status DRAFT → RECONCILED):** Fase de Especificação 1 milestone.
+> - Body content unchanged from legacy. Fase de Especificação 2 will replace `SubDomains/` paths with the new `PREPROCESSING_by_domain/domains/` corpus paths.
 >
-> **Sprint 2 Enrichment Note (2026-08-06)**
+> **Fase de Especificação 2 Enrichment Note (2026-08-06)**
 > - **Status: RECONCILED → CORPUS_ENRICHED.** Section 4 (Subprocessors) extended with verbatim GDPR Art. 28 (1)+(2)+(3)(a)–(h) extracted from corpus ambiguity file. Section 5 (Supply Chain Risk) extended with verbatim CRA Art. 7(1)–(4) classification reference + verbatim CRA Art. 13(5)/(6) substantive supply-chain due-diligence text — both extracted from corpus. Section 7 (Compliance Mapping) table extended with `Corpus Manifest Path` column for all four D-06.x rows. New §10 Corpus Provenance documents the verbatim-quote provenance.
 
 # Third-Party Landscape Inventory
@@ -133,7 +132,7 @@ The obligations tracked in this section trace directly to the GDPR text. The ver
 
 Risk score key: **H** = High, **M** = Medium, **L** = Low, **VH** = Very High.
 
-Criticality reflects **business impact of vendor failure or incident** (i.e., what breaks in the product / for the customer if this vendor is compromised or unavailable). Risk score reflects **likelihood × impact** for the current maturity level (no formal supplier programme; dependency on third-party certifications).
+Criticality reflects **business impact of vendor failure or incident** (i.e., what breaks in the product / for the customer if this vendor is compromised or unavailable). Risk score reflects **likelihood × impact** for the current posture level (no formal supplier programme; dependency on third-party certifications).
 
 ### 5.1 CRA Art. 7 — Verbatim Classification Reference (extracted from corpus)
 
@@ -241,15 +240,15 @@ This document is complete (Phase 1 Step D — Third-Party Landscape) when:
 - [x] Contractual coverage matrix populated (Section 6)
 - [x] Compliance Mapping table populated for D-06.x sub-domains (Section 7)
 - [x] Gaps explicitly listed (Section 8) rather than silently accepted — required by **AEGIS P5 (Change Propagation)** and **P0 (Reasoned Disagreement)**
-- [x] Verbatim GDPR Art. 28 text linked to subprocessor list (Section 4.1 — Sprint 2 enrichment)
-- [x] Verbatim CRA Art. 7 classification gate + Art. 13(5)/(6) substantive supply-chain duty linked to risk table (Section 5.1 + 5.2 — Sprint 2 enrichment)
-- [x] Compliance Mapping table extended with Corpus Manifest Path column (Section 7 — Sprint 2 enrichment)
+- [x] Verbatim GDPR Art. 28 text linked to subprocessor list (Section 4.1 enrichment)
+- [x] Verbatim CRA Art. 7 classification gate + Art. 13(5)/(6) substantive supply-chain duty linked to risk table (Section 5.1 + 5.2 enrichment)
+- [x] Compliance Mapping table extended with Corpus Manifest Path column (Section 7 enrichment)
 
 **Gate Status:** PASS (proportionate for LOW-tier micro SaaS under P2).
 
 ---
 
-## 10. Corpus Provenance (Sprint 2 Enrichment)
+## 10. Corpus Provenance (Fase de Especificação 2 Enrichment)
 
 The verbatim Article texts reproduced in Sections 4.1 (GDPR Art. 28) and 5.1 + 5.2 (CRA Art. 7 + CRA Art. 13(5)/(6)) were extracted from the following corpus paths:
 
@@ -281,4 +280,4 @@ The verbatim Article texts reproduced in Sections 4.1 (GDPR Art. 28) and 5.1 + 5
 
 ## See also
 
-- **Data backbone:** `Case_01_Phase1.xlsx` (13 sheets: COVER, SYSTEMS, DATA_STORES, DATA_FLOWS, PERSONAL_DATA, THIRD_PARTIES, ROLES_RACI, MATURITY, SUBDOMAINS, REG_CHAIN, COMPLIANCE, GAPS, PRIORITIES)
+- **Data backbone:** `Case_01_Phase1.xlsx` (13 sheets: COVER, SYSTEMS, DATA_STORES, DATA_FLOWS, PERSONAL_DATA, THIRD_PARTIES, ROLES_RACI, POSTURE, SUBDOMAINS, REG_CHAIN, COMPLIANCE, GAPS, PRIORITIES)

@@ -1,10 +1,10 @@
 ---
 document_id: AEGIS-CASE01-AUDIT-V2
-title: Case_01 (TinyTask SaaS) — Traceability Audit Report (Sprint 6+ P7 Orphan Fix Verifier)
+title: Case_01 (TinyTask SaaS) — Traceability Audit Report (Fase de Especificação 6+ P7 Orphan Fix Verifier)
 phase: 2
 version: 1.0
 created: 2026-08-10
-author: "Sprint 6+ Executor (P7 orphan fix)"
+author: "Fase de Especificação 6+ Executor (P7 orphan fix)"
 status: VERIFIED
 audit_method: |
   python3 01_IMPLEMENTATION_TOOLS/scripts/audit_case01_traceability.py --strict
@@ -22,7 +22,7 @@ strict_mode: PASS
 
 # Case_01 (TinyTask SaaS) — Traceability Audit Report
 
-> **Audit run:** 2026-08-10 (Sprint 6+ — P7 orphan fix verifier)
+> **Audit run:** 2026-08-10 (Fase de Especificação 6+ — P7 orphan fix verifier)
 > **Tool:** `01_IMPLEMENTATION_TOOLS/scripts/audit_case01_traceability.py --strict`
 > **Branch:** `feature/aegis-case01-p7-orphan-fix`
 
@@ -30,7 +30,7 @@ strict_mode: PASS
 
 ## §0 Verdict at a Glance
 
-| Metric | Pre-fix (Sprint 5 baseline) | Post-fix (Sprint 6+) |
+| Metric | Pre-fix (Fase de Especificação 5 baseline) | Post-fix |
 |--------|---------------------------:|---------------------:|
 | Total OBLs in Doc 08 | 30 | **34** (+4) |
 | P7 orphan candidates | **4** | **0** |
@@ -88,7 +88,7 @@ strict_mode: PASS
 | §3.5 gap analysis (lines) | `D-09.3, D-10.1` | **`D-09.3` only** |
 | §4 D-07 row count | 1 OBL | **4 OBLs** |
 | §4 D-10 row count | 2 OBLs | **3 OBLs** |
-| §5.0 Sprint 5 Detail-Card Index | 30 rows | **34 rows** |
+| §5.0 Fase de Especificação 5 Detail-Card Index | 30 rows | **34 rows** |
 | §5.0 card-to-cross-reference | 30 rows | **34 rows** |
 | §5.7 D-07 detail cards | 1 card | **4 cards** |
 | §5.10 D-10 detail cards | 2 cards | **3 cards** |
@@ -96,7 +96,7 @@ strict_mode: PASS
 | §5.11 total cells (table) | 510 | **578** |
 | §5.20 Conclusion deliverable count | 30 cards / 510 cells | **34 cards / 578 cells** |
 
-**New OBLs added (Sprint 6+):**
+**New OBLs added:**
 
 | OBL ID | Sub-Domain | Sole Authority | NI | Source Clause | Cross-ref Findings |
 |--------|------------|----------------|---:|---------------|--------------------|
@@ -132,9 +132,9 @@ Doc 08 marks these as `(TBD — added in follow-on contract — see F-07)` in th
 
 > **Resolution path:** Cross-case taxonomy reconciliation in a separate contract (out of scope here).
 
-### F-10 — Phasing Reminder (from Sprint 4)
+### F-10 — Phasing Reminder (from Fase de Especificação 4)
 
-OBL-D-01.4-001 and OBL-D-09.1-001 NI divergence from legacy — RESOLVED in Sprint 4 §4.1 (Rich NI = 2.500 authoritative).
+OBL-D-01.4-001 and OBL-D-09.1-001 NI divergence from legacy — RESOLVED in Fase de Especificação 4 §4.1 (Rich NI = 2.500 authoritative).
 
 ---
 
@@ -156,9 +156,9 @@ OBL-D-01.4-001 and OBL-D-09.1-001 NI divergence from legacy — RESOLVED in Spri
 
 | Action | Item | Reason |
 |--------|------|--------|
-| **Reused** | `CRA-C02` | Mapped to D-07.1 (existing); now also mapped to D-07.2 (Sprint 6+) — secure-coding is conceptually adjacent to secure-by-design. **Dedicated clause allocation deferred to follow-on contract per F-07.** |
-| **Reused** | `CRA-C22` | Mapped to D-07.1 (existing); now also mapped to D-07.3 + D-07.4 (Sprint 6+). Same deferred-clause pattern. |
-| **Reused (now first mapping)** | `CRA-C12` | Was unmapped in Doc 08 §3.6 prior to Sprint 6+ (because there was no OBL); now mapped to D-10.1 (Continuous Security Monitoring) per `00_Taxonomy_Reference.md` line 142 which listed `CRA-C12` as the D-10.1 driver. |
+| **Reused** | `CRA-C02` | Mapped to D-07.1 (existing); now also mapped to D-07.2 — secure-coding is conceptually adjacent to secure-by-design. **Dedicated clause allocation deferred to follow-on contract per F-07.** |
+| **Reused** | `CRA-C22` | Mapped to D-07.1 (existing); now also mapped to D-07.3 + D-07.4. Same deferred-clause pattern. |
+| **Reused (now first mapping)** | `CRA-C12` | Was unmapped in Doc 08 §3.6 prior to Fase de Especificação 6+ (because there was no OBL); now mapped to D-10.1 (Continuous Security Monitoring) per `00_Taxonomy_Reference.md` line 142 which listed `CRA-C12` as the D-10.1 driver. |
 | **New IDs created** | `OBL-D-07.2-001`, `OBL-D-07.3-001`, `OBL-D-07.4-001`, `OBL-D-10.1-001` | 4 new obligations added in Doc 08; canonical format `OBL-D-XX.X-NNN` preserved. |
 | **New placeholder IDs (TBD)** | `PO-D-07.2-001`, `SO-D-07.3-001`, `SO-D-07.4-001`, `SO-D-10.1-001`, `CR-D-07.2-001`, `CR-D-07.3-001`, `CR-D-07.4-001`, `CR-D-10.1-001` | Reserved for follow-on contract; referenced in Doc 08 §3.2/§3.3 with explicit TBD markers. |
 
@@ -173,8 +173,8 @@ OBL-D-01.4-001 and OBL-D-09.1-001 NI divergence from legacy — RESOLVED in Spri
 3. **`00_Taxonomy_Reference.md`** — not in the file-modification list per user spec; left untouched (F-09).
 4. **Doc 10 §3/§4 + Doc 11 §4** — not touched per user constraint "DO NOT modify Doc 10, Doc 11"; new OBLs use `(TBD)` placeholders (F-07).
 5. **CRA clause reuse vs new clause allocation** — D-07.2/3/4 OBLs use *shared* CRA-C02/C22 (with D-07.1) rather than new CRA-C27..CRA-C29 because adding new CRA clauses would break the ont's 26-CRA-clause invariant. Dedicated allocation flagged for follow-on contract.
-6. **Doc 08 §3.6 / §3.5 / §6 updates** — extended beyond the user-spec minimal scope to maintain internal consistency (NI distribution table, §5.11 Sprint 5 Summary Statistics tables, §3.7 findings F-07/F-08/F-09, §3.8 verdict table). All edits are traceable to the canonical ontology.
-7. **`# Cada domínio` reconciliation row** — left untouched (user constraint "DO NOT touch Doc 07"). Doc 07 §7 gaps table still references `D-09.4` and `D-06.2` (Sprint 2/3 known carry-over, per validation/SPRINT1_REPORT.md line 176).
+6. **Doc 08 §3.6 / §3.5 / §6 updates** — extended beyond the user-spec minimal scope to maintain internal consistency (NI distribution table, §5.11 Fase de Especificação 5 Summary Statistics tables, §3.7 findings F-07/F-08/F-09, §3.8 verdict table). All edits are traceable to the canonical ontology.
+7. **`# Cada domínio` reconciliation row** — left untouched (user constraint "DO NOT touch Doc 07"). Doc 07 §7 gaps table still references `D-09.4` and `D-06.2` (Fase de Especificação 2/3 known carry-over, per validation/SPRINT1_REPORT.md line 176).
 
 ---
 
@@ -191,8 +191,8 @@ STRICT MODE: PASS
 - Coverage %: **89.5** (post-fix; was 81.6) ✅
 - Strict-mode verdict: **PASS** ✅
 
-> The P7 orphan gap identified by the Sprint 1 traceability audit is **resolved** for D-07.2/3/4 + D-10.1. D-09.3 remains an intentional gap (per user constraint). The audit session is the source of truth for the post-fix state.
+> The P7 orphan gap identified by the Fase de Especificação 1 traceability audit is **resolved** for D-07.2/3/4 + D-10.1. D-09.3 remains an intentional gap (per user constraint). The audit session is the source of truth for the post-fix state.
 
 ---
 
-**End of Case_01 TRACEABILITY_AUDIT (Sprint 6+ — P7 orphan fix verifier)**
+**End of Case_01 TRACEABILITY_AUDIT (Fase de Especificação 6+ — P7 orphan fix verifier)**

@@ -5,33 +5,31 @@ phase: 1
 version: 7.0
 created: 2026-08-06
 updated: 2026-08-14
-author: Sprint 7 Executor (tech-free-restructure)
-sprint_11_author: Sprint 11 Executor (§3-nist-controls-full-coverage)
-sprint_10_author: Sprint 10 Executor (corr-016-nist-controls-layer)
-sprint_8_author: Sprint 8 Executor (corr-009-ao-migration)
-sprint_9_author: Sprint 9 Executor (corr-015-ao-canonical-ids)
-sprint_5_author: Sprint 5 Executor (deep-enrichment-builder)
-sprint_4_author: Sprint 4 Executor (adjusted-objectives-builder)
+author: Fase de Especificação 7 Executor (tech-free-restructure)
+sprint_11_author: Fase de Especificação 11 Executor (§3-nist-controls-full-coverage)
+sprint_10_author: Fase de Especificação 10 Executor (corr-016-nist-controls-layer)
+sprint_8_author: Fase de Especificação 8 Executor (corr-009-ao-migration)
+sprint_9_author: Fase de Especificação 9 Executor (corr-015-ao-canonical-ids)
+sprint_5_author: Fase de Especificação 5 Executor (deep-enrichment-builder)
+sprint_4_author: Fase de Especificação 4 Executor (adjusted-objectives-builder)
 status: COMPLETE
 id_format: AG-D-XX.X-NNN (canonical Phase 1)
 ao_canonical_ids_count: 35
 ao_driven_total_count: 62
 status_history:
-  - { date: 2026-08-06, status: DRAFT, sprint: 0, by: 'Sprint 0 skeleton' }
-  - { date: 2026-08-06, status: RECONCILED, sprint: 1, by: 'Sprint 1 reconciliation' }
-  - { date: 2026-08-06, status: CORPUS_ENRICHED, sprint: 2, by: 'Sprint 2 corpus enrichment' }
-  - { date: 2026-08-06, status: ADJUSTED_OBJECTIVES, sprint: 4, by: 'Sprint 4 adjusted objectives' }
-  - { date: 2026-08-06, status: DEEP_ENRICHED, sprint: 5, by: 'Sprint 5 DEEP enrichment' }
-  - { date: 2026-08-10, status: TECH_FREE_PHASE1, sprint: 7, by: 'Sprint 7 tech-free restructure' }
-  - { date: 2026-08-10, status: AO_MIGRATED, sprint: 8, by: 'Sprint 8 Executor (corr-009)' }
-  - { date: 2026-08-10, status: AO_CANONICAL_IDS, sprint: 9, by: 'Sprint 9 Executor (corr-015)' }
-  - { date: 2026-08-13, status: NIST_CONTROLS_LAYER_PILOT, sprint: 10, by: 'Sprint 10 Executor (corr-016)' }
-  - { date: 2026-08-14, status: NIST_CONTROLS_FULL_COVERAGE, sprint: 11, by: 'Sprint 11 Executor (§3 expansion)' }
+  - { date: 2026-08-06, status: DRAFT, sprint: 0, by: 'Fase de Especificação 0 skeleton' }
+  - { date: 2026-08-06, status: RECONCILED, sprint: 1, by: 'Fase de Especificação 1 reconciliation' }
+  - { date: 2026-08-06, status: CORPUS_ENRICHED, sprint: 2, by: 'Fase de Especificação 2 corpus enrichment' }
+  - { date: 2026-08-06, status: ADJUSTED_OBJECTIVES, sprint: 4, by: 'Fase de Especificação 4 adjusted objectives' }
+  - { date: 2026-08-06, status: DEEP_ENRICHED, sprint: 5, by: 'Fase de Especificação 5 DEEP enrichment' }
+  - { date: 2026-08-10, status: TECH_FREE_PHASE1, sprint: 7, by: 'Fase de Especificação 7 tech-free restructure' }
+  - { date: 2026-08-10, status: AO_MIGRATED, sprint: 8, by: 'Fase de Especificação 8 Executor (corr-009)' }
+  - { date: 2026-08-10, status: AO_CANONICAL_IDS, sprint: 9, by: 'Fase de Especificação 9 Executor (corr-015)' }
+  - { date: 2026-08-13, status: NIST_CONTROLS_LAYER_PILOT, sprint: 10, by: 'Fase de Especificação 10 Executor (corr-016)' }
+  - { date: 2026-08-14, status: NIST_CONTROLS_FULL_COVERAGE, sprint: 11, by: 'Fase de Especificação 11 Executor (§3 expansion)' }
 tech_free_restructure_date: 2026-08-10
-tech_free_restructure_sprint: 7
 tech_free_sections: ['§2', '§3', '§4', '§5', '§7']
 nist_controls_mapping_date: 2026-08-13
-nist_controls_mapping_sprint: 10
 nist_controls_mapping_contract: corr-016-nist-controls-layer
 nist_controls_full_coverage: true
 active_subdomains_mapped: 35
@@ -52,7 +50,6 @@ appendix_a_migrated_d01_cards:
   - 'AG-D-01.3-002'
   - 'AG-D-01.4-002'
 ao_id_migration_date: 2026-08-10
-ao_id_migration_sprint: 8
 corr_007_superseded_by: corr-008 (AO ID model replaces PG/SG ID model)
 former_pg_sg_count: 74
 former_pg_count: 37
@@ -63,7 +60,6 @@ ao_count_in_main: 66
 tensions_expanded_count: 4
 case: Case_01_TinyTask_SaaS
 applicable_regs: [GDPR, CRA]
-sprint: 8
 sprint_role: ao_id_migration_phase1
 cross_checked_against: [07_Structured_Compliance_Matrix.md, 07b_Proportionality_Profile.md, 10_Privacy_Security_Objectives.md, proportionality_model.md, phase1_ontology.yaml]
 inputs: [Doc03_Company_Context_Assessment.md, Doc08_Regulatory_Applicability.md, Doc11_Structured_Compliance_Matrix.md, Doc12_Proportionality_Profile.md, phase1_ontology.yaml, ../../../../../00_METHODOLOGY/REFERENCE/proportionality_model.md]
@@ -84,7 +80,7 @@ corr-008 supersedes: corr-007 (PG/SG ID model → AO ID model)
 > - Doc 07 `07_Structured_Compliance_Matrix.md` §3 — sub-domain coverage matrix (source of the 35 ACTIVE / 3 NOT_ADDRESSED split)
 > - Doc 07b `07b_Proportionality_Profile.md` — 5-attribute operationalisation per sub-domain
 > - Doc 04 `04_Company_Context_Assessment.md` §4 — Business Goals (BG-01..BG-05) → linked to objectives here
-> - Phase 2 legacy `02_PHASE2_RULES/10_Privacy_Security_Goals.md` §3-§4 — superseded per Sprint 4
+> - Phase 2 legacy `02_PHASE2_RULES/10_Privacy_Security_Goals.md` §3-§4 — superseded per Fase de Especificação 4
 > - Phase 2 legacy `02_PHASE2_RULES/09_Strategic_Tensions_Report.md` — 4 tensions (T-001..T-004), resolved here with max-SLA routing
 
 ---
@@ -301,7 +297,7 @@ This document is the **Phase 1 adjusted-objectives layer** of the TinyTask SaaS 
 **Inline notes — critical IDs carried in the main flow:**
 
 - **`AG-D-04.3-002` (D-04.3 Regulatory Notification, formerly `SG-D-04.3-001`)** — Anchor goal for tension **T-001**. Highest-priority SG in the case and the only HIGH-risk profile: the internal notification workflow runs on the **max-SLA 24h** routing so that the shorter of the two regulatory deadlines governs the single internal clock. See §5 T-001.
-- **`AG-D-09.1-002` (D-09.1 Information Security Policies, formerly `SG-D-09.1-001`)** — Dual-coverage with `AG-D-09.1-001` (formerly `PG-D-09.1-001`); the same policy architecture discharges both. Technical documentation retention is **10 years or the support period, whichever is longer** (CRA Art. 13(13)). Normalised Intensity **2.500** is authoritative per the Sprint 4 reconciliation of finding F-10 (superseding the legacy 2.750).
+- **`AG-D-09.1-002` (D-09.1 Information Security Policies, formerly `SG-D-09.1-001`)** — Dual-coverage with `AG-D-09.1-001` (formerly `PG-D-09.1-001`); the same policy architecture discharges both. Technical documentation retention is **10 years or the support period, whichever is longer** (CRA Art. 13(13)). Normalised Intensity **2.500** is authoritative per the Fase de Especificação 4 reconciliation of finding F-10 (superseding the legacy 2.750).
 - **`AG-D-09.2-002` (D-09.2 Impact & Risk Assessments, formerly `SG-D-09.2-001`)** — Dual-coverage with `AG-D-09.2-001` (formerly `PG-D-09.2-001`); the same assessment framework serves both, per T-M-001.
 
 ---
@@ -1447,7 +1443,7 @@ _Applicable regulations: GDPR, CRA_
 - **Doc 07 Sub-Domain Coverage Matrix (§3)**: Source of the 35 ACTIVE / 3 NOT_ADDRESSED split used in §2-§4.
 - **Doc 07b Proportionality Profile**: 5-attribute per-sub-domain operationalisation (`satisfaction_pattern`, `evidence_depth`, `verification_method`, `ownership`, `example_controls`).
 - **Doc 05b Ambiguity Register**: 417 ambiguity cards (R1/R2/R3 variant readings) — informs disambiguation of the generic objectives in §1.
-- **Phase 2 `10_Privacy_Security_Goals.md` (legacy)**: Original PG/SG formulation. Sprint 4 elevated PG/SG to Phase 1 Rich; legacy remains as Phase 2 reference but superseded (corr-008 now replaces PG/SG with PO/SO).
+- **Phase 2 `10_Privacy_Security_Goals.md` (legacy)**: Original PG/SG formulation. Fase de Especificação 4 elevated PG/SG to Phase 1 Rich; legacy remains as Phase 2 reference but superseded (corr-008 now replaces PG/SG with PO/SO).
 - **Phase 2 `09_Strategic_Tensions_Report.md` (legacy)**: Original tensions list (T-001..T-004) — same IDs preserved here, now resolved with max-SLA routing in §5.
 - **`00_METHODOLOGY/REFERENCE/proportionality_model.md` §1, §5, §6**: Invariant + decision table + tier attribute definitions (cited throughout).
 - **`00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-XX.Y/`**: Corpus source for the HSO + Sub-SOs in §1 and for the restated objectives in §2-§4.
@@ -1476,12 +1472,12 @@ _Applicable regulations: GDPR, CRA_
 
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
-| 1.0 | 2026-08-06 | Sprint 4 Executor | Initial release — 74 adjusted objectives (37 PG + 37 SG) + 4 tensions resolved + 37-row Track B decision trail |
-| 2.0 | 2026-08-06 | Sprint 5 Executor | Deep enrichment — 74 detail cards (12 fields each: Description, Scope, Out of scope, Source Article, Corpus path, NIST CSF Anchors, Verification Criteria, Verification Method, Owner, Status, Dependencies, Risk, Affected Stakeholders, Maturity Score, Implementation Priority). 4 tensions expanded to multi-paragraph root cause analysis + source citations + resolution options + implementation + verification. **NO Effort/Cost/Timeline fields added** per Sprint 5 scope. Tables enriched with "See full details" anchor column. **Superseded by v3.0** — the tech-rich §2/§2a/§3/§3a of this version are preserved verbatim in Appendix A. |
-| 3.0 | 2026-08-10 | Executor (Sprint 7) | Phase 1 tech-free restructure. New §2/§3/§4 (high-level + GDPR-driven + CRA-driven, 35 rows × 3 columns, hybrid format) derived from the regulatory corpus. 4 tensions rewritten without technology references (§5). 74 PG/SG detail cards preserved in Appendix A (DEPRECATED). 6 critical IDs (`PG-D-01.3-001`, `SG-D-04.3-001`, `PG`/`SG-D-09.1-001`, `PG`/`SG-D-09.2-001`) retained in the main flow with inline notes. Scope corrected to 35 ACTIVE sub-domains per Doc 07 §3 (D-02.4 / D-06.4 / D-08.3 NOT_ADDRESSED). |
-| 4.0 | 2026-08-10 | Sprint 8 Executor (corr-009) | **AO ID migration (corr-008 supersedes corr-007).** 74 PG/SG IDs → 74 AO IDs (`PG-D-XX.X-001` → `AG-D-XX.X-001`; `SG-D-XX.X-001` → `AG-D-XX.X-002`). §1 docstring updated. 6 critical IDs in §3/§4 inline notes carry `formerly_known_as` aliases. §5 tension anchors updated. §8 cross-references to Doc 04 BG-03/BG-04 carry AO aliases. §9 validation rewritten for AO counts. Appendix A header note + DEPRECATED alias table (74 rows) added; the 74 detail cards preserved verbatim. Phase 2 lints (`lint_10_pso_rules`, `lint_11_rules_catalog`) updated to accept legacy PG/SG/CR/BPR IDs as DEPRECATED warnings during the transition window. Tech-free invariant preserved. |
-| 5.0 | 2026-08-10 | Sprint 9 Executor (corr-015) | **Canonical AO IDs in §2/§3/§4 tables (corr-015).** §2 HL (35 rows) and §3 GDPR-driven (35 rows, 7 N/A) now carry an `AO ID` column with `AG-D-XX.X-001` (slot 001, regulation-agnostic HL or GDPR-driven); §4 CRA-driven (35 rows, 1 N/A) carries `AG-D-XX.X-002` (slot 002, CRA-driven). Total: 35 + 28 + 34 = 97 AO entries in the main tables (69 distinct IDs in §2/§3/§4; 74 total in document including Appendix A.NOT_ADDRESSED subs D-02.4 / D-06.4). Appendix A.A.0 alias table expanded with `Regulation` and `Sub-domain` columns (74 rows × 5 columns, self-contained lookup). §1 + §8 + §9 rewritten for v5.0 AO ID counts (note: section numbers shifted in v6.0 with §7 now NIST Controls Mapping). Doc 04 §4 BG-01..BG-05 cells updated to reference §2/§3/§4 by AO ID. Frontmatter: `version: 5.0`, `id_format: AG-D-XX.X-NNN`, `ao_canonical_ids_count: 35`. `validate_aegis_ids.py --quiet` PASS; Phase 1/2/3 lint gates PASS. |
-| 6.0 | 2026-08-13 | Sprint 10 Executor (corr-016) | **NIST Controls Layer pilot (D-01.1).** New §7 NIST Controls Mapping added before Appendix A. CONTROLS/ restructured by framework→function (NIST_CSF/<function>/, NIST_PF/<function>-P/, NIST_AI_RMF/<function>/) + by_subdomain/. §7..§10 renumbered to §8..§11. D-01 detail cards (8) extracted from Appendix A to `_deprecated/07c_Appendix_A_D01_OLD.md`; Appendix A now retains D-02..D-10 (66 cards, LEGACY). Frontmatter: `version: 6.0`, `tech_free_sections` adds §7, `appendix_a_status: PARTIAL_LEGACY`, `appendix_a_cards_count: 66`, `appendix_a_migrated_to_deprecated: 8`. Pilot scope: 10 controls (5 CSF + 4 PF + 1 AI RMF) for D-01.1 only. |
+| 1.0 | 2026-08-06 | Fase de Especificação 4 Executor | Initial release — 74 adjusted objectives (37 PG + 37 SG) + 4 tensions resolved + 37-row Track B decision trail |
+| 2.0 | 2026-08-06 | Fase de Especificação 5 Executor | Deep enrichment — 74 detail cards (12 fields each: Description, Scope, Out of scope, Source Article, Corpus path, NIST CSF Anchors, Verification Criteria, Verification Method, Owner, Status, Dependencies, Risk, Affected Stakeholders, Implementation Posture, Implementation Priority). 4 tensions expanded to multi-paragraph root cause analysis + source citations + resolution options + implementation + verification. **NO Effort/Cost/Timeline fields added** per Fase de Especificação 5 scope. Tables enriched with "See full details" anchor column. **Superseded by v3.0** — the tech-rich §2/§2a/§3/§3a of this version are preserved verbatim in Appendix A. |
+| 3.0 | 2026-08-10 | Executor | Phase 1 tech-free restructure. New §2/§3/§4 (high-level + GDPR-driven + CRA-driven, 35 rows × 3 columns, hybrid format) derived from the regulatory corpus. 4 tensions rewritten without technology references (§5). 74 PG/SG detail cards preserved in Appendix A (DEPRECATED). 6 critical IDs (`PG-D-01.3-001`, `SG-D-04.3-001`, `PG`/`SG-D-09.1-001`, `PG`/`SG-D-09.2-001`) retained in the main flow with inline notes. Scope corrected to 35 ACTIVE sub-domains per Doc 07 §3 (D-02.4 / D-06.4 / D-08.3 NOT_ADDRESSED). |
+| 4.0 | 2026-08-10 | Fase de Especificação 8 Executor (corr-009) | **AO ID migration (corr-008 supersedes corr-007).** 74 PG/SG IDs → 74 AO IDs (`PG-D-XX.X-001` → `AG-D-XX.X-001`; `SG-D-XX.X-001` → `AG-D-XX.X-002`). §1 docstring updated. 6 critical IDs in §3/§4 inline notes carry `formerly_known_as` aliases. §5 tension anchors updated. §8 cross-references to Doc 04 BG-03/BG-04 carry AO aliases. §9 validation rewritten for AO counts. Appendix A header note + DEPRECATED alias table (74 rows) added; the 74 detail cards preserved verbatim. Phase 2 lints (`lint_10_pso_rules`, `lint_11_rules_catalog`) updated to accept legacy PG/SG/CR/BPR IDs as DEPRECATED warnings during the transition window. Tech-free invariant preserved. |
+| 5.0 | 2026-08-10 | Fase de Especificação 9 Executor (corr-015) | **Canonical AO IDs in §2/§3/§4 tables (corr-015).** §2 HL (35 rows) and §3 GDPR-driven (35 rows, 7 N/A) now carry an `AO ID` column with `AG-D-XX.X-001` (slot 001, regulation-agnostic HL or GDPR-driven); §4 CRA-driven (35 rows, 1 N/A) carries `AG-D-XX.X-002` (slot 002, CRA-driven). Total: 35 + 28 + 34 = 97 AO entries in the main tables (69 distinct IDs in §2/§3/§4; 74 total in document including Appendix A.NOT_ADDRESSED subs D-02.4 / D-06.4). Appendix A.A.0 alias table expanded with `Regulation` and `Sub-domain` columns (74 rows × 5 columns, self-contained lookup). §1 + §8 + §9 rewritten for v5.0 AO ID counts (note: section numbers shifted in v6.0 with §7 now NIST Controls Mapping). Doc 04 §4 BG-01..BG-05 cells updated to reference §2/§3/§4 by AO ID. Frontmatter: `version: 5.0`, `id_format: AG-D-XX.X-NNN`, `ao_canonical_ids_count: 35`. `validate_aegis_ids.py --quiet` PASS; Phase 1/2/3 lint gates PASS. |
+| 6.0 | 2026-08-13 | Fase de Especificação 10 Executor (corr-016) | **NIST Controls Layer pilot (D-01.1).** New §7 NIST Controls Mapping added before Appendix A. CONTROLS/ restructured by framework→function (NIST_CSF/<function>/, NIST_PF/<function>-P/, NIST_AI_RMF/<function>/) + by_subdomain/. §7..§10 renumbered to §8..§11. D-01 detail cards (8) extracted from Appendix A to `_deprecated/07c_Appendix_A_D01_OLD.md`; Appendix A now retains D-02..D-10 (66 cards, LEGACY). Frontmatter: `version: 6.0`, `tech_free_sections` adds §7, `appendix_a_status: PARTIAL_LEGACY`, `appendix_a_cards_count: 66`, `appendix_a_migrated_to_deprecated: 8`. Pilot scope: 10 controls (5 CSF + 4 PF + 1 AI RMF) for D-01.1 only. |
 | 7.0 | 2026-08-14 | Executor (§3 NIST Controls expansion) | **§7 full coverage expansion.** 35 ACTIVE sub-domains now mapped to NIST CSF 2.0 + NIST PF 1.0 (+ NIST AI RMF where applicable). §7 grew from 1 pilot subsection (D-01.1, 10 controls) to 35 subsections (~300 CSF + ~200 PF controls total). 34 new `by_subdomain/<D-XX.X>.json` files created (D-01.2 through D-10.3, excluding D-02.4/D-06.4/D-08.3 NOT_ADDRESSED). Frontmatter: `version: 7.0`, `nist_controls_full_coverage: true`, `active_subdomains_mapped: 35`. |
 
 ---
@@ -1490,9 +1486,9 @@ _Applicable regulations: GDPR, CRA_
 
 | Role | Name | Signature | Date |
 |------|------|-----------|------|
-| Document Author (Sprint 7 tech-free restructure) | Sprint 7 Executor | | 2026-08-10 |
-| Document Author (Sprint 5 deep enrichment) | Sprint 5 Executor | | 2026-08-06 |
-| Document Author (Sprint 4 base) | Sprint 4 Executor | | 2026-08-06 |
+| Document Author (Fase de Especificação 7 tech-free restructure) | Fase de Especificação 7 Executor | | 2026-08-10 |
+| Document Author (Fase de Especificação 5 deep enrichment) | Fase de Especificação 5 Executor | | 2026-08-06 |
+| Document Author (Fase de Especificação 4 base) | Fase de Especificação 4 Executor | | 2026-08-06 |
 | Business Review (CEO) | | | |
 | Technical Review (CTO) | | | |
 | AEGIS Methodology Review | | | |

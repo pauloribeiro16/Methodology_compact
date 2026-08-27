@@ -5,7 +5,7 @@ phase: 1
 version: 1.0
 created: 2026-08-06
 updated: 2026-08-06
-author: Sprint 2 Executor (citation-index-builder)
+author: Fase de Especificação 2 Executor (citation-index-builder)
 status: CORPUS_ENRICHED
 case: Case_01_TinyTask_SaaS
 applicable_regs: [GDPR, CRA]
@@ -124,10 +124,10 @@ scope_docs_count: 13
 
 **Annex normalisation:** `CRA Annex I` → filename `CRA_Annex_I.md` (which does NOT exist in the current corpus).
 
-## §8 Gate Criteria (Sprint 3 readiness)
+## §8 Gate Criteria (Fase de Especificação 3 readiness)
 
 - [x] Index methodology documented (§7)
 - [x] All 4 layers (L1-L4) represented — this doc focuses on L4 (verbatim article files); L1/L2/L3 citations are tracked inline in other docs
 - [x] Cross-citation map complete (8 docs → 18 refs)
 - [x] Coverage report identifies gaps (§6 — 3 gap(s))
-- [ ] Spot-check audit log (deferred to Sprint 3 — requires human verification of 10% sample)
+- [ ] Spot-check audit log (deferred to Fase de Especificação 3 — requires human verification of 10% sample)

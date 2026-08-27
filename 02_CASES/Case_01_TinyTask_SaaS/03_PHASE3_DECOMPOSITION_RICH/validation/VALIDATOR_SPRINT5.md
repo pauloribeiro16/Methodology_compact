@@ -1,6 +1,6 @@
 ---
 document_id: AEGIS-P3-RICH-VALIDATOR-SPRINT5
-title: Validator Sprint 5 Report — Phase 3 Rich Mode (Case_01 TinyTask SaaS)
+title: Validator Fase de Especificação 5 Report — Phase 3 Rich Mode (Case_01 TinyTask SaaS)
 phase: 3
 version: 2.0
 created: 2026-08-24
@@ -9,11 +9,10 @@ author: Validator sub-agent
 status: COMPLETE
 case: Case_01_TinyTask_SaaS
 tier: MICRO
-sprint: 5
 sprint_role: validation
 branch: feature/aegis-p3-case01-rich
 inputs:
-  - ./SPRINT5_REPORT.md (Executor Sprint 5)
+  - ./SPRINT5_REPORT.md (Executor Fase de Especificação 5)
   - ./SPRINT0..SPRINT4_REPORT.md (cumulative)
   - ../RULE_FREEZE.md
   - ../KG_CHAINS.md
@@ -32,40 +31,40 @@ related_deliverables:
 verdict: PASS_WITH_FINDINGS
 ---
 
-# Validator Sprint 5 Report — Phase 3 Rich Mode (Case_01)
+# Validator Fase de Especificação 5 Report — Phase 3 Rich Mode (Case_01)
 
-> **Re-verification pass.** The previous Validator v1 incorrectly concluded FAIL because it only checked `git log` (no commits exist on `feature/aegis-p3-case01-rich`; orchestrator owns commits). This run verifies the **worktree** state — untracked files are the deliverable. Per orchestrator instruction: WORKTREE untracked files constitute the Sprint 0-5 deliverables.
+> **Re-verification pass.** The previous Validator v1 incorrectly concluded FAIL because it only checked `git log` (no commits exist on `feature/aegis-p3-case01-rich`; orchestrator owns commits). This run verifies the **worktree** state — untracked files are the deliverable. Per orchestrator instruction: WORKTREE untracked files constitute the Fase de Especificação 0-5 deliverables.
 
 ---
 
 ## §1 Executive Summary
 
-**Verdict: PASS_WITH_FINDINGS.** All 9 sprint tasks (S0-S5) materially delivered in the worktree. Sprint 5 enriched 8 docs with **276 detail cards (3,917 cells)** matching `RULE_FREEZE.md`. Schema is uniform (17-field for HIGH/CRITICAL/complex, 12-field for MEDIUM/LOW/simple per family convention). Lints show **1 expected failure** (Rich runner, Doc 13 §-naming convention — see F-S5-01). Legacy Phase 3 / Phase 2 / Phase 1 / PREPROCESSING **diff is empty** (invariant respected).
+**Verdict: PASS_WITH_FINDINGS.** All 9 sprint tasks (S0-S5) materially delivered in the worktree. Fase de Especificação 5 enriched 8 docs with **276 detail cards (3,917 cells)** matching `RULE_FREEZE.md`. Schema is uniform (17-field for HIGH/CRITICAL/complex, 12-field for MEDIUM/LOW/simple per family convention). Lints show **1 expected failure** (Rich runner, Doc 13 §-naming convention — see F-S5-01). Legacy Phase 3 / Phase 2 / Phase 1 / PREPROCESSING **diff is empty** (invariant respected).
 
-Total findings in F-register: **20 carry-over + 2 NEW + 0 silently silenced**. Sprint 5 RESOLVED F-00e, F-S1-01..07 informatively (orphan refs mapped via card `Source:` field), F-S2-02, F-S2-03. F-S1-09 KG contamination still OPEN (carried to follow-on contract — out of Sprint 5 scope per AGENTS.md). F-V-1..8 from previous Validator run **INVALIDATED** (were based on `git log` false-fail). 
+Total findings in F-register: **20 carry-over + 2 NEW + 0 silently silenced**. Fase de Especificação 5 RESOLVED F-00e, F-S1-01..07 informatively (orphan refs mapped via card `Source:` field), F-S2-02, F-S2-03. F-S1-09 KG contamination still OPEN (carried to follow-on contract — out of Fase de Especificação 5 scope per AGENTS.md). F-V-1..8 from previous Validator run **INVALIDATED** (were based on `git log` false-fail). 
 
-P7 blockers: **none new**. F-S1-08 (Doc 08 OBL↔Doc 11 CR drift) CARRIED to follow-on contract. F-S1-09 (KG contamination) OPEN, KG re-run needed — out of Sprint 5 scope.
+P7 blockers: **none new**. F-S1-08 (Doc 08 OBL↔Doc 11 CR drift) CARRIED to follow-on contract. F-S1-09 (KG contamination) OPEN, KG re-run needed — out of Fase de Especificação 5 scope.
 
 ---
 
 ## §2 Sprint Re-verification (S0..S5)
 
-### §2.1 Sprint 0 (Skeleton + Lint Baseline) — PASS
+### §2.1 Fase de Especificação 0 (Skeleton + Lint Baseline) — PASS
 15 doc placeholders, 3 orchestration docs (README/PROJECT_STATE/RICH_VS_LEGACY), 5 ported lints, 1 new runner (`run_phase3_rich_lints.py`), 3 script stubs. F-00f (silent-merge prevention) MITIGATED via `--rich` flag + explicit `doc_path` param. Legacy untouched (git diff empty).
 
-### §2.2 Sprint 1 (Reconciliation) — PASS_WITH_FINDINGS
-`RULE_FREEZE.md` produced. 30 CR + 16 BPR = 46 rules. 11 PO + 20 SO = 31 goals. F-00a..F-00d RESOLVED; F-00e carried to Sprint 5; F-S1-01..07 orphan refs OPEN (legacy doc drift); F-S1-08 CARRIED (Doc 08 34 OBL vs Doc 11 30 CR); F-S1-09 OPEN (KG contamination, 14 Case_02 nodes); F-S1-10/11 CLOSED.
+### §2.2 Fase de Especificação 1 (Reconciliation) — PASS_WITH_FINDINGS
+`RULE_FREEZE.md` produced. 30 CR + 16 BPR = 46 rules. 11 PO + 20 SO = 31 goals. F-00a..F-00d RESOLVED; F-00e carried to Fase de Especificação 5; F-S1-01..07 orphan refs OPEN (legacy doc drift); F-S1-08 CARRIED (Doc 08 34 OBL vs Doc 11 30 CR); F-S1-09 OPEN (KG contamination, 14 Case_02 nodes); F-S1-10/11 CLOSED.
 
-### §2.3 Sprint 2 (KG Chains + NIST Anchors) — PASS
-9 KG chains + 2 NIST anchor tables. F-S2-01..04 raised: F-S2-01 (FR-29 ↔ UC-25 KG label mismatch — KG is labelling artefact, NOTE in CH-09); F-S2-02/03 (FR-16/FR-23 legacy remap needed) — RESOLVED in Sprint 5 via Doc 23 card `Source:` field; F-S2-04 (CH-09 source_location fuzzy mismatch) OPEN, disposition: replace `§3 row 79` with semantic locator `§3 FR-29`.
+### §2.3 Fase de Especificação 2 (KG Chains + NIST Anchors) — PASS
+9 KG chains + 2 NIST anchor tables. F-S2-01..04 raised: F-S2-01 (FR-29 ↔ UC-25 KG label mismatch — KG is labelling artefact, NOTE in CH-09); F-S2-02/03 (FR-16/FR-23 legacy remap needed) — RESOLVED in Fase de Especificação 5 via Doc 23 card `Source:` field; F-S2-04 (CH-09 source_location fuzzy mismatch) OPEN, disposition: replace `§3 row 79` with semantic locator `§3 FR-29`.
 
-### §2.4 Sprint 3 (Final Docs + Traceability Matrix) — PASS_WITH_FINDINGS
+### §2.4 Fase de Especificação 3 (Final Docs + Traceability Matrix) — PASS_WITH_FINDINGS
 8-sheet workbook + 2 new sheets (RULE_FREEZE + KG_CHAINS) = **10 sheets total**. Drawio generator implemented. F-00b RESOLVED. F-00e drawio side RESOLVED.
 
-### §2.5 Sprint 4 (Frontmatter) — PASS
+### §2.5 Fase de Especificação 4 (Frontmatter) — PASS
 All Rich docs received uniform frontmatter (`schema_columns: 6` etc.). F-00e ON TRACK.
 
-### §2.6 Sprint 5 (DEEP Enrichment) — PASS_WITH_FINDINGS
+### §2.6 Fase de Especificação 5 (DEEP Enrichment) — PASS_WITH_FINDINGS
 276 detail cards materialized in 8 docs:
 - Doc 13 UC: 35 (11 CH×17 + 24 non-CH×12 = 475 cells)
 - Doc 14 NODE: 49 (12×17 + 37×12 = 648 cells)
@@ -111,7 +110,7 @@ Independently counted canonical IDs in Phase 2 RICH docs (vs claimed freeze valu
 | `Phase_3_Functional_Decomposition_Synthesis.md` | SYNTH | 11 | 8 SYNTH + 3 §-headers | 8 HIGH (12-field) | PASS |
 | **TOTAL cards** | — | — | **276** | — | **PASS** |
 
-Card families: 35 UC + 30 FR + 46 NFR + 30 DN + 49 NODE + 30 GATE + 10 RISK + 38 THR + 8 SYNTH = **276 cards** (matches Sprint 5 claim exactly).
+Card families: 35 UC + 30 FR + 46 NFR + 30 DN + 49 NODE + 30 GATE + 10 RISK + 38 THR + 8 SYNTH = **276 cards** (matches Fase de Especificação 5 claim exactly).
 
 ---
 
@@ -119,7 +118,7 @@ Card families: 35 UC + 30 FR + 46 NFR + 30 DN + 49 NODE + 30 GATE + 10 RISK + 38
 
 Formula: `cells = 17 × N_CH + 12 × N_ML`, where "CH" = cards declaring `fields=17` and "ML" = cards declaring `fields=12`.
 
-| Doc | 17-field count | 12-field count | Cells (17×CH + 12×ML) | Sprint 5 claim | Verdict |
+| Doc | 17-field count | 12-field count | Cells (17×CH + 12×ML) | Fase de Especificação 5 claim | Verdict |
 |-----|----------------|----------------|------------------------|----------------|---------|
 | Doc 13 UC | 11 (CRITICAL) | 24 (H+M+L) | 11×17 + 24×12 = **475** | 475 | PASS |
 | Doc 14 NODE | 12 (TECH/TECHNOLOGY/PROC/PROCESS/CAP) | 37 (rest) | 12×17 + 37×12 = **648** | 648 | PASS |
@@ -154,7 +153,7 @@ For each chain, I verified the cited `source_location` against the cited `source
 
 **Summary.** 10 of 12 spot-checked chains have rule IDs verified against cited source files (§-anchor locations are approximate but rule entities exist). 2 chains flagged INFERRED: CH-09 (KG labelling mismatch — documented in F-S2-01), CH-13 (cross-domain dependency — documented in CH-13 itself).
 
-**Integrity assessment.** KG chains are NOT fabricated — all cited entities exist in source. Anchor precision (e.g. `§7.1` vs actual `§4-§5`) needs §-anchor reconciliation as a future polish item (NOT a Sprint 5 blocker). The 14 Case_02 contamination nodes (F-S1-09) are separate from these 12 chains and remain OPEN for KG re-run.
+**Integrity assessment.** KG chains are NOT fabricated — all cited entities exist in source. Anchor precision (e.g. `§7.1` vs actual `§4-§5`) needs §-anchor reconciliation as a future polish item (NOT a Fase de Especificação 5 blocker). The 14 Case_02 contamination nodes (F-S1-09) are separate from these 12 chains and remain OPEN for KG re-run.
 
 ---
 
@@ -175,7 +174,7 @@ Reports written:
 
 ## §8 Schema Compliance Sample Table
 
-I sampled 5 cards across families and tiers. The body has more than `fields=` declared (Rich cards add Phase-3-specific fields: Domain, Reporting, External Auditor, Supervisory Body), but the **declared fields=N is consistent with the priority band per family**. Sprint 0 schema is 17 fields = base(12) + context/stakeholder mgmt(3) + P3 specifics(2); 12 fields = base(12). Cards annotate additional context as optional bold lines without inflating `fields=`.
+I sampled 5 cards across families and tiers. The body has more than `fields=` declared (Rich cards add Phase-3-specific fields: Domain, Reporting, External Auditor, Supervisory Body), but the **declared fields=N is consistent with the priority band per family**. Fase de Especificação 0 schema is 17 fields = base(12) + context/stakeholder mgmt(3) + P3 specifics(2); 12 fields = base(12). Cards annotate additional context as optional bold lines without inflating `fields=`.
 
 | Card | Doc | Header declared | Body bold fields | Priority band | fields= matches priority? | Verdict |
 |------|-----|-----------------|-------------------|---------------|----------------------------|---------|
@@ -185,7 +184,7 @@ I sampled 5 cards across families and tiers. The body has more than `fields=` de
 | NFR-30 | 24 | priority=HIGH, fields=17 | 21 | HIGH (NFR family) → 17 | YES | PASS |
 | UC-1.1.2 | 13 | priority=HIGH, fields=12 | ~17 (12 base + extra context) | HIGH (UC family) → 12 | YES | PASS |
 
-**Schema rule (Sprint 0 §3):** 17-field = 12 base + 3 context + 1 priority + 2 P3-context (Track/Level); optional extras (Regulatory Reporting, External Auditor, Supervisory Body) may appear as supplementary bold lines without changing `fields=` count.
+**Schema rule (Fase de Especificação 0 §3):** 17-field = 12 base + 3 context + 1 priority + 2 P3-context (Track/Level); optional extras (Regulatory Reporting, External Auditor, Supervisory Body) may appear as supplementary bold lines without changing `fields=` count.
 
 **Verdict: PASS** — schema is uniform per priority tier within each family. No mismatches in 5-card sample; full-corpus check shows zero mismatches by tier×fields cross-tabulation.
 
@@ -222,7 +221,7 @@ Each F-id with last-known status (across S0..S5 reports) and Validator re-verifi
 | F-S1-01..03 | INFORMATIVELY-RESOLVED (S5) | UNCHANGED (informative) | Doc 14 cards map orphan refs in `Source:` field; P7 arbiter decision still PENDING for formal RULE_FREEZE.md close |
 | F-S1-04..07 | INFORMATIVELY-REFERENCED (S5) | UNCHANGED (informative) | Doc 16 §4 explicitly carries orphan-ref table with F-S1-04..07 OPEN status |
 | F-S1-08 | CARRIED (follow-on contract) | UNCHANGED | Doc 08 34 OBL vs Doc 11 30 CR drift; out of Phase 3 scope |
-| F-S1-09 | OPEN (KG re-run) | STILL OPEN | 14 Case_02 contamination nodes; KG re-run needed; out of Sprint 5 scope |
+| F-S1-09 | OPEN (KG re-run) | STILL OPEN | 14 Case_02 contamination nodes; KG re-run needed; out of Fase de Especificação 5 scope |
 | F-S1-10 | CLOSED (S1) | PASS / UNCHANGED | Doc 11 §8 cosmetic |
 | F-S1-11 | CLOSED (S1) | PASS / UNCHANGED | Doc 16 SC3 confirmed |
 | F-S2-01 | OPEN (S2) | UNCHANGED | FR-29 ↔ UC-25 KG label mismatch; KG labelling artefact (NOTE in CH-09); do not rename |
@@ -257,7 +256,7 @@ Each F-id with last-known status (across S0..S5 reports) and Validator re-verifi
 
 **Strengths:**
 1. All 9 sprint tasks (S0–S5) materially delivered in the worktree.
-2. Card counts and cell formula recompute independently match Sprint 5's claims (276 cards, 3,917 cells).
+2. Card counts and cell formula recompute independently match Fase de Especificação 5's claims (276 cards, 3,917 cells).
 3. Enum freeze (46 rules + 31 goals) matches Doc 11 and Doc 10 with no drift.
 4. KG chains have all rule entities verified; 2 INFERRED edges documented.
 5. Legacy Phase 3, Phase 2, Phase 1, PREPROCESSING all untouched (git diff = empty).
@@ -265,13 +264,13 @@ Each F-id with last-known status (across S0..S5 reports) and Validator re-verifi
 7. F-S1-01..07 orphan refs INFORMATIVELY tracked via Doc 14/16 cards (not silently dropped).
 
 **Recommendations:**
-1. **P7 human arbiter decision required** for F-S1-01..07 formal close in `RULE_FREEZE.md` §3.2 (Sprint 5 cards map to closest freeze rule, but `RULE_FREEZE.md` table still shows OPEN).
-2. **KG re-run** required to resolve F-S1-09 (14 Case_02 contamination nodes pointing at Case_01 paths) — out of Sprint 5 scope; recommend follow-on contract sprint.
+1. **P7 human arbiter decision required** for F-S1-01..07 formal close in `RULE_FREEZE.md` §3.2 (Fase de Especificação 5 cards map to closest freeze rule, but `RULE_FREEZE.md` table still shows OPEN).
+2. **KG re-run** required to resolve F-S1-09 (14 Case_02 contamination nodes pointing at Case_01 paths) — out of Fase de Especificação 5 scope; recommend follow-on contract sprint.
 3. **§-anchor precision polish**: `KG_CHAINS.md` cited `source_location` §-anchors (e.g. `§7.1`) don't match canonical Doc 11 sections (§1-§8 only). Entities are correct; anchors are approximate. Add semantic locator fallback in follow-on contract.
-4. **Doc 13 lint naming**: Sprint 5 did not modify the lint contract. Decide: (a) update lint to accept `## §N` naming, or (b) update Doc 13 to add `## 5. PACKAGES` + `## 6. USE CASES` anchors. Option (b) is faster but breaks MaFS alignment.
-5. **Sprint 5 verdict carries forward**: orchestrator owns commits. The PASS verdict here means the artifacts on disk are correct and ready to be committed; commit sequencing is the orchestrator's call.
+4. **Doc 13 lint naming**: Fase de Especificação 5 did not modify the lint contract. Decide: (a) update lint to accept `## §N` naming, or (b) update Doc 13 to add `## 5. PACKAGES` + `## 6. USE CASES` anchors. Option (b) is faster but breaks MaFS alignment.
+5. **Fase de Especificação 5 verdict carries forward**: orchestrator owns commits. The PASS verdict here means the artifacts on disk are correct and ready to be committed; commit sequencing is the orchestrator's call.
 
-**No critical blockers. Sprint 5 deliverable is accepted with documented residual findings.**
+**No critical blockers. Fase de Especificação 5 deliverable is accepted with documented residual findings.**
 
 ---
 

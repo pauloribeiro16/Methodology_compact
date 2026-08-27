@@ -34,11 +34,11 @@ case: Case_01_TinyTask_SaaS
 | Corpus field map (515 lines) | `01_PHASE1_CONTEXT_RICH/corpus_field_map.md` | COMPLETE |
 | Phase 1 ontology (v1.1) | `01_PHASE1_CONTEXT_RICH/phase1_ontology.yaml` | COMPLETE |
 | Excel (14 sheets) | `01_PHASE1_CONTEXT_RICH/Case_01_Phase1_RICH.xlsx` | COMPLETE |
-| Diff summary (Sprint 3) | `01_PHASE1_CONTEXT_RICH/RICH_VS_LEGACY.md` | COMPLETE (NEW, 130 lines) |
+| Diff summary | `01_PHASE1_CONTEXT_RICH/RICH_VS_LEGACY.md` | COMPLETE (NEW, 130 lines) |
 | Localized project state (this file) | `01_PHASE1_CONTEXT_RICH/PROJECT_STATE.md` | COMPLETE (NEW) |
 | Sprint 3 corpus cross-check (07b §11) | `01_PHASE1_CONTEXT_RICH/07b_Proportionality_Profile.md` | COMPLETE (10/10 rows PASS) |
 | 3 script stubs | `01_PHASE1_CONTEXT_RICH/scripts/*.py` | COMPLETE |
-| 7 validation reports (Sprint 0-2) + 2 NEW (Sprint 3) | `01_PHASE1_CONTEXT_RICH/validation/*.md` | COMPLETE (9 reports total) |
+| 7 validation reports (Sprint 0-2) + 2 NEW | `01_PHASE1_CONTEXT_RICH/validation/*.md` | COMPLETE (9 reports total) |
 | **Knowledge Articulation addendum (2026-08-26)** | see §5 below | COMPLETE (additive — no source doc edited) |
 
 ## §3 Sprint History
@@ -101,7 +101,7 @@ python3 00_METHODOLOGY/00_VISUALISATIONS/tests/test_dashboards.py --only Case_01
   - `ffb35a1` [EXECUTOR] Sprint 2 — Full corpus enrichment (4 layers + 2 NEW docs)
   - `c101676` [EXECUTOR] Corpus augmentation — full corpus from parser-hardening-opcao-c
   - `1bb74c8` [EXECUTOR] Sprint 0 + Sprint 1 + Sprint 2 (partial) — Phase 1 Rich Mode
-- **Commits (Sprint 3):** pending orchestrator (per AGENTS.md, orchestrator owns commit workflow)
+- **Commits:** pending orchestrator (per AGENTS.md, orchestrator owns commit workflow)
 - **Status:** READY for PR review
 
 ## §6 Corpus Linkage Summary
@@ -135,9 +135,9 @@ python3 00_METHODOLOGY/00_VISUALISATIONS/tests/test_dashboards.py --only Case_01
 
 - `01_PHASE1_CONTEXT_RICH/README.md` — orientation + Sprint Status Dashboard + Navigation
 - `01_PHASE1_CONTEXT_RICH/RICH_VS_LEGACY.md` — Rich vs Legacy diff summary
-- `01_PHASE1_CONTEXT_RICH/validation/SPRINT3_REPORT.md` — Sprint 3 final report
-- `01_PHASE1_CONTEXT_RICH/validation/VALIDATOR_SPRINT3.md` — Sprint 3 Validator verdict
-- `01_PHASE1_CONTEXT_RICH/validation/SPRINT1_REPORT.md` — Sprint 1 reconciliation report
-- `01_PHASE1_CONTEXT_RICH/validation/SPRINT2_ENRICHMENT_REPORT_EXISTING.md` — Sprint 2 enrichment (4 existing docs)
-- `01_PHASE1_CONTEXT_RICH/validation/SPRINT2_ENRICHMENT_REPORT_NEW.md` — Sprint 2 enrichment (2 NEW docs)
+- `01_PHASE1_CONTEXT_RICH/validation/SPRINT3_REPORT.md` final report
+- `01_PHASE1_CONTEXT_RICH/validation/VALIDATOR_SPRINT3.md` Validator verdict
+- `01_PHASE1_CONTEXT_RICH/validation/SPRINT1_REPORT.md` reconciliation report
+- `01_PHASE1_CONTEXT_RICH/validation/SPRINT2_ENRICHMENT_REPORT_EXISTING.md` enrichment (4 existing docs)
+- `01_PHASE1_CONTEXT_RICH/validation/SPRINT2_ENRICHMENT_REPORT_NEW.md` enrichment (2 NEW docs)
 - `02_CASES/Case_01_TinyTask_SaaS/PROJECT_STATE.md` — Legacy project state (parallel, unchanged)

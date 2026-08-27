@@ -6,7 +6,7 @@ version: 1.0
 created: 2026-08-06
 updated: 2026-08-10
 author: Sprint Validator (tier2-verifier)
-sprint_8_note: Sprint 8 Executor (corr-009 ao-migration historical-context)
+sprint_8_note: Fase de Especificação 8 Executor (corr-009 ao-migration historical-context)
 status: HISTORICAL
 historical_note: Historical report from corr-007 era. Current 07c version is v4.0 with AO ID model (corr-008 supersedes corr-007). Content below preserved verbatim; see `07c_Adjusted_Objectives.md` §9 Version History for the v4.0 AO ID migration entry.
 case: Case_01_TinyTask_SaaS
@@ -427,18 +427,18 @@ All Tier 2 criteria PASS or PARTIAL with LOW severity. No HIGH-severity gaps ide
 **Section title:** Effort/Cost/Timeline fields intentionally excluded.
 
 - **Where**: (see 07c Appendix A) (frontmatter `fields_excluded: [Effort Estimate, Cost Estimate, Target Timeline]`).
-- **Why**: Per Sprint 5 scope. The Track B tier + example_controls + verification criteria + owner + maturity + Implementation Priority together imply effort/capacity; explicit fields would duplicate. This is **not a Tier 2 gap** — it is an explicit methodological choice documented in the frontmatter.
+- **Why**: Per Fase de Especificação 5 scope. The Track B tier + example_controls + verification criteria + owner + maturity + Implementation Priority together imply effort/capacity; explicit fields would duplicate. This is **not a Tier 2 gap** — it is an explicit methodological choice documented in the frontmatter.
 
 ---
 
 ## §7 See also
 
 - `VALIDATOR_TIER1.md` — CONDITIONAL_PASS for Completeness + Internal Consistency (Tier 1).
-- `validation/SPRINT5_REPORT.md` — Sprint 5 deep-enrichment report (74 detail cards, 4 tensions resolved, no Effort/Cost/Timeline).
-- `validation/SPRINT4_REPORT.md` — Sprint 4 PG/SG elevation + Tier B decision table.
-- `validation/SPRINT3_REPORT.md` — Sprint 3 corpus cross-check (10 representative rows PASS).
-- `validation/SPRINT1_REPORT.md` — Sprint 1 reconciliation (I-02 36→37 sub-domains fix; I-10 status progression).
-- `validation/SPRINT2_ENRICHMENT_REPORT_EXISTING.md` — Sprint 2 corpus enrichment (req_id mapping per RACI row).
+- `validation/SPRINT5_REPORT.md` deep-enrichment report (74 detail cards, 4 tensions resolved, no Effort/Cost/Timeline).
+- `validation/SPRINT4_REPORT.md` PG/SG elevation + Tier B decision table.
+- `validation/SPRINT3_REPORT.md` corpus cross-check (10 representative rows PASS).
+- `validation/SPRINT1_REPORT.md` reconciliation (I-02 36→37 sub-domains fix; I-10 status progression).
+- `validation/SPRINT2_ENRICHMENT_REPORT_EXISTING.md` corpus enrichment (req_id mapping per RACI row).
 - `validation/VALIDATOR_SPRINT3.md`, `VALIDATOR_SPRINT4.md`, `VALIDATOR_SPRINT5.md` — Sprint-level validator reports.
 - `00_METHODOLOGY/REFERENCE/proportionality_model.md` — Track B spec (§5.1 decision table, §5.2 drop-one-tier, §5.3 floor rule, §6 attribute definitions).
 - `00_METHODOLOGY/REFERENCE/complexity_tier.md` — Complexity tier (LOW/MEDIUM/HIGH) derivation.
@@ -458,7 +458,7 @@ All Tier 2 criteria PASS or PARTIAL with LOW severity. No HIGH-severity gaps ide
 | Files modified | NONE |
 | Files created | VALIDATOR_TIER2.md (this file) |
 | Cross-doc consistency with Tier 1 | Strong — Tier 1 PASS criteria (C1.1, C2.1, C2.2, C2.3) are reinforced by Tier 2 (C4.1, C4.2, C4.3) |
-| Recommendation to orchestrator | Proceed to Phase 2 with current artefacts; optionally action R-T2-1..R-T2-3 in a future Sprint 6 |
+| Recommendation to orchestrator | Proceed to Phase 2 with current artefacts; optionally action R-T2-1..R-T2-3 in a future Fase de Especificação 6 |
 
 ---
 

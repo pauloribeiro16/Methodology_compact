@@ -1,32 +1,31 @@
 ---
 document_id: AEGIS-P3-RICH-SPRINT0
-title: Sprint 0 Report — Skeleton + Lint Baseline
+title: Fase de Especificação 0 Report — Skeleton + Lint Baseline
 phase: 3
 version: 1.0
 created: 2026-08-24
 updated: 2026-08-24
-author: Sprint 0 Executor
+author: Fase de Especificação 0 Executor
 status: COMPLETE
 case: Case_01_TinyTask_SaaS
 tier: MICRO
-sprint: 0
 sprint_role: skeleton_lint_baseline
 branch: feature/aegis-p3-case01-rich
 verdict: PASS
 related_deliverables: [README.md, PROJECT_STATE.md, RICH_VS_LEGACY.md, 13_Use_Cases_Catalog.md, 13a_Use_Case_Relationships.md, 13b_Use_Case_Variability.md, 14_Architectural_Nodes.md, 15_Requirements_Allocation.md, 16_Compliance_Gates_Report.md, 17_Functional_Tree.md, requirements/23_Functional_Requirements.md, requirements/24_Non_Functional_Requirements.md, requirements/23_FR_Review_Report.md, requirements/24_NFR_Review_Report.md, 25_Risk_Analysis.md, Phase_3_Functional_Decomposition_Synthesis.md, annexes/A_Use_Case_Diagrams.md, annexes/D_KG_Inference_Examples.md, scripts/build_traceability_matrix_rich.py, scripts/verify_rich.py, scripts/gen_drawio.py, validation/LINT_REPORT_BEFORE.md, validation/RICH_LINT_BASELINE.md]
 ---
 
-# Sprint 0 Report — Skeleton + Lint Baseline (Case_01 Phase 3 Rich Mode)
+# Fase de Especificação 0 Report — Skeleton + Lint Baseline (Case_01 Phase 3 Rich Mode)
 
-> **Sprint 0** establishes the Phase 3 Rich Mode skeleton: README, PROJECT_STATE, RICH_VS_LEGACY, 15 doc placeholders, 3 script stubs, 5 lint ports, 1 new runner, and 2 baseline reports.
+> **Fase de Especificação 0** establishes the Phase 3 Rich Mode skeleton: README, PROJECT_STATE, RICH_VS_LEGACY, 15 doc placeholders, 3 script stubs, 5 lint ports, 1 new runner, and 2 baseline reports.
 > No corpus, Phase 1, Phase 2, Phase 3 (legacy), or `02_PHASE2_RULES/` modifications.
 >
-> **Tag status: PASS** (Sprint 0 — skeleton layer complete).
-> **Aggregate state:** Sprint 0 = COMPLETE. Phase 3 Rich Mode status: SKELETON (ready for Sprints 1-5).
+> **Tag status: PASS** (Fase de Especificação 0 — skeleton layer complete).
+> **Aggregate state:** Fase de Especificação 0 = COMPLETE. Phase 3 Rich Mode status: SKELETON (ready for Sprints 1-5).
 
 ---
 
-## §1 Sprint 0 Tasks
+## §1 Fase de Especificação 0 Tasks
 
 | # | Task | Status | Output |
 |---|------|:------:|--------|
@@ -43,31 +42,31 @@ related_deliverables: [README.md, PROJECT_STATE.md, RICH_VS_LEGACY.md, 13_Use_Ca
 
 ---
 
-## §2 File Inventory (Sprint 0)
+## §2 File Inventory
 
 | File | Path | Status | Lines | Description |
 |------|------|:------:|------:|-------------|
 | README.md | `02_PHASE3_DECOMPOSITION_RICH/` | SKELETON | ~120 | Orientation + status dashboard + schema reminder |
 | PROJECT_STATE.md | `02_PHASE3_DECOMPOSITION_RICH/` | SKELETON | ~250 | Single-page snapshot |
 | RICH_VS_LEGACY.md | `02_PHASE3_DECOMPOSITION_RICH/` | SKELETON | ~70 | Rich vs legacy diff summary |
-| 13_Use_Cases_Catalog.md | `02_PHASE3_DECOMPOSITION_RICH/` | SKELETON | ~10 | Placeholder (Sprint 1 → 5) |
-| 13a_Use_Case_Relationships.md | `02_PHASE3_DECOMPOSITION_RICH/` | SKELETON | ~10 | Placeholder (Sprint 1 → 3) |
-| 13b_Use_Case_Variability.md | `02_PHASE3_DECOMPOSITION_RICH/` | SKELETON | ~10 | Placeholder (Sprint 1 → 3) |
-| 14_Architectural_Nodes.md | `02_PHASE3_DECOMPOSITION_RICH/` | SKELETON | ~10 | Placeholder (Sprint 1 → 3) |
-| 15_Requirements_Allocation.md | `02_PHASE3_DECOMPOSITION_RICH/` | SKELETON | ~10 | Placeholder (Sprint 1 → 3) |
-| 16_Compliance_Gates_Report.md | `02_PHASE3_DECOMPOSITION_RICH/` | SKELETON | ~10 | Placeholder (Sprint 1 → 3) |
-| 17_Functional_Tree.md | `02_PHASE3_DECOMPOSITION_RICH/` | SKELETON | ~10 | Placeholder (Sprint 1 → 3) |
-| requirements/23_Functional_Requirements.md | `02_PHASE3_DECOMPOSITION_RICH/requirements/` | SKELETON | ~10 | Placeholder (Sprint 1 → 5) |
-| requirements/24_Non_Functional_Requirements.md | `02_PHASE3_DECOMPOSITION_RICH/requirements/` | SKELETON | ~10 | Placeholder (Sprint 1 → 5) |
-| requirements/23_FR_Review_Report.md | `02_PHASE3_DECOMPOSITION_RICH/requirements/` | SKELETON | ~10 | Placeholder (Sprint 1 port) |
-| requirements/24_NFR_Review_Report.md | `02_PHASE3_DECOMPOSITION_RICH/requirements/` | SKELETON | ~10 | Placeholder (Sprint 1 port) |
-| 25_Risk_Analysis.md | `02_PHASE3_DECOMPOSITION_RICH/` | SKELETON | ~10 | Placeholder (Sprint 1 → 5) |
-| Phase_3_Functional_Decomposition_Synthesis.md | `02_PHASE3_DECOMPOSITION_RICH/` | SKELETON | ~10 | Placeholder (Sprint 3 → 5) |
-| annexes/A_Use_Case_Diagrams.md | `02_PHASE3_DECOMPOSITION_RICH/annexes/` | SKELETON | ~10 | Placeholder (Sprint 3) |
-| annexes/D_KG_Inference_Examples.md | `02_PHASE3_DECOMPOSITION_RICH/annexes/` | SKELETON | ~10 | Placeholder (Sprint 3) |
-| scripts/build_traceability_matrix_rich.py | `02_PHASE3_DECOMPOSITION_RICH/scripts/` | stub | ~25 | Sprint 3 deliverable |
-| scripts/verify_rich.py | `02_PHASE3_DECOMPOSITION_RICH/scripts/` | stub | ~25 | Sprint 5 deliverable |
-| scripts/gen_drawio.py | `02_PHASE3_DECOMPOSITION_RICH/scripts/` | stub | ~25 | Sprint 3 deliverable |
+| 13_Use_Cases_Catalog.md | `02_PHASE3_DECOMPOSITION_RICH/` | SKELETON | ~10 | Placeholder (Fase de Especificação 1 → 5) |
+| 13a_Use_Case_Relationships.md | `02_PHASE3_DECOMPOSITION_RICH/` | SKELETON | ~10 | Placeholder (Fase de Especificação 1 → 3) |
+| 13b_Use_Case_Variability.md | `02_PHASE3_DECOMPOSITION_RICH/` | SKELETON | ~10 | Placeholder (Fase de Especificação 1 → 3) |
+| 14_Architectural_Nodes.md | `02_PHASE3_DECOMPOSITION_RICH/` | SKELETON | ~10 | Placeholder (Fase de Especificação 1 → 3) |
+| 15_Requirements_Allocation.md | `02_PHASE3_DECOMPOSITION_RICH/` | SKELETON | ~10 | Placeholder (Fase de Especificação 1 → 3) |
+| 16_Compliance_Gates_Report.md | `02_PHASE3_DECOMPOSITION_RICH/` | SKELETON | ~10 | Placeholder (Fase de Especificação 1 → 3) |
+| 17_Functional_Tree.md | `02_PHASE3_DECOMPOSITION_RICH/` | SKELETON | ~10 | Placeholder (Fase de Especificação 1 → 3) |
+| requirements/23_Functional_Requirements.md | `02_PHASE3_DECOMPOSITION_RICH/requirements/` | SKELETON | ~10 | Placeholder (Fase de Especificação 1 → 5) |
+| requirements/24_Non_Functional_Requirements.md | `02_PHASE3_DECOMPOSITION_RICH/requirements/` | SKELETON | ~10 | Placeholder (Fase de Especificação 1 → 5) |
+| requirements/23_FR_Review_Report.md | `02_PHASE3_DECOMPOSITION_RICH/requirements/` | SKELETON | ~10 | Placeholder (Fase de Especificação 1 port) |
+| requirements/24_NFR_Review_Report.md | `02_PHASE3_DECOMPOSITION_RICH/requirements/` | SKELETON | ~10 | Placeholder (Fase de Especificação 1 port) |
+| 25_Risk_Analysis.md | `02_PHASE3_DECOMPOSITION_RICH/` | SKELETON | ~10 | Placeholder (Fase de Especificação 1 → 5) |
+| Phase_3_Functional_Decomposition_Synthesis.md | `02_PHASE3_DECOMPOSITION_RICH/` | SKELETON | ~10 | Placeholder (Fase de Especificação 3 → 5) |
+| annexes/A_Use_Case_Diagrams.md | `02_PHASE3_DECOMPOSITION_RICH/annexes/` | SKELETON | ~10 | Placeholder |
+| annexes/D_KG_Inference_Examples.md | `02_PHASE3_DECOMPOSITION_RICH/annexes/` | SKELETON | ~10 | Placeholder |
+| scripts/build_traceability_matrix_rich.py | `02_PHASE3_DECOMPOSITION_RICH/scripts/` | stub | ~25 | Fase de Especificação 3 deliverable |
+| scripts/verify_rich.py | `02_PHASE3_DECOMPOSITION_RICH/scripts/` | stub | ~25 | Fase de Especificação 5 deliverable |
+| scripts/gen_drawio.py | `02_PHASE3_DECOMPOSITION_RICH/scripts/` | stub | ~25 | Fase de Especificação 3 deliverable |
 | validation/LINT_REPORT_BEFORE.md | `02_PHASE3_DECOMPOSITION_RICH/validation/` | BASELINE | ~150 | Legacy Phase 3 baseline |
 | validation/RICH_LINT_BASELINE.md | `02_PHASE3_DECOMPOSITION_RICH/validation/` | BASELINE | ~150 | RICH runner baseline |
 | lint_13_use_cases.py (ported) | `01_IMPLEMENTATION_TOOLS/lints/phase3/` | PORTED | +20 | `doc_path` param + 2-line header |
@@ -88,7 +87,7 @@ related_deliverables: [README.md, PROJECT_STATE.md, RICH_VS_LEGACY.md, 13_Use_Ca
 | # | Field | Notes |
 |---|-------|-------|
 | 1-12 | base fields | UC ID / Description / Scope / Out-of-Scope / Source Article / NIST CSF Anchors / Verification Criteria / Verification Method / Owner / Status / Dependencies / Risk if not met |
-| 13-14 | context | Affected Stakeholders / Maturity Score |
+| 13-14 | context | Affected Stakeholders / Implementation Posture |
 | 15 | priority | Implementation Priority |
 | 16-17 | context (Phase 3) | Track tag [T/P/P→T] / Level marker (L0/L1/L2/LN) |
 | × (3) | case-specific | Regulatory Reporting / External Auditor / Supervisory Body |
@@ -97,22 +96,22 @@ related_deliverables: [README.md, PROJECT_STATE.md, RICH_VS_LEGACY.md, 13_Use_Ca
 
 ---
 
-## §4 Open Findings (Sprint 0, all OPEN)
+## §4 Open Findings (Fase de Especificação 0, all OPEN)
 
 | ID | Severity | Description | Status | Sprint |
 |----|----------|-------------|--------|:------:|
-| **F-00a** | INFO | Legacy `13_Use_Cases_Catalog.md` carries some UC-DOMAIN-XX old-format IDs; Sprint 1 must verify all converted to flat UC-XX | OPEN | 1 |
-| **F-00b** | INFO | Legacy `22_Traceability_Matrix.xlsx` has 8 sheets; Sprint 3 must confirm Rich `22_Traceability_Matrix.xlsx` mirrors these 8 sheets | OPEN | 3 |
-| **F-00c** | INFO | Sprint 1 needs to surface any node IDs that don't trace back to UC source (orphan check) | OPEN | 1 |
-| **F-00d** | INFO | Sprint 1 needs to verify all gate IDs in `16_Compliance_Gates_Report.md` have status; legacy may carry TBDs | OPEN | 1 |
-| **F-00e** | INFO | Sprint 5 must ensure all FR/NFR/Risk cards uniformly use the 17-field schema (pre-empting F-11/F-12 from Phase 2) | OPEN | 5 |
-| **F-00f** | INFO | Sprint 0 must NOT silently merge legacy + Rich via the runner; the `--rich` flag and explicit `doc_path` parameter are required to avoid double-match | **MITIGATED** (verified by `documents_found=1` in RICH_LINT_BASELINE.md) | 0 |
+| **F-00a** | INFO | Legacy `13_Use_Cases_Catalog.md` carries some UC-DOMAIN-XX old-format IDs; Fase de Especificação 1 must verify all converted to flat UC-XX | OPEN | 1 |
+| **F-00b** | INFO | Legacy `22_Traceability_Matrix.xlsx` has 8 sheets; Fase de Especificação 3 must confirm Rich `22_Traceability_Matrix.xlsx` mirrors these 8 sheets | OPEN | 3 |
+| **F-00c** | INFO | Fase de Especificação 1 needs to surface any node IDs that don't trace back to UC source (orphan check) | OPEN | 1 |
+| **F-00d** | INFO | Fase de Especificação 1 needs to verify all gate IDs in `16_Compliance_Gates_Report.md` have status; legacy may carry TBDs | OPEN | 1 |
+| **F-00e** | INFO | Fase de Especificação 5 must ensure all FR/NFR/Risk cards uniformly use the 17-field schema (pre-empting F-11/F-12 from Phase 2) | OPEN | 5 |
+| **F-00f** | INFO | Fase de Especificação 0 must NOT silently merge legacy + Rich via the runner; the `--rich` flag and explicit `doc_path` parameter are required to avoid double-match | **MITIGATED** (verified by `documents_found=1` in RICH_LINT_BASELINE.md) | 0 |
 
-Findings are **non-silent**: each is reported in PROJECT_STATE.md §7 and the relevant sprint report. None blocks Sprint 0.
+Findings are **non-silent**: each is reported in PROJECT_STATE.md §7 and the relevant sprint report. None blocks Fase de Especificação 0.
 
 ---
 
-## §5 Invariants Respected (Sprint 0)
+## §5 Invariants Respected
 
 | Constraint | Status |
 |------------|--------|
@@ -128,7 +127,7 @@ Findings are **non-silent**: each is reported in PROJECT_STATE.md §7 and the re
 
 ---
 
-## §6 Branch State (Sprint 0)
+## §6 Branch State
 
 ```
 Branch: feature/aegis-p3-case01-rich
@@ -138,7 +137,7 @@ Files added (uncommitted): 18 .md + 3 stubs + 2 reports = 23 new files in 02_PHA
 Files modified: 5 lints + 1 runner in scripts/ + 01_IMPLEMENTATION_TOOLS/lints/phase3/
 ```
 
-**Note:** Per `AGENTS.md` Branch Policy (1 branch per contract), **NO git commits** during Sprint 0. Commits are orchestrator responsibility post-Sprint 5.
+**Note:** Per `AGENTS.md` Branch Policy (1 branch per contract), **NO git commits** during Fase de Especificação 0. Commits are orchestrator responsibility post-Fase de Especificação 5.
 
 ---
 
@@ -155,13 +154,13 @@ $ git diff --stat -- 01_PHASE1_CONTEXT/ 01_PHASE1_CONTEXT_RICH/
 (empty)
 ```
 
-The legacy Phase 3 folder, legacy Phase 2 folder, and Phase 1 folders are all **byte-identical** to `main`. Sprint 0 introduces only net-new files in `02_PHASE3_DECOMPOSITION_RICH/` and minimally-invasive edits to the 5 Phase 3 lints (signature change only — `doc_path: Optional[Path] = None` added, body logic for rglob wrapped in `if doc_path is None:`).
+The legacy Phase 3 folder, legacy Phase 2 folder, and Phase 1 folders are all **byte-identical** to `main`. Fase de Especificação 0 introduces only net-new files in `02_PHASE3_DECOMPOSITION_RICH/` and minimally-invasive edits to the 5 Phase 3 lints (signature change only — `doc_path: Optional[Path] = None` added, body logic for rglob wrapped in `if doc_path is None:`).
 
 ---
 
-## §8 Sprint 0 → Sprint 1 Handoff
+## §8 Fase de Especificação 0 → Fase de Especificação 1 Handoff
 
-**For Sprint 1 (Reconciliation) — Executor:**
+**For Fase de Especificação 1 (Reconciliation) — Executor:**
 - Read legacy `03_PHASE3_DECOMPOSITION/13_Use_Cases_Catalog.md`, `13a`, `13b`, `14`, `15`, `16`, `17`, `requirements/23`, `requirements/24`, `25`, `Phase_3_Functional_Decomposition_Synthesis.md`
 - Read Phase 2 Rich Mode outputs (`../02_PHASE2_RULES_RICH/`) for upstream inputs
 - Port each legacy doc into its Rich sibling; preserve all UC/Node/Allocation/Gate/FR/NFR/Risk IDs
@@ -169,22 +168,22 @@ The legacy Phase 3 folder, legacy Phase 2 folder, and Phase 1 folders are all **
 - Surface F-00a (UC format), F-00c (orphan check), F-00d (gate status) findings
 - Write `validation/SPRINT1_REPORT.md`
 
-**For Sprint 3 (Final docs + traceability matrix) — Executor:**
+**For Fase de Especificação 3 (Final docs + traceability matrix) — Executor:**
 - Implement `scripts/build_traceability_matrix_rich.py` (8-sheet workbook, mirroring legacy `22_Traceability_Matrix.xlsx`)
 - Implement `scripts/gen_drawio.py` (consumes Mermaid source from Rich Doc 17)
 - README v1.0 final, RICH_VS_LEGACY.md updated, PROJECT_STATE.md updated
 - Write `validation/SPRINT3_REPORT.md`
 - Surface F-00b (8 sheets confirmation)
 
-**For Sprint 5 (DEEP enrichment) — Validator:**
-- 17 fields × N cards (N determined at Sprint 5 start)
+**For Fase de Especificação 5 (DEEP enrichment) — Validator:**
+- 17 fields × N cards (N determined at Fase de Especificação 5 start)
 - Implement `scripts/verify_rich.py`
 - Run Validator sub-agent → `validation/VALIDATOR_SPRINT5.md`
 - Surface F-00e (uniform 17-field schema)
 
 ---
 
-## §9 Sprint 0 Acceptance Criteria
+## §9 Fase de Especificação 0 Acceptance Criteria
 
 | # | Criterion | Status |
 |---|-----------|--------|
@@ -193,7 +192,7 @@ The legacy Phase 3 folder, legacy Phase 2 folder, and Phase 1 folders are all **
 | 3 | 3 orchestration docs (README, PROJECT_STATE, RICH_VS_LEGACY) | PASS |
 | 4 | 5 Phase 3 lints ported with explicit `doc_path` parameter | PASS |
 | 5 | 1 new runner `run_phase3_rich_lints.py` with `--rich` flag | PASS |
-| 6 | 3 script stubs (Sprint 3 + Sprint 5 + Sprint 3 drawio) | PASS |
+| 6 | 3 script stubs (Fase de Especificação 3 + Fase de Especificação 5 + Fase de Especificação 3 drawio) | PASS |
 | 7 | Legacy lint baseline captured (7/7 PASSED, 11 warnings) | PASS |
 | 8 | RICH runner baseline captured (5/7 PASSED, 2 expected fails) | PASS |
 | 9 | F-00f mitigated (documents_found=1 per lint in RICH mode) | PASS |
@@ -205,7 +204,7 @@ The legacy Phase 3 folder, legacy Phase 2 folder, and Phase 1 folders are all **
 | 15 | Pre-flight passed (clean working tree) | PASS |
 | 16 | No git commits (orchestrator decides) | PASS |
 
-**Sprint 0 verdict: PASS — ready for Sprint 1 (Reconciliation).**
+**Fase de Especificação 0 verdict: PASS — ready for Fase de Especificação 1 (Reconciliation).**
 
 ---
 
@@ -248,4 +247,4 @@ SPRINT0_REPORT.md
 
 ---
 
-**End of Sprint 0 Report (Sprint 0 — skeleton layer — PASS)**
+**End of Fase de Especificação 0 Report (Fase de Especificação 0 — skeleton layer — PASS)**

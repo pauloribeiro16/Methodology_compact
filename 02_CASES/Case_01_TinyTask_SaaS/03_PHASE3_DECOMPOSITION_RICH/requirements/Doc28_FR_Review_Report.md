@@ -5,9 +5,8 @@ phase: 3
 version: 0.3
 created: 2026-08-24
 updated: 2026-08-24
-author: Sprint 4 Executor (paulo@methodology.pt)
+author: Fase de Especificação 4 Executor (paulo@methodology.pt)
 status: ADJUSTED_FIELDS
-sprint: 4
 sprint_role: schema_adjustment
 case: Case_01_TinyTask_SaaS
 tier: MICRO
@@ -21,19 +20,19 @@ expected_card_columns: 17
 expected_compact_columns: 12
 schema_columns: 6
 schema_columns_list: [Owner, Verification Criteria, Implementation Status, Priority, Stakeholders, Reporting]
-reconciliation_note: "Ported from legacy 23_FR_Review_Report.md (2026-04-02). F-00b FR RESOLVED — actual FR count is 30 (FR-01..FR-30), not 60 as the legacy §3.1/§6.1/§7.1 summaries claim; F-00d CLOSED — rule freeze = 46 (30 CR + 16 BPR). Sprint 5 will revise the §3 FR domain counts to the correct 30 cards × 17 fields."
-sprint4_note: "Sprint 4: review-report status bumped RECONCILED → ADJUSTED_FIELDS. Review tables remain as legacy-port (no markdown restructuring) — Sprint 5 will harmonise with Doc 23 §2 schema."
+reconciliation_note: "Ported from legacy 23_FR_Review_Report.md (2026-04-02). F-00b FR RESOLVED — actual FR count is 30 (FR-01..FR-30), not 60 as the legacy §3.1/§6.1/§7.1 summaries claim; F-00d CLOSED — rule freeze = 46 (30 CR + 16 BPR). Fase de Especificação 5 will revise the §3 FR domain counts to the correct 30 cards × 17 fields."
+sprint4_note: "Fase de Especificação 4: review-report status bumped RECONCILED → ADJUSTED_FIELDS. Review tables remain as legacy-port (no markdown restructuring) will harmonise with Doc 23 §2 schema."
 ---
 
-> **PORTED FROM LEGACY on 2026-08-24 for Sprint 1; reconciled to P2-RICH upstream.**
+> **PORTED FROM LEGACY on 2026-08-24 for Fase de Especificação 1; reconciled to P2-RICH upstream.**
 >
 > This document is a verbatim port of the legacy `03_PHASE3_DECOMPOSITION/requirements/23_FR_Review_Report.md`
 > (309 lines, dated 2026-04-02, reviewer: Security Architect).
-> It is preserved for traceability — Sprint 5 will revise the FR domain counts in §3.1
+> It is preserved for traceability will revise the FR domain counts in §3.1
 > and the §6.1 quality check counts to reflect the **canonical 30 FRs** (FR-01..FR-30)
 > per the RULE_FREEZE.md freeze, not the stale "60 FRs" figure that the legacy v1.0
 > review asserted. The legacy review's verdict (APPROVED) is preserved as-is;
-> it speaks to the v1.0 FR catalog, not the post-Sprint 1 freeze.
+> it speaks to the v1.0 FR catalog, not the post-Fase de Especificação 1 freeze.
 
 # Functional Requirements Catalog Review & Validation Report
 
@@ -105,7 +104,7 @@ sprint4_note: "Sprint 4: review-report status bumped RECONCILED → ADJUSTED_FIE
 | Training & Awareness (TRN) | 3 | ≥3 | ✅ Complete |
 | **TOTAL** | **60** | ≥45 | ✅ Complete |
 
-> **Sprint 1 reconciliation note (F-00b FR RESOLVED):** The §3.1 totals (10+12+15+10+10+3 = 60) are derived from the legacy §9 synthesis header, which is stale. The actual FR table in Doc 23 §3 lists **FR-01..FR-30 (30 FRs)**, with multi-domain FRs collapsed (e.g. FR-02 covers IAM authentication, SEC event collection, DEV dependency scanning). The legacy "60" figure double-counts FRs across domains. Sprint 5 will materialise **30 detail cards** per RULE_FREEZE.md §6.
+> **Fase de Especificação 1 reconciliation note (F-00b FR RESOLVED):** The §3.1 totals (10+12+15+10+10+3 = 60) are derived from the legacy §9 synthesis header, which is stale. The actual FR table in Doc 23 §3 lists **FR-01..FR-30 (30 FRs)**, with multi-domain FRs collapsed (e.g. FR-02 covers IAM authentication, SEC event collection, DEV dependency scanning). The legacy "60" figure double-counts FRs across domains. Fase de Especificação 5 will materialise **30 detail cards** per RULE_FREEZE.md §6.
 
 **Assessment:** All domains have sufficient coverage
 
@@ -141,7 +140,7 @@ sprint4_note: "Sprint 4: review-report status bumped RECONCILED → ADJUSTED_FIE
 | Use Cases with FRs | 35 | 35 | ✅ 100% |
 | FRs with Use Cases | 60 | 60 | ✅ 100% |
 
-> **Sprint 1 reconciliation note:** UC count = 35 L1 cards (62 total L1+L2 references). FR count = 30 (FR-01..FR-30). Legacy "60" mismatch noted.
+> **Fase de Especificação 1 reconciliation note:** UC count = 35 L1 cards (62 total L1+L2 references). FR count = 30 (FR-01..FR-30). Legacy "60" mismatch noted.
 
 **Sample Check:**
 
@@ -351,6 +350,6 @@ sprint4_note: "Sprint 4: review-report status bumped RECONCILED → ADJUSTED_FIE
 
 ---
 
-> **Sprint 1 reconciliation footer (2026-08-24):** Ported as-is from legacy for traceability.
+> **Fase de Especificação 1 reconciliation footer (2026-08-24):** Ported as-is from legacy for traceability.
 > F-00b FR (count 30, not 60), F-00d (rule freeze 46, not 38) resolved in RULE_FREEZE.md §6/§3.4.
-> Sprint 5 will produce a §10 amendment listing the corrected FR/rule counts and re-confirming §6 verdict.
+> Fase de Especificação 5 will produce a §10 amendment listing the corrected FR/rule counts and re-confirming §6 verdict.

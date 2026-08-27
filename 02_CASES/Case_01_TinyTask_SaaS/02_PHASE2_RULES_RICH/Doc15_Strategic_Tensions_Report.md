@@ -5,12 +5,11 @@ phase: 2
 version: 1.1
 created: 2026-08-07
 updated: 2026-08-07
-author: Sprint 2 Executor (multi-paragraph-tensions-builder)
-sprint: 2
+author: Fase de Especificação 2 Executor (multi-paragraph-tensions-builder)
 status: CORPUS_ENRICHED
 status_history:
-  - { date: 2026-08-07, status: SKELETON, sprint: 0, by: 'Sprint 0 Orchestrator' }
-  - { date: 2026-08-07, status: CORPUS_ENRICHED, sprint: 2, by: 'Sprint 2 Executor (multi-paragraph expansion)' }
+  - { date: 2026-08-07, status: SKELETON, sprint: 0, by: 'Fase de Especificação 0 Orchestrator' }
+  - { date: 2026-08-07, status: CORPUS_ENRICHED, sprint: 2, by: 'Fase de Especificação 2 Executor (multi-paragraph expansion)' }
 inputs: [08_Obligation_Derivation.md, 07_Structured_Compliance_Matrix.md, ../../01_PHASE1_CONTEXT_RICH/05b_Ambiguity_Register.md]
 outputs: [10_Privacy_Security_Objectives.md, 11_Rules_Catalog.md, ../../01_PHASE1_CONTEXT_RICH/07c_Adjusted_Goals.md]
 traceability: AEGIS Class Model → StrategicTension, ConflictResolution classes
@@ -28,9 +27,9 @@ fields_excluded: [Effort Estimate, Cost Estimate, Target Timeline]
 tension_ids_preserved: [TENSION-H-001, TENSION-M-001, TENSION-M-002, TENSION-L-001]
 ---
 
-# Strategic Tensions Report — Rich Mode (Sprint 2 — Multi-Paragraph Tensions)
+# Strategic Tensions Report — Rich Mode (Fase de Especificação 2 — Multi-Paragraph Tensions)
 
-> **Sprint 2 expansion** of legacy `02_PHASE2_RULES/09_Strategic_Tensions_Report.md` (481 lines) into a Rich Mode doc with **4 tensions × 8 fields = 32 cells**, each root cause expanded to **3 paragraphs minimum** citing verbatim article text from the corpus.
+> **Fase de Especificação 2 expansion** of legacy `02_PHASE2_RULES/09_Strategic_Tensions_Report.md` (481 lines) into a Rich Mode doc with **4 tensions × 8 fields = 32 cells**, each root cause expanded to **3 paragraphs minimum** citing verbatim article text from the corpus.
 >
 > **Tension IDs preserved** from legacy + Phase 1 Rich `phase1_ontology.yaml`: T-001 (TENSION-H-001), T-M-001 (TENSION-M-001), T-M-002 (TENSION-M-002), T-L-001 (TENSION-L-001). Legacy `02_PHASE2_RULES/09_*.md` is **NOT modified** — this is the Rich Mode sibling.
 >
@@ -55,7 +54,7 @@ This document is the **Rich Mode version of the Strategic Tensions Report** for 
 - `RegulatoryObligation` — Source obligations in conflict
 - `ConflictType` (POLY-S2 enumerated) — TEMPORAL_CONFLICT, REQUIREMENT_CONFLICT, FREQUENCY_MISMATCH, INTENSITY_GAP
 
-**Sprint 2 deliverable:** 4 tensions × 8 fields × ≥3 paragraphs root cause = 32 cells + 12 root-cause paragraphs + 12 resolution options + 16 implementation steps + 12 verification criteria + 4 risk + 4 stakeholder alignment records.
+**Fase de Especificação 2 deliverable:** 4 tensions × 8 fields × ≥3 paragraphs root cause = 32 cells + 12 root-cause paragraphs + 12 resolution options + 16 implementation steps + 12 verification criteria + 4 risk + 4 stakeholder alignment records.
 
 ---
 
@@ -66,7 +65,7 @@ This document is the **Rich Mode version of the Strategic Tensions Report** for 
 | tensionsReportId | STR-TENSION-TINYTASK-RICH-2026-002 |
 | analysisDate | 2026-08-07 |
 | basedOnObligationDerivation | DERIV-TINYTASK-2026-001 (legacy) + AEGIS-P2-RICH-08 (Rich Mode) |
-| analyzedBy | Sprint 2 Executor (multi-paragraph-tensions-builder) |
+| analyzedBy | Fase de Especificação 2 Executor (multi-paragraph-tensions-builder) |
 | phase2Step | C1+C2+C3+C4+C5 |
 | sprint | 2 |
 | sourceLegacy | `02_PHASE2_RULES/09_Strategic_Tensions_Report.md` v1.0 (2026-04-01) |
@@ -164,7 +163,7 @@ This taxonomy aligns with AEGIS Class Model `ConflictResolution.type ∈ {OPERAT
 
 ### §4.3 Cross-Reference to Phase 1 Rich Doc 07c §5
 
-> **IMPORTANT — different tension ID sets:** Phase 1 Rich Doc 07c §5 uses `T-001..T-004` to label a **different set of tensions** (timing, vendor scope, documentation overlap, DPO competence). Legacy Phase 2 Doc 09 + this Rich Mode use `T-001 / T-M-001 / T-M-002 / T-L-001` to label the **legacy Phase 2 tensions** (timing, DPIA frequency, intensity, DORA). The timing tension T-001 is the only overlap (same name, same content). Other Doc 07c tensions (T-002 vendor, T-003 docs, T-004 DPO) do NOT have direct equivalents in this Phase 2 doc and are out of scope for Sprint 2.
+> **IMPORTANT — different tension ID sets:** Phase 1 Rich Doc 07c §5 uses `T-001..T-004` to label a **different set of tensions** (timing, vendor scope, documentation overlap, DPO competence). Legacy Phase 2 Doc 09 + this Rich Mode use `T-001 / T-M-001 / T-M-002 / T-L-001` to label the **legacy Phase 2 tensions** (timing, DPIA frequency, intensity, DORA). The timing tension T-001 is the only overlap (same name, same content). Other Doc 07c tensions (T-002 vendor, T-003 docs, T-004 DPO) do NOT have direct equivalents in this Phase 2 doc and are out of scope for Fase de Especificação 2.
 
 | Phase 1 Rich Doc 07c §5 | Phase 2 Rich Doc 09 (this doc) | Relationship |
 |--------------------------|-------------------------------|--------------|
@@ -587,9 +586,9 @@ This taxonomy aligns with AEGIS Class Model `ConflictResolution.type ∈ {OPERAT
 
 ---
 
-## §7 Sprint 2 Endpoint Summary
+## §7 Fase de Especificação 2 Endpoint Summary
 
-### §7.1 What Sprint 2 Produced
+### §7.1 What Fase de Especificação 2 Produced
 
 | Deliverable | Status | Description |
 |-------------|:------:|-------------|
@@ -618,7 +617,7 @@ This taxonomy aligns with AEGIS Class Model `ConflictResolution.type ∈ {OPERAT
 | Risk assessments | 4 (1 × 4) | 4 (1 × 4) | ✅ |
 | Stakeholder alignment records | 4 (1 × 4) | 4 (1 × 4) | ✅ |
 
-### §7.3 Invariants Respected (Sprint 2)
+### §7.3 Invariants Respected
 
 | Constraint | Status | Evidence |
 |------------|:------:|----------|
@@ -656,8 +655,8 @@ For Case_01 (GDPR + CRA only), the compound event scenarios:
 
 | Version | Date | Author | Sprint | Status | Changes |
 |---------|------|--------|:------:|--------|---------|
-| 1.0 | 2026-08-07 | Sprint 0 Orchestrator | 0 | SKELETON | Placeholder file with frontmatter + 4 expected tensions table + next-steps checklist |
-| **1.1** | **2026-08-07** | **Sprint 2 Executor (multi-paragraph-tensions-builder)** | **2** | **CORPUS_ENRICHED** | **Multi-paragraph expansion: §3 classification model preserved + §4 summary table enriched + §5 detailed analysis (4 tensions × 8 fields = 32 cells, 12 root-cause paragraphs citing verbatim article text, 12 resolution options, 16 implementation steps, 12 verification criteria, 4 risk assessments, 4 stakeholder alignment records) + §6 traceability matrix (NEW) + §7 endpoint summary (NEW) + §8 version history (Sprint 2 v1.0 → v1.1) + frontmatter `status: SKELETON → CORPUS_ENRICHED` + frontmatter `version: 1.0 → 1.1` + frontmatter `sprint: 0 → 2` + `author: Sprint 2 Executor` + `tension_ids_preserved` field added + `fields_excluded` field added + `expected_cells: 32` field added** |
+| 1.0 | 2026-08-07 | Fase de Especificação 0 Orchestrator | 0 | SKELETON | Placeholder file with frontmatter + 4 expected tensions table + next-steps checklist |
+| **1.1** | **2026-08-07** | **Fase de Especificação 2 Executor (multi-paragraph-tensions-builder)** | **2** | **CORPUS_ENRICHED** | **Multi-paragraph expansion: §3 classification model preserved + §4 summary table enriched + §5 detailed analysis (4 tensions × 8 fields = 32 cells, 12 root-cause paragraphs citing verbatim article text, 12 resolution options, 16 implementation steps, 12 verification criteria, 4 risk assessments, 4 stakeholder alignment records) + §6 traceability matrix (NEW) + §7 endpoint summary (NEW) + §8 version history (Fase de Especificação 2 v1.0 → v1.1) + frontmatter `status: SKELETON → CORPUS_ENRICHED` + frontmatter `version: 1.0 → 1.1` + frontmatter `sprint: 0 → 2` + `author: Fase de Especificação 2 Executor` + `tension_ids_preserved` field added + `fields_excluded` field added + `expected_cells: 32` field added** |
 
 ---
 
@@ -665,7 +664,7 @@ For Case_01 (GDPR + CRA only), the compound event scenarios:
 
 | Role | Name | Signature | Date |
 |------|------|-----------|------|
-| Document Author (Sprint 2 Executor) | multi-paragraph-tensions-builder | | 2026-08-07 |
+| Document Author (Fase de Especificação 2 Executor) | multi-paragraph-tensions-builder | | 2026-08-07 |
 | Compliance Review | | | |
 | Technical Review (CTO) | | | |
 | Security Review (CISO) | | | |
@@ -679,8 +678,8 @@ For Case_01 (GDPR + CRA only), the compound event scenarios:
 
 ---
 
-**End of Sprint 2 Strategic Tensions Report — Rich Mode**
+**End of Fase de Especificação 2 Strategic Tensions Report — Rich Mode**
 
 **Next Document:** `10_Privacy_Security_Objectives.md` (Rich Mode) + `11_Rules_Catalog.md` (Rich Mode)
-**Phase 2 Step:** C (Strategic Tensions Analysis) ✅ COMPLETE — Sprint 2 (multi-paragraph expansion)
-**Next Sprint:** Sprint 3 (TBC) or Sprint 5 (DEEP enrichment — Doc 08 15 fields × 30 obligations)
+**Phase 2 Step:** C (Strategic Tensions Analysis) ✅ COMPLETE (multi-paragraph expansion)
+**Next Sprint:** Fase de Especificação 3 (TBC) or Fase de Especificação 5 (DEEP enrichment — Doc 08 15 fields × 30 obligations)

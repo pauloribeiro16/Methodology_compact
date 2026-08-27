@@ -1,23 +1,22 @@
 ---
 document_id: AEGIS-P3-RICH-LINT-BEFORE
-title: Lint Report — Sprint 0 Baseline (Case_01 Phase 3 Rich Mode)
+title: Lint Report Baseline (Case_01 Phase 3 Rich Mode)
 phase: 3
 version: 1.0
 created: 2026-08-24
 updated: 2026-08-24
-author: Sprint 0 Executor
+author: Fase de Especificação 0 Executor
 status: BASELINE
 case: Case_01_TinyTask_SaaS
 branch: feature/aegis-p3-case01-rich
-sprint: 0
 sprint_role: lint_baseline
 sibling_doc: ../03_PHASE3_DECOMPOSITION/
 ---
 
-# Lint Report — Sprint 0 Baseline (Case_01 Phase 3 Rich Mode)
+# Lint Report Baseline (Case_01 Phase 3 Rich Mode)
 
 > **Baseline snapshot** captured by running `scripts/run_phase3_lints.py` against the **legacy** `03_PHASE3_DECOMPOSITION/` folder, before any Rich sibling content is populated.
-> Sprint 5 will compare this baseline against the final DEEP-enriched state.
+> Fase de Especificação 5 will compare this baseline against the final DEEP-enriched state.
 
 ---
 
@@ -35,7 +34,7 @@ sibling_doc: ../03_PHASE3_DECOMPOSITION/
 
 ---
 
-## §2 Sprint 0 Sprint 0 Baseline results (legacy)
+## §2 Fase de Especificação 0 Fase de Especificação 0 Baseline results (legacy)
 
 | Metric | Count |
 |--------|-------|
@@ -44,7 +43,7 @@ sibling_doc: ../03_PHASE3_DECOMPOSITION/
 | Warnings | 11 |
 | **Total** | **7** |
 
-All 7 Phase 3 lints pass against the legacy folder (use_cases, relationships, variability, nodes, allocation, gates, functional_tree). Warnings are non-blocking; they reflect legacy data-quality issues that the Rich Mode Sprint 1 reconciliation will surface as findings F-00a..F-00f.
+All 7 Phase 3 lints pass against the legacy folder (use_cases, relationships, variability, nodes, allocation, gates, functional_tree). Warnings are non-blocking; they reflect legacy data-quality issues that the Rich Mode Fase de Especificação 1 reconciliation will surface as findings F-00a..F-00f.
 
 ---
 
@@ -130,24 +129,24 @@ All 7 Phase 3 lints pass against the legacy folder (use_cases, relationships, va
 
 ## §4 Observations carried forward
 
-- **Total allocations / gates exist in legacy** (51 / 41) but lack UC source references and node IDs — likely a legacy schema divergence. Sprint 1 reconciliation must address.
-- **29 orphan UCs** in legacy Doc 13 — relationships table appears to live in Doc 13a but the Doc 13 content does not cross-reference. Sprint 1 must add cross-doc consistency check.
-- **`UC-TINYTASK-2026`** appears in 13a/13b/14 as a placeholder convention not present in legacy Doc 13. Sprint 1 must either port it to Doc 13 or document why it is excluded.
+- **Total allocations / gates exist in legacy** (51 / 41) but lack UC source references and node IDs — likely a legacy schema divergence. Fase de Especificação 1 reconciliation must address.
+- **29 orphan UCs** in legacy Doc 13 — relationships table appears to live in Doc 13a but the Doc 13 content does not cross-reference. Fase de Especificação 1 must add cross-doc consistency check.
+- **`UC-TINYTASK-2026`** appears in 13a/13b/14 as a placeholder convention not present in legacy Doc 13. Fase de Especificação 1 must either port it to Doc 13 or document why it is excluded.
 - **`documents_found: 2`** in every legacy lint = the rglob is matching both the Catalog and the Review Report under the legacy folder. The new RICH runner (with explicit `doc_path`) reports `documents_found: 1`, confirming the F-00f mitigation works.
 
 ---
 
-## §5 Sprint 0 → Sprint 1 acceptance
+## §5 Fase de Especificação 0 → Fase de Especificação 1 acceptance
 
 | # | Criterion | Status |
 |---|-----------|--------|
 | 1 | Legacy Phase 3 lints run cleanly (baseline) | PASS (7/7 PASSED, 11 warnings) |
 | 2 | Lint output captured to JSON + MD + console log | PASS |
-| 3 | Sprint 0 skeleton does not modify legacy | PASS (verified by separate `git diff` — see SPRINT0_REPORT.md) |
-| 4 | Legacy data-quality observations recorded | PASS (§4 above; carried to Sprint 1) |
+| 3 | Fase de Especificação 0 skeleton does not modify legacy | PASS (verified by separate `git diff` — see SPRINT0_REPORT.md) |
+| 4 | Legacy data-quality observations recorded | PASS (§4 above; carried to Fase de Especificação 1) |
 
-**Sprint 0 baseline verdict:** PASS — legacy Phase 3 lints pass; data-quality observations recorded for Sprint 1.
+**Fase de Especificação 0 baseline verdict:** PASS — legacy Phase 3 lints pass; data-quality observations recorded for Fase de Especificação 1.
 
 ---
 
-**End of Sprint 0 Baseline Lint Report**
+**End of Fase de Especificação 0 Baseline Lint Report**

@@ -5,9 +5,8 @@ phase: 3
 version: 0.4
 created: 2026-08-24
 updated: 2026-08-24
-author: Sprint 4 Executor (paulo@methodology.pt)
+author: Fase de Especificação 4 Executor (paulo@methodology.pt)
 status: ADJUSTED_FIELDS
-sprint: 4
 sprint_role: schema_adjustment
 case: Case_01_TinyTask_SaaS
 tier: MICRO
@@ -22,8 +21,8 @@ expected_card_columns: 17
 expected_compact_columns: 12
 schema_columns: 6
 schema_columns_list: [Owner, Verification Criteria, Implementation Status, Priority, Stakeholders, Reporting]
-reconciliation_note: "Level 0 + Level 1 Mermaid diagrams from legacy; 6 packages (PKG-DP/SEC/IAM/DEV/GOV/TRN); F-S1-09 KG contamination noted; Annex B/C optional (not in 15 placeholders list); Sprint 4 schema addendum §A.5 added (no markdown tables in this annex)."
-sprint4_note: "Sprint 4: no markdown index tables in this annex; schema addendum §A.5 references the 6 columns inherited from Doc 13."
+reconciliation_note: "Level 0 + Level 1 Mermaid diagrams from legacy; 6 packages (PKG-DP/SEC/IAM/DEV/GOV/TRN); F-S1-09 KG contamination noted; Annex B/C optional (not in 15 placeholders list); Fase de Especificação 4 schema addendum §A.5 added (no markdown tables in this annex)."
+sprint4_note: "Fase de Especificação 4: no markdown index tables in this annex; schema addendum §A.5 references the 6 columns inherited from Doc 13."
 ---
 
 # Annex A — Use Case Diagrams (Phase 3 RICH)
@@ -133,15 +132,15 @@ graph LR
 
 ---
 
-## §A.5 Schema addendum (Sprint 4)
+## §A.5 Schema addendum
 
-This annex contains only Mermaid diagrams (no markdown index tables). The UC-family schema inherited from `13_Use_Cases_Catalog.md` §3 covers the 6-column Sprint 4 addition. The canonical UC card fields now include:
+This annex contains only Mermaid diagrams (no markdown index tables). The UC-family schema inherited from `13_Use_Cases_Catalog.md` §3 covers the 6-column Fase de Especificação 4 addition. The canonical UC card fields now include:
 
 | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |-------|-----------------------|----------|----------|--------------|-----------|
 
-These 6 columns are present on every UC index table in `13_Use_Cases_Catalog.md` §3 (per package), and card-level values will be populated in Sprint 5.
+These 6 columns are present on every UC index table in `13_Use_Cases_Catalog.md` §3 (per package), and card-level values will be populated in Fase de Especificação 5.
 
 ---
 
-**End of Annex A — Use Case Diagrams (Phase 3 RICH, ADJUSTED_FIELDS, Sprint 4)**
+**End of Annex A — Use Case Diagrams (Phase 3 RICH, ADJUSTED_FIELDS, Fase de Especificação 4)**

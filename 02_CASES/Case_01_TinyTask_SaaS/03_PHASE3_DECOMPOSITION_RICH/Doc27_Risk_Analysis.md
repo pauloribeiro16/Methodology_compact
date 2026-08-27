@@ -5,9 +5,8 @@ phase: 3
 version: 2.0
 created: 2026-08-24
 updated: 2026-08-24
-author: Sprint 4 Executor (paulo@methodology.pt)
+author: Fase de Especificação 4 Executor (paulo@methodology.pt)
 status: DEEP_ENRICHED
-sprint: 5
 deep_enrichment_date: 2026-08-24
 detail_cards_count: 48
 cells_count: 626
@@ -25,13 +24,13 @@ schema_columns: 6
 schema_columns_list: [Owner, Verification Criteria, Implementation Status, Priority, Stakeholders, Reporting]
 freeze_total_risks: 10
 freeze_total_threats: 38
-reconciliation_note: "10 risks + 38 threats freeze; F-S1-09 reports KG contamination on RISK-01 (label mismatch); Sprint 5 detail card fill."
-sprint5_note: "Sprint 5: DEEP enrichment — 48 cards (10×17 fields + 38×12 fields) = 626 cells. Frontmatter status DEEP_ENRICHED, version 2.0."
+reconciliation_note: "10 risks + 38 threats freeze; F-S1-09 reports KG contamination on RISK-01 (label mismatch); Fase de Especificação 5 detail card fill."
+sprint5_note: "Fase de Especificação 5: DEEP enrichment — 48 cards (10×17 fields + 38×12 fields) = 626 cells. Frontmatter status DEEP_ENRICHED, version 2.0."
 ---
 
 # Risk Analysis — TinyTask SaaS (Phase 3 RICH)
 
-> **Status:** ADJUSTED_FIELDS (Sprint 4). 10 risk cards + 38 threat cards freeze. Sprint 5 deep-fills per-card schema.
+> **Status:** ADJUSTED_FIELDS. 10 risk cards + 38 threat cards freeze. Fase de Especificação 5 deep-fills per-card schema.
 
 ---
 
@@ -45,7 +44,7 @@ Risk Analysis covers operational risks (RISK-01..RISK-10) and threat models (THR
 - `13_Use_Cases_Catalog.md` §3 — UCs that mitigate risks.
 - `16_Compliance_Gates_Report.md` §2 — gate-based mitigations.
 
-**F-S1-09 disposition (KG contamination):** The Graphify KG carries 14 Case_02 contamination nodes (including RISK-01 labelled "Biometric Spoofing at eGate"). The markdown source for RISK-01 is generic ("Unauthorized access to personal data via spoofing"). KG re-run in isolation is Sprint 5 work; the markdown itself is correct.
+**F-S1-09 disposition (KG contamination):** The Graphify KG carries 14 Case_02 contamination nodes (including RISK-01 labelled "Biometric Spoofing at eGate"). The markdown source for RISK-01 is generic ("Unauthorized access to personal data via spoofing"). KG re-run in isolation is Fase de Especificação 5 work; the markdown itself is correct.
 
 ---
 
@@ -82,7 +81,7 @@ Risk Analysis covers operational risks (RISK-01..RISK-10) and threat models (THR
 | THR-38 | 1 | Audit logging (D-10.2) | | | | | | |
 | **TOTAL** | **38** | | | | | | | |
 
-Detailed threat cards (17-field schema) fill in Sprint 5. Each threat maps to one or more Risks (§2) and one or more Mitigations (UCs + Gates).
+Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each threat maps to one or more Risks (§2) and one or more Mitigations (UCs + Gates).
 
 ---
 
@@ -1113,7 +1112,7 @@ Every Risk in §2 maps to:
 - ≥1 Compliance Gate (Doc 16 §2) — TEST/INSPECT/DEMONSTRATE verification.
 - ≥1 Use Case (Doc 13 §3) — operational mitigation.
 
-No risk is "untreated" (every risk has both gate + UC mitigation). Sprint 5 will populate full mitigation evidence per risk card.
+No risk is "untreated" (every risk has both gate + UC mitigation). Fase de Especificação 5 will populate full mitigation evidence per risk card.
 
 ---
 
@@ -1129,4 +1128,4 @@ No risk is "untreated" (every risk has both gate + UC mitigation). Sprint 5 will
 
 ---
 
-**End of Risk Analysis (Phase 3 RICH, ADJUSTED_FIELDS, Sprint 4)**
+**End of Risk Analysis (Phase 3 RICH, ADJUSTED_FIELDS, Fase de Especificação 4)**

@@ -5,19 +5,15 @@ phase: 1
 version: 2.4
 created: 2026-04-17
 updated: 2026-08-10
-author: Sprint 5 Executor (deep-enrichment-builder)
-sprint_1_author: Compliance Lead (Sprint 1 reconciliation)
-sprint_8_author: Sprint 8 Executor (corr-009 ao-id-alias-update)
-sprint_9_author: Sprint 9 Executor (corr-015 ao-canonical-ids cross-refs)
+author: Fase de Especificação 5 Executor (deep-enrichment-builder)
+sprint_1_author: Compliance Lead (Fase de Especificação 1 reconciliation)
+sprint_8_author: Fase de Especificação 8 Executor (corr-009 ao-id-alias-update)
+sprint_9_author: Fase de Especificação 9 Executor (corr-015 ao-canonical-ids cross-refs)
 status: DEEP_ENRICHED
 deep_enrichment_date: 2026-08-06
-deep_enrichment_sprint: 5
 ao_id_alias_update_date: 2026-08-10
-ao_id_alias_update_sprint: 8
 corr_015_crossref_update_date: 2026-08-10
-corr_015_crossref_update_sprint: 9
 bg_table_cols_added: 6
-sprint: 8
 sprint_role: ao_id_alias_update_bg03_bg04
 inputs: [Doc02_INTAKE_FORM.md]
 outputs: [Doc08_Regulatory_Applicability.md]
@@ -25,13 +21,13 @@ traceability: AEGIS Class Model -> CompanyContext, ComplianceContext classes
 related_documents: [00_Taxonomy_Reference.md, 01_INTAKE_FORM.md]
 ---
 
-> **Sprint 1 Reconciliation Note (2026-08-06)**
-> Rich Mode copy of legacy `01_PHASE1_CONTEXT/04_Company_Context_Assessment.md` (v2.0). Sprint 1 changes:
-> - **I-10 (status DRAFT → RECONCILED):** Sprint 1 milestone.
+> **Fase de Especificação 1 Reconciliation Note (2026-08-06)**
+> Rich Mode copy of legacy `01_PHASE1_CONTEXT/04_Company_Context_Assessment.md` (v2.0). Fase de Especificação 1 changes:
+> - **I-10 (status DRAFT → RECONCILED):** Fase de Especificação 1 milestone.
 > - **I-05/I-06 (FR/NFR IDs):** No FR/NFR IDs present in this doc (Phase 1 — no functional/architectural decomposition). N/A.
 > - **I-07/I-08 (rule/UC counts):** No rule or UC counts referenced. N/A.
 > - **I-13 (02_Regulatory_Mapping_Master.md deprecation):** Not referenced in this doc. N/A.
-> - Body content unchanged from legacy. Sprint 2 will add L2 manifest paths per stakeholder/goal/AI/capability field.
+> - Body content unchanged from legacy. Fase de Especificação 2 will add L2 manifest paths per stakeholder/goal/AI/capability field.
 
 # Company Context Assessment
 
@@ -172,7 +168,7 @@ The complete intake form responses are documented in `01_Company_Context.md` (AE
 
 | Capability ID | Capability | Current State | Target State | Gap | Priority |
 |---------------|------------|---------------|--------------|-----|----------|
-| `CAP-{NN}` | [Compliance capability name] | [Current maturity: NONE / AD-HOC / PARTIAL / MATURE] | [Desired maturity level] | [HIGH / MEDIUM / LOW / NONE] | MEDIUM |
+| `CAP-{NN}` | [Compliance capability name] | [Current posture: NONE / AD-HOC / PARTIAL / MATURE] | [Desired posture level] | [HIGH / MEDIUM / LOW / NONE] | MEDIUM |
 | CAP-01 | Records of Processing Activities (RoPA) | NONE | MATURE | HIGH | HIGH — Implement automated logging and template; required by GDPR Art. 30 |
 
 **ID Pattern:** `CAP-{NN}` where `{NN}` is a 2-digit sequential number.
@@ -185,7 +181,7 @@ The complete intake form responses are documented in `01_Company_Context.md` (AE
 |---------|------|--------|---------|
 | 1.0 | 2026-04-17 | Compliance Lead | Initial template release |
 | 1.1 | 2026-04-22 | Compliance Lead | Fixed regulatory applicability (NIS 2/DORA/AI Act: YES→NO), corrected size (10→8 employees, EUR 1M→<€2M), filled 38-question summary (all 38 answered), populated stakeholder register and influence matrix, added business goals catalog |
-| 2.2 | 2026-08-06 | Sprint 5 Executor | Deep enrichment — §4 BG table extended from 7 to 13 cols (added Owner, Quantitative Metric, Affected Stakeholders, Status, Risk if not met). NO Effort/Cost/Timeline fields added per Sprint 5 scope. BG-01..BG-05 enriched with operational data. Frontmatter updated: status → DEEP_ENRICHED, sprint → 5.
+| 2.2 | 2026-08-06 | Fase de Especificação 5 Executor | Deep enrichment — §4 BG table extended from 7 to 13 cols (added Owner, Quantitative Metric, Affected Stakeholders, Status, Risk if not met). NO Effort/Cost/Timeline fields added per Fase de Especificação 5 scope. BG-01..BG-05 enriched with operational data. Frontmatter updated: status → DEEP_ENRICHED, sprint → 5.
 | 2.0 | 2026-04-23 | Compliance Lead | Converted to layered intake format — removed Q-number summary tables, updated to reference AEGIS Intake Form v2.0 |
 
 ## N. DOCUMENT APPROVAL

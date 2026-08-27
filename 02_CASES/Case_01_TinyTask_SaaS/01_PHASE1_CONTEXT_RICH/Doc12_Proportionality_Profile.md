@@ -5,19 +5,17 @@ phase: 1
 version: 1.4
 created: 2026-07-13
 updated: 2026-08-06
-author: Sprint 5 Executor (deep-enrichment-builder)
-sprint_4_author: Compliance Lead (Sprint 1 reconciliation) / Sprint 3 corpus cross-check / Sprint 4 extensions
+author: Fase de Especificação 5 Executor (deep-enrichment-builder)
+sprint_4_author: Compliance Lead (Fase de Especificação 1 reconciliation) / Fase de Especificação 3 corpus cross-check / Fase de Especificação 4 extensions
 status: DEEP_ENRICHED
 status_history:
-  - { date: 2026-08-06, status: DRAFT, sprint: 0, by: 'Sprint 0 skeleton' }
-  - { date: 2026-08-06, status: RECONCILED, sprint: 1, by: 'Sprint 1 reconciliation' }
-  - { date: 2026-08-06, status: CORPUS_ENRICHED, sprint: 2, by: 'Sprint 2 corpus enrichment' }
-  - { date: 2026-08-06, status: ADJUSTED_OBJECTIVES, sprint: 4, by: 'Sprint 4 adjusted objectives' }
-  - { date: 2026-08-06, status: DEEP_ENRICHED, sprint: 5, by: 'Sprint 5 DEEP enrichment' }
+  - { date: 2026-08-06, status: DRAFT, sprint: 0, by: 'Fase de Especificação 0 skeleton' }
+  - { date: 2026-08-06, status: RECONCILED, sprint: 1, by: 'Fase de Especificação 1 reconciliation' }
+  - { date: 2026-08-06, status: CORPUS_ENRICHED, sprint: 2, by: 'Fase de Especificação 2 corpus enrichment' }
+  - { date: 2026-08-06, status: ADJUSTED_OBJECTIVES, sprint: 4, by: 'Fase de Especificação 4 adjusted objectives' }
+  - { date: 2026-08-06, status: DEEP_ENRICHED, sprint: 5, by: 'Fase de Especificação 5 DEEP enrichment' }
 deep_enrichment_date: 2026-08-06
-deep_enrichment_sprint: 5
 cols_added_to_section_4: 3
-sprint: 5
 sprint_role: deep_enrichment_per_subdomain
 cross_checked_against_corpus: true
 cross_check_date: 2026-08-06
@@ -28,15 +26,15 @@ frozen: false
 supersedes: none
 ---
 
-> **Sprint 1 Reconciliation Note (2026-08-06)**
-> Rich Mode copy of legacy `01_PHASE1_CONTEXT/07b_Proportionality_Profile.md` (v1.0, ACTIVE). Sprint 1 changes:
-> - **I-10:** Status remains `ACTIVE` (the legacy doc is signed-off as ACTIVE; Sprint 1 reconciliation is content-neutral for this document — all 37 sub-domain rows, decision-table mappings, and GATE-P readiness checks are preserved verbatim).
+> **Fase de Especificação 1 Reconciliation Note (2026-08-06)**
+> Rich Mode copy of legacy `01_PHASE1_CONTEXT/07b_Proportionality_Profile.md` (v1.0, ACTIVE). Fase de Especificação 1 changes:
+> - **I-10:** Status remains `ACTIVE` (the legacy doc is signed-off as ACTIVE; Fase de Especificação 1 reconciliation is content-neutral for this document — all 37 sub-domain rows, decision-table mappings, and GATE-P readiness checks are preserved verbatim).
 > - **I-05/I-06 (FR/NFR IDs):** Doc references `FR-01/04` (Critical Analysis §7.1) and `IO-04` (Firebase Auth inheritance). These are **legacy v1.0 forms**. The canonical v2.0 form is `FR-{DOM}-{NN}` (e.g., `FR-IAM-01`) and `NFR-{CAT}-{NN}`. The mapping is documented in `00_METHODOLOGY/REFERENCE/fr_nfr_numbering.md`. <!-- LEGACY: numeric FR-01, IO-04 form, see canonical mapping in fr_nfr_numbering.md. -->
 > - **I-07 (rule counts):** Doc references "Q4 Critical patching 24h, high 7d" indirectly via Critical Analysis. The canonical v2.0 rule count is **46 rules (30 CR + 16 BPR)**. <!-- LEGACY: 38 was v1.0; canonical v2.0 is 46. -->
 > - **I-13 (02_Regulatory_Mapping_Master.md deprecation):** Not referenced. N/A.
-> - Body content unchanged from legacy. Sprint 2 will validate the 5-attribute coverage per row against the corpus `considerations` field.
+> - Body content unchanged from legacy. Fase de Especificação 2 will validate the 5-attribute coverage per row against the corpus `considerations` field.
 
-> **Sprint 3 Corpus Cross-Check Note (2026-08-06)**
+> **Fase de Especificação 3 Corpus Cross-Check Note (2026-08-06)**
 > Cross-checked 10 representative rows in §4 against the corpus at `00_METHODOLOGY/PREPROCESSING_by_domain/domains/`. Findings:
 > - **Track B `verification_method` ≠ Corpus `requirements.*.yaml.verification_method`.** 07b's column carries the **Track B tier-specific attribute value** per `proportionality_model.md §6` (MINIMAL=INSPECT, LIGHTWEIGHT=DEMONSTRATE+INSPECT, DEFERRED=`—`). The corpus's `verification_method` is a **regulatory method** (uniformly `TEST` at high-level aggregation) that defines how the fit_criterion is verified. These are complementary, not identical, dimensions.
 > - **Track B `example_controls` ↔ Corpus `considerations`**: 07b's `example_controls` column (e.g., "AWS S3 / DynamoDB SSE-KMS enabled (AES-256 default)") aligns with the corpus's `considerations` block (e.g., for D-01.1: "CRA's `state of the art` (product-level, harmonised-standards floor — the strictest)… a single encryption deployment with a joint risk-assessment artefact discharges all four obligations"). Both converge on AES-256 as the control primitive.
@@ -201,7 +199,7 @@ Every obligation in Doc 08 (`08_Obligation_Derivation.md`), every rule in Doc 11
 | Version | Date       | Author         | Changes       |
 |---------|------------|----------------|---------------|
 | 1.0     | 2026-07-13 | Compliance Lead | Initial release — case instance of Track B proportionality model for TinyTask SaaS. |
-| 1.4     | 2026-08-06 | Sprint 5 Executor | Deep enrichment — §4 table extended from 10 to 13 cols (added Risk if not met, Maturity cur→tgt, Implementation Priority). NO Effort/Cost/Timeline fields added per Sprint 5 scope. Frontmatter updated: status → DEEP_ENRICHED, sprint → 5. Risk values derived from priority + tier + sub-domain risk profile (HIGH for D-01.x encryption, D-04.3/4.4 incident, D-05.3 erasure, D-09.2/9.4 risk/records, D-10.2/10.3 audit/compliance testing).
+| 1.4     | 2026-08-06 | Fase de Especificação 5 Executor | Deep enrichment — §4 table extended from 10 to 13 cols (added Risk if not met, Implementation Posture, Implementation Priority). NO Effort/Cost/Timeline fields added per Fase de Especificação 5 scope. Frontmatter updated: status → DEEP_ENRICHED, sprint → 5. Risk values derived from priority + tier + sub-domain risk profile (HIGH for D-01.x encryption, D-04.3/4.4 incident, D-05.3 erasure, D-09.2/9.4 risk/records, D-10.2/10.3 audit/compliance testing).
 
 ---
 
@@ -230,7 +228,7 @@ Every obligation in Doc 08 (`08_Obligation_Derivation.md`), every rule in Doc 11
 
 ---
 
-## 11. Sprint 3 Corpus Cross-Check
+## 11. Fase de Especificação 3 Corpus Cross-Check
 
 > Spot-check of 10 representative rows from §4 against the corpus at `00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-XX.Y/`.
 >
@@ -274,7 +272,7 @@ For each spot-checked row, the cross-check performed these checks:
 
 1. **Track B verification_method is consistent**: All 10 rows pass the tier-definition match. The verification_method column in §4 correctly follows the proportionality_model.md §6 tier table.
 
-2. **Corpus verification_method is uniformly `TEST`**: All 10 high-level `verification_method` values in the corpus JSON sidecars return `TEST`. This is the corpus's multi-reg aggregation point; per-reg decomposition lives in `requirements.sub_requirements[]` (which can return `INSPECTION`, `DEMONSTRATION`, etc.). For TinyTask's maturity assessment purpose, the high-level `TEST` is sufficient.
+2. **Corpus verification_method is uniformly `TEST`**: All 10 high-level `verification_method` values in the corpus JSON sidecars return `TEST`. This is the corpus's multi-reg aggregation point; per-reg decomposition lives in `requirements.sub_requirements[]` (which can return `INSPECTION`, `DEMONSTRATION`, etc.). For TinyTask's posture assessment purpose, the high-level `TEST` is sufficient.
 
 3. **Example controls align with corpus considerations**: All 10 example_controls in 07b align with the corpus's `considerations` block. The corpus describes the multi-reg convergence pattern; 07b instantiates one concrete control per sub-domain (AWS S3 SSE-KMS for D-01.1, Firebase Auth baseline for D-03.1, etc.).
 
@@ -286,13 +284,13 @@ For each spot-checked row, the cross-check performed these checks:
 
 - `00_METHODOLOGY/REFERENCE/proportionality_model.md` §6 — Tier-specific attribute definitions
 - `00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-XX.Y/D-XX.Y.json` — Corpus JSON sidecars (38 files, 10 spot-checked here)
-- `validation/SPRINT3_REPORT.md` — Sprint 3 final report (includes this cross-check summary)
+- `validation/SPRINT3_REPORT.md` final report (includes this cross-check summary)
 
 ---
 
-## §12 Track B Decision Table (Sprint 4 addition)
+## §12 Track B Decision Table (Fase de Especificação 4 addition)
 
-> Sprint 4 adds the explicit deterministic decision trail per `proportionality_model.md §5.1` + `§5.2` + `§5.3` — the (S, I, P) → Tier mapping that drives §4. S fixed at MICRO (Doc 04 §2). I from Doc 05 §5 `scope_overlap`. P from Doc 07 §3 priority column.
+> Fase de Especificação 4 adds the explicit deterministic decision trail per `proportionality_model.md §5.1` + `§5.2` + `§5.3` — the (S, I, P) → Tier mapping that drives §4. S fixed at MICRO (Doc 04 §2). I from Doc 05 §5 `scope_overlap`. P from Doc 07 §3 priority column.
 
 | Sub-Domain | S | I | P | Tier | Rationale |
 |-----------|---|---|---|------|-----------|
@@ -340,9 +338,9 @@ For each spot-checked row, the cross-check performed these checks:
 
 ---
 
-## §13 Tensions Cross-Reference (Sprint 4 addition)
+## §13 Tensions Cross-Reference (Fase de Especificação 4 addition)
 
-> Sprint 4 elevates the 4 strategic tensions from Phase 2 `09_Strategic_Tensions_Report.md` (legacy) into the Phase 1 Rich Mode. Full resolution table with max-SLA routing is in `07c_Adjusted_Goals.md §5`. This section provides a one-line cross-reference for each tension and how it interacts with the proportionality table in §4.
+> Fase de Especificação 4 elevates the 4 strategic tensions from Phase 2 `09_Strategic_Tensions_Report.md` (legacy) into the Phase 1 Rich Mode. Full resolution table with max-SLA routing is in `07c_Adjusted_Goals.md §5`. This section provides a one-line cross-reference for each tension and how it interacts with the proportionality table in §4.
 
 | Tension ID | Sub-Domain(s) in §4 | Type | Severity | Resolution (max-SLA routing) | Cross-ref |
 |------------|---------------------|------|----------|------------------------------|-----------|
@@ -355,9 +353,9 @@ For each spot-checked row, the cross-check performed these checks:
 
 ---
 
-## §14 Corpus Provenance (Sprint 4 addition)
+## §14 Corpus Provenance (Fase de Especificação 4 addition)
 
-> Sprint 4 adds the explicit corpus provenance for (I, P) inputs and the Tier output. Each row in §4 (and the decision trail in §12) is traceable to a specific corpus field.
+> Fase de Especificação 4 adds the explicit corpus provenance for (I, P) inputs and the Tier output. Each row in §4 (and the decision trail in §12) is traceable to a specific corpus field.
 
 | Input | Source | Field | Used for |
 |-------|--------|-------|----------|
@@ -386,5 +384,5 @@ For each spot-checked row, the cross-check performed these checks:
 **See also:**
 - `00_METHODOLOGY/PREPROCESSING_by_domain/STRUCTURE_REFERENCE.md` — corpus directory structure spec
 - `00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-XX.Y/D-XX.Y.json` — 38 corpus JSON sidecars (one per sub-domain)
-- `validation/SPRINT3_REPORT.md` — Sprint 3 cross-check methodology (10 rows verified against corpus)
-- `validation/SPRINT4_REPORT.md` — Sprint 4 deliverables (Doc 07c + Doc 07b §12-§14)
+- `validation/SPRINT3_REPORT.md` cross-check methodology (10 rows verified against corpus)
+- `validation/SPRINT4_REPORT.md` deliverables (Doc 07c + Doc 07b §12-§14)

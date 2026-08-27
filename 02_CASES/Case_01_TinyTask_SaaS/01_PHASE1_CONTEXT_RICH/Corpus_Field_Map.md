@@ -1,15 +1,15 @@
 ---
 document_id: AEGIS-P1-RICH-CORPUS-MAP
-title: Corpus Field → Case Field Mapping (Sprint 0)
+title: Corpus Field → Case Field Mapping
 phase: 1
 version: 0.1
 created: 2026-08-06
 updated: 2026-08-06
-author: Sprint 0 Executor (corpus-mapper)
+author: Fase de Especificação 0 Executor (corpus-mapper)
 status: DRAFT
 case: Case_01_TinyTask_SaaS
 branch: feature/aegis-p1-case01-rich
-applies_to_sprint: Sprint 2 (Corpus Enrichment)
+applies_to_sprint: Fase de Especificação 2 (Corpus Enrichment)
 related_documents:
   - ../../01_PHASE1_CONTEXT/_legacy_superseded/04_Company_Context_Assessment.md
   - ../../01_PHASE1_CONTEXT/_legacy_superseded/04a_Architecture_DataInventory.md
@@ -27,7 +27,7 @@ related_documents:
 # Corpus Field → Case Field Mapping
 
 > Maps every Phase 1 case field to the corpus layer/field that can enrich it.
-> This document is the **blueprint for Sprint 2 (Corpus Enrichment)**.
+> This document is the **blueprint for Fase de Especificação 2 (Corpus Enrichment)**.
 > It is produced from the actual corpus state on 2026-08-06, not the aspirational state.
 
 ---
@@ -37,11 +37,11 @@ related_documents:
 | Question | Answer |
 |----------|--------|
 | How big is the corpus? | 10 domains × 38 sub-domains = 38 `D-XX.Y/` folders. Only **30 contain populated `.md`**; 8 are scaffold-only (no `D-XX.Y.md`). |
-| Do JSON manifests exist? | **No.** `D-XX.manifest.json` (L1) and `D-XX.Y.json` (L3 sidecar) **do not exist yet**. The corpus is `.md`-only. Sprint 2 must generate the JSON sidecars from the `.md` source. |
+| Do JSON manifests exist? | **No.** `D-XX.manifest.json` (L1) and `D-XX.Y.json` (L3 sidecar) **do not exist yet**. The corpus is `.md`-only. Fase de Especificação 2 must generate the JSON sidecars from the `.md` source. |
 | Two corpus paths? | Yes — `PREPROCESSING_by_domain/domains/` (NEW, has ambiguity cards) and `PREPROCESSING/SubDomains/` (OLD, referenced by case files; Part 1–3 only). **Mapping treats the NEW path as the enrichment source.** |
 | Article copies (L4) | 623 verbatim `articles/<REG>_Art_<N>.md` files exist across 38 sub-domain folders (many-to-many). |
 | How many case fields are enrichable? | Of ~150 distinct field types across the 9 Phase 1 docs, **~95 (≈63%) are corpus-enrichable** and **~55 (≈37%) are case-specific** (no enrichment possible). |
-| Top blocker for Sprint 2 | **8 of TinyTask's 37 active sub-domains are EMPTY in the corpus** (only `articles/` populated): D-05.2, D-08.2, D-09.1, D-09.2, D-09.4, D-10.1, D-10.2, D-10.3. These must be generated before Sprint 2 can deliver Doc 05b (Ambiguity Register), Doc 07 (Strategic Tensions), and Doc 07b (example_controls) enrichment for those rows. |
+| Top blocker for Fase de Especificação 2 | **8 of TinyTask's 37 active sub-domains are EMPTY in the corpus** (only `articles/` populated): D-05.2, D-08.2, D-09.1, D-09.2, D-09.4, D-10.1, D-10.2, D-10.3. These must be generated before Fase de Especificação 2 can deliver Doc 05b (Ambiguity Register), Doc 07 (Strategic Tensions), and Doc 07b (example_controls) enrichment for those rows. |
 
 ---
 
@@ -53,7 +53,7 @@ related_documents:
 
 - **Path (target):** `00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-XX_<Name>/D-XX.manifest.json`
 - **Count:** 0 of 10 expected. (STRUCTURE_REFERENCE.md §3 describes the schema; no generator script exists at `scripts/preprocess/`.)
-- **Implication for Sprint 2:** before per-sub-domain enrichment, **L1 must be generated** by parsing all 30 populated `D-XX.Y.md` files. Generator pattern: for each domain folder, aggregate `applicable_articles_by_regulation`, `applicable_clauses_by_regulation`, `sub_requirements_by_regulation`, `participants`, `total_cards` from the sub-domain files.
+- **Implication for Fase de Especificação 2:** before per-sub-domain enrichment, **L1 must be generated** by parsing all 30 populated `D-XX.Y.md` files. Generator pattern: for each domain folder, aggregate `applicable_articles_by_regulation`, `applicable_clauses_by_regulation`, `sub_requirements_by_regulation`, `participants`, `total_cards` from the sub-domain files.
 - **Key fields (target schema) for enrichment:**
   - `subdomain_summaries[].id` → sub-domain identifier
   - `subdomain_summaries[].participants` → regulations participating in this sub-domain
@@ -86,7 +86,7 @@ related_documents:
 - **Source of truth (must be parsed from .md):**
   - **Volere YAML blocks** (` ```yaml ... ``` ` fences in Part 1 §2 HSO + §3 requirements). 4 sub-SOs + 4 sub-requirements per sub-domain = ~8 fenced blocks per file × 30 files = ~240 YAML blocks to parse.
   - **Ambiguity cards** (Part 4): three card variants (GDPR-light `#####`, GDPR-verbatim `### Article`, source-locus `#### N.M REG-CLxx`). Currently must be parsed from `.md` headings + body blocks.
-- **Implication for Sprint 2:** the `scripts/preprocess/parse_domain.py` referenced by `STRUCTURE_REFERENCE.md §8` **does not exist in this repository**. Sprint 2 must implement it.
+- **Implication for Fase de Especificação 2:** the `scripts/preprocess/parse_domain.py` referenced by `STRUCTURE_REFERENCE.md §8` **does not exist in this repository**. Fase de Especificação 2 must implement it.
 - **Key fields (target schema) for enrichment, extractable from `.md`:**
   - `requirements.high_level.fit_criterion` (Volere HL YAML)
   - `requirements.sub_requirements[].description` (per-reg Volere YAML)
@@ -162,8 +162,8 @@ related_documents:
 
 | Case field | Type | Corpus layer | Corpus path | Enrichment action |
 |---|---|---|---|---|
-| Current maturity (per macro-domain, 0-4) | Number | L3 | `D-XX.Y.md §3: requirements.sub_requirements[].priority` (MUST/SHOULD/COULD) | **Anchor target maturity.** A sub-domain with 3+ MUST reqs should target maturity 3; 1-2 MUST should target 2. |
-| Target maturity (per macro-domain) | Number | L3 | `D-XX.Y.md §3: requirements.sub_requirements[].fit_criterion` | **Cite target fit_criterion** from corpus as the maturity target evidence. |
+| Current posture (per macro-domain, 0-4) | Number | L3 | `D-XX.Y.md §3: requirements.sub_requirements[].priority` (MUST/SHOULD/COULD) | **Anchor target posture.** A sub-domain with 3+ MUST reqs should target posture 3; 1-2 MUST should target 2. |
+| Target posture (per macro-domain) | Number | L3 | `D-XX.Y.md §3: requirements.sub_requirements[].fit_criterion` | **Cite target fit_criterion** from corpus as the posture target evidence. |
 | Evidence (column in §2 tables) | Text | L2 | `D-XX.Y.md frontmatter + §3 nist_csf` | **Add NIST control IDs** as evidence anchors (e.g. `PR.DS-01, PR.DS-10` for D-01.1). |
 | Top 5 gaps (Section 4) | List | L3 | `D-XX.Y.md Part 2 emergent_tensions + §3 considerations` | **Cross-reference corpus-detected tensions** for each gap. |
 | Per-control row in §2 tables | Row | L2 | `D-XX.Y.md §3` | **Add req_id column** showing which Volere reqs the control discharges. |
@@ -195,7 +195,7 @@ related_documents:
 | RACI matrix (Section 4) | Matrix | L2 | `D-08_Human-Factors/D-08.1, D-08.2, D-08.3/` | **Map RACI rows** to corpus sub-SO and sub-requirement activities (D-08.x carries `considerations` describing role-bound duties). |
 | Training status table (Section 5) | Table | L2 | `D-08.1, D-08.2.md §3 req_ids` | **Cross-link to competence reqs**: e.g. "DPO refresher" → `req_id 8.2.5` (if exists in corpus) or to D-09.4 GDPR-CP28 (DPO tasks). |
 | Active sub-domains count (frontmatter `active_subdomains: 36`) | Number | L1 | corpus `subdomain_summaries[]` filtered by `participants ∩ {GDPR, CRA}` | **Reconcile to canonical 37.** Doc 04d says 36 (subtracting D-08.3 for inactive), Doc 04a/04b say 37. The canonical is 37 (D-08.3 inactive but counted as INACTIVE row, not excluded). |
-| req_id references in column "Source (D-08.x req_id)" | Req IDs | L2 | `D-08.1, D-08.2.md §3` | **Validate:** case cites `SR-D-08.1.1, …1.4` and `SR-D-08.2.3, …2.5, SR-D-08.2.4`. These are **SR-IDs** (Security Rules in `Regulation/`, not Volere req_ids). Sprint 2 must decide whether to migrate to Volere req_ids (1.x, 2.x, …, 8.x) or keep SR-IDs. |
+| req_id references in column "Source (D-08.x req_id)" | Req IDs | L2 | `D-08.1, D-08.2.md §3` | **Validate:** case cites `SR-D-08.1.1, …1.4` and `SR-D-08.2.3, …2.5, SR-D-08.2.4`. These are **SR-IDs** (Security Rules in `Regulation/`, not Volere req_ids). Fase de Especificação 2 must decide whether to migrate to Volere req_ids (1.x, 2.x, …, 8.x) or keep SR-IDs. |
 | Sub-domain mapping (Section 6) | Mapping | L2 | corpus `D-08.1, D-08.2, D-09.x` | **Validate D-08.3 INACTIVE rationale:** corpus shows D-08.3 participants = `{NIS2, DORA}`. Case correctly marks INACTIVE because applicable_regs = `[GDPR, CRA]`. **Cite corpus as evidence.** |
 
 **Doc 04d enrichable fields:** 4 of 6 patterns (67%).
@@ -241,7 +241,7 @@ related_documents:
 | obligatedParty (col 6 of xlsx) | Enum | L2 | corpus `**Clause: ... \| obligatedParty: ...**` | **Cite corpus obligated_party** (per `STRUCTURE_REFERENCE.md §2 — applies_to_role` / `obligatedParty`). |
 | Sub-Domain ID (col 3 of xlsx) | Sub-domain ID | L1 | corpus `D-XX.Y/` folder | **Validate mapping.** E.g. case maps `GDPR-C01 (Art. 5(1)(c)) → D-05.1`; corpus `D-05.1.md` should reference Art. 5(1)(c) — verify. |
 
-**Doc 06 enrichable fields:** 6 of 6 patterns (100%). The migration of clause IDs is the **central Sprint 2 task** — see §4.
+**Doc 06 enrichable fields:** 6 of 6 patterns (100%). The migration of clause IDs is the **central Fase de Especificação 2 task** — see §4.
 
 ---
 
@@ -337,9 +337,9 @@ related_documents:
 
 > **Note:** card counts are heading-based estimates, not unique-clause counts. After deduping by (clause_id, article_ref), expect ~30-50% reduction.
 
-### §3.4 EMPTY Sub-Domains (BLOCKER for Sprint 2)
+### §3.4 EMPTY Sub-Domains (BLOCKER for Fase de Especificação 2)
 
-> **8 of 37 TinyTask-active sub-domains have NO corpus content** (only `articles/` folder exists; no `D-XX.Y.md`). Sprint 2 cannot deliver enrichment for these rows until corpus is populated.
+> **8 of 37 TinyTask-active sub-domains have NO corpus content** (only `articles/` folder exists; no `D-XX.Y.md`). Fase de Especificação 2 cannot deliver enrichment for these rows until corpus is populated.
 
 | Sub-domain | Name | TinyTask status | Blocker type |
 |---|---|---|---|
@@ -352,9 +352,9 @@ related_documents:
 | **D-10.2** | Audit Logging & Traceability | Active | No `.md` to parse |
 | **D-10.3** | Compliance Testing | Active | No `.md` to parse |
 
-**Resolution options (Sprint 2 must choose one before Doc 07b and 05b generation):**
+**Resolution options (Fase de Especificação 2 must choose one before Doc 07b and 05b generation):**
 1. **Generate** the missing 8 sub-domain `.md` files by replicating the structure from D-09.3 (closest populated neighbour for D-09.x) or D-04.x (for D-10.x) using the same corpus pipeline as the 30 populated files.
-2. **Skip** — mark these 8 sub-domains as "no corpus enrichment available" in Sprint 2 output and document the gap.
+2. **Skip** — mark these 8 sub-domains as "no corpus enrichment available" in Fase de Especificação 2 output and document the gap.
 3. **Hybrid** — generate the most critical (D-09.4 RoPA, D-10.2 Audit Logging) and skip the others.
 
 ---
@@ -365,7 +365,7 @@ related_documents:
 >
 > **Source:** case's `06_Clause_Mapping_Matrix.xlsx → GDPR_MAPPING` (28 rows) cross-referenced with corpus `D-XX.Y.md Part 4` `**Clause: GDPR-...**` metadata lines.
 >
-> **Sprint 2 deliverable:** either (a) update the xlsx with a new "Corpus clause ID" column, or (b) replace case IDs entirely with corpus IDs in all docs (Doc 06, Doc 07, Doc 07b).
+> **Fase de Especificação 2 deliverable:** either (a) update the xlsx with a new "Corpus clause ID" column, or (b) replace case IDs entirely with corpus IDs in all docs (Doc 06, Doc 07, Doc 07b).
 
 ### §4.1 Migration Table (28 rows)
 
@@ -409,7 +409,7 @@ related_documents:
 | Mapped to specific corpus clause (TBD — need manual check) | 14 | GDPR-C01, C02, C03, C08, C09, C10, C11, C12, C13, C19, C20, C24, C25, C26 |
 | Unmappable (corpus EMPTY for case sub-domain) | 8 | GDPR-C03 (D-05.2), C08 (D-09.1), C13 (D-09.4), C19 (D-10.3), C24 (D-09.2), C25 (D-09.1), C26 (D-09.1), C28 (D-08.2) |
 
-**Sprint 2 must resolve 14 TBD + 8 unmappable rows.** Resolution path: parse `D-XX.Y.md Part 4` of the **case-mapped sub-domain** (not the heuristic-matched one) and find the `**Clause:**` line matching the case's article number.
+**Fase de Especificação 2 must resolve 14 TBD + 8 unmappable rows.** Resolution path: parse `D-XX.Y.md Part 4` of the **case-mapped sub-domain** (not the heuristic-matched one) and find the `**Clause:**` line matching the case's article number.
 
 ### §4.3 CRA Migration (lighter; case uses sequential `CRA-C{NN}` 01-26)
 
@@ -417,11 +417,11 @@ related_documents:
 |---|---|---|---|---|
 | CRA-C01..C26 | various CRA Annex I/II | various | `CRA-CL01..CL24` (corpus has 24 distinct CRA-CL clauses) | **Lighter migration.** Corpus uses `CRA-CL{xx}` for most; case uses `CRA-C{NN}` sequential. Many-to-one possible. See `02_CASES/.../06_Clause_Mapping_Matrix.xlsx → CRA_MAPPING` for the 26-row table. |
 
-**Sprint 2 deliverable:** produce CRA migration table (parallel to §4.1 above) using same parsing strategy.
+**Fase de Especificação 2 deliverable:** produce CRA migration table (parallel to §4.1 above) using same parsing strategy.
 
 ---
 
-## §5 Cross-Reference Statistics (for Sprint 2 planning)
+## §5 Cross-Reference Statistics (for Fase de Especificação 2 planning)
 
 | Metric | Value | Source |
 |---|---:|---|
@@ -456,14 +456,14 @@ related_documents:
 
 ---
 
-## §6 Open Questions / Sprint 2 Pre-Flight Checklist
+## §6 Open Questions / Fase de Especificação 2 Pre-Flight Checklist
 
-Before Sprint 2 begins, the Orchestrator must decide:
+Before Fase de Especificação 2 begins, the Orchestrator must decide:
 
 - [ ] **Q1 — Clause ID migration:** Replace case's `GDPR-C{NN}` with corpus `GDPR-CL{xx}`/`GDPR-CP{xx}`/`GDPR-RT{xx}` in all docs, OR add a parallel "Corpus clause ID" column to the xlsx? (Impacts Doc 06, 07, 07b.)
-- [ ] **Q2 — Empty sub-domains:** Generate the 8 missing `.md` files (D-05.2, D-08.2, D-09.1, D-09.2, D-09.4, D-10.1, D-10.2, D-10.3) before Sprint 2, OR mark as "no corpus enrichment"?
-- [ ] **Q3 — JSON sidecar generation:** Implement `scripts/preprocess/parse_domain.py` to produce `D-XX.Y.json` for all 38 sub-domains (Sprint 2 deliverable), OR rely on `.md` parsing for the duration of Sprint 2?
-- [ ] **Q4 — L1 manifest generation:** Produce `D-XX.manifest.json` per domain (10 files), OR defer to Sprint 3?
+- [ ] **Q2 — Empty sub-domains:** Generate the 8 missing `.md` files (D-05.2, D-08.2, D-09.1, D-09.2, D-09.4, D-10.1, D-10.2, D-10.3) before Fase de Especificação 2, OR mark as "no corpus enrichment"?
+- [ ] **Q3 — JSON sidecar generation:** Implement `scripts/preprocess/parse_domain.py` to produce `D-XX.Y.json` for all 38 sub-domains (Fase de Especificação 2 deliverable), OR rely on `.md` parsing for the duration of Fase de Especificação 2?
+- [ ] **Q4 — L1 manifest generation:** Produce `D-XX.manifest.json` per domain (10 files), OR defer to Fase de Especificação 3?
 - [ ] **Q5 — Card count methodology:** Use heading-based estimate (§3 above, ~702 in-scope), OR implement clause-id-deduped count first (~350-500 in-scope)?
 - [ ] **Q6 — Corpus path dual:** Which corpus path is the canonical source — `PREPROCESSING_by_domain/domains/` (NEW, has ambiguity) or `PREPROCESSING/SubDomains/` (OLD, used by case files)? **Recommend NEW as canonical; migrate case file cross-references.**
 
@@ -473,20 +473,20 @@ Before Sprint 2 begins, the Orchestrator must decide:
 
 | # | Blocker | Impact | Mitigation |
 |---|---|---|---|
-| B1 | **No JSON manifests exist** in `PREPROCESSING_by_domain/domains/` despite `STRUCTURE_REFERENCE.md` describing a target schema. | Sprint 2 cannot rely on `jq` for L1/L2 lookups; must parse `.md`. | Sprint 2 implements parser, OR continue with `.md` regex extraction. |
+| B1 | **No JSON manifests exist** in `PREPROCESSING_by_domain/domains/` despite `STRUCTURE_REFERENCE.md` describing a target schema. | Fase de Especificação 2 cannot rely on `jq` for L1/L2 lookups; must parse `.md`. | Fase de Especificação 2 implements parser, OR continue with `.md` regex extraction. |
 | B2 | **8 of 38 sub-domain folders are EMPTY** (only `articles/`; no `D-XX.Y.md`). | Doc 04a, 04b, 04d, 05b, 07, 07b all reference these sub-domains but cannot be corpus-enriched. | Generate missing 8 `.md` files, OR document as "no corpus enrichment" gaps. |
 | B3 | **Case clause IDs (`GDPR-C{NN}`) do not correspond 1:1 to corpus clause IDs** (`GDPR-CL/CP/RT{xx}`). | Direct migration table is non-trivial; 14 of 28 GDPR clauses are TBD. | Manual semantic mapping per §4; see Q1. |
 | B4 | **Two corpus paths coexist**: `PREPROCESSING_by_domain/domains/` (NEW, has Part 4 ambiguity) and `PREPROCESSING/SubDomains/` (OLD, referenced by all case files). | Risk of enriching from wrong source. | **Recommend NEW as canonical**; migrate case file cross-references. |
-| B5 | **No generator script exists** for `D-XX.manifest.json` (`scripts/preprocess/` referenced by `STRUCTURE_REFERENCE.md §3, §8` is empty in this repo). | Sprint 2 cannot bootstrap L1 quickly. | Implement parser as Sprint 2 first deliverable. |
+| B5 | **No generator script exists** for `D-XX.manifest.json` (`scripts/preprocess/` referenced by `STRUCTURE_REFERENCE.md §3, §8` is empty in this repo). | Fase de Especificação 2 cannot bootstrap L1 quickly. | Implement parser as Fase de Especificação 2 first deliverable. |
 | B6 | **Article filename inconsistency** in `articles/`: `NIS2_Art_21.md` (no space) vs prose `NIS 2` (with space). | Parser must normalise. | Use `NIS2` for matching per `STRUCTURE_REFERENCE.md §9`. |
-| B7 | **`applicable_if.regs` filter values** in Volere YAML may not match corpus participants exactly. | Doc 05b card-filter logic needs validation. | Sprint 2: cross-check by reading `<!-- participants: ... -->` vs `- req_id: ... applicable_if: regs: [...]`. |
+| B7 | **`applicable_if.regs` filter values** in Volere YAML may not match corpus participants exactly. | Doc 05b card-filter logic needs validation. | Fase de Especificação 2: cross-check by reading `<!-- participants: ... -->` vs `- req_id: ... applicable_if: regs: [...]`. |
 | B8 | **Frontmatter inconsistency**: 12 of 30 `.md` files (D-05, D-06, D-07) use `created/updated:` (combined key) instead of separate `created:` + `updated:`. | Parser must handle both. | Handle both keys per `STRUCTURE_REFERENCE.md §5, §9.11`. |
 
 ---
 
-## §8 Deliverables Hand-Off (for Sprint 2 Executor)
+## §8 Deliverables Hand-Off (for Fase de Especificação 2 Executor)
 
-This document is the **blueprint for Sprint 2**. Sprint 2 must:
+This document is the **blueprint for Fase de Especificação 2**. Fase de Especificação 2 must:
 
 1. **Generate L1 JSON manifests** (10 files) OR proceed with `.md` parsing — see Q3/Q4.
 2. **Generate L2 JSON sidecars** (38 files) — depends on Q3.
@@ -496,7 +496,7 @@ This document is the **blueprint for Sprint 2**. Sprint 2 must:
 6. **Implement Doc 07b enrichment** — pulling `example_controls` from corpus `considerations`.
 7. **Run validation** — `01_IMPLEMENTATION_TOOLS/lints/run_all_lints.py --case Case_01_TinyTask_SaaS` to confirm no regressions.
 
-The 8 blockers in §7 should be raised to the Orchestrator **before** Sprint 2 starts. Q1 and Q2 are blocking decisions.
+The 8 blockers in §7 should be raised to the Orchestrator **before** Fase de Especificação 2 starts. Q1 and Q2 are blocking decisions.
 
 ---
 
@@ -504,13 +504,13 @@ The 8 blockers in §7 should be raised to the Orchestrator **before** Sprint 2 s
 
 | Version | Date | Author | Changes |
 |---|---|---|---|
-| 0.1 | 2026-08-06 | Sprint 0 Executor (corpus-mapper) | Initial draft. Verified corpus state on 2026-08-06; documented 8 blockers + 6 open questions for Sprint 2. |
+| 0.1 | 2026-08-06 | Fase de Especificação 0 Executor (corpus-mapper) | Initial draft. Verified corpus state on 2026-08-06; documented 8 blockers + 6 open questions for Fase de Especificação 2. |
 
 ---
 
 **See also:**
 - `../../../00_METHODOLOGY/PREPROCESSING_by_domain/domains/STRUCTURE_REFERENCE.md` — corpus data dictionary
 - `../../../00_METHODOLOGY/PHASE1_STRATEGY.md` — Phase 1 strategy + Three Filters
-- `../scripts/generate_corpus_links.py` — Sprint 0 stub to be implemented in Sprint 2
-- `../scripts/filter_ambiguity_cards.py` — Sprint 0 stub to be implemented in Sprint 2
-- `../validation/LINT_REPORT_BEFORE.md` — Sprint 0 lint baseline (before enrichment)
+- `../scripts/generate_corpus_links.py` stub to be implemented in Fase de Especificação 2
+- `../scripts/filter_ambiguity_cards.py` stub to be implemented in Fase de Especificação 2
+- `../validation/LINT_REPORT_BEFORE.md` lint baseline (before enrichment)

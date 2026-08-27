@@ -5,10 +5,9 @@ phase: 1
 version: 1.1
 created: 2026-07-11
 updated: 2026-08-06
-author: Executor (Sprint 1 reconciliation; Sprint 2 corpus enrichment)
+author: Executor (Fase de Especificação 1 reconciliation; Fase de Especificação 2 corpus enrichment)
 status: CORPUS_ENRICHED
 case_study: TinyTask Lda.
-sprint: 1
 sprint_role: reconciled_from_legacy
 inputs:
   - Doc03_Company_Context_Assessment.md
@@ -28,20 +27,20 @@ related_documents:
   - ../../../00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-09_Governance-Documentation/D-09.4/D-09.4.manifest.json
 ---
 
-> **Sprint 1 Reconciliation Note (2026-08-06)**
-> Rich Mode copy of legacy `01_PHASE1_CONTEXT/04a_Architecture_DataInventory.md` (v1.0). Sprint 1 changes:
-> - **I-10 (status DRAFT → RECONCILED):** Sprint 1 milestone.
+> **Fase de Especificação 1 Reconciliation Note (2026-08-06)**
+> Rich Mode copy of legacy `01_PHASE1_CONTEXT/04a_Architecture_DataInventory.md` (v1.0). Fase de Especificação 1 changes:
+> - **I-10 (status DRAFT → RECONCILED):** Fase de Especificação 1 milestone.
 > - **I-13 (02_Regulatory_Mapping_Master.md deprecation):** Not referenced. N/A.
-> - Body content unchanged from legacy. Sprint 2 will replace `SubDomains/` paths with the new `PREPROCESSING_by_domain/domains/` corpus paths (L1/L2/L3/L4).
+> - Body content unchanged from legacy. Fase de Especificação 2 will replace `SubDomains/` paths with the new `PREPROCESSING_by_domain/domains/` corpus paths (L1/L2/L3/L4).
 >
-> **Sprint 2 Enrichment Note (2026-08-06)**
+> **Fase de Especificação 2 Enrichment Note (2026-08-06)**
 > - **Status: RECONCILED → CORPUS_ENRICHED.** Section 3 (Compliance Mapping) table extended with two corpus-derived columns: `Corpus Manifest Path` (path to per-sub-domain `D-XX.Y.manifest.json`) and `NIST CSF Anchors` (GDPR + CRA unique NIST controls). New §4 Corpus Provenance documents the extraction pattern and sources. 37 rows enriched (one per active sub-domain; D-08.3 inactive). Legacy `SubDomains/` paths preserved in column 6 for backwards compatibility — both corpora now point to the same sub-domains.
 
 # Architecture & Data Inventory
 
 ## 1. Technical Architecture
 
-TinyTask Lda. is a micro SaaS provider in Portugal with 8 employees, operating a productivity web application for EU customers. The company is a GDPR Controller for account and billing data, a GDPR Processor for B2B customer project content, and a CRA Manufacturer for the Team Organizer SaaS product. Operational maturity is low-tier; regulatory complexity remains medium because GDPR and CRA both apply.
+TinyTask Lda. is a micro SaaS provider in Portugal with 8 employees, operating a productivity web application for EU customers. The company is a GDPR Controller for account and billing data, a GDPR Processor for B2B customer project content, and a CRA Manufacturer for the Team Organizer SaaS product. Operational posture is low-tier; regulatory complexity remains medium because GDPR and CRA both apply.
 
 ### 1.1 System Inventory
 
@@ -159,7 +158,7 @@ This mapping uses the active TinyTask scope from `applicable_regs = [GDPR, CRA]`
 | D-10.2 Audit Logging & Traceability | SYS-01, SYS-02, SYS-03 | STORE-03 | FLOW-03, FLOW-04 | 10.2; 10.2.1, 10.2.2, 10.2.3, 10.2.4 | [D-10.2.md](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-10_Monitoring-Audit/D-10.2.md) | `PREPROCESSING_by_domain/domains/D-10_Monitoring-Audit/D-10.2/D-10.2.manifest.json` | DE.CM-01, GV.PO-02, ID.RA-04, PR.DS-11, PR.IP-06, PR.PT-01 |
 | D-10.3 Compliance Testing | SYS-01, SYS-02, SYS-03, SYS-05 | STORE-01, STORE-02, STORE-03 | All production flows | 10.3; 10.3.1, 10.3.2, 10.3.3, 10.3.4, 10.3.5 | [D-10.3.md](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-10_Monitoring-Audit/D-10.3.md) | `PREPROCESSING_by_domain/domains/D-10_Monitoring-Audit/D-10.3/D-10.3.manifest.json` | DE.AE-02, GV.OV-03, ID.RA-05, PR.IP-07 |
 
-## 4. Corpus Provenance (Sprint 2 Enrichment)
+## 4. Corpus Provenance (Fase de Especificação 2 Enrichment)
 
 The "Corpus Manifest Path" and "NIST CSF Anchors" columns added to the Section 3 table above were extracted from the corpus at `00_METHODOLOGY/PREPROCESSING_by_domain/domains/`. The full extraction pattern was:
 
@@ -206,4 +205,4 @@ done
 
 ## See also
 
-- **Data backbone:** `Case_01_Phase1.xlsx` (13 sheets: COVER, SYSTEMS, DATA_STORES, DATA_FLOWS, PERSONAL_DATA, THIRD_PARTIES, ROLES_RACI, MATURITY, SUBDOMAINS, REG_CHAIN, COMPLIANCE, GAPS, PRIORITIES)
+- **Data backbone:** `Case_01_Phase1.xlsx` (13 sheets: COVER, SYSTEMS, DATA_STORES, DATA_FLOWS, PERSONAL_DATA, THIRD_PARTIES, ROLES_RACI, POSTURE, SUBDOMAINS, REG_CHAIN, COMPLIANCE, GAPS, PRIORITIES)

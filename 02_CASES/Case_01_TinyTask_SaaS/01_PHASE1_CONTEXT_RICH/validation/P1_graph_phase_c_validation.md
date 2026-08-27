@@ -1,4 +1,4 @@
-# Phase C Validation — `phase1_graph.json` (Maturity + Verification attrs)
+# Phase C Validation — `phase1_graph.json` (Posture + Verification attrs)
 
 **Validator:** VALIDATOR (Orchestrator-coordinated)
 **Date:** 2026-08-27
@@ -79,7 +79,7 @@ AUDITS                  29
 
 | Node class | Expected with full new attrs | Found | Notes |
 |---|---|---|---|
-| RegulatoryClause | 54 | **54** | All 5 new keys (`verification_criteria`, `evidence_type`, `risk_if_not_met`, `maturity_cur`, `maturity_tgt`) present on every clause |
+| RegulatoryClause | 54 | **54** | All 5 new keys (`verification_criteria`, `evidence_type`, `risk_if_not_met`, `posture_cur`, `posture_tgt`) present on every clause |
 | SecurityControlDomain | 37 (active) | **37** | All 13 new keys present on every ACTIVE sub-domain; D-08.3 (non-active) correctly carries no Phase-C attrs |
 
 Sample of 6 (first by id):
@@ -114,8 +114,8 @@ Both invocations printed `OK — invariants pass, audit node_ids resolve, ontolo
 | `verification_criteria` verbatim from §9 | "Operational check per Doc 07c Appendix A §A.1.1/D-01.1" | "Operational check per Doc 07c Appendix A §A.1.1/D-01.1" | PASS |
 | `evidence_type` matches one of two patterns | "INSPECT (config audit + annual review)" | "INSPECT (config audit + annual review)" | PASS |
 | `risk_if_not_met` ∈ {HIGH, MEDIUM, LOW} | HIGH | HIGH | PASS |
-| `maturity_cur` ∈ {1,2,3,4} | 2 | 2 | PASS |
-| `maturity_tgt` ∈ {1,2,3,4} | 3 | 3 | PASS |
+| `posture_cur` ∈ {1,2,3,4} | 2 | 2 | PASS |
+| `posture_tgt` ∈ {1,2,3,4} | 3 | 3 | PASS |
 | cur ≤ tgt | 2 ≤ 3 | 2 ≤ 3 | PASS |
 | Reconstruct "X/4 → Y/4" | "2/4 → 3/4" | "2/4 → 3/4" | PASS |
 
@@ -126,7 +126,7 @@ Both invocations printed `OK — invariants pass, audit node_ids resolve, ontolo
 | `verification_criteria` verbatim | "Operational check per Doc 07c Appendix A §A.1.1/D-09.1" | "Operational check per Doc 07c Appendix A §A.1.1/D-09.1" | PASS |
 | `evidence_type` matches pattern | "DEMONSTRATE + INSPECT (policy template + review cadence)" | "DEMONSTRATE + INSPECT (policy template + review cadence)" | PASS |
 | `risk_if_not_met` | MEDIUM | MEDIUM | PASS |
-| `maturity_cur` / `maturity_tgt` | 2 / 3 | 2 / 3 | PASS |
+| `posture_cur` / `posture_tgt` | 2 / 3 | 2 / 3 | PASS |
 | Reconstructed "X/4 → Y/4" | "2/4 → 3/4" | "2/4 → 3/4" | PASS |
 
 #### Third spot — DEFERRED-marker row: D-02.4 (Threat-Led Penetration Testing) — the **only sub-domain** in Doc12 §4 carrying `1/4 → 1/4` and `DEFERRED` tier
@@ -137,7 +137,7 @@ Note on clause selection: Doc08 §9 contains no clause with `1/4 → 1/4`; the D
 |---|---|---|---|
 | `proportionality_tier` | DEFERRED | DEFERRED | PASS |
 | `tier` | DEFERRED | DEFERRED | PASS |
-| `maturity_cur` / `maturity_tgt` | 1 / 1 | 1 / 1 | PASS |
+| `posture_cur` / `posture_tgt` | 1 / 1 | 1 / 1 | PASS |
 | `risk_if_not_met` | LOW | LOW | PASS |
 | Reconstructed "X/4 → Y/4" | "1/4 → 1/4" | "1/4 → 1/4" | PASS |
 
@@ -150,7 +150,7 @@ Note on clause selection: Doc08 §9 contains no clause with `1/4 → 1/4`; the D
 | `attrs.i` ∈ allowed set | "BUILD" — PASS | "BUILD" — PASS | "BUILD" — PASS |
 | `attrs.p` ∈ {MUST, SHOULD} | "MUST" — PASS | "SHOULD" — PASS | "MUST" — PASS |
 | `attrs.implementation_priority` ∈ {HIGH, LOW} | "HIGH" — PASS | "LOW" — PASS | "HIGH" — PASS |
-| Doc12 §4 row matches (verbatim cells: i, p, tier, satisfaction_pattern, evidence_depth, verification_method, ownership, example_controls, notes, risk, maturity, impl_priority) | FULL MATCH | FULL MATCH (incl. em-dash for DEFERRED markers) | FULL MATCH |
+| Doc12 §4 row matches (verbatim cells: i, p, tier, satisfaction_pattern, evidence_depth, verification_method, ownership, example_controls, notes, risk, posture, impl_priority) | FULL MATCH | FULL MATCH (incl. em-dash for DEFERRED markers) | FULL MATCH |
 
 Doc12 §4 row 100 (D-01.1): `BUILD | MUST | LIGHTWEIGHT | BUY_MANAGED | Managed-service config documented + annual review; no dedicated in-house program | DEMONSTRATE + INSPECT | Shared (AWS + company) | AWS S3 / DynamoDB SSE-KMS enabled (AES-256 default); no company-owned KMS program | Unified AES-256 baseline satisfies SAME pair | HIGH | 2/4 → 3/4 | HIGH` — every cell reproduced verbatim in `attrs`.
 
@@ -210,17 +210,17 @@ All 26 IDs present, no titles modified.
 | Title about non-canonical evidence_type strings | PASS | Title: "Doc08 §9 evidence_type strings embed non-canonical artifact names that don't map to corpus anchor IDs" |
 | `evidence[]` cites Doc08 §9 | PASS | 5 evidence lines cite §9 rows (CRA-C01, CRA-C09, GDPR-C04 / CRA-C24, CRA-C26 / GDPR-C19) plus `phase1_ontology.yaml@kg_ontology.id_patterns` |
 | Severity = low | PASS | `severity: low` |
-| Plausible content | PASS | Detail enumerates ad-hoc parenthetical descriptors ("SSDF checklist + SAMM maturity", "Firebase MFA enforcement + reset flow test", etc.) and notes they cannot be machine-validated without an `EVD-*` anchor registry. Recommendation is human (P7). |
+| Plausible content | PASS | Detail enumerates ad-hoc parenthetical descriptors ("SSDF checklist + SAMM posture", "Firebase MFA enforcement + reset flow test", etc.) and notes they cannot be machine-validated without an `EVD-*` anchor registry. Recommendation is human (P7). |
 
 ### NEW-08 (coverage_gap, severity=low)
 
 | Check | Status | Evidence |
 |---|---|---|
-| Title about uniform maturity (2/4 → 3/4 across rows) | PASS | Title: "Doc12 §4 maturity scores are uniform 2/4 → 3/4 across 36 of 37 active sub-domains; only D-02.4 is 1/4 → 1/4 (DEFERRED)" |
+| Title about uniform posture (2/4 → 3/4 across rows) | PASS | Title: "Doc12 §4 implementation postures are uniform 2/4 → 3/4 across 36 of 37 active sub-domains; only D-02.4 is 1/4 → 1/4 (DEFERRED)" |
 | `node_ids[]` references real graph nodes (D-XX.Y) | PASS | `["D-01.1", "D-02.4", "D-10.3"]` — all resolve in the graph |
 | `evidence[]` cites Doc12 §4 | PASS | 4 evidence lines cite Doc12 §4 rows 99-136, `phase1_ontology.yaml@proportionality_model §5.2` and §6, and `phase1_graph.json@invariants.subdomains_active` |
 | Severity = low | PASS | `severity: low` |
-| Plausible content | PASS | Independent spot-check confirms 36 sub-domains carry `maturity_cur=2, maturity_tgt=3` and D-02.4 carries `1, 1` — total 37 active, matching the audit's count. |
+| Plausible content | PASS | Independent spot-check confirms 36 sub-domains carry `posture_cur=2, posture_tgt=3` and D-02.4 carries `1, 1` — total 37 active, matching the audit's count. |
 
 **Block 5 verdict: PASS** — all 3 new audits have plausible, evidence-rich content; node references resolve; severity assignments consistent with the audit kinds.
 
@@ -240,7 +240,7 @@ All 26 IDs present, no titles modified.
 
 ### Top 3 findings
 
-1. **Fabrication-free, byte-faithful extension.** All 54 `RegulatoryClause` nodes gained the 5-doc Phase-C attrs; all 37 ACTIVE `SecurityControlDomain` nodes gained the 13-doc attrs. The DEFERRED sub-domain (D-02.4) correctly carries the `1/4 → 1/4` maturity and `—` markers on the four DEFERRED-only attrs, faithfully reflecting Doc12 §4 row 107. The single non-active sub-domain (D-08.3) correctly carries no Phase-C attrs. No fabrication detected.
+1. **Fabrication-free, byte-faithful extension.** All 54 `RegulatoryClause` nodes gained the 5-doc Phase-C attrs; all 37 ACTIVE `SecurityControlDomain` nodes gained the 13-doc attrs. The DEFERRED sub-domain (D-02.4) correctly carries the `1/4 → 1/4` posture and `—` markers on the four DEFERRED-only attrs, faithfully reflecting Doc12 §4 row 107. The single non-active sub-domain (D-08.3) correctly carries no Phase-C attrs. No fabrication detected.
 2. **Schema & invariants clean.** `invariants.articles_with_verification=54` and `invariants.subdomains_with_proportionality=37` are exactly the claimed values. `--check` and `--check --strict` both exit 0. No drift between `attrs.tier` and `attrs.proportionality_tier` on any of the 37 active sub-domains.
 3. **NEW-06 surfaces a real cross-doc drift, not a fabrication.** Independent verification of GDPR-C28 confirms the audit's claim: its `verification_criteria` and `evidence_type` cells match Doc08 §9's Art. 37 (DPO) row, not its own Art. 35(1) (DPIA) row. The audit properly escalates to P7 (human) and proposes 3 resolution paths. This is **methodology-strengthening behaviour** — Phase C surfaced a pre-existing inconsistency between Doc08 §9 (28 GDPR rows) and the ontology CLAUSES list (28 GDPR nodes with Art. 35 split into 2 + no Art. 37), and the audit captures it for human reconciliation without modifying source docs (hard-constraint-compliant).
 

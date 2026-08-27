@@ -174,7 +174,7 @@ Counted GAP rows in §7 (L304–L315):
 | APPLIES_TO edges | 30 | 35 | 35 §9.2 rows | Brief stale; Executor correct |
 | GAP-RACI | 5 | 5 | 5 §7 rows | ✓ |
 
-**Why the brief was wrong:** Doc07 §9.3 (L397) says "RACI rows enriched: 30" — a **stale caption** from a Sprint 2 snapshot. The brief derived "31" (= 30 + 1 assumed placeholder) from this caption. But §4 actually has 43 activity rows (42 main + 1 best-practice), §9.2 has 35 mapping rows, and §9.3's "30" caption is inconsistent with both. The Executor's `raci_edges_min: 206` is the actual edge count from §4 cells.
+**Why the brief was wrong:** Doc07 §9.3 (L397) says "RACI rows enriched: 30" — a **stale caption** from a Fase de Especificação 2 snapshot. The brief derived "31" (= 30 + 1 assumed placeholder) from this caption. But §4 actually has 43 activity rows (42 main + 1 best-practice), §9.2 has 35 mapping rows, and §9.3's "30" caption is inconsistent with both. The Executor's `raci_edges_min: 206` is the actual edge count from §4 cells.
 
 The Executor's commentary on the ontology file (the long header comment block) explicitly flags this discrepancy: "the task brief's '30 active + 1 placeholder = 31' matches Doc07 §9.3's caption but not §4 (42 main-table rows) or §9.2 (35 rows)."
 
@@ -212,6 +212,6 @@ The v1.3 extension is **purely additive**:
 
 ## Validator final action
 
-No modifications to the ontology are required. The v1.3 extension is correct and ready for downstream consumers (Sprint 7 RACI Phase A — graph loader, RACI activity nodes, RaciRole nodes, RACI/APPLIES_TO edges).
+No modifications to the ontology are required. The v1.3 extension is correct and ready for downstream consumers (Fase de Especificação 7 RACI Phase A — graph loader, RACI activity nodes, RaciRole nodes, RACI/APPLIES_TO edges).
 
 A note has been flagged in the ontology's own header explaining the discrepancy between the brief's stale numbers and the corrected ground-truth counts; this is sufficient documentation and does not require Validator amendment.

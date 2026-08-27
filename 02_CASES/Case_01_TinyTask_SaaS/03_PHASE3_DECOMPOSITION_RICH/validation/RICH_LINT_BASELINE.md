@@ -1,23 +1,22 @@
 ---
 document_id: AEGIS-P3-RICH-LINT-RICH-BASELINE
-title: RICH Lint Baseline — Sprint 0 (Case_01 Phase 3 Rich Mode)
+title: RICH Lint Baseline (Case_01 Phase 3 Rich Mode)
 phase: 3
 version: 1.0
 created: 2026-08-24
 updated: 2026-08-24
-author: Sprint 0 Executor
+author: Fase de Especificação 0 Executor
 status: BASELINE
 case: Case_01_TinyTask_SaaS
 branch: feature/aegis-p3-case01-rich
-sprint: 0
 sprint_role: rich_runner_baseline
 sibling_doc: ../03_PHASE3_DECOMPOSITION/
 related_documents: [LINT_REPORT_BEFORE.md]
 ---
 
-# RICH Lint Baseline — Sprint 0
+# RICH Lint Baseline
 
-> **Sprint 0 captures the post-port baseline** for the new `scripts/run_phase3_rich_lints.py --rich` runner.
+> **Fase de Especificação 0 captures the post-port baseline** for the new `scripts/run_phase3_rich_lints.py --rich` runner.
 > This baseline proves the runner registers clean (no exceptions on empty placeholders), that the explicit-`doc_path` parameter avoids the legacy+RICH double-match (F-00f), and that the lint count matches the legacy runner's 7 lints.
 
 ---
@@ -54,7 +53,7 @@ related_documents: [LINT_REPORT_BEFORE.md]
 | Use Cases Catalog (Doc 13) | `Missing Packages/Use Cases section (## 5. PACKAGES)`; `Missing Use Cases/Packages section (## 6. USE CASES)` | Placeholder skeleton has no use cases yet |
 | Functional Tree (Doc 17) | `No Mermaid diagrams found in functional tree` | Placeholder skeleton has no mermaid source yet |
 
-These failures are **expected** at Sprint 0 and **non-silent**: the runner reports them clearly so subsequent sprints know exactly which skeleton slots to populate.
+These failures are **expected** at Fase de Especificação 0 and **non-silent**: the runner reports them clearly so subsequent sprints know exactly which skeleton slots to populate.
 
 ### §2.2 Warnings (expected for skeleton phase)
 
@@ -102,7 +101,7 @@ Both modes accept: `--case`, `--select`, `--output`, `--quiet`.
 
 ---
 
-## §5 Sprint 0 acceptance
+## §5 Fase de Especificação 0 acceptance
 
 | # | Criterion | Status |
 |---|-----------|--------|
@@ -117,7 +116,7 @@ Both modes accept: `--case`, `--select`, `--output`, `--quiet`.
 | 9 | ModuleNotFoundError / import errors | NONE |
 | 10 | Exit code 0 (with --rich, since both FAIL are documented as expected for skeleton) | 1 (FAIL > 0); see note below |
 
-> **Note on exit code:** the runner exits with code 1 because 2 lints FAIL. This is intentional — the runner is honest about its findings. Sprint 1+ will close these as the placeholders are populated. The skeleton layer itself is **PASS** because the runner does what it claims: emit explicit findings without silent suppression.
+> **Note on exit code:** the runner exits with code 1 because 2 lints FAIL. This is intentional — the runner is honest about its findings. Fase de Especificação 1+ will close these as the placeholders are populated. The skeleton layer itself is **PASS** because the runner does what it claims: emit explicit findings without silent suppression.
 
 ---
 
@@ -136,4 +135,4 @@ The 5 lints that pass with empty placeholders emit 6 warnings (one fewer than le
 
 ---
 
-**End of RICH Lint Baseline — Sprint 0**
+**End of RICH Lint Baseline**

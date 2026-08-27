@@ -36,7 +36,7 @@ anti_pattern_note: >
 2. **Lê §3** (princípio arquitectural) — é o teste de coerência para cada decisão.
 3. **Antes de executar qualquer bloco: lê §4** (vocabulário dos frameworks) e
    **§5** (artefactos) — são a especificação detalhada do *quê*.
-4. **Lê §6 e §7** — são a especificação do *como* (regras NI e maturidade).
+4. **Lê §6 e §7 (Implementation Posture)** — são a especificação do *como* (regras NI e implementation posture).
 5. **Segue §8** (blocos) em ordem estrita. Não saltes blocos.
 6. **Valida com §9** antes de declarar pronto.
 7. **Cumpre §11** (checklists) e §13 (branch).
@@ -67,7 +67,7 @@ anti_pattern_note: >
 - §4 Especificação dos frameworks (vocabulário)
 - §5 Artefactos a produzir
 - §6 Regra MUST/SHOULD/COULD (semântica operacional)
-- §7 Modelo de maturidade dupla
+- §7 Modelo de Postura de Implementação (Implementation Posture v2.0)
 - §8 Blocos de trabalho (plano de execução)
 - §9 Critério "pronto" (validação)
 - §10 Riscos & decisões diferidas
@@ -97,7 +97,7 @@ contracto resolve:
 | # | Lacuna | Sintoma observado | Onde |
 |---|---|---|---|
 | L1 | **MUST/SHOULD informal** | BPR = P3 uniforme, sem `normative_intensity` formal; semântica SHOULD sem consequência operacional (não afecta gate nem maturidade). Case_02/03 usam `MAX(NI)` = 3.000 uniforme (anti-pattern `AP-P2-09`). Contradição `DR-002`: template diz MAX, execução usa AVG. | Doc 11 §4/§5 |
-| L2 | **Maturidade deslocada** | Modelo 0-4 vive no Doc 04b com `phase: 1`, mas `PHASE1_STRATEGY.md §7` diz *"Phase 1 does NOT assess control maturity (Phase 2)."* Maturidade é escalar por cartão, não por-controlo, não ancorada a escala comparável. | Doc 04b |
+| L2 | **Maturidade deslocada** | Modelo 0-4 vive no Doc 04b com `phase: 1`, mas `PHASE1_STRATEGY.md §7` diz *"Phase 1 does NOT assess control posture (Phase 2)."* Maturidade é escalar por cartão, não por-controlo, não ancorada a escala comparável. | Doc 04b |
 | L3 | **Diferenciação não demonstrável** | MANIFESTO tem retórica forte (*"We are not a compliance checklist tool"*) mas sem demonstração operacional ponto-a-ponto vs. análise compliance+maturidade convencional. | — |
 
 ### 1.3 O que JÁ existe e NÃO DEVE ser recriado
@@ -118,8 +118,8 @@ O Executor **NÃO DEVE** reconstruir o seguinte — está feito e é input:
 
 1. **Vocabulário controlado Privacy FW 1.0** — não existe; tem de ser criado (§5.1).
 2. **Matriz unificada + Govern consolidada** — não existe; Doc 13 novo (§5.2).
-3. **Maturidade por-controlo em escala comparável** — não existe; modelo novo (§7).
-4. **NI formal + maturidade dupla nos cartões** — campos novos no Doc 11 (§5.3).
+3. **Implementation Posture por-controlo em escala comparável** — não existe; modelo novo (§7).
+4. **NI formal + implementation posture nos cartões** — campos novos no Doc 11 (§5.3).
 
 ---
 
@@ -157,7 +157,7 @@ O Executor **NÃO DEVE** reconstruir o seguinte — está feito e é input:
 > AEGIS deriva obrigações da lei → traduz em **CR (MUST, NI=3)** e **BPR (SHOULD,
 > NI=1-2)** → ancora cada regra aos 38 sub-domínios → mapeia cada sub-domínio em
 > paralelo ao **CSF 2.0** (eixo segurança) e ao **Privacy FW 1.0** (eixo
-> privacidade), numa **matriz unificada** → mede **maturidade dupla por-controlo**
+> privacidade), numa **matriz unificada** → mede **implementation posture por-controlo**
 > (Tiers 1-4 no programa/Function; 0-4 por-subcategoria no controlo) → liga tudo
 > a ISO/SSDF via crosswalk já existente.
 
@@ -371,7 +371,6 @@ created: <data>
 updated: <data>
 author: Executor (Bloco C)
 status: ACTIVE
-sprint: 6
 inputs:
   - 11_Rules_Catalog.md
   - ../../../03_REFERENCE_MATERIAL/Framework_Mappings/Framework_Crosswalk_ARM.md
@@ -441,7 +440,7 @@ mapping_rationale: >
 
 O Executor DEVE preencher `csf_subcategories` e `privacy_subcategories` para os 30 CR (D16: 100% CR). Para os 16 BPR, mapear onde fizer sentido e justificar `[]` onde não (D16: coerência BPR).
 
-#### §4 — Modelo de Maturidade Dupla
+#### §4 — Modelo de Postura de Implementação
 
 Especifica o modelo (ver §7 desta spec para conteúdo). Tabelas:
 - 4.1 Implementation Tiers CSF (T1-T4) aplicados ao programa/Function.
@@ -458,13 +457,13 @@ Especifica o modelo (ver §7 desta spec para conteúdo). Tabelas:
 
 - 6.1 Subcategorias CSF **não cobertas** por nenhum CR/BPR do Case_01 (lista + justificação — se é gap aceitável ou precisa de controlo).
 - 6.2 Subcategorias Privacy FW **não cobertas** (idem).
-- 6.3 Sub-domínios com baixa maturidade-alvo (tgt < 3) — justificar com proporção MICRO.
+- 6.3 Sub-domínios com baixa posture-target (tgt < 3) — justificar com proporção MICRO.
 
 **Critério de aceitação (Doc 13):**
 - 6 sub-secções presentes e populadas.
 - 100% dos CR com mapeamento n:m (D16).
 - AI RMF coluna presente mas `pending` (D9, D12).
-- Modelo de maturidade §4 definido para os dois frameworks (D10).
+- Modelo de implementation posture §4 definido para os dois frameworks (D10).
 - Gap analysis identifica pelo menos as subcats não cobertas.
 
 ### 5.3 ESTENDER — `11_Rules_Catalog.md`
@@ -476,35 +475,35 @@ Especifica o modelo (ver §7 desta spec para conteúdo). Tabelas:
 | Bloco | D |
 
 **Estado actual de cada cartão CR (17 campos numerados):**
-1. Description / 2. Scope / 3. Out of Scope / 4. Source Article / 5. NIST CSF Anchors / 6. Verification Criteria / 7. Verification Method / 8. Owner / 9. Status / 10. Dependencies / 11. Risk if not met / 12. Affected Stakeholders / 13. Maturity Score / 14. Implementation Priority / 15. Regulatory Reporting / 16. External Auditor / 17. Supervisory Body.
+1. Description / 2. Scope / 3. Out of Scope / 4. Source Article / 5. NIST CSF Anchors / 6. Verification Criteria / 7. Verification Method / 8. Owner / 9. Status / 10. Dependencies / 11. Risk if not met / 12. Affected Stakeholders / 13. Implementation Posture / 14. Implementation Priority / 15. Regulatory Reporting / 16. External Auditor / 17. Supervisory Body.
 
 **Campos NOVOS a adicionar a cada cartão (CR e BPR):**
 
-Substituir o campo "5. NIST CSF Anchors" e "13. Maturity Score" por uma estrutura expandida. **Abordagem recomendada:** manter a numeração 1-17 e adicionar 18-22:
+Substituir o campo "5. NIST CSF Anchors" e "13. Implementation Posture" por uma estrutura expandida. **Abordagem recomendada:** manter a numeração 1-17 e adicionar 18-22:
 
 ```
 18. Normative Intensity: 3 (MUST)              # ver §6
 19. CSF Subcategories: [PR.DS-01, PR.DS-10]    # n:m, do vocabulário frozen
 20. Privacy FW Subcategories: []               # n:m, do vocabulário frozen
-21. Implementation Status (CSF): PARTIAL # substitui "Maturity Score" antigo
-22. Maturity (Privacy): cur — → tgt —          # "—" se não aplicável
+21. Implementation Status (CSF): PARTIAL # substitui "Implementation Posture" antigo
+22. Posture (Privacy): cur — → tgt —          # "—" se não aplicável
 ```
 
 > **Decisão de estrutura:** O Executor PODE consolidar os campos 13/21/22 num
-> único bloco "Maturity (dual)" se preferir, mas DEVE manter os dois scores
-> separados (D11). Manter o campo "13. Maturity Score" legado marcado como
+> único bloco "Posture (dual)" se preferir, mas DEVE manter os dois scores
+> separados (D11). Manter o campo "13. Implementation Posture" legado marcado como
 > `(legacy — ver 21/22)` para não quebrar lints existentes.
 
 **Exemplo — cartão CR-D-01.1-001 ANTES (estado actual, linha 533):**
 
 ```markdown
-13. **Maturity Score:** 1/4 → 3/4
+13. **Implementation Posture:** 1/4 → 3/4
 ```
 
 **DEPOIS (após Bloco D):**
 
 ```markdown
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla)*
+13. **Implementation Posture (legacy):** 1/4 → 3/4 *(ver 21/22 para implementation posture)*
 
 18. **Normative Intensity:** 3 — MUST (bloqueia gate de conformidade)
 
@@ -517,7 +516,7 @@ Substituir o campo "5. NIST CSF Anchors" e "13. Maturity Score" por uma estrutur
 
 21. **Implementation Status (CSF):** PARTIAL
 
-22. **Maturity (Privacy):** N/A — não mapeado a Privacy FW
+22. **Posture (Privacy):** N/A — não mapeado a Privacy FW
 ```
 
 **Atualização do frontmatter do Doc 11:**
@@ -544,41 +543,41 @@ frameworks_mapped: [NIST_CSF_2.0, NIST_Privacy_FW_1.0]
 | Bloco | E |
 
 **O que muda:**
-- O Doc 04b deixa de ser o dono do modelo de maturidade. Passa a recolher **só evidência/postura observada** (input qualitativo).
-- O modelo de maturidade (avaliação, target, gap) vive no Doc 13 §4-5.
-- Isto resolve a contradição `PHASE1_STRATEGY.md §7` ("Phase 1 does NOT assess control maturity").
+- O Doc 04b deixa de ser o dono do modelo de implementation posture. Passa a recolher **só evidência/postura observada** (input qualitativo).
+- O modelo de implementation posture (avaliação, target, gap) vive no Doc 13 §4-5.
+- Isto resolve a contradição `PHASE1_STRATEGY.md §7` ("Phase 1 does NOT assess control posture").
 
 **Atualizações no Doc 04b:**
 1. No frontmatter, adicionar:
 
 ```yaml
-status: DEPRECATED_FOR_MATURITY   # era ACTIVE
+status: DEPRECATED_FOR_POSTURE   # era ACTIVE
 status_history:
-  - { date: '2026-08-07', from: ACTIVE, to: DEPRECATED_FOR_MATURITY,
-      reason: 'Maturity model moved to Phase 2 Doc 13 — resolves PHASE1_STRATEGY §7 contradiction' }
-maturity_owner: 13_Framework_Mapping_Matrix.md   # novo campo
+  - { date: '2026-08-07', from: ACTIVE, to: DEPRECATED_FOR_POSTURE,
+      reason: 'Posture model moved to Phase 2 Doc 13 — resolves PHASE1_STRATEGY §7 contradiction' }
+posture_owner: 13_Framework_Mapping_Matrix.md   # novo campo
 note: >
   Este documento mantém-se como INPUT qualitativo (postura observada).
-  A avaliação e o modelo de maturidade foram movidos para
+  A avaliação e o modelo de implementation posture foram movidos para
   02_PHASE2_RULES_RICH/13_Framework_Mapping_Matrix.md §4-5.
 ```
 
 2. No topo do corpo, adicionar banner:
 
 ```markdown
-> ⚠️ **DEPRECATED FOR MATURITY (2026-08-07).** A avaliação e o modelo de
-> maturidade vivem agora em `02_PHASE2_RULES_RICH/13_Framework_Mapping_Matrix.md`
+> ⚠️ **DEPRECATED FOR POSTURE (2026-08-07).** A avaliação e o modelo de
+> implementation posture vivem agora em `02_PHASE2_RULES_RICH/13_Framework_Mapping_Matrix.md`
 > §4-5. Este documento mantém-se como input qualitativo (postura observada).
 > Ver `status_history` no frontmatter.
 ```
 
-3. **NÃO apagar** conteúdo existente — mantém como evidência input. Apenas desambiguar a propriedade da maturidade.
+3. **NÃO apagar** conteúdo existente — mantém como evidência input. Apenas desambiguar a propriedade da implementation posture.
 
 **Critério de aceitação (Doc 04b):**
-- `status: DEPRECATED_FOR_MATURITY` no frontmatter.
+- `status: DEPRECATED_FOR_POSTURE` no frontmatter.
 - `status_history` com entrada datada.
 - Banner de deprecated no topo do corpo.
-- `maturity_owner` aponta para Doc 13.
+- `posture_owner` aponta para Doc 13.
 
 ### 5.5 PROMOVER — `Framework_Crosswalk_ARM.md`
 
@@ -634,16 +633,16 @@ note_800_53: >
 | `Unified_Matrix` | Réplica do Doc 13 §1 (matriz sub-domínio × frameworks) | Doc 13 §1 |
 | `Govern_Consolidated` | Réplica do Doc 13 §2 | Doc 13 §2 |
 | `Mapping_nm` | 46 linhas (CR+BPR) × `{rule_id, subdomain, NI, csf_subcats, priv_subcats}` | Doc 13 §3 |
-| `Maturity_Dual` | 46 linhas × `{rule_id, cur_csf, tgt_csf, gap_csf, cur_priv, tgt_priv, gap_priv}` | Doc 13 §5 |
+| `Posture_Dual` | 46 linhas × `{rule_id, cur_csf, tgt_csf, gap_csf, cur_priv, tgt_priv, gap_priv}` | Doc 13 §5 |
 | `Cov_Function` | Visualização por Function (6 CSF + 5 Privacy), contagem de cobertura | Derivado |
-| `Heatmap_Maturity` | Sub-domínio × gap (cor = MIN gap) | Derivado §7 |
+| `Heatmap_Posture` | Sub-domínio × gap (cor = MIN gap) | Derivado §7 |
 
 > **Nota técnica:** Use a skill `xlsx` se disponível. Caso contrário, gerar via `openpyxl` com formatação condicional no Heatmap.
 
 **Critério de aceitação:**
 - 6 novas folhas presentes.
 - `Mapping_nm` tem 46 linhas (1 por regra).
-- `Heatmap_Maturity` com formatação condicional (cor por gap).
+- `Heatmap_Posture` com formatação condicional (cor por gap).
 
 ### 5.7 NOVO — 4 Visualizações
 
@@ -674,7 +673,7 @@ graph LR
 
 - Não é necessário desenhar todos os 46 caminhos — basta um subconjunto representativo (≥5 caminhos) que ilustre a cadeia completa.
 
-#### V4 — Heatmap de Maturidade
+#### V4 — Heatmap de Implementation Posture
 - Linhas: 38 sub-domínios (ou 46 controlos).
 - Cor: `gap = MIN(gap_csf, gap_priv)` (D11 + decisão técnica).
   - Verde: gap 0 / Amarelo: gap 1 / Laranja: gap 2 / Vermelho: gap 3-4.
@@ -690,7 +689,7 @@ graph LR
 | NI | Label | Origem típica | Consequência operacional |
 |---|---|---|---|
 | **3** | **MUST** | Cláusula SHALL; obrigação incondicional | **Bloqueia gate de conformidade.** Falhar = não-conformidade. Tem de mapear (D16). |
-| **2** | **SHOULD** | Cláusula SHOULD; recomendado; BPR com base em framework | **Não bloqueia conformidade.** Alimenta gap de maturidade (§7). Escala com proporção. |
+| **2** | **SHOULD** | Cláusula SHOULD; recomendado; BPR com base em framework | **Não bloqueia conformidade.** Alimenta gap de implementation posture (§7). Escala com proporção. |
 | **1** | **COULD** | Cláusula MAY; aspiracional | Aspiracional. Documentado mas sem impacto operacional directo. |
 
 ### 6.2 Regra de derivação DR-002 — RESOLVER com AVG
@@ -754,45 +753,18 @@ O Executor DEVE, para cada um dos 46 cartões em Doc 11:
 
 ---
 
-## §7 — Modelo de maturidade dupla
+## §7 — Modelo de Postura de Implementação (v2.0)
 
-### 7.1 Duas escalas (D10)
+### 7.1 Modelo de Postura de Implementação v2.0
 
-| Escala | Nível | Aplicação | Framework |
-|---|---|---|---|
-| **Implementation Tiers (T1-T4)** | Programa / por-Function | Avaliação macro da postura da organização | CSF 2.0 (nativo); Privacy FW adopta a mesma escala |
-| **Maturidade por-subcategoria (0-4)** | Por-controlo / por-subcat | Granularidade operacional | Ambos os frameworks |
+O modelo de implementation posture numérica (0-4 / Tiers T1-T4) foi descontinuado na AEGIS e substituído pelo **Implementation Posture Model v2.0**, focado em evidências operacionais e verificação factual.
 
-### 7.2 Implementation Tiers CSF 2.0 (T1-T4) — nível programa/Function
-
-| Tier | Nome | Descrição |
+| Estado | Significado Operacional | Exigência de Evidência |
 |---|---|---|
-| **1** | Partial | Risco não formalizado; práticas ad-hoc; consciência limitada |
-| **2** | Risk-Informed | Risco gerido informalmente; práticas definidas mas não consistentes |
-| **3** | Repeatable | Práticas formais, repetíveis, com monitorização |
-| **4** | Adaptive | Práticas adaptativas, melhoria contínua, automatização |
-
-- **Aplicação ao Case_01:** avaliar cada uma das 6 CSF Functions + 5 Privacy Functions (Doc 13 §4.4).
-- **Exemplo esperado para MICRO:** a maioria das Functions em T1-T2 (proporcional a microempresa sem FTE de segurança dedicado).
-
-### 7.3 Escala 0-4 por-subcategoria — nível controlo (CONSTRUÍDA)
-
-> **Desacordo P0 registado (D10 + adaptação):** NIST define Implementation Tiers
-> explicitamente ao nível da organização, não por-controlo. A resolução adoptada
-> é: Tiers no programa/Function, maturidade 0-4 por-subcategoria no controlo.
-> A escala 0-4 por-subcategoria **tem de ser construída** — o NIST não a fornece
-> fechada. O Executor DEVE ancorá-la aos *statements* + *informative references*
-> de cada subcategoria.
-
-**Escala 0-4 (adoptada para os dois frameworks):**
-
-| Nível | Label | Definição operacional |
-|---|---|---|
-| **0** | None | Sem controlo implementado |
-| **1** | Ad-hoc | Informal, inconsistente, sem documentação |
-| **2** | Defined | Documentado mas não totalmente implementado |
-| **3** | Managed | Implementado, monitorizado, medido |
-| **4** | Optimized | Melhoria contínua, automatizado |
+| **IMPLEMENTED** | Controlo totalmente operacional e verificado | Obriga a apontador de evidência concreto (ex: AWS KMS, Auth0, TLS 1.3) |
+| **PARTIAL** | Prática existente mas incompleta ou ad-hoc | Obriga a nota curta "What's missing" descrevendo a lacuna operacional |
+| **NOT IMPLEMENTED** | Controlo ausente ou sem implementação | Obriga a nota curta "What's missing" com fundamentação |
+| **N/A** | Não aplicável (ex: deliverable SSDF / escopo fora) | Obriga a justificação normativa (ex: SSDF RV.2, non-AI scope) |
 
 **Como definir o nível-alvo (target) por-subcategoria:**
 - O target NÃO é arbitrário. Deriva do:
@@ -822,7 +794,7 @@ Cada controlo mapeado a ambos os frameworks tem **dois scores independentes**:
 - `implementation_status_privacy: PARTIAL`
 
 Isto preserva a dessincronia segurança/privacidade (ex: uma empresa pode ter
-maturidade 3 em cifra mas 1 em gestão de consentimento). **NÃO agregar** num
+implementation posture 3 em cifra mas 1 em gestão de consentimento). **NÃO agregar** num
 score único.
 
 ### 7.5 Heatmap — decisão técnica
@@ -844,12 +816,12 @@ color: ORANGE       # gap 2
 > `gap_display = gap_csf` quando privacy é N/A. O Executor DEVE documentar esta
 > regra no Doc 13 §7.
 
-### 7.6 Ligação maturidade-alvo ↔ proporção
+### 7.6 Ligação posture-target ↔ proporção
 
-A maturidade-alvo não é livre. Para cada controlo, o `tgt` DEVE ser consistente
+A posture-target não é livre. Para cada controlo, o `tgt` DEVE ser consistente
 com o tier de proporção do sub-domínio (Track B, `07b_Proportionality_Profile.md`):
 
-| Tier proporção (Track B) | Target maturidade esperado |
+| Tier proporção (Track B) | Target implementation posture esperado |
 |---|---|
 | LIGHTWEIGHT | 2-3 (MICRO herda muito) |
 | MINIMAL | 2 |
@@ -875,7 +847,7 @@ Bloco A [deps: 0]  Promover crosswalk + decidir 800-53 fora-ânbito
 Bloco B [deps: A]  Formalizar MUST/SHOULD nos 46 cartões (NI, AVG)
    │
    ▼
-Bloco C [deps: B, 0]  Doc 13: matriz unificada + Govern + maturidade
+Bloco C [deps: B, 0]  Doc 13: matriz unificada + Govern + implementation posture
    │
    ├─────────────┬───────────┐
    ▼             ▼           ▼
@@ -932,15 +904,15 @@ Bloco G [deps: D, F]  Validação Validator Tier 1+2
 | Commit | `[EXECUTOR] Bloco B — NI formal (AVG) em 46 cartões, DR-002 resolvido` |
 | Validação | 100% dos 46 cartões com campo 18; AVG aplicado. |
 
-#### Bloco C — Doc 13 (matriz + Govern + maturidade)
+#### Bloco C — Doc 13 (matriz + Govern + implementation posture)
 
 | Campo | Valor |
 |---|---|
 | Deps | Bloco B, Bloco 0 |
 | Inputs | Doc 11 (NI + subcats a mapear), CSF frozen, Privacy FW frozen, crosswalk |
 | Outputs | `13_Framework_Mapping_Matrix.md` (§5.2) |
-| Passos | (1) Criar ficheiro com frontmatter. (2) §1 matriz unificada. (3) §2 Govern consolidada. (4) §3 mapeamento n:m (100% CR). (5) §4 modelo maturidade (Tiers + 0-4 por-subcat). (6) §5 aplicação Case_01. (7) §6 gap analysis. |
-| Commit | `[EXECUTOR] Bloco C — Doc 13 unified matrix + dual maturity` |
+| Passos | (1) Criar ficheiro com frontmatter. (2) §1 matriz unificada. (3) §2 Govern consolidada. (4) §3 mapeamento n:m (100% CR). (5) §4 modelo implementation posture (Tiers + 0-4 por-subcat). (6) §5 aplicação Case_01. (7) §6 gap analysis. |
+| Commit | `[EXECUTOR] Bloco C — Doc 13 unified matrix + dual posture` |
 | Validação | 6 sub-secções; 100% CR mapeados; AI RMF placeholder. |
 
 #### Bloco D — Estender Doc 11 (campos 19-22)
@@ -951,7 +923,7 @@ Bloco G [deps: D, F]  Validação Validator Tier 1+2
 | Inputs | Doc 13 §3 (mapeamento n:m), Doc 11 (cartões) |
 | Outputs | Doc 11 com campos 19-22 em todos os cartões |
 | Passos | (1) Para cada cartão: copiar `csf_subcategories` e `privacy_subcategories` do Doc 13 §3. (2) Atribuir `implementation_status_csf` e `implementation_status_privacy` conforme Doc 13 §5. (3) Atualizar frontmatter (`expected_fields_per_card: 22`). |
-| Commit | `[EXECUTOR] Bloco D — Doc 11 estendido (campos 19-22, maturidade dupla)` |
+| Commit | `[EXECUTOR] Bloco D — Doc 11 estendido (campos 19-22, implementation posture)` |
 | Validação | 100% CR com campos 19-22; BPR coerência. |
 
 #### Bloco E — Deprecar 04b
@@ -960,9 +932,9 @@ Bloco G [deps: D, F]  Validação Validator Tier 1+2
 |---|---|
 | Deps | Bloco C |
 | Inputs | `04b_Security_Posture.md` |
-| Outputs | `04b_Security_Posture.md` (DEPRECATED_FOR_MATURITY, §5.4) |
-| Passos | (1) Atualizar frontmatter (status, status_history, maturity_owner, note). (2) Adicionar banner. (3) Manter conteúdo como input. |
-| Commit | `[EXECUTOR] Bloco E — 04b deprecated for maturity (moved to Doc 13)` |
+| Outputs | `04b_Security_Posture.md` (DEPRECATED_FOR_POSTURE, §5.4) |
+| Passos | (1) Atualizar frontmatter (status, status_history, posture_owner, note). (2) Adicionar banner. (3) Manter conteúdo como input. |
+| Commit | `[EXECUTOR] Bloco E — 04b deprecated for posture (moved to Doc 13)` |
 | Validação | status_history presente; banner no topo. |
 
 #### Bloco F — Visualizações + Excel
@@ -1009,7 +981,7 @@ Bloco G [deps: D, F]  Validação Validator Tier 1+2
 - [ ] `NIST_PF_1.0_subcategories.md` criado e ACTIVE.
 - [ ] `13_Framework_Mapping_Matrix.md` criado com 6 sub-secções.
 - [ ] `Framework_Crosswalk_ARM.md` ACTIVE v1.0.
-- [ ] `04b_Security_Posture.md` DEPRECATED_FOR_MATURITY com status_history.
+- [ ] `04b_Security_Posture.md` DEPRECATED_FOR_POSTURE com status_history.
 - [ ] `12_Rules_Catalog.xlsx` com 6 folhas novas.
 
 ### 9.3 Coerência metodológica
@@ -1017,7 +989,7 @@ Bloco G [deps: D, F]  Validação Validator Tier 1+2
 - [ ] DR-002 resolvido com AVG (documentado no frontmatter do Doc 11).
 - [ ] Nenhum controlo derivado *de* um framework (invariante §3.3) — CR vêm de obrigações.
 - [ ] AI RMF presente apenas como placeholder (D9).
-- [ ] Maturidade-alvo consistente com proporção Track B (§7.6).
+- [ ] Implementation Posture-alvo consistente com proporção Track B (§7.6).
 
 ### 9.4 Lint & Validator
 
@@ -1035,8 +1007,8 @@ Bloco G [deps: D, F]  Validação Validator Tier 1+2
 | # | Risco | Mitigação |
 |---|---|---|
 | R1 | **Propagação ~6 artefactos** (acima do limiar P5 de 3) | Confinado ao Case_01; não fragmenta o método global. Documentar em `PROJECT_STATE.md`. |
-| R2 | **Maturidade por-subcategoria = trabalho original** (risco académico) | Ancorar a statements + informative references NIST; justificar a escala 0-4 no Doc 13 §4. É também a maior contribuição potencial para a tese. |
-| R3 | **Verbosidade** (4 campos maturidade + 2 listas subcats por cartão) | Aceitável (preserva info); mitigado no heatmap via MIN para cor (§7.5). |
+| R2 | **Implementation Posture por-subcategoria = trabalho original** (risco académico) | Ancorar a statements + informative references NIST; justificar a escala 0-4 no Doc 13 §4. É também a maior contribuição potencial para a tese. |
+| R3 | **Verbosidade** (4 campos implementation posture + 2 listas subcats por cartão) | Aceitável (preserva info); mitigado no heatmap via MIN para cor (§7.5). |
 | R4 | **Consistência cross-case** (Case_02/03 dessincronizados) | Aceitável como piloto (D1). Documentar. Retropropagação em contracto futuro. |
 | R5 | **Desacordo P0 registado** (NIST Tiers são org-level) | Resolução adoptada documentada em §7.3 e Doc 13 §4 (Tiers no programa, 0-4 no controlo). Defensável academicamente. |
 
@@ -1098,7 +1070,7 @@ ls 03_REFERENCE_MATERIAL/Framework_Mappings/Framework_Crosswalk_ARM.md
 | ❌ Escrever argumento académico no repo | D4 — vive na tese |
 | ❌ Adicionar catálogo CIS/800-53 enumerado | D2 — derivação AEGIS como núcleo |
 | ❌ MAX(NI) em vez de AVG | §6.2 — mata SHOULD (AP-P2-09) |
-| ❌ Agregar maturidade num score único | D11 — preservar dessincronia |
+| ❌ Agregar implementation posture num score único | D11 — preservar dessincronia |
 | ❌ Preencher coluna 800-53 | DF2 — fora de âmbito |
 | ❌ Apagar conteúdo do 04b | §5.4 — só deprecar, manter input |
 | ❌ Commit directo em main | AGENTS.md — 1 branch per contract |
@@ -1120,7 +1092,7 @@ ls 03_REFERENCE_MATERIAL/Framework_Mappings/Framework_Crosswalk_ARM.md
 | **Category** | Subdivisão de Function (CSF: 22; Privacy: ~18) |
 | **Subcategory** | Unidade atómica mapeável (CSF: 106; Privacy: ~100) |
 | **Tier (CSF)** | Implementation Tier 1-4 (Partial/Risk-Informed/Repeatable/Adaptive) — nível programa |
-| **Maturity 0-4** | None/Ad-hoc/Defined/Managed/Optimized — nível controlo, por-subcategoria |
+| **Posture 0-4** | None/Ad-hoc/Defined/Managed/Optimized — nível controlo, por-subcategoria |
 | **Govern consolidada** | Vista que funde GV (CSF) + Govern-P (Privacy) + GOVERN (AI RMF) — Doc 13 §2 |
 | **Matriz unificada** | Vista única com colunas de cada framework — Doc 13 §1 |
 | **Track B** | Camada de proporção (LIGHTWEIGHT/STANDARD/RIGOROUS/DEFERRED) — `07b_Proportionality_Profile.md` |
@@ -1131,7 +1103,7 @@ ls 03_REFERENCE_MATERIAL/Framework_Mappings/Framework_Crosswalk_ARM.md
 **Inputs (read-only):**
 - `00_METHODOLOGY/PREPROCESSING/NIST_CSF_2.0_subcategories.md` — CSF frozen
 - `00_METHODOLOGY/MANIFESTO.md` — filosofia
-- `00_METHODOLOGY/PHASE1_STRATEGY.md` — §7 contradição maturidade
+- `00_METHODOLOGY/PHASE1_STRATEGY.md` — §7 contradição implementation posture
 - `00_METHODOLOGY/REFERENCE/proportionality_model.md` — Track B
 - `00_METHODOLOGY/REFERENCE/key_concepts.md` — NI 1-3
 - `00_METHODOLOGY/CONTEXT/CONTEXT_PHASE2.md` — DR-002 ambíguo
@@ -1171,7 +1143,7 @@ ls 03_REFERENCE_MATERIAL/Framework_Mappings/Framework_Crosswalk_ARM.md
 ```markdown
 5. **NIST CSF Anchors:** PR.DS-01, PR.DS-10, PR.PS-04.
 ...
-13. **Maturity Score:** 1/4 → 3/4
+13. **Implementation Posture:** 1/4 → 3/4
 14. **Implementation Priority:** HIGH
 15. **Regulatory Reporting (Case_01):** Internal audit only.
 16. **External Auditor (Case_01):** AWS SOC 2 / ISO 27001 attestation
@@ -1183,7 +1155,7 @@ ls 03_REFERENCE_MATERIAL/Framework_Mappings/Framework_Crosswalk_ARM.md
 ```markdown
 5. **NIST CSF Anchors:** PR.DS-01, PR.DS-10, PR.PS-04.
 ...
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla)*
+13. **Implementation Posture (legacy):** 1/4 → 3/4 *(ver 21/22 para implementation posture)*
 14. **Implementation Priority:** HIGH
 15. **Regulatory Reporting (Case_01):** Internal audit only.
 16. **External Auditor (Case_01):** AWS SOC 2 / ISO 27001 attestation
@@ -1204,7 +1176,7 @@ ls 03_REFERENCE_MATERIAL/Framework_Mappings/Framework_Crosswalk_ARM.md
 21. **Implementation Status (CSF):** PARTIAL
     *(None → Managed; gap 2; consistente com LIGHTWEIGHT Track B + MUST)*
 
-22. **Maturity (Privacy):** N/A — não mapeado a Privacy FW
+22. **Posture (Privacy):** N/A — não mapeado a Privacy FW
 ```
 
 ### Apêndice E — Exemplo de linha da matriz unificada (Doc 13 §1)
@@ -1267,5 +1239,5 @@ git push -u origin feature/aegis-p2-case01-csf2-priv
 
 > Este documento fecha 17 decisões e especifica 7 artefactos em 8 blocos.
 > O Executor lê isto + os ficheiros referenciados e executa sem perguntas.
-> Se algo parecer ambíguo: alinha com §3 (princípio), §6 (NI), §7 (maturidade).
+> Se algo parecer ambíguo: alinha com §3 (princípio), §6 (NI), §7 (implementation posture).
 > Não reinventes decisões fechadas em §2.

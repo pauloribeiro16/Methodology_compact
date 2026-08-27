@@ -5,9 +5,8 @@ phase: 3
 version: 2.0
 created: 2026-08-24
 updated: 2026-08-24
-author: Sprint 4 Executor (paulo@methodology.pt)
+author: Fase de Especificação 4 Executor (paulo@methodology.pt)
 status: DEEP_ENRICHED
-sprint: 5
 deep_enrichment_date: 2026-08-24
 detail_cards_count: 46
 cells_count: 692
@@ -25,12 +24,12 @@ schema_columns: 6
 schema_columns_list: [Owner, Verification Criteria, Implementation Status, Priority, Stakeholders, Reporting]
 freeze_total_nfrs: 46
 reconciliation_note: "46 NFR freeze (F-00b RESOLVED); 100% measurable per §4.1 of legacy; SPRINT5 detail card fill."
-sprint5_note: "Sprint 5: DEEP enrichment — 46 cards (28×17 fields + 18×12 fields) = 692 cells. Frontmatter status DEEP_ENRICHED, version 2.0."
+sprint5_note: "Fase de Especificação 5: DEEP enrichment — 46 cards (28×17 fields + 18×12 fields) = 692 cells. Frontmatter status DEEP_ENRICHED, version 2.0."
 ---
 
 # Non-Functional Requirements — TinyTask SaaS (Phase 3 RICH)
 
-> **Status:** ADJUSTED_FIELDS (Sprint 4). 46 NFR cards freeze. Sprint 5 deep-fills the 17-field per-card schema.
+> **Status:** ADJUSTED_FIELDS. 46 NFR cards freeze. Fase de Especificação 5 deep-fills the 17-field per-card schema.
 
 ---
 
@@ -60,7 +59,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 ## §2 NFR Catalogue (46 cards)
 
 > **Format:** `NFR-NN | Family | Measurable criterion | Target value | Linked FRs | Source CR | D-sub`
-> Card detail (17-field schema) fills in Sprint 5.
+> Card detail (17-field schema) fills in Fase de Especificação 5.
 
 ### §2.1 CONF (Confidentiality) — NFR-01..NFR-09
 
@@ -1383,4 +1382,4 @@ See `NIST_ANCHORS.md` §3.3 for the full table. Summary:
 
 ---
 
-**End of Non-Functional Requirements (Phase 3 RICH, ADJUSTED_FIELDS, Sprint 4)**
+**End of Non-Functional Requirements (Phase 3 RICH, ADJUSTED_FIELDS, Fase de Especificação 4)**

@@ -1,25 +1,25 @@
-# Sprint 5 Report — Deep Enrichment (Phase 1 Rich Mode)
+# Fase de Especificação 5 Report — Deep Enrichment (Phase 1 Rich Mode)
 
 > **Sprint:** 5 — Deep Enrichment (without Effort/Cost/Timeline)
 > **Case:** Case_01_TinyTask_SaaS
 > **Branch:** `feature/aegis-p1-case01-rich`
 > **Date:** 2026-08-06
-> **Author:** Sprint 5 Executor (deep-enrichment-builder)
+> **Author:** Fase de Especificação 5 Executor (deep-enrichment-builder)
 > **Status:** DEEP_ENRICHED — 6/6 lints PASS
 
-> **Historical Note (added 2026-08-10, Sprint 8 corr-009):** Historical report from corr-007 era. Current 07c version is v4.0 with AO ID model (corr-008 supersedes corr-007). Content below preserved verbatim; the 74 detail cards referenced throughout this report retain their legacy PG/SG headings for Phase 2 traceability — see `07c_Adjusted_Objectives.md` Appendix A §A.0 alias table for the corr-008 AO ID equivalents.
+> **Historical Note (added 2026-08-10, Fase de Especificação 8 corr-009):** Historical report from corr-007 era. Current 07c version is v4.0 with AO ID model (corr-008 supersedes corr-007). Content below preserved verbatim; the 74 detail cards referenced throughout this report retain their legacy PG/SG headings for Phase 2 traceability — see `07c_Adjusted_Objectives.md` Appendix A §A.0 alias table for the corr-008 AO ID equivalents.
 
 ---
 
 ## §1 Summary
 
-Sprint 5 adds deep operational + qualitative provenance to the Phase 1 Rich docs that Sprint 4 produced (Sprint 4 created the table skeletons + summary). Specifically:
+Fase de Especificação 5 adds deep operational + qualitative provenance to the Phase 1 Rich docs that Fase de Especificação 4 produced (Fase de Especificação 4 created the table skeletons + summary). Specifically:
 
 - **5 docs enriched** — Doc 04, 05, 05b, 07b, 07c
 - **74 detail cards** added to Doc 07c §2a (37 PG) + §3a (37 SG) — 12 fields each, NO Effort/Cost/Timeline
 - **4 tensions** expanded to multi-paragraph root cause analysis + resolution options + implementation + verification
 - **Per-doc line delta:**
-  | Doc | Sprint 4 → Sprint 5 | Δ | Notes |
+  | Doc | Fase de Especificação 4 → Fase de Especificação 5 | Δ | Notes |
   |-----|---------------------|---|-------|
   | 04 (BG table) | 192 → 196 | +4 | BG table 7→13 cols |
   | 05 (per-article) | 284 → 381 | +97 | New §9 with 54 article rows |
@@ -28,7 +28,7 @@ Sprint 5 adds deep operational + qualitative provenance to the Phase 1 Rich docs
   | 07c (detail cards + tensions) | 292 → 3451 | +3159 | §2a (37 PG) + §3a (37 SG) + §4 expansion |
   | **Total** | **2064 → 5513** | **+3449** | |
 
-**Lints:** 6/6 PASS (regression-free vs Sprint 4 baseline). See `01_IMPLEMENTATION_TOOLS/lints/reports/lint_report_phase1_20260806_125633.md`.
+**Lints:** 6/6 PASS (regression-free vs Fase de Especificação 4 baseline). See `01_IMPLEMENTATION_TOOLS/lints/reports/lint_report_phase1_20260806_125633.md`.
 
 ---
 
@@ -71,9 +71,9 @@ Per-BG enrichment data:
 | Verification Criteria | Pointer to operational check in Doc 07c §2a (PG detail card) |
 | Evidence Type | INSPECT (MINIMAL) or DEMONSTRATE + INSPECT (LIGHTWEIGHT) |
 | Risk if not met | Qualitative H/M/L |
-| Maturity (cur→tgt) | Current 2/4 → Target 3/4 (MUST LIGHTWEIGHT) or 1/4 → 1/4 (DEFERRED) |
+| Posture (cur→tgt) | Current 2/4 → Target 3/4 (MUST LIGHTWEIGHT) or 1/4 → 1/4 (DEFERRED) |
 
-**§10 Version History (Sprint 5 addition)** added with row v2.0.
+**§10 Version History (Fase de Especificação 5 addition)** added with row v2.0.
 
 **Frontmatter updated:** version 1.1 → 2.0, status RECONCILED → DEEP_ENRICHED, sprint 1 → 5, sprint_role → deep_enrichment_per_article.
 
@@ -89,7 +89,7 @@ Per-BG enrichment data:
 
 Per-card reasoning: R2 (EDPB Guidelines) is dominant for GDPR clauses (authoritative interpretation standard); R1 (in-Directive disambiguation) for CRA clauses; R3 (open-list / illustrative) for ambiguous CRA Annex I lists.
 
-**§7 Gate Criteria** updated with Sprint 5 enrichment checkbox.
+**§7 Gate Criteria** updated with Fase de Especificação 5 enrichment checkbox.
 
 **Frontmatter updated:** version 1.0 → 2.0, status CORPUS_ENRICHED → DEEP_ENRICHED, resolution_sections_added = 20.
 
@@ -100,7 +100,7 @@ Per-card reasoning: R2 (EDPB Guidelines) is dominant for GDPR clauses (authorita
 | New col | Description |
 |---------|-------------|
 | Risk if not met | Qualitative H/M/L derived from priority + tier + sub-domain risk profile |
-| Maturity (cur→tgt) | Current 2/4 → Target 3/4 for MUST LIGHTWEIGHT; 1/4 → 1/4 for DEFERRED |
+| Posture (cur→tgt) | Current 2/4 → Target 3/4 for MUST LIGHTWEIGHT; 1/4 → 1/4 for DEFERRED |
 | Implementation Priority | HIGH (MUST + non-DEFERRED) / MEDIUM (SHOULD) / LOW (DEFERRED) |
 
 Risk heuristic (HIGH cases):
@@ -111,7 +111,7 @@ Risk heuristic (HIGH cases):
 - D-09.2 / D-09.4 — DPIA + RoPA (Art. 35 + Art. 30)
 - D-10.2 / D-10.3 — audit + compliance testing
 
-**§8 Version History** added Sprint 5 row v1.4.
+**§8 Version History** added Fase de Especificação 5 row v1.4.
 
 **Frontmatter updated:** version 1.3 → 1.4, status ACTIVE → DEEP_ENRICHED, sprint 4 → 5, sprint_role → deep_enrichment_per_subdomain.
 
@@ -134,7 +134,7 @@ Each PG card has **15 fields** (12 functional + Scope/Out-of-scope):
 9. **Dependencies** (3 related sub-domains in same tier)
 10. **Risk if not met** (H/M/L + 1-line rationale)
 11. **Affected Stakeholders** (internal + external parties)
-12. **Maturity Score** (current → target, 0-4 scale)
+12. **Implementation Posture** (current → target, 0-4 scale)
 13. **Implementation Priority** (HIGH/MEDIUM/LOW)
 14. **Scope** (what is included)
 15. **Out of scope** (what is excluded)
@@ -170,15 +170,15 @@ Each tension has 8 fields:
 
 | Doc | Fields added | Total fields in new content |
 |-----|--------------|-----------------------------|
-| 07c (PG card) | Description, Scope, Out of scope, Source Article, Corpus path, NIST CSF Anchors, Verification Criteria (3 bullets), Verification Method, Owner, Status, Dependencies, Risk, Stakeholders, Maturity, Implementation Priority | **15 per card × 37 = 555 fields** |
+| 07c (PG card) | Description, Scope, Out of scope, Source Article, Corpus path, NIST CSF Anchors, Verification Criteria (3 bullets), Verification Method, Owner, Status, Dependencies, Risk, Stakeholders, Posture, Implementation Priority | **15 per card × 37 = 555 fields** |
 | 07c (SG card) | same as PG | **15 per card × 37 = 555 fields** |
 | 07c (tension) | Root Cause (3 paragraphs), Source Citations, Resolution Options, Implementation (4 steps), Verification (3 criteria), Risk, Stakeholder Alignment, Status | **~17 per tension × 4 = 68 fields** |
-| 07b (§4 col) | Risk if not met, Maturity (cur→tgt), Implementation Priority | **3 × 37 = 111 cells** |
+| 07b (§4 col) | Risk if not met, Posture (cur→tgt), Implementation Priority | **3 × 37 = 111 cells** |
 | 04 (BG col) | Owner, Quantitative Metric, Affected Stakeholders, Status, Risk if not met | **5 × 5 = 25 cells** |
-| 05 (§9 row) | Article, Topic, Sub-Domains, Obligated Party, Verification Criteria, Evidence Type, Risk if not met, Maturity (cur→tgt) | **8 × 54 = 432 cells** |
+| 05 (§9 row) | Article, Topic, Sub-Domains, Obligated Party, Verification Criteria, Evidence Type, Risk if not met, Posture (cur→tgt) | **8 × 54 = 432 cells** |
 | 05b (resolution) | Recommended Variant, Stakeholder Impact, Risk if not resolved | **3 × 20 = 60 fields** |
 
-**Fields explicitly excluded** (per Sprint 5 scope): Effort Estimate (FTE-weeks), Cost Estimate (€/month), Target Timeline (Q1/Q2/Q3/Q4).
+**Fields explicitly excluded** (per Fase de Especificação 5 scope): Effort Estimate (FTE-weeks), Cost Estimate (€/month), Target Timeline (Q1/Q2/Q3/Q4).
 
 ---
 
@@ -220,12 +220,12 @@ All 5 enriched docs updated:
 - Doc 07c §2a PG cards reference `phase1_ontology.yaml:clause_mappings[]` (28 GDPR clauses)
 - Doc 07c §3a SG cards reference `phase1_ontology.yaml:clause_mappings[]` (26 CRA clauses)
 - Doc 05 §9 references Doc 07c §2a for verification criteria
-- Doc 07b §4 Risk if not met + Maturity values cross-checked against Doc 04 BG table
+- Doc 07b §4 Risk if not met + Posture values cross-checked against Doc 04 BG table
 - Doc 05b §3 Resolution sections reference corpus D-XX.Y.json sidecars
 
 ---
 
-## §5 Corpus linkage (Sprint 5 enrichment sources)
+## §5 Corpus linkage (Fase de Especificação 5 enrichment sources)
 
 | Source | Path | Used for |
 |--------|------|----------|
@@ -236,11 +236,11 @@ All 5 enriched docs updated:
 | `proportionality_model.md` | `00_METHODOLOGY/REFERENCE/proportionality_model.md` | Track B tier definitions + invariant |
 | Phase 2 legacy `09_Strategic_Tensions_Report.md` + `10_Privacy_Security_Goals.md` | `02_CASES/Case_01_TinyTask_SaaS/02_PHASE2_RULES/` | T-001..T-004 IDs preserved |
 
-**No corpus files modified** — Sprint 5 is read-only against the corpus.
+**No corpus files modified** is read-only against the corpus.
 
 ---
 
-## §6 Files inventory (Sprint 5 deliverables)
+## §6 Files inventory (Fase de Especificação 5 deliverables)
 
 | File | Status | Sprint role |
 |------|--------|-------------|
@@ -261,14 +261,14 @@ Per AEGIS Orchestrator P7 ("Human is final arbiter"), the following decisions re
 1. **PG/SG resolutions** — Doc 07c §2a / §3a status fields are all `TODO`. The 12 fields per card (Description, Verification Criteria, etc.) are Executor-generated; the CEO/CTO/DPO need to sign off on each before Phase 2 consumes them.
 2. **Tension resolutions (T-001..T-004)** — Doc 07c §4 status is `AGREED` per phase1_ontology.yaml + Doc 05 §7, but formal CTO + CEO + DPO sign-off on the max-SLA routing approach (T-001 specifically) is required.
 3. **Risk heuristic** — Risk if not met values in Doc 07b §4 / 04 BG / 05 §9 are Executor-derived (HIGH/MEDIUM/LOW). CTO sign-off needed.
-4. **Maturity targets** — Target 3/4 (MUST LIGHTWEIGHT) is heuristic; quarterly review may revise.
+4. **Posture targets** — Target 3/4 (MUST LIGHTWEIGHT) is heuristic; quarterly review may revise.
 5. **Implementation Priority (HIGH/MEDIUM/LOW)** — Derived from MUST/SHOULD/COULD + DEFERRED status; CTO sign-off needed for actual sequencing.
 
 ---
 
-## §8 Sprint 6 readiness
+## §8 Fase de Especificação 6 readiness
 
-After Sprint 5 + human sign-off, Sprint 6 can:
+After Fase de Especificação 5 + human sign-off, Fase de Especificação 6 can:
 
 - Promote `Status: TODO` → `IN_PROGRESS` for first batch (Doc 07c §2a PG cards with HIGH implementation priority)
 - Begin Phase 2 obligations derivation (Doc 08) using Doc 07c §2a + §3a as input
@@ -281,5 +281,5 @@ After Sprint 5 + human sign-off, Sprint 6 can:
 - `00_METHODOLOGY/REFERENCE/proportionality_model.md` — Track B spec
 - `phase1_ontology.yaml` — canonical Phase 1 facts (54 clauses, applicability, tensions)
 - `validation/VALIDATOR_SPRINT5.md` — Self-verification report (PASS / CONDITIONAL_PASS / FAIL)
-- `validation/SPRINT4_REPORT.md` — Sprint 4 baseline (table skeletons)
+- `validation/SPRINT4_REPORT.md` baseline (table skeletons)
 - `01_IMPLEMENTATION_TOOLS/lints/reports/lint_report_phase1_20260806_125633.md` — Lint pass evidence

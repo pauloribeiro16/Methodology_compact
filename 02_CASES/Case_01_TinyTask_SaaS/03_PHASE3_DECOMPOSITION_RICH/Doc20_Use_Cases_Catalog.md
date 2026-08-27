@@ -7,7 +7,6 @@ created: 2026-08-24
 updated: 2026-08-26
 author: Executor (paulo@methodology.pt)
 status: REWRITTEN_PRODUCT_BASELINE
-sprint: 6
 deep_enrichment_date: 2026-08-24
 case: Case_01_TinyTask_SaaS
 tier: MICRO
@@ -21,7 +20,7 @@ expected_documents: 13
 schema_columns: 6
 schema_columns_list: [Primary Actor, Stakeholders, Preconditions, Trigger, Main Success Scenario, Extensions]
 annex_schema_columns: 6
-annex_schema_columns_list: [Owner, Verification Criteria, NIST Anchors, Dependencies, Risk, Reporting, Maturity]
+annex_schema_columns_list: [Owner, Verification Criteria, NIST Anchors, Dependencies, Risk, Reporting, Posture]
 freeze_total_use_cases_l1: 35
 freeze_total_use_cases_functional: 23
 freeze_total_use_cases_security: 35
@@ -30,8 +29,8 @@ freeze_total_use_cases_references: 62
 freeze_total_rules: 46
 corpus_linked: true
 nist_anchors: "see NIST_ANCHORS.md §3.1 (per-UC)"
-reconciliation_note: "Sprint 6 rewrite: catalogue reorganised as Cockburn anatomy + Security & Compliance Annex; packages 1-6 (security/compliance, 35 UCs) preserved verbatim; packages 7-11 (product functional, 23 UCs) introduced; 8 MUCs added; F-S5-02 ('0 actors defined') RESOLVED by introducing Primary Actor field."
-sprint6_note: "Sprint 6: PRODUCT BASELINE. 35 U.C.1-6 security/compliance UCs preserved; 23 U.C.7-11 product UCs introduced; 8 MUCs. Frontmatter status REWRITTEN_PRODUCT_BASELINE, version 3.0."
+reconciliation_note: "Fase de Especificação 6 rewrite: catalogue reorganised as Cockburn anatomy + Security & Compliance Annex; packages 1-6 (security/compliance, 35 UCs) preserved verbatim; packages 7-11 (product functional, 23 UCs) introduced; 8 MUCs added; F-S5-02 ('0 actors defined') RESOLVED by introducing Primary Actor field."
+sprint6_note: "Fase de Especificação 6: PRODUCT BASELINE. 35 U.C.1-6 security/compliance UCs preserved; 23 U.C.7-11 product UCs introduced; 8 MUCs. Frontmatter status REWRITTEN_PRODUCT_BASELINE, version 3.0."
 rewrite_protocol:
   - "P5 — kept all U.C.1-6 IDs verbatim so the 746 downstream refs remain valid"
   - "P1 — every security UC now has Functional UC(s) it constrains + threat(s) it addresses"
@@ -41,7 +40,7 @@ rewrite_protocol:
 
 # Use Cases Catalog — TinyTask Team Organizer (Phase 3 RICH)
 
-> **Status (Sprint 6):** REWRITTEN_PRODUCT_BASELINE.
+> **Status:** REWRITTEN_PRODUCT_BASELINE.
 > Catalog reorganised so the **product** comes first: 23 functional use cases (U.C.7–11) and 8 misuse cases describe how TinyTask Team Organizer works and is attacked; 35 security/compliance use cases (U.C.1–6) describe how the company secures that product and proves compliance.
 > Cards follow Cockburn's fully dressed template (Primary Actor · Stakeholders · Preconditions · Trigger · Main Success Scenario · Extensions · Postconditions) with a Security & Compliance Annex folding in the prior property-sheet fields.
 >
@@ -652,7 +651,7 @@ rewrite_protocol:
 
 ## §3 Security & Compliance Use Cases (U.C.1–6) — preserved verbatim
 
-> The 35 L1 security/compliance use cases from the v2.0 freeze are retained with the same `U.C.X.Y.Z` identifiers (so every downstream reference stays valid) and rewritten in Cockburn form. Every card carries a **Security & Compliance Annex** that consolidates the prior property-sheet fields (verification criteria, dependencies, NIST anchors, reporting, maturity) so no information is lost.
+> The 35 L1 security/compliance use cases from the v2.0 freeze are retained with the same `U.C.X.Y.Z` identifiers (so every downstream reference stays valid) and rewritten in Cockburn form. Every card carries a **Security & Compliance Annex** that consolidates the prior property-sheet fields (verification criteria, dependencies, NIST anchors, reporting, posture) so no information is lost.
 
 ### §3.1 PKG-DP (Data Protection) — 6
 
@@ -1510,7 +1509,7 @@ rewrite_protocol:
 
 ## §5 Relationships
 
-> See `Doc21_Use_Case_Relationships.md` for the full edge catalogue. New relation types added in Sprint 6:
+> See `Doc21_Use_Case_Relationships.md` for the full edge catalogue. New relation types added in Fase de Especificação 6:
 > - `constrains` — Security U.C. → Functional U.C. (security U.C. restricts how functional U.C. must operate).
 > - `threatens` — MUC → Functional U.C. (misuse case targets functional U.C.).
 > - `mitigated_by` — MUC → Security U.C. (security U.C. mitigates the threat).
@@ -1534,7 +1533,7 @@ rewrite_protocol:
 
 All 35 IDs preserved verbatim. No downstream document requires remapping.
 
-### §6.2 New IDs introduced (Sprint 6)
+### §6.2 New IDs introduced
 
 | Family | Range | Count | Package |
 |--------|-------|------:|---------|
@@ -1553,7 +1552,7 @@ All 35 IDs preserved verbatim. No downstream document requires remapping.
 - `KG_CHAINS.md` §1 (CH-09: FR-29 → UC-25 → CR-D-04.3)
 - `13a_Use_Case_Relationships.md` — `«include»` / `«extend»` graph (security UCs) + new `constrains`/`threatens`/`mitigated_by` (MUCs)
 - `13b_Use_Case_Variability.md` — variant catalogue (security UCs) + functional variants (e.g., U.C.10.2.1 plan tiers)
-- `annexes/A_Use_Case_Diagrams.md` — Mermaid diagrams (Sprint 3 fill)
+- `annexes/A_Use_Case_Diagrams.md` — Mermaid diagrams (Fase de Especificação 3 fill)
 
 ---
 
@@ -1563,7 +1562,7 @@ All 35 IDs preserved verbatim. No downstream document requires remapping.
 |---------|--------|------------|
 | F-S5-01 (legacy `## 5.` headers vs `## §N`) | PRESERVED | Cosmetic; out of rewrite scope. |
 | **F-S5-02 ("0 actors defined" — lint regex doesn't match `**Owner:**)** | **RESOLVED** | Primary Actor field now mandatory on every UC card (§1 Actors catalogue + per-card anatomy). |
-| Sprint 5 product UC absence | RESOLVED | §2 introduces 23 functional U.C.7-11 + 8 MUCs. |
+| Fase de Especificação 5 product UC absence | RESOLVED | §2 introduces 23 functional U.C.7-11 + 8 MUCs. |
 
 ---
 
@@ -1575,4 +1574,4 @@ All 35 IDs preserved verbatim. No downstream document requires remapping.
 
 ---
 
-**End of Use Cases Catalog (Phase 3 RICH, REWRITTEN_PRODUCT_BASELINE, v3.0 — Sprint 6)**
+**End of Use Cases Catalog (Phase 3 RICH, REWRITTEN_PRODUCT_BASELINE, v3.0)**

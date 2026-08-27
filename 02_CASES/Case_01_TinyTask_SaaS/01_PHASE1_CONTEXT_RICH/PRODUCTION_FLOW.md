@@ -168,7 +168,7 @@ sole producer of goals; everything downstream reads from it.
 | **Doc02** | FLOW-NATIVE | all | n/a | produces Doc03 |
 | **Doc03** | FLOW-NATIVE | all (BG-01..BG-05) | n/a | produces Doc04/06/07/08 |
 | **Doc04** | JUSTIFIED-EXTENSION | D-01.1..1.4, D-02.1..2.4, D-03.1..3.4 (architecture, data inventory) | AG-D-01.1-001..002, AG-D-02.1-001..002, AG-D-02.2-001..002, AG-D-03.1-001..002 (8 IDs in Doc13) | lens doc → Doc11 |
-| **Doc05** | ORPHAN-HYBRID | (maturity) | DEPRECATED 2026-08-07 — ownership transferred to Phase 2 `Doc19_Framework_Mapping_Matrix.md` §5.1 | historical |
+| **Doc05** | ORPHAN-HYBRID | (posture) | DEPRECATED 2026-08-07 — ownership transferred to Phase 2 `Doc19_Framework_Mapping_Matrix.md` §5.1 | historical |
 | **Doc06** | JUSTIFIED-EXTENSION | D-02.1, D-02.2, D-06.1..4, D-08.3, D-10.1 | AG-D-06.1-001..002, AG-D-06.2-001..002, AG-D-08.3-001..002, AG-D-10.1-001..002 (8 IDs) | lens doc → Doc11 |
 | **Doc07** | JUSTIFIED-EXTENSION | D-01.1..4, D-02.1..4, D-03.1..2, D-04.1 (RACI §9.2 maps 35 sub-domains) | AG-D-01.1-001..002, AG-D-02.1-001..002, AG-D-03.1-001..002, AG-D-04.1-001..002 (representative — full list in §9.2; see matrix §3) | lens doc → Doc11 |
 | **Doc08** | FLOW-NATIVE | all applicable regs (GDPR, CRA) | n/a | produces Doc10 |
@@ -236,15 +236,15 @@ deprecated).
 - **Classification:** JUSTIFIED-EXTENSION (architecture & data inventory are case-level
   elaborations of Doc 04 — methodology canon does not enumerate them).
 
-### Doc05 — Security Posture / Maturity
+### Doc05 — Security Posture / Posture
 - **Trigger:** Doc03 output (posture assessment).
 - **Inputs declared:** `[04_Company_Context_Assessment.md, 04a_…, 05_…]` (legacy).
 - **Outputs declared:** `[07_Structured_Compliance_Matrix.md]` (legacy — wrong).
-- **Consumers (realised):** none realised in Phase 1 corpus; maturity ownership
+- **Consumers (realised):** none realised in Phase 1 corpus; posture ownership
   transferred to Phase 2 `Doc19_Framework_Mapping_Matrix.md` §5.1 (2026-08-07).
 - **Objectives served:** n/a (deprecated).
 - **Classification:** **ORPHAN-HYBRID** (kept for historical traceability, marked
-  `DEPRECATED_FOR_MATURITY` in frontmatter; should be parked from any flow view).
+  `DEPRECATED_FOR_POSTURE` in frontmatter; should be parked from any flow view).
 
 ### Doc06 — Third-Party Landscape (Rich Mode)
 - **Trigger:** Doc03 output (third-party data flows identified).
@@ -342,7 +342,7 @@ deprecated).
 A Phase 1 case is **ready to advance to Phase 2** when **all** of the following hold:
 
 1. **Doc-level:** all 13 deliverables (Doc01–Doc13) are present and lint-clean (Doc05 is
-   permitted to be `DEPRECATED_FOR_MATURITY`).
+   permitted to be `DEPRECATED_FOR_POSTURE`).
 2. **Goal-linkage:** the matrix in §3 of this file is the authoritative doc↔objectives map
    for Doc04 / Doc06 / Doc07 (frontmatter remains as-is; linkage is published here, not as a
    new frontmatter field).
@@ -368,8 +368,8 @@ See `validation/P1_production_flow_audit_v0.md` sections A–D and
 - **`kg.sh impact AEGIS-P1-RICH-07c` no-op:** the KG E3 graph keys on DocNN tokens, not
   on the `AEGIS-*` doc IDs. Impact queries wanting to reason about Doc13 must use the
   DocNN token directly until an ID alias table is added.
-- **Doc04b maturity ownership transfer:** Phase-2 side has not yet documented
-  `DEPRECATED_FOR_MATURITY` in `phase1_ontology.yaml` — open item.
+- **Doc04b posture ownership transfer:** Phase-2 side has not yet documented
+  `DEPRECATED_FOR_POSTURE` in `phase1_ontology.yaml` — open item.
 - **Case_02 / Case_03 transversal:** zero fluxdiagram references and zero `AO-` migration
   in either case. Out of scope for this v1.0 (case-anchored).
 - **Doc05 ORPHAN-HYBRID handling:** parked from this flow view; downstream readers should

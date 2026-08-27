@@ -1,20 +1,19 @@
 ---
 document_id: AEGIS-P3-RICH-SPRINT2
-title: Sprint 2 Report — Corpus / NIST Anchors / KG Chains (Phase 3 Rich Mode)
+title: Fase de Especificação 2 Report — Corpus / NIST Anchors / KG Chains (Phase 3 Rich Mode)
 phase: 3
 version: 1.0
 created: 2026-08-24
 updated: 2026-08-24
-author: Sprint 2 Executor (paulo@methodology.pt)
+author: Fase de Especificação 2 Executor (paulo@methodology.pt)
 status: COMPLETE
 case: Case_01_TinyTask_SaaS
 tier: MICRO
-sprint: 2
 sprint_role: corpus_enrichment
 branch: feature/aegis-p3-case01-rich
 verdict: PASS_WITH_FINDINGS
 inputs:
-  - RULE_FREEZE.md (Sprint 1)
+  - RULE_FREEZE.md
   - 02_PHASE2_RULES_RICH/11_Rules_Catalog.md §7 (NIST CSF anchors)
   - 02_PHASE2_RULES_RICH/10b_Privacy_Security_Goals_NIST_Implications.md
   - /home/epmq-cyber/Área de Trabalho/projects/Deucalion/results/graphify/E3_2026-08-23/graphify-out/graph.json (3882 nodes, 11232 links)
@@ -31,15 +30,15 @@ related_deliverables:
   - validation/SPRINT1_REPORT.md (precedent)
 ---
 
-# Sprint 2 Report — Corpus / NIST Anchors / KG Chains
+# Fase de Especificação 2 Report — Corpus / NIST Anchors / KG Chains
 
-> **Sprint 2** enriches the Phase 3 Rich Mode corpus with three cross-cutting concerns:
+> **Fase de Especificação 2** enriches the Phase 3 Rich Mode corpus with three cross-cutting concerns:
 > (A) **Corpus linkage** — every artefact linked to D-XX.Y sub-domain;
 > (B) **NIST anchors** — CSF 2.0 + PF 1.0 per rule, per goal, per UC/FR/NFR card slot;
 > (C) **KG inference chains** — 12 validated chains traversing the Graphify KG.
 >
 > **Verdict: PASS_WITH_FINDINGS** — corpus coverage 100% (344 artefacts linked), NIST anchors 46/46 rules + 27/31 goals (87% — 4 SOs intentionally blank per Doc 10b), KG chains 12/12 with 11/12 spot-checks PASS (1 chain documented with INFERRED-needs-verification).
-> F-S1-09 contamination register: REPORT (deferred to Sprint 5 KG re-run in isolation).
+> F-S1-09 contamination register: REPORT (deferred to Fase de Especificação 5 KG re-run in isolation).
 
 ---
 
@@ -109,13 +108,13 @@ related_deliverables:
 | Edges INFERRED | 3 (17%) |
 | Spot-checks performed | 12 (1 per chain, first edge) |
 | Spot-checks PASSED | 11 (92%) |
-| Spot-checks FAILED | 1 (CH-09: source_location="Doc 23 §3 row 79" not found verbatim in Doc 23 — replaced with fuzzy match on FR-29 + UC-25 reference; needs Sprint 5 verification) |
+| Spot-checks FAILED | 1 (CH-09: source_location="Doc 23 §3 row 79" not found verbatim in Doc 23 — replaced with fuzzy match on FR-29 + UC-25 reference; needs Fase de Especificação 5 verification) |
 | Broken chains | 0 |
 | Chains needing verification (INFERRED-only) | 1 (CH-12: NODE-PROC-001 → CR-D-04.3, INFERRED by KG) |
 
 **Pattern coverage**: RP-3 (reverse-NIST) × 5, RP-4 (case→legal) × 5, RP-7 (god-nodes) × 4, RP-8 (cross-domain) × 2.
 
-**God-nodes used**: `concept_nist_csf_2_0`, `gdpr`, `cra`, `privacy_fw_1_0`, `02_phase2_rules_rich_11_rules_catalog_maturity_dual`.
+**God-nodes used**: `concept_nist_csf_2_0`, `gdpr`, `cra`, `privacy_fw_1_0`, `02_phase2_rules_rich_11_rules_catalog_posture_dual`.
 
 ---
 
@@ -123,16 +122,16 @@ related_deliverables:
 
 | F-id | Status (S1) | Status (S2) | Note |
 |------|:-----------:|:-----------:|------|
-| F-00a..F-00f | RESOLVED/CLOSED | unchanged | Sprint 0/1 carry-over |
-| F-S1-01..F-S1-07 | OPEN (Sprint 5 port) | unchanged | 7 orphan CR-D refs in legacy Phase 3; Sprint 5 will re-map |
-| F-S1-08 | CARRIED (follow-on) | unchanged | Doc 08 vs Doc 11 discrepancy on 4 Sprint 6+ OBLs (D-07.2/3/4, D-10.1) |
-| F-S1-09 | OPEN (KG re-run) | **OPEN, disposition REPORT** | 14 Case_02 contamination nodes in KG; not in markdown source; deferred to Sprint 5 |
+| F-00a..F-00f | RESOLVED/CLOSED | unchanged | Fase de Especificação 0/1 carry-over |
+| F-S1-01..F-S1-07 | OPEN (Fase de Especificação 5 port) | unchanged | 7 orphan CR-D refs in legacy Phase 3; Fase de Especificação 5 will re-map |
+| F-S1-08 | CARRIED (follow-on) | unchanged | Doc 08 vs Doc 11 discrepancy on 4 Fase de Especificação 6+ OBLs (D-07.2/3/4, D-10.1) |
+| F-S1-09 | OPEN (KG re-run) | **OPEN, disposition REPORT** | 14 Case_02 contamination nodes in KG; not in markdown source; deferred to Fase de Especificação 5 |
 | F-S1-10/F-S1-11 | CLOSED | unchanged | cosmetic / SC3 carry-over |
 
-**New Sprint 2 findings**:
+**New Fase de Especificação 2 findings**:
 - **F-S2-01** (INFO, LOW): Doc 23 §3 row 79 (FR-29 → CR-D-08.1-001 = Annual Security Awareness Training) is correctly mapped. KG node `fr_29_universal_notification` is a labelling artefact (Universal Notification is FR-29 in Doc 16 §5B, not Doc 23). Disposition: NOTE in KG_CHAINS.md CH-09; do not rename KG node (preserves KG provenance).
-- **F-S2-02** (INFO, LOW): Doc 23 §3 maps FR-16 → CR-D-01.1-001 (Data at Rest Encryption) but FR-16 description is "regulatory notification 24h/72h" which semantically belongs to CR-D-04.3-001. Legacy drift. Disposition: Sprint 5 should re-map FR-16 to CR-D-04.3-001 (noted in NIST_ANCHORS.md §3.2 FR-16 row).
-- **F-S2-03** (INFO, LOW): Doc 23 §3 maps FR-23 → CR-D-02.1-001 (Vulnerability-Free Release) but FR-23 description is "generate Software Bill of Materials" which semantically belongs to CR-D-06.2-001 (SBOM). Legacy drift. Disposition: Sprint 5 should re-map (noted in NIST_ANCHORS.md §3.2 FR-23 row).
+- **F-S2-02** (INFO, LOW): Doc 23 §3 maps FR-16 → CR-D-01.1-001 (Data at Rest Encryption) but FR-16 description is "regulatory notification 24h/72h" which semantically belongs to CR-D-04.3-001. Legacy drift. Disposition: Fase de Especificação 5 should re-map FR-16 to CR-D-04.3-001 (noted in NIST_ANCHORS.md §3.2 FR-16 row).
+- **F-S2-03** (INFO, LOW): Doc 23 §3 maps FR-23 → CR-D-02.1-001 (Vulnerability-Free Release) but FR-23 description is "generate Software Bill of Materials" which semantically belongs to CR-D-06.2-001 (SBOM). Legacy drift. Disposition: Fase de Especificação 5 should re-map (noted in NIST_ANCHORS.md §3.2 FR-23 row).
 - **F-S2-04** (LOW): KG edge source_location for CH-09 ("Doc 23 §3 row 79") uses Doc 23 row number as locator; spot-check fuzzy-failed because the row number is not in Doc 23 text verbatim. Disposition: replace with `§3 FR-29` semantic locator; do not block.
 
 ---
@@ -157,16 +156,16 @@ related_deliverables:
 
 ---
 
-## §7 Next sprint (Sprint 3 — Final docs + xlsx + anexos + debt)
+## §7 Next sprint (Fase de Especificação 3 — Final docs + xlsx + anexos + debt)
 
-Sprint 3 will:
+Fase de Especificação 3 will:
 1. Implement `scripts/build_traceability_matrix_rich.py` — 8-sheet xlsx workbook (mirror legacy `22_Traceability_Matrix.xlsx`).
 2. Implement `scripts/gen_drawio.py` — consume Mermaid from Rich Doc 17.
 3. Final docs: README v1.0, RICH_VS_LEGACY.md updated, PROJECT_STATE.md bumped to v1.0.
 4. Write `validation/SPRINT3_REPORT.md`.
 5. Re-run Graphify on Case_01 in isolation (Case_02 ontology disabled) to remediate F-S1-09.
 
-**Debt register** (to be addressed in Sprint 5 / follow-on contract):
+**Debt register** (to be addressed in Fase de Especificação 5 / follow-on contract):
 - F-S1-01..F-S1-07: 7 orphan CR-D refs in legacy Phase 3 (D-02.4/06.4/07.3/07.4/08.3/09.3/10.1).
 - F-S1-08: 4 OBLs (D-07.2/3/4, D-10.1) lacking CR entries in Doc 11.
 - F-S2-02, F-S2-03: Doc 23 FR-16/23 re-mapping to correct CR.
@@ -174,7 +173,7 @@ Sprint 3 will:
 
 ---
 
-## §8 ls snapshot (post-Sprint 2)
+## §8 ls snapshot (post-Fase de Especificação 2)
 
 ```
 $ ls -la 02_CASES/Case_01_TinyTask_SaaS/03_PHASE3_DECOMPOSITION_RICH/
@@ -186,36 +185,36 @@ $ ls -la 02_CASES/Case_01_TinyTask_SaaS/03_PHASE3_DECOMPOSITION_RICH/
 16_Compliance_Gates_Report.md            (CORPUS_ENRICHED)
 17_Functional_Tree.md                    (CORPUS_ENRICHED)
 25_Risk_Analysis.md                      (CORPUS_ENRICHED)
-PROJECT_STATE.md                         (CORPUS_ENRICHED, Sprint 2 update)
-README.md                                (untouched from Sprint 0)
-RICH_VS_LEGACY.md                        (APPENDED §A/§B/§C in Sprint 1)
-RULE_FREEZE.md                           (FROZEN, ~430 lines, Sprint 1)
-CORPUS_LINKAGE.md                        (NEW, Sprint 2, ~490 lines)
-NIST_ANCHORS.md                          (NEW, Sprint 2, ~290 lines)
-KG_CHAINS.md                             (NEW, Sprint 2, ~245 lines)
-Phase_3_Functional_Decomposition_Synthesis.md  (Sprint 1 RECONCILED → Sprint 2 untouched)
+PROJECT_STATE.md                         (CORPUS_ENRICHED, Fase de Especificação 2 update)
+README.md                                (untouched from Fase de Especificação 0)
+RICH_VS_LEGACY.md                        (APPENDED §A/§B/§C in Fase de Especificação 1)
+RULE_FREEZE.md                           (FROZEN, ~430 lines, Fase de Especificação 1)
+CORPUS_LINKAGE.md                        (NEW, Fase de Especificação 2, ~490 lines)
+NIST_ANCHORS.md                          (NEW, Fase de Especificação 2, ~290 lines)
+KG_CHAINS.md                             (NEW, Fase de Especificação 2, ~245 lines)
+Phase_3_Functional_Decomposition_Synthesis.md  (Fase de Especificação 1 RECONCILED → Fase de Especificação 2 untouched)
 annexes/
-  A_Use_Case_Diagrams.md                 (Sprint 1 RECONCILED → Sprint 2 untouched)
-  D_KG_Inference_Examples.md             (Sprint 1 RECONCILED → Sprint 2 untouched)
+  A_Use_Case_Diagrams.md                 (Fase de Especificação 1 RECONCILED → Fase de Especificação 2 untouched)
+  D_KG_Inference_Examples.md             (Fase de Especificação 1 RECONCILED → Fase de Especificação 2 untouched)
 requirements/
-  23_FR_Review_Report.md                 (Sprint 1 RECONCILED + LEGACY PORTED → Sprint 2 untouched)
-  23_Functional_Requirements.md          (CORPUS_ENRICHED, Sprint 2)
-  24_NFR_Review_Report.md                (Sprint 1 RECONCILED + LEGACY PORTED → Sprint 2 untouched)
-  24_Non_Functional_Requirements.md      (CORPUS_ENRICHED, Sprint 2)
+  23_FR_Review_Report.md                 (Fase de Especificação 1 RECONCILED + LEGACY PORTED → Fase de Especificação 2 untouched)
+  23_Functional_Requirements.md          (CORPUS_ENRICHED, Fase de Especificação 2)
+  24_NFR_Review_Report.md                (Fase de Especificação 1 RECONCILED + LEGACY PORTED → Fase de Especificação 2 untouched)
+  24_Non_Functional_Requirements.md      (CORPUS_ENRICHED, Fase de Especificação 2)
 scripts/
-  build_traceability_matrix_rich.py      (stub, Sprint 3)
-  gen_drawio.py                          (stub, Sprint 3)
-  verify_rich.py                         (stub, Sprint 5)
+  build_traceability_matrix_rich.py      (stub, Fase de Especificação 3)
+  gen_drawio.py                          (stub, Fase de Especificação 3)
+  verify_rich.py                         (stub, Fase de Especificação 5)
 validation/
-  LINT_REPORT_BEFORE.md                  (Sprint 0 baseline)
-  RICH_LINT_BASELINE.md                  (Sprint 0 baseline)
-  SPRINT0_REPORT.md                      (Sprint 0)
-  SPRINT1_REPORT.md                      (Sprint 1)
+  LINT_REPORT_BEFORE.md                  (Fase de Especificação 0 baseline)
+  RICH_LINT_BASELINE.md                  (Fase de Especificação 0 baseline)
+  SPRINT0_REPORT.md
+  SPRINT1_REPORT.md
   SPRINT2_REPORT.md                      (NEW, this file)
-  lint_report_phase3_*.{json,md}         (Sprint 0 outputs)
-  _lint_run.log / _rich_lint_run.log      (Sprint 0 logs)
+  lint_report_phase3_*.{json,md}         (Fase de Especificação 0 outputs)
+  _lint_run.log / _rich_lint_run.log      (Fase de Especificação 0 logs)
 ```
 
 ---
 
-**Sprint 2 verdict: PASS_WITH_FINDINGS — Phase 3 corpus is now linked to sub-domains, NIST-anchored, and traversable via KG chains. Sprint 3 unblocked.**
+**Fase de Especificação 2 verdict: PASS_WITH_FINDINGS — Phase 3 corpus is now linked to sub-domains, NIST-anchored, and traversable via KG chains. Fase de Especificação 3 unblocked.**

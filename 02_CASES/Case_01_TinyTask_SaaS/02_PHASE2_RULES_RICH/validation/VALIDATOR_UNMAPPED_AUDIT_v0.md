@@ -61,3 +61,26 @@ CSF-side, unrelated to UNMAPPED: `ID.AM-08` (frozen CSF list tops at ID.AM-07; a
 3. **Case_03 session:** idem.
 4. **KG rebuild:** build E3 `graph.json` contains 1 corrupted `UNMAPPED_PF` occurrence (guard-protected; do not edit directly) — next graphify rebuild in the main repo must re-ingest the corrected sources.
 5. **Stale input paths:** Doc19 frontmatter `inputs` cites `PREPROCESSING/...` layouts that moved to `PREPROCESSING_by_domain/` (provenance only; no ID impact).
+
+
+---
+
+## 7. Addendum: Implementation Posture Transition & Sprint Sweep
+
+**Date:** 2026-08-27  
+**Validator:** Validator & Executor (AEGIS Orchestration)
+
+### Summary of Actions Taken:
+1. **Implementation Posture Model v2.0 Finalization:**
+   - Legacy numerical maturity scales (0–4 scores, T1–T4 Tiers) were completely removed across all Case_01 Phase 1, Phase 2, and Phase 3 markdown deliverables.
+   - Replaced with qualitative Implementation Posture states (`IMPLEMENTED`, `PARTIAL`, `NOT IMPLEMENTED`, `N/A`).
+   - Corrected uniformity anti-pattern across `Doc16` (31 SO/PO cards) and `Doc18` (46 CR cards) by deriving non-uniform, evidence-backed statuses citing concrete `Doc04a`/`Doc05` pointers for `IMPLEMENTED` cards and concise gap descriptions for `PARTIAL` / `NOT IMPLEMENTED` cards.
+   - Updated `SPEC_NIST_MATRIX_UNIFIED.md` §7 and `Doc17` (`maturity_target_micro:` -> `posture_note_micro:`) while preserving historical audit lines (L1/L2/L3/D3).
+
+2. **Validation Gate v0.2:**
+   - Updated `validation/check_implementation_posture.py` to enforce zero tolerance for `/maturi/i` in Case_01 deliverables and verify non-uniformity across card status distributions.
+   - Gate result: **`GATE PASS`**.
+
+3. **Sprint Metadata Sweep:**
+   - Swept legacy `sprint:` keys from YAML frontmatters and `(Sprint N)` from titles across deliverables (`Doc01` to `Doc31`, `SPEC`, `RULE_FREEZE`, `README.md`).
+   - Historical reports in `validation/`, `RICH_VS_LEGACY.md`, and the change log in `PROJECT_STATE.md` were preserved for audit traceability.

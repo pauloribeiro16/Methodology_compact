@@ -4,7 +4,7 @@
 > **Case:** Case_01_TinyTask_SaaS
 > **Branch:** `feature/aegis-p1-case01-rich`
 > **Date:** 2026-08-06
-> **Author:** Sprint 5 Executor (deep-enrichment-builder)
+> **Author:** Fase de Especificação 5 Executor (deep-enrichment-builder)
 > **Verdict:** **CONDITIONAL_PASS** (all functional checks PASS; sign-off pending per P7)
 
 ---
@@ -92,7 +92,7 @@
 
 ## §2 Track B Decision Table Check
 
-The Sprint 5 enrichment must preserve the Track B invariants from `proportionality_model.md §1`:
+The Fase de Especificação 5 enrichment must preserve the Track B invariants from `proportionality_model.md §1`:
 
 > **"The regulatory `fit_criterion` and the HSO are never modified by Track B. Track B only varies three axes: `satisfaction_pattern`, `evidence_depth`, `ownership`."**
 
@@ -104,7 +104,7 @@ The Sprint 5 enrichment must preserve the Track B invariants from `proportionali
 
 ### §2.2 Tier Distribution (31 LIGHTWEIGHT + 5 MINIMAL + 1 DEFERRED = 37)
 
-| Tier | Sprint 4 | Sprint 5 | Status |
+| Tier | Fase de Especificação 4 | Fase de Especificação 5 | Status |
 |------|----------|----------|--------|
 | LIGHTWEIGHT | 31 | 31 | ✅ preserved |
 | MINIMAL | 5 | 5 | ✅ preserved |
@@ -165,7 +165,7 @@ The Sprint 5 enrichment must preserve the Track B invariants from `proportionali
 
 **6/6 PASS** — see `01_IMPLEMENTATION_TOOLS/lints/reports/lint_report_phase1_20260806_125633.md`.
 
-| Lint | Sprint 4 | Sprint 5 | Status |
+| Lint | Fase de Especificação 4 | Fase de Especificação 5 | Status |
 |------|----------|----------|--------|
 | Company Context (38 questions) | ✅ | ✅ | unchanged |
 | Regulatory Mapping | ✅ | ✅ | unchanged |
@@ -174,26 +174,26 @@ The Sprint 5 enrichment must preserve the Track B invariants from `proportionali
 | Cross-Document Consistency | ✅ | ✅ | unchanged |
 | Template Compliance | ✅ | ✅ | unchanged |
 
-**No new warnings introduced by Sprint 5 enrichment.** Sprint 4 baseline: 44 warnings. Sprint 5: 44 warnings (unchanged).
+**No new warnings introduced by Fase de Especificação 5 enrichment.** Fase de Especificação 4 baseline: 44 warnings. Fase de Especificação 5: 44 warnings (unchanged).
 
 ---
 
 ## §5 Corpus Invariant Check
 
-The corpus at `00_METHODOLOGY/PREPROCESSING_by_domain/domains/` is **read-only** for Sprint 5. Verification:
+The corpus at `00_METHODOLOGY/PREPROCESSING_by_domain/domains/` is **read-only** for Fase de Especificação 5. Verification:
 
 - `git status` on corpus files: **unmodified**. ✅
 - Doc 07c §1 Generic Baseline table: 37 rows, HSO + Sub-SOs preserved verbatim. ✅
 - Doc 05 §9 Per-Article table: 54 rows, all clause mappings traced to `phase1_ontology.yaml:clause_mappings[]`. ✅
-- Doc 07b §11 Corpus Cross-Check: Sprint 3 verification preserved (10/10 rows PASS). ✅
+- Doc 07b §11 Corpus Cross-Check: Fase de Especificação 3 verification preserved (10/10 rows PASS). ✅
 
-**No corpus files modified** by Sprint 5.
+**No corpus files modified** by Fase de Especificação 5.
 
 ---
 
 ## §6 Effort/Cost/Timeline Exclusion Check
 
-Per Sprint 5 scope, the following fields are **explicitly EXCLUDED**:
+Per Fase de Especificação 5 scope, the following fields are **explicitly EXCLUDED**:
 
 | Field | Searched for | Found in enriched content? |
 |-------|--------------|----------------------------|
@@ -219,9 +219,9 @@ Per Sprint 5 scope, the following fields are **explicitly EXCLUDED**:
 
 ---
 
-## §8 Files Inventory (Sprint 5 deliverables)
+## §8 Files Inventory (Fase de Especificação 5 deliverables)
 
-| File | Lines (Sprint 4 → Sprint 5) | Status |
+| File | Lines (Fase de Especificação 4 → Fase de Especificação 5) | Status |
 |------|------------------------------|--------|
 | `07c_Adjusted_Objectives.md` | 292 → 3451 (+3159) | DEEP_ENRICHED v2.0 |
 | `07b_Proportionality_Profile.md` | 378 → 383 (+5) | DEEP_ENRICHED v1.4 |
@@ -233,7 +233,7 @@ Per Sprint 5 scope, the following fields are **explicitly EXCLUDED**:
 
 ---
 
-## §9 Sprint 6 readiness
+## §9 Fase de Especificação 6 readiness
 
 After human sign-off per P7:
 
@@ -267,8 +267,8 @@ After human sign-off per P7:
 
 ## §11 See also
 
-- `validation/SPRINT5_REPORT.md` — Sprint 5 deliverables
-- `validation/SPRINT4_REPORT.md` — Sprint 4 baseline
-- `validation/VALIDATOR_SPRINT4.md` — Sprint 4 self-verification
+- `validation/SPRINT5_REPORT.md` deliverables
+- `validation/SPRINT4_REPORT.md` baseline
+- `validation/VALIDATOR_SPRINT4.md` self-verification
 - `01_IMPLEMENTATION_TOOLS/lints/reports/lint_report_phase1_20260806_125633.md` — Lint pass evidence
 - `phase1_ontology.yaml` — Canonical Phase 1 facts (54 clauses, applicability, tensions)
