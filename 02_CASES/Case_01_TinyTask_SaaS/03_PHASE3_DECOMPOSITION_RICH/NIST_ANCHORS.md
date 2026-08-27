@@ -19,7 +19,7 @@ inputs:
 pattern_validated: true
 coverage:
   rules_anchored: "46/46 (100%)"
-  goals_anchored: "27/31 (87%) — 4 SOs (SO-D-02.2/02.3/03.2/06.2) intentionally blank per Doc 10b"
+  goals_anchored: "28/31 (90%) — 3 SOs (SO-D-02.2/02.3/06.2) intentionally blank (SSDF deliverables, RV.2/RV.1/PS.3)"
 related_deliverables: [CORPUS_LINKAGE.md, KG_CHAINS.md, validation/SPRINT2_REPORT.md]
 ---
 
@@ -43,41 +43,41 @@ related_deliverables: [CORPUS_LINKAGE.md, KG_CHAINS.md, validation/SPRINT2_REPOR
 | Rule ID | CSF Anchors | PF Anchors |
 |---------|-------------|------------|
 | CR-D-01.1-001 | PR.DS-01, PR.DS-10, PR.PS-04 | PR.DS-P1 |
-| CR-D-01.2-001 | PR.DS-02, PR.IR-01, PR.PS-04 | PR.DS-P2 |
-| CR-D-01.3-001 | GV.OV-01, GV.RM-04, PR.AA-03, PR.AA-04, PR.DS-01 | — |
+| CR-D-01.2-001 | PR.DS-02, PR.IR-01, PR.PS-04 | PR.DS-P2, PR.PO-P7 |
+| CR-D-01.3-001 | GV.OV-01, GV.RM-04, PR.AA-03, PR.AA-04, PR.DS-01 | PR.DS-P1, CT.DP-P2 |
 | CR-D-01.4-001 | PR.DS-01, PR.DS-02, PR.DS-10, PR.IR-03, PR.IR-04, PR.PS-04 | CT.DM-P1, CT.DM-P3 |
 | CR-D-02.1-001 | GV.OV-02, ID.AM-02, ID.IM-02, ID.RA-01, ID.RA-03 | ID.RA-P3, ID.RA-P5 |
-| CR-D-02.2-001 | GV.OV-02, ID.RA-01, PR.IR-03, PR.PS-01, PR.PS-02 | — |
-| CR-D-02.3-001 | GV.PO-01, GV.SC-04, ID.RA-01, RS.CO-03, RS.MA-01 | — |
-| CR-D-03.1-001 | ID.AM-01, PR.AA-01, PR.AA-02, PR.AA-03, PR.AA-05 | — |
-| CR-D-03.2-001 | PR.AA-03, PR.AA-04, PR.AA-05, PR.AA-06, PR.AT-02 | — |
-| CR-D-03.3-001 | ID.AM-01, ID.AM-02, PR.AA-01, PR.AA-03, PR.AA-05 | CT.PO-P1 |
+| CR-D-02.2-001 | GV.OV-02, ID.RA-01, PR.IR-03, PR.PS-01, PR.PS-02 | — (SSDF deliverable) |
+| CR-D-02.3-001 | GV.PO-01, GV.SC-04, ID.RA-01, RS.CO-03, RS.MA-01 | — (SSDF deliverable) |
+| CR-D-03.1-001 | ID.AM-01, PR.AA-01, PR.AA-02, PR.AA-03, PR.AA-05 | PR.AC-P1, PR.AC-P6, PR.AC-P4 |
+| CR-D-03.2-001 | PR.AA-03, PR.AA-04, PR.AA-05, PR.AA-06, PR.AT-02 | PR.AC-P6, PR.AC-P4, GV.AT-P1 |
+| CR-D-03.3-001 | ID.AM-01, ID.AM-02, PR.AA-01, PR.AA-03, PR.AA-05 | CT.PO-P1, PR.AC-P1, PR.AC-P6, PR.AC-P4 |
 | CR-D-03.4-001 | GV.PO-01, GV.SC-03, PR.DS-10, PR.PS-01, PR.PS-04 | CT.DP-P4, CT.PO-P4 |
 | CR-D-04.1-001 | DE.AE-02, DE.CM-01, DE.CM-09, ID.RA-04, PR.PS-04 | CM.AW-P7 |
 | CR-D-04.2-001 | DE.CM-09, PR.DS-10, PR.IR-03, PR.IR-04, RC.RP-01 | CT.DM-P10, PR.PO-P7 |
 | CR-D-04.3-001 | RS.CO-02, RS.MA-01, RS.MA-02, RS.MA-03 | CM.AW-P7, CM.AW-P8, CM.PO-P1, CM.PO-P2 |
-| CR-D-04.4-001 | PR.DS-01, PR.DS-10, PR.IR-03, PR.IR-04, RC.RP-01 | — |
+| CR-D-04.4-001 | PR.DS-01, PR.DS-10, PR.IR-03, PR.IR-04, RC.RP-01 | PR.DS-P1, PR.PO-P7, PR.DS-P4, PR.PT-P4 |
 | CR-D-05.1-001 | GV.OC-03, GV.PO-01, ID.AM-03, PR.DS-01, PR.DS-10 | CT.DP-P4, CT.PO-P4, ID.RA-P3 |
 | CR-D-05.2-001 | GV.OC-04, GV.OV-02, GV.PO-02, ID.AM-03, PR.DS-10 | CT.DM-P5, CT.PO-P4 |
-| CR-D-05.3-001 | GV.SC-04, PR.DS-10, PR.DS-02 | CT.DM-P4, CT.DM-P5 |
+| CR-D-05.3-001 | GV.SC-04, PR.DS-10, PR.DS-02 | CT.DM-P4, CT.DM-P5, PR.DS-P2 |
 | CR-D-05.4-001 | PR.DS-10, PR.AA-03, PR.DS-02 | CT.DM-P1, CT.DM-P6 |
-| CR-D-06.1-001 | GV.SC-01, GV.SC-02, GV.SC-03, GV.SC-04, ID.AM-04 | ID.IM-P2 |
-| CR-D-06.2-001 | GV.SC-02, GV.SC-03, ID.AM-02, ID.RA-01, PR.PS-02 | — |
-| CR-D-06.3-001 | GV.OC-03, GV.SC-02, GV.SC-03, GV.SC-04, PR.DS-10 | — |
+| CR-D-06.1-001 | GV.SC-01, GV.SC-02, GV.SC-03, GV.SC-04, ID.AM-04 | ID.DE-P1, ID.IM-P2 |
+| CR-D-06.2-001 | GV.SC-02, GV.SC-03, ID.AM-02, ID.RA-01, PR.PS-02 | — (SSDF deliverable) |
+| CR-D-06.3-001 | GV.OC-03, GV.SC-02, GV.SC-03, GV.SC-04, PR.DS-10 | ID.DE-P3, ID.DE-P4 |
 | CR-D-07.1-001 | GV.PO-02, ID.RA-01, PR.DS-10, PR.PS-01, PR.PS-02 | CT.DP-P2, CT.DP-P4, CT.DP-P5, CT.PO-P4, GV.PO-P2 |
 | CR-D-08.1-001 | PR.AT-01, PR.AT-02, PR.PS-01 | GV.AT-P1, GV.AT-P2 |
 | CR-D-08.2-001 | GV.RR-02, GV.RR-04, GV.SC-03, PR.AT-01, PR.AT-02 | GV.AT-P1, GV.AT-P2 |
-| CR-D-09.1-001 | GV.PO-01, GV.PO-02, GV.RM-04, GV.RR-02, GV.OV-01 | CM.PO-P1, GV.PO-P1, GV.PO-P5 |
-| CR-D-09.2-001 | ID.RA-01, ID.RA-04, ID.RA-05, GV.RM-06, GV.OV-02 | ID.RA-P3, ID.RA-P4, ID.RA-P5 |
+| CR-D-09.1-001 | GV.PO-01, GV.PO-02, GV.RM-04, GV.RR-02, GV.OV-01 | GV.PO-P1, GV.PO-P5, GV.PO-P3, CM.PO-P1 |
+| CR-D-09.2-001 | ID.RA-01, ID.RA-04, ID.RA-05, GV.RM-06, GV.OV-02 | ID.RA-P3, ID.RA-P4, ID.RA-P5, GV.RM-P1, GV.MT-P1 |
 | CR-D-09.4-001 | GV.PO-02, ID.AM-08, ID.RA-05, PR.DS-10, RS.MA-03 | ID.IM-P1, ID.IM-P4, ID.IM-P6, ID.IM-P8 |
 | CR-D-10.2-001 | DE.CM-01, GV.PO-02, ID.RA-04, PR.DS-01, PR.PS-04 | CT.DM-P4, CT.DM-P9 |
 | CR-D-10.3-001 | DE.AE-02, GV.OV-03, ID.RA-05, ID.IM-02, PR.PS-06 | ID.RA-P3, ID.RA-P5 |
 | BPR-D-01.1-001 | PR.DS-01, PR.DS-10, PR.PS-04 | PR.DS-P1 |
 | BPR-D-01.2-001 | PR.DS-02, PR.IR-01, PR.PS-04 | PR.DS-P2 |
 | BPR-D-02.1-001 | ID.RA-01, ID.RA-03, ID.RA-05, ID.IM-02, PR.PS-02 | ID.RA-P3, ID.RA-P5 |
-| BPR-D-02.2-001 | ID.RA-01, PR.IR-03, PR.PS-01, PR.PS-02 | — |
-| BPR-D-03.1-001 | PR.AA-01, PR.AA-03, PR.AA-05, PR.AA-06, ID.AM-01 | CT.PO-P1 |
-| BPR-D-03.2-001 | PR.AA-03, PR.AA-04, PR.AA-05, PR.AA-06 | — |
+| BPR-D-02.2-001 | ID.RA-01, PR.IR-03, PR.PS-01, PR.PS-02 | — (SSDF deliverable) |
+| BPR-D-03.1-001 | PR.AA-01, PR.AA-03, PR.AA-05, PR.AA-06, ID.AM-01 | CT.PO-P1, PR.AC-P1, PR.AC-P6, PR.AC-P4 |
+| BPR-D-03.2-001 | PR.AA-03, PR.AA-04, PR.AA-05, PR.AA-06 | PR.AC-P6, PR.AC-P4, GV.AT-P1 |
 | BPR-D-03.4-001 | GV.PO-01, PR.PS-01, PR.PS-04, ID.IM-02 | CT.DP-P4, CT.PO-P4 |
 | BPR-D-04.3-001 | RS.MA-01, RS.MA-02, RS.MA-03, RS.CO-02 | CM.AW-P7, CM.PO-P1 |
 | BPR-D-04.3-002 | RS.MA-01, RS.MA-02, RS.CO-02 | CM.PO-P1, CM.PO-P2 |
@@ -105,18 +105,18 @@ related_deliverables: [CORPUS_LINKAGE.md, KG_CHAINS.md, validation/SPRINT2_REPOR
 | PO-D-09.2-001 | GV.OC-03, GV.OV-03, GV.PO-01, GV.RR-02, GV.SC-02, GV.SC-03 | ID.RA-P3, ID.RA-P4, ID.RA-P5 |
 | PO-D-09.4-001 | DE.AE-03, GV.PO-02, ID.AM-03, PR.AA-02, PR.DS-10, PR.PS-04 | ID.IM-P1, ID.IM-P4, ID.IM-P6, ID.IM-P8 |
 | SO-D-02.1-001 | ID.IM-02, ID.RA-01, ID.RA-05, PR.PS-02 | ID.RA-P3, ID.RA-P5 |
-| SO-D-02.2-001 | — | — |
-| SO-D-02.3-001 | — | — |
-| SO-D-03.1-001 | GV.OC-03, GV.PO-02, PR.AA-02, PR.AA-03, PR.DS-10 | — |
-| SO-D-03.2-001 | — | — |
+| SO-D-02.2-001 | — | — (SSDF deliverable) |
+| SO-D-02.3-001 | — | — (SSDF deliverable) |
+| SO-D-03.1-001 | GV.OC-03, GV.PO-02, PR.AA-02, PR.AA-03, PR.DS-10 | PR.AC-P1, PR.AC-P6, PR.AC-P4 |
+| SO-D-03.2-001 | — | PR.AC-P6 |
 | SO-D-03.3-001 | PR.AA-05, PR.AA-06, PR.AT-02 | CT.PO-P1 |
 | SO-D-03.4-001 | PR.DS-10, PR.PS-01, PR.PS-06 | CT.DP-P4, CT.PO-P4 |
 | SO-D-04.1-001 | DE.AE-02, DE.CM-01, DE.CM-03, DE.CM-09, RS.MA-02 | CM.AW-P7 |
 | SO-D-04.2-001 | PR.DS-01, RS.MI-01, RS.MI-02 | CT.DM-P10, PR.PO-P7 |
 | SO-D-04.3-001 | GV.OC-03, ID.RA-06, PR.DS-01, PR.DS-10, PR.IR-03 | CM.AW-P7, CM.AW-P8, CM.PO-P1, CM.PO-P2 |
-| SO-D-04.4-001 | PR.DS-01, PR.IR-04, RC.RP-04 | — |
+| SO-D-04.4-001 | PR.DS-01, PR.IR-04, RC.RP-04 | PR.DS-P1, PR.DS-P4, PR.PT-P4 |
 | SO-D-06.1-001 | GV.SC-02, GV.SC-03 | ID.IM-P2 |
-| SO-D-06.2-001 | — | — |
+| SO-D-06.2-001 | — | — (SSDF deliverable) |
 | SO-D-06.3-001 | DE.CM-06, GV.OC-03, GV.RR-02, GV.SC-01, GV.SC-02, GV.SC-03 | — |
 | SO-D-08.1-001 | GV.OV-03, ID.IM-02, PR.AA-05, PR.AT-01, PR.AT-02 | GV.AT-P1, GV.AT-P2 |
 | SO-D-08.2-001 | PR.AT-01, PR.AT-02 | GV.AT-P1, GV.AT-P2 |
@@ -263,8 +263,8 @@ related_deliverables: [CORPUS_LINKAGE.md, KG_CHAINS.md, validation/SPRINT2_REPOR
 |--------|-------|------|
 | Rules with CSF anchors | 46/46 (100%) | All CR + BPR have CSF anchors in Doc 11 §7 |
 | Rules with PF anchors | 27/46 (59%) | Doc 11 omits PF for technical BPRs (e.g. RBAC, FIDO2) |
-| Goals with CSF anchors | 27/31 (87%) | 4 SOs (SO-D-02.2/02.3/03.2/06.2) blank per Doc 10b §4 |
-| Goals with PF anchors | 27/31 (87%) | All POs + most SOs; pure-CSF SOs left blank |
+| Goals with CSF anchors | 27/31 (87%) | 3 SOs (SO-D-02.2/02.3/06.2) blank per Doc 10b §4 (SSDF deliverables) |
+| Goals with PF anchors | 28/31 (90%) | All POs + most SOs; 3 SOs intentionally blank (SSDF deliverables, RV.2/RV.1/PS.3) |
 | Per-artefact slot rows | 35 UC + 30 FR + 46 NFR = 111 | All derived from primary CR/PO/SO |
 
 ## §5 Validation log

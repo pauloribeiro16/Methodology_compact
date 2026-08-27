@@ -884,11 +884,11 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 19. **CSF Subcategories:** GV.OV-02 (strategy reviewed for risk-landscape changes), ID.RA-01 (vulnerabilities identified + validated + recorded), PR.IR-03 (resilience mechanisms in adverse situations), PR.PS-01 (config mgmt practices established + applied), PR.PS-02 (software maintained + replaced + removed)
 
-20. **Privacy FW Subcategories:** UNMAPPED_PRIVACY (patch cadence is product-security concern; no PF subcat anchored)
+20. **Privacy FW Subcategories:** — (product-security deliverable; SSDF RV.2 anchored; no PF 1.0 scope)
 
 21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
 
-22. **Maturity (Privacy):** N/A — não mapeado a Privacy FW
+22. **Maturity (Privacy):** N/A — product-security deliverable (SSDF RV.2)
 
 ---
 
@@ -962,11 +962,11 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 19. **CSF Subcategories:** GV.PO-01 (cybersecurity policy established + enforced), GV.SC-04 (suppliers routinely assessed (audits/tests)), ID.RA-01 (vulnerabilities identified + validated + recorded), RS.CO-03 (info shared with stakeholders per criteria), RS.MA-01 (coordination with stakeholders per criteria)
 
-20. **Privacy FW Subcategories:** UNMAPPED_PRIVACY (CVD is security-disclosure; no PF subcat anchored)
+20. **Privacy FW Subcategories:** — (product-security deliverable; SSDF RV.1 anchored; no PF 1.0 scope)
 
 21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
 
-22. **Maturity (Privacy):** N/A — não mapeado a Privacy FW
+22. **Maturity (Privacy):** N/A — product-security deliverable (SSDF RV.1)
 
 ---
 
@@ -2073,11 +2073,11 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 19. **CSF Subcategories:** GV.SC-02 (suppliers prioritised + assessed via SCRM), GV.SC-03 (contracts implement cyber programme measures), ID.AM-02 (software/services/systems inventories maintained), ID.RA-01 (vulnerabilities identified + validated + recorded), PR.PS-02 (software maintained + replaced + removed)
 
-20. **Privacy FW Subcategories:** UNMAPPED_PRIVACY (SBOM is product-security artefact; no PF subcat anchored)
+20. **Privacy FW Subcategories:** — (product-security deliverable; SSDF PS.3 anchored; no PF 1.0 scope)
 
 21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
 
-22. **Maturity (Privacy):** N/A — não mapeado a Privacy FW
+22. **Maturity (Privacy):** N/A — product-security deliverable (SSDF PS.3)
 
 ---
 
@@ -3097,11 +3097,11 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 19. **CSF Subcategories:** ID.RA-01 (vulnerabilities identified + validated + recorded), PR.IR-03 (resilience mechanisms in adverse situations), PR.PS-01 (config mgmt practices established + applied), PR.PS-02 (software maintained + replaced + removed)
 
-20. **Privacy FW Subcategories:** — (NIST SI-2 (flaw remediation) is security-only; no Privacy FW subcategory (same as CR-D-02.2-001))
+20. **Privacy FW Subcategories:** — (product-security deliverable; SSDF RV.2 anchored; no PF 1.0 scope)
 
 21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
 
-22. **Maturity (Privacy):** N/A — não mapeado a Privacy FW
+22. **Maturity (Privacy):** N/A — product-security deliverable (SSDF RV.2)
 
 ---
 
