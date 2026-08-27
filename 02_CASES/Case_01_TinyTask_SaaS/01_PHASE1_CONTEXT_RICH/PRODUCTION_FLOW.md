@@ -136,6 +136,23 @@ The two layers are **coupled**: the docs in Layer 1 are the canonical source of 
 and link in Layer 2's KG. A change in any of the 13 docs (especially Doc13) requires
 `scripts/build_p1_graph.py` re-execution before the dashboard re-renders.
 
+### Layer 0 — Upstream (Phase 0 baseline)
+
+Layer 1 does not generate the HSO / Sub-SO content it cites. The frozen regulatory
+baseline lives at `00_METHODOLOGY/PREPROCESSING_by_domain/` (38 D-XX.Y.md + 10 manifests +
+623 article copies + 172 NIST control JSONs + 4 overlays) and has its own production flow:
+
+- [`00_METHODOLOGY/PREPROCESSING_by_domain/PRODUCTION_FLOW.md`](../../../00_METHODOLOGY/PREPROCESSING_by_domain/PRODUCTION_FLOW.md)
+  (S0 raw sources → S1 generation → S2 freeze → S3 maintenance planned; ~800 downstream citations).
+- [`00_METHODOLOGY/PREPROCESSING_by_domain/validation/P0_baseline_audit_v0.md`](../../../00_METHODOLOGY/PREPROCESSING_by_domain/validation/P0_baseline_audit_v0.md)
+  (the audit that motivated the flow).
+
+Layer 1 docs that **cite** the baseline (not modify it): Doc08 §1 (applicability), Doc10
+(clause mapping → D-XX.Y), Doc11 (synthesis engine), Doc12 §4 (Track B tier), Doc13 §1
+(generic baseline HSO + Sub-SOs) + §2-§4 (adjusted objectives derived from baseline). The
+baseline is read-only by design (`guard-protected-files.sh` denies Write|Edit on
+`domains/**`).
+
 ---
 
 ## 3. Traceability Matrix — Docs × AdjustedGoals

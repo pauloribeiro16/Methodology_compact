@@ -54,6 +54,13 @@ This sibling diagram covers three things the master does not show:
    `inputs:` / `outputs:` frontmatter edge in the case points to a file that no longer
    exists by that name.
 
+**Upstream dependency — Phase 0 baseline.** All Phase 1 deliverables that consume HSO /
+Sub-SO content (Doc08 §1, Doc10 §X, Doc13 §1-§4, Doc12 §4) read from the frozen baseline
+corpus at `00_METHODOLOGY/PREPROCESSING_by_domain/`. That corpus has its own production
+flow documented at [`../../../00_METHODOLOGY/PREPROCESSING_by_domain/PRODUCTION_FLOW.md`](../../../00_METHODOLOGY/PREPROCESSING_by_domain/PRODUCTION_FLOW.md)
+(S0 raw sources → S1 generation → S2 freeze → S3 maintenance planned). Phase 1 does not
+generate or modify the baseline — it cites it.
+
 **Out of scope:**
 - Phase 1A/1B/1C internal mechanics — see the master and its children
   (`phase1a_context_capture.md`, `phase1b_regulatory_mapping.md`, `phase1c_consolidation.md`).
