@@ -32,11 +32,12 @@ META = {
     "phase": 1,
     "generated": "2026-08-26",
     "schema_version": "1.0",
-    # NOTE: existing 8 entries retained verbatim; only the ontology version
-    # bumped 1.1 → 1.2 (Sprint 6 appended the kg_ontology section).
-    # No entry was added or reordered.
+    # NOTE: Sprint 7 (RACI Phase A — Doc07) — canonical_sources[0] bumped
+    # 1.2 → 1.3 (ontology v1.3 adds RaciRole/RaciActivity classes + RACI/APPLIES_TO
+    # relations). The other 7 entries are retained verbatim; no entry was added
+    # or reordered.
     "canonical_sources": [
-        "phase1_ontology.yaml@01_PHASE1_CONTEXT_RICH v1.2",
+        "phase1_ontology.yaml@01_PHASE1_CONTEXT_RICH v1.3",
         "Doc08 §4 + §9",
         "Doc10 §8",
         "Doc11 §3 + §4",
@@ -907,7 +908,134 @@ AUDITS = [
         "node_ids": ["STK-CEO-01", "STK-CTO-01", "STK-DPO-01", "STK-DEVP-01", "STK-CUSTOMER-01", "STK-STRIPE-01", "STK-AWS-01"],
         "recommendation": "Human (P7) — no JSON fix required (informational). For Phase 2 RACI work, treat the 6 '—' stakeholders as 'no direct contact channel documented' and use Doc07 §? organigram instead. Optionally extend ontology with 'contact_channel: String(nullable)' in v1.3.",
     },
+    # ---- Sprint 7 (kg_ontology v1.3) — RACI Phase A coverage gaps (Doc07 §7)
+    {
+        "id": "GAP-RACI-01",
+        "kind": "coverage_gap",
+        "severity": "medium",
+        "title": "No formal security-awareness training programme in place (annual cycle, completion tracking)",
+        "detail": (
+            "GAP-RACI-01 from Doc07 §7 (Gaps & Known Limitations, row 1): "
+            "TinyTask does not currently run a formalised security-awareness training "
+            "programme (per 00_COMMON/01_Company_Context.md §6.2 — IR-08 = NO). "
+            "Annual cycle + completion tracking are absent. Linked sub-domain: D-08.1 "
+            "(General Security Awareness). All staff (8 employees) are covered by "
+            "ACT-31 (DPO=C, CISO=A, Dev=I, Legal=I, HR=R, Board=I) but the underlying "
+            "programme is not yet operational. Proportionate mitigation: lightweight "
+            "annual 60-min session + completion spreadsheet; LMS not required at MICRO scale."
+        ),
+        "evidence": [
+            "Doc07 §7 row 1: 'GAP-RACI-01 | No formal security-awareness training programme | MEDIUM | D-08.1'",
+            "Doc07 §5 Training Status row 1: 'All staff (8 employees) | Annual security awareness | NOT STARTED | 2026-12-31 (target)'",
+            "Doc07 §4.8 row 1 ACT-31 RACI cells: HR=R (HR-coordination), CISO=A",
+            "phase1_ontology.yaml@kg_ontology.invariants.counts.gap_raci_count: 5",
+        ],
+        "node_ids": ["D-08.1", "ACT-31", "ROLE-HR", "ROLE-CISO"],
+        "recommendation": "Human (P7) — adopt Doc07 §5 target date (2026-12-31) as Phase 2 milestone; track completion in Doc11 §7 GAP-001..004 cross-link matrix. Proportionate to MICRO scale; no enterprise LMS needed.",
+    },
+    {
+        "id": "GAP-RACI-02",
+        "kind": "coverage_gap",
+        "severity": "medium",
+        "title": "No formal secure-coding curriculum for developers (reliance on code review + Snyk feedback)",
+        "detail": (
+            "GAP-RACI-02 from Doc07 §7 (row 2): Secure-coding training for the "
+            "developer team is informal/ad-hoc; no curriculum exists. Linked "
+            "sub-domain: D-08.2 (Role-Specific Competence) and §4.7 ACT-28 Code "
+            "review (Dev=R/A composite, CISO=C). The Dev=R/A pattern on code review "
+            "makes the gap operationally impactful — review quality depends on "
+            "training depth. Proportionate mitigation: OWASP Top 10 mapping + Snyk "
+            "feedback loop as informal curriculum; full SAST-anchored curriculum "
+            "deferred to scale-up."
+        ),
+        "evidence": [
+            "Doc07 §7 row 2: 'GAP-RACI-02 | No formal secure-coding curriculum | MEDIUM | D-08.2'",
+            "Doc07 §5 row 2: 'Developers (6 incl. Lead) | Secure coding (OWASP Top 10 mapping) | NOT STARTED — informal ad-hoc only'",
+            "Doc07 §4.7 row 2 ACT-28 Code review: Dev=R/A composite (2 edges emitted)",
+            "phase1_ontology.yaml@kg_ontology.invariants.counts.raci_composite_cells: 3 (includes ACT-28)",
+        ],
+        "node_ids": ["D-08.2", "ACT-28", "ACT-32", "ROLE-DEV", "ROLE-CISO"],
+        "recommendation": "Human (P7) — formalise quarterly OWASP Top 10 walkthrough as part of dev-team all-hands; align with Doc11 §3 GAP-003 (SBOM) trajectory. No enterprise LMS required at MICRO scale.",
+    },
+    {
+        "id": "GAP-RACI-03",
+        "kind": "coverage_gap",
+        "severity": "low",
+        "title": "DPO refresher cycle not cadence-locked (last done 2025-Q4 informally; next target 2026-Q4)",
+        "detail": (
+            "GAP-RACI-03 from Doc07 §7 (row 3): DPO refresher cycle is informal. "
+            "Last completed 2025-Q4 (CEO informally reviewed CNPD guidance); "
+            "next target 2026-Q4. The cycle is not cadence-locked and lacks "
+            "completion tracking. Linked sub-domain: D-08.2 (Role-Specific "
+            "Competence). §4.8 ACT-33 (Role-specific training — DPO competence "
+            "refresh) carries DPO=R/A composite (3rd of the 3 R/A composites "
+            "in this dataset). Operational impact low because DPO duties are "
+            "narrow and the CEO-as-DPO arrangement is operationally OK."
+        ),
+        "evidence": [
+            "Doc07 §7 row 3: 'GAP-RACI-03 | DPO refresher cycle not cadence-locked | LOW | D-08.2'",
+            "Doc07 §5 row 3: 'DPO (CEO) | GDPR refresher; Art. 33/34 mechanics | 2025-Q4 (informal) | 2026-Q4'",
+            "Doc07 §4.8 row 3 ACT-33: DPO=R/A composite (3rd of 3 R/A composites)",
+            "phase1_ontology.yaml@kg_ontology.invariants.counts.raci_activities_active: 41 (ACT-33 active despite the cadence gap)",
+        ],
+        "node_ids": ["D-08.2", "ACT-33", "ROLE-DPO", "ROLE-LEGAL"],
+        "recommendation": "Human (P7) — lock 2026-Q4 milestone to Doc12 §5 calendar; add CNPD/CNIL guidance review to Doc11 §7 GAP tracking. No formal LMS; one annual 2-hour refresh suffices.",
+    },
+    {
+        "id": "GAP-RACI-04",
+        "kind": "coverage_gap",
+        "severity": "low",
+        "title": "D-08.3 board training absent — deliberately not in scope for TinyTask (informational only)",
+        "detail": (
+            "GAP-RACI-04 from Doc07 §7 (row 4): D-08.3 (Management Board Training) "
+            "is INACTIVE for TinyTask because its participating regulations are "
+            "NIS2 + DORA, both inapplicable (NIS2: 8 employees below 50 threshold; "
+            "DORA: not a financial entity). ACT-34 (Board cybersecurity briefings) "
+            "has all '—' in the §4.8 RACI table and is recorded as active=False; "
+            "ACT-35 (Quarterly informal cybersecurity briefing to the 2 founders, "
+            "CISO=R/Board=A) is a best-practice placeholder, also active=False. "
+            "Per AEGIS P0 (Reasoned Disagreement) and Doc07 §7 row 4 Discussion: "
+            "this is NOT a compliance gap — recorded as LOW (informational) to make "
+            "the methodology's scope decision visible to downstream readers."
+        ),
+        "evidence": [
+            "Doc07 §7 row 4: 'GAP-RACI-04 | D-08.3 board training absent — deliberately not in scope | LOW (informational only) | D-08.3 (INACTIVE)'",
+            "Doc07 §4.8 L228 row 'Board cybersecurity briefings (D-08.3)': all '—' cells (ACT-34 active=False)",
+            "Doc07 §4.8 L238 best-practice row 'Quarterly informal cybersecurity briefing' (ACT-35 active=False)",
+            "phase1_ontology.yaml@kg_ontology.invariants.counts.raci_activities_active: 41 (excludes both ACT-34 and ACT-35)",
+            "phase1_ontology.yaml@subdomains.not_covered D-08.3: sole_authority_regulation=NIS2, reason='NIS2 not applicable (below 50 employees)'",
+        ],
+        "node_ids": ["D-08.3", "ACT-34", "ACT-35", "ROLE-BOARD"],
+        "recommendation": "Human (P7) — accept Doc07 §7 'LOW informational' classification; no remediation needed. Retain ACT-34/35 in JSON for future re-activation (e.g., NIS2 sector reclassification, CRA uplift). This audit documents the deliberate non-derivation per Doc07 §0 Critical Caveat.",
+    },
+    {
+        "id": "GAP-RACI-05",
+        "kind": "coverage_gap",
+        "severity": "low",
+        "title": "Single DPO/CISO-individual concentration risk (CEO+CTO are the only DPO/CISO; backup is the other founder)",
+        "detail": (
+            "GAP-RACI-05 from Doc07 §7 (row 5): DPO and CISO are single "
+            "individuals (CEO and CTO respectively) with backup being the "
+            "other founder. This is operationally OK at MICRO scale but not "
+            "optimised for board independence. Linked sub-domain: D-09.1 "
+            "(Governance & Documentation — Information Security Policies). "
+            "The RACI table makes this explicit: ROLE-DPO maps_to_stakeholder="
+            "STK-CEO-01; ROLE-CISO maps_to_stakeholder=STK-CTO-01; backup is "
+            "the cross-role founder. Proportionate mitigation: document the "
+            "concentration risk in Doc07 §2 Observations + retain external "
+            "Legal Adviser retainer as informal third-line consult."
+        ),
+        "evidence": [
+            "Doc07 §7 row 5: 'GAP-RACI-05 | Single DPO/CISO-individual concentration risk | LOW | D-09.1 (governance maturity)'",
+            "Doc07 §2 (Key Roles table) row 1: DPO backup='CTO (acting DPO; not legally optimal but documented for incident-trigger continuity)'",
+            "Doc07 §2 row 2: CISO backup='CEO (acting CISO)'",
+            "phase1_ontology.yaml@kg_ontology.classes.RaciRole.attrs: backup field is nullable String",
+        ],
+        "node_ids": ["D-09.1", "ROLE-DPO", "ROLE-CISO", "ROLE-BOARD"],
+        "recommendation": "Human (P7) — accept at MICRO scale; re-evaluate when employees > 12 or revenue > €5M. Retain external Legal Adviser retainer (ROLE-LEGAL) as informal consult channel; document in Doc11 §3 governance maturity note.",
+    },
 ]
+assert len(AUDITS) == 21, f"AUDITS drift: {len(AUDITS)} (expected 21 = 16 Sprint 6 + 5 GAP-RACI Sprint 7)"
 
 # ---------------------------------------------------------------------------
 # 10. Sprint 6 — Stakeholders + BusinessGoals + CoverageGaps
@@ -1224,6 +1352,627 @@ assert len(FLAGS_EDGES) == 3
 
 
 # ---------------------------------------------------------------------------
+# 10. Sprint 7 — RACI Phase A (Doc07 §2 Roles, §4.1–§4.10 Activities, §7 Gaps,
+#                            §9.2 activity→sub-domain mapping)
+#     Sources: Doc07 §2 (Key Roles table, 6 roles), §4.1–§4.10 (43 activity rows;
+#              41 active + ACT-34 all-'—' placeholder + ACT-35 best-practice),
+#              §7 (GAP-RACI-01..05), §9.2 (35-row activity→sub-domain mapping).
+#     Schema: phase1_ontology.yaml@kg_ontology.classes v1.3 (RaciRole, RaciActivity).
+#     ID patterns (verified by build_p1_dashboard.py --check id_patterns):
+#       RaciRole:    ^ROLE-[A-Z0-9]+$
+#       RaciActivity: ^ACT-\d{2}$
+# ---------------------------------------------------------------------------
+
+# Per Doc07 §2 'Key Roles' table (6 rows). DPO/CISO map to stakeholders; the
+# remaining 4 (Dev, Legal, HR, Board) have no single-step STK-ID mapping in the
+# 7-stakeholder register (Doc03 §3.1) → maps_to_stakeholder=null (documented).
+RACI_ROLES = [
+    {
+        "id": "ROLE-DPO",
+        "label": "CEO (also DPO per Art. 37 voluntary designation)",
+        "attrs": {
+            "name": "DPO",
+            "maps_to_stakeholder": "STK-CEO-01",
+            "fte_allocation": "0.2 DPO + business leadership as CEO (combined FTE: 1.0 total)",
+            "reports_to": "Board (2 founders)",
+            "backup": "CTO (acting DPO; not legally optimal but documented for incident-trigger continuity)",
+        },
+        "source": ["Doc07 §2 (Key Roles table, row 1: 'CEO (also DPO per Art. 37 voluntary designation)')",
+                   "phase1_ontology.yaml@kg_ontology.classes.RaciRole"],
+    },
+    {
+        "id": "ROLE-CISO",
+        "label": "CTO (also CISO per CRA Annex I Part II (8)(f))",
+        "attrs": {
+            "name": "CISO",
+            "maps_to_stakeholder": "STK-CTO-01",
+            "fte_allocation": "0.3 CISO + technical leadership as CTO (combined FTE: 1.0 total)",
+            "reports_to": "Board (2 founders)",
+            "backup": "CEO (acting CISO)",
+        },
+        "source": ["Doc07 §2 (Key Roles table, row 2: 'CTO (also CISO per CRA Annex I Part II (8)(f))')",
+                   "phase1_ontology.yaml@kg_ontology.classes.RaciRole"],
+    },
+    {
+        "id": "ROLE-DEV",
+        "label": "Lead Developer + developer team (5 staff)",
+        "attrs": {
+            "name": "Dev",
+            "maps_to_stakeholder": None,
+            "fte_allocation": "1.0 lead developer + 5 × 1.0 developers (~0.1 of time on security tasks via CI/CD and patching)",
+            "reports_to": "CTO",
+            "backup": "CTO for code-related security tasks; peer developers",
+        },
+        "source": ["Doc07 §2 (Key Roles table, row 3: 'Lead Developer (Dev Lead)' + row 4: 'Developer × 5')",
+                   "phase1_ontology.yaml@kg_ontology.classes.RaciRole"],
+    },
+    {
+        "id": "ROLE-LEGAL",
+        "label": "External Legal Adviser (DPO Support)",
+        "attrs": {
+            "name": "Legal",
+            "maps_to_stakeholder": None,
+            "fte_allocation": "0 (retainer; no allocated FTE; ad-hoc consultation)",
+            "reports_to": "CEO",
+            "backup": "None — single retainer",
+        },
+        "source": ["Doc07 §2 (Key Roles table, row 5: 'External Legal Adviser (DPO Support)')",
+                   "phase1_ontology.yaml@kg_ontology.classes.RaciRole"],
+    },
+    {
+        "id": "ROLE-HR",
+        "label": "HR-coordination role (CEO as part of 0.2 FTE DPO)",
+        "attrs": {
+            "name": "HR",
+            "maps_to_stakeholder": None,
+            "fte_allocation": "Subsumed in CEO 0.2 DPO FTE (HR-type coordination: training scheduling, on-boarding)",
+            "reports_to": "Board",
+            "backup": "CEO (same person)",
+        },
+        "source": ["Doc07 §2 (Key Roles table: 'No separate HR function — HR-type coordination is part of the CEO/DPO 0.2 FTE')",
+                   "phase1_ontology.yaml@kg_ontology.classes.RaciRole"],
+    },
+    {
+        "id": "ROLE-BOARD",
+        "label": "Management Board (2 founders — CEO + CTO)",
+        "attrs": {
+            "name": "Board",
+            "maps_to_stakeholder": None,
+            "fte_allocation": "n/a — board is the board",
+            "reports_to": "—",
+            "backup": "n/a",
+        },
+        "source": ["Doc07 §2 (Key Roles table, row 6: 'Management Board')",
+                   "phase1_ontology.yaml@kg_ontology.classes.RaciRole"],
+    },
+]
+assert len(RACI_ROLES) == 6, f"RACI_ROLES drift: {len(RACI_ROLES)}"
+
+
+# Per Doc07 §4.1–§4.10 RACI tables: 43 activity rows. ACT-34 (all-'—' D-08.3
+# placeholder) and ACT-35 (§4.8 best-practice row, D-08.3 INACTIVE) both
+# carry active=False; the other 41 are active. Each entry maps an ACT-NN
+# to its (verbatim) Corpus Reg Req string and source section.
+# Column letters per cell (Doc07 §4): DPO (CEO) | CISO (CTO) | Dev | Legal | HR | Board
+# Composite cells use 'R/A' and split into 2 RACI edges in RACI_EDGES below.
+# Role column name (for RACI_EDGES): DPO/CISO/Dev/Legal/HR/Board.
+RACI_ACTIVITIES = [
+    # --- §4.1 Data Protection (D-01) — 4 activities
+    {"id": "ACT-01", "label": "Encrypt personal data at rest",
+     "attrs": {"name": "Encrypt personal data at rest", "domain_id": "D-01", "sub_domain_id": "D-01.1",
+               "corpus_reg_req": "D-01.1: 1.1.1, 1.1.3 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.1 L160 row 'Encrypt personal data at rest'"]},
+    {"id": "ACT-02", "label": "Manage encryption keys",
+     "attrs": {"name": "Manage encryption keys", "domain_id": "D-01", "sub_domain_id": "D-01.3",
+               "corpus_reg_req": "D-01.3: 1.3.1, 1.3.2 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.1 L161 row 'Manage encryption keys'"]},
+    {"id": "ACT-03", "label": "Notify DPA within 72h (Art. 33 GDPR)",
+     "attrs": {"name": "Notify DPA within 72h (Art. 33 GDPR)", "domain_id": "D-04", "sub_domain_id": "D-04.3",
+               "corpus_reg_req": "D-04.3: 4.3.1, 4.3.3 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.1 L162 row 'Notify DPA within 72h (Art. 33 GDPR)'"]},
+    {"id": "ACT-04", "label": "Conduct DPIA (Art. 35 GDPR)",
+     "attrs": {"name": "Conduct DPIA (Art. 35 GDPR)", "domain_id": "D-09", "sub_domain_id": "D-09.2",
+               "corpus_reg_req": "D-09.2: 9.2.1, 9.2.3 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.1 L163 row 'Conduct DPIA (Art. 35 GDPR)'"]},
+    # --- §4.2 Vulnerability Management (D-02) — 4 activities
+    {"id": "ACT-05", "label": "Run vulnerability scans (Snyk, dependency review)",
+     "attrs": {"name": "Run vulnerability scans (Snyk, dependency review)", "domain_id": "D-02", "sub_domain_id": "D-02.1",
+               "corpus_reg_req": "D-02.1: 2.1.1, 2.1.3 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.2 L169 row 'Run vulnerability scans (Snyk, dependency review)'"]},
+    {"id": "ACT-06", "label": "Apply critical patches (CRA Annex I Part I (2)(f))",
+     "attrs": {"name": "Apply critical patches (CRA Annex I Part I (2)(f))", "domain_id": "D-02", "sub_domain_id": "D-02.2",
+               "corpus_reg_req": "D-02.2: 2.2.1 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.2 L170 row 'Apply critical patches (CRA Annex I Part I (2)(f))'"]},
+    {"id": "ACT-07", "label": "Annual penetration testing",
+     "attrs": {"name": "Annual penetration testing", "domain_id": "D-02", "sub_domain_id": "D-02.4",
+               "corpus_reg_req": "D-02.4: 2.4.1 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.2 L171 row 'Annual penetration testing'"]},
+    {"id": "ACT-08", "label": "Operate CVD / security.txt (CRA Art. 14)",
+     "attrs": {"name": "Operate CVD / security.txt (CRA Art. 14)", "domain_id": "D-02", "sub_domain_id": "D-02.3",
+               "corpus_reg_req": "D-02.3: 2.3.1 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.2 L172 row 'Operate CVD / security.txt (CRA Art. 14)'"]},
+    # --- §4.3 Access Control (D-03) — 4 activities
+    {"id": "ACT-09", "label": "Manage IAM (Auth0 + cloud IAM)",
+     "attrs": {"name": "Manage IAM (Auth0 + cloud IAM)", "domain_id": "D-03", "sub_domain_id": "D-03.1",
+               "corpus_reg_req": "D-03.1: 3.1.1, 3.1.3 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.3 L178 row 'Manage IAM (Auth0 + cloud IAM)'"]},
+    {"id": "ACT-10", "label": "Enforce MFA (admins; future customer MFA)",
+     "attrs": {"name": "Enforce MFA (admins; future customer MFA)", "domain_id": "D-03", "sub_domain_id": "D-03.2",
+               "corpus_reg_req": "D-03.2: 3.2.1, 3.2.3 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.3 L179 row 'Enforce MFA (admins; future customer MFA)'"]},
+    {"id": "ACT-11", "label": "Quarterly access review",
+     "attrs": {"name": "Quarterly access review", "domain_id": "D-03", "sub_domain_id": "D-03.1",
+               "corpus_reg_req": "D-03.1: 3.1.1, 3.1.3 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.3 L180 row 'Quarterly access review'"]},
+    {"id": "ACT-12", "label": "Offboarding (revoke access within 24h)",
+     "attrs": {"name": "Offboarding (revoke access within 24h)", "domain_id": "D-03", "sub_domain_id": "D-03.1",
+               "corpus_reg_req": "D-03.1: 3.1.1, 3.1.3 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.3 L181 row 'Offboarding (revoke access within 24h)'"]},
+    # --- §4.4 Incident Response (D-04) — 6 activities
+    {"id": "ACT-13", "label": "Detect incident",
+     "attrs": {"name": "Detect incident", "domain_id": "D-04", "sub_domain_id": "D-04.1",
+               "corpus_reg_req": "D-04.1: 4.1.1, 4.1.3 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.4 L187 row 'Detect incident'"]},
+    {"id": "ACT-14", "label": "Contain incident",
+     "attrs": {"name": "Contain incident", "domain_id": "D-04", "sub_domain_id": "D-04.2",
+               "corpus_reg_req": "D-04.2: 4.2.1, 4.2.3 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.4 L188 row 'Contain incident'"]},
+    {"id": "ACT-15", "label": "Notify authorities (72h GDPR Art. 33; 24h early-warning CRA Art. 14)",
+     "attrs": {"name": "Notify authorities (72h GDPR Art. 33; 24h early-warning CRA Art. 14)",
+               "domain_id": "D-04", "sub_domain_id": "D-04.3",
+               "corpus_reg_req": "D-04.3: 4.3.1, 4.3.3 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.4 L189 row 'Notify authorities (72h GDPR Art. 33; 24h early-warning CRA Art. 14)'"]},
+    {"id": "ACT-16", "label": "Notify controllers (Art. 33(2) processor→controller)",
+     "attrs": {"name": "Notify controllers (Art. 33(2) processor→controller)",
+               "domain_id": "D-04", "sub_domain_id": "D-04.3",
+               "corpus_reg_req": "D-04.3: 4.3.1, 4.3.3 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.4 L190 row 'Notify controllers (Art. 33(2) processor→controller)'"]},
+    {"id": "ACT-17", "label": "Recover systems (RPO / RTO targets)",
+     "attrs": {"name": "Recover systems (RPO / RTO targets)", "domain_id": "D-04", "sub_domain_id": "D-04.4",
+               "corpus_reg_req": "D-04.4: 4.4.1, 4.4.3 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.4 L191 row 'Recover systems (RPO / RTO targets)'"]},
+    {"id": "ACT-18", "label": "Post-incident review",
+     "attrs": {"name": "Post-incident review", "domain_id": "D-04", "sub_domain_id": "D-04.2",
+               "corpus_reg_req": "D-04.2: 4.2.1, 4.2.3 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.4 L192 row 'Post-incident review'"]},
+    # --- §4.5 Data Lifecycle (D-05) — 4 activities
+    {"id": "ACT-19", "label": "Enforce data minimisation",
+     "attrs": {"name": "Enforce data minimisation", "domain_id": "D-05", "sub_domain_id": "D-05.1",
+               "corpus_reg_req": "D-05.1: 5.1.1, 5.1.2 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.5 L198 row 'Enforce data minimisation'"]},
+    {"id": "ACT-20", "label": "Manage retention policies",
+     "attrs": {"name": "Manage retention policies", "domain_id": "D-05", "sub_domain_id": "D-05.2",
+               "corpus_reg_req": "D-05.2: 5.2.1, 5.2.2 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.5 L199 row 'Manage retention policies'"]},
+    {"id": "ACT-21", "label": "Process erasure requests (Art. 17 GDPR; CRA Annex I Part I (2)(m))",
+     "attrs": {"name": "Process erasure requests (Art. 17 GDPR; CRA Annex I Part I (2)(m))",
+               "domain_id": "D-05", "sub_domain_id": "D-05.3",
+               "corpus_reg_req": "D-05.3: 5.3.1, 5.3.2 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.5 L200 row 'Process erasure requests (Art. 17 GDPR; CRA Annex I Part I (2)(m))'"]},
+    {"id": "ACT-22", "label": "Process portability requests (Art. 20 GDPR)",
+     "attrs": {"name": "Process portability requests (Art. 20 GDPR)",
+               "domain_id": "D-05", "sub_domain_id": "D-05.4",
+               "corpus_reg_req": "D-05.4: 5.4.1 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.5 L201 row 'Process portability requests (Art. 20 GDPR)'"]},
+    # --- §4.6 Supply Chain (D-06) — 4 activities
+    {"id": "ACT-23", "label": "Assess vendor security (annual review)",
+     "attrs": {"name": "Assess vendor security (annual review)", "domain_id": "D-06", "sub_domain_id": "D-06.1",
+               "corpus_reg_req": "D-06.1: 6.1.1, 6.1.3 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.6 L207 row 'Assess vendor security (annual review)'"]},
+    {"id": "ACT-24", "label": "Maintain SBOM (CRA Annex I Part II (1))",
+     "attrs": {"name": "Maintain SBOM (CRA Annex I Part II (1))", "domain_id": "D-06", "sub_domain_id": "D-06.2",
+               "corpus_reg_req": "D-06.2: 6.2.1 (CRA only — confirmed via manifest)", "active": True},
+     "source": ["Doc07 §4.6 L208 row 'Maintain SBOM (CRA Annex I Part II (1))'"]},
+    {"id": "ACT-25", "label": "Manage DPA contracts with B2B controllers",
+     "attrs": {"name": "Manage DPA contracts with B2B controllers", "domain_id": "D-06", "sub_domain_id": "D-06.3",
+               "corpus_reg_req": "D-06.3: 6.3.1, 6.3.3 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.6 L209 row 'Manage DPA contracts with B2B controllers'"]},
+    {"id": "ACT-26", "label": "Manage DPA acceptance from subprocessor vendors",
+     "attrs": {"name": "Manage DPA acceptance from subprocessor vendors", "domain_id": "D-06", "sub_domain_id": "D-06.3",
+               "corpus_reg_req": "D-06.3: 6.3.1, 6.3.3 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.6 L210 row 'Manage DPA acceptance from subprocessor vendors'"]},
+    # --- §4.7 Secure Development (D-07) — 4 activities (ACT-27/28 Dev = R/A composite)
+    {"id": "ACT-27", "label": "Threat model per feature",
+     "attrs": {"name": "Threat model per feature", "domain_id": "D-07", "sub_domain_id": "D-07.1",
+               "corpus_reg_req": "D-07.1: 7.1.1, 7.1.3 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.7 L216 row 'Threat model per feature' (Dev = R/A composite)"]},
+    {"id": "ACT-28", "label": "Code review",
+     "attrs": {"name": "Code review", "domain_id": "D-07", "sub_domain_id": "D-07.2",
+               "corpus_reg_req": "D-07.2: 7.2.1 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.7 L217 row 'Code review' (Dev = R/A composite)"]},
+    {"id": "ACT-29", "label": "Security testing in CI/CD (SAST/DAST/SCA via Snyk)",
+     "attrs": {"name": "Security testing in CI/CD (SAST/DAST/SCA via Snyk)",
+               "domain_id": "D-07", "sub_domain_id": "D-07.3",
+               "corpus_reg_req": "D-07.3: 7.3.2 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.7 L218 row 'Security testing in CI/CD (SAST/DAST/SCA via Snyk)'"]},
+    {"id": "ACT-30", "label": "Change approval (CAB) for production releases",
+     "attrs": {"name": "Change approval (CAB) for production releases",
+               "domain_id": "D-07", "sub_domain_id": "D-07.4",
+               "corpus_reg_req": "D-07.4: 7.4.1 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.7 L219 row 'Change approval (CAB) for production releases'"]},
+    # --- §4.8 Human Factors (D-08) — 5 activities (3 active + ACT-33 R/A composite + ACT-34/35 inactive)
+    {"id": "ACT-31", "label": "Annual security awareness training (D-08.1)",
+     "attrs": {"name": "Annual security awareness training (D-08.1)",
+               "domain_id": "D-08", "sub_domain_id": "D-08.1",
+               "corpus_reg_req": "D-08.1: 8.1.1, 8.1.3 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.8 L225 row 'Annual security awareness training (D-08.1)'"]},
+    {"id": "ACT-32", "label": "Role-specific training — secure coding for developers (D-08.2)",
+     "attrs": {"name": "Role-specific training — secure coding for developers (D-08.2)",
+               "domain_id": "D-08", "sub_domain_id": "D-08.2",
+               "corpus_reg_req": "D-08.2: 8.2.1, 8.2.3 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.8 L226 row 'Role-specific training — secure coding for developers (D-08.2)'"]},
+    {"id": "ACT-33", "label": "Role-specific training — DPO competence refresh (D-08.2)",
+     "attrs": {"name": "Role-specific training — DPO competence refresh (D-08.2)",
+               "domain_id": "D-08", "sub_domain_id": "D-08.2",
+               "corpus_reg_req": "D-08.2: 8.2.1, 8.2.3 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.8 L227 row 'Role-specific training — DPO competence refresh (D-08.2)' (DPO = R/A composite)"]},
+    {"id": "ACT-34", "label": "Board cybersecurity briefings (D-08.3)",
+     "attrs": {"name": "Board cybersecurity briefings (D-08.3)",
+               "domain_id": "D-08", "sub_domain_id": "D-08.3",
+               "corpus_reg_req": "D-08.3: INACTIVE", "active": False},
+     "source": ["Doc07 §4.8 L228 row 'Board cybersecurity briefings (D-08.3)' (all '—' placeholder, D-08.3 INACTIVE for NIS2 + DORA inapplicability)"]},
+    {"id": "ACT-35", "label": "Quarterly informal cybersecurity briefing to the 2 founders",
+     "attrs": {"name": "Quarterly informal cybersecurity briefing to the 2 founders",
+               "domain_id": "D-08", "sub_domain_id": "D-08.3",
+               "corpus_reg_req": "D-08.3: INACTIVE — no derived GDPR/CRA req_id", "active": False},
+     "source": ["Doc07 §4.8 L238 best-practice placeholder row 'Quarterly informal cybersecurity briefing to the 2 founders' (CISO=R, Board=A)"]},
+    # --- §4.9 Governance (D-09) — 5 activities
+    {"id": "ACT-36", "label": "Approve security policies",
+     "attrs": {"name": "Approve security policies", "domain_id": "D-09", "sub_domain_id": "D-09.1",
+               "corpus_reg_req": "D-09.1: 9.1.1, 9.1.3 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.9 L246 row 'Approve security policies'"]},
+    {"id": "ACT-37", "label": "Conduct risk assessments (annual + per-feature)",
+     "attrs": {"name": "Conduct risk assessments (annual + per-feature)",
+               "domain_id": "D-09", "sub_domain_id": "D-09.2",
+               "corpus_reg_req": "D-09.2: 9.2.1, 9.2.3 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.9 L247 row 'Conduct risk assessments (annual + per-feature)'"]},
+    {"id": "ACT-38", "label": "Maintain asset inventory",
+     "attrs": {"name": "Maintain asset inventory", "domain_id": "D-09", "sub_domain_id": "D-09.3",
+               "corpus_reg_req": "D-09.3: 9.3.2 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.9 L248 row 'Maintain asset inventory'"]},
+    {"id": "ACT-39", "label": "Maintain RoPA (Art. 30 GDPR)",
+     "attrs": {"name": "Maintain RoPA (Art. 30 GDPR)", "domain_id": "D-09", "sub_domain_id": "D-09.4",
+               "corpus_reg_req": "D-09.4: 9.4.1, 9.4.3 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.9 L249 row 'Maintain RoPA (Art. 30 GDPR)'"]},
+    {"id": "ACT-40", "label": "Maintain CRA Annex VII technical documentation",
+     "attrs": {"name": "Maintain CRA Annex VII technical documentation",
+               "domain_id": "D-09", "sub_domain_id": "D-09.4",
+               "corpus_reg_req": "D-09.4: 9.4.1, 9.4.3 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.9 L250 row 'Maintain CRA Annex VII technical documentation'"]},
+    # --- §4.10 Monitoring & Audit (D-10) — 3 activities
+    {"id": "ACT-41", "label": "Continuous security monitoring (Datadog; SIEM-light)",
+     "attrs": {"name": "Continuous security monitoring (Datadog; SIEM-light)",
+               "domain_id": "D-10", "sub_domain_id": "D-10.1",
+               "corpus_reg_req": "D-10.1: 10.1.1, 10.1.3 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.10 L256 row 'Continuous security monitoring (Datadog; SIEM-light)'"]},
+    {"id": "ACT-42", "label": "Audit-log retention",
+     "attrs": {"name": "Audit-log retention", "domain_id": "D-10", "sub_domain_id": "D-10.2",
+               "corpus_reg_req": "D-10.2: 10.2.1, 10.2.2 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.10 L257 row 'Audit-log retention'"]},
+    {"id": "ACT-43", "label": "Annual compliance testing",
+     "attrs": {"name": "Annual compliance testing", "domain_id": "D-10", "sub_domain_id": "D-10.3",
+               "corpus_reg_req": "D-10.3: 10.3.1, 10.3.3 (GDPR + CRA)", "active": True},
+     "source": ["Doc07 §4.10 L258 row 'Annual compliance testing'"]},
+]
+assert len(RACI_ACTIVITIES) == 43, f"RACI_ACTIVITIES drift: {len(RACI_ACTIVITIES)}"
+_active_acts = sum(1 for a in RACI_ACTIVITIES if a["attrs"]["active"])
+assert _active_acts == 41, f"active RACI activities drift: {_active_acts} (expected 41)"
+
+
+# Per Doc07 §4.x RACI tables: 206 RACI edges (one per non-'—' cell; composite
+# 'R/A' cells split into 2 edges). Each entry is a tuple
+#   (role_id, activity_id, letter, source_section)
+# where letter ∈ {R, A, C, I}. attr 'activity_id' is added on each emitted
+# link for traceability (orchestrator brief §A).
+RACI_EDGES = [
+    # --- §4.1 Data Protection (4 rows × non-'—' cells)
+    ("ROLE-DPO",  "ACT-01", "C", "Doc07 §4.1 L160 row 'Encrypt personal data at rest', col DPO"),
+    ("ROLE-CISO", "ACT-01", "A", "Doc07 §4.1 L160 row 'Encrypt personal data at rest', col CISO"),
+    ("ROLE-DEV",  "ACT-01", "R", "Doc07 §4.1 L160 row 'Encrypt personal data at rest', col Dev"),
+    ("ROLE-LEGAL","ACT-01", "I", "Doc07 §4.1 L160 row 'Encrypt personal data at rest', col Legal"),
+    ("ROLE-BOARD","ACT-01", "I", "Doc07 §4.1 L160 row 'Encrypt personal data at rest', col Board"),
+    ("ROLE-DPO",  "ACT-02", "C", "Doc07 §4.1 L161 row 'Manage encryption keys', col DPO"),
+    ("ROLE-CISO", "ACT-02", "A", "Doc07 §4.1 L161 row 'Manage encryption keys', col CISO"),
+    ("ROLE-DEV",  "ACT-02", "R", "Doc07 §4.1 L161 row 'Manage encryption keys', col Dev"),
+    ("ROLE-LEGAL","ACT-02", "I", "Doc07 §4.1 L161 row 'Manage encryption keys', col Legal"),
+    ("ROLE-BOARD","ACT-02", "I", "Doc07 §4.1 L161 row 'Manage encryption keys', col Board"),
+    ("ROLE-DPO",  "ACT-03", "R", "Doc07 §4.1 L162 row 'Notify DPA within 72h (Art. 33 GDPR)', col DPO"),
+    ("ROLE-CISO", "ACT-03", "A", "Doc07 §4.1 L162 row 'Notify DPA within 72h (Art. 33 GDPR)', col CISO"),
+    ("ROLE-DEV",  "ACT-03", "C", "Doc07 §4.1 L162 row 'Notify DPA within 72h (Art. 33 GDPR)', col Dev"),
+    ("ROLE-LEGAL","ACT-03", "C", "Doc07 §4.1 L162 row 'Notify DPA within 72h (Art. 33 GDPR)', col Legal"),
+    ("ROLE-BOARD","ACT-03", "I", "Doc07 §4.1 L162 row 'Notify DPA within 72h (Art. 33 GDPR)', col Board"),
+    ("ROLE-DPO",  "ACT-04", "R", "Doc07 §4.1 L163 row 'Conduct DPIA (Art. 35 GDPR)', col DPO"),
+    ("ROLE-CISO", "ACT-04", "C", "Doc07 §4.1 L163 row 'Conduct DPIA (Art. 35 GDPR)', col CISO"),
+    ("ROLE-DEV",  "ACT-04", "C", "Doc07 §4.1 L163 row 'Conduct DPIA (Art. 35 GDPR)', col Dev"),
+    ("ROLE-LEGAL","ACT-04", "A", "Doc07 §4.1 L163 row 'Conduct DPIA (Art. 35 GDPR)', col Legal"),
+    ("ROLE-BOARD","ACT-04", "I", "Doc07 §4.1 L163 row 'Conduct DPIA (Art. 35 GDPR)', col Board"),
+    # --- §4.2 Vulnerability Management (4 rows)
+    ("ROLE-DPO",  "ACT-05", "I", "Doc07 §4.2 L169 row 'Run vulnerability scans', col DPO"),
+    ("ROLE-CISO", "ACT-05", "A", "Doc07 §4.2 L169 row 'Run vulnerability scans', col CISO"),
+    ("ROLE-DEV",  "ACT-05", "R", "Doc07 §4.2 L169 row 'Run vulnerability scans', col Dev"),
+    ("ROLE-BOARD","ACT-05", "I", "Doc07 §4.2 L169 row 'Run vulnerability scans', col Board"),
+    ("ROLE-DPO",  "ACT-06", "I", "Doc07 §4.2 L170 row 'Apply critical patches', col DPO"),
+    ("ROLE-CISO", "ACT-06", "A", "Doc07 §4.2 L170 row 'Apply critical patches', col CISO"),
+    ("ROLE-DEV",  "ACT-06", "R", "Doc07 §4.2 L170 row 'Apply critical patches', col Dev"),
+    ("ROLE-BOARD","ACT-06", "I", "Doc07 §4.2 L170 row 'Apply critical patches', col Board"),
+    ("ROLE-DPO",  "ACT-07", "I", "Doc07 §4.2 L171 row 'Annual penetration testing', col DPO"),
+    ("ROLE-CISO", "ACT-07", "A", "Doc07 §4.2 L171 row 'Annual penetration testing', col CISO"),
+    ("ROLE-DEV",  "ACT-07", "R", "Doc07 §4.2 L171 row 'Annual penetration testing', col Dev"),
+    ("ROLE-LEGAL","ACT-07", "I", "Doc07 §4.2 L171 row 'Annual penetration testing', col Legal"),
+    ("ROLE-BOARD","ACT-07", "I", "Doc07 §4.2 L171 row 'Annual penetration testing', col Board"),
+    ("ROLE-DPO",  "ACT-08", "C", "Doc07 §4.2 L172 row 'Operate CVD / security.txt', col DPO"),
+    ("ROLE-CISO", "ACT-08", "A", "Doc07 §4.2 L172 row 'Operate CVD / security.txt', col CISO"),
+    ("ROLE-DEV",  "ACT-08", "R", "Doc07 §4.2 L172 row 'Operate CVD / security.txt', col Dev"),
+    ("ROLE-LEGAL","ACT-08", "I", "Doc07 §4.2 L172 row 'Operate CVD / security.txt', col Legal"),
+    ("ROLE-BOARD","ACT-08", "I", "Doc07 §4.2 L172 row 'Operate CVD / security.txt', col Board"),
+    # --- §4.3 Access Control (4 rows)
+    ("ROLE-DPO",  "ACT-09", "C", "Doc07 §4.3 L178 row 'Manage IAM', col DPO"),
+    ("ROLE-CISO", "ACT-09", "A", "Doc07 §4.3 L178 row 'Manage IAM', col CISO"),
+    ("ROLE-DEV",  "ACT-09", "R", "Doc07 §4.3 L178 row 'Manage IAM', col Dev"),
+    ("ROLE-LEGAL","ACT-09", "I", "Doc07 §4.3 L178 row 'Manage IAM', col Legal"),
+    ("ROLE-BOARD","ACT-09", "I", "Doc07 §4.3 L178 row 'Manage IAM', col Board"),
+    ("ROLE-DPO",  "ACT-10", "C", "Doc07 §4.3 L179 row 'Enforce MFA', col DPO"),
+    ("ROLE-CISO", "ACT-10", "A", "Doc07 §4.3 L179 row 'Enforce MFA', col CISO"),
+    ("ROLE-DEV",  "ACT-10", "R", "Doc07 §4.3 L179 row 'Enforce MFA', col Dev"),
+    ("ROLE-BOARD","ACT-10", "I", "Doc07 §4.3 L179 row 'Enforce MFA', col Board"),
+    ("ROLE-DPO",  "ACT-11", "C", "Doc07 §4.3 L180 row 'Quarterly access review', col DPO"),
+    ("ROLE-CISO", "ACT-11", "A", "Doc07 §4.3 L180 row 'Quarterly access review', col CISO"),
+    ("ROLE-DEV",  "ACT-11", "R", "Doc07 §4.3 L180 row 'Quarterly access review', col Dev"),
+    ("ROLE-LEGAL","ACT-11", "I", "Doc07 §4.3 L180 row 'Quarterly access review', col Legal"),
+    ("ROLE-BOARD","ACT-11", "I", "Doc07 §4.3 L180 row 'Quarterly access review', col Board"),
+    ("ROLE-DPO",  "ACT-12", "C", "Doc07 §4.3 L181 row 'Offboarding', col DPO"),
+    ("ROLE-CISO", "ACT-12", "A", "Doc07 §4.3 L181 row 'Offboarding', col CISO"),
+    ("ROLE-DEV",  "ACT-12", "R", "Doc07 §4.3 L181 row 'Offboarding', col Dev"),
+    ("ROLE-LEGAL","ACT-12", "I", "Doc07 §4.3 L181 row 'Offboarding', col Legal"),
+    ("ROLE-HR",   "ACT-12", "C", "Doc07 §4.3 L181 row 'Offboarding', col HR"),
+    ("ROLE-BOARD","ACT-12", "I", "Doc07 §4.3 L181 row 'Offboarding', col Board"),
+    # --- §4.4 Incident Response (6 rows)
+    ("ROLE-DPO",  "ACT-13", "I", "Doc07 §4.4 L187 row 'Detect incident', col DPO"),
+    ("ROLE-CISO", "ACT-13", "A", "Doc07 §4.4 L187 row 'Detect incident', col CISO"),
+    ("ROLE-DEV",  "ACT-13", "R", "Doc07 §4.4 L187 row 'Detect incident', col Dev"),
+    ("ROLE-BOARD","ACT-13", "I", "Doc07 §4.4 L187 row 'Detect incident', col Board"),
+    ("ROLE-DPO",  "ACT-14", "I", "Doc07 §4.4 L188 row 'Contain incident', col DPO"),
+    ("ROLE-CISO", "ACT-14", "A", "Doc07 §4.4 L188 row 'Contain incident', col CISO"),
+    ("ROLE-DEV",  "ACT-14", "R", "Doc07 §4.4 L188 row 'Contain incident', col Dev"),
+    ("ROLE-LEGAL","ACT-14", "C", "Doc07 §4.4 L188 row 'Contain incident', col Legal"),
+    ("ROLE-BOARD","ACT-14", "I", "Doc07 §4.4 L188 row 'Contain incident', col Board"),
+    ("ROLE-DPO",  "ACT-15", "R", "Doc07 §4.4 L189 row 'Notify authorities', col DPO"),
+    ("ROLE-CISO", "ACT-15", "A", "Doc07 §4.4 L189 row 'Notify authorities', col CISO"),
+    ("ROLE-DEV",  "ACT-15", "C", "Doc07 §4.4 L189 row 'Notify authorities', col Dev"),
+    ("ROLE-LEGAL","ACT-15", "C", "Doc07 §4.4 L189 row 'Notify authorities', col Legal"),
+    ("ROLE-BOARD","ACT-15", "I", "Doc07 §4.4 L189 row 'Notify authorities', col Board"),
+    ("ROLE-DPO",  "ACT-16", "R", "Doc07 §4.4 L190 row 'Notify controllers', col DPO"),
+    ("ROLE-CISO", "ACT-16", "A", "Doc07 §4.4 L190 row 'Notify controllers', col CISO"),
+    ("ROLE-DEV",  "ACT-16", "C", "Doc07 §4.4 L190 row 'Notify controllers', col Dev"),
+    ("ROLE-LEGAL","ACT-16", "C", "Doc07 §4.4 L190 row 'Notify controllers', col Legal"),
+    ("ROLE-BOARD","ACT-16", "I", "Doc07 §4.4 L190 row 'Notify controllers', col Board"),
+    ("ROLE-DPO",  "ACT-17", "I", "Doc07 §4.4 L191 row 'Recover systems', col DPO"),
+    ("ROLE-CISO", "ACT-17", "A", "Doc07 §4.4 L191 row 'Recover systems', col CISO"),
+    ("ROLE-DEV",  "ACT-17", "R", "Doc07 §4.4 L191 row 'Recover systems', col Dev"),
+    ("ROLE-LEGAL","ACT-17", "I", "Doc07 §4.4 L191 row 'Recover systems', col Legal"),
+    ("ROLE-BOARD","ACT-17", "I", "Doc07 §4.4 L191 row 'Recover systems', col Board"),
+    ("ROLE-DPO",  "ACT-18", "C", "Doc07 §4.4 L192 row 'Post-incident review', col DPO"),
+    ("ROLE-CISO", "ACT-18", "A", "Doc07 §4.4 L192 row 'Post-incident review', col CISO"),
+    ("ROLE-DEV",  "ACT-18", "R", "Doc07 §4.4 L192 row 'Post-incident review', col Dev"),
+    ("ROLE-LEGAL","ACT-18", "I", "Doc07 §4.4 L192 row 'Post-incident review', col Legal"),
+    ("ROLE-BOARD","ACT-18", "I", "Doc07 §4.4 L192 row 'Post-incident review', col Board"),
+    # --- §4.5 Data Lifecycle (4 rows)
+    ("ROLE-DPO",  "ACT-19", "R", "Doc07 §4.5 L198 row 'Enforce data minimisation', col DPO"),
+    ("ROLE-CISO", "ACT-19", "A", "Doc07 §4.5 L198 row 'Enforce data minimisation', col CISO"),
+    ("ROLE-DEV",  "ACT-19", "C", "Doc07 §4.5 L198 row 'Enforce data minimisation', col Dev"),
+    ("ROLE-LEGAL","ACT-19", "C", "Doc07 §4.5 L198 row 'Enforce data minimisation', col Legal"),
+    ("ROLE-BOARD","ACT-19", "I", "Doc07 §4.5 L198 row 'Enforce data minimisation', col Board"),
+    ("ROLE-DPO",  "ACT-20", "R", "Doc07 §4.5 L199 row 'Manage retention policies', col DPO"),
+    ("ROLE-CISO", "ACT-20", "A", "Doc07 §4.5 L199 row 'Manage retention policies', col CISO"),
+    ("ROLE-DEV",  "ACT-20", "C", "Doc07 §4.5 L199 row 'Manage retention policies', col Dev"),
+    ("ROLE-LEGAL","ACT-20", "C", "Doc07 §4.5 L199 row 'Manage retention policies', col Legal"),
+    ("ROLE-BOARD","ACT-20", "I", "Doc07 §4.5 L199 row 'Manage retention policies', col Board"),
+    ("ROLE-DPO",  "ACT-21", "R", "Doc07 §4.5 L200 row 'Process erasure requests', col DPO"),
+    ("ROLE-CISO", "ACT-21", "C", "Doc07 §4.5 L200 row 'Process erasure requests', col CISO"),
+    ("ROLE-DEV",  "ACT-21", "A", "Doc07 §4.5 L200 row 'Process erasure requests', col Dev"),
+    ("ROLE-LEGAL","ACT-21", "C", "Doc07 §4.5 L200 row 'Process erasure requests', col Legal"),
+    ("ROLE-BOARD","ACT-21", "I", "Doc07 §4.5 L200 row 'Process erasure requests', col Board"),
+    ("ROLE-DPO",  "ACT-22", "R", "Doc07 §4.5 L201 row 'Process portability requests', col DPO"),
+    ("ROLE-CISO", "ACT-22", "C", "Doc07 §4.5 L201 row 'Process portability requests', col CISO"),
+    ("ROLE-DEV",  "ACT-22", "A", "Doc07 §4.5 L201 row 'Process portability requests', col Dev"),
+    ("ROLE-LEGAL","ACT-22", "C", "Doc07 §4.5 L201 row 'Process portability requests', col Legal"),
+    ("ROLE-BOARD","ACT-22", "I", "Doc07 §4.5 L201 row 'Process portability requests', col Board"),
+    # --- §4.6 Supply Chain (4 rows)
+    ("ROLE-DPO",  "ACT-23", "C", "Doc07 §4.6 L207 row 'Assess vendor security', col DPO"),
+    ("ROLE-CISO", "ACT-23", "A", "Doc07 §4.6 L207 row 'Assess vendor security', col CISO"),
+    ("ROLE-DEV",  "ACT-23", "R", "Doc07 §4.6 L207 row 'Assess vendor security', col Dev"),
+    ("ROLE-LEGAL","ACT-23", "C", "Doc07 §4.6 L207 row 'Assess vendor security', col Legal"),
+    ("ROLE-BOARD","ACT-23", "I", "Doc07 §4.6 L207 row 'Assess vendor security', col Board"),
+    ("ROLE-DPO",  "ACT-24", "I", "Doc07 §4.6 L208 row 'Maintain SBOM', col DPO"),
+    ("ROLE-CISO", "ACT-24", "A", "Doc07 §4.6 L208 row 'Maintain SBOM', col CISO"),
+    ("ROLE-DEV",  "ACT-24", "R", "Doc07 §4.6 L208 row 'Maintain SBOM', col Dev"),
+    ("ROLE-BOARD","ACT-24", "I", "Doc07 §4.6 L208 row 'Maintain SBOM', col Board"),
+    ("ROLE-DPO",  "ACT-25", "R", "Doc07 §4.6 L209 row 'Manage DPA contracts with B2B controllers', col DPO"),
+    ("ROLE-CISO", "ACT-25", "C", "Doc07 §4.6 L209 row 'Manage DPA contracts with B2B controllers', col CISO"),
+    ("ROLE-DEV",  "ACT-25", "I", "Doc07 §4.6 L209 row 'Manage DPA contracts with B2B controllers', col Dev"),
+    ("ROLE-LEGAL","ACT-25", "A", "Doc07 §4.6 L209 row 'Manage DPA contracts with B2B controllers', col Legal"),
+    ("ROLE-BOARD","ACT-25", "I", "Doc07 §4.6 L209 row 'Manage DPA contracts with B2B controllers', col Board"),
+    ("ROLE-DPO",  "ACT-26", "R", "Doc07 §4.6 L210 row 'Manage DPA acceptance from subprocessor vendors', col DPO"),
+    ("ROLE-CISO", "ACT-26", "A", "Doc07 §4.6 L210 row 'Manage DPA acceptance from subprocessor vendors', col CISO"),
+    ("ROLE-DEV",  "ACT-26", "I", "Doc07 §4.6 L210 row 'Manage DPA acceptance from subprocessor vendors', col Dev"),
+    ("ROLE-LEGAL","ACT-26", "C", "Doc07 §4.6 L210 row 'Manage DPA acceptance from subprocessor vendors', col Legal"),
+    ("ROLE-BOARD","ACT-26", "I", "Doc07 §4.6 L210 row 'Manage DPA acceptance from subprocessor vendors', col Board"),
+    # --- §4.7 Secure Development (4 rows; ACT-27 Dev = R/A → 2 edges; ACT-28 Dev = R/A → 2 edges)
+    ("ROLE-DPO",  "ACT-27", "C", "Doc07 §4.7 L216 row 'Threat model per feature', col DPO"),
+    ("ROLE-CISO", "ACT-27", "C", "Doc07 §4.7 L216 row 'Threat model per feature', col CISO"),
+    ("ROLE-DEV",  "ACT-27", "R", "Doc07 §4.7 L216 row 'Threat model per feature', col Dev (composite R/A → split)"),
+    ("ROLE-DEV",  "ACT-27", "A", "Doc07 §4.7 L216 row 'Threat model per feature', col Dev (composite R/A → split)"),
+    ("ROLE-LEGAL","ACT-27", "I", "Doc07 §4.7 L216 row 'Threat model per feature', col Legal"),
+    ("ROLE-BOARD","ACT-27", "I", "Doc07 §4.7 L216 row 'Threat model per feature', col Board"),
+    ("ROLE-DPO",  "ACT-28", "I", "Doc07 §4.7 L217 row 'Code review', col DPO"),
+    ("ROLE-CISO", "ACT-28", "C", "Doc07 §4.7 L217 row 'Code review', col CISO"),
+    ("ROLE-DEV",  "ACT-28", "R", "Doc07 §4.7 L217 row 'Code review', col Dev (composite R/A → split)"),
+    ("ROLE-DEV",  "ACT-28", "A", "Doc07 §4.7 L217 row 'Code review', col Dev (composite R/A → split)"),
+    ("ROLE-BOARD","ACT-28", "I", "Doc07 §4.7 L217 row 'Code review', col Board"),
+    ("ROLE-DPO",  "ACT-29", "I", "Doc07 §4.7 L218 row 'Security testing in CI/CD', col DPO"),
+    ("ROLE-CISO", "ACT-29", "A", "Doc07 §4.7 L218 row 'Security testing in CI/CD', col CISO"),
+    ("ROLE-DEV",  "ACT-29", "R", "Doc07 §4.7 L218 row 'Security testing in CI/CD', col Dev"),
+    ("ROLE-BOARD","ACT-29", "I", "Doc07 §4.7 L218 row 'Security testing in CI/CD', col Board"),
+    ("ROLE-DPO",  "ACT-30", "I", "Doc07 §4.7 L219 row 'Change approval (CAB)', col DPO"),
+    ("ROLE-CISO", "ACT-30", "C", "Doc07 §4.7 L219 row 'Change approval (CAB)', col CISO"),
+    ("ROLE-DEV",  "ACT-30", "R", "Doc07 §4.7 L219 row 'Change approval (CAB)', col Dev"),
+    ("ROLE-LEGAL","ACT-30", "I", "Doc07 §4.7 L219 row 'Change approval (CAB)', col Legal"),
+    ("ROLE-BOARD","ACT-30", "A", "Doc07 §4.7 L219 row 'Change approval (CAB)', col Board"),
+    # --- §4.8 Human Factors (3 active rows + ACT-33 DPO = R/A composite → 2 edges + ACT-34/35 inactive, no edges)
+    ("ROLE-DPO",  "ACT-31", "C", "Doc07 §4.8 L225 row 'Annual security awareness training', col DPO"),
+    ("ROLE-CISO", "ACT-31", "A", "Doc07 §4.8 L225 row 'Annual security awareness training', col CISO"),
+    ("ROLE-DEV",  "ACT-31", "I", "Doc07 §4.8 L225 row 'Annual security awareness training', col Dev"),
+    ("ROLE-LEGAL","ACT-31", "I", "Doc07 §4.8 L225 row 'Annual security awareness training', col Legal"),
+    ("ROLE-HR",   "ACT-31", "R", "Doc07 §4.8 L225 row 'Annual security awareness training', col HR"),
+    ("ROLE-BOARD","ACT-31", "I", "Doc07 §4.8 L225 row 'Annual security awareness training', col Board"),
+    ("ROLE-DPO",  "ACT-32", "C", "Doc07 §4.8 L226 row 'Role-specific training — secure coding for developers', col DPO"),
+    ("ROLE-CISO", "ACT-32", "A", "Doc07 §4.8 L226 row 'Role-specific training — secure coding for developers', col CISO"),
+    ("ROLE-DEV",  "ACT-32", "R", "Doc07 §4.8 L226 row 'Role-specific training — secure coding for developers', col Dev"),
+    ("ROLE-HR",   "ACT-32", "I", "Doc07 §4.8 L226 row 'Role-specific training — secure coding for developers', col HR"),
+    ("ROLE-BOARD","ACT-32", "I", "Doc07 §4.8 L226 row 'Role-specific training — secure coding for developers', col Board"),
+    ("ROLE-DPO",  "ACT-33", "R", "Doc07 §4.8 L227 row 'Role-specific training — DPO competence refresh', col DPO (composite R/A → split)"),
+    ("ROLE-DPO",  "ACT-33", "A", "Doc07 §4.8 L227 row 'Role-specific training — DPO competence refresh', col DPO (composite R/A → split)"),
+    ("ROLE-CISO", "ACT-33", "C", "Doc07 §4.8 L227 row 'Role-specific training — DPO competence refresh', col CISO"),
+    ("ROLE-LEGAL","ACT-33", "C", "Doc07 §4.8 L227 row 'Role-specific training — DPO competence refresh', col Legal"),
+    ("ROLE-HR",   "ACT-33", "I", "Doc07 §4.8 L227 row 'Role-specific training — DPO competence refresh', col HR"),
+    ("ROLE-BOARD","ACT-33", "I", "Doc07 §4.8 L227 row 'Role-specific training — DPO competence refresh', col Board"),
+    # ACT-34 (L228 all-'—' placeholder) is INACTIVE → no RACI edges emitted.
+    # ACT-35 (L238 best-practice) is also marked active=False at the activity-node
+    # level (D-08.3 INACTIVE for TinyTask; non-derivation per Doc07 §0/§7), but the
+    # 2 non-'—' cells (CISO=R, Board=A) of the §4.8 best-practice sub-table are
+    # still emitted as RACI edges to preserve the verbatim Doc07 §4.8 matrix —
+    # total RACI_EDGES = 206 matches the brief and §4.8 row 4 cell content.
+    ("ROLE-CISO", "ACT-35", "R", "Doc07 §4.8 L238 best-practice row 'Quarterly informal cybersecurity briefing', col CISO"),
+    ("ROLE-BOARD","ACT-35", "A", "Doc07 §4.8 L238 best-practice row 'Quarterly informal cybersecurity briefing', col Board"),
+    # --- §4.9 Governance (5 rows)
+    ("ROLE-DPO",  "ACT-36", "C", "Doc07 §4.9 L246 row 'Approve security policies', col DPO"),
+    ("ROLE-CISO", "ACT-36", "C", "Doc07 §4.9 L246 row 'Approve security policies', col CISO"),
+    ("ROLE-DEV",  "ACT-36", "C", "Doc07 §4.9 L246 row 'Approve security policies', col Dev"),
+    ("ROLE-LEGAL","ACT-36", "C", "Doc07 §4.9 L246 row 'Approve security policies', col Legal"),
+    ("ROLE-HR",   "ACT-36", "C", "Doc07 §4.9 L246 row 'Approve security policies', col HR"),
+    ("ROLE-BOARD","ACT-36", "A", "Doc07 §4.9 L246 row 'Approve security policies', col Board"),
+    ("ROLE-DPO",  "ACT-37", "R", "Doc07 §4.9 L247 row 'Conduct risk assessments', col DPO"),
+    ("ROLE-CISO", "ACT-37", "A", "Doc07 §4.9 L247 row 'Conduct risk assessments', col CISO"),
+    ("ROLE-DEV",  "ACT-37", "C", "Doc07 §4.9 L247 row 'Conduct risk assessments', col Dev"),
+    ("ROLE-LEGAL","ACT-37", "C", "Doc07 §4.9 L247 row 'Conduct risk assessments', col Legal"),
+    ("ROLE-HR",   "ACT-37", "I", "Doc07 §4.9 L247 row 'Conduct risk assessments', col HR"),
+    ("ROLE-BOARD","ACT-37", "I", "Doc07 §4.9 L247 row 'Conduct risk assessments', col Board"),
+    ("ROLE-DPO",  "ACT-38", "C", "Doc07 §4.9 L248 row 'Maintain asset inventory', col DPO"),
+    ("ROLE-CISO", "ACT-38", "A", "Doc07 §4.9 L248 row 'Maintain asset inventory', col CISO"),
+    ("ROLE-DEV",  "ACT-38", "R", "Doc07 §4.9 L248 row 'Maintain asset inventory', col Dev"),
+    ("ROLE-LEGAL","ACT-38", "I", "Doc07 §4.9 L248 row 'Maintain asset inventory', col Legal"),
+    ("ROLE-BOARD","ACT-38", "I", "Doc07 §4.9 L248 row 'Maintain asset inventory', col Board"),
+    ("ROLE-DPO",  "ACT-39", "R", "Doc07 §4.9 L249 row 'Maintain RoPA', col DPO"),
+    ("ROLE-CISO", "ACT-39", "A", "Doc07 §4.9 L249 row 'Maintain RoPA', col CISO"),
+    ("ROLE-DEV",  "ACT-39", "C", "Doc07 §4.9 L249 row 'Maintain RoPA', col Dev"),
+    ("ROLE-LEGAL","ACT-39", "C", "Doc07 §4.9 L249 row 'Maintain RoPA', col Legal"),
+    ("ROLE-BOARD","ACT-39", "I", "Doc07 §4.9 L249 row 'Maintain RoPA', col Board"),
+    ("ROLE-DPO",  "ACT-40", "C", "Doc07 §4.9 L250 row 'Maintain CRA Annex VII technical documentation', col DPO"),
+    ("ROLE-CISO", "ACT-40", "A", "Doc07 §4.9 L250 row 'Maintain CRA Annex VII technical documentation', col CISO"),
+    ("ROLE-DEV",  "ACT-40", "R", "Doc07 §4.9 L250 row 'Maintain CRA Annex VII technical documentation', col Dev"),
+    ("ROLE-LEGAL","ACT-40", "C", "Doc07 §4.9 L250 row 'Maintain CRA Annex VII technical documentation', col Legal"),
+    ("ROLE-BOARD","ACT-40", "I", "Doc07 §4.9 L250 row 'Maintain CRA Annex VII technical documentation', col Board"),
+    # --- §4.10 Monitoring & Audit (3 rows)
+    ("ROLE-DPO",  "ACT-41", "I", "Doc07 §4.10 L256 row 'Continuous security monitoring', col DPO"),
+    ("ROLE-CISO", "ACT-41", "A", "Doc07 §4.10 L256 row 'Continuous security monitoring', col CISO"),
+    ("ROLE-DEV",  "ACT-41", "R", "Doc07 §4.10 L256 row 'Continuous security monitoring', col Dev"),
+    ("ROLE-BOARD","ACT-41", "I", "Doc07 §4.10 L256 row 'Continuous security monitoring', col Board"),
+    ("ROLE-DPO",  "ACT-42", "C", "Doc07 §4.10 L257 row 'Audit-log retention', col DPO"),
+    ("ROLE-CISO", "ACT-42", "A", "Doc07 §4.10 L257 row 'Audit-log retention', col CISO"),
+    ("ROLE-DEV",  "ACT-42", "R", "Doc07 §4.10 L257 row 'Audit-log retention', col Dev"),
+    ("ROLE-LEGAL","ACT-42", "I", "Doc07 §4.10 L257 row 'Audit-log retention', col Legal"),
+    ("ROLE-BOARD","ACT-42", "I", "Doc07 §4.10 L257 row 'Audit-log retention', col Board"),
+    ("ROLE-DPO",  "ACT-43", "C", "Doc07 §4.10 L258 row 'Annual compliance testing', col DPO"),
+    ("ROLE-CISO", "ACT-43", "A", "Doc07 §4.10 L258 row 'Annual compliance testing', col CISO"),
+    ("ROLE-DEV",  "ACT-43", "R", "Doc07 §4.10 L258 row 'Annual compliance testing', col Dev"),
+    ("ROLE-LEGAL","ACT-43", "I", "Doc07 §4.10 L258 row 'Annual compliance testing', col Legal"),
+    ("ROLE-BOARD","ACT-43", "I", "Doc07 §4.10 L258 row 'Annual compliance testing', col Board"),
+]
+assert len(RACI_EDGES) == 206, f"RACI_EDGES drift: {len(RACI_EDGES)} (expected 206)"
+
+
+# Per Doc07 §9.2 (activity → sub-domain mapping): 35 rows. Some rows merge
+# multiple §4.x activities onto one sub-domain (collapsed entries), so 35
+# APPLIES_TO edges come from 35 §9.2 rows (not 1-per-activity). Each tuple is
+# (activity_id, sub_domain_id, source_section). Where §9.2 merges multiple
+# ACTs (e.g. IAM/offboarding/access review → D-03.1), the edge is emitted
+# from the first (representative) activity in the §9.2 row.
+APPLIES_TO_EDGES = [
+    # §9.2 row 1
+    ("ACT-01", "D-01.1", "Doc07 §9.2 row 1: 'Encrypt personal data at rest → D-01.1'"),
+    # §9.2 row 2
+    ("ACT-02", "D-01.3", "Doc07 §9.2 row 2: 'Manage encryption keys → D-01.3'"),
+    # §9.2 row 3 (collapsed: Notify DPA / Notify controllers → D-04.3; representative = ACT-03)
+    ("ACT-03", "D-04.3", "Doc07 §9.2 row 3: 'Notify DPA / Notify controllers → D-04.3' (collapsed from ACT-03, ACT-15, ACT-16)"),
+    # §9.2 row 4
+    ("ACT-04", "D-09.2", "Doc07 §9.2 row 4: 'Conduct DPIA → D-09.2'"),
+    # §9.2 row 5
+    ("ACT-05", "D-02.1", "Doc07 §9.2 row 5: 'Vulnerability scans → D-02.1'"),
+    # §9.2 row 6
+    ("ACT-06", "D-02.2", "Doc07 §9.2 row 6: 'Patch management → D-02.2'"),
+    # §9.2 row 7
+    ("ACT-07", "D-02.4", "Doc07 §9.2 row 7: 'Penetration testing → D-02.4'"),
+    # §9.2 row 8
+    ("ACT-08", "D-02.3", "Doc07 §9.2 row 8: 'CVD / security.txt → D-02.3'"),
+    # §9.2 row 9 (collapsed: IAM / offboarding / access review → D-03.1; representative = ACT-09)
+    ("ACT-09", "D-03.1", "Doc07 §9.2 row 9: 'IAM / offboarding / access review → D-03.1' (collapsed from ACT-09, ACT-11, ACT-12)"),
+    # §9.2 row 10
+    ("ACT-10", "D-03.2", "Doc07 §9.2 row 10: 'MFA → D-03.2'"),
+    # §9.2 row 11
+    ("ACT-13", "D-04.1", "Doc07 §9.2 row 11: 'Detect incident → D-04.1'"),
+    # §9.2 row 12
+    ("ACT-14", "D-04.2", "Doc07 §9.2 row 12: 'Contain incident → D-04.2'"),
+    # §9.2 row 13
+    ("ACT-17", "D-04.4", "Doc07 §9.2 row 13: 'Recover systems → D-04.4'"),
+    # §9.2 row 14
+    ("ACT-18", "D-04.2", "Doc07 §9.2 row 14: 'Post-incident review → D-04.2'"),
+    # §9.2 row 15
+    ("ACT-19", "D-05.1", "Doc07 §9.2 row 15: 'Data minimisation → D-05.1'"),
+    # §9.2 row 16
+    ("ACT-20", "D-05.2", "Doc07 §9.2 row 16: 'Retention policies → D-05.2'"),
+    # §9.2 row 17
+    ("ACT-21", "D-05.3", "Doc07 §9.2 row 17: 'Erasure requests → D-05.3'"),
+    # §9.2 row 18
+    ("ACT-22", "D-05.4", "Doc07 §9.2 row 18: 'Portability requests → D-05.4'"),
+    # §9.2 row 19
+    ("ACT-23", "D-06.1", "Doc07 §9.2 row 19: 'Vendor security assessment → D-06.1'"),
+    # §9.2 row 20
+    ("ACT-24", "D-06.2", "Doc07 §9.2 row 20: 'SBOM → D-06.2'"),
+    # §9.2 row 21 (collapsed: DPA contracts (B2B / subprocessor) → D-06.3; representative = ACT-25)
+    ("ACT-25", "D-06.3", "Doc07 §9.2 row 21: 'DPA contracts (B2B / subprocessor) → D-06.3' (collapsed from ACT-25, ACT-26)"),
+    # §9.2 row 22
+    ("ACT-27", "D-07.1", "Doc07 §9.2 row 22: 'Threat model per feature → D-07.1'"),
+    # §9.2 row 23
+    ("ACT-28", "D-07.2", "Doc07 §9.2 row 23: 'Code review → D-07.2'"),
+    # §9.2 row 24
+    ("ACT-29", "D-07.3", "Doc07 §9.2 row 24: 'Security testing in CI/CD → D-07.3'"),
+    # §9.2 row 25
+    ("ACT-30", "D-07.4", "Doc07 §9.2 row 25: 'Change approval (CAB) → D-07.4'"),
+    # §9.2 row 26
+    ("ACT-31", "D-08.1", "Doc07 §9.2 row 26: 'Annual security awareness → D-08.1'"),
+    # §9.2 row 27 (collapsed: Role-specific training → D-08.2; representative = ACT-32)
+    ("ACT-32", "D-08.2", "Doc07 §9.2 row 27: 'Role-specific training → D-08.2' (collapsed from ACT-32, ACT-33)"),
+    # §9.2 row 28 (D-08.3 INACTIVE; mapped but sub-domain is inactive)
+    ("ACT-34", "D-08.3", "Doc07 §9.2 row 28: 'Board cybersecurity briefings → D-08.3' (D-08.3 INACTIVE)"),
+    # §9.2 row 29
+    ("ACT-36", "D-09.1", "Doc07 §9.2 row 29: 'Approve security policies → D-09.1'"),
+    # §9.2 row 30
+    ("ACT-37", "D-09.2", "Doc07 §9.2 row 30: 'Risk assessments → D-09.2'"),
+    # §9.2 row 31
+    ("ACT-38", "D-09.3", "Doc07 §9.2 row 31: 'Maintain asset inventory → D-09.3'"),
+    # §9.2 row 32 (collapsed: RoPA / Annex VII documentation → D-09.4; representative = ACT-39)
+    ("ACT-39", "D-09.4", "Doc07 §9.2 row 32: 'RoPA / Annex VII documentation → D-09.4' (collapsed from ACT-39, ACT-40)"),
+    # §9.2 row 33
+    ("ACT-41", "D-10.1", "Doc07 §9.2 row 33: 'Continuous security monitoring → D-10.1'"),
+    # §9.2 row 34
+    ("ACT-42", "D-10.2", "Doc07 §9.2 row 34: 'Audit-log retention → D-10.2'"),
+    # §9.2 row 35
+    ("ACT-43", "D-10.3", "Doc07 §9.2 row 35: 'Annual compliance testing → D-10.3'"),
+]
+assert len(APPLIES_TO_EDGES) == 35, f"APPLIES_TO_EDGES drift: {len(APPLIES_TO_EDGES)} (expected 35)"
+
+
+# ---------------------------------------------------------------------------
 # 9. Build nodes + links
 # ---------------------------------------------------------------------------
 
@@ -1374,6 +2123,20 @@ def build() -> dict:
             "attrs": gap["attrs"], "source": gap["source"],
         })
 
+    # RaciRoles (6) — Sprint 7 / ontology v1.3 (Doc07 §2)
+    for role in RACI_ROLES:
+        nodes.append({
+            "id": role["id"], "type": "RaciRole", "label": role["label"],
+            "attrs": role["attrs"], "source": role["source"],
+        })
+
+    # RaciActivities (43) — Sprint 7 / ontology v1.3 (Doc07 §4.1–§4.10)
+    for act in RACI_ACTIVITIES:
+        nodes.append({
+            "id": act["id"], "type": "RaciActivity", "label": act["label"],
+            "attrs": act["attrs"], "source": act["source"],
+        })
+
     # ----- Links -----
     # ASSESSES: CompanyContext --applies--> Regulation (2 applicable regs)
     for r in REGULATIONS:
@@ -1505,6 +2268,27 @@ def build() -> dict:
             "source": [source_section, "phase1_ontology.yaml@kg_ontology.classes.CoverageGap"],
         })
 
+    # RACI: RaciRole → RaciActivity — 206 edges (one per non-'—' cell; composite
+    # 'R/A' cells already split into 2 edges inside RACI_EDGES). Each link
+    # carries attrs.letter (∈ {R,A,C,I}) + attrs.activity_id for traceability.
+    # Sprint 7 / ontology v1.3 (Doc07 §4.1–§4.10).
+    for (role_id, act_id, letter, source_section) in RACI_EDGES:
+        links.append({
+            "from": role_id, "to": act_id, "rel": "RACI",
+            "attrs": {"letter": letter, "activity_id": act_id},
+            "source": [source_section, "phase1_ontology.yaml@kg_ontology.classes.RaciRole"],
+        })
+
+    # APPLIES_TO: RaciActivity → SecurityControlDomain — 35 edges (one per
+    # Doc07 §9.2 row; collapsed groups emit from the representative activity).
+    # Sprint 7 / ontology v1.3 (Doc07 §9.2).
+    for (act_id, sub_id, source_section) in APPLIES_TO_EDGES:
+        links.append({
+            "from": act_id, "to": sub_id, "rel": "APPLIES_TO",
+            "attrs": {},
+            "source": [source_section, "phase1_ontology.yaml@kg_ontology.classes.RaciActivity"],
+        })
+
     # ----- Ambiguity block -----
     ambiguity = {
         "stats_total": {
@@ -1535,6 +2319,16 @@ def build() -> dict:
         "stakeholders_total": 7,
         "business_goals_total": 5,
         "coverage_gaps_total": 4,
+        # Sprint 7 (kg_ontology v1.3) — RACI Phase A (Doc07 §2/§4/§7/§9.2)
+        # Counts reflect actual extracted data; 41 active activities (43 total
+        # minus ACT-34 all-'—' placeholder + ACT-35 best-practice, active=false).
+        "raci_roles": 6,
+        "raci_activities": 43,
+        "raci_activities_active": 41,
+        "raci_edges_min": 206,  # 200 single-letter cells + 3 R/A composites × 2 = 6 edges
+        "raci_composite_cells": 3,  # ACT-27 Dev=R/A, ACT-28 Dev=R/A, ACT-33 DPO=R/A
+        "applies_to_edges": 35,  # Doc07 §9.2 has 35 rows
+        "gap_raci_count": 5,  # GAP-RACI-01..05 from §7
     }
 
     return {

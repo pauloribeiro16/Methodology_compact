@@ -38,11 +38,21 @@
 #     validate instances against this schema). No existing values were modified.
 #   - Sources cited: A) 00_METHODOLOGY/diagrams/Class_Models/phase1_contextual_definition.md
 #     v1.1 (Mermaid class model); B) this file's existing body (v1.1 entities).
+#
+# Sprint 7 changes (v1.2 → v1.3) — ADDITIVE ONLY (RACI Phase A — Doc07):
+#   - Version bumped 1.2 → 1.3
+#   - Added kg_ontology.classes.RaciRole, RaciActivity + relations RACI, APPLIES_TO
+#     (RACI phase A — Doc07). Additive.
+#   - Source: 02_CASES/Case_01_TinyTask_SaaS/01_PHASE1_CONTEXT_RICH/Doc07_Org_Roles_RACI.md
+#     §2 (Key Roles, 6 roles), §4.1–§4.10 (RACI tables, 42 main-table activity rows +
+#     1 §4.8 best-practice placeholder = 43 ACT-NN), §7 (GAP-RACI-01..05), §9.2
+#     (activity→sub-domain mapping, 35 rows). 206 RACI edges (200 single-letter cells
+#     + 3 R/A composites × 2 = 6 edges).
 
 header:
   case_id: "Case_01_TinyTask_SaaS"
   phase: 1
-  version: "1.2"
+  version: "1.3"
   generated_from:
     - "AEGIS-COMMON-00"  # Taxonomy Reference
     - "AEGIS-COMMON-01"  # Company Context (Intake Form)
@@ -1329,6 +1339,26 @@ kg_ontology:
       data_source: "Doc11 §7 (4 gaps: GAP-001..GAP-004) + Doc08 §8 cross-doc evidence"
       example: "GAP-001"
 
+    # NEW in v1.3 — RACI Phase A (Doc07 §2, §4, §7, §9.2)
+    RaciRole:
+      attrs: { id: String /* ROLE-* */, name: String,
+               maps_to_stakeholder: String(nullable),
+               fte_allocation: String,
+               reports_to: String, backup: String(nullable) }
+      source: "Doc07 §2 'Key Roles' table; Class_Models v1.1 does not define this (case-level construct)"
+      data_source: "Doc07 §2"
+      example: "ROLE-DPO"
+
+    RaciActivity:
+      attrs: { id: String /* ACT-NN */, name: String,
+               domain_id: String /* D-XX */,
+               sub_domain_id: String /* D-XX.Y */,
+               corpus_reg_req: String,
+               active: Boolean }
+      source: "Doc07 §4.1–§4.10 RACI tables (column 'Corpus Reg Req' maps to sub-domain)"
+      data_source: "Doc07 §4.1–§4.10"
+      example: "ACT-03"
+
   # ── ENUMS ────────────────────────────────────────────────────────
   enums:
     Scale: [MICRO, SMALL, MEDIUM, LARGE, MAX]
@@ -1342,6 +1372,7 @@ kg_ontology:
     Severity: [high, medium, low]
     StakeholderType: [Internal, External]
     TensionType: [timing, scope, requirement, intensity]
+    RaciLetter: [R, A, C, I]  # v1.3 — RACI Phase A (Doc07 §4)
 
   # ── RELATIONS (verbs; cardinality; source) ───────────────────────
   relations:
@@ -1383,6 +1414,18 @@ kg_ontology:
         cardinality: "N:N (symmetric)",
         source: "B · this file@overlaps[] (L1027-1086)" }
 
+    # NEW in v1.3 — RACI Phase A (Doc07 §2, §4, §9.2)
+    - { verb: RACI,            from: RaciRole,                 to: RaciActivity,
+        cardinality: "N:N (1+ letters per cell, composite 'R/A' split into two edges)",
+        source: "Doc07 §4.x cells; Class_Models v1.1 has no UML precedent — case-level" }
+    - { verb: APPLIES_TO,      from: RaciActivity,            to: SecurityControlDomain,
+        cardinality: "N:1 (one activity maps to one or more sub-domains)",
+        source: "Doc07 §9.2 activity→sub-domain mapping; Class_Models v1.1 has no precedent" }
+    - { verb: MAPS_TO_STK,     from: RaciRole,                 to: Stakeholder,
+        cardinality: "1:0..1 (only DPO/CISO map to STK-CEO-01/STK-CTO-01)",
+        source: "Doc07 §2 cross-ref; Class_Models v1.1 does not define this — case-level",
+        status: "deferred" }
+
   # ── INVARIANTS (counts + identifier patterns) ─────────────────────
   invariants:
     counts:
@@ -1399,6 +1442,18 @@ kg_ontology:
       stakeholders_total: 7          # Doc03 §3.1 (STK-CEO-01..STK-AWS-01)
       business_goals_total: 5        # Doc03 §4 (BG-01..BG-05)
       coverage_gaps_total: 4         # Doc11 §7 (GAP-001..GAP-004)
+      # v1.3 — RACI Phase A (Doc07 §2, §4, §7, §9.2). Counts reflect actual
+      # extracted data; the task brief's "30 active + 1 placeholder = 31"
+      # matches Doc07 §9.3's caption but not §4 (42 main-table rows) or §9.2
+      # (35 rows). 43 = 42 §4 rows + 1 best-practice; 41 active (excludes
+      # ACT-34 all-'—' placeholder + ACT-35 best-practice, active=false).
+      raci_roles: 6
+      raci_activities: 43
+      raci_activities_active: 41
+      raci_edges_min: 206            # 200 single-letter cells + 3 R/A composites × 2 = 6 edges
+      raci_composite_cells: 3        # ACT-27 Dev=R/A, ACT-28 Dev=R/A, ACT-33 DPO=R/A
+      applies_to_edges: 35           # Doc07 §9.2 has 35 rows
+      gap_raci_count: 5              # GAP-RACI-01..05 from §7
     id_patterns:
       Stakeholder: "^STK-[A-Z]+-\\d{2}$"
       BusinessGoal: "^BG-\\d{2}$"
@@ -1410,6 +1465,9 @@ kg_ontology:
       Regulation: "^REG-[A-Z0-9]+$"
       CompanyContext: "^CC-[A-Z]+-\\d{4}-\\d{3}$"
       Tension: "^T-\\d{3}$"
+      # v1.3 — RACI Phase A
+      RaciRole: "^ROLE-[A-Z0-9]+$"
+      RaciActivity: "^ACT-\\d{2}$"
 
   # ── PROVENANCE RULES (every node + every link carries these) ─────
   provenance_rules:

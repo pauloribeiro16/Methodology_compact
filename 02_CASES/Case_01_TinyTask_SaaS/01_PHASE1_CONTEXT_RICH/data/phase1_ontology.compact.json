@@ -1,9 +1,9 @@
 {
   "_provenance": {
-    "source_yaml": "01_PHASE1_CONTEXT_RICH/phase1_ontology.yaml v1.2 (kg_ontology section, lines 1221-1423)",
+    "source_yaml": "01_PHASE1_CONTEXT_RICH/phase1_ontology.yaml v1.3 (kg_ontology section, lines 1221-1470)",
     "schema_version": "1.0",
     "generated": "2026-08-26",
-    "purpose": "Compact JSON sibling of phase1_ontology.yaml@kg_ontology — lets stdlib-only Python (json.load) validate phase1_graph.json nodes/links against the v1.2 schema without a YAML parser. Maintained in lock-step with the YAML body.",
+    "purpose": "Compact JSON sibling of phase1_ontology.yaml@kg_ontology — lets stdlib-only Python (json.load) validate phase1_graph.json nodes/links against the v1.3 schema without a YAML parser. Maintained in lock-step with the YAML body.",
     "sibling_yaml_section": "kg_ontology"
   },
   "classes": {
@@ -16,7 +16,9 @@
     "Tension":                 {"attrs": ["id", "type", "severity", "clause_1", "clause_2", "affected_subdomains", "resolution"]},
     "Stakeholder":             {"attrs": ["id", "name", "role", "type", "department_or_relationship", "note"]},
     "BusinessGoal":            {"attrs": ["id", "description", "priority", "status", "stakeholders", "strategic_alignment"]},
-    "CoverageGap":             {"attrs": ["id", "title", "severity", "regulation", "affected_subdomain_ids", "description", "status"]}
+    "CoverageGap":             {"attrs": ["id", "title", "severity", "regulation", "affected_subdomain_ids", "description", "status"]},
+    "RaciRole":                {"attrs": ["id", "name", "maps_to_stakeholder", "fte_allocation", "reports_to", "backup"]},
+    "RaciActivity":            {"attrs": ["id", "name", "domain_id", "sub_domain_id", "corpus_reg_req", "active"]}
   },
   "relations": [
     {"verb": "ASSESSES",        "from": "CompanyContext",       "to": "Regulation"},
@@ -28,7 +30,10 @@
     {"verb": "ADDRESSED_IN",    "from": "RegulatoryClause",     "to": "SecurityControlDomain"},
     {"verb": "FLAGS",           "from": "CoverageGap",          "to": "SecurityControlDomain"},
     {"verb": "YIELDS",          "from": "SecurityControlDomain","to": "AdjustedGoal"},
-    {"verb": "OVERLAPS_WITH",   "from": "Regulation",           "to": "Regulation"}
+    {"verb": "OVERLAPS_WITH",   "from": "Regulation",           "to": "Regulation"},
+    {"verb": "RACI",            "from": "RaciRole",             "to": "RaciActivity",        "status": "active"},
+    {"verb": "APPLIES_TO",      "from": "RaciActivity",         "to": "SecurityControlDomain", "status": "active"},
+    {"verb": "MAPS_TO_STK",     "from": "RaciRole",             "to": "Stakeholder",         "status": "deferred"}
   ],
   "enums": {
     "Scale":                ["MICRO", "SMALL", "MEDIUM", "LARGE", "MAX"],
@@ -39,7 +44,8 @@
     "ObligatedPartyType":   ["CONTROLLER", "PROCESSOR", "MANUFACTURER", "IMPORTER", "DISTRIBUTOR", "ESSENTIAL_OR_IMPORTANT_ENTITY", "FINANCIAL_ENTITY", "PROVIDER", "DEPLOYER"],
     "Severity":             ["high", "medium", "low"],
     "StakeholderType":      ["Internal", "External"],
-    "TensionType":          ["timing", "scope", "requirement", "intensity"]
+    "TensionType":          ["timing", "scope", "requirement", "intensity"],
+    "RaciLetter":           ["R", "A", "C", "I"]
   },
   "invariants": {
     "counts": {
@@ -55,7 +61,14 @@
       "ambiguity_cards_in_scope": 417,
       "stakeholders_total": 7,
       "business_goals_total": 5,
-      "coverage_gaps_total": 4
+      "coverage_gaps_total": 4,
+      "raci_roles": 6,
+      "raci_activities": 43,
+      "raci_activities_active": 41,
+      "raci_edges_min": 206,
+      "raci_composite_cells": 3,
+      "applies_to_edges": 35,
+      "gap_raci_count": 5
     },
     "id_patterns": {
       "Stakeholder":           "^STK-[A-Z]+-\\d{2}$",
@@ -67,7 +80,9 @@
       "Domain":                "^D-\\d{2}$",
       "Regulation":            "^REG-[A-Z0-9]+$",
       "CompanyContext":        "^CC-[A-Z]+-\\d{4}-\\d{3}$",
-      "Tension":               "^T-\\d{3}$"
+      "Tension":               "^T-\\d{3}$",
+      "RaciRole":              "^ROLE-[A-Z0-9]+$",
+      "RaciActivity":          "^ACT-\\d{2}$"
     }
   },
   "provenance_rules": {

@@ -73,7 +73,9 @@ def check_invariants(graph: dict) -> list[str]:
 
     Covers all node-count invariants defined in phase1_ontology.yaml@kg_ontology.invariants.counts
     plus the graph.meta invariants block. Existing 10 keys (Sprint 5) plus the
-    3 new v1.2 keys (stakeholders_total, business_goals_total, coverage_gaps_total).
+    3 new v1.2 keys (stakeholders_total, business_goals_total, coverage_gaps_total)
+    plus the 7 new v1.3 keys (raci_roles, raci_activities, raci_activities_active,
+    raci_edges_min, raci_composite_cells, applies_to_edges, gap_raci_count).
     """
     errors: list[str] = []
     expected = {
@@ -91,6 +93,14 @@ def check_invariants(graph: dict) -> list[str]:
         "stakeholders_total": 7,
         "business_goals_total": 5,
         "coverage_gaps_total": 4,
+        # Sprint 7 / kg_ontology v1.3 — RACI Phase A (Doc07 §2/§4/§7/§9.2)
+        "raci_roles": 6,
+        "raci_activities": 43,
+        "raci_activities_active": 41,
+        "raci_edges_min": 206,
+        "raci_composite_cells": 3,
+        "applies_to_edges": 35,
+        "gap_raci_count": 5,
     }
     inv = graph.get("invariants", {})
     for k, want in expected.items():
@@ -122,6 +132,18 @@ def check_invariants(graph: dict) -> list[str]:
         errors.append(f"node count BusinessGoal: expected {expected['business_goals_total']}, got {by_type.get('BusinessGoal', 0)}")
     if by_type.get("CoverageGap", 0) != expected["coverage_gaps_total"]:
         errors.append(f"node count CoverageGap: expected {expected['coverage_gaps_total']}, got {by_type.get('CoverageGap', 0)}")
+    # Sprint 7 / v1.3 — new node-count checks for RACI Phase A
+    if by_type.get("RaciRole", 0) != expected["raci_roles"]:
+        errors.append(f"node count RaciRole: expected {expected['raci_roles']}, got {by_type.get('RaciRole', 0)}")
+    if by_type.get("RaciActivity", 0) != expected["raci_activities"]:
+        errors.append(f"node count RaciActivity: expected {expected['raci_activities']}, got {by_type.get('RaciActivity', 0)}")
+    # Sprint 7 / v1.3 — active RACI activities count (active=True attr)
+    active_acts = sum(
+        1 for n in graph.get("nodes", [])
+        if n["type"] == "RaciActivity" and n.get("attrs", {}).get("active") is True
+    )
+    if active_acts != expected["raci_activities_active"]:
+        errors.append(f"node count RaciActivity (active=True): expected {expected['raci_activities_active']}, got {active_acts}")
 
     # Cross-check applicable regulations
     applicable_regs = [n for n in graph.get("nodes", []) if n["type"] == "Regulation" and n["attrs"].get("applicable")]
@@ -132,6 +154,28 @@ def check_invariants(graph: dict) -> list[str]:
     ambig_total = graph.get("ambiguity", {}).get("stats_total", {}).get("cards_in_scope")
     if ambig_total != expected["ambiguity_cards_in_scope"]:
         errors.append(f"ambiguity cards_in_scope: expected {expected['ambiguity_cards_in_scope']}, got {ambig_total}")
+
+    # Cross-check link counts per rel (Sprint 7 / v1.3 — RACI Phase A)
+    rel_counts: dict[str, int] = {}
+    for l in graph.get("links", []):
+        rel_counts[l["rel"]] = rel_counts.get(l["rel"], 0) + 1
+    if rel_counts.get("RACI", 0) != expected["raci_edges_min"]:
+        errors.append(f"link count rel=RACI: expected {expected['raci_edges_min']}, got {rel_counts.get('RACI', 0)}")
+    if rel_counts.get("APPLIES_TO", 0) != expected["applies_to_edges"]:
+        errors.append(f"link count rel=APPLIES_TO: expected {expected['applies_to_edges']}, got {rel_counts.get('APPLIES_TO', 0)}")
+
+    # Sprint 7 / v1.3 — RACI letter enum validation: each RACI link's letter
+    # must be in {'R','A','C','I'}.
+    valid_letters = {"R", "A", "C", "I"}
+    bad_letters = 0
+    for l in graph.get("links", []):
+        if l["rel"] != "RACI":
+            continue
+        lt = l.get("attrs", {}).get("letter")
+        if lt not in valid_letters:
+            bad_letters += 1
+    if bad_letters:
+        errors.append(f"RACI links with invalid letter: {bad_letters} (expected only R/A/C/I)")
 
     # Link count floor (per orchestrator brief: >=180)
     if len(graph.get("links", [])) < 180:
@@ -246,27 +290,39 @@ def check_stale_invariant_counts(graph: dict, ontology: dict) -> list[str]:
 
     This is the 'stale invariant' check from the orchestrator brief §D.4:
     for each count in ontology@invariants.counts, compare to actual count
-    of nodes matching the corresponding type/class. Returns errors which are
-    fatal (rolled into the existing invariant exit code 1).
+    of nodes matching the corresponding type/class (or rel for link counts).
+    Returns errors which are fatal (rolled into the existing invariant exit code 1).
     """
     errors: list[str] = []
     counts = ontology["invariants"]["counts"]
 
-    # Map ontology count keys to node type names — defined once here, transparently.
+    # Map ontology count keys to node type names OR link rel names — defined
+    # once here, transparently. '__ambiguity__' is a sentinel for the
+    # ambiguity stats_total.cards_in_scope field.
     type_for_count = {
-        "regulations_total":     "Regulation",
-        "domains":               "Domain",
-        "subdomains_total":      "SecurityControlDomain",
-        "tensions_total":        "Tension",
-        "stakeholders_total":    "Stakeholder",
-        "business_goals_total":  "BusinessGoal",
-        "coverage_gaps_total":   "CoverageGap",
+        "regulations_total":       "Regulation",
+        "domains":                 "Domain",
+        "subdomains_total":        "SecurityControlDomain",
+        "tensions_total":          "Tension",
+        "stakeholders_total":      "Stakeholder",
+        "business_goals_total":    "BusinessGoal",
+        "coverage_gaps_total":     "CoverageGap",
         "ambiguity_cards_in_scope": "__ambiguity__",
+        # Sprint 7 / v1.3 — RACI Phase A
+        "raci_roles":              "RaciRole",
+        "raci_activities":         "RaciActivity",
+        "applies_to_edges":        "__rel_APPLIES_TO__",
+        # Note: raci_edges_min is enforced in check_invariants() against rel=RACI;
+        # raci_activities_active is enforced there against active=True attrs.
     }
 
     by_type: dict[str, int] = {}
     for n in graph.get("nodes", []):
         by_type[n["type"]] = by_type.get(n["type"], 0) + 1
+
+    by_rel: dict[str, int] = {}
+    for l in graph.get("links", []):
+        by_rel[l["rel"]] = by_rel.get(l["rel"], 0) + 1
 
     for ck, expected in counts.items():
         # Only enforce counts we know how to map; others are delegated to the
@@ -276,6 +332,8 @@ def check_stale_invariant_counts(graph: dict, ontology: dict) -> list[str]:
         target = type_for_count[ck]
         if target == "__ambiguity__":
             actual = graph.get("ambiguity", {}).get("stats_total", {}).get("cards_in_scope")
+        elif target == "__rel_APPLIES_TO__":
+            actual = by_rel.get("APPLIES_TO")
         else:
             actual = by_type.get(target)
         if actual is not None and actual != expected:
