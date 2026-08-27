@@ -221,11 +221,11 @@
       "action_taken": "Created from scratch matching schema v1.0"
     },
     {
-      "timestamp": "2026-08-26T00:00:00Z",
-      "event": "phase_3_rich_sprint6_complete",
-      "phase": "3_rich",
-      "result": "PASS_WITH_FINDINGS — Doc20 v3.0 (REWRITTEN_PRODUCT_BASELINE) + Doc21/22 v1.0 + RULE_FREEZE v2.0 + 12-sheet xlsx + Doc26 v2.0 (product-root tree). 23 functional U.C.7-11 + 8 MUCs added; 35 security U.C.1-6 preserved verbatim (P5). F-S5-02 RESOLVED.",
-      "action_taken": "5 commits (Doc20, Doc21/22, xlsx+freeze, Doc26+drawio, validator+states)"
+      "timestamp": "2026-08-27T15:17:00Z",
+      "event": "implementation_posture_model_transition_complete",
+      "phase": "all",
+      "result": "PASS — Replaced legacy 0-4 maturity scales and Tiers across all Case_01 Markdown docs with Implementation Posture Model v2.0 (IMPLEMENTED/PARTIAL/NOT IMPLEMENTED + evidence & gap requirements); Gate v0.2 check_implementation_posture.py PASS.",
+      "action_taken": "Created IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, updated SPEC, Phase 2 (Doc16/18/19), Phase 1 (Doc05/08/12/ontology), Phase 3 (all decomposition docs), and Gate v0.2 script."
     }
   ]
 }
