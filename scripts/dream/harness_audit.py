@@ -315,14 +315,64 @@ def usage_for_registry(items: list[dict], days_7: int = 7, days_14: int = 14) ->
 
         out[name] = {"7d": c7, "14d": c14, "details": "; ".join(details) if details else ""}
 
-    # Read canonical logs as additional evidence (do not replace db numbers)
+    # Read canonical logs as additional evidence (do not replace db numbers).
+    # kg.sh writes ISO-timestamped lines; previous version had a buggy
+    # year-prefix check that filtered to nothing.
     kg_log = ROOT / "scripts" / ".kg_usage.log"
     if kg_log.exists():
-        n_kg = sum(1 for line in kg_log.read_text(encoding="utf-8").splitlines()
-                   if line.strip() and line.startswith(dt.date.today().isoformat()[:4]))  # year
+        this_year = dt.date.today().year
+        n_kg_this_year = 0
+        for line in kg_log.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if not line:
+                continue
+            # Format observed: "2026-08-27T11:11:12+01:00\tuser\t<args>"
+            ts = line.split("\t", 1)[0] if "\t" in line else line
+            try:
+                if dt.datetime.fromisoformat(ts.replace("Z", "+00:00")).year == this_year:
+                    n_kg_this_year += 1
+            except Exception:
+                continue
+        total_lines = sum(1 for l in kg_log.read_text(encoding="utf-8").splitlines() if l.strip())
         for it in items:
             if it["name"] == "script:kg.sh":
-                out.setdefault(it["name"], {})["kg_log_total"] = len(kg_log.read_text(encoding="utf-8").splitlines())
+                out.setdefault(it["name"], {})["kg_log_total"] = total_lines
+                out[it["name"]]["kg_log_year"] = n_kg_this_year
+
+    # ----------------------------------------------------------------------------
+    # Operational health (independent of usage verdict): per-tool success rate,
+    # retries, cancels, p50 duration. Single select over tool_usage.
+    # ----------------------------------------------------------------------------
+    op_health: dict[str, dict] = {}
+    if ZCODE_DB.exists():
+        con2 = sqlite3.connect(f"file:{ZCODE_DB}?mode=ro", uri=True)
+        con2.row_factory = sqlite3.Row
+        for r in con2.execute(
+            """
+            SELECT tool_name,
+                   COUNT(*)                                            AS uses,
+                   SUM(CASE WHEN status='completed' THEN 1 ELSE 0 END) AS ok,
+                   SUM(CASE WHEN status='error'     THEN 1 ELSE 0 END) AS err,
+                   SUM(CASE WHEN status='cancelled' THEN 1 ELSE 0 END) AS cancelled,
+                   SUM(CASE WHEN retry_count>0 THEN 1 ELSE 0 END)      AS retried,
+                   AVG(duration_ms)                                    AS p50_ms
+            FROM tool_usage
+            WHERE started_at >= ? AND status != 'pending'
+            GROUP BY tool_name
+            """,
+            (cutoff_14,),
+        ):
+            op_health[r["tool_name"]] = {
+                "uses": r["uses"],
+                "ok": r["ok"],
+                "err": r["err"],
+                "cancelled": r["cancelled"],
+                "retried": r["retried"],
+                "p50_ms": int(r["p50_ms"] or 0),
+                "ok_rate": round((r["ok"] or 0) * 100 / max(1, r["uses"]), 1),
+            }
+        con2.close()
+    out["__op_health__"] = op_health  # consumed by render_report
     return out
 
 
@@ -330,17 +380,20 @@ def usage_for_registry(items: list[dict], days_7: int = 7, days_14: int = 14) ->
 # Verdict (DEAD / WEAK / HEALTHY / INSUFFICIENT-DATA)
 # =============================================================================
 
-def verdict(name: str, usage: dict, age_days: int) -> str:
-    """Compute verdict using 7d usage plus weekly history (loaded from
-    STATE/dead_streak.json, managed externally — for the first run we
-    just use 7d threshold).
+def verdict(name: str, usage: dict, age_days: int, uses_14d: int) -> str:
+    """Compute USO verdict. INSUFFICIENT-DATA only when both:
+    (a) the implementation is brand-new (<1 day) AND
+    (b) the db has zero invocations in 14d — meaning the harness can't
+        actually distinguish "never used" from "just added".
+    Once any real usage hits the db the item has data, even if it is
+    still 1 day old.
     """
-    n = usage.get("7d", 0)
-    if age_days < INSUFFICIENT_DATA_DAYS:
+    n7 = usage.get("7d", 0)
+    if n7 == 0 and uses_14d == 0 and age_days < INSUFFICIENT_DATA_DAYS:
         return "INSUFFICIENT-DATA"
-    if n == 0:
+    if n7 == 0:
         return "WEAK"  # first zero-week (not yet DEAD)
-    if n < WEAK_USES_PER_WEEK:
+    if n7 < WEAK_USES_PER_WEEK:
         return "WEAK"
     return "HEALTHY"
 
@@ -363,20 +416,31 @@ def save_dead_streaks(streaks: dict) -> None:
     )
 
 
-def update_dead_streaks(streaks: dict, verdicts: dict[str, str], ages: dict[str, int]) -> dict:
+def update_dead_streaks(streaks: dict, verdicts: dict[str, str],
+                        usage: dict[str, dict], ages: dict[str, int]) -> dict:
     """Apply this week's verdicts to the dead-streak counter and return
-    updated streaks. Items not seen this week are not touched.
+    updated streaks.
+
+    A "zero week" is one where the item had ZERO uses in the rolling 14d
+    window at audit time — i.e. it really was unused. WEAK with low-but-
+    non-zero uses does not increment the streak (the item is still being
+    touched). HEALTHY always resets the streak.
     """
     now = dt.date.today().isoformat()
-    for name, v in verdicts.items():
+    for name in verdicts:
         if name not in streaks:
             streaks[name] = {"zero_weeks": 0, "last_seen": now}
-        if v in ("WEAK", "DEAD") and usage_for_registry.__name__:  # treat 0-uses as zero-week
-            n = streaks[name].get("zero_weeks", 0) + 1
-            streaks[name] = {"zero_weeks": n, "last_seen": now}
-        elif v == "HEALTHY":
+        u14 = usage.get(name, {}).get("14d", 0)
+        v = verdicts[name]
+        if v == "HEALTHY" or (v == "WEAK" and u14 > 0):
             streaks[name] = {"zero_weeks": 0, "last_seen": now}
-    # Promote to DEAD after 2 consecutive zero weeks
+        elif u14 == 0:
+            # Genuine zero-use week — count it.
+            streaks[name] = {
+                "zero_weeks": streaks[name].get("zero_weeks", 0) + 1,
+                "last_seen": now,
+            }
+    # Promote to DEAD after DEAD_WEEKS consecutive zero weeks.
     for name, s in streaks.items():
         if s["zero_weeks"] >= DEAD_WEEKS:
             verdicts[name] = "DEAD"
@@ -508,6 +572,182 @@ def health_live() -> list[tuple[str, str, str, str]]:
     return findings
 
 
+def quality_for_registry(items: list[dict], op: dict[str, dict]) -> dict[str, str]:
+    """Derive a QUALIDADE verdict per registry item from the operational
+    health map (tool_name -> {ok, err, retried, p50_ms, ok_rate}).
+
+    The mapping picks the SINGLE tool_name that best represents each
+    category, not the union of every category's tools — otherwise every
+    item inherits the noise of unrelated tool_name rows.
+
+      mcp:<name>      -> all matching mcp__<name>__* rows aggregated
+      subagent:<x>    -> the 'Agent' tool aggregate (subagents are all
+                          dispatched via Agent)
+      skill:/repo-skill -> the 'Skill' tool aggregate
+      hook:/script:/dream-script:/cmd:<x> -> has no 1:1 tool_name row;
+                          we fall back to N/A unless the item has zero
+                          uses (in which case it is meaningless to grade).
+
+    Thresholds against the matched tool_name:
+      N/A           — no qualifying rows
+      OK            — ok_rate ≥ 90% AND zero retried
+      ALERTS        — 50% ≤ ok_rate < 90% OR (ok_rate ≥ 90% AND retried > 0)
+      CRITICAL      — ok_rate < 50%
+    """
+    def _bucket(uses: int, ok: int, err: int, retried: int) -> dict:
+        if uses == 0:
+            return {"ok_rate": None}
+        return {"ok_rate": round(ok * 100 / uses, 1), "uses": uses,
+                "retried": retried, "err": err}
+
+    out: dict[str, str] = {}
+    for it in items:
+        cat = it["category"]
+        name = it["name"]
+        uses = ok = err = retried = 0
+
+        if cat == "mcp":
+            pat = re.compile(it.get("tool_pattern", "").replace("%", ".*"))
+            for k, info in op.items():
+                if pat.fullmatch(k):
+                    uses += info["uses"]
+                    ok += info["ok"]
+                    err += info["err"]
+                    retried += info["retried"]
+        elif cat == "subagent":
+            if op.get("Agent"):
+                uses = op["Agent"]["uses"]; ok = op["Agent"]["ok"]
+                err = op["Agent"]["err"]; retried = op["Agent"]["retried"]
+        elif cat in ("skill", "repo-skill"):
+            if op.get("Skill"):
+                uses = op["Skill"]["uses"]; ok = op["Skill"]["ok"]
+                err = op["Skill"]["err"]; retried = op["Skill"]["retried"]
+        else:
+            # hook / script / dream-script / command — we don't have
+            # per-command breakdown in tool_usage, so QUALIDADE is N/A at
+            # the per-item granularity. The global "Saúde operacional"
+            # table above gives that signal at the tool level (Bash).
+            out[name] = "N/A"
+            continue
+
+        b = _bucket(uses, ok, err, retried)
+        if b["ok_rate"] is None:
+            out[name] = "N/A"
+        elif b["ok_rate"] < 50:
+            out[name] = f"CRITICAL (ok {b['ok_rate']}%, {b['err']} err)"
+        elif b["ok_rate"] < 90 or b["retried"] > 0:
+            out[name] = f"ALERTS (ok {b['ok_rate']}%, {b['err']} err, {b['retried']} retried)"
+        else:
+            out[name] = f"OK ({b['ok_rate']}%)"
+    return out
+
+
+def dream_efficacy(weeks: int = 8) -> dict:
+    """Cross-reference past dream/HARNESS_*, ADOPTION_REPORT and
+    RECONCILIATION reports in git history to compute yield:
+
+      ADOPTION_REPORT  — proposals emitted vs those applied by the
+                          human (heuristic: commits whose subject starts
+                          with '[ORCHESTRATOR] Apply dream proposals').
+      RECONCILIATION   — drifts surfaced; classify as resolved (not in
+                          the next report) vs recurring (still present
+                          after ≥2 cycles).
+    """
+    empty_adoption = {"cycles_counted": 0, "proposed": 0, "applied": 0, "ignored_2w": 0}
+    empty_drifts   = {"cycles_counted": 0, "recurring": [], "by_count": []}
+    try:
+        r = subprocess.run(
+            ["git", "log", "--format:%H %s", "-n", "200", "--", "dream/"],
+            cwd=ROOT, capture_output=True, text=True, check=True,
+        )
+        commits = [line.strip() for line in r.stdout.splitlines() if line.strip()]
+    except Exception:
+        return {"adoption": dict(empty_adoption), "drifts": dict(empty_drifts)}
+
+    # Count subjects starting with 'Apply dream proposals'.
+    n_applied = sum(1 for line in commits if "Apply dream proposals" in line)
+
+    # Pull each weekly audit/dream commit's date + summary line.
+    adoption_cycles: list[tuple[str, int]] = []
+    reconcile_cycles: list[tuple[str, list[str]]] = []
+    for line in commits:
+        parts = line.split(" ", 1)
+        if len(parts) != 2:
+            continue
+        sha, subj = parts
+        if subj.startswith("[DREAM ") and "nightly" in subj:
+            r = subprocess.run(
+                ["git", "log", "-1", "--format:%ad", "--date=short", sha],
+                cwd=ROOT, capture_output=True, text=True,
+            )
+            d = r.stdout.strip()
+            # Read the report files at that commit to count proposals/drifts.
+            for fname, store in (
+                ("dream/ADOPTION_REPORT.md", adoption_cycles),
+            ):
+                p = subprocess.run(
+                    ["git", "show", f"{sha}:{fname}"],
+                    cwd=ROOT, capture_output=True, text=True,
+                )
+                if p.returncode != 0:
+                    continue
+                # Count bullet proposals: lines starting with "- "
+                n_prop = sum(1 for L in p.stdout.splitlines() if L.startswith("- "))
+                store.append((d, n_prop))
+        if subj.startswith("[DREAM ") and "nightly" in subj:
+            p = subprocess.run(
+                ["git", "show", f"{sha}:dream/RECONCILIATION.md"],
+                cwd=ROOT, capture_output=True, text=True,
+            )
+            if p.returncode != 0:
+                continue
+            drifts = []
+            for L in p.stdout.splitlines():
+                m = re.match(r"-\s+\*\*([^*]+)\*\*", L) or re.match(r"-\s+(.*)", L)
+                if m:
+                    drifts.append(m.group(1).strip().split(" — ")[0])
+            if drifts:
+                reconcile_cycles.append((d, drifts))
+
+    # Heuristics for "applied" / "ignored": assume each nightly report listed
+    # N proposals, and N applied commits worth of edits show in the weeks
+    # that follow. Without the exact proposal list we treat the per-week
+    # proposal count as the denominator.
+    proposed_total = sum(n for _, n in adoption_cycles[:weeks])
+    applied_total = n_applied
+
+    # Drift recurrence: a drift label seen in ≥2 cycles = recurring.
+    from collections import Counter
+    drift_counter: Counter = Counter()
+    for _, drifts in reconcile_cycles[:weeks]:
+        for d in drifts:
+            drift_counter[d] += 1
+    recurring = sorted([d for d, c in drift_counter.items() if c >= 2])
+
+    return {
+        "adoption": {
+            "cycles_counted": len(adoption_cycles[:weeks]),
+            "proposed": proposed_total,
+            "applied": applied_total,
+            "ignored_2w": max(0, proposed_total - applied_total),
+        },
+        "drifts": {
+            "cycles_counted": len(reconcile_cycles[:weeks]),
+            "recurring": recurring,
+            "by_count": drift_counter.most_common(5),
+        },
+    }
+
+
+def _normalise_efficacy(eff: dict | list | None) -> dict:
+    """Tolerate legacy/empty shapes from earlier writes."""
+    if not eff or isinstance(eff, list):
+        return {"adoption": {}, "drifts": {"cycles_counted": 0, "recurring": [], "by_count": []}}
+    eff.setdefault("adoption", {})
+    eff.setdefault("drifts", {"cycles_counted": 0, "recurring": [], "by_count": []})
+    return eff
+
+
 # =============================================================================
 # AGENTS.md triage
 # =============================================================================
@@ -573,28 +813,72 @@ def render_report(*, registry: list[dict], usage: dict[str, dict],
                   verdicts: dict[str, str], ages: dict[str, int],
                   static_health: list[tuple[str, str, str]],
                   live_health: list[tuple[str, str, str, str]],
-                  agents_md: list[dict]) -> str:
+                  agents_md: list[dict], quality: dict[str, str],
+                  efficacy: dict, dead_streaks: dict[str, dict]) -> str:
     today = dt.date.today().isoformat()
+    op = usage.get("__op_health__", {})
     lines: list[str] = [
         f"# Harness Audit — Methodology_compact",
         "",
         f"_Generated {today} by `scripts/dream/harness_audit.py` — auto-discovers the registry "
-        "(hooks, MCP, subagents, commands, skills, scripts). Source for usage: "
-        "`~/.zcode/cli/db/db.sqlite` (transcripts in `rollout/` are pruned to ~24h, "
-        "the db is the historical truth). Static + live health probes below._",
+        "(hooks, MCP, subagents, commands, skills, scripts). Two-axis verdicts: **USO** "
+        "(HEALTHY ≥3/wk · WEAK <3 · DEAD = 0×2wk · INSUFFICIENT-DATA = no db signal AND <1d old) "
+        "and **QUALIDADE** (OK · ALERTS · CRITICAL · N/A) over the last 14d. Source for usage: "
+        "`~/.zcode/cli/db/db.sqlite` (rollout transcripts are pruned to ~24h, the db is the "
+        "historical truth)._",
         "",
         "## Registry",
         "",
-        "| Name | Category | 7d | 14d | Verdict | Notes |",
-        "|---|---|---:|---:|---|---|",
+        "| Name | Category | 7d | 14d | Eixo USO | Streak | Eixo QUALIDADE | Notes |",
+        "|---|---|---:|---:|---|---:|---|---|",
     ]
     for it in registry:
         n = it["name"]
         u = usage.get(n, {})
         v = verdicts.get(n, "?")
-        lines.append(f"| `{n}` | {it['category']} | {u.get('7d',0)} | {u.get('14d',0)} | **{v}** | {u.get('details','')} |")
+        q = quality.get(n, "N/A")
+        streak = dead_streaks.get(n, {}).get("zero_weeks", 0)
+        streak_str = f"{streak}×0" if streak else "—"
+        lines.append(f"| `{n}` | {it['category']} | {u.get('7d',0)} | {u.get('14d',0)} "
+                     f"| **{v}** | {streak_str} | {q} | {u.get('details','') or ''} |")
 
-    # Health
+    # ---------- Operational health ----------
+    lines += ["", "## Saúde operacional (14d, por ferramenta)", ""]
+    if op:
+        lines += ["| Tool | Usos | Ok% | Erros | Retried | Cancelled | p50 ms |",
+                  "|---|---:|---:|---:|---:|---:|---:|"]
+        for tool, info in sorted(op.items(), key=lambda kv: -kv[1]["uses"]):
+            lines.append(f"| `{tool}` | {info['uses']} | {info['ok_rate']}% | {info['err']} "
+                         f"| {info['retried']} | {info['cancelled']} | {info['p50_ms']} |")
+    else:
+        lines.append("_db sem dados de tool_usage nas últimas 2 semanas._")
+
+    # ---------- Dream efficacy ----------
+    lines += ["", "## Eficácia do pipeline dream (8 ciclos)", ""]
+    if efficacy.get("adoption", {}).get("cycles_counted"):
+        a = efficacy["adoption"]
+        lines += [
+            "| | |",
+            "|---|---|",
+            f"| Ciclos nightly dream analisados | {a['cycles_counted']} |",
+            f"| Propostas ADOPTION_REPORT totais | {a['proposed']} |",
+            f"| Aplicadas (commits 'Apply dream proposals') | {a['applied']} |",
+            f"| Ignoradas (propostas − aplicadas) | {a['ignored_2w']} |",
+        ]
+    else:
+        lines.append("_Sem commits nightly dream suficientes para estimar._")
+    if efficacy.get("drifts", {}).get("cycles_counted"):
+        d = efficacy["drifts"]
+        if d["recurring"]:
+            lines += ["", "**Drifts recorrentes (≥2 ciclos):**", ""]
+            for label in d["recurring"]:
+                lines.append(f"- `{label}`")
+        if d["by_count"]:
+            lines += ["", "**Top drifts por frequência:**", ""]
+            for label, n in d["by_count"]:
+                lines.append(f"- `{label}` × {n}")
+
+    # ---------- Health (static + live) ----------
     lines += ["", "## Health (static)", ""]
     lines += ["| Severity | Target | Message |"] + ["|---|---|---|"]
     for sev, target, msg in static_health:
@@ -605,7 +889,7 @@ def render_report(*, registry: list[dict], usage: dict[str, dict],
     for sev, target, msg, ms in live_health:
         lines.append(f"| {sev} | `{target}` | {msg} | {ms} |")
 
-    # AGENTS.md
+    # ---------- AGENTS.md ----------
     lines += ["", "## AGENTS.md triage", ""]
     lines += ["| Path | Lines | Version | Hash | Changed since last audit |"]
     lines += ["|---|---|---|---|---|"]
@@ -615,27 +899,38 @@ def render_report(*, registry: list[dict], usage: dict[str, dict],
         changed = "yes" if f["changed"] else ("first" if not old_hash else "no")
         lines.append(f"| `{f['path']}` | {f['new']['lines']} | {f['new']['version']} | `{new_hash}` | {changed} |")
 
-    lines += ["", "## Proposed patches (P7 — never auto-applied)",
-              "",
-              "_Each DEAD item without a plan gets a wiring-or-removal proposal. "
-              "Each WEAK item gets a triggers/documentation proposal._",
-              ""]
+    # ---------- Proposed patches ----------
+    lines += ["", "## Proposed patches (P7 — nunca auto-aplicados)", "",
+              "_Cada item DEAD/CRITICAL recebe proposta. Cada item WEAK/ALERTS recebe alvo de "
+              "gatilho ou documentação. Cada decisão é humana._", ""]
     dead = [n for n, v in verdicts.items() if v == "DEAD"]
     weak = [n for n, v in verdicts.items() if v == "WEAK"]
-    if dead:
-        lines.append("### DEAD items (0 uses in 2 consecutive audits)")
-        for n in dead:
-            lines.append(f"- `{n}` — decide: wire into pre-flight, improve triggers, or remove. "
-                         f"Current usage: {usage.get(n, {}).get('14d', 0)} over 14d.")
-    if weak:
-        lines.append("### WEAK items (<3 uses per week)")
-        for n in weak:
-            lines.append(f"- `{n}` — refine description / add a task-pattern line, or remove from mandates. "
-                         f"Current usage: {usage.get(n, {}).get('7d', 0)} this week, "
-                         f"{usage.get(n, {}).get('14d', 0)} over 14d.")
+    critical = [n for n, q in quality.items() if q.startswith("CRITICAL")]
+    alerts = [n for n, q in quality.items() if q.startswith("ALERTS")]
 
-    if not dead and not weak:
-        lines.append("_No DEAD or WEAK items this cycle._")
+    if dead:
+        lines.append("### DEAD (0 usos em 2 auditorias consecutivas)")
+        for n in dead:
+            lines.append(f"- `{n}` — decidir: integrar no pre-flight, melhorar gatilhos, ou remover. "
+                         f"Uso atual: {usage.get(n, {}).get('14d', 0)} em 14d.")
+    if weak:
+        lines.append("### WEAK (<3 usos/semana)")
+        for n in weak:
+            lines.append(f"- `{n}` — refinar descrição / adicionar frase padrão ao AGENTS.md, "
+                         f"ou remover dos mandatos. Uso: {usage.get(n, {}).get('7d', 0)}/7d, "
+                         f"{usage.get(n, {}).get('14d', 0)}/14d.")
+    if critical:
+        lines.append("### CRITICAL (eixo QUALIDADE)")
+        for n in critical:
+            lines.append(f"- `{n}` — {quality[n]} — investigar logs (`db.status='error'`, "
+                         f"`retry_count>0`) antes da próxima iteração.")
+    if alerts:
+        lines.append("### ALERTS (eixo QUALIDADE)")
+        for n in alerts:
+            lines.append(f"- `{n}` — {quality[n]} — acompanhar; vira CRITICAL se não melhorar.")
+
+    if not (dead or weak or critical or alerts):
+        lines.append("_Sem itens com patches pendentes neste ciclo._")
 
     return "\n".join(lines) + "\n"
 
@@ -667,12 +962,24 @@ def main() -> int:
         except Exception:
             ages[it["name"]] = 999
 
-    # First-pass verdicts
-    verdicts = {n: verdict(n, usage.get(n, {}), ages.get(n, 0)) for n in usage}
+    # First-pass verdicts (USO axis). Registry items may have name "..." but
+    # usage keys may include "__op_health__" — exclude that.
+    verdicts = {
+        n: verdict(n, usage.get(n, {}), ages.get(n, 0), usage.get(n, {}).get("14d", 0))
+        for n in usage
+        if n != "__op_health__"
+    }
 
-    # Apply dead-streak counter (promote WEAK to DEAD if zero for 2 weeks)
+    # Apply dead-streak counter (promote only items with genuine 14d=0 to DEAD
+    # after DEAD_WEEKS consecutive zero weeks).
     streaks = load_dead_streaks()
-    verdicts = update_dead_streaks(streaks, verdicts, ages)
+    verdicts = update_dead_streaks(streaks, verdicts, usage, ages)
+
+    # ------------------------------------------------------------------------
+    # QUALIDADE axis: derive from operational health (each category of the
+    # registry maps to a primary tool_name) plus dream-yield heuristics.
+    # ------------------------------------------------------------------------
+    quality = quality_for_registry(registry, usage.get("__op_health__", {}))
 
     print("harness_audit: static health...")
     static_h = health_static(registry)
@@ -683,16 +990,21 @@ def main() -> int:
     print("harness_audit: AGENTS.md triage...")
     agents = triage_agents_md()
 
+    print("harness_audit: dream efficacy...")
+    efficacy = _normalise_efficacy(dream_efficacy(weeks=8))
+
     report = render_report(registry=registry, usage=usage, verdicts=verdicts,
                            ages=ages, static_health=static_h, live_health=live_h,
-                           agents_md=agents)
+                           agents_md=agents, quality=quality, efficacy=efficacy,
+                           dead_streaks=load_dead_streaks())
 
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     Path(args.out).write_text(report, encoding="utf-8")
     print(f"harness_audit: wrote {args.out} ({Path(args.out).stat().st_size} bytes)")
-    print(f"  dead={sum(1 for v in verdicts.values() if v=='DEAD')} "
+    print(f"  USO: dead={sum(1 for v in verdicts.values() if v=='DEAD')} "
           f"weak={sum(1 for v in verdicts.values() if v=='WEAK')} "
-          f"healthy={sum(1 for v in verdicts.values() if v=='HEALTHY')}")
+          f"healthy={sum(1 for v in verdicts.values() if v=='HEALTHY')} "
+          f"insufficient={sum(1 for v in verdicts.values() if v=='INSUFFICIENT-DATA')}")
     return 0
 
 
