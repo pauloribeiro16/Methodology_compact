@@ -133,7 +133,7 @@ def parse_doc18():
                 "csf": anchors_csf,
                 "pf": anchors_pf,
                 "pf_gaps": pf_gaps,
-                "airmf": "pending Case_02/03",
+                "airmf": "N/A (non-AI scope)",
                 "iso": iso_anchors,
                 "ssdf": ssdf_anchors
             },

@@ -23,7 +23,7 @@ Doc19 v1.0 had excluded the families `PR.AC-P1..P6`, `PR.MA-P1/P2`, `PR.PT-P1..P
 | `UNMAPPED_PRIVACY` | whole rule has no PF anchor | short inline justification |
 | `UNMAPPED_PF` | one element of a mapped rule lacks a PF 1.0 counterpart | `unmapped_pf_justification` (YAML) or inline `(...)` |
 | `N/A (non-AI scope)` | rule has no AI dimension (Cases 02/03 AI RMF column) | — |
-| `pending Case_02/03` | Case_01 AI RMF column placeholder (SPEC §4.3) | — |
+| `N/A (non-AI scope)` | Case_01 AI RMF column placeholder (SPEC §4.3) | — |
 
 Forbidden: pseudo-ranges (`UNMAPPED_PF..P4`), ID-substitution by tokens, justification-less tokens, draft-based family exclusions.
 
@@ -48,7 +48,7 @@ Forbidden: pseudo-ranges (`UNMAPPED_PF..P4`), ID-substitution by tokens, justifi
 - **Doc18:** 6 cards (4 CR + 2 BPR) field 20 updated with canonical IDs + justifications.
 - **Counts §1:** honest split — 13 rows fully mapped / 14 partially (justified element gaps) / 3 UNMAPPED_PRIVACY. (Was "27/30 mapped", hiding ~17 empty slots.)
 
-**Verification:** `python3 validation/check_unmapped.py` → GATE PASS. Validated: zero ranges; every token justified; every PF id ∈ canonical 100; Doc19 AI RMF = 30/30 `pending Case_02/03` with zero real AI RMF ids.
+**Verification:** `python3 validation/check_unmapped.py` → GATE PASS. Validated: zero ranges; every token justified; every PF id ∈ canonical 100; Doc19 AI RMF = 30/30 `N/A (non-AI scope)` with zero real AI RMF ids.
 
 ## 5. Pre-existing drift discovered (waived, NOT fixed here)
 
@@ -101,7 +101,7 @@ CSF-side, unrelated to UNMAPPED: `ID.AM-08` (frozen CSF list tops at ID.AM-07; a
 2. **Schema & Card Standard (24 Fields):**
    - Added `Type: CONTROL — OBLIGATION (MUST)` or `BEST-PRACTICE (SHOULD)` line right below titles.
    - Added **Field 23 (Traceability):** Inline 4-tier chain (`Legal` → `Phase 1 (AG-D-XX)` → `Obligation (OBL-D-XX)` → `Objective (SO/PO-D-XX)`).
-   - Added **Field 24 (Framework Anchors):** Inline 5-framework mapping (`CSF`, `PF` (+ `pf_gaps`), `AI RMF: pending Case_02/03`, `ISO 27001`, `SSDF`).
+   - Added **Field 24 (Framework Anchors):** Inline 5-framework mapping (`CSF`, `PF` (+ `pf_gaps`), `AI RMF: N/A (non-AI scope)`, `ISO 27001`, `SSDF`).
    - Implementation Status: Verified evidence-backed non-uniform posture states (`IMPLEMENTED`, `PARTIAL`, `NOT IMPLEMENTED`, `N/A`) across all 46 detail cards.
 3. **Anexos A, B, C & Machine-Readable Artifact:**
    - Generated Annex A (CSF Function index), Annex B (ISO 27001 Annex A index), and Annex C (Statutory source index) in `Doc18`.
@@ -138,7 +138,7 @@ CSF-side, unrelated to UNMAPPED: `ID.AM-08` (frozen CSF list tops at ID.AM-07; a
    - Every `UNMAPPED_PF` carries explicit inline/table justification context.
    - 100% of PF subcategories match the canonical 100 subcategories of NIST PF 1.0.
    - CSF subcategories validated against frozen CSF 2.0 list (5 waived pre-existing drift IDs documented in §5).
-   - Doc19 AI RMF placeholder uniformity: 30/30 CR rows carry `pending Case_02/03`.
+   - Doc19 AI RMF placeholder uniformity: 30/30 CR rows carry `N/A (non-AI scope)`.
 2. **Repository & Posture Hygiene:**
    - **Zero `/maturi/i` terms** in deliverable markdown files outside explicit deprecation/historical waivers.
    - **Zero `sprint:` keys** in YAML frontmatters of deliverables.

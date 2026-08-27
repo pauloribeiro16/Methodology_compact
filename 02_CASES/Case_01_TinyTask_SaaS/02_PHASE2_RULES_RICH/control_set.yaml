@@ -31,7 +31,7 @@ control_set:
       - UNMAPPED_PF (PR.DS-10 risk-strategy mgmt + PR.PS-04 log records — no PF 1.0
         analogue)
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.8.24
       ssdf:
@@ -71,7 +71,7 @@ control_set:
       - PR.DS-P2
       - PR.PO-P7
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.8.24
       ssdf: []
@@ -111,7 +111,7 @@ control_set:
       - PR.DS-P1
       - CT.DP-P2
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.8.24
       ssdf: []
@@ -155,7 +155,7 @@ control_set:
       - CT.DM-P1
       - CT.DM-P3
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.8.24
       ssdf: []
@@ -196,7 +196,7 @@ control_set:
       - ID.RA-P3
       - ID.RA-P5
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.8.8
       ssdf:
@@ -236,7 +236,7 @@ control_set:
       - UNMAPPED_PRIVACY (patch cadence is product-security concern; no PF subcat
         anchored)
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.8.8
       ssdf:
@@ -275,7 +275,7 @@ control_set:
       pf:
       - UNMAPPED_PRIVACY (CVD is security-disclosure; no PF subcat anchored)
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.5.5
       ssdf:
@@ -320,7 +320,7 @@ control_set:
       - PR.AC-P4
       - UNMAPPED_PF (asset inventory + risk-strategy data mgmt — no PF 1.0 analogue)
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.5.16
       ssdf: []
@@ -362,7 +362,7 @@ control_set:
       - GV.AT-P1
       - UNMAPPED_PF (identity assertions — no PF 1.0 subcategory)
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.8.5
       ssdf: []
@@ -407,7 +407,7 @@ control_set:
       - PR.AC-P4
       - UNMAPPED_PF (asset inventories + log records — no PF 1.0 analogue)
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.5.15
       ssdf: []
@@ -447,7 +447,7 @@ control_set:
       - CT.DP-P4
       - CT.PO-P4
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.8.9
       ssdf:
@@ -490,7 +490,7 @@ control_set:
       pf:
       - CM.AW-P7
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.5.25
       ssdf:
@@ -534,7 +534,7 @@ control_set:
       - PR.PO-P7
       - CT.DM-P10
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.5.26
       ssdf: []
@@ -577,7 +577,7 @@ control_set:
       - CM.PO-P1
       - CM.PO-P2
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.5.24
       ssdf: []
@@ -623,7 +623,7 @@ control_set:
       - UNMAPPED_PF (recover-execution + risk-strategy mgmt — PF 1.0 has no Recover
         axis)
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.8.13
       ssdf: []
@@ -665,7 +665,7 @@ control_set:
       - CT.DP-P4
       - ID.RA-P3
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.8.10
       ssdf: []
@@ -706,7 +706,7 @@ control_set:
       - CT.PO-P4
       - CT.DM-P5
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.5.33
       ssdf:
@@ -747,7 +747,7 @@ control_set:
       - CT.DM-P5
       - PR.DS-P2
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.8.10
       ssdf: []
@@ -785,7 +785,7 @@ control_set:
       - CT.DM-P1
       - CT.DM-P6
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.5.14
       ssdf: []
@@ -826,7 +826,7 @@ control_set:
       - ID.DE-P1
       - ID.IM-P2
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.5.19
       ssdf:
@@ -865,7 +865,7 @@ control_set:
       pf:
       - UNMAPPED_PRIVACY (SBOM is product-security artefact; no PF subcat anchored)
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.5.21
       ssdf:
@@ -910,7 +910,7 @@ control_set:
       - ID.DE-P4
       - UNMAPPED_PF (ecosystem risk into enterprise risk — no PF 1.0 subcategory)
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.5.20
       ssdf: []
@@ -954,7 +954,7 @@ control_set:
       - CT.DP-P4
       - CT.DP-P5
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.8.25
       ssdf:
@@ -992,7 +992,7 @@ control_set:
       - GV.AT-P1
       - GV.AT-P2
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.6.3
       ssdf:
@@ -1034,7 +1034,7 @@ control_set:
       - GV.AT-P1
       - GV.AT-P2
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.6.3
       ssdf:
@@ -1079,7 +1079,7 @@ control_set:
       - CM.PO-P1
       - UNMAPPED_PF (positive-risk GV.RM-04 — no PF 1.0 subcategory)
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.5.1
       ssdf:
@@ -1124,7 +1124,7 @@ control_set:
       - GV.RM-P1
       - GV.MT-P1
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.5.7
       ssdf:
@@ -1166,7 +1166,7 @@ control_set:
       - ID.IM-P6
       - ID.IM-P8
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.5.33
       ssdf:
@@ -1207,7 +1207,7 @@ control_set:
       - CT.DM-P9
       - CT.DM-P4
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.8.15
       ssdf:
@@ -1248,7 +1248,7 @@ control_set:
       - ID.RA-P3
       - ID.RA-P5
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.5.35
       ssdf:
@@ -1286,7 +1286,7 @@ control_set:
       pf:
       - PR.DS-P1
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.8.24
       ssdf: []
@@ -1324,7 +1324,7 @@ control_set:
       - PR.DS-P2
       - PR.PO-P7
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.8.24
       ssdf: []
@@ -1365,7 +1365,7 @@ control_set:
       - ID.RA-P3
       - ID.RA-P5
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.8.24
       ssdf: []
@@ -1403,7 +1403,7 @@ control_set:
       - PR.PS-02
       pf: []
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.8.24
       ssdf: []
@@ -1445,7 +1445,7 @@ control_set:
       - PR.AC-P6
       - PR.AC-P4
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.8.24
       ssdf: []
@@ -1485,7 +1485,7 @@ control_set:
       - PR.AC-P6
       - PR.AC-P4
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.8.24
       ssdf: []
@@ -1525,7 +1525,7 @@ control_set:
       - CT.DP-P4
       - CT.PO-P4
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.8.24
       ssdf: []
@@ -1567,7 +1567,7 @@ control_set:
       - PR.PO-P7
       - CT.DM-P10
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.8.24
       ssdf: []
@@ -1609,7 +1609,7 @@ control_set:
       - PR.PO-P7
       - CT.DM-P10
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.8.24
       ssdf: []
@@ -1649,7 +1649,7 @@ control_set:
       - CT.DM-P4
       - CT.DM-P5
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.8.24
       ssdf: []
@@ -1691,7 +1691,7 @@ control_set:
       - GV.PO-P2
       - CT.PO-P4
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.8.24
       ssdf: []
@@ -1732,7 +1732,7 @@ control_set:
       - ID.RA-P4
       - ID.RA-P5
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.8.24
       ssdf: []
@@ -1773,7 +1773,7 @@ control_set:
       - GV.PO-P1
       - GV.RM-P1
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.8.24
       ssdf: []
@@ -1814,7 +1814,7 @@ control_set:
       - CT.DM-P9
       - CT.DM-P4
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.8.24
       ssdf: []
@@ -1855,7 +1855,7 @@ control_set:
       - ID.RA-P3
       - ID.RA-P5
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.8.24
       ssdf: []
@@ -1896,7 +1896,7 @@ control_set:
       - ID.RA-P3
       - ID.RA-P5
       pf_gaps: []
-      airmf: pending Case_02/03
+      airmf: N/A (non-AI scope)
       iso:
       - A.8.24
       ssdf: []

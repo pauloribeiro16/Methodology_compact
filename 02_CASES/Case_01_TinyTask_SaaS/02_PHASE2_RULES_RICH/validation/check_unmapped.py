@@ -6,7 +6,7 @@ Checks (SPEC §4.5/§4.6, VALIDATOR_UNMAPPED_AUDIT_v0):
   2. Every UNMAPPED_PF occurrence carries justification context.
   3. Every PF id used matches the canonical frozen list.
   4. CSF 2.0 ids are validated against the frozen CSF list (with waiver list).
-  5. Doc19 AI RMF stays a placeholder: 30 CR rows carry `pending Case_02/03`.
+  5. Doc19 AI RMF stays a placeholder: 30 CR rows carry `N/A (non-AI scope)`.
   6. Zero legacy maturity terms (`/maturi/i`) in deliverables (outside waivers).
   7. Zero `sprint:` keys in YAML frontmatters of deliverables.
   8. Doc18 detail cards carry exactly 46 CSF + 46 Privacy status fields with non-uniform distribution (>=2 distinct states per axis).
@@ -194,7 +194,7 @@ def main() -> int:
     # Check 5: AI RMF placeholder uniformity
     doc19 = (HERE / "Doc19_Framework_Mapping_Matrix.md").read_text().splitlines()
     cr_rows = [ln for ln in doc19 if re.match(r"^\| CR-D-", ln)]
-    with_pending = [ln for ln in cr_rows if "pending Case_02/03" in ln]
+    with_pending = [ln for ln in cr_rows if "N/A (non-AI scope)" in ln]
     with_real = [ln for ln in cr_rows if re.search(r"\b(?:GOVERN|MAP|MEASURE|MANAGE)-\d+\.\d+", ln)]
     if len(with_pending) != 30:
         failures.append(f"Doc19 §1: expected 30 CR rows with AI RMF placeholder, found {len(with_pending)}")

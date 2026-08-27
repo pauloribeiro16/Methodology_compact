@@ -175,7 +175,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 24. **Framework Anchors:**
     - CSF: PR.DS-01, PR.DS-10, PR.PS-04
     - PF: PR.DS-P1, UNMAPPED_PF (PR.DS-10 risk-strategy mgmt + PR.PS-04 log records — no PF 1.0 analogue)
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.24
     - SSDF: PO.5
 
@@ -251,7 +251,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 24. **Framework Anchors:**
     - CSF: PR.DS-02, PR.IR-01, PR.PS-04
     - PF: PR.DS-P2, PR.PO-P7
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.24
     - SSDF: -
 
@@ -328,7 +328,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 24. **Framework Anchors:**
     - CSF: GV.OV-01, GV.RM-04, PR.AA-03, PR.AA-04, PR.DS-01, PR.IR-03
     - PF: PR.DS-P1, CT.DP-P2
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.24
     - SSDF: -
 
@@ -405,7 +405,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 24. **Framework Anchors:**
     - CSF: PR.DS-01, PR.DS-02, PR.DS-10, PR.DS-01, PR.DS-10, PR.IR-03, PR.IR-04, PR.PS-04
     - PF: CT.DM-P1, CT.DM-P3
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.24
     - SSDF: -
 
@@ -497,7 +497,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 24. **Framework Anchors:**
     - CSF: GV.OV-02, ID.AM-02, ID.IM-02, ID.RA-01, ID.RA-03, ID.RA-05, PR.PS-02
     - PF: ID.RA-P3, ID.RA-P5
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.8
     - SSDF: RV.1
 
@@ -589,7 +589,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 24. **Framework Anchors:**
     - CSF: GV.OV-02, ID.RA-01, PR.IR-03, PR.PS-01, PR.PS-02
     - PF: UNMAPPED_PRIVACY (patch cadence is product-security concern; no PF subcat anchored)
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.8
     - SSDF: RV.2
 
@@ -681,7 +681,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 24. **Framework Anchors:**
     - CSF: GV.PO-01, GV.SC-04, ID.RA-01, RS.CO-03, RS.MA-01
     - PF: UNMAPPED_PRIVACY (CVD is security-disclosure; no PF subcat anchored)
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.5.5
     - SSDF: RV.1
 
@@ -774,7 +774,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 24. **Framework Anchors:**
     - CSF: ID.AM-01, PR.AA-01, PR.AA-02, PR.AA-03, PR.AA-05, PR.AA-06, PR.DS-10
     - PF: PR.AC-P1, PR.AC-P6, PR.AC-P4, UNMAPPED_PF (asset inventory + risk-strategy data mgmt — no PF 1.0 analogue)
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.5.16
     - SSDF: -
 
@@ -870,7 +870,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=2 (SHOULD))
 24. **Framework Anchors:**
     - CSF: PR.AA-03, PR.AA-04, PR.AA-05, PR.AA-06, PR.AT-02
     - PF: PR.AC-P6, PR.AC-P4, GV.AT-P1, UNMAPPED_PF (identity assertions — no PF 1.0 subcategory)
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.5
     - SSDF: -
 
@@ -963,7 +963,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 24. **Framework Anchors:**
     - CSF: ID.AM-01, ID.AM-02, PR.AA-01, PR.AA-03, PR.AA-05, PR.AA-06, PR.PS-04
     - PF: CT.PO-P1, PR.AC-P1, PR.AC-P6, PR.AC-P4, UNMAPPED_PF (asset inventories + log records — no PF 1.0 analogue)
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.5.15
     - SSDF: -
 
@@ -1056,7 +1056,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 24. **Framework Anchors:**
     - CSF: GV.PO-01, GV.SC-03, PR.DS-10, PR.PS-01, PR.PS-04
     - PF: CT.DP-P4, CT.PO-P4
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.9
     - SSDF: PW.9
 
@@ -1149,7 +1149,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 24. **Framework Anchors:**
     - CSF: DE.AE-02, DE.CM-01, DE.CM-09, ID.RA-04, PR.PS-04, RS.MA-01, RS.MA-02, RS.MA-03
     - PF: CM.AW-P7
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.5.25
     - SSDF: RV.1
 
@@ -1243,7 +1243,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 24. **Framework Anchors:**
     - CSF: DE.CM-09, PR.DS-10, PR.IR-03, PR.IR-04, RC.RP-01, RC.RP-04, RS.MI-01, RS.MI-02
     - PF: PR.PO-P7, CT.DM-P10
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.5.26
     - SSDF: -
 
@@ -1338,7 +1338,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 24. **Framework Anchors:**
     - CSF: RS.CO-02, RS.MA-01, RS.MA-01, RS.MA-02, RS.MA-03, RS.MA-01
     - PF: CM.AW-P7, CM.AW-P8, CM.PO-P1, CM.PO-P2
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.5.24
     - SSDF: -
 
@@ -1433,7 +1433,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 24. **Framework Anchors:**
     - CSF: PR.DS-01, PR.DS-10, PR.IR-03, PR.IR-04, RC.RP-01, RC.RP-03, RC.RP-04
     - PF: PR.DS-P1, PR.PO-P7, PR.DS-P4, PR.PT-P4, UNMAPPED_PF (recover-execution + risk-strategy mgmt — PF 1.0 has no Recover axis)
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.13
     - SSDF: -
 
@@ -1526,7 +1526,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 24. **Framework Anchors:**
     - CSF: GV.OC-03, GV.PO-01, ID.AM-03, PR.DS-01, PR.DS-10, PR.PS-06
     - PF: CT.PO-P4, CT.DP-P4, ID.RA-P3
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.10
     - SSDF: -
 
@@ -1619,7 +1619,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 24. **Framework Anchors:**
     - CSF: GV.OC-04, GV.OV-02, GV.PO-02, ID.AM-03, PR.DS-10, PR.PS-02, PR.PS-04
     - PF: CT.PO-P4, CT.DM-P5
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.5.33
     - SSDF: PS.3
 
@@ -1711,7 +1711,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 24. **Framework Anchors:**
     - CSF: GV.SC-04, PR.DS-10, PR.DS-10, PR.DS-02
     - PF: CT.DM-P4, CT.DM-P5, PR.DS-P2
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.10
     - SSDF: -
 
@@ -1802,7 +1802,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=2 (SHOULD))
 24. **Framework Anchors:**
     - CSF: PR.DS-10, PR.DS-10, PR.AA-03, PR.DS-02
     - PF: CT.DM-P1, CT.DM-P6
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.5.14
     - SSDF: -
 
@@ -1896,7 +1896,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 24. **Framework Anchors:**
     - CSF: GV.SC-01, GV.SC-02, GV.SC-03, GV.SC-04, ID.AM-04, ID.RA-02
     - PF: ID.DE-P1, ID.IM-P2
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.5.19
     - SSDF: PW.4
 
@@ -1988,7 +1988,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 24. **Framework Anchors:**
     - CSF: GV.SC-02, GV.SC-03, ID.AM-02, ID.RA-01, PR.PS-02
     - PF: UNMAPPED_PRIVACY (SBOM is product-security artefact; no PF subcat anchored)
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.5.21
     - SSDF: PS.3
 
@@ -2083,7 +2083,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 24. **Framework Anchors:**
     - CSF: GV.OC-03, GV.SC-02, GV.SC-03, GV.SC-04, PR.DS-10, PR.PS-06, RS.MA-01, RS.MI-01
     - PF: ID.DE-P3, ID.DE-P4, UNMAPPED_PF (ecosystem risk into enterprise risk — no PF 1.0 subcategory)
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.5.20
     - SSDF: -
 
@@ -2178,7 +2178,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 24. **Framework Anchors:**
     - CSF: GV.PO-02, ID.RA-01, PR.DS-10, PR.PS-01, PR.PS-02, PR.PS-06
     - PF: GV.PO-P2, CT.PO-P4, CT.DP-P2, CT.DP-P4, CT.DP-P5
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.25
     - SSDF: PO.1
 
@@ -2271,7 +2271,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 24. **Framework Anchors:**
     - CSF: PR.AT-01, PR.AT-02, PR.PS-01
     - PF: GV.AT-P1, GV.AT-P2
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.6.3
     - SSDF: PO.2
 
@@ -2366,7 +2366,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=2 (SHOULD))
 24. **Framework Anchors:**
     - CSF: GV.RR-02, GV.RR-04, GV.SC-03, PR.AT-01, PR.AT-02, PR.AT-02
     - PF: GV.AT-P1, GV.AT-P2
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.6.3
     - SSDF: PO.2
 
@@ -2460,7 +2460,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 24. **Framework Anchors:**
     - CSF: GV.PO-01, GV.PO-02, GV.RM-04, GV.RR-02, GV.OV-01
     - PF: GV.PO-P1, GV.PO-P5, GV.PO-P3, CM.PO-P1, UNMAPPED_PF (positive-risk GV.RM-04 — no PF 1.0 subcategory)
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.5.1
     - SSDF: PO.4
 
@@ -2554,7 +2554,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 24. **Framework Anchors:**
     - CSF: ID.RA-01, ID.RA-04, ID.RA-05, GV.RM-06, GV.OV-02
     - PF: ID.RA-P3, ID.RA-P4, ID.RA-P5, GV.RM-P1, GV.MT-P1
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.5.7
     - SSDF: PW.1
 
@@ -2648,7 +2648,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 24. **Framework Anchors:**
     - CSF: GV.PO-02, ID.AM-08, ID.RA-05, PR.DS-10, RS.MA-03
     - PF: ID.IM-P1, ID.IM-P4, ID.IM-P6, ID.IM-P8
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.5.33
     - SSDF: PO.3
 
@@ -2741,7 +2741,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 24. **Framework Anchors:**
     - CSF: DE.CM-01, GV.PO-02, ID.RA-04, PR.DS-01, PR.PS-04
     - PF: CT.DM-P9, CT.DM-P4
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.15
     - SSDF: PO.3
 
@@ -2834,7 +2834,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 24. **Framework Anchors:**
     - CSF: DE.AE-02, GV.OV-03, ID.RA-05, ID.IM-02, PR.PS-06
     - PF: ID.RA-P3, ID.RA-P5
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.5.35
     - SSDF: PW.7
 
@@ -2925,7 +2925,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 24. **Framework Anchors:**
     - CSF: PR.DS-01, PR.DS-10, PR.PS-04
     - PF: PR.DS-P1
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.24
     - SSDF: -
 
@@ -3013,7 +3013,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 24. **Framework Anchors:**
     - CSF: PR.DS-02, PR.IR-01, PR.PS-04
     - PF: PR.DS-P2, PR.PO-P7
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.24
     - SSDF: -
 
@@ -3103,7 +3103,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 24. **Framework Anchors:**
     - CSF: ID.RA-01, ID.RA-03, ID.RA-05, ID.IM-02, PR.PS-02
     - PF: ID.RA-P3, ID.RA-P5
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.24
     - SSDF: -
 
@@ -3194,7 +3194,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 24. **Framework Anchors:**
     - CSF: ID.RA-01, PR.IR-03, PR.PS-01, PR.PS-02
     - PF: 
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.24
     - SSDF: -
 
@@ -3284,7 +3284,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 24. **Framework Anchors:**
     - CSF: PR.AA-01, PR.AA-03, PR.AA-05, PR.AA-06, ID.AM-01
     - PF: PR.AC-P1, PR.AC-P6, PR.AC-P4
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.24
     - SSDF: -
 
@@ -3375,7 +3375,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 24. **Framework Anchors:**
     - CSF: PR.AA-03, PR.AA-04, PR.AA-05, PR.AA-06
     - PF: PR.AC-P6, PR.AC-P4
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.24
     - SSDF: -
 
@@ -3466,7 +3466,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 24. **Framework Anchors:**
     - CSF: GV.PO-01, PR.PS-01, PR.PS-04, ID.IM-02
     - PF: CT.DP-P4, CT.PO-P4
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.24
     - SSDF: -
 
@@ -3558,7 +3558,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 24. **Framework Anchors:**
     - CSF: RS.MA-01, RS.MA-02, RS.MA-03, RS.MA-01, RS.CO-02, RC.RP-01
     - PF: PR.PO-P7, CT.DM-P10
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.24
     - SSDF: -
 
@@ -3651,7 +3651,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 24. **Framework Anchors:**
     - CSF: RS.MA-01, RS.MA-01, RS.MA-02, RS.CO-02, RS.MA-01, RC.RP-01
     - PF: PR.PO-P7, CT.DM-P10
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.24
     - SSDF: -
 
@@ -3742,7 +3742,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 24. **Framework Anchors:**
     - CSF: PR.DS-10, PR.DS-10, GV.SC-04, ID.AM-08
     - PF: CT.DM-P4, CT.DM-P5
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.24
     - SSDF: -
 
@@ -3834,7 +3834,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 24. **Framework Anchors:**
     - CSF: GV.PO-02, GV.RR-02, ID.RA-01, PR.PS-01, PR.PS-02, PR.PS-06
     - PF: GV.PO-P2, CT.PO-P4
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.24
     - SSDF: -
 
@@ -3926,7 +3926,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 24. **Framework Anchors:**
     - CSF: ID.RA-04, ID.RA-05, PR.PS-01, PR.PS-02, PR.PS-06
     - PF: ID.RA-P4, ID.RA-P5
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.24
     - SSDF: -
 
@@ -4018,7 +4018,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 24. **Framework Anchors:**
     - CSF: GV.PO-01, GV.PO-02, GV.RM-01, GV.OV-01, GV.OV-03
     - PF: GV.PO-P1, GV.RM-P1
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.24
     - SSDF: -
 
@@ -4109,7 +4109,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 24. **Framework Anchors:**
     - CSF: DE.CM-01, DE.AE-02, GV.PO-02, PR.DS-01, PR.PS-04
     - PF: CT.DM-P9, CT.DM-P4
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.24
     - SSDF: -
 
@@ -4200,7 +4200,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 24. **Framework Anchors:**
     - CSF: GV.OV-03, ID.RA-01, ID.RA-04, ID.RA-05, ID.IM-02
     - PF: ID.RA-P3, ID.RA-P5
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.24
     - SSDF: -
 
@@ -4291,7 +4291,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 24. **Framework Anchors:**
     - CSF: GV.OV-03, ID.RA-01, ID.RA-04, ID.RA-05, PR.PS-06
     - PF: ID.RA-P3, ID.RA-P5
-    - AI RMF: pending Case_02/03
+    - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.24
     - SSDF: -
 

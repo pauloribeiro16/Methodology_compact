@@ -138,7 +138,7 @@ O Executor **NÃO DEVE** reconstruir o seguinte — está feito e é input:
 | D6 | Articulação estrutural | **Matriz unificada** | Vista única evita triplicação de camadas | Doc 13 §1 = matriz com colunas de cada framework |
 | D7 | Função Govern sobreposta | **Vista Govern consolidada** | Os 3 frameworks têm Govern; fundir evita redundância | Doc 13 §2 = Govern fundida (GV∥Govern-P∥GOVERN) |
 | D8 | Papel dos frameworks | **Só alvo de mapeamento** | MANIFESTO intacto; AEGIS deriva da lei | CR/BPR não se derivam de frameworks |
-| D9 | AI RMF no Case_01 | **Fora (sem IA); método pronto** | Case_01 = sem IA, AI Act NOT APPLICABLE | Schema com 3ª coluna `pending Case_02/03` |
+| D9 | AI RMF no Case_01 | **Fora (sem IA); método pronto** | Case_01 = sem IA, AI Act NOT APPLICABLE | Schema com 3ª coluna `N/A (non-AI scope)` |
 | D10 | Escala de maturidade | **Tiers 1-4 + 0-4 nos DOIS frameworks** | Comparabilidade directa CSF↔Privacy | Definir 0-4 por-subcat para cada framework |
 | D11 | Score por controlo multi-framework | **Dois scores (csf + privacy)** | Preserva dessincronia segurança/privacidade | 4 campos de maturidade por cartão |
 | D12 | Govern no Case_01 (2 frameworks) | **2 colunas + 3ª placeholder** | Método completo; AI RMF entra sem refactor | Coluna AI RMF = `pending` |
@@ -252,7 +252,7 @@ O Executor **NÃO DEVE** reconstruir o seguinte — está feito e é input:
 - **Estado neste contracto:** **PLACEHOLDER para Case_01** (sem IA). Mas a frozen list e o mapeamento AI Act→AI RMF **já existem** ao nível do Regulatory Baseline para uso em Case_02/03.
 - **Fonte autoritativa:** ✅ **EXISTE** — `00_METHODOLOGY/PREPROCESSING/NIST_AI_RMF_1.0_subcategories.md` (72 subcats, 4 Functions, 19 Categories).
 - **Mapeamento AI Act→AI RMF já existe:** `00_METHODOLOGY/PREPROCESSING/Regulation/AI_Act/02b_SecurityRules_NISTAIRMF.md` (24 SR mapeados a 41/72 subcats AI RMF, 100% cobertura sem UNMAPPED_AIRMF).
-- **Justificação placeholder no Case_01:** AI Act NOT APPLICABLE; stack determinística. A coluna AI RMF no Doc 13 fica `pending Case_02/03` — mas o método está pronto, herda directamente do baseline.
+- **Justificação placeholder no Case_01:** AI Act NOT APPLICABLE; stack determinística. A coluna AI RMF no Doc 13 fica `N/A (non-AI scope)` — mas o método está pronto, herda directamente do baseline.
 - **Estrutura:** 4 Functions.
 
 | Function | Nome |
@@ -263,7 +263,7 @@ O Executor **NÃO DEVE** reconstruir o seguinte — está feito e é input:
 | **MANAGE** | Priorizar/acrescentar riscos de IA |
 
 - **Formato do ID:** `GOVERN-1.1`, `MAP-1.1`, etc.
-- **O que o Executor faz agora:** Cria a **coluna** no Doc 13 com header `AI RMF` e valor uniforme `pending Case_02/03`. **NÃO mapeia.** Não cria lista frozen AI RMF (fica para o contracto de Case_02/03).
+- **O que o Executor faz agora:** Cria a **coluna** no Doc 13 com header `AI RMF` e valor uniforme `N/A (non-AI scope)`. **NÃO mapeia.** Não cria lista frozen AI RMF (fica para o contracto de Case_02/03).
 
 ### 4.4 Correspondência Govern (base da Govern consolidada)
 
@@ -299,7 +299,7 @@ funções Govern num único conjunto de objectivos de governação.
 | `UNMAPPED_PRIVACY` | A regra **inteira** não tem âncora no Privacy FW (ex.: product-security trio: patch cadence, CVD, SBOM) | Justificação curta na célula | A regra tem QUALQUER âncora PF → usar `UNMAPPED_PF` element-level |
 | `UNMAPPED_PF` | Um **elemento** dentro de uma regra mapeada não tem contraparte no PF 1.0 (ex.: eixo Respond/Recover, logging, SDLC) | Campo `unmapped_pf_justification` (bloco YAML) ou parêntese curto na célula | Existe subcategoria PF 1.0 com texto correspondente (verificar `CONTROLS/NIST_PF/` antes de marcar) |
 | `N/A (non-AI scope)` | Regra sem dimensão IA — coluna AI RMF em cases com AI Act aplicável (Case_02/03) | — | A regra tem dimensão IA e falta âncora → `UNMAPPED_AIRMF` |
-| `pending Case_02/03` | Coluna AI RMF do Case_01 (placeholder, SPEC §4.3) | — | — |
+| `N/A (non-AI scope)` | Coluna AI RMF do Case_01 (placeholder, SPEC §4.3) | — | — |
 
 **Padrões proibidos (inválidos como valor de mapeamento):** pseudo-ranges tipo `UNMAPPED_PF..P4`; substituição de um ID real por marcador; `UNMAPPED_*` sem justificação; exclusão de famílias inteiras com base no draft PF 1.1.
 
@@ -383,7 +383,7 @@ related_documents: 11_Rules_Catalog.md, 12_Rules_Catalog.xlsx, 04b_Security_Post
 case: Case_01_TinyTask_SaaS
 tier: MICRO
 frameworks_in_scope: [NIST_CSF_2.0, NIST_Privacy_FW_1.0]
-frameworks_placeholder: [NIST_AI_RMF_1.0]   # pending Case_02/03
+frameworks_placeholder: [NIST_AI_RMF_1.0]   # N/A (non-AI scope)
 normative_intensity_rule: AVG                # resolve DR-002 — see §6
 ---
 ```
@@ -403,7 +403,7 @@ Tabela principal: linhas = 38 sub-domínios (ou controlos CR/BPR agrupados por s
 ```
 
 - As colunas ISO 27001 e SSDF vêm do crosswalk existente (§5.5) — **não recriar**, referenciar.
-- A coluna AI RMF é uniformemente `pending Case_02/03`.
+- A coluna AI RMF é uniformemente `N/A (non-AI scope)`.
 - Para sub-domínios com CR e BPR, listar todos os IDs únicos mapeados.
 
 #### §2 — Vista Govern Consolidada
@@ -418,7 +418,7 @@ Formato: sub-secção por conceito. Exemplo:
 |-----------|--------------|--------------------|-------------------|
 | CSF 2.0   | GV.OC-01     | Missão compreendida | ✅ CR-D-09.1-001 |
 | Privacy FW| ID-P.BE:1    | Ambiente de negócio  | ✅ CR-D-05.1-001 |
-| AI RMF    | GOVERN-1.1   | (pending Case_02/03) | ⏳ placeholder    |
+| AI RMF    | GOVERN-1.1   | (N/A (non-AI scope)) | ⏳ placeholder    |
 ```
 
 #### §3 — Mapeamento n:m CR/BPR ↔ Subcategorias
