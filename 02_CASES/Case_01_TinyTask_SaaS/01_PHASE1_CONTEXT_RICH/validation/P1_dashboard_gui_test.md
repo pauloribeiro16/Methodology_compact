@@ -567,3 +567,50 @@ Working folder: `gui-test-screenshots/p1_dashboard/` (project-relative)
 | `t2_folio_ii_initial.png` | Folio II render — canvas (181 nodes), INSPECTOR empty ("Select a node"), filter toolbar visible. |
 | `t2_after_click.png` | Folio II after first (mis-aimed) `cua.click` — invariant state, Inspector still empty. |
 | `t2_post_canvas_click_invariant.png` | Folio II after the second `cua.click` round — INSPECTOR still empty (canvas click failed to hit a node). |
+
+### Re-test after Phase D — NIST CSF / PF / AI-RMF (2026-08-27)
+
+Verdict: **PASS** — 389 / 1298 / 31 (117 NistControl + 513 ALIGNS_TO + 2 NEW audits). NIST layer toggle on Folio II flips the graph by 117 nodes / 513 edges; the Folio IV grid gains a NIST count column with a parchment shield pill; no styling wash regressions.
+
+### What changed (Phase D scope)
+
+Phase D is the largest extension since the initial Folio II/IV/V visuals landed. It pulls **all NIST CSF / PF / AI-RMF mapping from Doc13 §7** into the knowledge graph and the dashboard.
+
+- **Ontology v1.5 (additive to v1.4)** — new `NistControl` class, `NistFramework = [CSF, PF, AI-RMF]` enum, `ALIGNS_TO` relation (active) plus `SOURCED_FROM` deferred, 3 new counts, 2 new id_patterns. Validator report: `validation/P1_ontology_v1.5_validation.md`. Patched to v1.6 to fix a regex typo (`[A-Z\.\-]+` → `[A-Z0-9\.\-]+` to include digits) — committed in `05aec23`.
+- **KG extension (additive to 272/785/29)**:
+  - 117 NistControl nodes (IDs prefixed `NIST-`): 77 CSF + 38 PF + 2 AI-RMF. AI-RMF only appears in D-04.2 (`MANAGE-2.1`, `MANAGE-2.3`).
+  - 513 ALIGNS_TO edges from the 35 active sub-domains (D-01.1..D-10.3; D-02.4 / D-06.4 / D-08.3 inactive, no §7 entry).
+  - `attrs.nist_alignment_count` integer added to each of the 37 active SCDs (additive only — `tier` preserved).
+  - 8 rows with malformed `Function = ?` in Doc13 §7 (RS.CO-04 in D-04.3 + D-06.3, PR.AT-03/04 in D-08.2, ID.SC-04 in D-09.2, PR.IP-06/07 in D-10.2, PR.PT-01 in D-10.2) resolved via a canonical NIST CSF 2.0 Function override table; not skipped, so the full 513 alignment edges are emitted.
+  - 2 new audits: `NEW-09` (coverage_gap, medium) — Doc13 §7 has 8 rows with `?` Function (table-renderer truncation); `NEW-10` (cross_doc_conflict, low) — only D-04.2 has NIST AI-RMF controls; the brief expected AI-RMF on D-01.3 too (P7 human decision).
+  - 3 new invariants: `nist_controls: 117`, `nist_alignments: 513`, `nist_aimrm_subdomains: 1`.
+  - `META.canonical_sources` extended (Doc13 §7 reference).
+- **Build/check widening** — `build_p1_dashboard.py --check` now validates: NistControl node types in whitelist, ALIGNS_TO relation in whitelist, framework ∈ {CSF, PF, AI-RMF}, NistControl IDs match `^(NIST-)?[A-Z0-9\.\-]+$`, ALIGNS_TO edges point to existing NistControl nodes, NEW-09 + NEW-10 audit-presence, all 3 new invariants. Exit code 0.
+- **Dashboard (in-place, single file)** — new `#f-nist` checkbox in the Folio II toolbar (default OFF); adds 117 NistControl + 513 ALIGNS_TO edges when ON. New colour `NistControl: #2c3e50` (deep navy) and edge `ALIGNS_TO: #4a6b8a` (cool slate-cyan). Stacks with Arch and RACI. Folio IV grid gains a new "NIST" column with the count + parchment shield pill (`🛡`); default sort now `[[18, "asc"]]` (NIST asc). Inspector typeLabel map updated to include `NistControl: "NIST Control"`. The inlined JSON was re-emitted (after the first subagent had inlined the pre-Phase-D snapshot — the orchestrator rebuilt it from disk so the dashboard reads the live `data/phase1_graph.json`).
+
+### Verification (live, post-re-emit)
+
+- `python3 00_METHODOLOGY/00_VISUALISATIONS/tests/test_dashboards.py --only Case_01_P1_Dashboard` → exit 0.
+- `python3 02_CASES/Case_01_TinyTask_SaaS/01_PHASE1_CONTEXT_RICH/scripts/build_p1_dashboard.py --check` → exit 0.
+- `python3 02_CASES/Case_01_TinyTask_SaaS/01_PHASE1_CONTEXT_RICH/scripts/build_p1_graph.py --summary` → `nodes_count: 389`, `links_count: 1298`, `audits_count: 31`, `NistControl: 117`, `ALIGNS_TO: 513`, no `EvidenceItem`.
+- Folio II baseline (all layers off): 197 nodes / 264 links. NIST on alone: **314 nodes / 777 links** (= 197+117 / 264+513, exact).
+- Folio IV grid: 20 columns, first row (D-02.4 Threat-Led Pen-Testing) shows `0🛡` (zero NIST alignments, consistent with D-02.4 NOT_ADDRESSED status).
+- Folio III: **31 audit cards** (16 originals + 5 GAP-RACI + 5 NEW-PhaseB + 5 NEW-PhaseC/PhaseD). 9 NEW-* cards starting with NEW-0 + NEW-10 = 10 NEW-* total. NEW-09 (8 malformed Doc13 rows) and NEW-10 (D-04.2 is the only AI-RMF sub-domain) visible.
+- Folio V regression: 6-column pipeline preserved, ambiguity bars still show real N values.
+- Folio VI RACI regression: 43×11 matrix unchanged.
+- Folio VII Architecture + ThirdParties regression: 6 vendors, 5 systems, 3 stores, 5 flows, no regression.
+
+### Operational notes (lessons applied)
+
+- The first subagent attempt to extend the dashboard inlined the pre-Phase-D JSON, which the orchestrator caught. The orchestrator re-emitted the inlined block from the live on-disk JSON directly so the dashboard reads the true 389/1298/31 state. A single .replace call on the `<script type="application/json" id="phase1-graph-data">` block.
+- The first subagent attempt also introduced 47 `EvidenceItem` nodes + 5 `HAS_EVIDENCE` / `CITES_CLAUSE` / `CITES_OUTCOME` edges + drift into 5 Phase-2 doc files + `00_METHODOLOGY/MATURITY_MODEL_CSF_STRICT.md` (none of which the brief asked for). The orchestrator reverted all of those via `git checkout --` + `git clean -fd` before re-dispatching the work with a stricter brief (no EvidenceItem, no Phase-2 mods, no new files outside the phase directory).
+- Per the established pattern: each new layer (RACI, Arch, NIST) gets one new colour token, one new toolbar checkbox, and one additive `applySelectionDim` path that respects the soft-dim invariants from fixes #2 and #3. None of those fixes regressed.
+
+### Working folder
+
+- Validation reports: `validation/P1_ontology_v1.5_validation.md` (PASS after regex fix), `validation/P1_ontology_v1.4_validation.md` (PASS), `validation/P1_graph_phase_c_validation.md` (PASS CONDITIONAL).
+- Working folder for this session's screenshots: `gui-test-screenshots/p1_dashboard/phaseD_*.png` (10 frames; subagent-managed). Plus `p7_folio_IV_phase_C.png` from Phase C.
+
+### Next phase
+
+Ready to start Phase E (Ambiguity detail + Citations) on the user's signal. Same ritual: ontology v1.7 (NistFramework is already in v1.5; only the Ambiguity-card node class may need to be added if we model each card as a node) → KG → dashboard → smoke → commit.
