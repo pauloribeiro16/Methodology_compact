@@ -1,19 +1,19 @@
 ---
 document_id: AEGIS-P1-04b
-title: Security Posture Assessment (Maturity Model)
+title: Security Posture Assessment (Implementation Posture)
 phase: 1
 version: 1.1
 created: 2026-07-11
 updated: 2026-08-07
-author: Executor (Sprint 1 reconciliation; Sprint 2 corpus enrichment; Phase 2 Bloco E maturity deprecation)
+author: Executor (Sprint 1 reconciliation; Sprint 2 corpus enrichment; Implementation Posture transition)
 status: DEPRECATED_FOR_POSTURE
 status_history:
   - { date: '2026-08-07', from: CORPUS_ENRICHED, to: DEPRECATED_FOR_POSTURE,
-      reason: 'Maturity model moved to Phase 2 Doc 13 — resolves PHASE1_STRATEGY §7 contradiction' }
+      reason: 'Implementation Posture model adopted — resolves PHASE1_STRATEGY §7 contradiction' }
 posture_owner: 13_Framework_Mapping_Matrix.md
 note: >
   Este documento mantém-se como INPUT qualitativo (postura observada).
-  A avaliação e o modelo de maturidade foram movidos para
+  A avaliação de postura foi movida para
   02_PHASE2_RULES_RICH/13_Framework_Mapping_Matrix.md §4-5.
 case_study: TinyTask Lda.
 sprint: 1
@@ -33,8 +33,8 @@ related_documents:
   - ../../../00_METHODOLOGY/PREPROCESSING/SubDomains/
 ---
 
-> ⚠️ **DEPRECATED FOR MATURITY (2026-08-07).** A avaliação e o modelo de
-> maturidade vivem agora em
+> ⚠️ **DEPRECATED FOR POSTURE (2026-08-07).** A avaliação e o modelo de
+> postura vivem agora em
 > `02_PHASE2_RULES_RICH/13_Framework_Mapping_Matrix.md` §4-5. Este documento
 > mantém-se como input qualitativo (postura observada). Ver `status_history`
 > no frontmatter.
@@ -47,25 +47,25 @@ related_documents:
 > **Sprint 2 Enrichment Note (2026-08-06)**
 > - **Status: RECONCILED → CORPUS_ENRICHED.** Section 2 (Per-Macro-Domain Assessment) extended with two corpus-derived fields per macro-domain: **Target fit_criterion** (verbatim from `D-XX.Y.json` `requirements.high_level.yaml.fit_criterion`, truncated to ~100 chars) and **Verification Method** (from same path, `verification_method` field). One representative sub-domain selected per macro-domain (D-01.1, D-02.1, D-03.2, D-04.3, D-05.2, D-06.1, D-07.3, D-08.1, D-09.4, D-10.2). New §7 Corpus Provenance documents the selection rationale and sources. 10 macro-domain sections enriched.
 
-# Security Posture Assessment (Maturity Model)
+# Security Posture Assessment
 
 ## 1. Assessment Methodology
 
-TinyTask is assessed as a low-tier micro SaaS with 8 employees and managed-cloud infrastructure. Current maturity measures what exists today, not the target state. Target maturity is proportional to TinyTask's profile but still aligned with active GDPR and CRA SubDomains fit criteria.
+TinyTask is assessed as a low-tier micro SaaS with 8 employees and managed-cloud infrastructure. Current posture measures implementation status today, not the target state. Target posture is proportional to TinyTask's profile but still aligned with active GDPR and CRA SubDomains fit criteria.
 
 | Level | Label | Description |
 |---|---|---|
-| 0 | None | No controls in place |
-| 1 | Ad-hoc | Informal, inconsistent, no documentation |
-| 2 | Defined | Documented or consistently repeatable, but not fully measured |
-| 3 | Managed | Implemented, monitored, measured, and regularly reviewed |
-| 4 | Optimized | Continuously improved and substantially automated |
+| State | Label | Description |
+|---|---|---|
+| NOT IMPLEMENTED | None | No controls in place |
+| PARTIAL | Partial | Documented or partially implemented, lacking formal verification |
+| IMPLEMENTED | Fully Implemented | Implemented, monitored, measured, and regularly reviewed |
 
 Assessment evidence is drawn from `04a_Architecture_DataInventory.md`, `04_Company_Context_Assessment.md`, and `05_Regulatory_Applicability.md`. The active Regulatory Baseline scope is 37 of 38 SubDomains for `applicable_regs = [GDPR, CRA]`; D-08.3 is inactive because it only participates in NIS2 and DORA.
 
 ## 2. Per-Domain Assessment
 
-### D-01 Data Protection — Maturity: 2
+### D-01 Data Protection — Implementation Status: PARTIAL
 
 | Control | Current | Evidence | Notes |
 |---|---|---|---|
@@ -74,13 +74,13 @@ Assessment evidence is drawn from `04a_Architecture_DataInventory.md`, `04_Compa
 | Key management | Basic cloud KMS | SYS-04 in 04a Section 1.1 | Manual key rotation; no formal key ceremony or dual control |
 | Data integrity | Basic application/database controls | SYS-01, SYS-03, SYS-05 | Database constraints and backup checks exist; no formal integrity verification schedule |
 
-**Target maturity**: 3  
-**Gap**: 1  
+**Target Posture**: IMPLEMENTED  
+**Gap**: Operational evidence & verification cadence missing  
 **Target fit_criterion** (from corpus `D-01.1.json` requirements.high_level.yaml.fit_criterion, truncated): "AES-256 (or stronger) symmetric encryption is applied to all data-at-rest storage volumes holding the in-scope data class..."
 **Verification Method** (from corpus): TEST
 **Notes**: Current evidence supports D-01.1, D-01.2, and part of D-01.3/D-01.4. The gap is formal key lifecycle documentation, periodic restore/integrity tests, and review evidence for GDPR Art. 32 and CRA Annex I Part I confidentiality/integrity controls. Relevant Regulatory Baseline files: [D-01.1](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-01_Data-Protection/D-01.1.md), [D-01.2](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-01_Data-Protection/D-01.2.md), [D-01.3](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-01_Data-Protection/D-01.3.md), [D-01.4](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-01_Data-Protection/D-01.4.md).
 
-### D-02 Vulnerability Management — Maturity: 1
+### D-02 Vulnerability Management — Implementation Status: PARTIAL
 
 | Control | Current | Evidence | Notes |
 |---|---|---|---|
@@ -89,13 +89,13 @@ Assessment evidence is drawn from `04a_Architecture_DataInventory.md`, `04_Compa
 | Pen testing | Informal self-testing only | No external report | No threat-led or independent penetration test performed |
 | CVD policy | Not published | No security.txt or public vulnerability policy | CRA vulnerability handling remains a material gap |
 
-**Target maturity**: 3  
-**Gap**: 2  
+**Target Posture**: IMPLEMENTED  
+**Gap**: Operational evidence & verification cadence missing  
 **Target fit_criterion** (from corpus `D-02.1.json` requirements.high_level.yaml.fit_criterion, truncated): "An ID.RA-01 vulnerabilities-identified-validated-recorded register is maintained at the DORA-cadenced `continuous + at-l..."
 **Verification Method** (from corpus): TEST
-**Notes**: D-02 is low maturity because scanning exists but vulnerability intake, prioritisation, disclosure, and patch SLAs are ad hoc. This is consistent with the existing supply-chain readiness finding that component vulnerability management is manual. Relevant Regulatory Baseline files: [D-02.1](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-02_Vulnerability-Management/D-02.1.md), [D-02.2](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-02_Vulnerability-Management/D-02.2.md), [D-02.3](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-02_Vulnerability-Management/D-02.3.md), [D-02.4](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-02_Vulnerability-Management/D-02.4.md).
+**Notes**: D-02 is partial posture because scanning exists but vulnerability intake, prioritisation, disclosure, and patch SLAs are ad hoc. This is consistent with the existing supply-chain readiness finding that component vulnerability management is manual. Relevant Regulatory Baseline files: [D-02.1](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-02_Vulnerability-Management/D-02.1.md), [D-02.2](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-02_Vulnerability-Management/D-02.2.md), [D-02.3](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-02_Vulnerability-Management/D-02.3.md), [D-02.4](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-02_Vulnerability-Management/D-02.4.md).
 
-### D-03 Access Control — Maturity: 2
+### D-03 Access Control — Implementation Status: PARTIAL
 
 | Control | Current | Evidence | Notes |
 |---|---|---|---|
@@ -105,13 +105,13 @@ Assessment evidence is drawn from `04a_Architecture_DataInventory.md`, `04_Compa
 | Privileged access management | No dedicated PAM | Cloud IAM and GitHub organisation | Least privilege is informal and handled by CTO |
 | Default secure configs | Partial | Auth0 defaults, cloud provider security groups | No documented secure baseline for all services |
 
-**Target maturity**: 3  
-**Gap**: 1  
+**Target Posture**: IMPLEMENTED  
+**Gap**: Operational evidence & verification cadence missing  
 **Target fit_criterion** (from corpus `D-03.2.json` requirements.high_level.yaml.fit_criterion, truncated): "A single authentication-mechanism architecture is operated, calibrated to the DORA strong-authentication floor when DORA..."
 **Verification Method** (from corpus): TEST
 **Notes**: Access control is defined enough for a small SaaS but not managed. The main gaps are documented access reviews, customer MFA posture, privileged access logging, and formal secure defaults. Relevant Regulatory Baseline files: [D-03.1](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-03_Access-Control/D-03.1.md), [D-03.2](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-03_Access-Control/D-03.2.md), [D-03.3](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-03_Access-Control/D-03.3.md), [D-03.4](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-03_Access-Control/D-03.4.md).
 
-### D-04 Incident Response — Maturity: 1
+### D-04 Incident Response — Implementation Status: PARTIAL
 
 | Control | Current | Evidence | Notes |
 |---|---|---|---|
@@ -120,13 +120,13 @@ Assessment evidence is drawn from `04a_Architecture_DataInventory.md`, `04_Compa
 | Notification process | Informal DPO/CTO escalation | GDPR/CRA interaction notes in Doc 04 and Doc 05 | No tested 24h CRA early-warning / 72h GDPR breach notification workflow |
 | Recovery procedures | Backups exist | STORE-02 and SYS-05 in 04a | Restore testing is not scheduled or evidenced |
 
-**Target maturity**: 3  
-**Gap**: 2  
+**Target Posture**: IMPLEMENTED  
+**Gap**: Operational evidence & verification cadence missing  
 **Target fit_criterion** (from corpus `D-04.3.json` requirements.high_level.yaml.fit_criterion, truncated): "A unified multi-recipient notification pipeline is operated generating per-regulation submissions from a single underlying..."
 **Verification Method** (from corpus): TEST
 **Notes**: Incident response remains ad hoc. Backups and basic alerts exist, but containment, regulatory notification, and recovery evidence are not managed. Relevant Regulatory Baseline files: [D-04.1](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-04_Incident-Response/D-04.1.md), [D-04.2](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-04_Incident-Response/D-04.2.md), [D-04.3](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-04_Incident-Response/D-04.3.md), [D-04.4](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-04_Incident-Response/D-04.4.md).
 
-### D-05 Data Lifecycle — Maturity: 1
+### D-05 Data Lifecycle — Implementation Status: PARTIAL
 
 | Control | Current | Evidence | Notes |
 |---|---|---|---|
@@ -135,13 +135,13 @@ Assessment evidence is drawn from `04a_Architecture_DataInventory.md`, `04_Compa
 | Erasure procedures | Manual support workflow | 04a Sections 2.3 and 2.4 | No self-service DSAR portal; backup expiry relied on for residual copies |
 | Data portability | Support-assisted export | 04a Section 2.4 | No automated export for all data categories |
 
-**Target maturity**: 2  
-**Gap**: 1  
+**Target Posture**: IMPLEMENTED  
+**Gap**: Operational evidence & verification cadence missing  
 **Target fit_criterion** (from corpus `D-05.2.json` requirements.high_level.yaml.fit_criterion, truncated): "A 3-axis retention/archiving architecture is operated with explicit axis-segregated hand-offs at the personal-data / upd..."
 **Verification Method** (from corpus): TEST
 **Notes**: Data lifecycle controls are plausible for a micro SaaS but remain policy-light and manually operated. Formal retention approval, DSAR tracking, and export/delete procedures are needed. Relevant Regulatory Baseline files: [D-05.1](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-05_Data-Lifecycle/D-05.1.md), [D-05.2](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-05_Data-Lifecycle/D-05.2.md), [D-05.3](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-05_Data-Lifecycle/D-05.3.md), [D-05.4](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-05_Data-Lifecycle/D-05.4.md).
 
-### D-06 Supply Chain — Maturity: 1
+### D-06 Supply Chain — Implementation Status: PARTIAL
 
 | Control | Current | Evidence | Notes |
 |---|---|---|---|
@@ -150,13 +150,13 @@ Assessment evidence is drawn from `04a_Architecture_DataInventory.md`, `04_Compa
 | Contract clauses | Partial | DPAs with AWS/Auth0/Stripe/Datadog; B2B DPA gap remains | Supplier DPAs exist, but B2B processor DPA standardisation is incomplete |
 | Boundary management | Ad hoc | FLOW-03, FLOW-04, FLOW-05 in 04a | No formal subprocessor register or data-flow review cadence |
 
-**Target maturity**: 2  
-**Gap**: 1  
+**Target Posture**: IMPLEMENTED  
+**Gap**: Operational evidence & verification cadence missing  
 **Target fit_criterion** (from corpus `D-06.1.json` requirements.high_level.yaml.fit_criterion, truncated): "A 4-tier vendor-risk-assessment architecture is operated with explicit tier separation (processor-tier GDPR / supplier-t..."
 **Verification Method** (from corpus): TEST
 **Notes**: Supply-chain posture is intentionally modest. The highest CRA gap is SBOM absence, combined with weak vendor evidence and subprocessor tracking. Relevant Regulatory Baseline files: [D-06.1](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-06_Supply-Chain/D-06.1.md), [D-06.2](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-06_Supply-Chain/D-06.2.md), [D-06.3](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-06_Supply-Chain/D-06.3.md), [D-06.4](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-06_Supply-Chain/D-06.4.md).
 
-### D-07 Secure Development — Maturity: 2
+### D-07 Secure Development — Implementation Status: PARTIAL
 
 | Control | Current | Evidence | Notes |
 |---|---|---|---|
@@ -165,13 +165,13 @@ Assessment evidence is drawn from `04a_Architecture_DataInventory.md`, `04_Compa
 | CI/CD security | Basic dependency scanning | Weekly Snyk scan for SYS-01 | No DAST, secrets scanning baseline, or SBOM release artefact |
 | Change management | Pull request review | GitHub branch protection for main branch | No formal release risk classification or CAB, appropriate for micro SaaS |
 
-**Target maturity**: 2  
-**Gap**: 0  
+**Target Posture**: IMPLEMENTED  
+**Gap**: Operational evidence & verification cadence missing  
 **Target fit_criterion** (from corpus `D-07.3.json` requirements.high_level.yaml.fit_criterion, truncated): "For 100% of covered production releases, a release evidence pack exists before deployment or dissemination and contains..."
 **Verification Method** (from corpus): TEST
 **Notes**: Secure development is the strongest TinyTask area because it already has developer-led practices, OWASP guidance, PR review, and basic scanning. It meets a proportional target for a low-tier micro SaaS, but still needs CRA evidence hardening through SBOM, release notes, and documented security review. Relevant Regulatory Baseline files: [D-07.1](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-07_Secure-Development/D-07.1.md), [D-07.2](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-07_Secure-Development/D-07.2.md), [D-07.3](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-07_Secure-Development/D-07.3.md), [D-07.4](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-07_Secure-Development/D-07.4.md).
 
-### D-08 Human Factors — Maturity: 1
+### D-08 Human Factors — Implementation Status: PARTIAL
 
 | Control | Current | Evidence | Notes |
 |---|---|---|---|
@@ -179,13 +179,13 @@ Assessment evidence is drawn from `04a_Architecture_DataInventory.md`, `04_Compa
 | Role-specific training | Informal developer learning | OWASP guidance used by developers | No tracked curriculum for CTO, developers, support, or DPO role |
 | Board training | Not applicable to active scope | D-08.3 inactive for TinyTask | D-08.3 participates only in NIS2 and DORA; not a TinyTask gap |
 
-**Target maturity**: 2  
-**Gap**: 1  
+**Target Posture**: IMPLEMENTED  
+**Gap**: Operational evidence & verification cadence missing  
 **Target fit_criterion** (from corpus `D-08.1.json` requirements.high_level.yaml.fit_criterion, truncated): "A documented training programme is maintained with four distinct audience routes operating in parallel (DPO-catalysed pr..."
 **Verification Method** (from corpus): TEST
 **Notes**: Basic annual awareness is realistic for 8 employees but insufficient for role-specific CRA/GDPR competence evidence. D-08.3 remains out of scope, not a missing control. Relevant Regulatory Baseline files: [D-08.1](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-08_Human-Factors/D-08.1.md), [D-08.2](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-08_Human-Factors/D-08.2.md), [D-08.3 inactive](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-08_Human-Factors/D-08.3.md).
 
-### D-09 Governance & Documentation — Maturity: 1
+### D-09 Governance & Documentation — Implementation Status: PARTIAL
 
 | Control | Current | Evidence | Notes |
 |---|---|---|---|
@@ -194,13 +194,13 @@ Assessment evidence is drawn from `04a_Architecture_DataInventory.md`, `04_Compa
 | Asset inventory | Initial inventory created | 04a Sections 1 and 2 | No CMDB; 04a is the first structured inventory |
 | RoPA | Not complete | Doc 04 CAP-01 / Doc 05 GAP-01 | GDPR Art. 30 records are not yet maintained as an operational artefact |
 
-**Target maturity**: 3  
-**Gap**: 2  
+**Target Posture**: IMPLEMENTED  
+**Gap**: Operational evidence & verification cadence missing  
 **Target fit_criterion** (from corpus `D-09.4.json` requirements.high_level.yaml.fit_criterion, truncated): "A 5-parallel-documentation-regimes architecture is established with explicit governance-body hand-offs at the documentat..."
 **Verification Method** (from corpus): TEST
 **Notes**: Governance is a major gap because active GDPR/CRA obligations require evidence artefacts, not only technical controls. The architecture inventory is a start, but RoPA, Annex VII documentation, risk assessment, and policy ownership remain immature. Relevant Regulatory Baseline files: [D-09.1](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-09_Governance-Documentation/D-09.1.md), [D-09.2](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-09_Governance-Documentation/D-09.2.md), [D-09.3](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-09_Governance-Documentation/D-09.3.md), [D-09.4](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-09_Governance-Documentation/D-09.4.md).
 
-### D-10 Monitoring & Audit — Maturity: 1
+### D-10 Monitoring & Audit — Implementation Status: PARTIAL
 
 | Control | Current | Evidence | Notes |
 |---|---|---|---|
@@ -208,37 +208,37 @@ Assessment evidence is drawn from `04a_Architecture_DataInventory.md`, `04_Compa
 | Audit logging | Partial application and authentication logging | SYS-01, SYS-02, STORE-03 | 30-day retention; no formal log review process |
 | Compliance testing | Ad hoc internal checks | Snyk scan and manual review | No scheduled GDPR/CRA evidence review or control test plan |
 
-**Target maturity**: 3  
-**Gap**: 2  
+**Target Posture**: IMPLEMENTED  
+**Gap**: Operational evidence & verification cadence missing  
 **Target fit_criterion** (from corpus `D-10.2.json` requirements.high_level.yaml.fit_criterion, truncated): "A layered 4-audit-records architecture is established with explicit scope-layer hand-offs at the audit-records evidence..."
 **Verification Method** (from corpus): TEST
-**Notes**: Monitoring is low maturity because TinyTask has observability but not security monitoring governance. There is no SIEM, no documented alert taxonomy, no log review cadence, and no formal compliance testing cycle. Relevant Regulatory Baseline files: [D-10.1](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-10_Monitoring-Audit/D-10.1.md), [D-10.2](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-10_Monitoring-Audit/D-10.2.md), [D-10.3](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-10_Monitoring-Audit/D-10.3.md).
+**Notes**: Monitoring is partial posture because TinyTask has observability but not security monitoring governance. There is no SIEM, no documented alert taxonomy, no log review cadence, and no formal compliance testing cycle. Relevant Regulatory Baseline files: [D-10.1](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-10_Monitoring-Audit/D-10.1.md), [D-10.2](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-10_Monitoring-Audit/D-10.2.md), [D-10.3](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-10_Monitoring-Audit/D-10.3.md).
 
 ## 3. Summary Dashboard
 
-| Macro-domain | Current | Target | Gap |
-|---|---:|---:|---:|
-| D-01 Data Protection | 2 | 3 | 1 |
-| D-02 Vulnerability Management | 1 | 3 | 2 |
-| D-03 Access Control | 2 | 3 | 1 |
-| D-04 Incident Response | 1 | 3 | 2 |
-| D-05 Data Lifecycle | 1 | 2 | 1 |
-| D-06 Supply Chain | 1 | 2 | 1 |
-| D-07 Secure Development | 2 | 2 | 0 |
-| D-08 Human Factors | 1 | 2 | 1 |
-| D-09 Governance & Documentation | 1 | 3 | 2 |
-| D-10 Monitoring & Audit | 1 | 3 | 2 |
-| **OVERALL** | **1.3** | **2.6** | **1.3** |
+| Macro-domain | Current Posture | Target Posture | Gap Analysis |
+|---|---|---|---|
+| D-01 Data Protection | PARTIAL | IMPLEMENTED | Key lifecycle documentation & automated integrity testing |
+| D-02 Vulnerability Management | PARTIAL | IMPLEMENTED | Patch SLAs, vulnerability disclosure & automated CI gating |
+| D-03 Access Control | PARTIAL | IMPLEMENTED | Access reviews, customer MFA enforcement & logging |
+| D-04 Incident Response | PARTIAL | IMPLEMENTED | Incident runbooks, containment playbooks & SA reporting |
+| D-05 Data Lifecycle | PARTIAL | IMPLEMENTED | Formal retention approval, DSAR portal & export routines |
+| D-06 Supply Chain | PARTIAL | IMPLEMENTED | Automated SBOM generation & vendor DPA tracking |
+| D-07 Secure Development | PARTIAL | IMPLEMENTED | Threat modeling evidence & security release packs |
+| D-08 Human Factors | PARTIAL | IMPLEMENTED | Role-specific training & awareness metrics |
+| D-09 Governance & Documentation | PARTIAL | IMPLEMENTED | RoPA maintenance, risk register & policy sign-off |
+| D-10 Monitoring & Audit | PARTIAL | IMPLEMENTED | Security monitoring taxonomy, SIEM/log review & audit schedule |
+| **OVERALL** | **PARTIAL** | **IMPLEMENTED** | **Operational evidence & automated review cadence required** |
 
 ## 4. Top Gaps (feeds Doc 07)
 
-| Rank | Macro-domain | Gap | Gap Summary | Priority Remediation |
+| Rank | Macro-domain | Status | Gap Summary | Priority Remediation |
 |---:|---|---:|---|---|
-| 1 | D-02 Vulnerability Management | 2 | Weekly Snyk scan exists, but patch SLAs, vulnerability disclosure, and testing are ad hoc | Create vulnerability register, define critical/high SLAs, publish security.txt and CVD policy |
-| 2 | D-04 Incident Response | 2 | Basic plan and backups exist, but notification, containment, and recovery are not tested | Create GDPR/CRA incident runbook with 24h/72h timing and run one tabletop exercise |
-| 3 | D-09 Governance & Documentation | 2 | RoPA, Annex VII documentation, formal risk assessment, and policy set are incomplete | Create RoPA, Annex VII evidence index, asset inventory owner, and lightweight risk register |
-| 4 | D-10 Monitoring & Audit | 2 | Datadog logs are retained for 30 days, but there is no security monitoring programme | Define alert taxonomy, log review cadence, and basic control testing schedule |
-| 5 | D-06 Supply Chain | 1 | Vendor review is annual/informal and SBOM is not implemented | Add CycloneDX or SPDX SBOM in CI/CD and maintain a subprocessor evidence register |
+| 1 | D-02 Vulnerability Management | PARTIAL | Weekly Snyk scan exists, but patch SLAs, vulnerability disclosure, and testing are ad hoc | Create vulnerability register, define critical/high SLAs, publish security.txt and CVD policy |
+| 2 | D-04 Incident Response | PARTIAL | Basic plan and backups exist, but notification, containment, and recovery are not tested | Create GDPR/CRA incident runbook with 24h/72h timing and run one tabletop exercise |
+| 3 | D-09 Governance & Documentation | PARTIAL | RoPA, Annex VII documentation, formal risk assessment, and policy set are incomplete | Create RoPA, Annex VII evidence index, asset inventory owner, and lightweight risk register |
+| 4 | D-10 Monitoring & Audit | PARTIAL | Datadog logs are retained for 30 days, but there is no security monitoring programme | Define alert taxonomy, log review cadence, and basic control testing schedule |
+| 5 | D-06 Supply Chain | PARTIAL | Vendor review is annual/informal and SBOM is not implemented | Add CycloneDX or SPDX SBOM in CI/CD and maintain a subprocessor evidence register |
 
 ## 5. Consistency Check
 
@@ -247,15 +247,15 @@ Assessment evidence is drawn from `04a_Architecture_DataInventory.md`, `04_Compa
 | Architecture evidence matches 04a | PASS | SYS-01 to SYS-05, STORE-01 to STORE-03, FLOW-01 to FLOW-05 referenced consistently |
 | Regulatory scope matches Doc 04 and Doc 05 | PASS | `applicable_regs = [GDPR, CRA]`; 37 active SubDomains; D-08.3 inactive |
 | LOW-tier realism maintained | PASS | No enterprise HSM, SIEM, PAM, SOC, CMDB, or continuous assurance claimed |
-| Maturity scale used consistently | PASS | Current maturity values are integers 0-4; target and gap shown numerically |
+| Posture scale used consistently | PASS | Implementation Posture states (IMPLEMENTED, PARTIAL, NOT IMPLEMENTED) applied consistently |
 | Evidence and gaps align | PASS | D-02, D-04, D-09, and D-10 are the largest gaps; D-07 is strongest but not enterprise-grade |
 
 ## 6. Gate
 
 | Gate Criterion | Status | Evidence |
 |---|---|---|
-| All 10 macro-domains assessed with maturity level and evidence | PASS | Section 2 |
-| Target maturity defined per macro-domain | PASS | Sections 2 and 3 |
+| All 10 macro-domains assessed with implementation posture and evidence | PASS | Section 2 |
+| Target posture defined per macro-domain | PASS | Sections 2 and 3 |
 | Summary dashboard populated | PASS | Section 3 |
 | Top 5 gaps identified | PASS | Section 4 |
 | SubDomains references included | PASS | Each macro-domain section links to active Regulatory Baseline files |
@@ -309,4 +309,4 @@ jq -r '.requirements.high_level.yaml.verification_method' \
 
 ## See also
 
-- **Data backbone:** `Case_01_Phase1.xlsx` (13 sheets: COVER, SYSTEMS, DATA_STORES, DATA_FLOWS, PERSONAL_DATA, THIRD_PARTIES, ROLES_RACI, MATURITY, SUBDOMAINS, REG_CHAIN, COMPLIANCE, GAPS, PRIORITIES)
+- **Data backbone:** `Case_01_Phase1.xlsx` (13 sheets: COVER, SYSTEMS, DATA_STORES, DATA_FLOWS, PERSONAL_DATA, THIRD_PARTIES, ROLES_RACI, POSTURE, SUBDOMAINS, REG_CHAIN, COMPLIANCE, GAPS, PRIORITIES)
