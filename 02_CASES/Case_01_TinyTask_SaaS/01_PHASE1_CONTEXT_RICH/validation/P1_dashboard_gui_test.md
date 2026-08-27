@@ -382,8 +382,60 @@ Working folder for the new screenshot: `gui-test-screenshots/p1_dashboard/p4_fol
 |------|----------------|---------|------------|-----|--------|
 | 1 | II (KG) | Click empty canvas didn't clear Inspector; filter change left Inspector stale | No `else` branch on `chart.on("click", …)`; filter handlers reset `selectedNode` but not Inspector | `chart.getZr().on("click", e => clearSelection(false))`; new `clearSelection(rebuild)` helper for filter handlers; global Esc keydown; Inspector empty-state tip | `b6c58aa` |
 | 2 | II (KG) | Graph washes out to pale blue after focus | ECharts native `focusNodeAdjacency: true` + `emphasis.focus: "adjacency"` + `dispatchAction('highlight')` overrode `applySelectionDim` opacity | Removed all three ECharts-native auto-dim mechanisms; rewrote `applySelectionDim` to spread full per-node specs | `8ab1688` |
-| 3 | V (Phase 1 Story) | Pipeline graph collapsed to origin after focus | `applyStoryDim` `setOption` sent data with only `{id, itemStyle}` — loss of `x, y` keys under `layout: "none"` | `applyStoryDim` spreads the original item, overrides only `itemStyle.opacity` and `label.opacity` | `b11ff4c` |
-| 4 | IV (Sub-Domain Deep-Dive) | Table rendered 0 of 38 rows | `DATA.grid` not hoisted in inlined JSON | `GRID` rebuilt at runtime from `NODES`, `LINKS`, `G.ambiguity.stats_per_subdomain`; `linkByTo` + `linkByFrom` indexes handle verbs in either direction | this commit |
+| 3 | V (Phase 1 Story) | Pipeline graph collapsed to origin after focus | `applyStoryDim` `setOption` sent data with only `{id, itemStyle.opacity}` — loss of `x, y` keys under `layout: "none"` | `applyStoryDim` spreads the original item, overrides only `itemStyle.opacity` and `label.opacity` | `b11ff4c` |
+| 4 | IV (Sub-Domain Deep-Dive) | Table rendered 0 of 38 rows | `DATA.grid` not hoisted in inlined JSON | `GRID` rebuilt at runtime from `NODES`, `LINKS`, `G.ambiguity.stats_per_subdomain`; `linkByTo` + `linkByFrom` indexes handle verbs in either direction | `10c9148` |
+
+---
+
+## Re-test after Phase A — RACI (2026-08-26 evening)
+
+Verdict: **PASS** — Phase A lands cleanly. Six tabs, Folio VI RACI Matrix renders 43×6 with R/A/C/I palette, RACI layer toggle on Folio II flips the graph between 197/264 and 246/505. Five new GAP-RACI findings join the existing 16 audits. One bonus cosmetic fix also falls out.
+
+### What changed (Phase A scope)
+
+The user accepted a multi-phase roadmap. Phase A added the RACI (Doc07) entities. The next phases — Architecture+Third Parties (B), Maturity+Verification (C), NIST mapping (D), Ambiguity detail+Citations (E) — are still on the table.
+
+- **Ontology v1.3** (additive to v1.2): 2 new classes (`RaciRole`, `RaciActivity`), 3 new relations (`RACI`, `APPLIES_TO`, `MAPS_TO_STK deferred`), 1 new enum (`RaciLetter`), 7 new counts, 2 new id_patterns. Validator diff: 59 insertions, 1 deletion (the version string); all 10 v1.2 classes + 12 v1.2 relations + 9 v1.2 enums unchanged. Report: `validation/P1_ontology_v1.3_validation.md`.
+- **KG extension** (additive to v1.2): 6 `RaciRole` nodes (DPO/CISO/DEV/LEGAL/HR/BOARD) + 43 `RaciActivity` nodes (41 active, 2 inactive) + 206 `RACI` edges (200 single-letter + 3 composite R/A split into 2 each = 6 composite edges) + 35 `APPLIES_TO` edges + 5 new `coverage_gap` audits (`GAP-RACI-01..05`). Validator spot-checked 6 roles + 6 activities + 10 RACI + 3 APPLIES_TO + 5 audits; report: `validation/P1_raci_extension_v1.3_validation.md`. Original 197/264/16 byte-identical.
+- **Dashboard** (in-place edit, single file):
+  - New tab **VI. RACI Matrix** — 43×6 matrix with R/A/C/I coloured badges, 5 colour tokens harmonised with the existing palette (R=cool blue-grey, A=gilt, C=sage, I=dust). Cells: R/A composites rendered as a single composite badge (3 such cells verified). Filters: Domain (D-01..D-10), Active-only (41), search. Click on row → side panel shows ACT + corpus_reg_req + APPLIES_TO targets. Click on sub-domain ID in the row → focus that sub-domain in Folio II.
+  - New toggle **RACI layer** on Folio II — OFF by default, ON toggles the graph from 197/264 to 246/505. No soft-dim regression: `rebuildGraph()` and `applySelectionDim()` continue to spread full per-node specs (fix #2 preserved). Categories: `RaciRole` slate `#3a4a5c`, `RaciActivity` sand `#d4a373` — both complement the existing 7-category palette.
+  - Re-emit of the inlined JSON — this time all path-roots the JS reads are hoisted at top level (`graph`/`stats_total`/`invariants`/`meta`/`audits`), eliminating the `DATA.grid` / `DATA.ambiguity.stats_per_subdomain` undefined-access class of bug.
+
+### Verification (live)
+
+`http://127.0.0.1:8765/Case_01_P1_Dashboard.html` opened fresh; six tabs present (I/II/III/IV/V/V).
+
+- **T1 Folio VI load** — PASS. 43 of 43 activities shown. Domain filter lists D-01..D-10. Active-only checkbox reduces to 41. R/A/C/I cells render with the chosen palette. Sub-domain IDs (`D-01.1`, `D-01.3` etc.) are clickable.
+- **T2 Activity row click** — PASS. ACT-01 row click opens side panel: `Activity · ACT-01 · Encrypt personal data at rest · domain D-01, sub-domain D-01.1 · corpus_reg_req: D-01.1: 1.1.1, 1.1.3 (GDPR + CRA) · APPLIES TO D-01.1`. Confirmed via DOM snapshot.
+- **T3 Sub-domain chip click** — PASS. Click `D-01.1` in the row → switches tab to Folio II → Inspector shows D-01.1 attrs (covered/active/SUBSTANTIVE/LIGHTWEIGHT).
+- **T4 Folio II RACI toggle** — PASS. Counter flips `197 → 246` (nodes) and `264 → 505` (links) when toggled. Toggle OFF returns to original counts.
+- **T5 Graph focus after RACI on** — PASS. Click D-01.1 in Folio II with RACI on → Inspector renders ATTRIBUTES + SOURCE PROVENANCE + RELATED LINKS + RELATED AUDITS for D-01.1 (no wash-out regression).
+- **T6 Folio V regression** — PASS. All 6 columns render; click does not collapse pipeline. **Bonus**: Folio V sub-domain labels now show the real ambiguity counts (e.g. `D-01.1(12)`, `D-01.2(7)`, `D-04.3(34)`) instead of the previous `(0)` placeholder — the re-emit hoisted `G.ambiguity.stats_per_subdomain` correctly. This closes one of the two cosmetic items that were still open from the previous report.
+- **T7 Folio IV regression** — PASS. 38 rows still visible; 42 goal-id chips; clicking first switches to Folio II.
+- **T8 Folio III regression** — PASS. 21 audit cards visible (16 original + 5 GAP-RACI). Locator count confirmed: `auditCards=21`, `gapCards=5` (matching `GAP-RACI-01..05`).
+
+### Acceptance
+
+- `python3 00_METHODOLOGY/00_VISUALISATIONS/tests/test_dashboards.py --only Case_01_P1_Dashboard` → exit 0.
+- `python3 scripts/build_p1_dashboard.py --check` → exit 0.
+- `python3 scripts/build_p1_dashboard.py --summary` → `nodes_count: 246`, `links_count: 505`, `audits_count: 21`, `invariant_pass: true`.
+- Visual confirmation (preserved screenshots): all 6 folios render correctly.
+
+### Cosmetic state — update
+
+Previous report had **2 open items** (header static line `181 nodes, 248 links, 12 audits`; Folio V ambiguity bars showing `(0)`). Phase A closed one of them (Folio V ambiguity bars) by hoisting `ambiguity.stats_per_subdomain` correctly. One item remains.
+
+### Phase A artefacts & screenshots
+
+- New: `validation/P1_ontology_v1.3_validation.md`
+- New: `validation/P1_raci_extension_v1.3_validation.md`
+- Updated: `phase1_ontology.yaml` (v1.3), `data/phase1_ontology.compact.json`, `data/phase1_graph.json`, `scripts/build_p1_graph.py`, `scripts/build_p1_dashboard.py`, `Case_01_P1_Dashboard.html` (re-emit), `validation/P1_dashboard_gui_test.md` (this block).
+- Working folder for this session's screenshots: `gui-test-screenshots/p1_dashboard/` — files `p5_folio_vi_RACI_FIXED.png`, `p5_folio_ii_raci_on.png`, `p5_folio_v_after_phaseA.png`.
+
+### Next phase
+
+Ready to start Phase B (Architecture+Third Parties) on the user's signal. Same ritual: ontology v1.4 → KG → dashboard → smoke → commit.
 
 ## Artefacts & screenshots
 
