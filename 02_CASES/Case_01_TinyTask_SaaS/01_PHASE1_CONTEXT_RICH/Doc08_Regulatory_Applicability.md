@@ -282,62 +282,62 @@ Based on applicable regulations (GDPR + CRA):
 | CRA articles | 26 |
 | Sub-domains referenced | 26 |
 
-| Article | Topic | Sub-Domains | Obligated Party | Verification Criteria | Evidence Type | Risk if not met | Maturity (cur→tgt) |
+| Article | Topic | Sub-Domains | Obligated Party | Verification Criteria | Evidence Type | Risk if not met | Implementation Status |
 |---------|-------|-------------|-----------------|----------------------|---------------|------------------|---------------------|
-| Art. 1 | Subject matter and scope | D-07.1 | manufacturer | Operational check per Doc 07c Appendix A §A.1.1/D-07.1 | DEMONSTRATE + INSPECT (SSDF checklist + SAMM maturity) | MEDIUM | 2/4 → 3/4 |
-| Art. 2 | Definitions | D-07.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-07.1 | DEMONSTRATE + INSPECT (SSDF checklist + SAMM maturity) | MEDIUM | 2/4 → 3/4 |
-| Art. 3 | Security requirements | D-03.4 | — | Operational check per Doc 07c Appendix A §A.1.1/D-03.4 | DEMONSTRATE + INSPECT (account-level block + Firebase config) | MEDIUM | 2/4 → 3/4 |
-| Art. 4 | Vulnerability handling | D-02.2 | — | Operational check per Doc 07c Appendix A §A.1.1/D-02.2 | DEMONSTRATE + INSPECT (Patch Manager logs + patch log) | MEDIUM | 2/4 → 3/4 |
-| Art. 5 | Security updates | D-02.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-02.1 | DEMONSTRATE + INSPECT (CI scan output + advisory feed) | MEDIUM | 2/4 → 3/4 |
-| Art. 6 | Incident reporting | D-04.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-04.1 | DEMONSTRATE + INSPECT (CloudWatch alarms + GuardDuty) | MEDIUM | 2/4 → 3/4 |
-| Art. 7 | Supply chain security | D-06.2 | — | Operational check per Doc 07c Appendix A §A.1.1/D-06.2 | DEMONSTRATE + INSPECT (SBOM per release) | MEDIUM | 2/4 → 3/4 |
-| Art. 8 | Secure defaults | D-03.4 | — | Operational check per Doc 07c Appendix A §A.1.1/D-03.4 | DEMONSTRATE + INSPECT (account-level block + Firebase config) | MEDIUM | 2/4 → 3/4 |
-| Art. 9 | Password security | D-03.2 | — | Operational check per Doc 07c Appendix A §A.1.1/D-03.2 | INSPECT (Firebase MFA enforcement + reset flow test) | MEDIUM | 2/4 → 3/4 |
-| Art. 10 | Identity authentication | D-03.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-03.1 | INSPECT (Firebase Auth user list + quarterly orphan scan) | MEDIUM | 2/4 → 3/4 |
-| Art. 11 | Data erasure | D-05.3 | — | Operational check per Doc 07c Appendix A §A.1.1/D-05.3 | DEMONSTRATE + INSPECT (erasure API + backup exclude policy) | HIGH | 2/4 → 3/4 |
-| Art. 12 | Availability at end of support | D-10.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-10.1 | DEMONSTRATE + INSPECT (CloudWatch + GuardDuty) | MEDIUM | 2/4 → 3/4 |
-| Art. 13 | Technical documentation | D-09.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-09.1 | DEMONSTRATE + INSPECT (policy template + review cadence) | MEDIUM | 2/4 → 3/4 |
-| Art. 14 | Conformity assessment | D-10.3 | — | Operational check per Doc 07c Appendix A §A.1.1/D-10.3 | DEMONSTRATE + INSPECT (quarterly checklist + annual self-attestation) | HIGH | 2/4 → 3/4 |
-| Art. 15 | CE marking | D-01.3 | — | Operational check per Doc 07c Appendix A §A.1.1/D-01.3 | INSPECT (KMS rotation status + key-custody review) | MEDIUM | 2/4 → 3/4 |
-| Art. 16 | Market surveillance | D-06.3 | — | Operational check per Doc 07c Appendix A §A.1.1/D-06.3 | DEMONSTRATE + INSPECT (DPA template + sub-processor list) | HIGH | 2/4 → 3/4 |
-| Art. 17 | Essential requirements for ICT products | D-02.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-02.1 | DEMONSTRATE + INSPECT (CI scan output + advisory feed) | MEDIUM | 2/4 → 3/4 |
-| Art. 18 | Security by design | D-07.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-07.1 | DEMONSTRATE + INSPECT (SSDF checklist + SAMM maturity) | MEDIUM | 2/4 → 3/4 |
-| Art. 19 | Vulnerability handling and disclosure | D-02.3 | — | Operational check per Doc 07c Appendix A §A.1.1/D-02.3 | INSPECT (security.txt 200 + CVD page test email) | MEDIUM | 2/4 → 3/4 |
-| Art. 20 | Reporting incidents | D-04.3 | — | Operational check per Doc 07c Appendix A §A.1.1/D-04.3 | DEMONSTRATE + INSPECT (tabletop 24h notification drill) | HIGH | 2/4 → 3/4 |
-| Art. 21 | EU declarative conformity | D-10.3 | — | Operational check per Doc 07c Appendix A §A.1.1/D-10.3 | DEMONSTRATE + INSPECT (quarterly checklist + annual self-attestation) | HIGH | 2/4 → 3/4 |
-| Art. 22 | Traceability | D-10.2 | — | Operational check per Doc 07c Appendix A §A.1.1/D-10.2 | DEMONSTRATE + INSPECT (CloudTrail + Object Lock + 7y) | HIGH | 2/4 → 3/4 |
-| Art. 23 | Software security | D-07.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-07.1 | DEMONSTRATE + INSPECT (SSDF checklist + SAMM maturity) | MEDIUM | 2/4 → 3/4 |
-| Art. 24 | Encrypted data storage | D-01.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-01.1 | INSPECT (config audit + annual review) | HIGH | 2/4 → 3/4 |
-| Art. 25 | Unauthorised access prevention | D-01.2 | — | Operational check per Doc 07c Appendix A §A.1.1/D-01.2 | INSPECT (config audit + annual cert renewal) | HIGH | 2/4 → 3/4 |
-| Art. 26 | Resilience to outages | D-04.4 | — | Operational check per Doc 07c Appendix A §A.1.1/D-04.4 | DEMONSTRATE + INSPECT (AWS Backup + quarterly DR test) | HIGH | 2/4 → 3/4 |
-| Art. 1 | Lawfulness of processing | D-05.1 | controller | Operational check per Doc 07c Appendix A §A.1.1/D-05.1 | DEMONSTRATE + INSPECT (schema validation + log scrub review) | MEDIUM | 2/4 → 3/4 |
-| Art. 2 | Material scope | D-05.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-05.1 | DEMONSTRATE + INSPECT (schema validation + log scrub review) | MEDIUM | 2/4 → 3/4 |
-| Art. 3 | Territorial scope | D-09.2 | — | Operational check per Doc 07c Appendix A §A.1.1/D-09.2 | DEMONSTRATE + INSPECT (DPIA + CRA-RA unified template) | HIGH | 2/4 → 3/4 |
-| Art. 5 | Principles relating to processing | D-01.1 | controller + processor | Operational check per Doc 07c Appendix A §A.1.1/D-01.1 | INSPECT (config audit + annual review) | HIGH | 2/4 → 3/4 |
-| Art. 6 | Lawfulness of processing | D-05.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-05.1 | DEMONSTRATE + INSPECT (schema validation + log scrub review) | MEDIUM | 2/4 → 3/4 |
-| Art. 7 | Conditions for consent | D-05.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-05.1 | DEMONSTRATE + INSPECT (schema validation + log scrub review) | MEDIUM | 2/4 → 3/4 |
-| Art. 8 | Conditions for child's consent | D-05.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-05.1 | DEMONSTRATE + INSPECT (schema validation + log scrub review) | MEDIUM | 2/4 → 3/4 |
-| Art. 9 | Processing of special categories | D-05.3 | — | Operational check per Doc 07c Appendix A §A.1.1/D-05.3 | DEMONSTRATE + INSPECT (erasure API + backup exclude policy) | HIGH | 2/4 → 3/4 |
-| Art. 12 | Transparent information and communication | D-09.4 | — | Operational check per Doc 07c Appendix A §A.1.1/D-09.4 | DEMONSTRATE + INSPECT (RoPA + 10y retention check) | HIGH | 2/4 → 3/4 |
-| Art. 13 | Information to be provided | D-09.4 | — | Operational check per Doc 07c Appendix A §A.1.1/D-09.4 | DEMONSTRATE + INSPECT (RoPA + 10y retention check) | HIGH | 2/4 → 3/4 |
-| Art. 14 | Information to be provided to data subject | D-09.4 | — | Operational check per Doc 07c Appendix A §A.1.1/D-09.4 | DEMONSTRATE + INSPECT (RoPA + 10y retention check) | HIGH | 2/4 → 3/4 |
-| Art. 15 | Right of access by data subject | D-05.4 | — | Operational check per Doc 07c Appendix A §A.1.1/D-05.4 | DEMONSTRATE + INSPECT (export endpoint + format check) | MEDIUM | 2/4 → 3/4 |
-| Art. 16 | Right to rectification | D-05.3 | — | Operational check per Doc 07c Appendix A §A.1.1/D-05.3 | DEMONSTRATE + INSPECT (erasure API + backup exclude policy) | HIGH | 2/4 → 3/4 |
-| Art. 17 | Right to erasure | D-05.3 | — | Operational check per Doc 07c Appendix A §A.1.1/D-05.3 | DEMONSTRATE + INSPECT (erasure API + backup exclude policy) | HIGH | 2/4 → 3/4 |
-| Art. 18 | Right to restriction of processing | D-05.3 | — | Operational check per Doc 07c Appendix A §A.1.1/D-05.3 | DEMONSTRATE + INSPECT (erasure API + backup exclude policy) | HIGH | 2/4 → 3/4 |
-| Art. 19 | Notification obligation | D-04.4 | — | Operational check per Doc 07c Appendix A §A.1.1/D-04.4 | DEMONSTRATE + INSPECT (AWS Backup + quarterly DR test) | HIGH | 2/4 → 3/4 |
-| Art. 20 | Right to data portability | D-05.4 | — | Operational check per Doc 07c Appendix A §A.1.1/D-05.4 | DEMONSTRATE + INSPECT (export endpoint + format check) | MEDIUM | 2/4 → 3/4 |
-| Art. 21 | Right to object | D-05.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-05.1 | DEMONSTRATE + INSPECT (schema validation + log scrub review) | MEDIUM | 2/4 → 3/4 |
-| Art. 22 | Automated decision-making | D-03.3 | — | Operational check per Doc 07c Appendix A §A.1.1/D-03.3 | DEMONSTRATE + INSPECT (IAM policies + RBAC matrix review) | MEDIUM | 2/4 → 3/4 |
-| Art. 25 | Data protection by design | D-07.1 | controller + processor | Operational check per Doc 07c Appendix A §A.1.1/D-07.1 | DEMONSTRATE + INSPECT (SSDF checklist + SAMM maturity) | MEDIUM | 2/4 → 3/4 |
-| Art. 28 | Processor clauses (DPA, sub-processor auth, processing on instructions, security | D-06.3 | controller + processor | Operational check per Doc 07c Appendix A §A.1.1/D-06.3 | DEMONSTRATE + INSPECT (DPA template + sub-processor list) | HIGH | 2/4 → 3/4 |
-| Art. 30 | Records of processing activities (Art. 30(1) controller, Art. 30(2) processor's  | D-09.4 | controller + processor | Operational check per Doc 07c Appendix A §A.1.1/D-09.4 | DEMONSTRATE + INSPECT (RoPA + 10y retention check) | HIGH | 2/4 → 3/4 |
-| Art. 31 | Cooperation with supervisory authority | D-04.3 | controller + processor | Operational check per Doc 07c Appendix A §A.1.1/D-04.3 | DEMONSTRATE + INSPECT (tabletop 24h notification drill) | HIGH | 2/4 → 3/4 |
-| Art. 32 | Security of processing (Art. 32(1) controller+processor; Art. 32(2) processor ad | D-01.1 | controller + processor | Operational check per Doc 07c Appendix A §A.1.1/D-01.1 | INSPECT (config audit + annual review) | HIGH | 2/4 → 3/4 |
-| Art. 33 | Breach notification — Art. 33(1) controller to SA within 72h; Art. 33(2) process | D-04.3 | controller + processor | Operational check per Doc 07c Appendix A §A.1.1/D-04.3 | DEMONSTRATE + INSPECT (tabletop 24h notification drill) | HIGH | 2/4 → 3/4 |
-| Art. 34 | Breach notification to data subject | D-04.3 | — | Operational check per Doc 07c Appendix A §A.1.1/D-04.3 | DEMONSTRATE + INSPECT (tabletop 24h notification drill) | HIGH | 2/4 → 3/4 |
-| Art. 35 | Data protection impact assessment | D-09.2 | — | Operational check per Doc 07c Appendix A §A.1.1/D-09.2 | DEMONSTRATE + INSPECT (DPIA + CRA-RA unified template) | HIGH | 2/4 → 3/4 |
-| Art. 37 | Designation of DPO | D-08.2 | controller + processor | Operational check per Doc 07c Appendix A §A.1.1/D-08.2 | INSPECT (annual email + competency matrix review) | MEDIUM | 2/4 → 3/4 |
+| Art. 1 | Subject matter and scope | D-07.1 | manufacturer | Operational check per Doc 07c Appendix A §A.1.1/D-07.1 | DEMONSTRATE + INSPECT (SSDF checklist + SAMM maturity) | MEDIUM | PARTIAL |
+| Art. 2 | Definitions | D-07.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-07.1 | DEMONSTRATE + INSPECT (SSDF checklist + SAMM maturity) | MEDIUM | PARTIAL |
+| Art. 3 | Security requirements | D-03.4 | — | Operational check per Doc 07c Appendix A §A.1.1/D-03.4 | DEMONSTRATE + INSPECT (account-level block + Firebase config) | MEDIUM | PARTIAL |
+| Art. 4 | Vulnerability handling | D-02.2 | — | Operational check per Doc 07c Appendix A §A.1.1/D-02.2 | DEMONSTRATE + INSPECT (Patch Manager logs + patch log) | MEDIUM | PARTIAL |
+| Art. 5 | Security updates | D-02.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-02.1 | DEMONSTRATE + INSPECT (CI scan output + advisory feed) | MEDIUM | PARTIAL |
+| Art. 6 | Incident reporting | D-04.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-04.1 | DEMONSTRATE + INSPECT (CloudWatch alarms + GuardDuty) | MEDIUM | PARTIAL |
+| Art. 7 | Supply chain security | D-06.2 | — | Operational check per Doc 07c Appendix A §A.1.1/D-06.2 | DEMONSTRATE + INSPECT (SBOM per release) | MEDIUM | PARTIAL |
+| Art. 8 | Secure defaults | D-03.4 | — | Operational check per Doc 07c Appendix A §A.1.1/D-03.4 | DEMONSTRATE + INSPECT (account-level block + Firebase config) | MEDIUM | PARTIAL |
+| Art. 9 | Password security | D-03.2 | — | Operational check per Doc 07c Appendix A §A.1.1/D-03.2 | INSPECT (Firebase MFA enforcement + reset flow test) | MEDIUM | PARTIAL |
+| Art. 10 | Identity authentication | D-03.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-03.1 | INSPECT (Firebase Auth user list + quarterly orphan scan) | MEDIUM | PARTIAL |
+| Art. 11 | Data erasure | D-05.3 | — | Operational check per Doc 07c Appendix A §A.1.1/D-05.3 | DEMONSTRATE + INSPECT (erasure API + backup exclude policy) | HIGH | PARTIAL |
+| Art. 12 | Availability at end of support | D-10.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-10.1 | DEMONSTRATE + INSPECT (CloudWatch + GuardDuty) | MEDIUM | PARTIAL |
+| Art. 13 | Technical documentation | D-09.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-09.1 | DEMONSTRATE + INSPECT (policy template + review cadence) | MEDIUM | PARTIAL |
+| Art. 14 | Conformity assessment | D-10.3 | — | Operational check per Doc 07c Appendix A §A.1.1/D-10.3 | DEMONSTRATE + INSPECT (quarterly checklist + annual self-attestation) | HIGH | PARTIAL |
+| Art. 15 | CE marking | D-01.3 | — | Operational check per Doc 07c Appendix A §A.1.1/D-01.3 | INSPECT (KMS rotation status + key-custody review) | MEDIUM | PARTIAL |
+| Art. 16 | Market surveillance | D-06.3 | — | Operational check per Doc 07c Appendix A §A.1.1/D-06.3 | DEMONSTRATE + INSPECT (DPA template + sub-processor list) | HIGH | PARTIAL |
+| Art. 17 | Essential requirements for ICT products | D-02.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-02.1 | DEMONSTRATE + INSPECT (CI scan output + advisory feed) | MEDIUM | PARTIAL |
+| Art. 18 | Security by design | D-07.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-07.1 | DEMONSTRATE + INSPECT (SSDF checklist + SAMM maturity) | MEDIUM | PARTIAL |
+| Art. 19 | Vulnerability handling and disclosure | D-02.3 | — | Operational check per Doc 07c Appendix A §A.1.1/D-02.3 | INSPECT (security.txt 200 + CVD page test email) | MEDIUM | PARTIAL |
+| Art. 20 | Reporting incidents | D-04.3 | — | Operational check per Doc 07c Appendix A §A.1.1/D-04.3 | DEMONSTRATE + INSPECT (tabletop 24h notification drill) | HIGH | PARTIAL |
+| Art. 21 | EU declarative conformity | D-10.3 | — | Operational check per Doc 07c Appendix A §A.1.1/D-10.3 | DEMONSTRATE + INSPECT (quarterly checklist + annual self-attestation) | HIGH | PARTIAL |
+| Art. 22 | Traceability | D-10.2 | — | Operational check per Doc 07c Appendix A §A.1.1/D-10.2 | DEMONSTRATE + INSPECT (CloudTrail + Object Lock + 7y) | HIGH | PARTIAL |
+| Art. 23 | Software security | D-07.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-07.1 | DEMONSTRATE + INSPECT (SSDF checklist + SAMM maturity) | MEDIUM | PARTIAL |
+| Art. 24 | Encrypted data storage | D-01.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-01.1 | INSPECT (config audit + annual review) | HIGH | PARTIAL |
+| Art. 25 | Unauthorised access prevention | D-01.2 | — | Operational check per Doc 07c Appendix A §A.1.1/D-01.2 | INSPECT (config audit + annual cert renewal) | HIGH | PARTIAL |
+| Art. 26 | Resilience to outages | D-04.4 | — | Operational check per Doc 07c Appendix A §A.1.1/D-04.4 | DEMONSTRATE + INSPECT (AWS Backup + quarterly DR test) | HIGH | PARTIAL |
+| Art. 1 | Lawfulness of processing | D-05.1 | controller | Operational check per Doc 07c Appendix A §A.1.1/D-05.1 | DEMONSTRATE + INSPECT (schema validation + log scrub review) | MEDIUM | PARTIAL |
+| Art. 2 | Material scope | D-05.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-05.1 | DEMONSTRATE + INSPECT (schema validation + log scrub review) | MEDIUM | PARTIAL |
+| Art. 3 | Territorial scope | D-09.2 | — | Operational check per Doc 07c Appendix A §A.1.1/D-09.2 | DEMONSTRATE + INSPECT (DPIA + CRA-RA unified template) | HIGH | PARTIAL |
+| Art. 5 | Principles relating to processing | D-01.1 | controller + processor | Operational check per Doc 07c Appendix A §A.1.1/D-01.1 | INSPECT (config audit + annual review) | HIGH | PARTIAL |
+| Art. 6 | Lawfulness of processing | D-05.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-05.1 | DEMONSTRATE + INSPECT (schema validation + log scrub review) | MEDIUM | PARTIAL |
+| Art. 7 | Conditions for consent | D-05.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-05.1 | DEMONSTRATE + INSPECT (schema validation + log scrub review) | MEDIUM | PARTIAL |
+| Art. 8 | Conditions for child's consent | D-05.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-05.1 | DEMONSTRATE + INSPECT (schema validation + log scrub review) | MEDIUM | PARTIAL |
+| Art. 9 | Processing of special categories | D-05.3 | — | Operational check per Doc 07c Appendix A §A.1.1/D-05.3 | DEMONSTRATE + INSPECT (erasure API + backup exclude policy) | HIGH | PARTIAL |
+| Art. 12 | Transparent information and communication | D-09.4 | — | Operational check per Doc 07c Appendix A §A.1.1/D-09.4 | DEMONSTRATE + INSPECT (RoPA + 10y retention check) | HIGH | PARTIAL |
+| Art. 13 | Information to be provided | D-09.4 | — | Operational check per Doc 07c Appendix A §A.1.1/D-09.4 | DEMONSTRATE + INSPECT (RoPA + 10y retention check) | HIGH | PARTIAL |
+| Art. 14 | Information to be provided to data subject | D-09.4 | — | Operational check per Doc 07c Appendix A §A.1.1/D-09.4 | DEMONSTRATE + INSPECT (RoPA + 10y retention check) | HIGH | PARTIAL |
+| Art. 15 | Right of access by data subject | D-05.4 | — | Operational check per Doc 07c Appendix A §A.1.1/D-05.4 | DEMONSTRATE + INSPECT (export endpoint + format check) | MEDIUM | PARTIAL |
+| Art. 16 | Right to rectification | D-05.3 | — | Operational check per Doc 07c Appendix A §A.1.1/D-05.3 | DEMONSTRATE + INSPECT (erasure API + backup exclude policy) | HIGH | PARTIAL |
+| Art. 17 | Right to erasure | D-05.3 | — | Operational check per Doc 07c Appendix A §A.1.1/D-05.3 | DEMONSTRATE + INSPECT (erasure API + backup exclude policy) | HIGH | PARTIAL |
+| Art. 18 | Right to restriction of processing | D-05.3 | — | Operational check per Doc 07c Appendix A §A.1.1/D-05.3 | DEMONSTRATE + INSPECT (erasure API + backup exclude policy) | HIGH | PARTIAL |
+| Art. 19 | Notification obligation | D-04.4 | — | Operational check per Doc 07c Appendix A §A.1.1/D-04.4 | DEMONSTRATE + INSPECT (AWS Backup + quarterly DR test) | HIGH | PARTIAL |
+| Art. 20 | Right to data portability | D-05.4 | — | Operational check per Doc 07c Appendix A §A.1.1/D-05.4 | DEMONSTRATE + INSPECT (export endpoint + format check) | MEDIUM | PARTIAL |
+| Art. 21 | Right to object | D-05.1 | — | Operational check per Doc 07c Appendix A §A.1.1/D-05.1 | DEMONSTRATE + INSPECT (schema validation + log scrub review) | MEDIUM | PARTIAL |
+| Art. 22 | Automated decision-making | D-03.3 | — | Operational check per Doc 07c Appendix A §A.1.1/D-03.3 | DEMONSTRATE + INSPECT (IAM policies + RBAC matrix review) | MEDIUM | PARTIAL |
+| Art. 25 | Data protection by design | D-07.1 | controller + processor | Operational check per Doc 07c Appendix A §A.1.1/D-07.1 | DEMONSTRATE + INSPECT (SSDF checklist + SAMM maturity) | MEDIUM | PARTIAL |
+| Art. 28 | Processor clauses (DPA, sub-processor auth, processing on instructions, security | D-06.3 | controller + processor | Operational check per Doc 07c Appendix A §A.1.1/D-06.3 | DEMONSTRATE + INSPECT (DPA template + sub-processor list) | HIGH | PARTIAL |
+| Art. 30 | Records of processing activities (Art. 30(1) controller, Art. 30(2) processor's  | D-09.4 | controller + processor | Operational check per Doc 07c Appendix A §A.1.1/D-09.4 | DEMONSTRATE + INSPECT (RoPA + 10y retention check) | HIGH | PARTIAL |
+| Art. 31 | Cooperation with supervisory authority | D-04.3 | controller + processor | Operational check per Doc 07c Appendix A §A.1.1/D-04.3 | DEMONSTRATE + INSPECT (tabletop 24h notification drill) | HIGH | PARTIAL |
+| Art. 32 | Security of processing (Art. 32(1) controller+processor; Art. 32(2) processor ad | D-01.1 | controller + processor | Operational check per Doc 07c Appendix A §A.1.1/D-01.1 | INSPECT (config audit + annual review) | HIGH | PARTIAL |
+| Art. 33 | Breach notification — Art. 33(1) controller to SA within 72h; Art. 33(2) process | D-04.3 | controller + processor | Operational check per Doc 07c Appendix A §A.1.1/D-04.3 | DEMONSTRATE + INSPECT (tabletop 24h notification drill) | HIGH | PARTIAL |
+| Art. 34 | Breach notification to data subject | D-04.3 | — | Operational check per Doc 07c Appendix A §A.1.1/D-04.3 | DEMONSTRATE + INSPECT (tabletop 24h notification drill) | HIGH | PARTIAL |
+| Art. 35 | Data protection impact assessment | D-09.2 | — | Operational check per Doc 07c Appendix A §A.1.1/D-09.2 | DEMONSTRATE + INSPECT (DPIA + CRA-RA unified template) | HIGH | PARTIAL |
+| Art. 37 | Designation of DPO | D-08.2 | controller + processor | Operational check per Doc 07c Appendix A §A.1.1/D-08.2 | INSPECT (annual email + competency matrix review) | MEDIUM | PARTIAL |
 
 
 **Reading guide:**
@@ -348,7 +348,7 @@ Based on applicable regulations (GDPR + CRA):
 - **Verification Criteria** — Pointer to the operational check in Doc 07c Appendix A §A.1.1 (PG detail card for the sub-domain).
 - **Evidence Type** — `INSPECT` (MINIMAL) or `DEMONSTRATE + INSPECT` (LIGHTWEIGHT) per Track B tier definition.
 - **Risk if not met** — Qualitative H/M/L derived from priority + tier + sub-domain risk profile.
-- **Maturity (cur→tgt)** — Current 2/4 → Target 3/4 for MUST LIGHTWEIGHT; 1/4 → 1/4 for DEFERRED (D-02.4).
+- **Implementation Status** — Current 2/4 → Target 3/4 for MUST LIGHTWEIGHT; NOT IMPLEMENTED for DEFERRED (D-02.4).
 
 **Cross-references:**
 - Each sub-domain maps to Doc 07c Appendix A §A.1.1 (PG detail card) or §A.2.1 (SG detail card) — Sprint 5 enrichment.
@@ -364,7 +364,7 @@ Based on applicable regulations (GDPR + CRA):
 | 1.0 | 2026-04-01 | Compliance Lead | Initial release - TinyTask SaaS case |
 | 1.1 | 2026-04-11 | Compliance Lead | Added GDPR Art. 32 Processor obligations (NativeCompliance, not via DPA); Multi-Actor note for Controller + Processor roles |
 | 1.2 | 2026-04-11 | Compliance Lead | Added GDPR Art. 33(2) "without undue delay" processor→controller distinction; Added CRA Art. 13(8) 5-year minimum support period, Art. 13(9) 10-year security update retention, Art. 13(13) 10-year documentation retention |
-| 2.0 | 2026-08-06 | Sprint 5 Executor | **Deep enrichment — §6 Per-Article Detailed Breakdown** (54 rows: 28 GDPR + 26 CRA) with 8 fields per row: Article, Topic, Sub-Domains, Obligated Party, Verification Criteria, Evidence Type, Risk if not met, Maturity (cur→tgt). **NO Effort/Cost/Timeline fields added** per Sprint 5 scope. Frontmatter updated: status → DEEP_ENRICHED, sprint → 5. |
+| 2.0 | 2026-08-06 | Sprint 5 Executor | **Deep enrichment — §6 Per-Article Detailed Breakdown** (54 rows: 28 GDPR + 26 CRA) with 8 fields per row: Article, Topic, Sub-Domains, Obligated Party, Verification Criteria, Evidence Type, Risk if not met, Implementation Status. **NO Effort/Cost/Timeline fields added** per Sprint 5 scope. Frontmatter updated: status → DEEP_ENRICHED, sprint → 5. |
 
 ---
 

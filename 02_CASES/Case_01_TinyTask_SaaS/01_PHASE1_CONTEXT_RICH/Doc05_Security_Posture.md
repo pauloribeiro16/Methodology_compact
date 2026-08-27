@@ -6,11 +6,11 @@ version: 1.1
 created: 2026-07-11
 updated: 2026-08-07
 author: Executor (Sprint 1 reconciliation; Sprint 2 corpus enrichment; Phase 2 Bloco E maturity deprecation)
-status: DEPRECATED_FOR_MATURITY
+status: DEPRECATED_FOR_POSTURE
 status_history:
-  - { date: '2026-08-07', from: CORPUS_ENRICHED, to: DEPRECATED_FOR_MATURITY,
+  - { date: '2026-08-07', from: CORPUS_ENRICHED, to: DEPRECATED_FOR_POSTURE,
       reason: 'Maturity model moved to Phase 2 Doc 13 — resolves PHASE1_STRATEGY §7 contradiction' }
-maturity_owner: 13_Framework_Mapping_Matrix.md
+posture_owner: 13_Framework_Mapping_Matrix.md
 note: >
   Este documento mantém-se como INPUT qualitativo (postura observada).
   A avaliação e o modelo de maturidade foram movidos para

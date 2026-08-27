@@ -4119,10 +4119,34 @@ SUBDOMAIN_PROPORTIONALITY = [
 assert len(SUBDOMAIN_PROPORTIONALITY) == 37, f"SUBDOMAIN_PROPORTIONALITY drift: {len(SUBDOMAIN_PROPORTIONALITY)}"
 
 
-# 9. Build nodes + links
 # ---------------------------------------------------------------------------
+# 9. NIST Alignment (Phase D — Doc13 §7 NIST Controls Mapping)
+# ---------------------------------------------------------------------------
+# 35 ACTIVE sub-domains (D-01.1..D-10.3, excluding D-02.4, D-06.4, D-08.3 per
+# Doc13 §0 not_addressed_subdomains).  Total control rows: 513 (verified via
+# sibling parser script; excludes table-header rows).
+#
+# 8 control rows have malformed '?' Function column (table-renderer truncation
+# in Doc13 §7): RS.CO-04 in D-04.3 + D-06.3, PR.AT-03/04 in D-08.2,
+# ID.SC-04 in D-09.2, PR.IP-06/07 in D-10.2, PR.PT-01 in D-10.2.  These
+# 7 unique IDs are emitted with the canonical NIST CSF 2.0 Function
+# assignment per _NIST_MALFORMED_FUNCTION_OVERRIDES below.
+#
+# Total unique control IDs across all sub-domains: 117 (77 CSF + 38 PF + 2 AI-RMF).
+# Only D-04.2 (§7.13.3) has NIST AI-RMF controls (MANAGE-2.1, MANAGE-2.3).
 
-def build() -> dict:
+_NIST_MALFORMED_FUNCTION_OVERRIDES = {
+    # control_id (no NIST- prefix) -> canonical NIST CSF 2.0 Function (PROTECT/IDENTIFY/RESPOND/...)
+    "RS.CO-04":  "RESPOND",
+    "PR.AT-03":  "PROTECT",
+    "PR.AT-04":  "PROTECT",
+    "ID.SC-04":  "IDENTIFY",
+    "PR.IP-06":  "PROTECT",
+    "PR.IP-07":  "PROTECT",
+    "PR.PT-01":  "PROTECT",
+}
+
+NIST_ALIGNMENT = [
     nodes: list[dict] = []
     links: list[dict] = []
     # Phase C — tier drift accumulator (Doc12 §4 vs existing proportionality_tier).
