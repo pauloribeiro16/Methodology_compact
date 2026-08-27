@@ -44,7 +44,11 @@ crosswalk_decision: >
   when multiple match the sub-domain. SSDF gap rows show `-`.
 ---
 
-# Framework Mapping Matrix - Unified NIST (CSF 2.0 + Privacy FW 1.0)
+# Framework Mapping Matrix
+
+> **Note on Rule Anchors:** Rule-level framework anchors are inlined in Doc18 Control Set; this matrix is the aggregate view.
+
+ - Unified NIST (CSF 2.0 + Privacy FW 1.0)
 
 > **Block C deliverable.** Doc 13 unifies 30 Compliance Rules (CR) and 16 Best
 > Practice Rules (BPR) of Case_01 TinyTask SaaS under two NIST frameworks

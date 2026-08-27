@@ -93,11 +93,9 @@ subcategories: CT.*-P data decisions, GV.*-P governance, CM.*-P communication).
     technical_rationale: |
       `PR.DS-P1`: Data-at-rest are protected (privacy-specific confidentiality control).
     posture_note_micro: |
-      (Implementation Posture Model v2.0) Posture-target para MICRO: CSF 2/4 → 3/4;
-      PF 1/4 → 2/4. Consistente com LIGHTWEIGHT Track B.
+      Target posture: PARTIAL -> IMPLEMENTED. Requires evidence-backed control verification for MICRO tier.
     ni_note: |
-      [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. Tipicamente MUST (P1) para
-      PO GDPR-derivadas (cláusulas Art. 5/32/25 quase todas NI=3).
+      Normative Intensity: MUST (P1 priority derived from statutory source clauses).
     dependencies: |
       Controlo partilhado via CSF PR.DS-* + PF PR.DS-P1.
 ```
@@ -119,11 +117,9 @@ subcategories: CT.*-P data decisions, GV.*-P governance, CM.*-P communication).
     technical_rationale: |
       `PR.DS-P2`: Data-in-transit are protected (privacy-specific transit confidentiality).
     posture_note_micro: |
-      (Implementation Posture Model v2.0) Posture-target para MICRO: CSF 2/4 → 3/4;
-      PF 1/4 → 2/4. Consistente com LIGHTWEIGHT Track B.
+      Target posture: PARTIAL -> IMPLEMENTED. Requires evidence-backed control verification for MICRO tier.
     ni_note: |
-      [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. Tipicamente MUST (P1) para
-      PO GDPR-derivadas (cláusulas Art. 5/32/25 quase todas NI=3).
+      Normative Intensity: MUST (P1 priority derived from statutory source clauses).
     dependencies: |
       Controlo partilhado via CSF PR.DS-* + PF PR.DS-P2.
 ```
@@ -146,11 +142,9 @@ subcategories: CT.*-P data decisions, GV.*-P governance, CM.*-P communication).
       `CT.DM-P1`: Data elements can be accessed for review (privacy integrity review).
       `CT.DM-P3`: Data elements can be accessed for alteration (privacy integrity edit).
     posture_note_micro: |
-      (Implementation Posture Model v2.0) Posture-target para MICRO: CSF 2/4 → 3/4;
-      PF 1/4 → 2/4. Consistente com LIGHTWEIGHT Track B.
+      Target posture: PARTIAL -> IMPLEMENTED. Requires evidence-backed control verification for MICRO tier.
     ni_note: |
-      [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. Tipicamente MUST (P1) para
-      PO GDPR-derivadas (cláusulas Art. 5/32/25 quase todas NI=3).
+      Normative Intensity: MUST (P1 priority derived from statutory source clauses).
     dependencies: |
       Controlo partilhado via CSF PR.DS-* + PF CT.DM-P1/P3.
 ```
@@ -174,11 +168,9 @@ subcategories: CT.*-P data decisions, GV.*-P governance, CM.*-P communication).
       `CT.PO-P4`: Data lifecycle aligned with SDLC (privacy lifecycle integration).
       `ID.RA-P3`: Potential problematic data actions identified (risk identification).
     posture_note_micro: |
-      (Implementation Posture Model v2.0) Posture-target para MICRO: CSF 2/4 → 3/4;
-      PF 1/4 → 2/4. Consistente com LIGHTWEIGHT Track B.
+      Target posture: PARTIAL -> IMPLEMENTED. Requires evidence-backed control verification for MICRO tier.
     ni_note: |
-      [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. Tipicamente MUST (P1) para
-      PO GDPR-derivadas (cláusulas Art. 5/32/25 quase todas NI=3).
+      Normative Intensity: MUST (P1 priority derived from statutory source clauses).
     dependencies: |
       Controlo partilhado via CSF GV/ID/PR.* + PF CT.DP-P4/CT.PO-P4/ID.RA-P3.
 ```
@@ -201,11 +193,9 @@ subcategories: CT.*-P data decisions, GV.*-P governance, CM.*-P communication).
       `CT.DM-P5`: Data are destroyed according to policy (privacy retention enforcement).
       `CT.PO-P4`: Data lifecycle aligned with SDLC (privacy lifecycle integration).
     posture_note_micro: |
-      (Implementation Posture Model v2.0) Posture-target para MICRO: CSF 2/4 → 3/4;
-      PF 1/4 → 2/4. Consistente com LIGHTWEIGHT Track B.
+      Target posture: PARTIAL -> IMPLEMENTED. Requires evidence-backed control verification for MICRO tier.
     ni_note: |
-      [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. Tipicamente MUST (P1) para
-      PO GDPR-derivadas (cláusulas Art. 5/32/25 quase todas NI=3).
+      Normative Intensity: MUST (P1 priority derived from statutory source clauses).
     dependencies: |
       Controlo partilhado via CSF ID/PR.* + PF CT.DM-P5/CT.PO-P4.
 ```
@@ -228,11 +218,9 @@ subcategories: CT.*-P data decisions, GV.*-P governance, CM.*-P communication).
       `CT.DM-P4`: Data elements can be accessed for deletion (right-to-erasure).
       `CT.DM-P5`: Data are destroyed according to policy (destruction enforcement).
     posture_note_micro: |
-      (Implementation Posture Model v2.0) Posture-target para MICRO: CSF 2/4 → 3/4;
-      PF 1/4 → 2/4. Consistente com LIGHTWEIGHT Track B.
+      Target posture: PARTIAL -> IMPLEMENTED. Requires evidence-backed control verification for MICRO tier.
     ni_note: |
-      [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. Tipicamente MUST (P1) para
-      PO GDPR-derivadas (cláusulas Art. 5/32/25 quase todas NI=3).
+      Normative Intensity: MUST (P1 priority derived from statutory source clauses).
     dependencies: |
       Controlo partilhado via CSF GV/PR/RS.* + PF CT.DM-P4/P5.
 ```
@@ -255,11 +243,9 @@ subcategories: CT.*-P data decisions, GV.*-P governance, CM.*-P communication).
       `CT.DM-P1`: Data elements can be accessed for review (data portability access).
       `CT.DM-P6`: Data are transmitted using standardised formats (machine-readable export).
     posture_note_micro: |
-      (Implementation Posture Model v2.0) Posture-target para MICRO: CSF 2/4 → 3/4;
-      PF 1/4 → 2/4. Consistente com LIGHTWEIGHT Track B.
+      Target posture: PARTIAL -> IMPLEMENTED. Requires evidence-backed control verification for MICRO tier.
     ni_note: |
-      [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. Tipicamente MUST (P1) para
-      PO GDPR-derivadas (cláusulas Art. 5/32/25 quase todas NI=3).
+      Normative Intensity: MUST (P1 priority derived from statutory source clauses).
     dependencies: |
       Controlo partilhado via CSF PR.DS-* + PF CT.DM-P1/P6.
 ```
@@ -285,11 +271,9 @@ subcategories: CT.*-P data decisions, GV.*-P governance, CM.*-P communication).
       `CT.PO-P4`: Data lifecycle aligned with SDLC (privacy lifecycle integration).
       `GV.PO-P2`: Privacy values instilled in development/operations (privacy-by-design governance).
     posture_note_micro: |
-      (Implementation Posture Model v2.0) Posture-target para MICRO: CSF 2/4 → 3/4;
-      PF 1/4 → 3/4 (privacy-by-design é high-leverage para D-07.1). Consistente com LIGHTWEIGHT Track B.
+      Target posture: PARTIAL -> IMPLEMENTED. Requires evidence-backed control verification for MICRO tier.
     ni_note: |
-      [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. Tipicamente MUST (P1) para
-      PO GDPR-derivadas (cláusulas Art. 5/32/25 quase todas NI=3).
+      Normative Intensity: MUST (P1 priority derived from statutory source clauses).
     dependencies: |
       Controlo partilhado via CSF PR.* + PF CT.DP-P2/P4/P5/CT.PO-P4/GV.PO-P2 (privacy-by-design stack).
 ```
@@ -313,11 +297,9 @@ subcategories: CT.*-P data decisions, GV.*-P governance, CM.*-P communication).
       `GV.PO-P1`: Organizational privacy values and policies established and communicated.
       `GV.PO-P5`: Legal, regulatory, and contractual privacy requirements understood and managed.
     posture_note_micro: |
-      (Implementation Posture Model v2.0) Posture-target para MICRO: CSF 2/4 → 3/4;
-      PF 1/4 → 2/4. Consistente com LIGHTWEIGHT Track B.
+      Target posture: PARTIAL -> IMPLEMENTED. Requires evidence-backed control verification for MICRO tier.
     ni_note: |
-      [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. Tipicamente MUST (P1) para
-      PO GDPR-derivadas (cláusulas Art. 5/32/25 quase todas NI=3).
+      Normative Intensity: MUST (P1 priority derived from statutory source clauses).
     dependencies: |
       Controlo partilhado via CSF GV.* + PF CM.PO-P1/GV.PO-P1/GV.PO-P5.
 ```
@@ -341,11 +323,9 @@ subcategories: CT.*-P data decisions, GV.*-P governance, CM.*-P communication).
       `ID.RA-P4`: Problematic data actions, likelihoods, impacts determine/prioritise risk (DPIA scoring).
       `ID.RA-P5`: Risk responses identified, prioritised, implemented (DPIA treatment).
     posture_note_micro: |
-      (Implementation Posture Model v2.0) Posture-target para MICRO: CSF 2/4 → 3/4;
-      PF 1/4 → 3/4 (DPIA é core privacy control). Consistente com LIGHTWEIGHT Track B.
+      Target posture: PARTIAL -> IMPLEMENTED. Requires evidence-backed control verification for MICRO tier.
     ni_note: |
-      [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. Tipicamente MUST (P1) para
-      PO GDPR-derivadas (cláusulas Art. 5/32/25 quase todas NI=3).
+      Normative Intensity: MUST (P1 priority derived from statutory source clauses).
     dependencies: |
       Controlo partilhado via CSF GV.* + PF ID.RA-P3/P4/P5 (DPIA workflow stack).
 ```
@@ -370,11 +350,9 @@ subcategories: CT.*-P data decisions, GV.*-P governance, CM.*-P communication).
       `ID.IM-P6`: Data elements within data actions are inventoried (RoPA elements).
       `ID.IM-P8`: Data processing is mapped (RoPA data flow mapping).
     posture_note_micro: |
-      (Implementation Posture Model v2.0) Posture-target para MICRO: CSF 2/4 → 3/4;
-      PF 1/4 → 3/4 (RoPA é core GDPR Art. 30 control). Consistente com LIGHTWEIGHT Track B.
+      Target posture: PARTIAL -> IMPLEMENTED. Requires evidence-backed control verification for MICRO tier.
     ni_note: |
-      [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. Tipicamente MUST (P1) para
-      PO GDPR-derivadas (cláusulas Art. 5/32/25 quase todas NI=3).
+      Normative Intensity: MUST (P1 priority derived from statutory source clauses).
     dependencies: |
       Controlo partilhado via CSF DE/GV/ID/PR.* + PF ID.IM-P1/P4/P6/P8 (RoPA stack).
 ```
@@ -435,10 +413,9 @@ apply where the security control also has a privacy dimension (e.g. access contr
       (risk responses identified, prioritised, implemented). Privacy dimension applies because
       vulnerability handling may surface personal data (e.g., user IDs in crash dumps).
     posture_note_micro: |
-      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+      Target posture: PARTIAL -> IMPLEMENTED. Requires evidence-backed control verification for MICRO tier.
     ni_note: |
-      [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
-      (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
+      Normative Intensity: MUST (P1 priority derived from statutory source clauses).
     dependencies: |
       Ver baseline 01b para articulação com SOs via sub_domain.
 ```
@@ -458,10 +435,9 @@ apply where the security control also has a privacy dimension (e.g. access contr
   implications:
     technical_rationale: |
     posture_note_micro: |
-      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+      Target posture: PARTIAL -> IMPLEMENTED. Requires evidence-backed control verification for MICRO tier.
     ni_note: |
-      [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
-      (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
+      Normative Intensity: MUST (P1 priority derived from statutory source clauses).
     dependencies: |
       Ver baseline 01b para articulação com SOs via sub_domain.
 ```
@@ -481,10 +457,9 @@ apply where the security control also has a privacy dimension (e.g. access contr
   implications:
     technical_rationale: |
     posture_note_micro: |
-      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+      Target posture: PARTIAL -> IMPLEMENTED. Requires evidence-backed control verification for MICRO tier.
     ni_note: |
-      [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
-      (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
+      Normative Intensity: MUST (P1 priority derived from statutory source clauses).
     dependencies: |
       Ver baseline 01b para articulação com SOs via sub_domain.
 ```
@@ -509,10 +484,9 @@ apply where the security control also has a privacy dimension (e.g. access contr
       `PR.AA-03`: Users, services, and hardware are authenticated
       `PR.DS-10`: Data is managed consistent with the organization's risk strategy to protect the confi
     posture_note_micro: |
-      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+      Target posture: PARTIAL -> IMPLEMENTED. Requires evidence-backed control verification for MICRO tier.
     ni_note: |
-      [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
-      (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
+      Normative Intensity: MUST (P1 priority derived from statutory source clauses).
     dependencies: |
       Ver baseline 01b para articulação com SOs via sub_domain.
 ```
@@ -532,10 +506,9 @@ apply where the security control also has a privacy dimension (e.g. access contr
   implications:
     technical_rationale: |
     posture_note_micro: |
-      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+      Target posture: PARTIAL -> IMPLEMENTED. Requires evidence-backed control verification for MICRO tier.
     ni_note: |
-      [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
-      (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
+      Normative Intensity: MUST (P1 priority derived from statutory source clauses).
     dependencies: |
       Ver baseline 01b para articulação com SOs via sub_domain.
 ```
@@ -561,10 +534,9 @@ apply where the security control also has a privacy dimension (e.g. access contr
       authorization). Privacy dimension applies because least-privilege control directly governs
       who can process which personal data.
     posture_note_micro: |
-      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+      Target posture: PARTIAL -> IMPLEMENTED. Requires evidence-backed control verification for MICRO tier.
     ni_note: |
-      [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
-      (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
+      Normative Intensity: MUST (P1 priority derived from statutory source clauses).
     dependencies: |
       Ver baseline 01b para articulação com SOs via sub_domain.
 ```
@@ -590,10 +562,9 @@ apply where the security control also has a privacy dimension (e.g. access contr
       (data lifecycle aligned with SDLC). Privacy dimension applies because hardening defaults
       (disable ports, services) reduces the personal-data attack surface.
     posture_note_micro: |
-      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+      Target posture: PARTIAL -> IMPLEMENTED. Requires evidence-backed control verification for MICRO tier.
     ni_note: |
-      [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
-      (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
+      Normative Intensity: MUST (P1 priority derived from statutory source clauses).
     dependencies: |
       Ver baseline 01b para articulação com SOs via sub_domain.
 ```
@@ -621,10 +592,9 @@ apply where the security control also has a privacy dimension (e.g. access contr
       Privacy dimension applies because monitoring may detect breaches involving personal data,
       triggering breach-notification obligations.
     posture_note_micro: |
-      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+      Target posture: PARTIAL -> IMPLEMENTED. Requires evidence-backed control verification for MICRO tier.
     ni_note: |
-      [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
-      (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
+      Normative Intensity: MUST (P1 priority derived from statutory source clauses).
     dependencies: |
       Ver baseline 01b para articulação com SOs via sub_domain.
 ```
@@ -650,10 +620,9 @@ apply where the security control also has a privacy dimension (e.g. access contr
       (response plans established). Privacy dimension applies because DoS attacks may degrade
       availability of personal-data services, triggering data-subject impact.
     posture_note_micro: |
-      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+      Target posture: PARTIAL -> IMPLEMENTED. Requires evidence-backed control verification for MICRO tier.
     ni_note: |
-      [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
-      (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
+      Normative Intensity: MUST (P1 priority derived from statutory source clauses).
     dependencies: |
       Ver baseline 01b para articulação com SOs via sub_domain.
 ```
@@ -682,10 +651,9 @@ apply where the security control also has a privacy dimension (e.g. access contr
       policies/roles for breach communication). Privacy dimension is central: dual-notification
       (CNPD 72h + ENISA 24h) per CRA Art. 14 + GDPR Art. 33.
     posture_note_micro: |
-      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+      Target posture: PARTIAL -> IMPLEMENTED. Requires evidence-backed control verification for MICRO tier.
     ni_note: |
-      [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
-      (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
+      Normative Intensity: MUST (P1 priority derived from statutory source clauses).
     dependencies: |
       Ver baseline 01b para articulação com SOs via sub_domain.
 ```
@@ -708,10 +676,9 @@ apply where the security control also has a privacy dimension (e.g. access contr
       `PR.IR-04`: Adequate resource capacity to ensure availability is maintained
       `RC.RP-04`: Critical mission functions and services are restored through the implementation of th
     posture_note_micro: |
-      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+      Target posture: PARTIAL -> IMPLEMENTED. Requires evidence-backed control verification for MICRO tier.
     ni_note: |
-      [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
-      (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
+      Normative Intensity: MUST (P1 priority derived from statutory source clauses).
     dependencies: |
       Ver baseline 01b para articulação com SOs via sub_domain.
 ```
@@ -736,10 +703,9 @@ apply where the security control also has a privacy dimension (e.g. access contr
       dimension applies because processors under DPA are owners/operators of personal data
       (GDPR Art. 28 obligations require documented roles).
     posture_note_micro: |
-      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+      Target posture: PARTIAL -> IMPLEMENTED. Requires evidence-backed control verification for MICRO tier.
     ni_note: |
-      [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
-      (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
+      Normative Intensity: MUST (P1 priority derived from statutory source clauses).
     dependencies: |
       Ver baseline 01b para articulação com SOs via sub_domain.
 ```
@@ -759,10 +725,9 @@ apply where the security control also has a privacy dimension (e.g. access contr
   implications:
     technical_rationale: |
     posture_note_micro: |
-      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+      Target posture: PARTIAL -> IMPLEMENTED. Requires evidence-backed control verification for MICRO tier.
     ni_note: |
-      [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
-      (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
+      Normative Intensity: MUST (P1 priority derived from statutory source clauses).
     dependencies: |
       Ver baseline 01b para articulação com SOs via sub_domain.
 ```
@@ -787,10 +752,9 @@ apply where the security control also has a privacy dimension (e.g. access contr
       `GV.SC-01`: A cybersecurity supply chain risk management program, strategy, objectives, policies,
       `GV.SC-02`: Suppliers and other third parties are known, prioritized, and assessed using a cybers
     posture_note_micro: |
-      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+      Target posture: PARTIAL -> IMPLEMENTED. Requires evidence-backed control verification for MICRO tier.
     ni_note: |
-      [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
-      (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
+      Normative Intensity: MUST (P1 priority derived from statutory source clauses).
     dependencies: |
       Ver baseline 01b para articulação com SOs via sub_domain.
 ```
@@ -818,10 +782,9 @@ apply where the security control also has a privacy dimension (e.g. access contr
       (senior executives understand privacy roles). Privacy dimension applies because
       security-awareness training must include privacy breach recognition and notification duties.
     posture_note_micro: |
-      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+      Target posture: PARTIAL -> IMPLEMENTED. Requires evidence-backed control verification for MICRO tier.
     ni_note: |
-      [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
-      (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
+      Normative Intensity: MUST (P1 priority derived from statutory source clauses).
     dependencies: |
       Ver baseline 01b para articulação com SOs via sub_domain.
 ```
@@ -846,10 +809,9 @@ apply where the security control also has a privacy dimension (e.g. access contr
       Privacy dimension applies because role-specific training for personal-data handlers
       must cover data minimisation and purpose-limitation duties.
     posture_note_micro: |
-      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+      Target posture: PARTIAL -> IMPLEMENTED. Requires evidence-backed control verification for MICRO tier.
     ni_note: |
-      [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
-      (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
+      Normative Intensity: MUST (P1 priority derived from statutory source clauses).
     dependencies: |
       Ver baseline 01b para articulação com SOs via sub_domain.
 ```
@@ -878,10 +840,9 @@ apply where the security control also has a privacy dimension (e.g. access contr
       Privacy dimension applies because technical documentation must include privacy-related
       design decisions and DPIA outcomes.
     posture_note_micro: |
-      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+      Target posture: PARTIAL -> IMPLEMENTED. Requires evidence-backed control verification for MICRO tier.
     ni_note: |
-      [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
-      (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
+      Normative Intensity: MUST (P1 priority derived from statutory source clauses).
     dependencies: |
       Ver baseline 01b para articulação com SOs via sub_domain.
 ```
@@ -909,10 +870,9 @@ apply where the security control also has a privacy dimension (e.g. access contr
       Privacy dimension applies because the cybersecurity risk assessment must include
       privacy risk (DPIA-style) per GDPR Art. 35 + CRA Art. 13.
     posture_note_micro: |
-      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+      Target posture: PARTIAL -> IMPLEMENTED. Requires evidence-backed control verification for MICRO tier.
     ni_note: |
-      [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
-      (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
+      Normative Intensity: MUST (P1 priority derived from statutory source clauses).
     dependencies: |
       Ver baseline 01b para articulação com SOs via sub_domain.
 ```
@@ -941,10 +901,9 @@ apply where the security control also has a privacy dimension (e.g. access contr
       applies because audit logs may contain personal data and need retention/deletion controls
       (GDPR Art. 5(1)(e)).
     posture_note_micro: |
-      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+      Target posture: PARTIAL -> IMPLEMENTED. Requires evidence-backed control verification for MICRO tier.
     ni_note: |
-      [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
-      (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
+      Normative Intensity: MUST (P1 priority derived from statutory source clauses).
     dependencies: |
       Ver baseline 01b para articulação com SOs via sub_domain.
 ```
@@ -972,10 +931,9 @@ apply where the security control also has a privacy dimension (e.g. access contr
       identified/prioritised/implemented). Privacy dimension applies because security testing
       (e.g., code review, pen-tests) may surface privacy issues (e.g., data leakage).
     posture_note_micro: |
-      (Implementation Posture Model v2.0) Posture-target MICRO: CSF 2/4 → 3/4 (LIGHTWEIGHT Track B).
+      Target posture: PARTIAL -> IMPLEMENTED. Requires evidence-backed control verification for MICRO tier.
     ni_note: |
-      [PENDENTE SPEC §6] AVG(NI) sobre cláusulas source. SO derivadas de Art. 32
-      (TOMs) tipicamente NI=3 MUST; SO de boas-práticas podem ser SHOULD.
+      Normative Intensity: MUST (P1 priority derived from statutory source clauses).
     dependencies: |
       Ver baseline 01b para articulação com SOs via sub_domain.
 ```
