@@ -1041,7 +1041,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 19. **CSF Subcategories:** ID.AM-01 (hardware inventories maintained), PR.AA-01 (identities/credentials managed for users/svcs/HW), PR.AA-02 (identities proofed + bound to credentials), PR.AA-03 (users/services/HW authenticated), PR.AA-05 (access permissions managed (least privilege)), PR.AA-06 (access to assets limited to authorised), PR.DS-10 (data managed per risk strategy (CIA))
 
-20. **Privacy FW Subcategories:** UNMAPPED_PF (identities proofed + bound to credentials) (authentication commensurate with risk)
+20. **Privacy FW Subcategories:** PR.AC-P1 (identities/credentials issued, managed, verified, revoked, audited — maps PR.AA-01/02), PR.AC-P6 (proofed and bound to credentials, authenticated commensurate with risk — maps PR.AA-03), PR.AC-P4 (access permissions, least privilege + SoD — maps PR.AA-05/06); UNMAPPED_PF (ID.AM-01 hardware inventories + PR.DS-10 risk-strategy data mgmt — no PF 1.0 analogue; unmapped_pf_justification: PF 1.0 inventories are data-ecosystem-scoped only)
 
 21. **Maturity (CSF):** cur 2/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
 
@@ -1123,7 +1123,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 19. **CSF Subcategories:** PR.AA-03 (users/services/HW authenticated), PR.AA-04 (identity assertions managed + protected), PR.AA-05 (access permissions managed (least privilege)), PR.AA-06 (access to assets limited to authorised), PR.AT-02 (workforce understands roles in cyber objectives)
 
-20. **Privacy FW Subcategories:** UNMAPPED_PF (authentication commensurate with risk)
+20. **Privacy FW Subcategories:** PR.AC-P6 (authentication commensurate with risk), PR.AC-P4 (least-privilege access), GV.AT-P1 (workforce informed/trained); UNMAPPED_PF (PR.AA-04 identity assertions — no PF 1.0 subcategory; concept exists only in non-final PF 1.1 draft)
 
 21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
 
@@ -1602,7 +1602,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 19. **CSF Subcategories:** PR.DS-01 (backups created + protected + tested), PR.DS-10 (data managed per risk strategy (CIA)), PR.IR-03 (resilience mechanisms in adverse situations), PR.IR-04 (adequate resource capacity for availability), RC.RP-01 (recovery plan executed + verified), RC.RP-03 (backup integrity verified), RC.RP-04 (restoration procedures verified)
 
-20. **Privacy FW Subcategories:** UNMAPPED_PF (resilience mechanisms for adverse situations) (adequate resource capacity for availability) (backups created + protected + maintained + tested)
+20. **Privacy FW Subcategories:** PR.DS-P1 (data-at-rest protected), PR.PO-P7 (response/recovery plans established — maps PR.IR-03), PR.DS-P4 (adequate resource capacity — maps PR.IR-04), PR.PT-P4 (resilience mechanisms); UNMAPPED_PF (RC.RP-* recovery execution + PR.DS-10 risk-strategy mgmt — PF 1.0 has no Respond/Recover axis; unmapped_pf_justification: no PF 1.0 subcategories match)
 
 21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
 
@@ -2154,7 +2154,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 19. **CSF Subcategories:** GV.OC-03 (legal/regulatory reqs incl privacy managed), GV.SC-02 (suppliers prioritised + assessed via SCRM), GV.SC-03 (contracts implement cyber programme measures), GV.SC-04 (suppliers routinely assessed (audits/tests)), PR.DS-10 (data managed per risk strategy (CIA)), PR.PS-06 (secure SW dev integrated in SDLC), RS.MA-01 (coordination with stakeholders per criteria), RS.MI-01 (incidents contained + mitigated)
 
-20. **Privacy FW Subcategories:** UNMAPPED_PF (contracts implement privacy programme measures) (interoperability frameworks for ecosystem privacy) (ecosystem risk integrated into enterprise risk)
+20. **Privacy FW Subcategories:** ID.DE-P3 (contracts with ecosystem parties implement privacy-programme measures), ID.DE-P4 (interoperability frameworks for ecosystem privacy); UNMAPPED_PF (ecosystem risk integrated into enterprise risk — no dedicated PF 1.0 subcategory; covered indirectly by GV.PO-P6)
 
 21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
 
@@ -3173,7 +3173,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 19. **CSF Subcategories:** PR.AA-01 (identities/credentials managed for users/svcs/HW), PR.AA-03 (users/services/HW authenticated), PR.AA-05 (access permissions managed (least privilege)), PR.AA-06 (access to assets limited to authorised), ID.AM-01 (hardware inventories maintained)
 
-20. **Privacy FW Subcategories:** UNMAPPED_PF (identities/credentials for users/svcs/HW managed) (authentication commensurate with risk)
+20. **Privacy FW Subcategories:** PR.AC-P1 (identities/credentials for users/svcs/HW managed), PR.AC-P6 (authentication commensurate with risk), PR.AC-P4 (least-privilege access); UNMAPPED_PF (ID.AM-01 hardware inventories — no PF 1.0 analogue)
 
 21. **Maturity (CSF):** cur 2/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
 
@@ -3250,7 +3250,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 19. **CSF Subcategories:** PR.AA-03 (users/services/HW authenticated), PR.AA-04 (identity assertions managed + protected), PR.AA-05 (access permissions managed (least privilege)), PR.AA-06 (access to assets limited to authorised)
 
-20. **Privacy FW Subcategories:** UNMAPPED_PF (authentication commensurate with risk) (identity assertions protected + verified)
+20. **Privacy FW Subcategories:** PR.AC-P6 (authentication commensurate with risk), PR.AC-P4 (least-privilege access); UNMAPPED_PF (PR.AA-04 identity assertions protected + verified — no PF 1.0 subcategory; FIDO2 origin binding documented as §6.3 gap)
 
 21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
 

@@ -138,8 +138,8 @@ This is the Rich Mode version of the Objectives Catalog. It defines **31 objecti
 
 | Objective ID | Objective Description | Source Obligations | Sub-Domain | Risk Profile | Priority | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors | PF Anchors |
 | --------- | ------------------ | -------------------- | ------------ | -------------- | ---------- | ------- | ---------------------- | --------------- | ------------------------ | ---------------------- | ---------------------- | --- | --- |
-| SO-D-03.1-001 | Implement authentication controls for all user-facing interfaces | OBL-D-03.1-001 | D-03.1 | MEDIUM | HIGH | CTO + Lead Dev | managed identity baseline | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | GV.OC-03, GV.PO-02, PR.AA-02, PR.AA-03, PR.DS-10 | UNMAPPED_PF |
-| SO-D-03.2-001 | Enable multi-factor authentication for accounts with access to personal data or administrative privileges | OBL-D-03.2-001 | D-03.2 | LOW | MODERATE | CTO + Lead Dev | MFA enforcement test | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | — | UNMAPPED_PF |
+| SO-D-03.1-001 | Implement authentication controls for all user-facing interfaces | OBL-D-03.1-001 | D-03.1 | MEDIUM | HIGH | CTO + Lead Dev | managed identity baseline | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | GV.OC-03, GV.PO-02, PR.AA-02, PR.AA-03, PR.DS-10 | PR.AC-P1, PR.AC-P6, PR.AC-P4; UNMAPPED_PF (asset inventory/risk-strategy — no PF 1.0 analogue) |
+| SO-D-03.2-001 | Enable multi-factor authentication for accounts with access to personal data or administrative privileges | OBL-D-03.2-001 | D-03.2 | LOW | MODERATE | CTO + Lead Dev | MFA enforcement test | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | — | PR.AC-P6; UNMAPPED_PF (identity assertions — no PF 1.0 subcategory) |
 | SO-D-03.3-001 | Restrict access to authorised personnel; enforce least privilege | OBL-D-03.3-001 | D-03.3 | MEDIUM | HIGH | CTO + Lead Dev | RBAC quarterly review | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.AA-05, PR.AA-06, PR.AT-02 | CT.PO-P1 |
 | SO-D-03.4-001 | Disable all unused ports, services, and interfaces by default | OBL-D-03.4-001 | D-03.4 | LOW | HIGH | CTO + Lead Dev | hardened-default compliance | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.DS-10, PR.PS-01, PR.PS-06 | CT.DP-P4, CT.PO-P4 |
 
@@ -150,7 +150,7 @@ This is the Rich Mode version of the Objectives Catalog. It defines **31 objecti
 | SO-D-04.1-001 | Design the system to limit the severity of any single exploit | OBL-D-04.1-001 | D-04.1 | MEDIUM | MODERATE | CTO + DPO + Compliance Lead | managed monitoring alarms active | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h (GDPR) | DE.AE-02, DE.CM-01, DE.CM-03, DE.CM-09, RS.MA-02 | CM.AW-P7 |
 | SO-D-04.2-001 | Build resilience against denial-of-service attacks | OBL-D-04.2-001 | D-04.2 | MEDIUM | MODERATE | CTO + DPO + Compliance Lead | DoS resilience drill | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h (GDPR) | PR.DS-01, RS.MI-01, RS.MI-02 | CT.DM-P10, PR.PO-P7 |
 | SO-D-04.3-001 | Notify the supervisory authority of actively exploited vulnerabilities within the regulatory deadline | OBL-D-04.3-001 | D-04.3 | HIGH | CRITICAL | CTO + DPO + Compliance Lead | dual-notification SLA | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h + ENISA 24h (max-SLA routing) | GV.OC-03, ID.RA-06, PR.DS-01, PR.DS-10, PR.IR-03 | CM.AW-P7, CM.AW-P8, CM.PO-P1, CM.PO-P2 |
-| SO-D-04.4-001 | Restore availability and access to data in a timely manner after an incident | OBL-D-04.4-001 | D-04.4 | MEDIUM | HIGH | CTO + DPO + Compliance Lead | managed backup RTO 24h | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h (GDPR) | PR.DS-01, PR.IR-04, RC.RP-04 | UNMAPPED_PF |
+| SO-D-04.4-001 | Restore availability and access to data in a timely manner after an incident | OBL-D-04.4-001 | D-04.4 | MEDIUM | HIGH | CTO + DPO + Compliance Lead | managed backup RTO 24h | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h (GDPR) | PR.DS-01, PR.IR-04, RC.RP-04 | PR.DS-P1, PR.DS-P4, PR.PT-P4; UNMAPPED_PF (recover-execution — PF 1.0 has no Recover axis) |
 
 #### D-06: Supply Chain (3 SO)
 
@@ -158,7 +158,7 @@ This is the Rich Mode version of the Objectives Catalog. It defines **31 objecti
 | --------- | ------------------ | -------------------- | ------------ | -------------- | ---------- | ------- | ---------------------- | --------------- | ------------------------ | ---------------------- | ---------------------- | --- | --- |
 | SO-D-06.1-001 | Use only processors that provide sufficient guarantees under documented data-processing agreements | OBL-D-06.1-001 | D-06.1 | LOW | HIGH | CTO + Lead Dev + Procurement | DPA + documented third-party security attestation | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | GV.SC-02, GV.SC-03 | ID.IM-P2 |
 | SO-D-06.2-001 | Maintain a software bill of materials in machine-readable format | OBL-D-06.2-001 | D-06.2 | MEDIUM | HIGH | CTO + Lead Dev + Procurement | machine-readable SBOM per release | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | — | UNMAPPED_PRIVACY (SBOM is product-security artefact; no PF subcat anchored) |
-| SO-D-06.3-001 | Bind processors to security obligations via contractual instruments | OBL-D-06.3-001 | D-06.3 | LOW | HIGH | CTO + Lead Dev + Procurement | DPA template + clauses | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | DE.CM-06, GV.OC-03, GV.RR-02, GV.SC-01, GV.SC-02, GV.SC-03 | UNMAPPED_PF |
+| SO-D-06.3-001 | Bind processors to security obligations via contractual instruments | OBL-D-06.3-001 | D-06.3 | LOW | HIGH | CTO + Lead Dev + Procurement | DPA template + clauses | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | DE.CM-06, GV.OC-03, GV.RR-02, GV.SC-01, GV.SC-02, GV.SC-03 | ID.DE-P3, ID.DE-P4; UNMAPPED_PF (ecosystem-risk→ERM — no PF 1.0 subcategory) |
 
 #### D-08: Human Factors (2 SO)
 
@@ -1229,7 +1229,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 3. **Out of Scope:** Self-hosted identity provider (overkill at small scale); legacy federation-via-standard-protocol (not in customer base); passwordless-only auth (managed identity service supports but requires MFA fallback — deferred).
 4. **Source Article:** CRA Annex I §1.1 (confidentiality of stored data) + §1.4 (integrity); GDPR Art. 32(1)(b) + Art. 25(2).
 5. **NIST CSF Anchors:** PR.AA-01, PR.AA-02, PR.AA-03, PR.AA-04, PR.AA-05, PR.AA-06, PR.AT-02.
-6. **Privacy FW Anchors:** UNMAPPED_PF.
+6. **Privacy FW Anchors:** PR.AC-P1, PR.AC-P6, PR.AC-P4; UNMAPPED_PF (asset inventory + risk-strategy data mgmt — no PF 1.0 analogue).
 7. **Verification Criteria:**
    - Managed identity service user records have `disabled` flag set within 30d of contract end; quarterly orphan-account scan with zero stale accounts.
    - Custom claims (RBAC roles) reviewed quarterly against current employee list; sample 1/quarter.
@@ -1294,7 +1294,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 3. **Out of Scope:** Hardware-token MFA for end users (overkill at small scale — TOTP via authenticator app is sufficient); passwordless-only (requires MFA fallback).
 4. **Source Article:** CRA Annex I §1.1 + §1.2; GDPR Art. 32(1) (appropriate measures); documented identity assurance framework.
 5. **NIST CSF Anchors:** PR.AA-01, PR.AA-03, PR.AA-04, PR.AA-05, PR.AA-06.
-6. **Privacy FW Anchors:** UNMAPPED_PF.
+6. **Privacy FW Anchors:** PR.AC-P6, PR.AC-P4; UNMAPPED_PF (identity assertions — no PF 1.0 subcategory).
 7. **Verification Criteria:**
    - Managed identity service MFA enforcement enabled for all customer accounts; quarterly check confirms zero accounts with MFA disabled.
    - Password reset flow uses signed reset tokens with 1h TTL; quarterly review confirms no password stored in plaintext.
@@ -1684,7 +1684,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 3. **Out of Scope:** Active-active multi-region (RIGOROUS tier — overkill at small scale); warm-standby in second region (DEFERRED beyond Track B).
 4. **Source Article:** CRA Annex I §1.4 (incident recovery); GDPR Art. 32(1)(b)(c) + Art. 19 (notification of rectification/erasure to recipients).
 5. **NIST CSF Anchors:** PR.DS-01, PR.DS-10, PR.IR-03, PR.IR-04, RC.RP-01, RC.RP-03, RC.RP-04.
-6. **Privacy FW Anchors:** UNMAPPED_PF.
+6. **Privacy FW Anchors:** PR.DS-P1, PR.PO-P7, PR.DS-P4, PR.PT-P4; UNMAPPED_PF (recover-execution — PF 1.0 has no Respond/Recover axis).
 7. **Verification Criteria:**
    - Managed backup vault exists for managed relational database, managed key-value store, managed object storage with cross-region copy enabled; quarterly inventory check.
    - Quarterly DR restore test passes within RTO 24h (last successful drill: documented in incident-response repo).
@@ -1879,7 +1879,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 3. **Out of Scope:** Customer-facing DPA (separate template; B2B customer controllers — out of MICRO scope); Joint-controller arrangements (not in current stack).
 4. **Source Article:** GDPR Art. 28(3) (mandatory DPA content); CRA Annex I §1.6 (supply chain).
 5. **NIST CSF Anchors:** GV.SC-04, UNMAPPED_CSF.
-6. **Privacy FW Anchors:** UNMAPPED_PF.
+6. **Privacy FW Anchors:** ID.DE-P3, ID.DE-P4; UNMAPPED_PF (ecosystem-risk→enterprise-risk — no dedicated PF 1.0 subcategory).
 7. **Verification Criteria:**
    - DPA template includes all Art. 28(3) clauses (verified by Compliance Lead annually).
    - All active processors have a signed DPA on file (primary hosting provider, managed identity service, payment processor — verified quarterly).
