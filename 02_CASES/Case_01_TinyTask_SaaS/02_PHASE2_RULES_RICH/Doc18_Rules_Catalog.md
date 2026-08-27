@@ -1,56 +1,47 @@
 ---
 document_id: AEGIS-P2-RICH-11
-title: Rules Catalog — Rich Mode
+title: AEGIS Control Set — Rich Mode (Case_01)
 phase: 2
-version: 3.0
+version: 4.0
 created: 2026-08-07
-updated: 2026-08-10
-author: Fase de Especificação 1+3+4+6 + Fase de Especificação 9 Executor (corr-012 PO/SO migration in Related Goals column)
-status: DEEP_ENRICHED
-inputs: [08_Obligation_Derivation.md, 09_Strategic_Tensions_Report.md, 10_Privacy_Security_Objectives.md, ../02_PHASE2_RULES/11_Rules_Catalog.md, 13_Framework_Mapping_Matrix.md]
-outputs: [Phase 3 inputs, 12_Rules_Catalog.xlsx]
-traceability: AEGIS Class Model → RulesCatalog, AbstractRule, ComplianceRule, BestPracticeRule classes
-related_documents: 12_Rules_Catalog.xlsx, 00_Taxonomy_Reference.md, 13_Framework_Mapping_Matrix.md
+updated: 2026-08-27
+author: Orchestrator (Case_01 Control Set v1.0)
+status: ACTIVE
+inputs: [08_Obligation_Derivation.md, 09_Strategic_Tensions_Report.md, 10_Privacy_Security_Objectives.md, 13_Framework_Mapping_Matrix.md]
+outputs: [Phase 3 inputs, control_set.yaml]
+traceability: AEGIS Class Model → RulesCatalog, ComplianceRule, BestPracticeRule
 case: Case_01_TinyTask_SaaS
 tier: MICRO
-# fields 1-17 unchanged; 18 (NI), 19 (CSF), 20 (Privacy), 21 (CSF posture), 22 (Privacy posture) appended in Blocos B + D.
 normative_intensity_rule: AVG
-dr_002_resolution: >
-  DR-002 definido como AVG (não MAX). MAX mata diferenciação (AP-P2-09).
-  AVG preserva SHOULD. Aplicado retroactivamente a todos os 46 cartões.
-frameworks_mapped: [NIST_CSF_2.0, NIST_Privacy_FW_1.0]
-posture_dual: true   # per D11; two independent scores per control
-expected_compliance_rules: 30
-expected_best_practice_rules: 16
-expected_total_rules: 46
-expected_fields_per_card: 22
+frameworks_mapped: [NIST_CSF_2.0, NIST_Privacy_FW_1.0, AI_RMF_1.0, ISO_27001_2022, NIST_SSDF_SP800_218]
+implementation_posture_decision: Implementation Posture Model v2.0 (qualitative state-based verification)
+expected_obligation_controls: 30
+expected_best_practice_controls: 16
+expected_total_controls: 46
+expected_fields_per_card: 24
 detail_cards_count: 46
-fields_per_card: 22
-branch: feature/aegis-p2-case01-csf2-priv
+fields_per_card: 24
 ---
 
-# Rules Catalog — Rich Mode
+# AEGIS Control Set — Rich Mode (Case_01)
 
-> **Fase de Especificação 5 deep enrichment** — this Rich Mode sibling now contains the reconciled
-> catalogs plus 46 operational rule detail cards (30 CR + 16 BPR).
-
----
-
-## 1. DOCUMENT PURPOSE
-
-This is the Rich Mode version of the Rules Catalog. It consolidates 46 rules (30 Compliance Rules + 16 Best Practice Rules) into 15-field detail cards with multi-paragraph descriptions, NIST CSF anchors, and operational metadata.
-
-**Phase 2 Step:** E (Rules Catalog Creation)
-**Phase 2 Gate:** ✅ COMPLETE when this document and 12_Rules_Catalog.xlsx are approved
+> **AEGIS Control Taxonomy — 38 sub-domains:** The AEGIS Control Taxonomy covers 38 security sub-domains as a core research contribution of the methodology.
+> This document presents the implementation-ready Control Set for Case_01 (TinyTask SaaS, MICRO tier), consolidating **46 controls** (30 OBLIGATION + 16 BEST-PRACTICE) with complete traceability, qualitative implementation posture, and framework anchors.
 
 ---
 
-## 2. EXPECTED RULES (from legacy Doc 11)
+## 1. DOCUMENT PURPOSE & TAXONOMY
 
-### Compliance Rules (CR) — 30
+This document evolves the legacy Rules Catalog into an implementation-ready **AEGIS Control Set**. It consolidates 46 controls (30 Obligation Controls + 16 Best-Practice Controls) covering 28 out of 38 AEGIS sub-domains. Each control is specified as a 24-field detail card with inline traceability (Legal → Phase 1 → Obligation → Objective), qualitative implementation posture, and framework anchors across NIST CSF 2.0, NIST Privacy FW 1.0, AI RMF 1.0, ISO 27001:2022, and NIST SSDF SP 800-218.
 
-| Sub-Domain | CR Count |
-|------------|---------:|
+---
+
+## 2. CONTROL SET SUMMARY & STATISTICS
+
+### Obligation Controls (MUST) — 30
+
+| Sub-Domain | Control Count |
+|------------|--------------:|
 | D-01 | 4 |
 | D-02 | 3 |
 | D-03 | 4 |
@@ -63,10 +54,10 @@ This is the Rich Mode version of the Rules Catalog. It consolidates 46 rules (30
 | D-10 | 2 |
 | **TOTAL** | **30** |
 
-### Best Practice Rules (BPR) — 16
+### Best Practice Controls (SHOULD) — 16
 
-| Sub-Domain | BPR Count |
-|------------|----------:|
+| Sub-Domain | Control Count |
+|------------|--------------:|
 | D-01 | 2 |
 | D-02 | 2 |
 | D-03 | 3 |
@@ -77,412 +68,45 @@ This is the Rich Mode version of the Rules Catalog. It consolidates 46 rules (30
 | D-10 | 3 |
 | **TOTAL** | **16** |
 
-**Grand total:** 30 CR + 16 BPR = **46 rules**
+**Grand Total:** 30 OBLIGATION + 16 BEST-PRACTICE = **46 controls** across 28 sub-domains.
 
 ---
 
-## 3. RULE DEFINITION STRUCTURE
+## 3. CONTROL DEFINITION SCHEMA (24 Fields)
 
-> **Fase de Especificação 4 (this sprint):** Added rule structure definition (ported from legacy §3) to anchor the field schema for the catalog tables. The legacy 10-field structure is now superseded by the 17-field (CR) / 15-field (BPR) Rich schema; the 6 Fase de Especificação 4 new fields are appended at the end of each row.
-
-### 3.1 Canonical Rule Field Schema
-
-| # | Field | Description | Example | CR | BPR |
-|--:|-------|-------------|---------|:--:|:---:|
-| 1 | Rule ID | Unique identifier (canonical format `CR-D-XX.X-NNN` / `BPR-D-XX.X-NNN`) | CR-D-01.1-001 | ✓ | ✓ |
-| 2 | Rule Description | Clear statement of the rule | Data at rest shall be encrypted | ✓ | ✓ |
-| 3 | Source | Origin (clauses for CR, framework for BPR) | GDPR-C14, CRA-C07 | ✓ | — |
-| 3' | Framework | Framework reference (BPR only) | ISO 27001 A.8.24 | — | ✓ |
-| 4 | Sub-Domain | Target sub-domain | D-01.1 | ✓ | ✓ |
-| 5 | NI | Derived from source clauses | 2.667 | ✓ | — |
-| 6 | Priority | P1 (≥2.5), P2 (2.0–2.499), P3 (<2.0) | P1 | ✓ | ✓ |
-| 7 | Verification Method | One of: TEST, INSPECT, DEMONSTRATE, ANALYZE | TEST | ✓ | ✓ |
-| 8 | Implementation Mode | NATIVE or INHERITED | NATIVE | ✓ | ✓ |
-| 9 | Related Goals | Linked privacy/security goals (CR only) | PO-D-01.1-001 | ✓ | — |
-| 10 | Implementation Tier | LIGHTWEIGHT / MINIMAL | LIGHTWEIGHT | ✓ | ✓ |
-| 11 | Proportional Priority | P1 (proportionality-adjusted) | P1 | ✓ | ✓ |
-| **12** | **Owner** | **Operational owner (sub-domain heuristic)** | **CTO + Lead Dev** | **✓** | **✓** |
-| **13** | **Verification Criteria** | **1-line test/check criterion** | **strong symmetric encryption + key rotation audit** | **✓** | **✓** |
-| **14** | **Implementation Status (CSF)** | **Doc 07b §4 LIGHTWEIGHT target** | **PARTIAL** | **✓** | **✓** |
-| **15** | **Implementation Priority** | **Doc 07b §4 LIGHTWEIGHT priority** | **HIGH** | **✓** | **✓** |
-| **16** | **Affected Stakeholders** | **Cross-ref Sheet 12 + Doc 04d RACI** | **Customers, DPO, CTO, ENISA** | **✓** | **✓** |
-| **17** | **Regulatory Reporting** | **Doc 08 §4 sub-domain heuristic** | **Internal audit only** | **✓** | **✓ (uniform)** |
-
-**Bold rows** are the 6 new Fase de Especificação 4 fields. The "uniform" notation on field 17 means BPR Regulatory Reporting is uniformly `Internal audit only` (BPR has no regulatory mandate; only internal audit applies).
-
-**Field cardinality:**
-
-| Catalog | Total cols | Legacy cols | New cols |
-|---------|-----------:|------------:|--------------------:|
-| CR | 17 | 11 | 6 |
-| BPR | 15 | 9 | 6 |
-
-BPR has 2 fewer legacy cols than CR (no Source [replaced by Framework], no NI [P3 best-practice rules have no regulatory intensity]).
-
-### 3.2 Rule ID Structure
-
-```
-CR-[Sub-Domain ID]-[Sequence Number]
-BPR-[Sub-Domain ID]-[Sequence Number]
-Example: CR-D-01.1-001
-Example: BPR-D-04.3-001
-```
-
-- **CR** = Compliance Rule (derived from regulatory obligation)
-- **BPR** = Best Practice Rule (derived from framework)
-- Sub-Domain ID = D-XX.X (e.g., D-01.1, D-04.3)
-- Sequence Number = 3-digit zero-padded ordinal within the sub-domain (001, 002, …)
+| # | Field | Description | Example |
+|--:|-------|-------------|---------|
+| 1 | Rule ID | Unique identifier | CR-D-01.1-001 / BPR-D-01.1-001 |
+| 2 | Description | Control requirement statement | Data at rest shall be encrypted |
+| 3 | Scope | Control boundary scope | Persistent storage stores |
+| 4 | Out of Scope | Excluded boundaries | Ephemeral logs |
+| 5 | Source Article / Framework | Statutory source or framework anchor | GDPR Art. 32(1)(a) / ISO 27001 A.8.24 |
+| 6 | NIST CSF Anchors | NIST CSF subcategories | PR.DS-01, PR.DS-10 |
+| 7 | Verification Criteria | Measurable check criterion | AWS KMS active audit |
+| 8 | Verification Method | TEST, INSPECT, DEMONSTRATE, ANALYZE | TEST |
+| 9 | Owner | Operational owner | CTO + Lead Dev |
+| 10 | Status | Operational status | ACTIVE |
+| 11 | Dependencies | Dependent obligations / objectives | OBL-D-01.1-001, SO-D-01.1-001 |
+| 12 | Risk if not met | Risk impact rating | HIGH |
+| 13 | Affected Stakeholders | Impacted roles | Customers, DPO, CTO |
+| 14 | Implementation Status (CSF) | Target state | PARTIAL |
+| 15 | Implementation Priority | Priority level | HIGH |
+| 16 | Regulatory Reporting | Reporting mandate | Internal audit only |
+| 17 | External Auditor | Verification expectation | Third-party audit |
+| 18 | Supervisory Body | Regulator | CNPD / ENISA |
+| 19 | Normative Intensity | MUST (NI≥2.5) or SHOULD | 3 — MUST |
+| 20 | CSF Subcategories | CSF 2.0 mapping | PR.DS-01 |
+| 21 | Privacy FW Subcategories | Privacy FW 1.0 mapping | PR.DS-P1 |
+| 22 | Implementation Status (CSF) | Qualitative posture state | IMPLEMENTED (AWS KMS active) |
+| 23 | Implementation Status (Privacy) | Qualitative posture state | PARTIAL (missing: review cadence) |
+| **24** | **Traceability & Framework Anchors** | **Inline 5-framework anchors & 4-tier trace** | **Legal → Phase 1 → Obligation → Objective** |
 
 ---
 
-## 4. COMPLIANCE RULES CATALOG (Fase de Especificação 4 — ported from legacy §4)
-
-> **Fase de Especificação 4 (this sprint):** Ported legacy `02_PHASE2_RULES/11_Rules_Catalog.md` §4 CR tables into Rich Mode with 17 columns (11 legacy fields + 6 new Fase de Especificação 4 fields). **30 CR × 17 cols = 510 cells** (6 new cols contribute 30 × 6 = **180 cells**). The 6 new Fase de Especificação 4 columns are: **Owner, Verification Criteria, Implementation Posture, Implementation Priority, Affected Stakeholders, Regulatory Reporting**. NI values for `CR-D-01.4-001` and `CR-D-09.1-001` use the **recomputed DR-002 AVG = 2.500** (per F-10 reconciliation in Doc 08 §4.1).
-
-### D-01: Data Protection & Encryption (4 CR)
-
-| Rule ID | Rule Description | Source | Sub-Domain | NI | Priority | Verification | Implementation | Related Goals | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
-|---------|------------------|--------|------------|---:|----------|--------------|----------------|---------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| CR-D-01.1-001 | All personal and product data in persistent storage must be protected by confidentiality mechanisms with segregated cryptographic material management | GDPR-C04, GDPR-C14, CRA-C07 | D-01.1 | 2.667 | P1 | TEST | NATIVE | PO-D-01.1-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev | Configuration report demonstrates confidentiality mechanisms active in all persistent stores of personal or product data | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| CR-D-01.2-001 | All personal and product data crossing network boundaries must be protected by confidentiality mechanisms appropriate to channel classification | GDPR-C15, CRA-C08 | D-01.2 | 2.500 | P1 | TEST | NATIVE | PO-D-01.2-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev | Configuration report demonstrates confidentiality mechanisms active in all network channels carrying personal or product data | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| CR-D-01.3-001 | Cryptographic material used by protection mechanisms must be managed with segregation between material access and data access, and with documented lifecycle | CRA-C15 | D-01.3 | 3.000 | P1 | INSPECT | NATIVE | PO-D-01.3-001 *(phantom — see F-03)* | LIGHTWEIGHT | P1 | CTO + Lead Dev | Cryptographic material management report demonstrates separation between material access and data access | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| CR-D-01.4-001 | All personal and product data must be protected against unauthorised modification through integrity controls appropriate to data class | GDPR-C05, CRA-C09 | D-01.4 | 2.500 | P1 | TEST | NATIVE | PO-D-01.4-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev | Configuration report demonstrates integrity controls active across personal data, product data, and audit log artifacts | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-
-**D-01 Summary:** 4 rules | Avg NI: 2.667 | All NATIVE
-
----
-
-### D-02: Vulnerability Management (3 CR)
-
-| Rule ID | Rule Description | Source | Sub-Domain | NI | Priority | Verification | Implementation | Related Goals | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
-|---------|------------------|--------|------------|---:|----------|--------------|----------------|---------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| CR-D-02.1-001 | Deliver product with zero known exploitable vulnerabilities at release | CRA-C01, CRA-C17 | D-02.1 | 3.000 | P1 | DEMONSTRATE | NATIVE | SO-D-02.1-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev + Procurement | automated vulnerability scanner + managed dependency audit zero-CVE | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | ENISA 24h (CRA) |
-| CR-D-02.2-001 | Enable automatic security updates and remediate vulnerabilities within 72h of patch availability | CRA-C04, CRA-C19 | D-02.2 | 3.000 | P1 | TEST | NATIVE | SO-D-02.2-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev + Procurement | patch-management SLA test | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | ENISA 24h (CRA) |
-| CR-D-02.3-001 | Publish coordinated vulnerability disclosure policy (security.txt) and report severe incidents to ENISA/CSIRT within 24h | CRA-C21, CRA-C26 | D-02.3 | 3.000 | P1 | INSPECT | NATIVE | SO-D-02.3-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev + Procurement | vulnerability-disclosure policy + reporting workflow | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | ENISA 24h (CRA) |
-
-**D-02 Summary:** 3 rules | Avg NI: 3.000 | All NATIVE | CRA-only domain
-
----
-
-### D-03: Access Control (4 CR)
-
-| Rule ID | Rule Description | Source | Sub-Domain | NI | Priority | Verification | Implementation | Related Goals | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
-|---------|------------------|--------|------------|---:|----------|--------------|----------------|---------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| CR-D-03.1-001 | Implement authentication and access control measures for all users | CRA-C05 | D-03.1 | 3.000 | P1 | INSPECT | INHERITED | SO-D-03.1-001 | MINIMAL | P1 | CTO + Lead Dev | managed identity service baseline | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| CR-D-03.2-001 | Enable multi-factor authentication where appropriate (administrative accounts) | CRA-C06 | D-03.2 | 2.000 | P2 | TEST | INHERITED | SO-D-03.2-001 | MINIMAL | P1 | CTO + Lead Dev | MFA enforcement test | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| CR-D-03.3-001 | Restrict access to authorised personnel only; enforce least privilege principle | GDPR-C10, GDPR-C17 | D-03.3 | 3.000 | P1 | INSPECT | NATIVE | SO-D-03.3-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev | RBAC quarterly review | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| CR-D-03.4-001 | Disable unused ports/services; no default passwords; secure default configuration | CRA-C03 | D-03.4 | 3.000 | P1 | TEST | NATIVE | SO-D-03.4-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev | hardened-default compliance | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-
-**D-03 Summary:** 4 rules | Avg NI: 2.750 | 2 NATIVE, 2 INHERITED (managed identity service)
-
----
-
-### D-04: Incident Response (4 CR)
-
-| Rule ID | Rule Description | Source | Sub-Domain | NI | Priority | Verification | Implementation | Related Goals | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
-|---------|------------------|--------|------------|---:|----------|--------------|----------------|---------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| CR-D-04.1-001 | Design system to limit severity of exploits; implement fail-safe mechanisms | CRA-C13 | D-04.1 | 3.000 | P1 | DEMONSTRATE | NATIVE | SO-D-04.1-001 | LIGHTWEIGHT | P1 | CTO + DPO + Compliance Lead | managed monitoring alarms active | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h (GDPR) |
-| CR-D-04.2-001 | Restore availability after incidents; build resilience against DoS attacks | GDPR-C18, CRA-C11 | D-04.2 | 2.500 | P2 | DEMONSTRATE | NATIVE | SO-D-04.2-001 | LIGHTWEIGHT | P1 | CTO + DPO + Compliance Lead | DoS resilience drill | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h (GDPR) |
-| CR-D-04.3-001 | Notify supervisory authority (CNPD) within 72h of breach awareness; notify ENISA within 24h of actively exploited vulnerability | GDPR-C21, GDPR-C23, CRA-C25 | D-04.3 | 3.000 | P1 | TEST | NATIVE | SO-D-04.3-001 | LIGHTWEIGHT | P1 | CTO + DPO + Compliance Lead | dual-notification SLA | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h + ENISA 24h (max-SLA routing) |
-| CR-D-04.4-001 | Ensure ongoing availability and ability to restore data after incident | GDPR-C16 | D-04.4 | 2.000 | P2 | DEMONSTRATE | NATIVE | SO-D-04.4-001 | LIGHTWEIGHT | P1 | CTO + DPO + Compliance Lead | managed backup RTO 24h | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h (GDPR) |
-
-**D-04 Summary:** 4 rules | Avg NI: 2.625 | All NATIVE | **Tension T-001 resolved:** 24h workflow
-
----
-
-### D-05: Data Lifecycle (4 CR)
-
-| Rule ID | Rule Description | Source | Sub-Domain | NI | Priority | Verification | Implementation | Related Goals | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
-|---------|------------------|--------|------------|---:|----------|--------------|----------------|---------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| CR-D-05.1-001 | Process only data adequate, relevant and limited to what is necessary for task management | GDPR-C01, CRA-C10 | D-05.1 | 3.000 | P1 | INSPECT | NATIVE | PO-D-05.1-001 | LIGHTWEIGHT | P1 | CTO + DPO | Field-level enforcement | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| CR-D-05.2-001 | Do not keep personal data longer than necessary; delete 30 days after task completion | GDPR-C02, GDPR-C03 | D-05.2 | 3.000 | P1 | INSPECT | NATIVE | PO-D-05.2-001 | LIGHTWEIGHT | P1 | CTO + DPO | Retention policy audit | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| CR-D-05.3-001 | Enable complete and secure data deletion on user request within 7 days | GDPR-C06, CRA-C16 | D-05.3 | 3.000 | P1 | TEST | NATIVE | PO-D-05.3-001 | LIGHTWEIGHT | P1 | CTO + DPO | Erasure API test (7d) | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| CR-D-05.4-001 | Provide data export in structured, machine-readable format (JSON) within 48h of request | GDPR-C07 | D-05.4 | 3.000 | P1 | TEST | NATIVE | PO-D-05.4-001 | LIGHTWEIGHT | P1 | CTO + DPO | JSON export test (48h) | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-
-**D-05 Summary:** 4 rules | Avg NI: 3.000 | All NATIVE | GDPR-dominant domain
-
----
-
-### D-06: Supply Chain (3 CR)
-
-| Rule ID | Rule Description | Source | Sub-Domain | NI | Priority | Verification | Implementation | Related Goals | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
-|---------|------------------|--------|------------|---:|----------|--------------|----------------|---------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| CR-D-06.1-001 | Use only processors providing sufficient guarantees (managed hosting, managed identity, payment processor with DPAs) | GDPR-C11 | D-06.1 | 3.000 | P1 | INSPECT | NATIVE | SO-D-06.1-001 | MINIMAL | P1 | CTO + Lead Dev + Procurement | DPA + documented third-party security attestation | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| CR-D-06.2-001 | Document all third-party components in machine-readable format (SBOM) | CRA-C18 | D-06.2 | 3.000 | P1 | INSPECT | NATIVE | SO-D-06.2-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev + Procurement | machine-readable SBOM per release | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| CR-D-06.3-001 | Bind processors to security obligations via Data Processing Agreement | GDPR-C12 | D-06.3 | 3.000 | P1 | INSPECT | NATIVE | SO-D-06.3-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev + Procurement | DPA template + clauses | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-
-**D-06 Summary:** 3 rules | Avg NI: 3.000 | All NATIVE | **CR-D-06.2-001:** CRA sole authority
-
----
-
-### D-07: Secure Development (1 CR)
-
-| Rule ID | Rule Description | Source | Sub-Domain | NI | Priority | Verification | Implementation | Related Goals | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
-|---------|------------------|--------|------------|---:|----------|--------------|----------------|---------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| CR-D-07.1-001 | Integrate data protection and security into design from outset; secure by default | GDPR-C09, CRA-C02, CRA-C22 | D-07.1 | 2.667 | P1 | INSPECT | NATIVE | PO-D-07.1-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev | secure-development-framework + posture assessment | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-
-**D-07 Summary:** 1 rule | Avg NI: 2.667 | NATIVE | **Tension T-004 resolved:** Follow CRA standard
-
----
-
-### D-08: Human Factors (2 CR)
-
-| Rule ID | Rule Description | Source | Sub-Domain | NI | Priority | Verification | Implementation | Related Goals | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
-|---------|------------------|--------|------------|---:|----------|--------------|----------------|---------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| CR-D-08.1-001 | Train staff involved in processing operations on security awareness annually | GDPR-C27 | D-08.1 | 3.000 | P2 | INSPECT | NATIVE | SO-D-08.1-001 | MINIMAL | P1 | CTO + HR + DPO | annual security awareness training | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| CR-D-08.2-001 | Raise awareness and train staff with role-specific security obligations | GDPR-C28 | D-08.2 | 3.000 | P2 | INSPECT | NATIVE | SO-D-08.2-001 | LIGHTWEIGHT | P1 | CTO + HR + DPO | role-specific training | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-
-**D-08 Summary:** 2 rules | Avg NI: 3.000 | All NATIVE | GDPR-only domain
-
----
-
-### D-09: Governance & Documentation (3 CR)
-
-| Rule ID | Rule Description | Source | Sub-Domain | NI | Priority | Verification | Implementation | Related Goals | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
-|---------|------------------|--------|------------|---:|----------|--------------|----------------|---------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| CR-D-09.1-001 | Implement appropriate technical/organisational measures; document policies; maintain technical documentation for 10 years | GDPR-C08, GDPR-C25, GDPR-C26, CRA-C24 | D-09.1 | 2.500 | P1 | INSPECT | NATIVE | PO-D-09.1-001, SO-D-09.1-001 | LIGHTWEIGHT | P1 | CTO + DPO + Compliance Lead + Legal | ISMS documentation audit | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | CNPD + ENISA (periodic) |
-| CR-D-09.2-001 | Conduct unified Privacy & Security Risk Assessment (DPIA + cybersecurity) prior to launch | GDPR-C20, GDPR-C24, CRA-C23 | D-09.2 | 2.667 | P1 | INSPECT | NATIVE | PO-D-09.2-001, SO-D-09.2-001 | LIGHTWEIGHT | P1 | CTO + DPO + Compliance Lead + Legal | Unified assessment template | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | CNPD + ENISA (periodic) |
-| CR-D-09.4-001 | Maintain records of processing activities and breach documentation | GDPR-C13, GDPR-C22 | D-09.4 | 3.000 | P1 | INSPECT | NATIVE | PO-D-09.4-001 | LIGHTWEIGHT | P1 | CTO + DPO + Compliance Lead + Legal | RoPA + breach log | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | CNPD + ENISA (periodic) |
-
-**D-09 Summary:** 3 rules | Avg NI: 2.722 | All NATIVE | **Tension T-003 resolved:** Unified assessment
-
----
-
-### D-10: Monitoring & Audit (2 CR)
-
-| Rule ID | Rule Description | Source | Sub-Domain | NI | Priority | Verification | Implementation | Related Goals | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
-|---------|------------------|--------|------------|---:|----------|--------------|----------------|---------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| CR-D-10.2-001 | Log security-relevant events; maintain audit trail of access | CRA-C14 | D-10.2 | 3.000 | P1 | TEST | INHERITED | SO-D-10.2-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev | managed audit-trail + managed object storage audit | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| CR-D-10.3-001 | Regularly test effectiveness of technical and organisational measures (annual security testing) | GDPR-C19, CRA-C20 | D-10.3 | 2.500 | P2 | DEMONSTRATE | NATIVE | SO-D-10.3-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev | quarterly compliance review | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-
-**D-10 Summary:** 2 rules | Avg NI: 2.750 | 1 NATIVE, 1 INHERITED (managed monitoring)
-
----
-
-## 5. BEST PRACTICE RULES CATALOG (Fase de Especificação 4 — ported from legacy §5)
-
-> **Fase de Especificação 4 (this sprint):** Ported legacy `02_PHASE2_RULES/11_Rules_Catalog.md` §5 BPR tables into Rich Mode. BPR columns = 15 (9 legacy fields minus Source/NI replaced by Framework + 6 new Fase de Especificação 4 fields). **16 BPR × 15 cols = 240 cells** (6 new cols contribute 16 × 6 = **96 cells**). BPR has no regulatory reporting — Reporting column is uniformly `Internal audit only` (BPR derives from frameworks, not regulations).
-
-### D-01: Data Protection & Encryption (2 BPR)
-
-| Rule ID | Rule Description | Framework | Sub-Domain | Priority | Verification | Implementation | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
-|---------|------------------|-----------|------------|----------|--------------|----------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| BPR-D-01.1-001 | Use strong symmetric encryption for data at rest encryption | ISO 27001 A.8.24 | D-01.1 | P3 | TEST | NATIVE | LIGHTWEIGHT | P1 | CTO + Lead Dev | strong symmetric encryption validated in CI | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| BPR-D-01.2-001 | Implement current transport cryptographic standard for all network communications | NIST SC-8 | D-01.2 | P3 | TEST | NATIVE | LIGHTWEIGHT | P1 | CTO + Lead Dev | current transport cryptographic standard cert validation | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-
-### D-02: Vulnerability Management (2 BPR)
-
-| Rule ID | Rule Description | Framework | Sub-Domain | Priority | Verification | Implementation | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
-|---------|------------------|-----------|------------|----------|--------------|----------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| BPR-D-02.1-001 | Conduct quarterly vulnerability scans | OWASP ASVS V1 | D-02.1 | P3 | DEMONSTRATE | NATIVE | LIGHTWEIGHT | P1 | CTO + Lead Dev + Procurement | automated vulnerability scanner quarterly scan | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| BPR-D-02.2-001 | Apply critical patches within 72 hours | NIST SI-2 | D-02.2 | P3 | TEST | NATIVE | LIGHTWEIGHT | P1 | CTO + Lead Dev + Procurement | Patch SLA test | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-
-### D-03: Access Control (3 BPR)
-
-| Rule ID | Rule Description | Framework | Sub-Domain | Priority | Verification | Implementation | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
-|---------|------------------|-----------|------------|----------|--------------|----------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| BPR-D-03.1-001 | Implement role-based access control (RBAC) | ISO 27001 A.9.2 | D-03.1 | P3 | INSPECT | INHERITED | MINIMAL | P1 | CTO + Lead Dev | RBAC quarterly review | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| BPR-D-03.2-001 | Enable FIDO2 for MFA | NIST IA-2 | D-03.2 | P3 | TEST | INHERITED | MINIMAL | P1 | CTO + Lead Dev | MFA FIDO2 validation | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| BPR-D-03.4-001 | Harden systems using hardened-default baseline references | documented baseline control set | D-03.4 | P3 | INSPECT | NATIVE | LIGHTWEIGHT | P1 | CTO + Lead Dev | hardened-default compliance | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-
-### D-04: Incident Response (2 BPR)
-
-| Rule ID | Rule Description | Framework | Sub-Domain | Priority | Verification | Implementation | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
-|---------|------------------|-----------|------------|----------|--------------|----------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| BPR-D-04.3-001 | Maintain incident response playbook | ISO 27001 A.5.24 | D-04.3 | P3 | INSPECT | NATIVE | LIGHTWEIGHT | P1 | CTO + DPO + Compliance Lead | Playbook review audit | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| BPR-D-04.3-002 | Conduct tabletop exercises quarterly | NIST CSF2 RS.MA-01 | D-04.3 | P3 | DEMONSTRATE | NATIVE | LIGHTWEIGHT | P1 | CTO + DPO + Compliance Lead | Tabletop drill | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-
-### D-05: Data Lifecycle (1 BPR)
-
-| Rule ID | Rule Description | Framework | Sub-Domain | Priority | Verification | Implementation | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
-|---------|------------------|-----------|------------|----------|--------------|----------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| BPR-D-05.3-001 | Use documented media sanitization standard for media sanitization | documented media sanitization standard | D-05.3 | P3 | INSPECT | NATIVE | LIGHTWEIGHT | P1 | CTO + DPO | Sanitization audit | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-
-### D-07: Secure Development (2 BPR)
-
-| Rule ID | Rule Description | Framework | Sub-Domain | Priority | Verification | Implementation | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
-|---------|------------------|-----------|------------|----------|--------------|----------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| BPR-D-07.1-001 | Follow NIST SSDF secure development practices | NIST SSDF PO.5.1 | D-07.1 | P3 | INSPECT | NATIVE | LIGHTWEIGHT | P1 | CTO + Lead Dev | SSDF audit | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| BPR-D-07.2-001 | Conduct SAST/DAST in CI/CD pipeline | OWASP ASVS V3 | D-07.2 | P3 | DEMONSTRATE | NATIVE | LIGHTWEIGHT | P1 | CTO + Lead Dev | SAST/DAST gate check | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-
-### D-09: Governance & Documentation (1 BPR)
-
-| Rule ID | Rule Description | Framework | Sub-Domain | Priority | Verification | Implementation | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
-|---------|------------------|-----------|------------|----------|--------------|----------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| BPR-D-09.1-001 | Establish ISMS per ISO 27001 | ISO 27001 A.5.1 | D-09.1 | P3 | INSPECT | NATIVE | LIGHTWEIGHT | P1 | CTO + DPO + Compliance Lead + Legal | ISMS audit | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-
-### D-10: Monitoring & Audit (3 BPR)
-
-| Rule ID | Rule Description | Framework | Sub-Domain | Priority | Verification | Implementation | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
-|---------|------------------|-----------|------------|----------|--------------|----------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| BPR-D-10.2-001 | Retain logs for minimum 12 months | ISO 27001 A.8.16 | D-10.2 | P3 | INSPECT | INHERITED | LIGHTWEIGHT | P1 | CTO + Lead Dev | Log retention audit | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| BPR-D-10.3-001 | Conduct annual penetration testing | NIST CA-2 | D-10.3 | P3 | DEMONSTRATE | NATIVE | LIGHTWEIGHT | P1 | CTO + Lead Dev | Pentest report | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| BPR-D-10.3-002 | Use OWASP Testing Guide for security assessments | OWASP Testing Guide | D-10.3 | P3 | DEMONSTRATE | NATIVE | LIGHTWEIGHT | P1 | CTO + Lead Dev | OWASP-based assessment | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-
-**Best Practice Summary:** 16 rules | All P3 (recommended) | 13 NATIVE, 3 INHERITED
-
----
-
-## 6. RECONCILIATION CROSS-CHECKS (SPRINT 1)
-
-> Fase de Especificação 1 scope: cross-check the 46 rules (30 Compliance Rules + 16 Best Practice Rules) against the 30 obligations (Doc 08), verify the BPR distribution across 8 sub-domains, confirm framework sources (ISO 27001 / NIST / OWASP / CIS), and check NATIVE vs INHERITED implementation distribution. Legacy `02_PHASE2_RULES/` files are **read-only** and not modified by this section.
-
-### 6.1 Rule Count Verification
-
-| Check | Expected | Actual | Status |
-|-------|---------:|-------:|:------:|
-| Total rules in Doc 11 (§4 + §5) | 46 | 46 | PASS |
-| Compliance Rules (CR) in §4 | 30 | 30 | PASS |
-| Best Practice Rules (BPR) in §5 | 16 | 16 | PASS |
-| Unique CR IDs (no duplicates) | 30 | 30 | PASS |
-| Unique BPR IDs (no duplicates) | 16 | 16 | PASS |
-| Canonical format `CR-D-XX.X-NNN` / `BPR-D-XX.X-NNN` | 46/46 | 46/46 | PASS |
-
-### 6.2 Compliance Rule (CR) ↔ Obligation Mapping
-
-Each of the 30 CR rules maps to exactly 1 obligation via the `Source` column. Strict 1:1 mapping by ID suffix.
-
-| CR Rule | Source Clauses | Mapped Obligation | Status |
-|---------|----------------|-------------------|:------:|
-| CR-D-01.1-001 | GDPR-C04, GDPR-C14, CRA-C07 | OBL-D-01.1-001 | PASS |
-| CR-D-01.2-001 | GDPR-C15, CRA-C08 | OBL-D-01.2-001 | PASS |
-| CR-D-01.3-001 | CRA-C15 | OBL-D-01.3-001 | PASS (CR references phantom PO-D-01.3-001 — see §6.7 F-03) |
-| CR-D-01.4-001 | GDPR-C05, CRA-C09 | OBL-D-01.4-001 | PASS |
-| CR-D-02.1-001 | CRA-C01, CRA-C17 | OBL-D-02.1-001 | PASS |
-| CR-D-02.2-001 | CRA-C04, CRA-C19 | OBL-D-02.2-001 | PASS |
-| CR-D-02.3-001 | CRA-C21, CRA-C26 | OBL-D-02.3-001 | PASS |
-| CR-D-03.1-001 | CRA-C05 | OBL-D-03.1-001 | PASS |
-| CR-D-03.2-001 | CRA-C06 | OBL-D-03.2-001 | PASS |
-| CR-D-03.3-001 | GDPR-C10, GDPR-C17 | OBL-D-03.3-001 | PASS |
-| CR-D-03.4-001 | CRA-C03 | OBL-D-03.4-001 | PASS |
-| CR-D-04.1-001 | CRA-C13 | OBL-D-04.1-001 | PASS |
-| CR-D-04.2-001 | GDPR-C18, CRA-C11 | OBL-D-04.2-001 | PASS |
-| CR-D-04.3-001 | GDPR-C21, GDPR-C23, CRA-C25 | OBL-D-04.3-001 | PASS |
-| CR-D-04.4-001 | GDPR-C16 | OBL-D-04.4-001 | PASS |
-| CR-D-05.1-001 | GDPR-C01, CRA-C10 | OBL-D-05.1-001 | PASS |
-| CR-D-05.2-001 | GDPR-C02, GDPR-C03 | OBL-D-05.2-001 | PASS |
-| CR-D-05.3-001 | GDPR-C06, CRA-C16 | OBL-D-05.3-001 | PASS |
-| CR-D-05.4-001 | GDPR-C07 | OBL-D-05.4-001 | PASS |
-| CR-D-06.1-001 | GDPR-C11 | OBL-D-06.1-001 | PASS |
-| CR-D-06.2-001 | CRA-C18 | OBL-D-06.2-001 | PASS |
-| CR-D-06.3-001 | GDPR-C12 | OBL-D-06.3-001 | PASS |
-| CR-D-07.1-001 | GDPR-C09, CRA-C02, CRA-C22 | OBL-D-07.1-001 | PASS |
-| CR-D-08.1-001 | GDPR-C27 | OBL-D-08.1-001 | PASS |
-| CR-D-08.2-001 | GDPR-C28 | OBL-D-08.2-001 | PASS |
-| CR-D-09.1-001 | GDPR-C08, GDPR-C25, GDPR-C26, CRA-C24 | OBL-D-09.1-001 | PASS |
-| CR-D-09.2-001 | GDPR-C20, GDPR-C24, CRA-C23 | OBL-D-09.2-001 | PASS |
-| CR-D-09.4-001 | GDPR-C13, GDPR-C22 | OBL-D-09.4-001 | PASS |
-| CR-D-10.2-001 | CRA-C14 | OBL-D-10.2-001 | PASS |
-| CR-D-10.3-001 | GDPR-C19, CRA-C20 | OBL-D-10.3-001 | PASS |
-
-**Summary:** 30/30 CR rules mapped 1:1 to obligations (100% PASS). The 30 OBLs ↔ 30 CRs mapping is the strongest link in the Phase 2 chain.
-
-### 6.3 Best Practice Rule (BPR) Sub-Domain Distribution
-
-The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks, not regulations). They spread across 8 sub-domains as follows:
-
-| Sub-Domain | BPR Count | BPR IDs | Framework(s) |
-|------------|----------:|---------|--------------|
-| D-01 | 2 | BPR-D-01.1-001, BPR-D-01.2-001 | ISO 27001 A.8.24, NIST SC-8 |
-| D-02 | 2 | BPR-D-02.1-001, BPR-D-02.2-001 | OWASP ASVS V1, NIST SI-2 |
-| D-03 | 3 | BPR-D-03.1-001, BPR-D-03.2-001, BPR-D-03.4-001 | ISO 27001 A.9.2, NIST IA-2, documented baseline control set |
-| D-04 | 2 | BPR-D-04.3-001, BPR-D-04.3-002 | ISO 27001 A.5.24, NIST CSF2 RS.MA-01 |
-| D-05 | 1 | BPR-D-05.3-001 | documented media sanitization standard |
-| D-07 | 2 | BPR-D-07.1-001, BPR-D-07.2-001 | NIST SSDF PO.5.1, OWASP ASVS V3 |
-| D-09 | 1 | BPR-D-09.1-001 | ISO 27001 A.5.1 |
-| D-10 | 3 | BPR-D-10.2-001, BPR-D-10.3-001, BPR-D-10.3-002 | ISO 27001 A.8.16, NIST CA-2, OWASP Testing Guide |
-| **TOTAL** | **16** | — | — |
-
-**Verification:** 2+2+3+2+1+2+1+3 = **16 BPR** ✓. Sprint Plan expected distribution (D-01: 2, D-02: 2, D-03: 3, D-04: 2, D-05: 1, D-07: 2, D-09: 1, D-10: 3) matches actual. PASS.
-
-### 6.4 BPR Framework Source Distribution
-
-| Framework | BPR Count | Rules |
-|-----------|----------:|-------|
-| **ISO 27001** | 5 | BPR-D-01.1-001 (A.8.24), BPR-D-03.1-001 (A.9.2), BPR-D-04.3-001 (A.5.24), BPR-D-09.1-001 (A.5.1), BPR-D-10.2-001 (A.8.16) |
-| **NIST** | 7 | BPR-D-01.2-001 (SC-8), BPR-D-02.2-001 (SI-2), BPR-D-03.2-001 (IA-2), BPR-D-04.3-002 (CSF2 RS.MA-01), BPR-D-05.3-001 (SP 800-88), BPR-D-07.1-001 (SSDF PO.5.1), BPR-D-10.3-001 (CA-2) |
-| **OWASP** | 3 | BPR-D-02.1-001 (ASVS V1), BPR-D-07.2-001 (ASVS V3), BPR-D-10.3-002 (Testing Guide) |
-| **CIS** | 1 | BPR-D-03.4-001 (Control 4) |
-| **TOTAL** | **16** | — |
-
-**Verification:** 5+7+3+1 = **16 BPR** ✓. All 4 framework sources represented (ISO 27001, NIST, OWASP, CIS) per Sprint Plan. PASS.
-
-### 6.5 Implementation Mode Distribution (NATIVE vs INHERITED)
-
-**Compliance Rules (30):**
-
-| Implementation | Count | Rules |
-|----------------|------:|-------|
-| **NATIVE** | 27 | All CR-D-XX.X except the 3 INHERITED below |
-| **INHERITED** | 3 | CR-D-03.1-001 (managed identity service), CR-D-03.2-001 (managed identity service MFA), CR-D-10.2-001 (managed monitoring) |
-
-**Best Practice Rules (16):**
-
-| Implementation | Count | Rules |
-|----------------|------:|-------|
-| **NATIVE** | 13 | All BPR except the 3 INHERITED below |
-| **INHERITED** | 3 | BPR-D-03.1-001 (ISO 27001 RBAC → managed identity service), BPR-D-03.2-001 (NIST IA-2 FIDO2 → managed identity service), BPR-D-10.2-001 (ISO 27001 A.8.16 → managed monitoring) |
-
-**Aggregate (46 rules):**
-
-| Implementation Mode | CR | BPR | Total | Percentage |
-|--------------------|---:|----:|------:|-----------:|
-| **NATIVE** | 27 | 13 | 40 | 87.0% |
-| **INHERITED** | 3 | 3 | 6 | 13.0% |
-| **TOTAL** | **30** | **16** | **46** | **100%** |
-
-**Inherited sources:** managed hosting (encryption, logging, infrastructure) — 4 rules; managed identity service (authentication, MFA) — 2 rules.
-
-### 6.6 NI Distribution Summary
-
-| Bucket | CR Count | BPR Count | Total |
-|--------|---------:|----------:|------:|
-| NI = 3.000 | 20 | 0 | 20 |
-| NI = 2.500–2.999 | 7 | 0 | 7 |
-| NI = 2.000–2.499 | 3 | 0 | 3 |
-| All BPR (P3 best practice, no NI) | 0 | 16 | 16 |
-| **TOTAL** | **30** | **16** | **46** |
-
-**Average NI (CR only):** 2.842. **High-NI rules (≥2.5):** 27/30 CR (90.0%).
-
-### 6.7 Findings — Flagged for Human Review
-
-| ID | Severity | Description | Recommendation |
-|----|----------|-------------|----------------|
-| **F-03** | LOW | Doc 11 §4 row CR-D-01.3-001 references `PO-D-01.3-001` in the "Related Goals" column — but no PO-D-01.3-001 exists in Doc 10. | Same root cause as Doc 08 F-01 / Doc 10 F-01. Fix by adding the missing PG or updating the CR reference. |
-| **F-08** | INFO | Doc 11 §8 traceability summary says "StrategicTension Resolution: 3 (6.5%)" — but the methodology derives 30 CR from obligations + 16 BPR from frameworks + a small number from tension resolution. The tension-resolution count is implicit (T-001→CR-D-04.3, T-003→CR-D-09.2, T-004→CR-D-07.1) and matches the v1.0 commentary. | Cosmetic; counts are correct as-is. |
-| **F-09** | INFO | Doc 11 §6 dashboard reports "Average Normative Intensity: 2.842" — matches the average of all 30 CR NI values. | PASS — no action. |
-
-### 6.8 Reconciliation Verdict
-
-| Dimension | Status |
-|-----------|:------:|
-| Rule count (30 CR + 16 BPR = 46) | PASS |
-| CR ↔ Obligation mapping (30/30, 1:1) | PASS |
-| BPR sub-domain distribution (8 sub-domains, 16 rules) | PASS |
-| BPR framework sources (ISO 27001 / NIST / OWASP / CIS) | PASS |
-| NATIVE vs INHERITED distribution (40/6) | PASS |
-| NI distribution | PASS |
-| ID integrity | PASS |
-
-**Fase de Especificação 1 verdict for Doc 11:** **PASS** — proceeds to Fase de Especificação 4 (adjusted fields) and Fase de Especificação 5 (DEEP enrichment) for all 46 rules. The only outstanding finding (F-03) depends on Doc 10 F-01 resolution (add PO-D-01.3-001 or update CR reference).
-
----
-
-## 7. RULE DETAIL CAmanaged relational database (Rich Mode)
-
-> This section contains the implementation-rule layer for all 46 catalog entries.
-> Each card preserves the upstream obligation or framework traceability and adds
-> operational implementation guidance for the TinyTask MICRO profile.
-> The fifteen canonical fields are populated for every card; the three final
-> Case_01 context fields provide the common reporting and assurance route.
->
-> **Card count:** 46 (30 Compliance Rules + 16 Best Practice Rules)
-> **Canonical cells:** 46 × 15 = 690
-
-### 7.1 Compliance Rule Detail Cards (30)
+## PARTE I — OBLIGATION CONTROLS (30 CR)
 
 ### CR-D-01.1-001 — Data at Rest Encryption
+Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 
 1. **Description:** All personal and product data in persistent storage must be protected by confidentiality mechanisms with segregated cryptographic material management. Operationalises OBL-D-01.1 by turning the confidentiality and integrity requirement into a mandatory storage-control baseline. The control reduces the impact of a stolen snapshot, misdirected backup, or unauthorised storage read. The rule is necessary because personal data and product data are processed in a multi-tenant boundary that is subject to GDPR Art. 5(1)(f) and CRA Annex I confidentiality obligations.
@@ -542,9 +166,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: ** GDPR Art. 5(1)(f) + Art. 32(1)(b); CRA Art. 24
+    - Phase 1: AG-D-01 (Doc13 §2.1)
+    - Obligation: OBL-D-01.1-001
+    - Objective: PO-D-01.1-001, SO-D-01.1-001
+
+24. **Framework Anchors:**
+    - CSF: PR.DS-01, PR.DS-10, PR.PS-04
+    - PF: PR.DS-P1, UNMAPPED_PF (PR.DS-10 risk-strategy mgmt + PR.PS-04 log records — no PF 1.0 analogue)
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.8.24
+    - SSDF: PO.5
+
 ---
 
 ### CR-D-01.2-001 — Data in Transit Encryption
+Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 
 1. **Description:** All personal and product data crossing network boundaries must be protected by confidentiality mechanisms appropriate to the channel classification. Operationalises OBL-D-01.2 by turning the in-transit confidentiality requirement into a mandatory channel-control baseline. The control prevents interception and downgrade attacks while data moves between processing components and external interfaces. The rule supplies evidence that the boundary is protected beyond the storage layer, satisfying GDPR Art. 32(1)(a) and CRA Annex I in-transit confidentiality.
@@ -604,9 +242,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: ** GDPR Art. 5(1)(f) + Art. 32(1)(a); CRA Art. 25
+    - Phase 1: AG-D-01 (Doc13 §2.1)
+    - Obligation: OBL-D-01.2-001
+    - Objective: PO-D-01.2-001, SO-D-01.2-001
+
+24. **Framework Anchors:**
+    - CSF: PR.DS-02, PR.IR-01, PR.PS-04
+    - PF: PR.DS-P2, PR.PO-P7
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.8.24
+    - SSDF: -
+
 ---
 
 ### CR-D-01.3-001 — Cryptographic Key Management
+Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 
 1. **Description:** Cryptographic material used by protection mechanisms must be managed with segregation between material access and data access, and with documented lifecycle covering generation, rotation, revocation, and destruction. Operationalises OBL-D-01.3 by turning the key-management requirement into a mandatory material-control baseline. The control prevents data from being intelligible when material access is compromised, and supports GDPR Art. 4(5) pseudonymisation test on a single artefact.
@@ -667,9 +319,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: ** CRA Art. 15 + Art. 24 (source clause CRA-C15);
+    - Phase 1: AG-D-01 (Doc13 §2.1)
+    - Obligation: OBL-D-01.3-001
+    - Objective: PO-D-01.3-001
+
+24. **Framework Anchors:**
+    - CSF: GV.OV-01, GV.RM-04, PR.AA-03, PR.AA-04, PR.DS-01, PR.IR-03
+    - PF: PR.DS-P1, CT.DP-P2
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.8.24
+    - SSDF: -
+
 ---
 
 ### CR-D-01.4-001 — Data Integrity Mechanisms
+Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 
 1. **Description:** All personal and product data must be protected against unauthorised modification through integrity controls appropriate to data class. Operationalises OBL-D-01.4 by turning the integrity requirement into a mandatory data-control baseline. The control detects corruption, logs it, and reports it. The rule supports GDPR Art. 5(1)(d) accuracy principle and CRA Annex I integrity obligations.
@@ -730,9 +396,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: ** GDPR Art. 5(1)(d) + Art. 32(1)(b); CRA Annex I §1.3(c)
+    - Phase 1: AG-D-01 (Doc13 §2.1)
+    - Obligation: OBL-D-01.4-001
+    - Objective: PO-D-01.4-001, SO-D-01.4-001
+
+24. **Framework Anchors:**
+    - CSF: PR.DS-01, PR.DS-02, PR.DS-10, PR.DS-01, PR.DS-10, PR.IR-03, PR.IR-04, PR.PS-04
+    - PF: CT.DM-P1, CT.DM-P3
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.8.24
+    - SSDF: -
+
 ---
 
 ### CR-D-02.1-001 — Vulnerability-Free Release
+Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 
 1. **Description:** The implementation rule requires each TinyTask release to be
@@ -808,9 +488,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: ** CRA Art. 17 + Art. 5 (source clauses CRA-C01, CRA-C17).
+    - Phase 1: AG-D-02 (Doc13 §2.2)
+    - Obligation: OBL-D-02.1-001
+    - Objective: SO-D-02.1-001
+
+24. **Framework Anchors:**
+    - CSF: GV.OV-02, ID.AM-02, ID.IM-02, ID.RA-01, ID.RA-03, ID.RA-05, PR.PS-02
+    - PF: ID.RA-P3, ID.RA-P5
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.8.8
+    - SSDF: RV.1
+
 ---
 
 ### CR-D-02.2-001 — Automated Security Updates and Patch Remediation
+Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 
 1. **Description:** The implementation rule requires TinyTask to identify and remediate
@@ -886,9 +580,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** N/A — product-security deliverable (SSDF RV.2)
 
+23. **Traceability:**
+    - Legal: ** CRA Art. 4 + Art. 5 (source clauses CRA-C04, CRA-C19).
+    - Phase 1: AG-D-02 (Doc13 §2.2)
+    - Obligation: OBL-D-02.2-001
+    - Objective: SO-D-02.2-001
+
+24. **Framework Anchors:**
+    - CSF: GV.OV-02, ID.RA-01, PR.IR-03, PR.PS-01, PR.PS-02
+    - PF: UNMAPPED_PRIVACY (patch cadence is product-security concern; no PF subcat anchored)
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.8.8
+    - SSDF: RV.2
+
 ---
 
 ### CR-D-02.3-001 — Coordinated Vulnerability Disclosure and Reporting
+Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 
 1. **Description:** The implementation rule requires TinyTask to maintain a public
@@ -964,9 +672,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** N/A — product-security deliverable (SSDF RV.1)
 
+23. **Traceability:**
+    - Legal: ** CRA Art. 19 + Art. 20 (source clauses CRA-C21, CRA-C26).
+    - Phase 1: AG-D-02 (Doc13 §2.2)
+    - Obligation: OBL-D-02.3-001
+    - Objective: SO-D-02.3-001
+
+24. **Framework Anchors:**
+    - CSF: GV.PO-01, GV.SC-04, ID.RA-01, RS.CO-03, RS.MA-01
+    - PF: UNMAPPED_PRIVACY (CVD is security-disclosure; no PF subcat anchored)
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.5.5
+    - SSDF: RV.1
+
 ---
 
 ### CR-D-03.1-001 — Authentication and Access Control
+Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 
 1. **Description:** The implementation rule requires authentication and access-control
@@ -1043,9 +765,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: ** CRA Art. 10 (source clause CRA-C05).
+    - Phase 1: AG-D-03 (Doc13 §2.3)
+    - Obligation: OBL-D-03.1-001
+    - Objective: SO-D-03.1-001
+
+24. **Framework Anchors:**
+    - CSF: ID.AM-01, PR.AA-01, PR.AA-02, PR.AA-03, PR.AA-05, PR.AA-06, PR.DS-10
+    - PF: PR.AC-P1, PR.AC-P6, PR.AC-P4, UNMAPPED_PF (asset inventory + risk-strategy data mgmt — no PF 1.0 analogue)
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.5.16
+    - SSDF: -
+
 ---
 
 ### CR-D-03.2-001 — Administrative Multi-Factor Authentication
+Type: CONTROL — OBLIGATION (MUST, NI=2 (SHOULD))
 
 
 1. **Description:** The implementation rule requires multi-factor authentication for
@@ -1125,9 +861,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: ** CRA Art. 9 (source clause CRA-C06); related GDPR security
+    - Phase 1: AG-D-03 (Doc13 §2.3)
+    - Obligation: OBL-D-03.2-001
+    - Objective: SO-D-03.2-001
+
+24. **Framework Anchors:**
+    - CSF: PR.AA-03, PR.AA-04, PR.AA-05, PR.AA-06, PR.AT-02
+    - PF: PR.AC-P6, PR.AC-P4, GV.AT-P1, UNMAPPED_PF (identity assertions — no PF 1.0 subcategory)
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.8.5
+    - SSDF: -
+
 ---
 
 ### CR-D-03.3-001 — Authorisation and Least Privilege
+Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 
 1. **Description:** The implementation rule requires TinyTask to restrict actions and
@@ -1204,9 +954,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: ** GDPR Art. 5(1)(c) + Art. 22 and Art. 32(1)(b); CRA Art. 8
+    - Phase 1: AG-D-03 (Doc13 §2.3)
+    - Obligation: OBL-D-03.3-001
+    - Objective: SO-D-03.3-001
+
+24. **Framework Anchors:**
+    - CSF: ID.AM-01, ID.AM-02, PR.AA-01, PR.AA-03, PR.AA-05, PR.AA-06, PR.PS-04
+    - PF: CT.PO-P1, PR.AC-P1, PR.AC-P6, PR.AC-P4, UNMAPPED_PF (asset inventories + log records — no PF 1.0 analogue)
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.5.15
+    - SSDF: -
+
 ---
 
 ### CR-D-03.4-001 — Secure System Defaults
+Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 
 1. **Description:** The implementation rule requires every TinyTask deployment and
@@ -1283,9 +1047,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: ** CRA Art. 3 + Art. 8 (source clause CRA-C03); related GDPR
+    - Phase 1: AG-D-03 (Doc13 §2.3)
+    - Obligation: OBL-D-03.4-001
+    - Objective: SO-D-03.4-001
+
+24. **Framework Anchors:**
+    - CSF: GV.PO-01, GV.SC-03, PR.DS-10, PR.PS-01, PR.PS-04
+    - PF: CT.DP-P4, CT.PO-P4
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.8.9
+    - SSDF: PW.9
+
 ---
 
 ### CR-D-04.1-001 — Exploit Severity Limitation and Fail-Safe Design
+Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 
 1. **Description:** The implementation rule requires TinyTask to limit the severity of
@@ -1362,9 +1140,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: ** CRA Art. 6 + Art. 13; related GDPR security rationale:
+    - Phase 1: AG-D-04 (Doc13 §2.4)
+    - Obligation: OBL-D-04.1-001
+    - Objective: SO-D-04.1-001
+
+24. **Framework Anchors:**
+    - CSF: DE.AE-02, DE.CM-01, DE.CM-09, ID.RA-04, PR.PS-04, RS.MA-01, RS.MA-02, RS.MA-03
+    - PF: CM.AW-P7
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.5.25
+    - SSDF: RV.1
+
 ---
 
 ### CR-D-04.2-001 — Availability Restoration and DoS Resilience
+Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 
 1. **Description:** The implementation rule requires TinyTask to restore availability
@@ -1442,9 +1234,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: ** GDPR Art. 32(1)(c); CRA Art. 11 (source clauses GDPR-C18
+    - Phase 1: AG-D-04 (Doc13 §2.4)
+    - Obligation: OBL-D-04.2-001
+    - Objective: SO-D-04.2-001
+
+24. **Framework Anchors:**
+    - CSF: DE.CM-09, PR.DS-10, PR.IR-03, PR.IR-04, RC.RP-01, RC.RP-04, RS.MI-01, RS.MI-02
+    - PF: PR.PO-P7, CT.DM-P10
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.5.26
+    - SSDF: -
+
 ---
 
 ### CR-D-04.3-001 — Dual Regulatory Incident Notification
+Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 
 1. **Description:** The implementation rule requires TinyTask to route qualifying
@@ -1523,9 +1329,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: ** GDPR Art. 33(1) + Art. 33(2) + Art. 33(3); CRA Art. 20
+    - Phase 1: AG-D-04 (Doc13 §2.4)
+    - Obligation: OBL-D-04.3-001
+    - Objective: SO-D-04.3-001
+
+24. **Framework Anchors:**
+    - CSF: RS.CO-02, RS.MA-01, RS.MA-01, RS.MA-02, RS.MA-03, RS.MA-01
+    - PF: CM.AW-P7, CM.AW-P8, CM.PO-P1, CM.PO-P2
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.5.24
+    - SSDF: -
+
 ---
 
 ### CR-D-04.4-001 — Data Restoration and Recovery
+Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 
 1. **Description:** The implementation rule requires TinyTask to restore systems and
@@ -1604,9 +1424,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: ** GDPR Art. 32(1)(b) and (c) + Art. 19; CRA Art. 26
+    - Phase 1: AG-D-04 (Doc13 §2.4)
+    - Obligation: OBL-D-04.4-001
+    - Objective: SO-D-04.4-001
+
+24. **Framework Anchors:**
+    - CSF: PR.DS-01, PR.DS-10, PR.IR-03, PR.IR-04, RC.RP-01, RC.RP-03, RC.RP-04
+    - PF: PR.DS-P1, PR.PO-P7, PR.DS-P4, PR.PT-P4, UNMAPPED_PF (recover-execution + risk-strategy mgmt — PF 1.0 has no Recover axis)
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.8.13
+    - SSDF: -
+
 ---
 
 ### CR-D-05.1-001 — Data Minimisation
+Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 
 1. **Description:** The implementation rule requires TinyTask to collect and process
@@ -1683,9 +1517,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: ** GDPR Art. 5(1)(c); CRA Annex I §1.2(c)
+    - Phase 1: AG-D-05 (Doc13 §2.5)
+    - Obligation: OBL-D-05.1-001
+    - Objective: PO-D-05.1-001
+
+24. **Framework Anchors:**
+    - CSF: GV.OC-03, GV.PO-01, ID.AM-03, PR.DS-01, PR.DS-10, PR.PS-06
+    - PF: CT.PO-P4, CT.DP-P4, ID.RA-P3
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.8.10
+    - SSDF: -
+
 ---
 
 ### CR-D-05.2-001 — Storage Limitation and Retention
+Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 
 1. **Description:** The implementation rule requires TinyTask to retain personal data
@@ -1762,9 +1610,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: ** GDPR Art. 5(1)(e) (source clauses GDPR-C02, GDPR-C03).
+    - Phase 1: AG-D-05 (Doc13 §2.5)
+    - Obligation: OBL-D-05.2-001
+    - Objective: PO-D-05.2-001
+
+24. **Framework Anchors:**
+    - CSF: GV.OC-04, GV.OV-02, GV.PO-02, ID.AM-03, PR.DS-10, PR.PS-02, PR.PS-04
+    - PF: CT.PO-P4, CT.DM-P5
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.5.33
+    - SSDF: PS.3
+
 ---
 
 ### CR-D-05.3-001 — Complete and Secure Data Erasure
+Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 
 1. **Description:** The implementation rule requires TinyTask to complete a verified
@@ -1840,9 +1702,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: ** GDPR Art. 17; CRA Art. 11
+    - Phase 1: AG-D-05 (Doc13 §2.5)
+    - Obligation: OBL-D-05.3-001
+    - Objective: PO-D-05.3-001
+
+24. **Framework Anchors:**
+    - CSF: GV.SC-04, PR.DS-10, PR.DS-10, PR.DS-02
+    - PF: CT.DM-P4, CT.DM-P5, PR.DS-P2
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.8.10
+    - SSDF: -
+
 ---
 
 ### CR-D-05.4-001 — Structured Data Portability
+Type: CONTROL — OBLIGATION (MUST, NI=2 (SHOULD))
 
 
 1. **Description:** The implementation rule requires TinyTask to provide a data
@@ -1917,9 +1793,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: ** GDPR Art. 20 (source clause GDPR-C07).
+    - Phase 1: AG-D-05 (Doc13 §2.5)
+    - Obligation: OBL-D-05.4-001
+    - Objective: PO-D-05.4-001
+
+24. **Framework Anchors:**
+    - CSF: PR.DS-10, PR.DS-10, PR.AA-03, PR.DS-02
+    - PF: CT.DM-P1, CT.DM-P6
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.5.14
+    - SSDF: -
+
 ---
 
 ### CR-D-06.1-001 — Procefederated single sign-onr Due Diligence
+Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 
 1. **Description:** The implementation rule requires TinyTask to use processors that
@@ -1997,9 +1887,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: ** GDPR Art. 28(1); related CRA supply-chain rationale:
+    - Phase 1: AG-D-06 (Doc13 §2.6)
+    - Obligation: OBL-D-06.1-001
+    - Objective: SO-D-06.1-001
+
+24. **Framework Anchors:**
+    - CSF: GV.SC-01, GV.SC-02, GV.SC-03, GV.SC-04, ID.AM-04, ID.RA-02
+    - PF: ID.DE-P1, ID.IM-P2
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.5.19
+    - SSDF: PW.4
+
 ---
 
 ### CR-D-06.2-001 — Software Bill of Materials
+Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 
 1. **Description:** The implementation rule requires TinyTask to generate and retain a
@@ -2075,9 +1979,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** N/A — product-security deliverable (SSDF PS.3)
 
+23. **Traceability:**
+    - Legal: ** CRA Art. 18(2) + Annex I §1.4 (source clause CRA-C18).
+    - Phase 1: AG-D-06 (Doc13 §2.6)
+    - Obligation: OBL-D-06.2-001
+    - Objective: SO-D-06.2-001
+
+24. **Framework Anchors:**
+    - CSF: GV.SC-02, GV.SC-03, ID.AM-02, ID.RA-01, PR.PS-02
+    - PF: UNMAPPED_PRIVACY (SBOM is product-security artefact; no PF subcat anchored)
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.5.21
+    - SSDF: PS.3
+
 ---
 
 ### CR-D-06.3-001 — Contractual Procefederated single sign-onr Security
+Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 
 1. **Description:** The implementation rule requires TinyTask to bind processors to
@@ -2156,9 +2074,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: ** GDPR Art. 28(3); related CRA supply-chain rationale:
+    - Phase 1: AG-D-06 (Doc13 §2.6)
+    - Obligation: OBL-D-06.3-001
+    - Objective: SO-D-06.3-001
+
+24. **Framework Anchors:**
+    - CSF: GV.OC-03, GV.SC-02, GV.SC-03, GV.SC-04, PR.DS-10, PR.PS-06, RS.MA-01, RS.MI-01
+    - PF: ID.DE-P3, ID.DE-P4, UNMAPPED_PF (ecosystem risk into enterprise risk — no PF 1.0 subcategory)
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.5.20
+    - SSDF: -
+
 ---
 
 ### CR-D-07.1-001 — Security and Privacy by Design
+Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 
 1. **Description:** The implementation rule requires TinyTask to integrate data
@@ -2237,9 +2169,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: ** GDPR Art. 25; CRA Art. 18 + Art. 23 and Art. 13(8)-(9)
+    - Phase 1: AG-D-07 (Doc13 §2.7)
+    - Obligation: OBL-D-07.1-001
+    - Objective: PO-D-07.1-001
+
+24. **Framework Anchors:**
+    - CSF: GV.PO-02, ID.RA-01, PR.DS-10, PR.PS-01, PR.PS-02, PR.PS-06
+    - PF: GV.PO-P2, CT.PO-P4, CT.DP-P2, CT.DP-P4, CT.DP-P5
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.8.25
+    - SSDF: PO.1
+
 ---
 
 ### CR-D-08.1-001 — Annual Security Awareness
+Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 
 1. **Description:** The implementation rule requires every person involved in TinyTask
@@ -2316,9 +2262,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: ** GDPR Art. 39(1)(b) + Art. 5(2) (source clause GDPR-C27).
+    - Phase 1: AG-D-08 (Doc13 §2.8)
+    - Obligation: OBL-D-08.1-001
+    - Objective: SO-D-08.1-001
+
+24. **Framework Anchors:**
+    - CSF: PR.AT-01, PR.AT-02, PR.PS-01
+    - PF: GV.AT-P1, GV.AT-P2
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.6.3
+    - SSDF: PO.2
+
 ---
 
 ### CR-D-08.2-001 — Role-Specific Security Competence
+Type: CONTROL — OBLIGATION (MUST, NI=2 (SHOULD))
 
 
 1. **Description:** The implementation rule requires TinyTask personnel to receive
@@ -2397,9 +2357,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: ** GDPR Art. 37 + Art. 39; related CRA product-security competence:
+    - Phase 1: AG-D-08 (Doc13 §2.8)
+    - Obligation: OBL-D-08.2-001
+    - Objective: SO-D-08.2-001
+
+24. **Framework Anchors:**
+    - CSF: GV.RR-02, GV.RR-04, GV.SC-03, PR.AT-01, PR.AT-02, PR.AT-02
+    - PF: GV.AT-P1, GV.AT-P2
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.6.3
+    - SSDF: PO.2
+
 ---
 
 ### CR-D-09.1-001 — Security Governance and Technical Documentation
+Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 
 1. **Description:** The implementation rule requires TinyTask to maintain appropriate
@@ -2477,9 +2451,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: ** GDPR Art. 5(2) + Art. 24; CRA Art. 13 + Annex VII
+    - Phase 1: AG-D-09 (Doc13 §2.9)
+    - Obligation: OBL-D-09.1-001
+    - Objective: PO-D-09.1-001, SO-D-09.1-001
+
+24. **Framework Anchors:**
+    - CSF: GV.PO-01, GV.PO-02, GV.RM-04, GV.RR-02, GV.OV-01
+    - PF: GV.PO-P1, GV.PO-P5, GV.PO-P3, CM.PO-P1, UNMAPPED_PF (positive-risk GV.RM-04 — no PF 1.0 subcategory)
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.5.1
+    - SSDF: PO.4
+
 ---
 
 ### CR-D-09.2-001 — Unified Privacy and Cybersecurity Risk Assessment
+Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 
 1. **Description:** The implementation rule requires TinyTask to assess privacy impact
@@ -2557,9 +2545,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: ** GDPR Art. 32(2) + Art. 35 + Art. 36; CRA Art. 13(5)
+    - Phase 1: AG-D-09 (Doc13 §2.9)
+    - Obligation: OBL-D-09.2-001
+    - Objective: PO-D-09.2-001, SO-D-09.2-001
+
+24. **Framework Anchors:**
+    - CSF: ID.RA-01, ID.RA-04, ID.RA-05, GV.RM-06, GV.OV-02
+    - PF: ID.RA-P3, ID.RA-P4, ID.RA-P5, GV.RM-P1, GV.MT-P1
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.5.7
+    - SSDF: PW.1
+
 ---
 
 ### CR-D-09.4-001 — Processing and Breach Records
+Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 
 1. **Description:** The implementation rule requires TinyTask to maintain records of
@@ -2637,9 +2639,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: ** GDPR Art. 30 + Art. 33(5)
+    - Phase 1: AG-D-09 (Doc13 §2.9)
+    - Obligation: OBL-D-09.4-001
+    - Objective: PO-D-09.4-001
+
+24. **Framework Anchors:**
+    - CSF: GV.PO-02, ID.AM-08, ID.RA-05, PR.DS-10, RS.MA-03
+    - PF: ID.IM-P1, ID.IM-P4, ID.IM-P6, ID.IM-P8
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.5.33
+    - SSDF: PO.3
+
 ---
 
 ### CR-D-10.2-001 — Audit Logging and Traceability
+Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 
 1. **Description:** The implementation rule requires TinyTask to log security-relevant
@@ -2716,9 +2732,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: ** CRA Art. 22 (source clause CRA-C14); related GDPR accountability:
+    - Phase 1: AG-D-10 (Doc13 §2.10)
+    - Obligation: OBL-D-10.2-001
+    - Objective: SO-D-10.2-001
+
+24. **Framework Anchors:**
+    - CSF: DE.CM-01, GV.PO-02, ID.RA-04, PR.DS-01, PR.PS-04
+    - PF: CT.DM-P9, CT.DM-P4
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.8.15
+    - SSDF: PO.3
+
 ---
 
 ### CR-D-10.3-001 — Control Effectiveness Testing
+Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 
 1. **Description:** The implementation rule requires TinyTask to test the effectiveness
@@ -2795,11 +2825,25 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: ** GDPR Art. 32(1)(d) + Art. 28(3)(h); CRA Art. 14 + Art. 21
+    - Phase 1: AG-D-10 (Doc13 §2.10)
+    - Obligation: OBL-D-10.3-001
+    - Objective: SO-D-10.3-001
+
+24. **Framework Anchors:**
+    - CSF: DE.AE-02, GV.OV-03, ID.RA-05, ID.IM-02, PR.PS-06
+    - PF: ID.RA-P3, ID.RA-P5
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.5.35
+    - SSDF: PW.7
+
 ---
 
-### 7.2 Best Practice Rule Detail Cards (16)
+## PARTE II — BEST-PRACTICE CONTROLS (16 BPR)
 
 ### BPR-D-01.1-001 — Use strong symmetric encryption for Data at Rest
+Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 
 
 1. **Description:** This best-practice rule standardises strong symmetric encryption as TinyTask's default
@@ -2872,9 +2916,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: N/A — Best Practice Rule (derived from A.8.24 / PR.DS-01, PR.DS-10, PR.PS-04)
+    - Phase 1: AG-D-01 (Doc13 §2.1)
+    - Obligation: N/A — Best Practice Rule (derived from framework)
+    - Objective: SO--D-01.1-001
+
+24. **Framework Anchors:**
+    - CSF: PR.DS-01, PR.DS-10, PR.PS-04
+    - PF: PR.DS-P1
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.8.24
+    - SSDF: -
+
 ---
 
 ### BPR-D-01.2-001 — Implement current transport cryptographic standard for All Networks
+Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 
 
 1. **Description:** This best-practice rule establishes current transport cryptographic standard as the preferred
@@ -2946,9 +3004,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: N/A — Best Practice Rule (derived from A.8.24 / PR.DS-02, PR.IR-01, PR.PS-04)
+    - Phase 1: AG-D-01 (Doc13 §2.1)
+    - Obligation: N/A — Best Practice Rule (derived from framework)
+    - Objective: SO--D-01.2-001
+
+24. **Framework Anchors:**
+    - CSF: PR.DS-02, PR.IR-01, PR.PS-04
+    - PF: PR.DS-P2, PR.PO-P7
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.8.24
+    - SSDF: -
+
 ---
 
 ### BPR-D-02.1-001 — Conduct Quarterly Vulnerability Scans
+Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 
 
 1. **Description:** This best-practice rule requires a recorded vulnerability scan of
@@ -3022,9 +3094,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: N/A — Best Practice Rule (derived from A.8.24 / ID.RA-01, ID.RA-03, ID.RA-05, ID.IM-02, PR.PS-02)
+    - Phase 1: AG-D-02 (Doc13 §2.2)
+    - Obligation: N/A — Best Practice Rule (derived from framework)
+    - Objective: SO--D-02.1-001
+
+24. **Framework Anchors:**
+    - CSF: ID.RA-01, ID.RA-03, ID.RA-05, ID.IM-02, PR.PS-02
+    - PF: ID.RA-P3, ID.RA-P5
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.8.24
+    - SSDF: -
+
 ---
 
 ### BPR-D-02.2-001 — Apply Critical Patches Within 72 Hours
+Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 
 
 1. **Description:** This best-practice rule establishes a maximum 72-hour remediation
@@ -3099,9 +3185,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** N/A — product-security deliverable (SSDF RV.2)
 
+23. **Traceability:**
+    - Legal: N/A — Best Practice Rule (derived from A.8.24 / ID.RA-01, PR.IR-03, PR.PS-01, PR.PS-02)
+    - Phase 1: AG-D-02 (Doc13 §2.2)
+    - Obligation: N/A — Best Practice Rule (derived from framework)
+    - Objective: SO--D-02.2-001
+
+24. **Framework Anchors:**
+    - CSF: ID.RA-01, PR.IR-03, PR.PS-01, PR.PS-02
+    - PF: 
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.8.24
+    - SSDF: -
+
 ---
 
 ### BPR-D-03.1-001 — Implement Role-Based Access Control
+Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 
 
 1. **Description:** This best-practice rule requires TinyTask to express application and
@@ -3175,9 +3275,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: N/A — Best Practice Rule (derived from A.8.24 / PR.AA-01, PR.AA-03, PR.AA-05, PR.AA-06, ID.AM-01)
+    - Phase 1: AG-D-03 (Doc13 §2.3)
+    - Obligation: N/A — Best Practice Rule (derived from framework)
+    - Objective: SO--D-03.1-001
+
+24. **Framework Anchors:**
+    - CSF: PR.AA-01, PR.AA-03, PR.AA-05, PR.AA-06, ID.AM-01
+    - PF: PR.AC-P1, PR.AC-P6, PR.AC-P4
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.8.24
+    - SSDF: -
+
 ---
 
 ### BPR-D-03.2-001 — Enable FIDO2 for MFA
+Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 
 
 1. **Description:** This best-practice rule selects FIDO2 as the preferred phishing-
@@ -3252,9 +3366,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: N/A — Best Practice Rule (derived from A.8.24 / PR.AA-03, PR.AA-04, PR.AA-05, PR.AA-06)
+    - Phase 1: AG-D-03 (Doc13 §2.3)
+    - Obligation: N/A — Best Practice Rule (derived from framework)
+    - Objective: SO--D-03.2-001
+
+24. **Framework Anchors:**
+    - CSF: PR.AA-03, PR.AA-04, PR.AA-05, PR.AA-06
+    - PF: PR.AC-P6, PR.AC-P4
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.8.24
+    - SSDF: -
+
 ---
 
 ### BPR-D-03.4-001 — Harden Systems Using hardened-default baseline references
+Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 
 
 1. **Description:** This best-practice rule requires TinyTask to use applicable CIS
@@ -3329,9 +3457,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: N/A — Best Practice Rule (derived from A.8.24 / GV.PO-01, PR.PS-01, PR.PS-04, ID.IM-02)
+    - Phase 1: AG-D-03 (Doc13 §2.3)
+    - Obligation: N/A — Best Practice Rule (derived from framework)
+    - Objective: SO--D-03.4-001
+
+24. **Framework Anchors:**
+    - CSF: GV.PO-01, PR.PS-01, PR.PS-04, ID.IM-02
+    - PF: CT.DP-P4, CT.PO-P4
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.8.24
+    - SSDF: -
+
 ---
 
 ### BPR-D-04.3-001 — Maintain an Incident Response Playbook
+Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 
 
 1. **Description:** This best-practice rule requires TinyTask to maintain one accessible
@@ -3407,9 +3549,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: N/A — Best Practice Rule (derived from A.8.24 / RS.MA-01, RS.MA-02, RS.MA-03, RS.MA-01, RS.CO-02, RC.RP-01)
+    - Phase 1: AG-D-04 (Doc13 §2.4)
+    - Obligation: N/A — Best Practice Rule (derived from framework)
+    - Objective: SO--D-04.3-001
+
+24. **Framework Anchors:**
+    - CSF: RS.MA-01, RS.MA-02, RS.MA-03, RS.MA-01, RS.CO-02, RC.RP-01
+    - PF: PR.PO-P7, CT.DM-P10
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.8.24
+    - SSDF: -
+
 ---
 
 ### BPR-D-04.3-002 — Conduct Tabletop Exercises Quarterly
+Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 
 
 1. **Description:** This best-practice rule requires TinyTask to conduct a quarterly
@@ -3486,9 +3642,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: N/A — Best Practice Rule (derived from A.8.24 / RS.MA-01, RS.MA-01, RS.MA-02, RS.CO-02, RS.MA-01, RC.RP-01)
+    - Phase 1: AG-D-04 (Doc13 §2.4)
+    - Obligation: N/A — Best Practice Rule (derived from framework)
+    - Objective: SO--D-04.3-002
+
+24. **Framework Anchors:**
+    - CSF: RS.MA-01, RS.MA-01, RS.MA-02, RS.CO-02, RS.MA-01, RC.RP-01
+    - PF: PR.PO-P7, CT.DM-P10
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.8.24
+    - SSDF: -
+
 ---
 
 ### BPR-D-05.3-001 — Use documented media sanitization standard for Media Sanitisation
+Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 
 
 1. **Description:** This best-practice rule requires TinyTask to use the documented media sanitization standard
@@ -3563,9 +3733,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: N/A — Best Practice Rule (derived from A.8.24 / PR.DS-10, PR.DS-10, GV.SC-04, ID.AM-08)
+    - Phase 1: AG-D-05 (Doc13 §2.5)
+    - Obligation: N/A — Best Practice Rule (derived from framework)
+    - Objective: SO--D-05.3-001
+
+24. **Framework Anchors:**
+    - CSF: PR.DS-10, PR.DS-10, GV.SC-04, ID.AM-08
+    - PF: CT.DM-P4, CT.DM-P5
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.8.24
+    - SSDF: -
+
 ---
 
 ### BPR-D-07.1-001 — Follow NIST SSDF Secure Development
+Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 
 
 1. **Description:** This best-practice rule requires TinyTask to use the NIST Secure
@@ -3641,9 +3825,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: N/A — Best Practice Rule (derived from A.8.24 / GV.PO-02, GV.RR-02, ID.RA-01, PR.PS-01, PR.PS-02, PR.PS-06)
+    - Phase 1: AG-D-07 (Doc13 §2.7)
+    - Obligation: N/A — Best Practice Rule (derived from framework)
+    - Objective: SO--D-07.1-001
+
+24. **Framework Anchors:**
+    - CSF: GV.PO-02, GV.RR-02, ID.RA-01, PR.PS-01, PR.PS-02, PR.PS-06
+    - PF: GV.PO-P2, CT.PO-P4
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.8.24
+    - SSDF: -
+
 ---
 
 ### BPR-D-07.2-001 — Conduct SAST and DAST in CI/CD
+Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 
 
 1. **Description:** This best-practice rule requires TinyTask to run static and dynamic
@@ -3719,9 +3917,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: N/A — Best Practice Rule (derived from A.8.24 / ID.RA-04, ID.RA-05, PR.PS-01, PR.PS-02, PR.PS-06)
+    - Phase 1: AG-D-07 (Doc13 §2.7)
+    - Obligation: N/A — Best Practice Rule (derived from framework)
+    - Objective: SO--D-07.2-001
+
+24. **Framework Anchors:**
+    - CSF: ID.RA-04, ID.RA-05, PR.PS-01, PR.PS-02, PR.PS-06
+    - PF: ID.RA-P4, ID.RA-P5
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.8.24
+    - SSDF: -
+
 ---
 
 ### BPR-D-09.1-001 — Establish an ISMS per ISO 27001
+Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 
 
 1. **Description:** This best-practice rule requires TinyTask to organise its security
@@ -3797,9 +4009,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: N/A — Best Practice Rule (derived from A.8.24 / GV.PO-01, GV.PO-02, GV.RM-01, GV.OV-01, GV.OV-03)
+    - Phase 1: AG-D-09 (Doc13 §2.9)
+    - Obligation: N/A — Best Practice Rule (derived from framework)
+    - Objective: SO--D-09.1-001
+
+24. **Framework Anchors:**
+    - CSF: GV.PO-01, GV.PO-02, GV.RM-01, GV.OV-01, GV.OV-03
+    - PF: GV.PO-P1, GV.RM-P1
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.8.24
+    - SSDF: -
+
 ---
 
 ### BPR-D-10.2-001 — Retain Logs for a Minimum of 12 Months
+Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 
 
 1. **Description:** This best-practice rule establishes a twelve-month minimum retention
@@ -3874,9 +4100,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: N/A — Best Practice Rule (derived from A.8.24 / DE.CM-01, DE.AE-02, GV.PO-02, PR.DS-01, PR.PS-04)
+    - Phase 1: AG-D-10 (Doc13 §2.10)
+    - Obligation: N/A — Best Practice Rule (derived from framework)
+    - Objective: SO--D-10.2-001
+
+24. **Framework Anchors:**
+    - CSF: DE.CM-01, DE.AE-02, GV.PO-02, PR.DS-01, PR.PS-04
+    - PF: CT.DM-P9, CT.DM-P4
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.8.24
+    - SSDF: -
+
 ---
 
 ### BPR-D-10.3-001 — Conduct Annual Penetration Testing
+Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 
 
 1. **Description:** This best-practice rule requires an annual penetration test of the
@@ -3951,9 +4191,23 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
+23. **Traceability:**
+    - Legal: N/A — Best Practice Rule (derived from A.8.24 / GV.OV-03, ID.RA-01, ID.RA-04, ID.RA-05, ID.IM-02)
+    - Phase 1: AG-D-10 (Doc13 §2.10)
+    - Obligation: N/A — Best Practice Rule (derived from framework)
+    - Objective: SO--D-10.3-001
+
+24. **Framework Anchors:**
+    - CSF: GV.OV-03, ID.RA-01, ID.RA-04, ID.RA-05, ID.IM-02
+    - PF: ID.RA-P3, ID.RA-P5
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.8.24
+    - SSDF: -
+
 ---
 
 ### BPR-D-10.3-002 — Use the OWASP Testing Guide for Assessments
+Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 
 
 1. **Description:** This best-practice rule requires TinyTask security assessments to
@@ -4028,46 +4282,357 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
----
+23. **Traceability:**
+    - Legal: N/A — Best Practice Rule (derived from A.8.24 / GV.OV-03, ID.RA-01, ID.RA-04, ID.RA-05, PR.PS-06)
+    - Phase 1: AG-D-10 (Doc13 §2.10)
+    - Obligation: N/A — Best Practice Rule (derived from framework)
+    - Objective: SO--D-10.3-002
 
-## 8. NEXT STEPS
-
-- [x] **Fase de Especificação 1:** Cross-check 30 CR rules ↔ 30 obligations; verify 16 BPR — DONE with PASS verdict
-- [x] **Fase de Especificação 3:** Regenerate 12_Rules_Catalog.xlsx (14 sheets, Sheet 2 = Rules_Catalog with 46 rows) — DONE
-- [x] **Fase de Especificação 4 (this sprint):** Port legacy §4 CR catalog (30 CR × 11 cols) + legacy §5 BPR catalog (16 BPR × 9 cols) into Rich §4/§5 with 17/15 cols (180 + 96 = 276 new Fase de Especificação 4 cells); resolve F-10 NI for CR-D-01.4-001 and CR-D-09.1-001 — DONE
-- [x] **Fase de Especificação 5:** Populate 15 fields per rule × 46 cards = 690 cells — DONE
-- [ ] Fase de Especificação 5 follow-up: Resolve F-03 (phantom PO-D-01.3-001 reference) — same root cause as Doc 08/10 F-01
-
-### 8.1 Fase de Especificação 4 — Rules Catalog Port Summary
-
-**Catalog tables added (§4 + §5):**
-
-| Catalog | Sub-domains | Rows | Cols | Cells | New-cols contribution |
-|---------|-------------|-----:|-----:|------:|----------------------:|
-| **CR catalog (§4)** | D-01 (4), D-02 (3), D-03 (4), D-04 (4), D-05 (4), D-06 (3), D-07 (1), D-08 (2), D-09 (3), D-10 (2) | 30 | 17 | 510 | 180 (30 × 6) |
-| **BPR catalog (§5)** | D-01 (2), D-02 (2), D-03 (3), D-04 (2), D-05 (1), D-07 (2), D-09 (1), D-10 (3) | 16 | 15 | 240 | 96 (16 × 6) |
-| **TOTAL** | — | **46** | — | **750** | **276** |
-
-**6 new Fase de Especificação 4 columns applied to each row (CR + BPR):**
-
-| Column | CR value source | BPR value source |
-|--------|-----------------|------------------|
-| Owner | Sub-domain heuristic (Doc 08 §4) | Same heuristic (CTO + Lead Dev default for BPR) |
-| Verification Criteria | Doc 08 §4 per-obligation values | Per-rule framework-specific values |
-| Implementation Status | Doc 07b §4 LIGHTWEIGHT target | `PARTIAL` (same) |
-| Implementation Priority | Doc 07b §4 LIGHTWEIGHT priority | `HIGH` (same) |
-| Affected Stakeholders | Cross-reference Sheet 12 + Phase 1 Doc 04d RACI | `Customers, DPO, CTO, ENISA` (same) |
-| Regulatory Reporting | Doc 08 §4 sub-domain heuristic | `Internal audit only` (BPR has no regulatory reporting) |
-
-**NI reconciliation (F-10 resolved):**
-
-| CR Rule | Rich NI (DR-002) | Legacy NI | Resolution |
-|---------|-----------------:|----------:|------------|
-| CR-D-01.4-001 | **2.500** | 3.000 | DR-002 AVG(2,3) = 2.500 |
-| CR-D-09.1-001 | **2.500** | 2.750 | DR-002 AVG(2,3,2,3) = 2.500 |
-
-The other 28 CR NI values match legacy (Doc 08 §6). Average NI recomputed with F-10 fix = **2.800** (vs legacy 2.842 and Fase de Especificação 1 2.817).
+24. **Framework Anchors:**
+    - CSF: GV.OV-03, ID.RA-01, ID.RA-04, ID.RA-05, PR.PS-06
+    - PF: ID.RA-P3, ID.RA-P5
+    - AI RMF: pending Case_02/03
+    - ISO 27001: A.8.24
+    - SSDF: -
 
 ---
 
-**End of Fase de Especificação 5c Deep Enrichment — Doc 11**
+## ANEXO A — CONTROL INDEX BY NIST CSF 2.0 FUNCTION
+
+| CSF Function | Subcategory | Control ID | Type | Implementation Status |
+|--------------|-------------|------------|------|-----------------------|
+| GV | GV.OV-01 | CR-D-01.3-001 | OBLIGATION | ** |
+| GV | GV.RM-04 | CR-D-01.3-001 | OBLIGATION | ** |
+| GV | GV.OV-02 | CR-D-02.1-001 | OBLIGATION | ** |
+| GV | GV.OV-02 | CR-D-02.2-001 | OBLIGATION | ** |
+| GV | GV.PO-01 | CR-D-02.3-001 | OBLIGATION | ** |
+| GV | GV.SC-04 | CR-D-02.3-001 | OBLIGATION | ** |
+| GV | GV.PO-01 | CR-D-03.4-001 | OBLIGATION | ** |
+| GV | GV.SC-03 | CR-D-03.4-001 | OBLIGATION | ** |
+| GV | GV.OC-03 | CR-D-05.1-001 | OBLIGATION | ** |
+| GV | GV.PO-01 | CR-D-05.1-001 | OBLIGATION | ** |
+| GV | GV.OC-04 | CR-D-05.2-001 | OBLIGATION | ** |
+| GV | GV.OV-02 | CR-D-05.2-001 | OBLIGATION | ** |
+| GV | GV.PO-02 | CR-D-05.2-001 | OBLIGATION | ** |
+| GV | GV.SC-04 | CR-D-05.3-001 | OBLIGATION | ** |
+| GV | GV.SC-01 | CR-D-06.1-001 | OBLIGATION | ** |
+| GV | GV.SC-02 | CR-D-06.1-001 | OBLIGATION | ** |
+| GV | GV.SC-03 | CR-D-06.1-001 | OBLIGATION | ** |
+| GV | GV.SC-04 | CR-D-06.1-001 | OBLIGATION | ** |
+| GV | GV.SC-02 | CR-D-06.2-001 | OBLIGATION | ** |
+| GV | GV.SC-03 | CR-D-06.2-001 | OBLIGATION | ** |
+| GV | GV.OC-03 | CR-D-06.3-001 | OBLIGATION | ** |
+| GV | GV.SC-02 | CR-D-06.3-001 | OBLIGATION | ** |
+| GV | GV.SC-03 | CR-D-06.3-001 | OBLIGATION | ** |
+| GV | GV.SC-04 | CR-D-06.3-001 | OBLIGATION | ** |
+| GV | GV.PO-02 | CR-D-07.1-001 | OBLIGATION | ** |
+| GV | GV.RR-02 | CR-D-08.2-001 | OBLIGATION | ** |
+| GV | GV.RR-04 | CR-D-08.2-001 | OBLIGATION | ** |
+| GV | GV.SC-03 | CR-D-08.2-001 | OBLIGATION | ** |
+| GV | GV.PO-01 | CR-D-09.1-001 | OBLIGATION | ** |
+| GV | GV.PO-02 | CR-D-09.1-001 | OBLIGATION | ** |
+| GV | GV.RM-04 | CR-D-09.1-001 | OBLIGATION | ** |
+| GV | GV.RR-02 | CR-D-09.1-001 | OBLIGATION | ** |
+| GV | GV.OV-01 | CR-D-09.1-001 | OBLIGATION | ** |
+| GV | GV.RM-06 | CR-D-09.2-001 | OBLIGATION | ** |
+| GV | GV.OV-02 | CR-D-09.2-001 | OBLIGATION | ** |
+| GV | GV.PO-02 | CR-D-09.4-001 | OBLIGATION | ** |
+| GV | GV.PO-02 | CR-D-10.2-001 | OBLIGATION | ** |
+| GV | GV.OV-03 | CR-D-10.3-001 | OBLIGATION | ** |
+| GV | GV.PO-01 | BPR-D-03.4-001 | BEST-PRACTICE | ** |
+| GV | GV.SC-04 | BPR-D-05.3-001 | BEST-PRACTICE | ** |
+| GV | GV.PO-02 | BPR-D-07.1-001 | BEST-PRACTICE | ** |
+| GV | GV.RR-02 | BPR-D-07.1-001 | BEST-PRACTICE | ** |
+| GV | GV.PO-01 | BPR-D-09.1-001 | BEST-PRACTICE | ** |
+| GV | GV.PO-02 | BPR-D-09.1-001 | BEST-PRACTICE | ** |
+| GV | GV.RM-01 | BPR-D-09.1-001 | BEST-PRACTICE | ** |
+| GV | GV.OV-01 | BPR-D-09.1-001 | BEST-PRACTICE | ** |
+| GV | GV.OV-03 | BPR-D-09.1-001 | BEST-PRACTICE | ** |
+| GV | GV.PO-02 | BPR-D-10.2-001 | BEST-PRACTICE | ** |
+| GV | GV.OV-03 | BPR-D-10.3-001 | BEST-PRACTICE | ** |
+| GV | GV.OV-03 | BPR-D-10.3-002 | BEST-PRACTICE | ** |
+| ID | ID.AM-02 | CR-D-02.1-001 | OBLIGATION | ** |
+| ID | ID.IM-02 | CR-D-02.1-001 | OBLIGATION | ** |
+| ID | ID.RA-01 | CR-D-02.1-001 | OBLIGATION | ** |
+| ID | ID.RA-03 | CR-D-02.1-001 | OBLIGATION | ** |
+| ID | ID.RA-05 | CR-D-02.1-001 | OBLIGATION | ** |
+| ID | ID.RA-01 | CR-D-02.2-001 | OBLIGATION | ** |
+| ID | ID.RA-01 | CR-D-02.3-001 | OBLIGATION | ** |
+| ID | ID.AM-01 | CR-D-03.1-001 | OBLIGATION | ** |
+| ID | ID.AM-01 | CR-D-03.3-001 | OBLIGATION | ** |
+| ID | ID.AM-02 | CR-D-03.3-001 | OBLIGATION | ** |
+| ID | ID.RA-04 | CR-D-04.1-001 | OBLIGATION | ** |
+| ID | ID.AM-03 | CR-D-05.1-001 | OBLIGATION | ** |
+| ID | ID.AM-03 | CR-D-05.2-001 | OBLIGATION | ** |
+| ID | ID.AM-04 | CR-D-06.1-001 | OBLIGATION | ** |
+| ID | ID.RA-02 | CR-D-06.1-001 | OBLIGATION | ** |
+| ID | ID.AM-02 | CR-D-06.2-001 | OBLIGATION | ** |
+| ID | ID.RA-01 | CR-D-06.2-001 | OBLIGATION | ** |
+| ID | ID.RA-01 | CR-D-07.1-001 | OBLIGATION | ** |
+| ID | ID.RA-01 | CR-D-09.2-001 | OBLIGATION | ** |
+| ID | ID.RA-04 | CR-D-09.2-001 | OBLIGATION | ** |
+| ID | ID.RA-05 | CR-D-09.2-001 | OBLIGATION | ** |
+| ID | ID.AM-08 | CR-D-09.4-001 | OBLIGATION | ** |
+| ID | ID.RA-05 | CR-D-09.4-001 | OBLIGATION | ** |
+| ID | ID.RA-04 | CR-D-10.2-001 | OBLIGATION | ** |
+| ID | ID.RA-05 | CR-D-10.3-001 | OBLIGATION | ** |
+| ID | ID.IM-02 | CR-D-10.3-001 | OBLIGATION | ** |
+| ID | ID.RA-01 | BPR-D-02.1-001 | BEST-PRACTICE | ** |
+| ID | ID.RA-03 | BPR-D-02.1-001 | BEST-PRACTICE | ** |
+| ID | ID.RA-05 | BPR-D-02.1-001 | BEST-PRACTICE | ** |
+| ID | ID.IM-02 | BPR-D-02.1-001 | BEST-PRACTICE | ** |
+| ID | ID.RA-01 | BPR-D-02.2-001 | BEST-PRACTICE | ** |
+| ID | ID.AM-01 | BPR-D-03.1-001 | BEST-PRACTICE | ** |
+| ID | ID.IM-02 | BPR-D-03.4-001 | BEST-PRACTICE | ** |
+| ID | ID.AM-08 | BPR-D-05.3-001 | BEST-PRACTICE | ** |
+| ID | ID.RA-01 | BPR-D-07.1-001 | BEST-PRACTICE | ** |
+| ID | ID.RA-04 | BPR-D-07.2-001 | BEST-PRACTICE | ** |
+| ID | ID.RA-05 | BPR-D-07.2-001 | BEST-PRACTICE | ** |
+| ID | ID.RA-01 | BPR-D-10.3-001 | BEST-PRACTICE | ** |
+| ID | ID.RA-04 | BPR-D-10.3-001 | BEST-PRACTICE | ** |
+| ID | ID.RA-05 | BPR-D-10.3-001 | BEST-PRACTICE | ** |
+| ID | ID.IM-02 | BPR-D-10.3-001 | BEST-PRACTICE | ** |
+| ID | ID.RA-01 | BPR-D-10.3-002 | BEST-PRACTICE | ** |
+| ID | ID.RA-04 | BPR-D-10.3-002 | BEST-PRACTICE | ** |
+| ID | ID.RA-05 | BPR-D-10.3-002 | BEST-PRACTICE | ** |
+| PR | PR.DS-01 | CR-D-01.1-001 | OBLIGATION | ** |
+| PR | PR.DS-10 | CR-D-01.1-001 | OBLIGATION | ** |
+| PR | PR.PS-04 | CR-D-01.1-001 | OBLIGATION | ** |
+| PR | PR.DS-02 | CR-D-01.2-001 | OBLIGATION | ** |
+| PR | PR.IR-01 | CR-D-01.2-001 | OBLIGATION | ** |
+| PR | PR.PS-04 | CR-D-01.2-001 | OBLIGATION | ** |
+| PR | PR.AA-03 | CR-D-01.3-001 | OBLIGATION | ** |
+| PR | PR.AA-04 | CR-D-01.3-001 | OBLIGATION | ** |
+| PR | PR.DS-01 | CR-D-01.3-001 | OBLIGATION | ** |
+| PR | PR.IR-03 | CR-D-01.3-001 | OBLIGATION | ** |
+| PR | PR.DS-01 | CR-D-01.4-001 | OBLIGATION | ** |
+| PR | PR.DS-02 | CR-D-01.4-001 | OBLIGATION | ** |
+| PR | PR.DS-10 | CR-D-01.4-001 | OBLIGATION | ** |
+| PR | PR.DS-01 | CR-D-01.4-001 | OBLIGATION | ** |
+| PR | PR.DS-10 | CR-D-01.4-001 | OBLIGATION | ** |
+| PR | PR.IR-03 | CR-D-01.4-001 | OBLIGATION | ** |
+| PR | PR.IR-04 | CR-D-01.4-001 | OBLIGATION | ** |
+| PR | PR.PS-04 | CR-D-01.4-001 | OBLIGATION | ** |
+| PR | PR.PS-02 | CR-D-02.1-001 | OBLIGATION | ** |
+| PR | PR.IR-03 | CR-D-02.2-001 | OBLIGATION | ** |
+| PR | PR.PS-01 | CR-D-02.2-001 | OBLIGATION | ** |
+| PR | PR.PS-02 | CR-D-02.2-001 | OBLIGATION | ** |
+| PR | PR.AA-01 | CR-D-03.1-001 | OBLIGATION | ** |
+| PR | PR.AA-02 | CR-D-03.1-001 | OBLIGATION | ** |
+| PR | PR.AA-03 | CR-D-03.1-001 | OBLIGATION | ** |
+| PR | PR.AA-05 | CR-D-03.1-001 | OBLIGATION | ** |
+| PR | PR.AA-06 | CR-D-03.1-001 | OBLIGATION | ** |
+| PR | PR.DS-10 | CR-D-03.1-001 | OBLIGATION | ** |
+| PR | PR.AA-03 | CR-D-03.2-001 | OBLIGATION | ** |
+| PR | PR.AA-04 | CR-D-03.2-001 | OBLIGATION | ** |
+| PR | PR.AA-05 | CR-D-03.2-001 | OBLIGATION | ** |
+| PR | PR.AA-06 | CR-D-03.2-001 | OBLIGATION | ** |
+| PR | PR.AT-02 | CR-D-03.2-001 | OBLIGATION | ** |
+| PR | PR.AA-01 | CR-D-03.3-001 | OBLIGATION | ** |
+| PR | PR.AA-03 | CR-D-03.3-001 | OBLIGATION | ** |
+| PR | PR.AA-05 | CR-D-03.3-001 | OBLIGATION | ** |
+| PR | PR.AA-06 | CR-D-03.3-001 | OBLIGATION | ** |
+| PR | PR.PS-04 | CR-D-03.3-001 | OBLIGATION | ** |
+| PR | PR.DS-10 | CR-D-03.4-001 | OBLIGATION | ** |
+| PR | PR.PS-01 | CR-D-03.4-001 | OBLIGATION | ** |
+| PR | PR.PS-04 | CR-D-03.4-001 | OBLIGATION | ** |
+| PR | PR.PS-04 | CR-D-04.1-001 | OBLIGATION | ** |
+| PR | PR.DS-10 | CR-D-04.2-001 | OBLIGATION | ** |
+| PR | PR.IR-03 | CR-D-04.2-001 | OBLIGATION | ** |
+| PR | PR.IR-04 | CR-D-04.2-001 | OBLIGATION | ** |
+| PR | PR.DS-01 | CR-D-04.4-001 | OBLIGATION | ** |
+| PR | PR.DS-10 | CR-D-04.4-001 | OBLIGATION | ** |
+| PR | PR.IR-03 | CR-D-04.4-001 | OBLIGATION | ** |
+| PR | PR.IR-04 | CR-D-04.4-001 | OBLIGATION | ** |
+| PR | PR.DS-01 | CR-D-05.1-001 | OBLIGATION | ** |
+| PR | PR.DS-10 | CR-D-05.1-001 | OBLIGATION | ** |
+| PR | PR.PS-06 | CR-D-05.1-001 | OBLIGATION | ** |
+| PR | PR.DS-10 | CR-D-05.2-001 | OBLIGATION | ** |
+| PR | PR.PS-02 | CR-D-05.2-001 | OBLIGATION | ** |
+| PR | PR.PS-04 | CR-D-05.2-001 | OBLIGATION | ** |
+| PR | PR.DS-10 | CR-D-05.3-001 | OBLIGATION | ** |
+| PR | PR.DS-10 | CR-D-05.3-001 | OBLIGATION | ** |
+| PR | PR.DS-02 | CR-D-05.3-001 | OBLIGATION | ** |
+| PR | PR.DS-10 | CR-D-05.4-001 | OBLIGATION | ** |
+| PR | PR.DS-10 | CR-D-05.4-001 | OBLIGATION | ** |
+| PR | PR.AA-03 | CR-D-05.4-001 | OBLIGATION | ** |
+| PR | PR.DS-02 | CR-D-05.4-001 | OBLIGATION | ** |
+| PR | PR.PS-02 | CR-D-06.2-001 | OBLIGATION | ** |
+| PR | PR.DS-10 | CR-D-06.3-001 | OBLIGATION | ** |
+| PR | PR.PS-06 | CR-D-06.3-001 | OBLIGATION | ** |
+| PR | PR.DS-10 | CR-D-07.1-001 | OBLIGATION | ** |
+| PR | PR.PS-01 | CR-D-07.1-001 | OBLIGATION | ** |
+| PR | PR.PS-02 | CR-D-07.1-001 | OBLIGATION | ** |
+| PR | PR.PS-06 | CR-D-07.1-001 | OBLIGATION | ** |
+| PR | PR.AT-01 | CR-D-08.1-001 | OBLIGATION | ** |
+| PR | PR.AT-02 | CR-D-08.1-001 | OBLIGATION | ** |
+| PR | PR.PS-01 | CR-D-08.1-001 | OBLIGATION | ** |
+| PR | PR.AT-01 | CR-D-08.2-001 | OBLIGATION | ** |
+| PR | PR.AT-02 | CR-D-08.2-001 | OBLIGATION | ** |
+| PR | PR.AT-02 | CR-D-08.2-001 | OBLIGATION | ** |
+| PR | PR.DS-10 | CR-D-09.4-001 | OBLIGATION | ** |
+| PR | PR.DS-01 | CR-D-10.2-001 | OBLIGATION | ** |
+| PR | PR.PS-04 | CR-D-10.2-001 | OBLIGATION | ** |
+| PR | PR.PS-06 | CR-D-10.3-001 | OBLIGATION | ** |
+| PR | PR.DS-01 | BPR-D-01.1-001 | BEST-PRACTICE | ** |
+| PR | PR.DS-10 | BPR-D-01.1-001 | BEST-PRACTICE | ** |
+| PR | PR.PS-04 | BPR-D-01.1-001 | BEST-PRACTICE | ** |
+| PR | PR.DS-02 | BPR-D-01.2-001 | BEST-PRACTICE | ** |
+| PR | PR.IR-01 | BPR-D-01.2-001 | BEST-PRACTICE | ** |
+| PR | PR.PS-04 | BPR-D-01.2-001 | BEST-PRACTICE | ** |
+| PR | PR.PS-02 | BPR-D-02.1-001 | BEST-PRACTICE | ** |
+| PR | PR.IR-03 | BPR-D-02.2-001 | BEST-PRACTICE | ** |
+| PR | PR.PS-01 | BPR-D-02.2-001 | BEST-PRACTICE | ** |
+| PR | PR.PS-02 | BPR-D-02.2-001 | BEST-PRACTICE | ** |
+| PR | PR.AA-01 | BPR-D-03.1-001 | BEST-PRACTICE | ** |
+| PR | PR.AA-03 | BPR-D-03.1-001 | BEST-PRACTICE | ** |
+| PR | PR.AA-05 | BPR-D-03.1-001 | BEST-PRACTICE | ** |
+| PR | PR.AA-06 | BPR-D-03.1-001 | BEST-PRACTICE | ** |
+| PR | PR.AA-03 | BPR-D-03.2-001 | BEST-PRACTICE | ** |
+| PR | PR.AA-04 | BPR-D-03.2-001 | BEST-PRACTICE | ** |
+| PR | PR.AA-05 | BPR-D-03.2-001 | BEST-PRACTICE | ** |
+| PR | PR.AA-06 | BPR-D-03.2-001 | BEST-PRACTICE | ** |
+| PR | PR.PS-01 | BPR-D-03.4-001 | BEST-PRACTICE | ** |
+| PR | PR.PS-04 | BPR-D-03.4-001 | BEST-PRACTICE | ** |
+| PR | PR.DS-10 | BPR-D-05.3-001 | BEST-PRACTICE | ** |
+| PR | PR.DS-10 | BPR-D-05.3-001 | BEST-PRACTICE | ** |
+| PR | PR.PS-01 | BPR-D-07.1-001 | BEST-PRACTICE | ** |
+| PR | PR.PS-02 | BPR-D-07.1-001 | BEST-PRACTICE | ** |
+| PR | PR.PS-06 | BPR-D-07.1-001 | BEST-PRACTICE | ** |
+| PR | PR.PS-01 | BPR-D-07.2-001 | BEST-PRACTICE | ** |
+| PR | PR.PS-02 | BPR-D-07.2-001 | BEST-PRACTICE | ** |
+| PR | PR.PS-06 | BPR-D-07.2-001 | BEST-PRACTICE | ** |
+| PR | PR.DS-01 | BPR-D-10.2-001 | BEST-PRACTICE | ** |
+| PR | PR.PS-04 | BPR-D-10.2-001 | BEST-PRACTICE | ** |
+| PR | PR.PS-06 | BPR-D-10.3-002 | BEST-PRACTICE | ** |
+| DE | DE.AE-02 | CR-D-04.1-001 | OBLIGATION | ** |
+| DE | DE.CM-01 | CR-D-04.1-001 | OBLIGATION | ** |
+| DE | DE.CM-09 | CR-D-04.1-001 | OBLIGATION | ** |
+| DE | DE.CM-09 | CR-D-04.2-001 | OBLIGATION | ** |
+| DE | DE.CM-01 | CR-D-10.2-001 | OBLIGATION | ** |
+| DE | DE.AE-02 | CR-D-10.3-001 | OBLIGATION | ** |
+| DE | DE.CM-01 | BPR-D-10.2-001 | BEST-PRACTICE | ** |
+| DE | DE.AE-02 | BPR-D-10.2-001 | BEST-PRACTICE | ** |
+| RS | RS.CO-03 | CR-D-02.3-001 | OBLIGATION | ** |
+| RS | RS.MA-01 | CR-D-02.3-001 | OBLIGATION | ** |
+| RS | RS.MA-01 | CR-D-04.1-001 | OBLIGATION | ** |
+| RS | RS.MA-02 | CR-D-04.1-001 | OBLIGATION | ** |
+| RS | RS.MA-03 | CR-D-04.1-001 | OBLIGATION | ** |
+| RS | RS.MI-01 | CR-D-04.2-001 | OBLIGATION | ** |
+| RS | RS.MI-02 | CR-D-04.2-001 | OBLIGATION | ** |
+| RS | RS.CO-02 | CR-D-04.3-001 | OBLIGATION | ** |
+| RS | RS.MA-01 | CR-D-04.3-001 | OBLIGATION | ** |
+| RS | RS.MA-01 | CR-D-04.3-001 | OBLIGATION | ** |
+| RS | RS.MA-02 | CR-D-04.3-001 | OBLIGATION | ** |
+| RS | RS.MA-03 | CR-D-04.3-001 | OBLIGATION | ** |
+| RS | RS.MA-01 | CR-D-04.3-001 | OBLIGATION | ** |
+| RS | RS.MA-01 | CR-D-06.3-001 | OBLIGATION | ** |
+| RS | RS.MI-01 | CR-D-06.3-001 | OBLIGATION | ** |
+| RS | RS.MA-03 | CR-D-09.4-001 | OBLIGATION | ** |
+| RS | RS.MA-01 | BPR-D-04.3-001 | BEST-PRACTICE | ** |
+| RS | RS.MA-02 | BPR-D-04.3-001 | BEST-PRACTICE | ** |
+| RS | RS.MA-03 | BPR-D-04.3-001 | BEST-PRACTICE | ** |
+| RS | RS.MA-01 | BPR-D-04.3-001 | BEST-PRACTICE | ** |
+| RS | RS.CO-02 | BPR-D-04.3-001 | BEST-PRACTICE | ** |
+| RS | RS.MA-01 | BPR-D-04.3-002 | BEST-PRACTICE | ** |
+| RS | RS.MA-01 | BPR-D-04.3-002 | BEST-PRACTICE | ** |
+| RS | RS.MA-02 | BPR-D-04.3-002 | BEST-PRACTICE | ** |
+| RS | RS.CO-02 | BPR-D-04.3-002 | BEST-PRACTICE | ** |
+| RS | RS.MA-01 | BPR-D-04.3-002 | BEST-PRACTICE | ** |
+| RC | RC.RP-01 | CR-D-04.2-001 | OBLIGATION | ** |
+| RC | RC.RP-04 | CR-D-04.2-001 | OBLIGATION | ** |
+| RC | RC.RP-01 | CR-D-04.4-001 | OBLIGATION | ** |
+| RC | RC.RP-03 | CR-D-04.4-001 | OBLIGATION | ** |
+| RC | RC.RP-04 | CR-D-04.4-001 | OBLIGATION | ** |
+| RC | RC.RP-01 | BPR-D-04.3-001 | BEST-PRACTICE | ** |
+| RC | RC.RP-01 | BPR-D-04.3-002 | BEST-PRACTICE | ** |
+
+---
+
+## ANEXO B — CONTROL INDEX BY ISO 27001 ANNEX A
+
+| ISO 27001 Control | Control ID | Type | Implementation Status |
+|-------------------|------------|------|-----------------------|
+| A.8.24 | CR-D-01.1-001 | OBLIGATION | ** |
+| A.8.24 | CR-D-01.2-001 | OBLIGATION | ** |
+| A.8.24 | CR-D-01.3-001 | OBLIGATION | ** |
+| A.8.24 | CR-D-01.4-001 | OBLIGATION | ** |
+| A.8.8 | CR-D-02.1-001 | OBLIGATION | ** |
+| A.8.8 | CR-D-02.2-001 | OBLIGATION | ** |
+| A.5.5 | CR-D-02.3-001 | OBLIGATION | ** |
+| A.5.16 | CR-D-03.1-001 | OBLIGATION | ** |
+| A.8.5 | CR-D-03.2-001 | OBLIGATION | ** |
+| A.5.15 | CR-D-03.3-001 | OBLIGATION | ** |
+| A.8.9 | CR-D-03.4-001 | OBLIGATION | ** |
+| A.5.25 | CR-D-04.1-001 | OBLIGATION | ** |
+| A.5.26 | CR-D-04.2-001 | OBLIGATION | ** |
+| A.5.24 | CR-D-04.3-001 | OBLIGATION | ** |
+| A.8.13 | CR-D-04.4-001 | OBLIGATION | ** |
+| A.8.10 | CR-D-05.1-001 | OBLIGATION | ** |
+| A.5.33 | CR-D-05.2-001 | OBLIGATION | ** |
+| A.8.10 | CR-D-05.3-001 | OBLIGATION | ** |
+| A.5.14 | CR-D-05.4-001 | OBLIGATION | ** |
+| A.5.19 | CR-D-06.1-001 | OBLIGATION | ** |
+| A.5.21 | CR-D-06.2-001 | OBLIGATION | ** |
+| A.5.20 | CR-D-06.3-001 | OBLIGATION | ** |
+| A.8.25 | CR-D-07.1-001 | OBLIGATION | ** |
+| A.6.3 | CR-D-08.1-001 | OBLIGATION | ** |
+| A.6.3 | CR-D-08.2-001 | OBLIGATION | ** |
+| A.5.1 | CR-D-09.1-001 | OBLIGATION | ** |
+| A.5.7 | CR-D-09.2-001 | OBLIGATION | ** |
+| A.5.33 | CR-D-09.4-001 | OBLIGATION | ** |
+| A.8.15 | CR-D-10.2-001 | OBLIGATION | ** |
+| A.5.35 | CR-D-10.3-001 | OBLIGATION | ** |
+| A.8.24 | BPR-D-01.1-001 | BEST-PRACTICE | ** |
+| A.8.24 | BPR-D-01.2-001 | BEST-PRACTICE | ** |
+| A.8.24 | BPR-D-02.1-001 | BEST-PRACTICE | ** |
+| A.8.24 | BPR-D-02.2-001 | BEST-PRACTICE | ** |
+| A.8.24 | BPR-D-03.1-001 | BEST-PRACTICE | ** |
+| A.8.24 | BPR-D-03.2-001 | BEST-PRACTICE | ** |
+| A.8.24 | BPR-D-03.4-001 | BEST-PRACTICE | ** |
+| A.8.24 | BPR-D-04.3-001 | BEST-PRACTICE | ** |
+| A.8.24 | BPR-D-04.3-002 | BEST-PRACTICE | ** |
+| A.8.24 | BPR-D-05.3-001 | BEST-PRACTICE | ** |
+| A.8.24 | BPR-D-07.1-001 | BEST-PRACTICE | ** |
+| A.8.24 | BPR-D-07.2-001 | BEST-PRACTICE | ** |
+| A.8.24 | BPR-D-09.1-001 | BEST-PRACTICE | ** |
+| A.8.24 | BPR-D-10.2-001 | BEST-PRACTICE | ** |
+| A.8.24 | BPR-D-10.3-001 | BEST-PRACTICE | ** |
+| A.8.24 | BPR-D-10.3-002 | BEST-PRACTICE | ** |
+
+---
+
+## ANEXO C — CONTROL INDEX BY REGULATION & ARTICLE
+
+| Statutory Source | Control ID | Type | Implementation Status |
+|------------------|------------|------|-----------------------|
+| ** GDPR Art. 5(1)(f) + Art. 32(1)(b); CRA Art. 24 | CR-D-01.1-001 | OBLIGATION | ** |
+| ** GDPR Art. 5(1)(f) + Art. 32(1)(a); CRA Art. 25 | CR-D-01.2-001 | OBLIGATION | ** |
+| ** CRA Art. 15 + Art. 24 (source clause CRA-C15); | CR-D-01.3-001 | OBLIGATION | ** |
+| ** GDPR Art. 5(1)(d) + Art. 32(1)(b); CRA Annex I §1.3(c) | CR-D-01.4-001 | OBLIGATION | ** |
+| ** CRA Art. 17 + Art. 5 (source clauses CRA-C01, CRA-C17). | CR-D-02.1-001 | OBLIGATION | ** |
+| ** CRA Art. 4 + Art. 5 (source clauses CRA-C04, CRA-C19). | CR-D-02.2-001 | OBLIGATION | ** |
+| ** CRA Art. 19 + Art. 20 (source clauses CRA-C21, CRA-C26). | CR-D-02.3-001 | OBLIGATION | ** |
+| ** CRA Art. 10 (source clause CRA-C05). | CR-D-03.1-001 | OBLIGATION | ** |
+| ** CRA Art. 9 (source clause CRA-C06); related GDPR security | CR-D-03.2-001 | OBLIGATION | ** |
+| ** GDPR Art. 5(1)(c) + Art. 22 and Art. 32(1)(b); CRA Art. 8 | CR-D-03.3-001 | OBLIGATION | ** |
+| ** CRA Art. 3 + Art. 8 (source clause CRA-C03); related GDPR | CR-D-03.4-001 | OBLIGATION | ** |
+| ** CRA Art. 6 + Art. 13; related GDPR security rationale: | CR-D-04.1-001 | OBLIGATION | ** |
+| ** GDPR Art. 32(1)(c); CRA Art. 11 (source clauses GDPR-C18 | CR-D-04.2-001 | OBLIGATION | ** |
+| ** GDPR Art. 33(1) + Art. 33(2) + Art. 33(3); CRA Art. 20 | CR-D-04.3-001 | OBLIGATION | ** |
+| ** GDPR Art. 32(1)(b) and (c) + Art. 19; CRA Art. 26 | CR-D-04.4-001 | OBLIGATION | ** |
+| ** GDPR Art. 5(1)(c); CRA Annex I §1.2(c) | CR-D-05.1-001 | OBLIGATION | ** |
+| ** GDPR Art. 5(1)(e) (source clauses GDPR-C02, GDPR-C03). | CR-D-05.2-001 | OBLIGATION | ** |
+| ** GDPR Art. 17; CRA Art. 11 | CR-D-05.3-001 | OBLIGATION | ** |
+| ** GDPR Art. 20 (source clause GDPR-C07). | CR-D-05.4-001 | OBLIGATION | ** |
+| ** GDPR Art. 28(1); related CRA supply-chain rationale: | CR-D-06.1-001 | OBLIGATION | ** |
+| ** CRA Art. 18(2) + Annex I §1.4 (source clause CRA-C18). | CR-D-06.2-001 | OBLIGATION | ** |
+| ** GDPR Art. 28(3); related CRA supply-chain rationale: | CR-D-06.3-001 | OBLIGATION | ** |
+| ** GDPR Art. 25; CRA Art. 18 + Art. 23 and Art. 13(8)-(9) | CR-D-07.1-001 | OBLIGATION | ** |
+| ** GDPR Art. 39(1)(b) + Art. 5(2) (source clause GDPR-C27). | CR-D-08.1-001 | OBLIGATION | ** |
+| ** GDPR Art. 37 + Art. 39; related CRA product-security competence: | CR-D-08.2-001 | OBLIGATION | ** |
+| ** GDPR Art. 5(2) + Art. 24; CRA Art. 13 + Annex VII | CR-D-09.1-001 | OBLIGATION | ** |
+| ** GDPR Art. 32(2) + Art. 35 + Art. 36; CRA Art. 13(5) | CR-D-09.2-001 | OBLIGATION | ** |
+| ** GDPR Art. 30 + Art. 33(5) | CR-D-09.4-001 | OBLIGATION | ** |
+| ** CRA Art. 22 (source clause CRA-C14); related GDPR accountability: | CR-D-10.2-001 | OBLIGATION | ** |
+| ** GDPR Art. 32(1)(d) + Art. 28(3)(h); CRA Art. 14 + Art. 21 | CR-D-10.3-001 | OBLIGATION | ** |
