@@ -1034,8 +1034,157 @@ AUDITS = [
         "node_ids": ["D-09.1", "ROLE-DPO", "ROLE-CISO", "ROLE-BOARD"],
         "recommendation": "Human (P7) — accept at MICRO scale; re-evaluate when employees > 12 or revenue > €5M. Retain external Legal Adviser retainer (ROLE-LEGAL) as informal consult channel; document in Doc11 §3 governance maturity note.",
     },
+    # ---- Sprint 8 / Phase B — Doc04 + Doc06 (Architecture & Third Parties)
+    {
+        "id": "NEW-01",
+        "kind": "broken_link",
+        "severity": "medium",
+        "title": "Doc04 §3 Compliance Mapping contains free-text system references not modeled as SYS-* edges",
+        "detail": (
+            "Doc04 §3 (lines 125–161) includes 12+ Compliance Mapping entries whose "
+            "'Relevant Systems' column references components not captured by the "
+            "SYS-* inventory: 'cloud IAM' (D-03.1, D-03.2), 'GitHub organisation' "
+            "(D-03.1, D-03.2), 'STORE-03 monitoring' (D-04.1, D-04.3, D-05.2, D-10.1), "
+            "'SYS-01 release pipeline' (D-06.2, D-07.2, D-07.3), 'Stripe' (D-06.1, "
+            "D-06.3, D-09.4), 'Datadog' (D-06.3). The Executor chose NOT to fabricate "
+            "new System nodes for these free-text labels in Phase B; INVOLVES edges "
+            "are only emitted where the row contains a SYS-* id. Free-text references "
+            "would require introducing new System subtypes (e.g. 'IAM-as-a-Service', "
+            "'CI/CD-pipeline-as-System') or treating Datadog/GitHub as System-level "
+            "rather than ThirdParty-level, both of which are ontology decisions "
+            "(AEGIS P7)."
+        ),
+        "evidence": [
+            "Doc04 §3 row D-03.1: 'Relevant Systems' = 'SYS-02, cloud IAM, GitHub organisation'",
+            "Doc04 §3 row D-03.2: 'Relevant Systems' = 'SYS-02, cloud IAM, GitHub organisation'",
+            "Doc04 §3 row D-04.1: 'Relevant Systems' = 'SYS-01, SYS-03, STORE-03 monitoring'",
+            "Doc04 §3 row D-06.2: 'Relevant Systems' = 'SYS-01 release pipeline'",
+            "Doc04 §3 row D-06.3: 'Relevant Systems' = 'SYS-02, SYS-03, SYS-05, Stripe, Datadog'",
+            "Doc04 §3 row D-07.2: 'Relevant Systems' = 'SYS-01 release pipeline'",
+            "Doc04 §3 row D-09.4: 'Relevant Systems' = 'SYS-01, SYS-02, SYS-03, SYS-05, Stripe'",
+            "phase1_ontology.yaml@kg_ontology.classes.System.attrs.tech_stack implies a single system maps to one tech_stack column — split naming would conflict",
+            "phase1_ontology.yaml@kg_ontology.classes.ThirdParty — GitHub and Datadog are modeled as ThirdParty, not System",
+        ],
+        "node_ids": ["D-03.1", "D-03.2", "D-04.1", "D-04.3", "D-05.2", "D-06.1", "D-06.2", "D-06.3", "D-07.2", "D-07.3", "D-09.4", "D-10.1", "STORE-03", "GitHub", "Datadog"],
+        "recommendation": "Human (P7) — either (a) split the SYS-* inventory into sub-system nodes (e.g. SYS-02-IAM, SYS-01-CICD), (b) treat CI/CD pipelines as a separate System class 'BuildPipeline', or (c) accept the conservative mapping (Phase B default) where free-text references are surfaced as audits rather than emitted as edges. The chosen default avoids fabricating node types but means INVOLVES counts for D-03.1/03.2/04.1/04.3/05.2/06.2/07.2/07.3/09.4/10.1 underrepresent the true sub-domain surface area.",
+    },
+    {
+        "id": "NEW-02",
+        "kind": "cross_doc_conflict",
+        "severity": "low",
+        "title": "Doc03 §3.1 stakeholder register missing Auth0, Datadog, GitHub, Snyk — drift candidate for Phase B third-party surface",
+        "detail": (
+            "Doc03 §3.1 (Stakeholder Register) inventories 7 external/internal "
+            "stakeholders; Doc06 §2 + §5 inventories 6 third-party vendors (AWS, "
+            "Stripe, Auth0, Datadog, GitHub, Snyk). Only AWS and Stripe have a "
+            "corresponding STK-* entry (STK-AWS-01, STK-STRIPE-01), so CORRESPONDS_TO "
+            "edges are emitted for those two. Auth0, Datadog, GitHub, and Snyk have "
+            "DPAs / subprocessor contracts per Doc06 §4 + §6 but no STK-* counterpart "
+            "in Doc03. This is an upstream register limitation, not a graph defect: "
+            "the conservative approach (per the Phase B brief) is to emit only the "
+            "2 CORRESPONDS_TO edges that resolve unambiguously, and document the "
+            "remaining 4 vendors as third-party-only entities with no Stakeholder "
+            "counterpart. The CORRESPONDS_TO verb is therefore marked `status: "
+            "partial` in phase1_ontology.yaml@kg_ontology.relations (the 4 "
+            "unresolved vendors will surface as audit references, not missing edges)."
+        ),
+        "evidence": [
+            "Doc03 §3.1 Stakeholder Register (7 rows): STK-CEO-01, STK-CTO-01, STK-DPO-01, STK-DEVP-01, STK-CUSTOMER-01, STK-STRIPE-01, STK-AWS-01",
+            "Doc06 §2 + §5 Third-Party table (6 vendors): AWS, Stripe, Auth0, Datadog, GitHub, Snyk",
+            "phase1_ontology.yaml@kg_ontology.relations.CORRESPONDS_TO status: partial",
+            "phase1_ontology.yaml@kg_ontology.relations.CORRESPONDS_TO cardinality: N:0..1 (only AWS and Stripe have STK-* entries)",
+        ],
+        "node_ids": ["STK-AWS-01", "STK-STRIPE-01", "AWS", "Stripe", "Auth0", "Datadog", "GitHub", "Snyk"],
+        "recommendation": "Human (P7) — extend Doc03 §3.1 to cover Auth0, Datadog, GitHub, Snyk (4 new STK-* rows: STK-AUTH0-01, STK-DATADOG-01, STK-GITHUB-01, STK-SNYK-01) before downstream phases consume the Stakeholder/ThirdParty axis. Until then, the 4 vendors exist as ThirdParty nodes without a Stakeholder counterpart (intentional gap; surfaced here per P5 change propagation).",
+    },
+    {
+        "id": "NEW-03",
+        "kind": "coverage_gap",
+        "severity": "low",
+        "title": "AWS decomposed as 1 ThirdParty + 4 services — decision documented (per Doc06 §5: 'AWS counted once despite four services')",
+        "detail": (
+            "Doc06 §2 lists 4 AWS service rows (EC2/compute = SYS-01, RDS = SYS-03, "
+            "S3 = SYS-05, Cloud KMS = SYS-04). Doc06 §5 explicitly states 'AWS "
+            "counted once despite four services; Auth0 counted once despite appearing "
+            "in Section 2 and Section 3.' This is a deliberate granularity decision "
+            "for proportionality: a micro-SaaS at MICRO scale treats AWS as a single "
+            "vendor relationship (1 MSA + 1 AWS DPA + 1 subprocessor list), not as 4 "
+            "vendor relationships. Phase B follows this decision: AWS appears as 1 "
+            "ThirdParty node (id='AWS') with services listed as a List<String> attr "
+            "(['EC2/compute', 'RDS/managed PostgreSQL', 'S3/object storage', 'Cloud "
+            "KMS']). Downstream consumers that need per-service granularity can "
+            "split this into 4 ThirdParty nodes in a future phase if proportionality "
+            "shifts (e.g., to SMALL or MEDIUM scale)."
+        ),
+        "evidence": [
+            "Doc06 §5 supplier count line 180: 'Vendor count: 6 (AWS counted once despite four services; Auth0 counted once despite appearing in Section 2 and Section 3)'",
+            "Doc06 §2 rows 1–4: 4 AWS service rows (EC2, RDS, S3, Cloud KMS)",
+            "phase1_ontology.yaml@kg_ontology.classes.ThirdParty.attrs.services: List<String>",
+            "Doc06 §4 subprocessor table: 1 row for AWS (consolidating EC2/RDS/S3/KMS)",
+        ],
+        "node_ids": ["AWS", "SYS-01", "SYS-03", "SYS-04", "SYS-05"],
+        "recommendation": "Human (P7) — accept the AWS-as-1-ThirdParty consolidation per Doc06 §5. If per-service granularity becomes necessary (e.g. for a NIST CSF PR.PS-06 'component inventory' sub-domain with sub-vendor risk tiers), split AWS into 4 ThirdParty nodes in a future revision. Default remains 1 node + services list attr.",
+    },
+    {
+        "id": "NEW-04",
+        "kind": "coverage_gap",
+        "severity": "medium",
+        "title": "Datadog exit plan not explicitly documented in Doc06 §5 or §6 (only §2 mentions 'outage would degrade D-10.1 monitoring for the duration')",
+        "detail": (
+            "Doc06 §5 (Supply Chain Risk table) lists Datadog with risk_score=M and "
+            "last_assessment=2026-04 but does NOT include an explicit exit_plan "
+            "field. Doc06 §2 lists Datadog with 'Exit Plan? = Y, Datadog publishes "
+            "subprocessor list' — but this is for the SUBPROCESSOR list "
+            "(notification flow), not a DATA EXIT plan. Doc06 §8 GAP-TPL-02 covers "
+            "only AWS-hosted data extraction (DB dump + S3 inventory), not "
+            "Datadog-specific data egress. Datadog processes pseudonymised logs "
+            "only (no raw customer content by design), so the residual data-at-Datadog "
+            "is pseudonymised operational metadata; the exit story is implicit (DPA "
+            "termination + vendor-side deletion per Art. 28(3)(g)). Phase B emits "
+            "Datadog as a ThirdParty node with exit_plan=None (matching Doc06's "
+            "gap), and surfaces the gap here."
+        ),
+        "evidence": [
+            "Doc06 §2 row 6 (Datadog): 'Exit Plan? = Y' (refers to subprocessor approval flow, not data egress)",
+            "Doc06 §5 row 4 (Datadog): risk_score=M; no exit_plan column present in §5 schema",
+            "Doc06 §6 row 4 (Datadog): no exit_plan column",
+            "Doc06 §8 GAPs: GAP-TPL-01 (no SIG questionnaire), GAP-TPL-02 (AWS exit procedure), GAP-TPL-03 (SBOM), GAP-TPL-04 (annual review) — NO Datadog-specific data-egress gap row",
+            "Doc06 §2 row 6 data_accessed: 'Pseudonymised operational logs and metrics — no raw customer content by design'",
+            "phase1_ontology.yaml@kg_ontology.classes.ThirdParty.attrs.exit_plan: nullable",
+        ],
+        "node_ids": ["Datadog", "STORE-03", "FLOW-03", "D-10.1"],
+        "recommendation": "Human (P7) — accept the implicit-exit-plan position (pseudonymised logs + DPA Art. 28(3)(g) termination clause is proportionate at MICRO scale), OR explicitly document a Datadog data-egress procedure (e.g. request log export via Datadog API → vendor-side deletion confirmation → 30-day retention override) in a Doc06 §9 update. Until either action, the exit_plan attr on the Datadog ThirdParty node is left null with this audit surfacing the gap.",
+    },
+    {
+        "id": "NEW-05",
+        "kind": "broken_link",
+        "severity": "low",
+        "title": "Snyk SBOM is available but DPA tier not specified (Doc06 §6 row 6: 'Y (Snyk DPA — paid tiers)')",
+        "detail": (
+            "Doc06 §6 row 6 (Snyk) states 'Art. 28 DPA: Y (Snyk DPA — paid tiers)' "
+            "and 'Art. 30 Clauses: Limited (developer tool; no personal data "
+            "processed)'. Doc06 §5 row 6 (Snyk) confirms SBOM availability: 'Y "
+            "(Snyk can output CycloneDX/SPDX for the scanned projects)'. The "
+            "qualifier 'paid tiers' is the only place the DPA tier is hinted; the "
+            "concrete tier (e.g. 'Free' / 'Team' / 'Enterprise') is not recorded. "
+            "Phase B captures this faithfully: art_28_dpa=True with no tier attr. "
+            "Downstream consumers that need tier granularity (e.g. for vendor risk "
+            "scoring under a future VSAQ workflow) will see art_28_dpa=True and no "
+            "tier discriminator — i.e. the link from Snyk to Art. 28 coverage is "
+            "complete but not tier-resolved."
+        ),
+        "evidence": [
+            "Doc06 §5 row 6 (Snyk): 'L (DPA in paid tier; on-demand scans; no persistent data flow)'",
+            "Doc06 §6 row 6 (Snyk): 'Art. 28 DPA | Y (Snyk DPA — paid tiers)'",
+            "Doc06 §5 row 6 (Snyk): 'SBOM Available? | Y'",
+            "Doc06 §6 row 6 (Snyk): 'Security Audit Right | Indirect — Snyk SOC 2 available'",
+            "phase1_ontology.yaml@kg_ontology.classes.ThirdParty.attrs.art_28_dpa: Boolean (no tier discriminator)",
+        ],
+        "node_ids": ["Snyk", "D-02.1", "D-06.2"],
+        "recommendation": "Human (P7) — if tier granularity becomes material, add a tier attr to phase1_ontology.yaml@kg_ontology.classes.ThirdParty (e.g. 'dpa_tier: String') and re-extract Snyk's tier from the Snyk order confirmation / subscription record. Until then, art_28_dpa=True is the canonical signal for DPA presence.",
+    },
 ]
-assert len(AUDITS) == 21, f"AUDITS drift: {len(AUDITS)} (expected 21 = 16 Sprint 6 + 5 GAP-RACI Sprint 7)"
+assert len(AUDITS) == 26, f"AUDITS drift: {len(AUDITS)} (expected 26 = 21 v1.3 + 5 NEW Phase B)"
 
 # ---------------------------------------------------------------------------
 # 10. Sprint 6 — Stakeholders + BusinessGoals + CoverageGaps
@@ -1973,6 +2122,964 @@ assert len(APPLIES_TO_EDGES) == 35, f"APPLIES_TO_EDGES drift: {len(APPLIES_TO_ED
 
 
 # ---------------------------------------------------------------------------
+# 8.5. Sprint 8 / Phase B — Doc04 (Architecture) + Doc06 (Third Parties)
+#      Sources: Doc04 §1.1, §2.1, §2.2, §2.3, §2.4 + Doc06 §2 + §5 + §6.
+#      Schema: phase1_ontology.yaml@kg_ontology v1.4 (6 new classes +
+#      9 active new relations + 27 counts + 16 id_patterns).
+# ---------------------------------------------------------------------------
+
+# --- 5 Systems (Doc04 §1.1 lines 49–55) ---
+SYSTEMS = [
+    {
+        "id": "SYS-01",
+        "label": "Main SaaS Application",
+        "attrs": {
+            "name": "Main SaaS Application",
+            "type": "Cloud SaaS application",
+            "tech_stack": "Node.js API, React web client, PostgreSQL driver",
+            "criticality": "Important",
+            "hosts_personal_data": True,
+        },
+        "source": ["Doc04 §1.1 line 51 (System Inventory, SYS-01 row)",
+                   "phase1_ontology.yaml@kg_ontology.classes.System"],
+    },
+    {
+        "id": "SYS-02",
+        "label": "Auth Service",
+        "attrs": {
+            "name": "Auth Service",
+            "type": "Managed identity service",
+            "tech_stack": "Auth0 using OAuth 2.0 and OIDC",
+            "criticality": "Important",
+            "hosts_personal_data": True,
+        },
+        "source": ["Doc04 §1.1 line 52 (System Inventory, SYS-02 row)",
+                   "phase1_ontology.yaml@kg_ontology.classes.System"],
+    },
+    {
+        "id": "SYS-03",
+        "label": "Customer Data Store",
+        "attrs": {
+            "name": "Customer Data Store",
+            "type": "Managed relational database",
+            "tech_stack": "PostgreSQL on EU cloud region",
+            "criticality": "Critical",
+            "hosts_personal_data": True,
+        },
+        "source": ["Doc04 §1.1 line 53 (System Inventory, SYS-03 row)",
+                   "phase1_ontology.yaml@kg_ontology.classes.System"],
+    },
+    {
+        "id": "SYS-04",
+        "label": "Cloud KMS",
+        "attrs": {
+            "name": "Cloud KMS",
+            "type": "Managed key management",
+            "tech_stack": "Cloud KMS with provider-managed key storage",
+            "criticality": "Supporting",
+            "hosts_personal_data": False,
+        },
+        "source": ["Doc04 §1.1 line 54 (System Inventory, SYS-04 row)",
+                   "phase1_ontology.yaml@kg_ontology.classes.System"],
+    },
+    {
+        "id": "SYS-05",
+        "label": "Backup Store",
+        "attrs": {
+            "name": "Backup Store",
+            "type": "Managed object storage",
+            "tech_stack": "S3-compatible encrypted bucket",
+            "criticality": "Important",
+            "hosts_personal_data": True,
+        },
+        "source": ["Doc04 §1.1 line 55 (System Inventory, SYS-05 row)",
+                   "phase1_ontology.yaml@kg_ontology.classes.System"],
+    },
+]
+assert len(SYSTEMS) == 5, f"SYSTEMS drift: {len(SYSTEMS)} (expected 5)"
+
+
+# --- 3 DataStores (Doc04 §2.1 lines 86–90) ---
+DATASTORES = [
+    {
+        "id": "STORE-01",
+        "label": "STORE-01 PostgreSQL database",
+        "attrs": {
+            "type": "PostgreSQL database",
+            "location": "EU cloud region",
+            "encryption_at_rest": "Y, AES-256 provider-managed encryption using SYS-04 keys",
+            "retention_period": "Active account lifetime plus 30 days after deletion request where legally permissible",
+            "backup": True,
+        },
+        "source": ["Doc04 §2.1 line 88 (Data Stores, STORE-01 row)",
+                   "phase1_ontology.yaml@kg_ontology.classes.DataStore"],
+    },
+    {
+        "id": "STORE-02",
+        "label": "STORE-02 Object storage backups",
+        "attrs": {
+            "type": "Object storage backups",
+            "location": "EU cloud region",
+            "encryption_at_rest": "Y, SSE-KMS/AES-256 using SYS-04 keys",
+            "retention_period": "Daily backups for 30 days; monthly backups for 12 months",
+            "backup": True,
+        },
+        "source": ["Doc04 §2.1 line 89 (Data Stores, STORE-02 row)",
+                   "phase1_ontology.yaml@kg_ontology.classes.DataStore"],
+    },
+    {
+        "id": "STORE-03",
+        "label": "STORE-03 Logs and analytics",
+        "attrs": {
+            "type": "Logs and analytics",
+            "location": "EU monitoring region where available",
+            "encryption_at_rest": "Y, provider-managed encryption; no raw task content intentionally logged",
+            "retention_period": "30 days",
+            "backup": False,
+        },
+        "source": ["Doc04 §2.1 line 90 (Data Stores, STORE-03 row)",
+                   "phase1_ontology.yaml@kg_ontology.classes.DataStore"],
+    },
+]
+assert len(DATASTORES) == 3, f"DATASTORES drift: {len(DATASTORES)} (expected 3)"
+
+
+# --- 5 DataFlows (Doc04 §2.2 lines 94–100) ---
+DATAFLOWS = [
+    {
+        "id": "FLOW-01",
+        "label": "FLOW-01 Web client → SYS-01",
+        "attrs": {
+            "data_type": "Account data and project data",
+            "volume": "Low to medium",
+            "encryption_in_transit": True,
+            "protocol": "HTTPS REST",
+            "subprocessor": False,
+        },
+        "source": ["Doc04 §2.2 line 96 (Data Flows, FLOW-01 row)",
+                   "phase1_ontology.yaml@kg_ontology.classes.DataFlow"],
+    },
+    {
+        "id": "FLOW-02",
+        "label": "FLOW-02 SYS-01 → STORE-01",
+        "attrs": {
+            "data_type": "Customer accounts, project data, audit metadata",
+            "volume": "Low to medium",
+            "encryption_in_transit": True,
+            "protocol": "PostgreSQL TLS",
+            "subprocessor": False,
+        },
+        "source": ["Doc04 §2.2 line 97 (Data Flows, FLOW-02 row)",
+                   "phase1_ontology.yaml@kg_ontology.classes.DataFlow"],
+    },
+    {
+        "id": "FLOW-03",
+        "label": "FLOW-03 SYS-01 → STORE-03 (Datadog)",
+        "attrs": {
+            "data_type": "Pseudonymised events, request metadata, error traces",
+            "volume": "Low",
+            "encryption_in_transit": True,
+            "protocol": "HTTPS agent/API",
+            "subprocessor": True,
+        },
+        "source": ["Doc04 §2.2 line 98 (Data Flows, FLOW-03 row)",
+                   "phase1_ontology.yaml@kg_ontology.classes.DataFlow"],
+    },
+    {
+        "id": "FLOW-04",
+        "label": "FLOW-04 Web client → SYS-02 (Auth0)",
+        "attrs": {
+            "data_type": "Authentication credentials, email identifier, OIDC tokens",
+            "volume": "Low",
+            "encryption_in_transit": True,
+            "protocol": "OAuth 2.0/OIDC over HTTPS",
+            "subprocessor": True,
+        },
+        "source": ["Doc04 §2.2 line 99 (Data Flows, FLOW-04 row)",
+                   "phase1_ontology.yaml@kg_ontology.classes.DataFlow"],
+    },
+    {
+        "id": "FLOW-05",
+        "label": "FLOW-05 SYS-01 → Stripe",
+        "attrs": {
+            "data_type": "Billing metadata and hosted-checkout redirect; no card PAN stored by TinyTask",
+            "volume": "Low",
+            "encryption_in_transit": True,
+            "protocol": "HTTPS API",
+            "subprocessor": True,
+        },
+        "source": ["Doc04 §2.2 line 100 (Data Flows, FLOW-05 row)",
+                   "phase1_ontology.yaml@kg_ontology.classes.DataFlow"],
+    },
+]
+assert len(DATAFLOWS) == 5, f"DATAFLOWS drift: {len(DATAFLOWS)} (expected 5)"
+
+
+# --- 4 PersonalDataCategories (Doc04 §2.3 lines 102–109) ---
+PERSONAL_DATA_CATEGORIES = [
+    {
+        "id": "PDC-EMAIL",
+        "label": "Email addresses",
+        "attrs": {
+            "category": "Email addresses",
+            "legal_basis_art6_gdpr": "Contract",
+            "retention": "Account lifetime plus 30 days after deletion request where legally permissible",
+            "erasure_mechanism": "Manual admin deletion through support workflow; Auth0 deletion required separately",
+        },
+        "source": ["Doc04 §2.3 line 106 (Personal Data Categories, Email row)",
+                   "phase1_ontology.yaml@kg_ontology.classes.PersonalDataCategory"],
+    },
+    {
+        "id": "PDC-NAMES",
+        "label": "Names",
+        "attrs": {
+            "category": "Names",
+            "legal_basis_art6_gdpr": "Contract",
+            "retention": "Account lifetime plus 30 days after deletion request where legally permissible",
+            "erasure_mechanism": "Manual admin deletion through support workflow",
+        },
+        "source": ["Doc04 §2.3 line 107 (Personal Data Categories, Names row)",
+                   "phase1_ontology.yaml@kg_ontology.classes.PersonalDataCategory"],
+    },
+    {
+        "id": "PDC-PROJECT",
+        "label": "Project data uploaded by users",
+        "attrs": {
+            "category": "Project data uploaded by users",
+            "legal_basis_art6_gdpr": "Contract",
+            "retention": "Account or workspace lifetime; backups retained up to 12 months",
+            "erasure_mechanism": "Workspace deletion removes active records; backups expire by retention schedule",
+        },
+        "source": ["Doc04 §2.3 line 108 (Personal Data Categories, Project data row)",
+                   "phase1_ontology.yaml@kg_ontology.classes.PersonalDataCategory"],
+    },
+    {
+        "id": "PDC-PAYMENT",
+        "label": "Payment and billing data",
+        "attrs": {
+            "category": "Payment and billing data",
+            "legal_basis_art6_gdpr": "Contract",
+            "retention": "Stripe retention under its processor/controller terms; TinyTask stores limited billing references",
+            "erasure_mechanism": "Deletion or anonymisation by support request; Stripe customer record deletion where legally permissible",
+        },
+        "source": ["Doc04 §2.3 line 109 (Personal Data Categories, Payment row)",
+                   "phase1_ontology.yaml@kg_ontology.classes.PersonalDataCategory"],
+    },
+]
+assert len(PERSONAL_DATA_CATEGORIES) == 4, f"PERSONAL_DATA_CATEGORIES drift: {len(PERSONAL_DATA_CATEGORIES)} (expected 4)"
+
+
+# --- 3 DataSubjectCategories (Doc04 §2.4 lines 113–117) ---
+DATA_SUBJECT_CATEGORIES = [
+    {
+        "id": "DSC-EU-CUSTOMERS",
+        "label": "EU customers (B2B and B2C)",
+        "attrs": {
+            "category": "EU customers (B2B and B2C)",
+            "access_mechanism": "In-app account view and support request",
+            "erasure_mechanism": "Manual support workflow; active records deleted and backup expiry relied on for residual copies",
+        },
+        "source": ["Doc04 §2.4 line 115 (Data Subject Categories, EU customers row)",
+                   "phase1_ontology.yaml@kg_ontology.classes.DataSubjectCategory"],
+    },
+    {
+        "id": "DSC-FREE-TIER",
+        "label": "Free-tier users",
+        "attrs": {
+            "category": "Free-tier users",
+            "access_mechanism": "In-app account view and support request",
+            "erasure_mechanism": "Manual support workflow; inactive accounts reviewed ad hoc",
+        },
+        "source": ["Doc04 §2.4 line 116 (Data Subject Categories, Free-tier users row)",
+                   "phase1_ontology.yaml@kg_ontology.classes.DataSubjectCategory"],
+    },
+    {
+        "id": "DSC-ENTERPRISE-END-USERS",
+        "label": "Enterprise customer end users",
+        "attrs": {
+            "category": "Enterprise customer end users",
+            "access_mechanism": "Enterprise administrator export and support-assisted DSAR",
+            "erasure_mechanism": "Processor-assisted deletion on controller instruction under DPA",
+        },
+        "source": ["Doc04 §2.4 line 117 (Data Subject Categories, Enterprise end users row)",
+                   "phase1_ontology.yaml@kg_ontology.classes.DataSubjectCategory"],
+    },
+]
+assert len(DATA_SUBJECT_CATEGORIES) == 3, f"DATA_SUBJECT_CATEGORIES drift: {len(DATA_SUBJECT_CATEGORIES)} (expected 3)"
+
+
+# --- 6 ThirdParties (Doc06 §2 + §5 + §6) ---
+THIRD_PARTIES = [
+    {
+        "id": "AWS",
+        "label": "AWS (or equivalent EU cloud provider)",
+        "attrs": {
+            "name": "AWS",
+            "aliases": ["Amazon Web Services"],
+            "services": [
+                "EC2/compute (SYS-01 runtime)",
+                "RDS/managed PostgreSQL (SYS-03)",
+                "S3/object storage (SYS-05 backups)",
+                "Cloud KMS (SYS-04)",
+            ],
+            "regions": ["eu-west-1", "EU region"],
+            "criticality": "Critical",
+            "risk_score": "L",
+            "dpa_in_place": True,
+            "article_28_compliant": True,
+            "exit_plan": False,  # Doc06 §2: N — not yet documented; flagged via Doc06 §8 GAP-TPL-02
+            "last_assessment": "2026-04 — informal review during intake (no formal assessment yet)",
+            "next_review": "2027-04",
+            "sbom_available": False,  # Doc06 §5: N — AWS does not publish SBOM as SaaS consumer
+            "art_28_dpa": True,
+            "art_30_clauses": True,
+            "security_audit_right": "Indirect — AWS substitutes SOC 2 / ISO 27001 / ISO 27018 reports in lieu of direct audit access",
+            "subprocessor_approval": "Y — AWS publishes subprocessor list; customers may subscribe to change notifications",
+            "data_accessed": [
+                "Application logs, runtime config, no direct personal data at this layer (EC2)",
+                "Customer accounts (email, name, hashed password), B2B project content (RDS)",
+                "Encrypted DB backups containing personal data (S3)",
+                "Key metadata only; raw keys never leave HSM-bound processors (Cloud KMS)",
+            ],
+        },
+        "source": ["Doc06 §2 lines 59–62 (Cloud & Infrastructure Providers, 4 AWS rows)",
+                   "Doc06 §5 line 173 (Supply Chain Risk table, AWS row)",
+                   "Doc06 §6 line 192 (Contractual Coverage, AWS row)",
+                   "phase1_ontology.yaml@kg_ontology.classes.ThirdParty"],
+    },
+    {
+        "id": "Stripe",
+        "label": "Stripe",
+        "attrs": {
+            "name": "Stripe",
+            "aliases": ["Stripe Technologies"],
+            "services": ["Stripe-hosted payment checkout (FLOW-05)"],
+            "regions": ["Stripe-controlled regions (EU processing locations per Stripe DPA)"],
+            "criticality": "Critical",
+            "risk_score": "L",
+            "dpa_in_place": True,
+            "article_28_compliant": True,
+            "exit_plan": True,  # Doc06 §2: Y — Stripe Dashboard API documented
+            "last_assessment": "2026-04 — informal review",
+            "next_review": "2027-04",
+            "sbom_available": False,  # Doc06 §5: N/A — payment processor; SBOM not applicable
+            "art_28_dpa": True,
+            "art_30_clauses": True,
+            "security_audit_right": "Indirect — Stripe provides PCI-DSS Level 1 AOC and SOC 2 reports",
+            "subprocessor_approval": "Y — Stripe publishes subprocessor list",
+            "data_accessed": [
+                "Card PAN tokenised by Stripe; TinyTask stores only billing metadata and Stripe customer IDs; no PAN",
+            ],
+        },
+        "source": ["Doc06 §2 line 63 (Cloud & Infrastructure Providers, Stripe row)",
+                   "Doc06 §5 line 174 (Supply Chain Risk table, Stripe row)",
+                   "Doc06 §6 line 193 (Contractual Coverage, Stripe row)",
+                   "phase1_ontology.yaml@kg_ontology.classes.ThirdParty"],
+    },
+    {
+        "id": "Auth0",
+        "label": "Auth0 (by Okta)",
+        "attrs": {
+            "name": "Auth0",
+            "aliases": ["Auth0 by Okta"],
+            "services": ["Authentication / identity (SYS-02)"],
+            "regions": ["Auth0 EU region (tenant where available)"],
+            "criticality": "Critical",
+            "risk_score": "L",
+            "dpa_in_place": True,
+            "article_28_compliant": True,
+            "exit_plan": True,  # Doc06 §2: Y — Auth0 user-export API documented
+            "last_assessment": "2026-04 — informal review",
+            "next_review": "2027-04",
+            "sbom_available": False,  # Doc06 §5: N/A — managed identity service; SBOM not applicable
+            "art_28_dpa": True,
+            "art_30_clauses": True,
+            "security_audit_right": "Indirect — Auth0 provides SOC 2 / ISO 27001 + ISO 27018 reports on request",
+            "subprocessor_approval": "Y — Auth0/Okta publishes subprocessor list",
+            "data_accessed": [
+                "Email addresses (used as identifiers), hashed passwords, MFA factors, session metadata, OIDC tokens",
+            ],
+        },
+        "source": ["Doc06 §2 line 64 (Cloud & Infrastructure Providers, Auth0 row)",
+                   "Doc06 §5 line 175 (Supply Chain Risk table, Auth0 row)",
+                   "Doc06 §6 line 194 (Contractual Coverage, Auth0 row)",
+                   "phase1_ontology.yaml@kg_ontology.classes.ThirdParty"],
+    },
+    {
+        "id": "Datadog",
+        "label": "Datadog (or equivalent)",
+        "attrs": {
+            "name": "Datadog",
+            "aliases": ["Datadog APM"],
+            "services": ["APM / log aggregation (STORE-03)", "Log aggregation + APM"],
+            "regions": ["EU site where available"],
+            "criticality": "Critical",
+            "risk_score": "M",
+            "dpa_in_place": True,
+            "article_28_compliant": True,
+            "exit_plan": None,  # Doc06 §2 + §5 + §6: implicit only (NEW-04 audit) — gap surfaced
+            "last_assessment": "2026-04 — informal review",
+            "next_review": "2027-04",
+            "sbom_available": False,  # Doc06 §5: N/A — log SaaS
+            "art_28_dpa": True,
+            "art_30_clauses": True,
+            "security_audit_right": "Indirect — Datadog SOC 2 Type II report available",
+            "subprocessor_approval": "Y — Datadog publishes subprocessor list",
+            "data_accessed": [
+                "Pseudonymised operational logs and metrics — no raw customer content by design",
+            ],
+        },
+        "source": ["Doc06 §2 line 72 (Cloud Services table row, Datadog equivalent row)",
+                   "Doc06 §5 line 176 (Supply Chain Risk table, Datadog row)",
+                   "Doc06 §6 line 195 (Contractual Coverage, Datadog row)",
+                   "phase1_ontology.yaml@kg_ontology.classes.ThirdParty"],
+    },
+    {
+        "id": "GitHub",
+        "label": "GitHub",
+        "attrs": {
+            "name": "GitHub",
+            "aliases": ["GitHub.com"],
+            "services": ["Source-code hosting + Git-based version control"],
+            "regions": ["GitHub global"],
+            "criticality": "Important",
+            "risk_score": "M",
+            "dpa_in_place": True,
+            "article_28_compliant": True,
+            "exit_plan": True,  # Doc06 §6: Y (GitHub DPA — exit covered by GitHub subprocessor + DPA termination)
+            "last_assessment": "2026-04 — informal review",
+            "next_review": "2027-04",
+            "sbom_available": False,  # Doc06 §5: N/A — repository service
+            "art_28_dpa": True,
+            "art_30_clauses": "Limited (source code is not personal data subject to Art. 30 processor records)",
+            "security_audit_right": "Indirect — GitHub SOC 2 available",
+            "subprocessor_approval": "Y",
+            "data_accessed": [
+                "Source code, issue text, commit metadata (no production personal data)",
+            ],
+        },
+        "source": ["Doc06 §3 line 76 (Software Vendors table, GitHub row)",
+                   "Doc06 §5 line 177 (Supply Chain Risk table, GitHub row)",
+                   "Doc06 §6 line 196 (Contractual Coverage, GitHub row)",
+                   "phase1_ontology.yaml@kg_ontology.classes.ThirdParty"],
+    },
+    {
+        "id": "Snyk",
+        "label": "Snyk",
+        "attrs": {
+            "name": "Snyk",
+            "aliases": ["Snyk Limited"],
+            "services": ["Software composition analysis / vulnerability scanning"],
+            "regions": ["Snyk SaaS regions (tenant default)"],
+            "criticality": "Important",
+            "risk_score": "L",
+            "dpa_in_place": True,
+            "article_28_compliant": True,
+            "exit_plan": True,  # Doc06 §6: Y (Snyk DPA — exit covered by DPA termination)
+            "last_assessment": "2026-04 — informal review",
+            "next_review": "2027-04",
+            "sbom_available": True,  # Doc06 §5: Y — Snyk can output CycloneDX/SPDX for scanned projects
+            "art_28_dpa": True,  # Doc06 §6: Y (Snyk DPA — paid tiers; tier not captured, NEW-05)
+            "art_30_clauses": "Limited (developer tool; no personal data processed)",
+            "security_audit_right": "Indirect — Snyk SOC 2 available",
+            "subprocessor_approval": "Limited (Snyk subprocessors disclosed)",
+            "data_accessed": [
+                "Source code + dependency manifests; no runtime personal data",
+            ],
+        },
+        "source": ["Doc06 §3 line 78 (Software Vendors table, Snyk row)",
+                   "Doc06 §5 line 178 (Supply Chain Risk table, Snyk row)",
+                   "Doc06 §6 line 197 (Contractual Coverage, Snyk row)",
+                   "phase1_ontology.yaml@kg_ontology.classes.ThirdParty"],
+    },
+]
+assert len(THIRD_PARTIES) == 6, f"THIRD_PARTIES drift: {len(THIRD_PARTIES)} (expected 6)"
+
+
+# ---------------------------------------------------------------------------
+# 8.5.1. Phase B edge tables (Doc04 §2.1 + §2.2 + §2.3 + §2.4 + §3 + Doc06 §2/§5/§6)
+# ---------------------------------------------------------------------------
+
+# HOSTS_EDGES: System → DataStore (per ontology verb HOSTS).
+# Doc04 §2.1 maps:
+#   STORE-01 → SYS-03 (line 88)
+#   STORE-02 → SYS-05 (line 89)
+#   STORE-03 → SYS-01 + monitoring provider (line 90) — Sys-01 explicit; Datadog
+#   destination is captured separately via PROCESSES on FLOW-03.
+HOSTS_EDGES = [
+    # STORE-01 hosted by SYS-03
+    ("SYS-03", "STORE-01", "Doc04 §2.1 line 88: STORE-01.System = SYS-03"),
+    # STORE-02 hosted by SYS-05
+    ("SYS-05", "STORE-02", "Doc04 §2.1 line 89: STORE-02.System = SYS-05"),
+    # STORE-03 hosted by SYS-01 (Datadog link captured via PROCESSES on FLOW-03)
+    ("SYS-01", "STORE-03", "Doc04 §2.1 line 90: STORE-03.System = SYS-01 (monitoring provider link is on FLOW-03)"),
+]
+assert len(HOSTS_EDGES) == 3, f"HOSTS_EDGES drift: {len(HOSTS_EDGES)} (expected 3)"
+
+
+# INVOLVES_EDGES: SecurityControlDomain → System
+# Doc04 §3 (lines 125–161) Compliance Mapping; one edge per (sub-domain, system).
+# Free-text refs ("cloud IAM", "GitHub organisation", "STORE-03 monitoring",
+# "SYS-01 release pipeline", "Stripe", "Datadog") are SKIPPED — surfaced via
+# NEW-01 audit. Wildcard "All production systems" expands to SYS-01..SYS-05.
+INVOLVES_EDGES = [
+    # D-01.1: SYS-03, SYS-04, SYS-05
+    ("D-01.1", "SYS-03", "Doc04 §3 row D-01.1: SYS-03"),
+    ("D-01.1", "SYS-04", "Doc04 §3 row D-01.1: SYS-04"),
+    ("D-01.1", "SYS-05", "Doc04 §3 row D-01.1: SYS-05"),
+    # D-01.2: SYS-01, SYS-02, SYS-03
+    ("D-01.2", "SYS-01", "Doc04 §3 row D-01.2: SYS-01"),
+    ("D-01.2", "SYS-02", "Doc04 §3 row D-01.2: SYS-02"),
+    ("D-01.2", "SYS-03", "Doc04 §3 row D-01.2: SYS-03"),
+    # D-01.3: SYS-04
+    ("D-01.3", "SYS-04", "Doc04 §3 row D-01.3: SYS-04"),
+    # D-01.4: SYS-01, SYS-03, SYS-05
+    ("D-01.4", "SYS-01", "Doc04 §3 row D-01.4: SYS-01"),
+    ("D-01.4", "SYS-03", "Doc04 §3 row D-01.4: SYS-03"),
+    ("D-01.4", "SYS-05", "Doc04 §3 row D-01.4: SYS-05"),
+    # D-02.1: SYS-01, SYS-02, SYS-03
+    ("D-02.1", "SYS-01", "Doc04 §3 row D-02.1: SYS-01"),
+    ("D-02.1", "SYS-02", "Doc04 §3 row D-02.1: SYS-02"),
+    ("D-02.1", "SYS-03", "Doc04 §3 row D-02.1: SYS-03"),
+    # D-02.2: SYS-01, SYS-03
+    ("D-02.2", "SYS-01", "Doc04 §3 row D-02.2: SYS-01"),
+    ("D-02.2", "SYS-03", "Doc04 §3 row D-02.2: SYS-03"),
+    # D-02.3: SYS-01
+    ("D-02.3", "SYS-01", "Doc04 §3 row D-02.3: SYS-01"),
+    # D-02.4: SYS-01, SYS-02, SYS-03
+    ("D-02.4", "SYS-01", "Doc04 §3 row D-02.4: SYS-01"),
+    ("D-02.4", "SYS-02", "Doc04 §3 row D-02.4: SYS-02"),
+    ("D-02.4", "SYS-03", "Doc04 §3 row D-02.4: SYS-03"),
+    # D-03.1: SYS-02 (cloud IAM, GitHub organisation skipped — NEW-01)
+    ("D-03.1", "SYS-02", "Doc04 §3 row D-03.1: SYS-02"),
+    # D-03.2: SYS-02 (cloud IAM, GitHub organisation skipped — NEW-01)
+    ("D-03.2", "SYS-02", "Doc04 §3 row D-03.2: SYS-02"),
+    # D-03.3: SYS-01, SYS-02, SYS-03, SYS-04
+    ("D-03.3", "SYS-01", "Doc04 §3 row D-03.3: SYS-01"),
+    ("D-03.3", "SYS-02", "Doc04 §3 row D-03.3: SYS-02"),
+    ("D-03.3", "SYS-03", "Doc04 §3 row D-03.3: SYS-03"),
+    ("D-03.3", "SYS-04", "Doc04 §3 row D-03.3: SYS-04"),
+    # D-03.4: SYS-01, SYS-02, SYS-03
+    ("D-03.4", "SYS-01", "Doc04 §3 row D-03.4: SYS-01"),
+    ("D-03.4", "SYS-02", "Doc04 §3 row D-03.4: SYS-02"),
+    ("D-03.4", "SYS-03", "Doc04 §3 row D-03.4: SYS-03"),
+    # D-04.1: SYS-01, SYS-03 (STORE-03 monitoring skipped — NEW-01)
+    ("D-04.1", "SYS-01", "Doc04 §3 row D-04.1: SYS-01"),
+    ("D-04.1", "SYS-03", "Doc04 §3 row D-04.1: SYS-03"),
+    # D-04.2: SYS-01, SYS-02, SYS-03
+    ("D-04.2", "SYS-01", "Doc04 §3 row D-04.2: SYS-01"),
+    ("D-04.2", "SYS-02", "Doc04 §3 row D-04.2: SYS-02"),
+    ("D-04.2", "SYS-03", "Doc04 §3 row D-04.2: SYS-03"),
+    # D-04.3: SYS-01, SYS-02 (STORE-03 monitoring skipped — NEW-01)
+    ("D-04.3", "SYS-01", "Doc04 §3 row D-04.3: SYS-01"),
+    ("D-04.3", "SYS-02", "Doc04 §3 row D-04.3: SYS-02"),
+    # D-04.4: SYS-03, SYS-05
+    ("D-04.4", "SYS-03", "Doc04 §3 row D-04.4: SYS-03"),
+    ("D-04.4", "SYS-05", "Doc04 §3 row D-04.4: SYS-05"),
+    # D-05.1: SYS-01, SYS-03
+    ("D-05.1", "SYS-01", "Doc04 §3 row D-05.1: SYS-01"),
+    ("D-05.1", "SYS-03", "Doc04 §3 row D-05.1: SYS-03"),
+    # D-05.2: SYS-03, SYS-05 (STORE-03 monitoring skipped — NEW-01)
+    ("D-05.2", "SYS-03", "Doc04 §3 row D-05.2: SYS-03"),
+    ("D-05.2", "SYS-05", "Doc04 §3 row D-05.2: SYS-05"),
+    # D-05.3: SYS-01, SYS-02, SYS-03, SYS-05
+    ("D-05.3", "SYS-01", "Doc04 §3 row D-05.3: SYS-01"),
+    ("D-05.3", "SYS-02", "Doc04 §3 row D-05.3: SYS-02"),
+    ("D-05.3", "SYS-03", "Doc04 §3 row D-05.3: SYS-03"),
+    ("D-05.3", "SYS-05", "Doc04 §3 row D-05.3: SYS-05"),
+    # D-05.4: SYS-01, SYS-03
+    ("D-05.4", "SYS-01", "Doc04 §3 row D-05.4: SYS-01"),
+    ("D-05.4", "SYS-03", "Doc04 §3 row D-05.4: SYS-03"),
+    # D-06.1: SYS-02, SYS-03, SYS-04, SYS-05 (Stripe skipped — NEW-01)
+    ("D-06.1", "SYS-02", "Doc04 §3 row D-06.1: SYS-02"),
+    ("D-06.1", "SYS-03", "Doc04 §3 row D-06.1: SYS-03"),
+    ("D-06.1", "SYS-04", "Doc04 §3 row D-06.1: SYS-04"),
+    ("D-06.1", "SYS-05", "Doc04 §3 row D-06.1: SYS-05"),
+    # D-06.2: (SYS-01 release pipeline skipped — NEW-01)
+    # D-06.3: SYS-02, SYS-03, SYS-05 (Stripe, Datadog skipped — NEW-01)
+    ("D-06.3", "SYS-02", "Doc04 §3 row D-06.3: SYS-02"),
+    ("D-06.3", "SYS-03", "Doc04 §3 row D-06.3: SYS-03"),
+    ("D-06.3", "SYS-05", "Doc04 §3 row D-06.3: SYS-05"),
+    # D-06.4: SYS-01, SYS-02, SYS-03, SYS-05
+    ("D-06.4", "SYS-01", "Doc04 §3 row D-06.4: SYS-01"),
+    ("D-06.4", "SYS-02", "Doc04 §3 row D-06.4: SYS-02"),
+    ("D-06.4", "SYS-03", "Doc04 §3 row D-06.4: SYS-03"),
+    ("D-06.4", "SYS-05", "Doc04 §3 row D-06.4: SYS-05"),
+    # D-07.1: SYS-01, SYS-02, SYS-03
+    ("D-07.1", "SYS-01", "Doc04 §3 row D-07.1: SYS-01"),
+    ("D-07.1", "SYS-02", "Doc04 §3 row D-07.1: SYS-02"),
+    ("D-07.1", "SYS-03", "Doc04 §3 row D-07.1: SYS-03"),
+    # D-07.2: (SYS-01 release pipeline skipped — NEW-01)
+    # D-07.3: (SYS-01 release pipeline skipped — NEW-01)
+    # D-07.4: SYS-01, SYS-03
+    ("D-07.4", "SYS-01", "Doc04 §3 row D-07.4: SYS-01"),
+    ("D-07.4", "SYS-03", "Doc04 §3 row D-07.4: SYS-03"),
+    # D-08.1: All production systems → SYS-01..SYS-05
+    ("D-08.1", "SYS-01", "Doc04 §3 row D-08.1: All production systems → expanded"),
+    ("D-08.1", "SYS-02", "Doc04 §3 row D-08.1: All production systems → expanded"),
+    ("D-08.1", "SYS-03", "Doc04 §3 row D-08.1: All production systems → expanded"),
+    ("D-08.1", "SYS-04", "Doc04 §3 row D-08.1: All production systems → expanded"),
+    ("D-08.1", "SYS-05", "Doc04 §3 row D-08.1: All production systems → expanded"),
+    # D-08.2: SYS-01, SYS-02, SYS-03, SYS-04
+    ("D-08.2", "SYS-01", "Doc04 §3 row D-08.2: SYS-01"),
+    ("D-08.2", "SYS-02", "Doc04 §3 row D-08.2: SYS-02"),
+    ("D-08.2", "SYS-03", "Doc04 §3 row D-08.2: SYS-03"),
+    ("D-08.2", "SYS-04", "Doc04 §3 row D-08.2: SYS-04"),
+    # D-09.1: All production systems → SYS-01..SYS-05
+    ("D-09.1", "SYS-01", "Doc04 §3 row D-09.1: All production systems → expanded"),
+    ("D-09.1", "SYS-02", "Doc04 §3 row D-09.1: All production systems → expanded"),
+    ("D-09.1", "SYS-03", "Doc04 §3 row D-09.1: All production systems → expanded"),
+    ("D-09.1", "SYS-04", "Doc04 §3 row D-09.1: All production systems → expanded"),
+    ("D-09.1", "SYS-05", "Doc04 §3 row D-09.1: All production systems → expanded"),
+    # D-09.2: SYS-01, SYS-02, SYS-03, SYS-05
+    ("D-09.2", "SYS-01", "Doc04 §3 row D-09.2: SYS-01"),
+    ("D-09.2", "SYS-02", "Doc04 §3 row D-09.2: SYS-02"),
+    ("D-09.2", "SYS-03", "Doc04 §3 row D-09.2: SYS-03"),
+    ("D-09.2", "SYS-05", "Doc04 §3 row D-09.2: SYS-05"),
+    # D-09.3: SYS-01, SYS-02, SYS-03, SYS-04, SYS-05
+    ("D-09.3", "SYS-01", "Doc04 §3 row D-09.3: SYS-01"),
+    ("D-09.3", "SYS-02", "Doc04 §3 row D-09.3: SYS-02"),
+    ("D-09.3", "SYS-03", "Doc04 §3 row D-09.3: SYS-03"),
+    ("D-09.3", "SYS-04", "Doc04 §3 row D-09.3: SYS-04"),
+    ("D-09.3", "SYS-05", "Doc04 §3 row D-09.3: SYS-05"),
+    # D-09.4: SYS-01, SYS-02, SYS-03, SYS-05 (Stripe skipped — NEW-01)
+    ("D-09.4", "SYS-01", "Doc04 §3 row D-09.4: SYS-01"),
+    ("D-09.4", "SYS-02", "Doc04 §3 row D-09.4: SYS-02"),
+    ("D-09.4", "SYS-03", "Doc04 §3 row D-09.4: SYS-03"),
+    ("D-09.4", "SYS-05", "Doc04 §3 row D-09.4: SYS-05"),
+    # D-10.1: SYS-01, SYS-03 (STORE-03 monitoring skipped — NEW-01)
+    ("D-10.1", "SYS-01", "Doc04 §3 row D-10.1: SYS-01"),
+    ("D-10.1", "SYS-03", "Doc04 §3 row D-10.1: SYS-03"),
+    # D-10.2: SYS-01, SYS-02, SYS-03
+    ("D-10.2", "SYS-01", "Doc04 §3 row D-10.2: SYS-01"),
+    ("D-10.2", "SYS-02", "Doc04 §3 row D-10.2: SYS-02"),
+    ("D-10.2", "SYS-03", "Doc04 §3 row D-10.2: SYS-03"),
+    # D-10.3: SYS-01, SYS-02, SYS-03, SYS-05
+    ("D-10.3", "SYS-01", "Doc04 §3 row D-10.3: SYS-01"),
+    ("D-10.3", "SYS-02", "Doc04 §3 row D-10.3: SYS-02"),
+    ("D-10.3", "SYS-03", "Doc04 §3 row D-10.3: SYS-03"),
+    ("D-10.3", "SYS-05", "Doc04 §3 row D-10.3: SYS-05"),
+]
+assert len(INVOLVES_EDGES) == 99, f"INVOLVES_EDGES drift: {len(INVOLVES_EDGES)} (expected 99)"
+
+
+# INVOLVES_STORE_EDGES: SecurityControlDomain → DataStore
+# Per Doc04 §3 'Relevant Data Stores' column; only STORE-* ids become edges.
+INVOLVES_STORE_EDGES = [
+    # D-01.1: STORE-01, STORE-02, STORE-03
+    ("D-01.1", "STORE-01", "Doc04 §3 row D-01.1: STORE-01"),
+    ("D-01.1", "STORE-02", "Doc04 §3 row D-01.1: STORE-02"),
+    ("D-01.1", "STORE-03", "Doc04 §3 row D-01.1: STORE-03"),
+    # D-01.2: STORE-01
+    ("D-01.2", "STORE-01", "Doc04 §3 row D-01.2: STORE-01"),
+    # D-01.3: STORE-01, STORE-02
+    ("D-01.3", "STORE-01", "Doc04 §3 row D-01.3: STORE-01"),
+    ("D-01.3", "STORE-02", "Doc04 §3 row D-01.3: STORE-02"),
+    # D-01.4: STORE-01, STORE-02
+    ("D-01.4", "STORE-01", "Doc04 §3 row D-01.4: STORE-01"),
+    ("D-01.4", "STORE-02", "Doc04 §3 row D-01.4: STORE-02"),
+    # D-02.1: STORE-03
+    ("D-02.1", "STORE-03", "Doc04 §3 row D-02.1: STORE-03"),
+    # D-02.2: STORE-03
+    ("D-02.2", "STORE-03", "Doc04 §3 row D-02.2: STORE-03"),
+    # D-02.3: STORE-03
+    ("D-02.3", "STORE-03", "Doc04 §3 row D-02.3: STORE-03"),
+    # D-02.4: STORE-01
+    ("D-02.4", "STORE-01", "Doc04 §3 row D-02.4: STORE-01"),
+    # D-03.1: STORE-01
+    ("D-03.1", "STORE-01", "Doc04 §3 row D-03.1: STORE-01"),
+    # D-03.2: STORE-01
+    ("D-03.2", "STORE-01", "Doc04 §3 row D-03.2: STORE-01"),
+    # D-03.3: STORE-01, STORE-02
+    ("D-03.3", "STORE-01", "Doc04 §3 row D-03.3: STORE-01"),
+    ("D-03.3", "STORE-02", "Doc04 §3 row D-03.3: STORE-02"),
+    # D-03.4: STORE-01
+    ("D-03.4", "STORE-01", "Doc04 §3 row D-03.4: STORE-01"),
+    # D-04.1: STORE-03
+    ("D-04.1", "STORE-03", "Doc04 §3 row D-04.1: STORE-03"),
+    # D-04.2: STORE-01, STORE-03
+    ("D-04.2", "STORE-01", "Doc04 §3 row D-04.2: STORE-01"),
+    ("D-04.2", "STORE-03", "Doc04 §3 row D-04.2: STORE-03"),
+    # D-04.3: STORE-03
+    ("D-04.3", "STORE-03", "Doc04 §3 row D-04.3: STORE-03"),
+    # D-04.4: STORE-01, STORE-02
+    ("D-04.4", "STORE-01", "Doc04 §3 row D-04.4: STORE-01"),
+    ("D-04.4", "STORE-02", "Doc04 §3 row D-04.4: STORE-02"),
+    # D-05.1: STORE-01, STORE-03
+    ("D-05.1", "STORE-01", "Doc04 §3 row D-05.1: STORE-01"),
+    ("D-05.1", "STORE-03", "Doc04 §3 row D-05.1: STORE-03"),
+    # D-05.2: STORE-01, STORE-02, STORE-03
+    ("D-05.2", "STORE-01", "Doc04 §3 row D-05.2: STORE-01"),
+    ("D-05.2", "STORE-02", "Doc04 §3 row D-05.2: STORE-02"),
+    ("D-05.2", "STORE-03", "Doc04 §3 row D-05.2: STORE-03"),
+    # D-05.3: STORE-01, STORE-02
+    ("D-05.3", "STORE-01", "Doc04 §3 row D-05.3: STORE-01"),
+    ("D-05.3", "STORE-02", "Doc04 §3 row D-05.3: STORE-02"),
+    # D-05.4: STORE-01
+    ("D-05.4", "STORE-01", "Doc04 §3 row D-05.4: STORE-01"),
+    # D-06.1: STORE-01, STORE-02, STORE-03
+    ("D-06.1", "STORE-01", "Doc04 §3 row D-06.1: STORE-01"),
+    ("D-06.1", "STORE-02", "Doc04 §3 row D-06.1: STORE-02"),
+    ("D-06.1", "STORE-03", "Doc04 §3 row D-06.1: STORE-03"),
+    # D-06.2: STORE-03
+    ("D-06.2", "STORE-03", "Doc04 §3 row D-06.2: STORE-03"),
+    # D-06.3: STORE-01, STORE-02, STORE-03
+    ("D-06.3", "STORE-01", "Doc04 §3 row D-06.3: STORE-01"),
+    ("D-06.3", "STORE-02", "Doc04 §3 row D-06.3: STORE-02"),
+    ("D-06.3", "STORE-03", "Doc04 §3 row D-06.3: STORE-03"),
+    # D-06.4: STORE-01, STORE-02, STORE-03
+    ("D-06.4", "STORE-01", "Doc04 §3 row D-06.4: STORE-01"),
+    ("D-06.4", "STORE-02", "Doc04 §3 row D-06.4: STORE-02"),
+    ("D-06.4", "STORE-03", "Doc04 §3 row D-06.4: STORE-03"),
+    # D-07.1: STORE-01
+    ("D-07.1", "STORE-01", "Doc04 §3 row D-07.1: STORE-01"),
+    # D-07.2: STORE-03
+    ("D-07.2", "STORE-03", "Doc04 §3 row D-07.2: STORE-03"),
+    # D-07.3: STORE-03
+    ("D-07.3", "STORE-03", "Doc04 §3 row D-07.3: STORE-03"),
+    # D-07.4: STORE-01, STORE-03
+    ("D-07.4", "STORE-01", "Doc04 §3 row D-07.4: STORE-01"),
+    ("D-07.4", "STORE-03", "Doc04 §3 row D-07.4: STORE-03"),
+    # D-08.1: STORE-01, STORE-02, STORE-03
+    ("D-08.1", "STORE-01", "Doc04 §3 row D-08.1: STORE-01"),
+    ("D-08.1", "STORE-02", "Doc04 §3 row D-08.1: STORE-02"),
+    ("D-08.1", "STORE-03", "Doc04 §3 row D-08.1: STORE-03"),
+    # D-08.2: STORE-01, STORE-02
+    ("D-08.2", "STORE-01", "Doc04 §3 row D-08.2: STORE-01"),
+    ("D-08.2", "STORE-02", "Doc04 §3 row D-08.2: STORE-02"),
+    # D-09.1: STORE-01, STORE-02, STORE-03
+    ("D-09.1", "STORE-01", "Doc04 §3 row D-09.1: STORE-01"),
+    ("D-09.1", "STORE-02", "Doc04 §3 row D-09.1: STORE-02"),
+    ("D-09.1", "STORE-03", "Doc04 §3 row D-09.1: STORE-03"),
+    # D-09.2: STORE-01, STORE-02, STORE-03
+    ("D-09.2", "STORE-01", "Doc04 §3 row D-09.2: STORE-01"),
+    ("D-09.2", "STORE-02", "Doc04 §3 row D-09.2: STORE-02"),
+    ("D-09.2", "STORE-03", "Doc04 §3 row D-09.2: STORE-03"),
+    # D-09.3: STORE-01, STORE-02, STORE-03
+    ("D-09.3", "STORE-01", "Doc04 §3 row D-09.3: STORE-01"),
+    ("D-09.3", "STORE-02", "Doc04 §3 row D-09.3: STORE-02"),
+    ("D-09.3", "STORE-03", "Doc04 §3 row D-09.3: STORE-03"),
+    # D-09.4: STORE-01, STORE-02, STORE-03
+    ("D-09.4", "STORE-01", "Doc04 §3 row D-09.4: STORE-01"),
+    ("D-09.4", "STORE-02", "Doc04 §3 row D-09.4: STORE-02"),
+    ("D-09.4", "STORE-03", "Doc04 §3 row D-09.4: STORE-03"),
+    # D-10.1: STORE-03
+    ("D-10.1", "STORE-03", "Doc04 §3 row D-10.1: STORE-03"),
+    # D-10.2: STORE-03
+    ("D-10.2", "STORE-03", "Doc04 §3 row D-10.2: STORE-03"),
+    # D-10.3: STORE-01, STORE-02, STORE-03
+    ("D-10.3", "STORE-01", "Doc04 §3 row D-10.3: STORE-01"),
+    ("D-10.3", "STORE-02", "Doc04 §3 row D-10.3: STORE-02"),
+    ("D-10.3", "STORE-03", "Doc04 §3 row D-10.3: STORE-03"),
+]
+assert len(INVOLVES_STORE_EDGES) == 68, f"INVOLVES_STORE_EDGES drift: {len(INVOLVES_STORE_EDGES)} (expected 68)"
+
+
+# INVOLVES_FLOW_EDGES: SecurityControlDomain → DataFlow
+# Per Doc04 §3 'Relevant Data Flows' column; wildcard 'All production flows'
+# expands to FLOW-01..FLOW-05.
+INVOLVES_FLOW_EDGES = [
+    # D-01.1: FLOW-02
+    ("D-01.1", "FLOW-02", "Doc04 §3 row D-01.1: FLOW-02"),
+    # D-01.2: FLOW-01, FLOW-02, FLOW-03, FLOW-04, FLOW-05
+    ("D-01.2", "FLOW-01", "Doc04 §3 row D-01.2: FLOW-01"),
+    ("D-01.2", "FLOW-02", "Doc04 §3 row D-01.2: FLOW-02"),
+    ("D-01.2", "FLOW-03", "Doc04 §3 row D-01.2: FLOW-03"),
+    ("D-01.2", "FLOW-04", "Doc04 §3 row D-01.2: FLOW-04"),
+    ("D-01.2", "FLOW-05", "Doc04 §3 row D-01.2: FLOW-05"),
+    # D-01.3: FLOW-02
+    ("D-01.3", "FLOW-02", "Doc04 §3 row D-01.3: FLOW-02"),
+    # D-01.4: FLOW-02
+    ("D-01.4", "FLOW-02", "Doc04 §3 row D-01.4: FLOW-02"),
+    # D-02.1: FLOW-03
+    ("D-02.1", "FLOW-03", "Doc04 §3 row D-02.1: FLOW-03"),
+    # D-02.2: FLOW-03
+    ("D-02.2", "FLOW-03", "Doc04 §3 row D-02.2: FLOW-03"),
+    # D-02.3: FLOW-03
+    ("D-02.3", "FLOW-03", "Doc04 §3 row D-02.3: FLOW-03"),
+    # D-02.4: FLOW-01, FLOW-04
+    ("D-02.4", "FLOW-01", "Doc04 §3 row D-02.4: FLOW-01"),
+    ("D-02.4", "FLOW-04", "Doc04 §3 row D-02.4: FLOW-04"),
+    # D-03.1: FLOW-04
+    ("D-03.1", "FLOW-04", "Doc04 §3 row D-03.1: FLOW-04"),
+    # D-03.2: FLOW-04
+    ("D-03.2", "FLOW-04", "Doc04 §3 row D-03.2: FLOW-04"),
+    # D-03.3: FLOW-02, FLOW-04
+    ("D-03.3", "FLOW-02", "Doc04 §3 row D-03.3: FLOW-02"),
+    ("D-03.3", "FLOW-04", "Doc04 §3 row D-03.3: FLOW-04"),
+    # D-03.4: FLOW-01, FLOW-04
+    ("D-03.4", "FLOW-01", "Doc04 §3 row D-03.4: FLOW-01"),
+    ("D-03.4", "FLOW-04", "Doc04 §3 row D-03.4: FLOW-04"),
+    # D-04.1: FLOW-03
+    ("D-04.1", "FLOW-03", "Doc04 §3 row D-04.1: FLOW-03"),
+    # D-04.2: FLOW-01, FLOW-03, FLOW-04
+    ("D-04.2", "FLOW-01", "Doc04 §3 row D-04.2: FLOW-01"),
+    ("D-04.2", "FLOW-03", "Doc04 §3 row D-04.2: FLOW-03"),
+    ("D-04.2", "FLOW-04", "Doc04 §3 row D-04.2: FLOW-04"),
+    # D-04.3: FLOW-03
+    ("D-04.3", "FLOW-03", "Doc04 §3 row D-04.3: FLOW-03"),
+    # D-04.4: FLOW-02
+    ("D-04.4", "FLOW-02", "Doc04 §3 row D-04.4: FLOW-02"),
+    # D-05.1: FLOW-01, FLOW-03, FLOW-05
+    ("D-05.1", "FLOW-01", "Doc04 §3 row D-05.1: FLOW-01"),
+    ("D-05.1", "FLOW-03", "Doc04 §3 row D-05.1: FLOW-03"),
+    ("D-05.1", "FLOW-05", "Doc04 §3 row D-05.1: FLOW-05"),
+    # D-05.2: FLOW-02, FLOW-03
+    ("D-05.2", "FLOW-02", "Doc04 §3 row D-05.2: FLOW-02"),
+    ("D-05.2", "FLOW-03", "Doc04 §3 row D-05.2: FLOW-03"),
+    # D-05.3: FLOW-01, FLOW-04, FLOW-05
+    ("D-05.3", "FLOW-01", "Doc04 §3 row D-05.3: FLOW-01"),
+    ("D-05.3", "FLOW-04", "Doc04 §3 row D-05.3: FLOW-04"),
+    ("D-05.3", "FLOW-05", "Doc04 §3 row D-05.3: FLOW-05"),
+    # D-05.4: FLOW-01
+    ("D-05.4", "FLOW-01", "Doc04 §3 row D-05.4: FLOW-01"),
+    # D-06.1: FLOW-03, FLOW-04, FLOW-05
+    ("D-06.1", "FLOW-03", "Doc04 §3 row D-06.1: FLOW-03"),
+    ("D-06.1", "FLOW-04", "Doc04 §3 row D-06.1: FLOW-04"),
+    ("D-06.1", "FLOW-05", "Doc04 §3 row D-06.1: FLOW-05"),
+    # D-06.2: FLOW-03
+    ("D-06.2", "FLOW-03", "Doc04 §3 row D-06.2: FLOW-03"),
+    # D-06.3: FLOW-03, FLOW-04, FLOW-05
+    ("D-06.3", "FLOW-03", "Doc04 §3 row D-06.3: FLOW-03"),
+    ("D-06.3", "FLOW-04", "Doc04 §3 row D-06.3: FLOW-04"),
+    ("D-06.3", "FLOW-05", "Doc04 §3 row D-06.3: FLOW-05"),
+    # D-06.4: FLOW-03, FLOW-04, FLOW-05
+    ("D-06.4", "FLOW-03", "Doc04 §3 row D-06.4: FLOW-03"),
+    ("D-06.4", "FLOW-04", "Doc04 §3 row D-06.4: FLOW-04"),
+    ("D-06.4", "FLOW-05", "Doc04 §3 row D-06.4: FLOW-05"),
+    # D-07.1: FLOW-01, FLOW-02, FLOW-04
+    ("D-07.1", "FLOW-01", "Doc04 §3 row D-07.1: FLOW-01"),
+    ("D-07.1", "FLOW-02", "Doc04 §3 row D-07.1: FLOW-02"),
+    ("D-07.1", "FLOW-04", "Doc04 §3 row D-07.1: FLOW-04"),
+    # D-07.2: FLOW-03
+    ("D-07.2", "FLOW-03", "Doc04 §3 row D-07.2: FLOW-03"),
+    # D-07.3: FLOW-03
+    ("D-07.3", "FLOW-03", "Doc04 §3 row D-07.3: FLOW-03"),
+    # D-07.4: FLOW-03
+    ("D-07.4", "FLOW-03", "Doc04 §3 row D-07.4: FLOW-03"),
+    # D-08.1: All production flows → FLOW-01..FLOW-05
+    ("D-08.1", "FLOW-01", "Doc04 §3 row D-08.1: All production flows → expanded"),
+    ("D-08.1", "FLOW-02", "Doc04 §3 row D-08.1: All production flows → expanded"),
+    ("D-08.1", "FLOW-03", "Doc04 §3 row D-08.1: All production flows → expanded"),
+    ("D-08.1", "FLOW-04", "Doc04 §3 row D-08.1: All production flows → expanded"),
+    ("D-08.1", "FLOW-05", "Doc04 §3 row D-08.1: All production flows → expanded"),
+    # D-08.2: FLOW-01, FLOW-02, FLOW-04
+    ("D-08.2", "FLOW-01", "Doc04 §3 row D-08.2: FLOW-01"),
+    ("D-08.2", "FLOW-02", "Doc04 §3 row D-08.2: FLOW-02"),
+    ("D-08.2", "FLOW-04", "Doc04 §3 row D-08.2: FLOW-04"),
+    # D-09.1: All production flows → FLOW-01..FLOW-05
+    ("D-09.1", "FLOW-01", "Doc04 §3 row D-09.1: All production flows → expanded"),
+    ("D-09.1", "FLOW-02", "Doc04 §3 row D-09.1: All production flows → expanded"),
+    ("D-09.1", "FLOW-03", "Doc04 §3 row D-09.1: All production flows → expanded"),
+    ("D-09.1", "FLOW-04", "Doc04 §3 row D-09.1: All production flows → expanded"),
+    ("D-09.1", "FLOW-05", "Doc04 §3 row D-09.1: All production flows → expanded"),
+    # D-09.2: FLOW-01, FLOW-02, FLOW-03, FLOW-04, FLOW-05
+    ("D-09.2", "FLOW-01", "Doc04 §3 row D-09.2: FLOW-01"),
+    ("D-09.2", "FLOW-02", "Doc04 §3 row D-09.2: FLOW-02"),
+    ("D-09.2", "FLOW-03", "Doc04 §3 row D-09.2: FLOW-03"),
+    ("D-09.2", "FLOW-04", "Doc04 §3 row D-09.2: FLOW-04"),
+    ("D-09.2", "FLOW-05", "Doc04 §3 row D-09.2: FLOW-05"),
+    # D-09.3: FLOW-01, FLOW-02, FLOW-03, FLOW-04, FLOW-05
+    ("D-09.3", "FLOW-01", "Doc04 §3 row D-09.3: FLOW-01"),
+    ("D-09.3", "FLOW-02", "Doc04 §3 row D-09.3: FLOW-02"),
+    ("D-09.3", "FLOW-03", "Doc04 §3 row D-09.3: FLOW-03"),
+    ("D-09.3", "FLOW-04", "Doc04 §3 row D-09.3: FLOW-04"),
+    ("D-09.3", "FLOW-05", "Doc04 §3 row D-09.3: FLOW-05"),
+    # D-09.4: FLOW-01, FLOW-02, FLOW-03, FLOW-04, FLOW-05
+    ("D-09.4", "FLOW-01", "Doc04 §3 row D-09.4: FLOW-01"),
+    ("D-09.4", "FLOW-02", "Doc04 §3 row D-09.4: FLOW-02"),
+    ("D-09.4", "FLOW-03", "Doc04 §3 row D-09.4: FLOW-03"),
+    ("D-09.4", "FLOW-04", "Doc04 §3 row D-09.4: FLOW-04"),
+    ("D-09.4", "FLOW-05", "Doc04 §3 row D-09.4: FLOW-05"),
+    # D-10.1: FLOW-03
+    ("D-10.1", "FLOW-03", "Doc04 §3 row D-10.1: FLOW-03"),
+    # D-10.2: FLOW-03, FLOW-04
+    ("D-10.2", "FLOW-03", "Doc04 §3 row D-10.2: FLOW-03"),
+    ("D-10.2", "FLOW-04", "Doc04 §3 row D-10.2: FLOW-04"),
+    # D-10.3: All production flows → FLOW-01..FLOW-05
+    ("D-10.3", "FLOW-01", "Doc04 §3 row D-10.3: All production flows → expanded"),
+    ("D-10.3", "FLOW-02", "Doc04 §3 row D-10.3: All production flows → expanded"),
+    ("D-10.3", "FLOW-03", "Doc04 §3 row D-10.3: All production flows → expanded"),
+    ("D-10.3", "FLOW-04", "Doc04 §3 row D-10.3: All production flows → expanded"),
+    ("D-10.3", "FLOW-05", "Doc04 §3 row D-10.3: All production flows → expanded"),
+]
+assert len(INVOLVES_FLOW_EDGES) == 86, f"INVOLVES_FLOW_EDGES drift: {len(INVOLVES_FLOW_EDGES)} (expected 86)"
+
+
+# PROCESSES_EDGES: DataFlow → ThirdParty
+# Per Doc04 §2.2 subprocessor=Y column + Doc06 §4.1 subprocessor table.
+PROCESSES_EDGES = [
+    # FLOW-03 → Datadog (logs subprocessor)
+    ("FLOW-03", "Datadog", "Doc04 §2.2 line 98: FLOW-03.Subprocessor=Y (Datadog); Doc06 §4.1 row 4"),
+    # FLOW-04 → Auth0 (auth subprocessor)
+    ("FLOW-04", "Auth0", "Doc04 §2.2 line 99: FLOW-04.Subprocessor=Y (Auth0); Doc06 §4.1 row 3"),
+    # FLOW-05 → Stripe (payment subprocessor)
+    ("FLOW-05", "Stripe", "Doc04 §2.2 line 100: FLOW-05.Subprocessor=Y (Stripe); Doc06 §4.1 row 2"),
+]
+assert len(PROCESSES_EDGES) == 3, f"PROCESSES_EDGES drift: {len(PROCESSES_EDGES)} (expected 3)"
+
+
+# PROCESSED_BY_EDGES: PersonalDataCategory → System
+# Per Doc04 §2.3 'Systems Processing' column; only SYS-* ids become edges
+# (STORE-01/02 references are skipped per the Phase B brief — STORE is a
+# DataStore, not a System; surface as audit if needed in future).
+PROCESSED_BY_EDGES = [
+    # Email addresses: SYS-01, SYS-02, SYS-03
+    ("PDC-EMAIL", "SYS-01", "Doc04 §2.3 line 106: SYS-01"),
+    ("PDC-EMAIL", "SYS-02", "Doc04 §2.3 line 106: SYS-02"),
+    ("PDC-EMAIL", "SYS-03", "Doc04 §2.3 line 106: SYS-03"),
+    # Names: SYS-01, SYS-03
+    ("PDC-NAMES", "SYS-01", "Doc04 §2.3 line 107: SYS-01"),
+    ("PDC-NAMES", "SYS-03", "Doc04 §2.3 line 107: SYS-03"),
+    # Project data: SYS-01, SYS-03
+    ("PDC-PROJECT", "SYS-01", "Doc04 §2.3 line 108: SYS-01"),
+    ("PDC-PROJECT", "SYS-03", "Doc04 §2.3 line 108: SYS-03"),
+    # Payment and billing data: SYS-01 (Stripe handled via PROCESSED_BY_3P)
+    ("PDC-PAYMENT", "SYS-01", "Doc04 §2.3 line 109: SYS-01 billing metadata"),
+]
+assert len(PROCESSED_BY_EDGES) == 8, f"PROCESSED_BY_EDGES drift: {len(PROCESSED_BY_EDGES)} (expected 8)"
+
+
+# PROCESSED_BY_3P_EDGES: PersonalDataCategory → ThirdParty
+# Per Doc04 §2.3 'Stripe hosted checkout' reference for payment data + Doc06 §4.1.
+PROCESSED_BY_3P_EDGES = [
+    # Payment and billing data → Stripe (hosted checkout; tokenised card data)
+    ("PDC-PAYMENT", "Stripe", "Doc04 §2.3 line 109: 'Stripe hosted checkout' for Payment data; Doc06 §4.1 row 2"),
+]
+assert len(PROCESSED_BY_3P_EDGES) == 1, f"PROCESSED_BY_3P_EDGES drift: {len(PROCESSED_BY_3P_EDGES)} (expected 1)"
+
+
+# CAPTURES_EDGES: DataSubjectCategory → PersonalDataCategory
+# Per Doc04 §2.4 'Data Categories' column; one edge per category captured.
+CAPTURES_EDGES = [
+    # EU customers: Email, name, account metadata, project data, billing metadata
+    ("DSC-EU-CUSTOMERS", "PDC-EMAIL", "Doc04 §2.4 line 115: Email"),
+    ("DSC-EU-CUSTOMERS", "PDC-NAMES", "Doc04 §2.4 line 115: name"),
+    ("DSC-EU-CUSTOMERS", "PDC-PROJECT", "Doc04 §2.4 line 115: project data"),
+    ("DSC-EU-CUSTOMERS", "PDC-PAYMENT", "Doc04 §2.4 line 115: billing metadata"),
+    # Free-tier users: Email, name, project data
+    ("DSC-FREE-TIER", "PDC-EMAIL", "Doc04 §2.4 line 116: Email"),
+    ("DSC-FREE-TIER", "PDC-NAMES", "Doc04 §2.4 line 116: name where provided"),
+    ("DSC-FREE-TIER", "PDC-PROJECT", "Doc04 §2.4 line 116: project data"),
+    # Enterprise end users: Email, name, project data
+    ("DSC-ENTERPRISE-END-USERS", "PDC-EMAIL", "Doc04 §2.4 line 117: Email"),
+    ("DSC-ENTERPRISE-END-USERS", "PDC-NAMES", "Doc04 §2.4 line 117: name"),
+    ("DSC-ENTERPRISE-END-USERS", "PDC-PROJECT", "Doc04 §2.4 line 117: project data controlled by enterprise customer"),
+]
+assert len(CAPTURES_EDGES) == 10, f"CAPTURES_EDGES drift: {len(CAPTURES_EDGES)} (expected 10)"
+
+
+# CORRESPONDS_TO_EDGES: ThirdParty → Stakeholder
+# Per the Phase B brief: only AWS and Stripe have STK-* counterparts.
+# (NEW-02 audit surfaces the 4 vendor gap: Auth0, Datadog, GitHub, Snyk.)
+CORRESPONDS_TO_EDGES = [
+    ("AWS", "STK-AWS-01", "Doc03 §3.1 row 7: STK-AWS-01 ↔ Doc06 §2 + §5: AWS vendor"),
+    ("Stripe", "STK-STRIPE-01", "Doc03 §3.1 row 6: STK-STRIPE-01 ↔ Doc06 §2 + §5: Stripe vendor"),
+]
+assert len(CORRESPONDS_TO_EDGES) == 2, f"CORRESPONDS_TO_EDGES drift: {len(CORRESPONDS_TO_EDGES)} (expected 2)"
+
+
+# ---------------------------------------------------------------------------
 # 9. Build nodes + links
 # ---------------------------------------------------------------------------
 
@@ -2137,6 +3244,44 @@ def build() -> dict:
             "attrs": act["attrs"], "source": act["source"],
         })
 
+    # Sprint 8 / Phase B — Architecture & Third Parties (Doc04 + Doc06)
+    # Systems (5)
+    for sys in SYSTEMS:
+        nodes.append({
+            "id": sys["id"], "type": "System", "label": sys["label"],
+            "attrs": sys["attrs"], "source": sys["source"],
+        })
+    # DataStores (3)
+    for store in DATASTORES:
+        nodes.append({
+            "id": store["id"], "type": "DataStore", "label": store["label"],
+            "attrs": store["attrs"], "source": store["source"],
+        })
+    # DataFlows (5)
+    for flow in DATAFLOWS:
+        nodes.append({
+            "id": flow["id"], "type": "DataFlow", "label": flow["label"],
+            "attrs": flow["attrs"], "source": flow["source"],
+        })
+    # PersonalDataCategories (4)
+    for pdc in PERSONAL_DATA_CATEGORIES:
+        nodes.append({
+            "id": pdc["id"], "type": "PersonalDataCategory", "label": pdc["label"],
+            "attrs": pdc["attrs"], "source": pdc["source"],
+        })
+    # DataSubjectCategories (3)
+    for dsc in DATA_SUBJECT_CATEGORIES:
+        nodes.append({
+            "id": dsc["id"], "type": "DataSubjectCategory", "label": dsc["label"],
+            "attrs": dsc["attrs"], "source": dsc["source"],
+        })
+    # ThirdParties (6)
+    for tp in THIRD_PARTIES:
+        nodes.append({
+            "id": tp["id"], "type": "ThirdParty", "label": tp["label"],
+            "attrs": tp["attrs"], "source": tp["source"],
+        })
+
     # ----- Links -----
     # ASSESSES: CompanyContext --applies--> Regulation (2 applicable regs)
     for r in REGULATIONS:
@@ -2289,6 +3434,71 @@ def build() -> dict:
             "source": [source_section, "phase1_ontology.yaml@kg_ontology.classes.RaciActivity"],
         })
 
+    # Sprint 8 / Phase B — Architecture & Third Parties edge emission.
+    # HOSTS: System → DataStore (Doc04 §2.1)
+    for (sys_id, store_id, source_section) in HOSTS_EDGES:
+        links.append({
+            "from": sys_id, "to": store_id, "rel": "HOSTS",
+            "attrs": {},
+            "source": [source_section, "phase1_ontology.yaml@kg_ontology.classes.System"],
+        })
+    # INVOLVES: SecurityControlDomain → System (Doc04 §3)
+    for (sd_id, sys_id, source_section) in INVOLVES_EDGES:
+        links.append({
+            "from": sd_id, "to": sys_id, "rel": "INVOLVES",
+            "attrs": {},
+            "source": [source_section, "phase1_ontology.yaml@kg_ontology.classes.SecurityControlDomain"],
+        })
+    # INVOLVES_STORE: SecurityControlDomain → DataStore (Doc04 §3)
+    for (sd_id, store_id, source_section) in INVOLVES_STORE_EDGES:
+        links.append({
+            "from": sd_id, "to": store_id, "rel": "INVOLVES_STORE",
+            "attrs": {},
+            "source": [source_section, "phase1_ontology.yaml@kg_ontology.classes.SecurityControlDomain"],
+        })
+    # INVOLVES_FLOW: SecurityControlDomain → DataFlow (Doc04 §3)
+    for (sd_id, flow_id, source_section) in INVOLVES_FLOW_EDGES:
+        links.append({
+            "from": sd_id, "to": flow_id, "rel": "INVOLVES_FLOW",
+            "attrs": {},
+            "source": [source_section, "phase1_ontology.yaml@kg_ontology.classes.SecurityControlDomain"],
+        })
+    # PROCESSES: DataFlow → ThirdParty (Doc04 §2.2 + Doc06 §4.1)
+    for (flow_id, tp_id, source_section) in PROCESSES_EDGES:
+        links.append({
+            "from": flow_id, "to": tp_id, "rel": "PROCESSES",
+            "attrs": {},
+            "source": [source_section, "phase1_ontology.yaml@kg_ontology.classes.ThirdParty"],
+        })
+    # PROCESSED_BY: PersonalDataCategory → System (Doc04 §2.3)
+    for (pdc_id, sys_id, source_section) in PROCESSED_BY_EDGES:
+        links.append({
+            "from": pdc_id, "to": sys_id, "rel": "PROCESSED_BY",
+            "attrs": {},
+            "source": [source_section, "phase1_ontology.yaml@kg_ontology.classes.PersonalDataCategory"],
+        })
+    # PROCESSED_BY_3P: PersonalDataCategory → ThirdParty (Doc04 §2.3 + Doc06 §4.1)
+    for (pdc_id, tp_id, source_section) in PROCESSED_BY_3P_EDGES:
+        links.append({
+            "from": pdc_id, "to": tp_id, "rel": "PROCESSED_BY_3P",
+            "attrs": {},
+            "source": [source_section, "phase1_ontology.yaml@kg_ontology.classes.ThirdParty"],
+        })
+    # CAPTURES: DataSubjectCategory → PersonalDataCategory (Doc04 §2.4)
+    for (dsc_id, pdc_id, source_section) in CAPTURES_EDGES:
+        links.append({
+            "from": dsc_id, "to": pdc_id, "rel": "CAPTURES",
+            "attrs": {},
+            "source": [source_section, "phase1_ontology.yaml@kg_ontology.classes.DataSubjectCategory"],
+        })
+    # CORRESPONDS_TO: ThirdParty → Stakeholder (Doc03 §3.1 + Doc06)
+    for (tp_id, stk_id, source_section) in CORRESPONDS_TO_EDGES:
+        links.append({
+            "from": tp_id, "to": stk_id, "rel": "CORRESPONDS_TO",
+            "attrs": {},
+            "source": [source_section, "phase1_ontology.yaml@kg_ontology.classes.ThirdParty"],
+        })
+
     # ----- Ambiguity block -----
     ambiguity = {
         "stats_total": {
@@ -2329,6 +3539,15 @@ def build() -> dict:
         "raci_composite_cells": 3,  # ACT-27 Dev=R/A, ACT-28 Dev=R/A, ACT-33 DPO=R/A
         "applies_to_edges": 35,  # Doc07 §9.2 has 35 rows
         "gap_raci_count": 5,  # GAP-RACI-01..05 from §7
+        # Sprint 8 / Phase B — Doc04 + Doc06 (Architecture & Third Parties).
+        # Counts match ontology@invariants.counts v1.4 new keys.
+        "systems": 5,                       # Doc04 §1.1 SYS-01..SYS-05
+        "data_stores": 3,                  # Doc04 §2.1 STORE-01..STORE-03
+        "data_flows": 5,                   # Doc04 §2.2 FLOW-01..FLOW-05
+        "personal_data_categories": 4,     # Doc04 §2.3 Email/Names/Project/Payment
+        "data_subject_categories": 3,      # Doc04 §2.4 EU/Free-tier/Enterprise
+        "third_parties": 6,                # Doc06 §5 vendor count
+        "compliance_mapping_rows": 37,     # Doc04 §3 Compliance Mapping rows (active sub-domains; D-08.3 INACTIVE)
     }
 
     return {

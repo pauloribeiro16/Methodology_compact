@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Companion to phase1_graph.json — inlines the graph into the dashboard HTML
-+ validates the graph against the Phase 1 v1.2 kg_ontology schema.
++ validates the graph against the Phase 1 v1.4 kg_ontology schema.
 
 Usage
 -----
@@ -27,7 +27,7 @@ is produced by ``build_p1_graph.py``; this script reads that file and runs
 the validation gate.
 
 Stdlib only (json, sys, pathlib, argparse, re). No external deps.
-The ontology v1.2 kg_ontology section is mirrored in
+The ontology v1.4 kg_ontology section is mirrored in
 ``data/phase1_ontology.compact.json`` (stdlib-loadable); the YAML file at
 ``phase1_ontology.yaml`` is the source of truth for humans.
 """
@@ -75,7 +75,10 @@ def check_invariants(graph: dict) -> list[str]:
     plus the graph.meta invariants block. Existing 10 keys (Sprint 5) plus the
     3 new v1.2 keys (stakeholders_total, business_goals_total, coverage_gaps_total)
     plus the 7 new v1.3 keys (raci_roles, raci_activities, raci_activities_active,
-    raci_edges_min, raci_composite_cells, applies_to_edges, gap_raci_count).
+    raci_edges_min, raci_composite_cells, applies_to_edges, gap_raci_count)
+    plus the 7 new v1.4 keys (systems, data_stores, data_flows,
+    personal_data_categories, data_subject_categories, third_parties,
+    compliance_mapping_rows). Total: 27 keys.
     """
     errors: list[str] = []
     expected = {
@@ -101,6 +104,14 @@ def check_invariants(graph: dict) -> list[str]:
         "raci_composite_cells": 3,
         "applies_to_edges": 35,
         "gap_raci_count": 5,
+        # Sprint 8 / kg_ontology v1.4 — Architecture & Third Parties (Doc04 + Doc06)
+        "systems": 5,
+        "data_stores": 3,
+        "data_flows": 5,
+        "personal_data_categories": 4,
+        "data_subject_categories": 3,
+        "third_parties": 6,
+        "compliance_mapping_rows": 37,
     }
     inv = graph.get("invariants", {})
     for k, want in expected.items():
@@ -144,6 +155,19 @@ def check_invariants(graph: dict) -> list[str]:
     )
     if active_acts != expected["raci_activities_active"]:
         errors.append(f"node count RaciActivity (active=True): expected {expected['raci_activities_active']}, got {active_acts}")
+    # Sprint 8 / v1.4 — new node-count checks for Architecture & Third Parties
+    if by_type.get("System", 0) != expected["systems"]:
+        errors.append(f"node count System: expected {expected['systems']}, got {by_type.get('System', 0)}")
+    if by_type.get("DataStore", 0) != expected["data_stores"]:
+        errors.append(f"node count DataStore: expected {expected['data_stores']}, got {by_type.get('DataStore', 0)}")
+    if by_type.get("DataFlow", 0) != expected["data_flows"]:
+        errors.append(f"node count DataFlow: expected {expected['data_flows']}, got {by_type.get('DataFlow', 0)}")
+    if by_type.get("PersonalDataCategory", 0) != expected["personal_data_categories"]:
+        errors.append(f"node count PersonalDataCategory: expected {expected['personal_data_categories']}, got {by_type.get('PersonalDataCategory', 0)}")
+    if by_type.get("DataSubjectCategory", 0) != expected["data_subject_categories"]:
+        errors.append(f"node count DataSubjectCategory: expected {expected['data_subject_categories']}, got {by_type.get('DataSubjectCategory', 0)}")
+    if by_type.get("ThirdParty", 0) != expected["third_parties"]:
+        errors.append(f"node count ThirdParty: expected {expected['third_parties']}, got {by_type.get('ThirdParty', 0)}")
 
     # Cross-check applicable regulations
     applicable_regs = [n for n in graph.get("nodes", []) if n["type"] == "Regulation" and n["attrs"].get("applicable")]
@@ -312,6 +336,14 @@ def check_stale_invariant_counts(graph: dict, ontology: dict) -> list[str]:
         "raci_roles":              "RaciRole",
         "raci_activities":         "RaciActivity",
         "applies_to_edges":        "__rel_APPLIES_TO__",
+        # Sprint 8 / v1.4 — Architecture & Third Parties
+        "systems":                 "System",
+        "data_stores":             "DataStore",
+        "data_flows":              "DataFlow",
+        "personal_data_categories": "PersonalDataCategory",
+        "data_subject_categories": "DataSubjectCategory",
+        "third_parties":           "ThirdParty",
+        "compliance_mapping_rows": "__active_subdomains__",
         # Note: raci_edges_min is enforced in check_invariants() against rel=RACI;
         # raci_activities_active is enforced there against active=True attrs.
     }
@@ -334,6 +366,11 @@ def check_stale_invariant_counts(graph: dict, ontology: dict) -> list[str]:
             actual = graph.get("ambiguity", {}).get("stats_total", {}).get("cards_in_scope")
         elif target == "__rel_APPLIES_TO__":
             actual = by_rel.get("APPLIES_TO")
+        elif target == "__active_subdomains__":
+            # Count SecurityControlDomain nodes with active=True (compliance_mapping_rows = active sub-domains)
+            actual = sum(1 for n in graph.get("nodes", [])
+                         if n["type"] == "SecurityControlDomain"
+                         and n.get("attrs", {}).get("active") is True)
         else:
             actual = by_type.get(target)
         if actual is not None and actual != expected:

@@ -1,9 +1,9 @@
 {
   "_provenance": {
-    "source_yaml": "01_PHASE1_CONTEXT_RICH/phase1_ontology.yaml v1.3 (kg_ontology section, lines 1221-1470)",
+    "source_yaml": "01_PHASE1_CONTEXT_RICH/phase1_ontology.yaml v1.4 (kg_ontology section, lines 1221-end-of-file)",
     "schema_version": "1.0",
-    "generated": "2026-08-26",
-    "purpose": "Compact JSON sibling of phase1_ontology.yaml@kg_ontology — lets stdlib-only Python (json.load) validate phase1_graph.json nodes/links against the v1.3 schema without a YAML parser. Maintained in lock-step with the YAML body.",
+    "generated": "2026-08-27",
+    "purpose": "Compact JSON sibling of phase1_ontology.yaml@kg_ontology — lets stdlib-only Python (json.load) validate phase1_graph.json nodes/links against the v1.4 schema without a YAML parser. Maintained in lock-step with the YAML body.",
     "sibling_yaml_section": "kg_ontology"
   },
   "classes": {
@@ -18,7 +18,13 @@
     "BusinessGoal":            {"attrs": ["id", "description", "priority", "status", "stakeholders", "strategic_alignment"]},
     "CoverageGap":             {"attrs": ["id", "title", "severity", "regulation", "affected_subdomain_ids", "description", "status"]},
     "RaciRole":                {"attrs": ["id", "name", "maps_to_stakeholder", "fte_allocation", "reports_to", "backup"]},
-    "RaciActivity":            {"attrs": ["id", "name", "domain_id", "sub_domain_id", "corpus_reg_req", "active"]}
+    "RaciActivity":            {"attrs": ["id", "name", "domain_id", "sub_domain_id", "corpus_reg_req", "active"]},
+    "System":                  {"attrs": ["id", "name", "type", "tech_stack", "criticality", "hosts_personal_data"]},
+    "DataStore":               {"attrs": ["id", "type", "location", "encryption_at_rest", "retention_period", "backup"]},
+    "DataFlow":                {"attrs": ["id", "data_type", "volume", "encryption_in_transit", "protocol", "subprocessor"]},
+    "ThirdParty":              {"attrs": ["name", "aliases", "services", "regions", "criticality", "risk_score", "dpa_in_place", "article_28_compliant", "exit_plan", "last_assessment", "next_review", "sbom_available", "art_28_dpa", "art_30_clauses", "security_audit_right", "subprocessor_approval", "data_accessed"]},
+    "PersonalDataCategory":    {"attrs": ["category", "legal_basis_art6_gdpr", "retention", "erasure_mechanism"]},
+    "DataSubjectCategory":     {"attrs": ["category", "access_mechanism", "erasure_mechanism"]}
   },
   "relations": [
     {"verb": "ASSESSES",        "from": "CompanyContext",       "to": "Regulation"},
@@ -33,7 +39,18 @@
     {"verb": "OVERLAPS_WITH",   "from": "Regulation",           "to": "Regulation"},
     {"verb": "RACI",            "from": "RaciRole",             "to": "RaciActivity",        "status": "active"},
     {"verb": "APPLIES_TO",      "from": "RaciActivity",         "to": "SecurityControlDomain", "status": "active"},
-    {"verb": "MAPS_TO_STK",     "from": "RaciRole",             "to": "Stakeholder",         "status": "deferred"}
+    {"verb": "MAPS_TO_STK",     "from": "RaciRole",             "to": "Stakeholder",         "status": "deferred"},
+    {"verb": "HOSTS",           "from": "System",               "to": "DataStore"},
+    {"verb": "PROCESSES",       "from": "DataFlow",             "to": "ThirdParty"},
+    {"verb": "INVOLVES",        "from": "SecurityControlDomain","to": "System"},
+    {"verb": "INVOLVES_STORE",  "from": "SecurityControlDomain","to": "DataStore"},
+    {"verb": "INVOLVES_FLOW",   "from": "SecurityControlDomain","to": "DataFlow"},
+    {"verb": "PROCESSED_BY",    "from": "PersonalDataCategory", "to": "System"},
+    {"verb": "PROCESSED_BY_3P", "from": "PersonalDataCategory", "to": "ThirdParty"},
+    {"verb": "CAPTURES",        "from": "DataSubjectCategory",  "to": "PersonalDataCategory"},
+    {"verb": "CORRESPONDS_TO",  "from": "ThirdParty",           "to": "Stakeholder",         "status": "partial"},
+    {"verb": "FLOWS_BETWEEN",   "from": "DataFlow",             "to": "System",              "status": "deferred"},
+    {"verb": "USES",            "from": "System",               "to": "ThirdParty",          "status": "deferred"}
   ],
   "enums": {
     "Scale":                ["MICRO", "SMALL", "MEDIUM", "LARGE", "MAX"],
@@ -45,7 +62,8 @@
     "Severity":             ["high", "medium", "low"],
     "StakeholderType":      ["Internal", "External"],
     "TensionType":          ["timing", "scope", "requirement", "intensity"],
-    "RaciLetter":           ["R", "A", "C", "I"]
+    "RaciLetter":           ["R", "A", "C", "I"],
+    "RiskScore":            ["L", "M", "H", "VH"]
   },
   "invariants": {
     "counts": {
@@ -68,7 +86,14 @@
       "raci_edges_min": 206,
       "raci_composite_cells": 3,
       "applies_to_edges": 35,
-      "gap_raci_count": 5
+      "gap_raci_count": 5,
+      "systems": 5,
+      "data_stores": 3,
+      "data_flows": 5,
+      "personal_data_categories": 4,
+      "data_subject_categories": 3,
+      "third_parties": 6,
+      "compliance_mapping_rows": 37
     },
     "id_patterns": {
       "Stakeholder":           "^STK-[A-Z]+-\\d{2}$",
@@ -82,7 +107,11 @@
       "CompanyContext":        "^CC-[A-Z]+-\\d{4}-\\d{3}$",
       "Tension":               "^T-\\d{3}$",
       "RaciRole":              "^ROLE-[A-Z0-9]+$",
-      "RaciActivity":          "^ACT-\\d{2}$"
+      "RaciActivity":          "^ACT-\\d{2}$",
+      "System":                "^SYS-\\d{2}$",
+      "DataStore":             "^STORE-\\d{2}$",
+      "DataFlow":              "^FLOW-\\d{2}$",
+      "ThirdParty":            "^(AWS|Stripe|Auth0|Datadog|GitHub|Snyk)$"
     }
   },
   "provenance_rules": {
