@@ -1,0 +1,1911 @@
+control_set:
+  case: Case_01_TinyTask_SaaS
+  source: Doc18_Rules_Catalog.md
+  total_controls: 46
+  controls:
+  - id: CR-D-01.1-001
+    register: OBLIGATION
+    domain: D-01.1
+    title: Data at Rest Encryption
+    ni:
+      value: 3.0
+      bucket: MUST
+    legal:
+    - '** GDPR Art. 5(1)(f) + Art. 32(1)(b)'
+    - CRA Art. 24
+    trace:
+      phase1: AG-D-01
+      obligations:
+      - OBL-D-01.1-001
+      objectives:
+      - PO-D-01.1-001
+      - SO-D-01.1-001
+      gaps: []
+    anchors:
+      csf:
+      - PR.DS-01
+      - PR.DS-10
+      - PR.PS-04
+      pf:
+      - PR.DS-P1
+      - UNMAPPED_PF (PR.DS-10 risk-strategy mgmt + PR.PS-04 log records — no PF 1.0
+        analogue)
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.8.24
+      ssdf:
+      - PO.5
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: ''
+      evidence: ''
+    verification:
+      method: '** TEST'
+      owner: '** CTO + Lead Dev'
+  - id: CR-D-01.2-001
+    register: OBLIGATION
+    domain: D-01.2
+    title: Data in Transit Encryption
+    ni:
+      value: 3.0
+      bucket: MUST
+    legal:
+    - '** GDPR Art. 5(1)(f) + Art. 32(1)(a)'
+    - CRA Art. 25
+    trace:
+      phase1: AG-D-01
+      obligations:
+      - OBL-D-01.2-001
+      objectives:
+      - PO-D-01.2-001
+      - SO-D-01.2-001
+      gaps: []
+    anchors:
+      csf:
+      - PR.DS-02
+      - PR.IR-01
+      - PR.PS-04
+      pf:
+      - PR.DS-P2
+      - PR.PO-P7
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.8.24
+      ssdf: []
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: ''
+      evidence: ''
+    verification:
+      method: '** TEST'
+      owner: '** CTO + Lead Dev'
+  - id: CR-D-01.3-001
+    register: OBLIGATION
+    domain: D-01.3
+    title: Cryptographic Key Management
+    ni:
+      value: 3.0
+      bucket: MUST
+    legal:
+    - '** CRA Art. 15 + Art. 24 (source clause CRA-C15)'
+    trace:
+      phase1: AG-D-01
+      obligations:
+      - OBL-D-01.3-001
+      objectives:
+      - PO-D-01.3-001
+      gaps: []
+    anchors:
+      csf:
+      - GV.OV-01
+      - GV.RM-04
+      - PR.AA-03
+      - PR.AA-04
+      - PR.DS-01
+      - PR.IR-03
+      pf:
+      - PR.DS-P1
+      - CT.DP-P2
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.8.24
+      ssdf: []
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** PARTIAL (What''s missing: key lifecycle policy)'
+      evidence: ''
+    verification:
+      method: '** INSPECT'
+      owner: '** CTO + Lead Dev'
+  - id: CR-D-01.4-001
+    register: OBLIGATION
+    domain: D-01.4
+    title: Data Integrity Mechanisms
+    ni:
+      value: 3.0
+      bucket: MUST
+    legal:
+    - '** GDPR Art. 5(1)(d) + Art. 32(1)(b)'
+    - CRA Annex I §1.3(c)
+    trace:
+      phase1: AG-D-01
+      obligations:
+      - OBL-D-01.4-001
+      objectives:
+      - PO-D-01.4-001
+      - SO-D-01.4-001
+      gaps: []
+    anchors:
+      csf:
+      - PR.DS-01
+      - PR.DS-02
+      - PR.DS-10
+      - PR.DS-01
+      - PR.DS-10
+      - PR.IR-03
+      - PR.IR-04
+      - PR.PS-04
+      pf:
+      - CT.DM-P1
+      - CT.DM-P3
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.8.24
+      ssdf: []
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** PARTIAL (What''s missing: integrity verification schedule)'
+      evidence: ''
+    verification:
+      method: '** TEST'
+      owner: '** CTO + Lead Dev'
+  - id: CR-D-02.1-001
+    register: OBLIGATION
+    domain: D-02.1
+    title: Vulnerability-Free Release
+    ni:
+      value: 3.0
+      bucket: MUST
+    legal:
+    - '** CRA Art. 17 + Art. 5 (source clauses CRA-C01, CRA-C17).'
+    trace:
+      phase1: AG-D-02
+      obligations:
+      - OBL-D-02.1-001
+      objectives:
+      - SO-D-02.1-001
+      gaps: []
+    anchors:
+      csf:
+      - GV.OV-02
+      - ID.AM-02
+      - ID.IM-02
+      - ID.RA-01
+      - ID.RA-03
+      - ID.RA-05
+      - PR.PS-02
+      pf:
+      - ID.RA-P3
+      - ID.RA-P5
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.8.8
+      ssdf:
+      - RV.1
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** NOT IMPLEMENTED (What''s missing: zero-CVE release gate)'
+      evidence: ''
+    verification:
+      method: '** DEMONSTRATE'
+      owner: '** CTO + Lead Dev + Procurement'
+  - id: CR-D-02.2-001
+    register: OBLIGATION
+    domain: D-02.2
+    title: Automated Security Updates and Patch Remediation
+    ni:
+      value: 3.0
+      bucket: MUST
+    legal:
+    - '** CRA Art. 4 + Art. 5 (source clauses CRA-C04, CRA-C19).'
+    trace:
+      phase1: AG-D-02
+      obligations:
+      - OBL-D-02.2-001
+      objectives:
+      - SO-D-02.2-001
+      gaps: []
+    anchors:
+      csf:
+      - GV.OV-02
+      - ID.RA-01
+      - PR.IR-03
+      - PR.PS-01
+      - PR.PS-02
+      pf:
+      - UNMAPPED_PRIVACY (patch cadence is product-security concern; no PF subcat
+        anchored)
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.8.8
+      ssdf:
+      - RV.2
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** NOT IMPLEMENTED (What''s missing: automated 72h patch SLA)'
+      evidence: ''
+    verification:
+      method: '** TEST'
+      owner: '** CTO + Lead Dev + Procurement'
+  - id: CR-D-02.3-001
+    register: OBLIGATION
+    domain: D-02.3
+    title: Coordinated Vulnerability Disclosure and Reporting
+    ni:
+      value: 3.0
+      bucket: MUST
+    legal:
+    - '** CRA Art. 19 + Art. 20 (source clauses CRA-C21, CRA-C26).'
+    trace:
+      phase1: AG-D-02
+      obligations:
+      - OBL-D-02.3-001
+      objectives:
+      - SO-D-02.3-001
+      gaps: []
+    anchors:
+      csf:
+      - GV.PO-01
+      - GV.SC-04
+      - ID.RA-01
+      - RS.CO-03
+      - RS.MA-01
+      pf:
+      - UNMAPPED_PRIVACY (CVD is security-disclosure; no PF subcat anchored)
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.5.5
+      ssdf:
+      - RV.1
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** NOT IMPLEMENTED (What''s missing: published security.txt & CVD
+        policy)'
+      evidence: ''
+    verification:
+      method: '** INSPECT'
+      owner: '** CTO + Lead Dev + Procurement'
+  - id: CR-D-03.1-001
+    register: OBLIGATION
+    domain: D-03.1
+    title: Authentication and Access Control
+    ni:
+      value: 3.0
+      bucket: MUST
+    legal:
+    - '** CRA Art. 10 (source clause CRA-C05).'
+    trace:
+      phase1: AG-D-03
+      obligations:
+      - OBL-D-03.1-001
+      objectives:
+      - SO-D-03.1-001
+      gaps: []
+    anchors:
+      csf:
+      - ID.AM-01
+      - PR.AA-01
+      - PR.AA-02
+      - PR.AA-03
+      - PR.AA-05
+      - PR.AA-06
+      - PR.DS-10
+      pf:
+      - PR.AC-P1
+      - PR.AC-P6
+      - PR.AC-P4
+      - UNMAPPED_PF (asset inventory + risk-strategy data mgmt — no PF 1.0 analogue)
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.5.16
+      ssdf: []
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: ''
+      evidence: ''
+    verification:
+      method: '** INSPECT'
+      owner: '** CTO + Lead Dev'
+  - id: CR-D-03.2-001
+    register: OBLIGATION
+    domain: D-03.2
+    title: Administrative Multi-Factor Authentication
+    ni:
+      value: 3.0
+      bucket: MUST
+    legal:
+    - '** CRA Art. 9 (source clause CRA-C06)'
+    - related GDPR security
+    trace:
+      phase1: AG-D-03
+      obligations:
+      - OBL-D-03.2-001
+      objectives:
+      - SO-D-03.2-001
+      gaps: []
+    anchors:
+      csf:
+      - PR.AA-03
+      - PR.AA-04
+      - PR.AA-05
+      - PR.AA-06
+      - PR.AT-02
+      pf:
+      - PR.AC-P6
+      - PR.AC-P4
+      - GV.AT-P1
+      - UNMAPPED_PF (identity assertions — no PF 1.0 subcategory)
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.8.5
+      ssdf: []
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: ''
+      evidence: ''
+    verification:
+      method: '** TEST'
+      owner: '** CTO + Lead Dev'
+  - id: CR-D-03.3-001
+    register: OBLIGATION
+    domain: D-03.3
+    title: Authorisation and Least Privilege
+    ni:
+      value: 3.0
+      bucket: MUST
+    legal:
+    - '** GDPR Art. 5(1)(c) + Art. 22 and Art. 32(1)(b)'
+    - CRA Art. 8
+    trace:
+      phase1: AG-D-03
+      obligations:
+      - OBL-D-03.3-001
+      objectives:
+      - SO-D-03.3-001
+      gaps: []
+    anchors:
+      csf:
+      - ID.AM-01
+      - ID.AM-02
+      - PR.AA-01
+      - PR.AA-03
+      - PR.AA-05
+      - PR.AA-06
+      - PR.PS-04
+      pf:
+      - CT.PO-P1
+      - PR.AC-P1
+      - PR.AC-P6
+      - PR.AC-P4
+      - UNMAPPED_PF (asset inventories + log records — no PF 1.0 analogue)
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.5.15
+      ssdf: []
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** PARTIAL (What''s missing: quarterly access review evidence)'
+      evidence: ''
+    verification:
+      method: '** INSPECT'
+      owner: '** CTO + Lead Dev'
+  - id: CR-D-03.4-001
+    register: OBLIGATION
+    domain: D-03.4
+    title: Secure System Defaults
+    ni:
+      value: 3.0
+      bucket: MUST
+    legal:
+    - '** CRA Art. 3 + Art. 8 (source clause CRA-C03)'
+    - related GDPR
+    trace:
+      phase1: AG-D-03
+      obligations:
+      - OBL-D-03.4-001
+      objectives:
+      - SO-D-03.4-001
+      gaps: []
+    anchors:
+      csf:
+      - GV.PO-01
+      - GV.SC-03
+      - PR.DS-10
+      - PR.PS-01
+      - PR.PS-04
+      pf:
+      - CT.DP-P4
+      - CT.PO-P4
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.8.9
+      ssdf:
+      - PW.9
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** PARTIAL (What''s missing: hardened baseline documentation)'
+      evidence: ''
+    verification:
+      method: '** TEST'
+      owner: '** CTO + Lead Dev'
+  - id: CR-D-04.1-001
+    register: OBLIGATION
+    domain: D-04.1
+    title: Exploit Severity Limitation and Fail-Safe Design
+    ni:
+      value: 3.0
+      bucket: MUST
+    legal:
+    - '** CRA Art. 6 + Art. 13'
+    - 'related GDPR security rationale:'
+    trace:
+      phase1: AG-D-04
+      obligations:
+      - OBL-D-04.1-001
+      objectives:
+      - SO-D-04.1-001
+      gaps: []
+    anchors:
+      csf:
+      - DE.AE-02
+      - DE.CM-01
+      - DE.CM-09
+      - ID.RA-04
+      - PR.PS-04
+      - RS.MA-01
+      - RS.MA-02
+      - RS.MA-03
+      pf:
+      - CM.AW-P7
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.5.25
+      ssdf:
+      - RV.1
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** PARTIAL (What''s missing: automated containment playbooks)'
+      evidence: ''
+    verification:
+      method: '** DEMONSTRATE'
+      owner: '** CTO + DPO + Compliance Lead'
+  - id: CR-D-04.2-001
+    register: OBLIGATION
+    domain: D-04.2
+    title: Availability Restoration and DoS Resilience
+    ni:
+      value: 3.0
+      bucket: MUST
+    legal:
+    - '** GDPR Art. 32(1)(c)'
+    - CRA Art. 11 (source clauses GDPR-C18
+    trace:
+      phase1: AG-D-04
+      obligations:
+      - OBL-D-04.2-001
+      objectives:
+      - SO-D-04.2-001
+      gaps: []
+    anchors:
+      csf:
+      - DE.CM-09
+      - PR.DS-10
+      - PR.IR-03
+      - PR.IR-04
+      - RC.RP-01
+      - RC.RP-04
+      - RS.MI-01
+      - RS.MI-02
+      pf:
+      - PR.PO-P7
+      - CT.DM-P10
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.5.26
+      ssdf: []
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** PARTIAL (What''s missing: DDoS restoration drills)'
+      evidence: ''
+    verification:
+      method: '** DEMONSTRATE'
+      owner: '** CTO + DPO + Compliance Lead'
+  - id: CR-D-04.3-001
+    register: OBLIGATION
+    domain: D-04.3
+    title: Dual Regulatory Incident Notification
+    ni:
+      value: 3.0
+      bucket: MUST
+    legal:
+    - '** GDPR Art. 33(1) + Art. 33(2) + Art. 33(3)'
+    - CRA Art. 20
+    trace:
+      phase1: AG-D-04
+      obligations:
+      - OBL-D-04.3-001
+      objectives:
+      - SO-D-04.3-001
+      gaps: []
+    anchors:
+      csf:
+      - RS.CO-02
+      - RS.MA-01
+      - RS.MA-01
+      - RS.MA-02
+      - RS.MA-03
+      - RS.MA-01
+      pf:
+      - CM.AW-P7
+      - CM.AW-P8
+      - CM.PO-P1
+      - CM.PO-P2
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.5.24
+      ssdf: []
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** PARTIAL (What''s missing: tested 24h CRA breach workflow)'
+      evidence: ''
+    verification:
+      method: '** TEST'
+      owner: '** CTO + DPO + Compliance Lead'
+  - id: CR-D-04.4-001
+    register: OBLIGATION
+    domain: D-04.4
+    title: Data Restoration and Recovery
+    ni:
+      value: 3.0
+      bucket: MUST
+    legal:
+    - '** GDPR Art. 32(1)(b) and (c) + Art. 19'
+    - CRA Art. 26
+    trace:
+      phase1: AG-D-04
+      obligations:
+      - OBL-D-04.4-001
+      objectives:
+      - SO-D-04.4-001
+      gaps: []
+    anchors:
+      csf:
+      - PR.DS-01
+      - PR.DS-10
+      - PR.IR-03
+      - PR.IR-04
+      - RC.RP-01
+      - RC.RP-03
+      - RC.RP-04
+      pf:
+      - PR.DS-P1
+      - PR.PO-P7
+      - PR.DS-P4
+      - PR.PT-P4
+      - UNMAPPED_PF (recover-execution + risk-strategy mgmt — PF 1.0 has no Recover
+        axis)
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.8.13
+      ssdf: []
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** PARTIAL (What''s missing: backup restore drills evidence)'
+      evidence: ''
+    verification:
+      method: '** DEMONSTRATE'
+      owner: '** CTO + DPO + Compliance Lead'
+  - id: CR-D-05.1-001
+    register: OBLIGATION
+    domain: D-05.1
+    title: Data Minimisation
+    ni:
+      value: 3.0
+      bucket: MUST
+    legal:
+    - '** GDPR Art. 5(1)(c)'
+    - CRA Annex I §1.2(c)
+    trace:
+      phase1: AG-D-05
+      obligations:
+      - OBL-D-05.1-001
+      objectives:
+      - PO-D-05.1-001
+      gaps: []
+    anchors:
+      csf:
+      - GV.OC-03
+      - GV.PO-01
+      - ID.AM-03
+      - PR.DS-01
+      - PR.DS-10
+      - PR.PS-06
+      pf:
+      - CT.PO-P4
+      - CT.DP-P4
+      - ID.RA-P3
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.8.10
+      ssdf: []
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: ''
+      evidence: ''
+    verification:
+      method: '** INSPECT'
+      owner: '** CTO + DPO'
+  - id: CR-D-05.2-001
+    register: OBLIGATION
+    domain: D-05.2
+    title: Storage Limitation and Retention
+    ni:
+      value: 3.0
+      bucket: MUST
+    legal:
+    - '** GDPR Art. 5(1)(e) (source clauses GDPR-C02, GDPR-C03).'
+    trace:
+      phase1: AG-D-05
+      obligations:
+      - OBL-D-05.2-001
+      objectives:
+      - PO-D-05.2-001
+      gaps: []
+    anchors:
+      csf:
+      - GV.OC-04
+      - GV.OV-02
+      - GV.PO-02
+      - ID.AM-03
+      - PR.DS-10
+      - PR.PS-02
+      - PR.PS-04
+      pf:
+      - CT.PO-P4
+      - CT.DM-P5
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.5.33
+      ssdf:
+      - PS.3
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** NOT IMPLEMENTED (What''s missing: formal retention approval)'
+      evidence: ''
+    verification:
+      method: '** INSPECT'
+      owner: '** CTO + DPO'
+  - id: CR-D-05.3-001
+    register: OBLIGATION
+    domain: D-05.3
+    title: Complete and Secure Data Erasure
+    ni:
+      value: 3.0
+      bucket: MUST
+    legal:
+    - '** GDPR Art. 17'
+    - CRA Art. 11
+    trace:
+      phase1: AG-D-05
+      obligations:
+      - OBL-D-05.3-001
+      objectives:
+      - PO-D-05.3-001
+      gaps: []
+    anchors:
+      csf:
+      - GV.SC-04
+      - PR.DS-10
+      - PR.DS-10
+      - PR.DS-02
+      pf:
+      - CT.DM-P4
+      - CT.DM-P5
+      - PR.DS-P2
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.8.10
+      ssdf: []
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** PARTIAL (What''s missing: erasure cascade automation)'
+      evidence: ''
+    verification:
+      method: '** TEST'
+      owner: '** CTO + DPO'
+  - id: CR-D-05.4-001
+    register: OBLIGATION
+    domain: D-05.4
+    title: Structured Data Portability
+    ni:
+      value: 3.0
+      bucket: MUST
+    legal:
+    - '** GDPR Art. 20 (source clause GDPR-C07).'
+    trace:
+      phase1: AG-D-05
+      obligations:
+      - OBL-D-05.4-001
+      objectives:
+      - PO-D-05.4-001
+      gaps: []
+    anchors:
+      csf:
+      - PR.DS-10
+      - PR.DS-10
+      - PR.AA-03
+      - PR.DS-02
+      pf:
+      - CT.DM-P1
+      - CT.DM-P6
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.5.14
+      ssdf: []
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** PARTIAL (What''s missing: automated JSON export routine)'
+      evidence: ''
+    verification:
+      method: '** TEST'
+      owner: '** CTO + DPO'
+  - id: CR-D-06.1-001
+    register: OBLIGATION
+    domain: D-06.1
+    title: Procefederated single sign-onr Due Diligence
+    ni:
+      value: 3.0
+      bucket: MUST
+    legal:
+    - '** GDPR Art. 28(1)'
+    - 'related CRA supply-chain rationale:'
+    trace:
+      phase1: AG-D-06
+      obligations:
+      - OBL-D-06.1-001
+      objectives:
+      - SO-D-06.1-001
+      gaps: []
+    anchors:
+      csf:
+      - GV.SC-01
+      - GV.SC-02
+      - GV.SC-03
+      - GV.SC-04
+      - ID.AM-04
+      - ID.RA-02
+      pf:
+      - ID.DE-P1
+      - ID.IM-P2
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.5.19
+      ssdf:
+      - PW.4
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** PARTIAL (What''s missing: standardized vendor ISO 27001 register)'
+      evidence: ''
+    verification:
+      method: '** INSPECT'
+      owner: '** CTO + Lead Dev + Procurement'
+  - id: CR-D-06.2-001
+    register: OBLIGATION
+    domain: D-06.2
+    title: Software Bill of Materials
+    ni:
+      value: 3.0
+      bucket: MUST
+    legal:
+    - '** CRA Art. 18(2) + Annex I §1.4 (source clause CRA-C18).'
+    trace:
+      phase1: AG-D-06
+      obligations:
+      - OBL-D-06.2-001
+      objectives:
+      - SO-D-06.2-001
+      gaps: []
+    anchors:
+      csf:
+      - GV.SC-02
+      - GV.SC-03
+      - ID.AM-02
+      - ID.RA-01
+      - PR.PS-02
+      pf:
+      - UNMAPPED_PRIVACY (SBOM is product-security artefact; no PF subcat anchored)
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.5.21
+      ssdf:
+      - PS.3
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** NOT IMPLEMENTED (What''s missing: machine-readable CycloneDX SBOM)'
+      evidence: ''
+    verification:
+      method: '** INSPECT'
+      owner: '** CTO + Lead Dev + Procurement'
+  - id: CR-D-06.3-001
+    register: OBLIGATION
+    domain: D-06.3
+    title: Contractual Procefederated single sign-onr Security
+    ni:
+      value: 3.0
+      bucket: MUST
+    legal:
+    - '** GDPR Art. 28(3)'
+    - 'related CRA supply-chain rationale:'
+    trace:
+      phase1: AG-D-06
+      obligations:
+      - OBL-D-06.3-001
+      objectives:
+      - SO-D-06.3-001
+      gaps: []
+    anchors:
+      csf:
+      - GV.OC-03
+      - GV.SC-02
+      - GV.SC-03
+      - GV.SC-04
+      - PR.DS-10
+      - PR.PS-06
+      - RS.MA-01
+      - RS.MI-01
+      pf:
+      - ID.DE-P3
+      - ID.DE-P4
+      - UNMAPPED_PF (ecosystem risk into enterprise risk — no PF 1.0 subcategory)
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.5.20
+      ssdf: []
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** PARTIAL (What''s missing: B2B processor DPA template execution)'
+      evidence: ''
+    verification:
+      method: '** INSPECT'
+      owner: '** CTO + Lead Dev + Procurement'
+  - id: CR-D-07.1-001
+    register: OBLIGATION
+    domain: D-07.1
+    title: Security and Privacy by Design
+    ni:
+      value: 3.0
+      bucket: MUST
+    legal:
+    - '** GDPR Art. 25'
+    - CRA Art. 18 + Art. 23 and Art. 13(8)-(9)
+    trace:
+      phase1: AG-D-07
+      obligations:
+      - OBL-D-07.1-001
+      objectives:
+      - PO-D-07.1-001
+      gaps: []
+    anchors:
+      csf:
+      - GV.PO-02
+      - ID.RA-01
+      - PR.DS-10
+      - PR.PS-01
+      - PR.PS-02
+      - PR.PS-06
+      pf:
+      - GV.PO-P2
+      - CT.PO-P4
+      - CT.DP-P2
+      - CT.DP-P4
+      - CT.DP-P5
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.8.25
+      ssdf:
+      - PO.1
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** PARTIAL (What''s missing: formal threat model per release)'
+      evidence: ''
+    verification:
+      method: '** INSPECT'
+      owner: '** CTO + Lead Dev'
+  - id: CR-D-08.1-001
+    register: OBLIGATION
+    domain: D-08.1
+    title: Annual Security Awareness
+    ni:
+      value: 3.0
+      bucket: MUST
+    legal:
+    - '** GDPR Art. 39(1)(b) + Art. 5(2) (source clause GDPR-C27).'
+    trace:
+      phase1: AG-D-08
+      obligations:
+      - OBL-D-08.1-001
+      objectives:
+      - SO-D-08.1-001
+      gaps: []
+    anchors:
+      csf:
+      - PR.AT-01
+      - PR.AT-02
+      - PR.PS-01
+      pf:
+      - GV.AT-P1
+      - GV.AT-P2
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.6.3
+      ssdf:
+      - PO.2
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** PARTIAL (What''s missing: phishing drills & tracking)'
+      evidence: ''
+    verification:
+      method: '** INSPECT'
+      owner: '** CTO + HR + DPO'
+  - id: CR-D-08.2-001
+    register: OBLIGATION
+    domain: D-08.2
+    title: Role-Specific Security Competence
+    ni:
+      value: 3.0
+      bucket: MUST
+    legal:
+    - '** GDPR Art. 37 + Art. 39'
+    - 'related CRA product-security competence:'
+    trace:
+      phase1: AG-D-08
+      obligations:
+      - OBL-D-08.2-001
+      objectives:
+      - SO-D-08.2-001
+      gaps: []
+    anchors:
+      csf:
+      - GV.RR-02
+      - GV.RR-04
+      - GV.SC-03
+      - PR.AT-01
+      - PR.AT-02
+      - PR.AT-02
+      pf:
+      - GV.AT-P1
+      - GV.AT-P2
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.6.3
+      ssdf:
+      - PO.2
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** PARTIAL (What''s missing: role-specific curriculum)'
+      evidence: ''
+    verification:
+      method: '** INSPECT'
+      owner: '** CTO + HR + DPO'
+  - id: CR-D-09.1-001
+    register: OBLIGATION
+    domain: D-09.1
+    title: Security Governance and Technical Documentation
+    ni:
+      value: 3.0
+      bucket: MUST
+    legal:
+    - '** GDPR Art. 5(2) + Art. 24'
+    - CRA Art. 13 + Annex VII
+    trace:
+      phase1: AG-D-09
+      obligations:
+      - OBL-D-09.1-001
+      objectives:
+      - PO-D-09.1-001
+      - SO-D-09.1-001
+      gaps: []
+    anchors:
+      csf:
+      - GV.PO-01
+      - GV.PO-02
+      - GV.RM-04
+      - GV.RR-02
+      - GV.OV-01
+      pf:
+      - GV.PO-P1
+      - GV.PO-P5
+      - GV.PO-P3
+      - CM.PO-P1
+      - UNMAPPED_PF (positive-risk GV.RM-04 — no PF 1.0 subcategory)
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.5.1
+      ssdf:
+      - PO.4
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** NOT IMPLEMENTED (What''s missing: complete ISMS policy set)'
+      evidence: ''
+    verification:
+      method: '** INSPECT'
+      owner: '** CTO + DPO + Compliance Lead + Legal'
+  - id: CR-D-09.2-001
+    register: OBLIGATION
+    domain: D-09.2
+    title: Unified Privacy and Cybersecurity Risk Assessment
+    ni:
+      value: 3.0
+      bucket: MUST
+    legal:
+    - '** GDPR Art. 32(2) + Art. 35 + Art. 36'
+    - CRA Art. 13(5)
+    trace:
+      phase1: AG-D-09
+      obligations:
+      - OBL-D-09.2-001
+      objectives:
+      - PO-D-09.2-001
+      - SO-D-09.2-001
+      gaps: []
+    anchors:
+      csf:
+      - ID.RA-01
+      - ID.RA-04
+      - ID.RA-05
+      - GV.RM-06
+      - GV.OV-02
+      pf:
+      - ID.RA-P3
+      - ID.RA-P4
+      - ID.RA-P5
+      - GV.RM-P1
+      - GV.MT-P1
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.5.7
+      ssdf:
+      - PW.1
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** NOT IMPLEMENTED (What''s missing: formal risk register & DPIA)'
+      evidence: ''
+    verification:
+      method: '** INSPECT'
+      owner: '** CTO + DPO + Compliance Lead + Legal'
+  - id: CR-D-09.4-001
+    register: OBLIGATION
+    domain: D-09.4
+    title: Processing and Breach Records
+    ni:
+      value: 3.0
+      bucket: MUST
+    legal:
+    - '** GDPR Art. 30 + Art. 33(5)'
+    trace:
+      phase1: AG-D-09
+      obligations:
+      - OBL-D-09.4-001
+      objectives:
+      - PO-D-09.4-001
+      gaps: []
+    anchors:
+      csf:
+      - GV.PO-02
+      - ID.AM-08
+      - ID.RA-05
+      - PR.DS-10
+      - RS.MA-03
+      pf:
+      - ID.IM-P1
+      - ID.IM-P4
+      - ID.IM-P6
+      - ID.IM-P8
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.5.33
+      ssdf:
+      - PO.3
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** NOT IMPLEMENTED (What''s missing: operational RoPA maintenance)'
+      evidence: ''
+    verification:
+      method: '** INSPECT'
+      owner: '** CTO + DPO + Compliance Lead + Legal'
+  - id: CR-D-10.2-001
+    register: OBLIGATION
+    domain: D-10.2
+    title: Audit Logging and Traceability
+    ni:
+      value: 3.0
+      bucket: MUST
+    legal:
+    - '** CRA Art. 22 (source clause CRA-C14)'
+    - 'related GDPR accountability:'
+    trace:
+      phase1: AG-D-10
+      obligations:
+      - OBL-D-10.2-001
+      objectives:
+      - SO-D-10.2-001
+      gaps: []
+    anchors:
+      csf:
+      - DE.CM-01
+      - GV.PO-02
+      - ID.RA-04
+      - PR.DS-01
+      - PR.PS-04
+      pf:
+      - CT.DM-P9
+      - CT.DM-P4
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.8.15
+      ssdf:
+      - PO.3
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** PARTIAL (What''s missing: log review cadence & 7y audit store)'
+      evidence: ''
+    verification:
+      method: '** TEST'
+      owner: '** CTO + Lead Dev'
+  - id: CR-D-10.3-001
+    register: OBLIGATION
+    domain: D-10.3
+    title: Control Effectiveness Testing
+    ni:
+      value: 3.0
+      bucket: MUST
+    legal:
+    - '** GDPR Art. 32(1)(d) + Art. 28(3)(h)'
+    - CRA Art. 14 + Art. 21
+    trace:
+      phase1: AG-D-10
+      obligations:
+      - OBL-D-10.3-001
+      objectives:
+      - SO-D-10.3-001
+      gaps: []
+    anchors:
+      csf:
+      - DE.AE-02
+      - GV.OV-03
+      - ID.RA-05
+      - ID.IM-02
+      - PR.PS-06
+      pf:
+      - ID.RA-P3
+      - ID.RA-P5
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.5.35
+      ssdf:
+      - PW.7
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** NOT IMPLEMENTED (What''s missing: annual pen test & control test
+        plan)'
+      evidence: ''
+    verification:
+      method: '** DEMONSTRATE'
+      owner: '** CTO + Lead Dev'
+  - id: BPR-D-01.1-001
+    register: BEST_PRACTICE
+    domain: D-01.1
+    title: Use strong symmetric encryption for Data at Rest
+    ni:
+      value: 2.0
+      bucket: SHOULD
+    legal:
+    - N/A — Best Practice Rule (derived from A.8.24 / PR.DS-01, PR.DS-10, PR.PS-04)
+    trace:
+      phase1: AG-D-01
+      obligations:
+      - N/A — Best Practice Rule (derived from framework)
+      objectives:
+      - SO--D-01.1-001
+      gaps: []
+    anchors:
+      csf:
+      - PR.DS-01
+      - PR.DS-10
+      - PR.PS-04
+      pf:
+      - PR.DS-P1
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.8.24
+      ssdf: []
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** PARTIAL (What''s missing: operational evidence verification & automated
+        review cadence)'
+      evidence: ''
+    verification:
+      method: '** TEST'
+      owner: '** CTO + Lead Dev'
+  - id: BPR-D-01.2-001
+    register: BEST_PRACTICE
+    domain: D-01.2
+    title: Implement current transport cryptographic standard for All Networks
+    ni:
+      value: 2.0
+      bucket: SHOULD
+    legal:
+    - N/A — Best Practice Rule (derived from A.8.24 / PR.DS-02, PR.IR-01, PR.PS-04)
+    trace:
+      phase1: AG-D-01
+      obligations:
+      - N/A — Best Practice Rule (derived from framework)
+      objectives:
+      - SO--D-01.2-001
+      gaps: []
+    anchors:
+      csf:
+      - PR.DS-02
+      - PR.IR-01
+      - PR.PS-04
+      pf:
+      - PR.DS-P2
+      - PR.PO-P7
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.8.24
+      ssdf: []
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** PARTIAL (What''s missing: operational evidence verification & automated
+        review cadence)'
+      evidence: ''
+    verification:
+      method: '** TEST'
+      owner: '** CTO + Lead Dev'
+  - id: BPR-D-02.1-001
+    register: BEST_PRACTICE
+    domain: D-02.1
+    title: Conduct Quarterly Vulnerability Scans
+    ni:
+      value: 2.0
+      bucket: SHOULD
+    legal:
+    - N/A — Best Practice Rule (derived from A.8.24 / ID.RA-01, ID.RA-03, ID.RA-05,
+      ID.IM-02, PR.PS-02)
+    trace:
+      phase1: AG-D-02
+      obligations:
+      - N/A — Best Practice Rule (derived from framework)
+      objectives:
+      - SO--D-02.1-001
+      gaps: []
+    anchors:
+      csf:
+      - ID.RA-01
+      - ID.RA-03
+      - ID.RA-05
+      - ID.IM-02
+      - PR.PS-02
+      pf:
+      - ID.RA-P3
+      - ID.RA-P5
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.8.24
+      ssdf: []
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** PARTIAL (What''s missing: operational evidence verification & automated
+        review cadence)'
+      evidence: ''
+    verification:
+      method: '** DEMONSTRATE'
+      owner: '** CTO + Lead Dev + Procurement'
+  - id: BPR-D-02.2-001
+    register: BEST_PRACTICE
+    domain: D-02.2
+    title: Apply Critical Patches Within 72 Hours
+    ni:
+      value: 2.0
+      bucket: SHOULD
+    legal:
+    - N/A — Best Practice Rule (derived from A.8.24 / ID.RA-01, PR.IR-03, PR.PS-01,
+      PR.PS-02)
+    trace:
+      phase1: AG-D-02
+      obligations:
+      - N/A — Best Practice Rule (derived from framework)
+      objectives:
+      - SO--D-02.2-001
+      gaps: []
+    anchors:
+      csf:
+      - ID.RA-01
+      - PR.IR-03
+      - PR.PS-01
+      - PR.PS-02
+      pf: []
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.8.24
+      ssdf: []
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** PARTIAL (What''s missing: operational evidence verification & automated
+        review cadence)'
+      evidence: ''
+    verification:
+      method: '** TEST'
+      owner: '** CTO + Lead Dev + Procurement'
+  - id: BPR-D-03.1-001
+    register: BEST_PRACTICE
+    domain: D-03.1
+    title: Implement Role-Based Access Control
+    ni:
+      value: 2.0
+      bucket: SHOULD
+    legal:
+    - N/A — Best Practice Rule (derived from A.8.24 / PR.AA-01, PR.AA-03, PR.AA-05,
+      PR.AA-06, ID.AM-01)
+    trace:
+      phase1: AG-D-03
+      obligations:
+      - N/A — Best Practice Rule (derived from framework)
+      objectives:
+      - SO--D-03.1-001
+      gaps: []
+    anchors:
+      csf:
+      - PR.AA-01
+      - PR.AA-03
+      - PR.AA-05
+      - PR.AA-06
+      - ID.AM-01
+      pf:
+      - PR.AC-P1
+      - PR.AC-P6
+      - PR.AC-P4
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.8.24
+      ssdf: []
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** PARTIAL (What''s missing: operational evidence verification & automated
+        review cadence)'
+      evidence: ''
+    verification:
+      method: '** INSPECT'
+      owner: '** CTO + Lead Dev'
+  - id: BPR-D-03.2-001
+    register: BEST_PRACTICE
+    domain: D-03.2
+    title: Enable FIDO2 for MFA
+    ni:
+      value: 2.0
+      bucket: SHOULD
+    legal:
+    - N/A — Best Practice Rule (derived from A.8.24 / PR.AA-03, PR.AA-04, PR.AA-05,
+      PR.AA-06)
+    trace:
+      phase1: AG-D-03
+      obligations:
+      - N/A — Best Practice Rule (derived from framework)
+      objectives:
+      - SO--D-03.2-001
+      gaps: []
+    anchors:
+      csf:
+      - PR.AA-03
+      - PR.AA-04
+      - PR.AA-05
+      - PR.AA-06
+      pf:
+      - PR.AC-P6
+      - PR.AC-P4
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.8.24
+      ssdf: []
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** PARTIAL (What''s missing: operational evidence verification & automated
+        review cadence)'
+      evidence: ''
+    verification:
+      method: '** TEST'
+      owner: '** CTO + Lead Dev'
+  - id: BPR-D-03.4-001
+    register: BEST_PRACTICE
+    domain: D-03.4
+    title: Harden Systems Using hardened-default baseline references
+    ni:
+      value: 2.0
+      bucket: SHOULD
+    legal:
+    - N/A — Best Practice Rule (derived from A.8.24 / GV.PO-01, PR.PS-01, PR.PS-04,
+      ID.IM-02)
+    trace:
+      phase1: AG-D-03
+      obligations:
+      - N/A — Best Practice Rule (derived from framework)
+      objectives:
+      - SO--D-03.4-001
+      gaps: []
+    anchors:
+      csf:
+      - GV.PO-01
+      - PR.PS-01
+      - PR.PS-04
+      - ID.IM-02
+      pf:
+      - CT.DP-P4
+      - CT.PO-P4
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.8.24
+      ssdf: []
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** PARTIAL (What''s missing: operational evidence verification & automated
+        review cadence)'
+      evidence: ''
+    verification:
+      method: '** INSPECT'
+      owner: '** CTO + Lead Dev'
+  - id: BPR-D-04.3-001
+    register: BEST_PRACTICE
+    domain: D-04.3
+    title: Maintain an Incident Response Playbook
+    ni:
+      value: 2.0
+      bucket: SHOULD
+    legal:
+    - N/A — Best Practice Rule (derived from A.8.24 / RS.MA-01, RS.MA-02, RS.MA-03,
+      RS.MA-01, RS.CO-02, RC.RP-01)
+    trace:
+      phase1: AG-D-04
+      obligations:
+      - N/A — Best Practice Rule (derived from framework)
+      objectives:
+      - SO--D-04.3-001
+      gaps: []
+    anchors:
+      csf:
+      - RS.MA-01
+      - RS.MA-02
+      - RS.MA-03
+      - RS.MA-01
+      - RS.CO-02
+      - RC.RP-01
+      pf:
+      - PR.PO-P7
+      - CT.DM-P10
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.8.24
+      ssdf: []
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** PARTIAL (What''s missing: operational evidence verification & automated
+        review cadence)'
+      evidence: ''
+    verification:
+      method: '** INSPECT'
+      owner: '** CTO + DPO + Compliance Lead'
+  - id: BPR-D-04.3-002
+    register: BEST_PRACTICE
+    domain: D-04.3
+    title: Conduct Tabletop Exercises Quarterly
+    ni:
+      value: 2.0
+      bucket: SHOULD
+    legal:
+    - N/A — Best Practice Rule (derived from A.8.24 / RS.MA-01, RS.MA-01, RS.MA-02,
+      RS.CO-02, RS.MA-01, RC.RP-01)
+    trace:
+      phase1: AG-D-04
+      obligations:
+      - N/A — Best Practice Rule (derived from framework)
+      objectives:
+      - SO--D-04.3-002
+      gaps: []
+    anchors:
+      csf:
+      - RS.MA-01
+      - RS.MA-01
+      - RS.MA-02
+      - RS.CO-02
+      - RS.MA-01
+      - RC.RP-01
+      pf:
+      - PR.PO-P7
+      - CT.DM-P10
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.8.24
+      ssdf: []
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** PARTIAL (What''s missing: operational evidence verification & automated
+        review cadence)'
+      evidence: ''
+    verification:
+      method: '** DEMONSTRATE'
+      owner: '** CTO + DPO + Compliance Lead'
+  - id: BPR-D-05.3-001
+    register: BEST_PRACTICE
+    domain: D-05.3
+    title: Use documented media sanitization standard for Media Sanitisation
+    ni:
+      value: 2.0
+      bucket: SHOULD
+    legal:
+    - N/A — Best Practice Rule (derived from A.8.24 / PR.DS-10, PR.DS-10, GV.SC-04,
+      ID.AM-08)
+    trace:
+      phase1: AG-D-05
+      obligations:
+      - N/A — Best Practice Rule (derived from framework)
+      objectives:
+      - SO--D-05.3-001
+      gaps: []
+    anchors:
+      csf:
+      - PR.DS-10
+      - PR.DS-10
+      - GV.SC-04
+      - ID.AM-08
+      pf:
+      - CT.DM-P4
+      - CT.DM-P5
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.8.24
+      ssdf: []
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** PARTIAL (What''s missing: operational evidence verification & automated
+        review cadence)'
+      evidence: ''
+    verification:
+      method: '** INSPECT'
+      owner: '** CTO + DPO'
+  - id: BPR-D-07.1-001
+    register: BEST_PRACTICE
+    domain: D-07.1
+    title: Follow NIST SSDF Secure Development
+    ni:
+      value: 2.0
+      bucket: SHOULD
+    legal:
+    - N/A — Best Practice Rule (derived from A.8.24 / GV.PO-02, GV.RR-02, ID.RA-01,
+      PR.PS-01, PR.PS-02, PR.PS-06)
+    trace:
+      phase1: AG-D-07
+      obligations:
+      - N/A — Best Practice Rule (derived from framework)
+      objectives:
+      - SO--D-07.1-001
+      gaps: []
+    anchors:
+      csf:
+      - GV.PO-02
+      - GV.RR-02
+      - ID.RA-01
+      - PR.PS-01
+      - PR.PS-02
+      - PR.PS-06
+      pf:
+      - GV.PO-P2
+      - CT.PO-P4
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.8.24
+      ssdf: []
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** PARTIAL (What''s missing: operational evidence verification & automated
+        review cadence)'
+      evidence: ''
+    verification:
+      method: '** INSPECT'
+      owner: '** CTO + Lead Dev'
+  - id: BPR-D-07.2-001
+    register: BEST_PRACTICE
+    domain: D-07.2
+    title: Conduct SAST and DAST in CI/CD
+    ni:
+      value: 2.0
+      bucket: SHOULD
+    legal:
+    - N/A — Best Practice Rule (derived from A.8.24 / ID.RA-04, ID.RA-05, PR.PS-01,
+      PR.PS-02, PR.PS-06)
+    trace:
+      phase1: AG-D-07
+      obligations:
+      - N/A — Best Practice Rule (derived from framework)
+      objectives:
+      - SO--D-07.2-001
+      gaps: []
+    anchors:
+      csf:
+      - ID.RA-04
+      - ID.RA-05
+      - PR.PS-01
+      - PR.PS-02
+      - PR.PS-06
+      pf:
+      - ID.RA-P4
+      - ID.RA-P5
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.8.24
+      ssdf: []
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** PARTIAL (What''s missing: operational evidence verification & automated
+        review cadence)'
+      evidence: ''
+    verification:
+      method: '** DEMONSTRATE'
+      owner: '** CTO + Lead Dev'
+  - id: BPR-D-09.1-001
+    register: BEST_PRACTICE
+    domain: D-09.1
+    title: Establish an ISMS per ISO 27001
+    ni:
+      value: 2.0
+      bucket: SHOULD
+    legal:
+    - N/A — Best Practice Rule (derived from A.8.24 / GV.PO-01, GV.PO-02, GV.RM-01,
+      GV.OV-01, GV.OV-03)
+    trace:
+      phase1: AG-D-09
+      obligations:
+      - N/A — Best Practice Rule (derived from framework)
+      objectives:
+      - SO--D-09.1-001
+      gaps: []
+    anchors:
+      csf:
+      - GV.PO-01
+      - GV.PO-02
+      - GV.RM-01
+      - GV.OV-01
+      - GV.OV-03
+      pf:
+      - GV.PO-P1
+      - GV.RM-P1
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.8.24
+      ssdf: []
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** PARTIAL (What''s missing: operational evidence verification & automated
+        review cadence)'
+      evidence: ''
+    verification:
+      method: '** INSPECT'
+      owner: '** CTO + DPO + Compliance Lead + Legal'
+  - id: BPR-D-10.2-001
+    register: BEST_PRACTICE
+    domain: D-10.2
+    title: Retain Logs for a Minimum of 12 Months
+    ni:
+      value: 2.0
+      bucket: SHOULD
+    legal:
+    - N/A — Best Practice Rule (derived from A.8.24 / DE.CM-01, DE.AE-02, GV.PO-02,
+      PR.DS-01, PR.PS-04)
+    trace:
+      phase1: AG-D-10
+      obligations:
+      - N/A — Best Practice Rule (derived from framework)
+      objectives:
+      - SO--D-10.2-001
+      gaps: []
+    anchors:
+      csf:
+      - DE.CM-01
+      - DE.AE-02
+      - GV.PO-02
+      - PR.DS-01
+      - PR.PS-04
+      pf:
+      - CT.DM-P9
+      - CT.DM-P4
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.8.24
+      ssdf: []
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** PARTIAL (What''s missing: operational evidence verification & automated
+        review cadence)'
+      evidence: ''
+    verification:
+      method: '** INSPECT'
+      owner: '** CTO + Lead Dev'
+  - id: BPR-D-10.3-001
+    register: BEST_PRACTICE
+    domain: D-10.3
+    title: Conduct Annual Penetration Testing
+    ni:
+      value: 2.0
+      bucket: SHOULD
+    legal:
+    - N/A — Best Practice Rule (derived from A.8.24 / GV.OV-03, ID.RA-01, ID.RA-04,
+      ID.RA-05, ID.IM-02)
+    trace:
+      phase1: AG-D-10
+      obligations:
+      - N/A — Best Practice Rule (derived from framework)
+      objectives:
+      - SO--D-10.3-001
+      gaps: []
+    anchors:
+      csf:
+      - GV.OV-03
+      - ID.RA-01
+      - ID.RA-04
+      - ID.RA-05
+      - ID.IM-02
+      pf:
+      - ID.RA-P3
+      - ID.RA-P5
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.8.24
+      ssdf: []
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** PARTIAL (What''s missing: operational evidence verification & automated
+        review cadence)'
+      evidence: ''
+    verification:
+      method: '** DEMONSTRATE'
+      owner: '** CTO + Lead Dev'
+  - id: BPR-D-10.3-002
+    register: BEST_PRACTICE
+    domain: D-10.3
+    title: Use the OWASP Testing Guide for Assessments
+    ni:
+      value: 2.0
+      bucket: SHOULD
+    legal:
+    - N/A — Best Practice Rule (derived from A.8.24 / GV.OV-03, ID.RA-01, ID.RA-04,
+      ID.RA-05, PR.PS-06)
+    trace:
+      phase1: AG-D-10
+      obligations:
+      - N/A — Best Practice Rule (derived from framework)
+      objectives:
+      - SO--D-10.3-002
+      gaps: []
+    anchors:
+      csf:
+      - GV.OV-03
+      - ID.RA-01
+      - ID.RA-04
+      - ID.RA-05
+      - PR.PS-06
+      pf:
+      - ID.RA-P3
+      - ID.RA-P5
+      pf_gaps: []
+      airmf: pending Case_02/03
+      iso:
+      - A.8.24
+      ssdf: []
+    status:
+      csf: '**'
+      privacy: '**'
+      missing: '** PARTIAL (What''s missing: operational evidence verification & automated
+        review cadence)'
+      evidence: ''
+    verification:
+      method: '** DEMONSTRATE'
+      owner: '** CTO + Lead Dev'
