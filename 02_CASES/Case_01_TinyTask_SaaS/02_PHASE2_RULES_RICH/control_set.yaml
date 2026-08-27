@@ -233,8 +233,7 @@ control_set:
       - PR.PS-01
       - PR.PS-02
       pf:
-      - UNMAPPED_PRIVACY (patch cadence is product-security concern; no PF subcat
-        anchored)
+      - — (SSDF RV.2 deliverable)
       pf_gaps: []
       airmf: N/A (non-AI scope)
       iso:
@@ -273,7 +272,7 @@ control_set:
       - RS.CO-03
       - RS.MA-01
       pf:
-      - UNMAPPED_PRIVACY (CVD is security-disclosure; no PF subcat anchored)
+      - — (SSDF RV.1 deliverable)
       pf_gaps: []
       airmf: N/A (non-AI scope)
       iso:
@@ -863,7 +862,7 @@ control_set:
       - ID.RA-01
       - PR.PS-02
       pf:
-      - UNMAPPED_PRIVACY (SBOM is product-security artefact; no PF subcat anchored)
+      - — (SSDF PS.3 deliverable)
       pf_gaps: []
       airmf: N/A (non-AI scope)
       iso:

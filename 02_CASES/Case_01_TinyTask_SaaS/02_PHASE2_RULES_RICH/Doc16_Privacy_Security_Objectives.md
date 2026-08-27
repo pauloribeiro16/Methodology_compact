@@ -123,8 +123,8 @@ This is the Rich Mode version of the Objectives Catalog. It defines **31 objecti
 | Objective ID | Objective Description | Source Obligations | Sub-Domain | Risk Profile | Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors | PF Anchors |
 | --------- | ------------------ | -------------------- | ------------ | -------------- | ---------- | ------- | ---------------------- | --------------- | ------------------------ | ---------------------- | ---------------------- | --- | --- |
 | SO-D-02.1-001 | Deliver and maintain the product with zero known exploitable vulnerabilities | OBL-D-02.1-001 | D-02.1 | MEDIUM | CRITICAL | CTO + Lead Dev + Procurement | automated vulnerability + dependency scan, zero critical findings | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | ENISA 24h (CRA) | ID.IM-02, ID.RA-01, ID.RA-05, PR.PS-02 | ID.RA-P3, ID.RA-P5 |
-| SO-D-02.2-001 | Enable automatic security updates for all deployed components | OBL-D-02.2-001 | D-02.2 | MEDIUM | CRITICAL | CTO + Lead Dev + Procurement | patch-management SLA test | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | ENISA 24h (CRA) | — | UNMAPPED_PRIVACY (patch cadence is product-security concern; no PF subcat anchored) |
-| SO-D-02.3-001 | Publish a coordinated vulnerability disclosure policy | OBL-D-02.3-001 | D-02.3 | LOW | HIGH | CTO + Lead Dev + Procurement | vulnerability-disclosure policy + reporting workflow | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | ENISA 24h (CRA) | — | UNMAPPED_PRIVACY (CVD is security-disclosure; no PF subcat anchored) |
+| SO-D-02.2-001 | Enable automatic security updates for all deployed components | OBL-D-02.2-001 | D-02.2 | MEDIUM | CRITICAL | CTO + Lead Dev + Procurement | patch-management SLA test | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | ENISA 24h (CRA) | — | — (SSDF RV.2 deliverable) |
+| SO-D-02.3-001 | Publish a coordinated vulnerability disclosure policy | OBL-D-02.3-001 | D-02.3 | LOW | HIGH | CTO + Lead Dev + Procurement | vulnerability-disclosure policy + reporting workflow | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | ENISA 24h (CRA) | — | — (SSDF RV.1 deliverable) |
 
 #### D-03: Access Control (4 SO)
 
@@ -149,7 +149,7 @@ This is the Rich Mode version of the Objectives Catalog. It defines **31 objecti
 | Objective ID | Objective Description | Source Obligations | Sub-Domain | Risk Profile | Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors | PF Anchors |
 | --------- | ------------------ | -------------------- | ------------ | -------------- | ---------- | ------- | ---------------------- | --------------- | ------------------------ | ---------------------- | ---------------------- | --- | --- |
 | SO-D-06.1-001 | Use only processors that provide sufficient guarantees under documented data-processing agreements | OBL-D-06.1-001 | D-06.1 | LOW | HIGH | CTO + Lead Dev + Procurement | DPA + documented third-party security attestation | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | GV.SC-02, GV.SC-03 | ID.IM-P2 |
-| SO-D-06.2-001 | Maintain a software bill of materials in machine-readable format | OBL-D-06.2-001 | D-06.2 | MEDIUM | HIGH | CTO + Lead Dev + Procurement | machine-readable SBOM per release | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | — | UNMAPPED_PRIVACY (SBOM is product-security artefact; no PF subcat anchored) |
+| SO-D-06.2-001 | Maintain a software bill of materials in machine-readable format | OBL-D-06.2-001 | D-06.2 | MEDIUM | HIGH | CTO + Lead Dev + Procurement | machine-readable SBOM per release | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | — | — (SSDF PS.3 deliverable) |
 | SO-D-06.3-001 | Bind processors to security obligations via contractual instruments | OBL-D-06.3-001 | D-06.3 | LOW | HIGH | CTO + Lead Dev + Procurement | DPA template + clauses | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | DE.CM-06, GV.OC-03, GV.RR-02, GV.SC-01, GV.SC-02, GV.SC-03 | ID.DE-P3, ID.DE-P4; UNMAPPED_PF (ecosystem-risk→ERM — no PF 1.0 subcategory) |
 
 #### D-08: Human Factors (2 SO)
@@ -1091,7 +1091,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 3. **Out of Scope:** Zero-day emergency patching outside maintenance window (procedural exception documented in incident-response runbook); customer-deployed on-prem components (out of SaaS scope).
 4. **Source Article:** CRA Annex I §2 (vulnerability handling) + Art. 11(2); GDPR Art. 32(1)(b) + Art. 32(1)(d).
 5. **NIST CSF Anchors:** GV.OV-02, ID.RA-01, PR.PS-01, PR.PS-02, PR.IR-03.
-6. **Privacy FW Anchors:** UNMAPPED_PRIVACY (patch cadence is product-security concern; no PF subcat anchored).
+6. **Privacy FW Anchors:** — (SSDF RV.2 deliverable).
 7. **Verification Criteria:**
    - Managed patch orchestration `Scan` + `Install` baselines run daily; patch log audited weekly.
    - Critical patches remediated within 24h (tracked in patch log); quarterly review confirms zero missed critical CVEs in current scope.
@@ -1156,7 +1156,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 3. **Out of Scope:** External bug-bounty programme (out of scope at small scale — replaced by CVD policy); anonymous-tor-only reporting channel (not justified).
 4. **Source Article:** CRA Art. 12 (coordinated vulnerability disclosure); ISO/IEC 29147 (vulnerability disclosure) + ISO/IEC 30111 (vulnerability handling).
 5. **NIST CSF Anchors:** GV.PO-01, GV.SC-04, ID.RA-01, RS.CO-03.
-6. **Privacy FW Anchors:** UNMAPPED_PRIVACY (CVD is security-disclosure; no PF subcat anchored).
+6. **Privacy FW Anchors:** — (SSDF RV.1 deliverable).
 7. **Verification Criteria:**
    - `/.well-known/security.txt` returns HTTP 200 with valid `Contact`, `Expires`, and `Disclosure` policy fields; verified by automated external probe monthly.
    - External researcher test email acknowledged within 5 business days; SLA tracked in mailbox auto-responder.
@@ -1806,7 +1806,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 3. **Out of Scope:** VEX-style documents (DEFERRED beyond Track B); alternative SBOM format (rejected — preferred format for security metadata).
 4. **Source Article:** CRA Annex I §2 (vulnerability handling requires inventory); NTIA Minimum Elements for SBOM.
 5. **NIST CSF Anchors:** ID.AM-02, ID.AM-04, PR.PS-02, PR.DS-01.
-6. **Privacy FW Anchors:** UNMAPPED_PRIVACY (SBOM is product-security artefact; no PF subcat anchored).
+6. **Privacy FW Anchors:** — (SSDF PS.3 deliverable).
 7. **Verification Criteria:**
    - Machine-readable SBOM generated by CI on every release; release artefact audit confirms SBOM attached to each of the last 12 releases.
    - SBOM inventory in managed object storage bucket covers all production dependencies; quarterly review confirms zero missing components.

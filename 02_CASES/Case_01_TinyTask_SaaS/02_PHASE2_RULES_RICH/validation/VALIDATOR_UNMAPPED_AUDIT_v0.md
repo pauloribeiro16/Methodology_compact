@@ -32,7 +32,7 @@ Forbidden: pseudo-ranges (`UNMAPPED_PF..P4`), ID-substitution by tokens, justifi
 | Token | Occurrences | Verdict | Action |
 |---|---|---|---|
 | `UNMAPPED_CSF` | 352 (66 domain-corpus files + cases) | **LEGITIMATE** — collapses to 3 unique reasons: GDPR Art. 49 derogation (transfer-legality, not security), Art. 9 special-category consent (privacy construct), CRA Annex II §8 user-side instructions (information duty, not a control) | none (doc-level: domains/** is guard-protected and content is honest) |
-| `UNMAPPED_PRIVACY` | 50 | **LEGITIMATE** — product-security trio (patch cadence, CVD, SBOM); PF 1.0 genuinely lacks patch/CVD/SBOM categories (the `PR.PS` family exists only in the draft) | none |
+| `UNMAPPED_PRIVACY` | 0 | **RETIRED** — 0 occurrences in Case_01 deliverables (replaced by SSDF RV.1/RV.2/PS.3 anchors) | none |
 | `UNMAPPED_PF` | 280 (103 in Case_01 Phase 2) | **CORRUPTED** in majority: (a) draft-based exclusions of valid families; (b) find-and-replace substituted real IDs in §6.2/§6.3/§4.3 tables; (c) slot-filler tokens in §1/§7 without justification; (d) 1 occurrence propagated into the KG (build E3 `graph.json`) | **FIXED this audit (Case_01)**; Cases 02/03 pending |
 | `UNMAPPED_AIRMF` | 237 (Cases 02/03) | **SEMANTICALLY WRONG** — appears exactly on rows whose source regulations exclude AI_Act; correct marker is `N/A (non-AI scope)` | **PENDING (Case_02/03 sessions)** |
 
@@ -46,7 +46,7 @@ Forbidden: pseudo-ranges (`UNMAPPED_PF..P4`), ID-substitution by tokens, justifi
 - **Doc19 §7:** summary table synced with §1.
 - **Doc16:** 4 PF-table rows + 4 detailed-card field-6 lines updated to match.
 - **Doc18:** 6 cards (4 CR + 2 BPR) field 20 updated with canonical IDs + justifications.
-- **Counts §1:** honest split — 13 rows fully mapped / 14 partially (justified element gaps) / 3 UNMAPPED_PRIVACY. (Was "27/30 mapped", hiding ~17 empty slots.)
+- **Counts §1:** honest split — 13 rows fully mapped / 14 partially (justified element gaps) / 0 UNMAPPED_PRIVACY (RETIRED). (Was "27/30 mapped", hiding ~17 empty slots.)
 
 **Verification:** `python3 validation/check_unmapped.py` → GATE PASS. Validated: zero ranges; every token justified; every PF id ∈ canonical 100; Doc19 AI RMF = 30/30 `N/A (non-AI scope)` with zero real AI RMF ids.
 

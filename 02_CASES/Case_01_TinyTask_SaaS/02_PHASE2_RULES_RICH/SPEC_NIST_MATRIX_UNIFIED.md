@@ -209,7 +209,7 @@ O Executor **NÃO DEVE** reconstruir o seguinte — está feito e é input:
 
 > O Executor DEVE usar apenas IDs das listas frozen. **NÃO inventar IDs.** Se um
 > mapeamento não encaixar em nenhuma subcategoria, usar `UNMAPPED_CSF` /
-> `UNMAPPED_PRIVACY` (espelhando a convenção do CSF).
+> SSDF deliverable (retired) (substituído por SSDF deliverable).
 
 ### 4.1 NIST CSF 2.0 (segurança — eixo principal)
 
@@ -288,7 +288,7 @@ funções Govern num único conjunto de objectivos de governação.
 
 1. O Executor **DEVE** tirar IDs CSF 2.0 de `NIST_CSF_2.0_subcategories.md`.
 2. O Executor **DEVE** criar `NIST_PF_1.0_subcategories.md` (§5.1) **ANTES** de qualquer mapeamento Privacy.
-3. O Executor **NÃO DEVE** inventar IDs. Se não há correspondência, usar `UNMAPPED_CSF` ou `UNMAPPED_PRIVACY`.
+3. O Executor **NÃO DEVE** inventar IDs. Se não há correspondência, usar `UNMAPPED_PF` com justificação.
 4. O Executor **NÃO DEVE** mapear AI RMF neste contracto (placeholder).
 5. Todo ID PF/CSF/RMF escrito em qualquer artefacto DEVE pertencer à lista frozen correspondente (verificação automática: `validation/check_unmapped.py`).
 
@@ -296,7 +296,7 @@ funções Govern num único conjunto de objectivos de governação.
 
 | Marcador | Significado | Obrigatório | Proibido usar quando |
 |---|---|---|---|
-| `UNMAPPED_PRIVACY` | A regra **inteira** não tem âncora no Privacy FW (ex.: product-security trio: patch cadence, CVD, SBOM) | Justificação curta na célula | A regra tem QUALQUER âncora PF → usar `UNMAPPED_PF` element-level |
+| `SSDF deliverable` | **RETIRED** — substituído por anotação de deliverable com âncora SSDF (`RV.1`, `RV.2`, `PS.3`) | — | — |
 | `UNMAPPED_PF` | Um **elemento** dentro de uma regra mapeada não tem contraparte no PF 1.0 (ex.: eixo Respond/Recover, logging, SDLC) | Campo `unmapped_pf_justification` (bloco YAML) ou parêntese curto na célula | Existe subcategoria PF 1.0 com texto correspondente (verificar `CONTROLS/NIST_PF/` antes de marcar) |
 | `N/A (non-AI scope)` | Regra sem dimensão IA — coluna AI RMF em cases com AI Act aplicável (Case_02/03) | — | A regra tem dimensão IA e falta âncora → `UNMAPPED_AIRMF` |
 | `N/A (non-AI scope)` | Coluna AI RMF do Case_01 (placeholder, SPEC §4.3) | — | — |
@@ -397,7 +397,7 @@ Tabela principal: linhas = 38 sub-domínios (ou controlos CR/BPR agrupados por s
 ```
 | Sub-domínio | CSF 2.0 (subcats) | Privacy FW 1.0 (subcats) | AI RMF | ISO 27001 | SSDF |
 |-------------|-------------------|--------------------------|--------|-----------|------|
-| D-01.1      | PR.DS-01          | (UNMAPPED_PRIVACY)       | pending| A.8.24    | —    |
+| D-01.1      | PR.DS-01          | — (SSDF deliverable)     | N/A (non-AI scope)| A.8.24 | — |
 | D-01.2      | PR.DS-02          | —                        | pending| A.8.24    | —    |
 | ...         | ...               | ...                      | ...    | ...       | ...  |
 ```
@@ -1096,7 +1096,7 @@ ls 03_REFERENCE_MATERIAL/Framework_Mappings/Framework_Crosswalk_ARM.md
 | **Govern consolidada** | Vista que funde GV (CSF) + Govern-P (Privacy) + GOVERN (AI RMF) — Doc 13 §2 |
 | **Matriz unificada** | Vista única com colunas de cada framework — Doc 13 §1 |
 | **Track B** | Camada de proporção (LIGHTWEIGHT/STANDARD/RIGOROUS/DEFERRED) — `07b_Proportionality_Profile.md` |
-| **UNMAPPED_CSF / UNMAPPED_PRIVACY** | Marcador para quando não há correspondência numa subcategoria |
+| **UNMAPPED_CSF / SSDF deliverable** | Marcador para quando não há correspondência numa subcategoria |
 
 ### Apêndice B — Caminhos completos referenciados
 
@@ -1184,8 +1184,8 @@ ls 03_REFERENCE_MATERIAL/Framework_Mappings/Framework_Crosswalk_ARM.md
 ```markdown
 | Sub-domínio | CR/BPR | NI | CSF 2.0 | Privacy FW 1.0 | AI RMF | ISO 27001 | SSDF |
 |-------------|--------|----|---------|----------------|--------|-----------|------|
-| D-01.1      | CR-D-01.1-001 | 3 (MUST) | PR.DS-01, PR.DS-10, PR.PS-04 | UNMAPPED_PRIVACY | pending | A.8.24, A.8.13 | — |
-| D-01.2      | CR-D-01.2-001 | 3 (MUST) | PR.DS-02 | UNMAPPED_PRIVACY | pending | A.8.24 | — |
+| D-01.1      | CR-D-01.1-001 | 3 (MUST) | PR.DS-01, PR.DS-10, PR.PS-04 | SSDF deliverable | pending | A.8.24, A.8.13 | — |
+| D-01.2      | CR-D-01.2-001 | 3 (MUST) | PR.DS-02 | SSDF deliverable | pending | A.8.24 | — |
 | D-03.1      | CR-D-03.1-001 | 3 (MUST) | PR.AA-01, PR.AA-05 | CT-P.DS-P:1 (data-action mgmt) | pending | A.5.15, A.8.5 | — |
 | ...         | ...    | ...  | ...     | ...            | ...    | ...       | ...  |
 ```

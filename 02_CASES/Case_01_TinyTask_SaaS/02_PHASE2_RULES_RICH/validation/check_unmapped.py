@@ -156,6 +156,15 @@ def check_control_set_generator():
     if c_count != 46:
         failures.append(f"control_set.yaml contains {c_count} controls (expected 46)")
 
+
+def check_retired_unmapped_privacy():
+    for md_file in CASE_ROOT.rglob("*.md"):
+        if is_excluded(md_file):
+            continue
+        for line_no, line in enumerate(md_file.read_text(encoding="utf-8").splitlines(), 1):
+            if "UNMAPPED_PRIVACY" in line:
+                failures.append(f"{md_file.name}:{line_no}: Retired UNMAPPED_PRIVACY token found: {line.strip()}")
+
 def main() -> int:
     pf_ids = load_pf_ids()
     csf_ids = load_csf_ids()
@@ -204,6 +213,7 @@ def main() -> int:
     # Checks 6-9: v0.3 additions
     check_deprecated_terms()
     check_sprint_frontmatter()
+    check_retired_unmapped_privacy()
     check_doc18_cards()
     check_control_set_generator()
 

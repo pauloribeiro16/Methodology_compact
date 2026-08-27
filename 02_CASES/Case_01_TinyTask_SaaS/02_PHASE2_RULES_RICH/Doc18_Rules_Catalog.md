@@ -588,7 +588,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 24. **Framework Anchors:**
     - CSF: GV.OV-02, ID.RA-01, PR.IR-03, PR.PS-01, PR.PS-02
-    - PF: UNMAPPED_PRIVACY (patch cadence is product-security concern; no PF subcat anchored)
+    - PF: — (SSDF RV.2 deliverable)
     - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.8
     - SSDF: RV.2
@@ -680,7 +680,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 24. **Framework Anchors:**
     - CSF: GV.PO-01, GV.SC-04, ID.RA-01, RS.CO-03, RS.MA-01
-    - PF: UNMAPPED_PRIVACY (CVD is security-disclosure; no PF subcat anchored)
+    - PF: — (SSDF RV.1 deliverable)
     - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.5.5
     - SSDF: RV.1
@@ -1987,7 +1987,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 24. **Framework Anchors:**
     - CSF: GV.SC-02, GV.SC-03, ID.AM-02, ID.RA-01, PR.PS-02
-    - PF: UNMAPPED_PRIVACY (SBOM is product-security artefact; no PF subcat anchored)
+    - PF: — (SSDF PS.3 deliverable)
     - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.5.21
     - SSDF: PS.3

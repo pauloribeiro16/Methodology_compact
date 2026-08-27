@@ -79,8 +79,8 @@ crosswalk_decision: >
 | CR-D-01.3-001 | D-01.3     | 3 (MUST)     | GV.OV-01, GV.RM-04, PR.AA-03, PR.AA-04, PR.DS-01, PR.IR-03                                                                                                              | PR.DS-P1, CT.DP-P2                                              | N/A (non-AI scope) | A.8.24    | -         | GV.OV-01\|GV.RM-04\|PR.AA-03\|PR.AA-04\|PR.DS-01\|PR.IR-03                                | PR.DS-P1\|CT.DP-P2                                    |
 | CR-D-01.4-001 | D-01.4     | 3 (MUST)     | PR.DS-01, PR.DS-02, PR.DS-10, PR.DS-01, PR.DS-10, PR.IR-03, PR.IR-04, PR.PS-04                                                                                          | CT.DM-P1, CT.DM-P3                                              | N/A (non-AI scope) | A.8.24    | -         | PR.DS-01\|PR.DS-02\|PR.DS-10\|PR.DS-01\|PR.DS-10\|PR.IR-03\|PR.IR-04\|PR.PS-04          | CT.DM-P1\|CT.DM-P3                                    |
 | CR-D-02.1-001 | D-02.1     | 3 (MUST)     | GV.OV-02, ID.AM-02, ID.IM-02, ID.RA-01, ID.RA-03, ID.RA-05, PR.PS-02                                                                                                    | ID.RA-P3, ID.RA-P5                                              | N/A (non-AI scope) | A.8.8     | RV.1      | GV.OV-02\|ID.AM-02\|ID.IM-02\|ID.RA-01\|ID.RA-03\|ID.RA-05\|PR.PS-02                    | ID.RA-P3\|ID.RA-P5                                    |
-| CR-D-02.2-001 | D-02.2     | 3 (MUST)     | GV.OV-02, ID.RA-01, PR.IR-03, PR.PS-01, PR.PS-02                                                                                                                        | UNMAPPED_PRIVACY (patch cadence is product-security concern; no PF subcat anchored) | N/A (non-AI scope) | A.8.8     | RV.2      | GV.OV-02\|ID.RA-01\|PR.IR-03\|PR.PS-01\|PR.PS-02                                          | UNMAPPED_PRIVACY                                      |
-| CR-D-02.3-001 | D-02.3     | 3 (MUST)     | GV.PO-01, GV.SC-04, ID.RA-01, RS.CO-03, RS.MA-01                                                                                                                         | UNMAPPED_PRIVACY (CVD is security-disclosure; no PF subcat anchored) | N/A (non-AI scope) | A.5.5     | RV.1      | GV.PO-01\|GV.SC-04\|ID.RA-01\|RS.CO-03\|RS.MA-01                                         | UNMAPPED_PRIVACY                                      |
+| CR-D-02.2-001 | D-02.2     | 3 (MUST)     | GV.OV-02, ID.RA-01, PR.IR-03, PR.PS-01, PR.PS-02                                                                                                                        | — (SSDF RV.2 deliverable) | N/A (non-AI scope) | A.8.8     | RV.2      | GV.OV-02\|ID.RA-01\|PR.IR-03\|PR.PS-01\|PR.PS-02                                          | — (SSDF deliverable)                                      |
+| CR-D-02.3-001 | D-02.3     | 3 (MUST)     | GV.PO-01, GV.SC-04, ID.RA-01, RS.CO-03, RS.MA-01                                                                                                                         | — (SSDF RV.1 deliverable) | N/A (non-AI scope) | A.5.5     | RV.1      | GV.PO-01\|GV.SC-04\|ID.RA-01\|RS.CO-03\|RS.MA-01                                         | — (SSDF deliverable)                                      |
 | CR-D-03.1-001 | D-03.1     | 3 (MUST)     | ID.AM-01, PR.AA-01, PR.AA-02, PR.AA-03, PR.AA-05, PR.AA-06, PR.DS-10                                                                                                     | PR.AC-P1, PR.AC-P6, PR.AC-P4, UNMAPPED_PF (asset inventory + risk-strategy data mgmt — no PF 1.0 analogue) | N/A (non-AI scope) | A.5.16    | -         | ID.AM-01\|PR.AA-01\|PR.AA-02\|PR.AA-03\|PR.AA-05\|PR.AA-06\|PR.DS-10                  | UNMAPPED_PF\|PR.AC-P1\|PR.AC-P6\|PR.AC-P6\|PR.AC-P4\|PR.AC-P4\|UNMAPPED_PF |
 | CR-D-03.2-001 | D-03.2     | 2 (SHOULD)   | PR.AA-03, PR.AA-04, PR.AA-05, PR.AA-06, PR.AT-02                                                                                                                         | PR.AC-P6, PR.AC-P4, GV.AT-P1, UNMAPPED_PF (identity assertions — no PF 1.0 subcategory) | N/A (non-AI scope) | A.8.5     | -         | PR.AA-03\|PR.AA-04\|PR.AA-05\|PR.AA-06\|PR.AT-02                                         | PR.AC-P6\|UNMAPPED_PF\|PR.AC-P4\|PR.AC-P4\|GV.AT-P1      |
 | CR-D-03.3-001 | D-03.3     | 3 (MUST)     | ID.AM-01, ID.AM-02, PR.AA-01, PR.AA-03, PR.AA-05, PR.AA-06, PR.PS-04                                                                                                     | CT.PO-P1, PR.AC-P1, PR.AC-P6, PR.AC-P4, UNMAPPED_PF (asset inventories + log records — no PF 1.0 analogue) | N/A (non-AI scope) | A.5.15    | -         | ID.AM-01\|ID.AM-02\|PR.AA-01\|PR.AA-03\|PR.AA-05\|PR.AA-06\|PR.PS-04                  | UNMAPPED_PF\|UNMAPPED_PF\|PR.AC-P1\|PR.AC-P6\|PR.AC-P4\|PR.AC-P4\|CT.PO-P1 |
@@ -94,7 +94,7 @@ crosswalk_decision: >
 | CR-D-05.3-001 | D-05.3     | 3 (MUST)     | GV.SC-04, PR.DS-10, PR.DS-10, PR.DS-02                                                                                                                                  | CT.DM-P4, CT.DM-P5, PR.DS-P2                          | N/A (non-AI scope) | A.8.10    | -         | GV.SC-04\|PR.DS-10\|PR.DS-10\|PR.DS-02                                                  | CT.DM-P4\|CT.DM-P5\|PR.DS-P2                          |
 | CR-D-05.4-001 | D-05.4     | 2 (SHOULD)   | PR.DS-10, PR.DS-10, PR.AA-03, PR.DS-02                                                                                                                                  | CT.DM-P1, CT.DM-P6                                              | N/A (non-AI scope) | A.5.14    | -         | PR.DS-10\|PR.DS-10\|PR.AA-03\|PR.DS-02                                                  | CT.DM-P1\|CT.DM-P6                                    |
 | CR-D-06.1-001 | D-06.1     | 3 (MUST)     | GV.SC-01, GV.SC-02, GV.SC-03, GV.SC-04, ID.AM-04, ID.RA-02                                                                                                               | ID.DE-P1, ID.IM-P2                                    | N/A (non-AI scope) | A.5.19    | PW.4      | GV.SC-01\|GV.SC-02\|GV.SC-03\|GV.SC-04\|ID.AM-04\|ID.RA-02                             | ID.DE-P1\|ID.IM-P2                                    |
-| CR-D-06.2-001 | D-06.2     | 3 (MUST)     | GV.SC-02, GV.SC-03, ID.AM-02, ID.RA-01, PR.PS-02                                                                                                                         | UNMAPPED_PRIVACY (SBOM is product-security artefact; no PF subcat anchored) | N/A (non-AI scope) | A.5.21    | PS.3      | GV.SC-02\|GV.SC-03\|ID.AM-02\|ID.RA-01\|PR.PS-02                                         | UNMAPPED_PRIVACY                                      |
+| CR-D-06.2-001 | D-06.2     | 3 (MUST)     | GV.SC-02, GV.SC-03, ID.AM-02, ID.RA-01, PR.PS-02                                                                                                                         | — (SSDF PS.3 deliverable) | N/A (non-AI scope) | A.5.21    | PS.3      | GV.SC-02\|GV.SC-03\|ID.AM-02\|ID.RA-01\|PR.PS-02                                         | — (SSDF deliverable)                                      |
 | CR-D-06.3-001 | D-06.3     | 3 (MUST)     | GV.OC-03, GV.SC-02, GV.SC-03, GV.SC-04, PR.DS-10, PR.PS-06, RS.MA-01, RS.MI-01                                                                                           | ID.DE-P3, ID.DE-P4, UNMAPPED_PF (ecosystem risk into enterprise risk — no PF 1.0 subcategory) | N/A (non-AI scope) | A.5.20    | -         | GV.OC-03\|GV.SC-02\|GV.SC-03\|GV.SC-04\|PR.DS-10\|PR.PS-06\|RS.MA-01\|RS.MI-01        | ID.DE-P3\|ID.DE-P4\|UNMAPPED_PF                          |
 | CR-D-07.1-001 | D-07.1     | 3 (MUST)     | GV.PO-02, ID.RA-01, PR.DS-10, PR.PS-01, PR.PS-02, PR.PS-06                                                                                                               | GV.PO-P2, CT.PO-P4, CT.DP-P2, CT.DP-P4, CT.DP-P5                 | N/A (non-AI scope) | A.8.25    | PO.1      | GV.PO-02\|ID.RA-01\|PR.DS-10\|PR.PS-01\|PR.PS-02\|PR.PS-06                             | GV.PO-P2\|CT.PO-P4\|CT.DP-P2\|CT.DP-P4\|CT.DP-P5        |
 | CR-D-08.1-001 | D-08.1     | 3 (MUST)     | PR.AT-01, PR.AT-02, PR.PS-01                                                                                                                                              | GV.AT-P1, GV.AT-P2                                              | N/A (non-AI scope) | A.6.3     | PO.2      | PR.AT-01\|PR.AT-02\|PR.PS-01                                                                | GV.AT-P1\|GV.AT-P2                                    |
@@ -105,7 +105,7 @@ crosswalk_decision: >
 | CR-D-10.2-001 | D-10.2     | 3 (MUST)     | DE.CM-01, GV.PO-02, ID.RA-04, PR.DS-01, PR.PS-04                                                                                                                         | CT.DM-P9, CT.DM-P4                                              | N/A (non-AI scope) | A.8.15    | PO.3      | DE.CM-01\|GV.PO-02\|ID.RA-04\|PR.DS-01\|PR.PS-04                                         | CT.DM-P9\|CT.DM-P4                                    |
 | CR-D-10.3-001 | D-10.3     | 3 (MUST)     | DE.AE-02, GV.OV-03, ID.RA-05, ID.IM-02, PR.PS-06                                                                                                                         | ID.RA-P3, ID.RA-P5                                    | N/A (non-AI scope) | A.5.35    | PW.7      | DE.AE-02\|GV.OV-03\|ID.RA-05\|ID.IM-02\|PR.PS-06                                         | ID.RA-P3\|ID.RA-P5\|UNMAPPED_PF                          |
 
-**Counts (§1):** 30 CR rows. Privacy FW (revised 2026-08-27 per VALIDATOR_UNMAPPED_AUDIT_v0 — canonical PF 1.0, draft-1.1 exclusions removed): **13 rows fully mapped**; **14 rows partially mapped** (remaining `UNMAPPED_PF` element-level tokens are genuine no-PF-1.0-analogues — logging (PR.PS-04), incident-authority reporting (RS.MA-*), Recover axis (RC.RP-*), SDLC security (PR.PS-06), positive-risk (GV.RM-04), asset inventories (ID.AM-*) — each with justification); **3 rows UNMAPPED_PRIVACY** (CR-D-02.2-001 patch cadence, CR-D-02.3-001 CVD, CR-D-06.2-001 SBOM — product-security concerns with no PF subcategory). AI RMF placeholder on every row. ISO 27001 first/primary control from crosswalk per sub-domain. SSDF first/primary from crosswalk; `-` for sub-domains where the crosswalk has no SSDF row (D-01.2, D-01.3, D-01.4, D-03.1, D-03.2, D-03.3, D-04.2, D-04.3, D-04.4, D-05.1, D-05.3, D-05.4, D-06.3).
+**Counts (§1):** 30 CR rows. Privacy FW (revised 2026-08-27 per VALIDATOR_UNMAPPED_AUDIT_v0 — canonical PF 1.0, draft-1.1 exclusions removed): **13 rows fully mapped**; **14 rows partially mapped** (remaining `UNMAPPED_PF` element-level tokens are genuine no-PF-1.0-analogues — logging (PR.PS-04), incident-authority reporting (RS.MA-*), Recover axis (RC.RP-*), SDLC security (PR.PS-06), positive-risk (GV.RM-04), asset inventories (ID.AM-*) — each with justification); **0 rows SSDF deliverable (retired; anchored to SSDF RV.1/RV.2/PS.3)** (CR-D-02.2-001 patch cadence, CR-D-02.3-001 CVD, CR-D-06.2-001 SBOM — product-security concerns with no PF subcategory). AI RMF placeholder on every row. ISO 27001 first/primary control from crosswalk per sub-domain. SSDF first/primary from crosswalk; `-` for sub-domains where the crosswalk has no SSDF row (D-01.2, D-01.3, D-01.4, D-03.1, D-03.2, D-03.3, D-04.2, D-04.3, D-04.4, D-05.1, D-05.3, D-05.4, D-06.3).
 
 ---
 ## §2 - Vista Govern Consolidada
@@ -179,7 +179,7 @@ crosswalk_decision: >
 > from `02b_SecurityRules_NISTPF.md` GDPR baseline; may be `[]` with
 > justification), mapping_rationale (1-3 sentences).
 > Per SPEC D16: 100% CR have csf + privacy mappings (privacy may be
-> `UNMAPPED_PRIVACY`); BPR may have empty lists where the framework source
+> `SSDF deliverable`); BPR may have empty lists where the framework source
 > has no natural CSF anchor.
 
 ```yaml
@@ -257,7 +257,7 @@ crosswalk_decision: >
     Patch cadence is a product-security concern; no Privacy FW subcategory
     addresses automated patching. GDPR baseline 02b_SecurityRules_NISTPF.md
     has no SR for D-02.2 (no GDPR clause anchors patch management). Marked
-    UNMAPPED_PRIVACY rather than fabricating a privacy anchor.
+    SSDF deliverable rather than fabricating a privacy anchor.
   mapping_rationale: >
     Doc 11 anchors remediation cycle to PR.PS-02 (software maintained) +
     PR.PS-01 (configuration) + PR.IR-03 (resilience). Privacy FW has no
@@ -274,7 +274,7 @@ crosswalk_decision: >
     No SR in the GDPR baseline maps to D-02.3 (CVD derives from CRA Art. 19,
     not from GDPR). Privacy FW CM.AW-P7 (privacy breach notification) is
     conceptually adjacent but its scope is privacy-breach events, not generic
-    CVD. Marked UNMAPPED_PRIVACY.
+    CVD. Marked SSDF deliverable.
   mapping_rationale: >
     Doc 11 anchors CVD policy to GV.PO-01 (policy), GV.SC-04 (supplier
     assessment), ID.RA-01 (vulnerability intake), RS.CO-03/04 (information
@@ -467,7 +467,7 @@ crosswalk_decision: >
   privacy_unmapped_justification: >
     SBOM is a CRA Art. 18(2) product-security artefact. No GDPR clause
     anchors SBOM; no Privacy FW subcategory addresses software component
-    provenance. Marked UNMAPPED_PRIVACY.
+    provenance. Marked SSDF deliverable.
   mapping_rationale: >
     Doc 11 anchors SBOM to supply chain + asset inventory + vulnerability
     intake. Privacy FW: no natural anchor.
@@ -791,7 +791,7 @@ crosswalk_decision: >
 
 **Counts (§3):** 30 CR + 16 BPR = **46 blocks**. CSF anchors per CR: median
 5 (range 4-8). Privacy FW anchors per CR with mapping: median 2 (range 1-5);
-3 CR use `UNMAPPED_PRIVACY` (CR-D-02.2-001, CR-D-02.3-001, CR-D-06.2-001).
+0 CR use `SSDF deliverable` (retired) (CR-D-02.2-001, CR-D-02.3-001, CR-D-06.2-001).
 BPR mirror the CR mappings where framework source is security-only;
 element-level gaps carry `unmapped_pf_justification` (revised 2026-08-27:
 false UNMAPPED_PF tokens replaced by canonical PF 1.0 IDs — PR.AC/PR.PO/
@@ -1070,7 +1070,7 @@ PR.DS/ID.DE families reinstated; see §6.2).
 - D-03.x: 4 CR + 3 BPR - gap 1 on identity/RBAC; gap 2 on secure defaults; MFA (CR-D-03.2) gap 2.
 - D-04.x: gap 2 across detection + response + recovery - the largest single-area gap.
 - D-05.1/3: gap 2; D-05.2/4: gap 1 (tgt=2 reflects MICRO retention not requiring formal evidence chain beyond S3 lifecycle + JSON export endpoint).
-- D-06.x: gap 2 (processor due diligence + DPA + SBOM); CR-D-06.2-001 + CR-D-02.2-001 + CR-D-02.3-001 carry UNMAPPED_PRIVACY (no privacy axis).
+- D-06.x: gap 2 (processor due diligence + DPA + SBOM); CR-D-06.2-001 + CR-D-02.2-001 + CR-D-02.3-001 carry SSDF deliverable anchors (RV.2, RV.1, PS.3).
 - D-07.1: gap 1 (developer-led practices in place per 04b §2 row D-07).
 - D-08.x: gap 2 (awareness programme basic but role-specific + simulation absent).
 - D-09.x: gap 2 (governance is the largest documentation gap per 04b §2 + §3).
@@ -1391,7 +1391,7 @@ graph LR
 
 > 46 rows × 6 columns. Source: §3 YAML + Doc 11 fields 19-20. Type derived
 > from rule_id prefix. `—` denotes empty subcat lists (3 CR with
-> UNMAPPED_PRIVACY: CR-D-02.2-001, CR-D-02.3-001, CR-D-06.2-001).
+> SSDF deliverable: CR-D-02.2-001, CR-D-02.3-001, CR-D-06.2-001).
 
 | rule_id | type | NI | subdomain | csf_subcats | priv_subcats |
 |---------|------|---:|-----------|-------------|--------------|
