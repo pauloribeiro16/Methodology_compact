@@ -437,6 +437,60 @@ Previous report had **2 open items** (header static line `181 nodes, 248 links, 
 
 Ready to start Phase B (Architecture+Third Parties) on the user's signal. Same ritual: ontology v1.4 → KG → dashboard → smoke → commit.
 
+---
+
+## Re-test after Phase B — Architecture & Third Parties (2026-08-27)
+
+Verdict: **PASS** — seven tabs now, Folio VII renders the architecture diagram + third-party risk register, Arch-layer toggle on Folio II flips the graph from 197/264 to 272/785 when combined with RACI.
+
+### What changed (Phase B scope)
+
+User accepted Phase B (Architecture + Third Parties, Doc04 + Doc06). Five new node classes (System, DataStore, DataFlow, PersonalDataCategory, DataSubjectCategory, ThirdParty — six total but classified as one triplet in the schema), six new relation verbs (HOSTS, PROCESSES, INVOLVES, INVOLVES_STORE, INVOLVES_FLOW, PROCESSED_BY, PROCESSED_BY_3P, CAPTURES, CORRESPONDS_TO, FLOWS_BETWEEN deferred, USES deferred). Six new colours added to the Folio II palette.
+
+- **Ontology v1.4** (additive to v1.3): 6 new classes, 11 new relations (8 active + 1 partial + 2 deferred), 1 new enum `RiskScore`, 7 new counts, 4 new id_patterns. Validator diff: 116 insertions, 1 deletion (the version string). An intermediate FAIL was caught (duplicate sibling keys `classes:` / `relations:` / `enums:` / `invariants:` were emitted at the end of `kg_ontology:`, which YAML silently last-wins); the orchestrator merged the v1.4 entries into the v1.3 blocks. Report: `validation/P1_ontology_v1.4_validation.md` (verdict updated to PASS).
+- **KG extension** (additive to v1.3): 26 new nodes (5 System + 3 DataStore + 5 DataFlow + 4 PersonalDataCategory + 3 DataSubjectCategory + 6 ThirdParty) + 280 new edges (3 HOSTS + 99 INVOLVES + 68 INVOLVES_STORE + 86 INVOLVES_FLOW + 3 PROCESSES + 8 PROCESSED_BY + 1 PROCESSED_BY_3P + 10 CAPTURES + 2 CORRESPONDS_TO) + 5 new audits (NEW-01..NEW-05: NEW-01 broken_link for free-text system references in Doc04 §3, NEW-02 cross_doc_conflict for Doc03 missing 4 vendors, NEW-03 coverage_gap AWS decomposition, NEW-04 coverage_gap Datadog exit plan, NEW-05 broken_link Snyk SBOM tier). Total: **272 / 785 / 26**. Original 246/505/21 byte-identical. Report: `validation/P1_graph_extension_v1.4_validation.md` (CONDITIONAL PASS).
+- **Dashboard** (in-place, single file):
+  - New tab **VII. Architecture & Third Parties** — split layout: left = FLOW MAP ECharts (`layout: "none"`, hand-coded columns ExternalUser → WebClient → Systems → Stores → Flows → PDCs/DSCs, ~16 curated edges); right = RISK REGISTER table (6 rows, columns Vendor/Services/Criticality/Risk/DPA/SBOM/Exit Plan/Last Review, sortable by Risk asc → name). Click a row → side panel shows full vendor dossier (services[], regions[], art_28_dpa, security_audit_right, subprocessor_approval, etc.). Bottom strip: 38 sub-domain coverage bars stacked (INVOLVES / INVOLVES_STORE / INVOLVES_FLOW).
+  - New toggle **Architecture layer** on Folio II (OFF default). When ON, adds 26 nodes + 280 edges (SYS/STORE/FLOW/PDC/DSC/ThirdParty + HOSTS/PROCESSES/INVOLVES×3/PROCESSED_BY×2/CAPTURES/CORRESPONDS_TO). Stacks with the RACI layer; both ON → 272/785.
+  - Six new category colours for the 6 new node types: System slate `#3a3f4a`, DataStore teal `#4a7378`, DataFlow sky `#6f8aa0`, PersonalDataCategory ochre `#a8854a`, DataSubjectCategory rose `#a06a78`, ThirdParty ink `#1f2937`. Designed to harmonise with the existing 9-category palette.
+  - Re-emit of the inlined JSON — this round all path-roots the JS reads are hoisted at top level (`graph`/`stats_total`/`invariants`/`meta`/`audits`); node count 272 + edge count 785 verified.
+
+### Verification (live)
+
+`http://127.0.0.1:8765/Case_01_P1_Dashboard.html` opened fresh (with reload to bypass cache).
+
+- **Folio VII render** — **PASS**. 7 tabs visible (after reload). The header strip reads "FOLIO VII · Architecture & Third Parties · SYSTEMS · STORES · FLOWS · VENDORS · 5 SYSTEMS · 3 STORES · 5 FLOWS · 6 VENDORS". The left flow map shows SYS-01..SYS-05 (slate navy) + STORE-01..03 (teal) + FLOW-01..05 (sky) + PersonalDataCategory nodes (ochre) + ExternalUser / WebClient (semitransparent oranges). Edges between them visible. The right risk register shows the 6 vendors with: AWS (CRITICAL, L, DPA Y, SBOM N, Exit Plan N), Stripe (CRITICAL, L, Y, N, **Y**), Auth0 (CRITICAL, L, Y, N, Y), Snyk (IMPORTANT, L, Y, **Y**, Y — scanner), Datadog (CRITICAL, **M**, Y, N, N), GitHub (IMPORTANT, **M**, Y, N, Y). Bottom: 38 sub-domain coverage bars. Saved: `p6_folio_VII_arch_FIXED.png`.
+
+- **Folio II Arch toggle** — **PASS**. Live counts: `Off→On` 197→223 nodes, 264→544 links. `RACI on alone` 246/505. `RACI + Arch both` 272/785 — exactly the full JSON totals. The toggle round-trips cleanly without console errors; the `applySelectionDim` path is preserved (no `data: []` reset).
+
+- **Folio IV regression** — **PASS**. `folioIvRows=15` (pageLength=15 of 38), `goalChips=42`. No regression.
+
+- **Folio III regression** — **PASS**. `auditCards=26` (16 originals + 5 GAP-RACI + 5 NEW-01..05), `gapCards=5` for GAP-RACI subset. No regression.
+
+- **Folio V regression** — not directly re-checked here but T5 of the subagent's Playwright verification covered the same path with no collapse. No code path was changed for Folio V in Phase B.
+
+### Acceptance
+
+- `python3 00_METHODOLOGY/00_VISUALISATIONS/tests/test_dashboards.py --only Case_01_P1_Dashboard` → exit 0.
+- `python3 scripts/build_p1_dashboard.py --check` → exit 0.
+- `python3 scripts/build_p1_dashboard.py --summary` → `nodes_count: 272`, `links_count: 785`, `audits_count: 26`, `invariant_pass: true`.
+- Visual confirmation (preserved screenshots in `gui-test-screenshots/p1_dashboard/`).
+
+### Known cosmetic state
+
+Previous report's two open items: (1) header static line `181 nodes, 248 links, 12 audits` — still open (the dashboard JS reads `STATS` / `INV` but the top header is hardcoded text); (2) Folio V ambiguity bars showing `(N)` values — fixed in Phase A's re-emit. Phase B did not address (1).
+
+### Phase B artefacts & screenshots
+
+- New: `validation/P1_ontology_v1.4_validation.md`
+- New: `validation/P1_graph_extension_v1.4_validation.md`
+- Updated: `phase1_ontology.yaml` (v1.4), `data/phase1_ontology.compact.json`, `data/phase1_graph.json`, `scripts/build_p1_graph.py`, `scripts/build_p1_dashboard.py`, `Case_01_P1_Dashboard.html` (re-emit), `validation/P1_dashboard_gui_test.md` (this block).
+- Working folder for this session's screenshots: `gui-test-screenshots/p1_dashboard/` — files `phaseB_tN_*.png` (T1–T7) and `p6_folio_VII_arch_FIXED.png`.
+
+### Next phase
+
+Ready to start Phase C (Maturity+Verification — Doc08 §9 verification criteria + Doc12 §4 proportionality attrs as enriched columns on the existing nodes; no new node types expected) on the user's signal. Same ritual: ontology v1.5 → KG attrs → dashboard cols → smoke → commit.
+
 ## Artefacts & screenshots
 
 Working folder: `gui-test-screenshots/p1_dashboard/` (project-relative)
