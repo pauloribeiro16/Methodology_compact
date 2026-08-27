@@ -54,11 +54,16 @@
 #   - Added kg_ontology.classes {System, DataStore, DataFlow, ThirdParty,
 #     PersonalDataCategory, DataSubjectCategory} + 7 relations. Additive
 #     (Phase B — Doc04 + Doc06).
+#
+# Phase D changes (v1.4 → v1.5) — ADDITIVE ONLY (Doc13 §7 NIST CSF/PF/AI-RMF mapping):
+#   - Version bumped 1.4 → 1.5
+#   - Added kg_ontology.classes.NistControl + NistFramework enum + ALIGNS_TO relation.
+#     Additive (Phase D — Doc13 §7 NIST CSF/PF/AI-RMF mapping).
 
 header:
   case_id: "Case_01_TinyTask_SaaS"
   phase: 1
-  version: "1.4"
+  version: "1.5"
   generated_from:
     - "AEGIS-COMMON-00"  # Taxonomy Reference
     - "AEGIS-COMMON-01"  # Company Context (Intake Form)
@@ -1416,6 +1421,15 @@ kg_ontology:
       data_source: "Doc04 §2.4 (lines 113–117)"
       example: "EU customers (B2B and B2C)"
 
+    # ── v1.5 ADDITION — NIST Controls (Phase D · Doc13 §7 NIST CSF/PF/AI-RMF mapping) ──
+    # Purely additive. All v1.4 fields above are unchanged.
+    NistControl:
+      attrs: { id: NIST-*, control_id, framework, function,
+               description, path }
+      source: "Doc13 §7 (per-sub-domain NIST tables); Class_Models has no precedent — case-level"
+      data_source: "Doc13 §7 (lines 411–1442)"
+      example: "NIST-PR.DS-01"
+
   # ── ENUMS ────────────────────────────────────────────────────────
   enums:
     Scale: [MICRO, SMALL, MEDIUM, LARGE, MAX]
@@ -1432,6 +1446,8 @@ kg_ontology:
     # v1.4 — Architecture & Third Parties (Phase B)
     RiskScore: [L, M, H, VH]
     RaciLetter: [R, A, C, I]  # v1.3 — RACI Phase A (Doc07 §4)
+    # v1.5 — NIST Controls (Phase D · Doc13 §7 NIST CSF/PF/AI-RMF mapping)
+    NistFramework: [CSF, PF, AI-RMF]
 
   # ── RELATIONS (verbs; cardinality; source) ───────────────────────
   relations:
@@ -1522,6 +1538,14 @@ kg_ontology:
         source: "Doc04 §1.4; Doc06 §2 'Cloud Services' table",
         status: "deferred" }
 
+    # ── v1.5 — NIST Controls (Phase D · Doc13 §7 NIST CSF/PF/AI-RMF mapping) ──
+    - { verb: ALIGNS_TO,        from: SecurityControlDomain,  to: NistControl,
+        cardinality: "N:N (one sub-domain aligns to many controls; one control cited in many sub-domains)",
+        source: "Doc13 §7 per-sub-domain NIST tables; Class_Models has no precedent" }
+    - { verb: SOURCED_FROM,     from: NistControl,            to: NistControl,
+        cardinality: "N:0..1 (only when a control is in both CSF and PF — same id reused)",
+        status: "deferred" }
+
   # ── INVARIANTS (counts + identifier patterns) ─────────────────────
   invariants:
     counts:
@@ -1558,6 +1582,10 @@ kg_ontology:
       data_subject_categories: 3    # Doc04 §2.4 (EU, Free-tier, Enterprise)
       third_parties: 6               # Doc06 §5 (AWS, Stripe, Auth0, Datadog, GitHub, Snyk)
       compliance_mapping_rows: 37    # Doc04 §3 (one per active sub-domain; D-08.3 excluded)
+      # v1.5 — NIST Controls (Phase D · Doc13 §7 NIST CSF/PF/AI-RMF mapping)
+      nist_controls: 117                  # 77 CSF + 38 PF + 2 AI-RMF (verified by Phase D extraction)
+      nist_alignments: 513                # 35 sub-domains × ~14.6 controls each (Doc13 §7 ground truth)
+      nist_aimrm_subdomains: 1            # only D-04.2 has AI-RMF mapping
     id_patterns:
       Stakeholder: "^STK-[A-Z]+-\\d{2}$"
       BusinessGoal: "^BG-\\d{2}$"
@@ -1577,6 +1605,9 @@ kg_ontology:
       DataStore: "^STORE-\\d{2}$"
       DataFlow: "^FLOW-\\d{2}$"
       ThirdParty: "^(AWS|Stripe|Auth0|Datadog|GitHub|Snyk)$"
+      # v1.5 — NIST Controls (Phase D · Doc13 §7 NIST CSF/PF/AI-RMF mapping)
+      NistControl: "^(NIST-)?[A-Z\\.\\-]+$"            # covers PR.DS-01, PR.DS-P2, MANAGE-2.1, GV.OV-01, etc.
+      NistControlSafe: "^NIST-[A-Za-z0-9._-]{1,80}$"  # when prefixed with NIST-
 
   # ── PROVENANCE RULES (every node + every link carries these) ─────
   provenance_rules:
