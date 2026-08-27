@@ -1,18 +1,18 @@
 # Adoption Report — AEGIS Methodology_compact
 
-_Generated 2026-08-26 by `scripts/dream/adoption_audit.py` — deterministic (no LLM)._
+_Generated 2026-08-27 by `scripts/dream/adoption_audit.py` — deterministic (no LLM)._
 
 ## Activity
 
-- **Project exchanges scanned:** 79 user messages
-- **Exchanges with KG usage:** 1
+- **Project exchanges scanned:** 11 user messages
+- **Exchanges with KG usage:** 0
 - **Exchanges with mandated skill:** 0
 
 ## KG subcommand distribution (from session transcripts)
 
 | Subcommand | Count |
 |---|---|
-| `nist` | 1 |
+| _(none)_ | 0 |
 
 ## Mandated skill invocations
 
@@ -24,21 +24,21 @@ _Generated 2026-08-26 by `scripts/dream/adoption_audit.py` — deterministic (no
 
 | Subcommand | Count |
 |---|---|
-| `where` | 4 |
-| `nist` | 3 |
+| `audit` | 11 |
+| `nist` | 11 |
+| `impact` | 7 |
+| `where` | 5 |
 | `domain` | 2 |
 | `hub` | 2 |
 | `trace` | 2 |
-| `audit` | 1 |
-| `impact` | 1 |
+| `doc` | 2 |
 | `map` | 1 |
-| `doc` | 1 |
 | `hyper` | 1 |
 
 _Last entries:_
-- `2026-08-26T12:43:03+01:00` `trace trace SR-DORA-003: Classification-Driven Cryptographic-Key Protection with Policy Linkage AI Act Art. 15(3) — Resilience against errors/faults/drift (SR-AIACT-015)`
-- `2026-08-26T12:43:12+01:00` `nist nist PR.AC`
-- `2026-08-26T12:43:12+01:00` `where where TinyTask`
+- `2026-08-27T12:31:28+01:00` `nist nist PR.AT-04`
+- `2026-08-27T12:31:28+01:00` `nist nist RS.CO-04`
+- `2026-08-27T12:42:35+01:00` `audit audit`
 
 ## Bash invocations (from PreToolUse hook log)
 
@@ -46,18 +46,18 @@ _Logged by `.zcode/hooks/guard-bash.sh` (every Bash call, including denials are 
 
 | Leading verb | Count |
 |---|---|
-| `cd` | 107 |
-| `grep` | 12 |
-| `cp` | 9 |
-| `python3` | 6 |
-| `sleep` | 5 |
-| `git` | 4 |
-| `ls` | 2 |
-| `cat` | 1 |
-| `bash` | 1 |
-| `mkdir` | 1 |
+| `cd` | 101 |
+| `grep` | 22 |
+| `export` | 21 |
+| `python3` | 15 |
+| `git` | 11 |
+| `ls` | 7 |
+| `find` | 7 |
+| `echo` | 3 |
+| `cat` | 3 |
+| `time` | 3 |
 
-_Window:_ 2026-08-26T15:04:37+01:00 → 2026-08-26T23:55:35+01:00 (149 calls)
+_Window:_ 2026-08-27T10:30:54+01:00 → 2026-08-27T23:55:29+01:00 (206 calls)
 
 ## Case progress snapshot (ground truth)
 
