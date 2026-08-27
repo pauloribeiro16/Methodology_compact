@@ -11,7 +11,7 @@ traceability: PhD Thesis Chapter 5, Section 5.7
 sprint: 1
 sprint_role: reconciled_from_legacy
 inputs: []
-outputs: [01_INTAKE_FORM.md]
+outputs: [Doc02_INTAKE_FORM.md]
 ---
 
 > **Sprint 1 Reconciliation Note (2026-08-06)**

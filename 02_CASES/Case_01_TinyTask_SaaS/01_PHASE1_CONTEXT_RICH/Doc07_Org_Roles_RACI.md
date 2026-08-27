@@ -11,15 +11,12 @@ case_study: TinyTask Lda.
 sprint: 1
 sprint_role: reconciled_from_legacy
 inputs:
-  - 04_Company_Context_Assessment.md
-  - 04a_Architecture_DataInventory.md
-  - 04c_ThirdParty_Landscape.md
+  - Doc03_Company_Context_Assessment.md
+  - Doc04_Architecture_DataInventory.md
+  - Doc06_ThirdParty_Landscape.md
   - ../00_COMMON/01_Company_Context.md
 outputs:
-  - 04b_Security_Posture.md
-  - 05_Regulatory_Applicability.md
-  - 06_Clause_Mapping_Matrix.md
-  - 07_Structured_Compliance_Matrix.md
+  - Doc11_Structured_Compliance_Matrix.md
 applicable_regs: [GDPR, CRA]
 active_subdomains: 37  # RECONCILED (Sprint 1, I-02): was 36, corrected to 37 to match Doc 04a/04b/04c/05/07. 37 = 38 total sub-domains minus D-08.3 INACTIVE. D-08.3 row is INACTIVE (explicitly so), not subtracted from the active count.
 inactive_subdomains: [D-08.3]  # board training out of scope (NIS2 + DORA only participating)

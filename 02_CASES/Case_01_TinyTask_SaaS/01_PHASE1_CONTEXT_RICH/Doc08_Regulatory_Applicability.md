@@ -17,8 +17,8 @@ per_article_rows: 54
 fields_excluded: [Effort Estimate, Cost Estimate, Target Timeline]
 sprint: 8
 sprint_role: ao_id_cross_ref_note
-inputs: [04_Company_Context_Assessment.md]
-outputs: [06_Clause_Mapping_Matrix.md]
+inputs: [Doc03_Company_Context_Assessment.md]
+outputs: [Doc10_Clause_Mapping_Matrix.md]
 traceability: AEGIS Class Model → ComplianceContext, RegulatoryClause classes
 related_documents: 00_Taxonomy_Reference.md, 04_Company_Context_Assessment.md
 ao_id_migration_note: Each row's `Operational check per Doc 07c Appendix A §A.1.1/D-XX.X` references the sub-domain (not a specific PG/SG ID). The 74 detail cards in Doc 07c Appendix A retain their legacy PG/SG headings for Phase 2 traceability; see `07c_Adjusted_Goals.md` Appendix A §A.0 alias table for the corr-008 AO ID equivalents.

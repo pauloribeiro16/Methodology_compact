@@ -66,8 +66,8 @@ applicable_regs: [GDPR, CRA]
 sprint: 8
 sprint_role: ao_id_migration_phase1
 cross_checked_against: [07_Structured_Compliance_Matrix.md, 07b_Proportionality_Profile.md, 10_Privacy_Security_Objectives.md, proportionality_model.md, phase1_ontology.yaml]
-inputs: [04_Company_Context_Assessment.md, 05_Regulatory_Applicability.md, 07_Structured_Compliance_Matrix.md, 07b_Proportionality_Profile.md, 10_Privacy_Security_Objectives.md, 09_Strategic_Tensions_Report.md, phase1_ontology.yaml, ../../../../../00_METHODOLOGY/REFERENCE/proportionality_model.md]
-outputs: [phase 2 rules catalog (11_Rules_Catalog.md) consumes adjusted objectives]
+inputs: [Doc03_Company_Context_Assessment.md, Doc08_Regulatory_Applicability.md, Doc11_Structured_Compliance_Matrix.md, Doc12_Proportionality_Profile.md, phase1_ontology.yaml, ../../../../../00_METHODOLOGY/REFERENCE/proportionality_model.md]
+outputs: [11_Rules_Catalog.md]
 related_documents: [07b_Proportionality_Profile.md, 04_Company_Context_Assessment.md, phase1_ontology.yaml, 02_PHASE2_RULES/10_Privacy_Security_Goals.md, 02_PHASE2_RULES/09_Strategic_Tensions_Report.md, ../../../../../00_METHODOLOGY/REFERENCE/proportionality_model.md]
 frozen: false
 supersedes: 02_PHASE2_RULES/10_Privacy_Security_Goals.md §3-§4 (legacy PG/SG — now elevated to Phase 1 in Rich Mode)

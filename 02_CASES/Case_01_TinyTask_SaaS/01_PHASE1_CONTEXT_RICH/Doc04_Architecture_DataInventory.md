@@ -11,12 +11,11 @@ case_study: TinyTask Lda.
 sprint: 1
 sprint_role: reconciled_from_legacy
 inputs:
-  - 04_Company_Context_Assessment.md
-  - 01_INTAKE_FORM.md
-  - 05_Regulatory_Applicability.md
+  - Doc03_Company_Context_Assessment.md
+  - Doc02_INTAKE_FORM.md
+  - Doc08_Regulatory_Applicability.md
 outputs:
-  - 04b_Security_Posture.md
-  - 07_Structured_Compliance_Matrix.md
+  - Doc11_Structured_Compliance_Matrix.md
 applicable_regs: [GDPR, CRA]
 active_subdomains: 37
 inactive_subdomains: [D-08.3]

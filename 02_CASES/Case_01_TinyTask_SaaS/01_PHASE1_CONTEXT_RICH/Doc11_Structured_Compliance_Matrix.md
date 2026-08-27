@@ -9,7 +9,7 @@ author: Compliance Lead (Sprint 1 reconciliation)
 status: RECONCILED
 sprint: 1
 sprint_role: reconciled_from_legacy
-inputs: [04_Company_Context_Assessment.md, 05_Regulatory_Applicability.md, 06_Clause_Mapping_Matrix.md]
+inputs: [Doc03_Company_Context_Assessment.md, Doc08_Regulatory_Applicability.md, Doc10_Clause_Mapping_Matrix.md]
 outputs: [08_Obligation_Derivation.md]
 traceability: AEGIS Class Model → ComplianceContext, DomainCoverageEntry classes
 related_documents: 00_Taxonomy_Reference.md

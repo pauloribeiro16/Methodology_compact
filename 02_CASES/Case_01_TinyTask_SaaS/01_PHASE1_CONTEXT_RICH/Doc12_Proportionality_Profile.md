@@ -21,8 +21,8 @@ sprint: 5
 sprint_role: deep_enrichment_per_subdomain
 cross_checked_against_corpus: true
 cross_check_date: 2026-08-06
-inputs: [04_Company_Context_Assessment.md, 05_Regulatory_Applicability.md, 07_Structured_Compliance_Matrix.md, ../../../../../00_METHODOLOGY/REFERENCE/proportionality_model.md, ../../../../../00_METHODOLOGY/PREPROCESSING_by_domain/domains/]
-outputs: [08_Obligation_Derivation.md, 11_Rules_Catalog.md, 14_Architectural_Nodes.md, 07c_Adjusted_Goals.md]
+inputs: [Doc03_Company_Context_Assessment.md, Doc08_Regulatory_Applicability.md, Doc11_Structured_Compliance_Matrix.md, ../../../../../00_METHODOLOGY/REFERENCE/proportionality_model.md, ../../../../../00_METHODOLOGY/PREPROCESSING_by_domain/domains/]
+outputs: [08_Obligation_Derivation.md, 11_Rules_Catalog.md, 14_Architectural_Nodes.md, Doc13_Adjusted_Goals.md]
 related_documents: [04_Company_Context_Assessment.md, 05_Regulatory_Applicability.md, 07_Structured_Compliance_Matrix.md, 07c_Adjusted_Goals.md, ../../../../../00_METHODOLOGY/REFERENCE/proportionality_model.md, ../03_PHASE3_DECOMPOSITION/annexes/Critical_Analysis_Micro_Enterprise.md]
 frozen: false
 supersedes: none

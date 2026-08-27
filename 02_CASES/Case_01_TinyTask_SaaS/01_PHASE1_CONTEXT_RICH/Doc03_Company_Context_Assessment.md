@@ -19,8 +19,8 @@ corr_015_crossref_update_sprint: 9
 bg_table_cols_added: 6
 sprint: 8
 sprint_role: ao_id_alias_update_bg03_bg04
-inputs: [01_INTAKE_FORM.md]
-outputs: [05_Regulatory_Applicability.md]
+inputs: [Doc02_INTAKE_FORM.md]
+outputs: [Doc08_Regulatory_Applicability.md]
 traceability: AEGIS Class Model -> CompanyContext, ComplianceContext classes
 related_documents: [00_Taxonomy_Reference.md, 01_INTAKE_FORM.md]
 ---
