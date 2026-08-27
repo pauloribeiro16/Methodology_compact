@@ -486,7 +486,7 @@ Substituir o campo "5. NIST CSF Anchors" e "13. Maturity Score" por uma estrutur
 18. Normative Intensity: 3 (MUST)              # ver §6
 19. CSF Subcategories: [PR.DS-01, PR.DS-10]    # n:m, do vocabulário frozen
 20. Privacy FW Subcategories: []               # n:m, do vocabulário frozen
-21. Maturity (CSF): cur 1/4 → tgt 3/4          # substitui "Maturity Score" antigo
+21. Implementation Status (CSF): PARTIAL # substitui "Maturity Score" antigo
 22. Maturity (Privacy): cur — → tgt —          # "—" se não aplicável
 ```
 
@@ -515,7 +515,7 @@ Substituir o campo "5. NIST CSF Anchors" e "13. Maturity Score" por uma estrutur
     correspondência directa em Privacy FW; os aspectos de privacidade são
     cobertos por CR-D-05.x)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(None→Managed, gap 2)*
+21. **Implementation Status (CSF):** PARTIAL
 
 22. **Maturity (Privacy):** N/A — não mapeado a Privacy FW
 ```
@@ -818,8 +818,8 @@ O Executor DEVE produzir uma tabela destas para **cada subcategoria CSF e Privac
 ### 7.4 Dois scores por controlo (D11)
 
 Cada controlo mapeado a ambos os frameworks tem **dois scores independentes**:
-- `maturity_csf: {cur: X, tgt: Y}`
-- `maturity_privacy: {cur: X, tgt: Y}`
+- `implementation_status_csf: PARTIAL`
+- `implementation_status_privacy: PARTIAL`
 
 Isto preserva a dessincronia segurança/privacidade (ex: uma empresa pode ter
 maturidade 3 em cifra mas 1 em gestão de consentimento). **NÃO agregar** num
@@ -950,7 +950,7 @@ Bloco G [deps: D, F]  Validação Validator Tier 1+2
 | Deps | Bloco C |
 | Inputs | Doc 13 §3 (mapeamento n:m), Doc 11 (cartões) |
 | Outputs | Doc 11 com campos 19-22 em todos os cartões |
-| Passos | (1) Para cada cartão: copiar `csf_subcategories` e `privacy_subcategories` do Doc 13 §3. (2) Atribuir `maturity_csf` e `maturity_privacy` (cur/tgt) conforme Doc 13 §5. (3) Atualizar frontmatter (`expected_fields_per_card: 22`). |
+| Passos | (1) Para cada cartão: copiar `csf_subcategories` e `privacy_subcategories` do Doc 13 §3. (2) Atribuir `implementation_status_csf` e `implementation_status_privacy` conforme Doc 13 §5. (3) Atualizar frontmatter (`expected_fields_per_card: 22`). |
 | Commit | `[EXECUTOR] Bloco D — Doc 11 estendido (campos 19-22, maturidade dupla)` |
 | Validação | 100% CR com campos 19-22; BPR coerência. |
 
@@ -999,7 +999,7 @@ Bloco G [deps: D, F]  Validação Validator Tier 1+2
   - [ ] campo 18 (`normative_intensity`) preenchido com NI calculado por AVG.
   - [ ] campo 19 (`csf_subcategories`) com pelo menos 1 subcat (pode ser `UNMAPPED_CSF` com justificação).
   - [ ] campo 20 (`privacy_subcategories`) — pode ser `[]` com justificação.
-  - [ ] campos 21-22 (`maturity_csf`, `maturity_privacy`) com cur/tgt.
+  - [ ] campos 21-22 (`implementation_status_csf`, `implementation_status_privacy`).
 - [ ] **16 BPR** têm:
   - [ ] campo 18 com NI 1-2 (SHOULD/COULD).
   - [ ] campos 19-22 mapeados **onde fizer sentido**; `[]` justificado onde não (D16: coerência, não 100%).
@@ -1201,7 +1201,7 @@ ls 03_REFERENCE_MATERIAL/Framework_Mappings/Framework_Crosswalk_ARM.md
     *(controlo técnico de cifra; aspectos de privacidade cobertos por
     CR-D-05.x; sem correspondência directa em Privacy FW)*
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4
+21. **Implementation Status (CSF):** PARTIAL
     *(None → Managed; gap 2; consistente com LIGHTWEIGHT Track B + MUST)*
 
 22. **Maturity (Privacy):** N/A — não mapeado a Privacy FW

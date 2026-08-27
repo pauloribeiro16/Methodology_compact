@@ -323,16 +323,16 @@ The 34 obligations derive from 54 source clauses per legacy Doc 08 §5 traceabil
 
 ## 4. REGULATORY OBLIGATIONS CATALOG
 
-> **Sprint 4 (this sprint):** Ported legacy `02_PHASE2_RULES/08_Obligation_Derivation.md` §4 catalog tables into Rich Mode with 17 columns (11 legacy fields + 6 new Sprint 4 fields: Owner, Verification Criteria, Maturity Score, Implementation Priority, Affected Stakeholders, Regulatory Reporting). 30 obligations × 17 columns = 510 cells (Sprint 4 baseline; Sprint 6+ adds 4 OBLs → 34 × 17 = 578 cells). The 6 new columns contribute 30 × 6 = **180 cells** (the Sprint 4 deliverable count).
+> **Sprint 4 (this sprint):** Ported legacy `02_PHASE2_RULES/08_Obligation_Derivation.md` §4 catalog tables into Rich Mode with 17 columns (11 legacy fields + 6 new Sprint 4 fields: Owner, Verification Criteria, Implementation Status, Implementation Priority, Affected Stakeholders, Regulatory Reporting). 30 obligations × 17 columns = 510 cells (Sprint 4 baseline; Sprint 6+ adds 4 OBLs → 34 × 17 = 578 cells). The 6 new columns contribute 30 × 6 = **180 cells** (the Sprint 4 deliverable count).
 
 ### D-01: Data Protection & Encryption Obligations
 
-| Obligation ID | Obligation Description | Source Clauses | Sub-Domain | NI | obligationType | obligatedParty | implementation_tier | evidence_depth | control_selection | Activation Nature | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors |
+| Obligation ID | Obligation Description | Source Clauses | Sub-Domain | NI | obligationType | obligatedParty | implementation_tier | evidence_depth | control_selection | Activation Nature | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors |
 | --------------- | ------------------------ | ---------------- | ------------ | ----: | ---------------- | ---------------- | --------------------- | ---------------- | ------------------- | ------------------- | ------- | ---------------------- | --------------- | ------------------------ | ---------------------- | ---------------------- | --- |
-| OBL-D-01.1-001 | Encrypt all personal and sensitive data at rest using industry-standard algorithms | GDPR-C04, GDPR-C14, CRA-C07 | D-01.1 | 2.667 | CONTINUOUS | CONTROLLER, PROCESSOR | LIGHTWEIGHT | Managed-service config documented + annual review; no dedicated in-house program | managed hosting encryption with managed key custody (strong symmetric encryption with documented rotation cadence); no company-owned key custody program | STRUCTURAL | CTO + Lead Dev | strong symmetric encryption + key rotation audit | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.DS-01, PR.DS-02, PR.DS-10, PR.IR-01, PR.PS-06 |
-| OBL-D-01.2-001 | Encrypt all data transmitted across networks using protection cryptographic for confidentiality and integrity in transit | GDPR-C15, CRA-C08 | D-01.2 | 2.500 | CONTINUOUS | CONTROLLER, PROCESSOR | LIGHTWEIGHT | Managed-service config documented + annual review | managed edge TLS termination with documented certificate auto-renewal | STRUCTURAL | CTO + Lead Dev | modern TLS cert audit | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.DS-02, PR.IR-01 |
-| OBL-D-01.3-001 | Implement secure cryptographic key management with authentication and integrity verification | CRA-C15 | D-01.3 | 3.000 | CONTINUOUS | MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | managed key lifecycle with documented rotation cadence (managed by hosting platform) | STRUCTURAL | CTO + Lead Dev | key rotation evidence | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | — |
-| OBL-D-01.4-001 | Protect data against unauthorised manipulation and accidental loss | GDPR-C05, CRA-C09 | D-01.4 | 2.500 | CONTINUOUS | CONTROLLER, PROCESSOR | LIGHTWEIGHT | Managed-service config documented + annual review | cryptographic integrity check + database constraints via managed database | STRUCTURAL | CTO + Lead Dev | HMAC + DB constraint check | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.DS-01, PR.DS-10 |
+| OBL-D-01.1-001 | Encrypt all personal and sensitive data at rest using industry-standard algorithms | GDPR-C04, GDPR-C14, CRA-C07 | D-01.1 | 2.667 | CONTINUOUS | CONTROLLER, PROCESSOR | LIGHTWEIGHT | Managed-service config documented + annual review; no dedicated in-house program | managed hosting encryption with managed key custody (strong symmetric encryption with documented rotation cadence); no company-owned key custody program | STRUCTURAL | CTO + Lead Dev | strong symmetric encryption + key rotation audit | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.DS-01, PR.DS-02, PR.DS-10, PR.IR-01, PR.PS-06 |
+| OBL-D-01.2-001 | Encrypt all data transmitted across networks using protection cryptographic for confidentiality and integrity in transit | GDPR-C15, CRA-C08 | D-01.2 | 2.500 | CONTINUOUS | CONTROLLER, PROCESSOR | LIGHTWEIGHT | Managed-service config documented + annual review | managed edge TLS termination with documented certificate auto-renewal | STRUCTURAL | CTO + Lead Dev | modern TLS cert audit | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.DS-02, PR.IR-01 |
+| OBL-D-01.3-001 | Implement secure cryptographic key management with authentication and integrity verification | CRA-C15 | D-01.3 | 3.000 | CONTINUOUS | MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | managed key lifecycle with documented rotation cadence (managed by hosting platform) | STRUCTURAL | CTO + Lead Dev | key rotation evidence | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | — |
+| OBL-D-01.4-001 | Protect data against unauthorised manipulation and accidental loss | GDPR-C05, CRA-C09 | D-01.4 | 2.500 | CONTINUOUS | CONTROLLER, PROCESSOR | LIGHTWEIGHT | Managed-service config documented + annual review | cryptographic integrity check + database constraints via managed database | STRUCTURAL | CTO + Lead Dev | HMAC + DB constraint check | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.DS-01, PR.DS-10 |
 
 **D-01 Summary:** 4 obligations | Avg NI: 2.667 | All CONTINUOUS | All STRUCTURAL
 
@@ -340,11 +340,11 @@ The 34 obligations derive from 54 source clauses per legacy Doc 08 §5 traceabil
 
 ### D-02: Vulnerability Management Obligations
 
-| Obligation ID | Obligation Description | Source Clauses | Sub-Domain | NI | obligationType | obligatedParty | implementation_tier | evidence_depth | control_selection | Activation Nature | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors |
+| Obligation ID | Obligation Description | Source Clauses | Sub-Domain | NI | obligationType | obligatedParty | implementation_tier | evidence_depth | control_selection | Activation Nature | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors |
 | --------------- | ------------------------ | ---------------- | ------------ | ----: | ---------------- | ---------------- | --------------------- | ---------------- | ------------------- | ------------------- | ------- | ---------------------- | --------------- | ------------------------ | ---------------------- | ---------------------- | --- |
-| OBL-D-02.1-001 | Deliver product with no known exploitable vulnerabilities; maintain SBOM | CRA-C01, CRA-C17 | D-02.1 | 3.000 | ONE_TIME, CONTINUOUS | MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | automated vulnerability scanner + managed dependency audit in CI; OSS advisories | STRUCTURAL | CTO + Lead Dev + Procurement | automated vulnerability scanner + managed dependency audit zero-CVE | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | ENISA 24h (CRA) | ID.IM-02, ID.RA-01, ID.RA-05, PR.PS-02 |
-| OBL-D-02.2-001 | Enable automatic security updates; remediate vulnerabilities promptly | CRA-C04, CRA-C19 | D-02.2 | 3.000 | ONE_TIME, TRIGGERED | MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | managed automated patch pipeline for OS + dependency updates | STRUCTURAL | CTO + Lead Dev + Procurement | 72h SLA patch test | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | ENISA 24h (CRA) | — |
-| OBL-D-02.3-001 | Publish coordinated vulnerability disclosure policy; report severe incidents to ENISA/CSIRT | CRA-C21, CRA-C26 | D-02.3 | 3.000 | CONTINUOUS, TRIGGERED | MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | security.txt at `/.well-known/security.txt`; CVD page | STRUCTURAL | CTO + Lead Dev + Procurement | security.txt + 24h report | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | ENISA 24h (CRA) | — |
+| OBL-D-02.1-001 | Deliver product with no known exploitable vulnerabilities; maintain SBOM | CRA-C01, CRA-C17 | D-02.1 | 3.000 | ONE_TIME, CONTINUOUS | MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | automated vulnerability scanner + managed dependency audit in CI; OSS advisories | STRUCTURAL | CTO + Lead Dev + Procurement | automated vulnerability scanner + managed dependency audit zero-CVE | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | ENISA 24h (CRA) | ID.IM-02, ID.RA-01, ID.RA-05, PR.PS-02 |
+| OBL-D-02.2-001 | Enable automatic security updates; remediate vulnerabilities promptly | CRA-C04, CRA-C19 | D-02.2 | 3.000 | ONE_TIME, TRIGGERED | MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | managed automated patch pipeline for OS + dependency updates | STRUCTURAL | CTO + Lead Dev + Procurement | 72h SLA patch test | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | ENISA 24h (CRA) | — |
+| OBL-D-02.3-001 | Publish coordinated vulnerability disclosure policy; report severe incidents to ENISA/CSIRT | CRA-C21, CRA-C26 | D-02.3 | 3.000 | CONTINUOUS, TRIGGERED | MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | security.txt at `/.well-known/security.txt`; CVD page | STRUCTURAL | CTO + Lead Dev + Procurement | security.txt + 24h report | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | ENISA 24h (CRA) | — |
 
 **D-02 Summary:** 3 obligations | Avg NI: 3.000 | CRA-only domain (GDPR gap)
 
@@ -352,12 +352,12 @@ The 34 obligations derive from 54 source clauses per legacy Doc 08 §5 traceabil
 
 ### D-03: Access Control Obligations
 
-| Obligation ID | Obligation Description | Source Clauses | Sub-Domain | NI | obligationType | obligatedParty | implementation_tier | evidence_depth | control_selection | Activation Nature | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors |
+| Obligation ID | Obligation Description | Source Clauses | Sub-Domain | NI | obligationType | obligatedParty | implementation_tier | evidence_depth | control_selection | Activation Nature | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors |
 | --------------- | ------------------------ | ---------------- | ------------ | ----: | ---------------- | ---------------- | --------------------- | ---------------- | ------------------- | ------------------- | ------- | ---------------------- | --------------- | ------------------------ | ---------------------- | ---------------------- | --- |
-| OBL-D-03.1-001 | Implement authentication and access control measures for all users | CRA-C05 | D-03.1 | 3.000 | ONE_TIME | MANUFACTURER | MINIMAL | Supplier attestation on file (provider ISO 27001 attestation) + 1-page internal statement | managed identity service baseline; managed identity provider security documentation | STRUCTURAL | CTO + Lead Dev | managed identity service baseline | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | GV.OC-03, GV.PO-02, PR.AA-02, PR.AA-03, PR.DS-10 |
-| OBL-D-03.2-001 | Enable multi-factor authentication where appropriate | CRA-C06 | D-03.2 | 2.000 | ONE_TIME | MANUFACTURER | MINIMAL | Supplier attestation on file + 1-page internal statement | managed identity service MFA; documented key custody | STRUCTURAL | CTO + Lead Dev | MFA enforcement test | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | — |
-| OBL-D-03.3-001 | Restrict access to authorised personnel only; enforce least privilege | GDPR-C10, GDPR-C17 | D-03.3 | 3.000 | ONE_TIME, CONTINUOUS | CONTROLLER, PROCESSOR | LIGHTWEIGHT | Managed-service config documented + annual review | managed identity service RBAC | STRUCTURAL | CTO + Lead Dev | RBAC quarterly review | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.AA-05, PR.AA-06, PR.AT-02 |
-| OBL-D-03.4-001 | Disable unused ports/services; no default passwords; secure default configuration | CRA-C03 | D-03.4 | 3.000 | ONE_TIME | MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | Secure defaults via managed identity provider configuration | STRUCTURAL | CTO + Lead Dev | hardened-default review | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.DS-10, PR.PS-01, PR.PS-06 |
+| OBL-D-03.1-001 | Implement authentication and access control measures for all users | CRA-C05 | D-03.1 | 3.000 | ONE_TIME | MANUFACTURER | MINIMAL | Supplier attestation on file (provider ISO 27001 attestation) + 1-page internal statement | managed identity service baseline; managed identity provider security documentation | STRUCTURAL | CTO + Lead Dev | managed identity service baseline | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | GV.OC-03, GV.PO-02, PR.AA-02, PR.AA-03, PR.DS-10 |
+| OBL-D-03.2-001 | Enable multi-factor authentication where appropriate | CRA-C06 | D-03.2 | 2.000 | ONE_TIME | MANUFACTURER | MINIMAL | Supplier attestation on file + 1-page internal statement | managed identity service MFA; documented key custody | STRUCTURAL | CTO + Lead Dev | MFA enforcement test | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | — |
+| OBL-D-03.3-001 | Restrict access to authorised personnel only; enforce least privilege | GDPR-C10, GDPR-C17 | D-03.3 | 3.000 | ONE_TIME, CONTINUOUS | CONTROLLER, PROCESSOR | LIGHTWEIGHT | Managed-service config documented + annual review | managed identity service RBAC | STRUCTURAL | CTO + Lead Dev | RBAC quarterly review | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.AA-05, PR.AA-06, PR.AT-02 |
+| OBL-D-03.4-001 | Disable unused ports/services; no default passwords; secure default configuration | CRA-C03 | D-03.4 | 3.000 | ONE_TIME | MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | Secure defaults via managed identity provider configuration | STRUCTURAL | CTO + Lead Dev | hardened-default review | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.DS-10, PR.PS-01, PR.PS-06 |
 
 **D-03 Summary:** 4 obligations | Avg NI: 2.750 | Mixed GDPR/CRA coverage
 
@@ -365,12 +365,12 @@ The 34 obligations derive from 54 source clauses per legacy Doc 08 §5 traceabil
 
 ### D-04: Incident Response Obligations
 
-| Obligation ID | Obligation Description | Source Clauses | Sub-Domain | NI | obligationType | obligatedParty | implementation_tier | evidence_depth | control_selection | Activation Nature | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors |
+| Obligation ID | Obligation Description | Source Clauses | Sub-Domain | NI | obligationType | obligatedParty | implementation_tier | evidence_depth | control_selection | Activation Nature | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors |
 | --------------- | ------------------------ | ---------------- | ------------ | ----: | ---------------- | ---------------- | --------------------- | ---------------- | ------------------- | ------------------- | ------- | ---------------------- | --------------- | ------------------------ | ---------------------- | ---------------------- | --- |
-| OBL-D-04.1-001 | Design system to limit severity of exploits; implement fail-safe mechanisms | CRA-C13 | D-04.1 | 3.000 | ONE_TIME | MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | managed monitoring with documented incident classification + managed notification routing | STRUCTURAL (always active) | CTO + DPO + Compliance Lead | managed monitoring alarms active | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h (GDPR) | DE.AE-02, DE.CM-01, DE.CM-03, DE.CM-09, RS.MA-02 |
-| OBL-D-04.2-001 | Restore availability after incidents; build resilience against DoS attacks | GDPR-C18, CRA-C11 | D-04.2 | 2.500 | TRIGGERED, ONE_TIME | CONTROLLER, PROCESSOR, MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | Documented 4h containment playbook | STRUCTURAL (always active) | CTO + DPO + Compliance Lead | DoS resilience drill | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h (GDPR) | PR.DS-01, RS.MI-01, RS.MI-02 |
-| OBL-D-04.3-001 | Notify supervisory authority within 72h (GDPR) / 24h (CRA) of breaches; processor→controller without undue delay (GDPR Art. 33(2)) | GDPR-C21, GDPR-C23, CRA-C25 | D-04.3 | 3.000 | TRIGGERED | CONTROLLER, PROCESSOR, MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | max-SLA 24h internal; unified incident workflow | **CONTEXTUAL** — GDPR triggers on personal data breach; CRA triggers on exploited vulnerability. Both activate simultaneously only in compound event (EVT-001). See T-H-001. | CTO + DPO + Compliance Lead | 24h dual-notification SLA | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h + ENISA 24h (max-SLA routing) | GV.OC-03, ID.RA-06, PR.DS-01, PR.DS-10, PR.IR-03 |
-| OBL-D-04.4-001 | Ensure ongoing availability and ability to restore data after incident | GDPR-C16 | D-04.4 | 2.000 | CONTINUOUS | CONTROLLER, PROCESSOR | LIGHTWEIGHT | Managed-service config documented + annual review | managed backup with documented RTO/RPO; RTO 24h (per Critical Analysis §4) | STRUCTURAL (always active) | CTO + DPO + Compliance Lead | managed backup RTO 24h | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h (GDPR) | PR.DS-01, PR.IR-04, RC.RP-04 |
+| OBL-D-04.1-001 | Design system to limit severity of exploits; implement fail-safe mechanisms | CRA-C13 | D-04.1 | 3.000 | ONE_TIME | MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | managed monitoring with documented incident classification + managed notification routing | STRUCTURAL (always active) | CTO + DPO + Compliance Lead | managed monitoring alarms active | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h (GDPR) | DE.AE-02, DE.CM-01, DE.CM-03, DE.CM-09, RS.MA-02 |
+| OBL-D-04.2-001 | Restore availability after incidents; build resilience against DoS attacks | GDPR-C18, CRA-C11 | D-04.2 | 2.500 | TRIGGERED, ONE_TIME | CONTROLLER, PROCESSOR, MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | Documented 4h containment playbook | STRUCTURAL (always active) | CTO + DPO + Compliance Lead | DoS resilience drill | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h (GDPR) | PR.DS-01, RS.MI-01, RS.MI-02 |
+| OBL-D-04.3-001 | Notify supervisory authority within 72h (GDPR) / 24h (CRA) of breaches; processor→controller without undue delay (GDPR Art. 33(2)) | GDPR-C21, GDPR-C23, CRA-C25 | D-04.3 | 3.000 | TRIGGERED | CONTROLLER, PROCESSOR, MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | max-SLA 24h internal; unified incident workflow | **CONTEXTUAL** — GDPR triggers on personal data breach; CRA triggers on exploited vulnerability. Both activate simultaneously only in compound event (EVT-001). See T-H-001. | CTO + DPO + Compliance Lead | 24h dual-notification SLA | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h + ENISA 24h (max-SLA routing) | GV.OC-03, ID.RA-06, PR.DS-01, PR.DS-10, PR.IR-03 |
+| OBL-D-04.4-001 | Ensure ongoing availability and ability to restore data after incident | GDPR-C16 | D-04.4 | 2.000 | CONTINUOUS | CONTROLLER, PROCESSOR | LIGHTWEIGHT | Managed-service config documented + annual review | managed backup with documented RTO/RPO; RTO 24h (per Critical Analysis §4) | STRUCTURAL (always active) | CTO + DPO + Compliance Lead | managed backup RTO 24h | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h (GDPR) | PR.DS-01, PR.IR-04, RC.RP-04 |
 
 **D-04 Summary:** 4 obligations | Avg NI: 2.625 | **1 contextual (OBL-D-04.3-001)** | **Tension T-H-001:** D-04.3 timing conflict (72h vs 24h) — only active when compound event occurs
 
@@ -380,12 +380,12 @@ The 34 obligations derive from 54 source clauses per legacy Doc 08 §5 traceabil
 
 ### D-05: Data Lifecycle Obligations
 
-| Obligation ID | Obligation Description | Source Clauses | Sub-Domain | NI | obligationType | obligatedParty | implementation_tier | evidence_depth | control_selection | Activation Nature | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors |
+| Obligation ID | Obligation Description | Source Clauses | Sub-Domain | NI | obligationType | obligatedParty | implementation_tier | evidence_depth | control_selection | Activation Nature | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors |
 | --------------- | ------------------------ | ---------------- | ------------ | ----: | ---------------- | ---------------- | --------------------- | ---------------- | ------------------- | ------------------- | ------- | ---------------------- | --------------- | ------------------------ | ---------------------- | ---------------------- | --- |
-| OBL-D-05.1-001 | Process only data adequate, relevant and limited to what is necessary | GDPR-C01, CRA-C10 | D-05.1 | 3.000 | CONTINUOUS, ONE_TIME | CONTROLLER, MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | Field-level enforcement in schema | STRUCTURAL | CTO + DPO | Field-level enforcement | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | GV.OC-03, GV.PO-01, GV.PO-02, ID.AM-03, PR.AA-02, PR.DS-10 |
-| OBL-D-05.2-001 | Do not keep personal data longer than necessary for purpose | GDPR-C02, GDPR-C03 | D-05.2 | 3.000 | CONTINUOUS | CONTROLLER, PROCESSOR | LIGHTWEIGHT | Managed-service config documented + annual review | Retention policy (7y audit logs; 30d DSAR working data) | STRUCTURAL | CTO + DPO | Retention policy audit | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | ID.AM-03, PR.DS-10 |
-| OBL-D-05.3-001 | Enable complete and secure data deletion on user request | GDPR-C06, CRA-C16 | D-05.3 | 3.000 | TRIGGERED, ONE_TIME | CONTROLLER, PROCESSOR, MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | Erasure API endpoint | STRUCTURAL | CTO + DPO | Erasure API test (7d) | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | GV.SC-04, PR.DS-10, RS.CO-02 |
-| OBL-D-05.4-001 | Provide data export in structured, machine-readable format on request | GDPR-C07 | D-05.4 | 3.000 | TRIGGERED | CONTROLLER | LIGHTWEIGHT | Managed-service config documented + annual review | JSON export endpoint | STRUCTURAL | CTO + DPO | JSON export test (48h) | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.DS-10 |
+| OBL-D-05.1-001 | Process only data adequate, relevant and limited to what is necessary | GDPR-C01, CRA-C10 | D-05.1 | 3.000 | CONTINUOUS, ONE_TIME | CONTROLLER, MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | Field-level enforcement in schema | STRUCTURAL | CTO + DPO | Field-level enforcement | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | GV.OC-03, GV.PO-01, GV.PO-02, ID.AM-03, PR.AA-02, PR.DS-10 |
+| OBL-D-05.2-001 | Do not keep personal data longer than necessary for purpose | GDPR-C02, GDPR-C03 | D-05.2 | 3.000 | CONTINUOUS | CONTROLLER, PROCESSOR | LIGHTWEIGHT | Managed-service config documented + annual review | Retention policy (7y audit logs; 30d DSAR working data) | STRUCTURAL | CTO + DPO | Retention policy audit | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | ID.AM-03, PR.DS-10 |
+| OBL-D-05.3-001 | Enable complete and secure data deletion on user request | GDPR-C06, CRA-C16 | D-05.3 | 3.000 | TRIGGERED, ONE_TIME | CONTROLLER, PROCESSOR, MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | Erasure API endpoint | STRUCTURAL | CTO + DPO | Erasure API test (7d) | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | GV.SC-04, PR.DS-10, RS.CO-02 |
+| OBL-D-05.4-001 | Provide data export in structured, machine-readable format on request | GDPR-C07 | D-05.4 | 3.000 | TRIGGERED | CONTROLLER | LIGHTWEIGHT | Managed-service config documented + annual review | JSON export endpoint | STRUCTURAL | CTO + DPO | JSON export test (48h) | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.DS-10 |
 
 **D-05 Summary:** 4 obligations | Avg NI: 3.000 | GDPR-dominant domain
 
@@ -393,11 +393,11 @@ The 34 obligations derive from 54 source clauses per legacy Doc 08 §5 traceabil
 
 ### D-06: Supply Chain Obligations
 
-| Obligation ID | Obligation Description | Source Clauses | Sub-Domain | NI | obligationType | obligatedParty | implementation_tier | evidence_depth | control_selection | Activation Nature | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors |
+| Obligation ID | Obligation Description | Source Clauses | Sub-Domain | NI | obligationType | obligatedParty | implementation_tier | evidence_depth | control_selection | Activation Nature | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors |
 | --------------- | ------------------------ | ---------------- | ------------ | ----: | ---------------- | ---------------- | --------------------- | ---------------- | ------------------- | ------------------- | ------- | ---------------------- | --------------- | ------------------------ | ---------------------- | ---------------------- | --- |
-| OBL-D-06.1-001 | Use only processors providing sufficient guarantees | GDPR-C11 | D-06.1 | 3.000 | ONE_TIME | CONTROLLER | MINIMAL | Supplier attestation on file + 1-page internal statement | DPA validation against GDPR Art. 28; supplier security clauses | STRUCTURAL | CTO + Lead Dev + Procurement | DPA + documented third-party security attestation | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | GV.SC-02, GV.SC-03 |
-| OBL-D-06.2-001 | Document all third-party components in machine-readable format (SBOM) | CRA-C18 | D-06.2 | 3.000 | CONTINUOUS | MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | machine-readable SBOM in CI/CD per release | STRUCTURAL | CTO + Lead Dev + Procurement | machine-readable SBOM per release | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | — |
-| OBL-D-06.3-001 | Bind processors to security obligations via Data Processing Agreement | GDPR-C12 | D-06.3 | 3.000 | ONE_TIME | CONTROLLER, PROCESSOR | LIGHTWEIGHT | Managed-service config documented + annual review | DPA template + supplier security clauses | STRUCTURAL | CTO + Lead Dev + Procurement | DPA template + clauses | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | DE.CM-06, GV.OC-03, GV.RR-02, GV.SC-01, GV.SC-02, GV.SC-03 |
+| OBL-D-06.1-001 | Use only processors providing sufficient guarantees | GDPR-C11 | D-06.1 | 3.000 | ONE_TIME | CONTROLLER | MINIMAL | Supplier attestation on file + 1-page internal statement | DPA validation against GDPR Art. 28; supplier security clauses | STRUCTURAL | CTO + Lead Dev + Procurement | DPA + documented third-party security attestation | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | GV.SC-02, GV.SC-03 |
+| OBL-D-06.2-001 | Document all third-party components in machine-readable format (SBOM) | CRA-C18 | D-06.2 | 3.000 | CONTINUOUS | MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | machine-readable SBOM in CI/CD per release | STRUCTURAL | CTO + Lead Dev + Procurement | machine-readable SBOM per release | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | — |
+| OBL-D-06.3-001 | Bind processors to security obligations via Data Processing Agreement | GDPR-C12 | D-06.3 | 3.000 | ONE_TIME | CONTROLLER, PROCESSOR | LIGHTWEIGHT | Managed-service config documented + annual review | DPA template + supplier security clauses | STRUCTURAL | CTO + Lead Dev + Procurement | DPA template + clauses | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | DE.CM-06, GV.OC-03, GV.RR-02, GV.SC-01, GV.SC-02, GV.SC-03 |
 
 **D-06 Summary:** 3 obligations | Avg NI: 3.000 | **OBL-D-06.2-001:** CRA sole authority
 
@@ -405,12 +405,12 @@ The 34 obligations derive from 54 source clauses per legacy Doc 08 §5 traceabil
 
 ### D-07: Secure Development Obligations
 
-| Obligation ID | Obligation Description | Source Clauses | Sub-Domain | NI | obligationType | obligatedParty | implementation_tier | evidence_depth | control_selection | Activation Nature | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors |
+| Obligation ID | Obligation Description | Source Clauses | Sub-Domain | NI | obligationType | obligatedParty | implementation_tier | evidence_depth | control_selection | Activation Nature | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors |
 | --------------- | ------------------------ | ---------------- | ------------ | ----: | ---------------- | ---------------- | --------------------- | ---------------- | ------------------- | ------------------- | ------- | ---------------------- | --------------- | ------------------------ | ---------------------- | ---------------------- | --- |
-| OBL-D-07.1-001 | Integrate data protection and security into design from outset; secure by default | GDPR-C09, CRA-C02, CRA-C22 | D-07.1 | 2.667 | ONE_TIME | CONTROLLER, PROCESSOR, MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | secure-development-framework + maturity assessment baseline | STRUCTURAL (always active — both regulations apply during any design phase) | CTO + Lead Dev | secure-development-framework + maturity assessment | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.DS-01, PR.DS-10, PR.PS-01, PR.PS-06 |
-| OBL-D-07.2-001 | Apply secure coding standards to product source code; limit attack surface through code review and static analysis | CRA-C02 (shared with D-07.1 — dedicated TBD) | D-07.2 | 3.000 | CONTINUOUS | MANUFACTURER | LIGHTWEIGHT | Managed dependency scan + SAST + PR review evidence | secure coding standards + SAST + peer review | STRUCTURAL | CTO + Lead Dev | secure-coding-standards + SAST + peer-review evidence | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.PS-01, PR.PS-02, PR.IP-12 (legacy CSF 1.1; PR.PS-02 CSF 2.0) |
-| OBL-D-07.3-001 | Implement security gates in CI/CD pipeline; ensure build-time artefact integrity; SBOM gate | CRA-C22 (shared with D-07.1 — dedicated TBD) | D-07.3 | 3.000 | CONTINUOUS | MANUFACTURER | LIGHTWEIGHT | GitHub Actions workflow + SBOM artefact on each release | CI security gates + SBOM generation + dependency gate | STRUCTURAL | CTO + Lead Dev | CI security gates pass + SBOM on every release | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.IP-12 (legacy CSF 1.1; PR.PS-02 CSF 2.0), ID.SC-04 |
-| OBL-D-07.4-001 | Implement documented change management procedures; secure update delivery channel | CRA-C22 (shared with D-07.1 — dedicated TBD) | D-07.4 | 3.000 | CONTINUOUS | MANUFACTURER | LIGHTWEIGHT | CAB approval log + signed release artefacts | CAB approval + signed artefacts + change-management log | STRUCTURAL | CTO + Lead Dev | CAB approval + signed artefacts on every production release | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.IP-12 (legacy CSF 1.1; PR.PS-02 CSF 2.0), ID.SC-04 |
+| OBL-D-07.1-001 | Integrate data protection and security into design from outset; secure by default | GDPR-C09, CRA-C02, CRA-C22 | D-07.1 | 2.667 | ONE_TIME | CONTROLLER, PROCESSOR, MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | secure-development-framework + maturity assessment baseline | STRUCTURAL (always active — both regulations apply during any design phase) | CTO + Lead Dev | secure-development-framework + maturity assessment | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.DS-01, PR.DS-10, PR.PS-01, PR.PS-06 |
+| OBL-D-07.2-001 | Apply secure coding standards to product source code; limit attack surface through code review and static analysis | CRA-C02 (shared with D-07.1 — dedicated TBD) | D-07.2 | 3.000 | CONTINUOUS | MANUFACTURER | LIGHTWEIGHT | Managed dependency scan + SAST + PR review evidence | secure coding standards + SAST + peer review | STRUCTURAL | CTO + Lead Dev | secure-coding-standards + SAST + peer-review evidence | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.PS-01, PR.PS-02, PR.IP-12 (legacy CSF 1.1; PR.PS-02 CSF 2.0) |
+| OBL-D-07.3-001 | Implement security gates in CI/CD pipeline; ensure build-time artefact integrity; SBOM gate | CRA-C22 (shared with D-07.1 — dedicated TBD) | D-07.3 | 3.000 | CONTINUOUS | MANUFACTURER | LIGHTWEIGHT | GitHub Actions workflow + SBOM artefact on each release | CI security gates + SBOM generation + dependency gate | STRUCTURAL | CTO + Lead Dev | CI security gates pass + SBOM on every release | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.IP-12 (legacy CSF 1.1; PR.PS-02 CSF 2.0), ID.SC-04 |
+| OBL-D-07.4-001 | Implement documented change management procedures; secure update delivery channel | CRA-C22 (shared with D-07.1 — dedicated TBD) | D-07.4 | 3.000 | CONTINUOUS | MANUFACTURER | LIGHTWEIGHT | CAB approval log + signed release artefacts | CAB approval + signed artefacts + change-management log | STRUCTURAL | CTO + Lead Dev | CAB approval + signed artefacts on every production release | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.IP-12 (legacy CSF 1.1; PR.PS-02 CSF 2.0), ID.SC-04 |
 
 **D-07 Summary:** 4 obligations | Avg NI: 2.917 | **Tension T-M-002:** Intensity gap (GDPR NI=2 vs CRA NI=3) — structural, always active
 
@@ -422,10 +422,10 @@ The 34 obligations derive from 54 source clauses per legacy Doc 08 §5 traceabil
 
 ### D-08: Human Factors Obligations
 
-| Obligation ID | Obligation Description | Source Clauses | Sub-Domain | NI | obligationType | obligatedParty | implementation_tier | evidence_depth | control_selection | Activation Nature | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors |
+| Obligation ID | Obligation Description | Source Clauses | Sub-Domain | NI | obligationType | obligatedParty | implementation_tier | evidence_depth | control_selection | Activation Nature | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors |
 | --------------- | ------------------------ | ---------------- | ------------ | ----: | ---------------- | ---------------- | --------------------- | ---------------- | ------------------- | ------------------- | ------- | ---------------------- | --------------- | ------------------------ | ---------------------- | ---------------------- | --- |
-| OBL-D-08.1-001 | Train staff involved in processing operations on security awareness | GDPR-C27 | D-08.1 | 3.000 | PERIODIC | CONTROLLER, PROCESSOR | MINIMAL | Supplier attestation on file + 1-page internal statement | Vendor security awareness documentation on file | STRUCTURAL | CTO + HR + DPO | Annual security training | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | GV.OV-03, ID.IM-02, PR.AA-05, PR.AT-01, PR.AT-02 |
-| OBL-D-08.2-001 | Raise awareness and train staff with role-specific security obligations | GDPR-C28 | D-08.2 | 3.000 | PERIODIC | CONTROLLER, PROCESSOR | LIGHTWEIGHT | Managed-service config documented + annual review | Annual security awareness email + role-specific docs (admin/dev/DPO) | STRUCTURAL | CTO + HR + DPO | Role-specific training | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.AT-01, PR.AT-02 |
+| OBL-D-08.1-001 | Train staff involved in processing operations on security awareness | GDPR-C27 | D-08.1 | 3.000 | PERIODIC | CONTROLLER, PROCESSOR | MINIMAL | Supplier attestation on file + 1-page internal statement | Vendor security awareness documentation on file | STRUCTURAL | CTO + HR + DPO | Annual security training | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | GV.OV-03, ID.IM-02, PR.AA-05, PR.AT-01, PR.AT-02 |
+| OBL-D-08.2-001 | Raise awareness and train staff with role-specific security obligations | GDPR-C28 | D-08.2 | 3.000 | PERIODIC | CONTROLLER, PROCESSOR | LIGHTWEIGHT | Managed-service config documented + annual review | Annual security awareness email + role-specific docs (admin/dev/DPO) | STRUCTURAL | CTO + HR + DPO | Role-specific training | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.AT-01, PR.AT-02 |
 
 **D-08 Summary:** 2 obligations | Avg NI: 3.000 | GDPR-only domain
 
@@ -433,11 +433,11 @@ The 34 obligations derive from 54 source clauses per legacy Doc 08 §5 traceabil
 
 ### D-09: Governance & Documentation Obligations
 
-| Obligation ID | Obligation Description | Source Clauses | Sub-Domain | NI | obligationType | obligatedParty | implementation_tier | evidence_depth | control_selection | Activation Nature | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors |
+| Obligation ID | Obligation Description | Source Clauses | Sub-Domain | NI | obligationType | obligatedParty | implementation_tier | evidence_depth | control_selection | Activation Nature | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors |
 | --------------- | ------------------------ | ---------------- | ------------ | ----: | ---------------- | ---------------- | --------------------- | ---------------- | ------------------- | ------------------- | ------- | ---------------------- | --------------- | ------------------------ | ---------------------- | ---------------------- | --- |
-| OBL-D-09.1-001 | Implement appropriate technical/organisational measures; document policies; maintain technical documentation for 10 years | GDPR-C08, GDPR-C25, GDPR-C26, CRA-C24 | D-09.1 | 2.500 | CONTINUOUS, ONE_TIME | CONTROLLER, PROCESSOR, MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | Security policy template (Doc 09 family input) | STRUCTURAL (always active) | CTO + DPO + Compliance Lead + Legal | ISMS documentation audit | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | CNPD + ENISA (periodic) | GV.OC-02, GV.OC-03, GV.OV-03, GV.PO-01, GV.PO-02, GV.RM-04 |
-| OBL-D-09.2-001 | Conduct DPIA prior to high-risk processing; cybersecurity risk assessment before market | GDPR-C20, GDPR-C24, CRA-C23 | D-09.2 | 2.667 | PERIODIC, ONE_TIME | CONTROLLER, MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | DPIA template + CRA risk assessment template (unified, dual-output) | STRUCTURAL (always active — both triggers permanently satisfied by TinyTask's business model) | CTO + DPO + Compliance Lead + Legal | Unified assessment template | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | CNPD + ENISA (periodic) | GV.OC-03, GV.OV-03, GV.PO-01, GV.RR-02, GV.SC-02, GV.SC-03 |
-| OBL-D-09.4-001 | Maintain records of processing activities and breach documentation | GDPR-C13, GDPR-C22 | D-09.4 | 3.000 | CONTINUOUS, TRIGGERED | CONTROLLER, PROCESSOR | LIGHTWEIGHT | Managed-service config documented + annual review | RoPA template (Doc 09 input) | STRUCTURAL (always active) | CTO + DPO + Compliance Lead + Legal | RoPA + breach log | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | CNPD + ENISA (periodic) | DE.AE-03, GV.PO-02, ID.AM-03, PR.AA-02, PR.DS-10, PR.PS-04 |
+| OBL-D-09.1-001 | Implement appropriate technical/organisational measures; document policies; maintain technical documentation for 10 years | GDPR-C08, GDPR-C25, GDPR-C26, CRA-C24 | D-09.1 | 2.500 | CONTINUOUS, ONE_TIME | CONTROLLER, PROCESSOR, MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | Security policy template (Doc 09 family input) | STRUCTURAL (always active) | CTO + DPO + Compliance Lead + Legal | ISMS documentation audit | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | CNPD + ENISA (periodic) | GV.OC-02, GV.OC-03, GV.OV-03, GV.PO-01, GV.PO-02, GV.RM-04 |
+| OBL-D-09.2-001 | Conduct DPIA prior to high-risk processing; cybersecurity risk assessment before market | GDPR-C20, GDPR-C24, CRA-C23 | D-09.2 | 2.667 | PERIODIC, ONE_TIME | CONTROLLER, MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | DPIA template + CRA risk assessment template (unified, dual-output) | STRUCTURAL (always active — both triggers permanently satisfied by TinyTask's business model) | CTO + DPO + Compliance Lead + Legal | Unified assessment template | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | CNPD + ENISA (periodic) | GV.OC-03, GV.OV-03, GV.PO-01, GV.RR-02, GV.SC-02, GV.SC-03 |
+| OBL-D-09.4-001 | Maintain records of processing activities and breach documentation | GDPR-C13, GDPR-C22 | D-09.4 | 3.000 | CONTINUOUS, TRIGGERED | CONTROLLER, PROCESSOR | LIGHTWEIGHT | Managed-service config documented + annual review | RoPA template (Doc 09 input) | STRUCTURAL (always active) | CTO + DPO + Compliance Lead + Legal | RoPA + breach log | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | CNPD + ENISA (periodic) | DE.AE-03, GV.PO-02, ID.AM-03, PR.AA-02, PR.DS-10, PR.PS-04 |
 
 **D-09 Summary:** 3 obligations | Avg NI: 2.722 | **Tension T-M-001:** Frequency alignment (both ONE_TIME) — structural, always active
 
@@ -445,11 +445,11 @@ The 34 obligations derive from 54 source clauses per legacy Doc 08 §5 traceabil
 
 ### D-10: Monitoring & Audit Obligations
 
-| Obligation ID | Obligation Description | Source Clauses | Sub-Domain | NI | obligationType | obligatedParty | implementation_tier | evidence_depth | control_selection | Activation Nature | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors |
+| Obligation ID | Obligation Description | Source Clauses | Sub-Domain | NI | obligationType | obligatedParty | implementation_tier | evidence_depth | control_selection | Activation Nature | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors |
 | --------------- | ------------------------ | ---------------- | ------------ | ----: | ---------------- | ---------------- | --------------------- | ---------------- | ------------------- | ------------------- | ------- | ---------------------- | --------------- | ------------------------ | ---------------------- | ---------------------- | --- |
-| OBL-D-10.1-001 | Establish continuous security monitoring for the product and supporting systems; vulnerability handling per CRA Art. 14 | CRA-C12 | D-10.1 | 3.000 | CONTINUOUS | MANUFACTURER | LIGHTWEIGHT | Managed-monitoring config documented + monthly review minutes | managed monitoring + alert taxonomy + vulnerability handling workflow | STRUCTURAL | CTO + Lead Dev | managed-monitoring + alert-taxonomy + monthly review | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | ENISA 24h (CRA Art. 14 — exploited-vulnerability reporting) | DE.CM-01, ID.RA-05, PR.PS-02, PR.IP-12 (legacy CSF 1.1; PR.PS-02 CSF 2.0) |
-| OBL-D-10.2-001 | Log security-relevant events; maintain audit trail of access | CRA-C14 | D-10.2 | 3.000 | CONTINUOUS | MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | managed audit-trail service + tamper-evident managed object storage log bucket | STRUCTURAL | CTO + Lead Dev | managed audit-trail review | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | DE.AE-03, GV.OV-03, GV.PO-02, ID.AM-03, PR.DS-10, PR.PS-04 |
-| OBL-D-10.3-001 | Regularly test effectiveness of technical and organisational measures | GDPR-C19, CRA-C20 | D-10.3 | 2.500 | PERIODIC | CONTROLLER, PROCESSOR, MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | Quarterly compliance review checklist | STRUCTURAL | CTO + Lead Dev | Quarterly compliance review | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | ID.IM-02, ID.IM-04, ID.RA-01, ID.RA-05, ID.RA-06, PR.PS-02 |
+| OBL-D-10.1-001 | Establish continuous security monitoring for the product and supporting systems; vulnerability handling per CRA Art. 14 | CRA-C12 | D-10.1 | 3.000 | CONTINUOUS | MANUFACTURER | LIGHTWEIGHT | Managed-monitoring config documented + monthly review minutes | managed monitoring + alert taxonomy + vulnerability handling workflow | STRUCTURAL | CTO + Lead Dev | managed-monitoring + alert-taxonomy + monthly review | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | ENISA 24h (CRA Art. 14 — exploited-vulnerability reporting) | DE.CM-01, ID.RA-05, PR.PS-02, PR.IP-12 (legacy CSF 1.1; PR.PS-02 CSF 2.0) |
+| OBL-D-10.2-001 | Log security-relevant events; maintain audit trail of access | CRA-C14 | D-10.2 | 3.000 | CONTINUOUS | MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | managed audit-trail service + tamper-evident managed object storage log bucket | STRUCTURAL | CTO + Lead Dev | managed audit-trail review | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | DE.AE-03, GV.OV-03, GV.PO-02, ID.AM-03, PR.DS-10, PR.PS-04 |
+| OBL-D-10.3-001 | Regularly test effectiveness of technical and organisational measures | GDPR-C19, CRA-C20 | D-10.3 | 2.500 | PERIODIC | CONTROLLER, PROCESSOR, MANUFACTURER | LIGHTWEIGHT | Managed-service config documented + annual review | Quarterly compliance review checklist | STRUCTURAL | CTO + Lead Dev | Quarterly compliance review | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | ID.IM-02, ID.IM-04, ID.RA-01, ID.RA-05, ID.RA-06, PR.PS-02 |
 
 **D-10 Summary:** 3 obligations | Avg NI: 2.833 | Mixed coverage (D-10.1 + D-10.2 + D-10.3 all CRA-led)
 
@@ -491,7 +491,7 @@ The 34 obligations derive from 54 source clauses per legacy Doc 08 §5 traceabil
 > **Owner matrix (consistent across docs):** D-01 → CTO + Lead Dev | D-02 → CTO + Lead Dev + Procurement | D-03 → CTO + Lead Dev | D-04 → CTO + DPO + Compliance Lead | D-05 → CTO + DPO | D-06 → CTO + Lead Dev + Procurement | D-07 → CTO + Lead Dev | D-08 → CTO + HR + DPO | D-09 → CTO + DPO + Compliance Lead + Legal | D-10 → CTO + Lead Dev.
 
 
-> **Maturity + Priority defaults:** Maturity = 1/4 → 3/4 (LIGHTWEIGHT target); Priority = HIGH for all P1 obligations, MEDIUM where proportionality allows (P2). Reporting routing per the rules above. External auditor is uniformly managed hosting provider ISO 27001 attestation leveraged under the managed-service configuration model.
+> **Maturity + Priority defaults:** Maturity = PARTIAL (LIGHTWEIGHT target); Priority = HIGH for all P1 obligations, MEDIUM where proportionality allows (P2). Reporting routing per the rules above. External auditor is uniformly managed hosting provider ISO 27001 attestation leveraged under the managed-service configuration model.
 
 
 > **F-10 NI reconciliation (from Sprint 4 §4.1):** OBL-D-01.4-001 and OBL-D-09.1-001 use Rich NI = 2.500 (DR-002 AVG) as authoritative. Priority for these two cards is HIGH (not MEDIUM) because the AVG pulls down from a CRA NI=3 component, which is the operationally dominant driver.
@@ -506,43 +506,42 @@ The 34 obligations derive from 54 source clauses per legacy Doc 08 §5 traceabil
 Compact navigation table — for the full 17-field card, jump to the corresponding subsection below.
 
 
-| OBL ID | Sub-Domain | Title | Owner | Priority | Maturity (Current → Target) | Status | Reporting |
-
+| OBL ID | Sub-Domain | Title | Owner | Priority | Implementation Status | Status | Reporting |
 |--------|------------|-------|-------|----------|-----------------------------|--------|-----------|
-| OBL-D-01.1-001 | D-01.1 | Data Encryption at Rest | CTO + Lead Dev | HIGH | 2/4 → 3/4 | TODO | Internal audit only |
-| OBL-D-01.2-001 | D-01.2 | Data Encryption in Transit | CTO + Lead Dev | HIGH | 2/4 → 3/4 | TODO | Internal audit only |
-| OBL-D-01.3-001 | D-01.3 | Cryptographic Key Management | CTO + Lead Dev | HIGH | 2/4 → 3/4 | TODO | Internal audit only |
-| OBL-D-01.4-001 | D-01.4 | Data Integrity Protection | CTO + Lead Dev | HIGH | 1/4 → 3/4 | TODO | Internal audit only |
-| OBL-D-02.1-001 | D-02.1 | No Known Vulnerabilities + SBOM | CTO + Lead Dev + Procurement | HIGH | 2/4 → 3/4 | TODO | ENISA 24h (CRA Art. 14 exploited-vulnerability reporting) |
-| OBL-D-02.2-001 | D-02.2 | Automatic Security Updates | CTO + Lead Dev + Procurement | HIGH | 2/4 → 3/4 | TODO | ENISA 24h (CRA Art. 14 exploited-vulnerability reporting) |
-| OBL-D-02.3-001 | D-02.3 | CVD Policy + ENISA Reporting | CTO + Lead Dev + Procurement | HIGH | 1/4 → 3/4 | TODO | ENISA 24h (CRA Art. 14 exploited-vulnerability reporting) |
-| OBL-D-03.1-001 | D-03.1 | Authentication Controls | CTO + Lead Dev | HIGH | 2/4 → 3/4 | TODO | Internal audit only |
-| OBL-D-03.2-001 | D-03.2 | Multi-Factor Authentication | CTO + Lead Dev | MEDIUM | 2/4 → 3/4 | TODO | Internal audit only |
-| OBL-D-03.3-001 | D-03.3 | Least Privilege + RBAC | CTO + Lead Dev | HIGH | 2/4 → 3/4 | TODO | Internal audit only |
-| OBL-D-03.4-001 | D-03.4 | Secure Default Configuration | CTO + Lead Dev | HIGH | 2/4 → 3/4 | TODO | Internal audit only |
-| OBL-D-04.1-001 | D-04.1 | Exploit Severity Limitation | CTO + DPO + Compliance Lead | HIGH | 2/4 → 3/4 | TODO | CNPD 72h (GDPR Art. 33 — controller notification) |
-| OBL-D-04.2-001 | D-04.2 | Availability Restoration + DoS Resilience | CTO + DPO + Compliance Lead | HIGH | 2/4 → 3/4 | TODO | CNPD 72h (GDPR Art. 33 — controller notification) |
-| OBL-D-04.3-001 | D-04.3 | Breach Notification (T-001) | CTO + DPO + Compliance Lead | HIGH | 2/4 → 3/4 | TODO | CNPD 72h + ENISA 24h (max-SLA routing — see T-001) |
-| OBL-D-04.4-001 | D-04.4 | Data Restoration Post-Incident | CTO + DPO + Compliance Lead | HIGH | 2/4 → 3/4 | TODO | CNPD 72h (GDPR Art. 33 — controller notification) |
-| OBL-D-05.1-001 | D-05.1 | Data Minimization | CTO + DPO | HIGH | 2/4 → 3/4 | TODO | Internal audit only |
-| OBL-D-05.2-001 | D-05.2 | Storage Limitation | CTO + DPO | HIGH | 2/4 → 3/4 | TODO | Internal audit only |
-| OBL-D-05.3-001 | D-05.3 | Right to Erasure | CTO + DPO | HIGH | 2/4 → 3/4 | TODO | Internal audit only |
-| OBL-D-05.4-001 | D-05.4 | Right to Data Portability | CTO + DPO | HIGH | 2/4 → 3/4 | TODO | Internal audit only |
-| OBL-D-06.1-001 | D-06.1 | Processor Sufficient Guarantees | CTO + Lead Dev + Procurement | HIGH | 2/4 → 3/4 | TODO | Internal audit only |
-| OBL-D-06.2-001 | D-06.2 | SBOM Documentation | CTO + Lead Dev + Procurement | HIGH | 2/4 → 3/4 | TODO | Internal audit only |
-| OBL-D-06.3-001 | D-06.3 | Data Processing Agreement | CTO + Lead Dev + Procurement | HIGH | 2/4 → 3/4 | TODO | Internal audit only |
-| OBL-D-07.1-001 | D-07.1 | Secure-by-Design (T-M-002) | CTO + Lead Dev | HIGH | 2/4 → 3/4 | TODO | Internal audit only |
-| OBL-D-07.2-001 | D-07.2 | Secure Coding Practices | CTO + Lead Dev | HIGH | 1/4 → 3/4 | TODO | Internal audit only |
-| OBL-D-07.3-001 | D-07.3 | CI/CD Pipeline Security | CTO + Lead Dev | HIGH | 1/4 → 3/4 | TODO | Internal audit only |
-| OBL-D-07.4-001 | D-07.4 | Change Management | CTO + Lead Dev | HIGH | 1/4 → 3/4 | TODO | Internal audit only |
-| OBL-D-08.1-001 | D-08.1 | Staff Security Awareness Training | CTO + HR + DPO | MEDIUM | 2/4 → 3/4 | TODO | Internal audit only |
-| OBL-D-08.2-001 | D-08.2 | Role-Specific Security Training | CTO + HR + DPO | MEDIUM | 2/4 → 3/4 | TODO | Internal audit only |
-| OBL-D-09.1-001 | D-09.1 | ISMS Documentation | CTO + DPO + Compliance Lead + Legal | HIGH | 1/4 → 3/4 | TODO | CNPD + ENISA (periodic accountability + CRA conformity) |
-| OBL-D-09.2-001 | D-09.2 | Unified Risk Assessment (T-M-001) | CTO + DPO + Compliance Lead + Legal | HIGH | 1/4 → 3/4 | TODO | CNPD + ENISA (periodic accountability + CRA conformity) |
-| OBL-D-09.4-001 | D-09.4 | Records of Processing | CTO + DPO + Compliance Lead + Legal | HIGH | 1/4 → 3/4 | TODO | CNPD + ENISA (periodic accountability + CRA conformity) |
-| OBL-D-10.1-001 | D-10.1 | Continuous Security Monitoring | CTO + Lead Dev | HIGH | 1/4 → 3/4 | TODO | ENISA 24h (CRA Art. 14 exploited-vulnerability reporting) |
-| OBL-D-10.2-001 | D-10.2 | Security Audit Logging | CTO + Lead Dev | HIGH | 2/4 → 3/4 | TODO | Internal audit only |
-| OBL-D-10.3-001 | D-10.3 | Regular Security Testing | CTO + Lead Dev | HIGH | 2/4 → 3/4 | TODO | Internal audit only |
+| OBL-D-01.1-001 | D-01.1 | Data Encryption at Rest | CTO + Lead Dev | HIGH | PARTIAL | TODO | Internal audit only |
+| OBL-D-01.2-001 | D-01.2 | Data Encryption in Transit | CTO + Lead Dev | HIGH | PARTIAL | TODO | Internal audit only |
+| OBL-D-01.3-001 | D-01.3 | Cryptographic Key Management | CTO + Lead Dev | HIGH | PARTIAL | TODO | Internal audit only |
+| OBL-D-01.4-001 | D-01.4 | Data Integrity Protection | CTO + Lead Dev | HIGH | PARTIAL | TODO | Internal audit only |
+| OBL-D-02.1-001 | D-02.1 | No Known Vulnerabilities + SBOM | CTO + Lead Dev + Procurement | HIGH | PARTIAL | TODO | ENISA 24h (CRA Art. 14 exploited-vulnerability reporting) |
+| OBL-D-02.2-001 | D-02.2 | Automatic Security Updates | CTO + Lead Dev + Procurement | HIGH | PARTIAL | TODO | ENISA 24h (CRA Art. 14 exploited-vulnerability reporting) |
+| OBL-D-02.3-001 | D-02.3 | CVD Policy + ENISA Reporting | CTO + Lead Dev + Procurement | HIGH | PARTIAL | TODO | ENISA 24h (CRA Art. 14 exploited-vulnerability reporting) |
+| OBL-D-03.1-001 | D-03.1 | Authentication Controls | CTO + Lead Dev | HIGH | PARTIAL | TODO | Internal audit only |
+| OBL-D-03.2-001 | D-03.2 | Multi-Factor Authentication | CTO + Lead Dev | MEDIUM | PARTIAL | TODO | Internal audit only |
+| OBL-D-03.3-001 | D-03.3 | Least Privilege + RBAC | CTO + Lead Dev | HIGH | PARTIAL | TODO | Internal audit only |
+| OBL-D-03.4-001 | D-03.4 | Secure Default Configuration | CTO + Lead Dev | HIGH | PARTIAL | TODO | Internal audit only |
+| OBL-D-04.1-001 | D-04.1 | Exploit Severity Limitation | CTO + DPO + Compliance Lead | HIGH | PARTIAL | TODO | CNPD 72h (GDPR Art. 33 — controller notification) |
+| OBL-D-04.2-001 | D-04.2 | Availability Restoration + DoS Resilience | CTO + DPO + Compliance Lead | HIGH | PARTIAL | TODO | CNPD 72h (GDPR Art. 33 — controller notification) |
+| OBL-D-04.3-001 | D-04.3 | Breach Notification (T-001) | CTO + DPO + Compliance Lead | HIGH | PARTIAL | TODO | CNPD 72h + ENISA 24h (max-SLA routing — see T-001) |
+| OBL-D-04.4-001 | D-04.4 | Data Restoration Post-Incident | CTO + DPO + Compliance Lead | HIGH | PARTIAL | TODO | CNPD 72h (GDPR Art. 33 — controller notification) |
+| OBL-D-05.1-001 | D-05.1 | Data Minimization | CTO + DPO | HIGH | PARTIAL | TODO | Internal audit only |
+| OBL-D-05.2-001 | D-05.2 | Storage Limitation | CTO + DPO | HIGH | PARTIAL | TODO | Internal audit only |
+| OBL-D-05.3-001 | D-05.3 | Right to Erasure | CTO + DPO | HIGH | PARTIAL | TODO | Internal audit only |
+| OBL-D-05.4-001 | D-05.4 | Right to Data Portability | CTO + DPO | HIGH | PARTIAL | TODO | Internal audit only |
+| OBL-D-06.1-001 | D-06.1 | Processor Sufficient Guarantees | CTO + Lead Dev + Procurement | HIGH | PARTIAL | TODO | Internal audit only |
+| OBL-D-06.2-001 | D-06.2 | SBOM Documentation | CTO + Lead Dev + Procurement | HIGH | PARTIAL | TODO | Internal audit only |
+| OBL-D-06.3-001 | D-06.3 | Data Processing Agreement | CTO + Lead Dev + Procurement | HIGH | PARTIAL | TODO | Internal audit only |
+| OBL-D-07.1-001 | D-07.1 | Secure-by-Design (T-M-002) | CTO + Lead Dev | HIGH | PARTIAL | TODO | Internal audit only |
+| OBL-D-07.2-001 | D-07.2 | Secure Coding Practices | CTO + Lead Dev | HIGH | PARTIAL | TODO | Internal audit only |
+| OBL-D-07.3-001 | D-07.3 | CI/CD Pipeline Security | CTO + Lead Dev | HIGH | PARTIAL | TODO | Internal audit only |
+| OBL-D-07.4-001 | D-07.4 | Change Management | CTO + Lead Dev | HIGH | PARTIAL | TODO | Internal audit only |
+| OBL-D-08.1-001 | D-08.1 | Staff Security Awareness Training | CTO + HR + DPO | MEDIUM | PARTIAL | TODO | Internal audit only |
+| OBL-D-08.2-001 | D-08.2 | Role-Specific Security Training | CTO + HR + DPO | MEDIUM | PARTIAL | TODO | Internal audit only |
+| OBL-D-09.1-001 | D-09.1 | ISMS Documentation | CTO + DPO + Compliance Lead + Legal | HIGH | PARTIAL | TODO | CNPD + ENISA (periodic accountability + CRA conformity) |
+| OBL-D-09.2-001 | D-09.2 | Unified Risk Assessment (T-M-001) | CTO + DPO + Compliance Lead + Legal | HIGH | PARTIAL | TODO | CNPD + ENISA (periodic accountability + CRA conformity) |
+| OBL-D-09.4-001 | D-09.4 | Records of Processing | CTO + DPO + Compliance Lead + Legal | HIGH | PARTIAL | TODO | CNPD + ENISA (periodic accountability + CRA conformity) |
+| OBL-D-10.1-001 | D-10.1 | Continuous Security Monitoring | CTO + Lead Dev | HIGH | PARTIAL | TODO | ENISA 24h (CRA Art. 14 exploited-vulnerability reporting) |
+| OBL-D-10.2-001 | D-10.2 | Security Audit Logging | CTO + Lead Dev | HIGH | PARTIAL | TODO | Internal audit only |
+| OBL-D-10.3-001 | D-10.3 | Regular Security Testing | CTO + Lead Dev | HIGH | PARTIAL | TODO | Internal audit only |
 
 **Total obligations:** 34 across 10 sub-domains (D-01..D-10) — Sprint 6+ count (was 30, +4 from P7 orphan fix). **Total cells populated in detail cards:** 34 × 17 = 578.
 
@@ -551,7 +550,6 @@ Compact navigation table — for the full 17-field card, jump to the correspondi
 
 
 | OBL ID | Linked Goal(s) | Linked CR Rule | Notes |
-
 |--------|----------------|----------------|-------|
 | OBL-D-01.1-001 | PO-D-01.1-001 | CR-D-01.1-001 |  |
 | OBL-D-01.2-001 | PO-D-01.2-001 | CR-D-01.2-001 |  |
@@ -630,7 +628,7 @@ D-01 covers the confidentiality and integrity pillars of data protection. All fo
 
 12. **Affected Stakeholders:** Customers (data subjects), CTO (owner), DPO (oversight), Lead Dev (implementer), managed hosting provider (sub-processor under DPA — Annex IV)
 
-13. **Maturity Score:** 2/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** HIGH
 
@@ -673,7 +671,7 @@ D-01 covers the confidentiality and integrity pillars of data protection. All fo
 
 12. **Affected Stakeholders:** Customers (data subjects in transit), CTO, Lead Dev, managed hosting provider (transit protection provider), payment processor (downstream protected party)
 
-13. **Maturity Score:** 2/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** HIGH
 
@@ -716,7 +714,7 @@ D-01 covers the confidentiality and integrity pillars of data protection. All fo
 
 12. **Affected Stakeholders:** CTO (key custody policy owner), Lead Dev (IAM enforcement), DPO (oversight), managed hosting provider (key custody provider — sub-processor under DPA Annex IV)
 
-13. **Maturity Score:** 2/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** HIGH
 
@@ -759,7 +757,7 @@ D-01 covers the confidentiality and integrity pillars of data protection. All fo
 
 12. **Affected Stakeholders:** Customers (data subjects relying on accurate PII), CTO, Lead Dev, DPO (integrity of breach log)
 
-13. **Maturity Score:** 1/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** HIGH
 
@@ -830,7 +828,7 @@ D-02 covers product-level vulnerability management. All three obligations are CR
 
 12. **Affected Stakeholders:** CTO, Lead Dev, Procurement (third-party component selection), Customers (downstream consumers of SBOM under CRA), ENISA
 
-13. **Maturity Score:** 2/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** HIGH
 
@@ -873,7 +871,7 @@ D-02 covers product-level vulnerability management. All three obligations are CR
 
 12. **Affected Stakeholders:** CTO, Lead Dev, Procurement (vendor security advisories), Customers (downstream protection)
 
-13. **Maturity Score:** 2/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** HIGH
 
@@ -916,7 +914,7 @@ D-02 covers product-level vulnerability management. All three obligations are CR
 
 12. **Affected Stakeholders:** CTO, Lead Dev (first responder), ENISA (recipient), CNCS (PT CSIRT), Security researchers (reporting parties), Customers (downstream notification)
 
-13. **Maturity Score:** 1/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** HIGH
 
@@ -987,7 +985,7 @@ D-03 covers authentication and access-control. Two obligations are CRA sole auth
 
 12. **Affected Stakeholders:** Customers (data subjects authenticating), CTO (managed identity provider admin), Lead Dev (IAM), managed identity provider (sub-processor under DPA)
 
-13. **Maturity Score:** 2/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** HIGH
 
@@ -1030,7 +1028,7 @@ D-03 covers authentication and access-control. Two obligations are CRA sole auth
 
 12. **Affected Stakeholders:** CTO, Lead Dev, Operators (MFA enrollees), Customers (opt-in)
 
-13. **Maturity Score:** 2/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** MEDIUM
 
@@ -1073,7 +1071,7 @@ D-03 covers authentication and access-control. Two obligations are CRA sole auth
 
 12. **Affected Stakeholders:** Customers (data subjects), CTO, Lead Dev, DPO (RBAC oversight), HR (role assignment for staff)
 
-13. **Maturity Score:** 2/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** HIGH
 
@@ -1116,7 +1114,7 @@ D-03 covers authentication and access-control. Two obligations are CRA sole auth
 
 12. **Affected Stakeholders:** Customers (downstream consumers), CTO, Lead Dev, managed hosting provider (managed-service defaults)
 
-13. **Maturity Score:** 2/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** HIGH
 
@@ -1187,7 +1185,7 @@ D-04 covers the full incident lifecycle: severity limitation (D-04.1), containme
 
 12. **Affected Stakeholders:** Customers (impacted during incidents), CTO, Lead Dev (on-call), DPO (severity classification for reporting)
 
-13. **Maturity Score:** 2/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** HIGH
 
@@ -1230,7 +1228,7 @@ D-04 covers the full incident lifecycle: severity limitation (D-04.1), containme
 
 12. **Affected Stakeholders:** Customers (availability impact), CTO, Lead Dev (on-call), DPO (incident classification)
 
-13. **Maturity Score:** 2/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** HIGH
 
@@ -1273,7 +1271,7 @@ D-04 covers the full incident lifecycle: severity limitation (D-04.1), containme
 
 12. **Affected Stakeholders:** Customers (data subjects + controllers), CTO, DPO (notification owner), Legal (regulatory text), CNPD + ENISA + CNCS (recipients), Compliance Lead (incident commander)
 
-13. **Maturity Score:** 2/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** HIGH
 
@@ -1316,7 +1314,7 @@ D-04 covers the full incident lifecycle: severity limitation (D-04.1), containme
 
 12. **Affected Stakeholders:** Customers (data subjects relying on availability), CTO, Lead Dev (restoration execution), DPO (oversight)
 
-13. **Maturity Score:** 2/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** HIGH
 
@@ -1388,7 +1386,7 @@ D-05 covers the data subject's lifecycle with their data: minimisation (D-05.1),
 
 12. **Affected Stakeholders:** Customers (data subjects), CTO (schema owner), DPO (oversight), Lead Dev (validation)
 
-13. **Maturity Score:** 2/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** HIGH
 
@@ -1431,7 +1429,7 @@ D-05 covers the data subject's lifecycle with their data: minimisation (D-05.1),
 
 12. **Affected Stakeholders:** Customers (data subjects), CTO, DPO (retention policy owner), Compliance Lead (audit)
 
-13. **Maturity Score:** 2/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** HIGH
 
@@ -1474,7 +1472,7 @@ D-05 covers the data subject's lifecycle with their data: minimisation (D-05.1),
 
 12. **Affected Stakeholders:** Customers (data subjects exercising right), CTO, DPO (DSAR owner), Lead Dev (API implementation), Legal (exception handling)
 
-13. **Maturity Score:** 2/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** HIGH
 
@@ -1517,7 +1515,7 @@ D-05 covers the data subject's lifecycle with their data: minimisation (D-05.1),
 
 12. **Affected Stakeholders:** Customers (data subjects exercising right), CTO, DPO, Lead Dev, Legal
 
-13. **Maturity Score:** 2/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** HIGH
 
@@ -1588,7 +1586,7 @@ D-06 covers supply-chain security: processor validation (D-06.1), SBOM (D-06.2, 
 
 12. **Affected Stakeholders:** Customers (downstream impact of processor breach), CTO, Procurement, DPO, Compliance Lead, Legal
 
-13. **Maturity Score:** 2/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** HIGH
 
@@ -1631,7 +1629,7 @@ D-06 covers supply-chain security: processor validation (D-06.1), SBOM (D-06.2, 
 
 12. **Affected Stakeholders:** CTO, Lead Dev, Procurement (third-party component selection), Customers (downstream SBOM consumers), ENISA
 
-13. **Maturity Score:** 2/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** HIGH
 
@@ -1674,7 +1672,7 @@ D-06 covers supply-chain security: processor validation (D-06.1), SBOM (D-06.2, 
 
 12. **Affected Stakeholders:** Customers (downstream protection), CTO, Procurement, DPO, Compliance Lead, Legal
 
-13. **Maturity Score:** 2/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** HIGH
 
@@ -1745,7 +1743,7 @@ D-07 covers secure-by-design — the meta-control that all other controls depend
 
 12. **Affected Stakeholders:** CTO, Lead Dev, DPO (privacy-by-design oversight), All engineers (CI gate subjects)
 
-13. **Maturity Score:** 2/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** HIGH
 
@@ -1807,7 +1805,7 @@ D-07 covers secure-by-design — the meta-control that all other controls depend
 
 12. **Affected Stakeholders:** CTO, Lead Dev, All engineers (PR subjects), Customers (downstream vulnerability exposure)
 
-13. **Maturity Score:** 1/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** HIGH
 
@@ -1852,7 +1850,7 @@ D-07 covers secure-by-design — the meta-control that all other controls depend
 
 12. **Affected Stakeholders:** CTO, Lead Dev, All engineers (PR subjects), Customers (downstream vulnerability exposure), ENISA (CRA SBOM reporting)
 
-13. **Maturity Score:** 1/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** HIGH
 
@@ -1897,7 +1895,7 @@ D-07 covers secure-by-design — the meta-control that all other controls depend
 
 12. **Affected Stakeholders:** CTO, Lead Dev, Compliance Lead (audit access), Customers (downstream assurance), ENISA (CRA 5-year support documentation)
 
-13. **Maturity Score:** 1/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** HIGH
 
@@ -1970,7 +1968,7 @@ D-08 covers human factors — security awareness (D-08.1) and role-specific trai
 
 12. **Affected Stakeholders:** CTO (technical staff), DPO (privacy staff), HR (training owner), All staff (trainees)
 
-13. **Maturity Score:** 2/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** MEDIUM
 
@@ -2013,7 +2011,7 @@ D-08 covers human factors — security awareness (D-08.1) and role-specific trai
 
 12. **Affected Stakeholders:** CTO, Lead Dev, DPO, HR, All staff (role-specific scope)
 
-13. **Maturity Score:** 2/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** MEDIUM
 
@@ -2083,7 +2081,7 @@ D-09 covers governance: ISMS documentation (D-09.1), unified risk assessment (D-
 
 12. **Affected Stakeholders:** Customers (downstream evidence), CTO, DPO (policy owner), Compliance Lead, Legal (review)
 
-13. **Maturity Score:** 1/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** HIGH
 
@@ -2126,7 +2124,7 @@ D-09 covers governance: ISMS documentation (D-09.1), unified risk assessment (D-
 
 12. **Affected Stakeholders:** Customers (data subjects impacted), CTO, DPO (DPIA owner), Compliance Lead, Legal, ENISA
 
-13. **Maturity Score:** 1/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** HIGH
 
@@ -2169,7 +2167,7 @@ D-09 covers governance: ISMS documentation (D-09.1), unified risk assessment (D-
 
 12. **Affected Stakeholders:** Customers (data subjects), CTO, DPO (RoPA owner), Compliance Lead, Legal, CNPD (auditor)
 
-13. **Maturity Score:** 1/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** HIGH
 
@@ -2241,7 +2239,7 @@ D-10 covers monitoring and audit: continuous security monitoring (D-10.1, CRA so
 
 12. **Affected Stakeholders:** CTO (monitoring owner), Lead Dev (alert triage), DPO (cross-ref to data subjects), Compliance Lead (CRA reporting), ENISA (recipient of exploited-vulnerability reports)
 
-13. **Maturity Score:** 1/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** HIGH
 
@@ -2286,7 +2284,7 @@ D-10 covers monitoring and audit: continuous security monitoring (D-10.1, CRA so
 
 12. **Affected Stakeholders:** CTO (log policy owner), Lead Dev (application logging), DPO (log access for DSAR), Compliance Lead (review)
 
-13. **Maturity Score:** 2/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** HIGH
 
@@ -2329,7 +2327,7 @@ D-10 covers monitoring and audit: continuous security monitoring (D-10.1, CRA so
 
 12. **Affected Stakeholders:** CTO (testing owner), Lead Dev (remediation), DPO (oversight), External pen-tester, Customers (downstream assurance)
 
-13. **Maturity Score:** 2/4 → 3/4
+13. **Implementation Status:** PARTIAL
 
 14. **Implementation Priority:** HIGH
 
@@ -2366,7 +2364,6 @@ D-10 covers monitoring and audit: continuous security monitoring (D-10.1, CRA so
 
 
 | Metric | Value | Notes |
-
 |--------|-------|-------|
 | Total detail cards | 34 | One per obligation enumerated in §4 (was 30; +4 OBL-D-07.2/3/4/10.1 from Sprint 6+ P7 orphan fix) |
 | Fields per card | 17 | Items 1–17 of the template (description, scope, OOS, source, NIST, verification, method, owner, status, deps, risk, stakeholders, maturity, priority, reporting, auditor, supervisor) |
@@ -2395,7 +2392,6 @@ Each obligation traces to a specific corpus domain file under `00_METHODOLOGY/PR
 
 
 | OBL ID | Corpus Domain Path | HSO / Sub-SO Reference | Preservation Status |
-
 |--------|---------------------|------------------------|---------------------|
 | OBL-D-01.1-001 | `domains/D-01_Data-Protection/D-01.1/` | SO-D-01.1.GDPR | FROZEN (proportionality_model.md §1) |
 | OBL-D-01.2-001 | `domains/D-01_Data-Protection/D-01.2/` | SO-D-01.2.GDPR | FROZEN |
@@ -2438,7 +2434,6 @@ Detail cards surface the tensions and findings documented in `09_Strategic_Tensi
 
 
 | OBL ID | Affected Tensions | Affected Findings | Disposition |
-
 |--------|-------------------|-------------------|-------------|
 | OBL-D-01.4-001 | — | F-10 (NI divergence — Rich NI 2.500 authoritative) | RESOLVED in Sprint 4 §4.1 |
 | OBL-D-04.3-001 | T-001 (Doc 09), T-H-001 (Sprint 1 §3.5) | — | max-SLA 24h routing applied; both CNPD + ENISA notified |
@@ -2457,7 +2452,6 @@ Aggregated verification activities across all 30 obligations, mapped to an annua
 
 
 | Cadence | Activities | Cards Involved | Owner Load |
-
 |---------|------------|---------------:|------------|
 | **Continuous (real-time)** | Managed configuration rule monitoring, managed audit-trail, log forwarding, MFA enforcement | 9 (D-01.x, D-02.x, D-03.1, D-03.2, D-10.2) | CTO/Lead Dev — passive monitoring |
 | **Per-PR / Per-build** | SAST, dependency scan, secret scan, SBOM generation, auth test suite | 7 (D-02.1, D-02.2, D-03.3, D-05.1, D-06.2, D-07.1, D-05.3) | Lead Dev — fully automated |
@@ -2478,7 +2472,6 @@ The 30 detail cards deliberately exclude the following fields that were consider
 
 
 | Excluded Field | Rationale | When to Re-evaluate |
-
 |----------------|-----------|---------------------|
 | Effort Estimate (FTE-days) | Out of MICRO scope per Doc 02 family; proportionality applies to documentation not just implementation | Tier elevation (MICRO → SMALL) |
 | Cost Estimate (EUR) | Same as above; cost transparency is for SME/MEDIUM tier | Tier elevation |
@@ -2495,7 +2488,6 @@ Aggregated NIST CSF anchor coverage across all 30 obligations. Each card referen
 
 
 | NIST CSF 2.0 Sub-Category | Cards Anchoring | Count | Notes |
-
 |---------------------------|-----------------|------:|-------|
 | **GV — Govern** | | | |
 | GV.OC-01 (Organizational risk strategy) | OBL-D-06.1, OBL-D-06.3, OBL-D-09.1, OBL-D-09.2, OBL-D-09.4 | 5 | Governance substrate; expected high coverage |
@@ -2541,7 +2533,6 @@ Cumulative count of verification methods across all 30 cards. Multiple methods p
 
 
 | Verification Method | Cards Using (Primary or Mix) | Notes |
-
 |---------------------|-----------------------------:|-------|
 | **INSPECT** | 27 | Most common — almost every card requires documentation review |
 | **DEMONSTRATE** | 24 | Live-system walkthroughs dominate the operational verification |
@@ -2558,7 +2549,6 @@ All 30 cards begin at TODO. The status transitions are governed by Sprint 6+ (ou
 
 
 | Status Transition | Trigger | Owner | Out-of-Sprint-5 Scope |
-
 |-------------------|---------|-------|----------------------|
 | TODO → IN_PROGRESS | Implementation work begins for the verification criteria (e.g., enabling a Config rule, configuring MFA, drafting a policy) | Card owner per §8 | Sprint 6 (execution phase) |
 | IN_PROGRESS → DONE | Verification criteria independently witnessed by a second party (DPO, Compliance Lead, External auditor) | Witness per RACI | Sprint 7 (verification phase) |
@@ -2575,7 +2565,6 @@ For each of the 30 obligations, the table below records the downstream reference
 
 
 | OBL ID | Doc 07 Reference | Doc 09 (Tensions) | Doc 10 (Goals) | Doc 11 (CR Rules) | Doc 12 (Catalog Sheet) |
-
 |--------|------------------|-------------------|----------------|--------------------|-------------------------|
 | OBL-D-01.1-001 | 07_Structured_Compliance_Matrix §3 | — | PO-D-01.1-001 | CR-D-01.1-001 | Sheet 1 (Data Protection) |
 | OBL-D-01.2-001 | 07_Structured_Compliance_Matrix §3 | — | PO-D-01.2-001 | CR-D-01.2-001 | Sheet 1 |
@@ -2640,7 +2629,6 @@ For the DPO and Legal reviewer, the table below summarises the regulatory penalt
 
 
 | Sub-Domain | GDPR Maximum Penalty | CRA Maximum Penalty | Combined Operational Risk |
-
 |------------|---------------------:|--------------------:|---------------------------|
 | D-01 (Data Protection) | Art. 83(5): up to EUR 20M or 4% of global turnover | Annex I: market-surveillance corrective measures + Art. 64 fines per member state | HIGH — confidentiality/integrity failure affects every downstream obligation |
 | D-02 (Vulnerability) | Art. 32 only (no Art. 83 fine unique to vulns) | Art. 14 exploited-vuln reporting: market-suspension + administrative fines up to EUR 15M or 2.5% turnover (per Art. 64) | HIGH — CRA Art. 14 per-se reporting violation |
@@ -2666,7 +2654,6 @@ The Owner column (field 8) maps each card to one or more owners. The heatmap bel
 
 
 | Owner | Cards (Primary) | Cards (Co-owner) | Total Touch-Points | Notes |
-
 |-------|----------------:|-----------------:|-------------------:|-------|
 | CTO | 30 (all) | 0 | 30 | Universal primary owner — every obligation has CTO listed |
 | Lead Dev | 22 | 0 | 22 | D-01 (4), D-02 (3), D-03 (4), D-04 (1 — D-04.1 only), D-06 (3), D-07 (1), D-10 (2), D-04.4 (1) — see card fields |
