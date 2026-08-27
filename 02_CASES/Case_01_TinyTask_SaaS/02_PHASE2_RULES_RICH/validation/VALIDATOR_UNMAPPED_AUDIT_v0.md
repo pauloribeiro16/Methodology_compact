@@ -84,3 +84,44 @@ CSF-side, unrelated to UNMAPPED: `ID.AM-08` (frozen CSF list tops at ID.AM-07; a
 3. **Sprint Metadata Sweep:**
    - Swept legacy `sprint:` keys from YAML frontmatters and `(Sprint N)` from titles across deliverables (`Doc01` to `Doc31`, `SPEC`, `RULE_FREEZE`, `README.md`).
    - Historical reports in `validation/`, `RICH_VS_LEGACY.md`, and the change log in `PROJECT_STATE.md` were preserved for audit traceability.
+
+
+---
+
+## 7. Addendum: Control Set v1.0 Evolution
+
+**Date:** 2026-08-27  
+**Validator:** Validator & Orchestrator (AEGIS Compliance Framework)
+
+### Key Achievements & Decisions:
+1. **Evolution of Doc18 into Control Set v1.0:**
+   - Evolved `Doc18_Rules_Catalog.md` into an implementation-ready **AEGIS Control Set** without introducing a new document ID.
+   - Frozen IDs: `CR-D-XX.Y-NNN` (Obligation Controls) and `BPR-D-XX.Y-NNN` (Best-Practice Controls) remain unchanged.
+   - Control Taxonomy: Formalized *"AEGIS Control Taxonomy — 38 sub-domains"* as a core methodological contribution in the header.
+2. **Schema & Card Standard (24 Fields):**
+   - Added `Type: CONTROL — OBLIGATION (MUST)` or `BEST-PRACTICE (SHOULD)` line right below titles.
+   - Added **Field 23 (Traceability):** Inline 4-tier chain (`Legal` → `Phase 1 (AG-D-XX)` → `Obligation (OBL-D-XX)` → `Objective (SO/PO-D-XX)`).
+   - Added **Field 24 (Framework Anchors):** Inline 5-framework mapping (`CSF`, `PF` (+ `pf_gaps`), `AI RMF: pending Case_02/03`, `ISO 27001`, `SSDF`).
+   - Implementation Status: Verified evidence-backed non-uniform posture states (`IMPLEMENTED`, `PARTIAL`, `NOT IMPLEMENTED`, `N/A`) across all 46 detail cards.
+3. **Anexos A, B, C & Machine-Readable Artifact:**
+   - Generated Annex A (CSF Function index), Annex B (ISO 27001 Annex A index), and Annex C (Statutory source index) in `Doc18`.
+   - Created `validation/build_control_set.py` to compile `Doc18` into `02_CASES/Case_01_TinyTask_SaaS/02_PHASE2_RULES_RICH/control_set.yaml` (46 controls). `Doc18` is the single source of truth; YAML is strictly generated.
+
+---
+
+## 8. Addendum: Sprint Metadata Sweep & Gate v0.3 Verification
+
+**Date:** 2026-08-27  
+**Validator:** Gate v0.3 (`check_implementation_posture.py`)
+
+### Scope & Actions Taken:
+1. **Deliverable Metadata Cleanup:**
+   - Swept legacy `sprint:` keys from YAML frontmatters and `(Sprint N)` markers from document titles across `Doc01` to `Doc31`, `SPEC`, `RULE_FREEZE`, and `README.md`.
+   - Preserved historical audit files in `validation/`, `RICH_VS_LEGACY.md`, and `PROJECT_STATE.md §9.1`.
+2. **Gate v0.3 Verification Results:**
+   - `check_implementation_posture.py` v0.3 executed with:
+     - Zero deprecated maturity terms in deliverables.
+     - Zero sprint keys in deliverable frontmatters.
+     - Doc18 status distribution non-uniform and evidence-backed.
+     - `control_set.yaml` successfully generated and validated (46 controls).
+   - **`GATE PASS`** (Exit code 0).
