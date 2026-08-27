@@ -50,6 +50,9 @@ META = {
         # right sections — appended here as standalone record).
         "Doc08 §9 (verification table — 54 rows)",
         "Doc12 §4 (proportionality table — 37 rows)",
+        # Phase D — Doc13 §7 NIST Controls Mapping (35 sub-domain × 1-3 NIST
+        # frameworks = 513 alignment rows; 117 unique control IDs).
+        "Doc13 §7 (NIST CSF 2.0 + PF 1.0 + AI RMF mapping — 513 rows)",
     ],
 }
 
@@ -1296,7 +1299,7 @@ AUDITS = [
         ),
     },
 ]
-assert len(AUDITS) == 29, f"AUDITS drift: {len(AUDITS)} (expected 29 = 26 v1.4 + 3 NEW-Phase C)"
+assert len(AUDITS) == 29, f"AUDITS drift: {len(AUDITS)} (expected 29 base = 26 v1.4 + 3 NEW-Phase C; 2 NEW-Phase D audits appended at runtime)"
 
 # ---------------------------------------------------------------------------
 # 10. Sprint 6 — Stakeholders + BusinessGoals + CoverageGaps
@@ -4147,6 +4150,3912 @@ _NIST_MALFORMED_FUNCTION_OVERRIDES = {
 }
 
 NIST_ALIGNMENT = [
+    {
+        "sub_domain_id": "D-01.1",
+        "applicable_regulations": [
+            "GDPR",
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.RM-04",
+                "description": "Strategic direction that describes appropriate risk response options is establis...",
+                "path": "NIST_CSF/GOVERN/GV.RM-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-01",
+                "description": "The confidentiality, integrity, and availability of data-at-rest are protected",
+                "path": "NIST_CSF/PROTECT/PR.DS-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-02",
+                "description": "The confidentiality, integrity, and availability of data-in-transit are protecte...",
+                "path": "NIST_CSF/PROTECT/PR.DS-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-10",
+                "description": "The confidentiality, integrity, and availability of data-in-use are protected",
+                "path": "NIST_CSF/PROTECT/PR.DS-10.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-12",
+                "description": "Cryptographic protections applied to data are commensurate with data classificat...",
+                "path": "NIST_CSF/PROTECT/PR.DS-12.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.RM-P1",
+                "description": "Risk management processes are established, managed, and agreed to by organizatio...",
+                "path": "NIST_PF/GOVERN-P/GV.RM-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.RA-P2",
+                "description": "Data analytic inputs and outputs are identified and evaluated for bias.",
+                "path": "NIST_PF/IDENTIFY-P/ID.RA-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P1",
+                "description": "Data-at-rest are protected",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P2",
+                "description": "Data-in-transit are protected.",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P2.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-01.2",
+        "applicable_regulations": [
+            "GDPR",
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-01",
+                "description": "The confidentiality, integrity, and availability of data-at-rest are protected",
+                "path": "NIST_CSF/PROTECT/PR.DS-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-02",
+                "description": "The confidentiality, integrity, and availability of data-in-transit are protecte...",
+                "path": "NIST_CSF/PROTECT/PR.DS-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-10",
+                "description": "The confidentiality, integrity, and availability of data-in-use are protected",
+                "path": "NIST_CSF/PROTECT/PR.DS-10.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-12",
+                "description": "Cryptographic protections applied to data are commensurate with data classificat...",
+                "path": "NIST_CSF/PROTECT/PR.DS-12.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.IR-01",
+                "description": "Networks and environments are protected from unauthorized logical access and usa...",
+                "path": "NIST_CSF/PROTECT/PR.IR-01.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P1",
+                "description": "Data-at-rest are protected",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P2",
+                "description": "Data-in-transit are protected.",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PT-P1",
+                "description": "Removable media is protected and its use restricted according to policy.",
+                "path": "NIST_PF/PROTECT-P/PR.PT-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PT-P2",
+                "description": "The principle of least functionality is incorporated by configuring systems to p...",
+                "path": "NIST_PF/PROTECT-P/PR.PT-P2.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-01.3",
+        "applicable_regulations": [
+            "GDPR",
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.OV-01",
+                "description": "Cybersecurity risk management strategy outcomes are reviewed to inform and adjus...",
+                "path": "NIST_CSF/GOVERN/GV.OV-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.RM-04",
+                "description": "Strategic direction that describes appropriate risk response options is establis...",
+                "path": "NIST_CSF/GOVERN/GV.RM-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.AA-03",
+                "description": "Users, services, and hardware are authenticated",
+                "path": "NIST_CSF/PROTECT/PR.AA-03.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.AA-04",
+                "description": "Identity assertions are protected, conveyed, and verified",
+                "path": "NIST_CSF/PROTECT/PR.AA-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.AA-05",
+                "description": "Access permissions, entitlements, and authorizations are defined in a policy, ma...",
+                "path": "NIST_CSF/PROTECT/PR.AA-05.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-01",
+                "description": "The confidentiality, integrity, and availability of data-at-rest are protected",
+                "path": "NIST_CSF/PROTECT/PR.DS-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.IR-03",
+                "description": "Mechanisms are implemented to achieve resilience requirements in normal and adve...",
+                "path": "NIST_CSF/PROTECT/PR.IR-03.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.MT-P1",
+                "description": "Privacy risk is re-evaluated on an ongoing basis and as key factors, including t...",
+                "path": "NIST_PF/GOVERN-P/GV.MT-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.MT-P2",
+                "description": "Privacy values, policies, and training are reviewed and any updates are communic...",
+                "path": "NIST_PF/GOVERN-P/GV.MT-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.RM-P1",
+                "description": "Risk management processes are established, managed, and agreed to by organizatio...",
+                "path": "NIST_PF/GOVERN-P/GV.RM-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.RA-P2",
+                "description": "Data analytic inputs and outputs are identified and evaluated for bias.",
+                "path": "NIST_PF/IDENTIFY-P/ID.RA-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.AC-P1",
+                "description": "Identities and credentials are issued, managed, verified, revoked, and audited f...",
+                "path": "NIST_PF/PROTECT-P/PR.AC-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.AC-P3",
+                "description": "Remote access is managed.",
+                "path": "NIST_PF/PROTECT-P/PR.AC-P3.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.AC-P6",
+                "description": "Individuals and devices are proofed and bound to credentials, and authenticated ...",
+                "path": "NIST_PF/PROTECT-P/PR.AC-P6.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P1",
+                "description": "Data-at-rest are protected",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P2",
+                "description": "Data-in-transit are protected.",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PT-P1",
+                "description": "Removable media is protected and its use restricted according to policy.",
+                "path": "NIST_PF/PROTECT-P/PR.PT-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PT-P2",
+                "description": "The principle of least functionality is incorporated by configuring systems to p...",
+                "path": "NIST_PF/PROTECT-P/PR.PT-P2.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-01.4",
+        "applicable_regulations": [
+            "GDPR",
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-01",
+                "description": "The confidentiality, integrity, and availability of data-at-rest are protected",
+                "path": "NIST_CSF/PROTECT/PR.DS-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-02",
+                "description": "The confidentiality, integrity, and availability of data-in-transit are protecte...",
+                "path": "NIST_CSF/PROTECT/PR.DS-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-10",
+                "description": "The confidentiality, integrity, and availability of data-in-use are protected",
+                "path": "NIST_CSF/PROTECT/PR.DS-10.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-11",
+                "description": "Backups of data are created, protected, maintained, and tested",
+                "path": "NIST_CSF/PROTECT/PR.DS-11.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-12",
+                "description": "Cryptographic protections applied to data are commensurate with data classificat...",
+                "path": "NIST_CSF/PROTECT/PR.DS-12.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.IR-03",
+                "description": "Mechanisms are implemented to achieve resilience requirements in normal and adve...",
+                "path": "NIST_CSF/PROTECT/PR.IR-03.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.IR-04",
+                "description": "Adequate resource capacity to ensure availability is maintained",
+                "path": "NIST_CSF/PROTECT/PR.IR-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.PS-04",
+                "description": "Log records are generated and made available for continuous monitoring",
+                "path": "NIST_CSF/PROTECT/PR.PS-04.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P1",
+                "description": "Data-at-rest are protected",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P2",
+                "description": "Data-in-transit are protected.",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P1",
+                "description": "A baseline configuration of information technology is created and maintained inc...",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P3",
+                "description": "Backups of information are conducted, maintained, and tested.",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P3.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PT-P1",
+                "description": "Removable media is protected and its use restricted according to policy.",
+                "path": "NIST_PF/PROTECT-P/PR.PT-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PT-P2",
+                "description": "The principle of least functionality is incorporated by configuring systems to p...",
+                "path": "NIST_PF/PROTECT-P/PR.PT-P2.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-02.1",
+        "applicable_regulations": [
+            "GDPR",
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.OV-02",
+                "description": "The cybersecurity risk management strategy is reviewed and adjusted to ensure co...",
+                "path": "NIST_CSF/GOVERN/GV.OV-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.RM-01",
+                "description": "Risk management objectives are established and agreed to by organizational stake...",
+                "path": "NIST_CSF/GOVERN/GV.RM-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.RM-06",
+                "description": "A standardized method for calculating, documenting, categorizing, and prioritizi...",
+                "path": "NIST_CSF/GOVERN/GV.RM-06.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.SC-04",
+                "description": "Suppliers are known and prioritized by criticality",
+                "path": "NIST_CSF/GOVERN/GV.SC-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.AM-02",
+                "description": "Inventories of software, services, and systems managed by the organization are m...",
+                "path": "NIST_CSF/IDENTIFY/ID.AM-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.IM-02",
+                "description": "Improvements are identified from security tests and exercises, including those d...",
+                "path": "NIST_CSF/IDENTIFY/ID.IM-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.IM-04",
+                "description": "Incident response plans and other cybersecurity plans that affect operations are...",
+                "path": "NIST_CSF/IDENTIFY/ID.IM-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.RA-01",
+                "description": "Vulnerabilities in assets are identified, validated, and recorded",
+                "path": "NIST_CSF/IDENTIFY/ID.RA-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.RA-03",
+                "description": "Internal and external threats to the organization are identified and recorded",
+                "path": "NIST_CSF/IDENTIFY/ID.RA-03.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.RA-04",
+                "description": "Potential impacts and likelihoods of threats exploiting vulnerabilities are iden...",
+                "path": "NIST_CSF/IDENTIFY/ID.RA-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.RA-05",
+                "description": "Threats, vulnerabilities, likelihoods, and impacts are used to understand inhere...",
+                "path": "NIST_CSF/IDENTIFY/ID.RA-05.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.RA-06",
+                "description": "Risk responses are chosen, prioritized, planned, tracked, and communicated",
+                "path": "NIST_CSF/IDENTIFY/ID.RA-06.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.PS-02",
+                "description": "Software is maintained, replaced, and removed commensurate with risk",
+                "path": "NIST_CSF/PROTECT/PR.PS-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.PS-06",
+                "description": "Secure software development practices are integrated, and their performance is m...",
+                "path": "NIST_CSF/PROTECT/PR.PS-06.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "RESPOND",
+                "control_id": "RS.MA-03",
+                "description": "Incidents are categorized and prioritized",
+                "path": "NIST_CSF/RESPOND/RS.MA-03.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "RESPOND",
+                "control_id": "RS.MI-01",
+                "description": "Incidents are contained",
+                "path": "NIST_CSF/RESPOND/RS.MI-01.json"
+            },
+            {
+                "framework": "PF",
+                "function": "CONTROL-P",
+                "control_id": "CT.DP-P4",
+                "description": "System or device configurations permit selective collection or disclosure of dat...",
+                "path": "NIST_PF/CONTROL-P/CT.DP-P4.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.MT-P1",
+                "description": "Privacy risk is re-evaluated on an ongoing basis and as key factors, including t...",
+                "path": "NIST_PF/GOVERN-P/GV.MT-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.MT-P2",
+                "description": "Privacy values, policies, and training are reviewed and any updates are communic...",
+                "path": "NIST_PF/GOVERN-P/GV.MT-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.RM-P1",
+                "description": "Risk management processes are established, managed, and agreed to by organizatio...",
+                "path": "NIST_PF/GOVERN-P/GV.RM-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.DE-P1",
+                "description": "Data processing ecosystem risk management policies, processes, and procedures ar...",
+                "path": "NIST_PF/IDENTIFY-P/ID.DE-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.DE-P2",
+                "description": "Data processing ecosystem parties (e.g., service providers, customers, partners,...",
+                "path": "NIST_PF/IDENTIFY-P/ID.DE-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.IM-P1",
+                "description": "Systems/products/services that process data are inventoried.",
+                "path": "NIST_PF/IDENTIFY-P/ID.IM-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.IM-P2",
+                "description": "Owners or operators (e.g., the organization or third parties such as service pro...",
+                "path": "NIST_PF/IDENTIFY-P/ID.IM-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.RA-P1",
+                "description": "Contextual factors related to the systems/products/services and the data actions...",
+                "path": "NIST_PF/IDENTIFY-P/ID.RA-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.RA-P2",
+                "description": "Data analytic inputs and outputs are identified and evaluated for bias.",
+                "path": "NIST_PF/IDENTIFY-P/ID.RA-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.RA-P3",
+                "description": "Potential problematic data actions and associated problems are identified.",
+                "path": "NIST_PF/IDENTIFY-P/ID.RA-P3.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.MA-P1",
+                "description": "Maintenance and repair of organizational assets are performed and logged, with a...",
+                "path": "NIST_PF/PROTECT-P/PR.MA-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P1",
+                "description": "A baseline configuration of information technology is created and maintained inc...",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P3",
+                "description": "Backups of information are conducted, maintained, and tested.",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P3.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-02.2",
+        "applicable_regulations": [
+            "GDPR",
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.OV-02",
+                "description": "The cybersecurity risk management strategy is reviewed and adjusted to ensure co...",
+                "path": "NIST_CSF/GOVERN/GV.OV-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.RA-01",
+                "description": "Vulnerabilities in assets are identified, validated, and recorded",
+                "path": "NIST_CSF/IDENTIFY/ID.RA-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.RA-06",
+                "description": "Risk responses are chosen, prioritized, planned, tracked, and communicated",
+                "path": "NIST_CSF/IDENTIFY/ID.RA-06.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.IR-01",
+                "description": "Networks and environments are protected from unauthorized logical access and usa...",
+                "path": "NIST_CSF/PROTECT/PR.IR-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.IR-03",
+                "description": "Mechanisms are implemented to achieve resilience requirements in normal and adve...",
+                "path": "NIST_CSF/PROTECT/PR.IR-03.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.PS-01",
+                "description": "Configuration management practices are established and applied",
+                "path": "NIST_CSF/PROTECT/PR.PS-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.PS-02",
+                "description": "Software is maintained, replaced, and removed commensurate with risk",
+                "path": "NIST_CSF/PROTECT/PR.PS-02.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.MT-P1",
+                "description": "Privacy risk is re-evaluated on an ongoing basis and as key factors, including t...",
+                "path": "NIST_PF/GOVERN-P/GV.MT-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.MT-P2",
+                "description": "Privacy values, policies, and training are reviewed and any updates are communic...",
+                "path": "NIST_PF/GOVERN-P/GV.MT-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.RA-P1",
+                "description": "Contextual factors related to the systems/products/services and the data actions...",
+                "path": "NIST_PF/IDENTIFY-P/ID.RA-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.RA-P3",
+                "description": "Potential problematic data actions and associated problems are identified.",
+                "path": "NIST_PF/IDENTIFY-P/ID.RA-P3.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P1",
+                "description": "A baseline configuration of information technology is created and maintained inc...",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P3",
+                "description": "Backups of information are conducted, maintained, and tested.",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P3.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PT-P1",
+                "description": "Removable media is protected and its use restricted according to policy.",
+                "path": "NIST_PF/PROTECT-P/PR.PT-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PT-P2",
+                "description": "The principle of least functionality is incorporated by configuring systems to p...",
+                "path": "NIST_PF/PROTECT-P/PR.PT-P2.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-02.3",
+        "applicable_regulations": [
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.PO-01",
+                "description": "Policy for managing cybersecurity risks is established based on organizational c...",
+                "path": "NIST_CSF/GOVERN/GV.PO-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.SC-04",
+                "description": "Suppliers are known and prioritized by criticality",
+                "path": "NIST_CSF/GOVERN/GV.SC-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.RA-01",
+                "description": "Vulnerabilities in assets are identified, validated, and recorded",
+                "path": "NIST_CSF/IDENTIFY/ID.RA-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "RESPOND",
+                "control_id": "RS.CO-03",
+                "description": "Information is shared with designated internal and external stakeholders",
+                "path": "NIST_CSF/RESPOND/RS.CO-03.json"
+            },
+            {
+                "framework": "PF",
+                "function": "CONTROL-P",
+                "control_id": "CT.DP-P4",
+                "description": "System or device configurations permit selective collection or disclosure of dat...",
+                "path": "NIST_PF/CONTROL-P/CT.DP-P4.json"
+            },
+            {
+                "framework": "PF",
+                "function": "CONTROL-P",
+                "control_id": "CT.PO-P1",
+                "description": "Policies, processes, and procedures for authorizing data processing (e.g., organ...",
+                "path": "NIST_PF/CONTROL-P/CT.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.AT-P2",
+                "description": "Senior executives understand their roles and responsibilities.",
+                "path": "NIST_PF/GOVERN-P/GV.AT-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.PO-P3",
+                "description": "Roles and responsibilities for the workforce are established with respect to pri...",
+                "path": "NIST_PF/GOVERN-P/GV.PO-P3.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.PO-P4",
+                "description": "Privacy roles and responsibilities are coordinated and aligned with third-party ...",
+                "path": "NIST_PF/GOVERN-P/GV.PO-P4.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.RA-P1",
+                "description": "Contextual factors related to the systems/products/services and the data actions...",
+                "path": "NIST_PF/IDENTIFY-P/ID.RA-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.RA-P3",
+                "description": "Potential problematic data actions and associated problems are identified.",
+                "path": "NIST_PF/IDENTIFY-P/ID.RA-P3.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-03.1",
+        "applicable_regulations": [
+            "GDPR",
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "DETECT",
+                "control_id": "DE.CM-09",
+                "description": "Computing hardware and software, runtime environments, and their data are monito...",
+                "path": "NIST_CSF/DETECT/DE.CM-09.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.AM-01",
+                "description": "Inventories of hardware managed by the organization are maintained",
+                "path": "NIST_CSF/IDENTIFY/ID.AM-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.AA-01",
+                "description": "Identities and credentials for authorized users, services, and hardware are mana...",
+                "path": "NIST_CSF/PROTECT/PR.AA-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.AA-02",
+                "description": "Identities are proofed and bound to credentials based on the context of interact...",
+                "path": "NIST_CSF/PROTECT/PR.AA-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.AA-03",
+                "description": "Users, services, and hardware are authenticated",
+                "path": "NIST_CSF/PROTECT/PR.AA-03.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.AA-04",
+                "description": "Identity assertions are protected, conveyed, and verified",
+                "path": "NIST_CSF/PROTECT/PR.AA-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.AA-05",
+                "description": "Access permissions, entitlements, and authorizations are defined in a policy, ma...",
+                "path": "NIST_CSF/PROTECT/PR.AA-05.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.AA-06",
+                "description": "Physical access to assets is managed, monitored, and enforced commensurate with ...",
+                "path": "NIST_CSF/PROTECT/PR.AA-06.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.AT-02",
+                "description": "Individuals in specialized roles are provided with awareness and training so tha...",
+                "path": "NIST_CSF/PROTECT/PR.AT-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-12",
+                "description": "Cryptographic protections applied to data are commensurate with data classificat...",
+                "path": "NIST_CSF/PROTECT/PR.DS-12.json"
+            },
+            {
+                "framework": "PF",
+                "function": "COMMUNICATE-P",
+                "control_id": "CM.AW-P1",
+                "description": "Mechanisms (e.g., notices, internal or public reports) for communicating data pr...",
+                "path": "NIST_PF/COMMUNICATE-P/CM.AW-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "COMMUNICATE-P",
+                "control_id": "CM.PO-P1",
+                "description": "Transparency policies, processes, and procedures for communicating data processi...",
+                "path": "NIST_PF/COMMUNICATE-P/CM.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.AT-P1",
+                "description": "The workforce is informed and trained on its roles and responsibilities.",
+                "path": "NIST_PF/GOVERN-P/GV.AT-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.DE-P1",
+                "description": "Data processing ecosystem risk management policies, processes, and procedures ar...",
+                "path": "NIST_PF/IDENTIFY-P/ID.DE-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.DE-P2",
+                "description": "Data processing ecosystem parties (e.g., service providers, customers, partners,...",
+                "path": "NIST_PF/IDENTIFY-P/ID.DE-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.AC-P1",
+                "description": "Identities and credentials are issued, managed, verified, revoked, and audited f...",
+                "path": "NIST_PF/PROTECT-P/PR.AC-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.AC-P3",
+                "description": "Remote access is managed.",
+                "path": "NIST_PF/PROTECT-P/PR.AC-P3.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.AC-P6",
+                "description": "Individuals and devices are proofed and bound to credentials, and authenticated ...",
+                "path": "NIST_PF/PROTECT-P/PR.AC-P6.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P1",
+                "description": "Data-at-rest are protected",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P2",
+                "description": "Data-in-transit are protected.",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P2.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-03.2",
+        "applicable_regulations": [
+            "GDPR",
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "DETECT",
+                "control_id": "DE.CM-09",
+                "description": "Computing hardware and software, runtime environments, and their data are monito...",
+                "path": "NIST_CSF/DETECT/DE.CM-09.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.AM-01",
+                "description": "Inventories of hardware managed by the organization are maintained",
+                "path": "NIST_CSF/IDENTIFY/ID.AM-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.AA-01",
+                "description": "Identities and credentials for authorized users, services, and hardware are mana...",
+                "path": "NIST_CSF/PROTECT/PR.AA-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.AA-03",
+                "description": "Users, services, and hardware are authenticated",
+                "path": "NIST_CSF/PROTECT/PR.AA-03.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.AA-04",
+                "description": "Identity assertions are protected, conveyed, and verified",
+                "path": "NIST_CSF/PROTECT/PR.AA-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.AA-05",
+                "description": "Access permissions, entitlements, and authorizations are defined in a policy, ma...",
+                "path": "NIST_CSF/PROTECT/PR.AA-05.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.AA-06",
+                "description": "Physical access to assets is managed, monitored, and enforced commensurate with ...",
+                "path": "NIST_CSF/PROTECT/PR.AA-06.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.AT-02",
+                "description": "Individuals in specialized roles are provided with awareness and training so tha...",
+                "path": "NIST_CSF/PROTECT/PR.AT-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-02",
+                "description": "The confidentiality, integrity, and availability of data-in-transit are protecte...",
+                "path": "NIST_CSF/PROTECT/PR.DS-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.IR-03",
+                "description": "Mechanisms are implemented to achieve resilience requirements in normal and adve...",
+                "path": "NIST_CSF/PROTECT/PR.IR-03.json"
+            },
+            {
+                "framework": "PF",
+                "function": "COMMUNICATE-P",
+                "control_id": "CM.AW-P1",
+                "description": "Mechanisms (e.g., notices, internal or public reports) for communicating data pr...",
+                "path": "NIST_PF/COMMUNICATE-P/CM.AW-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "COMMUNICATE-P",
+                "control_id": "CM.PO-P1",
+                "description": "Transparency policies, processes, and procedures for communicating data processi...",
+                "path": "NIST_PF/COMMUNICATE-P/CM.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.AT-P1",
+                "description": "The workforce is informed and trained on its roles and responsibilities.",
+                "path": "NIST_PF/GOVERN-P/GV.AT-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.DE-P1",
+                "description": "Data processing ecosystem risk management policies, processes, and procedures ar...",
+                "path": "NIST_PF/IDENTIFY-P/ID.DE-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.DE-P2",
+                "description": "Data processing ecosystem parties (e.g., service providers, customers, partners,...",
+                "path": "NIST_PF/IDENTIFY-P/ID.DE-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.AC-P1",
+                "description": "Identities and credentials are issued, managed, verified, revoked, and audited f...",
+                "path": "NIST_PF/PROTECT-P/PR.AC-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.AC-P3",
+                "description": "Remote access is managed.",
+                "path": "NIST_PF/PROTECT-P/PR.AC-P3.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.AC-P6",
+                "description": "Individuals and devices are proofed and bound to credentials, and authenticated ...",
+                "path": "NIST_PF/PROTECT-P/PR.AC-P6.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P1",
+                "description": "Data-at-rest are protected",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P2",
+                "description": "Data-in-transit are protected.",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PT-P1",
+                "description": "Removable media is protected and its use restricted according to policy.",
+                "path": "NIST_PF/PROTECT-P/PR.PT-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PT-P2",
+                "description": "The principle of least functionality is incorporated by configuring systems to p...",
+                "path": "NIST_PF/PROTECT-P/PR.PT-P2.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-03.3",
+        "applicable_regulations": [
+            "GDPR",
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "DETECT",
+                "control_id": "DE.CM-09",
+                "description": "Computing hardware and software, runtime environments, and their data are monito...",
+                "path": "NIST_CSF/DETECT/DE.CM-09.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.AM-01",
+                "description": "Inventories of hardware managed by the organization are maintained",
+                "path": "NIST_CSF/IDENTIFY/ID.AM-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.AM-02",
+                "description": "Inventories of software, services, and systems managed by the organization are m...",
+                "path": "NIST_CSF/IDENTIFY/ID.AM-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.AA-01",
+                "description": "Identities and credentials for authorized users, services, and hardware are mana...",
+                "path": "NIST_CSF/PROTECT/PR.AA-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.AA-03",
+                "description": "Users, services, and hardware are authenticated",
+                "path": "NIST_CSF/PROTECT/PR.AA-03.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.AA-04",
+                "description": "Identity assertions are protected, conveyed, and verified",
+                "path": "NIST_CSF/PROTECT/PR.AA-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.AA-05",
+                "description": "Access permissions, entitlements, and authorizations are defined in a policy, ma...",
+                "path": "NIST_CSF/PROTECT/PR.AA-05.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.AA-06",
+                "description": "Physical access to assets is managed, monitored, and enforced commensurate with ...",
+                "path": "NIST_CSF/PROTECT/PR.AA-06.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.AT-02",
+                "description": "Individuals in specialized roles are provided with awareness and training so tha...",
+                "path": "NIST_CSF/PROTECT/PR.AT-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.PS-04",
+                "description": "Log records are generated and made available for continuous monitoring",
+                "path": "NIST_CSF/PROTECT/PR.PS-04.json"
+            },
+            {
+                "framework": "PF",
+                "function": "COMMUNICATE-P",
+                "control_id": "CM.AW-P1",
+                "description": "Mechanisms (e.g., notices, internal or public reports) for communicating data pr...",
+                "path": "NIST_PF/COMMUNICATE-P/CM.AW-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "COMMUNICATE-P",
+                "control_id": "CM.PO-P1",
+                "description": "Transparency policies, processes, and procedures for communicating data processi...",
+                "path": "NIST_PF/COMMUNICATE-P/CM.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.AT-P1",
+                "description": "The workforce is informed and trained on its roles and responsibilities.",
+                "path": "NIST_PF/GOVERN-P/GV.AT-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.DE-P1",
+                "description": "Data processing ecosystem risk management policies, processes, and procedures ar...",
+                "path": "NIST_PF/IDENTIFY-P/ID.DE-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.DE-P2",
+                "description": "Data processing ecosystem parties (e.g., service providers, customers, partners,...",
+                "path": "NIST_PF/IDENTIFY-P/ID.DE-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.AC-P1",
+                "description": "Identities and credentials are issued, managed, verified, revoked, and audited f...",
+                "path": "NIST_PF/PROTECT-P/PR.AC-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.AC-P3",
+                "description": "Remote access is managed.",
+                "path": "NIST_PF/PROTECT-P/PR.AC-P3.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.AC-P6",
+                "description": "Individuals and devices are proofed and bound to credentials, and authenticated ...",
+                "path": "NIST_PF/PROTECT-P/PR.AC-P6.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P1",
+                "description": "A baseline configuration of information technology is created and maintained inc...",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P3",
+                "description": "Backups of information are conducted, maintained, and tested.",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P3.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-03.4",
+        "applicable_regulations": [
+            "GDPR",
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.PO-01",
+                "description": "Policy for managing cybersecurity risks is established based on organizational c...",
+                "path": "NIST_CSF/GOVERN/GV.PO-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.SC-03",
+                "description": "Cybersecurity supply chain risk management is integrated into cybersecurity and ...",
+                "path": "NIST_CSF/GOVERN/GV.SC-03.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-12",
+                "description": "Cryptographic protections applied to data are commensurate with data classificat...",
+                "path": "NIST_CSF/PROTECT/PR.DS-12.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.PS-01",
+                "description": "Configuration management practices are established and applied",
+                "path": "NIST_CSF/PROTECT/PR.PS-01.json"
+            },
+            {
+                "framework": "PF",
+                "function": "CONTROL-P",
+                "control_id": "CT.DP-P4",
+                "description": "System or device configurations permit selective collection or disclosure of dat...",
+                "path": "NIST_PF/CONTROL-P/CT.DP-P4.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.PO-P3",
+                "description": "Roles and responsibilities for the workforce are established with respect to pri...",
+                "path": "NIST_PF/GOVERN-P/GV.PO-P3.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.PO-P4",
+                "description": "Privacy roles and responsibilities are coordinated and aligned with third-party ...",
+                "path": "NIST_PF/GOVERN-P/GV.PO-P4.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P1",
+                "description": "Data-at-rest are protected",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P2",
+                "description": "Data-in-transit are protected.",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P1",
+                "description": "A baseline configuration of information technology is created and maintained inc...",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P3",
+                "description": "Backups of information are conducted, maintained, and tested.",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P3.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-04.1",
+        "applicable_regulations": [
+            "GDPR",
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "DETECT",
+                "control_id": "DE.AE-02",
+                "description": "Potentially adverse events are analyzed to better understand associated activiti...",
+                "path": "NIST_CSF/DETECT/DE.AE-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "DETECT",
+                "control_id": "DE.CM-01",
+                "description": "Networks and network services are monitored to find potentially adverse events",
+                "path": "NIST_CSF/DETECT/DE.CM-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "DETECT",
+                "control_id": "DE.CM-09",
+                "description": "Computing hardware and software, runtime environments, and their data are monito...",
+                "path": "NIST_CSF/DETECT/DE.CM-09.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.PS-04",
+                "description": "Log records are generated and made available for continuous monitoring",
+                "path": "NIST_CSF/PROTECT/PR.PS-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "RESPOND",
+                "control_id": "RS.MA-01",
+                "description": "The incident response plan is executed in coordination with relevant third parti...",
+                "path": "NIST_CSF/RESPOND/RS.MA-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "RESPOND",
+                "control_id": "RS.MA-02",
+                "description": "Incident reports are triaged and validated",
+                "path": "NIST_CSF/RESPOND/RS.MA-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "RESPOND",
+                "control_id": "RS.MA-03",
+                "description": "Incidents are categorized and prioritized",
+                "path": "NIST_CSF/RESPOND/RS.MA-03.json"
+            },
+            {
+                "framework": "PF",
+                "function": "COMMUNICATE-P",
+                "control_id": "CM.AW-P1",
+                "description": "Mechanisms (e.g., notices, internal or public reports) for communicating data pr...",
+                "path": "NIST_PF/COMMUNICATE-P/CM.AW-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "COMMUNICATE-P",
+                "control_id": "CM.AW-P2",
+                "description": "Mechanisms for obtaining feedback from individuals (e.g., surveys or focus group...",
+                "path": "NIST_PF/COMMUNICATE-P/CM.AW-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "COMMUNICATE-P",
+                "control_id": "CM.PO-P1",
+                "description": "Transparency policies, processes, and procedures for communicating data processi...",
+                "path": "NIST_PF/COMMUNICATE-P/CM.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "CONTROL-P",
+                "control_id": "CT.DM-P1",
+                "description": "Data elements can be accessed for review",
+                "path": "NIST_PF/CONTROL-P/CT.DM-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P1",
+                "description": "A baseline configuration of information technology is created and maintained inc...",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P3",
+                "description": "Backups of information are conducted, maintained, and tested.",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P3.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-04.2",
+        "applicable_regulations": [
+            "GDPR",
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "DETECT",
+                "control_id": "DE.CM-09",
+                "description": "Computing hardware and software, runtime environments, and their data are monito...",
+                "path": "NIST_CSF/DETECT/DE.CM-09.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-01",
+                "description": "The confidentiality, integrity, and availability of data-at-rest are protected",
+                "path": "NIST_CSF/PROTECT/PR.DS-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-11",
+                "description": "Backups of data are created, protected, maintained, and tested",
+                "path": "NIST_CSF/PROTECT/PR.DS-11.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-12",
+                "description": "Cryptographic protections applied to data are commensurate with data classificat...",
+                "path": "NIST_CSF/PROTECT/PR.DS-12.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.IR-03",
+                "description": "Mechanisms are implemented to achieve resilience requirements in normal and adve...",
+                "path": "NIST_CSF/PROTECT/PR.IR-03.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.IR-04",
+                "description": "Adequate resource capacity to ensure availability is maintained",
+                "path": "NIST_CSF/PROTECT/PR.IR-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "RECOVER",
+                "control_id": "RC.RP-01",
+                "description": "The recovery portion of the incident response plan is executed once initiated fr...",
+                "path": "NIST_CSF/RECOVER/RC.RP-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "RECOVER",
+                "control_id": "RC.RP-03",
+                "description": "The integrity of backups and other restoration assets is verified before using t...",
+                "path": "NIST_CSF/RECOVER/RC.RP-03.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "RECOVER",
+                "control_id": "RC.RP-04",
+                "description": "Critical mission functions and cybersecurity risk management are considered to e...",
+                "path": "NIST_CSF/RECOVER/RC.RP-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "RESPOND",
+                "control_id": "RS.MI-01",
+                "description": "Incidents are contained",
+                "path": "NIST_CSF/RESPOND/RS.MI-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "RESPOND",
+                "control_id": "RS.MI-02",
+                "description": "Incidents are eradicated",
+                "path": "NIST_CSF/RESPOND/RS.MI-02.json"
+            },
+            {
+                "framework": "PF",
+                "function": "COMMUNICATE-P",
+                "control_id": "CM.AW-P1",
+                "description": "Mechanisms (e.g., notices, internal or public reports) for communicating data pr...",
+                "path": "NIST_PF/COMMUNICATE-P/CM.AW-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "COMMUNICATE-P",
+                "control_id": "CM.PO-P1",
+                "description": "Transparency policies, processes, and procedures for communicating data processi...",
+                "path": "NIST_PF/COMMUNICATE-P/CM.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "CONTROL-P",
+                "control_id": "CT.DP-P3",
+                "description": "Data are processed to limit the formulation of inferences about individuals’ beh...",
+                "path": "NIST_PF/CONTROL-P/CT.DP-P3.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P1",
+                "description": "Data-at-rest are protected",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P2",
+                "description": "Data-in-transit are protected.",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.MA-P1",
+                "description": "Maintenance and repair of organizational assets are performed and logged, with a...",
+                "path": "NIST_PF/PROTECT-P/PR.MA-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P4",
+                "description": "Policy and regulations regarding the physical operating environment for organiza...",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P4.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PT-P1",
+                "description": "Removable media is protected and its use restricted according to policy.",
+                "path": "NIST_PF/PROTECT-P/PR.PT-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PT-P2",
+                "description": "The principle of least functionality is incorporated by configuring systems to p...",
+                "path": "NIST_PF/PROTECT-P/PR.PT-P2.json"
+            },
+            {
+                "framework": "AI-RMF",
+                "function": "MANAGE",
+                "control_id": "MANAGE-2.1",
+                "description": "Resources required to manage AI risks are taken into account, along with viable ...",
+                "path": "NIST_AI_RMF/MANAGE/MANAGE-2.1.json"
+            },
+            {
+                "framework": "AI-RMF",
+                "function": "MANAGE",
+                "control_id": "MANAGE-2.3",
+                "description": "Procedures are followed to respond to and recover from a previously unknown risk...",
+                "path": "NIST_AI_RMF/MANAGE/MANAGE-2.3.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-04.3",
+        "applicable_regulations": [
+            "GDPR",
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "RESPOND",
+                "control_id": "RS.AN-03",
+                "description": "Analysis is performed to establish what has taken place during an incident and t...",
+                "path": "NIST_CSF/RESPOND/RS.AN-03.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "RESPOND",
+                "control_id": "RS.AN-07",
+                "description": "Incident data and metadata are collected, and their integrity and provenance are...",
+                "path": "NIST_CSF/RESPOND/RS.AN-07.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "RESPOND",
+                "control_id": "RS.CO-02",
+                "description": "Internal and external stakeholders are notified of incidents",
+                "path": "NIST_CSF/RESPOND/RS.CO-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "?",
+                "control_id": "RS.CO-04",
+                "description": "?",
+                "path": "NIST_CSF/?/RS.CO-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "RESPOND",
+                "control_id": "RS.MA-01",
+                "description": "The incident response plan is executed in coordination with relevant third parti...",
+                "path": "NIST_CSF/RESPOND/RS.MA-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "RESPOND",
+                "control_id": "RS.MA-02",
+                "description": "Incident reports are triaged and validated",
+                "path": "NIST_CSF/RESPOND/RS.MA-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "RESPOND",
+                "control_id": "RS.MA-03",
+                "description": "Incidents are categorized and prioritized",
+                "path": "NIST_CSF/RESPOND/RS.MA-03.json"
+            },
+            {
+                "framework": "PF",
+                "function": "CONTROL-P",
+                "control_id": "CT.DM-P3",
+                "description": "Data elements can be accessed for alteration.",
+                "path": "NIST_PF/CONTROL-P/CT.DM-P3.json"
+            },
+            {
+                "framework": "PF",
+                "function": "CONTROL-P",
+                "control_id": "CT.PO-P1",
+                "description": "Policies, processes, and procedures for authorizing data processing (e.g., organ...",
+                "path": "NIST_PF/CONTROL-P/CT.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.AT-P2",
+                "description": "Senior executives understand their roles and responsibilities.",
+                "path": "NIST_PF/GOVERN-P/GV.AT-P2.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-04.4",
+        "applicable_regulations": [
+            "GDPR",
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-11",
+                "description": "Backups of data are created, protected, maintained, and tested",
+                "path": "NIST_CSF/PROTECT/PR.DS-11.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-12",
+                "description": "Cryptographic protections applied to data are commensurate with data classificat...",
+                "path": "NIST_CSF/PROTECT/PR.DS-12.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.IR-03",
+                "description": "Mechanisms are implemented to achieve resilience requirements in normal and adve...",
+                "path": "NIST_CSF/PROTECT/PR.IR-03.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.IR-04",
+                "description": "Adequate resource capacity to ensure availability is maintained",
+                "path": "NIST_CSF/PROTECT/PR.IR-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "RECOVER",
+                "control_id": "RC.RP-01",
+                "description": "The recovery portion of the incident response plan is executed once initiated fr...",
+                "path": "NIST_CSF/RECOVER/RC.RP-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "RECOVER",
+                "control_id": "RC.RP-03",
+                "description": "The integrity of backups and other restoration assets is verified before using t...",
+                "path": "NIST_CSF/RECOVER/RC.RP-03.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "RECOVER",
+                "control_id": "RC.RP-04",
+                "description": "Critical mission functions and cybersecurity risk management are considered to e...",
+                "path": "NIST_CSF/RECOVER/RC.RP-04.json"
+            },
+            {
+                "framework": "PF",
+                "function": "CONTROL-P",
+                "control_id": "CT.DP-P3",
+                "description": "Data are processed to limit the formulation of inferences about individuals’ beh...",
+                "path": "NIST_PF/CONTROL-P/CT.DP-P3.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P1",
+                "description": "Data-at-rest are protected",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P2",
+                "description": "Data-in-transit are protected.",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P4",
+                "description": "Policy and regulations regarding the physical operating environment for organiza...",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P4.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PT-P1",
+                "description": "Removable media is protected and its use restricted according to policy.",
+                "path": "NIST_PF/PROTECT-P/PR.PT-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PT-P2",
+                "description": "The principle of least functionality is incorporated by configuring systems to p...",
+                "path": "NIST_PF/PROTECT-P/PR.PT-P2.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-05.1",
+        "applicable_regulations": [
+            "GDPR",
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.OC-03",
+                "description": "Legal, regulatory, and contractual requirements regarding cybersecurity - includ...",
+                "path": "NIST_CSF/GOVERN/GV.OC-03.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.PO-01",
+                "description": "Policy for managing cybersecurity risks is established based on organizational c...",
+                "path": "NIST_CSF/GOVERN/GV.PO-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.AM-03",
+                "description": "Representations of the organization's authorized network communication and inter...",
+                "path": "NIST_CSF/IDENTIFY/ID.AM-03.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-01",
+                "description": "The confidentiality, integrity, and availability of data-at-rest are protected",
+                "path": "NIST_CSF/PROTECT/PR.DS-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-12",
+                "description": "Cryptographic protections applied to data are commensurate with data classificat...",
+                "path": "NIST_CSF/PROTECT/PR.DS-12.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.PS-06",
+                "description": "Secure software development practices are integrated, and their performance is m...",
+                "path": "NIST_CSF/PROTECT/PR.PS-06.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.PO-P1",
+                "description": "Organizational privacy values and policies (e.g., conditions on data processing ...",
+                "path": "NIST_PF/GOVERN-P/GV.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.PO-P2",
+                "description": "Processes to instill organizational privacy values within system/product/service...",
+                "path": "NIST_PF/GOVERN-P/GV.PO-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.PO-P3",
+                "description": "Roles and responsibilities for the workforce are established with respect to pri...",
+                "path": "NIST_PF/GOVERN-P/GV.PO-P3.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.PO-P4",
+                "description": "Privacy roles and responsibilities are coordinated and aligned with third-party ...",
+                "path": "NIST_PF/GOVERN-P/GV.PO-P4.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.DE-P1",
+                "description": "Data processing ecosystem risk management policies, processes, and procedures ar...",
+                "path": "NIST_PF/IDENTIFY-P/ID.DE-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.DE-P2",
+                "description": "Data processing ecosystem parties (e.g., service providers, customers, partners,...",
+                "path": "NIST_PF/IDENTIFY-P/ID.DE-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P1",
+                "description": "Data-at-rest are protected",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P2",
+                "description": "Data-in-transit are protected.",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P1",
+                "description": "A baseline configuration of information technology is created and maintained inc...",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P3",
+                "description": "Backups of information are conducted, maintained, and tested.",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P3.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-05.2",
+        "applicable_regulations": [
+            "GDPR",
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.OC-04",
+                "description": "Critical objectives, capabilities, and services that external stakeholders depen...",
+                "path": "NIST_CSF/GOVERN/GV.OC-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.OV-02",
+                "description": "The cybersecurity risk management strategy is reviewed and adjusted to ensure co...",
+                "path": "NIST_CSF/GOVERN/GV.OV-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.PO-02",
+                "description": "Policy for managing cybersecurity risks is reviewed, updated, communicated, and ...",
+                "path": "NIST_CSF/GOVERN/GV.PO-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.AM-03",
+                "description": "Representations of the organization's authorized network communication and inter...",
+                "path": "NIST_CSF/IDENTIFY/ID.AM-03.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-12",
+                "description": "Cryptographic protections applied to data are commensurate with data classificat...",
+                "path": "NIST_CSF/PROTECT/PR.DS-12.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.PS-02",
+                "description": "Software is maintained, replaced, and removed commensurate with risk",
+                "path": "NIST_CSF/PROTECT/PR.PS-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.PS-04",
+                "description": "Log records are generated and made available for continuous monitoring",
+                "path": "NIST_CSF/PROTECT/PR.PS-04.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.MT-P1",
+                "description": "Privacy risk is re-evaluated on an ongoing basis and as key factors, including t...",
+                "path": "NIST_PF/GOVERN-P/GV.MT-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.MT-P2",
+                "description": "Privacy values, policies, and training are reviewed and any updates are communic...",
+                "path": "NIST_PF/GOVERN-P/GV.MT-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.PO-P1",
+                "description": "Organizational privacy values and policies (e.g., conditions on data processing ...",
+                "path": "NIST_PF/GOVERN-P/GV.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.PO-P2",
+                "description": "Processes to instill organizational privacy values within system/product/service...",
+                "path": "NIST_PF/GOVERN-P/GV.PO-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.PO-P3",
+                "description": "Roles and responsibilities for the workforce are established with respect to pri...",
+                "path": "NIST_PF/GOVERN-P/GV.PO-P3.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.PO-P4",
+                "description": "Privacy roles and responsibilities are coordinated and aligned with third-party ...",
+                "path": "NIST_PF/GOVERN-P/GV.PO-P4.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.DE-P1",
+                "description": "Data processing ecosystem risk management policies, processes, and procedures ar...",
+                "path": "NIST_PF/IDENTIFY-P/ID.DE-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.DE-P2",
+                "description": "Data processing ecosystem parties (e.g., service providers, customers, partners,...",
+                "path": "NIST_PF/IDENTIFY-P/ID.DE-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P1",
+                "description": "Data-at-rest are protected",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P2",
+                "description": "Data-in-transit are protected.",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P1",
+                "description": "A baseline configuration of information technology is created and maintained inc...",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P3",
+                "description": "Backups of information are conducted, maintained, and tested.",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P3.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-05.3",
+        "applicable_regulations": [
+            "GDPR",
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.SC-04",
+                "description": "Suppliers are known and prioritized by criticality",
+                "path": "NIST_CSF/GOVERN/GV.SC-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-10",
+                "description": "The confidentiality, integrity, and availability of data-in-use are protected",
+                "path": "NIST_CSF/PROTECT/PR.DS-10.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-12",
+                "description": "Cryptographic protections applied to data are commensurate with data classificat...",
+                "path": "NIST_CSF/PROTECT/PR.DS-12.json"
+            },
+            {
+                "framework": "PF",
+                "function": "CONTROL-P",
+                "control_id": "CT.DP-P4",
+                "description": "System or device configurations permit selective collection or disclosure of dat...",
+                "path": "NIST_PF/CONTROL-P/CT.DP-P4.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P1",
+                "description": "Data-at-rest are protected",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P2",
+                "description": "Data-in-transit are protected.",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P2.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-05.4",
+        "applicable_regulations": [
+            "GDPR"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-10",
+                "description": "The confidentiality, integrity, and availability of data-in-use are protected",
+                "path": "NIST_CSF/PROTECT/PR.DS-10.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-12",
+                "description": "Cryptographic protections applied to data are commensurate with data classificat...",
+                "path": "NIST_CSF/PROTECT/PR.DS-12.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P1",
+                "description": "Data-at-rest are protected",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P2",
+                "description": "Data-in-transit are protected.",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P2.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-06.1",
+        "applicable_regulations": [
+            "GDPR",
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.OC-03",
+                "description": "Legal, regulatory, and contractual requirements regarding cybersecurity - includ...",
+                "path": "NIST_CSF/GOVERN/GV.OC-03.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.SC-01",
+                "description": "A cybersecurity supply chain risk management program, strategy, objectives, poli...",
+                "path": "NIST_CSF/GOVERN/GV.SC-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.SC-02",
+                "description": "Cybersecurity roles and responsibilities for suppliers, customers, and partners ...",
+                "path": "NIST_CSF/GOVERN/GV.SC-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.SC-03",
+                "description": "Cybersecurity supply chain risk management is integrated into cybersecurity and ...",
+                "path": "NIST_CSF/GOVERN/GV.SC-03.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.SC-04",
+                "description": "Suppliers are known and prioritized by criticality",
+                "path": "NIST_CSF/GOVERN/GV.SC-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.AM-04",
+                "description": "Inventories of services provided by suppliers are maintained",
+                "path": "NIST_CSF/IDENTIFY/ID.AM-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.RA-01",
+                "description": "Vulnerabilities in assets are identified, validated, and recorded",
+                "path": "NIST_CSF/IDENTIFY/ID.RA-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.RA-02",
+                "description": "Cyber threat intelligence is received from information sharing forums and source...",
+                "path": "NIST_CSF/IDENTIFY/ID.RA-02.json"
+            },
+            {
+                "framework": "PF",
+                "function": "CONTROL-P",
+                "control_id": "CT.DP-P4",
+                "description": "System or device configurations permit selective collection or disclosure of dat...",
+                "path": "NIST_PF/CONTROL-P/CT.DP-P4.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.PO-P1",
+                "description": "Organizational privacy values and policies (e.g., conditions on data processing ...",
+                "path": "NIST_PF/GOVERN-P/GV.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.PO-P2",
+                "description": "Processes to instill organizational privacy values within system/product/service...",
+                "path": "NIST_PF/GOVERN-P/GV.PO-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.DE-P1",
+                "description": "Data processing ecosystem risk management policies, processes, and procedures ar...",
+                "path": "NIST_PF/IDENTIFY-P/ID.DE-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.DE-P2",
+                "description": "Data processing ecosystem parties (e.g., service providers, customers, partners,...",
+                "path": "NIST_PF/IDENTIFY-P/ID.DE-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.RA-P1",
+                "description": "Contextual factors related to the systems/products/services and the data actions...",
+                "path": "NIST_PF/IDENTIFY-P/ID.RA-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.RA-P3",
+                "description": "Potential problematic data actions and associated problems are identified.",
+                "path": "NIST_PF/IDENTIFY-P/ID.RA-P3.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-06.2",
+        "applicable_regulations": [
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.SC-02",
+                "description": "Cybersecurity roles and responsibilities for suppliers, customers, and partners ...",
+                "path": "NIST_CSF/GOVERN/GV.SC-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.SC-03",
+                "description": "Cybersecurity supply chain risk management is integrated into cybersecurity and ...",
+                "path": "NIST_CSF/GOVERN/GV.SC-03.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.AM-02",
+                "description": "Inventories of software, services, and systems managed by the organization are m...",
+                "path": "NIST_CSF/IDENTIFY/ID.AM-02.json"
+            },
+            {
+                "framework": "PF",
+                "function": "CONTROL-P",
+                "control_id": "CT.DP-P4",
+                "description": "System or device configurations permit selective collection or disclosure of dat...",
+                "path": "NIST_PF/CONTROL-P/CT.DP-P4.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.DE-P1",
+                "description": "Data processing ecosystem risk management policies, processes, and procedures ar...",
+                "path": "NIST_PF/IDENTIFY-P/ID.DE-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.DE-P2",
+                "description": "Data processing ecosystem parties (e.g., service providers, customers, partners,...",
+                "path": "NIST_PF/IDENTIFY-P/ID.DE-P2.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-06.3",
+        "applicable_regulations": [
+            "GDPR",
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "DETECT",
+                "control_id": "DE.CM-06",
+                "description": "External service provider activities and services are monitored to find potentia...",
+                "path": "NIST_CSF/DETECT/DE.CM-06.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.OC-03",
+                "description": "Legal, regulatory, and contractual requirements regarding cybersecurity - includ...",
+                "path": "NIST_CSF/GOVERN/GV.OC-03.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.SC-01",
+                "description": "A cybersecurity supply chain risk management program, strategy, objectives, poli...",
+                "path": "NIST_CSF/GOVERN/GV.SC-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.SC-02",
+                "description": "Cybersecurity roles and responsibilities for suppliers, customers, and partners ...",
+                "path": "NIST_CSF/GOVERN/GV.SC-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.SC-03",
+                "description": "Cybersecurity supply chain risk management is integrated into cybersecurity and ...",
+                "path": "NIST_CSF/GOVERN/GV.SC-03.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.SC-04",
+                "description": "Suppliers are known and prioritized by criticality",
+                "path": "NIST_CSF/GOVERN/GV.SC-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.AM-04",
+                "description": "Inventories of services provided by suppliers are maintained",
+                "path": "NIST_CSF/IDENTIFY/ID.AM-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.RA-01",
+                "description": "Vulnerabilities in assets are identified, validated, and recorded",
+                "path": "NIST_CSF/IDENTIFY/ID.RA-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.RA-02",
+                "description": "Cyber threat intelligence is received from information sharing forums and source...",
+                "path": "NIST_CSF/IDENTIFY/ID.RA-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-12",
+                "description": "Cryptographic protections applied to data are commensurate with data classificat...",
+                "path": "NIST_CSF/PROTECT/PR.DS-12.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.PS-06",
+                "description": "Secure software development practices are integrated, and their performance is m...",
+                "path": "NIST_CSF/PROTECT/PR.PS-06.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "?",
+                "control_id": "RS.CO-04",
+                "description": "?",
+                "path": "NIST_CSF/?/RS.CO-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "RESPOND",
+                "control_id": "RS.MI-01",
+                "description": "Incidents are contained",
+                "path": "NIST_CSF/RESPOND/RS.MI-01.json"
+            },
+            {
+                "framework": "PF",
+                "function": "COMMUNICATE-P",
+                "control_id": "CM.AW-P1",
+                "description": "Mechanisms (e.g., notices, internal or public reports) for communicating data pr...",
+                "path": "NIST_PF/COMMUNICATE-P/CM.AW-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "COMMUNICATE-P",
+                "control_id": "CM.PO-P1",
+                "description": "Transparency policies, processes, and procedures for communicating data processi...",
+                "path": "NIST_PF/COMMUNICATE-P/CM.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "CONTROL-P",
+                "control_id": "CT.DP-P4",
+                "description": "System or device configurations permit selective collection or disclosure of dat...",
+                "path": "NIST_PF/CONTROL-P/CT.DP-P4.json"
+            },
+            {
+                "framework": "PF",
+                "function": "CONTROL-P",
+                "control_id": "CT.PO-P1",
+                "description": "Policies, processes, and procedures for authorizing data processing (e.g., organ...",
+                "path": "NIST_PF/CONTROL-P/CT.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.AT-P2",
+                "description": "Senior executives understand their roles and responsibilities.",
+                "path": "NIST_PF/GOVERN-P/GV.AT-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.PO-P1",
+                "description": "Organizational privacy values and policies (e.g., conditions on data processing ...",
+                "path": "NIST_PF/GOVERN-P/GV.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.PO-P2",
+                "description": "Processes to instill organizational privacy values within system/product/service...",
+                "path": "NIST_PF/GOVERN-P/GV.PO-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.DE-P1",
+                "description": "Data processing ecosystem risk management policies, processes, and procedures ar...",
+                "path": "NIST_PF/IDENTIFY-P/ID.DE-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.DE-P2",
+                "description": "Data processing ecosystem parties (e.g., service providers, customers, partners,...",
+                "path": "NIST_PF/IDENTIFY-P/ID.DE-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.RA-P1",
+                "description": "Contextual factors related to the systems/products/services and the data actions...",
+                "path": "NIST_PF/IDENTIFY-P/ID.RA-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.RA-P3",
+                "description": "Potential problematic data actions and associated problems are identified.",
+                "path": "NIST_PF/IDENTIFY-P/ID.RA-P3.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P1",
+                "description": "Data-at-rest are protected",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P2",
+                "description": "Data-in-transit are protected.",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.MA-P1",
+                "description": "Maintenance and repair of organizational assets are performed and logged, with a...",
+                "path": "NIST_PF/PROTECT-P/PR.MA-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P1",
+                "description": "A baseline configuration of information technology is created and maintained inc...",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P3",
+                "description": "Backups of information are conducted, maintained, and tested.",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P3.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-07.1",
+        "applicable_regulations": [
+            "GDPR",
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.RA-01",
+                "description": "Vulnerabilities in assets are identified, validated, and recorded",
+                "path": "NIST_CSF/IDENTIFY/ID.RA-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-12",
+                "description": "Cryptographic protections applied to data are commensurate with data classificat...",
+                "path": "NIST_CSF/PROTECT/PR.DS-12.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.PS-01",
+                "description": "Configuration management practices are established and applied",
+                "path": "NIST_CSF/PROTECT/PR.PS-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.PS-02",
+                "description": "Software is maintained, replaced, and removed commensurate with risk",
+                "path": "NIST_CSF/PROTECT/PR.PS-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.PS-06",
+                "description": "Secure software development practices are integrated, and their performance is m...",
+                "path": "NIST_CSF/PROTECT/PR.PS-06.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.RA-P1",
+                "description": "Contextual factors related to the systems/products/services and the data actions...",
+                "path": "NIST_PF/IDENTIFY-P/ID.RA-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.RA-P3",
+                "description": "Potential problematic data actions and associated problems are identified.",
+                "path": "NIST_PF/IDENTIFY-P/ID.RA-P3.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P1",
+                "description": "Data-at-rest are protected",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P2",
+                "description": "Data-in-transit are protected.",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P1",
+                "description": "A baseline configuration of information technology is created and maintained inc...",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P3",
+                "description": "Backups of information are conducted, maintained, and tested.",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P3.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-07.2",
+        "applicable_regulations": [
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.RA-01",
+                "description": "Vulnerabilities in assets are identified, validated, and recorded",
+                "path": "NIST_CSF/IDENTIFY/ID.RA-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.PS-02",
+                "description": "Software is maintained, replaced, and removed commensurate with risk",
+                "path": "NIST_CSF/PROTECT/PR.PS-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.PS-06",
+                "description": "Secure software development practices are integrated, and their performance is m...",
+                "path": "NIST_CSF/PROTECT/PR.PS-06.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.RA-P1",
+                "description": "Contextual factors related to the systems/products/services and the data actions...",
+                "path": "NIST_PF/IDENTIFY-P/ID.RA-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.RA-P3",
+                "description": "Potential problematic data actions and associated problems are identified.",
+                "path": "NIST_PF/IDENTIFY-P/ID.RA-P3.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P1",
+                "description": "A baseline configuration of information technology is created and maintained inc...",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P3",
+                "description": "Backups of information are conducted, maintained, and tested.",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P3.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-07.3",
+        "applicable_regulations": [
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.RA-01",
+                "description": "Vulnerabilities in assets are identified, validated, and recorded",
+                "path": "NIST_CSF/IDENTIFY/ID.RA-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.PS-02",
+                "description": "Software is maintained, replaced, and removed commensurate with risk",
+                "path": "NIST_CSF/PROTECT/PR.PS-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.PS-06",
+                "description": "Secure software development practices are integrated, and their performance is m...",
+                "path": "NIST_CSF/PROTECT/PR.PS-06.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.RA-P1",
+                "description": "Contextual factors related to the systems/products/services and the data actions...",
+                "path": "NIST_PF/IDENTIFY-P/ID.RA-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.RA-P3",
+                "description": "Potential problematic data actions and associated problems are identified.",
+                "path": "NIST_PF/IDENTIFY-P/ID.RA-P3.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P1",
+                "description": "A baseline configuration of information technology is created and maintained inc...",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P3",
+                "description": "Backups of information are conducted, maintained, and tested.",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P3.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-07.4",
+        "applicable_regulations": [
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.OV-01",
+                "description": "Cybersecurity risk management strategy outcomes are reviewed to inform and adjus...",
+                "path": "NIST_CSF/GOVERN/GV.OV-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.OV-02",
+                "description": "The cybersecurity risk management strategy is reviewed and adjusted to ensure co...",
+                "path": "NIST_CSF/GOVERN/GV.OV-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.PO-02",
+                "description": "Policy for managing cybersecurity risks is reviewed, updated, communicated, and ...",
+                "path": "NIST_CSF/GOVERN/GV.PO-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.SC-04",
+                "description": "Suppliers are known and prioritized by criticality",
+                "path": "NIST_CSF/GOVERN/GV.SC-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.IM-04",
+                "description": "Incident response plans and other cybersecurity plans that affect operations are...",
+                "path": "NIST_CSF/IDENTIFY/ID.IM-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.PS-01",
+                "description": "Configuration management practices are established and applied",
+                "path": "NIST_CSF/PROTECT/PR.PS-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.PS-02",
+                "description": "Software is maintained, replaced, and removed commensurate with risk",
+                "path": "NIST_CSF/PROTECT/PR.PS-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.PS-06",
+                "description": "Secure software development practices are integrated, and their performance is m...",
+                "path": "NIST_CSF/PROTECT/PR.PS-06.json"
+            },
+            {
+                "framework": "PF",
+                "function": "CONTROL-P",
+                "control_id": "CT.DP-P4",
+                "description": "System or device configurations permit selective collection or disclosure of dat...",
+                "path": "NIST_PF/CONTROL-P/CT.DP-P4.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.MT-P1",
+                "description": "Privacy risk is re-evaluated on an ongoing basis and as key factors, including t...",
+                "path": "NIST_PF/GOVERN-P/GV.MT-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.MT-P2",
+                "description": "Privacy values, policies, and training are reviewed and any updates are communic...",
+                "path": "NIST_PF/GOVERN-P/GV.MT-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.PO-P3",
+                "description": "Roles and responsibilities for the workforce are established with respect to pri...",
+                "path": "NIST_PF/GOVERN-P/GV.PO-P3.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.PO-P4",
+                "description": "Privacy roles and responsibilities are coordinated and aligned with third-party ...",
+                "path": "NIST_PF/GOVERN-P/GV.PO-P4.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.IM-P1",
+                "description": "Systems/products/services that process data are inventoried.",
+                "path": "NIST_PF/IDENTIFY-P/ID.IM-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.IM-P2",
+                "description": "Owners or operators (e.g., the organization or third parties such as service pro...",
+                "path": "NIST_PF/IDENTIFY-P/ID.IM-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P1",
+                "description": "A baseline configuration of information technology is created and maintained inc...",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P3",
+                "description": "Backups of information are conducted, maintained, and tested.",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P3.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-08.1",
+        "applicable_regulations": [
+            "GDPR",
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.AT-01",
+                "description": "Personnel are provided with awareness and training so that they possess the know...",
+                "path": "NIST_CSF/PROTECT/PR.AT-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.AT-02",
+                "description": "Individuals in specialized roles are provided with awareness and training so tha...",
+                "path": "NIST_CSF/PROTECT/PR.AT-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.PS-01",
+                "description": "Configuration management practices are established and applied",
+                "path": "NIST_CSF/PROTECT/PR.PS-01.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.AT-P1",
+                "description": "The workforce is informed and trained on its roles and responsibilities.",
+                "path": "NIST_PF/GOVERN-P/GV.AT-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P1",
+                "description": "A baseline configuration of information technology is created and maintained inc...",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P3",
+                "description": "Backups of information are conducted, maintained, and tested.",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P3.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-08.2",
+        "applicable_regulations": [
+            "GDPR",
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.RR-01",
+                "description": "Organizational leadership is responsible and accountable for cybersecurity risk ...",
+                "path": "NIST_CSF/GOVERN/GV.RR-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.RR-02",
+                "description": "Roles, responsibilities, and authorities related to cybersecurity risk managemen...",
+                "path": "NIST_CSF/GOVERN/GV.RR-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.RR-04",
+                "description": "Cybersecurity is included in human resources practices",
+                "path": "NIST_CSF/GOVERN/GV.RR-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.SC-03",
+                "description": "Cybersecurity supply chain risk management is integrated into cybersecurity and ...",
+                "path": "NIST_CSF/GOVERN/GV.SC-03.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.AT-01",
+                "description": "Personnel are provided with awareness and training so that they possess the know...",
+                "path": "NIST_CSF/PROTECT/PR.AT-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.AT-02",
+                "description": "Individuals in specialized roles are provided with awareness and training so tha...",
+                "path": "NIST_CSF/PROTECT/PR.AT-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "?",
+                "control_id": "PR.AT-03",
+                "description": "?",
+                "path": "NIST_CSF/?/PR.AT-03.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "?",
+                "control_id": "PR.AT-04",
+                "description": "?",
+                "path": "NIST_CSF/?/PR.AT-04.json"
+            },
+            {
+                "framework": "PF",
+                "function": "CONTROL-P",
+                "control_id": "CT.DP-P4",
+                "description": "System or device configurations permit selective collection or disclosure of dat...",
+                "path": "NIST_PF/CONTROL-P/CT.DP-P4.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.AT-P1",
+                "description": "The workforce is informed and trained on its roles and responsibilities.",
+                "path": "NIST_PF/GOVERN-P/GV.AT-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.PO-P5",
+                "description": "Legal, regulatory, and contractual requirements regarding privacy are understood...",
+                "path": "NIST_PF/GOVERN-P/GV.PO-P5.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-09.1",
+        "applicable_regulations": [
+            "GDPR",
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.OC-03",
+                "description": "Legal, regulatory, and contractual requirements regarding cybersecurity - includ...",
+                "path": "NIST_CSF/GOVERN/GV.OC-03.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.OC-04",
+                "description": "Critical objectives, capabilities, and services that external stakeholders depen...",
+                "path": "NIST_CSF/GOVERN/GV.OC-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.OV-01",
+                "description": "Cybersecurity risk management strategy outcomes are reviewed to inform and adjus...",
+                "path": "NIST_CSF/GOVERN/GV.OV-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.OV-03",
+                "description": "Organizational cybersecurity risk management performance is evaluated and review...",
+                "path": "NIST_CSF/GOVERN/GV.OV-03.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.PO-01",
+                "description": "Policy for managing cybersecurity risks is established based on organizational c...",
+                "path": "NIST_CSF/GOVERN/GV.PO-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.PO-02",
+                "description": "Policy for managing cybersecurity risks is reviewed, updated, communicated, and ...",
+                "path": "NIST_CSF/GOVERN/GV.PO-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.RM-01",
+                "description": "Risk management objectives are established and agreed to by organizational stake...",
+                "path": "NIST_CSF/GOVERN/GV.RM-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.RM-04",
+                "description": "Strategic direction that describes appropriate risk response options is establis...",
+                "path": "NIST_CSF/GOVERN/GV.RM-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.RM-05",
+                "description": "Lines of communication across the organization are established for cybersecurity...",
+                "path": "NIST_CSF/GOVERN/GV.RM-05.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.RR-01",
+                "description": "Organizational leadership is responsible and accountable for cybersecurity risk ...",
+                "path": "NIST_CSF/GOVERN/GV.RR-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.RR-02",
+                "description": "Roles, responsibilities, and authorities related to cybersecurity risk managemen...",
+                "path": "NIST_CSF/GOVERN/GV.RR-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.RR-03",
+                "description": "Adequate resources are allocated commensurate with the cybersecurity risk strate...",
+                "path": "NIST_CSF/GOVERN/GV.RR-03.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.SC-01",
+                "description": "A cybersecurity supply chain risk management program, strategy, objectives, poli...",
+                "path": "NIST_CSF/GOVERN/GV.SC-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.SC-04",
+                "description": "Suppliers are known and prioritized by criticality",
+                "path": "NIST_CSF/GOVERN/GV.SC-04.json"
+            },
+            {
+                "framework": "PF",
+                "function": "CONTROL-P",
+                "control_id": "CT.DP-P4",
+                "description": "System or device configurations permit selective collection or disclosure of dat...",
+                "path": "NIST_PF/CONTROL-P/CT.DP-P4.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.MT-P1",
+                "description": "Privacy risk is re-evaluated on an ongoing basis and as key factors, including t...",
+                "path": "NIST_PF/GOVERN-P/GV.MT-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.MT-P2",
+                "description": "Privacy values, policies, and training are reviewed and any updates are communic...",
+                "path": "NIST_PF/GOVERN-P/GV.MT-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.PO-P1",
+                "description": "Organizational privacy values and policies (e.g., conditions on data processing ...",
+                "path": "NIST_PF/GOVERN-P/GV.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.PO-P2",
+                "description": "Processes to instill organizational privacy values within system/product/service...",
+                "path": "NIST_PF/GOVERN-P/GV.PO-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.PO-P3",
+                "description": "Roles and responsibilities for the workforce are established with respect to pri...",
+                "path": "NIST_PF/GOVERN-P/GV.PO-P3.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.PO-P4",
+                "description": "Privacy roles and responsibilities are coordinated and aligned with third-party ...",
+                "path": "NIST_PF/GOVERN-P/GV.PO-P4.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.PO-P5",
+                "description": "Legal, regulatory, and contractual requirements regarding privacy are understood...",
+                "path": "NIST_PF/GOVERN-P/GV.PO-P5.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.RM-P1",
+                "description": "Risk management processes are established, managed, and agreed to by organizatio...",
+                "path": "NIST_PF/GOVERN-P/GV.RM-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.RA-P2",
+                "description": "Data analytic inputs and outputs are identified and evaluated for bias.",
+                "path": "NIST_PF/IDENTIFY-P/ID.RA-P2.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-09.2",
+        "applicable_regulations": [
+            "GDPR",
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.OV-01",
+                "description": "Cybersecurity risk management strategy outcomes are reviewed to inform and adjus...",
+                "path": "NIST_CSF/GOVERN/GV.OV-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.RM-04",
+                "description": "Strategic direction that describes appropriate risk response options is establis...",
+                "path": "NIST_CSF/GOVERN/GV.RM-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.RR-02",
+                "description": "Roles, responsibilities, and authorities related to cybersecurity risk managemen...",
+                "path": "NIST_CSF/GOVERN/GV.RR-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.RA-04",
+                "description": "Potential impacts and likelihoods of threats exploiting vulnerabilities are iden...",
+                "path": "NIST_CSF/IDENTIFY/ID.RA-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.RA-05",
+                "description": "Threats, vulnerabilities, likelihoods, and impacts are used to understand inhere...",
+                "path": "NIST_CSF/IDENTIFY/ID.RA-05.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "?",
+                "control_id": "ID.SC-04",
+                "description": "?",
+                "path": "NIST_CSF/?/ID.SC-04.json"
+            },
+            {
+                "framework": "PF",
+                "function": "CONTROL-P",
+                "control_id": "CT.DP-P1",
+                "description": "Data are processed to limit observability and linkability (e.g., data actions ta...",
+                "path": "NIST_PF/CONTROL-P/CT.DP-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "CONTROL-P",
+                "control_id": "CT.DP-P2",
+                "description": "Data are processed to limit the identification of individuals (e.g., de-identifi...",
+                "path": "NIST_PF/CONTROL-P/CT.DP-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.MT-P1",
+                "description": "Privacy risk is re-evaluated on an ongoing basis and as key factors, including t...",
+                "path": "NIST_PF/GOVERN-P/GV.MT-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.MT-P2",
+                "description": "Privacy values, policies, and training are reviewed and any updates are communic...",
+                "path": "NIST_PF/GOVERN-P/GV.MT-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.PO-P5",
+                "description": "Legal, regulatory, and contractual requirements regarding privacy are understood...",
+                "path": "NIST_PF/GOVERN-P/GV.PO-P5.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.RM-P1",
+                "description": "Risk management processes are established, managed, and agreed to by organizatio...",
+                "path": "NIST_PF/GOVERN-P/GV.RM-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.RA-P1",
+                "description": "Contextual factors related to the systems/products/services and the data actions...",
+                "path": "NIST_PF/IDENTIFY-P/ID.RA-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.RA-P2",
+                "description": "Data analytic inputs and outputs are identified and evaluated for bias.",
+                "path": "NIST_PF/IDENTIFY-P/ID.RA-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.RA-P3",
+                "description": "Potential problematic data actions and associated problems are identified.",
+                "path": "NIST_PF/IDENTIFY-P/ID.RA-P3.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-09.3",
+        "applicable_regulations": [
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.AM-01",
+                "description": "Inventories of hardware managed by the organization are maintained",
+                "path": "NIST_CSF/IDENTIFY/ID.AM-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.AM-02",
+                "description": "Inventories of software, services, and systems managed by the organization are m...",
+                "path": "NIST_CSF/IDENTIFY/ID.AM-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.AM-05",
+                "description": "Assets are prioritized based on classification, criticality, resources, and impa...",
+                "path": "NIST_CSF/IDENTIFY/ID.AM-05.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.PS-01",
+                "description": "Configuration management practices are established and applied",
+                "path": "NIST_CSF/PROTECT/PR.PS-01.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.DE-P1",
+                "description": "Data processing ecosystem risk management policies, processes, and procedures ar...",
+                "path": "NIST_PF/IDENTIFY-P/ID.DE-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.DE-P2",
+                "description": "Data processing ecosystem parties (e.g., service providers, customers, partners,...",
+                "path": "NIST_PF/IDENTIFY-P/ID.DE-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P1",
+                "description": "A baseline configuration of information technology is created and maintained inc...",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P3",
+                "description": "Backups of information are conducted, maintained, and tested.",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P3.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-09.4",
+        "applicable_regulations": [
+            "GDPR",
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.PO-01",
+                "description": "Policy for managing cybersecurity risks is established based on organizational c...",
+                "path": "NIST_CSF/GOVERN/GV.PO-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.PO-02",
+                "description": "Policy for managing cybersecurity risks is reviewed, updated, communicated, and ...",
+                "path": "NIST_CSF/GOVERN/GV.PO-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.AM-08",
+                "description": "Systems, hardware, software, services, and data are managed throughout their lif...",
+                "path": "NIST_CSF/IDENTIFY/ID.AM-08.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.RA-05",
+                "description": "Threats, vulnerabilities, likelihoods, and impacts are used to understand inhere...",
+                "path": "NIST_CSF/IDENTIFY/ID.RA-05.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-12",
+                "description": "Cryptographic protections applied to data are commensurate with data classificat...",
+                "path": "NIST_CSF/PROTECT/PR.DS-12.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.PO-P3",
+                "description": "Roles and responsibilities for the workforce are established with respect to pri...",
+                "path": "NIST_PF/GOVERN-P/GV.PO-P3.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.PO-P4",
+                "description": "Privacy roles and responsibilities are coordinated and aligned with third-party ...",
+                "path": "NIST_PF/GOVERN-P/GV.PO-P4.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.DE-P1",
+                "description": "Data processing ecosystem risk management policies, processes, and procedures ar...",
+                "path": "NIST_PF/IDENTIFY-P/ID.DE-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.DE-P2",
+                "description": "Data processing ecosystem parties (e.g., service providers, customers, partners,...",
+                "path": "NIST_PF/IDENTIFY-P/ID.DE-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.RA-P1",
+                "description": "Contextual factors related to the systems/products/services and the data actions...",
+                "path": "NIST_PF/IDENTIFY-P/ID.RA-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.RA-P3",
+                "description": "Potential problematic data actions and associated problems are identified.",
+                "path": "NIST_PF/IDENTIFY-P/ID.RA-P3.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P1",
+                "description": "Data-at-rest are protected",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P2",
+                "description": "Data-in-transit are protected.",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P2.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-10.1",
+        "applicable_regulations": [
+            "GDPR",
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "DETECT",
+                "control_id": "DE.AE-02",
+                "description": "Potentially adverse events are analyzed to better understand associated activiti...",
+                "path": "NIST_CSF/DETECT/DE.AE-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "DETECT",
+                "control_id": "DE.CM-01",
+                "description": "Networks and network services are monitored to find potentially adverse events",
+                "path": "NIST_CSF/DETECT/DE.CM-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "DETECT",
+                "control_id": "DE.CM-09",
+                "description": "Computing hardware and software, runtime environments, and their data are monito...",
+                "path": "NIST_CSF/DETECT/DE.CM-09.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.OV-03",
+                "description": "Organizational cybersecurity risk management performance is evaluated and review...",
+                "path": "NIST_CSF/GOVERN/GV.OV-03.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.IM-04",
+                "description": "Incident response plans and other cybersecurity plans that affect operations are...",
+                "path": "NIST_CSF/IDENTIFY/ID.IM-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.RA-01",
+                "description": "Vulnerabilities in assets are identified, validated, and recorded",
+                "path": "NIST_CSF/IDENTIFY/ID.RA-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.RA-03",
+                "description": "Internal and external threats to the organization are identified and recorded",
+                "path": "NIST_CSF/IDENTIFY/ID.RA-03.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.PS-04",
+                "description": "Log records are generated and made available for continuous monitoring",
+                "path": "NIST_CSF/PROTECT/PR.PS-04.json"
+            },
+            {
+                "framework": "PF",
+                "function": "COMMUNICATE-P",
+                "control_id": "CM.AW-P1",
+                "description": "Mechanisms (e.g., notices, internal or public reports) for communicating data pr...",
+                "path": "NIST_PF/COMMUNICATE-P/CM.AW-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "COMMUNICATE-P",
+                "control_id": "CM.AW-P2",
+                "description": "Mechanisms for obtaining feedback from individuals (e.g., surveys or focus group...",
+                "path": "NIST_PF/COMMUNICATE-P/CM.AW-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "COMMUNICATE-P",
+                "control_id": "CM.PO-P1",
+                "description": "Transparency policies, processes, and procedures for communicating data processi...",
+                "path": "NIST_PF/COMMUNICATE-P/CM.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "CONTROL-P",
+                "control_id": "CT.DM-P1",
+                "description": "Data elements can be accessed for review",
+                "path": "NIST_PF/CONTROL-P/CT.DM-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.MT-P1",
+                "description": "Privacy risk is re-evaluated on an ongoing basis and as key factors, including t...",
+                "path": "NIST_PF/GOVERN-P/GV.MT-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.MT-P2",
+                "description": "Privacy values, policies, and training are reviewed and any updates are communic...",
+                "path": "NIST_PF/GOVERN-P/GV.MT-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.IM-P1",
+                "description": "Systems/products/services that process data are inventoried.",
+                "path": "NIST_PF/IDENTIFY-P/ID.IM-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.IM-P2",
+                "description": "Owners or operators (e.g., the organization or third parties such as service pro...",
+                "path": "NIST_PF/IDENTIFY-P/ID.IM-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.RA-P1",
+                "description": "Contextual factors related to the systems/products/services and the data actions...",
+                "path": "NIST_PF/IDENTIFY-P/ID.RA-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.RA-P3",
+                "description": "Potential problematic data actions and associated problems are identified.",
+                "path": "NIST_PF/IDENTIFY-P/ID.RA-P3.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P1",
+                "description": "A baseline configuration of information technology is created and maintained inc...",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P3",
+                "description": "Backups of information are conducted, maintained, and tested.",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P3.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-10.2",
+        "applicable_regulations": [
+            "GDPR",
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "DETECT",
+                "control_id": "DE.AE-03",
+                "description": "Information is correlated from multiple sources",
+                "path": "NIST_CSF/DETECT/DE.AE-03.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "DETECT",
+                "control_id": "DE.CM-01",
+                "description": "Networks and network services are monitored to find potentially adverse events",
+                "path": "NIST_CSF/DETECT/DE.CM-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "DETECT",
+                "control_id": "DE.CM-09",
+                "description": "Computing hardware and software, runtime environments, and their data are monito...",
+                "path": "NIST_CSF/DETECT/DE.CM-09.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.OC-03",
+                "description": "Legal, regulatory, and contractual requirements regarding cybersecurity - includ...",
+                "path": "NIST_CSF/GOVERN/GV.OC-03.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.PO-01",
+                "description": "Policy for managing cybersecurity risks is established based on organizational c...",
+                "path": "NIST_CSF/GOVERN/GV.PO-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.PO-02",
+                "description": "Policy for managing cybersecurity risks is reviewed, updated, communicated, and ...",
+                "path": "NIST_CSF/GOVERN/GV.PO-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.RA-04",
+                "description": "Potential impacts and likelihoods of threats exploiting vulnerabilities are iden...",
+                "path": "NIST_CSF/IDENTIFY/ID.RA-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-11",
+                "description": "Backups of data are created, protected, maintained, and tested",
+                "path": "NIST_CSF/PROTECT/PR.DS-11.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.DS-12",
+                "description": "Cryptographic protections applied to data are commensurate with data classificat...",
+                "path": "NIST_CSF/PROTECT/PR.DS-12.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "?",
+                "control_id": "PR.IP-06",
+                "description": "?",
+                "path": "NIST_CSF/?/PR.IP-06.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.PS-04",
+                "description": "Log records are generated and made available for continuous monitoring",
+                "path": "NIST_CSF/PROTECT/PR.PS-04.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "?",
+                "control_id": "PR.PT-01",
+                "description": "?",
+                "path": "NIST_CSF/?/PR.PT-01.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "RECOVER",
+                "control_id": "RC.RP-03",
+                "description": "The integrity of backups and other restoration assets is verified before using t...",
+                "path": "NIST_CSF/RECOVER/RC.RP-03.json"
+            },
+            {
+                "framework": "PF",
+                "function": "COMMUNICATE-P",
+                "control_id": "CM.AW-P1",
+                "description": "Mechanisms (e.g., notices, internal or public reports) for communicating data pr...",
+                "path": "NIST_PF/COMMUNICATE-P/CM.AW-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "COMMUNICATE-P",
+                "control_id": "CM.AW-P2",
+                "description": "Mechanisms for obtaining feedback from individuals (e.g., surveys or focus group...",
+                "path": "NIST_PF/COMMUNICATE-P/CM.AW-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "COMMUNICATE-P",
+                "control_id": "CM.PO-P1",
+                "description": "Transparency policies, processes, and procedures for communicating data processi...",
+                "path": "NIST_PF/COMMUNICATE-P/CM.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "CONTROL-P",
+                "control_id": "CT.DM-P1",
+                "description": "Data elements can be accessed for review",
+                "path": "NIST_PF/CONTROL-P/CT.DM-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "CONTROL-P",
+                "control_id": "CT.DP-P3",
+                "description": "Data are processed to limit the formulation of inferences about individuals’ beh...",
+                "path": "NIST_PF/CONTROL-P/CT.DP-P3.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.PO-P1",
+                "description": "Organizational privacy values and policies (e.g., conditions on data processing ...",
+                "path": "NIST_PF/GOVERN-P/GV.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.PO-P2",
+                "description": "Processes to instill organizational privacy values within system/product/service...",
+                "path": "NIST_PF/GOVERN-P/GV.PO-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.PO-P3",
+                "description": "Roles and responsibilities for the workforce are established with respect to pri...",
+                "path": "NIST_PF/GOVERN-P/GV.PO-P3.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.PO-P4",
+                "description": "Privacy roles and responsibilities are coordinated and aligned with third-party ...",
+                "path": "NIST_PF/GOVERN-P/GV.PO-P4.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.RA-P1",
+                "description": "Contextual factors related to the systems/products/services and the data actions...",
+                "path": "NIST_PF/IDENTIFY-P/ID.RA-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.RA-P3",
+                "description": "Potential problematic data actions and associated problems are identified.",
+                "path": "NIST_PF/IDENTIFY-P/ID.RA-P3.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P1",
+                "description": "Data-at-rest are protected",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.DS-P2",
+                "description": "Data-in-transit are protected.",
+                "path": "NIST_PF/PROTECT-P/PR.DS-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P1",
+                "description": "A baseline configuration of information technology is created and maintained inc...",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P3",
+                "description": "Backups of information are conducted, maintained, and tested.",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P3.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P4",
+                "description": "Policy and regulations regarding the physical operating environment for organiza...",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P4.json"
+            }
+        ]
+    },
+    {
+        "sub_domain_id": "D-10.3",
+        "applicable_regulations": [
+            "GDPR",
+            "CRA"
+        ],
+        "controls": [
+            {
+                "framework": "CSF",
+                "function": "DETECT",
+                "control_id": "DE.AE-02",
+                "description": "Potentially adverse events are analyzed to better understand associated activiti...",
+                "path": "NIST_CSF/DETECT/DE.AE-02.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "GOVERN",
+                "control_id": "GV.OV-03",
+                "description": "Organizational cybersecurity risk management performance is evaluated and review...",
+                "path": "NIST_CSF/GOVERN/GV.OV-03.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "IDENTIFY",
+                "control_id": "ID.RA-05",
+                "description": "Threats, vulnerabilities, likelihoods, and impacts are used to understand inhere...",
+                "path": "NIST_CSF/IDENTIFY/ID.RA-05.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "?",
+                "control_id": "PR.IP-07",
+                "description": "?",
+                "path": "NIST_CSF/?/PR.IP-07.json"
+            },
+            {
+                "framework": "CSF",
+                "function": "PROTECT",
+                "control_id": "PR.PS-04",
+                "description": "Log records are generated and made available for continuous monitoring",
+                "path": "NIST_CSF/PROTECT/PR.PS-04.json"
+            },
+            {
+                "framework": "PF",
+                "function": "COMMUNICATE-P",
+                "control_id": "CM.AW-P2",
+                "description": "Mechanisms for obtaining feedback from individuals (e.g., surveys or focus group...",
+                "path": "NIST_PF/COMMUNICATE-P/CM.AW-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "CONTROL-P",
+                "control_id": "CT.DM-P1",
+                "description": "Data elements can be accessed for review",
+                "path": "NIST_PF/CONTROL-P/CT.DM-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.MT-P1",
+                "description": "Privacy risk is re-evaluated on an ongoing basis and as key factors, including t...",
+                "path": "NIST_PF/GOVERN-P/GV.MT-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "GOVERN-P",
+                "control_id": "GV.MT-P2",
+                "description": "Privacy values, policies, and training are reviewed and any updates are communic...",
+                "path": "NIST_PF/GOVERN-P/GV.MT-P2.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.RA-P1",
+                "description": "Contextual factors related to the systems/products/services and the data actions...",
+                "path": "NIST_PF/IDENTIFY-P/ID.RA-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "IDENTIFY-P",
+                "control_id": "ID.RA-P3",
+                "description": "Potential problematic data actions and associated problems are identified.",
+                "path": "NIST_PF/IDENTIFY-P/ID.RA-P3.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P1",
+                "description": "A baseline configuration of information technology is created and maintained inc...",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P1.json"
+            },
+            {
+                "framework": "PF",
+                "function": "PROTECT-P",
+                "control_id": "PR.PO-P3",
+                "description": "Backups of information are conducted, maintained, and tested.",
+                "path": "NIST_PF/PROTECT-P/PR.PO-P3.json"
+            }
+        ]
+    }
+]
+
+
+# 9. Build nodes + links
+# ---------------------------------------------------------------------------
+
+def build() -> dict:
     nodes: list[dict] = []
     links: list[dict] = []
     # Phase C — tier drift accumulator (Doc12 §4 vs existing proportionality_tier).
@@ -4669,10 +8578,177 @@ NIST_ALIGNMENT = [
         # Phase C — Doc08 §9 + Doc12 §4 verification & proportionality attributes
         "articles_with_verification": 54,       # Doc08 §9 = 28 GDPR + 26 CRA
         "subdomains_with_proportionality": 37,  # Doc12 §4 (active only, D-08.3 excluded)
+        # Phase D — Doc13 §7 NIST Controls Mapping (NIST_ALIGNMENT table).
+        # 117 unique control IDs (77 CSF + 38 PF + 2 AI-RMF) across 513
+        # (sub-domain × control_id) alignments.  Only D-04.2 has NIST AI-RMF controls.
+        "nist_controls": 117,
+        "nist_alignments": 513,
+        "nist_aimrm_subdomains": 1,
     }
 
     # ----- Phase C: surface tier drift accumulator as CFL-006 audit (only if drift detected) -----
     audits_out = list(AUDITS)
+    if _TIER_DRIFT:
+        audits_out.append({
+            "id": "CFL-006",
+            "kind": "cross_doc_conflict",
+            "severity": "high",
+            "title": f"Doc12 §4 attrs.tier diverges from attrs.proportionality_tier on {len(_TIER_DRIFT)} sub-domain(s)",
+            "detail": (
+                "The merge logic in build() detected divergence between Doc12 §4 'Tier' column and the "
+                "v1.2 attrs.proportionality_tier set during sub-domain node construction.  The merge refuses "
+                "to overwrite attrs.tier silently when the existing value differs; instead it records the "
+                "drift here for human reconciliation per P7.  Static reconciliation at generator time confirmed "
+                "37/37 match — drift in this build() run means the dict was mutated externally between runs."
+            ),
+            "evidence": ["_TIER_DRIFT (list) populated during merge"],
+            "node_ids": [d["sub_domain_id"] for d in _TIER_DRIFT],
+            "recommendation": (
+                "Human (P7) — verify the drift entries below against phase1_ontology.yaml@subdomains and Doc12 §4 "
+                "and reconcile by updating either SUBDOMAIN_DEFS (v1.2 tier) or SUBDOMAIN_PROPORTIONALITY (v1.4 tier) "
+                "in scripts/build_p1_graph.py.  Then re-run --emit to confirm drift clears.  Drift entries: "
+                + repr(_TIER_DRIFT) + "."
+            ),
+        })
+
+    # ----- Phase D — Doc13 §7 NIST Controls Mapping (NistControl nodes + ALIGNS_TO edges) -----
+    # Per the orchestrator brief, emit:
+    #   * one NistControl node per unique (framework, control_id)
+    #   * one ALIGNS_TO edge per (sub_domain_id, control_id) tuple
+    #   * an `attrs.nist_alignment_count` integer per sub-domain (additive — does NOT
+    #     strip existing v1.4 attrs like `tier`, `proportionality_tier`, etc.)
+    #   * 2 NEW audits (NEW-09 coverage_gap on '?' Function rows, NEW-10 cross_doc_conflict
+    #     on D-04.2 being the sole §7 sub-section with AI-RMF controls).
+    # Malformed '?' Function rows are emitted with the canonical NIST CSF 2.0 Function
+    # assignment from _NIST_MALFORMED_FUNCTION_OVERRIDES (7 unique IDs; 8 rows total
+    # because RS.CO-04 appears in both D-04.3 and D-06.3).
+    nist_node_by_cid: dict[tuple[str, str], dict] = {}  # (framework, control_id) -> node dict
+    sd_alignment_count: dict[str, int] = {}
+    nist_aimrm_subdomains: set[str] = set()
+    malformed_rows: list[tuple[str, str, str]] = []  # (sd, framework, control_id)
+
+    # Iterate NIST_ALIGNMENT and emit nodes/edges
+    for entry in NIST_ALIGNMENT:
+        sd_id = entry["sub_domain_id"]
+        for c in entry["controls"]:
+            framework = c["framework"]
+            control_id = c["control_id"]
+            raw_function = c["function"]
+            # Apply override if Function was '?'
+            if raw_function == "?" or raw_function == "":
+                canon_fn = _NIST_MALFORMED_FUNCTION_OVERRIDES.get(control_id, "UNKNOWN")
+                malformed_rows.append((sd_id, framework, control_id))
+            else:
+                canon_fn = raw_function
+            # NistControl node — one per (framework, control_id)
+            key = (framework, control_id)
+            if key not in nist_node_by_cid:
+                nid = f"NIST-{control_id}"
+                nist_node_by_cid[key] = {
+                    "id": nid,
+                    "type": "NistControl",
+                    "label": control_id,
+                    "attrs": {
+                        "control_id": control_id,
+                        "framework": framework,
+                        "function": canon_fn,
+                        "description": c["description"],
+                        "path": c["path"],
+                    },
+                    "source": [
+                        "Doc13 §7 NIST Controls Mapping",
+                        "phase1_ontology.yaml@kg_ontology.classes.NistControl",
+                    ],
+                }
+                if framework == "AI-RMF":
+                    # nist_aimrm_subdomains tracked per-sub-domain below
+                    pass
+            # Track alignment count per sub-domain
+            sd_alignment_count[sd_id] = sd_alignment_count.get(sd_id, 0) + 1
+            # Track AI-RMF subdomains
+            if framework == "AI-RMF":
+                nist_aimrm_subdomains.add(sd_id)
+            # Emit ALIGNS_TO edge
+            links.append({
+                "from": sd_id,
+                "to": f"NIST-{control_id}",
+                "rel": "ALIGNS_TO",
+                "attrs": {
+                    "framework": framework,
+                    "function": canon_fn,
+                },
+                "source": [
+                    "Doc13 §7 NIST Controls Mapping",
+                    "phase1_ontology.yaml@kg_ontology.relations.ALIGNS_TO",
+                ],
+            })
+
+    # Append NistControl nodes
+    for nd in nist_node_by_cid.values():
+        nodes.append(nd)
+
+    # Add nist_alignment_count to each sub-domain (additive — does not strip existing attrs)
+    for sd_id, count in sd_alignment_count.items():
+        if sd_id in nodeById:
+            nodeById[sd_id]["attrs"]["nist_alignment_count"] = count
+
+    # ----- Phase D — append NEW-09 and NEW-10 audits -----
+    malformed_sd_ids = sorted({sd for sd, _, _ in malformed_rows})
+    audits_out.append({
+        "id": "NEW-09",
+        "kind": "coverage_gap",
+        "severity": "medium",
+        "title": (
+            f"Doc13 §7 has {len(malformed_rows)} control row(s) with malformed '?' Function "
+            "column (table-renderer truncation); emitted with canonical NIST CSF 2.0 Function assignment."
+        ),
+        "detail": (
+            "Doc13 §7 NIST Controls Mapping has 8 rows where the table-renderer truncated the "
+            "Function column to '?'.  These rows are still emitted as ALIGNS_TO edges with the "
+            "control_id fully preserved; the Function field is filled in from "
+            "_NIST_MALFORMED_FUNCTION_OVERRIDES (canonical NIST CSF 2.0 Function for each of "
+            "the 7 unique IDs: RS.CO-04 → RESPOND, PR.AT-03 → PROTECT, PR.AT-04 → PROTECT, "
+            "ID.SC-04 → IDENTIFY, PR.IP-06 → PROTECT, PR.IP-07 → PROTECT, PR.PT-01 → PROTECT). "
+            "RS.CO-04 appears twice (D-04.3 + D-06.3) so 8 rows / 7 unique IDs."
+        ),
+        "evidence": [
+            "Doc13 §7.14.1 line 829 (RS.CO-04 in D-04.3)",
+            "Doc13 §7.22.1 line 1038 (RS.CO-04 in D-06.3)",
+            "Doc13 §7.28.1 lines 1194–1195 (PR.AT-03 + PR.AT-04 in D-08.2)",
+            "Doc13 §7.30.1 line 1256 (ID.SC-04 in D-09.2)",
+            "Doc13 §7.34.1 lines 1372, 1374 (PR.IP-06 + PR.PT-01 in D-10.2)",
+            "Doc13 §7.35.1 line 1409 (PR.IP-07 in D-10.3)",
+        ],
+        "node_ids": malformed_sd_ids,
+        "recommendation": (
+            "Human (P7) — re-render the Doc13 §7 tables so the Function column is never "
+            "truncated; until then the generator script compensates via "
+            "_NIST_MALFORMED_FUNCTION_OVERRIDES."
+        ),
+    })
+    audits_out.append({
+        "id": "NEW-10",
+        "kind": "cross_doc_conflict",
+        "severity": "low",
+        "title": (
+            "Doc13 §7.13.3 (D-04.2) is the only §7 sub-section with NIST AI-RMF controls (2)."
+        ),
+        "detail": (
+            "Across all 35 active sub-domains in §7, only D-04.2 (Incident Containment & "
+            "Response) has a §7.X.3 NIST AI RMF table, listing 2 controls: MANAGE-2.1 and "
+            "MANAGE-2.3.  This is consistent with D-04.2's relevance to AI-system incident "
+            "response per Doc13 §0 frontmatter, but means nist_aimrm_subdomains = 1 (not 35)."
+        ),
+        "evidence": [
+            "Doc13 §7.13.3 lines 811–816 (MANAGE-2.1, MANAGE-2.3)",
+            "Doc13 §7.1..§7.12, §7.14..§7.35: no §7.X.3 NIST AI RMF sub-table present",
+        ],
+        "node_ids": ["D-04.2", "NIST-MANAGE-2.1", "NIST-MANAGE-2.3"],
+        "recommendation": (
+            "Document the asymmetry: AI Act adoption drives the AI-RMF mapping; without an "
+            "applicable AI Act scope for this case, no other sub-domain carries AI-RMF controls."
+        ),
+    })
     if _TIER_DRIFT:
         audits_out.append({
             "id": "CFL-006",

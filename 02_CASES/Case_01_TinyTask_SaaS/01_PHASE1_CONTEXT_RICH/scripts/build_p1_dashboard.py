@@ -115,6 +115,10 @@ def check_invariants(graph: dict) -> list[str]:
         # Phase C (Doc08 §9 + Doc12 §4) — verification & proportionality counts
         "articles_with_verification": 54,
         "subdomains_with_proportionality": 37,
+        # Phase D (Doc13 §7) — NIST Controls Mapping counts
+        "nist_controls": 117,
+        "nist_alignments": 513,
+        "nist_aimrm_subdomains": 1,
     }
     inv = graph.get("invariants", {})
     for k, want in expected.items():
@@ -342,6 +346,86 @@ def check_phase_c(graph: dict) -> list[str]:
 
 
 # ---------------------------------------------------------------------------
+# Phase D (Doc13 §7) — NIST Controls Mapping validators
+# ---------------------------------------------------------------------------
+
+def check_phase_d(graph: dict) -> list[str]:
+    """Phase D validators (Doc13 §7 NIST Controls Mapping).
+
+    Returns a list of error messages (empty = pass). Each error is fatal
+    under `--check` (rolled into the existing invariant exit code 1).
+
+    Validates:
+      1. Every NistControl node has framework ∈ {"CSF", "PF", "AI-RMF"}.
+      2. Every NistControl ID matches the regex `^(NIST-)?[A-Z0-9\\.\\-]+$`.
+      3. Every ALIGNS_TO edge points to an existing NistControl node.
+      4. The 3 new invariants (nist_controls, nist_alignments,
+         nist_aimrm_subdomains) match expected values.
+      5. NEW-09 and NEW-10 audits exist in the audits list.
+    """
+    import re as _re
+    errors: list[str] = []
+    nist_node_re = _re.compile(r"^(NIST-)?[A-Z0-9\.\-]+$")
+
+    nist_nodes = [n for n in graph.get("nodes", []) if n["type"] == "NistControl"]
+    aligns_to_edges = [l for l in graph.get("links", []) if l["rel"] == "ALIGNS_TO"]
+    nist_node_ids = {n["id"] for n in nist_nodes}
+
+    # (1) framework enum check
+    valid_frameworks = {"CSF", "PF", "AI-RMF"}
+    bad_framework = 0
+    for n in nist_nodes:
+        fw = n.get("attrs", {}).get("framework")
+        if fw not in valid_frameworks:
+            bad_framework += 1
+    if bad_framework:
+        errors.append(f"Phase D: {bad_framework} NistControl node(s) have invalid framework (expected one of {sorted(valid_frameworks)})")
+
+    # (2) ID regex check
+    bad_id = []
+    for n in nist_nodes:
+        if not nist_node_re.match(n["id"]):
+            bad_id.append(n["id"])
+    if bad_id:
+        errors.append(f"Phase D: {len(bad_id)} NistControl node(s) fail id regex ^(NIST-)?[A-Z0-9\\.\\-]+$ (sample: {bad_id[:3]})")
+
+    # (3) ALIGNS_TO edges → existing NistControl nodes
+    bad_targets = []
+    for l in aligns_to_edges:
+        tgt = l.get("to")
+        if tgt not in nist_node_ids:
+            bad_targets.append((l.get("from"), tgt))
+    if bad_targets:
+        errors.append(f"Phase D: {len(bad_targets)} ALIGNS_TO edge(s) point to non-NistControl target (sample: {bad_targets[:3]})")
+
+    # (4) Invariant count matches
+    inv = graph.get("invariants", {})
+    if inv.get("nist_controls") != 117:
+        errors.append(f"Phase D: invariants.nist_controls expected 117, got {inv.get('nist_controls')}")
+    if inv.get("nist_alignments") != 513:
+        errors.append(f"Phase D: invariants.nist_alignments expected 513, got {inv.get('nist_alignments')}")
+    # nist_aimrm_subdomains: count distinct SecurityControlDomain IDs that have at
+    # least one ALIGNS_TO edge with framework='AI-RMF'
+    aimrm_sds = set()
+    for l in aligns_to_edges:
+        if l.get("attrs", {}).get("framework") == "AI-RMF":
+            aimrm_sds.add(l["from"])
+    actual_aimrm = len(aimrm_sds)
+    if actual_aimrm != inv.get("nist_aimrm_subdomains"):
+        errors.append(f"Phase D: invariants.nist_aimrm_subdomains expected {inv.get('nist_aimrm_subdomains')}, computed {actual_aimrm}")
+    if inv.get("nist_aimrm_subdomains") != 1:
+        errors.append(f"Phase D: invariants.nist_aimrm_subdomains expected 1, got {inv.get('nist_aimrm_subdomains')}")
+
+    # (5) Phase-D audit presence: NEW-09 + NEW-10
+    audit_ids = {a["id"] for a in graph.get("audits", [])}
+    for need in ("NEW-09", "NEW-10"):
+        if need not in audit_ids:
+            errors.append(f"Phase D: expected audit id '{need}' missing from audits list")
+
+    return errors
+
+
+# ---------------------------------------------------------------------------
 # Sprint 6 / v1.2 ontology-based validators
 # ---------------------------------------------------------------------------
 
@@ -455,6 +539,12 @@ def check_stale_invariant_counts(graph: dict, ontology: dict) -> list[str]:
         "data_subject_categories": "DataSubjectCategory",
         "third_parties":           "ThirdParty",
         "compliance_mapping_rows": "__active_subdomains__",
+        # Phase D — Doc13 §7 NIST Controls Mapping
+        "nist_controls":           "NistControl",
+        "nist_alignments":         "__rel_ALIGNS_TO__",
+        # nist_aimrm_subdomains is a count of distinct sub-domains carrying at least
+        # one AI-RMF control — enforced in check_phase_d() since there's no direct
+        # graph primitive (it requires a join over (sub_domain_id, framework) tuples).
         # Note: raci_edges_min is enforced in check_invariants() against rel=RACI;
         # raci_activities_active is enforced there against active=True attrs.
     }
@@ -477,6 +567,8 @@ def check_stale_invariant_counts(graph: dict, ontology: dict) -> list[str]:
             actual = graph.get("ambiguity", {}).get("stats_total", {}).get("cards_in_scope")
         elif target == "__rel_APPLIES_TO__":
             actual = by_rel.get("APPLIES_TO")
+        elif target == "__rel_ALIGNS_TO__":
+            actual = by_rel.get("ALIGNS_TO")
         elif target == "__active_subdomains__":
             # Count SecurityControlDomain nodes with active=True (compliance_mapping_rows = active sub-domains)
             actual = sum(1 for n in graph.get("nodes", [])
@@ -514,6 +606,7 @@ def cmd_check(graph: dict, argv_extra: list[str]) -> int:
     audit_errors = check_audit_node_ids(graph)
     stale_errors = check_stale_invariant_counts(graph, ontology)
     phase_c_errors = check_phase_c(graph)
+    phase_d_errors = check_phase_d(graph)
 
     # Ontology type whitelist
     type_errors, _ = check_ontology_types(graph, ontology)
@@ -533,6 +626,10 @@ def cmd_check(graph: dict, argv_extra: list[str]) -> int:
     if phase_c_errors:
         print("PHASE-C VIOLATIONS:", file=sys.stderr)
         for e in phase_c_errors:
+            print(f"  - {e}", file=sys.stderr)
+    if phase_d_errors:
+        print("PHASE-D VIOLATIONS:", file=sys.stderr)
+        for e in phase_d_errors:
             print(f"  - {e}", file=sys.stderr)
     if audit_errors:
         print("DANGLING AUDIT REFERENCES:", file=sys.stderr)
@@ -556,7 +653,7 @@ def cmd_check(graph: dict, argv_extra: list[str]) -> int:
             print(f"  - {e}", file=sys.stderr)
 
     # Exit code selection
-    if inv_errors or stale_errors or phase_c_errors:
+    if inv_errors or stale_errors or phase_c_errors or phase_d_errors:
         return 1
     if audit_errors:
         return 2

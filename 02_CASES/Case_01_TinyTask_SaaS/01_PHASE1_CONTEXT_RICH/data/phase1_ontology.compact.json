@@ -24,7 +24,8 @@
     "DataFlow":                {"attrs": ["id", "data_type", "volume", "encryption_in_transit", "protocol", "subprocessor"]},
     "ThirdParty":              {"attrs": ["name", "aliases", "services", "regions", "criticality", "risk_score", "dpa_in_place", "article_28_compliant", "exit_plan", "last_assessment", "next_review", "sbom_available", "art_28_dpa", "art_30_clauses", "security_audit_right", "subprocessor_approval", "data_accessed"]},
     "PersonalDataCategory":    {"attrs": ["category", "legal_basis_art6_gdpr", "retention", "erasure_mechanism"]},
-    "DataSubjectCategory":     {"attrs": ["category", "access_mechanism", "erasure_mechanism"]}
+    "DataSubjectCategory":     {"attrs": ["category", "access_mechanism", "erasure_mechanism"]},
+    "NistControl":             {"attrs": ["control_id", "framework", "function", "description", "path"]}
   },
   "relations": [
     {"verb": "ASSESSES",        "from": "CompanyContext",       "to": "Regulation"},
@@ -50,7 +51,9 @@
     {"verb": "CAPTURES",        "from": "DataSubjectCategory",  "to": "PersonalDataCategory"},
     {"verb": "CORRESPONDS_TO",  "from": "ThirdParty",           "to": "Stakeholder",         "status": "partial"},
     {"verb": "FLOWS_BETWEEN",   "from": "DataFlow",             "to": "System",              "status": "deferred"},
-    {"verb": "USES",            "from": "System",               "to": "ThirdParty",          "status": "deferred"}
+    {"verb": "USES",            "from": "System",               "to": "ThirdParty",          "status": "deferred"},
+    {"verb": "ALIGNS_TO",       "from": "SecurityControlDomain","to": "NistControl",         "status": "active"},
+    {"verb": "SOURCED_FROM",    "from": "NistControl",          "to": "Regulation",          "status": "deferred"}
   ],
   "enums": {
     "Scale":                ["MICRO", "SMALL", "MEDIUM", "LARGE", "MAX"],
@@ -63,7 +66,8 @@
     "StakeholderType":      ["Internal", "External"],
     "TensionType":          ["timing", "scope", "requirement", "intensity"],
     "RaciLetter":           ["R", "A", "C", "I"],
-    "RiskScore":            ["L", "M", "H", "VH"]
+    "RiskScore":            ["L", "M", "H", "VH"],
+    "NistFramework":        ["CSF", "PF", "AI-RMF"]
   },
   "invariants": {
     "counts": {
@@ -93,7 +97,10 @@
       "personal_data_categories": 4,
       "data_subject_categories": 3,
       "third_parties": 6,
-      "compliance_mapping_rows": 37
+      "compliance_mapping_rows": 37,
+      "nist_controls": 117,
+      "nist_alignments": 513,
+      "nist_aimrm_subdomains": 1
     },
     "id_patterns": {
       "Stakeholder":           "^STK-[A-Z]+-\\d{2}$",
@@ -111,7 +118,9 @@
       "System":                "^SYS-\\d{2}$",
       "DataStore":             "^STORE-\\d{2}$",
       "DataFlow":              "^FLOW-\\d{2}$",
-      "ThirdParty":            "^(AWS|Stripe|Auth0|Datadog|GitHub|Snyk)$"
+      "ThirdParty":            "^(AWS|Stripe|Auth0|Datadog|GitHub|Snyk)$",
+      "NistControl":           "^NIST-[A-Z0-9\\.\\-]+$",
+      "NistControlSafe":       "^[A-Z0-9\\.\\-]+$"
     }
   },
   "provenance_rules": {
