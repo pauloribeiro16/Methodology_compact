@@ -48,11 +48,17 @@
 #     1 §4.8 best-practice placeholder = 43 ACT-NN), §7 (GAP-RACI-01..05), §9.2
 #     (activity→sub-domain mapping, 35 rows). 206 RACI edges (200 single-letter cells
 #     + 3 R/A composites × 2 = 6 edges).
+#
+# Phase B changes (v1.3 → v1.4) — ADDITIVE ONLY (Doc04 + Doc06):
+#   - Version bumped 1.3 → 1.4
+#   - Added kg_ontology.classes {System, DataStore, DataFlow, ThirdParty,
+#     PersonalDataCategory, DataSubjectCategory} + 7 relations. Additive
+#     (Phase B — Doc04 + Doc06).
 
 header:
   case_id: "Case_01_TinyTask_SaaS"
   phase: 1
-  version: "1.3"
+  version: "1.4"
   generated_from:
     - "AEGIS-COMMON-00"  # Taxonomy Reference
     - "AEGIS-COMMON-01"  # Company Context (Intake Form)
@@ -1359,6 +1365,57 @@ kg_ontology:
       data_source: "Doc07 §4.1–§4.10"
       example: "ACT-03"
 
+    # ── v1.4 ADDITION — Architecture & Third Parties (Phase B · Doc04 + Doc06) ──
+    # Purely additive. All v1.3 fields above are unchanged.
+    System:
+      attrs: { id: SYS-*, name, type, tech_stack, criticality,
+               hosts_personal_data: Boolean }
+      source: "Doc04 §1.1 'System' table; no Class_Models precedent — case-level"
+      data_source: "Doc04 §1.1 (lines 49–55)"
+      example: "SYS-01"
+
+    DataStore:
+      attrs: { id: STORE-*, type, location, encryption_at_rest,
+               retention_period, backup: Boolean }
+      source: "Doc04 §2.1 'DataStore' table; no Class_Models precedent — case-level"
+      data_source: "Doc04 §2.1 (lines 86–90)"
+      example: "STORE-01"
+
+    DataFlow:
+      attrs: { id: FLOW-*, data_type, volume, encryption_in_transit,
+               protocol, subprocessor: Boolean }
+      source: "Doc04 §2.2 'DataFlow' table; no Class_Models precedent — case-level"
+      data_source: "Doc04 §2.2 (lines 94–100)"
+      example: "FLOW-01"
+
+    ThirdParty:
+      attrs: { name, aliases: List<String>, services: List<String>,
+               regions: List<String>, criticality,
+               risk_score: enum(L|M|H|VH),
+               dpa_in_place: Boolean, article_28_compliant: Boolean,
+               exit_plan: nullable,
+               last_assessment, next_review,
+               sbom_available: Boolean,
+               art_28_dpa: Boolean, art_30_clauses, security_audit_right,
+               subprocessor_approval,
+               data_accessed: List<String> }
+      source: "Doc06 §2 + §5 + §6 'Third Party' tables; no Class_Models precedent — case-level"
+      data_source: "Doc06 (lines 59–62 + 173–178 + 195–208)"
+      example: "AWS"
+
+    PersonalDataCategory:
+      attrs: { category, legal_basis_art6_gdpr,
+               retention, erasure_mechanism }
+      source: "Doc04 §2.3 'PersonalDataCategory' table; no Class_Models precedent — case-level"
+      data_source: "Doc04 §2.3 (lines 102–109)"
+      example: "Email addresses"
+
+    DataSubjectCategory:
+      attrs: { category, access_mechanism, erasure_mechanism }
+      source: "Doc04 §2.4 'DataSubjectCategory' table; no Class_Models precedent — case-level"
+      data_source: "Doc04 §2.4 (lines 113–117)"
+      example: "EU customers (B2B and B2C)"
+
   # ── ENUMS ────────────────────────────────────────────────────────
   enums:
     Scale: [MICRO, SMALL, MEDIUM, LARGE, MAX]
@@ -1372,6 +1429,8 @@ kg_ontology:
     Severity: [high, medium, low]
     StakeholderType: [Internal, External]
     TensionType: [timing, scope, requirement, intensity]
+    # v1.4 — Architecture & Third Parties (Phase B)
+    RiskScore: [L, M, H, VH]
     RaciLetter: [R, A, C, I]  # v1.3 — RACI Phase A (Doc07 §4)
 
   # ── RELATIONS (verbs; cardinality; source) ───────────────────────
@@ -1425,6 +1484,43 @@ kg_ontology:
         cardinality: "1:0..1 (only DPO/CISO map to STK-CEO-01/STK-CTO-01)",
         source: "Doc07 §2 cross-ref; Class_Models v1.1 does not define this — case-level",
         status: "deferred" }
+    # ── v1.4 — Architecture & Third Parties (Phase B · Doc04 + Doc06) ──
+    - { verb: HOSTS,             from: System,                  to: DataStore,
+        cardinality: "1:N (one system may host multiple data stores)",
+        source: "Doc04 §2.1 'DataStore.System' column; Class_Models has no precedent" }
+    - { verb: PROCESSES,         from: DataFlow,                to: ThirdParty,
+        cardinality: "N:N (a flow can terminate at a third-party processor)",
+        source: "Doc04 §2.2 'DataFlow.Destination' column; Doc06 §4.1 subprocessor table" }
+    - { verb: INVOLVES,          from: SecurityControlDomain,   to: System,
+        cardinality: "N:N (sub-domain touches many systems)",
+        source: "Doc04 §3 Compliance Mapping table; Class_Models has no precedent" }
+    - { verb: INVOLVES_STORE,    from: SecurityControlDomain,   to: DataStore,
+        cardinality: "N:N",
+        source: "Doc04 §3 Compliance Mapping (sub-domain × store)" }
+    - { verb: INVOLVES_FLOW,     from: SecurityControlDomain,   to: DataFlow,
+        cardinality: "N:N",
+        source: "Doc04 §3 Compliance Mapping (sub-domain × flow)" }
+    - { verb: PROCESSED_BY,      from: PersonalDataCategory,    to: System,
+        cardinality: "N:N",
+        source: "Doc04 §2.3 'PersonalDataCategory.Systems Processing' column" }
+    - { verb: PROCESSED_BY_3P,   from: PersonalDataCategory,    to: ThirdParty,
+        cardinality: "N:N",
+        source: "Doc04 §2.3 (Stripe reference for payment data); Doc06 §4.1" }
+    - { verb: CAPTURES,          from: DataSubjectCategory,    to: PersonalDataCategory,
+        cardinality: "N:N",
+        source: "Doc04 §2.4 'DataSubjectCategory.DataCategories' column" }
+    - { verb: CORRESPONDS_TO,    from: ThirdParty,              to: Stakeholder,
+        cardinality: "N:0..1 (only AWS and Stripe have STK-* entries)",
+        source: "Doc03 §3.1 stakeholder register; Doc06 §6 cross-ref",
+        status: "partial" }
+    - { verb: FLOWS_BETWEEN,     from: DataFlow,                to: System,
+        cardinality: "N:N (a flow can source from or terminate at any system)",
+        source: "Doc04 §2.2 'DataFlow.Source'/'Destination' columns",
+        status: "deferred" }
+    - { verb: USES,              from: System,                  to: ThirdParty,
+        cardinality: "N:N (e.g., SYS-02 uses Auth0)",
+        source: "Doc04 §1.4; Doc06 §2 'Cloud Services' table",
+        status: "deferred" }
 
   # ── INVARIANTS (counts + identifier patterns) ─────────────────────
   invariants:
@@ -1454,6 +1550,14 @@ kg_ontology:
       raci_composite_cells: 3        # ACT-27 Dev=R/A, ACT-28 Dev=R/A, ACT-33 DPO=R/A
       applies_to_edges: 35           # Doc07 §9.2 has 35 rows
       gap_raci_count: 5              # GAP-RACI-01..05 from §7
+      # v1.4 — Architecture & Third Parties (Phase B · Doc04 + Doc06)
+      systems: 5                       # Doc04 §1.1 (SYS-01..SYS-05)
+      data_stores: 3                  # Doc04 §2.1 (STORE-01..STORE-03)
+      data_flows: 5                  # Doc04 §2.2 (FLOW-01..FLOW-05)
+      personal_data_categories: 4    # Doc04 §2.3 (Email, Names, Project, Payment)
+      data_subject_categories: 3    # Doc04 §2.4 (EU, Free-tier, Enterprise)
+      third_parties: 6               # Doc06 §5 (AWS, Stripe, Auth0, Datadog, GitHub, Snyk)
+      compliance_mapping_rows: 37    # Doc04 §3 (one per active sub-domain; D-08.3 excluded)
     id_patterns:
       Stakeholder: "^STK-[A-Z]+-\\d{2}$"
       BusinessGoal: "^BG-\\d{2}$"
@@ -1468,6 +1572,11 @@ kg_ontology:
       # v1.3 — RACI Phase A
       RaciRole: "^ROLE-[A-Z0-9]+$"
       RaciActivity: "^ACT-\\d{2}$"
+      # v1.4 — Architecture & Third Parties (Phase B · Doc04 + Doc06)
+      System: "^SYS-\\d{2}$"
+      DataStore: "^STORE-\\d{2}$"
+      DataFlow: "^FLOW-\\d{2}$"
+      ThirdParty: "^(AWS|Stripe|Auth0|Datadog|GitHub|Snyk)$"
 
   # ── PROVENANCE RULES (every node + every link carries these) ─────
   provenance_rules:
