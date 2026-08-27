@@ -11,7 +11,8 @@ The companion class diagrams live in [`../Class_Models/`](../Class_Models/). If 
 ```
 fluxdiagram/
 ├── phase1/
-│   ├── phase1_contextual_definition.md      Phase 1 overview (all 3 sub-phases)
+│   ├── phase1_contextual_definition.md      Phase 1 overview (all 3 sub-phases) — v1.2 (2026-08-27) + Rich-Mode pointer
+│   ├── phase1_rich_extension.md             Phase 1 Rich-Mode extension (Doc 04a–d / 05b / 07c + infra layer + legacy→DocNN map) — NEW v1.0 (2026-08-27, additive)
 │   ├── phase1a_context_capture.md           Phase 1A — full decision trees + blocks
 │   ├── phase1b_regulatory_mapping.md        Phase 1B — per-reg analysis + clause mapping (2 diagrams)
 │   ├── phase1b_nuances_and_reasoning.md     Phase 1B — nuances catalog + LLM spec (reference companion)

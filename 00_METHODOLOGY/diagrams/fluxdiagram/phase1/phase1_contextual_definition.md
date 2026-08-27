@@ -2,9 +2,9 @@
 document_id: AEGIS-DIAG-FLOW-P1
 title: Phase 1 — Contextual Definition (Flow Diagram)
 phase: 1
-version: 1.1
+version: 1.2
 created: 2026-06-15
-updated: 2026-07-13
+updated: 2026-08-27
 author: Methodology maintainer
 status: ACTIVE
 companion: ../../Class_Models/phase1_contextual_definition.md
@@ -15,6 +15,13 @@ changes: |
   - Added Doc 07b (Proportionality Profile) as first-class output
   - Added GATE-P to gate criteria
   - Added cross-references to filter2_domain_relevance.md, subdomain_lanes.md, phase1c_proportionality_synthesis.md
+  v1.2 (2026-08-27):
+  - Added "Rich-Mode Extension" pointer after Document Flow Summary. The master spine
+    (Doc 04 → Doc 05 → Doc 06 → Doc 07 → Doc 07b) is unchanged; v1.2 only adds a
+    cross-reference to the sibling diagram `phase1_rich_extension.md` (v1.0, 2026-08-27)
+    which covers the case-level 04a–d / 05b / 07c family, the ontology → KG → dashboard
+    infrastructure layer, and the post-rename (c94b840) legacy → DocNN reconciliation
+    table. See validation/P1_production_flow_audit_v0.md for the case-side audit.
 ---
 
 # Phase 1 — Contextual Definition (Flow Diagram)
@@ -189,6 +196,21 @@ Design Decisions (03) ───────────────────�
 ```
 
 Doc 07 is the **convergence point**. It pulls from multiple sources and generates 4 new analyses that don't exist in any upstream document. It is not just an aggregation — it is a synthesis engine.
+
+> **Rich-Mode Extension (v1.0, 2026-08-27).** This diagram shows the master spine. The case
+> corpus (e.g., Case_01 Phase 1 RICH) instantiates a Rich-Mode extension that adds the
+> 04a–d / 05b / 07c family (architecture & data inventory, security posture, third-party
+> landscape, organisation & RACI, ambiguity register, adjusted objectives), the
+> ontology → KG → dashboard infrastructure layer, and the post-rename
+> (c94b840, 2026-08-26) legacy → DocNN reconciliation table. See:
+>
+> - [`phase1_rich_extension.md`](phase1_rich_extension.md) — sibling diagram, additive only;
+>   master spine here remains authoritative.
+> - `02_CASES/Case_01_TinyTask_SaaS/01_PHASE1_CONTEXT_RICH/PRODUCTION_FLOW.md` — case-side
+>   production flow with trigger / inputs / transformation / outputs / consumers /
+>   objectives served per doc.
+> - `02_CASES/Case_01_TinyTask_SaaS/01_PHASE1_CONTEXT_RICH/validation/P1_production_flow_audit_v0.md`
+>   — supporting audit matrix.
 
 ---
 
