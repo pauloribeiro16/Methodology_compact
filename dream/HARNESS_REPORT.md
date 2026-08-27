@@ -10,21 +10,22 @@ _Generated 2026-08-27 by `scripts/dream/harness_audit.py` — auto-discovers the
 | `hook:SessionStart:case_context_hook.sh` | hook | 5 | 5 | **INSUFFICIENT-DATA** |  |
 | `hook:UserPromptSubmit:kg-reminder.sh` | hook | 27 | 27 | **INSUFFICIENT-DATA** |  |
 | `hook:PreToolUse:guard-protected-files.sh` | hook | 4 | 4 | **INSUFFICIENT-DATA** |  |
-| `hook:PreToolUse:guard-bash.sh` | hook | 5 | 5 | **INSUFFICIENT-DATA** |  |
-| `mcp:skillnet` | mcp | 0 | 0 | **WEAK** |  |
+| `hook:PreToolUse:guard-bash.sh` | hook | 8 | 8 | **INSUFFICIENT-DATA** |  |
+| `mcp:skillnet` | mcp | 0 | 0 | **DEAD** |  |
 | `agent:web-frontend` | subagent | 4 | 4 | **HEALTHY** |  |
-| `cmd:/case` | command | 162 | 203 | **HEALTHY** |  |
-| `cmd:/doc-check` | command | 1 | 1 | **WEAK** |  |
-| `cmd:/dream` | command | 82 | 82 | **HEALTHY** |  |
-| `skill:case-context-loader` | skill | 2 | 2 | **WEAK** |  |
-| `skill:doc-conventions` | skill | 0 | 0 | **WEAK** |  |
+| `cmd:/case` | command | 164 | 205 | **HEALTHY** |  |
+| `cmd:/doc-check` | command | 2 | 2 | **DEAD** |  |
+| `cmd:/dream` | command | 90 | 90 | **HEALTHY** |  |
+| `cmd:/harness-audit` | command | 10 | 10 | **INSUFFICIENT-DATA** |  |
+| `skill:case-context-loader` | skill | 2 | 2 | **DEAD** |  |
+| `skill:doc-conventions` | skill | 0 | 0 | **DEAD** |  |
 | `repo-skill:case-context-loader` | repo-skill | 2 | 2 | **INSUFFICIENT-DATA** |  |
 | `repo-skill:doc-conventions` | repo-skill | 0 | 0 | **INSUFFICIENT-DATA** |  |
 | `script:install_skills.sh` | script | 5 | 5 | **INSUFFICIENT-DATA** |  |
-| `script:kg.sh` | script | 190 | 196 | **INSUFFICIENT-DATA** |  |
+| `script:kg.sh` | script | 193 | 199 | **INSUFFICIENT-DATA** |  |
 | `script:rename_case_files.py` | script | 7 | 7 | **INSUFFICIENT-DATA** |  |
 | `dream:adoption_audit.py` | dream-script | 15 | 15 | **INSUFFICIENT-DATA** |  |
-| `dream:harness_audit.py` | dream-script | 5 | 5 | **INSUFFICIENT-DATA** |  |
+| `dream:harness_audit.py` | dream-script | 10 | 10 | **INSUFFICIENT-DATA** |  |
 | `dream:reconcile.py` | dream-script | 9 | 9 | **INSUFFICIENT-DATA** |  |
 | `dream:transcript_lib.py` | dream-script | 10 | 10 | **INSUFFICIENT-DATA** |  |
 
@@ -54,9 +55,9 @@ _Generated 2026-08-27 by `scripts/dream/harness_audit.py` — auto-discovers the
 
 | Severity | Target | Detail | ms |
 |---|---|---|---|
-| OK | `kg.sh audit` | # graph: /home/epmq-cyber/Área de Trabalho/projects/Methodology_compact/kg/E3_2026-08-23/graphify-out/graph.json | 66 |
-| OK | `skillnet MCP handshake` | 2 tools | 137 |
-| OK | `dashboard smoke --no-shots` | all passed | 11557 |
+| OK | `kg.sh audit` | # graph: /home/epmq-cyber/Área de Trabalho/projects/Methodology_compact/kg/E3_2026-08-23/graphify-out/graph.json | 71 |
+| OK | `skillnet MCP handshake` | 2 tools | 159 |
+| OK | `dashboard smoke --no-shots` | all passed | 11492 |
 
 ## AGENTS.md triage
 
@@ -70,8 +71,8 @@ _Generated 2026-08-27 by `scripts/dream/harness_audit.py` — auto-discovers the
 
 _Each DEAD item without a plan gets a wiring-or-removal proposal. Each WEAK item gets a triggers/documentation proposal._
 
-### WEAK items (<3 uses per week)
-- `mcp:skillnet` — refine description / add a task-pattern line, or remove from mandates. Current usage: 0 this week, 0 over 14d.
-- `cmd:/doc-check` — refine description / add a task-pattern line, or remove from mandates. Current usage: 1 this week, 1 over 14d.
-- `skill:case-context-loader` — refine description / add a task-pattern line, or remove from mandates. Current usage: 2 this week, 2 over 14d.
-- `skill:doc-conventions` — refine description / add a task-pattern line, or remove from mandates. Current usage: 0 this week, 0 over 14d.
+### DEAD items (0 uses in 2 consecutive audits)
+- `mcp:skillnet` — decide: wire into pre-flight, improve triggers, or remove. Current usage: 0 over 14d.
+- `cmd:/doc-check` — decide: wire into pre-flight, improve triggers, or remove. Current usage: 2 over 14d.
+- `skill:case-context-loader` — decide: wire into pre-flight, improve triggers, or remove. Current usage: 2 over 14d.
+- `skill:doc-conventions` — decide: wire into pre-flight, improve triggers, or remove. Current usage: 0 over 14d.
