@@ -56,13 +56,16 @@ if printf '%s' "$CMD" | grep -qE ':[[:space:]]*\(\)[[:space:]]*\{[[:space:]]*:\|
   deny "fork bomb pattern"
 fi
 
-# Append one JSON line to the audit log. Truncate the command to keep the
-# log parseable; bash can be huge.
+# Append one JSON line to the audit log. Use python3 heredoc to avoid
+# pipefail quirks with stdin redirection; truncate via head -c before
+# JSON-encoding to bound log size and protect against multi-MB scripts.
 TS="$(date -Iseconds 2>/dev/null || date)"
-TRUNC="$(printf '%s' "$CMD" | head -c 400)"
-# Escape backslashes and quotes for valid JSON
-ESC="$(printf '%s' "$TRUNC" | python3 -c 'import json,sys; print(json.dumps(sys.stdin.read())[1:-1])')"
-LOG_LINE="{\"ts\":\"$TS\",\"truncated_command\":\"$ESC\"}"
-printf '%s\n' "$LOG_LINE" >> "$LOG" 2>/dev/null || true
+TS="$TS" CMD="$CMD" LOG="$LOG" python3 - <<'PY' 2>/dev/null || true
+import json, os
+cmd = os.environ.get("CMD", "")[:400]
+record = {"ts": os.environ.get("TS", ""), "truncated_command": cmd}
+with open(os.environ["LOG"], "a", encoding="utf-8") as f:
+    f.write(json.dumps(record, ensure_ascii=False) + "\n")
+PY
 
 exit 0
