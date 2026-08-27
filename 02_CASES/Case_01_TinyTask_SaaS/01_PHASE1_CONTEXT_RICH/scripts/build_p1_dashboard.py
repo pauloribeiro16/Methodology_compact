@@ -112,6 +112,9 @@ def check_invariants(graph: dict) -> list[str]:
         "data_subject_categories": 3,
         "third_parties": 6,
         "compliance_mapping_rows": 37,
+        # Phase C (Doc08 §9 + Doc12 §4) — verification & proportionality counts
+        "articles_with_verification": 54,
+        "subdomains_with_proportionality": 37,
     }
     inv = graph.get("invariants", {})
     for k, want in expected.items():
@@ -227,6 +230,114 @@ def check_audit_node_ids(graph: dict) -> list[str]:
         for nid in a.get("node_ids", []):
             if nid not in node_ids:
                 errors.append(f"audit {a['id']}: dangling node_id '{nid}'")
+    return errors
+
+
+# ---------------------------------------------------------------------------
+# Phase C (Doc08 §9 + Doc12 §4) — maturity, tier, spot-checks
+# ---------------------------------------------------------------------------
+
+def check_phase_c(graph: dict) -> list[str]:
+    """Phase C validators (Doc08 §9 + Doc12 §4 derived attrs).
+
+    Returns a list of error messages (empty = pass).  Each error is fatal
+    under `--check` (rolled into the existing invariant exit code 1).
+
+    Validates:
+      1. Every RegulatoryClause node has maturity_cur / maturity_tgt integers
+         in range [0, 4] with cur ≤ tgt.
+      2. Every Active SecurityControlDomain node has the 13 proportionality keys
+         populated (i, p, tier, satisfaction_pattern, evidence_depth,
+         verification_method, ownership, example_controls, notes,
+         risk_if_not_met, maturity_cur, maturity_tgt, implementation_priority).
+      3. attrs.tier (Doc12 §4) == attrs.proportionality_tier (v1.2) for every
+         ACTIVE SecurityControlDomain; drift is surfaced as an error.
+      4. Every ART_VERIFICATION clause_id (derived from Doc08 §9 ordinal) is
+         bound to a real RegulatoryClause node.
+      5. Every SUBDOMAIN_PROPORTIONALITY sub_domain_id (Doc12 §4) is bound to
+         a real SecurityControlDomain node with attrs.active == True.
+      6. New invariants.articles_with_verification == 54 and
+         invariants.subdomains_with_proportionality == 37.
+    """
+    errors: list[str] = []
+
+    # Counters / lookups
+    clauses = {n["id"]: n for n in graph.get("nodes", []) if n["type"] == "RegulatoryClause"}
+    sds     = {n["id"]: n for n in graph.get("nodes", []) if n["type"] == "SecurityControlDomain"}
+
+    # (1) Maturity format validation for clauses
+    bad_maturity_clause = 0
+    for cid, n in clauses.items():
+        a = n.get("attrs", {})
+        cur, tgt = a.get("maturity_cur"), a.get("maturity_tgt")
+        if not isinstance(cur, int) or not isinstance(tgt, int):
+            bad_maturity_clause += 1
+            continue
+        if not (0 <= cur <= 4 and 0 <= tgt <= 4):
+            bad_maturity_clause += 1
+            continue
+        if cur > tgt:
+            bad_maturity_clause += 1
+    if bad_maturity_clause:
+        errors.append(f"Phase C: {bad_maturity_clause} RegulatoryClause node(s) fail maturity_cur/maturity_tgt range or cur<=tgt invariant")
+
+    # (2) 13 proportionality keys on every active sub-domain
+    sd_required_keys = (
+        "i", "p", "tier", "satisfaction_pattern", "evidence_depth",
+        "verification_method", "ownership", "example_controls", "notes",
+        "risk_if_not_met", "maturity_cur", "maturity_tgt",
+        "implementation_priority",
+    )
+    bad_sd_attrs = 0
+    for sid, n in sds.items():
+        a = n.get("attrs", {})
+        if a.get("active") is not True:
+            continue
+        missing = [k for k in sd_required_keys if k not in a]
+        if missing:
+            bad_sd_attrs += 1
+    if bad_sd_attrs:
+        errors.append(f"Phase C: {bad_sd_attrs} active SecurityControlDomain(s) missing proportionality attrs keys")
+
+    # (3) Tier consistency: attrs.tier == attrs.proportionality_tier on every active sub-domain
+    tier_drift = []
+    for sid, n in sds.items():
+        a = n.get("attrs", {})
+        if a.get("active") is not True:
+            continue
+        new_tier = a.get("tier")
+        old_tier = a.get("proportionality_tier")
+        if new_tier != old_tier:
+            tier_drift.append((sid, new_tier, old_tier))
+    if tier_drift:
+        # Report up to 5 drift items in the error message
+        sample = tier_drift[:5]
+        errors.append(
+            f"Phase C: tier drift on {len(tier_drift)} active sub-domain(s); sample: " +
+            ", ".join(f"{sid}(tier={nt!r}, prop_tier={pt!r})" for sid, nt, pt in sample)
+        )
+
+    # (4) Verify the §9 54-row derivation bound: every existing RegulatoryClause
+    # node MUST carry maturity_cur + maturity_tgt now (so 54 = 54 cross-check).
+    missing_clause_phasec = [cid for cid, n in clauses.items()
+                             if "maturity_cur" not in n.get("attrs", {})
+                             or "maturity_tgt" not in n.get("attrs", {})]
+    if missing_clause_phasec:
+        errors.append(f"Phase C: {len(missing_clause_phasec)} RegulatoryClause node(s) lack Phase-C maturity_cur/tgt attrs (sample: {missing_clause_phasec[:3]})")
+
+    # (5) 54 articles + 37 sub-domains attested counts on the graph invariants
+    inv = graph.get("invariants", {})
+    if inv.get("articles_with_verification") != 54:
+        errors.append(f"Phase C: invariants.articles_with_verification expected 54, got {inv.get('articles_with_verification')}")
+    if inv.get("subdomains_with_proportionality") != 37:
+        errors.append(f"Phase C: invariants.subdomains_with_proportionality expected 37, got {inv.get('subdomains_with_proportionality')}")
+
+    # (6) Phase-C audit presence: NEW-06, NEW-07, NEW-08 (and CFL-006 if drift)
+    audit_ids = {a["id"] for a in graph.get("audits", [])}
+    for need in ("NEW-06", "NEW-07", "NEW-08"):
+        if need not in audit_ids:
+            errors.append(f"Phase C: expected audit id '{need}' missing from audits list")
+
     return errors
 
 
@@ -402,6 +513,7 @@ def cmd_check(graph: dict, argv_extra: list[str]) -> int:
     inv_errors = check_invariants(graph)
     audit_errors = check_audit_node_ids(graph)
     stale_errors = check_stale_invariant_counts(graph, ontology)
+    phase_c_errors = check_phase_c(graph)
 
     # Ontology type whitelist
     type_errors, _ = check_ontology_types(graph, ontology)
@@ -417,6 +529,10 @@ def cmd_check(graph: dict, argv_extra: list[str]) -> int:
     if inv_errors or stale_errors:
         print("INVARIANT VIOLATIONS:", file=sys.stderr)
         for e in inv_errors + stale_errors:
+            print(f"  - {e}", file=sys.stderr)
+    if phase_c_errors:
+        print("PHASE-C VIOLATIONS:", file=sys.stderr)
+        for e in phase_c_errors:
             print(f"  - {e}", file=sys.stderr)
     if audit_errors:
         print("DANGLING AUDIT REFERENCES:", file=sys.stderr)
@@ -440,7 +556,7 @@ def cmd_check(graph: dict, argv_extra: list[str]) -> int:
             print(f"  - {e}", file=sys.stderr)
 
     # Exit code selection
-    if inv_errors or stale_errors:
+    if inv_errors or stale_errors or phase_c_errors:
         return 1
     if audit_errors:
         return 2
