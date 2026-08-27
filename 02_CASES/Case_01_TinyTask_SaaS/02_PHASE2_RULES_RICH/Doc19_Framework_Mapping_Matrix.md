@@ -33,10 +33,9 @@ ni_avg_rule_note: >
   Field 18 (NI) on Doc 11 cards uses AVG. 30 CR all bucket P1 (MUST)
   except CR-D-03.2-001 (NI=2 SHOULD), CR-D-05.4-001 (NI=2 SHOULD),
   CR-D-08.2-001 (NI=2 SHOULD). 16 BPR all NI=2 SHOULD.
-maturity_model_decision: >
-  Two scores per control (maturity_csf, maturity_privacy) - D11.
-  No aggregation into single score. Heatmap colour uses MIN(gap_csf, gap_priv)
-  but with N/A-privacy rule: gap_display = gap_csf when privacy is N/A.
+implementation_posture_decision: >
+  Implementation Posture Model (IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0):
+  3 states (IMPLEMENTED, PARTIAL, NOT IMPLEMENTED) per control, replacing numerical maturity (0-4) and Tiers.
 governance_view_decision: >
   §2 fuses CSF GV + Privacy FW GV-P + AI RMF GOVERN into one view
   per SPEC §4.4. 6 governance concepts x 3 frameworks (AI RMF placeholder).
@@ -797,49 +796,6 @@ PR.DS/ID.DE families reinstated; see §6.2).
 
 ---
 
-## §4 - Modelo de Maturidade Dupla
-
-> Implements SPEC §7. Two scales (Tiers + 0-4 per-subcategory). Two scores
-> per control (D11). Heatmap formula MIN(gap_csf, gap_priv) with N/A rule
-> (gap_display = gap_csf when privacy is N/A) - orchestrator decision
-> documented in §4.4.
-
-### §4.1 Implementation Tiers CSF (T1-T4)
-
-> NIST CSF 2.0 native scale, applied at the Function (program) level.
-
-| Tier | Name           | Description (CSF 2.0 §3.4)                                       |
-|------|----------------|-------------------------------------------------------------------|
-| 1    | Partial        | Risk not formalised; ad-hoc practices; limited awareness.         |
-| 2    | Risk-Informed  | Risk managed informally; practices defined but not consistent.    |
-| 3    | Repeatable     | Practices formal, repeatable, with monitoring.                    |
-| 4    | Adaptive       | Adaptive practices; continuous improvement; automation.           |
-
-### §4.2 Escala 0-4 CSF por-subcategoria
-
-> Constructed per SPEC §7.3 (NIST defines Tiers only at org level; this
-> scale anchors to statements + informative references). Definitions:
-
-| Nivel | Label      | Definicao operacional (per CSF 2.0 statements) |
-|-------|------------|------------------------------------------------|
-| 0     | None       | No control implemented against the subcategory statement. |
-| 1     | Ad-hoc     | Informal, inconsistent, undocumented practice. |
-| 2     | Defined    | Documented but not fully implemented or measured. |
-| 3     | Managed    | Implemented, monitored, measured, and regularly reviewed. |
-| 4     | Optimized  | Continuously improved and substantially automated. |
-
-#### Anchor table for CSF subcategories used in §3 (per-subcategory criteria)
-
-> Only CSF IDs actually used in §3 are anchored. Anchoring rationale is
-> per-anchor (1-2 sentences), grounded in the statement from the frozen list.
-
-| CSF ID       | Anchor (0-4 criteria, condensed to 1 line each) |
-|--------------|-------------------------------------------------|
-| GV.OC-03     | 0 legal/regulatory reqs untracked. 1 informal list. 2 documented register. 3 register + periodic review + owner. 4 automated change-detection + DPO sign-off. |
-| GV.OC-04     | 0 critical capabilities unstated. 1 implicit. 2 documented list. 3 list + owner + review. 4 list + automated drift detection. |
-| GV.OV-01     | 0 no outcome review. 1 ad-hoc review. 2 annual review documented. 3 outcome review with KPIs. 4 real-time KPI dashboard. |
-| GV.OV-02     | 0 no risk-landscape review. 1 ad-hoc. 2 annual review. 3 review with documented change triggers. 4 automated threat-landscape monitoring. |
-| GV.OV-03     | 0 no performance eval. 1 informal. 2 annual review. 3 KPI-tracked + management review. 4 continuous measurement + auto-adjustment. |
 | GV.PO-01     | 0 no policy. 1 implicit policy. 2 documented policy. 3 policy + owner + enforcement + review. 4 policy + automated compliance checks. |
 | GV.PO-02     | 0 no processes/procedures. 1 ad-hoc. 2 documented. 3 enforced + reviewed. 4 automated + continuously improved. |
 | GV.RM-01     | 0 no objectives. 1 implicit. 2 documented objectives. 3 agreed + communicated + tracked. 4 objectives aligned to business KPIs. |

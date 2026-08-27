@@ -24,7 +24,7 @@ branch: feature/aegis-p1-corrections-batch-001
 sprint_1_scope: cross-check 30 objectives ↔ 30 obligations ↔ 30 CR rules; verify PO/SO distribution; ID integrity
 sprint_4_scope: port legacy §3 PG catalog (11 PG × 6 cols) + legacy §4 SG catalog (20 SG × 6 cols) into Rich §3.1/§4.1 with 12 cols each (6 legacy + 6 new Sprint 4 fields); resolve F-04a/b (31 not 30)
 sprint_4_verdict: PASS_WITH_FINDINGS — see §5.7 carried findings F-01/F-02
-sprint_5_scope: append §6 with 31 Objective Detail Cards (11 PO + 20 SO), each with 15 fields (Description, Scope, Out of Scope, Source Article, NIST CSF Anchors, Verification Criteria, Verification Method, Owner, Status, Dependencies, Risk if not met, Affected Stakeholders, Maturity Score, Implementation Priority, Case_01 Reporting/Auditor/Supervisory Body composite = 15 cells per card)
+sprint_5_scope: append §6 with 31 Objective Detail Cards (11 PO + 20 SO), each with 15 fields (Description, Scope, Out of Scope, Source Article, NIST CSF Anchors, Verification Criteria, Verification Method, Owner, Status, Dependencies, Risk if not met, Affected Stakeholders, Implementation Status, Implementation Priority, Case_01 Reporting/Auditor/Supervisory Body composite = 15 cells per card)
 sprint_5_verdict: PASS — see §6.3 verdict (31 cards × 15 fields = 465 cells populated)
 sprint_9_scope: corr-012 migration — rename all PG-D-XX.X-NNN → PO-D-XX.X-NNN (Privacy Goal → Privacy Operational Objective) and SG-D-XX.X-NNN → SO-D-XX.X-NNN (Security Goal → Security Operational Objective); tech-strip all §6 detail card descriptions, scopes, verifications of vendor/tool/mechanism references; preserve regulatory citations (Art. X, Annex I §Y, NIST CSF/PRIV anchors) and abstract operational concepts; add Appendix A preserving legacy PG/SG aliases (DEPRECATED, for traceability with Phase 1 07c Appendix A)
 sprint_9_verdict: PASS — see §7.2 sprint 9 verdict
@@ -78,34 +78,34 @@ This is the Rich Mode version of the Objectives Catalog. It defines **31 objecti
 
 #### D-01: Data Protection & Encryption (3 PO)
 
-| Objective ID | Objective Description | Source Obligations | Sub-Domain | Risk Profile | Priority | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors | PF Anchors |
+| Objective ID | Objective Description | Source Obligations | Sub-Domain | Risk Profile | Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors | PF Anchors |
 | --------- | ------------------ | -------------------- | ------------ | -------------- | ---------- | ------- | ---------------------- | --------------- | ------------------------ | ---------------------- | ---------------------- | --- | --- |
-| PO-D-01.1-001 | Personal and product data in persistent storage protected by confidentiality mechanisms appropriate to data class | OBL-D-01.1-001 | D-01.1 | LOW | HIGH | CTO + Lead Dev | Configuration report demonstrates confidentiality mechanisms active in all persistent stores of personal or product data | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.DS-01, PR.DS-02, PR.DS-10, PR.IR-01, PR.PS-06 | PR.DS-P1 |
-| PO-D-01.2-001 | Personal and product data crossing network boundaries protected by confidentiality mechanisms appropriate to channel classification | OBL-D-01.2-001 | D-01.2 | LOW | HIGH | CTO + Lead Dev | Configuration report demonstrates confidentiality mechanisms active in all network channels carrying personal or product data | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.DS-02, PR.IR-01 | PR.DS-P2 |
-| PO-D-01.4-001 | Personal and product data integrity preserved against unauthorised modification by integrity controls appropriate to data class | OBL-D-01.4-001 | D-01.4 | LOW | HIGH | CTO + Lead Dev | Configuration report demonstrates integrity controls active across personal data, product data, and audit log artifacts | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.DS-01, PR.DS-10 | CT.DM-P1, CT.DM-P3 |
+| PO-D-01.1-001 | Personal and product data in persistent storage protected by confidentiality mechanisms appropriate to data class | OBL-D-01.1-001 | D-01.1 | LOW | HIGH | CTO + Lead Dev | Configuration report demonstrates confidentiality mechanisms active in all persistent stores of personal or product data | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.DS-01, PR.DS-02, PR.DS-10, PR.IR-01, PR.PS-06 | PR.DS-P1 |
+| PO-D-01.2-001 | Personal and product data crossing network boundaries protected by confidentiality mechanisms appropriate to channel classification | OBL-D-01.2-001 | D-01.2 | LOW | HIGH | CTO + Lead Dev | Configuration report demonstrates confidentiality mechanisms active in all network channels carrying personal or product data | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.DS-02, PR.IR-01 | PR.DS-P2 |
+| PO-D-01.4-001 | Personal and product data integrity preserved against unauthorised modification by integrity controls appropriate to data class | OBL-D-01.4-001 | D-01.4 | LOW | HIGH | CTO + Lead Dev | Configuration report demonstrates integrity controls active across personal data, product data, and audit log artifacts | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.DS-01, PR.DS-10 | CT.DM-P1, CT.DM-P3 |
 
 #### D-05: Data Lifecycle (4 PO)
 
-| Objective ID | Objective Description | Source Obligations | Sub-Domain | Risk Profile | Priority | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors | PF Anchors |
+| Objective ID | Objective Description | Source Obligations | Sub-Domain | Risk Profile | Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors | PF Anchors |
 | --------- | ------------------ | -------------------- | ------------ | -------------- | ---------- | ------- | ---------------------- | --------------- | ------------------------ | ---------------------- | ---------------------- | --- | --- |
-| PO-D-05.1-001 | Minimise personal data collection to fields essential for the documented purpose | OBL-D-05.1-001 | D-05.1 | LOW | HIGH | CTO + DPO | field-level enforcement | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | GV.OC-03, GV.PO-01, GV.PO-02, ID.AM-03, PR.AA-02, PR.DS-10 | CT.DP-P4, CT.PO-P4, ID.RA-P3 |
-| PO-D-05.2-001 | Retain personal data only for the period required to satisfy the documented purpose | OBL-D-05.2-001 | D-05.2 | LOW | MODERATE | CTO + DPO | retention policy audit | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | ID.AM-03, PR.DS-10 | CT.DM-P5, CT.PO-P4 |
-| PO-D-05.3-001 | Enable complete data erasure on data-subject request within the regulatory deadline | OBL-D-05.3-001 | D-05.3 | LOW | CRITICAL | CTO + DPO | erasure workflow test (within deadline) | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | GV.SC-04, PR.DS-10, RS.CO-02 | CT.DM-P4, CT.DM-P5 |
-| PO-D-05.4-001 | Provide data export in a structured, commonly used, machine-readable format on data-subject request | OBL-D-05.4-001 | D-05.4 | LOW | MODERATE | CTO + DPO | data-export workflow test (within deadline) | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.DS-10 | CT.DM-P1, CT.DM-P6 |
+| PO-D-05.1-001 | Minimise personal data collection to fields essential for the documented purpose | OBL-D-05.1-001 | D-05.1 | LOW | HIGH | CTO + DPO | field-level enforcement | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | GV.OC-03, GV.PO-01, GV.PO-02, ID.AM-03, PR.AA-02, PR.DS-10 | CT.DP-P4, CT.PO-P4, ID.RA-P3 |
+| PO-D-05.2-001 | Retain personal data only for the period required to satisfy the documented purpose | OBL-D-05.2-001 | D-05.2 | LOW | MODERATE | CTO + DPO | retention policy audit | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | ID.AM-03, PR.DS-10 | CT.DM-P5, CT.PO-P4 |
+| PO-D-05.3-001 | Enable complete data erasure on data-subject request within the regulatory deadline | OBL-D-05.3-001 | D-05.3 | LOW | CRITICAL | CTO + DPO | erasure workflow test (within deadline) | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | GV.SC-04, PR.DS-10, RS.CO-02 | CT.DM-P4, CT.DM-P5 |
+| PO-D-05.4-001 | Provide data export in a structured, commonly used, machine-readable format on data-subject request | OBL-D-05.4-001 | D-05.4 | LOW | MODERATE | CTO + DPO | data-export workflow test (within deadline) | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.DS-10 | CT.DM-P1, CT.DM-P6 |
 
 #### D-07: Secure Development (1 PO)
 
-| Objective ID | Objective Description | Source Obligations | Sub-Domain | Risk Profile | Priority | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors | PF Anchors |
+| Objective ID | Objective Description | Source Obligations | Sub-Domain | Risk Profile | Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors | PF Anchors |
 | --------- | ------------------ | -------------------- | ------------ | -------------- | ---------- | ------- | ---------------------- | --------------- | ------------------------ | ---------------------- | ---------------------- | --- | --- |
-| PO-D-07.1-001 | Integrate data protection measures into processing design from the outset | OBL-D-07.1-001 | D-07.1 | LOW | HIGH | CTO + Lead Dev | secure-development-framework alignment + maturity assessment | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.DS-01, PR.DS-10, PR.PS-01, PR.PS-06 | CT.DP-P2, CT.DP-P4, CT.DP-P5, CT.PO-P4, GV.PO-P2 |
+| PO-D-07.1-001 | Integrate data protection measures into processing design from the outset | OBL-D-07.1-001 | D-07.1 | LOW | HIGH | CTO + Lead Dev | secure-development-framework alignment + posture assessment | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.DS-01, PR.DS-10, PR.PS-01, PR.PS-06 | CT.DP-P2, CT.DP-P4, CT.DP-P5, CT.PO-P4, GV.PO-P2 |
 
 #### D-09: Governance & Documentation (3 PO)
 
-| Objective ID | Objective Description | Source Obligations | Sub-Domain | Risk Profile | Priority | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors | PF Anchors |
+| Objective ID | Objective Description | Source Obligations | Sub-Domain | Risk Profile | Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors | PF Anchors |
 | --------- | ------------------ | -------------------- | ------------ | -------------- | ---------- | ------- | ---------------------- | --------------- | ------------------------ | ---------------------- | ---------------------- | --- | --- |
-| PO-D-09.1-001 | Maintain comprehensive privacy policies documenting appropriate measures | OBL-D-09.1-001 | D-09.1 | LOW | HIGH | CTO + DPO + Compliance Lead + Legal | documentation audit | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | CNPD + ENISA (periodic) | GV.OC-02, GV.OC-03, GV.OV-03, GV.PO-01, GV.PO-02, GV.RM-04 | CM.PO-P1, GV.PO-P1, GV.PO-P5 |
-| PO-D-09.2-001 | Conduct data-protection impact assessments (DPIA) prior to high-risk processing | OBL-D-09.2-001 | D-09.2 | LOW | HIGH | CTO + DPO + Compliance Lead + Legal | unified assessment template | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | CNPD + ENISA (periodic) | GV.OC-03, GV.OV-03, GV.PO-01, GV.RR-02, GV.SC-02, GV.SC-03 | ID.RA-P3, ID.RA-P4, ID.RA-P5 |
-| PO-D-09.4-001 | Maintain records of all personal-data processing activities | OBL-D-09.4-001 | D-09.4 | LOW | MODERATE | CTO + DPO + Compliance Lead + Legal | records-of-processing + breach log | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | CNPD + ENISA (periodic) | DE.AE-03, GV.PO-02, ID.AM-03, PR.AA-02, PR.DS-10, PR.PS-04 | ID.IM-P1, ID.IM-P4, ID.IM-P6, ID.IM-P8 |
+| PO-D-09.1-001 | Maintain comprehensive privacy policies documenting appropriate measures | OBL-D-09.1-001 | D-09.1 | LOW | HIGH | CTO + DPO + Compliance Lead + Legal | documentation audit | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | CNPD + ENISA (periodic) | GV.OC-02, GV.OC-03, GV.OV-03, GV.PO-01, GV.PO-02, GV.RM-04 | CM.PO-P1, GV.PO-P1, GV.PO-P5 |
+| PO-D-09.2-001 | Conduct data-protection impact assessments (DPIA) prior to high-risk processing | OBL-D-09.2-001 | D-09.2 | LOW | HIGH | CTO + DPO + Compliance Lead + Legal | unified assessment template | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | CNPD + ENISA (periodic) | GV.OC-03, GV.OV-03, GV.PO-01, GV.RR-02, GV.SC-02, GV.SC-03 | ID.RA-P3, ID.RA-P4, ID.RA-P5 |
+| PO-D-09.4-001 | Maintain records of all personal-data processing activities | OBL-D-09.4-001 | D-09.4 | LOW | MODERATE | CTO + DPO + Compliance Lead + Legal | records-of-processing + breach log | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | CNPD + ENISA (periodic) | DE.AE-03, GV.PO-02, ID.AM-03, PR.AA-02, PR.DS-10, PR.PS-04 | ID.IM-P1, ID.IM-P4, ID.IM-P6, ID.IM-P8 |
 
 ### 3.2 Privacy Operational Objectives Summary
 
@@ -128,58 +128,58 @@ This is the Rich Mode version of the Objectives Catalog. It defines **31 objecti
 
 #### D-02: Vulnerability Management (3 SO)
 
-| Objective ID | Objective Description | Source Obligations | Sub-Domain | Risk Profile | Priority | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors | PF Anchors |
+| Objective ID | Objective Description | Source Obligations | Sub-Domain | Risk Profile | Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors | PF Anchors |
 | --------- | ------------------ | -------------------- | ------------ | -------------- | ---------- | ------- | ---------------------- | --------------- | ------------------------ | ---------------------- | ---------------------- | --- | --- |
-| SO-D-02.1-001 | Deliver and maintain the product with zero known exploitable vulnerabilities | OBL-D-02.1-001 | D-02.1 | MEDIUM | CRITICAL | CTO + Lead Dev + Procurement | automated vulnerability + dependency scan, zero critical findings | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | ENISA 24h (CRA) | ID.IM-02, ID.RA-01, ID.RA-05, PR.PS-02 | ID.RA-P3, ID.RA-P5 |
-| SO-D-02.2-001 | Enable automatic security updates for all deployed components | OBL-D-02.2-001 | D-02.2 | MEDIUM | CRITICAL | CTO + Lead Dev + Procurement | patch-management SLA test | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | ENISA 24h (CRA) | — | UNMAPPED_PRIVACY (patch cadence is product-security concern; no PF subcat anchored) |
-| SO-D-02.3-001 | Publish a coordinated vulnerability disclosure policy | OBL-D-02.3-001 | D-02.3 | LOW | HIGH | CTO + Lead Dev + Procurement | vulnerability-disclosure policy + reporting workflow | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | ENISA 24h (CRA) | — | UNMAPPED_PRIVACY (CVD is security-disclosure; no PF subcat anchored) |
+| SO-D-02.1-001 | Deliver and maintain the product with zero known exploitable vulnerabilities | OBL-D-02.1-001 | D-02.1 | MEDIUM | CRITICAL | CTO + Lead Dev + Procurement | automated vulnerability + dependency scan, zero critical findings | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | ENISA 24h (CRA) | ID.IM-02, ID.RA-01, ID.RA-05, PR.PS-02 | ID.RA-P3, ID.RA-P5 |
+| SO-D-02.2-001 | Enable automatic security updates for all deployed components | OBL-D-02.2-001 | D-02.2 | MEDIUM | CRITICAL | CTO + Lead Dev + Procurement | patch-management SLA test | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | ENISA 24h (CRA) | — | UNMAPPED_PRIVACY (patch cadence is product-security concern; no PF subcat anchored) |
+| SO-D-02.3-001 | Publish a coordinated vulnerability disclosure policy | OBL-D-02.3-001 | D-02.3 | LOW | HIGH | CTO + Lead Dev + Procurement | vulnerability-disclosure policy + reporting workflow | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | ENISA 24h (CRA) | — | UNMAPPED_PRIVACY (CVD is security-disclosure; no PF subcat anchored) |
 
 #### D-03: Access Control (4 SO)
 
-| Objective ID | Objective Description | Source Obligations | Sub-Domain | Risk Profile | Priority | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors | PF Anchors |
+| Objective ID | Objective Description | Source Obligations | Sub-Domain | Risk Profile | Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors | PF Anchors |
 | --------- | ------------------ | -------------------- | ------------ | -------------- | ---------- | ------- | ---------------------- | --------------- | ------------------------ | ---------------------- | ---------------------- | --- | --- |
-| SO-D-03.1-001 | Implement authentication controls for all user-facing interfaces | OBL-D-03.1-001 | D-03.1 | MEDIUM | HIGH | CTO + Lead Dev | managed identity baseline | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | GV.OC-03, GV.PO-02, PR.AA-02, PR.AA-03, PR.DS-10 | PR.AC-P1, PR.AC-P6, PR.AC-P4; UNMAPPED_PF (asset inventory/risk-strategy — no PF 1.0 analogue) |
-| SO-D-03.2-001 | Enable multi-factor authentication for accounts with access to personal data or administrative privileges | OBL-D-03.2-001 | D-03.2 | LOW | MODERATE | CTO + Lead Dev | MFA enforcement test | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | — | PR.AC-P6; UNMAPPED_PF (identity assertions — no PF 1.0 subcategory) |
-| SO-D-03.3-001 | Restrict access to authorised personnel; enforce least privilege | OBL-D-03.3-001 | D-03.3 | MEDIUM | HIGH | CTO + Lead Dev | RBAC quarterly review | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.AA-05, PR.AA-06, PR.AT-02 | CT.PO-P1 |
-| SO-D-03.4-001 | Disable all unused ports, services, and interfaces by default | OBL-D-03.4-001 | D-03.4 | LOW | HIGH | CTO + Lead Dev | hardened-default compliance | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.DS-10, PR.PS-01, PR.PS-06 | CT.DP-P4, CT.PO-P4 |
+| SO-D-03.1-001 | Implement authentication controls for all user-facing interfaces | OBL-D-03.1-001 | D-03.1 | MEDIUM | HIGH | CTO + Lead Dev | managed identity baseline | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | GV.OC-03, GV.PO-02, PR.AA-02, PR.AA-03, PR.DS-10 | PR.AC-P1, PR.AC-P6, PR.AC-P4; UNMAPPED_PF (asset inventory/risk-strategy — no PF 1.0 analogue) |
+| SO-D-03.2-001 | Enable multi-factor authentication for accounts with access to personal data or administrative privileges | OBL-D-03.2-001 | D-03.2 | LOW | MODERATE | CTO + Lead Dev | MFA enforcement test | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | — | PR.AC-P6; UNMAPPED_PF (identity assertions — no PF 1.0 subcategory) |
+| SO-D-03.3-001 | Restrict access to authorised personnel; enforce least privilege | OBL-D-03.3-001 | D-03.3 | MEDIUM | HIGH | CTO + Lead Dev | RBAC quarterly review | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.AA-05, PR.AA-06, PR.AT-02 | CT.PO-P1 |
+| SO-D-03.4-001 | Disable all unused ports, services, and interfaces by default | OBL-D-03.4-001 | D-03.4 | LOW | HIGH | CTO + Lead Dev | hardened-default compliance | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.DS-10, PR.PS-01, PR.PS-06 | CT.DP-P4, CT.PO-P4 |
 
 #### D-04: Incident Response (4 SO)
 
-| Objective ID | Objective Description | Source Obligations | Sub-Domain | Risk Profile | Priority | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors | PF Anchors |
+| Objective ID | Objective Description | Source Obligations | Sub-Domain | Risk Profile | Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors | PF Anchors |
 | --------- | ------------------ | -------------------- | ------------ | -------------- | ---------- | ------- | ---------------------- | --------------- | ------------------------ | ---------------------- | ---------------------- | --- | --- |
-| SO-D-04.1-001 | Design the system to limit the severity of any single exploit | OBL-D-04.1-001 | D-04.1 | MEDIUM | MODERATE | CTO + DPO + Compliance Lead | managed monitoring alarms active | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h (GDPR) | DE.AE-02, DE.CM-01, DE.CM-03, DE.CM-09, RS.MA-02 | CM.AW-P7 |
-| SO-D-04.2-001 | Build resilience against denial-of-service attacks | OBL-D-04.2-001 | D-04.2 | MEDIUM | MODERATE | CTO + DPO + Compliance Lead | DoS resilience drill | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h (GDPR) | PR.DS-01, RS.MI-01, RS.MI-02 | CT.DM-P10, PR.PO-P7 |
-| SO-D-04.3-001 | Notify the supervisory authority of actively exploited vulnerabilities within the regulatory deadline | OBL-D-04.3-001 | D-04.3 | HIGH | CRITICAL | CTO + DPO + Compliance Lead | dual-notification SLA | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h + ENISA 24h (max-SLA routing) | GV.OC-03, ID.RA-06, PR.DS-01, PR.DS-10, PR.IR-03 | CM.AW-P7, CM.AW-P8, CM.PO-P1, CM.PO-P2 |
-| SO-D-04.4-001 | Restore availability and access to data in a timely manner after an incident | OBL-D-04.4-001 | D-04.4 | MEDIUM | HIGH | CTO + DPO + Compliance Lead | managed backup RTO 24h | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h (GDPR) | PR.DS-01, PR.IR-04, RC.RP-04 | PR.DS-P1, PR.DS-P4, PR.PT-P4; UNMAPPED_PF (recover-execution — PF 1.0 has no Recover axis) |
+| SO-D-04.1-001 | Design the system to limit the severity of any single exploit | OBL-D-04.1-001 | D-04.1 | MEDIUM | MODERATE | CTO + DPO + Compliance Lead | managed monitoring alarms active | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h (GDPR) | DE.AE-02, DE.CM-01, DE.CM-03, DE.CM-09, RS.MA-02 | CM.AW-P7 |
+| SO-D-04.2-001 | Build resilience against denial-of-service attacks | OBL-D-04.2-001 | D-04.2 | MEDIUM | MODERATE | CTO + DPO + Compliance Lead | DoS resilience drill | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h (GDPR) | PR.DS-01, RS.MI-01, RS.MI-02 | CT.DM-P10, PR.PO-P7 |
+| SO-D-04.3-001 | Notify the supervisory authority of actively exploited vulnerabilities within the regulatory deadline | OBL-D-04.3-001 | D-04.3 | HIGH | CRITICAL | CTO + DPO + Compliance Lead | dual-notification SLA | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h + ENISA 24h (max-SLA routing) | GV.OC-03, ID.RA-06, PR.DS-01, PR.DS-10, PR.IR-03 | CM.AW-P7, CM.AW-P8, CM.PO-P1, CM.PO-P2 |
+| SO-D-04.4-001 | Restore availability and access to data in a timely manner after an incident | OBL-D-04.4-001 | D-04.4 | MEDIUM | HIGH | CTO + DPO + Compliance Lead | managed backup RTO 24h | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h (GDPR) | PR.DS-01, PR.IR-04, RC.RP-04 | PR.DS-P1, PR.DS-P4, PR.PT-P4; UNMAPPED_PF (recover-execution — PF 1.0 has no Recover axis) |
 
 #### D-06: Supply Chain (3 SO)
 
-| Objective ID | Objective Description | Source Obligations | Sub-Domain | Risk Profile | Priority | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors | PF Anchors |
+| Objective ID | Objective Description | Source Obligations | Sub-Domain | Risk Profile | Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors | PF Anchors |
 | --------- | ------------------ | -------------------- | ------------ | -------------- | ---------- | ------- | ---------------------- | --------------- | ------------------------ | ---------------------- | ---------------------- | --- | --- |
-| SO-D-06.1-001 | Use only processors that provide sufficient guarantees under documented data-processing agreements | OBL-D-06.1-001 | D-06.1 | LOW | HIGH | CTO + Lead Dev + Procurement | DPA + documented third-party security attestation | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | GV.SC-02, GV.SC-03 | ID.IM-P2 |
-| SO-D-06.2-001 | Maintain a software bill of materials in machine-readable format | OBL-D-06.2-001 | D-06.2 | MEDIUM | HIGH | CTO + Lead Dev + Procurement | machine-readable SBOM per release | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | — | UNMAPPED_PRIVACY (SBOM is product-security artefact; no PF subcat anchored) |
-| SO-D-06.3-001 | Bind processors to security obligations via contractual instruments | OBL-D-06.3-001 | D-06.3 | LOW | HIGH | CTO + Lead Dev + Procurement | DPA template + clauses | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | DE.CM-06, GV.OC-03, GV.RR-02, GV.SC-01, GV.SC-02, GV.SC-03 | ID.DE-P3, ID.DE-P4; UNMAPPED_PF (ecosystem-risk→ERM — no PF 1.0 subcategory) |
+| SO-D-06.1-001 | Use only processors that provide sufficient guarantees under documented data-processing agreements | OBL-D-06.1-001 | D-06.1 | LOW | HIGH | CTO + Lead Dev + Procurement | DPA + documented third-party security attestation | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | GV.SC-02, GV.SC-03 | ID.IM-P2 |
+| SO-D-06.2-001 | Maintain a software bill of materials in machine-readable format | OBL-D-06.2-001 | D-06.2 | MEDIUM | HIGH | CTO + Lead Dev + Procurement | machine-readable SBOM per release | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | — | UNMAPPED_PRIVACY (SBOM is product-security artefact; no PF subcat anchored) |
+| SO-D-06.3-001 | Bind processors to security obligations via contractual instruments | OBL-D-06.3-001 | D-06.3 | LOW | HIGH | CTO + Lead Dev + Procurement | DPA template + clauses | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | DE.CM-06, GV.OC-03, GV.RR-02, GV.SC-01, GV.SC-02, GV.SC-03 | ID.DE-P3, ID.DE-P4; UNMAPPED_PF (ecosystem-risk→ERM — no PF 1.0 subcategory) |
 
 #### D-08: Human Factors (2 SO)
 
-| Objective ID | Objective Description | Source Obligations | Sub-Domain | Risk Profile | Priority | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors | PF Anchors |
+| Objective ID | Objective Description | Source Obligations | Sub-Domain | Risk Profile | Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors | PF Anchors |
 | --------- | ------------------ | -------------------- | ------------ | -------------- | ---------- | ------- | ---------------------- | --------------- | ------------------------ | ---------------------- | ---------------------- | --- | --- |
-| SO-D-08.1-001 | Conduct security awareness training at the documented cadence for all staff | OBL-D-08.1-001 | D-08.1 | LOW | MODERATE | CTO + HR + DPO | annual security awareness training | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | GV.OV-03, ID.IM-02, PR.AA-05, PR.AT-01, PR.AT-02 | GV.AT-P1, GV.AT-P2 |
-| SO-D-08.2-001 | Provide role-specific security training to staff with privileged access | OBL-D-08.2-001 | D-08.2 | LOW | MODERATE | CTO + HR + DPO | role-specific training | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.AT-01, PR.AT-02 | GV.AT-P1, GV.AT-P2 |
+| SO-D-08.1-001 | Conduct security awareness training at the documented cadence for all staff | OBL-D-08.1-001 | D-08.1 | LOW | MODERATE | CTO + HR + DPO | annual security awareness training | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | GV.OV-03, ID.IM-02, PR.AA-05, PR.AT-01, PR.AT-02 | GV.AT-P1, GV.AT-P2 |
+| SO-D-08.2-001 | Provide role-specific security training to staff with privileged access | OBL-D-08.2-001 | D-08.2 | LOW | MODERATE | CTO + HR + DPO | role-specific training | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | PR.AT-01, PR.AT-02 | GV.AT-P1, GV.AT-P2 |
 
 #### D-09: Governance & Documentation (2 SO — dual coverage with PO-D-09.x)
 
-| Objective ID | Objective Description | Source Obligations | Sub-Domain | Risk Profile | Priority | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors | PF Anchors |
+| Objective ID | Objective Description | Source Obligations | Sub-Domain | Risk Profile | Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors | PF Anchors |
 | --------- | ------------------ | -------------------- | ------------ | -------------- | ---------- | ------- | ---------------------- | --------------- | ------------------------ | ---------------------- | ---------------------- | --- | --- |
-| SO-D-09.1-001 | Maintain technical documentation for the post-market-placement retention period | OBL-D-09.1-001 | D-09.1 | LOW | MODERATE | CTO + DPO + Compliance Lead + Legal | documentation audit | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | CNPD + ENISA (periodic) | GV.OC-02, GV.OC-03, GV.OV-03, GV.PO-01, GV.PO-02, GV.RM-04 | CM.PO-P1, GV.PO-P1, GV.PO-P5 |
-| SO-D-09.2-001 | Conduct a cybersecurity risk assessment before product launch | OBL-D-09.2-001 | D-09.2 | MEDIUM | HIGH | CTO + DPO + Compliance Lead + Legal | unified assessment template | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | CNPD + ENISA (periodic) | GV.OC-03, GV.OV-03, GV.PO-01, GV.RR-02, GV.SC-02, GV.SC-03 | ID.RA-P3, ID.RA-P4, ID.RA-P5 |
+| SO-D-09.1-001 | Maintain technical documentation for the post-market-placement retention period | OBL-D-09.1-001 | D-09.1 | LOW | MODERATE | CTO + DPO + Compliance Lead + Legal | documentation audit | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | CNPD + ENISA (periodic) | GV.OC-02, GV.OC-03, GV.OV-03, GV.PO-01, GV.PO-02, GV.RM-04 | CM.PO-P1, GV.PO-P1, GV.PO-P5 |
+| SO-D-09.2-001 | Conduct a cybersecurity risk assessment before product launch | OBL-D-09.2-001 | D-09.2 | MEDIUM | HIGH | CTO + DPO + Compliance Lead + Legal | unified assessment template | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | CNPD + ENISA (periodic) | GV.OC-03, GV.OV-03, GV.PO-01, GV.RR-02, GV.SC-02, GV.SC-03 | ID.RA-P3, ID.RA-P4, ID.RA-P5 |
 
 #### D-10: Monitoring & Audit (2 SO)
 
-| Objective ID | Objective Description | Source Obligations | Sub-Domain | Risk Profile | Priority | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors | PF Anchors |
+| Objective ID | Objective Description | Source Obligations | Sub-Domain | Risk Profile | Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting | CSF Anchors | PF Anchors |
 | --------- | ------------------ | -------------------- | ------------ | -------------- | ---------- | ------- | ---------------------- | --------------- | ------------------------ | ---------------------- | ---------------------- | --- | --- |
-| SO-D-10.2-001 | Log all security-relevant events with an immutable audit trail | OBL-D-10.2-001 | D-10.2 | MEDIUM | HIGH | CTO + Lead Dev | managed audit-trail + immutable storage audit | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | DE.AE-03, GV.OV-03, GV.PO-02, ID.AM-03, PR.DS-10, PR.PS-04 | CT.DM-P4, CT.DM-P9 |
-| SO-D-10.3-001 | Conduct regular security testing and code reviews | OBL-D-10.3-001 | D-10.3 | MEDIUM | MODERATE | CTO + Lead Dev | quarterly compliance review | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | ID.IM-02, ID.IM-04, ID.RA-01, ID.RA-05, ID.RA-06, PR.PS-02 | ID.RA-P3, ID.RA-P5 |
+| SO-D-10.2-001 | Log all security-relevant events with an immutable audit trail | OBL-D-10.2-001 | D-10.2 | MEDIUM | HIGH | CTO + Lead Dev | managed audit-trail + immutable storage audit | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | DE.AE-03, GV.OV-03, GV.PO-02, ID.AM-03, PR.DS-10, PR.PS-04 | CT.DM-P4, CT.DM-P9 |
+| SO-D-10.3-001 | Conduct regular security testing and code reviews | OBL-D-10.3-001 | D-10.3 | MEDIUM | MODERATE | CTO + Lead Dev | quarterly compliance review | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only | ID.IM-02, ID.IM-04, ID.RA-01, ID.RA-05, ID.RA-06, PR.PS-02 | ID.RA-P3, ID.RA-P5 |
 
 ### 4.2 Security Operational Objectives Summary
 
@@ -362,7 +362,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 11. **Dependencies:** D-01.3 (Key Management), D-01.4 (Integrity), D-05.3 (Erasure cascade), CR-D-01.1-001, OBL-D-01.1-001, PO-D-01.3-001 (Phase 1).
 12. **Risk if not met:** HIGH — failure creates audit-finding exposure under GDPR Art. 5(1)(f) and CRA Annex I §1.5(a); potential data-breach notification trigger.
 13. **Affected Stakeholders:** Customers (data subjects), CTO, Lead Dev, DPO, documented third-party security attestation source, CNPD (Portuguese SA).
-14. **Maturity Score:** 1/4 → 3/4.
+14. **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence).
 15. **Implementation Priority:** HIGH.
 16. **Regulatory Reporting (Case_01):** Internal audit only (no breach if compliant); breach scenario → CNPD 72h (GDPR Art. 33) + ENISA early warning 24h (CRA Art. 11).
 17. **External Auditor (Case_01):** Documented third-party security attestation (covers key custody); ISO 27001 SoA line item A.10.1.1 / A.10.1.2.
@@ -409,7 +409,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 11. **Dependencies:** D-01.1 (at rest), D-03.1 (authentication), CR-D-01.2-001, OBL-D-01.2-001, PO-D-01.2-001 (Phase 1).
 12. **Risk if not met:** HIGH — MITM exposure for customer credentials and PII; non-compliance under GDPR Art. 32(1)(a).
 13. **Affected Stakeholders:** Customers (data subjects), CTO, Lead Dev, DPO, documented third-party security attestation source, CNPD.
-14. **Maturity Score:** 1/4 → 3/4.
+14. **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence).
 15. **Implementation Priority:** HIGH.
 16. **Regulatory Reporting (Case_01):** Internal audit only; breach scenario → CNPD 72h + ENISA 24h.
 17. **External Auditor (Case_01):** Documented third-party security attestation (covers managed TLS termination); ISO 27001 A.13.1.1 (network controls).
@@ -456,7 +456,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 11. **Dependencies:** D-01.1 (encryption is the prerequisite for cryptographic integrity check), D-01.2 (in-transit), CR-D-01.4-001, OBL-D-01.4-001, PO-D-01.4-001 (Phase 1).
 12. **Risk if not met:** HIGH — undetected data corruption could lead to wrong decisions or compliance breaches; non-compliance with GDPR Art. 5(1)(d).
 13. **Affected Stakeholders:** Customers (data subjects), CTO, Lead Dev, DPO, documented third-party security attestation source, CNPD.
-14. **Maturity Score:** 1/4 → 3/4.
+14. **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence).
 15. **Implementation Priority:** HIGH.
 16. **Regulatory Reporting (Case_01):** Internal audit only; integrity-loss incident → CNPD 72h if personal-data corruption reaches data subjects.
 17. **External Auditor (Case_01):** Documented third-party security attestation (covers managed cross-zone redundancy + immutable retention); ISO 27001 A.12.3.1 (backup), A.14.1.3 (integrity).
@@ -488,7 +488,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 > **Sprint 5 Owner Matrix:** CTO + DPO (per Sprint 5 owner matrix; D-05 → CTO + DPO)
 > **Track B Tier (Doc 07b §4):** LIGHTWEIGHT
 > **Sprint 5 Verification Method:** DEMONSTRATE + INSPECT
-> **Sprint 5 Maturity Target:** 1/4 → 3/4
+> **Sprint 5 Implementation Posture Target:** PARTIAL
 > **Doc 09 §4 Strategic Tensions:** CONF-002 (vs SO-D-02.1 vulnerability tracking; resolved via metadata-only)
 > **Doc 07b §4 Proportionality:** Tier=LIGHTWEIGHT, Cadence=Quarterly review
 > **Doc 03 Design Decisions Log:** DD-05 (Schema column allow-list enforced)
@@ -521,7 +521,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 11. **Dependencies:** D-01.1, D-09.2 (DPIA documents the minimisation rationale), CR-D-05.1-001, OBL-D-05.1-001, PO-D-05.1-001 (Phase 1).
 12. **Risk if not met:** MEDIUM — over-collection leads to DSAR/erasure scope expansion and reputational risk; non-compliance with Art. 5(1)(c).
 13. **Affected Stakeholders:** Customers (data subjects), DPO, CTO, Legal, CNPD.
-14. **Maturity Score:** 1/4 → 3/4.
+14. **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence).
 15. **Implementation Priority:** HIGH.
 16. **Regulatory Reporting (Case_01):** Internal audit only; over-collection discovered retrospectively → CNPD notification under Art. 33 (breach is over-collection = processing beyond purpose).
 17. **External Auditor (Case_01):** Documented third-party security attestation (covers log integrity); ISO 27001 A.18.1.4 (privacy of personal information).
@@ -553,7 +553,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 > **Sprint 5 Owner Matrix:** CTO + DPO
 > **Track B Tier (Doc 07b §4):** LIGHTWEIGHT
 > **Sprint 5 Verification Method:** DEMONSTRATE + INSPECT
-> **Sprint 5 Maturity Target:** 1/4 → 3/4
+> **Sprint 5 Implementation Posture Target:** PARTIAL
 > **Doc 09 §4 Strategic Tensions:** None for D-05.2
 > **Doc 07b §4 Proportionality:** Tier=LIGHTWEIGHT, Cadence=Quarterly review
 > **Doc 03 Design Decisions Log:** DD-06 (managed object storage lifecycle 90d post-contract-end)
@@ -586,7 +586,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 11. **Dependencies:** D-05.1 (minimisation reduces retention surface), D-09.4 (RoPA documents retention rationale), CR-D-05.2-001, OBL-D-05.2-001, PO-D-05.2-001 (Phase 1).
 12. **Risk if not met:** MEDIUM — over-retention expands DSAR/erasure scope and audit-finding exposure under Art. 5(1)(e).
 13. **Affected Stakeholders:** Customers (data subjects), DPO, CTO, Legal, CNPD.
-14. **Maturity Score:** 1/4 → 3/4.
+14. **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence).
 15. **Implementation Priority:** HIGH.
 16. **Regulatory Reporting (Case_01):** Internal audit only; retention breach discovered retrospectively → CNPD notification under Art. 33 if data still in retention is exposed.
 17. **External Auditor (Case_01):** Documented third-party security attestation (covers lifecycle automation integrity); ISO 27001 A.11.2.7 (secure disposal).
@@ -618,7 +618,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 > **Sprint 5 Owner Matrix:** CTO + DPO (DPO co-owns: fundamental-right interface)
 > **Track B Tier (Doc 07b §4):** LIGHTWEIGHT
 > **Sprint 5 Verification Method:** DEMONSTRATE + INSPECT
-> **Sprint 5 Maturity Target:** 1/4 → 3/4
+> **Sprint 5 Implementation Posture Target:** PARTIAL
 > **Doc 09 §4 Strategic Tensions:** CONF-001 (vs SO-D-10.2 immutable logs; resolved via cryptographic sharding)
 > **Doc 07b §4 Proportionality:** Tier=LIGHTWEIGHT, Cadence=Quarterly review
 > **Doc 03 Design Decisions Log:** DD-07 (Erasure API within 7d SLA)
@@ -651,7 +651,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 11. **Dependencies:** D-01.1, D-01.4 (integrity cryptographic check must be updated on erasure), D-05.2 (retention policy enables erasure), D-10.2 (log-anonymisation handles immutable-logs conflict), CR-D-05.3-001, OBL-D-05.3-001, AG-D-05.3-001 (Phase 1).
 12. **Risk if not met:** HIGH — failure on a fundamental right creates Art. 83(5) administrative-fine exposure (up to €20M or 4% of global turnover).
 13. **Affected Stakeholders:** Customers (data subjects), DPO, CTO, Legal, CNPD (high priority for SA enforcement).
-14. **Maturity Score:** 1/4 → 3/4.
+14. **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence).
 15. **Implementation Priority:** HIGH.
 16. **Regulatory Reporting (Case_01):** Internal audit only (compliant erasure is silent); non-erasable data leak → CNPD 72h breach notification.
 17. **External Auditor (Case_01):** Documented third-party security attestation (covers exclude-tag mechanics); ISO 27001 A.18.1.4 + A.11.2.7.
@@ -683,7 +683,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 > **Sprint 5 Owner Matrix:** CTO + DPO
 > **Track B Tier (Doc 07b §4):** LIGHTWEIGHT
 > **Sprint 5 Verification Method:** DEMONSTRATE + INSPECT
-> **Sprint 5 Maturity Target:** 1/4 → 3/4
+> **Sprint 5 Implementation Posture Target:** PARTIAL
 > **Doc 09 §4 Strategic Tensions:** None for D-05.4
 > **Doc 07b §4 Proportionality:** Tier=LIGHTWEIGHT, Cadence=Quarterly review
 > **Doc 03 Design Decisions Log:** DD-08 (JSON-only portable format chosen)
@@ -716,7 +716,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 11. **Dependencies:** D-05.1 (minimisation keeps export scope manageable), D-09.4 (RoPA lists what must be portable), CR-D-05.4-001, OBL-D-05.4-001, AG-D-05.4-001 (Phase 1).
 12. **Risk if not met:** MEDIUM — failure creates Art. 83(4) administrative-fine exposure; reputational harm to brand.
 13. **Affected Stakeholders:** Customers (data subjects), DPO, CTO, Legal, CNPD.
-14. **Maturity Score:** 1/4 → 3/4.
+14. **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence).
 15. **Implementation Priority:** HIGH.
 16. **Regulatory Reporting (Case_01):** Internal audit only (compliant portability is silent); export-service outage → CNPD notification if >72h.
 17. **External Auditor (Case_01):** Documented third-party security attestation; ISO 27001 A.18.1.4.
@@ -748,13 +748,13 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 > **Sprint 5 Owner Matrix:** CTO + Lead Dev (D-07 → CTO + Lead Dev per owner matrix)
 > **Track B Tier (Doc 07b §4):** LIGHTWEIGHT
 > **Sprint 5 Verification Method:** INSPECT (PR review + maturity artefacts)
-> **Sprint 5 Maturity Target:** 1/4 → 3/4
+> **Sprint 5 Implementation Posture Target:** PARTIAL
 > **Doc 09 §4 Strategic Tensions:** None for D-07.1
 > **Doc 07b §4 Proportionality:** Tier=LIGHTWEIGHT, Cadence=Annual SAMM assessment
 > **Doc 03 Design Decisions Log:** DD-03 (PbD via PR review gates)
 > **Doc 04 §4 Business Goal Link:** BG-04 (Protect customer data with appropriate measures)
-> **Audit Artefact (Doc 11 §4):** Maturity self-assessment + PR review checklist sample
-> **Verification Cadence:** Annual maturity assessment + per-PR review (Doc 07b §4 LIGHTWEIGHT)
+> **Audit Artefact (Doc 11 §4):** Posture assessment + PR review checklist sample
+> **Verification Cadence:** Annual posture assessment + per-PR review (Doc 07b §4 LIGHTWEIGHT)
 > **Card-by-Card Audit:** Reviewed against Phase 1 §2a for consistency (PASS)
 > **Sprint 5 Cross-Impact:** No Doc 08/11/Phase 1 changes required
 > **Sprint 5 Verdict Contribution:** 1 of 31 cards in §6 (PO #8 of 11)
@@ -765,7 +765,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 > **Sprint 5 Authoring Note:** Drafted 2026-08-07 by Sprint 5 Executor
 > **Sprint 5 Cross-Reference Status:** Doc 11 §4 Related Goals column points here
 
-1. **Description:** Privacy must be integrated into the design and development of processing activities ("data protection by design" — GDPR Art. 25). This is operationalised through: secure-development-framework practice alignment, maturity assessment targeting Level 1, privacy review gates on each PR that touches personal-data schema or processing logic, and threat modelling at feature-design time. This objective binds D-07.1 (Secure-by-Design / PbD) and is the upstream enabler for PO-D-05.1 (minimisation) and PO-D-09.2 (DPIA).
+1. **Description:** Privacy must be integrated into the design and development of processing activities ("data protection by design" — GDPR Art. 25). This is operationalised through: secure-development-framework practice alignment, posture assessment targeting Level 1, privacy review gates on each PR that touches personal-data schema or processing logic, and threat modelling at feature-design time. This objective binds D-07.1 (Secure-by-Design / PbD) and is the upstream enabler for PO-D-05.1 (minimisation) and PO-D-09.2 (DPIA).
 2. **Scope:** SDLC process (privacy review checklist), PR-review gate (block merge on missing privacy-review for personal-data-touching PRs), threat-modelling template (STRIDE-lite), maturity self-assessment (annual).
 3. **Out of Scope:** Formal Common Criteria evaluation (out of scope at small scale); Privacy-Enhancing Technologies beyond standard pseudonymisation.
 4. **Source Article:** GDPR Art. 25 (Data Protection by Design and by Default); CRA Annex I §1.2 (security by design).
@@ -773,7 +773,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 6. **Privacy FW Anchors:** CT.DP-P2, CT.DP-P4, CT.DP-P5, CT.PO-P4, GV.PO-P2.
 7. **Verification Criteria:**
    - PR-review gate: 100% of personal-data-touching PRs in the last quarter have a documented privacy-review checklist entry (sampled 1/quarter).
-   - Maturity self-assessment current within 12 months; minimum target Level 1 across all five business functions.
+   - Posture assessment current within 12 months; minimum target Level 1 across all five business functions.
    - Threat model document exists for each major feature launched in the last 12 months; sample 1/quarter for completeness.
 8. **Verification Method:** INSPECT (Track B LIGHTWEIGHT) — review PRs + SAMM artefacts.
 9. **Owner:** CTO + Lead Dev — D-07 → CTO + Lead Dev per owner matrix.
@@ -781,7 +781,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 11. **Dependencies:** D-09.2 (DPIA), D-10.3 (security testing), CR-D-07.1-001, OBL-D-07.1-001, AG-D-07.1-001 (Phase 1).
 12. **Risk if not met:** MEDIUM — failure to integrate privacy upstream forces expensive retrofit; non-compliance with Art. 25.
 13. **Affected Stakeholders:** Customers (data subjects), CTO, Lead Dev, DPO, Legal, CNPD.
-14. **Maturity Score:** 1/4 → 3/4.
+14. **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence).
 15. **Implementation Priority:** HIGH.
 16. **Regulatory Reporting (Case_01):** Internal audit only; design failure materialised as breach → CNPD 72h + ENISA 24h.
 17. **External Auditor (Case_01):** Documented third-party security attestation; ISO 27001 A.14.2.1 (secure development policy).
@@ -813,7 +813,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 > **Sprint 5 Owner Matrix:** CTO + DPO + Compliance Lead + Legal (D-09 → all four per owner matrix)
 > **Track B Tier (Doc 07b §4):** LIGHTWEIGHT
 > **Sprint 5 Verification Method:** INSPECT (document review)
-> **Sprint 5 Maturity Target:** 1/4 → 3/4
+> **Sprint 5 Implementation Posture Target:** PARTIAL
 > **Doc 09 §4 Strategic Tensions:** Dual-coverage intentional with SO-D-09.1 (same ISMS framework)
 > **Doc 07b §4 Proportionality:** Tier=LIGHTWEIGHT, Cadence=Annual policy review
 > **Doc 03 Design Decisions Log:** DD-09 (version-control-based policy management over GRC tool)
@@ -846,7 +846,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 11. **Dependencies:** D-09.2 (DPIA feeds the policies), D-09.4 (RoPA), CR-D-09.1-001, OBL-D-09.1-001, AG-D-09.1-001 (Phase 1), AG-D-09.1-002 (Phase 1).
 12. **Risk if not met:** MEDIUM — gap in policy documentation is an audit finding under Art. 24 and CRA Art. 31.
 13. **Affected Stakeholders:** Customers (data subjects), DPO, Compliance Lead, Legal, CTO, CNPD, ENISA.
-14. **Maturity Score:** 1/4 → 3/4.
+14. **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence).
 15. **Implementation Priority:** HIGH.
 16. **Regulatory Reporting (Case_01):** CNPD + ENISA periodic (policy version history is auditable artefact).
 17. **External Auditor (Case_01):** Documented third-party security attestation (covers ISMS-adjacent controls); ISO 27001 A.5.1.1 (policies for information security).
@@ -878,7 +878,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 > **Sprint 5 Owner Matrix:** CTO + DPO + Compliance Lead + Legal
 > **Track B Tier (Doc 07b §4):** LIGHTWEIGHT
 > **Sprint 5 Verification Method:** INSPECT + ANALYZE (document review + risk analysis)
-> **Sprint 5 Maturity Target:** 1/4 → 3/4
+> **Sprint 5 Implementation Posture Target:** PARTIAL
 > **Doc 09 §4 Strategic Tensions:** Unified assessment pattern with SO-D-09.2 (T-002 resolved)
 > **Doc 07b §4 Proportionality:** Tier=LIGHTWEIGHT, Cadence=Annual + per-feature
 > **Doc 03 Design Decisions Log:** DD-10 (Unified DPIA+CRA assessment template)
@@ -911,7 +911,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 11. **Dependencies:** D-07.1 (PbD feeds the DPIA), D-09.1 (policies), CR-D-09.2-001, OBL-D-09.2-001, AG-D-09.2-001 (Phase 1), AG-D-09.2-002 (Phase 1).
 12. **Risk if not met:** MEDIUM — failure to DPIA a high-risk feature triggers Art. 36 prior-consultation requirements and Art. 83(4) fine exposure.
 13. **Affected Stakeholders:** Customers (data subjects), DPO, Compliance Lead, Legal, CTO, CNPD, ENISA.
-14. **Maturity Score:** 1/4 → 3/4.
+14. **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence).
 15. **Implementation Priority:** HIGH.
 16. **Regulatory Reporting (Case_01):** CNPD periodic (DPIA submission on request) + ENISA periodic.
 17. **External Auditor (Case_01):** ISO 27001 A.18.1.4 (privacy impact assessment).
@@ -943,7 +943,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 > **Sprint 5 Owner Matrix:** CTO + DPO + Compliance Lead + Legal
 > **Track B Tier (Doc 07b §4):** LIGHTWEIGHT
 > **Sprint 5 Verification Method:** INSPECT (records-of-processing + breach log review)
-> **Sprint 5 Maturity Target:** 1/4 → 3/4
+> **Sprint 5 Implementation Posture Target:** PARTIAL
 > **Doc 09 §4 Strategic Tensions:** None for D-09.4
 > **Doc 07b §4 Proportionality:** Tier=LIGHTWEIGHT, Cadence=Quarterly review
 > **Doc 03 Design Decisions Log:** None for D-09.4 (Markdown + managed object storage immutable retention standard)
@@ -976,7 +976,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 11. **Dependencies:** D-05.2 (retention informs RoPA), D-09.1 (policies), D-09.2 (DPIA informs RoPA), CR-D-09.4-001, OBL-D-09.4-001, AG-D-09.4-001 (Phase 1).
 12. **Risk if not met:** MEDIUM — failure creates Art. 83(4) administrative-fine exposure; first document requested in any CNPD investigation.
 13. **Affected Stakeholders:** Customers (data subjects), DPO, Compliance Lead, Legal, CTO, CNPD.
-14. **Maturity Score:** 1/4 → 3/4.
+14. **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence).
 15. **Implementation Priority:** HIGH.
 16. **Regulatory Reporting (Case_01):** CNPD periodic (RoPA provided on request) + ENISA periodic.
 17. **External Auditor (Case_01):** ISO 27001 A.18.1.1 (identification of applicable legislation).
@@ -1012,7 +1012,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 > **Sprint 5 Owner Matrix:** CTO + Lead Dev + Procurement (D-02 → + Procurement per owner matrix)
 > **Track B Tier (Doc 07b §4):** LIGHTWEIGHT
 > **Sprint 5 Verification Method:** DEMONSTRATE + INSPECT
-> **Sprint 5 Maturity Target:** 1/4 → 3/4
+> **Sprint 5 Implementation Posture Target:** PARTIAL
 > **Doc 09 §4 Strategic Tensions:** None for D-02.1
 > **Doc 07b §4 Proportionality:** Tier=LIGHTWEIGHT, Cadence=Per-build + monthly review
 > **Doc 03 Design Decisions Log:** None for D-02.1 (automated vulnerability scanner + dependency audit + managed advisory feed standard)
@@ -1045,7 +1045,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 11. **Dependencies:** D-02.2 (patch management), D-06.2 (SBOM), D-10.3 (security testing), CR-D-02.1-001, OBL-D-02.1-001, AG-D-02.1-002 (Phase 1).
 12. **Risk if not met:** MEDIUM — known-exploitable vulnerability triggers CRA Art. 11 24h notification; CVSS-based reputational risk.
 13. **Affected Stakeholders:** Customers (data subjects), CTO, Lead Dev, Procurement, ENISA, CNPD.
-14. **Maturity Score:** 1/4 → 3/4.
+14. **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence).
 15. **Implementation Priority:** HIGH.
 16. **Regulatory Reporting (Case_01):** ENISA 24h (CRA Art. 11 — actively exploited vulnerability) + CNPD 72h if exploited-vuln reaches personal data.
 17. **External Auditor (Case_01):** Documented third-party security attestation (CC7.1 — vulnerability management); ISO 27001 A.12.6.1 (technical vulnerability management).
@@ -1077,7 +1077,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 > **Sprint 5 Owner Matrix:** CTO + Lead Dev + Procurement
 > **Track B Tier (Doc 07b §4):** LIGHTWEIGHT
 > **Sprint 5 Verification Method:** DEMONSTRATE + INSPECT
-> **Sprint 5 Maturity Target:** 1/4 → 3/4
+> **Sprint 5 Implementation Posture Target:** PARTIAL
 > **Doc 09 §4 Strategic Tensions:** None for D-02.2
 > **Doc 07b §4 Proportionality:** Tier=LIGHTWEIGHT, Cadence=Daily patch scan + quarterly review
 > **Doc 03 Design Decisions Log:** None for D-02.2 (managed patch orchestration + automated dependency-update standard)
@@ -1110,7 +1110,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 11. **Dependencies:** D-02.1 (identification triggers patch), D-10.2 (log records patch operations), CR-D-02.2-001, OBL-D-02.2-001, AG-D-02.2-002 (Phase 1).
 12. **Risk if not met:** MEDIUM — slow patch response triggers CRA Art. 11 24h notification if exploited; reputational risk.
 13. **Affected Stakeholders:** Customers (data subjects), CTO, Lead Dev, Procurement, ENISA, CNPD.
-14. **Maturity Score:** 1/4 → 3/4.
+14. **Implementation Status:** PARTIAL (CSF) / N/A — product-security deliverable (Privacy).
 15. **Implementation Priority:** HIGH.
 16. **Regulatory Reporting (Case_01):** ENISA 24h (CRA Art. 11 — actively exploited vulns reach this SLA) + CNPD 72h if data-breach trigger.
 17. **External Auditor (Case_01):** Documented third-party security attestation (CC7.1); ISO 27001 A.12.6.2 + A.14.2.4.
@@ -1142,7 +1142,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 > **Sprint 5 Owner Matrix:** CTO + Lead Dev + Procurement
 > **Track B Tier (Doc 07b §4):** LIGHTWEIGHT
 > **Sprint 5 Verification Method:** DEMONSTRATE + INSPECT
-> **Sprint 5 Maturity Target:** 1/4 → 3/4
+> **Sprint 5 Implementation Posture Target:** PARTIAL
 > **Doc 09 §4 Strategic Tensions:** None for D-02.3
 > **Doc 07b §4 Proportionality:** Tier=LIGHTWEIGHT, Cadence=Monthly external probe
 > **Doc 03 Design Decisions Log:** None for D-02.3 (security.txt per RFC 9116 standard)
@@ -1175,7 +1175,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 11. **Dependencies:** D-02.1 (CVD findings feed back into vulnerability identification), D-04.3 (notification SLA), CR-D-02.3-001, OBL-D-02.3-001, AG-D-02.3-002 (Phase 1).
 12. **Risk if not met:** MEDIUM — missing CVD creates Art. 12 non-compliance and weakens external-researcher trust; reputational risk.
 13. **Affected Stakeholders:** Customers (data subjects), CTO, Lead Dev, Procurement, ENISA, external researchers, CNPD.
-14. **Maturity Score:** 1/4 → 3/4.
+14. **Implementation Status:** PARTIAL (CSF) / N/A — product-security deliverable (Privacy).
 15. **Implementation Priority:** HIGH.
 16. **Regulatory Reporting (Case_01):** ENISA 24h (CRA Art. 12 — when reported vuln is actively exploited) + CNPD 72h if data-breach trigger.
 17. **External Auditor (Case_01):** ISO 27001 A.16.1.2 (reporting information security events).
@@ -1207,7 +1207,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 > **Sprint 5 Owner Matrix:** CTO + Lead Dev (D-03 → CTO + Lead Dev per owner matrix)
 > **Track B Tier (Doc 07b §4):** LIGHTWEIGHT
 > **Sprint 5 Verification Method:** DEMONSTRATE + INSPECT
-> **Sprint 5 Maturity Target:** 1/4 → 3/4
+> **Sprint 5 Implementation Posture Target:** PARTIAL
 > **Doc 09 §4 Strategic Tensions:** None for D-03.1
 > **Doc 07b §4 Proportionality:** Tier=LIGHTWEIGHT, Cadence=Quarterly orphan-account scan
 > **Doc 03 Design Decisions Log:** DD-04 (managed identity service over self-hosted identity provider)
@@ -1240,7 +1240,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 11. **Dependencies:** D-03.2 (MFA), D-03.3 (RBAC), D-06.1 (vendor identity assurance), CR-D-03.1-001, OBL-D-03.1-001, AG-D-03.1-002 (Phase 1).
 12. **Risk if not met:** MEDIUM — unauthenticated-interface exposure is an audit finding; data-breach trigger.
 13. **Affected Stakeholders:** Customers (data subjects), CTO, Lead Dev, CNPD, ENISA.
-14. **Maturity Score:** 1/4 → 3/4.
+14. **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence).
 15. **Implementation Priority:** HIGH.
 16. **Regulatory Reporting (Case_01):** ENISA 24h if exploited; CNPD 72h if personal-data breach.
 17. **External Auditor (Case_01):** Documented third-party security attestation (CC6.1 — logical access); ISO 27001 A.9.2.1 (user registration).
@@ -1272,7 +1272,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 > **Sprint 5 Owner Matrix:** CTO + Lead Dev
 > **Track B Tier (Doc 07b §4):** MINIMAL
 > **Sprint 5 Verification Method:** INSPECT (MFA enforcement test)
-> **Sprint 5 Maturity Target:** 1/4 → 3/4
+> **Sprint 5 Implementation Posture Target:** PARTIAL
 > **Doc 09 §4 Strategic Tensions:** None for D-03.2
 > **Doc 07b §4 Proportionality:** Tier=MINIMAL, Cadence=Quarterly MFA enforcement check
 > **Doc 03 Design Decisions Log:** None for D-03.2 (TOTP via authenticator app — hardware-token MFA overkill)
@@ -1305,7 +1305,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 11. **Dependencies:** D-03.1 (authentication), D-06.1 (vendor identity), CR-D-03.2-001, OBL-D-03.2-001, AG-D-03.2-002 (Phase 1).
 12. **Risk if not met:** LOW — single-factor exposure is a known CWE-308; reputational and breach-impact risk.
 13. **Affected Stakeholders:** Customers (data subjects), CTO, Lead Dev, CNPD, ENISA.
-14. **Maturity Score:** 1/4 → 3/4.
+14. **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence).
 15. **Implementation Priority:** HIGH.
 16. **Regulatory Reporting (Case_01):** Internal audit only; breach scenario → CNPD 72h + ENISA 24h.
 17. **External Auditor (Case_01):** Documented third-party security attestation (CC6.1); ISO 27001 A.9.4.2 (secure log-on).
@@ -1337,7 +1337,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 > **Sprint 5 Owner Matrix:** CTO + Lead Dev
 > **Track B Tier (Doc 07b §4):** LIGHTWEIGHT
 > **Sprint 5 Verification Method:** DEMONSTRATE + INSPECT
-> **Sprint 5 Maturity Target:** 1/4 → 3/4
+> **Sprint 5 Implementation Posture Target:** PARTIAL
 > **Doc 09 §4 Strategic Tensions:** None for D-03.3
 > **Doc 07b §4 Proportionality:** Tier=LIGHTWEIGHT, Cadence=Quarterly IAM access review
 > **Doc 03 Design Decisions Log:** None for D-03.3 (managed identity RBAC + managed identity standard)
@@ -1370,7 +1370,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 11. **Dependencies:** D-03.1 (auth), D-03.2 (MFA), D-10.2 (audit logs), CR-D-03.3-001, OBL-D-03.3-001, AG-D-03.3-002 (Phase 1).
 12. **Risk if not met:** MEDIUM — privilege-escalation is a top-3 attack vector; audit-finding exposure.
 13. **Affected Stakeholders:** Customers (data subjects), CTO, Lead Dev, DPO, CNPD, ENISA.
-14. **Maturity Score:** 1/4 → 3/4.
+14. **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence).
 15. **Implementation Priority:** HIGH.
 16. **Regulatory Reporting (Case_01):** Internal audit only; breach scenario → CNPD 72h + ENISA 24h.
 17. **External Auditor (Case_01):** Documented third-party security attestation (CC6.3 — least privilege); ISO 27001 A.9.2.3 (privilege management).
@@ -1402,7 +1402,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 > **Sprint 5 Owner Matrix:** CTO + Lead Dev
 > **Track B Tier (Doc 07b §4):** LIGHTWEIGHT
 > **Sprint 5 Verification Method:** DEMONSTRATE + INSPECT
-> **Sprint 5 Maturity Target:** 1/4 → 3/4
+> **Sprint 5 Implementation Posture Target:** PARTIAL
 > **Doc 09 §4 Strategic Tensions:** None for D-03.4
 > **Doc 07b §4 Proportionality:** Tier=LIGHTWEIGHT, Cadence=Quarterly external port-scan
 > **Doc 03 Design Decisions Log:** None for D-03.4 (CIS L1 standard)
@@ -1435,7 +1435,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 11. **Dependencies:** D-01.1, D-01.2, D-07.1, CR-D-03.4-001, OBL-D-03.4-001, AG-D-03.4-002 (Phase 1).
 12. **Risk if not met:** LOW — exposed-port surface is a known CVE-attack vector; reputational and breach-impact risk.
 13. **Affected Stakeholders:** Customers (data subjects), CTO, Lead Dev, ENISA, CNPD.
-14. **Maturity Score:** 1/4 → 3/4.
+14. **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence).
 15. **Implementation Priority:** HIGH.
 16. **Regulatory Reporting (Case_01):** Internal audit only; exploited port → CNPD 72h + ENISA 24h.
 17. **External Auditor (Case_01):** Documented third-party security attestation (CC6.6 — boundary controls); ISO 27001 A.13.1.3 (segregation in networks).
@@ -1467,7 +1467,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 > **Sprint 5 Owner Matrix:** CTO + DPO + Compliance Lead (D-04 → CTO + DPO + Compliance Lead per owner matrix)
 > **Track B Tier (Doc 07b §4):** LIGHTWEIGHT
 > **Sprint 5 Verification Method:** DEMONSTRATE + INSPECT
-> **Sprint 5 Maturity Target:** 1/4 → 3/4
+> **Sprint 5 Implementation Posture Target:** PARTIAL
 > **Doc 09 §4 Strategic Tensions:** T-001 (max-SLA routing resolved via unified incident workflow)
 > **Doc 07b §4 Proportionality:** Tier=LIGHTWEIGHT, Cadence=Quarterly alarm-tuning review
 > **Doc 03 Design Decisions Log:** None for D-04.1 (managed monitoring + managed threat-detection standard)
@@ -1500,7 +1500,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 11. **Dependencies:** D-01.1, D-04.2 (containment playbook), D-04.3 (notification SLA), D-10.2 (audit logs), CR-D-04.1-001, OBL-D-04.1-001, AG-D-04.1-002 (Phase 1).
 12. **Risk if not met:** MEDIUM — slow containment amplifies breach impact; non-compliance with Art. 33 72h clock if clock starts late.
 13. **Affected Stakeholders:** Customers (data subjects), CTO, DPO, Compliance Lead, CNPD, ENISA, PT CSIRT.
-14. **Maturity Score:** 1/4 → 3/4.
+14. **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence).
 15. **Implementation Priority:** HIGH.
 16. **Regulatory Reporting (Case_01):** CNPD 72h (GDPR Art. 33 — personal-data breach) + ENISA 24h (CRA Art. 11 — actively exploited vuln).
 17. **External Auditor (Case_01):** Documented third-party security attestation (CC7.2 — incident management); ISO 27001 A.16.1.5 (response to incidents).
@@ -1532,7 +1532,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 > **Sprint 5 Owner Matrix:** CTO + DPO + Compliance Lead
 > **Track B Tier (Doc 07b §4):** LIGHTWEIGHT
 > **Sprint 5 Verification Method:** DEMONSTRATE + INSPECT
-> **Sprint 5 Maturity Target:** 1/4 → 3/4
+> **Sprint 5 Implementation Posture Target:** PARTIAL
 > **Doc 09 §4 Strategic Tensions:** None for D-04.2 (note: see F-07 in §5.7 for OBL mapping concern)
 > **Doc 07b §4 Proportionality:** Tier=LIGHTWEIGHT, Cadence=Quarterly load test
 > **Doc 03 Design Decisions Log:** DD-11 (managed content delivery + managed standard DDoS protection over managed advanced DDoS protection)
@@ -1565,7 +1565,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 11. **Dependencies:** D-04.1 (detection triggers mitigation), D-04.4 (recovery), D-10.2 (audit logs), CR-D-04.2-001, OBL-D-04.2-001, AG-D-04.2-002 (Phase 1).
 12. **Risk if not met:** MEDIUM — DoS disrupts service availability; reputational and SLA-credit risk.
 13. **Affected Stakeholders:** Customers (data subjects), CTO, DPO, Compliance Lead, ENISA, CNPD.
-14. **Maturity Score:** 1/4 → 3/4.
+14. **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence).
 15. **Implementation Priority:** HIGH.
 16. **Regulatory Reporting (Case_01):** ENISA 24h if DoS is "actively exploited" interpretation; otherwise Internal audit only.
 17. **External Auditor (Case_01):** Documented third-party security attestation (CC7.2 + A1.2 — availability); ISO 27001 A.14.1.4 (business continuity).
@@ -1597,7 +1597,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 > **Sprint 5 Owner Matrix:** CTO + DPO + Compliance Lead
 > **Track B Tier (Doc 07b §4):** LIGHTWEIGHT
 > **Sprint 5 Verification Method:** DEMONSTRATE + INSPECT (tabletop + workflow audit)
-> **Sprint 5 Maturity Target:** 1/4 → 3/4
+> **Sprint 5 Implementation Posture Target:** PARTIAL
 > **Doc 09 §4 Strategic Tensions:** T-003 max-SLA routing (CNPD 72h + ENISA 24h from single event record)
 > **Doc 07b §4 Proportionality:** Tier=LIGHTWEIGHT, Cadence=Quarterly tabletop exercise
 > **Doc 03 Design Decisions Log:** DD-12 (Unified incident workflow over per-recipient separate workflows)
@@ -1630,7 +1630,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 11. **Dependencies:** D-04.1 (detection triggers clock), D-04.2 (containment during 24h window), D-09.1 (policies), D-10.2 (audit logs), CR-D-04.3-001, OBL-D-04.3-001, AG-D-04.3-002 (Phase 1).
 12. **Risk if not met:** HIGH — missing the 24h CRA deadline is a direct regulatory penalty; missing 72h GDPR deadline is Art. 83(5) fine exposure (€20M / 4% turnover).
 13. **Affected Stakeholders:** Customers (data subjects), CTO, DPO, Compliance Lead, Legal, ENISA (single reporting platform), CNPD, PT CSIRT/CNCS.
-14. **Maturity Score:** 1/4 → 3/4.
+14. **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence).
 15. **Implementation Priority:** HIGH.
 16. **Regulatory Reporting (Case_01):** CNPD 72h (max-SLA routing — GDPR is the slower of the two) + ENISA 24h (CRA — the faster deadline drives the workflow).
 17. **External Auditor (Case_01):** Documented third-party security attestation (CC7.3 — incident response); ISO 27001 A.16.1.5 + A.16.1.6.
@@ -1662,7 +1662,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 > **Sprint 5 Owner Matrix:** CTO + DPO + Compliance Lead
 > **Track B Tier (Doc 07b §4):** LIGHTWEIGHT
 > **Sprint 5 Verification Method:** DEMONSTRATE + INSPECT
-> **Sprint 5 Maturity Target:** 1/4 → 3/4
+> **Sprint 5 Implementation Posture Target:** PARTIAL
 > **Doc 09 §4 Strategic Tensions:** None for D-04.4
 > **Doc 07b §4 Proportionality:** Tier=LIGHTWEIGHT, Cadence=Quarterly DR drill
 > **Doc 03 Design Decisions Log:** None for D-04.4 (managed backup + cross-region standard)
@@ -1695,7 +1695,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 11. **Dependencies:** D-01.1 (encrypted backups), D-05.2 (retention), D-04.2 (containment precedes recovery), CR-D-04.4-001, OBL-D-04.4-001, AG-D-04.4-002 (Phase 1).
 12. **Risk if not met:** MEDIUM — slow recovery extends outage; reputational and SLA-credit risk; GDPR Art. 32(1)(b)(c) audit finding.
 13. **Affected Stakeholders:** Customers (data subjects), CTO, DPO, Compliance Lead, ENISA, CNPD.
-14. **Maturity Score:** 1/4 → 3/4.
+14. **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence).
 15. **Implementation Priority:** HIGH.
 16. **Regulatory Reporting (Case_01):** Internal audit only; service-outage data-loss → CNPD 72h.
 17. **External Auditor (Case_01):** Documented third-party security attestation (A1.2 — availability); ISO 27001 A.14.1.4 + A.17.1.2.
@@ -1727,7 +1727,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 > **Sprint 5 Owner Matrix:** CTO + Lead Dev + Procurement (D-06 → + Procurement per owner matrix)
 > **Track B Tier (Doc 07b §4):** MINIMAL
 > **Sprint 5 Verification Method:** INSPECT (document review)
-> **Sprint 5 Maturity Target:** 1/4 → 3/4
+> **Sprint 5 Implementation Posture Target:** PARTIAL
 > **Doc 09 §4 Strategic Tensions:** None for D-06.1
 > **Doc 07b §4 Proportionality:** Tier=MINIMAL, Cadence=Annual attestation review
 > **Doc 03 Design Decisions Log:** None for D-06.1 (curated vendor set standard)
@@ -1760,7 +1760,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 11. **Dependencies:** D-06.3 (DPAs), D-09.1 (policies), D-09.4 (RoPA), CR-D-06.1-001, OBL-D-06.1-001, AG-D-06.1-002 (Phase 1).
 12. **Risk if not met:** LOW — processor non-compliance cascades to controller liability under GDPR Art. 28.
 13. **Affected Stakeholders:** Customers (data subjects), CTO, Lead Dev, Procurement, DPO, CNPD.
-14. **Maturity Score:** 1/4 → 3/4.
+14. **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence).
 15. **Implementation Priority:** HIGH.
 16. **Regulatory Reporting (Case_01):** Internal audit only; processor breach → CNPD 72h (controller remains responsible).
 17. **External Auditor (Case_01):** Documented third-party security attestation (covers primary hosting provider); ISO 27001 A.15.1.1 + A.15.1.2 (supplier relationships).
@@ -1792,7 +1792,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 > **Sprint 5 Owner Matrix:** CTO + Lead Dev + Procurement
 > **Track B Tier (Doc 07b §4):** LIGHTWEIGHT
 > **Sprint 5 Verification Method:** DEMONSTRATE + INSPECT
-> **Sprint 5 Maturity Target:** 1/4 → 3/4
+> **Sprint 5 Implementation Posture Target:** PARTIAL
 > **Doc 09 §4 Strategic Tensions:** None for D-06.2 (renamed from SO-D-02.4 in v1.1; F-04b resolved)
 > **Doc 07b §4 Proportionality:** Tier=LIGHTWEIGHT, Cadence=Per-release
 > **Doc 03 Design Decisions Log:** DD-13 (machine-readable SBOM format preferred for security metadata)
@@ -1825,7 +1825,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 11. **Dependencies:** D-02.1 (vulnerability identification uses SBOM), D-02.2 (patch management), D-10.3 (security testing), CR-D-06.2-001, OBL-D-06.2-001, AG-D-06.2-002 (Phase 1).
 12. **Risk if not met:** MEDIUM — missing SBOM is CRA Annex I §2 non-compliance; vulnerability-management blindness.
 13. **Affected Stakeholders:** Customers (data subjects), CTO, Lead Dev, Procurement, ENISA.
-14. **Maturity Score:** 1/4 → 3/4.
+14. **Implementation Status:** PARTIAL (CSF) / N/A — product-security deliverable (Privacy).
 15. **Implementation Priority:** HIGH.
 16. **Regulatory Reporting (Case_01):** Internal audit only; exploited component in SBOM → ENISA 24h.
 17. **External Auditor (Case_01):** ISO 27001 A.14.2.1 + A.15.1.2.
@@ -1857,7 +1857,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 > **Sprint 5 Owner Matrix:** CTO + Lead Dev + Procurement
 > **Track B Tier (Doc 07b §4):** LIGHTWEIGHT
 > **Sprint 5 Verification Method:** INSPECT (DPA template + clauses audit)
-> **Sprint 5 Maturity Target:** 1/4 → 3/4
+> **Sprint 5 Implementation Posture Target:** PARTIAL
 > **Doc 09 §4 Strategic Tensions:** None for D-06.3
 > **Doc 07b §4 Proportionality:** Tier=LIGHTWEIGHT, Cadence=Annual DPA review
 > **Doc 03 Design Decisions Log:** None for D-06.3 (DPA template standard)
@@ -1890,7 +1890,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 11. **Dependencies:** D-06.1 (vendor risk assessment identifies DPA gaps), D-09.1 (policies), D-09.4 (RoPA), CR-D-06.3-001, OBL-D-06.3-001, AG-D-06.3-002 (Phase 1).
 12. **Risk if not met:** LOW — missing DPA is GDPR Art. 28(1) non-compliance and Art. 83(4) fine exposure.
 13. **Affected Stakeholders:** Customers (data subjects), CTO, Lead Dev, Procurement, Legal, DPO, CNPD.
-14. **Maturity Score:** 1/4 → 3/4.
+14. **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence).
 15. **Implementation Priority:** HIGH.
 16. **Regulatory Reporting (Case_01):** Internal audit only; DPA breach → CNPD notification on Art. 33 trigger.
 17. **External Auditor (Case_01):** ISO 27001 A.15.1.2 (supplier service delivery management).
@@ -1922,7 +1922,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 > **Sprint 5 Owner Matrix:** CTO + HR + DPO (D-08 → CTO + HR + DPO per owner matrix)
 > **Track B Tier (Doc 07b §4):** MINIMAL
 > **Sprint 5 Verification Method:** INSPECT (HR training register)
-> **Sprint 5 Maturity Target:** 1/4 → 3/4
+> **Sprint 5 Implementation Posture Target:** PARTIAL
 > **Doc 09 §4 Strategic Tensions:** None for D-08.1
 > **Doc 07b §4 Proportionality:** Tier=MINIMAL, Cadence=Annual + onboarding
 > **Doc 03 Design Decisions Log:** None for D-08.1 (vendor content standard)
@@ -1955,7 +1955,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 11. **Dependencies:** D-08.2 (role-specific training), D-09.1 (policies), CR-D-08.1-001, OBL-D-08.1-001, AG-D-08.1-002 (Phase 1).
 12. **Risk if not met:** LOW — human-factor incidents are a top breach vector; awareness reduces click-rate.
 13. **Affected Stakeholders:** Staff, CTO, HR, DPO, CNPD.
-14. **Maturity Score:** 1/4 → 3/4.
+14. **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence).
 15. **Implementation Priority:** HIGH.
 16. **Regulatory Reporting (Case_01):** Internal audit only.
 17. **External Auditor (Case_01):** ISO 27001 A.7.2.2 (information security awareness, education, training).
@@ -1987,7 +1987,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 > **Sprint 5 Owner Matrix:** CTO + HR + DPO
 > **Track B Tier (Doc 07b §4):** LIGHTWEIGHT
 > **Sprint 5 Verification Method:** INSPECT + DEMONSTRATE (HR register + tabletop)
-> **Sprint 5 Maturity Target:** 1/4 → 3/4
+> **Sprint 5 Implementation Posture Target:** PARTIAL
 > **Doc 09 §4 Strategic Tensions:** None for D-08.2
 > **Doc 07b §4 Proportionality:** Tier=LIGHTWEIGHT, Cadence=Annual + per-incident tabletop
 > **Doc 03 Design Decisions Log:** None for D-08.2 (role-track structure standard)
@@ -2020,7 +2020,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 11. **Dependencies:** D-08.1 (general awareness precedes role-specific), D-09.1 (policies), D-10.3 (security testing includes tabletop), CR-D-08.2-001, OBL-D-08.2-001, SO-D-08.2-001 (Phase 1).
 12. **Risk if not met:** LOW — role-specific gaps enable targeted attacks (e.g., phishing-CFO).
 13. **Affected Stakeholders:** Staff, CTO, HR, DPO, Compliance Lead, CNPD.
-14. **Maturity Score:** 1/4 → 3/4.
+14. **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence).
 15. **Implementation Priority:** HIGH.
 16. **Regulatory Reporting (Case_01):** Internal audit only.
 17. **External Auditor (Case_01):** ISO 27001 A.7.2.2.
@@ -2052,7 +2052,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 > **Sprint 5 Owner Matrix:** CTO + DPO + Compliance Lead + Legal
 > **Track B Tier (Doc 07b §4):** LIGHTWEIGHT
 > **Sprint 5 Verification Method:** INSPECT (repo + managed object storage audit)
-> **Sprint 5 Maturity Target:** 1/4 → 3/4
+> **Sprint 5 Implementation Posture Target:** PARTIAL
 > **Doc 09 §4 Strategic Tensions:** Dual-coverage intentional with PO-D-09.1 (same ISMS framework)
 > **Doc 07b §4 Proportionality:** Tier=LIGHTWEIGHT, Cadence=Annual documentation review
 > **Doc 03 Design Decisions Log:** DD-09 (version-control-based policy management — same as PO-D-09.1)
@@ -2085,7 +2085,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 11. **Dependencies:** D-09.2 (DPIA), D-09.4 (RoPA), D-06.2 (SBOM feeds docs), D-10.2 (audit logs), CR-D-09.1-001, OBL-D-09.1-001, AG-D-09.1-002 (Phase 1), AG-D-09.1-001 (Phase 1).
 12. **Risk if not met:** MEDIUM — incomplete technical documentation is CRA Art. 31 non-compliance; first item requested in any ENISA conformity assessment.
 13. **Affected Stakeholders:** Customers (data subjects), CTO, DPO, Compliance Lead, Legal, ENISA, CNPD.
-14. **Maturity Score:** 1/4 → 3/4.
+14. **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence).
 15. **Implementation Priority:** HIGH.
 16. **Regulatory Reporting (Case_01):** ENISA periodic (CRA conformity assessment on request) + CNPD periodic.
 17. **External Auditor (Case_01):** Documented third-party security attestation (covers retention controls); ISO 27001 A.7.1.3 + A.18.1.3.
@@ -2117,7 +2117,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 > **Sprint 5 Owner Matrix:** CTO + DPO + Compliance Lead + Legal
 > **Track B Tier (Doc 07b §4):** LIGHTWEIGHT
 > **Sprint 5 Verification Method:** INSPECT + ANALYZE (unified assessment workflow)
-> **Sprint 5 Maturity Target:** 1/4 → 3/4
+> **Sprint 5 Implementation Posture Target:** PARTIAL
 > **Doc 09 §4 Strategic Tensions:** T-002 unified assessment pattern with PO-D-09.2
 > **Doc 07b §4 Proportionality:** Tier=LIGHTWEIGHT, Cadence=Annual + per-feature
 > **Doc 03 Design Decisions Log:** DD-10 (Unified DPIA+CRA assessment template — same as PO-D-09.2)
@@ -2150,7 +2150,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 11. **Dependencies:** D-07.1 (PbD), D-09.1 (policies), D-10.3 (security testing), CR-D-09.2-001, OBL-D-09.2-001, AG-D-09.2-002 (Phase 1), AG-D-09.2-001 (Phase 1).
 12. **Risk if not met:** MEDIUM — missing pre-launch assessment is CRA Art. 13(5) non-compliance; reputational risk.
 13. **Affected Stakeholders:** Customers (data subjects), CTO, DPO, Compliance Lead, Legal, ENISA, CNPD.
-14. **Maturity Score:** 1/4 → 3/4.
+14. **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence).
 15. **Implementation Priority:** HIGH.
 16. **Regulatory Reporting (Case_01):** ENISA periodic + CNPD periodic.
 17. **External Auditor (Case_01):** ISO 27001 A.6.1.2 (information security risk assessment).
@@ -2182,7 +2182,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 > **Sprint 5 Owner Matrix:** CTO + Lead Dev (D-10 → CTO + Lead Dev per owner matrix)
 > **Track B Tier (Doc 07b §4):** LIGHTWEIGHT
 > **Sprint 5 Verification Method:** DEMONSTRATE + INSPECT
-> **Sprint 5 Maturity Target:** 1/4 → 3/4
+> **Sprint 5 Implementation Posture Target:** PARTIAL
 > **Doc 09 §4 Strategic Tensions:** CONF-001 cryptographic sharding with PO-D-05.3 (anonymise not delete)
 > **Doc 07b §4 Proportionality:** Tier=LIGHTWEIGHT, Cadence=Quarterly log review
 > **Doc 03 Design Decisions Log:** DD-14 (managed audit-trail service + immutable managed object storage + managed query service, no enterprise centralized audit-log management)
@@ -2215,7 +2215,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 11. **Dependencies:** D-04.1 (incident detection consumes logs), D-05.1 (personal-data scrubbing), D-05.2 (retention), D-09.4 (RoPA references log categories), CR-D-10.2-001, OBL-D-10.2-001, AG-D-10.2-002 (Phase 1).
 12. **Risk if not met:** MEDIUM — missing logs blind incident-response; CRA Art. 6 non-compliance.
 13. **Affected Stakeholders:** Customers (data subjects), CTO, Lead Dev, ENISA, CNPD.
-14. **Maturity Score:** 1/4 → 3/4.
+14. **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence).
 15. **Implementation Priority:** HIGH.
 16. **Regulatory Reporting (Case_01):** Internal audit only; breach scenario → CNPD 72h + ENISA 24h.
 17. **External Auditor (Case_01):** Documented third-party security attestation (CC7.2 — monitoring); ISO 27001 A.12.4.1 + A.12.4.3.
@@ -2247,7 +2247,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 > **Sprint 5 Owner Matrix:** CTO + Lead Dev
 > **Track B Tier (Doc 07b §4):** LIGHTWEIGHT
 > **Sprint 5 Verification Method:** DEMONSTRATE + INSPECT
-> **Sprint 5 Maturity Target:** 1/4 → 3/4
+> **Sprint 5 Implementation Posture Target:** PARTIAL
 > **Doc 09 §4 Strategic Tensions:** None for D-10.3
 > **Doc 07b §4 Proportionality:** Tier=LIGHTWEIGHT, Cadence=Per-build + quarterly review
 > **Doc 03 Design Decisions Log:** DD-15 (3 of 5 streams active at MICRO; dynamic application security testing + external pen-test DEFERRED)
@@ -2280,7 +2280,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 11. **Dependencies:** D-02.1 (vulnerability identification overlaps), D-06.2 (SBOM feeds testing), D-09.2 (risk assessment), CR-D-10.3-001, OBL-D-10.3-001, AG-D-10.3-002 (Phase 1).
 12. **Risk if not met:** MEDIUM — testing gaps create audit-finding exposure under CRA Art. 6 + GDPR Art. 32(1)(d); blind spots in detection.
 13. **Affected Stakeholders:** Customers (data subjects), CTO, Lead Dev, Compliance Lead, ENISA, CNPD.
-14. **Maturity Score:** 1/4 → 3/4.
+14. **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence).
 15. **Implementation Priority:** HIGH.
 16. **Regulatory Reporting (Case_01):** Internal audit only; test-discovered breach → CNPD 72h + ENISA 24h.
 17. **External Auditor (Case_01):** Documented third-party security attestation (CC4.1 — ongoing monitoring); ISO 27001 A.12.6.1 + A.14.2.8.
@@ -2342,7 +2342,7 @@ The full traceability from Doc 10 §5.2 mapped 31 objective rows against 30 uniq
 |--------|--------|---------|
 | Owner | Sub-domain heuristic (Doc 08 §4) | per-sub-domain |
 | Verification Criteria | Doc 08 §4 per-obligation values | per-sub-domain |
-| Maturity Score | Doc 07b §4 LIGHTWEIGHT target | `1/4 → 3/4` |
+| Implementation Status | Doc 07b §4 LIGHTWEIGHT target | `PARTIAL` |
 | Implementation Priority | Doc 07b §4 LIGHTWEIGHT priority | `HIGH` |
 | Affected Stakeholders | Cross-reference Sheet 12 + Phase 1 Doc 04d RACI | `Customers, DPO, CTO, ENISA` |
 | Regulatory Reporting | Doc 08 §4 sub-domain heuristic | per-sub-domain |

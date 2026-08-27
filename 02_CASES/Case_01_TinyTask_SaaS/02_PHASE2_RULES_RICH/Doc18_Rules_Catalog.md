@@ -107,7 +107,7 @@ This is the Rich Mode version of the Rules Catalog. It consolidates 46 rules (30
 | 11 | Proportional Priority | P1 (proportionality-adjusted) | P1 | ✓ | ✓ |
 | **12** | **Owner** | **Operational owner (sub-domain heuristic)** | **CTO + Lead Dev** | **✓** | **✓** |
 | **13** | **Verification Criteria** | **1-line test/check criterion (Sprint 4)** | **strong symmetric encryption + key rotation audit** | **✓** | **✓** |
-| **14** | **Maturity Score** | **Doc 07b §4 LIGHTWEIGHT target (Sprint 4)** | **1/4 → 3/4** | **✓** | **✓** |
+| **14** | **Implementation Status (CSF)** | **Doc 07b §4 LIGHTWEIGHT target (Sprint 4)** | **PARTIAL** | **✓** | **✓** |
 | **15** | **Implementation Priority** | **Doc 07b §4 LIGHTWEIGHT priority (Sprint 4)** | **HIGH** | **✓** | **✓** |
 | **16** | **Affected Stakeholders** | **Cross-ref Sheet 12 + Doc 04d RACI (Sprint 4)** | **Customers, DPO, CTO, ENISA** | **✓** | **✓** |
 | **17** | **Regulatory Reporting** | **Doc 08 §4 sub-domain heuristic (Sprint 4)** | **Internal audit only** | **✓** | **✓ (uniform)** |
@@ -145,12 +145,12 @@ Example: BPR-D-04.3-001
 
 ### D-01: Data Protection & Encryption (4 CR)
 
-| Rule ID | Rule Description | Source | Sub-Domain | NI | Priority | Verification | Implementation | Related Goals | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
+| Rule ID | Rule Description | Source | Sub-Domain | NI | Priority | Verification | Implementation | Related Goals | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
 |---------|------------------|--------|------------|---:|----------|--------------|----------------|---------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| CR-D-01.1-001 | All personal and product data in persistent storage must be protected by confidentiality mechanisms with segregated cryptographic material management | GDPR-C04, GDPR-C14, CRA-C07 | D-01.1 | 2.667 | P1 | TEST | NATIVE | PO-D-01.1-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev | Configuration report demonstrates confidentiality mechanisms active in all persistent stores of personal or product data | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| CR-D-01.2-001 | All personal and product data crossing network boundaries must be protected by confidentiality mechanisms appropriate to channel classification | GDPR-C15, CRA-C08 | D-01.2 | 2.500 | P1 | TEST | NATIVE | PO-D-01.2-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev | Configuration report demonstrates confidentiality mechanisms active in all network channels carrying personal or product data | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| CR-D-01.3-001 | Cryptographic material used by protection mechanisms must be managed with segregation between material access and data access, and with documented lifecycle | CRA-C15 | D-01.3 | 3.000 | P1 | INSPECT | NATIVE | PO-D-01.3-001 *(phantom — see F-03)* | LIGHTWEIGHT | P1 | CTO + Lead Dev | Cryptographic material management report demonstrates separation between material access and data access | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| CR-D-01.4-001 | All personal and product data must be protected against unauthorised modification through integrity controls appropriate to data class | GDPR-C05, CRA-C09 | D-01.4 | 2.500 | P1 | TEST | NATIVE | PO-D-01.4-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev | Configuration report demonstrates integrity controls active across personal data, product data, and audit log artifacts | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| CR-D-01.1-001 | All personal and product data in persistent storage must be protected by confidentiality mechanisms with segregated cryptographic material management | GDPR-C04, GDPR-C14, CRA-C07 | D-01.1 | 2.667 | P1 | TEST | NATIVE | PO-D-01.1-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev | Configuration report demonstrates confidentiality mechanisms active in all persistent stores of personal or product data | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| CR-D-01.2-001 | All personal and product data crossing network boundaries must be protected by confidentiality mechanisms appropriate to channel classification | GDPR-C15, CRA-C08 | D-01.2 | 2.500 | P1 | TEST | NATIVE | PO-D-01.2-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev | Configuration report demonstrates confidentiality mechanisms active in all network channels carrying personal or product data | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| CR-D-01.3-001 | Cryptographic material used by protection mechanisms must be managed with segregation between material access and data access, and with documented lifecycle | CRA-C15 | D-01.3 | 3.000 | P1 | INSPECT | NATIVE | PO-D-01.3-001 *(phantom — see F-03)* | LIGHTWEIGHT | P1 | CTO + Lead Dev | Cryptographic material management report demonstrates separation between material access and data access | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| CR-D-01.4-001 | All personal and product data must be protected against unauthorised modification through integrity controls appropriate to data class | GDPR-C05, CRA-C09 | D-01.4 | 2.500 | P1 | TEST | NATIVE | PO-D-01.4-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev | Configuration report demonstrates integrity controls active across personal data, product data, and audit log artifacts | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
 
 **D-01 Summary:** 4 rules | Avg NI: 2.667 | All NATIVE
 
@@ -158,11 +158,11 @@ Example: BPR-D-04.3-001
 
 ### D-02: Vulnerability Management (3 CR)
 
-| Rule ID | Rule Description | Source | Sub-Domain | NI | Priority | Verification | Implementation | Related Goals | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
+| Rule ID | Rule Description | Source | Sub-Domain | NI | Priority | Verification | Implementation | Related Goals | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
 |---------|------------------|--------|------------|---:|----------|--------------|----------------|---------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| CR-D-02.1-001 | Deliver product with zero known exploitable vulnerabilities at release | CRA-C01, CRA-C17 | D-02.1 | 3.000 | P1 | DEMONSTRATE | NATIVE | SO-D-02.1-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev + Procurement | automated vulnerability scanner + managed dependency audit zero-CVE | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | ENISA 24h (CRA) |
-| CR-D-02.2-001 | Enable automatic security updates and remediate vulnerabilities within 72h of patch availability | CRA-C04, CRA-C19 | D-02.2 | 3.000 | P1 | TEST | NATIVE | SO-D-02.2-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev + Procurement | patch-management SLA test | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | ENISA 24h (CRA) |
-| CR-D-02.3-001 | Publish coordinated vulnerability disclosure policy (security.txt) and report severe incidents to ENISA/CSIRT within 24h | CRA-C21, CRA-C26 | D-02.3 | 3.000 | P1 | INSPECT | NATIVE | SO-D-02.3-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev + Procurement | vulnerability-disclosure policy + reporting workflow | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | ENISA 24h (CRA) |
+| CR-D-02.1-001 | Deliver product with zero known exploitable vulnerabilities at release | CRA-C01, CRA-C17 | D-02.1 | 3.000 | P1 | DEMONSTRATE | NATIVE | SO-D-02.1-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev + Procurement | automated vulnerability scanner + managed dependency audit zero-CVE | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | ENISA 24h (CRA) |
+| CR-D-02.2-001 | Enable automatic security updates and remediate vulnerabilities within 72h of patch availability | CRA-C04, CRA-C19 | D-02.2 | 3.000 | P1 | TEST | NATIVE | SO-D-02.2-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev + Procurement | patch-management SLA test | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | ENISA 24h (CRA) |
+| CR-D-02.3-001 | Publish coordinated vulnerability disclosure policy (security.txt) and report severe incidents to ENISA/CSIRT within 24h | CRA-C21, CRA-C26 | D-02.3 | 3.000 | P1 | INSPECT | NATIVE | SO-D-02.3-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev + Procurement | vulnerability-disclosure policy + reporting workflow | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | ENISA 24h (CRA) |
 
 **D-02 Summary:** 3 rules | Avg NI: 3.000 | All NATIVE | CRA-only domain
 
@@ -170,12 +170,12 @@ Example: BPR-D-04.3-001
 
 ### D-03: Access Control (4 CR)
 
-| Rule ID | Rule Description | Source | Sub-Domain | NI | Priority | Verification | Implementation | Related Goals | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
+| Rule ID | Rule Description | Source | Sub-Domain | NI | Priority | Verification | Implementation | Related Goals | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
 |---------|------------------|--------|------------|---:|----------|--------------|----------------|---------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| CR-D-03.1-001 | Implement authentication and access control measures for all users | CRA-C05 | D-03.1 | 3.000 | P1 | INSPECT | INHERITED | SO-D-03.1-001 | MINIMAL | P1 | CTO + Lead Dev | managed identity service baseline | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| CR-D-03.2-001 | Enable multi-factor authentication where appropriate (administrative accounts) | CRA-C06 | D-03.2 | 2.000 | P2 | TEST | INHERITED | SO-D-03.2-001 | MINIMAL | P1 | CTO + Lead Dev | MFA enforcement test | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| CR-D-03.3-001 | Restrict access to authorised personnel only; enforce least privilege principle | GDPR-C10, GDPR-C17 | D-03.3 | 3.000 | P1 | INSPECT | NATIVE | SO-D-03.3-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev | RBAC quarterly review | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| CR-D-03.4-001 | Disable unused ports/services; no default passwords; secure default configuration | CRA-C03 | D-03.4 | 3.000 | P1 | TEST | NATIVE | SO-D-03.4-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev | hardened-default compliance | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| CR-D-03.1-001 | Implement authentication and access control measures for all users | CRA-C05 | D-03.1 | 3.000 | P1 | INSPECT | INHERITED | SO-D-03.1-001 | MINIMAL | P1 | CTO + Lead Dev | managed identity service baseline | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| CR-D-03.2-001 | Enable multi-factor authentication where appropriate (administrative accounts) | CRA-C06 | D-03.2 | 2.000 | P2 | TEST | INHERITED | SO-D-03.2-001 | MINIMAL | P1 | CTO + Lead Dev | MFA enforcement test | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| CR-D-03.3-001 | Restrict access to authorised personnel only; enforce least privilege principle | GDPR-C10, GDPR-C17 | D-03.3 | 3.000 | P1 | INSPECT | NATIVE | SO-D-03.3-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev | RBAC quarterly review | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| CR-D-03.4-001 | Disable unused ports/services; no default passwords; secure default configuration | CRA-C03 | D-03.4 | 3.000 | P1 | TEST | NATIVE | SO-D-03.4-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev | hardened-default compliance | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
 
 **D-03 Summary:** 4 rules | Avg NI: 2.750 | 2 NATIVE, 2 INHERITED (managed identity service)
 
@@ -183,12 +183,12 @@ Example: BPR-D-04.3-001
 
 ### D-04: Incident Response (4 CR)
 
-| Rule ID | Rule Description | Source | Sub-Domain | NI | Priority | Verification | Implementation | Related Goals | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
+| Rule ID | Rule Description | Source | Sub-Domain | NI | Priority | Verification | Implementation | Related Goals | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
 |---------|------------------|--------|------------|---:|----------|--------------|----------------|---------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| CR-D-04.1-001 | Design system to limit severity of exploits; implement fail-safe mechanisms | CRA-C13 | D-04.1 | 3.000 | P1 | DEMONSTRATE | NATIVE | SO-D-04.1-001 | LIGHTWEIGHT | P1 | CTO + DPO + Compliance Lead | managed monitoring alarms active | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h (GDPR) |
-| CR-D-04.2-001 | Restore availability after incidents; build resilience against DoS attacks | GDPR-C18, CRA-C11 | D-04.2 | 2.500 | P2 | DEMONSTRATE | NATIVE | SO-D-04.2-001 | LIGHTWEIGHT | P1 | CTO + DPO + Compliance Lead | DoS resilience drill | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h (GDPR) |
-| CR-D-04.3-001 | Notify supervisory authority (CNPD) within 72h of breach awareness; notify ENISA within 24h of actively exploited vulnerability | GDPR-C21, GDPR-C23, CRA-C25 | D-04.3 | 3.000 | P1 | TEST | NATIVE | SO-D-04.3-001 | LIGHTWEIGHT | P1 | CTO + DPO + Compliance Lead | dual-notification SLA | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h + ENISA 24h (max-SLA routing) |
-| CR-D-04.4-001 | Ensure ongoing availability and ability to restore data after incident | GDPR-C16 | D-04.4 | 2.000 | P2 | DEMONSTRATE | NATIVE | SO-D-04.4-001 | LIGHTWEIGHT | P1 | CTO + DPO + Compliance Lead | managed backup RTO 24h | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h (GDPR) |
+| CR-D-04.1-001 | Design system to limit severity of exploits; implement fail-safe mechanisms | CRA-C13 | D-04.1 | 3.000 | P1 | DEMONSTRATE | NATIVE | SO-D-04.1-001 | LIGHTWEIGHT | P1 | CTO + DPO + Compliance Lead | managed monitoring alarms active | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h (GDPR) |
+| CR-D-04.2-001 | Restore availability after incidents; build resilience against DoS attacks | GDPR-C18, CRA-C11 | D-04.2 | 2.500 | P2 | DEMONSTRATE | NATIVE | SO-D-04.2-001 | LIGHTWEIGHT | P1 | CTO + DPO + Compliance Lead | DoS resilience drill | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h (GDPR) |
+| CR-D-04.3-001 | Notify supervisory authority (CNPD) within 72h of breach awareness; notify ENISA within 24h of actively exploited vulnerability | GDPR-C21, GDPR-C23, CRA-C25 | D-04.3 | 3.000 | P1 | TEST | NATIVE | SO-D-04.3-001 | LIGHTWEIGHT | P1 | CTO + DPO + Compliance Lead | dual-notification SLA | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h + ENISA 24h (max-SLA routing) |
+| CR-D-04.4-001 | Ensure ongoing availability and ability to restore data after incident | GDPR-C16 | D-04.4 | 2.000 | P2 | DEMONSTRATE | NATIVE | SO-D-04.4-001 | LIGHTWEIGHT | P1 | CTO + DPO + Compliance Lead | managed backup RTO 24h | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | CNPD 72h (GDPR) |
 
 **D-04 Summary:** 4 rules | Avg NI: 2.625 | All NATIVE | **Tension T-001 resolved:** 24h workflow
 
@@ -196,12 +196,12 @@ Example: BPR-D-04.3-001
 
 ### D-05: Data Lifecycle (4 CR)
 
-| Rule ID | Rule Description | Source | Sub-Domain | NI | Priority | Verification | Implementation | Related Goals | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
+| Rule ID | Rule Description | Source | Sub-Domain | NI | Priority | Verification | Implementation | Related Goals | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
 |---------|------------------|--------|------------|---:|----------|--------------|----------------|---------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| CR-D-05.1-001 | Process only data adequate, relevant and limited to what is necessary for task management | GDPR-C01, CRA-C10 | D-05.1 | 3.000 | P1 | INSPECT | NATIVE | PO-D-05.1-001 | LIGHTWEIGHT | P1 | CTO + DPO | Field-level enforcement | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| CR-D-05.2-001 | Do not keep personal data longer than necessary; delete 30 days after task completion | GDPR-C02, GDPR-C03 | D-05.2 | 3.000 | P1 | INSPECT | NATIVE | PO-D-05.2-001 | LIGHTWEIGHT | P1 | CTO + DPO | Retention policy audit | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| CR-D-05.3-001 | Enable complete and secure data deletion on user request within 7 days | GDPR-C06, CRA-C16 | D-05.3 | 3.000 | P1 | TEST | NATIVE | PO-D-05.3-001 | LIGHTWEIGHT | P1 | CTO + DPO | Erasure API test (7d) | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| CR-D-05.4-001 | Provide data export in structured, machine-readable format (JSON) within 48h of request | GDPR-C07 | D-05.4 | 3.000 | P1 | TEST | NATIVE | PO-D-05.4-001 | LIGHTWEIGHT | P1 | CTO + DPO | JSON export test (48h) | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| CR-D-05.1-001 | Process only data adequate, relevant and limited to what is necessary for task management | GDPR-C01, CRA-C10 | D-05.1 | 3.000 | P1 | INSPECT | NATIVE | PO-D-05.1-001 | LIGHTWEIGHT | P1 | CTO + DPO | Field-level enforcement | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| CR-D-05.2-001 | Do not keep personal data longer than necessary; delete 30 days after task completion | GDPR-C02, GDPR-C03 | D-05.2 | 3.000 | P1 | INSPECT | NATIVE | PO-D-05.2-001 | LIGHTWEIGHT | P1 | CTO + DPO | Retention policy audit | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| CR-D-05.3-001 | Enable complete and secure data deletion on user request within 7 days | GDPR-C06, CRA-C16 | D-05.3 | 3.000 | P1 | TEST | NATIVE | PO-D-05.3-001 | LIGHTWEIGHT | P1 | CTO + DPO | Erasure API test (7d) | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| CR-D-05.4-001 | Provide data export in structured, machine-readable format (JSON) within 48h of request | GDPR-C07 | D-05.4 | 3.000 | P1 | TEST | NATIVE | PO-D-05.4-001 | LIGHTWEIGHT | P1 | CTO + DPO | JSON export test (48h) | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
 
 **D-05 Summary:** 4 rules | Avg NI: 3.000 | All NATIVE | GDPR-dominant domain
 
@@ -209,11 +209,11 @@ Example: BPR-D-04.3-001
 
 ### D-06: Supply Chain (3 CR)
 
-| Rule ID | Rule Description | Source | Sub-Domain | NI | Priority | Verification | Implementation | Related Goals | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
+| Rule ID | Rule Description | Source | Sub-Domain | NI | Priority | Verification | Implementation | Related Goals | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
 |---------|------------------|--------|------------|---:|----------|--------------|----------------|---------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| CR-D-06.1-001 | Use only processors providing sufficient guarantees (managed hosting, managed identity, payment processor with DPAs) | GDPR-C11 | D-06.1 | 3.000 | P1 | INSPECT | NATIVE | SO-D-06.1-001 | MINIMAL | P1 | CTO + Lead Dev + Procurement | DPA + documented third-party security attestation | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| CR-D-06.2-001 | Document all third-party components in machine-readable format (SBOM) | CRA-C18 | D-06.2 | 3.000 | P1 | INSPECT | NATIVE | SO-D-06.2-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev + Procurement | machine-readable SBOM per release | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| CR-D-06.3-001 | Bind processors to security obligations via Data Processing Agreement | GDPR-C12 | D-06.3 | 3.000 | P1 | INSPECT | NATIVE | SO-D-06.3-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev + Procurement | DPA template + clauses | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| CR-D-06.1-001 | Use only processors providing sufficient guarantees (managed hosting, managed identity, payment processor with DPAs) | GDPR-C11 | D-06.1 | 3.000 | P1 | INSPECT | NATIVE | SO-D-06.1-001 | MINIMAL | P1 | CTO + Lead Dev + Procurement | DPA + documented third-party security attestation | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| CR-D-06.2-001 | Document all third-party components in machine-readable format (SBOM) | CRA-C18 | D-06.2 | 3.000 | P1 | INSPECT | NATIVE | SO-D-06.2-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev + Procurement | machine-readable SBOM per release | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| CR-D-06.3-001 | Bind processors to security obligations via Data Processing Agreement | GDPR-C12 | D-06.3 | 3.000 | P1 | INSPECT | NATIVE | SO-D-06.3-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev + Procurement | DPA template + clauses | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
 
 **D-06 Summary:** 3 rules | Avg NI: 3.000 | All NATIVE | **CR-D-06.2-001:** CRA sole authority
 
@@ -221,9 +221,9 @@ Example: BPR-D-04.3-001
 
 ### D-07: Secure Development (1 CR)
 
-| Rule ID | Rule Description | Source | Sub-Domain | NI | Priority | Verification | Implementation | Related Goals | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
+| Rule ID | Rule Description | Source | Sub-Domain | NI | Priority | Verification | Implementation | Related Goals | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
 |---------|------------------|--------|------------|---:|----------|--------------|----------------|---------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| CR-D-07.1-001 | Integrate data protection and security into design from outset; secure by default | GDPR-C09, CRA-C02, CRA-C22 | D-07.1 | 2.667 | P1 | INSPECT | NATIVE | PO-D-07.1-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev | secure-development-framework + maturity assessment | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| CR-D-07.1-001 | Integrate data protection and security into design from outset; secure by default | GDPR-C09, CRA-C02, CRA-C22 | D-07.1 | 2.667 | P1 | INSPECT | NATIVE | PO-D-07.1-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev | secure-development-framework + maturity assessment | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
 
 **D-07 Summary:** 1 rule | Avg NI: 2.667 | NATIVE | **Tension T-004 resolved:** Follow CRA standard
 
@@ -231,10 +231,10 @@ Example: BPR-D-04.3-001
 
 ### D-08: Human Factors (2 CR)
 
-| Rule ID | Rule Description | Source | Sub-Domain | NI | Priority | Verification | Implementation | Related Goals | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
+| Rule ID | Rule Description | Source | Sub-Domain | NI | Priority | Verification | Implementation | Related Goals | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
 |---------|------------------|--------|------------|---:|----------|--------------|----------------|---------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| CR-D-08.1-001 | Train staff involved in processing operations on security awareness annually | GDPR-C27 | D-08.1 | 3.000 | P2 | INSPECT | NATIVE | SO-D-08.1-001 | MINIMAL | P1 | CTO + HR + DPO | annual security awareness training | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| CR-D-08.2-001 | Raise awareness and train staff with role-specific security obligations | GDPR-C28 | D-08.2 | 3.000 | P2 | INSPECT | NATIVE | SO-D-08.2-001 | LIGHTWEIGHT | P1 | CTO + HR + DPO | role-specific training | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| CR-D-08.1-001 | Train staff involved in processing operations on security awareness annually | GDPR-C27 | D-08.1 | 3.000 | P2 | INSPECT | NATIVE | SO-D-08.1-001 | MINIMAL | P1 | CTO + HR + DPO | annual security awareness training | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| CR-D-08.2-001 | Raise awareness and train staff with role-specific security obligations | GDPR-C28 | D-08.2 | 3.000 | P2 | INSPECT | NATIVE | SO-D-08.2-001 | LIGHTWEIGHT | P1 | CTO + HR + DPO | role-specific training | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
 
 **D-08 Summary:** 2 rules | Avg NI: 3.000 | All NATIVE | GDPR-only domain
 
@@ -242,11 +242,11 @@ Example: BPR-D-04.3-001
 
 ### D-09: Governance & Documentation (3 CR)
 
-| Rule ID | Rule Description | Source | Sub-Domain | NI | Priority | Verification | Implementation | Related Goals | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
+| Rule ID | Rule Description | Source | Sub-Domain | NI | Priority | Verification | Implementation | Related Goals | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
 |---------|------------------|--------|------------|---:|----------|--------------|----------------|---------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| CR-D-09.1-001 | Implement appropriate technical/organisational measures; document policies; maintain technical documentation for 10 years | GDPR-C08, GDPR-C25, GDPR-C26, CRA-C24 | D-09.1 | 2.500 | P1 | INSPECT | NATIVE | PO-D-09.1-001, SO-D-09.1-001 | LIGHTWEIGHT | P1 | CTO + DPO + Compliance Lead + Legal | ISMS documentation audit | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | CNPD + ENISA (periodic) |
-| CR-D-09.2-001 | Conduct unified Privacy & Security Risk Assessment (DPIA + cybersecurity) prior to launch | GDPR-C20, GDPR-C24, CRA-C23 | D-09.2 | 2.667 | P1 | INSPECT | NATIVE | PO-D-09.2-001, SO-D-09.2-001 | LIGHTWEIGHT | P1 | CTO + DPO + Compliance Lead + Legal | Unified assessment template | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | CNPD + ENISA (periodic) |
-| CR-D-09.4-001 | Maintain records of processing activities and breach documentation | GDPR-C13, GDPR-C22 | D-09.4 | 3.000 | P1 | INSPECT | NATIVE | PO-D-09.4-001 | LIGHTWEIGHT | P1 | CTO + DPO + Compliance Lead + Legal | RoPA + breach log | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | CNPD + ENISA (periodic) |
+| CR-D-09.1-001 | Implement appropriate technical/organisational measures; document policies; maintain technical documentation for 10 years | GDPR-C08, GDPR-C25, GDPR-C26, CRA-C24 | D-09.1 | 2.500 | P1 | INSPECT | NATIVE | PO-D-09.1-001, SO-D-09.1-001 | LIGHTWEIGHT | P1 | CTO + DPO + Compliance Lead + Legal | ISMS documentation audit | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | CNPD + ENISA (periodic) |
+| CR-D-09.2-001 | Conduct unified Privacy & Security Risk Assessment (DPIA + cybersecurity) prior to launch | GDPR-C20, GDPR-C24, CRA-C23 | D-09.2 | 2.667 | P1 | INSPECT | NATIVE | PO-D-09.2-001, SO-D-09.2-001 | LIGHTWEIGHT | P1 | CTO + DPO + Compliance Lead + Legal | Unified assessment template | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | CNPD + ENISA (periodic) |
+| CR-D-09.4-001 | Maintain records of processing activities and breach documentation | GDPR-C13, GDPR-C22 | D-09.4 | 3.000 | P1 | INSPECT | NATIVE | PO-D-09.4-001 | LIGHTWEIGHT | P1 | CTO + DPO + Compliance Lead + Legal | RoPA + breach log | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | CNPD + ENISA (periodic) |
 
 **D-09 Summary:** 3 rules | Avg NI: 2.722 | All NATIVE | **Tension T-003 resolved:** Unified assessment
 
@@ -254,10 +254,10 @@ Example: BPR-D-04.3-001
 
 ### D-10: Monitoring & Audit (2 CR)
 
-| Rule ID | Rule Description | Source | Sub-Domain | NI | Priority | Verification | Implementation | Related Goals | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
+| Rule ID | Rule Description | Source | Sub-Domain | NI | Priority | Verification | Implementation | Related Goals | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
 |---------|------------------|--------|------------|---:|----------|--------------|----------------|---------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| CR-D-10.2-001 | Log security-relevant events; maintain audit trail of access | CRA-C14 | D-10.2 | 3.000 | P1 | TEST | INHERITED | SO-D-10.2-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev | managed audit-trail + managed object storage audit | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| CR-D-10.3-001 | Regularly test effectiveness of technical and organisational measures (annual security testing) | GDPR-C19, CRA-C20 | D-10.3 | 2.500 | P2 | DEMONSTRATE | NATIVE | SO-D-10.3-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev | quarterly compliance review | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| CR-D-10.2-001 | Log security-relevant events; maintain audit trail of access | CRA-C14 | D-10.2 | 3.000 | P1 | TEST | INHERITED | SO-D-10.2-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev | managed audit-trail + managed object storage audit | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| CR-D-10.3-001 | Regularly test effectiveness of technical and organisational measures (annual security testing) | GDPR-C19, CRA-C20 | D-10.3 | 2.500 | P2 | DEMONSTRATE | NATIVE | SO-D-10.3-001 | LIGHTWEIGHT | P1 | CTO + Lead Dev | quarterly compliance review | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
 
 **D-10 Summary:** 2 rules | Avg NI: 2.750 | 1 NATIVE, 1 INHERITED (managed monitoring)
 
@@ -269,59 +269,59 @@ Example: BPR-D-04.3-001
 
 ### D-01: Data Protection & Encryption (2 BPR)
 
-| Rule ID | Rule Description | Framework | Sub-Domain | Priority | Verification | Implementation | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
+| Rule ID | Rule Description | Framework | Sub-Domain | Priority | Verification | Implementation | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
 |---------|------------------|-----------|------------|----------|--------------|----------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| BPR-D-01.1-001 | Use strong symmetric encryption for data at rest encryption | ISO 27001 A.8.24 | D-01.1 | P3 | TEST | NATIVE | LIGHTWEIGHT | P1 | CTO + Lead Dev | strong symmetric encryption validated in CI | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| BPR-D-01.2-001 | Implement current transport cryptographic standard for all network communications | NIST SC-8 | D-01.2 | P3 | TEST | NATIVE | LIGHTWEIGHT | P1 | CTO + Lead Dev | current transport cryptographic standard cert validation | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| BPR-D-01.1-001 | Use strong symmetric encryption for data at rest encryption | ISO 27001 A.8.24 | D-01.1 | P3 | TEST | NATIVE | LIGHTWEIGHT | P1 | CTO + Lead Dev | strong symmetric encryption validated in CI | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| BPR-D-01.2-001 | Implement current transport cryptographic standard for all network communications | NIST SC-8 | D-01.2 | P3 | TEST | NATIVE | LIGHTWEIGHT | P1 | CTO + Lead Dev | current transport cryptographic standard cert validation | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
 
 ### D-02: Vulnerability Management (2 BPR)
 
-| Rule ID | Rule Description | Framework | Sub-Domain | Priority | Verification | Implementation | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
+| Rule ID | Rule Description | Framework | Sub-Domain | Priority | Verification | Implementation | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
 |---------|------------------|-----------|------------|----------|--------------|----------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| BPR-D-02.1-001 | Conduct quarterly vulnerability scans | OWASP ASVS V1 | D-02.1 | P3 | DEMONSTRATE | NATIVE | LIGHTWEIGHT | P1 | CTO + Lead Dev + Procurement | automated vulnerability scanner quarterly scan | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| BPR-D-02.2-001 | Apply critical patches within 72 hours | NIST SI-2 | D-02.2 | P3 | TEST | NATIVE | LIGHTWEIGHT | P1 | CTO + Lead Dev + Procurement | Patch SLA test | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| BPR-D-02.1-001 | Conduct quarterly vulnerability scans | OWASP ASVS V1 | D-02.1 | P3 | DEMONSTRATE | NATIVE | LIGHTWEIGHT | P1 | CTO + Lead Dev + Procurement | automated vulnerability scanner quarterly scan | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| BPR-D-02.2-001 | Apply critical patches within 72 hours | NIST SI-2 | D-02.2 | P3 | TEST | NATIVE | LIGHTWEIGHT | P1 | CTO + Lead Dev + Procurement | Patch SLA test | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
 
 ### D-03: Access Control (3 BPR)
 
-| Rule ID | Rule Description | Framework | Sub-Domain | Priority | Verification | Implementation | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
+| Rule ID | Rule Description | Framework | Sub-Domain | Priority | Verification | Implementation | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
 |---------|------------------|-----------|------------|----------|--------------|----------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| BPR-D-03.1-001 | Implement role-based access control (RBAC) | ISO 27001 A.9.2 | D-03.1 | P3 | INSPECT | INHERITED | MINIMAL | P1 | CTO + Lead Dev | RBAC quarterly review | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| BPR-D-03.2-001 | Enable FIDO2 for MFA | NIST IA-2 | D-03.2 | P3 | TEST | INHERITED | MINIMAL | P1 | CTO + Lead Dev | MFA FIDO2 validation | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| BPR-D-03.4-001 | Harden systems using hardened-default baseline references | documented baseline control set | D-03.4 | P3 | INSPECT | NATIVE | LIGHTWEIGHT | P1 | CTO + Lead Dev | hardened-default compliance | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| BPR-D-03.1-001 | Implement role-based access control (RBAC) | ISO 27001 A.9.2 | D-03.1 | P3 | INSPECT | INHERITED | MINIMAL | P1 | CTO + Lead Dev | RBAC quarterly review | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| BPR-D-03.2-001 | Enable FIDO2 for MFA | NIST IA-2 | D-03.2 | P3 | TEST | INHERITED | MINIMAL | P1 | CTO + Lead Dev | MFA FIDO2 validation | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| BPR-D-03.4-001 | Harden systems using hardened-default baseline references | documented baseline control set | D-03.4 | P3 | INSPECT | NATIVE | LIGHTWEIGHT | P1 | CTO + Lead Dev | hardened-default compliance | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
 
 ### D-04: Incident Response (2 BPR)
 
-| Rule ID | Rule Description | Framework | Sub-Domain | Priority | Verification | Implementation | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
+| Rule ID | Rule Description | Framework | Sub-Domain | Priority | Verification | Implementation | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
 |---------|------------------|-----------|------------|----------|--------------|----------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| BPR-D-04.3-001 | Maintain incident response playbook | ISO 27001 A.5.24 | D-04.3 | P3 | INSPECT | NATIVE | LIGHTWEIGHT | P1 | CTO + DPO + Compliance Lead | Playbook review audit | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| BPR-D-04.3-002 | Conduct tabletop exercises quarterly | NIST CSF2 RS.MA-01 | D-04.3 | P3 | DEMONSTRATE | NATIVE | LIGHTWEIGHT | P1 | CTO + DPO + Compliance Lead | Tabletop drill | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| BPR-D-04.3-001 | Maintain incident response playbook | ISO 27001 A.5.24 | D-04.3 | P3 | INSPECT | NATIVE | LIGHTWEIGHT | P1 | CTO + DPO + Compliance Lead | Playbook review audit | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| BPR-D-04.3-002 | Conduct tabletop exercises quarterly | NIST CSF2 RS.MA-01 | D-04.3 | P3 | DEMONSTRATE | NATIVE | LIGHTWEIGHT | P1 | CTO + DPO + Compliance Lead | Tabletop drill | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
 
 ### D-05: Data Lifecycle (1 BPR)
 
-| Rule ID | Rule Description | Framework | Sub-Domain | Priority | Verification | Implementation | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
+| Rule ID | Rule Description | Framework | Sub-Domain | Priority | Verification | Implementation | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
 |---------|------------------|-----------|------------|----------|--------------|----------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| BPR-D-05.3-001 | Use documented media sanitization standard for media sanitization | documented media sanitization standard | D-05.3 | P3 | INSPECT | NATIVE | LIGHTWEIGHT | P1 | CTO + DPO | Sanitization audit | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| BPR-D-05.3-001 | Use documented media sanitization standard for media sanitization | documented media sanitization standard | D-05.3 | P3 | INSPECT | NATIVE | LIGHTWEIGHT | P1 | CTO + DPO | Sanitization audit | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
 
 ### D-07: Secure Development (2 BPR)
 
-| Rule ID | Rule Description | Framework | Sub-Domain | Priority | Verification | Implementation | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
+| Rule ID | Rule Description | Framework | Sub-Domain | Priority | Verification | Implementation | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
 |---------|------------------|-----------|------------|----------|--------------|----------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| BPR-D-07.1-001 | Follow NIST SSDF secure development practices | NIST SSDF PO.5.1 | D-07.1 | P3 | INSPECT | NATIVE | LIGHTWEIGHT | P1 | CTO + Lead Dev | SSDF audit | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| BPR-D-07.2-001 | Conduct SAST/DAST in CI/CD pipeline | OWASP ASVS V3 | D-07.2 | P3 | DEMONSTRATE | NATIVE | LIGHTWEIGHT | P1 | CTO + Lead Dev | SAST/DAST gate check | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| BPR-D-07.1-001 | Follow NIST SSDF secure development practices | NIST SSDF PO.5.1 | D-07.1 | P3 | INSPECT | NATIVE | LIGHTWEIGHT | P1 | CTO + Lead Dev | SSDF audit | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| BPR-D-07.2-001 | Conduct SAST/DAST in CI/CD pipeline | OWASP ASVS V3 | D-07.2 | P3 | DEMONSTRATE | NATIVE | LIGHTWEIGHT | P1 | CTO + Lead Dev | SAST/DAST gate check | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
 
 ### D-09: Governance & Documentation (1 BPR)
 
-| Rule ID | Rule Description | Framework | Sub-Domain | Priority | Verification | Implementation | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
+| Rule ID | Rule Description | Framework | Sub-Domain | Priority | Verification | Implementation | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
 |---------|------------------|-----------|------------|----------|--------------|----------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| BPR-D-09.1-001 | Establish ISMS per ISO 27001 | ISO 27001 A.5.1 | D-09.1 | P3 | INSPECT | NATIVE | LIGHTWEIGHT | P1 | CTO + DPO + Compliance Lead + Legal | ISMS audit | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| BPR-D-09.1-001 | Establish ISMS per ISO 27001 | ISO 27001 A.5.1 | D-09.1 | P3 | INSPECT | NATIVE | LIGHTWEIGHT | P1 | CTO + DPO + Compliance Lead + Legal | ISMS audit | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
 
 ### D-10: Monitoring & Audit (3 BPR)
 
-| Rule ID | Rule Description | Framework | Sub-Domain | Priority | Verification | Implementation | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Maturity Score | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
+| Rule ID | Rule Description | Framework | Sub-Domain | Priority | Verification | Implementation | Implementation Tier | Proportional Priority | Owner | Verification Criteria | Implementation Status | Implementation Priority | Affected Stakeholders | Regulatory Reporting |
 |---------|------------------|-----------|------------|----------|--------------|----------------|---------------------|----------------------|-------|----------------------|---------------|------------------------|----------------------|----------------------|
-| BPR-D-10.2-001 | Retain logs for minimum 12 months | ISO 27001 A.8.16 | D-10.2 | P3 | INSPECT | INHERITED | LIGHTWEIGHT | P1 | CTO + Lead Dev | Log retention audit | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| BPR-D-10.3-001 | Conduct annual penetration testing | NIST CA-2 | D-10.3 | P3 | DEMONSTRATE | NATIVE | LIGHTWEIGHT | P1 | CTO + Lead Dev | Pentest report | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
-| BPR-D-10.3-002 | Use OWASP Testing Guide for security assessments | OWASP Testing Guide | D-10.3 | P3 | DEMONSTRATE | NATIVE | LIGHTWEIGHT | P1 | CTO + Lead Dev | OWASP-based assessment | 1/4 → 3/4 | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| BPR-D-10.2-001 | Retain logs for minimum 12 months | ISO 27001 A.8.16 | D-10.2 | P3 | INSPECT | INHERITED | LIGHTWEIGHT | P1 | CTO + Lead Dev | Log retention audit | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| BPR-D-10.3-001 | Conduct annual penetration testing | NIST CA-2 | D-10.3 | P3 | DEMONSTRATE | NATIVE | LIGHTWEIGHT | P1 | CTO + Lead Dev | Pentest report | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
+| BPR-D-10.3-002 | Use OWASP Testing Guide for security assessments | OWASP Testing Guide | D-10.3 | P3 | DEMONSTRATE | NATIVE | LIGHTWEIGHT | P1 | CTO + Lead Dev | OWASP-based assessment | PARTIAL | HIGH | Customers, DPO, CTO, ENISA | Internal audit only |
 
 **Best Practice Summary:** 16 rules | All P3 (recommended) | 13 NATIVE, 3 INHERITED
 
@@ -522,7 +522,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Lead Dev, ENISA.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -542,9 +542,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** PR.DS-P1 (CIA of data-at-rest protected) (backups created + protected + maintained + tested) (resilience mechanisms for adverse situations)
 
-21. **Maturity (CSF):** cur 2/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 2/4 → tgt 3/4   *(incremental gap; security/privacy posture co-evolve at MICRO)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -584,7 +584,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Lead Dev, ENISA.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -604,9 +604,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** PR.DS-P2 (CIA of data-in-transit protected) (networks protected from unauthorised access)
 
-21. **Maturity (CSF):** cur 2/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 2/4 → tgt 3/4   *(incremental gap; security/privacy posture co-evolve at MICRO)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -647,7 +647,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Lead Dev, ENISA.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -667,9 +667,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** PR.DS-P1 (CIA of data-at-rest protected), CT.DP-P2 (de-identification + tokenisation techniques)
 
-21. **Maturity (CSF):** cur 2/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 2/4 → tgt 3/4   *(incremental gap; security/privacy posture co-evolve at MICRO)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -710,7 +710,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Lead Dev, ENISA.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -730,9 +730,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** CT.DM-P1 (data elements accessible for review), CT.DM-P3 (data elements accessible for alteration)
 
-21. **Maturity (CSF):** cur 2/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 2/4 → tgt 3/4   *(incremental gap; security/privacy posture co-evolve at MICRO)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -788,7 +788,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 12. **Affected Stakeholders:** Customers, DPO, CTO, Lead Dev, Procurement, ENISA.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -808,9 +808,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** ID.RA-P3 (problematic data actions identified), ID.RA-P5 (risk responses prioritised + implemented)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 1/4 → tgt 3/4   *(larger gap; privacy framework dimension requires explicit operationalisation beyond CSF)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -866,7 +866,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 12. **Affected Stakeholders:** Customers, DPO, CTO, Lead Dev, Procurement, ENISA.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -886,9 +886,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** — (product-security deliverable; SSDF RV.2 anchored; no PF 1.0 scope)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** N/A — product-security deliverable (SSDF RV.2)
+22. **Implementation Status (Privacy):** N/A — product-security deliverable (SSDF RV.2)
 
 ---
 
@@ -944,7 +944,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 12. **Affected Stakeholders:** Customers, security researchers, DPO, CTO, Lead Dev
     ENISA, PT CSIRT (CNCS).
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -964,9 +964,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** — (product-security deliverable; SSDF RV.1 anchored; no PF 1.0 scope)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** N/A — product-security deliverable (SSDF RV.1)
+22. **Implementation Status (Privacy):** N/A — product-security deliverable (SSDF RV.1)
 
 ---
 
@@ -1023,7 +1023,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 12. **Affected Stakeholders:** Customers, data subjects, CTO, Lead Dev, DPO, ENISA.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -1043,9 +1043,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** PR.AC-P1 (identities/credentials issued, managed, verified, revoked, audited — maps PR.AA-01/02), PR.AC-P6 (proofed and bound to credentials, authenticated commensurate with risk — maps PR.AA-03), PR.AC-P4 (access permissions, least privilege + SoD — maps PR.AA-05/06); UNMAPPED_PF (ID.AM-01 hardware inventories + PR.DS-10 risk-strategy data mgmt — no PF 1.0 analogue; unmapped_pf_justification: PF 1.0 inventories are data-ecosystem-scoped only)
 
-21. **Maturity (CSF):** cur 2/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 2/4 → tgt 3/4   *(incremental gap; security/privacy posture co-evolve at MICRO)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -1102,7 +1102,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 12. **Affected Stakeholders:** Customers, data subjects, CTO, Lead Dev, DPO, ENISA.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -1125,9 +1125,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** PR.AC-P6 (authentication commensurate with risk), PR.AC-P4 (least-privilege access), GV.AT-P1 (workforce informed/trained); UNMAPPED_PF (PR.AA-04 identity assertions — no PF 1.0 subcategory; concept exists only in non-final PF 1.1 draft)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 1/4 → tgt 3/4   *(larger gap; privacy framework dimension requires explicit operationalisation beyond CSF)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -1184,7 +1184,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Lead Dev, ENISA.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -1204,9 +1204,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** CT.PO-P1 (data-processing authorisation policies)
 
-21. **Maturity (CSF):** cur 2/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 2/4 → tgt 3/4   *(incremental gap; security/privacy posture co-evolve at MICRO)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -1263,7 +1263,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 12. **Affected Stakeholders:** Customers, data subjects, CTO, Lead Dev, DPO, ENISA.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -1283,9 +1283,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** CT.DP-P4 (selective collection/disclosure configurable), CT.PO-P4 (data lifecycle aligned with SDLC)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 1/4 → tgt 3/4   *(larger gap; privacy framework dimension requires explicit operationalisation beyond CSF)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -1342,7 +1342,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Lead Dev, ENISA.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -1362,9 +1362,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** CM.AW-P7 (privacy breach/event notifications) (privacy performance measured + reviewed)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 1/4 → tgt 3/4   *(larger gap; privacy framework dimension requires explicit operationalisation beyond CSF)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -1422,7 +1422,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Lead Dev, ENISA.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -1442,9 +1442,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** PR.PO-P7 (incident response + recovery plans maintained), CT.DM-P10 (technical measures tested + assessed)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 1/4 → tgt 3/4   *(larger gap; privacy framework dimension requires explicit operationalisation beyond CSF)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -1503,7 +1503,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 12. **Affected Stakeholders:** Customers, data subjects, B2B controllers, DPO, CTO
     Compliance Lead, CNPD, ENISA, PT CSIRT (CNCS).
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -1523,9 +1523,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** CM.AW-P7 (privacy breach/event notifications), CM.AW-P8 (mitigation mechanisms offered to individuals), CM.PO-P1 (transparency policies for data processing), CM.PO-P2 (comms roles + responsibilities established) (contracts implement privacy programme measures)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 1/4 → tgt 3/4   *(larger gap; privacy framework dimension requires explicit operationalisation beyond CSF)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -1584,7 +1584,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 12. **Affected Stakeholders:** Customers, data subjects, B2B controllers, DPO, CTO
     Lead Dev, ENISA.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -1604,9 +1604,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** PR.DS-P1 (data-at-rest protected), PR.PO-P7 (response/recovery plans established — maps PR.IR-03), PR.DS-P4 (adequate resource capacity — maps PR.IR-04), PR.PT-P4 (resilience mechanisms); UNMAPPED_PF (RC.RP-* recovery execution + PR.DS-10 risk-strategy mgmt — PF 1.0 has no Respond/Recover axis; unmapped_pf_justification: no PF 1.0 subcategories match)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 1/4 → tgt 3/4   *(larger gap; privacy framework dimension requires explicit operationalisation beyond CSF)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -1663,7 +1663,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Lead Dev, ENISA.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -1683,9 +1683,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** CT.PO-P4 (data lifecycle aligned with SDLC), CT.DP-P4 (selective collection/disclosure configurable), ID.RA-P3 (problematic data actions identified)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 1/4 → tgt 3/4   *(larger gap; privacy framework dimension requires explicit operationalisation beyond CSF)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -1742,7 +1742,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Lead Dev, CNPD.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -1762,9 +1762,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** CT.PO-P4 (data lifecycle aligned with SDLC), CT.DM-P5 (data destroyed according to policy)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 2/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 1/4 → tgt 2/4   *(incremental gap; security/privacy posture co-evolve at MICRO)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -1820,7 +1820,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Lead Dev, CNPD.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -1840,9 +1840,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** CT.DM-P4 (data elements accessible for deletion), CT.DM-P5 (data destroyed according to policy) (contracts implement privacy programme measures)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 1/4 → tgt 3/4   *(larger gap; privacy framework dimension requires explicit operationalisation beyond CSF)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -1897,7 +1897,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Lead Dev, CNPD.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -1917,9 +1917,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** CT.DM-P1 (data elements accessible for review), CT.DM-P6 (data transmitted via standardised formats)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 2/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 1/4 → tgt 2/4   *(incremental gap; security/privacy posture co-evolve at MICRO)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -1977,7 +1977,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Procurement
     managed hosting, managed identity, payment processor, CNPD.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -1997,9 +1997,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** ID.IM-P2 (owners/operators + roles inventoried)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 1/4 → tgt 3/4   *(larger gap; privacy framework dimension requires explicit operationalisation beyond CSF)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -2055,7 +2055,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 12. **Affected Stakeholders:** Customers, CTO, Lead Dev, Procurement, suppliers, ENISA.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -2075,9 +2075,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** — (product-security deliverable; SSDF PS.3 anchored; no PF 1.0 scope)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** N/A — product-security deliverable (SSDF PS.3)
+22. **Implementation Status (Privacy):** N/A — product-security deliverable (SSDF PS.3)
 
 ---
 
@@ -2136,7 +2136,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Procurement
     processors, CNPD.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -2156,9 +2156,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** ID.DE-P3 (contracts with ecosystem parties implement privacy-programme measures), ID.DE-P4 (interoperability frameworks for ecosystem privacy); UNMAPPED_PF (ecosystem risk integrated into enterprise risk — no dedicated PF 1.0 subcategory; covered indirectly by GV.PO-P6)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 1/4 → tgt 3/4   *(larger gap; privacy framework dimension requires explicit operationalisation beyond CSF)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -2217,7 +2217,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Lead Dev, DevOps
     ENISA.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -2237,9 +2237,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** GV.PO-P2 (privacy values in SDLC processes established), CT.PO-P4 (data lifecycle aligned with SDLC), CT.DP-P2 (de-identification + tokenisation techniques), CT.DP-P4 (selective collection/disclosure configurable), CT.DP-P5 (attribute substitution (derived values))
 
-21. **Maturity (CSF):** cur 2/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 2/4 → tgt 3/4   *(incremental gap; security/privacy posture co-evolve at MICRO)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -2296,7 +2296,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 12. **Affected Stakeholders:** All staff, contractors, customers, data subjects, DPO
     CTO, HR, CNPD.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -2316,9 +2316,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** GV.AT-P1 (personnel awareness + training on privacy tasks), GV.AT-P2 (specialised roles privacy awareness + training)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 1/4 → tgt 3/4   *(larger gap; privacy framework dimension requires explicit operationalisation beyond CSF)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -2377,7 +2377,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 12. **Affected Stakeholders:** All staff, contractors, customers, DPO, CTO, HR
     Lead Dev, CNPD, ENISA.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -2397,9 +2397,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** GV.AT-P1 (personnel awareness + training on privacy tasks), GV.AT-P2 (specialised roles privacy awareness + training)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 1/4 → tgt 3/4   *(larger gap; privacy framework dimension requires explicit operationalisation beyond CSF)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -2457,7 +2457,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 12. **Affected Stakeholders:** Customers, DPO, CTO, Compliance Lead, Legal, CEO
     CNPD, ENISA.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -2477,9 +2477,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** GV.PO-P1 (privacy values + policies established + enforced), GV.PO-P5 (legal/regulatory privacy reqs understood + managed) (privacy risk-response strategic direction) (adequate resources for privacy risk strategy), CM.PO-P1 (transparency policies for data processing)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 1/4 → tgt 3/4   *(larger gap; privacy framework dimension requires explicit operationalisation beyond CSF)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -2537,7 +2537,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Compliance Lead
     Legal, CEO, CNPD, ENISA.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -2557,9 +2557,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** ID.RA-P3 (problematic data actions identified), ID.RA-P4 (likelihoods + impacts prioritise risk), ID.RA-P5 (risk responses prioritised + implemented) (privacy strategy reviewed for requirements + risks)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 1/4 → tgt 3/4   *(larger gap; privacy framework dimension requires explicit operationalisation beyond CSF)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -2617,7 +2617,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 12. **Affected Stakeholders:** Customers, data subjects, B2B controllers, DPO, CTO
     Compliance Lead, Legal, CNPD.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -2637,9 +2637,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** ID.IM-P1 (systems/products/services that process data inventoried), ID.IM-P4 (data actions of systems/services inventoried), ID.IM-P6 (data elements within data actions inventoried), ID.IM-P8 (data processing mapped incl roles + interactions)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 1/4 → tgt 3/4   *(larger gap; privacy framework dimension requires explicit operationalisation beyond CSF)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -2696,7 +2696,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Lead Dev, auditors
     CNPD, ENISA.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -2716,9 +2716,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** CT.DM-P9 (log records per policy (data minimisation)), CT.DM-P4 (data elements accessible for deletion)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 1/4 → tgt 3/4   *(larger gap; privacy framework dimension requires explicit operationalisation beyond CSF)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -2775,7 +2775,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 12. **Affected Stakeholders:** Customers, data subjects, DPO, CTO, Lead Dev, auditors
     CNPD, ENISA.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -2795,9 +2795,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** ID.RA-P3 (problematic data actions identified), ID.RA-P5 (risk responses prioritised + implemented) (privacy strategy reviewed for requirements + risks)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 1/4 → tgt 3/4   *(larger gap; privacy framework dimension requires explicit operationalisation beyond CSF)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -2853,7 +2853,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 12. **Affected Stakeholders:** Customers, data subjects, CTO, Lead Dev, DPO, auditors.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -2872,9 +2872,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** PR.DS-P1 (CIA of data-at-rest protected) (backups created + protected + maintained + tested) (resilience mechanisms for adverse situations)
 
-21. **Maturity (CSF):** cur 2/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 2/4 → tgt 3/4   *(incremental gap; security/privacy posture co-evolve at MICRO)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -2927,7 +2927,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 12. **Affected Stakeholders:** Customers, data subjects, CTO, Lead Dev, DPO, auditors.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -2946,9 +2946,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** PR.DS-P2 (CIA of data-in-transit protected) (networks protected from unauthorised access)
 
-21. **Maturity (CSF):** cur 2/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 2/4 → tgt 3/4   *(incremental gap; security/privacy posture co-evolve at MICRO)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -3003,7 +3003,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 12. **Affected Stakeholders:** Customers, CTO, Lead Dev, Procurement, DPO, auditors.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -3022,9 +3022,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** ID.RA-P3 (problematic data actions identified), ID.RA-P5 (risk responses prioritised + implemented)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 1/4 → tgt 3/4   *(larger gap; privacy framework dimension requires explicit operationalisation beyond CSF)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -3080,7 +3080,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 12. **Affected Stakeholders:** Customers, CTO, Lead Dev, Procurement, DPO, auditors.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -3099,9 +3099,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** — (product-security deliverable; SSDF RV.2 anchored; no PF 1.0 scope)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** N/A — product-security deliverable (SSDF RV.2)
+22. **Implementation Status (Privacy):** N/A — product-security deliverable (SSDF RV.2)
 
 ---
 
@@ -3156,7 +3156,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 12. **Affected Stakeholders:** Customers, data subjects, CTO, Lead Dev, DPO, auditors.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -3175,9 +3175,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** PR.AC-P1 (identities/credentials for users/svcs/HW managed), PR.AC-P6 (authentication commensurate with risk), PR.AC-P4 (least-privilege access); UNMAPPED_PF (ID.AM-01 hardware inventories — no PF 1.0 analogue)
 
-21. **Maturity (CSF):** cur 2/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 2/4 → tgt 3/4   *(incremental gap; security/privacy posture co-evolve at MICRO)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -3233,7 +3233,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 12. **Affected Stakeholders:** CTO, Lead Dev, support administrators, customers, DPO
     auditors.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -3252,9 +3252,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** PR.AC-P6 (authentication commensurate with risk), PR.AC-P4 (least-privilege access); UNMAPPED_PF (PR.AA-04 identity assertions protected + verified — no PF 1.0 subcategory; FIDO2 origin binding documented as §6.3 gap)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 1/4 → tgt 3/4   *(larger gap; privacy framework dimension requires explicit operationalisation beyond CSF)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -3310,7 +3310,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 12. **Affected Stakeholders:** Customers, CTO, Lead Dev, DPO, managed hosting, auditors.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -3329,9 +3329,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** CT.DP-P4 (selective collection/disclosure configurable), CT.PO-P4 (data lifecycle aligned with SDLC)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 1/4 → tgt 3/4   *(larger gap; privacy framework dimension requires explicit operationalisation beyond CSF)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -3388,7 +3388,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 12. **Affected Stakeholders:** Customers, data subjects, B2B controllers, CTO, DPO
     Compliance Lead, CNPD, ENISA, PT CSIRT (CNCS).
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -3407,9 +3407,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** PR.PO-P7 (incident response + recovery plans maintained), CT.DM-P10 (technical measures tested + assessed)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 1/4 → tgt 3/4   *(larger gap; privacy framework dimension requires explicit operationalisation beyond CSF)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -3467,7 +3467,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 12. **Affected Stakeholders:** Customers, B2B controllers, CTO, DPO, Compliance Lead
     CNPD, ENISA, PT CSIRT (CNCS), auditors.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -3486,9 +3486,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** PR.PO-P7 (incident response + recovery plans maintained), CT.DM-P10 (technical measures tested + assessed)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 1/4 → tgt 3/4   *(larger gap; privacy framework dimension requires explicit operationalisation beyond CSF)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -3544,7 +3544,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 12. **Affected Stakeholders:** Customers, data subjects, CTO, DPO, managed hosting, auditors.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -3563,9 +3563,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** CT.DM-P4 (data elements accessible for deletion), CT.DM-P5 (data destroyed according to policy)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 1/4 → tgt 3/4   *(larger gap; privacy framework dimension requires explicit operationalisation beyond CSF)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -3622,7 +3622,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 12. **Affected Stakeholders:** Customers, CTO, Lead Dev, DevOps, DPO, suppliers, auditors.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -3641,9 +3641,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** GV.PO-P2 (privacy values in SDLC processes established), CT.PO-P4 (data lifecycle aligned with SDLC)
 
-21. **Maturity (CSF):** cur 2/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 2/4 → tgt 3/4   *(incremental gap; security/privacy posture co-evolve at MICRO)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -3700,7 +3700,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 12. **Affected Stakeholders:** Customers, data subjects, CTO, Lead Dev, DevOps, DPO
     auditors.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -3719,9 +3719,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** ID.RA-P4 (likelihoods + impacts prioritise risk), ID.RA-P5 (risk responses prioritised + implemented)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 1/4 → tgt 3/4   *(larger gap; privacy framework dimension requires explicit operationalisation beyond CSF)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -3778,7 +3778,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 12. **Affected Stakeholders:** CEO, customers, CTO, DPO, Compliance Lead, Legal
     suppliers, auditors.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -3797,9 +3797,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** GV.PO-P1 (privacy values + policies established + enforced), GV.RM-P1 (privacy risk mgmt objectives established) (privacy strategy outcomes reviewed + adjusted)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 1/4 → tgt 3/4   *(larger gap; privacy framework dimension requires explicit operationalisation beyond CSF)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -3855,7 +3855,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 12. **Affected Stakeholders:** Customers, DPO, CTO, Lead Dev, incident responders
     auditors, CNPD, ENISA.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -3874,9 +3874,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** CT.DM-P9 (log records per policy (data minimisation)), CT.DM-P4 (data elements accessible for deletion)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 1/4 → tgt 3/4   *(larger gap; privacy framework dimension requires explicit operationalisation beyond CSF)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -3932,7 +3932,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 12. **Affected Stakeholders:** Customers, data subjects, CTO, Lead Dev, DPO, test team
     auditors.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -3951,9 +3951,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** ID.RA-P3 (problematic data actions identified), ID.RA-P5 (risk responses prioritised + implemented) (privacy performance measured + reviewed)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 1/4 → tgt 3/4   *(larger gap; privacy framework dimension requires explicit operationalisation beyond CSF)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -4009,7 +4009,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 12. **Affected Stakeholders:** Customers, data subjects, CTO, Lead Dev, DPO, test team
     auditors.
 
-13. **Maturity Score (legacy):** 1/4 → 3/4 *(ver 21/22 para maturidade dupla; field 13 preservado conforme SPEC §5.3)*
+13. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 14. **Implementation Priority:** HIGH
 
@@ -4028,9 +4028,9 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 
 20. **Privacy FW Subcategories:** ID.RA-P3 (problematic data actions identified), ID.RA-P5 (risk responses prioritised + implemented) (privacy performance measured + reviewed)
 
-21. **Maturity (CSF):** cur 1/4 → tgt 3/4   *(per Doc 13 §5.1; Track B LIGHTWEIGHT target 3, MINIMAL target 3, exceptions documented in §5.1 footnotes)*
+21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-22. **Maturity (Privacy):** cur 1/4 → tgt 3/4   *(larger gap; privacy framework dimension requires explicit operationalisation beyond CSF)*
+22. **Implementation Status (Privacy):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 ---
 
@@ -4058,7 +4058,7 @@ The 16 BPR rules are **NOT** mapped to obligations (they derive from frameworks,
 |--------|-----------------|------------------|
 | Owner | Sub-domain heuristic (Doc 08 §4) | Same heuristic (CTO + Lead Dev default for BPR) |
 | Verification Criteria | Doc 08 §4 per-obligation values | Per-rule framework-specific values |
-| Maturity Score | Doc 07b §4 LIGHTWEIGHT target | `1/4 → 3/4` (same) |
+| Implementation Status | Doc 07b §4 LIGHTWEIGHT target | `PARTIAL` (same) |
 | Implementation Priority | Doc 07b §4 LIGHTWEIGHT priority | `HIGH` (same) |
 | Affected Stakeholders | Cross-reference Sheet 12 + Phase 1 Doc 04d RACI | `Customers, DPO, CTO, ENISA` (same) |
 | Regulatory Reporting | Doc 08 §4 sub-domain heuristic | `Internal audit only` (BPR has no regulatory reporting) |
