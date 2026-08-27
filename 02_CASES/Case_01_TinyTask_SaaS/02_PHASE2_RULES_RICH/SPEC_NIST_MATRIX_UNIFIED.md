@@ -233,16 +233,16 @@ O Executor **NÃO DEVE** reconstruir o seguinte — está feito e é input:
 ### 4.2 NIST Privacy Framework 1.0 (privacidade — eixo complementar)
 
 - **Fonte autoritativa:** ✅ **EXISTE** — `00_METHODOLOGY/PREPROCESSING_by_domain/_global/NIST_PF_1.0_subcategories.md` (138 subcats, 5 Functions, 24 Categories, criado no contracto baseline).
-- **Publicação de origem:** NIST CSWP 129 (Privacy Framework v1.0, 16 Janeiro 2020; v1.1 reflecte errata/restructuração — 34 subcats marcadas `Moved to` como redirects v1.0→v1.1).
-- **Estrutura:** 5 Functions, 24 Categories, 138 Subcategories (104 activas + 34 redirects).
+- **Publicação de origem:** NIST CSWP 129 (Privacy Framework v1.0, 16 Janeiro 2020) — **a única release oficial do NIST**. O chamado "PF 1.1" é um **Initial Public Draft (14 Abril 2025), não-final**: a sua lista (`PREPROCESSING/NIST_PF_1.1_subcategories.md`, status DEPRECATED) fica confinada a migração/crosswalk e **NÃO pode excluir nem substituir IDs canónicos**. (Correcção 2026-08-27: a versão anterior desta secção citava números do draft — 24/138 com "34 redirects" — e motivou exclusões injustificadas das famílias PR.AC/PR.MA/PR.PT/ID.DE no Doc19 §6.2; ver `validation/VALIDATOR_UNMAPPED_AUDIT_v0.md`.)
+- **Estrutura canónica:** 5 Functions, 18 Categories, 100 Subcategories (espelhada 1:1 em `00_METHODOLOGY/PREPROCESSING_by_domain/CONTROLS/NIST_PF/`).
 
-| Function | Nome (sufixo `-P`) | Função no contexto | Subcats |
+| Function | Nome (sufixo `-P`) | Categorias | Subcats |
 |---|---|---|---:|
-| **Identify-P** (ID-P) | Identify | Compreender o ecossistema de dados pessoal | 25 |
-| **Govern-P** (GV-P) | Govern | Política, responsabilidades, risco de privacidade | 37 |
-| **Control-P** (CT-P) | Control | Implementar protecção de dados | 20 |
-| **Communicate-P** (CM-P) | Communicate | Comunicação com stakeholders/sujeitos | 10 |
-| **Protect-P** (PR-P) | Protect | Salvaguardas técnicas | 46 |
+| **Identify-P** (ID-P) | Identify | 4 (ID.IM, ID.BE, ID.RA, ID.DE) | 21 |
+| **Govern-P** (GV-P) | Govern | 4 (GV.PO, GV.RM, GV.AT, GV.MT) | 20 |
+| **Control-P** (CT-P) | Control | 3 (CT.PO, CT.DM, CT.DP) | 19 |
+| **Communicate-P** (CM-P) | Communicate | 2 (CM.PO, CM.AW) | 10 |
+| **Protect-P** (PR-P) | Protect | 5 (PR.PO, PR.AC, PR.DS, PR.MA, PR.PT) | 30 |
 
 - **Formato do ID:** `XX.YY-PN` (ex: `ID.IM-P1`, `GV.PO-P1`, `PR.DS-P1`, `CT.DM-P3`). Segue o padrão `<Function>.<Category>-P<n>`.
 - **Mapeamento GDPR→PF já existe:** `00_METHODOLOGY/PREPROCESSING/Regulation/GDPR/02b_SecurityRules_NISTPF.md` (68 SR mapeados, 59/104 subcats activas usadas, 100% cobertura sem UNMAPPED_PF).
@@ -290,6 +290,18 @@ funções Govern num único conjunto de objectivos de governação.
 2. O Executor **DEVE** criar `NIST_PF_1.0_subcategories.md` (§5.1) **ANTES** de qualquer mapeamento Privacy.
 3. O Executor **NÃO DEVE** inventar IDs. Se não há correspondência, usar `UNMAPPED_CSF` ou `UNMAPPED_PRIVACY`.
 4. O Executor **NÃO DEVE** mapear AI RMF neste contracto (placeholder).
+5. Todo ID PF/CSF/RMF escrito em qualquer artefacto DEVE pertencer à lista frozen correspondente (verificação automática: `validation/check_unmapped.py`).
+
+### 4.6 Vocabulário de marcadores de mapeamento (canónico, 2026-08-27)
+
+| Marcador | Significado | Obrigatório | Proibido usar quando |
+|---|---|---|---|
+| `UNMAPPED_PRIVACY` | A regra **inteira** não tem âncora no Privacy FW (ex.: product-security trio: patch cadence, CVD, SBOM) | Justificação curta na célula | A regra tem QUALQUER âncora PF → usar `UNMAPPED_PF` element-level |
+| `UNMAPPED_PF` | Um **elemento** dentro de uma regra mapeada não tem contraparte no PF 1.0 (ex.: eixo Respond/Recover, logging, SDLC) | Campo `unmapped_pf_justification` (bloco YAML) ou parêntese curto na célula | Existe subcategoria PF 1.0 com texto correspondente (verificar `CONTROLS/NIST_PF/` antes de marcar) |
+| `N/A (non-AI scope)` | Regra sem dimensão IA — coluna AI RMF em cases com AI Act aplicável (Case_02/03) | — | A regra tem dimensão IA e falta âncora → `UNMAPPED_AIRMF` |
+| `pending Case_02/03` | Coluna AI RMF do Case_01 (placeholder, SPEC §4.3) | — | — |
+
+**Padrões proibidos (inválidos como valor de mapeamento):** pseudo-ranges tipo `UNMAPPED_PF..P4`; substituição de um ID real por marcador; `UNMAPPED_*` sem justificação; exclusão de famílias inteiras com base no draft PF 1.1.
 
 ---
 
