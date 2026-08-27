@@ -58,7 +58,7 @@ This sibling diagram covers three things the master does not show:
 Sub-SO content (Doc08 §1, Doc10 §X, Doc13 §1-§4, Doc12 §4) read from the frozen baseline
 corpus at `00_METHODOLOGY/PREPROCESSING_by_domain/`. That corpus has its own production
 flow documented at [`../../../00_METHODOLOGY/PREPROCESSING_by_domain/PRODUCTION_FLOW.md`](../../../00_METHODOLOGY/PREPROCESSING_by_domain/PRODUCTION_FLOW.md)
-(S0 raw sources → S1 generation → S2 freeze → S3 maintenance planned). Phase 1 does not
+(C1 verbatim anchoring → C2 hierarchical objective → C3 Volere requirements → C4 cross-regulation analysis → C5 ambiguity registration → C6 freeze; ~800 downstream citations; v2.0 content-first). Phase 1 does not
 generate or modify the baseline — it cites it.
 
 **Out of scope:**

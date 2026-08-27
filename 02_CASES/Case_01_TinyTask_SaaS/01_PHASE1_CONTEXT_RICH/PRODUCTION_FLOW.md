@@ -143,7 +143,7 @@ baseline lives at `00_METHODOLOGY/PREPROCESSING_by_domain/` (38 D-XX.Y.md + 10 m
 623 article copies + 172 NIST control JSONs + 4 overlays) and has its own production flow:
 
 - [`00_METHODOLOGY/PREPROCESSING_by_domain/PRODUCTION_FLOW.md`](../../../00_METHODOLOGY/PREPROCESSING_by_domain/PRODUCTION_FLOW.md)
-  (S0 raw sources → S1 generation → S2 freeze → S3 maintenance planned; ~800 downstream citations).
+  (C1 verbatim anchoring → C2 hierarchical objective → C3 Volere requirements → C4 cross-regulation analysis → C5 ambiguity registration → C6 freeze; v2.0 content-first; ~800 downstream citations).
 - [`00_METHODOLOGY/PREPROCESSING_by_domain/validation/P0_baseline_audit_v0.md`](../../../00_METHODOLOGY/PREPROCESSING_by_domain/validation/P0_baseline_audit_v0.md)
   (the audit that motivated the flow).
 

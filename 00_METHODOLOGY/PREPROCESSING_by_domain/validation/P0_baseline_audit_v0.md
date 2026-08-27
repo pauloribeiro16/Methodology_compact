@@ -1,162 +1,212 @@
 ---
 document_id: AEGIS-METH-P0-AUDIT
-title: "Phase 0 — Baseline Corpus Audit"
+title: "Phase 0 — Baseline Corpus Content Audit"
 phase: 0
-version: 1.0
+version: 2.0
 created: 2026-08-27
 updated: 2026-08-27
 author: AEGIS Orchestrator
 status: ACTIVE
 classification: METHODOLOGY-META — not a numbered deliverable
 sources:
-  - ../../../00_METHODOLOGY/PREPROCESSING_by_domain/PRODUCTION_FLOW.md (v1.0)
-  - ../../../00_METHODOLOGY/PREPROCESSING_by_domain/PARSE_DOMAIN_EXECUTION_BRIEF.md
+  - ../../../00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-05_Data-Lifecycle/D-05.3/D-05.3.md (anatomy reference, 1595 lines)
+  - ../../../00_METHODOLOGY/PREPROCESSING_by_domain/PARSE_DOMAIN_EXECUTION_BRIEF.md (documented read-schema §3.1, §3.2, §5.8)
 related_documents:
   - ../../../00_METHODOLOGY/PREPROCESSING_by_domain/PRODUCTION_FLOW.md
-  - ../../../00_METHODOLOGY/PREPROCESSING_by_domain/PARSE_DOMAIN_EXECUTION_BRIEF.md
-  - ../../../00_METHODOLOGY/dependency_graph.yaml
-  - ../../../00_METHODOLOGY/diagrams/fluxdiagram/phase1/phase1_rich_extension.md
+changes: |
+  v2.0 (2026-08-27) — major revision after review:
+  - Refocused on CONTENT of the 38 D-XX.Y.md files: Part 1–4 anatomy, section families,
+    objective hierarchy, Volere requirement cards, ambiguity registration — previously absent.
+  - Measured quantification: 172 SO headers (38 HL + 134 Sub-SOs), 172 Volere cards (1:1),
+    2023 variant-reading tables (vs index.md claim of 1020 "ambiguity sections").
+  - New structural finding: D-10.1/10.2/10.3 ship with Parts 2+3 as stubs ("source not found");
+    [VERBATIM] header tags present on only 12/38 files despite similar verbatim-style bodies.
+  - Demoted infrastructure/tooling detail to Appendix A (kept for traceability).
+  v1.0 (2026-08-27) — initial infrastructure-focused audit.
 ---
 
-# Phase 0 — Baseline Corpus Audit (v0)
+# Phase 0 — Baseline Corpus Content Audit
 
-**Version:** 1.0 — 2026-08-27
+**Version:** 2.0 — 2026-08-27
 **Status:** ✅ Active
-**Scope:** the frozen regulatory-baseline corpus at `00_METHODOLOGY/PREPROCESSING_by_domain/` — read-only baseline feeding Phase 1 / 2 / 3 across all three cases.
+**Scope:** the **content** of the 38 Markdown deliverables under
+`00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-*/D-X.Y/D-X.Y.md` — what analytical layers they contain,
+whether they are consistent across the corpus, and where they break. Infrastructure notes live in Appendix A.
 
 ---
 
-## 1. Inventory
+## 1. What each D-XX.Y.md contains
 
-| Component | Path | Count | Per-component | Status |
-|-----------|------|------:|---------------|--------|
-| Domain docs | `domains/D-XX/D-XX.Y/D-XX.Y.md` | 38 | D-01..D-07 = 4 each; D-08 = 3; D-09 = 4; D-10 = 3 | DRAFT v0.1 (38/38) |
-| Domain manifests | `domains/D-XX/D-XX.manifest.json` | 10 | one per domain | schema 1.0.0, generated 2026-08-04 |
-| Article sidecars | `domains/D-XX/D-XX.Y/articles/*` | 623 | 66/57/47/108/38/55/38/34/120/60 | frozen copies |
-| NIST AI RMF | `CONTROLS/NIST_AI_RMF/` | 72 JSONs | GOVERN 19 / MAP 18 / MEASURE 22 / MANAGE 13 | structured (control_id…source_version) |
-| NIST PF | `CONTROLS/NIST_PF/` | 100 JSONs | GOVERN-P 20 / CONTROL-P 19 / PROTECT-P 30 / IDENTIFY-P 21 / COMMUNICATE-P 10 | structured |
-| Overlays | `MAPPINGS/OVERLAYS/OVERLAY_*.md` | 4 | AI_Act_v2024, NIST_AI_RMF_1.0, NIST_CSF_2.0, NIST_PF_1.1 | source-of-truth paths cited |
-| Index | `domains/index.md` | 1 | 20 lines, listing-only (no version/date) | n/a |
-| Parser brief | `PARSE_DOMAIN_EXECUTION_BRIEF.md` | 1 | 28,341 bytes (PT-language executor brief for D-01.1 pilot) | **NOT executed in this repo** |
-| Source spreadsheets | `nist_ai_rmf_playbook.xlsx`, `NIST-Privacy-Framework-V1.0-Core.xlsx` | 2 | binary | source for CONTROLS/ JSONs |
-
-**Provenance in git:** the entire corpus was added by single snapshot commit `231ed3c` (2026-08-26). No subsequent edits to any file under `domains/`, `CONTROLS/`, `MAPPINGS/`.
-
-**Protected by guard:** the workspace hook `guard-protected-files.sh` denies `Write|Edit` on `00_METHODOLOGY/PREPROCESSING_by_domain/domains/**` and on the KG build artefacts. This v0 audit and the companion `PRODUCTION_FLOW.md` are *outside* that protected scope.
-
----
-
-## 2. Classification
-
-| Class | Count | What it is |
-|-------|------:|------------|
-| **BASELINE-FROZEN** | 38 + 10 + 623 | the `domains/` corpus (D-XX.Y.md + .manifest.json + articles/); read-only by design |
-| **CONTROLS-DATA** | 172 | `CONTROLS/{NIST_AI_RMF,NIST_PF}/*.json`; structured per-control data |
-| **OVERLAY-META** | 4 | `MAPPINGS/OVERLAYS/OVERLAY_*.md`; cross-framework mappings with source citations |
-| **TOOLING-MISSING** | 2 | (a) `reorg_by_domain_md.py` — credited as the generator inside every D-XX.Y.md but absent from the repo; (b) `parse_domain.py` + `filter.py` — declared outputs of `PARSE_DOMAIN_EXECUTION_BRIEF.md`, also absent |
-| **SOURCES-MISSING** | ≥2 | `Taxonomia.txt`, `Regulatory_Complementary_Mapping_Updated.txt` — referenced as upstream of the corpus (Case_01 Doc01 frontmatter; `00_COMMON/02_Regulatory_Mapping_Master.md`); `find` reports zero `.txt` files anywhere in the repo |
-| **METADATA-INDEX** | 1 | `domains/index.md` — listing only, no build instructions, no version stamp |
-
----
-
-## 3. Document Health
-
-### 3.1 Frontmatter format — non-parseable in 38/38 docs
-The 38 D-XX.Y.md files do NOT use the canonical leading-`---` YAML header that all Phase 1 / 2 / 3 deliverables use. Instead they place a pseudo-frontmatter **after** the H1 title and a separator:
+Every one of the 38 files follows the same four-part skeleton (verified 38/38):
 
 ```
-# Part 1
-
----
-
-document_id: AEGIS-PREPROC-SD-D-05.3
-title: ...
-phase: Pre-processing (Regulatory Baseline)
-version: 0.1
-...
+# D-X.Y — <Title>                        ← "Generated by reorg_by_domain_md.py from PREPROCESSING/"
+# Part 1 — Sub-domain definition          ← pseudo-frontmatter (AEGIS-PREPROC-SD-D-X.Y, version 0.1, DRAFT)
+   §1  Cross-Regulation Analysis [VERBATIM]      ← literal regulation extracts, cited per clause
+   §2  Hierarchical Security Objective [VERBATIM] ← participants → relationships → objective tree
+        #### D-X.Y.0 — High-level SecurityObjective     (id: SO-D-X.Y.HL)
+        #### D-X.Y.1..N — Sub-SO for <each regulation>  (id: SO-D-X.Y.GDPR / .CRA / …)
+        + emergent tensions, downstream implications, NIST CSF anchors
+   §3  Security Requirements [VERBATIM]           ← Volere-format YAML cards, 1 per objective
+# Part 2 — Domain Analysis (cross-regulation)      ← pairwise scope-overlap matrix + SR cross-validation
+# Part 3 — Deep Analysis (per-pair)                ← pair-specific deep dives
+# Part 4 — Relevant Ambiguity (by regulation)      ← per-reg clause cards, instances, variant readings
+articles/                                   ← many-to-many article copies (GDPR_Art_NN.md etc.)
 ```
 
-This format is not parseable by any YAML library. It works visually, but means:
-- No automated tool can ingest the corpus metadata (status, version, derivation).
-- `doc-conventions` skill's pre-write checklist (8 mandatory fields) cannot be validated.
-
-### 3.2 Conventional fields absent in 38/38 docs
-- `inputs:` — 0 hits as frontmatter (2 body-text occurrences in `D-06.4` and `D-04.4` only).
-- `outputs:` — 0 hits as frontmatter.
-- `source:` — used inside the pseudo-frontmatter as a list (see `D-05.3.derivation`), but inconsistently across domains.
-
-### 3.3 Status/version fields
-- `status: DRAFT` in 38/38 D-XX.Y.md (none promoted to `ACTIVE` or `FROZEN`).
-- `version: 0.1` in 38/38.
-- `chain_version: v2.1` declared (cross-reference to a generator state).
-
-### 3.4 Refs to deleted layout — pervasive
-Every `D-XX.Y.md` body cites paths to the OLD flat `PREPROCESSING/` layout that was reorganised into the per-domain tree. Patterns observed:
-
-| Pattern | Targets | Status |
-|---------|---------|--------|
-| `../../Regulation/{GDPR,CRA}/01_SecurityObjectives.md` | none in repo | DANGLING |
-| `../../Regulation/{GDPR,CRA}/02_SecurityRules_NIST.md` | none in repo | DANGLING |
-| `../../CrossRegulation/{DomainAnalysis,DeepAnalysis}/D-XX/...` | thousands of hits | DANGLING |
-| `00_METHODOLOGY/PREPROCESSING/SubDomains/...` | none — replaced by `domains/D-XX_Y/...` | DANGLING (now obsolete; Case_01 Doc04-07 still cite the old paths) |
-
-A direct `find -name '01_SecurityObjectives.md'` repo-wide returns zero hits. The corpus works as-is because the body content is inlined; the broken refs are decorative.
-
-### 3.5 No tooling, no execution trail
-- `reorg_by_domain_md.py` — credited inline in every merged D-XX.Y.md as "Generated by reorg_by_domain_md.py from PREPROCESSING/". File does not exist anywhere in the repo (only `scripts/dream/harness_audit.py` and `scripts/kg.sh` live under `scripts/`).
-- `parse_domain.py` / `filter.py` — declared as outputs of the parser pilot in `PARSE_DOMAIN_EXECUTION_BRIEF.md`. No such files. No `scripts/parser/`, `scripts/domain/`, or `scripts/preproc/` directory.
-- `SCHEMA_domain_json.md` / `SCHEMA/obligated_party.yaml` — referenced by the brief; not found.
+Reference anatomy used throughout this audit: `domains/D-05_Data-Lifecycle/D-05.3/D-05.3.md` (1595 lines).
+The read-side schema is formally described in `PARSE_DOMAIN_EXECUTION_BRIEF.md` §3.1 (4-part skeleton
+"100% consistente em todos os 38"), §3.2 (SO numbering + Volere cards), §5.8 (ambiguity card variants),
+§5.5/§5.7 (pairwise matrix, emergent tensions).
 
 ---
 
-## 4. Consumer Map
+## 2. The five analytical layers (what production actually builds)
 
-Approximate citation counts (grep across the whole repo) bucketed by consumer:
+### Layer A — Verbatim clause anchoring (Part 1 §1)
+Literal extracts from each in-scope regulation, tagged per clause and ended with an inline citation
+(`— Art. 17(1) GDPR`, `(CRA Annex I Part I (2)(m))`). This is the "no interpretation yet" floor:
+everything downstream must trace back to these blocks.
+Corpus-wide marker occurrences: `Annex I Part I` ×1224, `recital` ×248, explicit `(GDPR Art.…`
+parentheticals ×82.
+**Consistency flag:** only 12/38 files carry the `[VERBATIM]` marker on their section headers
+(36 tag instances); the other 26 use the same verbatim style without the tag.
 
-| Bucket | Approx hits | Examples |
-|--------|------------:|----------|
-| Methodology | ~10 | `dependency_graph.yaml:26,102` (corpus as protected dependency); `AGENTS.md`; `kg/GRAPHIFY.md` |
-| Case_01 Phase 1 (RICH) | ~30 | Doc02, Doc04–10, Doc12–17, Doc19 cite `domains/D-XX.Y/` or `PREPROCESSING_by_domain/`; Doc13 heaviest (`Doc13_Adjusted_Goals.md:113,1427–1437,1453`) |
-| Case_01 Phase 2/3 | many | Rules_Catalog etc., mostly via `kg.sh` indirection |
-| Case_02 | ~23 | corpus used in applicability / mapping |
-| Case_03 | ~26 | corpus used (Case_03 has all 5/5 regulations) |
-| Dashboards / KG / scripts | ~10 | `GDPR_Dashboard.html`, `CRA_Dashboard.html`, `NIS2` inspect scripts, guard hook |
-| Controls + overlays | ~388 | Doc13 sprint 10/11 NIST layers (corr-016, §3-expansion); Doc19 / Doc20 NIST inputs; Doc15 / Doc17 tensions; Case SPEC_NIST_MATRIX_UNIFIED |
+### Layer B — Hierarchical security objectives (Part 1 §2)
+Each sub-domain defines ONE high-level objective plus per-regulation refinements:
 
-**Total consumer weight:** ~800 unique citations. The corpus is the most-consumed artefact of the repo, and the least documented.
+| Level | Form | Example |
+|-------|------|---------|
+| HSO | `#### D-X.Y.0 — High-level SecurityObjective`, yaml id `SO-D-X.Y.HL` | `D-05.3.0` at `D-05.3.md:132` |
+| Sub-SO | `#### D-X.Y.N — Sub-SO for <REG>`, id `SO-D-X.Y.<REG>` | `D-05.3.1` (GDPR) at `:328`, inherits_from `SO-GDPR-018/019`, CSF anchors `PR.DS-10/PR.DS-12/GV.SC-04` |
 
-**KG linkage:** the E3 graph contains `D-05.3` exactly once (i.e., not per-subdomain) — `bash scripts/kg.sh where 'D-05.3'` resolves instead to Case_01 Phase-2/3 documents. The KG links to per-case derivations, not directly to the baseline corpus nodes.
+Every objective block records its provenance into the **deleted analytical layer**, e.g.
+`derivation_source: ../../CrossRegulation/DeepAnalysis/D-05_Data-Lifecycle/D-05.3.md §D-05.3` —
+see §4 below.
+
+### Layer C — Security requirements engineering (Part 1 §3)
+One Volere YAML card per objective (**exactly 1:1**, 172/172). Card fields, quoted from
+`D-05.3.md:520`: `req_id` (mirrors the objective number — dotted scheme like `5.3.1`,
+NOT the case-side `R-D-*` scheme), `volere_section/subtype`, `derives_from.hso_sub_so`,
+`description`, `fit_criterion` (~150-word testable criterion), `priority` (MUST/SHOULD/COULD),
+`verification_method` (TEST/INSPECTION/ANALYSIS), `dependencies`, `nist_csf` anchors,
+`applicable_if.regs/scope_overlap`.
+
+### Layer D — Cross-regulation analysis (Parts 2 + 3)
+Part 2 *Domain Analysis* has its own embedded document id (`AEGIS-PREPROC-CRDA-D-X.Y`) and holds the
+participant table (including explicit out-of-scope rows), the pairwise **scope-overlap matrix**
+(all in-scope regulations × each other), and requirement cross-validation across regulations.
+Part 3 *Deep Analysis* elaborates each regulator-pair interaction individually.
+
+### Layer E — Ambiguity registration (Part 4)
+Per-regulation sections; blank where not applicable ("_No applicable NIS2 ambiguity._").
+A full entry, e.g. `D-05.3.md:795`: clause card headed `##### Art. 5(1)(c) — Data minimisation`
+with metadata line (`Clause: GDPR-CL03 | type: principle | obligatedParty: CONTROLLER`),
+a Berry-method anchor, concrete **instances** (VAG/S3 "'adequate','relevant','necessary'"),
+and a variant-readings table (`| # | Reading | Disambiguation source |` rows R1/R2/R3).
 
 ---
 
-## 5. Tooling & Source Gaps (the actual problem)
+## 3. Quantified corpus inventory
 
-The corpus is content-complete (38/38 docs, 623 article copies, 172 control JSONs) but **reproduction is impossible from this repo alone**:
+Counts below were measured by scanning all 38 files (patterns anchored on the structures above):
 
-1. **Generator script missing** (`reorg_by_domain_md.py`) — the corpus is a black-box snapshot.
-2. **Raw source texts missing** (no `.txt` anywhere) — `Taxonomia.txt` is referenced but not present.
-3. **Parser pilot unexecuted** — the brief describes a deterministic parser (`parse_domain.py` + `filter.py` + `SCHEMA_domain_json.md`) but the artefact directory does not exist; the brief is also PT-language, suggesting the executor was a PT-speaking LLM session.
-4. **No version stamp on `domains/index.md`** — even the index doesn't declare its own generation date.
+| Metric | Count | Notes |
+|--------|------:|-------|
+| Sub-domain documents | 38 | D-01..D-07 ×4, D-08 ×3, D-09 ×4, D-10 ×3 |
+| HSO headers (`D-X.Y.0`) | 38 | one per sub-domain |
+| Sub-SO headers (`D-X.Y.N`) | 134 | per-regulation refinement level |
+| **Total objective headers** | **172** | 38 + 134 |
+| Volere requirement cards | 172 | exactly 1:1 with objective headers |
+| Variant-reading tables (Layer E) | **2023** | `\| # \| Reading \| Disambiguation source \|` pattern |
+| Article sidecar copies | 623 | e.g., `GDPR_Art_32.md` exists in 29 copies across sub-domains |
+| Domain `_index.md` | 10 | counters + links ONLY (no version/status/owner fields) |
 
-These four gaps are why the corpus is treated as **frozen baseline**: the cost of regenerating it (rebuild script + re-source the raw files) is not amortised across the project yet.
-
----
-
-## 6. Recommendations (not blocking v0)
-
-These are **out of scope** for this v0 audit (would require touching `domains/**`, which is guard-protected), but should be tracked:
-
-1. **Re-house `reorg_by_domain_md.py` under `scripts/`** when the source becomes available; until then, mark it explicitly as "untracked generator" in `PRODUCTION_FLOW.md`.
-2. **Execute `PARSE_DOMAIN_EXECUTION_BRIEF.md`** as a separate sprint (with a human-in-the-loop per the brief's own design). Output `scripts/parse_domain.py` + `scripts/filter.py` + `scripts/SCHEMA_domain_json.md`; pilot against `D-01.1`.
-3. **Promote one D-XX.Y.md** from DRAFT v0.1 to ACTIVE v1.0 as a pilot (pick D-05.3 — it's the one with `version: 0.1` + full SO hierarchy already in place). Would require lifting the `domains/**` guard for that single file or moving ACTIVE-state metadata to an out-of-tree sidecar.
-4. **Re-source the missing `.txt` files** or formally deprecate the `source:` claim in the frontmatter strings (Case_01 Doc01 + `00_COMMON/02_Regulatory_Mapping_Master.md`).
-5. **Cross-link CONTROLS/ + OVERLAYS/** into the case-level consumption map (Doc13 §3 already has the NIST layer; Doc19/20 should reference OVERLAY_*.md by name once we have a `PRODUCTION_FLOW.md` for Phase 2).
+**Discrepancy worth resolving:** `domains/index.md:7` claims **1020** "Ambiguity sections";
+the reading-table measurement yields **2023**; `D-05/_index.md` separately claims 88 for its
+domain alone. No counted token reproduces 1020 exactly — the index likely uses a different
+(card-level rather than table-level) definition that is not recorded anywhere. Flagged, not fixed
+(any correction would need an edit inside the guard-protected `domains/**`).
 
 ---
 
-## 7. Audit Trail
+## 4. Provenance — the deleted analytical layer
 
-- v0 of this audit was produced 2026-08-27 in support of writing `PRODUCTION_FLOW.md` for the Phase 0 baseline.
-- Companion artefact: `00_METHODOLOGY/PREPROCESSING_by_domain/PRODUCTION_FLOW.md` (sibling).
-- Methodology-side pointer: `00_METHODOLOGY/diagrams/fluxdiagram/phase1/phase1_rich_extension.md` (mentions S0–S3 in its Scope section).
-- Case-side consumer pointer: `02_CASES/Case_01_TinyTask_SaaS/01_PHASE1_CONTEXT_RICH/PRODUCTION_FLOW.md` (Layer 1 §2 now links upward to the Phase 0 baseline).
+Each merged file is a consolidation of a FORMERLY FLAT analytical workspace, traces of which
+survive in thousands of dangling references:
+
+```
+OLD layout (PREPROCESSING/, no longer in repo)         NEW location
+Regulation/<REG>/01_SecurityObjectives.md     ─┐
+Regulation/<REG>/02_SecurityRules_NIST.md      │  merged, per sub-domain, into
+Regulation/<REG>/Ambiguity/02_GDPR.md          ├─ domains/D-XX_<Name>/D-X.Y/
+CrossRegulation/{DomainAnalysis,DeepAnalysis}/─┤   (Parts 1–4 respectively inherit
+HierarchicalSecurityObjectives/D-XX_.../       │    from these four sources)
+SecurityRequirements (Volere layer)            ─┘
+                by reorg_by_domain_md.py (chain_version v2.1, untracked)
+```
+
+Evidence (verbatim, with locations): `D-05.3.md:139` `derivation_source:` → DeepAnalysis;
+`:93` link → DeepAnalysis file; `:22-26` links → Regulation/GDPR objectives + rules;
+`:527/:571/:611` links → HierarchicalSecurityObjectives; legacy ambiguity id `GDPR-C06` at `:948`
+cites `../Regulation/GDPR/Ambiguity/02_GDPR.md`. The generator itself and every source tree above
+are **absent from this repo**; raw upstream texts (`Taxonomia.txt`,
+`Regulatory_Complementary_Mapping_Updated.txt`) exist only as strings in frontmatter — no `.txt`
+file is present. Consequence: the analytical work embodied in Layers A–E cannot currently be
+re-derived or diff-ed against its sources from inside this repository alone.
+
+---
+
+## 5. Consistency findings (ranked)
+
+| # | Finding | Extent | Impact |
+|---|---------|--------|--------|
+| 1 | **Parts 2+3 are empty stubs** ("_Domain Analysis source not found._" / "_Deep Analysis source not found._") in D-10.1, D-10.2, D-10.3 | 3/38 docs | the cross-regulation layers (Layers D) simply do not exist for the whole Monitoring & Audit domain; consumers see Part 4 ambiguity without any pairwise backing |
+| 2 | Ambiguity quantity unclear: index claims 1020; measured reading-tables 2023 | corpus metadata | baseline statistics unreproducible; matters for PhD-level claims about ambiguity coverage |
+| 3 | `[VERBATIM]` tags on only 12/38 files while body style matches the tagged ones | 26 docs | automated distinction between interpreted vs literal text is impossible corpus-wide |
+| 4 | Pseudo-frontmatter sits after the H1 (non-parseable YAML) | 38/38 | no tool validation possible; doc-conventions 8-field contract unverifiable |
+| 5 | All files `status: DRAFT`, `version: 0.1` forever | 38/38 | no lifecycle signal despite being the repo's most-consumed artefact (~800 citations) |
+| 6 | `_index.md` carries counts only — no date/status/owner | 10 files | freshness of the baseline is undatable |
+| 7 | Requirement numbering is dotted-decimal local (`5.3.1`), unrelated to case-level schemes | corpus-wide | intentional (pre-case layer) but must never be cited as if it were `R-D-*`; Corpus_Field_Map already warns for Part 1 |
+
+Findings 1–3 are NEW in this revision; 4–5 were carried from v1.0 and kept because they remain true.
+
+---
+
+## 6. Where the analysis METHOD lives (and doesn't)
+
+- **In this repo:** only the output **schema** is documented — `PARSE_DOMAIN_EXECUTION_BRIEF.md`
+  §3.1/§3.2/§5.8 describe the 4-part structure, the SO/Volere conventions, and the three ambiguity
+  card variants. The *method* that turned regulation text INTO these layers is undocumented here.
+- **Plausible home:** the main AEGIS repository (`Methodology-main`), which this compact repo treats
+  as read-only upstream — the parser brief explicitly points to `00_METHODOLOGY/SCHEMA/obligated_party.yaml`
+  and style references located there, and the dangling `Regulation/`, `CrossRegulation/`,
+  `HierarchicalSecurityObjectives/`, `AMBIGUITY_ANALYSIS/` trees would be the natural site of the
+  per-layer working instructions.
+
+---
+
+## Appendix A — Infrastructure essentials (demoted from v1.0)
+
+Kept short; details unchanged from v1.0 (git history preserves the fuller text):
+
+- Freeze operationalisation: single snapshot commit (`231ed3c`, 2026-08-26) +
+  `guard-protected-files.sh` denying Write|Edit on `domains/**` +
+  `dependency_graph.yaml` declaring the corpus a protected dependency.
+- Missing tooling (referenced, not present): `reorg_by_domain_md.py`,
+  `parse_domain.py` + `filter.py` + `SCHEMA_domain_json.md` + `SCHEMA/obligated_party.yaml`
+  (targets of `PARSE_DOMAIN_EXECUTION_BRIEF.md`, pilot not executed here).
+- Source data present: `nist_ai_rmf_playbook.xlsx`, `NIST-Privacy-Framework-V1.0-Core.xlsx`
+  (feeds `CONTROLS/NIST_AI_RMF/` 72 JSONs + `CONTROLS/NIST_PF/` 100 JSONs);
+  overlays `MAPPINGS/OVERLAYS/OVERLAY_{AI_Act_v2024,NIST_AI_RMF_1.0,NIST_CSF_2.0,NIST_PF_1.1}.md`.
+- KG note: E3 graph does not ingest baseline sub-domains as nodes (~single `D-05.3` token); case
+  derivations act as proxies.
+
+## Audit Trail
+
+- v2.0 (2026-08-27): content-first revision driven by owner review — anatomised all 38 docs via
+  skeleton extraction + pattern census; added Layers A–E framing, §5 findings 1–3, ambiguity-count
+  discrepancy, D-10 stub discovery; demoted infra to appendix.
+- Companion flows consuming this audit: `PREPROCESSING_by_domain/PRODUCTION_FLOW.md` v2.0;
+  `fluxdiagram/phase1/phase1_rich_extension.md` (upstream dependency pointer);
+  Case_01 `01_PHASE1_CONTEXT_RICH/PRODUCTION_FLOW.md` (Layer 0 section).
