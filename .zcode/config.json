@@ -15,6 +15,17 @@
               "timeout": 5
             }
           ]
+        },
+        {
+          "matcher": "startup|resume|clear|compact",
+          "hooks": [
+            {
+              "type": "command",
+              "command": "bash \"${CLAUDE_PROJECT_DIR}/scripts/dream/case_context_hook.sh\"",
+              "timeout": 5,
+              "statusMessage": "Loading case context chain for the repo"
+            }
+          ]
         }
       ],
       "UserPromptSubmit": [

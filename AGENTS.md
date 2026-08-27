@@ -177,17 +177,17 @@ Agents deliberate, propose, justify. The human decides scope, budget, risk accep
 
 ## Pre-Flight Checklist
 
-Before doing any work:
+Before doing any work. Each item is a **tool-call contract** — the bracketed assertion is the minimum signal that must be present in this turn's tool calls. Silent compliance is not enough.
 
 - [ ] Intent confirmed with user
-- [ ] Mode confirmed (Plan vs Build)
+- [ ] Mode confirmed (Plan vs Build) — `EnterPlanMode` for Plan; tools that mutate for Build
 - [ ] Case and phase identified (or confirmed it's methodology-level)
-- [ ] Session brief reviewed (auto-injected by SessionStart hook — `dream/README.md`)
-- [ ] Case work: context loaded via `case-context-loader` (skill or script)
-- [ ] Doc writing/editing: `doc-conventions` skill consulted
+- [ ] Session brief reviewed (auto-injected by `brief_hook.sh`; sentinel `__DREAM_HOOK_SENTINEL_*` visible in system-reminder)
+- [ ] Case work: case context loaded — auto-injected by `case_context_hook.sh` on SessionStart; or run `bash skills/case-context-loader/scripts/load_case_context.sh <case>` in this turn
+- [ ] Doc writing/editing: `doc-conventions` skill consulted (or its rules applied: `DocNN_Nome.md`, corr-008 IDs, frontmatter 8 fields)
 - [ ] Read the relevant `PROJECT_STATE.md` chain (case root → phase root) for current status
-- [ ] If touching an ID-bearing doc (`SR-*`/`SO-*`/`RULE-*`/`REQ-*`/`D-XX.Y`): consulted `scripts/kg.sh impact <ID>` (P5); cross-checked `dependency_graph.yaml` and grep
-- [ ] If editing `00_VISUALISATIONS/**/*.html`: smoke tests green (`python3 00_METHODOLOGY/00_VISUALISATIONS/tests/test_dashboards.py --only <basename>`)
+- [ ] If touching an ID-bearing doc (`SR-*`/`SO-*`/`RULE-*`/`REQ-*`/`D-XX.Y`): `scripts/kg.sh impact <ID>` MUST appear in this turn's tool calls; cross-checked `dependency_graph.yaml` and `grep -r`
+- [ ] If editing `00_VISUALISATIONS/**/*.html`: `python3 00_METHODOLOGY/00_VISUALISATIONS/tests/test_dashboards.py --only <basename>` MUST return exit 0 before commit
 - [ ] If uncertain about ANY of the above → STOP and ask
 
 ---

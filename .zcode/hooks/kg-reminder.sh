@@ -34,10 +34,42 @@ SENTINEL="$CACHE_DIR/${SESSION_ID}"
 # (The matcher in config.json already filters, but a defensive grep
 # ensures we never emit a reminder when ZCode invokes the hook on a
 # prompt that no longer contains an ID — e.g. after edits.)
-echo "$PROMPT" | grep -qE 'SR-NIS2-[0-9]+|SO-NIS2-[0-9]+|RULE-D-[0-9.]+|REQ-D-[0-9.]+|D-[0-9]+\.[0-9]+|NIST-(CSF|PF)' || exit 0
+# Covers the ID shapes actually in use across the 3 cases:
+#   SR-<REG>-NNN  (REG = GDPR|DORA|AIACT|CRA|NIS|NIS2)
+#   SO-D-XX.Y     (Phase 2 Security Objectives, also legacy SO-D-NNN)
+#   RULE-D-XX.X   (Phase 2 Rules Catalog)
+#   REQ-D-XX.X    (Phase 3 Requirements)
+#   D-XX.Y        (domain corpus, NIST-style sub-domains)
+#   NIST-CSF / NIST-PF
+echo "$PROMPT" | grep -qE 'SR-(GDPR|DORA|AIACT|CRA|NIS|NIS2)-[0-9]+|SO-D-[0-9]+(\.[0-9]+)?|RULE-D-[0-9.]+|REQ-D-[0-9.]+|D-[0-9]+\.[0-9]+|NIST-(CSF|PF)' || exit 0
 
 # Mark the session as reminded.
 touch "$SENTINEL"
+
+# Append one JSON line per fire to dream/STATE/hook.log so the adoption
+# audit can correlate prompts that triggered the reminder. Non-blocking
+# on failure (logging is best-effort; the primary purpose of the hook
+# is the additionalContext above).
+TS="$(date -Iseconds 2>/dev/null || date)"
+HOOK_LOG="${CLAUDE_PROJECT_DIR:-.}/dream/STATE/hook.log"
+mkdir -p "$(dirname "$HOOK_LOG")" 2>/dev/null || true
+# Extract first detected ID for the log (best-effort). Mirrors the regex
+# above, so IDs not matched here are silently logged with first_id="".
+FIRST_ID="$(printf '%s' "$PROMPT" | grep -oE 'SR-(GDPR|DORA|AIACT|CRA|NIS|NIS2)-[0-9]+|SO-D-[0-9]+(\.[0-9]+)?|RULE-D-[0-9.]+|REQ-D-[0-9.]+|D-[0-9]+\.[0-9]+|NIST-(CSF|PF)' | head -1 || true)"
+FIRST_ID="${FIRST_ID:-}"
+
+# Heredoc-based JSON writer: avoids pipefail quirks with stdin redirection.
+TS="$TS" SESSION_ID="$SESSION_ID" FIRST_ID="$FIRST_ID" HOOK_LOG="$HOOK_LOG" python3 - <<'PY' 2>/dev/null || true
+import json, os, sys
+record = {
+    "ts": os.environ.get("TS", ""),
+    "hook": "kg-reminder",
+    "session": os.environ.get("SESSION_ID", ""),
+    "first_id": os.environ.get("FIRST_ID", ""),
+}
+with open(os.environ["HOOK_LOG"], "a", encoding="utf-8") as f:
+    f.write(json.dumps(record, ensure_ascii=False) + "\n")
+PY
 
 # Emit the reminder as JSON for ZCode to inject as additionalContext.
 cat <<'EOF'
