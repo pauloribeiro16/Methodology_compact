@@ -22,7 +22,7 @@ related_documents: [13_Use_Cases_Catalog.md, 23_Functional_Requirements.md, CORP
 expected_card_columns: 17
 expected_compact_columns: 12
 schema_columns: 6
-schema_columns_list: [Owner, Verification Criteria, Maturity, Priority, Stakeholders, Reporting]
+schema_columns_list: [Owner, Verification Criteria, Implementation Status, Priority, Stakeholders, Reporting]
 freeze_total_risks: 10
 freeze_total_threats: 38
 reconciliation_note: "10 risks + 38 threats freeze; F-S1-09 reports KG contamination on RISK-01 (label mismatch); Sprint 5 detail card fill."
@@ -51,7 +51,7 @@ Risk Analysis covers operational risks (RISK-01..RISK-10) and threat models (THR
 
 ## §2 Risk Catalogue (10 operational risks)
 
-| ID | Risk | D-sub | Likelihood | Impact | Inherent | Mitigation UC | Mitigation Gate | Residual | Owner | Verification Criteria | Maturity | Priority | Stakeholders | Reporting |
+| ID | Risk | D-sub | Likelihood | Impact | Inherent | Mitigation UC | Mitigation Gate | Residual | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |----|------|-------|:----------:|:------:|:--------:|---------------|-----------------|:--------:|-------|-----------------------|----------|----------|--------------|-----------|
 | RISK-01 | Unauthorized access to personal data via spoofing | D-03.2 | Medium | High | High | U.C.3.1.2 (MFA) | GATE-CR-D-03.2-001 | Low | | | | | | |
 | RISK-02 | Insecure code reaches production (no SSDLC) | D-07.2 | Medium | High | High | U.C.4.1.1, U.C.4.2.1 | (BPR-D-07.2-001) | Low | | | | | | |
@@ -68,7 +68,7 @@ Risk Analysis covers operational risks (RISK-01..RISK-10) and threat models (THR
 
 ## §3 Threat Catalogue (38 threats)
 
-| Threat family | Count | Examples | Owner | Verification Criteria | Maturity | Priority | Stakeholders | Reporting |
+| Threat family | Count | Examples | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |---------------|------:|---------|-------|-----------------------|----------|----------|--------------|-----------|
 | THR-01..04 | 4 | Data at rest, in transit, key mgmt, integrity (D-01.x) | | | | | | |
 | THR-05..10 | 6 | Vulnerability, patch, disclosure (D-02.x) | | | | | | |
@@ -103,7 +103,7 @@ Detailed threat cards (17-field schema) fill in Sprint 5. Each threat maps to on
 **Dependencies:** DN-08, DN-09
 **Risk if not met:** H — personal data breach.
 **Affected Stakeholders:** Customer, CTO, DPO, Lead Developer, Auditor
-**Maturity Score:** Cur 3/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Treatment:** Mitigate via MFA + IdP + PAM (DN-08/09)
 **Residual Risk:** Low
 **Regulatory Reporting:** CNPD ≤72h (GDPR Art. 33) + ENISA ≤24h (CRA Art. 14)
@@ -129,7 +129,7 @@ Detailed threat cards (17-field schema) fill in Sprint 5. Each threat maps to on
 **Dependencies:** DN-23, NODE-SYS-012
 **Risk if not met:** H — exploit in production.
 **Affected Stakeholders:** Lead Developer, CTO, Auditor
-**Maturity Score:** Cur 3/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Treatment:** Mitigate via SSDLC + SAST/DAST + CI/CD gates (DN-23)
 **Residual Risk:** Low
 **Regulatory Reporting:** ENISA ≤24h if actively-exploited vulnerability (CRA Art. 14)
@@ -155,7 +155,7 @@ Detailed threat cards (17-field schema) fill in Sprint 5. Each threat maps to on
 **Dependencies:** DN-12, NODE-SYS-005
 **Risk if not met:** H — uncontrolled exploit = breach.
 **Affected Stakeholders:** Operations Lead, Incident Commander
-**Maturity Score:** Cur 1/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Treatment:** Mitigate via WAF + fail-safe + Security Engineer (DN-12)
 **Residual Risk:** Low
 **Regulatory Reporting:** CNPD ≤72h (GDPR Art. 33) + ENISA ≤24h (CRA Art. 14)
@@ -181,7 +181,7 @@ Detailed threat cards (17-field schema) fill in Sprint 5. Each threat maps to on
 **Dependencies:** DN-13, NODE-SYS-005
 **Risk if not met:** M — sustained outage.
 **Affected Stakeholders:** Operations Lead, Lead Developer, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Treatment:** Mitigate via WAF + auto-scaling + chaos testing (DN-13)
 **Residual Risk:** Medium
 **Regulatory Reporting:** Internal audit only (no external notification required)
@@ -207,7 +207,7 @@ Detailed threat cards (17-field schema) fill in Sprint 5. Each threat maps to on
 **Dependencies:** DN-27, NODE-PROC-005
 **Risk if not met:** H — Art. 35 violation.
 **Affected Stakeholders:** Risk Owner, DPO, Compliance Manager
-**Maturity Score:** Cur 1/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Treatment:** Mitigate via DPIA gate + Risk Owner sign-off (DN-27)
 **Residual Risk:** Low
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
@@ -233,7 +233,7 @@ Detailed threat cards (17-field schema) fill in Sprint 5. Each threat maps to on
 **Dependencies:** DN-20, NODE-PROC-011
 **Risk if not met:** H — Art. 28 violation.
 **Affected Stakeholders:** Procurement Lead, DPO, Legal Counsel, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Treatment:** Mitigate via due-diligence questionnaire + DPA + annual review (DN-20/22)
 **Residual Risk:** Low
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
@@ -259,7 +259,7 @@ Detailed threat cards (17-field schema) fill in Sprint 5. Each threat maps to on
 **Dependencies:** DN-18, NODE-SYS-015
 **Risk if not met:** H — Art. 17 violation.
 **Affected Stakeholders:** Customer, DPO, Auditor
-**Maturity Score:** Cur 1/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Treatment:** Mitigate via cryptographic erasure + audit (DN-18)
 **Residual Risk:** Low
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
@@ -285,7 +285,7 @@ Detailed threat cards (17-field schema) fill in Sprint 5. Each threat maps to on
 **Dependencies:** DN-16, NODE-PROC-007
 **Risk if not met:** M — Art. 5(1)(c) violation.
 **Affected Stakeholders:** Customer, DPO, Compliance Manager
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Treatment:** Mitigate via data-minimisation review + design gate (DN-16)
 **Residual Risk:** Low
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
@@ -311,7 +311,7 @@ Detailed threat cards (17-field schema) fill in Sprint 5. Each threat maps to on
 **Dependencies:** DN-28, NODE-PROC-006
 **Risk if not met:** M — Art. 30 violation.
 **Affected Stakeholders:** DPO, Compliance Manager, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Treatment:** Mitigate via RoPA maintenance + breach register cascade (DN-28)
 **Residual Risk:** Low
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
@@ -337,7 +337,7 @@ Detailed threat cards (17-field schema) fill in Sprint 5. Each threat maps to on
 **Dependencies:** DN-07, NODE-PROC-016
 **Risk if not met:** M — CRA reputation + ENISA.
 **Affected Stakeholders:** Lead Developer, CTO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Treatment:** Mitigate via CVD process + security.txt + CVE assignment (DN-07)
 **Residual Risk:** Low
 **Regulatory Reporting:** ENISA ≤24h if actively-exploited vulnerability (CRA Art. 14)

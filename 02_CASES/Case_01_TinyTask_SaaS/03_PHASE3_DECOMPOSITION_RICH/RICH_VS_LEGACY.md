@@ -14,7 +14,7 @@ branch: feature/aegis-p3-case01-rich
 sprint: 4
 sprint_role: schema_adjustment
 schema_columns: 6
-schema_columns_list: [Owner, Verification Criteria, Maturity, Priority, Stakeholders, Reporting]
+schema_columns_list: [Owner, Verification Criteria, Implementation Status, Priority, Stakeholders, Reporting]
 related_deliverables:
   - RULE_FREEZE.md
   - CORPUS_LINKAGE.md
@@ -342,7 +342,7 @@ All sprint reports live in `validation/`:
 |--------|------|--------|
 | Owner | role / person | Doc 16 gates owner column (already populated); Doc 15 DN rows + Doc 14 ROLE nodes |
 | Verification Criteria | evidence pointer | Doc 15 verification method (TEST/INSPECT/DEMONSTRATE) extended per row |
-| Maturity | lifecycle stage | planned / in-progress / verified — Sprint 5 fills |
+| Implementation Status | lifecycle stage | planned / in-progress / verified — Sprint 5 fills |
 | Priority | risk-weighted | Doc 13 §3 Prio column (CRITICAL/HIGH/MEDIUM/LOW); Sprint 5 confirms |
 | Stakeholders | accountability | Doc 13 §4 stakeholder categories (CEO/CTO/DPO/etc.) |
 | Reporting | evidence path | Doc 16 GATE Status column (PLANNED/PASS/FAIL); Doc 25 mitigation linkage |
@@ -351,7 +351,7 @@ All sprint reports live in `validation/`:
 
 **Coverage:** ~45 tables extended across 11 core docs + synthesis + 2 annexes (annexes carry §A.5/§E schema-addendum tables in lieu of in-doc index tables). 100% of in-scope index tables gain the 6 columns. No tables deferred to Sprint 5 (Sprint 5 will populate *values*, not extend the schema).
 
-**Frontmatter:** All 15 in-scope docs carry `schema_columns: 6` and `schema_columns_list: [Owner, Verification Criteria, Maturity, Priority, Stakeholders, Reporting]`. Status `CORPUS_ENRICHED` → `ADJUSTED_FIELDS` (new value, mirrors P2-RICH sprint 4 framing). FR/NFR review reports: `RECONCILED` → `ADJUSTED_FIELDS` (frontmatter only; legacy-port preserved).
+**Frontmatter:** All 15 in-scope docs carry `schema_columns: 6` and `schema_columns_list: [Owner, Verification Criteria, Implementation Status, Priority, Stakeholders, Reporting]`. Status `CORPUS_ENRICHED` → `ADJUSTED_FIELDS` (new value, mirrors P2-RICH sprint 4 framing). FR/NFR review reports: `RECONCILED` → `ADJUSTED_FIELDS` (frontmatter only; legacy-port preserved).
 
 **Invariants verified (Sprint 4):**
 - Legacy `03_PHASE3_DECOMPOSITION/` untouched (`git diff --stat` empty).

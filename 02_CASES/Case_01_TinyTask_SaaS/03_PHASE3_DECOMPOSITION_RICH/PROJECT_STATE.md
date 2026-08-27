@@ -196,7 +196,7 @@ sibling_doc: ../03_PHASE3_DECOMPOSITION/
 
 The 6 added columns are:
 
-| Owner | Verification Criteria | Maturity | Priority | Stakeholders | Reporting |
+| Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |-------|-----------------------|----------|----------|--------------|-----------|
 
 Frontmatter `schema_columns: 6` + `schema_columns_list` declared in 15 docs. No row values filled yet — Sprint 5 populates per-card.

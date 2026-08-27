@@ -15,7 +15,7 @@ sprint: 4
 sprint_role: schema_adjustment
 sibling_doc: ../03_PHASE3_DECOMPOSITION/
 schema_columns: 6
-schema_columns_list: [Owner, Verification Criteria, Maturity, Priority, Stakeholders, Reporting]
+schema_columns_list: [Owner, Verification Criteria, Implementation Status, Priority, Stakeholders, Reporting]
 ---
 
 # Phase 3 Rich Mode — Case_01 (TinyTask SaaS)

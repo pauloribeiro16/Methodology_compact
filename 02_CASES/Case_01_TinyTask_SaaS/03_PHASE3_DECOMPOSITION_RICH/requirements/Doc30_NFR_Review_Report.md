@@ -20,7 +20,7 @@ expected_documents: 24
 expected_card_columns: 17
 expected_compact_columns: 12
 schema_columns: 6
-schema_columns_list: [Owner, Verification Criteria, Maturity, Priority, Stakeholders, Reporting]
+schema_columns_list: [Owner, Verification Criteria, Implementation Status, Priority, Stakeholders, Reporting]
 reconciliation_note: "Ported from legacy 24_NFR_Review_Report.md (2026-04-02). F-00b NFR RESOLVED — 46 NFRs (NFR-01..NFR-46) confirmed by §3 row re-count, NOT stale 45 figure; F-S1-09 KG contamination (concept_ai_model_security / nfr_avail_category) recorded."
 sprint4_note: "Sprint 4: review-report status bumped RECONCILED → ADJUSTED_FIELDS. Review tables remain as legacy-port (no markdown restructuring) — Sprint 5 will harmonise with Doc 24 §2 schema."
 ---

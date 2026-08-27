@@ -22,7 +22,7 @@ related_documents: [24_Non_Functional_Requirements.md, 15_Requirements_Allocatio
 expected_card_columns: 17
 expected_compact_columns: 12
 schema_columns: 6
-schema_columns_list: [Owner, Verification Criteria, Maturity, Priority, Stakeholders, Reporting]
+schema_columns_list: [Owner, Verification Criteria, Implementation Status, Priority, Stakeholders, Reporting]
 freeze_total_frs: 30
 reconciliation_note: "30 FR freeze (F-00b RESOLVED — legacy 60 figure was stale); FR-16/FR-23 semantic remap flagged F-S2-02/F-S2-03 for Sprint 5."
 sprint5_note: "Sprint 5: DEEP enrichment — 30 cards (24×17 fields + 6×12 fields) = 480 cells. Frontmatter status DEEP_ENRICHED, version 2.0."
@@ -58,7 +58,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 
 ### §2.1 IAM domain (FR-01..FR-06)
 
-| FR ID | Requirement (abbreviated) | UCs | NFRs | CR | Verif | Prio | Owner | Verification Criteria | Maturity | Priority | Stakeholders | Reporting |
+| FR ID | Requirement (abbreviated) | UCs | NFRs | CR | Verif | Prio | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |-------|---------------------------|-----|------|----|----|----|-------|-----------------------|----------|----------|--------------|-----------|
 | FR-01 | Register + provision new users | U.C.3.2.1, U.C.3.5.1 | NFR-02 | CR-D-03.1-001 | TEST | HIGH | | | | | | |
 | FR-02 | Authenticate + lock after 5 fails + log all attempts | U.C.3.1.1 | NFR-01..07/20/32/34 | CR-D-03.1-001 | TEST | CRITICAL | | | | | | |
@@ -69,7 +69,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 
 ### §2.2 DP domain (FR-07..FR-12)
 
-| FR ID | Requirement | UCs | NFRs | CR | Verif | Prio | Owner | Verification Criteria | Maturity | Priority | Stakeholders | Reporting |
+| FR ID | Requirement | UCs | NFRs | CR | Verif | Prio | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |-------|-------------|-----|------|----|----|----|-------|-----------------------|----------|----------|--------------|-----------|
 | FR-07 | DSAR via web/email; report in JSON/CSV/PDF ≤30d | U.C.1.1.1 | NFR-21, NFR-22 | CR-D-01.1-001 | TEST | HIGH | | | | | | |
 | FR-08 | Erasure request; delete primary+backup+logs ≤30d | U.C.1.2.1 | NFR-03, NFR-23 | CR-D-01.1-001 | TEST | CRITICAL | | | | | | |
@@ -80,7 +80,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 
 ### §2.3 SEC domain (FR-13..FR-19)
 
-| FR ID | Requirement | UCs | NFRs | CR | Verif | Prio | Owner | Verification Criteria | Maturity | Priority | Stakeholders | Reporting |
+| FR ID | Requirement | UCs | NFRs | CR | Verif | Prio | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |-------|-------------|-----|------|----|----|----|-------|-----------------------|----------|----------|--------------|-----------|
 | FR-13 | Collect + correlate security events + alerts | U.C.2.1.1, U.C.2.6.1 | NFR-10, NFR-32 | CR-D-02.1-001 | INSPECT | CRITICAL | | | | | | |
 | FR-14 | Notify on-call ≤15min; escalate ≤15min | U.C.2.1.1 | NFR-17 | CR-D-04.1-001 | TEST | CRITICAL | | | | | | |
@@ -92,7 +92,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 
 ### §2.4 DEV domain (FR-20..FR-23)
 
-| FR ID | Requirement | UCs | NFRs | CR | Verif | Prio | Owner | Verification Criteria | Maturity | Priority | Stakeholders | Reporting |
+| FR ID | Requirement | UCs | NFRs | CR | Verif | Prio | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |-------|-------------|-----|------|----|----|----|-------|-----------------------|----------|----------|--------------|-----------|
 | FR-20 | SAST + dep vuln scan + secret detection per commit | U.C.4.1.1, U.C.4.2.1, U.C.4.3.1 | NFR-05, NFR-07, NFR-12 | CR-D-07.1-001 | TEST | HIGH | | | | | | |
 | FR-21 | Security gates before merge; block on critical | U.C.4.3.1 | NFR-05/07/11/12 | CR-D-02.1-001 | TEST | CRITICAL | | | | | | |
@@ -101,7 +101,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 
 ### §2.5 GOV domain (FR-24..FR-28)
 
-| FR ID | Requirement | UCs | NFRs | CR | Verif | Prio | Owner | Verification Criteria | Maturity | Priority | Stakeholders | Reporting |
+| FR ID | Requirement | UCs | NFRs | CR | Verif | Prio | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |-------|-------------|-----|------|----|----|----|-------|-----------------------|----------|----------|--------------|-----------|
 | FR-24 | Regulatory notifications + log timestamps | U.C.5.7.1 (legacy) | NFR-33, NFR-41, NFR-44 | — | TEST | CRITICAL | | | | | | |
 | FR-25 | Annual policy review + periodic RA + DPIA | U.C.5.1.1, U.C.5.2.1, U.C.5.6.1 | NFR-31, NFR-36 | CR-D-06.1-001 | INSPECT | HIGH | | | | | | |
@@ -111,7 +111,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 
 ### §2.6 TRN domain (FR-29..FR-30)
 
-| FR ID | Requirement | UCs | NFRs | CR | Verif | Prio | Owner | Verification Criteria | Maturity | Priority | Stakeholders | Reporting |
+| FR ID | Requirement | UCs | NFRs | CR | Verif | Prio | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |-------|-------------|-----|------|----|----|----|-------|-----------------------|----------|----------|--------------|-----------|
 | FR-29 | Annual security awareness + role-specific training | U.C.6.1.1, U.C.6.2.1 | NFR-36 | CR-D-08.1-001 | TEST | MEDIUM | | | | | | |
 | FR-30 | Quarterly phishing simulations | U.C.6.3.1 | NFR-01 | — | TEST | LOW | | | | | | |
@@ -137,7 +137,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Dependencies:** NFR-02, NODE-SYS-006
 **Risk if not met:** H — unauth'd provisioning = total compromise.
 **Affected Stakeholders:** CTO, Lead Developer, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Domain:** IAM
 **Regulatory Reporting:** Internal audit only (no external notification required)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -164,7 +164,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Dependencies:** NODE-SYS-006
 **Risk if not met:** H — auth bypass = GDPR breach.
 **Affected Stakeholders:** Customer, CTO, DPO, Lead Developer, Auditor
-**Maturity Score:** Cur 3/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Domain:** IAM
 **Regulatory Reporting:** CNPD ≤72h (GDPR Art. 33) + ENISA ≤24h (CRA Art. 14)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -191,7 +191,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Dependencies:** NODE-SYS-007
 **Risk if not met:** H — privileged compromise = takeover.
 **Affected Stakeholders:** Lead Developer, CTO, Auditor
-**Maturity Score:** Cur 3/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Domain:** IAM
 **Regulatory Reporting:** Internal audit only (no external notification required)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -218,7 +218,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Dependencies:** NODE-ROLE-004
 **Risk if not met:** M — orphan account = insider risk.
 **Affected Stakeholders:** IAM Admin, CTO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Domain:** IAM
 **Regulatory Reporting:** Internal audit only (no external notification required)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -245,7 +245,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Dependencies:** NODE-ROLE-004
 **Risk if not met:** M — privilege drift = insider risk.
 **Affected Stakeholders:** IAM Admin, CTO, Auditor
-**Maturity Score:** Cur 3/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Domain:** IAM
 **Regulatory Reporting:** Internal audit only (no external notification required)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -295,7 +295,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Dependencies:** NODE-SYS-014
 **Risk if not met:** H — non-response = CNPD fine.
 **Affected Stakeholders:** Customer, DPO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Domain:** DP
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -322,7 +322,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Dependencies:** NODE-SYS-015, NODE-PROC-003
 **Risk if not met:** H — incomplete = Art. 17.
 **Affected Stakeholders:** Customer, DPO, Auditor
-**Maturity Score:** Cur 1/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Domain:** DP
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -349,7 +349,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Dependencies:** NODE-SYS-014
 **Risk if not met:** H — Art. 20 violation.
 **Affected Stakeholders:** Customer, DPO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Domain:** DP
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -376,7 +376,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Dependencies:** NODE-PROC-007
 **Risk if not met:** H — non-cascade = Art. 7(3).
 **Affected Stakeholders:** Customer, DPO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Domain:** DP
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -403,7 +403,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Dependencies:** NODE-SYS-016
 **Risk if not met:** H — inaccurate = Art. 5(1)(d).
 **Affected Stakeholders:** Customer, DPO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Domain:** DP
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -453,7 +453,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Dependencies:** NODE-SYS-001/002/003
 **Risk if not met:** H — log loss = accountability.
 **Affected Stakeholders:** Operations Lead, Lead Developer, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Domain:** SEC
 **Regulatory Reporting:** Internal audit only (no external notification required)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -480,7 +480,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Dependencies:** NODE-PROC-001
 **Risk if not met:** H — slow response = breach amplification.
 **Affected Stakeholders:** Operations Lead, Incident Commander
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Domain:** SEC
 **Regulatory Reporting:** CNPD ≤72h (GDPR Art. 33) + ENISA ≤24h (CRA Art. 14)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -507,7 +507,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Dependencies:** NODE-SYS-005
 **Risk if not met:** H — uncontrolled exploit = breach.
 **Affected Stakeholders:** Operations Lead, Incident Commander
-**Maturity Score:** Cur 1/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Domain:** SEC
 **Regulatory Reporting:** CNPD ≤72h (GDPR Art. 33) + ENISA ≤24h (CRA Art. 14)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -534,7 +534,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Dependencies:** NODE-SYS-004, NODE-ROLE-008
 **Risk if not met:** H — late = dual fine.
 **Affected Stakeholders:** Customer, CTO, DPO, Lead Developer, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Domain:** SEC
 **Regulatory Reporting:** CNPD ≤72h (GDPR Art. 33) + ENISA ≤24h (CRA Art. 14)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -561,7 +561,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Dependencies:** NODE-PROC-017
 **Risk if not met:** H — missed vuln = CRA trigger.
 **Affected Stakeholders:** Lead Developer, CTO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Domain:** SEC
 **Regulatory Reporting:** ENISA ≤24h if actively-exploited vulnerability (CRA Art. 14)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -588,7 +588,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Dependencies:** NODE-PROC-015
 **Risk if not met:** H — unpatched = CRA trigger.
 **Affected Stakeholders:** Operations Lead, Lead Developer, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Domain:** SEC
 **Regulatory Reporting:** ENISA ≤24h if actively-exploited vulnerability (CRA Art. 14)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -615,7 +615,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Dependencies:** NODE-SYS-015, NODE-PROC-003
 **Risk if not met:** H — failed BCP = data loss.
 **Affected Stakeholders:** Operations Lead, Lead Developer, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Domain:** SEC
 **Regulatory Reporting:** Internal audit only (no external notification required)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -642,7 +642,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Dependencies:** NODE-SYS-012
 **Risk if not met:** H — unscanned code = CRA Art. 13.
 **Affected Stakeholders:** Lead Developer, CTO, Auditor
-**Maturity Score:** Cur 3/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Domain:** DEV
 **Regulatory Reporting:** ENISA ≤24h if actively-exploited vulnerability (CRA Art. 14)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -669,7 +669,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Dependencies:** NODE-SYS-012
 **Risk if not met:** H — bypassed gate = unscanned code.
 **Affected Stakeholders:** Lead Developer, CTO, Auditor
-**Maturity Score:** Cur 3/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Domain:** DEV
 **Regulatory Reporting:** ENISA ≤24h if actively-exploited vulnerability (CRA Art. 14)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -719,7 +719,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Dependencies:** NODE-SYS-013
 **Risk if not met:** M — missing SBOM = CRA Art. 13.
 **Affected Stakeholders:** Lead Developer, CTO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Domain:** DEV
 **Regulatory Reporting:** Internal audit only (no external notification required)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -746,7 +746,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Dependencies:** NODE-SYS-017
 **Risk if not met:** H — late = Art. 33 fine.
 **Affected Stakeholders:** Customer, CTO, DPO, Lead Developer, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Domain:** GOV
 **Regulatory Reporting:** CNPD ≤72h (GDPR Art. 33) + ENISA ≤24h (CRA Art. 14)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -773,7 +773,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Dependencies:** NODE-PROC-004, NODE-PROC-005
 **Risk if not met:** M — governance gap.
 **Affected Stakeholders:** Compliance Manager, CEO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Domain:** GOV
 **Regulatory Reporting:** Internal audit only (no external notification required)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -800,7 +800,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Dependencies:** NODE-SYS-001/002
 **Risk if not met:** M — log gap = accountability gap.
 **Affected Stakeholders:** Compliance Manager, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Domain:** GOV
 **Regulatory Reporting:** Internal audit only (no external notification required)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -827,7 +827,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Dependencies:** NODE-SYS-014, NODE-PROC-006
 **Risk if not met:** M — outdated RoPA = Art. 30.
 **Affected Stakeholders:** Compliance Manager, DPO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Domain:** GOV
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -909,7 +909,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 
 See `NIST_ANCHORS.md` §3.2 for the full table. Summary:
 
-| Domain | FRs with CSF anchors | FRs with PF anchors | Owner | Verification Criteria | Maturity | Priority | Stakeholders | Reporting |
+| Domain | FRs with CSF anchors | FRs with PF anchors | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |--------|---------------------:|--------------------:|-------|-----------------------|----------|----------|--------------|-----------|
 | IAM | 5/6 (FR-01..05) | 0/6 | | | | | | |
 | DP | 6/6 (FR-07..12) | 6/6 | | | | | | |
@@ -923,7 +923,7 @@ See `NIST_ANCHORS.md` §3.2 for the full table. Summary:
 
 ## §4 Orphan rule refs (legacy → freeze)
 
-| Orphan ref (legacy) | Closest freeze rule | Finding | Owner | Verification Criteria | Maturity | Priority | Stakeholders | Reporting |
+| Orphan ref (legacy) | Closest freeze rule | Finding | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |---------------------|---------------------|---------|-------|-----------------------|----------|----------|--------------|-----------|
 | FR-16 → CR-D-01.1-001 (legacy Doc 23) | CR-D-04.3-001 (notification) | F-S2-02 OPEN | | | | | | |
 | FR-23 → CR-D-02.1-001 (legacy Doc 23) | CR-D-06.2-001 (SBOM) | F-S2-03 OPEN | | | | | | |

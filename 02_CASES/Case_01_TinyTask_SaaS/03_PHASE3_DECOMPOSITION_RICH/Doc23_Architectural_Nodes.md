@@ -22,7 +22,7 @@ related_documents: [13_Use_Cases_Catalog.md, 15_Requirements_Allocation.md, CORP
 expected_card_columns: 17
 expected_compact_columns: 12
 schema_columns: 6
-schema_columns_list: [Owner, Verification Criteria, Maturity, Priority, Stakeholders, Reporting]
+schema_columns_list: [Owner, Verification Criteria, Implementation Status, Priority, Stakeholders, Reporting]
 freeze_total_nodes: 49
 freeze_total_node_tech: 17
 freeze_total_node_proc: 20
@@ -56,7 +56,7 @@ This document consolidates all architectural nodes: Process (PROC), IT-System (T
 
 ## §2 NODE-SYS (TECH) — 17
 
-| Node ID | Type | D-subdomain | Purpose | Primary UC | Orphan ref? | Owner | Verification Criteria | Maturity | Priority | Stakeholders | Reporting |
+| Node ID | Type | D-subdomain | Purpose | Primary UC | Orphan ref? | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |---------|------|-------------|---------|-----------|-------------|-------|-----------------------|----------|----------|--------------|-----------|
 | NODE-SYS-001 | TECH | D-10.2 | SIEM platform (log aggregation, correlation) | U.C.3.5.1, U.C.2.1.1 | CR-D-10.1-001 (F-S1-03) → CR-D-10.2-001 | | | | | | |
 | NODE-SYS-002 | TECH | D-10.2 | Audit log store (immutable, ≥12 months) | U.C.3.5.1 | — | | | | | | |
@@ -78,7 +78,7 @@ This document consolidates all architectural nodes: Process (PROC), IT-System (T
 
 ## §3 NODE-PROC (PROC) — 20
 
-| Node ID | Type | D-subdomain | Purpose | Primary UC | Orphan ref? | Owner | Verification Criteria | Maturity | Priority | Stakeholders | Reporting |
+| Node ID | Type | D-subdomain | Purpose | Primary UC | Orphan ref? | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |---------|------|-------------|---------|-----------|-------------|-------|-----------------------|----------|----------|--------------|-----------|
 | NODE-PROC-001 | PROC | D-04.3 | Unified Incident Response process | U.C.2.5.1 | — (CH-12 INFERRED link) | | | | | | |
 | NODE-PROC-002 | PROC | D-04.1 | Exploit mitigation process | U.C.2.4.1 | — | | | | | | |
@@ -103,7 +103,7 @@ This document consolidates all architectural nodes: Process (PROC), IT-System (T
 
 ## §4 NODE-ROLE (ROLE) — 12
 
-| Node ID | Type | D-subdomain | Role | Responsibilities | Primary UC | Owner | Verification Criteria | Maturity | Priority | Stakeholders | Reporting |
+| Node ID | Type | D-subdomain | Role | Responsibilities | Primary UC | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |---------|------|-------------|------|-----------------|-----------|-------|-----------------------|----------|----------|--------------|-----------|
 | NODE-ROLE-001 | ROLE | D-09.1 | CEO | Business decisions, risk acceptance | U.C.5.1.1 | | | | | | |
 | NODE-ROLE-002 | ROLE | D-08.2 | CTO | Technical architecture, security oversight | U.C.5.1.2 | | | | | | |
@@ -122,7 +122,7 @@ This document consolidates all architectural nodes: Process (PROC), IT-System (T
 
 ## §5 Orphan rule refs (legacy → freeze)
 
-| Orphan ref (legacy) | Appears in | Closest freeze rule | Finding | Owner | Verification Criteria | Maturity | Priority | Stakeholders | Reporting |
+| Orphan ref (legacy) | Appears in | Closest freeze rule | Finding | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |---------------------|-----------|---------------------|---------|-------|-----------------------|----------|----------|--------------|-----------|
 | CR-D-07.3-001 | NODE-SYS-012, NODE-PROC-008, NODE-PROC-013 | BPR-D-07.2-001 (SAST/DAST) | F-S1-01 OPEN | | | | | | |
 | CR-D-07.4-001 | NODE-PROC-014 | BPR-D-07.2-001 | F-S1-02 OPEN | | | | | | |
@@ -159,7 +159,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Dependencies:** U.C.5.1.1, NODE-PROC-004
 **Risk if not met:** M — uninformed CEO = mis-prioritisation.
 **Affected Stakeholders:** CEO, Board, Compliance Manager
-**Maturity Score:** Cur 3/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Node Track:** CAPABILITY_SUBREQ
 **Regulatory Reporting:** Internal audit only (no external notification required)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -184,7 +184,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Dependencies:** U.C.5.1.2, NODE-SYS-006
 **Risk if not met:** M — uninformed CTO = tech drift.
 **Affected Stakeholders:** CTO, Lead Developer, Compliance Manager
-**Maturity Score:** Cur 3/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Node Track:** CAPABILITY_SUBREQ
 **Regulatory Reporting:** Internal audit only (no external notification required)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -309,7 +309,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Dependencies:** U.C.2.5.1, NODE-SYS-004, NODE-PROC-001
 **Risk if not met:** H — late notification = regulator fine.
 **Affected Stakeholders:** Incident Commander, DPO, Operations Lead
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Node Track:** CAPABILITY_SUBREQ
 **Regulatory Reporting:** CNPD ≤72h (GDPR Art. 33) + ENISA ≤24h (CRA Art. 14)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -416,7 +416,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Dependencies:** U.C.2.5.1, NODE-SYS-004, NODE-ROLE-008
 **Risk if not met:** H — slow incident = dual-regulator fine.
 **Affected Stakeholders:** Customer, CTO, DPO, Lead Developer, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Node Track:** PROCESS
 **Regulatory Reporting:** CNPD ≤72h (GDPR Art. 33) + ENISA ≤24h (CRA Art. 14)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -541,7 +541,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Dependencies:** U.C.4.1.1, NODE-PROC-009, NODE-PROC-010, NODE-ROLE-003
 **Risk if not met:** M — design flaws discovered late = costly.
 **Affected Stakeholders:** Lead Developer, CTO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Node Track:** PROCESS
 **Regulatory Reporting:** Internal audit only (no external notification required)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -706,7 +706,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Dependencies:** U.C.4.3.1, NODE-PROC-014
 **Risk if not met:** H — unpatched = CRA Art. 14 trigger.
 **Affected Stakeholders:** Operations Lead, Lead Developer, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Node Track:** PROCESS
 **Regulatory Reporting:** ENISA ≤24h if actively-exploited vulnerability (CRA Art. 14)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -833,7 +833,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Dependencies:** U.C.3.5.1, U.C.2.1.1, NODE-SYS-002/003
 **Risk if not met:** H — log loss = GDPR accountability gap.
 **Affected Stakeholders:** Lead Developer, CTO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Node Track:** TECHNOLOGY
 **Regulatory Reporting:** Internal audit only (no external notification required)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -898,7 +898,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Dependencies:** U.C.2.5.1, NODE-PROC-001, NODE-ROLE-008
 **Risk if not met:** H — slow incident handling = CRA Art. 14 + GDPR Art. 33 fines.
 **Affected Stakeholders:** Customer, CTO, DPO, Lead Developer, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Node Track:** TECHNOLOGY
 **Regulatory Reporting:** CNPD ≤72h (GDPR Art. 33) + ENISA ≤24h (CRA Art. 14)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -943,7 +943,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Dependencies:** U.C.3.1.1, NODE-SYS-007, NODE-SYS-011
 **Risk if not met:** H — IdP outage = auth blackout + GDPR breach.
 **Affected Stakeholders:** Customer, CTO, DPO, Lead Developer, Auditor
-**Maturity Score:** Cur 3/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Node Track:** TECHNOLOGY
 **Regulatory Reporting:** Internal audit only (no external notification required)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -1028,7 +1028,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Dependencies:** U.C.1.1.1, NODE-SYS-016
 **Risk if not met:** H — unencrypted store = GDPR Art. 32 breach.
 **Affected Stakeholders:** Customer, CTO, DPO, Lead Developer, Auditor
-**Maturity Score:** Cur 3/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Node Track:** TECHNOLOGY
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -1073,7 +1073,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Dependencies:** U.C.4.2.1, NODE-PROC-008, NODE-PROC-013
 **Risk if not met:** H — unscanned code = CRA Art. 13 + GDPR Art. 25 gap.
 **Affected Stakeholders:** Lead Developer, CTO, Auditor
-**Maturity Score:** Cur 3/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Node Track:** TECHNOLOGY
 **Regulatory Reporting:** ENISA ≤24h if actively-exploited vulnerability (CRA Art. 14)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -1158,7 +1158,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Dependencies:** U.C.1.1.2, NODE-SYS-001
 **Risk if not met:** H — undetected tampering = integrity breach.
 **Affected Stakeholders:** Customer, CTO, DPO, Lead Developer, Auditor
-**Maturity Score:** Cur 3/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Node Track:** TECHNOLOGY
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001

@@ -22,7 +22,7 @@ related_documents: [14_Architectural_Nodes.md, 16_Compliance_Gates_Report.md, CO
 expected_card_columns: 17
 expected_compact_columns: 12
 schema_columns: 6
-schema_columns_list: [Owner, Verification Criteria, Maturity, Priority, Stakeholders, Reporting]
+schema_columns_list: [Owner, Verification Criteria, Implementation Status, Priority, Stakeholders, Reporting]
 freeze_total_dn_rows: 30
 freeze_total_rules_with_dn: 30
 reconciliation_note: "30 DN rows (1:1 with CR); no orphan refs in legacy Doc 15; BPR rules have no DN rows (Doc 15 §4)."
@@ -54,7 +54,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 
 ## §2 DN Allocation Table (30 rows, 1:1 with CR)
 
-| DN | Rule | D-sub | Title | Target nodes | Primary UC | Verification | Owner | Verification Criteria | Maturity | Priority | Stakeholders | Reporting |
+| DN | Rule | D-sub | Title | Target nodes | Primary UC | Verification | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |----|------|-------|-------|--------------|-----------|--------------|-------|-----------------------|----------|----------|--------------|-----------|
 | DN-01 | CR-D-01.1-001 | D-01.1 | Data at Rest Encryption | NODE-SYS-010 | U.C.1.1.1 | TEST | | | | | | |
 | DN-02 | CR-D-01.2-001 | D-01.2 | Data in Transit Encryption | NODE-SYS-011 | U.C.3.1.1 | TEST | | | | | | |
@@ -106,7 +106,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Dependencies:** NODE-SYS-010, NODE-SYS-016
 **Risk if not met:** H — unencrypted = GDPR Art. 32.
 **Affected Stakeholders:** Customer, CTO, DPO, Lead Developer, Auditor
-**Maturity Score:** Cur 3/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Allocation Type:** DIRECT
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -131,7 +131,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Dependencies:** NODE-SYS-011
 **Risk if not met:** H — weak TLS = transit breach.
 **Affected Stakeholders:** Customer, CTO, DPO, Lead Developer, Auditor
-**Maturity Score:** Cur 3/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Allocation Type:** DIRECT
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -177,7 +177,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Dependencies:** NODE-SYS-016
 **Risk if not met:** H — undetected tampering = integrity breach.
 **Affected Stakeholders:** Customer, CTO, DPO, Lead Developer, Auditor
-**Maturity Score:** Cur 3/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Allocation Type:** DIRECT
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -202,7 +202,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Dependencies:** NODE-PROC-017, NODE-SYS-009
 **Risk if not met:** H — unpatched vuln = CRA trigger.
 **Affected Stakeholders:** Lead Developer, CTO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Allocation Type:** DIRECT
 **Regulatory Reporting:** ENISA ≤24h if actively-exploited vulnerability (CRA Art. 14)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -227,7 +227,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Dependencies:** NODE-PROC-015
 **Risk if not met:** H — unpatched = CRA trigger.
 **Affected Stakeholders:** Operations Lead, Lead Developer, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Allocation Type:** DIRECT
 **Regulatory Reporting:** ENISA ≤24h if actively-exploited vulnerability (CRA Art. 14)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -273,7 +273,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Dependencies:** NODE-SYS-006, NODE-SYS-007
 **Risk if not met:** H — auth bypass = total compromise.
 **Affected Stakeholders:** Customer, CTO, DPO, Lead Developer, Auditor
-**Maturity Score:** Cur 3/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Allocation Type:** INHERITED
 **Regulatory Reporting:** CNPD ≤72h (GDPR Art. 33) + ENISA ≤24h (CRA Art. 14)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -298,7 +298,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Dependencies:** NODE-SYS-007
 **Risk if not met:** H — privileged compromise = total takeover.
 **Affected Stakeholders:** Lead Developer, CTO, Auditor
-**Maturity Score:** Cur 3/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Allocation Type:** INHERITED
 **Regulatory Reporting:** Internal audit only (no external notification required)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -323,7 +323,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Dependencies:** NODE-ROLE-004
 **Risk if not met:** M — privilege drift = insider risk.
 **Affected Stakeholders:** Lead Developer, CTO, Auditor
-**Maturity Score:** Cur 3/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Allocation Type:** DIRECT
 **Regulatory Reporting:** Internal audit only (no external notification required)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -369,7 +369,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Dependencies:** NODE-SYS-005, NODE-PROC-002, NODE-ROLE-010
 **Risk if not met:** H — uncontrolled exploit = breach.
 **Affected Stakeholders:** Operations Lead, Lead Developer, Auditor
-**Maturity Score:** Cur 1/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Allocation Type:** DIRECT
 **Regulatory Reporting:** CNPD ≤72h (GDPR Art. 33) + ENISA ≤24h (CRA Art. 14)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -394,7 +394,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Dependencies:** NODE-SYS-005
 **Risk if not met:** M — sustained outage = GDPR + revenue.
 **Affected Stakeholders:** Operations Lead, Lead Developer, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Allocation Type:** DIRECT
 **Regulatory Reporting:** Internal audit only (no external notification required)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -419,7 +419,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Dependencies:** NODE-SYS-004, NODE-PROC-001, NODE-ROLE-008
 **Risk if not met:** H — late = dual fine.
 **Affected Stakeholders:** Customer, CTO, DPO, Lead Developer, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Allocation Type:** DIRECT
 **Regulatory Reporting:** CNPD ≤72h (GDPR Art. 33) + ENISA ≤24h (CRA Art. 14)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -465,7 +465,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Dependencies:** NODE-PROC-007
 **Risk if not met:** H — over-collection = Art. 5(1)(c).
 **Affected Stakeholders:** Customer, DPO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Allocation Type:** DIRECT
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -490,7 +490,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Dependencies:** NODE-PROC-007
 **Risk if not met:** M — over-retention = Art. 5(1)(e).
 **Affected Stakeholders:** Customer, DPO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Allocation Type:** DIRECT
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -515,7 +515,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Dependencies:** NODE-SYS-015, NODE-PROC-003
 **Risk if not met:** H — incomplete = Art. 17 violation.
 **Affected Stakeholders:** Customer, DPO, Auditor
-**Maturity Score:** Cur 1/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Allocation Type:** DIRECT
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -624,7 +624,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Dependencies:** NODE-PROC-007, NODE-PROC-009, NODE-PROC-010, NODE-ROLE-003
 **Risk if not met:** M — design flaws late = costly.
 **Affected Stakeholders:** Lead Developer, CTO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Allocation Type:** DIRECT
 **Regulatory Reporting:** Internal audit only (no external notification required)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -691,7 +691,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Dependencies:** NODE-PROC-004, NODE-ROLE-001, NODE-ROLE-012
 **Risk if not met:** M — governance gap = audit finding.
 **Affected Stakeholders:** Compliance Manager, CEO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Allocation Type:** DIRECT
 **Regulatory Reporting:** Internal audit only (no external notification required)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -716,7 +716,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Dependencies:** NODE-PROC-005, NODE-ROLE-006
 **Risk if not met:** H — missing DPIA = Art. 35.
 **Affected Stakeholders:** Compliance Manager, CEO, Auditor
-**Maturity Score:** Cur 1/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Allocation Type:** DIRECT
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -741,7 +741,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Dependencies:** NODE-SYS-014, NODE-SYS-017, NODE-PROC-006, NODE-ROLE-007
 **Risk if not met:** H — Art. 30 violation.
 **Affected Stakeholders:** Customer, DPO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Allocation Type:** DIRECT
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -787,7 +787,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Dependencies:** NODE-SYS-009, NODE-PROC-020
 **Risk if not met:** M — untested controls = drift.
 **Affected Stakeholders:** Operations Lead, Lead Developer, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Allocation Type:** DIRECT
 **Regulatory Reporting:** Internal audit only (no external notification required)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -798,7 +798,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 
 ## §3 Verification method distribution
 
-| Method | DN count | % | Owner | Verification Criteria | Maturity | Priority | Stakeholders | Reporting |
+| Method | DN count | % | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |--------|---------:|--:|-------|-----------------------|----------|----------|--------------|-----------|
 | TEST | 15 | 50% | | | | | | |
 | INSPECT | 11 | 37% | | | | | | |

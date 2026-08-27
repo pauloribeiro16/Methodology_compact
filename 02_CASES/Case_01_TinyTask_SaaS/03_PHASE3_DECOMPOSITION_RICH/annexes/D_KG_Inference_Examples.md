@@ -21,7 +21,7 @@ expected_documents: annex-d
 expected_card_columns: 17
 expected_compact_columns: 12
 schema_columns: 6
-schema_columns_list: [Owner, Verification Criteria, Maturity, Priority, Stakeholders, Reporting]
+schema_columns_list: [Owner, Verification Criteria, Implementation Status, Priority, Stakeholders, Reporting]
 reconciliation_note: "10 SPARQL examples from legacy preserved; 3 Sprint 2 KG chains prepended in §A; F-S1-09 (14 contamination nodes) catalogued; Sprint 4 schema addendum §E added (no markdown tables in this annex; chains presented as code blocks)."
 sprint4_note: "Sprint 4: no markdown index tables in this annex; schema addendum §E references the 6 columns inherited from KG_CHAINS.md / Doc 16."
 ---
@@ -244,7 +244,7 @@ The Graphify KG carries 14 Case_02 contamination nodes (AI Act, Biometric, Borde
 
 This annex contains 12 KG inference chains and 10 SPARQL examples presented as code blocks (no markdown index tables). The chain-summary schema inherited from `KG_CHAINS.md` §1 covers the 6-column Sprint 4 addition. The canonical chain card fields now include:
 
-| Owner | Verification Criteria | Maturity | Priority | Stakeholders | Reporting |
+| Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |-------|-----------------------|----------|----------|--------------|-----------|
 
 These 6 columns are present on the per-chain and per-gate tables in `KG_CHAINS.md` and `16_Compliance_Gates_Report.md` §2 (gates) / §3 (SC1-SC5). Card-level values will be populated in Sprint 5.

@@ -22,7 +22,7 @@ related_documents: [13_Use_Cases_Catalog.md, 14_Architectural_Nodes.md, 15_Requi
 expected_card_columns: 17
 expected_compact_columns: 12
 schema_columns: 6
-schema_columns_list: [Owner, Verification Criteria, Maturity, Priority, Stakeholders, Reporting]
+schema_columns_list: [Owner, Verification Criteria, Implementation Status, Priority, Stakeholders, Reporting]
 reconciliation_note: "Synthesis aggregates Sprint 1+2+3+4 outputs; 30 FR freeze (legacy 60 figure stale, F-00b RESOLVED); 6 FRs unparented to CR are process/admin; Sprint 4 schema adjustment applied to all index tables in §2, §5, §8."
 sprint5_note: "Sprint 5: DEEP enrichment — 8 cards (0×17 fields + 8×12 fields) = 96 cells. Frontmatter status DEEP_ENRICHED, version 2.0."
 ---
@@ -48,7 +48,7 @@ This Synthesis consolidates the Phase 3 Rich Mode outputs from Sprints 1, 2, and
 
 ## §2 Phase 3 Functional Decomposition (overview)
 
-| Artefact type | Count | Source doc(s) | Status | Owner | Verification Criteria | Maturity | Priority | Stakeholders | Reporting |
+| Artefact type | Count | Source doc(s) | Status | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |---------------|------:|---------------|:------:|-------|-----------------------|----------|----------|--------------|-----------|
 | Rules (CR + BPR) | 46 | 02_PHASE2_RULES_RICH/11_Rules_Catalog.md | FROZEN | | | | | | |
 | Objectives (PO + SO) | 31 | 02_PHASE2_RULES_RICH/10_Privacy_Security_Objectives.md | FROZEN | | | | | | |
@@ -265,7 +265,7 @@ Per `CORPUS_LINKAGE.md` §3, every goal drives at least one UC. Some goals drive
 
 ## §5 NIST CSF 2.0 + PF 1.0 coverage
 
-| Family | Total | CSF anchored | PF anchored | Owner | Verification Criteria | Maturity | Priority | Stakeholders | Reporting |
+| Family | Total | CSF anchored | PF anchored | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |--------|------:|-------------:|------------:|-------|-----------------------|----------|----------|--------------|-----------|
 | Rules (CR + BPR) | 46 | 46/46 (100%) | 27/46 (59%) | | | | | | |
 | Goals (PO + SO) | 31 | 27/31 (87%) | 27/31 (87%) | | | | | | |
@@ -297,7 +297,7 @@ Per `CORPUS_LINKAGE.md` §10, Phase 3 Rich covers 24 active D-XX.Y sub-domains (
 
 ## §8 F-register summary (Sprint 3 status)
 
-| Status | Count | Examples | Owner | Verification Criteria | Maturity | Priority | Stakeholders | Reporting |
+| Status | Count | Examples | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |--------|------:|---------|-------|-----------------------|----------|----------|--------------|-----------|
 | **RESOLVED** | 4 | F-00a, F-00b, F-00c, F-00d | | | | | | |
 | **OPEN (Sprint 5)** | 7 | F-S1-01..07 (orphan CR-D refs) | | | | | | |

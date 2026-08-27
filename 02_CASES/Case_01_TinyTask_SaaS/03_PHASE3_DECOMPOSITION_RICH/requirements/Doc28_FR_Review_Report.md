@@ -20,7 +20,7 @@ expected_documents: 23
 expected_card_columns: 17
 expected_compact_columns: 12
 schema_columns: 6
-schema_columns_list: [Owner, Verification Criteria, Maturity, Priority, Stakeholders, Reporting]
+schema_columns_list: [Owner, Verification Criteria, Implementation Status, Priority, Stakeholders, Reporting]
 reconciliation_note: "Ported from legacy 23_FR_Review_Report.md (2026-04-02). F-00b FR RESOLVED — actual FR count is 30 (FR-01..FR-30), not 60 as the legacy §3.1/§6.1/§7.1 summaries claim; F-00d CLOSED — rule freeze = 46 (30 CR + 16 BPR). Sprint 5 will revise the §3 FR domain counts to the correct 30 cards × 17 fields."
 sprint4_note: "Sprint 4: review-report status bumped RECONCILED → ADJUSTED_FIELDS. Review tables remain as legacy-port (no markdown restructuring) — Sprint 5 will harmonise with Doc 23 §2 schema."
 ---

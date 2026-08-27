@@ -22,7 +22,7 @@ related_documents: [15_Requirements_Allocation.md, 14_Architectural_Nodes.md, RU
 expected_card_columns: 17
 expected_compact_columns: 12
 schema_columns: 6
-schema_columns_list: [Owner, Verification Criteria, Maturity, Priority, Stakeholders, Reporting]
+schema_columns_list: [Owner, Verification Criteria, Implementation Status, Priority, Stakeholders, Reporting]
 freeze_total_gates: 30
 freeze_total_crs: 30
 reconciliation_note: "30 GATE rows (1:1 with CR); SC1 stale 38-rule claim RESOLVED; 4 orphan refs flagged F-S1-04/05/06/07."
@@ -55,7 +55,7 @@ Compliance Gates are verification checkpoints anchored to Derivation Nodes (Doc 
 
 ## §2 Gate Definitions (30 rows, 1:1 with CR)
 
-| Gate ID | Rule | D-sub | Verification | Status | Owner | Verification Criteria | Maturity | Priority | Stakeholders | Reporting |
+| Gate ID | Rule | D-sub | Verification | Status | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |---------|------|-------|--------------|:------:|-------|-----------------------|----------|----------|--------------|-----------|
 | GATE-CR-D-01.1-001 | CR-D-01.1-001 | D-01.1 | TEST | PLANNED | CTO | | | | | |
 | GATE-CR-D-01.2-001 | CR-D-01.2-001 | D-01.2 | TEST | PLANNED | CTO | | | | | |
@@ -107,7 +107,7 @@ Compliance Gates are verification checkpoints anchored to Derivation Nodes (Doc 
 **Dependencies:** NODE-SYS-010, DN-01
 **Risk if not met:** H — unencrypted = GDPR Art. 32.
 **Affected Stakeholders:** Customer, CTO, DPO, Lead Developer, Auditor
-**Maturity Score:** Cur 3/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Gate State:** PLANNED
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -132,7 +132,7 @@ Compliance Gates are verification checkpoints anchored to Derivation Nodes (Doc 
 **Dependencies:** NODE-SYS-011, DN-02
 **Risk if not met:** H — weak TLS = transit breach.
 **Affected Stakeholders:** Customer, CTO, DPO, Lead Developer, Auditor
-**Maturity Score:** Cur 3/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Gate State:** PLANNED
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -178,7 +178,7 @@ Compliance Gates are verification checkpoints anchored to Derivation Nodes (Doc 
 **Dependencies:** NODE-SYS-016, DN-04
 **Risk if not met:** H — undetected tampering = integrity breach.
 **Affected Stakeholders:** Customer, CTO, DPO, Lead Developer, Auditor
-**Maturity Score:** Cur 3/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Gate State:** PLANNED
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -203,7 +203,7 @@ Compliance Gates are verification checkpoints anchored to Derivation Nodes (Doc 
 **Dependencies:** DN-05
 **Risk if not met:** H — unpatched vuln = CRA trigger.
 **Affected Stakeholders:** Lead Developer, CTO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Gate State:** PLANNED
 **Regulatory Reporting:** ENISA ≤24h if actively-exploited vulnerability (CRA Art. 14)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -228,7 +228,7 @@ Compliance Gates are verification checkpoints anchored to Derivation Nodes (Doc 
 **Dependencies:** DN-06
 **Risk if not met:** H — unpatched = CRA trigger.
 **Affected Stakeholders:** Operations Lead, Lead Developer, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Gate State:** PLANNED
 **Regulatory Reporting:** ENISA ≤24h if actively-exploited vulnerability (CRA Art. 14)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -274,7 +274,7 @@ Compliance Gates are verification checkpoints anchored to Derivation Nodes (Doc 
 **Dependencies:** DN-08
 **Risk if not met:** H — auth bypass = total compromise.
 **Affected Stakeholders:** Customer, CTO, DPO, Lead Developer, Auditor
-**Maturity Score:** Cur 3/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Gate State:** PLANNED
 **Regulatory Reporting:** CNPD ≤72h (GDPR Art. 33) + ENISA ≤24h (CRA Art. 14)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -299,7 +299,7 @@ Compliance Gates are verification checkpoints anchored to Derivation Nodes (Doc 
 **Dependencies:** DN-09
 **Risk if not met:** H — privileged compromise = total takeover.
 **Affected Stakeholders:** Lead Developer, CTO, Auditor
-**Maturity Score:** Cur 3/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Gate State:** PLANNED
 **Regulatory Reporting:** Internal audit only (no external notification required)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -366,7 +366,7 @@ Compliance Gates are verification checkpoints anchored to Derivation Nodes (Doc 
 **Dependencies:** DN-12
 **Risk if not met:** H — uncontrolled exploit = breach.
 **Affected Stakeholders:** Operations Lead, Lead Developer, Auditor
-**Maturity Score:** Cur 1/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Gate State:** PLANNED
 **Regulatory Reporting:** CNPD ≤72h (GDPR Art. 33) + ENISA ≤24h (CRA Art. 14)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -412,7 +412,7 @@ Compliance Gates are verification checkpoints anchored to Derivation Nodes (Doc 
 **Dependencies:** DN-14
 **Risk if not met:** H — late = dual fine.
 **Affected Stakeholders:** Customer, CTO, DPO, Lead Developer, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Gate State:** PLANNED
 **Regulatory Reporting:** CNPD ≤72h (GDPR Art. 33) + ENISA ≤24h (CRA Art. 14)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -458,7 +458,7 @@ Compliance Gates are verification checkpoints anchored to Derivation Nodes (Doc 
 **Dependencies:** DN-16
 **Risk if not met:** H — over-collection = Art. 5(1)(c).
 **Affected Stakeholders:** Customer, DPO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Gate State:** PLANNED
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -483,7 +483,7 @@ Compliance Gates are verification checkpoints anchored to Derivation Nodes (Doc 
 **Dependencies:** DN-17
 **Risk if not met:** M — over-retention = Art. 5(1)(e).
 **Affected Stakeholders:** Customer, DPO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Gate State:** PLANNED
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -508,7 +508,7 @@ Compliance Gates are verification checkpoints anchored to Derivation Nodes (Doc 
 **Dependencies:** DN-18
 **Risk if not met:** H — incomplete = Art. 17.
 **Affected Stakeholders:** Customer, DPO, Auditor
-**Maturity Score:** Cur 1/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Gate State:** PLANNED
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -617,7 +617,7 @@ Compliance Gates are verification checkpoints anchored to Derivation Nodes (Doc 
 **Dependencies:** DN-23
 **Risk if not met:** M — design flaws late = costly.
 **Affected Stakeholders:** Lead Developer, CTO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Gate State:** PLANNED
 **Regulatory Reporting:** Internal audit only (no external notification required)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -684,7 +684,7 @@ Compliance Gates are verification checkpoints anchored to Derivation Nodes (Doc 
 **Dependencies:** DN-26
 **Risk if not met:** M — governance gap = audit finding.
 **Affected Stakeholders:** Compliance Manager, CEO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Gate State:** PLANNED
 **Regulatory Reporting:** Internal audit only (no external notification required)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -709,7 +709,7 @@ Compliance Gates are verification checkpoints anchored to Derivation Nodes (Doc 
 **Dependencies:** DN-27
 **Risk if not met:** H — missing DPIA = Art. 35.
 **Affected Stakeholders:** Compliance Manager, CEO, Auditor
-**Maturity Score:** Cur 1/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Gate State:** PLANNED
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -734,7 +734,7 @@ Compliance Gates are verification checkpoints anchored to Derivation Nodes (Doc 
 **Dependencies:** DN-28
 **Risk if not met:** H — Art. 30 violation.
 **Affected Stakeholders:** Customer, DPO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Gate State:** PLANNED
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -780,7 +780,7 @@ Compliance Gates are verification checkpoints anchored to Derivation Nodes (Doc 
 **Dependencies:** DN-30
 **Risk if not met:** M — untested controls = drift.
 **Affected Stakeholders:** Operations Lead, Lead Developer, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Gate State:** PLANNED
 **Regulatory Reporting:** Internal audit only (no external notification required)
 **External Auditor:** AWS SOC 2 (managed hosting attestation) / ISO 27001
@@ -791,7 +791,7 @@ Compliance Gates are verification checkpoints anchored to Derivation Nodes (Doc 
 
 ## §3 Stop Conditions (SC1-SC5)
 
-| SC | Description | Status | Owner | Verification Criteria | Maturity | Priority | Stakeholders | Reporting |
+| SC | Description | Status | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |----|-------------|:------:|-------|-----------------------|----------|----------|--------------|-----------|
 | SC1 | All CR + BPR rules mapped to ≥1 UC | **RESOLVED** — 46/46 (legacy "38" was stale; freeze = 46) | | | | | | |
 | SC2 | All UCs covered by ≥1 FR/NFR | RESOLVED — 35 L1 + 27 L2 expansions = 62 refs | | | | | | |
@@ -803,7 +803,7 @@ Compliance Gates are verification checkpoints anchored to Derivation Nodes (Doc 
 
 ## §4 Orphan rule refs (legacy → freeze)
 
-| Orphan ref (legacy) | Closest freeze rule | Finding | Owner | Verification Criteria | Maturity | Priority | Stakeholders | Reporting |
+| Orphan ref (legacy) | Closest freeze rule | Finding | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |---------------------|---------------------|---------|-------|-----------------------|----------|----------|--------------|-----------|
 | CR-D-02.4-001 | CR-D-02.2-001 (Patches) | F-S1-04 OPEN | | | | | | |
 | CR-D-06.4-001 | CR-D-06.3-001 (DPAs) | F-S1-05 OPEN | | | | | | |

@@ -686,7 +686,7 @@ rewrite_protocol:
 - **Verification Criteria:** Sample of 10 DSARs completed ≤30d; output fields match RoPA §3; audit log entry present.
 - **Dependencies:** FR-07, NFR-21, NFR-22, NFR-26, NODE-SYS-014, NODE-PROC-006
 - **Risk if not met:** H — non-response ≤30d → CNPD enforcement, GDPR Art. 83 fine up to 4% revenue.
-- **Maturity Score:** Cur 2/4 → Tgt 4/4 · **Implementation Priority:** HIGH
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 - **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33).
 - **External Auditor:** AWS SOC 2 / ISO 27001 · **Supervisory Body:** CNPD.
 - **Functional UCs this constrains:** U.C.11.1.1, U.C.11.2.1, U.C.11.3.1.
@@ -709,7 +709,7 @@ rewrite_protocol:
 - **Verification Criteria:** All linked stores updated ≤30d; HMAC integrity preserved; processors notified ≤7d.
 - **Dependencies:** FR-11, NFR-06, NFR-28, NODE-SYS-016
 - **Risk if not met:** H — inaccurate data = GDPR Art. 5(1)(d) breach.
-- **Maturity Score:** not tracked (12-field card).
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 - **Functional UCs this constrains:** U.C.11.1.1.
 
 #### U.C.1.2.1 — Data Subject Erasure
@@ -729,7 +729,7 @@ rewrite_protocol:
 - **Verification Criteria:** Primary + backup + log stores fully erased ≤30d; cryptographic erasure verified; processors cascaded.
 - **Dependencies:** FR-08, NFR-08, NFR-23, NODE-SYS-015, NODE-PROC-003
 - **Risk if not met:** H — incomplete erasure = GDPR Art. 17 violation + reputational damage.
-- **Maturity Score:** Cur 1/4 → Tgt 4/4 · **Implementation Priority:** HIGH
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 - **Regulatory Reporting:** CNPD ≤72h if breach of personal data.
 - **Functional UCs this constrains:** U.C.11.3.1.
 
@@ -819,7 +819,7 @@ rewrite_protocol:
 - **Verification Criteria:** 0 critical findings at release; SCA prioritised by CVSS + EPSS; release audit log.
 - **Dependencies:** FR-17, FR-20, NFR-46, NODE-PROC-017, NODE-SYS-009
 - **Risk if not met:** H — unremediated critical = CRA Art. 14 actively-exploited obligation.
-- **Maturity Score:** Cur 2/4 → Tgt 4/4 · **Implementation Priority:** HIGH
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 - **Regulatory Reporting:** ENISA ≤24h if actively-exploited (CRA Art. 14).
 - **Functional UCs this constrains:** U.C.8.2.1, U.C.9.3.1 (release gating affects task/attachment publishes).
 
@@ -842,7 +842,7 @@ rewrite_protocol:
 - **Verification Criteria:** Critical CVE patch median ≤24h monthly; auto-rollback chaos-tested 1×/quarter; patch audit immutable.
 - **Dependencies:** FR-18, NFR-12, NODE-PROC-015
 - **Risk if not met:** H — extended exposure = CRA Art. 14 trigger.
-- **Maturity Score:** Cur 2/4 → Tgt 4/4 · **Implementation Priority:** HIGH
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 - **Regulatory Reporting:** ENISA ≤24h if actively-exploited.
 - **Functional UCs this constrains:** All U.C.7-11 (availability).
 
@@ -882,7 +882,7 @@ rewrite_protocol:
 - **Verification Criteria:** Median exploit-containment ≤30min quarterly; fail-safe documented + chaos-tested annually; 0 undetected active exploits >24h.
 - **Dependencies:** FR-15, NFR-17, NODE-SYS-005, NODE-PROC-002
 - **Risk if not met:** H — uncontrolled exploit = GDPR breach + CRA Art. 14(4).
-- **Maturity Score:** Cur 1/4 → Tgt 4/4 · **Implementation Priority:** HIGH
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 - **Regulatory Reporting:** CNPD ≤72h + ENISA ≤24h.
 - **Functional UCs this constrains:** U.C.8.2.1, U.C.9.3.1 (attachment quarantine).
 
@@ -924,7 +924,7 @@ rewrite_protocol:
 - **Verification Criteria:** ENISA median ≤24h; CNPD ≤72h; tabletop quarterly; breach register ≤24h.
 - **Dependencies:** FR-16, NFR-29, NFR-44, NODE-SYS-004, NODE-PROC-001, NODE-ROLE-008
 - **Risk if not met:** H — late notification = GDPR Art. 83 fine + CRA sanctions.
-- **Maturity Score:** Cur 2/4 → Tgt 4/4 · **Implementation Priority:** HIGH
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 - **Regulatory Reporting:** CNPD ≤72h + ENISA ≤24h.
 
 #### U.C.2.6.1 — Data Restoration & Recovery
@@ -976,7 +976,7 @@ rewrite_protocol:
 - **Verification Criteria:** Lockout after 5 failures; 30-min idle timeout; 100% auth events logged.
 - **Dependencies:** FR-02, FR-06, NFR-01, NFR-02, NODE-SYS-006, NODE-SYS-011
 - **Risk if not met:** H — auth bypass = GDPR + CRA critical control failure.
-- **Maturity Score:** Cur 3/4 → Tgt 4/4 · **Implementation Priority:** HIGH
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 - **Functional UCs this constrains:** U.C.7.1.1, U.C.7.1.2, U.C.7.1.3, U.C.7.2.1.
 - **Misuse cases this addresses:** MUC-01.
 
@@ -997,7 +997,7 @@ rewrite_protocol:
 - **Verification Criteria:** 100% privileged sessions MFA-protected; PAM recording; quarterly access review.
 - **Dependencies:** FR-03, NFR-01, NODE-SYS-007
 - **Risk if not met:** H — privileged compromise = total system takeover.
-- **Maturity Score:** Cur 3/4 → Tgt 4/4 · **Implementation Priority:** HIGH
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 #### U.C.3.2.1 — Authorisation / Least Privilege
 
@@ -1149,7 +1149,7 @@ rewrite_protocol:
 - **Verification Criteria:** Median critical-patch deploy ≤24h; CR signed off; auto-rollback validated.
 - **Dependencies:** FR-18, FR-22, NFR-12, NODE-PROC-014, NODE-PROC-015
 - **Risk if not met:** H — unpatched = CRA Art. 14 trigger.
-- **Maturity Score:** Cur 2/4 → Tgt 4/4 · **Implementation Priority:** HIGH
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 - **Regulatory Reporting:** ENISA ≤24h if actively-exploited.
 
 #### U.C.4.4.1 — Fail-Safe Design
@@ -1187,7 +1187,7 @@ rewrite_protocol:
 - **Verification Criteria:** DPIA completed pre-launch; risk register entry per high-risk finding; DPO + RO sign-off.
 - **Dependencies:** FR-25, NFR-31, NFR-41, NODE-PROC-005, NODE-ROLE-006
 - **Risk if not met:** H — unassessed launch = GDPR Art. 35 violation.
-- **Maturity Score:** Cur 1/4 → Tgt 4/4 · **Implementation Priority:** HIGH
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 - **Regulatory Reporting:** CNPD ≤72h if breach.
 
 ### §3.5 PKG-GOV (Governance & Compliance) — 7
@@ -1253,7 +1253,7 @@ rewrite_protocol:
 - **Verification Criteria:** DPIA pre-launch; sign-off recorded; residual risk CEO-accepted where applicable.
 - **Dependencies:** FR-25, NFR-31, NODE-PROC-005, NODE-ROLE-006
 - **Risk if not met:** H — missing DPIA = GDPR Art. 35 + Art. 83.
-- **Maturity Score:** Cur 1/4 → Tgt 4/4 · **Implementation Priority:** HIGH
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
 #### U.C.5.3.1 — RoPA Maintenance
 

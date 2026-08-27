@@ -22,7 +22,7 @@ related_documents: [23_Functional_Requirements.md, RULE_FREEZE.md, NIST_ANCHORS.
 expected_card_columns: 17
 expected_compact_columns: 12
 schema_columns: 6
-schema_columns_list: [Owner, Verification Criteria, Maturity, Priority, Stakeholders, Reporting]
+schema_columns_list: [Owner, Verification Criteria, Implementation Status, Priority, Stakeholders, Reporting]
 freeze_total_nfrs: 46
 reconciliation_note: "46 NFR freeze (F-00b RESOLVED); 100% measurable per §4.1 of legacy; SPRINT5 detail card fill."
 sprint5_note: "Sprint 5: DEEP enrichment — 46 cards (28×17 fields + 18×12 fields) = 692 cells. Frontmatter status DEEP_ENRICHED, version 2.0."
@@ -45,7 +45,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 
 **Family breakdown (per legacy Doc 24 §3):**
 
-| Family | Count | Notes | Owner | Verification Criteria | Maturity | Priority | Stakeholders | Reporting |
+| Family | Count | Notes | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |--------|------:|-------|-------|-----------------------|----------|----------|--------------|-----------|
 | CONF (Confidentiality) | 9 | Encryption + access control measurables | | | | | | |
 | AVAIL (Availability) | 7 | RTO/RPO targets | | | | | | |
@@ -64,7 +64,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 
 ### §2.1 CONF (Confidentiality) — NFR-01..NFR-09
 
-| NFR | Criterion | Target | FRs | CR | D | Owner | Verification Criteria | Maturity | Priority | Stakeholders | Reporting |
+| NFR | Criterion | Target | FRs | CR | D | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |-----|-----------|--------|-----|----|---|-------|-----------------------|----------|----------|--------------|-----------|
 | NFR-01 | Privileged session MFA success rate | 100% | FR-03 | CR-D-03.1-001 | D-01.1 | | | | | | |
 | NFR-02 | Account lockout after failed attempts | 5 | FR-02, FR-04, FR-05 | CR-D-03.1-001 | D-01.1 | | | | | | |
@@ -78,7 +78,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 
 ### §2.2 AVAIL (Availability) — NFR-10..NFR-16
 
-| NFR | Criterion | Target | FRs | CR | D | Owner | Verification Criteria | Maturity | Priority | Stakeholders | Reporting |
+| NFR | Criterion | Target | FRs | CR | D | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |-----|-----------|--------|-----|----|---|-------|-----------------------|----------|----------|--------------|-----------|
 | NFR-10 | SIEM uptime | ≥99.9% | FR-13, FR-17 | CR-D-02.1-001 | D-04.2 | | | | | | |
 | NFR-11 | CI/CD build availability | ≥99.5% | FR-21 | CR-D-02.1-001 | D-09.1 | | | | | | |
@@ -91,7 +91,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 
 ### §2.3 INT (Integrity) — NFR-17..NFR-24
 
-| NFR | Criterion | Target | FRs | CR | D | Owner | Verification Criteria | Maturity | Priority | Stakeholders | Reporting |
+| NFR | Criterion | Target | FRs | CR | D | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |-----|-----------|--------|-----|----|---|-------|-----------------------|----------|----------|--------------|-----------|
 | NFR-18 | Forensic evidence retention | ≥1 year | FR-19 | CR-D-04.4-001 | D-04.4 | | | | | | |
 | NFR-19 | Backup retention | ≥90 days | FR-19 | CR-D-04.4-001 | D-04.4 | | | | | | |
@@ -103,7 +103,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 
 ### §2.4 PRIV (Privacy) — NFR-25..NFR-35
 
-| NFR | Criterion | Target | FRs | CR | D | Owner | Verification Criteria | Maturity | Priority | Stakeholders | Reporting |
+| NFR | Criterion | Target | FRs | CR | D | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |-----|-----------|--------|-----|----|---|-------|-----------------------|----------|----------|--------------|-----------|
 | NFR-25 | RBAC role review cadence | Quarterly | FR-05 | CR-D-03.3-001 | D-03.3 | | | | | | |
 | NFR-26 | Consent capture rate | 100% | FR-10 | CR-D-05.1-001 | D-05.1 | | | | | | |
@@ -119,7 +119,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 
 ### §2.5 ACC (Accountability) — NFR-36..NFR-41
 
-| NFR | Criterion | Target | FRs | CR | D | Owner | Verification Criteria | Maturity | Priority | Stakeholders | Reporting |
+| NFR | Criterion | Target | FRs | CR | D | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |-----|-----------|--------|-----|----|---|-------|-----------------------|----------|----------|--------------|-----------|
 | NFR-36 | Training completion rate | 100% | FR-25, FR-29 | CR-D-08.1-001 | D-09.1 | | | | | | |
 | NFR-37 | Audit log retention | ≥12 months | FR-26 | CR-D-10.2-001 | D-10.2 | | | | | | |
@@ -130,7 +130,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 
 ### §2.6 COMP (Compliance) — NFR-42..NFR-46
 
-| NFR | Criterion | Target | FRs | CR | D | Owner | Verification Criteria | Maturity | Priority | Stakeholders | Reporting |
+| NFR | Criterion | Target | FRs | CR | D | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |-----|-----------|--------|-----|----|---|-------|-----------------------|----------|----------|--------------|-----------|
 | NFR-42 | Compliance report generation | ≤7 days on demand | FR-27 | CR-D-09.1-001 | D-09.1 | | | | | | |
 | NFR-43 | Breach register SLA (entry) | ≤24h post-detection | FR-27 | CR-D-09.4-001 | D-09.4 | | | | | | |
@@ -159,7 +159,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Dependencies:** NODE-SYS-007
 **Risk if not met:** H — privileged compromise = takeover.
 **Affected Stakeholders:** Lead Developer, CTO, Auditor
-**Maturity Score:** Cur 3/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Family:** CONF
 **Privacy Flag:** non-PRIV
 **Regulatory Reporting:** Internal audit only (no external notification required)
@@ -187,7 +187,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Dependencies:** NODE-SYS-006
 **Risk if not met:** H — credential stuffing.
 **Affected Stakeholders:** Customer, CTO, Lead Developer, Auditor
-**Maturity Score:** Cur 3/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Family:** CONF
 **Privacy Flag:** non-PRIV
 **Regulatory Reporting:** Internal audit only (no external notification required)
@@ -215,7 +215,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Dependencies:** NODE-SYS-010
 **Risk if not met:** H — unencrypted = GDPR Art. 32.
 **Affected Stakeholders:** Customer, CTO, DPO, Lead Developer, Auditor
-**Maturity Score:** Cur 3/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Family:** CONF
 **Privacy Flag:** PRIV
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
@@ -243,7 +243,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Dependencies:** NODE-SYS-011
 **Risk if not met:** H — weak TLS = transit breach.
 **Affected Stakeholders:** Customer, CTO, Lead Developer, Auditor
-**Maturity Score:** Cur 3/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Family:** CONF
 **Privacy Flag:** non-PRIV
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
@@ -295,7 +295,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Dependencies:** NODE-SYS-016
 **Risk if not met:** H — undetected tampering.
 **Affected Stakeholders:** Customer, CTO, DPO, Lead Developer, Auditor
-**Maturity Score:** Cur 3/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Family:** CONF
 **Privacy Flag:** PRIV
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
@@ -347,7 +347,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Dependencies:** NODE-SYS-015
 **Risk if not met:** H — incomplete = Art. 17.
 **Affected Stakeholders:** Customer, DPO, Auditor
-**Maturity Score:** Cur 1/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Family:** CONF
 **Privacy Flag:** PRIV
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
@@ -399,7 +399,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Dependencies:** NODE-SYS-001
 **Risk if not met:** H — log loss = accountability.
 **Affected Stakeholders:** Operations Lead, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Family:** AVAIL
 **Privacy Flag:** non-PRIV
 **Regulatory Reporting:** Internal audit only (no external notification required)
@@ -451,7 +451,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Dependencies:** NODE-PROC-015
 **Risk if not met:** H — unpatched = CRA Art. 14.
 **Affected Stakeholders:** Operations Lead, Lead Developer, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Family:** AVAIL
 **Privacy Flag:** non-PRIV
 **Regulatory Reporting:** ENISA ≤24h if actively-exploited vulnerability (CRA Art. 14)
@@ -503,7 +503,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Dependencies:** NODE-SYS-015, NODE-PROC-003
 **Risk if not met:** H — failed restore = data loss.
 **Affected Stakeholders:** Operations Lead, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Family:** AVAIL
 **Privacy Flag:** non-PRIV
 **Regulatory Reporting:** Internal audit only (no external notification required)
@@ -531,7 +531,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Dependencies:** NODE-SYS-015, NODE-PROC-003
 **Risk if not met:** H — exceeds RPO = data loss.
 **Affected Stakeholders:** Operations Lead, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Family:** AVAIL
 **Privacy Flag:** non-PRIV
 **Regulatory Reporting:** Internal audit only (no external notification required)
@@ -583,7 +583,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Dependencies:** NODE-SYS-001
 **Risk if not met:** H — slow response = breach amplification.
 **Affected Stakeholders:** Operations Lead, Incident Commander
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Family:** AVAIL
 **Privacy Flag:** non-PRIV
 **Regulatory Reporting:** CNPD ≤72h (GDPR Art. 33) + ENISA ≤24h (CRA Art. 14)
@@ -611,7 +611,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Dependencies:** NODE-SYS-002
 **Risk if not met:** M — premature deletion = investigation gap.
 **Affected Stakeholders:** Operations Lead, Compliance Manager, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Family:** INT
 **Privacy Flag:** non-PRIV
 **Regulatory Reporting:** Internal audit only (no external notification required)
@@ -663,7 +663,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Dependencies:** NODE-SYS-010
 **Risk if not met:** H — data corruption.
 **Affected Stakeholders:** Lead Developer, CTO, Auditor
-**Maturity Score:** Cur 3/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Family:** INT
 **Privacy Flag:** non-PRIV
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
@@ -691,7 +691,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Dependencies:** NODE-SYS-014
 **Risk if not met:** H — incomplete DSAR = Art. 15.
 **Affected Stakeholders:** Customer, DPO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Family:** INT
 **Privacy Flag:** PRIV
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
@@ -719,7 +719,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Dependencies:** NODE-SYS-014
 **Risk if not met:** H — late DSAR = Art. 12(3).
 **Affected Stakeholders:** Customer, DPO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Family:** INT
 **Privacy Flag:** PRIV
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
@@ -747,7 +747,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Dependencies:** NODE-SYS-015, NODE-PROC-003
 **Risk if not met:** H — unverified erasure = Art. 17.
 **Affected Stakeholders:** Customer, DPO, Auditor
-**Maturity Score:** Cur 1/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Family:** INT
 **Privacy Flag:** PRIV
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
@@ -799,7 +799,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Dependencies:** NODE-ROLE-004
 **Risk if not met:** M — privilege drift = insider risk.
 **Affected Stakeholders:** IAM Admin, CTO, Auditor
-**Maturity Score:** Cur 3/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Family:** PRIV
 **Privacy Flag:** PRIV
 **Regulatory Reporting:** Internal audit only (no external notification required)
@@ -827,7 +827,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Dependencies:** NODE-PROC-007
 **Risk if not met:** H — uncaptured consent = Art. 6.
 **Affected Stakeholders:** Customer, DPO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Family:** PRIV
 **Privacy Flag:** PRIV
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
@@ -855,7 +855,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Dependencies:** NODE-PROC-007
 **Risk if not met:** H — non-cascade = Art. 7(3).
 **Affected Stakeholders:** Customer, DPO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Family:** PRIV
 **Privacy Flag:** PRIV
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
@@ -883,7 +883,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Dependencies:** NODE-SYS-016
 **Risk if not met:** H — late = Art. 16.
 **Affected Stakeholders:** Customer, DPO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Family:** PRIV
 **Privacy Flag:** PRIV
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
@@ -911,7 +911,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Dependencies:** NODE-SYS-004, NODE-ROLE-008
 **Risk if not met:** H — late = Art. 83 fine.
 **Affected Stakeholders:** Customer, CTO, DPO, Lead Developer, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Family:** PRIV
 **Privacy Flag:** PRIV
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
@@ -939,7 +939,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Dependencies:** NODE-PROC-007
 **Risk if not met:** H — late = Art. 21 violation.
 **Affected Stakeholders:** Customer, DPO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Family:** PRIV
 **Privacy Flag:** PRIV
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
@@ -967,7 +967,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Dependencies:** NODE-PROC-005, NODE-ROLE-006
 **Risk if not met:** H — missing DPIA = Art. 35.
 **Affected Stakeholders:** Risk Owner, DPO, Compliance Manager, Auditor
-**Maturity Score:** Cur 1/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Family:** PRIV
 **Privacy Flag:** PRIV
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
@@ -1067,7 +1067,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Dependencies:** NODE-SYS-014, NODE-PROC-006
 **Risk if not met:** H — outdated RoPA = Art. 30.
 **Affected Stakeholders:** Compliance Manager, DPO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Family:** PRIV
 **Privacy Flag:** PRIV
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
@@ -1095,7 +1095,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Dependencies:** NODE-PROC-018, NODE-PROC-019
 **Risk if not met:** M — untrained = phishing risk.
 **Affected Stakeholders:** All staff, Compliance Manager, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Family:** ACC
 **Privacy Flag:** non-PRIV
 **Regulatory Reporting:** Internal audit only (no external notification required)
@@ -1267,7 +1267,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Dependencies:** NODE-SYS-017
 **Risk if not met:** M — missed entry = accountability gap.
 **Affected Stakeholders:** Incident Commander, DPO, Compliance Manager, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Family:** COMP
 **Privacy Flag:** PRIV
 **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33)
@@ -1295,7 +1295,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Dependencies:** NODE-SYS-004, NODE-ROLE-008
 **Risk if not met:** H — late = CRA sanctions.
 **Affected Stakeholders:** Incident Commander, Lead Developer, CTO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Family:** COMP
 **Privacy Flag:** non-PRIV
 **Regulatory Reporting:** ENISA ≤24h if actively-exploited vulnerability (CRA Art. 14)
@@ -1323,7 +1323,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Dependencies:** NODE-SYS-013
 **Risk if not met:** M — missing SBOM = CRA Art. 13.
 **Affected Stakeholders:** Lead Developer, CTO, Auditor
-**Maturity Score:** Cur 2/4 → Tgt 4/4
+**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 **Family:** COMP
 **Privacy Flag:** non-PRIV
 **Regulatory Reporting:** Internal audit only (no external notification required)
@@ -1361,7 +1361,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 
 See `NIST_ANCHORS.md` §3.3 for the full table. Summary:
 
-| Family | NFRs with CSF anchors | NFRs with PF anchors | Owner | Verification Criteria | Maturity | Priority | Stakeholders | Reporting |
+| Family | NFRs with CSF anchors | NFRs with PF anchors | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |--------|----------------------:|---------------------:|-------|-----------------------|----------|----------|--------------|-----------|
 | CONF | 9/9 | 5/9 | | | | | | |
 | AVAIL | 8/8 | 5/8 | | | | | | |
