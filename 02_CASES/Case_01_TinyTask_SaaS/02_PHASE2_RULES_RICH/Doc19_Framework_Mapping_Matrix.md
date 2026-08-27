@@ -2,9 +2,9 @@
 document_id: AEGIS-P2-RICH-13
 title: Framework Mapping Matrix — Unified NIST (CSF 2.0 + Privacy FW 1.0)
 phase: 2
-version: 1.0
+version: 1.1
 created: 2026-08-07
-updated: 2026-08-07
+updated: 2026-08-27
 author: Executor (Bloco C)
 status: ACTIVE
 sprint: 6
@@ -56,7 +56,7 @@ crosswalk_decision: >
 
 > **Frozen lists used (no invention of IDs):**
 > - CSF 2.0: `00_METHODOLOGY/PREPROCESSING/NIST_CSF_2.0_subcategories.md`
-> - Privacy FW 1.0: `00_METHODOLOGY/PREPROCESSING_by_domain/_global/NIST_PF_1.0_subcategories.md` (104 active + 34 v1.0 redirects; redirects excluded as mapping targets)
+> - Privacy FW 1.0: `00_METHODOLOGY/PREPROCESSING_by_domain/_global/NIST_PF_1.0_subcategories.md` (canonical, ACTIVE: 5 Functions / 18 Categories / 100 Subcategories — the only official NIST PF release; local mirror `CONTROLS/NIST_PF/`. "PF 1.1" is an Initial Public Draft, non-final: its redirect notes may NOT exclude or replace canonical IDs — see SPEC §4.2 and `validation/VALIDATOR_UNMAPPED_AUDIT_v0.md`)
 > - AI RMF 1.0: `00_METHODOLOGY/PREPROCESSING/NIST_AI_RMF_1.0_subcategories.md` (72 subcats; uniform `pending Case_02/03` here)
 
 ---
@@ -72,38 +72,38 @@ crosswalk_decision: >
 
 | CR rule_id    | sub_domain | NI (Block B) | CSF 2.0 (from Doc 11 field 5)                                                                                                                                            | Privacy FW 1.0                                                  | AI RMF            | ISO 27001 | SSDF      | csf_subcats_normalized                                                                       | priv_subcats_normalized                              |
 |---------------|------------|--------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|-------------------|-----------|-----------|-----------------------------------------------------------------------------------------------|------------------------------------------------------|
-| CR-D-01.1-001 | D-01.1     | 3 (MUST)     | PR.DS-01, PR.DS-10, PR.PS-04                                                                                                                                              | PR.DS-P1                                  | pending Case_02/03 | A.8.24    | PO.5      | PR.DS-01\|PR.DS-10\|PR.PS-04                                                                | PR.DS-P1\|UNMAPPED_PF\|UNMAPPED_PF                         |
-| CR-D-01.2-001 | D-01.2     | 3 (MUST)     | PR.DS-02, PR.IR-01, PR.PS-04                                                                                                                                              | PR.DS-P2                                              | pending Case_02/03 | A.8.24    | -         | PR.DS-02\|PR.IR-01\|PR.PS-04                                                                | PR.DS-P2\|UNMAPPED_PF                                    |
+| CR-D-01.1-001 | D-01.1     | 3 (MUST)     | PR.DS-01, PR.DS-10, PR.PS-04                                                                                                                                              | PR.DS-P1, UNMAPPED_PF (PR.DS-10 risk-strategy mgmt + PR.PS-04 log records — no PF 1.0 analogue) | pending Case_02/03 | A.8.24    | PO.5      | PR.DS-01\|PR.DS-10\|PR.PS-04                                                                | PR.DS-P1\|UNMAPPED_PF\|UNMAPPED_PF                         |
+| CR-D-01.2-001 | D-01.2     | 3 (MUST)     | PR.DS-02, PR.IR-01, PR.PS-04                                                                                                                                              | PR.DS-P2, PR.PO-P7                                              | pending Case_02/03 | A.8.24    | -         | PR.DS-02\|PR.IR-01\|PR.PS-04                                                                | PR.DS-P2\|PR.PO-P7\|UNMAPPED_PF                          |
 | CR-D-01.3-001 | D-01.3     | 3 (MUST)     | GV.OV-01, GV.RM-04, PR.AA-03, PR.AA-04, PR.DS-01, PR.IR-03                                                                                                              | PR.DS-P1, CT.DP-P2                                              | pending Case_02/03 | A.8.24    | -         | GV.OV-01\|GV.RM-04\|PR.AA-03\|PR.AA-04\|PR.DS-01\|PR.IR-03                                | PR.DS-P1\|CT.DP-P2                                    |
 | CR-D-01.4-001 | D-01.4     | 3 (MUST)     | PR.DS-01, PR.DS-02, PR.DS-10, PR.DS-01, PR.DS-10, PR.IR-03, PR.IR-04, PR.PS-04                                                                                          | CT.DM-P1, CT.DM-P3                                              | pending Case_02/03 | A.8.24    | -         | PR.DS-01\|PR.DS-02\|PR.DS-10\|PR.DS-01\|PR.DS-10\|PR.IR-03\|PR.IR-04\|PR.PS-04          | CT.DM-P1\|CT.DM-P3                                    |
 | CR-D-02.1-001 | D-02.1     | 3 (MUST)     | GV.OV-02, ID.AM-02, ID.IM-02, ID.RA-01, ID.RA-03, ID.RA-05, PR.PS-02                                                                                                    | ID.RA-P3, ID.RA-P5                                              | pending Case_02/03 | A.8.8     | RV.1      | GV.OV-02\|ID.AM-02\|ID.IM-02\|ID.RA-01\|ID.RA-03\|ID.RA-05\|PR.PS-02                    | ID.RA-P3\|ID.RA-P5                                    |
 | CR-D-02.2-001 | D-02.2     | 3 (MUST)     | GV.OV-02, ID.RA-01, PR.IR-03, PR.PS-01, PR.PS-02                                                                                                                        | UNMAPPED_PRIVACY (patch cadence is product-security concern; no PF subcat anchored) | pending Case_02/03 | A.8.8     | RV.2      | GV.OV-02\|ID.RA-01\|PR.IR-03\|PR.PS-01\|PR.PS-02                                          | UNMAPPED_PRIVACY                                      |
 | CR-D-02.3-001 | D-02.3     | 3 (MUST)     | GV.PO-01, GV.SC-04, ID.RA-01, RS.CO-03, RS.MA-01                                                                                                                         | UNMAPPED_PRIVACY (CVD is security-disclosure; no PF subcat anchored) | pending Case_02/03 | A.5.5     | RV.1      | GV.PO-01\|GV.SC-04\|ID.RA-01\|RS.CO-03\|RS.MA-01                                         | UNMAPPED_PRIVACY                                      |
-| CR-D-03.1-001 | D-03.1     | 3 (MUST)     | ID.AM-01, PR.AA-01, PR.AA-02, PR.AA-03, PR.AA-05, PR.AA-06, PR.DS-10                                                                                                     | UNMAPPED_PF                                              | pending Case_02/03 | A.5.16    | -         | ID.AM-01\|PR.AA-01\|PR.AA-02\|PR.AA-03\|PR.AA-05\|PR.AA-06\|PR.DS-10                  | UNMAPPED_PF\|UNMAPPED_PF                                    |
-| CR-D-03.2-001 | D-03.2     | 2 (SHOULD)   | PR.AA-03, PR.AA-04, PR.AA-05, PR.AA-06, PR.AT-02                                                                                                                         | UNMAPPED_PF                                                        | pending Case_02/03 | A.8.5     | -         | PR.AA-03\|PR.AA-04\|PR.AA-05\|PR.AA-06\|PR.AT-02                                         | UNMAPPED_PF                                              |
-| CR-D-03.3-001 | D-03.3     | 3 (MUST)     | ID.AM-01, ID.AM-02, PR.AA-01, PR.AA-03, PR.AA-05, PR.AA-06, PR.PS-04                                                                                                     | CT.PO-P1                                    | pending Case_02/03 | A.5.15    | -         | ID.AM-01\|ID.AM-02\|PR.AA-01\|PR.AA-03\|PR.AA-05\|PR.AA-06\|PR.PS-04                  | UNMAPPED_PF\|UNMAPPED_PF\|CT.PO-P1                          |
+| CR-D-03.1-001 | D-03.1     | 3 (MUST)     | ID.AM-01, PR.AA-01, PR.AA-02, PR.AA-03, PR.AA-05, PR.AA-06, PR.DS-10                                                                                                     | PR.AC-P1, PR.AC-P6, PR.AC-P4, UNMAPPED_PF (asset inventory + risk-strategy data mgmt — no PF 1.0 analogue) | pending Case_02/03 | A.5.16    | -         | ID.AM-01\|PR.AA-01\|PR.AA-02\|PR.AA-03\|PR.AA-05\|PR.AA-06\|PR.DS-10                  | UNMAPPED_PF\|PR.AC-P1\|PR.AC-P6\|PR.AC-P6\|PR.AC-P4\|PR.AC-P4\|UNMAPPED_PF |
+| CR-D-03.2-001 | D-03.2     | 2 (SHOULD)   | PR.AA-03, PR.AA-04, PR.AA-05, PR.AA-06, PR.AT-02                                                                                                                         | PR.AC-P6, PR.AC-P4, GV.AT-P1, UNMAPPED_PF (identity assertions — no PF 1.0 subcategory) | pending Case_02/03 | A.8.5     | -         | PR.AA-03\|PR.AA-04\|PR.AA-05\|PR.AA-06\|PR.AT-02                                         | PR.AC-P6\|UNMAPPED_PF\|PR.AC-P4\|PR.AC-P4\|GV.AT-P1      |
+| CR-D-03.3-001 | D-03.3     | 3 (MUST)     | ID.AM-01, ID.AM-02, PR.AA-01, PR.AA-03, PR.AA-05, PR.AA-06, PR.PS-04                                                                                                     | CT.PO-P1, PR.AC-P1, PR.AC-P6, PR.AC-P4, UNMAPPED_PF (asset inventories + log records — no PF 1.0 analogue) | pending Case_02/03 | A.5.15    | -         | ID.AM-01\|ID.AM-02\|PR.AA-01\|PR.AA-03\|PR.AA-05\|PR.AA-06\|PR.PS-04                  | UNMAPPED_PF\|UNMAPPED_PF\|PR.AC-P1\|PR.AC-P6\|PR.AC-P4\|PR.AC-P4\|CT.PO-P1 |
 | CR-D-03.4-001 | D-03.4     | 3 (MUST)     | GV.PO-01, GV.SC-03, PR.DS-10, PR.PS-01, PR.PS-04                                                                                                                         | CT.DP-P4, CT.PO-P4                                              | pending Case_02/03 | A.8.9     | PW.9      | GV.PO-01\|GV.SC-03\|PR.DS-10\|PR.PS-01\|PR.PS-04                                         | CT.DP-P4\|CT.PO-P4                                    |
 | CR-D-04.1-001 | D-04.1     | 3 (MUST)     | DE.AE-02, DE.CM-01, DE.CM-09, ID.RA-04, PR.PS-04, RS.MA-01, RS.MA-02, RS.MA-03                                                                                           | CM.AW-P7                                              | pending Case_02/03 | A.5.25    | RV.1      | DE.AE-02\|DE.CM-01\|DE.CM-09\|ID.RA-04\|PR.PS-04\|RS.MA-01\|RS.MA-02\|RS.MA-03        | CM.AW-P7\|UNMAPPED_PF                                    |
 | CR-D-04.2-001 | D-04.2     | 3 (MUST)     | DE.CM-09, PR.DS-10, PR.IR-03, PR.IR-04, RC.RP-01, RC.RP-04, RS.MI-01, RS.MI-02                                                                                           | PR.PO-P7, CT.DM-P10                                             | pending Case_02/03 | A.5.26    | -         | DE.CM-09\|PR.DS-10\|PR.IR-03\|PR.IR-04\|RC.RP-01\|RC.RP-04\|RS.MI-01\|RS.MI-02        | PR.PO-P7\|CT.DM-P10                                   |
 | CR-D-04.3-001 | D-04.3     | 3 (MUST)     | RS.CO-02, RS.MA-01, RS.MA-01, RS.MA-02, RS.MA-03, RS.MA-01                                                                                                               | CM.AW-P7, CM.AW-P8, CM.PO-P1, CM.PO-P2                | pending Case_02/03 | A.5.24    | -         | RS.CO-02\|RS.MA-01\|RS.MA-01\|RS.MA-02\|RS.MA-03\|RS.MA-01                              | CM.AW-P7\|CM.AW-P8\|CM.PO-P1\|CM.PO-P2\|UNMAPPED_PF       |
-| CR-D-04.4-001 | D-04.4     | 3 (MUST)     | PR.DS-01, PR.DS-10, PR.IR-03, PR.IR-04, RC.RP-01, RC.RP-03, RC.RP-04                                                                                                      | UNMAPPED_PF                                   | pending Case_02/03 | A.8.13    | -         | PR.DS-01\|PR.DS-10\|PR.IR-03\|PR.IR-04\|RC.RP-01\|RC.RP-03\|RC.RP-04                  | UNMAPPED_PF\|UNMAPPED_PF\|UNMAPPED_PF                         |
+| CR-D-04.4-001 | D-04.4     | 3 (MUST)     | PR.DS-01, PR.DS-10, PR.IR-03, PR.IR-04, RC.RP-01, RC.RP-03, RC.RP-04                                                                                                      | PR.DS-P1, PR.PO-P7, PR.DS-P4, PR.PT-P4, UNMAPPED_PF (recover-execution + risk-strategy mgmt — PF 1.0 has no Recover axis) | pending Case_02/03 | A.8.13    | -         | PR.DS-01\|PR.DS-10\|PR.IR-03\|PR.IR-04\|RC.RP-01\|RC.RP-03\|RC.RP-04                  | PR.DS-P1\|UNMAPPED_PF\|PR.PT-P4\|PR.DS-P4\|UNMAPPED_PF\|UNMAPPED_PF\|UNMAPPED_PF |
 | CR-D-05.1-001 | D-05.1     | 3 (MUST)     | GV.OC-03, GV.PO-01, ID.AM-03, PR.DS-01, PR.DS-10, PR.PS-06                                                                                                               | CT.PO-P4, CT.DP-P4, ID.RA-P3                                    | pending Case_02/03 | A.8.10    | -         | GV.OC-03\|GV.PO-01\|ID.AM-03\|PR.DS-01\|PR.DS-10\|PR.PS-06                             | CT.PO-P4\|CT.DP-P4\|ID.RA-P3                          |
 | CR-D-05.2-001 | D-05.2     | 3 (MUST)     | GV.OC-04, GV.OV-02, GV.PO-02, ID.AM-03, PR.DS-10, PR.PS-02, PR.PS-04                                                                                                     | CT.PO-P4, CT.DM-P5                                              | pending Case_02/03 | A.5.33    | PS.3      | GV.OC-04\|GV.OV-02\|GV.PO-02\|ID.AM-03\|PR.DS-10\|PR.PS-02\|PR.PS-04                   | CT.PO-P4\|CT.DM-P5                                    |
-| CR-D-05.3-001 | D-05.3     | 3 (MUST)     | GV.SC-04, PR.DS-10, PR.DS-10, PR.DS-02                                                                                                                                  | CT.DM-P4, CT.DM-P5                                    | pending Case_02/03 | A.8.10    | -         | GV.SC-04\|PR.DS-10\|PR.DS-10\|PR.DS-02                                                  | CT.DM-P4\|CT.DM-P5\|UNMAPPED_PF                          |
+| CR-D-05.3-001 | D-05.3     | 3 (MUST)     | GV.SC-04, PR.DS-10, PR.DS-10, PR.DS-02                                                                                                                                  | CT.DM-P4, CT.DM-P5, PR.DS-P2                          | pending Case_02/03 | A.8.10    | -         | GV.SC-04\|PR.DS-10\|PR.DS-10\|PR.DS-02                                                  | CT.DM-P4\|CT.DM-P5\|PR.DS-P2                          |
 | CR-D-05.4-001 | D-05.4     | 2 (SHOULD)   | PR.DS-10, PR.DS-10, PR.AA-03, PR.DS-02                                                                                                                                  | CT.DM-P1, CT.DM-P6                                              | pending Case_02/03 | A.5.14    | -         | PR.DS-10\|PR.DS-10\|PR.AA-03\|PR.DS-02                                                  | CT.DM-P1\|CT.DM-P6                                    |
-| CR-D-06.1-001 | D-06.1     | 3 (MUST)     | GV.SC-01, GV.SC-02, GV.SC-03, GV.SC-04, ID.AM-04, ID.RA-02                                                                                                               | ID.IM-P2                                              | pending Case_02/03 | A.5.19    | PW.4      | GV.SC-01\|GV.SC-02\|GV.SC-03\|GV.SC-04\|ID.AM-04\|ID.RA-02                             | UNMAPPED_PF\|ID.IM-P2                                    |
+| CR-D-06.1-001 | D-06.1     | 3 (MUST)     | GV.SC-01, GV.SC-02, GV.SC-03, GV.SC-04, ID.AM-04, ID.RA-02                                                                                                               | ID.DE-P1, ID.IM-P2                                    | pending Case_02/03 | A.5.19    | PW.4      | GV.SC-01\|GV.SC-02\|GV.SC-03\|GV.SC-04\|ID.AM-04\|ID.RA-02                             | ID.DE-P1\|ID.IM-P2                                    |
 | CR-D-06.2-001 | D-06.2     | 3 (MUST)     | GV.SC-02, GV.SC-03, ID.AM-02, ID.RA-01, PR.PS-02                                                                                                                         | UNMAPPED_PRIVACY (SBOM is product-security artefact; no PF subcat anchored) | pending Case_02/03 | A.5.21    | PS.3      | GV.SC-02\|GV.SC-03\|ID.AM-02\|ID.RA-01\|PR.PS-02                                         | UNMAPPED_PRIVACY                                      |
-| CR-D-06.3-001 | D-06.3     | 3 (MUST)     | GV.OC-03, GV.SC-02, GV.SC-03, GV.SC-04, PR.DS-10, PR.PS-06, RS.MA-01, RS.MI-01                                                                                           | UNMAPPED_PF                                    | pending Case_02/03 | A.5.20    | -         | GV.OC-03\|GV.SC-02\|GV.SC-03\|GV.SC-04\|PR.DS-10\|PR.PS-06\|RS.MA-01\|RS.MI-01        | UNMAPPED_PF\|UNMAPPED_PF\|UNMAPPED_PF                          |
+| CR-D-06.3-001 | D-06.3     | 3 (MUST)     | GV.OC-03, GV.SC-02, GV.SC-03, GV.SC-04, PR.DS-10, PR.PS-06, RS.MA-01, RS.MI-01                                                                                           | ID.DE-P3, ID.DE-P4, UNMAPPED_PF (ecosystem risk into enterprise risk — no PF 1.0 subcategory) | pending Case_02/03 | A.5.20    | -         | GV.OC-03\|GV.SC-02\|GV.SC-03\|GV.SC-04\|PR.DS-10\|PR.PS-06\|RS.MA-01\|RS.MI-01        | ID.DE-P3\|ID.DE-P4\|UNMAPPED_PF                          |
 | CR-D-07.1-001 | D-07.1     | 3 (MUST)     | GV.PO-02, ID.RA-01, PR.DS-10, PR.PS-01, PR.PS-02, PR.PS-06                                                                                                               | GV.PO-P2, CT.PO-P4, CT.DP-P2, CT.DP-P4, CT.DP-P5                 | pending Case_02/03 | A.8.25    | PO.1      | GV.PO-02\|ID.RA-01\|PR.DS-10\|PR.PS-01\|PR.PS-02\|PR.PS-06                             | GV.PO-P2\|CT.PO-P4\|CT.DP-P2\|CT.DP-P4\|CT.DP-P5        |
 | CR-D-08.1-001 | D-08.1     | 3 (MUST)     | PR.AT-01, PR.AT-02, PR.PS-01                                                                                                                                              | GV.AT-P1, GV.AT-P2                                              | pending Case_02/03 | A.6.3     | PO.2      | PR.AT-01\|PR.AT-02\|PR.PS-01                                                                | GV.AT-P1\|GV.AT-P2                                    |
 | CR-D-08.2-001 | D-08.2     | 2 (SHOULD)   | GV.RR-02, GV.RR-04, GV.SC-03, PR.AT-01, PR.AT-02, PR.AT-02                                                                                                               | GV.AT-P1, GV.AT-P2                                              | pending Case_02/03 | A.6.3     | PO.2      | GV.RR-02\|GV.RR-04\|GV.SC-03\|PR.AT-01\|PR.AT-02\|PR.AT-02                             | GV.AT-P1\|GV.AT-P2                                    |
-| CR-D-09.1-001 | D-09.1     | 3 (MUST)     | GV.PO-01, GV.PO-02, GV.RM-04, GV.RR-02, GV.OV-01                                                                                                                         | GV.PO-P1, GV.PO-P5, CM.PO-P1                 | pending Case_02/03 | A.5.1     | PO.4      | GV.PO-01\|GV.PO-02\|GV.RM-04\|GV.RR-02\|GV.OV-01                                         | GV.PO-P1\|GV.PO-P5\|UNMAPPED_PF\|UNMAPPED_PF\|CM.PO-P1       |
-| CR-D-09.2-001 | D-09.2     | 3 (MUST)     | ID.RA-01, ID.RA-04, ID.RA-05, GV.RM-06, GV.OV-02                                                                                                                         | ID.RA-P3, ID.RA-P4, ID.RA-P5                           | pending Case_02/03 | A.5.7     | PW.1      | ID.RA-01\|ID.RA-04\|ID.RA-05\|GV.RM-06\|GV.OV-02                                         | ID.RA-P3\|ID.RA-P4\|ID.RA-P5\|UNMAPPED_PF                 |
+| CR-D-09.1-001 | D-09.1     | 3 (MUST)     | GV.PO-01, GV.PO-02, GV.RM-04, GV.RR-02, GV.OV-01                                                                                                                         | GV.PO-P1, GV.PO-P5, GV.PO-P3, CM.PO-P1, UNMAPPED_PF (positive-risk GV.RM-04 — no PF 1.0 subcategory) | pending Case_02/03 | A.5.1     | PO.4      | GV.PO-01\|GV.PO-02\|GV.RM-04\|GV.RR-02\|GV.OV-01                                         | GV.PO-P1\|GV.PO-P5\|UNMAPPED_PF\|GV.PO-P3\|CM.PO-P1       |
+| CR-D-09.2-001 | D-09.2     | 3 (MUST)     | ID.RA-01, ID.RA-04, ID.RA-05, GV.RM-06, GV.OV-02                                                                                                                         | ID.RA-P3, ID.RA-P4, ID.RA-P5, GV.RM-P1, GV.MT-P1       | pending Case_02/03 | A.5.7     | PW.1      | ID.RA-01\|ID.RA-04\|ID.RA-05\|GV.RM-06\|GV.OV-02                                         | ID.RA-P3\|ID.RA-P4\|ID.RA-P5\|GV.RM-P1\|GV.MT-P1          |
 | CR-D-09.4-001 | D-09.4     | 3 (MUST)     | GV.PO-02, ID.AM-08, ID.RA-05, PR.DS-10, RS.MA-03                                                                                                                         | ID.IM-P1, ID.IM-P4, ID.IM-P6, ID.IM-P8                           | pending Case_02/03 | A.5.33    | PO.3      | GV.PO-02\|ID.AM-08\|ID.RA-05\|PR.DS-10\|RS.MA-03                                         | ID.IM-P1\|ID.IM-P4\|ID.IM-P6\|ID.IM-P8                 |
 | CR-D-10.2-001 | D-10.2     | 3 (MUST)     | DE.CM-01, GV.PO-02, ID.RA-04, PR.DS-01, PR.PS-04                                                                                                                         | CT.DM-P9, CT.DM-P4                                              | pending Case_02/03 | A.8.15    | PO.3      | DE.CM-01\|GV.PO-02\|ID.RA-04\|PR.DS-01\|PR.PS-04                                         | CT.DM-P9\|CT.DM-P4                                    |
 | CR-D-10.3-001 | D-10.3     | 3 (MUST)     | DE.AE-02, GV.OV-03, ID.RA-05, ID.IM-02, PR.PS-06                                                                                                                         | ID.RA-P3, ID.RA-P5                                    | pending Case_02/03 | A.5.35    | PW.7      | DE.AE-02\|GV.OV-03\|ID.RA-05\|ID.IM-02\|PR.PS-06                                         | ID.RA-P3\|ID.RA-P5\|UNMAPPED_PF                          |
 
-**Counts (§1):** 30 CR rows. Privacy FW mapped for 27 of 30 (3 UNMAPPED_PRIVACY: CR-D-02.2-001 patch cadence, CR-D-02.3-001 CVD, CR-D-06.2-001 SBOM — product-security concerns with no direct privacy-subcategory anchor). AI RMF placeholder on every row. ISO 27001 first/primary control from crosswalk per sub-domain. SSDF first/primary from crosswalk; `-` for sub-domains where the crosswalk has no SSDF row (D-01.2, D-01.3, D-01.4, D-03.1, D-03.2, D-03.3, D-04.2, D-04.3, D-04.4, D-05.1, D-05.3, D-05.4, D-06.3).
+**Counts (§1):** 30 CR rows. Privacy FW (revised 2026-08-27 per VALIDATOR_UNMAPPED_AUDIT_v0 — canonical PF 1.0, draft-1.1 exclusions removed): **13 rows fully mapped**; **14 rows partially mapped** (remaining `UNMAPPED_PF` element-level tokens are genuine no-PF-1.0-analogues — logging (PR.PS-04), incident-authority reporting (RS.MA-*), Recover axis (RC.RP-*), SDLC security (PR.PS-06), positive-risk (GV.RM-04), asset inventories (ID.AM-*) — each with justification); **3 rows UNMAPPED_PRIVACY** (CR-D-02.2-001 patch cadence, CR-D-02.3-001 CVD, CR-D-06.2-001 SBOM — product-security concerns with no PF subcategory). AI RMF placeholder on every row. ISO 27001 first/primary control from crosswalk per sub-domain. SSDF first/primary from crosswalk; `-` for sub-domains where the crosswalk has no SSDF row (D-01.2, D-01.3, D-01.4, D-03.1, D-03.2, D-03.3, D-04.2, D-04.3, D-04.4, D-05.1, D-05.3, D-05.4, D-06.3).
 
 ---
 ## §2 - Vista Govern Consolidada
@@ -142,7 +142,7 @@ crosswalk_decision: >
 | Framework   | Subcategoria      | Statement (resumo)                       | Cobertura Case_01                                              |
 |-------------|-------------------|------------------------------------------|----------------------------------------------------------------|
 | CSF 2.0     | GV.RR-01..04      | Papeis definidos e autoridade           | CR-D-08.2-001 (GV.RR-02, GV.RR-04), CR-D-09.1-001 (GV.RR-02)   |
-| Privacy FW  | UNMAPPED_PF..P4      | Responsabilidade privacidade + recursos | CR-D-09.1-001 (UNMAPPED_PF) - alocacao recursos                  |
+| Privacy FW  | GV.PO-P3, GV.PO-P4      | Responsabilidade privacidade + coordenação 3rd-party | CR-D-09.1-001 (GV.PO-P3 papeis workforce; recursos sem âncora PF 1.0 — UNMAPPED_PF justificado) |
 | AI RMF      | GOVERN-4.*        | (pending Case_02/03)                     | placeholder                                                     |
 
 ### 2.5 Gestao de risco
@@ -150,7 +150,7 @@ crosswalk_decision: >
 | Framework   | Subcategoria                                       | Statement (resumo)                       | Cobertura Case_01                                                                                                                                                                                                                       |
 |-------------|----------------------------------------------------|------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | CSF 2.0     | GV.RM-01..07, GV.OV-01..03, ID.RA-01..06           | Risco estrategia + oversight + assessment | CR-D-01.3-001 (GV.RM-04), CR-D-02.1-001 (GV.OV-02), CR-D-02.2-001 (GV.OV-02), CR-D-05.2-001 (GV.OV-02), CR-D-09.1-001 (GV.OV-01), CR-D-09.2-001 (GV.RM-06, GV.OV-02), CR-D-10.3-001 (GV.OV-03)                                  |
-| Privacy FW  | ID.RA-P1..P6, GV.PO-P5, GV.RM-P1..P7              | Risco privacidade + resposta estrategica  | CR-D-02.1-001 (ID.RA-P3, ID.RA-P5), CR-D-05.1-001 (ID.RA-P3), CR-D-09.2-001 (ID.RA-P3, ID.RA-P4, ID.RA-P5), CR-D-10.3-001 (ID.RA-P3, ID.RA-P5), CR-D-09.1-001 (GV.PO-P5), CR-D-09.2-001 (UNMAPPED_PF)                        |
+| Privacy FW  | ID.RA-P1..P6, GV.PO-P5, GV.RM-P1..P7              | Risco privacidade + resposta estrategica  | CR-D-02.1-001 (ID.RA-P3, ID.RA-P5), CR-D-05.1-001 (ID.RA-P3), CR-D-09.2-001 (ID.RA-P3, ID.RA-P4, ID.RA-P5, GV.RM-P1), CR-D-10.3-001 (ID.RA-P3, ID.RA-P5), CR-D-09.1-001 (GV.PO-P5)                        |
 | AI RMF      | GOVERN-5.*                                          | (pending Case_02/03)                     | placeholder                                                                                                                                                                                                                             |
 
 ### 2.6 Estrategia, monitorizacao e melhoria continua
@@ -158,7 +158,7 @@ crosswalk_decision: >
 | Framework   | Subcategoria                            | Statement (resumo)                       | Cobertura Case_01                                                                                          |
 |-------------|-----------------------------------------|------------------------------------------|------------------------------------------------------------------------------------------------------------|
 | CSF 2.0     | GV.STR-*, GV.OV-03, ID.IM-01..04        | Melhoria continua + metricas            | CR-D-02.1-001 (ID.IM-02), CR-D-10.3-001 (GV.OV-03, ID.IM-02)                                              |
-| Privacy FW  | UNMAPPED_PF..P3, GV.MT-P1..P7, GV.PO-P5    | Oversight + monitorizacao + revisao     | CR-D-04.1-001 (UNMAPPED_PF), CR-D-09.1-001 (GV.PO-P5), CR-D-09.2-001 (UNMAPPED_PF), CR-D-10.3-001 (UNMAPPED_PF)   |
+| Privacy FW  | GV.MT-P1..P7, GV.PO-P5    | Oversight + monitorizacao + revisao     | CR-D-09.1-001 (GV.PO-P5), CR-D-09.2-001 (GV.MT-P1), CR-D-10.3-001 (- ; PR.PS-06 sem âncora PF 1.0)   |
 | AI RMF      | GOVERN-6.*                              | (pending Case_02/03)                     | placeholder                                                                                                |
 
 > **Note on §2.5 / §2.6 privacy gaps:** No Case_01 CR is anchored on
@@ -187,21 +187,27 @@ crosswalk_decision: >
   priority_label: MUST
   csf_subcategories: [PR.DS-01, PR.DS-10, PR.PS-04]
   privacy_subcategories: [PR.DS-P1]
+  unmapped_pf_justification: >
+    PR.DS-10 (data managed per risk strategy) and PR.PS-04 (log records) have
+    no PF 1.0 analogue: PF 1.0 CT.DM-P8 covers audit/log records only for
+    processing-transparency purposes, not security logging; no risk-strategy
+    data-management subcategory exists.
   mapping_rationale: >
     Doc 11 field 5 anchors PR.DS-01 (CIA at rest), PR.DS-10 (data-in-use),
-    PR.PS-04 (log records). Privacy FW mirrors PR.DS-P1 + UNMAPPED_PF for the
-    at-rest axis and adds UNMAPPED_PF (resilience) per SR-GDPR-001 baseline.
+    PR.PS-04 (log records). Privacy FW mirrors PR.DS-P1 for the at-rest axis.
 
 - rule_id: CR-D-01.2-001
   subdomain: D-01.2
   normative_intensity: 3
   priority_label: MUST
   csf_subcategories: [PR.DS-02, PR.IR-01, PR.PS-04]
-  privacy_subcategories: [PR.DS-P2]
+  privacy_subcategories: [PR.DS-P2, PR.PO-P7]
+  unmapped_pf_justification: >
+    PR.PS-04 (log records) has no PF 1.0 security-logging subcategory.
   mapping_rationale: >
     Doc 11 anchors PR.DS-02 (in-transit CIA) + PR.IR-01 (network protection)
-    + PR.PS-04 (logs). Privacy FW SR-GDPR-002 baseline provides PR.DS-P2 +
-    UNMAPPED_PF.
+    + PR.PS-04 (logs). Privacy FW: PR.DS-P2 (in-transit) + PR.PO-P7
+    (incident-response/recovery plans established) per SR-GDPR-002 baseline.
 
 - rule_id: CR-D-01.3-001
   subdomain: D-01.3
@@ -277,22 +283,33 @@ crosswalk_decision: >
   normative_intensity: 3
   priority_label: MUST
   csf_subcategories: [ID.AM-01, PR.AA-01, PR.AA-02, PR.AA-03, PR.AA-05, PR.AA-06, PR.DS-10]
-  privacy_subcategories: [UNMAPPED_PF]
+  privacy_subcategories: [PR.AC-P1, PR.AC-P6, PR.AC-P4]
+  unmapped_pf_justification: >
+    ID.AM-01 (hardware inventories) and PR.DS-10 (risk-strategy data
+    management) have no PF 1.0 analogue — PF 1.0 inventories are
+    data-ecosystem-scoped (ID.IM), not asset-registry-scoped.
   mapping_rationale: >
     Doc 11 covers identity lifecycle + access control + data protection.
-    Privacy FW SR-GDPR-009 maps identity proofing (UNMAPPED_PF) +
-    authentication-commensurate-with-risk (UNMAPPED_PF).
+    Privacy FW: PR.AC-P1 (identities/credentials managed) maps PR.AA-01;
+    PR.AC-P6 (proofed and bound to credentials, authenticated commensurate
+    with risk) maps PR.AA-02 + PR.AA-03; PR.AC-P4 (least privilege +
+    separation of duties) maps PR.AA-05 + PR.AA-06.
 
 - rule_id: CR-D-03.2-001
   subdomain: D-03.2
   normative_intensity: 2
   priority_label: SHOULD
   csf_subcategories: [PR.AA-03, PR.AA-04, PR.AA-05, PR.AA-06, PR.AT-02]
-  privacy_subcategories: [UNMAPPED_PF]
+  privacy_subcategories: [PR.AC-P6, PR.AC-P4, GV.AT-P1]
+  unmapped_pf_justification: >
+    PR.AA-04 (identity assertions protected/conveyed/verified) has no PF 1.0
+    subcategory — the concept exists only in the draft 1.1 (PR.AA-P4, non-
+    final); see §6.3 gap row.
   mapping_rationale: >
     Doc 11 anchors MFA on PR.AA-03..06 + PR.AT-02 (specialized-role
-    awareness). Privacy FW: UNMAPPED_PF (authentication commensurate with
-    risk) - same axis. CR has NI=2 SHOULD per Block B (single CRA clause
+    awareness). Privacy FW: PR.AC-P6 (authentication commensurate with risk),
+    PR.AC-P4 (least-privilege access), GV.AT-P1 (workforce informed and
+    trained). CR has NI=2 SHOULD per Block B (single CRA clause
     NI=2 -> AVG(2)=2 -> bucket P2 SHOULD).
 
 - rule_id: CR-D-03.3-001
@@ -300,12 +317,15 @@ crosswalk_decision: >
   normative_intensity: 3
   priority_label: MUST
   csf_subcategories: [ID.AM-01, ID.AM-02, PR.AA-01, PR.AA-03, PR.AA-05, PR.AA-06, PR.PS-04]
-  privacy_subcategories: [CT.PO-P1]
+  privacy_subcategories: [CT.PO-P1, PR.AC-P1, PR.AC-P6, PR.AC-P4]
+  unmapped_pf_justification: >
+    ID.AM-01/ID.AM-02 (asset inventories) and PR.PS-04 (log records) have no
+    PF 1.0 analogue (see CR-D-03.1-001).
   mapping_rationale: >
     Doc 11 anchors least privilege across identity + access + logs.
-    Privacy FW SR-GDPR-011 baseline: UNMAPPED_PF (identities managed) +
-    UNMAPPED_PF (physical/logical access) + CT.PO-P1 (authorizing data
-    processing). All three are native Privacy FW concerns.
+    Privacy FW: CT.PO-P1 (authorizing data processing) + PR.AC-P1
+    (identities managed) + PR.AC-P6 (proofing/authentication) + PR.AC-P4
+    (least privilege/SoD). All are native Privacy FW concerns.
 
 - rule_id: CR-D-03.4-001
   subdomain: D-03.4
@@ -324,11 +344,14 @@ crosswalk_decision: >
   priority_label: MUST
   csf_subcategories: [DE.AE-02, DE.CM-01, DE.CM-09, ID.RA-04, PR.PS-04, RS.MA-01, RS.MA-02, RS.MA-03]
   privacy_subcategories: [CM.AW-P7]
+  unmapped_pf_justification: >
+    PR.PS-04 (log records) and RS.MA-* (incident reporting to authorities)
+    have no PF 1.0 counterpart — PF 1.0 CM.AW-P7 covers privacy-breach
+    notification only.
   mapping_rationale: >
     Doc 11 covers detection + monitoring + incident management (8 anchors).
-    Privacy FW SR-GDPR-014 baseline: CM.AW-P7 (privacy breach notification)
-    + UNMAPPED_PF (performance review). Privacy FW explicitly recognises that
-    continuous breach detection underpins the 72h clock.
+    Privacy FW: CM.AW-P7 (privacy breach notification). Privacy FW explicitly
+    recognises that continuous breach detection underpins the 72h clock.
 
 - rule_id: CR-D-04.2-001
   subdomain: D-04.2
@@ -365,11 +388,16 @@ crosswalk_decision: >
   normative_intensity: 3
   priority_label: MUST
   csf_subcategories: [PR.DS-01, PR.DS-10, PR.IR-03, PR.IR-04, RC.RP-01, RC.RP-03, RC.RP-04]
-  privacy_subcategories: [UNMAPPED_PF]
+  privacy_subcategories: [PR.DS-P1, PR.PO-P7, PR.DS-P4, PR.PT-P4]
+  unmapped_pf_justification: >
+    RC.RP-01/03/04 (recovery execution) have no PF 1.0 counterpart — PF 1.0
+    has no Respond/Recover functions; PR.DS-10 (risk-strategy data mgmt) has
+    no analogue. PR.IR-03 (resilience mechanisms) maps to PR.PT-P4 and
+    PR.IR-04 (resource capacity) maps to PR.DS-P4, both verbatim canonical.
   mapping_rationale: >
-    Doc 11 covers backup + resilience + recovery verification. Privacy FW
-    SR-GDPR-024 baseline: UNMAPPED_PF (resilience) (capacity),
-    UNMAPPED_PF (backups). Direct mirror.
+    Doc 11 covers backup + resilience + recovery verification. Privacy FW:
+    PR.DS-P1 (at-rest), PR.PO-P7 (response/recovery plans),
+    PR.DS-P4 (capacity), PR.PT-P4 (resilience mechanisms).
 
 - rule_id: CR-D-05.1-001
   subdomain: D-05.1
@@ -399,11 +427,11 @@ crosswalk_decision: >
   normative_intensity: 3
   priority_label: MUST
   csf_subcategories: [GV.SC-04, PR.DS-10, PR.DS-10, PR.DS-02]
-  privacy_subcategories: [CT.DM-P4, CT.DM-P5]
+  privacy_subcategories: [CT.DM-P4, CT.DM-P5, PR.DS-P2]
   mapping_rationale: >
     Doc 11 covers supplier + data-in-use + data-in-transit + integrity.
-    Privacy FW SR-GDPR-030/031 baseline: CT.DM-P4 (deletion access) +
-    CT.DM-P5 (destruction) + UNMAPPED_PF (processor contracts).
+    Privacy FW: CT.DM-P4 (deletion access) + CT.DM-P5 (destruction) +
+    PR.DS-P2 (data-in-transit protected).
 
 - rule_id: CR-D-05.4-001
   subdomain: D-05.4
@@ -421,11 +449,12 @@ crosswalk_decision: >
   normative_intensity: 3
   priority_label: MUST
   csf_subcategories: [GV.SC-01, GV.SC-02, GV.SC-03, GV.SC-04, ID.AM-04, ID.RA-02]
-  privacy_subcategories: [ID.IM-P2]
+  privacy_subcategories: [ID.DE-P1, ID.IM-P2]
   mapping_rationale: >
     Doc 11 anchors supplier due diligence across supply-chain + asset +
-    risk. Privacy FW SR-GDPR-033 baseline: UNMAPPED_PF (routine third-party
-    assessment) + ID.IM-P2 (owners/operators inventoried).
+    risk. Privacy FW: ID.DE-P1 (ecosystem risk-management policies
+    established) maps GV.SC-01; ID.IM-P2 (owners/operators inventoried)
+    per SR-GDPR-033 baseline.
 
 - rule_id: CR-D-06.2-001
   subdomain: D-06.2
@@ -446,13 +475,15 @@ crosswalk_decision: >
   normative_intensity: 3
   priority_label: MUST
   csf_subcategories: [GV.OC-03, GV.SC-02, GV.SC-03, GV.SC-04, PR.DS-10, PR.PS-06, RS.MA-01, RS.MI-01]
-  privacy_subcategories: [UNMAPPED_PF]
+  privacy_subcategories: [ID.DE-P3, ID.DE-P4]
+  unmapped_pf_justification: >
+    Ecosystem-risk integration into enterprise risk has no dedicated PF 1.0
+    subcategory (covered indirectly by GV.PO-P6; see §6.3 gap row).
   mapping_rationale: >
     Doc 11 anchors contractual processor duties across supply-chain +
-    governance + data-security + incident reporting. Privacy FW SR-GDPR-034
-    + SR-GDPR-036 baselines: UNMAPPED_PF (contracts implement obligations) +
-    UNMAPPED_PF (interoperability/multi-party) + UNMAPPED_PF (integrated into
-    enterprise risk).
+    governance + data-security + incident reporting. Privacy FW:
+    ID.DE-P3 (contracts implement privacy-programme measures) +
+    ID.DE-P4 (interoperability/multi-party frameworks).
 
 - rule_id: CR-D-07.1-001
   subdomain: D-07.1
@@ -496,24 +527,28 @@ crosswalk_decision: >
   normative_intensity: 3
   priority_label: MUST
   csf_subcategories: [GV.PO-01, GV.PO-02, GV.RM-04, GV.RR-02, GV.OV-01]
-  privacy_subcategories: [GV.PO-P1, GV.PO-P5, CM.PO-P1]
+  privacy_subcategories: [GV.PO-P1, GV.PO-P5, GV.PO-P3, CM.PO-P1]
+  unmapped_pf_justification: >
+    GV.RM-04 (positive-risk/strategic opportunity) has no PF 1.0 subcategory
+    — GV.RM-P1..P3 cover risk processes and tolerance only; resource
+    allocation likewise has no dedicated subcategory.
   mapping_rationale: >
     Doc 11 anchors security governance to policy + risk + roles + oversight.
-    Privacy FW SR-GDPR-043 + SR-GDPR-026 baselines: GV.PO-P1 (privacy
-    values/policies), GV.PO-P5 (legal requirements) (strategic
-    direction) (adequate resources), CM.PO-P1 (transparency).
+    Privacy FW: GV.PO-P1 (privacy values/policies), GV.PO-P5 (legal
+    requirements), GV.PO-P3 (workforce privacy roles — maps GV.RR-02),
+    CM.PO-P1 (transparency).
 
 - rule_id: CR-D-09.2-001
   subdomain: D-09.2
   normative_intensity: 3
   priority_label: MUST
   csf_subcategories: [ID.RA-01, ID.RA-04, ID.RA-05, GV.RM-06, GV.OV-02]
-  privacy_subcategories: [ID.RA-P3, ID.RA-P4, ID.RA-P5]
+  privacy_subcategories: [ID.RA-P3, ID.RA-P4, ID.RA-P5, GV.RM-P1, GV.MT-P1]
   mapping_rationale: >
     Doc 11 anchors DPIA + CRA-RA to risk-assessment IDs + governance.
-    Privacy FW SR-GDPR-045 + SR-GDPR-046 + SR-GDPR-047 baselines:
-    ID.RA-P3 (problematic actions), ID.RA-P4 (likelihoods/impacts),
-    ID.RA-P5 (risk responses) (strategy reviewed/adjusted).
+    Privacy FW: ID.RA-P3 (problematic actions), ID.RA-P4 (likelihoods/
+    impacts), ID.RA-P5 (risk responses), GV.RM-P1 (risk-management processes,
+    maps GV.RM-06), GV.MT-P1 (ongoing re-evaluation, maps GV.OV-02).
 
 - rule_id: CR-D-09.4-001
   subdomain: D-09.4
@@ -550,10 +585,15 @@ crosswalk_decision: >
   priority_label: MUST
   csf_subcategories: [DE.AE-02, GV.OV-03, ID.RA-05, ID.IM-02, PR.PS-06]
   privacy_subcategories: [ID.RA-P3, ID.RA-P5]
+  unmapped_pf_justification: >
+    PR.PS-06 (secure SDLC) has no PF 1.0 subcategory — platform-security
+    (PR.PS) exists only in the non-final PF 1.1 draft; GV.OV-03 maps to
+    GV.MT-P1 (ongoing privacy-risk re-evaluation) at view level (§2.6).
   mapping_rationale: >
     Doc 11 anchors control testing to anomaly analysis + oversight +
-    risk + improvement + secure dev. Privacy FW SR-GDPR-008 + SR-GDPR-047
-    baselines (D-09.2/D-10.3 co-mapped): ID.RA-P3 + ID.RA-P5 + UNMAPPED_PF.
+    risk + improvement + secure dev. Privacy FW: ID.RA-P3 + ID.RA-P5
+    (risk identification/response per SR-GDPR-008/SR-GDPR-047 baselines,
+    D-09.2/D-10.3 co-mapped).
 
 - rule_id: BPR-D-01.1-001
   subdomain: D-01.1
@@ -571,10 +611,10 @@ crosswalk_decision: >
   normative_intensity: 2
   priority_label: SHOULD
   csf_subcategories: [PR.DS-02, PR.IR-01, PR.PS-04]
-  privacy_subcategories: [PR.DS-P2]
+  privacy_subcategories: [PR.DS-P2, PR.PO-P7]
   mapping_rationale: >
     Framework-derived (documented control catalogue SC-8). Same axis as CR-D-01.2-001.
-    Privacy FW: PR.DS-P2 + UNMAPPED_PF.
+    Privacy FW: PR.DS-P2 + PR.PO-P7.
 
 - rule_id: BPR-D-02.1-001
   subdomain: D-02.1
@@ -604,21 +644,27 @@ crosswalk_decision: >
   normative_intensity: 2
   priority_label: SHOULD
   csf_subcategories: [PR.AA-01, PR.AA-03, PR.AA-05, PR.AA-06, ID.AM-01]
-  privacy_subcategories: [UNMAPPED_PF]
+  privacy_subcategories: [PR.AC-P1, PR.AC-P6, PR.AC-P4]
+  unmapped_pf_justification: >
+    ID.AM-01 (hardware inventories) has no PF 1.0 analogue (see CR-D-03.1-001).
   mapping_rationale: >
     Framework-derived (ISO 27001 A.9.2). Doc 11 anchors: PR.AA-01/03/05/06
-    + ID.AM-01. Privacy FW mirrors UNMAPPED_PF + UNMAPPED_PF.
+    + ID.AM-01. Privacy FW mirrors as for CR-D-03.1-001: PR.AC-P1 +
+    PR.AC-P6 + PR.AC-P4.
 
 - rule_id: BPR-D-03.2-001
   subdomain: D-03.2
   normative_intensity: 2
   priority_label: SHOULD
   csf_subcategories: [PR.AA-03, PR.AA-04, PR.AA-05, PR.AA-06]
-  privacy_subcategories: [UNMAPPED_PF]
+  privacy_subcategories: [PR.AC-P6, PR.AC-P4]
+  unmapped_pf_justification: >
+    PR.AA-04 (identity assertions) has no PF 1.0 subcategory — FIDO2 origin
+    binding documented as §6.3 gap (see CR-D-03.2-001).
   mapping_rationale: >
     Framework-derived (NIST IA-2). FIDO2 is phishing-resistant factor;
-    Privacy FW: UNMAPPED_PF (authentication commensurate with risk) +
-    UNMAPPED_PF (identity assertions protected/verified - FIDO2 origin binding).
+    Privacy FW: PR.AC-P6 (authentication commensurate with risk) +
+    PR.AC-P4 (least-privilege access).
 
 - rule_id: BPR-D-03.4-001
   subdomain: D-03.4
@@ -727,8 +773,8 @@ crosswalk_decision: >
   privacy_subcategories: [ID.RA-P3, ID.RA-P5]
   mapping_rationale: >
     Framework-derived (NIST CA-2). Doc 11 anchors: GV.OV-03 + ID.RA-01/04/05
-    + ID.IM-02. Privacy FW: ID.RA-P3 + ID.RA-P5 + UNMAPPED_PF (privacy risk
-    mgmt performance reviewed).
+    + ID.IM-02. Privacy FW: ID.RA-P3 + ID.RA-P5 + GV.MT-P1 (privacy risk
+    mgmt performance reviewed, maps GV.OV-03).
 
 - rule_id: BPR-D-10.3-002
   subdomain: D-10.3
@@ -744,10 +790,10 @@ crosswalk_decision: >
 **Counts (§3):** 30 CR + 16 BPR = **46 blocks**. CSF anchors per CR: median
 5 (range 4-8). Privacy FW anchors per CR with mapping: median 2 (range 1-5);
 3 CR use `UNMAPPED_PRIVACY` (CR-D-02.2-001, CR-D-02.3-001, CR-D-06.2-001).
-BPR mirror the CR mappings where framework source is security-only
-(BPR-D-02.2-001, BPR-D-03.2-001 add UNMAPPED_PF); privacy axes where the
-framework source addresses privacy (BPR-D-09.1-001 picks up GV.RM-P1 +
-UNMAPPED_PF).
+BPR mirror the CR mappings where framework source is security-only;
+element-level gaps carry `unmapped_pf_justification` (revised 2026-08-27:
+false UNMAPPED_PF tokens replaced by canonical PF 1.0 IDs — PR.AC/PR.PO/
+PR.DS/ID.DE families reinstated; see §6.2).
 
 ---
 
@@ -883,20 +929,20 @@ UNMAPPED_PF).
 | GV.PO-P5      | 0 legal requirements untracked. 1 informal. 2 register. 3 register + owner + review. 4 register + auto-change-detection. |
 | GV.PO-P6      | 0 no enterprise risk integration. 1 implicit. 2 documented. 3 integrated + tracked. 4 integrated + auto-tracked. |
 | GV.RM-P1      | 0 no objectives. 1 implicit. 2 documented. 3 agreed + tracked. 4 aligned to KPIs + adaptive. |
-| UNMAPPED_PF      | 0 no strategic direction. 1 informal. 2 documented. 3 communicated + used. 4 embedded. |
-| UNMAPPED_PF      | 0 leadership disengaged. 1 passive. 2 formally accountable. 3 active sponsor + culture programme. 4 continuous champion. |
-| UNMAPPED_PF      | 0 no workforce roles. 1 informal. 2 documented. 3 communicated + enforced. 4 continuously validated. |
-| UNMAPPED_PF      | 0 no external coordination. 1 ad-hoc. 2 documented. 3 aligned + reviewed. 4 aligned + automated. |
-| UNMAPPED_PF      | 0 no resource allocation. 1 informal. 2 budget line. 3 budget + FTE allocated. 4 dynamically tracked. |
-| UNMAPPED_PF      | 0 no contractual privacy obligations. 1 ad-hoc. 2 DPA template. 3 DPA + supplier clauses. 4 DPA + continuous verification. |
-| UNMAPPED_PF      | 0 no multi-party frameworks. 1 informal. 2 documented. 3 used in active partnerships. 4 used + automated + monitored. |
-| UNMAPPED_PF      | 0 no third-party assessment. 1 informal. 2 annual review. 3 risk-based cadence. 4 automated + real-time. |
-| UNMAPPED_PF      | 0 no integration with enterprise risk. 1 informal. 2 documented. 3 integrated. 4 integrated + adaptive. |
+| N/A-PF (draft-1.1) | 0 no strategic direction. 1 informal. 2 documented. 3 communicated + used. 4 embedded. |
+| N/A-PF (draft-1.1) | 0 leadership disengaged. 1 passive. 2 formally accountable. 3 active sponsor + culture programme. 4 continuous champion. |
+| GV.PO-P3      | 0 no workforce roles. 1 informal. 2 documented. 3 communicated + enforced. 4 continuously validated. |
+| GV.PO-P4      | 0 no external coordination. 1 ad-hoc. 2 documented. 3 aligned + reviewed. 4 aligned + automated. |
+| N/A-PF (draft-1.1) | 0 no resource allocation. 1 informal. 2 budget line. 3 budget + FTE allocated. 4 dynamically tracked. |
+| ID.DE-P3      | 0 no contractual privacy obligations. 1 ad-hoc. 2 DPA template. 3 DPA + supplier clauses. 4 DPA + continuous verification. |
+| ID.DE-P4      | 0 no multi-party frameworks. 1 informal. 2 documented. 3 used in active partnerships. 4 used + automated + monitored. |
+| ID.DE-P5      | 0 no third-party assessment. 1 informal. 2 annual review. 3 risk-based cadence. 4 automated + real-time. |
+| GV.PO-P6      | 0 no integration with enterprise risk. 1 informal. 2 documented. 3 integrated. 4 integrated + adaptive. |
 | GV.AT-P1      | 0 no awareness. 1 annual email. 2 annual programme. 3 programme + tracking. 4 continuous + simulation. |
 | GV.AT-P2      | 0 no role training. 1 ad-hoc. 2 annual role module. 3 role matrix + completion. 4 role matrix + continuous + competency test. |
-| UNMAPPED_PF      | 0 no outcome review. 1 ad-hoc. 2 annual. 3 KPI-tracked. 4 real-time dashboard. |
-| UNMAPPED_PF      | 0 no strategy review. 1 ad-hoc. 2 annual. 3 review with change triggers. 4 automated + adaptive. |
-| UNMAPPED_PF      | 0 no performance review. 1 informal. 2 annual. 3 KPI-tracked + management review. 4 continuous + auto-adjustment. |
+| GV.MT-P1      | 0 no outcome review. 1 ad-hoc. 2 annual. 3 KPI-tracked. 4 real-time dashboard. |
+| GV.MT-P2      | 0 no strategy review. 1 ad-hoc. 2 annual. 3 review with change triggers. 4 automated + adaptive. |
+| GV.MT-P3      | 0 no performance review. 1 informal. 2 annual. 3 KPI-tracked + management review. 4 continuous + auto-adjustment. |
 | CT.PO-P1      | 0 no authorising-data-processing policies. 1 informal. 2 documented. 3 policies + revocation + audit. 4 policies + automated. |
 | CT.PO-P2      | 0 no review/transfer/deletion policies. 1 informal. 2 documented. 3 enforced + tracked. 4 automated + metrics. |
 | CT.PO-P3      | 0 no individual-preference policies. 1 informal. 2 documented. 3 preferences API. 4 preferences + auto-routing + audit. |
@@ -918,24 +964,26 @@ UNMAPPED_PF).
 | CM.AW-P5      | 0 no correction/deletion communication. 1 ad-hoc. 2 documented. 3 endpoint + tracked. 4 endpoint + auto-cascade + tracked. |
 | CM.AW-P7      | 0 no breach notification. 1 ad-hoc. 2 documented procedure. 3 procedure + templates + clock + tested. 4 procedure + auto + SLA tracking. |
 | CM.AW-P8      | 0 no mitigation mechanisms. 1 ad-hoc. 2 documented. 3 mechanisms + tracked + offered. 4 mechanisms + auto + personalised. |
-| UNMAPPED_PF      | 0 no identity mgmt. 1 ad-hoc. 2 IAM documented. 3 IAM + lifecycle. 4 IAM + auto + adaptive. |
-| UNMAPPED_PF      | 0 no identity proofing. 1 password only. 2 password + MFA. 3 risk-based. 4 continuous + adaptive. |
-| UNMAPPED_PF      | 0 no auth commensurate with risk. 1 password. 2 MFA. 3 risk-based MFA. 4 continuous + adaptive. |
-| UNMAPPED_PF      | 0 no assertion protection. 1 weak. 2 signed. 3 signed + verified + logged. 4 cryptographic + replay-protected. |
-| UNMAPPED_PF      | 0 no physical access. 1 ad-hoc. 2 documented. 3 enforced + logged + reviewed. 4 enforced + auto + reviewed. |
+| PR.AC-P1      | 0 no identity mgmt. 1 ad-hoc. 2 IAM documented. 3 IAM + lifecycle. 4 IAM + auto + adaptive. |
+| PR.AC-P6      | 0 no identity proofing. 1 password only. 2 password + MFA. 3 risk-based. 4 continuous + adaptive. |
+| N/A-PF (draft-1.1) | 0 no auth commensurate with risk. 1 password. 2 MFA. 3 risk-based MFA. 4 continuous + adaptive. |
+| N/A-PF (draft-1.1) | 0 no assertion protection. 1 weak. 2 signed. 3 signed + verified + logged. 4 cryptographic + replay-protected. |
+| PR.AC-P2      | 0 no physical access. 1 ad-hoc. 2 documented. 3 enforced + logged + reviewed. 4 enforced + auto + reviewed. |
 | PR.PO-P7      | 0 no incident response plan. 1 implicit. 2 documented. 3 playbook + tested. 4 playbook + automated + quarterly review. |
-| UNMAPPED_PF      | 0 no network protection. 1 basic. 2 managed network boundary + SG. 3 managed network boundary + SG + NACL + managed edge filtering. 4 zero-trust. |
-| UNMAPPED_PF      | 0 no resilience. 1 ad-hoc. 2 documented RTO/RPO. 3 RTO/RPO + tested. 4 automated failover. |
-| UNMAPPED_PF      | 0 no capacity planning. 1 ad-hoc. 2 annual. 3 monitored + alerts. 4 auto-scale + predictive. |
+| PR.AC-P5      | 0 no network protection. 1 basic. 2 managed network boundary + SG. 3 managed network boundary + SG + NACL + managed edge filtering. 4 zero-trust. |
+| PR.PT-P4      | 0 no resilience. 1 ad-hoc. 2 documented RTO/RPO. 3 RTO/RPO + tested. 4 automated failover. |
+| PR.DS-P4      | 0 no capacity planning. 1 ad-hoc. 2 annual. 3 monitored + alerts. 4 auto-scale + predictive. |
 | PR.DS-P1      | 0 no at-rest CIA. 1 some. 2 most + policy. 3 100% + monitoring. 4 IaC + auto-rotation. |
 | PR.DS-P2      | 0 no in-transit CIA. 1 some. 2 modern transport cryptographic standard min. 3 current transport cryptographic standard + cert mgmt. 4 current transport cryptographic standard + mTLS + auto-rotation. |
-| UNMAPPED_PF     | 0 no backups. 1 ad-hoc. 2 documented policy. 3 automated + tested restore. 4 automated + cross-region + quarterly tested. |
+| PR.PO-P3      | 0 no backups. 1 ad-hoc. 2 documented policy. 3 automated + tested restore. 4 automated + cross-region + quarterly tested. |
 
-> **Privacy FW coverage note:** 54 active PF subcategories are anchored
-> above (those appearing in §3). The remaining 50 active PF subcategories
-> (out of 104 active) are not used in Case_01 - either because no Case_01
-> CR/BPR addresses that concept, or because the concept is GDPR-untouched
-> in the baseline.
+> **Privacy FW coverage note (revised 2026-08-27):** 54 canonical PF 1.0
+> subcategories are anchored above (those appearing in §3). The remaining 46
+> canonical subcategories (out of 100) are not used in Case_01 - either
+> because no Case_01 CR/BPR addresses that concept, or because the concept is
+> GDPR-untouched in the baseline. `N/A-PF (draft-1.1)` rows are CSF-mirror
+> maturity scales for concepts that exist only in the non-final PF 1.1
+> draft; they are not canonical mapping targets.
 
 ### §4.4 Tabela de avaliacao por-Function Case_01
 
@@ -965,7 +1013,7 @@ UNMAPPED_PF).
 | GV-P (Govern-P)    | 2        | 3        | 04b: legal-requirement tracking basic; 07b D-09.1 LIGHTWEIGHT + D-09.2 LIGHTWEIGHT. CR-D-09.1-001 maps to GV.PO-P1/P5/RM-P4/RR-P4 + CM.PO-P1. Existing partial policies + new TOMs doc. |
 | CT-P (Control-P)   | 1        | 3        | 04b: data-minimisation informal; retention not formal; erasure manual; portability support-assisted. 07b D-05.x LIGHTWEIGHT. CR-D-05.x maps to CT.PO-P4 + CT.DM-P1..P6 + CT.DP-P2/P4/P5. |
 | CM-P (Communicate-P)| 1       | 3        | 04b: informal DPO escalation; no tested 24h/72h CRA/GDPR workflow. 07b D-04.3 LIGHTWEIGHT + BPR-D-04.3-002. CR-D-04.3-001 maps to CM.AW-P7/P8 + CM.PO-P1/P2. |
-| PR-P (Protect-P)   | 2        | 3        | 04b: encryption at rest/in transit implemented (mirrors CSF PR); 07b D-01.x LIGHTWEIGHT. CR-D-01.x maps to PR.DS-P1/P2/P10 + UNMAPPED_PF/P3/P4 + CT.DP-P2. |
+| PR-P (Protect-P)   | 2        | 3        | 04b: encryption at rest/in transit implemented (mirrors CSF PR); 07b D-01.x LIGHTWEIGHT. CR-D-01.x maps to PR.DS-P1/P2 + PR.PO-P7 + CT.DP-P2; element-level gaps carry unmapped_pf_justification (logging, risk-strategy mgmt). |
 
 **Heatmap formula (orchestrator decision):**
 - `gap_csf = tgt_csf - cur_csf`
@@ -1231,52 +1279,52 @@ UNMAPPED_PF).
 | ID.IM-P8         | Processing mapped - partially covered by ID.IM-P1/P4/P6 + CR-D-09.4-001. |
 | ID.BE-P1         | Organisation's role in data-processing ecosystem - covered by ID.BE-P2 indirectly + BPR-D-09.1-001 ISMS scope. |
 | ID.BE-P3         | Systems supporting organisational priorities - partially covered by ID.AM-01/02 (asset inventory); no dedicated priority artefact at MICRO. |
-| UNMAPPED_PF         | Data-processing ecosystem parties - covered by UNMAPPED_PF (CR-D-06.1-001) + D-06.x. |
-| UNMAPPED_PF         | Stakeholder expectations - partially covered by RS.MA-01. |
-| UNMAPPED_PF         | Outcomes organisation depends on - out of MICRO scope. |
+| ID.DE-P2         | Data-processing ecosystem parties identified/prioritized - covered by ID.DE-P2/ID.IM-P2 (CR-D-06.1-001) + D-06.x. |
+| UNMAPPED_PF         | Stakeholder expectations - no canonical PF 1.0 subcategory (the concept exists only as draft-1.1 ID.BE-P5); out of MICRO scope; no stakeholder-expectations register. unmapped_pf_justification: canonical PF 1.0 ID.BE has P1..P3 only. |
+| UNMAPPED_PF         | Outcomes organisation depends on - no canonical PF 1.0 subcategory (draft-1.1 ID.BE-P6 only); out of MICRO scope. unmapped_pf_justification: canonical PF 1.0 ID.BE has P1..P3 only. |
 | ID.RA-P1         | Contextual factors (demographics, perceptions) - out of MICRO scope; no user-research programme. |
-| ID.RA-P2         | (WITHDRAWN in PF 1.1 - technology-neutral) |
-| UNMAPPED_PF         | Ecosystem party risk assessment - covered by UNMAPPED_PF (CR-D-06.1-001). |
+| ID.RA-P2         | Data-analytic bias - out of MICRO scope (no analytics/bias programme). ACTIVE in canonical PF 1.0 — the prior "WITHDRAWN in PF 1.1" note referred to the non-final draft. |
+| ID.DE-P2         | Ecosystem party risk assessment - covered by ID.DE-P2 (CR-D-06.1-001 context). |
 | GV.PO-P3         | (redirect - see frozen list; not used) |
 | GV.PO-P4         | (redirect - not used) |
 | GV.PO-P6         | Enterprise-risk-management integration - covered by GV.PO-P2 (CR-D-07.1-001) + BPR-D-09.1-001 ISMS scope. |
-| UNMAPPED_PF         | Privacy in HR practices - covered by UNMAPPED_PF (workforce roles) in CR-D-09.1-001 context; no separate HR screening at MICRO. |
+| PR.PO-P9         | Privacy in HR practices - covered by PR.PO-P9 (CR-D-09.1-001 context); no separate HR screening at MICRO. |
 | GV.RM-P2         | Risk appetite/tolerance - out of MICRO formalisation; covered by GV.PO-P5 (CR-D-09.1-001). |
 | GV.RM-P3         | (redirect - not used) |
-| UNMAPPED_PF         | Communication lines for privacy risks - covered by RS.CO-02/04. |
-| UNMAPPED_PF         | Standardised risk calculation - covered by ID.RA-P4/P5 (CR-D-09.2-001). |
-| UNMAPPED_PF         | Strategic opportunities (positive risk) - out of MICRO scope. |
+| GV.MT-P4         | Communication lines for privacy risks - covered by GV.MT-P4 (CR-D-10.3-001 context). |
+| ID.RA-P4         | Standardised risk calculation - covered by ID.RA-P4 (CR-D-09.2-001). |
+| UNMAPPED_PF         | Strategic opportunities (positive risk) - no PF 1.0 subcategory for positive risk (GV.RM covers tolerance only); out of MICRO scope. unmapped_pf_justification: PF 1.0 GV.RM-P1..P3 address risk processes/tolerance only. |
 | GV.AT-P3         | (redirect - not used) |
 | GV.AT-P4         | (redirect - not used) |
-| GV.MT-P1..P7     | Monitoring + review - covered by UNMAPPED_PF/P2/P3 (CR-D-09.1-001/9.2-001/10.3-001); no separate monitoring-and-review policy beyond what CR-D-10.3 covers. |
+| GV.MT-P1..P7     | Monitoring + review - GV.MT-P1 anchored on CR-D-09.2-001 / CR-D-10.3-001 context; no separate monitoring-and-review policy beyond what CR-D-10.3 covers. |
 | CT.DP-P1         | Process to limit observability/linkability - out of MICRO scope (no local-device processing model). |
 | CT.DP-P3         | Process to limit inferential formulation - out of MICRO scope (no behavioural-analytics pipeline). |
 | CM.AW-P2         | Feedback mechanisms - out of MICRO scope (no user-research). |
 | CM.AW-P3         | Design enables processing visibility - covered indirectly by CM.AW-P1 + CM.PO-P1 (CR-D-09.1-001); no separate design-time visibility audit. |
 | CM.AW-P4         | Records of disclosures and sharing - covered indirectly by D-10.2 audit logging (CR-D-10.2-001). |
 | CM.AW-P6         | Data provenance and lineage - out of MICRO scope; no separate lineage system. |
-| PR.AC-P1..P6     | (all redirects in v1.1 to UNMAPPED_PF..P6 / UNMAPPED_PF - excluded as mapping targets per SPEC) |
-| PR.PO-P1..P6, P8, P9, P10 | (all redirects in v1.1 - excluded as mapping targets) |
-| PR.MA-P1, P2     | (redirects - excluded) |
-| PR.PT-P1..P4     | (redirects - excluded) |
-| ID.DE-P1..P5     | (all redirects in v1.1 to UNMAPPED_PF..P4 - excluded as mapping targets) |
-| ID.RA-P2         | (WITHDRAWN) |
+| PR.AC-P1..P6     | **ACTIVE in canonical PF 1.0** (Identity Management, Authentication, and Access Control). Reinstated as mapping targets 2026-08-27: PR.AC-P1/P6/P4 anchored on CR-D-03.1/03.2/03.3; PR.AC-P2 out of MICRO scope (managed hosting, no company-owned devices); PR.AC-P3/P5 (remote access, network integrity) out of MICRO scope. The prior "all redirects in v1.1" exclusion was based on the non-final PF 1.1 draft and is revoked. |
+| PR.PO-P1..P6, P8, P9, P10 | ACTIVE; P9 covered via CR-D-09.1-001 context; remainder out of MICRO scope or covered indirectly (P3 backups anchored on CR-D-04.4-001). |
+| PR.MA-P1, P2     | ACTIVE; out of MICRO scope (asset maintenance handled by managed hosting provider). Prior "redirects" note revoked. |
+| PR.PT-P1..P4     | ACTIVE; PR.PT-P4 anchored on CR-D-04.4-001 (resilience); P1-P3 out of MICRO scope. Prior "redirects" note revoked. |
+| ID.DE-P1..P5     | ACTIVE (Data Processing Ecosystem Risk Management); ID.DE-P1/P2 on CR-D-06.1-001, ID.DE-P3/P4 on CR-D-06.3-001; ID.DE-P5 routine audits out of MICRO scope (provider attestation). Prior draft-1.1 "redirect" note revoked. |
+| ID.RA-P2         | (ACTIVE; out of MICRO scope - no analytics/bias programme; see ID.RA-P2 row above) |
 
-**Subtotal (§6.2.2):** 38 PF IDs accepted as out-of-scope, redirect-only, or covered indirectly.
+**Subtotal (§6.2.2):** 38 PF ID rows accepted as out-of-scope, covered indirectly, or gap-accepted (revised 2026-08-27: draft-1.1 "redirect" exclusions revoked; PR.AC/PR.MA/PR.PT/ID.DE reinstated as ACTIVE mapping targets per canonical PF 1.0).
 
 #### §6.2.3 Documented gaps (no Case_01 CR or BPR covers these)
 
 | PF ID            | Justification (gap or accept) |
 |------------------|-------------------------------|
 | GV.PO-P6         | Enterprise-risk-management integration - covered indirectly by GV.PO-P2; **GAP** - no explicit enterprise-risk-management policy artefact, accept at MICRO since BPR-D-09.1-001 ISMS scope covers integration intent. |
-| UNMAPPED_PF         | Leadership accountable for privacy risk - **GAP** - CR-D-09.1-001 covers roles (UNMAPPED_PF resources) but not the explicit accountability statement; accept at MICRO as CTO + DPO informal accountability is sufficient. |
-| UNMAPPED_PF         | Coordination with external stakeholders - **GAP** - no explicit external coordination policy beyond D-06.x DPA terms; accept. |
+| GV.PO-P1         | Leadership accountable for privacy risk - **GAP** - CR-D-09.1-001 covers roles (GV.PO-P3) but not the explicit accountability statement; accept at MICRO as CTO + DPO informal accountability is sufficient. |
+| GV.PO-P4         | Coordination with external stakeholders - **GAP** - no explicit external coordination policy beyond D-06.x DPA terms (ID.DE-P3/P4); accept. |
 | CT.PO-P2         | Review/transfer/deletion policies - partially covered by D-05.x; **GAP** - no consolidated review-policy artefact; accept at MICRO. |
 | CT.PO-P3         | Individual preferences API - **GAP** - no self-service DSAR preference endpoint at MICRO (manual workflow per 04b §2); document as future enhancement. |
 | CT.DM-P2         | Transmission/disclosure access - **GAP** - no explicit transmission access pattern beyond what CR-D-01.2-001 + CR-D-05.4-001 cover; accept at MICRO (covered indirectly). |
 | CM.AW-P1         | Notice mechanisms - **GAP** - no multi-channel notice mechanism beyond legal-notice in product UI; covered indirectly by CR-D-09.1-001 (CM.PO-P1). |
-| UNMAPPED_PF         | Identity assertions protected/verified - covered indirectly by BPR-D-03.2-001 (FIDO2 origin binding); **GAP** for non-FIDO2 paths; accept at MICRO. |
-| UNMAPPED_PF         | Physical access to data/devices - covered indirectly by managed hosting data-centre controls; **GAP** for any company-owned devices (none at MICRO); accept. |
+| UNMAPPED_PF         | Identity assertions protected/verified - no PF 1.0 subcategory exists (the draft 1.1 PR.AA-P4 is non-final); covered indirectly by BPR-D-03.2-001 (FIDO2 origin binding); **GAP** for non-FIDO2 paths; accept at MICRO. unmapped_pf_justification: PF 1.0 has no identity-assertions subcategory. |
+| PR.AC-P2         | Physical access to data/devices - covered indirectly by managed hosting data-centre controls (PR.AC-P2); **GAP** for any company-owned devices (none at MICRO); accept. |
 | PR.PO-P5         | Improvements to data protection policies - **GAP** - no dedicated improvement loop beyond what CR-D-10.3-001 covers; accept at MICRO. |
 
 **Subtotal (§6.2.3):** 10 documented gaps (5 actual, 5 covered indirectly).
@@ -1389,41 +1437,41 @@ graph LR
 | rule_id | type | NI | subdomain | csf_subcats | priv_subcats |
 |---------|------|---:|-----------|-------------|--------------|
 | CR-D-01.1-001 | CR | 3 (MUST) | D-01.1 | PR.DS-01, PR.DS-10, PR.PS-04 | PR.DS-P1 |
-| CR-D-01.2-001 | CR | 3 (MUST) | D-01.2 | PR.DS-02, PR.IR-01, PR.PS-04 | PR.DS-P2 |
+| CR-D-01.2-001 | CR | 3 (MUST) | D-01.2 | PR.DS-02, PR.IR-01, PR.PS-04 | PR.DS-P2, PR.PO-P7 |
 | CR-D-01.3-001 | CR | 3 (MUST) | D-01.3 | GV.OV-01, GV.RM-04, PR.AA-03, PR.AA-04, PR.DS-01, PR.IR-03 | PR.DS-P1, CT.DP-P2 |
 | CR-D-01.4-001 | CR | 3 (MUST) | D-01.4 | PR.DS-01, PR.DS-02, PR.DS-10, PR.DS-01, PR.DS-10, PR.IR-03, PR.IR-04, PR.PS-04 | CT.DM-P1, CT.DM-P3 |
 | CR-D-02.1-001 | CR | 3 (MUST) | D-02.1 | GV.OV-02, ID.AM-02, ID.IM-02, ID.RA-01, ID.RA-03, ID.RA-05, PR.PS-02 | ID.RA-P3, ID.RA-P5 |
 | CR-D-02.2-001 | CR | 3 (MUST) | D-02.2 | GV.OV-02, ID.RA-01, PR.IR-03, PR.PS-01, PR.PS-02 | — |
 | CR-D-02.3-001 | CR | 3 (MUST) | D-02.3 | GV.PO-01, GV.SC-04, ID.RA-01, RS.CO-03, RS.MA-01 | — |
-| CR-D-03.1-001 | CR | 3 (MUST) | D-03.1 | ID.AM-01, PR.AA-01, PR.AA-02, PR.AA-03, PR.AA-05, PR.AA-06, PR.DS-10 | UNMAPPED_PF |
-| CR-D-03.2-001 | CR | 2 (SHOULD) | D-03.2 | PR.AA-03, PR.AA-04, PR.AA-05, PR.AA-06, PR.AT-02 | UNMAPPED_PF |
-| CR-D-03.3-001 | CR | 3 (MUST) | D-03.3 | ID.AM-01, ID.AM-02, PR.AA-01, PR.AA-03, PR.AA-05, PR.AA-06, PR.PS-04 | CT.PO-P1 |
+| CR-D-03.1-001 | CR | 3 (MUST) | D-03.1 | ID.AM-01, PR.AA-01, PR.AA-02, PR.AA-03, PR.AA-05, PR.AA-06, PR.DS-10 | PR.AC-P1, PR.AC-P6, PR.AC-P4 |
+| CR-D-03.2-001 | CR | 2 (SHOULD) | D-03.2 | PR.AA-03, PR.AA-04, PR.AA-05, PR.AA-06, PR.AT-02 | PR.AC-P6, PR.AC-P4, GV.AT-P1 |
+| CR-D-03.3-001 | CR | 3 (MUST) | D-03.3 | ID.AM-01, ID.AM-02, PR.AA-01, PR.AA-03, PR.AA-05, PR.AA-06, PR.PS-04 | CT.PO-P1, PR.AC-P1, PR.AC-P6, PR.AC-P4 |
 | CR-D-03.4-001 | CR | 3 (MUST) | D-03.4 | GV.PO-01, GV.SC-03, PR.DS-10, PR.PS-01, PR.PS-04 | CT.DP-P4, CT.PO-P4 |
 | CR-D-04.1-001 | CR | 3 (MUST) | D-04.1 | DE.AE-02, DE.CM-01, DE.CM-09, ID.RA-04, PR.PS-04, RS.MA-01, RS.MA-02, RS.MA-03 | CM.AW-P7 |
 | CR-D-04.2-001 | CR | 3 (MUST) | D-04.2 | DE.CM-09, PR.DS-10, PR.IR-03, PR.IR-04, RC.RP-01, RC.RP-04, RS.MI-01, RS.MI-02 | PR.PO-P7, CT.DM-P10 |
 | CR-D-04.3-001 | CR | 3 (MUST) | D-04.3 | RS.CO-02, RS.MA-01, RS.MA-01, RS.MA-02, RS.MA-03, RS.MA-01 | CM.AW-P7, CM.AW-P8, CM.PO-P1, CM.PO-P2 |
-| CR-D-04.4-001 | CR | 3 (MUST) | D-04.4 | PR.DS-01, PR.DS-10, PR.IR-03, PR.IR-04, RC.RP-01, RC.RP-03, RC.RP-04 | UNMAPPED_PF |
+| CR-D-04.4-001 | CR | 3 (MUST) | D-04.4 | PR.DS-01, PR.DS-10, PR.IR-03, PR.IR-04, RC.RP-01, RC.RP-03, RC.RP-04 | PR.DS-P1, PR.PO-P7, PR.DS-P4, PR.PT-P4 |
 | CR-D-05.1-001 | CR | 3 (MUST) | D-05.1 | GV.OC-03, GV.PO-01, ID.AM-03, PR.DS-01, PR.DS-10, PR.PS-06 | CT.PO-P4, CT.DP-P4, ID.RA-P3 |
 | CR-D-05.2-001 | CR | 3 (MUST) | D-05.2 | GV.OC-04, GV.OV-02, GV.PO-02, ID.AM-03, PR.DS-10, PR.PS-02, PR.PS-04 | CT.PO-P4, CT.DM-P5 |
-| CR-D-05.3-001 | CR | 3 (MUST) | D-05.3 | GV.SC-04, PR.DS-10, PR.DS-10, PR.DS-02 | CT.DM-P4, CT.DM-P5 |
+| CR-D-05.3-001 | CR | 3 (MUST) | D-05.3 | GV.SC-04, PR.DS-10, PR.DS-10, PR.DS-02 | CT.DM-P4, CT.DM-P5, PR.DS-P2 |
 | CR-D-05.4-001 | CR | 2 (SHOULD) | D-05.4 | PR.DS-10, PR.DS-10, PR.AA-03, PR.DS-02 | CT.DM-P1, CT.DM-P6 |
-| CR-D-06.1-001 | CR | 3 (MUST) | D-06.1 | GV.SC-01, GV.SC-02, GV.SC-03, GV.SC-04, ID.AM-04, ID.RA-02 | ID.IM-P2 |
+| CR-D-06.1-001 | CR | 3 (MUST) | D-06.1 | GV.SC-01, GV.SC-02, GV.SC-03, GV.SC-04, ID.AM-04, ID.RA-02 | ID.DE-P1, ID.IM-P2 |
 | CR-D-06.2-001 | CR | 3 (MUST) | D-06.2 | GV.SC-02, GV.SC-03, ID.AM-02, ID.RA-01, PR.PS-02 | — |
-| CR-D-06.3-001 | CR | 3 (MUST) | D-06.3 | GV.OC-03, GV.SC-02, GV.SC-03, GV.SC-04, PR.DS-10, PR.PS-06, RS.MA-01, RS.MI-01 | UNMAPPED_PF |
+| CR-D-06.3-001 | CR | 3 (MUST) | D-06.3 | GV.OC-03, GV.SC-02, GV.SC-03, GV.SC-04, PR.DS-10, PR.PS-06, RS.MA-01, RS.MI-01 | ID.DE-P3, ID.DE-P4 |
 | CR-D-07.1-001 | CR | 3 (MUST) | D-07.1 | GV.PO-02, ID.RA-01, PR.DS-10, PR.PS-01, PR.PS-02, PR.PS-06 | GV.PO-P2, CT.PO-P4, CT.DP-P2, CT.DP-P4, CT.DP-P5 |
 | CR-D-08.1-001 | CR | 3 (MUST) | D-08.1 | PR.AT-01, PR.AT-02, PR.PS-01 | GV.AT-P1, GV.AT-P2 |
 | CR-D-08.2-001 | CR | 2 (SHOULD) | D-08.2 | GV.RR-02, GV.RR-04, GV.SC-03, PR.AT-01, PR.AT-02, PR.AT-02 | GV.AT-P1, GV.AT-P2 |
-| CR-D-09.1-001 | CR | 3 (MUST) | D-09.1 | GV.PO-01, GV.PO-02, GV.RM-04, GV.RR-02, GV.OV-01 | GV.PO-P1, GV.PO-P5, CM.PO-P1 |
-| CR-D-09.2-001 | CR | 3 (MUST) | D-09.2 | ID.RA-01, ID.RA-04, ID.RA-05, GV.RM-06, GV.OV-02 | ID.RA-P3, ID.RA-P4, ID.RA-P5 |
+| CR-D-09.1-001 | CR | 3 (MUST) | D-09.1 | GV.PO-01, GV.PO-02, GV.RM-04, GV.RR-02, GV.OV-01 | GV.PO-P1, GV.PO-P5, GV.PO-P3, CM.PO-P1 |
+| CR-D-09.2-001 | CR | 3 (MUST) | D-09.2 | ID.RA-01, ID.RA-04, ID.RA-05, GV.RM-06, GV.OV-02 | ID.RA-P3, ID.RA-P4, ID.RA-P5, GV.RM-P1, GV.MT-P1 |
 | CR-D-09.4-001 | CR | 3 (MUST) | D-09.4 | GV.PO-02, ID.AM-08, ID.RA-05, PR.DS-10, RS.MA-03 | ID.IM-P1, ID.IM-P4, ID.IM-P6, ID.IM-P8 |
 | CR-D-10.2-001 | CR | 3 (MUST) | D-10.2 | DE.CM-01, GV.PO-02, ID.RA-04, PR.DS-01, PR.PS-04 | CT.DM-P9, CT.DM-P4 |
 | CR-D-10.3-001 | CR | 3 (MUST) | D-10.3 | DE.AE-02, GV.OV-03, ID.RA-05, ID.IM-02, PR.PS-06 | ID.RA-P3, ID.RA-P5 |
 | BPR-D-01.1-001 | BPR | 2 (SHOULD) | D-01.1 | PR.DS-01, PR.DS-10, PR.PS-04 | PR.DS-P1 |
-| BPR-D-01.2-001 | BPR | 2 (SHOULD) | D-01.2 | PR.DS-02, PR.IR-01, PR.PS-04 | PR.DS-P2 |
+| BPR-D-01.2-001 | BPR | 2 (SHOULD) | D-01.2 | PR.DS-02, PR.IR-01, PR.PS-04 | PR.DS-P2, PR.PO-P7 |
 | BPR-D-02.1-001 | BPR | 2 (SHOULD) | D-02.1 | ID.RA-01, ID.RA-03, ID.RA-05, ID.IM-02, PR.PS-02 | ID.RA-P3, ID.RA-P5 |
 | BPR-D-02.2-001 | BPR | 2 (SHOULD) | D-02.2 | ID.RA-01, PR.IR-03, PR.PS-01, PR.PS-02 | — |
-| BPR-D-03.1-001 | BPR | 2 (SHOULD) | D-03.1 | PR.AA-01, PR.AA-03, PR.AA-05, PR.AA-06, ID.AM-01 | UNMAPPED_PF |
-| BPR-D-03.2-001 | BPR | 2 (SHOULD) | D-03.2 | PR.AA-03, PR.AA-04, PR.AA-05, PR.AA-06 | UNMAPPED_PF |
+| BPR-D-03.1-001 | BPR | 2 (SHOULD) | D-03.1 | PR.AA-01, PR.AA-03, PR.AA-05, PR.AA-06, ID.AM-01 | PR.AC-P1, PR.AC-P6, PR.AC-P4 |
+| BPR-D-03.2-001 | BPR | 2 (SHOULD) | D-03.2 | PR.AA-03, PR.AA-04, PR.AA-05, PR.AA-06 | PR.AC-P6, PR.AC-P4 |
 | BPR-D-03.4-001 | BPR | 2 (SHOULD) | D-03.4 | GV.PO-01, PR.PS-01, PR.PS-04, ID.IM-02 | CT.DP-P4, CT.PO-P4 |
 | BPR-D-04.3-001 | BPR | 2 (SHOULD) | D-04.3 | RS.MA-01, RS.MA-02, RS.MA-03, RS.MA-01, RS.CO-02, RC.RP-01 | PR.PO-P7, CT.DM-P10 |
 | BPR-D-04.3-002 | BPR | 2 (SHOULD) | D-04.3 | RS.MA-01, RS.MA-01, RS.MA-02, RS.CO-02, RS.MA-01, RC.RP-01 | PR.PO-P7, CT.DM-P10 |
