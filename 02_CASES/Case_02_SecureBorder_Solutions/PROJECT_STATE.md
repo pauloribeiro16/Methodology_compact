@@ -1,10 +1,12 @@
 # Project State — Case 02: SecureBorder Solutions (High Complexity)
 
-**Last Updated:** 2026-04-04
-**Status:** 🟢 Phase 1 ✅ COMPLETE | Phase 2 ✅ COMPLETE | Phase 3 ✅ COMPLETE
-**Next Phase:** Implementation / Gate Execution
+**Last Updated:** 2026-08-28
+**Status:** 🟢 Phase 1 ✅ COMPLETE (Rich, superseded Sprint 3 CONDITIONAL_PASS) | Phase 2 ✅ COMPLETE (corr-008 migrated) | Phase 3 ✅ COMPLETE | 🔄 PORT CAMPAIGN Case_01→Case_02 IN PROGRESS (Fases 0–2, Bloco A)
+**Next Phase:** Port Fases 3–7 (UNMAPPED adjudication, posture, Control Set, gates, PRODUCTION_FLOW)
 **Complexity:** High (4 regulations: GDPR, CRA, NIS 2, AI Act)
 **Case Name:** SecureBorder Solutions B.V.
+
+> **⚠️ 2026-08-28 (port Fase 0).** The April sections below (§2–§5) are a historical baseline keyed to legacy doc names (`00_`…`25_`) and April volumes. Current reality on disk: Rich P1 = Doc01–Doc13, P2 = Doc14–Doc20 (corr-008 PO/SO, 63 rules = 38 CR + 25 BPR, 89 PSOs), P3 = Doc21–Doc30; AI_Act clauses 29 → 28 (D1: AI-C19 removed), total 111. Authoritative current narrative: `README.md` (2026-08-14 rewrite) + appended Sprint sections below.
 
 ---
 
@@ -32,8 +34,10 @@
 | **CRA** | ✅ APPLICABLE (Critical Class) | MANUFACTURER | 26 | 22/38 (57.9%) |
 | **NIS 2** | ✅ APPLICABLE (Essential Entity Supplier) | ESSENTIAL_ENTITY_SUPPLIER | 29 | 24/38 (63.2%) |
 | **DORA** | ❌ NOT APPLICABLE | — | 0 | 0 |
-| **AI Act** | ✅ APPLICABLE (High-Risk AI) | PROVIDER | 29 | 13/38 (34.2%) |
-| **TOTAL** | **4/5** | **—** | **112** | **35/38 (92.1%)** |
+| **AI Act** | ✅ APPLICABLE (High-Risk AI) | PROVIDER | 28 | 13/38 (34.2%) |
+| **TOTAL** | **4/5** | **—** | **111** | **35/38 (92.1%)** |
+
+> 2026-08-28: AI_Act 29 → 28 and total 112 → 111 (D1: AI-C19 Art. 26(1) deployer removed — SecureBorder is PROVIDER only).
 
 ### 1.3 Key Characteristics
 
@@ -339,8 +343,8 @@ python lints/run_all_lints.py --case "SecureBorder Solutions"
 | Document Type | Path |
 |---------------|------|
 | **00_COMMON** | `02_CASES/Case_02_SecureBorder_Solutions/00_COMMON/` |
-| **01_PHASE1_CONTEXT** | `02_CASES/Case_02_SecureBorder_Solutions/01_PHASE1_CONTEXT/` |
-| **02_PHASE2_RULES** | `02_CASES/Case_02_SecureBorder_Solutions/02_PHASE2_RULES/` |
+| **01_PHASE1_CONTEXT_RICH** | `02_CASES/Case_02_SecureBorder_Solutions/01_PHASE1_CONTEXT_RICH/` |
+| **02_PHASE2_RULES_RICH** | `02_CASES/Case_02_SecureBorder_Solutions/02_PHASE2_RULES_RICH/` |
 | **03_PHASE3_DECOMPOSITION** | `02_CASES/Case_02_SecureBorder_Solutions/03_PHASE3_DECOMPOSITION/` |
 | **requirements/** | `03_PHASE3_DECOMPOSITION/requirements/` |
 | **PROJECT_STATE.md** | `02_CASES/Case_02_SecureBorder_Solutions/PROJECT_STATE.md` |
@@ -362,9 +366,9 @@ python lints/run_all_lints.py --case "SecureBorder Solutions"
 
 ---
 
-**Document Version:** 4.1 (Phase 3 Complete — Quality Gate 85.2%)
-**Last Reviewed:** 2026-04-04
-**Next Review:** Gate Execution Kickoff
+**Document Version:** 4.2 (Port campaign Bloco A — Fase 0 state-chain repair)
+**Last Reviewed:** 2026-08-28
+**Next Review:** Port Fases 3–5 (Bloco B)
 
 ---
 
@@ -385,3 +389,10 @@ python lints/run_all_lints.py --case "SecureBorder Solutions"
 - Tech-free invariant preserved across Phase 1 + 2 + 3
 - Case root `README.md` created; `RICH_VS_LEGACY.md` refreshed with §8 Sprint 9 diff
 - `phase1_ontology.yaml` bumped to v2.0 (final migration marker)
+
+## Sprint 10.5 — Port Campaign Case_01→Case_02, Fase 0 (2026-08-28)
+
+- `validation/PORT_census_v0.md` — full baseline: UNMAPPED 188 tokens (AIRMF 91 / PF 61 / CSF 20 / PRIVACY 13 / bare 3), sprint frontmatter keys, `/maturi/` census, PG/SG census, legacy-basename census
+- **D1 propagation completed:** AI-C19 removed from `Doc10_Clause_Mapping_Matrix.md` (v1.2) and P1 `phase1_ontology.yaml` (v2.1); 112 → 111 clauses, AI_Act 29 → 28; derived NI statistics recomputed
+- **State-chain repair:** case PROJECT_STATE header/banner/§1.2/§9; P1 PROJECT_STATE (F-01 SETTLED banner, substitution done); P1 README (2 broken links fixed, `07c` PLACEHOLDER → DEEP_ENRICHED, F-01 DISPUTED → SETTLED); NOT_ADDRESSED set aligned to canonical {D-07.4, D-08.3, D-09.3} in Doc07 FM, Doc11 §88, Doc08 §369; Doc18 duplicate Sprint-10 banner removed; progress.json Sprint 9/10 backfilled + Fase 0 entry
+- **Next:** Fase 1 (rename Doc13 → Adjusted_Goals, AG- prefix migration, sprint sweep, frontmatter DocNN repair), Fase 2 (posture + ontology alignment) — Bloco A

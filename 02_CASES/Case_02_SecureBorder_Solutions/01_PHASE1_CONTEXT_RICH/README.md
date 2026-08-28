@@ -105,9 +105,9 @@ The Sprint 0 plan below was superseded during execution — themes were resequen
 | 05 | [`05_Regulatory_Applicability.md`](Doc08_Regulatory_Applicability.md) | no | RECONCILED | 443 |
 | **05b** | [`05b_Ambiguity_Register.md`](Doc09_Ambiguity_Register.md) | **YES** | COMPLETE (Sprint 2) | 632 |
 | 06 | [`06_Clause_Mapping_Matrix.md`](Doc10_Clause_Mapping_Matrix.md) | no | RECONCILED | 301 |
-| 07 | [`07_Structured_Compliance_Matrix.md`](Doc12_Structured_Compliance_Matrix.md) | no | RECONCILED | 444 |
-| **07b** | [`07b_Proportionality_Profile.md`](Doc13_Proportionality_Profile.md) | **YES** | ACTIVE + cross-checked (Sprint 3) | 308 |
-| **07c** | [`07c_Adjusted_Objectives.md`](Doc13_Adjusted_Objectives.md) | **YES** | ⚠️ **PLACEHOLDER** — Sprint 4 | 53 |
+| 07 | [`07_Structured_Compliance_Matrix.md`](Doc11_Structured_Compliance_Matrix.md) | no | RECONCILED | 444 |
+| **07b** | [`07b_Proportionality_Profile.md`](Doc12_Proportionality_Profile.md) | **YES** | ACTIVE + cross-checked (Sprint 3; F-01 settled) | 308 |
+| **07c** | [`07c_Adjusted_Objectives.md`](Doc13_Adjusted_Objectives.md) | **YES** | **DEEP_ENRICHED** (Sprint 5) | 53 |
 | **—** | [`Citation_Index.md`](Citation_Index.md) | **YES** | COMPLETE (Sprint 2) | 127 |
 | — | [`corpus_field_map.md`](Corpus_Field_Map.md) | yes | DRAFT (Sprint 0) | 211 |
 | — | `README.md` | this file | ACTIVE | — |
@@ -177,7 +177,7 @@ A Validator sub-agent will run at the end of Sprint 1, 2, 3, 4 to provide an ind
 ### Track B specifics
 
 - **Tier MEDIUM** ≤ 50-250 employees / €10M-€50M revenue. SecureBorder is at the upper edge (450 emp, €120M); we classify MEDIUM because (a) 4 applicable regs is HIGH territory, but (b) the architecture is well-bounded (Hybrid Edge + Cloud), and (c) only 3 strategic tensions (vs 8 in the Phase 2 case).
-  - ⚠️ **DISPUTED (Sprint 3, finding F-01).** This rationale does not survive cross-check against `proportionality_model.md` §2, which defines `MEDIUM = ≤250 employees, <€50M` and `LARGE = >250 employees, ≥€50M`. At 450 employees and €120M, SecureBorder exceeds **both** MEDIUM ceilings (1.8× employees, 2.4× revenue) and is not "at the upper edge" of MEDIUM — it is squarely LARGE. Doc 04 §2 itself records size as "Medium-Large". Criteria (a)–(c) above are not inputs to the §2 table. Under `S = LARGE`, §5.1 yields RIGOROUS for all 35 rows. **Pending orchestrator adjudication** — see `07b_Proportionality_Profile.md` §11.3 F-01.
+  - ✅ **SETTLED (F-01, P7 human arbitration, 2026-08-10).** The Sprint 3 dispute — `proportionality_model.md` §2 puts 450 emp / €120M in LARGE, while this rationale argued MEDIUM — was adjudicated by the human arbiter in favour of **MEDIUM** (recorded in `../PROJECT_STATE.md` §6.1 Sprint 9 and `07b` §11.3). The MEDIUM classification stands as the case-canonical decision; this rationale is retained for traceability. See `07b_Proportionality_Profile.md` §11.3 F-01.
 - **Most sub-domains → STANDARD depth** — one paragraph per sub-domain, one row per clause.
 - **Critical sub-domains → RIGOROUS depth** — full per-pair analysis, all ambiguous clauses quoted. Top 5 by clause density: D-09.1, D-06.3, D-09.2, D-09.4, D-06.4.
 - **Inactive sub-domains (D-08.3 + 3 NOT_ADDRESSED) → NOTE-ONLY** — a single line acknowledging non-applicability.

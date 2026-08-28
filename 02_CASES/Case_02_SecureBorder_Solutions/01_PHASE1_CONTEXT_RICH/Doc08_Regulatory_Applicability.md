@@ -366,7 +366,7 @@ Based on applicable regulations (GDPR + CRA + NIS 2 + AI_Act):
 **Coverage Summary:**
 - **Substantive Coverage (≥3 regulations):** 16 sub-domains
 - **Partial Coverage (1-2 regulations):** 19 sub-domains
-- **No Coverage (0 regulations):** 3 sub-domains (D-07.2, D-07.4, D-09.3 — DORA exclusive)
+- **No Coverage (0 regulations):** 3 sub-domains (D-07.4, D-08.3, D-09.3 — canonical NOT_ADDRESSED set per Doc09/Doc12 O-02 resolution). ⚠️ *The §4 coverage statistics above predate that resolution: D-07.2 carries GDPR + NIS 2 PARTIAL rows in this matrix and is ACTIVE; D-08.3's NIS 2 Art. 20 line is satisfied via board briefing (Doc 04 §10.3 / Doc 12 §4 exclusion note), not as a training sub-domain.*
 
 **Total Covered:** 35/38 sub-domains (92.1%)
 

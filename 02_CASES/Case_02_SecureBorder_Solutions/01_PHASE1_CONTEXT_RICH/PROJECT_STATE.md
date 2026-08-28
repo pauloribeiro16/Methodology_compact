@@ -10,7 +10,7 @@ case: Case_02_SecureBorder_Solutions
 applicable_regs: [GDPR, CRA, NIS 2, AI_Act]
 active_subdomains: 35
 track: B
-tier: MEDIUM (disputed — see §7 F-01)
+tier: MEDIUM (settled by P7 human arbitration, 2026-08-10 — see §7 F-01)
 related_documents:
   - README.md
   - RICH_VS_LEGACY.md
@@ -25,6 +25,8 @@ frozen: false
 > Case_02_SecureBorder_Solutions B.V. — Phase 1 Rich Mode (corpus-enriched sibling of legacy `01_PHASE1_CONTEXT/`).
 >
 > **Scope note:** this file is *localised* to the Rich folder. The case-wide state of record remains `../PROJECT_STATE.md`, which is unmodified by Sprints 0–3.
+>
+> **⚠️ STATUS UPDATE (2026-08-28, port Fase 0).** Sections below are a Sprint 3-era snapshot and are superseded as follows: (1) **F-01 is SETTLED** — MEDIUM confirmed by P7 human arbitration, 2026-08-10 (`../PROJECT_STATE.md` §6.1); O-01 and O-02 are closed. (2) **Substitution HAS occurred** — the Rich folder is the working Phase 1 corpus (per case README "Migration history"). (3) `07c` is DEEP_ENRICHED and delivered. The CONDITIONAL_PASS verdict and §7 blocking ledger below are historical.
 
 ---
 
@@ -32,7 +34,7 @@ frozen: false
 
 | Track | Status | Notes |
 |-------|--------|-------|
-| **Phase 1 Rich** | ⚠️ **CONDITIONAL_PASS** (Sprints 0–5 executed) | Not "COMPLETE" — 2 blocking items open (§7); `07c` is DEEP_ENRICHED. See `validation/VALIDATOR_SPRINT3.md`. |
+| **Phase 1 Rich** | ✅ **COMPLETE** (supersedes Sprint 3 CONDITIONAL_PASS — see status update above) | Sprints 0–5 executed; F-01 settled 2026-08-10; port campaign Fases 0–2 in progress on top of this state. |
 | Phase 1 (legacy) | ✅ COMPLETE | Frozen, read-only; still the folder consumed by Phase 2/3 |
 | Phase 2 (legacy) | ✅ COMPLETE | Gate decision PASS; Docs 08–12 |
 | Phase 3 (legacy) | ✅ COMPLETE (84.1%) | 53/63 rules satisfied; Docs 13–24 |

@@ -10,7 +10,7 @@ status: CORPUS_ENRICHED
 case: Case_02_SecureBorder_Solutions
 applicable_regs: ["GDPR", "CRA", "NIS 2", "AI_Act"]
 active_subdomains: 35  # RECONCILED (Sprint 1, I-02): was 38, corrected to 35 (canonical for Case_02 per README.md).
-inactive_documented: ["D-08.3 INACTIVE", "3 NOT_ADDRESSED (D-07.2, D-07.4, D-09.3 DORA-exclusive)"]
+inactive_documented: ["D-08.3 INACTIVE", "3 NOT_ADDRESSED (D-07.4, D-08.3, D-09.3 — canonical set per Doc09/Doc12 O-02 resolution; D-07.2 is ACTIVE)"]
 inputs:
   - 04_Company_Context_Assessment.md
   - 04a_Architecture_DataInventory.md

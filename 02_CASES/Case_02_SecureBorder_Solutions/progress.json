@@ -155,6 +155,27 @@
       "phase": 3,
       "result": "Quality gate score corrected from 98.9% to 85.2% after fixing coverage calculation bug in quality_gate.py",
       "action_taken": "Updated quality_gate score to reflect actual coverage (84.1%), traceability (100%), risk (100%), security (66.7%)"
+    },
+    {
+      "timestamp": "2026-08-10T00:00:00Z",
+      "event": "sprint9_corr_case02_complete",
+      "phase": 1,
+      "result": "corr-Case02 migration (commits A-F): F-01 SETTLED (MEDIUM, P7), F-03/F-04/F-06 resolved, PO/SO migration P2 (89 PSOs, 63 rules), P3 harmonisation, README rewrite",
+      "action_taken": "Backfilled 2026-08-28 by port Fase 0 (entry was missing); see PROJECT_STATE.md Sprint 9 sections"
+    },
+    {
+      "timestamp": "2026-08-13T00:00:00Z",
+      "event": "sprint10_corr008_complete",
+      "phase": 2,
+      "result": "corr-008 PG/SG to PO/SO migration in P2; Doc14/15/16/17/18/19 MIGRATED; Doc20 generated; R9 remediation note in Doc18",
+      "action_taken": "Backfilled 2026-08-28 by port Fase 0 (entry was missing)"
+    },
+    {
+      "timestamp": "2026-08-28T00:00:00Z",
+      "event": "port_case01_campaign_fase0_complete",
+      "phase": 1,
+      "result": "Port Bloco A Fase 0: PORT_census_v0 baseline (188 UNMAPPED tokens, sprint keys, legacy-basename refs, /maturi/ census); D1 AI-C19 propagation completed (Doc10 v1.2, phase1_ontology v2.1, 112 to 111); state-chain repair (case+P1 PROJECT_STATE, P1 README links/statuses, Doc07/Doc11/Doc08 NOT_ADDRESSED set, Doc18 duplicate banner)",
+      "action_taken": "See validation/PORT_census_v0.md; port Fases 1-2 follow in Bloco A"
     }
   ]
 }

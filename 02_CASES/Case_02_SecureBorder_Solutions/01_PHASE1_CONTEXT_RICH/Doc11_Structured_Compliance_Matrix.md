@@ -85,7 +85,7 @@ This document presents the final Phase 1 output (Step C1+C2+C3), consolidating t
      lint_cross_document_consistency.py can extract Doc 07's regulation coverage.
      The marker satisfies the lint's per-row regulation detection logic. -->
 
-**Regulations in scope (this matrix): GDPR, CRA, NIS 2, AI_Act — 35 sub-domains covered (SUBSTANTIVE + PARTIAL), 3 NOT_ADDRESSED (D-07.2, D-07.4, D-09.3 DORA-exclusive). ✅**
+**Regulations in scope (this matrix): GDPR, CRA, NIS 2, AI_Act — 35 sub-domains covered (SUBSTANTIVE + PARTIAL), 3 NOT_ADDRESSED (D-07.4, D-08.3, D-09.3 — canonical per Doc09/Doc12; D-07.2 is ACTIVE). ✅**
 
 | Marker | GDPR | CRA | NIS 2 | AI_Act | Coverage Level |
 |--------|------|-----|-------|--------|----------------|

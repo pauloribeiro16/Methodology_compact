@@ -1,7 +1,5 @@
 > **Sprint 10 note (corr-008 migration):** This document has been migrated from corr-007 (PG/SG) to corr-008 (PO/SO). All PG/SG references have been replaced with PO/SO IDs. BPR-AI-NN rules have been migrated to BPR-D-XX.Y-NNN format with AI_Act framework flag. Multi-PSO per CR rule is now supported via the multi-PSO relationship in the catalog.
 >
-> **Sprint 10 note (corr-008 migration):** This document has been migrated from corr-007 (PG/SG) to corr-008 (PO/SO). All PG/SG references have been replaced with PO/SO IDs. BPR-AI-NN rules have been migrated to BPR-D-XX.Y-NNN format with AI_Act framework flag. Multi-PSO per CR rule is now supported via the multi-PSO relationship in the catalog.
->
 > **Note (2026-08-13, R9 of remediation contract):** This is the canonical Rich Mode version of the Phase 2 rules catalog for Case_02. Earlier text referenced a sibling `../02_PHASE2_RULES/11_Rules_Catalog.md` (a path that no longer exists in this case); that reference has been removed and replaced with this self-referential canonical statement.
 
 ---
