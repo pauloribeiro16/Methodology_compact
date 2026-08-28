@@ -1107,7 +1107,7 @@ These rules are applied to every row in §5.1 and to every row in V4.
 ### §6.2 — Privacy FW 1.0 subcategories not covered
 
 > The 68 SR in `02b_SecurityRules_NISTPF.md` cover 59/104 active PF subcategories (100% of GDPR-touched sub-domains). The 45 unused active PF subcategories (104-59) are:
-> - Specialised de-identification (`UNMAPPED_PF..P9`) — no direct GDPR clause
+> - Specialised de-identification (`UNMAPPED_PF (P9-class specialised de-identification has no PF 1.0 analogue)`) — no direct GDPR clause
 > - Data provenance lineage (`CM.AW-P6`) — not required by GDPR
 > - Business environment subcats (`ID.BE-P*`) — partially covered by `ID.IM-P*` (same intent)
 > - Training/awareness variants beyond what the GDPR-SR file covers
@@ -1399,7 +1399,7 @@ graph LR
   SD_09_3 --> CSF_ID_AM_02[CSF ID.AM-02]
   SD_09_3 --> CSF_ID_AM_07[CSF ID.AM-07]
   SD_09_3 --> PF_ID_IM_P1[PF ID.IM-P1]
-  SD_09_3 --> UNMAPPED_AIRMF_NIS[N/A (non-AI scope) — no AI-C* in NIS2-C07]
+  SD_09_3 --> NA_AIS_NIS[N/A (non-AI scope) — no AI-C* in NIS2-C07]
   SD_09_3 --> ISO_A5_9[ISO A.5.9]
 
   %% (d) AI_Act-origin path — CR-D-05.1-001 (data governance, AI_Act)
@@ -1463,7 +1463,7 @@ graph LR
   class AI_MEASURE_2_5,AI_MEASURE_2_7,AI_MEASURE_2_11,AI_GOVERN_1_1,AI_GOVERN_1_4,AI_MAP_2_1,AI_MAP_5_1,AI_MANAGE_4_3 aiNode
   class ISO_A5_14,ISO_A5_24,ISO_A8_8,ISO_A8_24,SSDF_RV_1,SSDF_PO_5,ISO_A5_9 isoNode
   class T001,T003 tensionNode
-  class UNMAPPED_CSF,UNMAPPED_AIRMF_NIS unmappedNode
+  class UNMAPPED_CSF,NA_AIS_NIS unmappedNode
 ```
 
 ### V4 — Heatmap de Maturidade (Tri-axis Worst-Axis)
