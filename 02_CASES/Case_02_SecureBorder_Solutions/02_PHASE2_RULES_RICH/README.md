@@ -36,8 +36,8 @@ verdict: PASS_WITH_FINDINGS
 | **Validator** | 2026-08-07 | Tier 1+2 PASS_WITH_FINDINGS (7 findings closed by Bloco G fix) | ✅ PASS_WITH_FINDINGS |
 | **Bloco G fix** | 2026-08-07 | FN-01..FN-07 (frozen IDs, AI RMF anchor, heatmap, 35 active, path labels, field count) | ✅ DONE |
 | **Bloco F** | 2026-08-07 | 4 visualizações + Excel 10 sheets (3 frameworks) | ✅ DONE |
-| **Bloco E** | 2026-08-07 | 04b deprecated (maturity moved to Doc 13) | ✅ DONE |
-| **Bloco D** | 2026-08-07 | Doc 11 estendido campos 19-24 (tri-maturidade CSF+PF+AI RMF) | ✅ DONE |
+| **Bloco E** | 2026-08-07 | 04b deprecated (legacy maturity moved to Doc 13) | ✅ DONE |
+| **Bloco D** | 2026-08-07 | Doc 11 estendido campos 19-24 (tri-maturidade legacy CSF+PF+AI RMF; superseded pela postura, port Fase 4) | ✅ DONE |
 | **Bloco C** | 2026-08-07 | Doc 13 unified matrix (3 frameworks CSF+PF+AI RMF) | ✅ DONE |
 | **Bloco B** | 2026-08-07 | NI formal (AVG + AI MUST override), 79 cartões, DR-002 resolvido | ✅ DONE |
 | **Bloco A** | 2026-08-07 | Crosswalk promoted DRAFT → ACTIVE | ✅ DONE |
@@ -57,7 +57,7 @@ verdict: PASS_WITH_FINDINGS
 | `10_Privacy_Security_Goals.md` | 394 | 394 | 47 goal rows (10 PG + 37 SG, 1:1 OBL→goal) | legacy copy | ✅ COPIED |
 | `11_Rules_Catalog.md` | 602 | 602+ | 55 cards (38 CR + 17 BPR, 17 fields + banner) | legacy copy + banner | ✅ COPIED |
 | `12_Rules_Catalog.xlsx` | 28KB | 28KB | Excel catalog (canonical) | legacy copy | ✅ COPIED |
-| `13_Framework_Mapping_Matrix.md` | — | **unified matrix** | 3 frameworks (CSF + PF + AI RMF), triple maturity | C → D → F | ✅ DEEP_ENRICHED |
+| `13_Framework_Mapping_Matrix.md` | — | **unified matrix** | 3 frameworks (CSF + PF + AI RMF), triple maturity (legacy design; superseded by posture, port Fase 4) | C → D → F | ✅ DEEP_ENRICHED |
 | `README.md` | — | this file | orientation + dashboard + schema | rich-symmetry | ✅ NEW |
 | `PROJECT_STATE.md` | — | sibling | project state snapshot | rich-symmetry | ✅ NEW |
 | `RICH_VS_LEGACY.md` | — | sibling | Rich vs legacy diff summary | rich-symmetry | ✅ NEW |
@@ -71,7 +71,7 @@ verdict: PASS_WITH_FINDINGS
 
 ## §3 18-Field Schema (canonical, Case_02)
 
-**12 base fields** (common to all tiers) + **3 triple-maturity fields** (CSF / Privacy FW / AI RMF) + **3 Case_02-specific fields** (HIGH tier).
+**12 base fields** (common to all tiers) + **3 triple-status fields** (CSF / Privacy FW / AI RMF; legacy maturity fields superseded by the Implementation Posture Model, port Fase 4) + **3 Case_02-specific fields** (HIGH tier).
 
 | # | Field | Type | Description |
 |---|-------|------|-------------|
@@ -90,9 +90,9 @@ verdict: PASS_WITH_FINDINGS
 | 13 | Dependencies | list | Related OBL/PG/SG IDs |
 | 14 | Risk if not met | H/M/L + 1-line | Qualitative risk |
 | 15 | Affected Stakeholders | list | Internal + external parties |
-| 16 | Maturity (CSF) | Cur X/4 → Tgt Y/4 | 0-4 scale |
-| 17 | Maturity (Privacy) | Cur X/4 → Tgt Y/4 | 0-4 scale |
-| 18 | Maturity (AI RMF) | Cur X/4 → Tgt Y/4 | 0-4 scale |
+| 16 | Implementation Status (CSF) | IMPLEMENTED/PARTIAL/NOT IMPLEMENTED | posture model v2.0 (was Maturity Cur X/4 → Tgt Y/4, legacy) |
+| 17 | Implementation Status (Privacy) | IMPLEMENTED/PARTIAL/NOT IMPLEMENTED | posture model v2.0 (was Maturity, legacy) |
+| 18 | Implementation Status (AI RMF) | IMPLEMENTED/PARTIAL/NOT IMPLEMENTED/N/A (non-AI scope) | posture model v2.0 (was Maturity, legacy) |
 
 **3 Case_02-specific fields:**
 
@@ -147,23 +147,23 @@ verdict: PASS_WITH_FINDINGS
 
 ### Bloco C — Doc 13 unified matrix ✅ COMPLETE
 - All 3 frameworks ACTIVE (CSF + PF + AI RMF); NO placeholder columns
-- 6 sub-sections (§1 matriz, §2 Govern consolidada, §3 mapeamento n:m, §4 maturidade, §5 aplicação, §6 gap analysis)
+- 6 sub-sections (§1 matriz, §2 Govern consolidada, §3 mapeamento n:m, §4 posture (legacy maturidade, superseded), §5 aplicação, §6 gap analysis)
 - 38 unique CR with full YAML mapping blocks
 - Commit: `d9f8dfb [EXECUTOR] Bloco C — Doc 13 unified matrix (3 frameworks CSF+PF+AI RMF)`
 
 ### Bloco D — Doc 11 extension ✅ COMPLETE
-- Fields 19-24 added: csf_subcategories, privacy_subcategories, ai_rmf_subcategories, maturity_csf, maturity_privacy, maturity_ai_rmf
+- Fields 19-24 added: csf_subcategories, privacy_subcategories, ai_rmf_subcategories, maturity_csf, maturity_privacy, maturity_ai_rmf (legacy field names; superseded by posture statuses, port Fase 4)
 - 18 fields per card (15→17 from Bloco B + 6 columns from Bloco D)
-- Commit: `5ded4f4 [EXECUTOR] Bloco D — Doc 11 estendido (campos 19-24, tri-maturidade CSF+PF+AI RMF)`
+- Commit: `5ded4f4 [EXECUTOR] Bloco D — Doc 11 estendido (campos 19-24, tri-maturidade CSF+PF+AI RMF)` — legacy field extension, superseded by posture statuses (port Fase 4)
 
 ### Bloco E — 04b deprecated ✅ COMPLETE
 - `04b_Security_Posture.md` status: DEPRECATED_FOR_MATURITY
-- Maturity model ownership moved to Doc 13
+- Legacy maturity model ownership moved to Doc 13 (superseded by posture model)
 - Commit: `fee7978 [EXECUTOR] Bloco E — 04b deprecated for maturity`
 
 ### Bloco F — 4 visualizations + Excel ✅ COMPLETE
 - V1 matriz cobertura, V2 mapa por Function, V3 Mermaid traceability graph, V4 heatmap
-- 6 new Excel sheets added (Unified_Matrix, Govern_Consolidated, Mapping_nm, Maturity_Dual, Cov_Function, Heatmap_Maturity)
+- 6 new Excel sheets added (Unified_Matrix, Govern_Consolidated, Mapping_nm, Maturity_Dual, Cov_Function, Heatmap_Maturity (legacy xlsx sheets))
 - Commit: `62dd5c6 [EXECUTOR] Bloco F — 4 visualizações + 6 folhas Excel`
 
 ### Bloco G fix — FN-01..FN-07 ✅ COMPLETE
@@ -187,7 +187,7 @@ verdict: PASS_WITH_FINDINGS
 - ✅ Document IDs: `AEGIS-P2-RICH-*-CASE02` (parallel to legacy `AEGIS-P2-*`)
 - ✅ Frontmatter status: ACTIVE on orchestration docs; legacy docs kept `status: DRAFT` (read-only)
 - ✅ No AI RMF placeholder — 3 frameworks all ACTIVE
-- ✅ Maturity TRIPLE (CSF + Privacy + AI RMF) per D11 Case_02
+- ✅ Maturity TRIPLE (CSF + Privacy + AI RMF) per D11 Case_02 — legacy design, superseded by posture statuses (port Fase 4)
 
 ---
 
@@ -242,7 +242,7 @@ verdict: PASS_WITH_FINDINGS
 | Metric | Value |
 |--------|------:|
 | Doc 13 unified matrix rows | 55 (CR + BPR) |
-| Triple-maturity cells (3 per card × 55 cards) | 165 |
+| Triple-maturity cells (3 per card × 55 cards) | 165 — legacy numeric cells, superseded by posture statuses (port Fase 4) |
 | Doc 11 fields per card | 18 |
 | Doc 11 total cells (post-D) | 990 (55 × 18) |
 

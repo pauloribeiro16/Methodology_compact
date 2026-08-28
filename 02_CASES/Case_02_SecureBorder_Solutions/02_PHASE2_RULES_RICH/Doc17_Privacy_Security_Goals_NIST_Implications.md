@@ -24,7 +24,7 @@ traceability: PG/SG -> sub_domain -> NIST mapping (CSF+PF for PG, CSF for SG, AI
 related_documents: Doc16_Privacy_Security_Goals.md, Doc18_Rules_Catalog.md, Doc19_Framework_Mapping_Matrix.md
 forward_looking_note: >
   Case_02 has 3 ACTIVE frameworks (CSF + Privacy FW + AI RMF). All three
-  are populated below — no placeholder columns. Triple-maturity
+  are populated below — no placeholder columns. Triple-maturity (legacy design note; superseded by the Implementation Posture Model, port Fase 4) —
   implications reference SPEC_NIST_MATRIX_UNIFIED.md §7.
 coverage:
   goals: 89   # 34 PO + 55 SO
@@ -53,7 +53,7 @@ coverage:
 > **Four implication dimensions (per goal):**
 > 1. **Technical (controls):** specific SecureBorder-relevant controls implied by the
 >    NIST subcategories across the 3 frameworks.
-> 2. **Maturity [PENDENTE SPEC]:** triple-maturity target (current→target) for the goal,
+> 2. **Posture note [was Maturity, PENDENTE SPEC — superseded]:** legacy triple-maturity target quote (current→target) for the goal,
 >    consistent with HIGH proportionality and Track B.
 > 3. **Priority/NI:** `AVG_with_AI_MUST_override` over the goal's source clauses,
 >    bucketed to P1/P2/P3 (MUST/SHOULD/COULD). AI-C* sources force MUST (NI=3).
@@ -109,8 +109,8 @@ biometric data processing).
       Biometric templates são dados pessoais sensíveis (Art. 9 GDPR). Encriptação
       strong symmetric encryption com módulos strong cryptographic modules é requisito mínimo para templates
       biométricos. AI_Act Art. 10 (data governance) exige protecção reforçada.
-    maturity_target_high: |
-      [SPEC §7] Maturidade-alvo para HIGH: CSF 3/4 → 4/4; PF 2/4 → 3/4;
+    posture_target_note_high: |  # legacy-scale quote; superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0
+      [Legacy scale quote — superseded; backfill: CSF PARTIAL, PF PARTIAL, AI RMF PARTIAL] Target profile for HIGH was:
       AI RMF 1/4 → 3/4. Consistente com RIGOROUS Track B (sub-domain D-01.1
       é CRITICAL risk).
     ni_note: |
@@ -141,7 +141,7 @@ biometric data processing).
       AI_Act Art. 10 (data governance) + GDPR Art. 5(1)(c). Para treino de
       modelos biométricos, datasets devem ser relevantes, suficientemente
       representativos, e livres de erros.
-    maturity_target_high: |
+    posture_target_note_high: |  # legacy-scale quote; superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0
       [SPEC §7] CSF 2/4 → 3/4; PF 2/4 → 3/4; AI RMF 1/4 → 3/4.
     ni_note: |
       AVG(NI) = 3.0 (GDPR Art. 5 + AI_Act Art. 10). MUST.
@@ -169,7 +169,7 @@ biometric data processing).
     technical_rationale: |
       GDPR Art. 35 + AI_Act Art. 27 (FRIA obrigatória para high-risk AI).
       Biometric identification é high-risk AI system (AI_Act Annex III §1).
-    maturity_target_high: |
+    posture_target_note_high: |  # legacy-scale quote; superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0
       [SPEC §7] CSF 2/4 → 4/4; PF 2/4 → 4/4; AI RMF 1/4 → 4/4.
       Target elevado porque FRIA é requisito legal explícito.
     ni_note: |
@@ -231,7 +231,7 @@ controls (model integrity, adversarial robustness, AI-specific risk management).
       AI_Act Art. 9 (risk management) + NIS 2 Art. 21(2)(d). Biometric
       recognition systems require adversarial robustness testing
       (e.g., adversarial patch attacks, presentation attacks).
-    maturity_target_high: |
+    posture_target_note_high: |  # legacy-scale quote; superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0
       [SPEC §7] CSF 2/4 → 3/4; AI RMF 1/4 → 3/4. PF N/A.
     ni_note: |
       AVG(NI) = 2.5 (NIS 2 = NI 2, AI_Act = NI 3) → bucket P1 → MUST
@@ -259,7 +259,7 @@ controls (model integrity, adversarial robustness, AI-specific risk management).
     technical_rationale: |
       AI model artifacts devem ter integridade verificável (hash, signature).
       Supply chain attacks em modelos pré-treinados são vector de risco real.
-    maturity_target_high: |
+    posture_target_note_high: |  # legacy-scale quote; superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0
       [SPEC §7] CSF 2/4 → 3/4; AI RMF 1/4 → 3/4.
     ni_note: |
       BPR com base NIST AI RMF + industry AI security testing standards. NI = 2 (SHOULD).
@@ -296,7 +296,7 @@ Case_02 differs from Case_01 in that **all 3 frameworks (CSF + PF + AI RMF) are 
 This means:
 
 1. **No AI RMF placeholder column.** Every Doc 13 row has a value in the AI RMF column.
-2. **Triple-maturity per control.** D11 forces 3 independent scores per cartão.
+2. **Triple implementation-status per control (post-port).** The D11 triple-maturity scoring was superseded by the Implementation Posture Model v2.0 (port Fase 4); statuses live in Doc19 §5.1.
 3. **Heatmap uses MAX gap** across the 3 frameworks (worst case).
 4. **NI rule:** `AVG_with_AI_MUST_override` — any CR with AI-C* source clause → MUST (NI=3).
 
@@ -316,7 +316,7 @@ These are the strongest candidates for **consolidation** across frameworks — s
 - **89 objectives** total: 34 PO + 55 SO (1:1 OBL→goal derivation per DR-D01)
 - **3 frameworks ACTIVE** (CSF + PF + AI RMF) — no placeholder columns
 - **136 cross-framework anchors** (89 CSF + 10 PF + 37 AI RMF)
-- **Triple-maturity** (D11 Case_02): 3 scores per cartão, 165 cells total
+- **Triple implementation status** (D11 Case_02, post-port): 3 statuses per cartão in Doc19 §5.1; legacy 165 numeric cells superseded
 - **AVG_with_AI_MUST_override** NI rule: AI-C* sources → MUST (NI=3)
 - **HIGH tier proportionality**: 7 RIGOROUS + 27 STANDARD + 1 DEFERRED + 3 LIGHTWEIGHT
 

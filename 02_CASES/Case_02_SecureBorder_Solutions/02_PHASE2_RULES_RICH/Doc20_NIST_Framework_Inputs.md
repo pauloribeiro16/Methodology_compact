@@ -77,7 +77,7 @@ The AEGIS methodology uses a **3-layer model** for external frameworks:
 | **Como é que CSF/PF/AI RMF subcats mapeiam para D-XX.Y?** | (este doc) | **`OVERLAYS/OVERLAY_NIST_*.md` (3 ficheiros: CSF 2.0, PF 1.0/1.1, AI RMF 1.0)** |
 | **Que mudou entre PF 1.0 e 1.1?** | §3 (raw materials) | **`VERSION_CHANGELOG.md` (PF 1.1 é delta histórico, NÃO o canónico)** |
 | **Que regras concretas (CR/BPR) derivam das obligations?** | §4, §5 | `Doc18_Rules_Catalog.md` |
-| **Que maturity tem cada control?** | §4, V4 | `Doc19_Framework_Mapping_Matrix.md` |
+| **Que implementation status tem cada control?** | §4, V4 | `Doc19_Framework_Mapping_Matrix.md` |
 | **Que goals NIST-aligned temos para cada PO/SO?** | (todos) | `10b_Privacy_Security_Goals_NIST_Implications.md` |
 | **Que gaps NIST-identified temos (CSFs não cobertas)?** | §6 | `Doc19_Framework_Mapping_Matrix.md` |
 

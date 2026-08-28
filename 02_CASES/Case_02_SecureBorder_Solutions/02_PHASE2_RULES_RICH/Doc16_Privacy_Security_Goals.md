@@ -121,7 +121,7 @@ This is the Rich Mode version of the Goals Catalog. It defines **89 objectives (
 
 | Goal ID | Goal Description | Source Obligations | Sub-Domain | Regulation | Risk Profile | Priority | Owner | Verification Criteria | PF Anchors | AI RMF Anchors |
 | --------- | ------------------ | -------------------- | ------------ | ------------ | -------------- | ---------- | ------- | ---------------------- | --- | --- |
-| PO-D-07.1-001 | Integrate data protection by design into product design from the outset | OBL-D-07.1-001 | D-07.1 | GDPR | MEDIUM | MODERATE | CTO + Lead Dev | secure-development-framework alignment; maturity assessment | — | GOVERN-2.2, GOVERN-3.1 |
+| PO-D-07.1-001 | Integrate data protection by design into product design from the outset | OBL-D-07.1-001 | D-07.1 | GDPR | MEDIUM | MODERATE | CTO + Lead Dev | secure-development-framework alignment; posture assessment | — | GOVERN-2.2, GOVERN-3.1 |
 | PO-D-07.1-002 | Integrate security by design into ESSENTIAL_ENTITY development lifecycle | OBL-D-07.1-001 | D-07.1 | NIS2 | MEDIUM | MODERATE | CTO + Lead Dev | identity lifecycle policy; authentication enforcement test | — | GOVERN-2.2, GOVERN-3.1 |
 
 #### D-08: Human Factors (4 PO)
@@ -236,7 +236,7 @@ This is the Rich Mode version of the Goals Catalog. It defines **89 objectives (
 
 | Goal ID | Goal Description | Source Obligations | Sub-Domain | Regulation | Risk Profile | Priority | Owner | Verification Criteria | PF Anchors | AI RMF Anchors |
 | --------- | ------------------ | -------------------- | ------------ | ------------ | -------------- | ---------- | ------- | ---------------------- | --- | --- |
-| SO-D-07.1-001 | Implement secure-by-default and manufacturer obligation principles into product design | OBL-D-07.1-001 | D-07.1 | CRA | MEDIUM | MODERATE | CTO + Lead Dev | secure-development-framework alignment; maturity assessment | — | GOVERN-3.1 |
+| SO-D-07.1-001 | Implement secure-by-default and manufacturer obligation principles into product design | OBL-D-07.1-001 | D-07.1 | CRA | MEDIUM | MODERATE | CTO + Lead Dev | secure-development-framework alignment; posture assessment | — | GOVERN-3.1 |
 | SO-D-07.2-001 | Operate secure SDLC for ESSENTIAL_ENTITY development | OBL-D-07.2-001 | D-07.2 | NIS2 | MEDIUM | MODERATE | CTO + Lead Dev | secure SDLC alignment; code review coverage audit | — | MEASURE-2.5 |
 | SO-D-07.2-002 | Implement secure coding practices including review and static analysis | OBL-D-07.2-001 | D-07.2 | CRA | MEDIUM | MODERATE | CTO + Lead Dev | secure SDLC alignment; code review coverage audit | — | MEASURE-2.5 |
 | SO-D-07.3-001 | Operate secure CI/CD pipeline with protected build and integrity verification | OBL-D-07.3-001 | D-07.3 | NIS2 | LOW | MODERATE | CTO + Lead Dev | cryptographic integrity integration test on representative sample | — | — |

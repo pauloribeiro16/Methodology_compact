@@ -879,186 +879,158 @@ note_inputs: >
 
 ---
 
-## §4 — Modelo de Maturidade Tripla (CSF 0-4 + Privacy 0-4 + AI RMF 0-4)
+## §4 — Implementation Posture (adopted 2026-08-28, port Fase 4; supersedes the legacy triple-maturity model)
 
-> Mirrors Case_01 SPEC §7 (Modelo de Maturidade Dupla) but extended to 3 frameworks. Tiers 1-4 at program/Function level (CSF native; adopted for the other two); 0-4 per-subcategory at the control level. **Three independent scores** (csf / privacy / airmf) — no aggregation; D11 desynchrony preserved.
+> Previously mirrored the Case_01 SPEC §7 double-maturity model extended to 3 frameworks. Superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0 — see §4.1. **Three independent scores** (csf / privacy / airmf) — no aggregation; D11 desynchrony preserved.
 
-### §4.1 — CSF Implementation Tiers T1-T4 (program/Function level)
+### §4.1 — Implementation Posture scale (ADOPTED, port Fase 4, 2026-08-28)
 
-| Tier | Nome | Descrição |
-|------|------|-----------|
-| **1** | Partial | Risco não formalizado; práticas ad-hoc; consciência limitada |
-| **2** | Risk-Informed | Risco gerido informalmente; práticas definidas mas não consistentes |
-| **3** | Repeatable | Práticas formais, repetíveis, com monitorização |
-| **4** | Adaptive | Práticas adaptativas, melhoria contínua, automatização |
+> **SUPERSEDED.** The legacy triple-maturity model (CSF Implementation Tiers
+> T1–T4 at program/Function level; 0–4 per-subcategory scales on the CSF,
+> Privacy FW and AI RMF axes) is superseded by
+> `00_METHODOLOGY/IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md` v2.0:
+>
+> - States: **IMPLEMENTED** (evidence pointer mandatory) / **PARTIAL** /
+>   **NOT IMPLEMENTED** ("what's missing" note mandatory), plus special
+>   categories `N/A — product-security deliverable (SSDF <ID>)` and
+>   `N/A — statutory obligation`.
+> - Numerical maturity scores, 0–4 scales and Tier designations are
+>   PROHIBITED at control and Function level (Model §9).
+> - The §5.1 per-control table and the §4.5/§5.2 Function views use the
+>   deterministic legacy backfill (Model §4); the historical scale
+>   definitions remain in git history only.
 
-### §4.2 — Escala 0-4 por-subcategoria — CSF 2.0
+### §4.5 — Function-level qualitative implementation context (15 rows: 6 CSF + 5 Privacy + 4 AI RMF)
 
-| Nível | Label | Definição operacional |
-|-------|-------|----------------------|
-| **0** | None | Sem controlo implementado |
-| **1** | Ad-hoc | Informal, inconsistente, sem documentação |
-| **2** | Defined | Documentado mas não totalmente implementado |
-| **3** | Managed | Implementado, monitorizado, medido |
-| **4** | Optimized | Melhoria contínua, automatizado |
+> Qualitative Implementation Context per Posture Model §5: operational strengths,
+> active remediation for PARTIAL controls, roadmap priorities. Derived from the legacy
+> cur/tier numbers via the deterministic backfill (Model §4); legacy values quoted for
+> traceability.
 
-> Ancorada aos *statements* + *informative references* de cada subcategoria CSF 2.0 no `NIST_CSF_2.0_subcategories.md` (frozen). O target deriva de (a) Track B tier (`Doc12_Proportionality_Profile.md` §6) e (b) NI da regra (MUST → target ≥ 3; SHOULD → 2-3; COULD → 1-2; EXCLUDED → N/A). Para Case_02 (HIGH), Track B aplica: RIGOROUS → tgt 4, STANDARD → tgt 3-4.
+> Legacy note (pre-port): cur_tier derived from Doc 11 column 13 aggregated per Function; now backfilled — `tgt_tier` from Track B tier (`Doc12_Proportionality_Profile.md` §3) and posture assessment (`Doc05_Security_Posture.md` §3).
 
-### §4.3 — Escala 0-4 por-subcategoria — Privacy FW 1.0
-
-| Nível | Label | Definição operacional (anchor: Privacy FW 1.0 statement) |
-|-------|-------|----------------------------------------------------------|
-| **0** | None | Controlo de privacidade não implementado (ex: nenhuma política de minimização, nenhuma base legal documentada) |
-| **1** | Ad-hoc | Práticas de privacidade informais, sem DPO oversight; processamento sem registo sistemático |
-| **2** | Defined | Privacy FW subcat documentado (ex: RoPA parcial, DPIA template); não totalmente operacionalizado |
-| **3** | Managed | Subcategoria implementada, com evidência, monitorizada (ex: DPIA por cada nova processing, DPO oversight, RoPA completo) |
-| **4** | Optimized | Melhoria contínua; privacidade automatizada (ex: privacy-by-design integrado no SDLC, PII discovery automático, consent management dinâmico) |
-
-### §4.4 — Escala 0-4 por-subcategoria — AI RMF 1.0
-
-| Nível | Label | Definição operacional (anchor: AI RMF 1.0 statement) |
-|-------|-------|--------------------------------------------------------|
-| **0** | None | Sem práticas de gestão de risco de IA (ex: nenhum inventário de sistemas de IA, nenhuma política de governação) |
-| **1** | Ad-hoc | Avaliação de risco de IA informal; sem ownership claro |
-| **2** | Defined | AI RMF subcat documentado; framework de risco desenhado mas não totalmente executado |
-| **3** | Managed | Subcategoria implementada, com evidência, monitorizada (ex: post-market monitoring ativo, MEASURE-2.* regular, MANAGE-1.* tratamento documentado) |
-| **4** | Optimized | AI risk management automatizado, melhoria contínua, integrado no SOC (ex: drift detection em produção, feedback loop automático com GOVERN-5.1) |
-
-### §4.5 — Tabela de avaliação por-Function Case_02 (15 rows: 6 CSF + 5 Privacy + 4 AI RMF)
-
-> `cur_tier` from Doc 11 column 13 (Maturity Score) aggregated per Function; `tgt_tier` from Track B tier (`Doc12_Proportionality_Profile.md` §3) and posture assessment (`Doc05_Security_Posture.md` §3).
-
-| # | Framework | Function | cur_tier | tgt_tier | Justification |
-|---|-----------|----------|---------:|---------:|---------------|
-| 1 | CSF 2.0 | **GV** Govern | 3 | 4 | documented policy architecture provides the foundation; target 4 with continuous-improvement artefacts (Doc 04 §9; Doc 04b §D-09) |
-| 2 | CSF 2.0 | **ID** Identify | 3 | 4 | CMDB 100% coverage (D-09.3); risk register unified (D-09.2); target 4 with continuous asset discovery |
-| 3 | CSF 2.0 | **PR** Protect | 3 | 4 | confidentiality mechanisms with segregated material management (D-01.x), access boundaries (D-03.x), AI RMF MAP-3.5; target 4 with full PAM automation (Doc 04b §D-03 gap) |
-| 4 | CSF 2.0 | **DE** Detect | 3 | 4 | continuous monitoring mechanisms and anomaly detection (D-04.1, D-10.1); target 4 with AI post-market monitoring complete (Doc 04b §D-10.1 gap) |
-| 5 | CSF 2.0 | **RS** Respond | 3 | 4 | Max-SLA 24h routing (T-001, D-04.3 RIGOROUS); target 4 with automation and external audit (Doc 04b §D-04) |
-| 6 | CSF 2.0 | **RC** Recover | 3 | 4 | recovery mechanisms with documented RTO/RPO and tamper-evident backup retention (D-04.4, D-10.2); target 4 with hash-chained WORM |
-| 7 | Privacy FW | **ID-P** Identify | 3 | 4 | RoPA complete, DPIA unified with FRIA (D-09.2 RIGOROUS); target 4 with automated data discovery |
-| 8 | Privacy FW | **GV-P** Govern | 3 | 4 | ISMS with GDPR Annex + DPO designation; target 4 with privacy-by-design automatizado (D-07.1 RIGOROUS) |
-| 9 | Privacy FW | **CT-P** Control | 3 | 4 | Cryptographic sharding (D-05.3, T-002 RESOLVED); biometric ephemeral deletion (D-05.1); target 4 |
-| 10 | Privacy FW | **CM-P** Communicate | 3 | 3 | Privacy notice + DSAR + breach notification; target 3 (CM-P fully met by 04b §D-09; higher tier not required for HIGH) |
-| 11 | Privacy FW | **PR-P** Protect | 3 | 4 | confidentiality mechanisms with segregated material management + access boundaries; target 4 with PAM automation (Doc 04b §D-03.3 gap) |
-| 12 | AI RMF | **GOVERN** | 3 | 4 | documented policy architecture + AI_Act Annex + AI Governance Lead; target 4 with continuous AI risk review |
-| 13 | AI RMF | **MAP** | 3 | 4 | Unified DPIA + FRIA (D-09.2); AI use cases mapped; target 4 with MAP-5.1/5.2 fully documented (currently MAP-5.2 unused per AI RMF frozen list §"Unused") |
-| 14 | AI RMF | **MEASURE** | 2 | 4 | AI_Act conformity assessment IN PROGRESS (Doc 04 §9); post-market monitoring partial (Doc 04b §D-10.1 gap); target 4 by Q4 2026 |
-| 15 | AI RMF | **MANAGE** | 3 | 4 | Incident response playbooks (BPR-AI-07 / D-04.2); target 4 with automated prioritization |
+| # | Framework | Function | Implementation Context (qualitative) |
+|---|-----------|----------|------------------------------------------|
+| 1 | CSF 2.0 | **GV** Govern | **PARTIAL — active gap to target** (legacy scale 3→4): documented policy architecture provides the foundation; target 4 with continuous-improvement artefacts (Doc 04 §9; Doc 04b §D-09) |
+| 2 | CSF 2.0 | **ID** Identify | **PARTIAL — active gap to target** (legacy scale 3→4): CMDB 100% coverage (D-09.3); risk register unified (D-09.2); target 4 with continuous asset discovery |
+| 3 | CSF 2.0 | **PR** Protect | **PARTIAL — active gap to target** (legacy scale 3→4): confidentiality mechanisms with segregated material management (D-01.x), access boundaries (D-03.x), AI RMF MAP-3.5; target 4 with full PAM automation (Doc 04b §D-03 gap) |
+| 4 | CSF 2.0 | **DE** Detect | **PARTIAL — active gap to target** (legacy scale 3→4): continuous monitoring mechanisms and anomaly detection (D-04.1, D-10.1); target 4 with AI post-market monitoring complete (Doc 04b §D-10.1 gap) |
+| 5 | CSF 2.0 | **RS** Respond | **PARTIAL — active gap to target** (legacy scale 3→4): Max-SLA 24h routing (T-001, D-04.3 RIGOROUS); target 4 with automation and external audit (Doc 04b §D-04) |
+| 6 | CSF 2.0 | **RC** Recover | **PARTIAL — active gap to target** (legacy scale 3→4): recovery mechanisms with documented RTO/RPO and tamper-evident backup retention (D-04.4, D-10.2); target 4 with hash-chained WORM |
+| 7 | Privacy FW | **ID-P** Identify | **PARTIAL — active gap to target** (legacy scale 3→4): RoPA complete, DPIA unified with FRIA (D-09.2 RIGOROUS); target 4 with automated data discovery |
+| 8 | Privacy FW | **GV-P** Govern | **PARTIAL — active gap to target** (legacy scale 3→4): ISMS with GDPR Annex + DPO designation; target 4 with privacy-by-design automatizado (D-07.1 RIGOROUS) |
+| 9 | Privacy FW | **CT-P** Control | **PARTIAL — active gap to target** (legacy scale 3→4): Cryptographic sharding (D-05.3, T-002 RESOLVED); biometric ephemeral deletion (D-05.1); target 4 |
+| 10 | Privacy FW | **CM-P** Communicate | **Target profile met** (legacy scale 3→3): Privacy notice + DSAR + breach notification; target 3 (CM-P fully met by 04b §D-09; higher tier not required for HIGH) |
+| 11 | Privacy FW | **PR-P** Protect | **PARTIAL — active gap to target** (legacy scale 3→4): confidentiality mechanisms with segregated material management + access boundaries; target 4 with PAM automation (Doc 04b §D-03.3 gap) |
+| 12 | AI RMF | **GOVERN** | **PARTIAL — active gap to target** (legacy scale 3→4): documented policy architecture + AI_Act Annex + AI Governance Lead; target 4 with continuous AI risk review |
+| 13 | AI RMF | **MAP** | **PARTIAL — active gap to target** (legacy scale 3→4): Unified DPIA + FRIA (D-09.2); AI use cases mapped; target 4 with MAP-5.1/5.2 fully documented (currently MAP-5.2 unused per AI RMF frozen list §"Unused") |
+| 14 | AI RMF | **MEASURE** | **PARTIAL — active gap to target** (legacy scale 2→4): AI_Act conformity assessment IN PROGRESS (Doc 04 §9); post-market monitoring partial (Doc 04b §D-10.1 gap); target 4 by Q4 2026 |
+| 15 | AI RMF | **MANAGE** | **PARTIAL — active gap to target** (legacy scale 3→4): Incident response playbooks (BPR-AI-07 / D-04.2); target 4 with automated prioritization |
 
 **Tally (4.5):** 6 CSF Functions at 3/4 → 4/4 (avg gap 1); 5 Privacy FW Functions at 3/3.8 → 4/4 (avg gap ~0.6); 4 AI RMF Functions at 2.75/4 → 4/4 (avg gap 1.25). **Top gap: AI RMF MEASURE** — explicit post-market monitoring implementation roadmap tracked in Phase 2 (Doc 04b §4).
 
-### §4.6 — Heatmap formula
+### §4.6 — Status distribution (replaces the legacy numerical heatmap)
 
-> Two complementary formulas are computed per row in §5.1. **Both share the same N/A exclusion rule** (below). The V4 heatmap uses `gap_worst` as its color driver (FN-03); `gap_min` is preserved as a coverage indicator.
-
-> **Coverage indicator (MIN):** `gap_min = MIN(gap_csf, gap_priv, gap_airmf)` — the original §4.6 rule; preserved for backwards compatibility and as a "coverage indicator" (lower = broader applicability of mature axes).
-
-> **Worst-axis heatmap (MAX):** `gap_worst = MAX(gap_csf, gap_priv, gap_airmf)` — the value that drives V4 color. A control with `gap_csf=1` and `gap_priv=0` is no longer rendered GREEN simply because one applicable axis has gap 0; the worst-axis gap is the risk-relevant number.
-
-> **N/A exclusion rule** applies to both formulas: when a framework is N/A for a control (e.g. AI RMF for a CR without AI-C*; PF for a control touching only non-personal-data assets), it is **excluded from the MIN/MAX, not treated as gap 0**. The reasoning: a zero in a non-applicable framework would mask a real gap in the applicable framework and would falsely "green" the heatmap.
-> **Examples:**
-> - `CR-D-06.4-001` (NIS 2 Sole Authority, third-party boundary): gap_csf=1, gap_priv=0 (N/A — NIS 2-only sub-domain not covered by GDPR SR mapping), gap_airmf=0 (N/A — no AI-C*); `gap_min = MIN(1, 0_excl, 0_excl) = 0` (coverage OK); `gap_worst = MAX(1, 0_excl, 0_excl) = 1` (worst axis).
-> - `CR-D-09.1-001` (ISMS, 4-reg): gap_csf=1, gap_priv=1, gap_airmf=1; `gap_min = MIN(1, 1, 1) = 1`; `gap_worst = MAX(1, 1, 1) = 1`.
-> - `CR-D-10.1-001` (continuous monitoring + AI post-market, RIGOROUS): gap_csf=2, gap_priv=2, gap_airmf=2; `gap_min = MIN(2, 2, 2) = 2`; `gap_worst = MAX(2, 2, 2) = 2` (worst-case, drives the heatmap to ORANGE).
-> - `CR-D-07.1-001` (post-FN-02): gap_csf=2, gap_priv=1, gap_airmf anchored (MEASURE-2.7 since port Fase 3; earlier UNMAPPED_AIRMF — no AI-C* in Doc 11 source); `gap_min = MIN(2, 1, N/A_excl) = 1`; `gap_worst = MAX(2, 1, N/A_excl) = 2` (worst axis → ORANGE).
-
-These rules are applied to every row in §5.1 and to every row in V4.
-
----
-
+> The legacy heatmap formula (numerical cur/tgt gaps per axis, GREEN..RED bands)
+> is retired with the maturity model — numerical maturity heatmaps are prohibited
+> (Posture Model §9). The §5.1 per-control statuses distribute as follows
+> (156 axis-cells over 52 in-scope controls): **IMPLEMENTED 54 · PARTIAL 67 ·
+> N/A (non-AI scope / no privacy axis) 35 · NOT IMPLEMENTED 0**. Non-uniformity
+> is intentional and gate-checked.
 ## §5 — Aplicação ao Case_02 (per-control + per-Function)
 
 ### §5.1 — Per-control table (52 cards: 38 CR + 17 BPR, excl. 3 OUT-OF-SCOPE per Track B)
 
 > 52 rows × `[rule_id, sub_domain, cur_csf, tgt_csf, cur_priv, tgt_priv, cur_airmf, tgt_airmf, gap_csf, gap_priv, gap_airmf, gap_min, gap_worst]`.
-> `cur_csf` = Doc 11 column 13 (Maturity Score); `tgt_csf` = Track B target per `Doc12_Proportionality_Profile.md` §3 (RIGOROUS → 4, STANDARD → 3, EXCLUDED → N/A).
+> Legacy note (pre-port): cur_csf was Doc 11 column 13 (Maturity Score); §5.1 statuses below are the deterministic backfill — `tgt_csf` = Track B target per `Doc12_Proportionality_Profile.md` §3 (RIGOROUS → 4, STANDARD → 3, EXCLUDED → N/A).
 > `cur/tgt_priv` and `cur/tgt_airmf` = Track B tier default: RIGOROUS → 3-4, STANDARD → 3, EXCLUDED → N/A. CR without AI-C* → airmf N/A; same for PF (none in Case_02).
 > `gap_min` = MIN of applicable gaps per §4.6 N/A-exclusion rule (coverage indicator; preserved for backwards compatibility).
 > `gap_worst` = MAX of applicable gaps per §4.6 N/A-exclusion rule (worst-axis heatmap value used by V4).
 > **OUT-OF-SCOPE per Track B:** D-07.4, D-08.3, D-09.3 (excluded from `Doc12_Proportionality_Profile.md` §4 + §11.4 F-01/F-05); not in this per-control table.
 
-| rule_id | sub_domain | cur_csf | tgt_csf | cur_priv | tgt_priv | cur_airmf | tgt_airmf | gap_csf | gap_priv | gap_airmf | gap_min | gap_worst |
+| rule_id | sub_domain | Implementation Status (CSF) | Implementation Status (Privacy) | Implementation Status (AI RMF) |
+|---------|-----------|------|---------|---------|
 |---------|-----------|--------:|--------:|---------:|---------:|----------:|----------:|--------:|---------:|----------:|--------:|----------:|
 
-| CR-D-01.1-001 | D-01.1 | 3 | 4 | 3 | 4 | 3 | 4 | 1 | 1 | 1 | 1 | 1 |
-| CR-D-01.2-001 | D-01.2 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 |
-| CR-D-01.3-001 | D-01.3 | 3 | 4 | 3 | 4 | 3 | 4 | 1 | 1 | 1 | 1 | 1 |
-| CR-D-01.4-001 | D-01.4 | 3 | 3 | 3 | 3 | 3 | 3 | 0 | 0 | 0 | 0 | 0 |
-| CR-D-02.1-001 | D-02.1 | 3 | 4 | 3 | 3 | 3 | 3 | 1 | 0 | 0 | 0 | 1 |
-| CR-D-02.2-001 | D-02.2 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 |
-| CR-D-02.3-001 | D-02.3 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 |
-| CR-D-02.4-001 | D-02.4 | 2 | 3 | 3 | 3 | 3 | 3 | 1 | 0 | 0 | 0 | 1 |
-| CR-D-03.1-001 | D-03.1 | 3 | 4 | 3 | 3 | 3 | 3 | 1 | 0 | 0 | 0 | 1 |
-| CR-D-03.2-001 | D-03.2 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 |
-| CR-D-03.3-001 | D-03.3 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 |
-| CR-D-03.4-001 | D-03.4 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 |
-| CR-D-04.1-001 | D-04.1 | 3 | 4 | 3 | 3 | 3 | 3 | 1 | 0 | 0 | 0 | 1 |
-| CR-D-04.2-001 | D-04.2 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 |
-| CR-D-04.3-001 | D-04.3 | 2 | 4 | 3 | 4 | 3 | 4 | 2 | 1 | 1 | 1 | 2 |
-| CR-D-04.4-001 | D-04.4 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 |
-| CR-D-05.1-001 | D-05.1 | 3 | 4 | 3 | 3 | 3 | 3 | 1 | 0 | 0 | 0 | 1 |
-| CR-D-05.2-001 | D-05.2 | 3 | 4 | 3 | 3 | 3 | 3 | 1 | 0 | 0 | 0 | 1 |
-| CR-D-05.3-001 | D-05.3 | 2 | 4 | 3 | 3 | N/A | N/A | 2 | 0 | N/A | 0 | 2 |
-| CR-D-05.4-001 | D-05.4 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 |
-| CR-D-06.1-001 | D-06.1 | 3 | 4 | 3 | 4 | N/A | N/A | 1 | 1 | N/A | 1 | 1 |
-| CR-D-06.2-001 | D-06.2 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 |
-| CR-D-06.3-001 | D-06.3 | 3 | 4 | 3 | 4 | N/A | N/A | 1 | 1 | N/A | 1 | 1 |
-| CR-D-06.4-001 | D-06.4 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 |
-| CR-D-07.1-001 | D-07.1 | 2 | 4 | 3 | 4 | N/A | N/A | 2 | 1 | N/A | 1 | 2 |
-| CR-D-07.2-001 | D-07.2 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 |
-| CR-D-07.3-001 | D-07.3 | 2 | 4 | 3 | 4 | N/A | N/A | 2 | 1 | N/A | 1 | 2 |
-| CR-D-08.1-001 | D-08.1 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 |
-| CR-D-08.2-001 | D-08.2 | 3 | 4 | 3 | 3 | 3 | 3 | 1 | 0 | 0 | 0 | 1 |
-| CR-D-09.1-001 | D-09.1 | 4 | 4 | 3 | 3 | 3 | 3 | 0 | 0 | 0 | 0 | 0 |
-| CR-D-09.2-001 | D-09.2 | 3 | 4 | 3 | 3 | 3 | 3 | 1 | 0 | 0 | 0 | 1 |
-| CR-D-09.4-001 | D-09.4 | 3 | 4 | 3 | 3 | 3 | 3 | 1 | 0 | 0 | 0 | 1 |
-| CR-D-10.1-001 | D-10.1 | 2 | 4 | 3 | 4 | 2 | 4 | 2 | 1 | 2 | 2 | 2 |
-| CR-D-10.2-001 | D-10.2 | 3 | 4 | 3 | 3 | 3 | 3 | 1 | 0 | 0 | 0 | 1 |
-| CR-D-10.3-001 | D-10.3 | 3 | 4 | 3 | 3 | 3 | 3 | 1 | 0 | 0 | 0 | 1 |
-| BPR-D-01.1-001 | D-01.1 | 3 | 4 | 3 | 4 | N/A | N/A | 1 | 1 | N/A | 1 | 1 |
-| BPR-D-01.2-001 | D-01.3 | 3 | 4 | 3 | 4 | N/A | N/A | 1 | 1 | N/A | 1 | 1 |
-| BPR-D-02.1-001 | D-02.1 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 |
-| BPR-D-02.5-001 | D-02.1 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 |
-| BPR-D-03.1-001 | D-03.1 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 |
-| BPR-D-03.5-001 | D-03.1 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 |
-| BPR-D-04.1-001 | D-04.1 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 |
-| BPR-D-04.5-001 | D-04.1 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 |
-| BPR-D-05.5-001 | D-05.1 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 |
-| BPR-D-06.5-001 | D-06.1 | 3 | 4 | 3 | 4 | N/A | N/A | 1 | 1 | N/A | 1 | 1 |
-| BPR-D-07.1-001 | D-07.1 | 2 | 4 | 3 | 4 | N/A | N/A | 2 | 1 | N/A | 1 | 2 |
-| BPR-D-07.5-001 | D-07.3 | 2 | 4 | 3 | 4 | N/A | N/A | 2 | 1 | N/A | 1 | 2 |
-| BPR-D-08.4-001 | D-08.1 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 |
-| BPR-D-09.1-001 | D-09.1 | 4 | 4 | 3 | 3 | N/A | N/A | 0 | 0 | N/A | 0 | 0 |
-| BPR-D-09.5-001 | D-09.1 | 4 | 4 | 3 | 3 | N/A | N/A | 0 | 0 | N/A | 0 | 0 |
-| BPR-D-10.1-001 | D-10.1 | 2 | 4 | 3 | 4 | N/A | N/A | 2 | 1 | N/A | 1 | 2 |
-| BPR-D-10.4-001 | D-10.1 | 2 | 4 | 3 | 4 | N/A | N/A | 2 | 1 | N/A | 1 | 2 |
+| CR-D-01.1-001 | D-01.1 | PARTIAL | PARTIAL | PARTIAL |
+| CR-D-01.2-001 | D-01.2 | PARTIAL | IMPLEMENTED | N/A |
+| CR-D-01.3-001 | D-01.3 | PARTIAL | PARTIAL | PARTIAL |
+| CR-D-01.4-001 | D-01.4 | IMPLEMENTED | IMPLEMENTED | IMPLEMENTED |
+| CR-D-02.1-001 | D-02.1 | PARTIAL | IMPLEMENTED | IMPLEMENTED |
+| CR-D-02.2-001 | D-02.2 | PARTIAL | IMPLEMENTED | N/A |
+| CR-D-02.3-001 | D-02.3 | PARTIAL | IMPLEMENTED | N/A |
+| CR-D-02.4-001 | D-02.4 | PARTIAL | IMPLEMENTED | IMPLEMENTED |
+| CR-D-03.1-001 | D-03.1 | PARTIAL | IMPLEMENTED | IMPLEMENTED |
+| CR-D-03.2-001 | D-03.2 | PARTIAL | IMPLEMENTED | N/A |
+| CR-D-03.3-001 | D-03.3 | PARTIAL | IMPLEMENTED | N/A |
+| CR-D-03.4-001 | D-03.4 | PARTIAL | IMPLEMENTED | N/A |
+| CR-D-04.1-001 | D-04.1 | PARTIAL | IMPLEMENTED | IMPLEMENTED |
+| CR-D-04.2-001 | D-04.2 | PARTIAL | IMPLEMENTED | N/A |
+| CR-D-04.3-001 | D-04.3 | PARTIAL | PARTIAL | PARTIAL |
+| CR-D-04.4-001 | D-04.4 | PARTIAL | IMPLEMENTED | N/A |
+| CR-D-05.1-001 | D-05.1 | PARTIAL | IMPLEMENTED | IMPLEMENTED |
+| CR-D-05.2-001 | D-05.2 | PARTIAL | IMPLEMENTED | IMPLEMENTED |
+| CR-D-05.3-001 | D-05.3 | PARTIAL | IMPLEMENTED | N/A |
+| CR-D-05.4-001 | D-05.4 | PARTIAL | IMPLEMENTED | N/A |
+| CR-D-06.1-001 | D-06.1 | PARTIAL | PARTIAL | N/A |
+| CR-D-06.2-001 | D-06.2 | PARTIAL | IMPLEMENTED | N/A |
+| CR-D-06.3-001 | D-06.3 | PARTIAL | PARTIAL | N/A |
+| CR-D-06.4-001 | D-06.4 | PARTIAL | IMPLEMENTED | N/A |
+| CR-D-07.1-001 | D-07.1 | PARTIAL | PARTIAL | N/A |
+| CR-D-07.2-001 | D-07.2 | PARTIAL | IMPLEMENTED | N/A |
+| CR-D-07.3-001 | D-07.3 | PARTIAL | PARTIAL | N/A |
+| CR-D-08.1-001 | D-08.1 | PARTIAL | IMPLEMENTED | N/A |
+| CR-D-08.2-001 | D-08.2 | PARTIAL | IMPLEMENTED | IMPLEMENTED |
+| CR-D-09.1-001 | D-09.1 | IMPLEMENTED | IMPLEMENTED | IMPLEMENTED |
+| CR-D-09.2-001 | D-09.2 | PARTIAL | IMPLEMENTED | IMPLEMENTED |
+| CR-D-09.4-001 | D-09.4 | PARTIAL | IMPLEMENTED | IMPLEMENTED |
+| CR-D-10.1-001 | D-10.1 | PARTIAL | PARTIAL | PARTIAL |
+| CR-D-10.2-001 | D-10.2 | PARTIAL | IMPLEMENTED | IMPLEMENTED |
+| CR-D-10.3-001 | D-10.3 | PARTIAL | IMPLEMENTED | IMPLEMENTED |
+| BPR-D-01.1-001 | D-01.1 | PARTIAL | PARTIAL | N/A |
+| BPR-D-01.2-001 | D-01.3 | PARTIAL | PARTIAL | N/A |
+| BPR-D-02.1-001 | D-02.1 | PARTIAL | IMPLEMENTED | N/A |
+| BPR-D-02.5-001 | D-02.1 | PARTIAL | IMPLEMENTED | N/A |
+| BPR-D-03.1-001 | D-03.1 | PARTIAL | IMPLEMENTED | N/A |
+| BPR-D-03.5-001 | D-03.1 | PARTIAL | IMPLEMENTED | N/A |
+| BPR-D-04.1-001 | D-04.1 | PARTIAL | IMPLEMENTED | N/A |
+| BPR-D-04.5-001 | D-04.1 | PARTIAL | IMPLEMENTED | N/A |
+| BPR-D-05.5-001 | D-05.1 | PARTIAL | IMPLEMENTED | N/A |
+| BPR-D-06.5-001 | D-06.1 | PARTIAL | PARTIAL | N/A |
+| BPR-D-07.1-001 | D-07.1 | PARTIAL | PARTIAL | N/A |
+| BPR-D-07.5-001 | D-07.3 | PARTIAL | PARTIAL | N/A |
+| BPR-D-08.4-001 | D-08.1 | PARTIAL | IMPLEMENTED | N/A |
+| BPR-D-09.1-001 | D-09.1 | IMPLEMENTED | IMPLEMENTED | N/A |
+| BPR-D-09.5-001 | D-09.1 | IMPLEMENTED | IMPLEMENTED | N/A |
+| BPR-D-10.1-001 | D-10.1 | PARTIAL | PARTIAL | N/A |
+| BPR-D-10.4-001 | D-10.1 | PARTIAL | PARTIAL | N/A |
 
-**Per-control summary stats:** 52 cards in scope (38 CR + 17 BPR = 55 minus 3 OUT-OF-SCOPE per Track B: D-07.4, D-08.3, D-09.3). FN-02 — CR-D-07.1-001 has airmf = N/A (no AI-C* in Doc 11 source). FN-03 — `gap_worst` distribution: 0 (D-01.4, D-09.1 + BPR-D-09.1 + BPR-D-09.5), 1 (most — gap_worst = 1 means at least one applicable axis has gap 1), 2 (D-04.3, D-05.3, D-07.1, D-07.3, D-10.1, BPR-D-07.1, BPR-D-07.5, BPR-D-10.1, BPR-D-10.4 — RIGOROUS tiers with explicit cur deficits from `04b §4` top-gaps list).
+**Per-control summary stats:** 52 cards in scope (38 CR + 17 BPR = 55 minus 3 OUT-OF-SCOPE per Track B: D-07.4, D-08.3, D-09.3). FN-02 (updated, port Fase 3) — CR-D-07.1-001 airmf anchored to MEASURE-2.7 (previously N/A; no AI-C* in Doc 11 source). FN-03 — `gap_worst` distribution: 0 (D-01.4, D-09.1 + BPR-D-09.1 + BPR-D-09.5), 1 (most — gap_worst = 1 means at least one applicable axis has gap 1), 2 (D-04.3, D-05.3, D-07.1, D-07.3, D-10.1, BPR-D-07.1, BPR-D-07.5, BPR-D-10.1, BPR-D-10.4 — RIGOROUS tiers with explicit cur deficits from `04b §4` top-gaps list).
 
 > **Note — AI-specific BPR subset (8 cards):** The 8 AI-specific BPR rows in `Doc18_Rules_Catalog.md` §5.2 (`BPR-D-07.1-002`, `BPR-D-10.5-001`, `BPR-D-02.4-001`, `BPR-D-02.4-002`, `BPR-D-03.1-002`, `BPR-D-10.2-001`, `BPR-D-04.2-001`, `BPR-D-05.1-001`) are intentionally excluded from the per-control table above because they sit outside the 38 CR + 17 BPR = 55 card count. Their CSF/PF/AI RMF mappings and maturity values are documented in `Doc18_Rules_Catalog.md` §5.2 (see Doc 11 for the authoritative mappings per NIST remediation B1, 2026-08).
 
-### §5.2 — Per-Function aggregated tiers (15 rows)
+### §5.2 — Per-Function aggregated implementation context (15 rows)
 
-> Aggregation rule: per Function, take MAX(cur across the cards in that Function — the lowest maturity card anchors the Function's cur). tgt = MAX(tgt across cards in that Function). gap = tgt - cur. This is the "worst-case per Function" aggregation.
+> Legacy aggregation note (pre-port): MAX(cur across cards) anchored each Function's cur; the qualitative contexts below quote the legacy scale for traceability. tgt = MAX(tgt across cards in that Function). gap = tgt - cur. This is the "worst-case per Function" aggregation.
 
-| # | Framework | Function | cur_tier | tgt_tier | gap | Aggregated from cards | Justification |
+| # | Framework | Function | Aggregated from cards | Implementation Context (qualitative) |
+|---|-----------|----------|-----------------------|------------------------------------------|
 |---|-----------|----------|---------:|---------:|----:|-----------------------|---------------|
-| 1 | CSF 2.0 | GV | 3 | 4 | 1 | D-09.1, D-09.2, D-09.3, D-09.4 | ISO 27001 ISMS at 4/4 already for D-09.1; D-09.2 cur 3 (DPIA+FRIA unified, not yet 4) |
-| 2 | CSF 2.0 | ID | 3 | 4 | 1 | D-02.1, D-02.2, D-02.3, D-02.4 | D-02.4 cur 2 (pen testing cadence); D-09.3 OUT-OF-SCOPE per Track B |
-| 3 | CSF 2.0 | PR | 3 | 4 | 1 | D-01.x, D-03.x, D-05.x, D-07.x | D-03.3 cur 3 (PAM pending) caps PR; D-07.1/D-07.3 cur 2 (RIGOROUS partial) |
-| 4 | CSF 2.0 | DE | 3 | 4 | 1 | D-04.1, D-04.2, D-04.3, D-04.4 | D-04.3 cur 2 (RIGOROUS, multi-reg notification in progress) |
-| 5 | CSF 2.0 | RS | 3 | 4 | 1 | D-04.x | Same as DE above; D-04.3 cur 2 anchors RS |
-| 6 | CSF 2.0 | RC | 3 | 4 | 1 | D-04.4, D-10.2 | D-10.2 cur 4 (hash-chained WORM); D-04.4 cur 3 |
-| 7 | Privacy FW | ID-P | 3 | 4 | 1 | D-09.2, D-09.4 | D-09.2 cur 3 (DPIA+FRIA in progress; not yet 4) |
-| 8 | Privacy FW | GV-P | 3 | 4 | 1 | D-09.1, D-09.2, D-09.4 | D-09.1 cur 4 (ISO 27001 + GDPR Annex); gap from D-09.2 |
-| 9 | Privacy FW | CT-P | 3 | 4 | 1 | D-05.1, D-05.2, D-05.3, D-05.4 | D-05.3 cur 2 (T-002 cryptographic sharding in deployment) |
-| 10 | Privacy FW | CM-P | 3 | 3 | 0 | D-09.1, D-09.4 | Privacy notice + DSAR + breach notification; no gap (HIGH-tier ceiling at 3) |
-| 11 | Privacy FW | PR-P | 3 | 4 | 1 | D-01.x, D-03.x, D-05.x | D-03.3 cur 3 (PAM) caps PR-P |
-| 12 | AI RMF | GOVERN | 3 | 4 | 1 | D-09.1, D-09.2, D-08.2, D-03.1, D-04.3 | D-04.3 cur 2 anchors GOVERN (max-SLA routing AI_Act) |
-| 13 | AI RMF | MAP | 3 | 4 | 1 | D-09.1, D-09.2, D-05.1, D-05.2 | D-09.2 cur 3 (DPIA+FRIA, MAP-5 partial) |
-| 14 | AI RMF | MEASURE | 2 | 4 | 2 | D-10.1, D-10.2, D-10.3, D-02.1, D-02.4, D-04.1, D-09.2, D-05.1, D-05.2 | **Largest gap.** D-10.1 cur 2 (post-market monitoring INCOMPLETE per Doc 04b §4 #2) |
-| 15 | AI RMF | MANAGE | 3 | 4 | 1 | D-04.2, D-04.3, D-09.2, D-10.1 | D-04.3 cur 2 anchors MANAGE |
+| 1 | CSF 2.0 | GV | D-09.1, D-09.2, D-09.3, D-09.4 | **PARTIAL — active gap to target** (legacy scale 3→4): ISO 27001 ISMS at 4/4 already for D-09.1; D-09.2 cur 3 (DPIA+FRIA unified, not yet 4) |
+| 2 | CSF 2.0 | ID | D-02.1, D-02.2, D-02.3, D-02.4 | **PARTIAL — active gap to target** (legacy scale 3→4): D-02.4 cur 2 (pen testing cadence); D-09.3 OUT-OF-SCOPE per Track B |
+| 3 | CSF 2.0 | PR | D-01.x, D-03.x, D-05.x, D-07.x | **PARTIAL — active gap to target** (legacy scale 3→4): D-03.3 cur 3 (PAM pending) caps PR; D-07.1/D-07.3 cur 2 (RIGOROUS partial) |
+| 4 | CSF 2.0 | DE | D-04.1, D-04.2, D-04.3, D-04.4 | **PARTIAL — active gap to target** (legacy scale 3→4): D-04.3 cur 2 (RIGOROUS, multi-reg notification in progress) |
+| 5 | CSF 2.0 | RS | D-04.x | **PARTIAL — active gap to target** (legacy scale 3→4): Same as DE above; D-04.3 cur 2 anchors RS |
+| 6 | CSF 2.0 | RC | D-04.4, D-10.2 | **PARTIAL — active gap to target** (legacy scale 3→4): D-10.2 cur 4 (hash-chained WORM); D-04.4 cur 3 |
+| 7 | Privacy FW | ID-P | D-09.2, D-09.4 | **PARTIAL — active gap to target** (legacy scale 3→4): D-09.2 cur 3 (DPIA+FRIA in progress; not yet 4) |
+| 8 | Privacy FW | GV-P | D-09.1, D-09.2, D-09.4 | **PARTIAL — active gap to target** (legacy scale 3→4): D-09.1 cur 4 (ISO 27001 + GDPR Annex); gap from D-09.2 |
+| 9 | Privacy FW | CT-P | D-05.1, D-05.2, D-05.3, D-05.4 | **PARTIAL — active gap to target** (legacy scale 3→4): D-05.3 cur 2 (T-002 cryptographic sharding in deployment) |
+| 10 | Privacy FW | CM-P | D-09.1, D-09.4 | **Target profile met** (legacy scale 3→3): Privacy notice + DSAR + breach notification; no gap (HIGH-tier ceiling at 3) |
+| 11 | Privacy FW | PR-P | D-01.x, D-03.x, D-05.x | **PARTIAL — active gap to target** (legacy scale 3→4): D-03.3 cur 3 (PAM) caps PR-P |
+| 12 | AI RMF | GOVERN | D-09.1, D-09.2, D-08.2, D-03.1, D-04.3 | **PARTIAL — active gap to target** (legacy scale 3→4): D-04.3 cur 2 anchors GOVERN (max-SLA routing AI_Act) |
+| 13 | AI RMF | MAP | D-09.1, D-09.2, D-05.1, D-05.2 | **PARTIAL — active gap to target** (legacy scale 3→4): D-09.2 cur 3 (DPIA+FRIA, MAP-5 partial) |
+| 14 | AI RMF | MEASURE | D-10.1, D-10.2, D-10.3, D-02.1, D-02.4, D-04.1, D-09.2, D-05.1, D-05.2 | **PARTIAL — active gap to target** (legacy scale 2→4): **Largest gap.** D-10.1 cur 2 (post-market monitoring INCOMPLETE per Doc 04b §4 #2) |
+| 15 | AI RMF | MANAGE | D-04.2, D-04.3, D-09.2, D-10.1 | **PARTIAL — active gap to target** (legacy scale 3→4): D-04.3 cur 2 anchors MANAGE |
 
 **Per-Function summary:** all 15 Functions have tgt 4 (4/4) except CM-P (tgt 3, ceiling for HIGH complexity). Average gap: 0.93. Largest gap: AI RMF MEASURE (2 — D-10.1 post-market monitoring + D-02.4 adversarial testing + D-04.1 AI incident detection).
 
@@ -1149,7 +1121,7 @@ These rules are applied to every row in §5.1 and to every row in V4.
 
 **Verdict §6.3:** 31 unused subcategories are **either** internal AI RMF practices (no AI_Act duty) **or** environmental / human subjects (outside T5 cybersecurity scope). For Case_02 — a HIGH-complexity border-control AI provider with all 4 regulations applicable — this is a **defensible gap**: the 31 unused subcategories would be relevant in a future contract extending AI_Act coverage to T6/T7 or to GPAI systemic-risk-specific obligations. **No flag in §6 of this contract; tracked for Case_03 / future contract.**
 
-### §6.4 — Sub-domains with low target maturity (tgt < 3)
+### §6.4 — Sub-domains at the STANDARD target profile (legacy tgt = 3)
 
 > Per the §4.6 rule, every active sub-domain in Case_02 has tgt ≥ 3 (Track B floor: STANDARD → tgt 3, RIGOROUS → tgt 4). The 3 active sub-domains with `tgt = 3` (not 4) are tracked here for proportion justification. (D-07.4, D-08.3, D-09.3 are OUT-OF-SCOPE per Track B 07b §4 + §11.4 F-01/F-05 and are excluded from this list.)
 
@@ -1159,7 +1131,7 @@ These rules are applied to every row in §5.1 and to every row in V4.
 | D-02.3 Coordinated Vuln Disclosure | STANDARD | 3 | CRA Art. 14 + NIS 2 baseline; CVD policy + 24h ack SLA; tgt 4 not justified |
 | D-05.4 Data Portability | STANDARD | 3 | GDPR Art. 20; JSON export endpoint; controller owns (not SecureBorder scope) |
 
-**No active sub-domain has tgt < 3** in Case_02 (Track B floor enforced). The 3 sub-domains at tgt 3 are justified by (a) Track B STANDARD tier, (b) post-floor rationale (target 4 requires continued investment beyond HIGH-tier proportionality), and (c) Doc 04b posture evidence.
+**No active sub-domain falls below the STANDARD target profile** (legacy tgt 3; Track B floor enforced — posture equivalent: every active sub-domain has at least PARTIAL-with-defined-target controls). The 3 sub-domains at tgt 3 are justified by (a) Track B STANDARD tier, (b) post-floor rationale (target 4 requires continued investment beyond HIGH-tier proportionality), and (c) Doc 04b posture evidence.
 
 > **FN-04 alignment note.** This section now reflects the 35 active sub-domains per Track B (`Doc12_Proportionality_Profile.md` §4 + §11.4 F-01/F-05). D-07.4, D-08.3, and D-09.3 are OUT-OF-SCOPE for Track B and are not counted in §5.1, §5.2 (except as excluded), or §8.4 (V4 heatmap). D-07.4 carries NI=2 SHOULD per Doc 11 §4.7; D-08.3 carries NIS 2 Art. 20 board-training; D-09.3 carries NIS 2 Art. 21 asset inventory — all deferred to a future contract if Track B scope expands.
 
@@ -1466,49 +1438,50 @@ graph LR
   class UNMAPPED_CSF,NA_AIS_NIS unmappedNode
 ```
 
-### V4 — Heatmap de Maturidade (Tri-axis Worst-Axis)
+### V4 — Implementation Status overview per sub-domain (replaces the legacy numerical heatmap)
 
 > 35-row table (one per active Case_02 sub-domain per Track B). D-07.4, D-08.3, D-09.3 are OUT-OF-SCOPE per `Doc12_Proportionality_Profile.md` §4 + §11.4 F-01/F-05 and excluded from this heatmap. Columns: `sub_domain, cur_csf, tgt_csf, cur_priv, tgt_priv, cur_airmf, tgt_airmf, gap_csf, gap_priv, gap_airmf, gap_min, gap_worst, color`. Heatmap color driven by `gap_worst` (MAX of applicable gaps per §4.6 N/A-exclusion rule); `gap_min` (MIN) is preserved as a coverage indicator. Color buckets: GREEN (gap_worst 0), YELLOW (gap_worst 1), ORANGE (gap_worst 2), RED (gap_worst 3-4), GREY (N/A). Sorted by `gap_worst` descending (worst at top).
 
-| sub_domain | cur_csf | tgt_csf | cur_priv | tgt_priv | cur_airmf | tgt_airmf | gap_csf | gap_priv | gap_airmf | gap_min | gap_worst | color |
+| sub_domain | Implementation Status (CSF) | Implementation Status (Privacy) | Implementation Status (AI RMF) | Note |
+|------------|------|---------|---------|------|
 |------------|--------:|--------:|---------:|---------:|----------:|----------:|--------:|---------:|----------:|--------:|----------:|:------|
-| D-04.3 | 2 | 4 | 3 | 4 | 3 | 4 | 2 | 1 | 1 | 1 | 2 | ORANGE |
-| D-05.3 | 2 | 4 | 3 | 3 | N/A | N/A | 2 | 0 | N/A | 0 | 2 | ORANGE |
-| D-07.1 | 2 | 4 | 3 | 4 | N/A | N/A | 2 | 1 | N/A | 1 | 2 | ORANGE |
-| D-07.3 | 2 | 4 | 3 | 4 | N/A | N/A | 2 | 1 | N/A | 1 | 2 | ORANGE |
-| D-10.1 | 2 | 4 | 3 | 4 | 2 | 4 | 2 | 1 | 2 | 2 | 2 | ORANGE |
-| D-01.1 | 3 | 4 | 3 | 4 | 3 | 4 | 1 | 1 | 1 | 1 | 1 | YELLOW |
-| D-01.2 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 | YELLOW |
-| D-01.3 | 3 | 4 | 3 | 4 | 3 | 4 | 1 | 1 | 1 | 1 | 1 | YELLOW |
-| D-02.1 | 3 | 4 | 3 | 3 | 3 | 3 | 1 | 0 | 0 | 0 | 1 | YELLOW |
-| D-02.2 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 | YELLOW |
-| D-02.3 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 | YELLOW |
-| D-02.4 | 2 | 3 | 3 | 3 | 3 | 3 | 1 | 0 | 0 | 0 | 1 | YELLOW |
-| D-03.1 | 3 | 4 | 3 | 3 | 3 | 3 | 1 | 0 | 0 | 0 | 1 | YELLOW |
-| D-03.2 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 | YELLOW |
-| D-03.3 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 | YELLOW |
-| D-03.4 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 | YELLOW |
-| D-04.1 | 3 | 4 | 3 | 3 | 3 | 3 | 1 | 0 | 0 | 0 | 1 | YELLOW |
-| D-04.2 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 | YELLOW |
-| D-04.4 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 | YELLOW |
-| D-05.1 | 3 | 4 | 3 | 3 | 3 | 3 | 1 | 0 | 0 | 0 | 1 | YELLOW |
-| D-05.2 | 3 | 4 | 3 | 3 | 3 | 3 | 1 | 0 | 0 | 0 | 1 | YELLOW |
-| D-05.4 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 | YELLOW |
-| D-06.1 | 3 | 4 | 3 | 4 | N/A | N/A | 1 | 1 | N/A | 1 | 1 | YELLOW |
-| D-06.2 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 | YELLOW |
-| D-06.3 | 3 | 4 | 3 | 4 | N/A | N/A | 1 | 1 | N/A | 1 | 1 | YELLOW |
-| D-06.4 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 | YELLOW |
-| D-07.2 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 | YELLOW |
-| D-08.1 | 3 | 4 | 3 | 3 | N/A | N/A | 1 | 0 | N/A | 0 | 1 | YELLOW |
-| D-08.2 | 3 | 4 | 3 | 3 | 3 | 3 | 1 | 0 | 0 | 0 | 1 | YELLOW |
-| D-09.2 | 3 | 4 | 3 | 3 | 3 | 3 | 1 | 0 | 0 | 0 | 1 | YELLOW |
-| D-09.4 | 3 | 4 | 3 | 3 | 3 | 3 | 1 | 0 | 0 | 0 | 1 | YELLOW |
-| D-10.2 | 3 | 4 | 3 | 3 | 3 | 3 | 1 | 0 | 0 | 0 | 1 | YELLOW |
-| D-10.3 | 3 | 4 | 3 | 3 | 3 | 3 | 1 | 0 | 0 | 0 | 1 | YELLOW |
-| D-01.4 | 3 | 3 | 3 | 3 | 3 | 3 | 0 | 0 | 0 | 0 | 0 | GREEN |
-| D-09.1 | 4 | 4 | 3 | 3 | 3 | 3 | 0 | 0 | 0 | 0 | 0 | GREEN |
+| D-04.3 | PARTIAL | PARTIAL | PARTIAL | backfilled from legacy 2→4 / 3→4 / 3→4 (was ORANGE) |
+| D-05.3 | PARTIAL | IMPLEMENTED | N/A | backfilled from legacy 2→4 / 3→3 / N/A→N/A (was ORANGE) |
+| D-07.1 | PARTIAL | PARTIAL | N/A | backfilled from legacy 2→4 / 3→4 / N/A→N/A (was ORANGE) |
+| D-07.3 | PARTIAL | PARTIAL | N/A | backfilled from legacy 2→4 / 3→4 / N/A→N/A (was ORANGE) |
+| D-10.1 | PARTIAL | PARTIAL | PARTIAL | backfilled from legacy 2→4 / 3→4 / 2→4 (was ORANGE) |
+| D-01.1 | PARTIAL | PARTIAL | PARTIAL | backfilled from legacy 3→4 / 3→4 / 3→4 (was YELLOW) |
+| D-01.2 | PARTIAL | IMPLEMENTED | N/A | backfilled from legacy 3→4 / 3→3 / N/A→N/A (was YELLOW) |
+| D-01.3 | PARTIAL | PARTIAL | PARTIAL | backfilled from legacy 3→4 / 3→4 / 3→4 (was YELLOW) |
+| D-02.1 | PARTIAL | IMPLEMENTED | IMPLEMENTED | backfilled from legacy 3→4 / 3→3 / 3→3 (was YELLOW) |
+| D-02.2 | PARTIAL | IMPLEMENTED | N/A | backfilled from legacy 3→4 / 3→3 / N/A→N/A (was YELLOW) |
+| D-02.3 | PARTIAL | IMPLEMENTED | N/A | backfilled from legacy 3→4 / 3→3 / N/A→N/A (was YELLOW) |
+| D-02.4 | PARTIAL | IMPLEMENTED | IMPLEMENTED | backfilled from legacy 2→3 / 3→3 / 3→3 (was YELLOW) |
+| D-03.1 | PARTIAL | IMPLEMENTED | IMPLEMENTED | backfilled from legacy 3→4 / 3→3 / 3→3 (was YELLOW) |
+| D-03.2 | PARTIAL | IMPLEMENTED | N/A | backfilled from legacy 3→4 / 3→3 / N/A→N/A (was YELLOW) |
+| D-03.3 | PARTIAL | IMPLEMENTED | N/A | backfilled from legacy 3→4 / 3→3 / N/A→N/A (was YELLOW) |
+| D-03.4 | PARTIAL | IMPLEMENTED | N/A | backfilled from legacy 3→4 / 3→3 / N/A→N/A (was YELLOW) |
+| D-04.1 | PARTIAL | IMPLEMENTED | IMPLEMENTED | backfilled from legacy 3→4 / 3→3 / 3→3 (was YELLOW) |
+| D-04.2 | PARTIAL | IMPLEMENTED | N/A | backfilled from legacy 3→4 / 3→3 / N/A→N/A (was YELLOW) |
+| D-04.4 | PARTIAL | IMPLEMENTED | N/A | backfilled from legacy 3→4 / 3→3 / N/A→N/A (was YELLOW) |
+| D-05.1 | PARTIAL | IMPLEMENTED | IMPLEMENTED | backfilled from legacy 3→4 / 3→3 / 3→3 (was YELLOW) |
+| D-05.2 | PARTIAL | IMPLEMENTED | IMPLEMENTED | backfilled from legacy 3→4 / 3→3 / 3→3 (was YELLOW) |
+| D-05.4 | PARTIAL | IMPLEMENTED | N/A | backfilled from legacy 3→4 / 3→3 / N/A→N/A (was YELLOW) |
+| D-06.1 | PARTIAL | PARTIAL | N/A | backfilled from legacy 3→4 / 3→4 / N/A→N/A (was YELLOW) |
+| D-06.2 | PARTIAL | IMPLEMENTED | N/A | backfilled from legacy 3→4 / 3→3 / N/A→N/A (was YELLOW) |
+| D-06.3 | PARTIAL | PARTIAL | N/A | backfilled from legacy 3→4 / 3→4 / N/A→N/A (was YELLOW) |
+| D-06.4 | PARTIAL | IMPLEMENTED | N/A | backfilled from legacy 3→4 / 3→3 / N/A→N/A (was YELLOW) |
+| D-07.2 | PARTIAL | IMPLEMENTED | N/A | backfilled from legacy 3→4 / 3→3 / N/A→N/A (was YELLOW) |
+| D-08.1 | PARTIAL | IMPLEMENTED | N/A | backfilled from legacy 3→4 / 3→3 / N/A→N/A (was YELLOW) |
+| D-08.2 | PARTIAL | IMPLEMENTED | IMPLEMENTED | backfilled from legacy 3→4 / 3→3 / 3→3 (was YELLOW) |
+| D-09.2 | PARTIAL | IMPLEMENTED | IMPLEMENTED | backfilled from legacy 3→4 / 3→3 / 3→3 (was YELLOW) |
+| D-09.4 | PARTIAL | IMPLEMENTED | IMPLEMENTED | backfilled from legacy 3→4 / 3→3 / 3→3 (was YELLOW) |
+| D-10.2 | PARTIAL | IMPLEMENTED | IMPLEMENTED | backfilled from legacy 3→4 / 3→3 / 3→3 (was YELLOW) |
+| D-10.3 | PARTIAL | IMPLEMENTED | IMPLEMENTED | backfilled from legacy 3→4 / 3→3 / 3→3 (was YELLOW) |
+| D-01.4 | IMPLEMENTED | IMPLEMENTED | IMPLEMENTED | backfilled from legacy 3→3 / 3→3 / 3→3 (was GREEN) |
+| D-09.1 | IMPLEMENTED | IMPLEMENTED | IMPLEMENTED | backfilled from legacy 4→4 / 3→3 / 3→3 (was GREEN) |
 
-**Heatmap summary (35 rows).** GREEN (gap_worst 0): 2 rows. YELLOW (gap_worst 1): 28 rows. ORANGE (gap_worst 2): 5 rows. RED (gap_worst 3-4): 0 rows. GREY (N/A): 0 rows. **Top attention (ORANGE — worst axis gap 2):** D-04.3 (Regulatory Notification, T-001 multi-reg), D-05.3 (Erasure, T-002), D-07.1 (Secure-by-Design, T-007; airmf N/A per FN-02), D-07.3 (CI/CD), D-10.1 (Continuous Monitoring + AI post-market, T-005). These are the RIGOROUS-tier sub-domains with explicit cur deficits from `Doc05_Security_Posture.md` §4. The methodology's D11 desynchrony is preserved: each axis (csf/priv/airmf) carries its own score; the heatmap is the **worst axis** (FN-03 — `gap_worst = MAX(...)` with N/A exclusion).
+**Status overview.** Per-axis status counts derive from §5.1 (IMPLEMENTED 54 · PARTIAL 67 · N/A 35 · NOT IMPLEMENTED 0 across 156 axis-cells). No sub-domain is NOT IMPLEMENTED; the ORANGE legacy band (D-04.3, D-05.3, D-07.1, D-07.3, D-10.1) corresponds to PARTIAL controls with active remediation documented in §4.5/§5.2.
 
 ---
 
@@ -1537,7 +1510,7 @@ graph LR
 - `02_CASES/Case_02_SecureBorder_Solutions/02_PHASE2_RULES_RICH/Doc18_Rules_Catalog.md` — 38 CR + 25 BPR (canonical Rich Mode catalog for Case_02).
 - `02_CASES/Case_02_SecureBorder_Solutions/02_PHASE2_RULES_RICH/Doc15_Strategic_Tensions_Report.md` — 8 tensions (T-001..T-008); T-001..T-004 are the most relevant for the Govern view §2.5.
 - `02_CASES/Case_02_SecureBorder_Solutions/01_PHASE1_CONTEXT_RICH/Doc12_Proportionality_Profile.md` — Track B tier per sub-domain (8 RIGOROUS + 27 STANDARD + 3 EXCLUDED).
-- `02_CASES/Case_02_SecureBorder_Solutions/01_PHASE1_CONTEXT_RICH/Doc05_Security_Posture.md` — current maturity per macro-domain (3.0 overall).
+- `02_CASES/Case_02_SecureBorder_Solutions/01_PHASE1_CONTEXT_RICH/Doc05_Security_Posture.md` — qualitative posture input per macro-domain (DEPRECATED_FOR_POSTURE; superseded as scoring source).
 - `00_METHODOLOGY/PREPROCESSING/Regulation/GDPR/02b_SecurityRules_NISTPF.md` — 68 SR GDPR→PF (100% coverage; 59/104 active PF subcats used).
 - `00_METHODOLOGY/PREPROCESSING/Regulation/AI_Act/02b_SecurityRules_NISTAIRMF.md` — 24 SR AI_Act→AI RMF (100% coverage; 41/72 active AI RMF subcats used).
 - `00_METHODOLOGY/PREPROCESSING/NIST_CSF_2.0_subcategories.md` — CSF 2.0 frozen list (106 subcats).

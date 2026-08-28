@@ -31,9 +31,19 @@ anti_pattern_note: >
 > **Diferença chave vs Case_01 SPEC:** Case_02 tem **3 frameworks ACTIVE**
 > (CSF + Privacy FW + AI RMF). NÃO existe coluna placeholder no Doc 13 — todas
 > as 3 colunas (CSF / Privacy FW / AI RMF) são populated com mapeamentos reais.
-> A maturity model é TRIPLE (3 scores independentes por controlo).
+> A maturity model é TRIPLE (3 scores independentes por controlo). *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
 ---
+
+## ⚠️ POSTURE MODEL SUPERSESSION (2026-08-28, port Fase 4)
+
+> The triple-maturity scoring designed in this SPEC (Tiers T1–T4, 0–4
+> per-subcategory scales, 165 numeric cells, fields 16–18 "Maturity") is
+> **SUPERSEDED** by `00_METHODOLOGY/IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md`
+> v2.0 (3 states + N/A categories, deterministic backfill). Doc19 §4/§5.1 and
+> Doc18 carry the adopted implementation. Sections below that still describe
+> the legacy scoring are marked *legacy design text*; they are retained for
+> specification history and are not authoritative.
 
 ## Como ler este documento
 
@@ -41,7 +51,7 @@ anti_pattern_note: >
 2. **Lê §3** (princípio arquitectural) — é o teste de coerência para cada decisão.
 3. **Antes de executar qualquer bloco: lê §4** (vocabulário dos frameworks) e
    **§5** (artefactos) — são a especificação detalhada do *quê*.
-4. **Lê §6 e §7** — são a especificação do *como* (regras NI e maturidade).
+4. **Lê §6 e §7** — são a especificação do *como* (regras NI e maturidade). *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 5. **Segue §8** (blocos) em ordem estrita. Não saltes blocos.
 6. **Valida com §9** antes de declarar pronto.
 7. **Cumpre §11** (checklists) e §13 (branch).
@@ -72,7 +82,7 @@ anti_pattern_note: >
 - §4 Especificação dos frameworks (vocabulário)
 - §5 Artefactos a produzir
 - §6 Regra MUST/SHOULD/COULD (semântica operacional)
-- §7 Modelo de maturidade tripla
+- §7 Modelo de maturidade tripla *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 - §8 Blocos de trabalho (plano de execução)
 - §9 Critério "pronto" (validação)
 - §10 Riscos & decisões diferidas
@@ -102,8 +112,8 @@ resolve:
 | # | Lacuna | Sintoma observado | Onde |
 |---|---|---|---|
 | L1 | **MUST/SHOULD informal** | BPR = P3 uniforme, sem `normative_intensity` formal; semântica SHOULD sem consequência operacional. Caso_02 tem `AVG_with_AI_MUST_override`: AVG preserva SHOULD mas AI-C* presence forces MUST (NI=3) para preservar sinal AI_Act. Contradição `DR-002` resolvida. | Doc 11 §4/§5 |
-| L2 | **Maturidade deslocada** | Modelo 0-4 vive no Doc 04b com `phase: 1`, mas `PHASE1_STRATEGY.md §7` diz *"Phase 1 does NOT assess control maturity (Phase 2)."* Maturidade é escalar por cartão, não ancorada a escala comparável. | Doc 04b |
-| L3 | **Diferenciação não demonstrável** | MANIFESTO tem retórica forte (*"We are not a compliance checklist tool"*) mas sem demonstração operacional ponto-a-ponto vs. análise compliance+maturidade convencional. | — |
+| L2 | **Maturidade deslocada** | Modelo 0-4 vive no Doc 04b com `phase: 1`, mas `PHASE1_STRATEGY.md §7` diz *"Phase 1 does NOT assess control maturity (Phase 2)."* Maturidade é escalar por cartão, não ancorada a escala comparável. | Doc 04b | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
+| L3 | **Diferenciação não demonstrável** | MANIFESTO tem retórica forte (*"We are not a compliance checklist tool"*) mas sem demonstração operacional ponto-a-ponto vs. análise compliance+maturidade convencional. | — | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 | L4 | **AI RMF sem coluna activa** (Case_01) | Case_01 SPEC original tratava AI RMF como placeholder. Case_02 **tem IA** (biometric border-control system, AI_Act applicable), portanto AI RMF DEVE ser ACTIVE — não placeholder. | Doc 13 §1 |
 
 ### 1.3 O que JÁ existe e NÃO DEVE ser recriado
@@ -125,7 +135,7 @@ O Executor **NÃO DEVE** reconstruir o seguinte — está feito e é input:
 ### 1.4 O que falta (4 itens)
 
 1. **Matriz unificada + Govern consolidada (3 frameworks)** — não existe; Doc 13 novo (§5.2).
-2. **Maturidade tripla por-controlo em escala comparável** — não existe; modelo novo (§7).
+2. **Maturidade tripla por-controlo em escala comparável** — não existe; modelo novo (§7). *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 3. **NI formal AVG + AI MUST override nos cartões** — campos novos no Doc 11 (§5.3).
 4. **Sub-domínios activos mapeados explicitamente** — 35/38 active, 3 DEFERRED (per `07b_Proportionality_Profile.md` §3).
 
@@ -140,15 +150,15 @@ O Executor **NÃO DEVE** reconstruir o seguinte — está feito e é input:
 |---|---|---|---|---|
 | D1 | Âmbito de execução | **Só Case_02** | Piloto focado; Case_01 + Case_03 são outros contractos | Não tocar Case_01/03 |
 | D2 | Abordagem ao catálogo | **Híbrido: derivação AEGIS + CSF 2.0 como pivô** | Mantém identidade AEGIS; CSF dá esqueleto comparável | Frameworks = alvo de mapeamento, não fonte |
-| D3 | Maturidade | **Mover p/ Phase 2 + expandir tripla** | Resolve contradição PHASE1_STRATEGY §7 | Doc 04b deprecado; Doc 13 assume tripla maturidade |
+| D3 | Maturidade | **Mover p/ Phase 2 + expandir tripla** | Resolve contradição PHASE1_STRATEGY §7 | Doc 04b deprecado; Doc 13 assume tripla maturidade | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 | D4 | Argumento "AEGIS vs. convencional" | **Documento académico separado (tese)** | Repo fica neutro; argumentação vive na escrita | Não escrever argumentação no repo |
 | D5 | Frameworks NIST a usar | **CSF 2.0 + Privacy FW 1.0 + AI RMF 1.0** (TODOS 3 ACTIVE) | Case_02 tem IA (biometric system); AI_Act applicable | Doc 13 §1 = matriz com colunas de todos 3 frameworks |
 | D6 | Articulação estrutural | **Matriz unificada** | Vista única evita triplicação de camadas | Doc 13 §1 = matriz com colunas de cada framework |
 | D7 | Função Govern sobreposta | **Vista Govern consolidada (3 frameworks)** | Os 3 frameworks têm Govern; fundir evita redundância | Doc 13 §2 = Govern fundida (GV ∥ Govern-P ∥ GOVERN) |
 | D8 | Papel dos frameworks | **Só alvo de mapeamento** | MANIFESTO intacto; AEGIS deriva da lei | CR/BPR não se derivam de frameworks |
 | D9 | AI RMF no Case_02 | **ACTIVE (não placeholder)** | Case_02 tem IA (biometric border-control); AI_Act applicable | Schema com 3 colunas populated (CSF + PF + AI RMF) |
-| D10 | Escala de maturidade | **Tiers 1-4 + 0-4 nos 3 frameworks** | Comparabilidade directa CSF ↔ Privacy ↔ AI RMF | Definir 0-4 por-subcat para cada framework |
-| D11 | Score por controlo multi-framework | **TRÊS scores (csf + privacy + ai_rmf)** | Preserva dessincronia segurança/privacidade/IA | 6 campos de maturidade por cartão |
+| D10 | Escala de maturidade | **Tiers 1-4 + 0-4 nos 3 frameworks** | Comparabilidade directa CSF ↔ Privacy ↔ AI RMF | Definir 0-4 por-subcat para cada framework | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
+| D11 | Score por controlo multi-framework | **TRÊS scores (csf + privacy + ai_rmf)** | Preserva dessincronia segurança/privacidade/IA | 6 campos de maturidade por cartão | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 | D12 | Govern no Case_02 (3 frameworks) | **3 colunas populated** | Método completo; AI RMF é parte integral | Coluna AI RMF = mapeamento real, não `pending` |
 | D13 | Estrutura do mapeamento | **n:m flexível** | Captura multi-mapping realista | Cada CR/BPR → lista de subcats por framework |
 | D14 | Vocabulário Privacy FW | **Lista frozen completa** | Consistência com tratamento CSF | Lista já existe (`00_METHODOLOGY/PREPROCESSING_by_domain/_global/NIST_PF_1.0_subcategories.md`) |
@@ -165,7 +175,7 @@ O Executor **NÃO DEVE** reconstruir o seguinte — está feito e é input:
 > AEGIS deriva obrigações da lei → traduz em **CR (MUST, NI=3)** e **BPR (SHOULD,
 > NI=1-2)** → ancora cada regra aos 38 sub-domínios → mapeia cada sub-domínio em
 > paralelo ao **CSF 2.0** (eixo segurança), **Privacy FW 1.0** (eixo privacidade)
-> e **AI RMF 1.0** (eixo IA), numa **matriz unificada** → mede **maturidade tripla
+> e **AI RMF 1.0** (eixo IA), numa **matriz unificada** → mede **maturidade tripla *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 > por-controlo** (Tiers 1-4 no programa/Function; 0-4 por-subcategoria no controlo)
 > → liga tudo a ISO/secure-development standards via crosswalk já existente.
 
@@ -194,7 +204,7 @@ O Executor **NÃO DEVE** reconstruir o seguinte — está feito e é input:
               │           │              │              │
               │           └──────┬───────┴──────┬───────┘
               │                  ▼             ▼
-              │       MATURIDADE TRIPLA por-controlo
+              │       MATURIDADE TRIPLA por-controlo *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
               │         Programa: T1-T4 (CSF Tiers) por Function
               │         Controlo: 0-4 por-subcategoria (3 frameworks)
               │                  │
@@ -407,7 +417,7 @@ mapping_rationale: >
 
 O Executor DEVE preencher `csf_subcategories`, `privacy_subcategories` E `ai_rmf_subcategories` para os 38 CR (D16: 100% CR). Para os 17 BPR, mapear onde fizer sentido.
 
-#### §4 — Modelo de Maturidade Tripla
+#### §4 — Modelo de Maturidade Tripla *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
 Especifica o modelo (ver §7 desta spec para conteúdo). Tabelas:
 - 4.1 Implementation Tiers CSF (T1-T4) aplicados ao programa/Function.
@@ -426,13 +436,13 @@ Especifica o modelo (ver §7 desta spec para conteúdo). Tabelas:
 - 6.1 Subcategorias CSF **não cobertas** por nenhum CR/BPR do Case_02.
 - 6.2 Subcategorias Privacy FW **não cobertas**.
 - 6.3 Subcategorias AI RMF **não cobertas**.
-- 6.4 Sub-domínios com baixa maturidade-alvo (tgt < 3) — justificar com proporção HIGH.
+- 6.4 Sub-domínios com baixa maturidade-alvo (tgt < 3) — justificar com proporção HIGH. *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
 **Critério de aceitação (Doc 13):**
 - 6 sub-secções presentes e populadas.
 - 100% dos CR com mapeamento n:m (D16).
 - AI RMF coluna populated (D9, D12) — **NÃO placeholder**.
-- Modelo de maturidade §4 definido para os 3 frameworks (D10).
+- Modelo de maturidade §4 definido para os 3 frameworks (D10). *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 - Gap analysis identifica pelo menos as subcats não cobertas.
 
 ### 5.3 ESTENDER — `11_Rules_Catalog.md`
@@ -445,30 +455,30 @@ Especifica o modelo (ver §7 desta spec para conteúdo). Tabelas:
 
 **Campos NOVOS a adicionar a cada cartão (CR e BPR):**
 
-Substituir o campo "5. NIST CSF Anchors" e "13. Maturity Score" por uma estrutura expandida. Manter a numeração 1-18 e adicionar 19-24:
+Substituir o campo "5. NIST CSF Anchors" e "13. Maturity Score" por uma estrutura expandida. Manter a numeração 1-18 e adicionar 19-24: *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
 ```
 18. Normative Intensity: 3 (MUST)                       # ver §6
 19. CSF Subcategories: [PR.DS-01, PR.DS-10]              # n:m
 20. Privacy FW Subcategories: [CT-P.DS-P:1]              # n:m
 21. AI RMF Subcategories: [MAP-2.1, MANAGE-2.1]          # n:m — populated
-22. Maturity (CSF): cur 1/4 → tgt 3/4                    # substitui "Maturity Score" antigo
-23. Maturity (Privacy): cur 1/4 → tgt 3/4
-24. Maturity (AI RMF): cur 1/4 → tgt 3/4
+22. Maturity (CSF): cur 1/4 → tgt 3/4                    # substitui "Maturity Score" antigo *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
+23. Maturity (Privacy): cur 1/4 → tgt 3/4 *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
+24. Maturity (AI RMF): cur 1/4 → tgt 3/4 *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 ```
 
-> **Decisão de estrutura:** Manter o campo "13. Maturity Score" legado marcado como
+> **Decisão de estrutura:** Manter o campo "13. Maturity Score" legado marcado como *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 > `(legacy — ver 22/23/24)` para não quebrar lints existentes.
 
 **Atualização do frontmatter do Doc 11:**
 
 ```yaml
-expected_fields_per_card: 24     # era 17 → +1 (Bloco B NI) + 6 (Bloco D tri-maturidade)
+expected_fields_per_card: 24     # era 17 → +1 (Bloco B NI) + 6 (Bloco D tri-maturidade) *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 fields_per_card: 24              # era 17
 normative_intensity_rule: AVG_with_AI_MUST_override
 frameworks_mapped: [NIST_CSF_2.0, NIST_Privacy_FW_1.0, NIST_AI_RMF_1.0]
-maturity_dual: false
-maturity_dual_mode: triple   # CSF + Privacy + AI RMF (D11 Case_02)
+maturity_dual: false *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
+maturity_dual_mode: triple   # CSF + Privacy + AI RMF (D11 Case_02) *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 ```
 
 **Critério de aceitação (Doc 11):**
@@ -486,14 +496,14 @@ maturity_dual_mode: triple   # CSF + Privacy + AI RMF (D11 Case_02)
 | Bloco | E |
 
 **O que muda:**
-- O Doc 04b deixa de ser o dono do modelo de maturidade.
-- O modelo de maturidade (avaliação tripla, target, gap) vive no Doc 13 §4-5.
+- O Doc 04b deixa de ser o dono do modelo de maturidade. *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
+- O modelo de maturidade (avaliação tripla, target, gap) vive no Doc 13 §4-5. *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
 **Critério de aceitação (Doc 04b):**
 - `status: DEPRECATED_FOR_MATURITY` no frontmatter.
 - `status_history` com entrada datada.
 - Banner de deprecated no topo do corpo.
-- `maturity_owner` aponta para Doc 13.
+- `maturity_owner` aponta para Doc 13. *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
 ### 5.5 PROMOVER — `Framework_Crosswalk_ARM.md`
 
@@ -524,14 +534,14 @@ maturity_dual_mode: triple   # CSF + Privacy + AI RMF (D11 Case_02)
 | `Unified_Matrix` | Réplica do Doc 13 §1 (matriz sub-domínio × 3 frameworks) |
 | `Govern_Consolidated` | Réplica do Doc 13 §2 |
 | `Mapping_nm` | 55 linhas × `{rule_id, subdomain, NI, csf_subcats, priv_subcats, ai_rmf_subcats}` |
-| `Maturity_Triple` | 55 linhas × `{rule_id, cur_csf, tgt_csf, cur_priv, tgt_priv, cur_ai, tgt_ai, gap}` |
+| `Maturity_Triple` | 55 linhas × `{rule_id, cur_csf, tgt_csf, cur_priv, tgt_priv, cur_ai, tgt_ai, gap}` | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 | `Cov_Function` | Visualização por Function (6 CSF + 5 Privacy + 4 AI RMF = 15) |
-| `Heatmap_Maturity` | Sub-domínio × gap (cor = MAX gap entre 3 frameworks) |
+| `Heatmap_Maturity` | Sub-domínio × gap (cor = MAX gap entre 3 frameworks) | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
 **Critério de aceitação:**
 - 6 novas folhas presentes.
 - `Mapping_nm` tem 55 linhas (1 por regra).
-- `Heatmap_Maturity` com formatação condicional (cor por MAX gap entre 3 frameworks).
+- `Heatmap_Maturity` com formatação condicional (cor por MAX gap entre 3 frameworks). *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
 ### 5.7 NOVO — 4 Visualizações
 
@@ -546,7 +556,7 @@ Bloco F. Formato de cada uma (a renderizar em markdown no Doc 13 e/ou Excel):
 #### V3 — Grafo de Rastreabilidade
 - **Figura central da tese.** Nodos: Regulação → Cláusula → Obrigação → CR/BPR → sub-domínio → CSF/Privacy/AI RMF → ISO/secure-development standards.
 
-#### V4 — Heatmap de Maturidade (TRIPLA)
+#### V4 — Heatmap de Maturidade (TRIPLA) *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 - Linhas: 38 sub-domínios (ou 55 controlos).
 - Cor: `gap = MAX(gap_csf, gap_priv, gap_ai_rmf)` (pior caso entre os 3 frameworks).
 - Cores: Verde (gap 0) / Amarelo (gap 1) / Laranja (gap 2) / Vermelho (gap 3-4).
@@ -560,7 +570,7 @@ Bloco F. Formato de cada uma (a renderizar em markdown no Doc 13 e/ou Excel):
 | NI | Label | Origem típica | Consequência operacional |
 |---|---|---|---|
 | **3** | **MUST** | Cláusula SHALL; obrigação incondicional | **Bloqueia gate de conformidade.** Falhar = não-conformidade. |
-| **2** | **SHOULD** | Cláusula SHOULD; recomendado; BPR com base em framework | **Não bloqueia conformidade.** Alimenta gap de maturidade. |
+| **2** | **SHOULD** | Cláusula SHOULD; recomendado; BPR com base em framework | **Não bloqueia conformidade.** Alimenta gap de maturidade. | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 | **1** | **COULD** | Cláusula MAY; aspiracional | Aspiracional. |
 
 ### 6.2 Regra de derivação DR-002 — RESOLVER com AVG + AI MUST override
@@ -609,14 +619,14 @@ O Executor DEVE, para cada um dos 55 cartões em Doc 11:
 
 ---
 
-## §7 — Modelo de maturidade tripla
+## §7 — Modelo de maturidade tripla *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
 ### 7.1 Duas escalas (D10)
 
 | Escala | Nível | Aplicação | Frameworks |
 |---|---|---|---|
 | **Implementation Tiers (T1-T4)** | Programa / por-Function | Avaliação macro | CSF 2.0 (nativo); Privacy FW e AI RMF adoptam |
-| **Maturidade por-subcategoria (0-4)** | Por-controlo / por-subcat | Granularidade operacional | **Todos os 3 frameworks** |
+| **Maturidade por-subcategoria (0-4)** | Por-controlo / por-subcat | Granularidade operacional | **Todos os 3 frameworks** | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
 ### 7.2 Implementation Tiers (T1-T4) — nível programa/Function
 
@@ -634,7 +644,7 @@ O Executor DEVE, para cada um dos 55 cartões em Doc 11:
 
 > **Desacordo P0 registado (D10 + adaptação):** NIST define Implementation Tiers
 > explicitamente ao nível da organização, não por-controlo. A resolução adoptada
-> é: Tiers no programa/Function, maturidade 0-4 por-subcategoria no controlo.
+> é: Tiers no programa/Function, maturidade 0-4 por-subcategoria no controlo. *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 > A escala 0-4 por-subcategoria **tem de ser construída**.
 
 **Escala 0-4 (adoptada para os 3 frameworks):**
@@ -650,9 +660,9 @@ O Executor DEVE, para cada um dos 55 cartões em Doc 11:
 ### 7.4 TRÊS scores por controlo (D11)
 
 Cada controlo mapeado aos 3 frameworks tem **três scores independentes**:
-- `maturity_csf: {cur: X, tgt: Y}`
-- `maturity_privacy: {cur: X, tgt: Y}`
-- `maturity_ai_rmf: {cur: X, tgt: Y}`
+- `maturity_csf: {cur: X, tgt: Y}` *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
+- `maturity_privacy: {cur: X, tgt: Y}` *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
+- `maturity_ai_rmf: {cur: X, tgt: Y}` *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
 Isto preserva a dessincronia segurança/privacidade/IA. **NÃO agregar** num score único.
 
@@ -661,12 +671,12 @@ Isto preserva a dessincronia segurança/privacidade/IA. **NÃO agregar** num sco
 Para o heatmap (V4), usar `gap = MAX(gap_csf, gap_priv, gap_ai_rmf)` para a **cor**
 (representa o pior caso entre os 3 frameworks), mas manter os scores individuais visíveis no detalhe.
 
-### 7.6 Ligação maturidade-alvo ↔ proporção
+### 7.6 Ligação maturidade-alvo ↔ proporção *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
-A maturidade-alvo não é livre. Para cada controlo, o `tgt` DEVE ser consistente
+A maturidade-alvo não é livre. Para cada controlo, o `tgt` DEVE ser consistente *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 com o tier de proporção do sub-domínio (Track B, `07b_Proportionality_Profile.md`):
 
-| Tier proporção (Track B) | Target maturidade esperado |
+| Tier proporção (Track B) | Target maturidade esperado | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 |---|---|
 | LIGHTWEIGHT | 2-3 |
 | MINIMAL | 2 |
@@ -693,7 +703,7 @@ Bloco A [deps: 0]  Promover crosswalk DRAFT → ACTIVE
 Bloco B [deps: A]  Formalizar MUST/SHOULD nos 55 cartões (NI, AVG + AI MUST override)
    │
    ▼
-Bloco C [deps: B, 0]  Doc 13: matriz unificada (3 frameworks) + Govern + maturidade tripla
+Bloco C [deps: B, 0]  Doc 13: matriz unificada (3 frameworks) + Govern + maturidade tripla *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
    │
    ├─────────────┬───────────┐
    ▼             ▼           ▼
@@ -736,20 +746,20 @@ Validator [deps: G]  Tier 1+2 evaluation
 | Commit | `[EXECUTOR] Bloco B — NI formal (AVG+AI MUST) em 79 cartões, DR-002 resolvido` |
 | Validação | 100% dos 55 cartões com campo 18; AVG + AI MUST override aplicado |
 
-#### Bloco C — Doc 13 (matriz + Govern + maturidade tripla)
+#### Bloco C — Doc 13 (matriz + Govern + maturidade tripla) *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
 | Campo | Valor |
 |---|---|
 | Outputs | `13_Framework_Mapping_Matrix.md` (3 frameworks, §5.2) |
-| Commit | `[EXECUTOR] Bloco C — Doc 13 unified matrix (3 frameworks CSF+PF+AI RMF) + triple maturity` |
+| Commit | `[EXECUTOR] Bloco C — Doc 13 unified matrix (3 frameworks CSF+PF+AI RMF) + triple maturity` | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 | Validação | 6 sub-secções; 100% CR mapeados aos 3 frameworks; AI RMF populated (NÃO placeholder) |
 
-#### Bloco D — Estender Doc 11 (campos 19-24, tri-maturidade)
+#### Bloco D — Estender Doc 11 (campos 19-24, tri-maturidade) *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
 | Campo | Valor |
 |---|---|
 | Outputs | Doc 11 com campos 19-24 em todos os 55 cartões |
-| Commit | `[EXECUTOR] Bloco D — Doc 11 estendido (campos 19-24, tri-maturidade CSF+PF+AI RMF)` |
+| Commit | `[EXECUTOR] Bloco D — Doc 11 estendido (campos 19-24, tri-maturidade CSF+PF+AI RMF)` | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
 #### Bloco E — Deprecar 04b
 
@@ -792,7 +802,7 @@ Validator [deps: G]  Tier 1+2 evaluation
   - [ ] campo 19 (`csf_subcategories`) com pelo menos 1 subcat.
   - [ ] campo 20 (`privacy_subcategories`) — pode ser `[]` com justificação.
   - [ ] campo 21 (`ai_rmf_subcategories`) — populated (NÃO placeholder).
-  - [ ] campos 22-24 (`maturity_csf`, `maturity_privacy`, `maturity_ai_rmf`) com cur/tgt.
+  - [ ] campos 22-24 (`maturity_csf`, `maturity_privacy`, `maturity_ai_rmf`) com cur/tgt. *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
 - [ ] **17 BPR** têm:
   - [ ] campo 18 com NI 1-2 (SHOULD/COULD).
@@ -810,7 +820,7 @@ Validator [deps: G]  Tier 1+2 evaluation
 - [ ] DR-002 resolvido com AVG + AI MUST override.
 - [ ] Nenhum controlo derivado *de* um framework (invariante §3.3).
 - [ ] AI RMF populated (D9) — sem placeholder em Case_02.
-- [ ] Maturidade-alvo consistente com proporção Track B (§7.6).
+- [ ] Maturidade-alvo consistente com proporção Track B (§7.6). *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
 ### 9.4 Lint & Validator
 
@@ -827,10 +837,10 @@ Validator [deps: G]  Tier 1+2 evaluation
 | # | Risco | Mitigação |
 |---|---|---|
 | R1 | **Propagação ~6 artefactos** (acima do limiar P5 de 3) | Confinado ao Case_02; não fragmenta o método global. |
-| R2 | **Maturidade tripla = verbosidade** (3 scores por cartão) | Justificado pelo princípio D11; mitigado no heatmap via MAX para cor. |
+| R2 | **Maturidade tripla = verbosidade** (3 scores por cartão) | Justificado pelo princípio D11; mitigado no heatmap via MAX para cor. | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 | R3 | **AI RMF subcats limitadas** (41/72 cobertas por AI_Act) | Aceitável; sem dimensão AI usar `N/A (non-AI scope)` (§4.6; antiga recomendação `UNMAPPED_AIRMF` reformada no port Fase 3). |
 | R4 | **Consistência cross-case** (Case_01/03 dessincronizados) | Aceitável como piloto. Documentar. |
-| R5 | **Sub-domínios DEFERRED** (3/38) | Excluídos da avaliação de maturidade; justificação em Doc 13 §6. |
+| R5 | **Sub-domínios DEFERRED** (3/38) | Excluídos da avaliação de maturidade; justificação em Doc 13 §6. | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
 ### 10.2 Decisões diferidas
 
@@ -889,7 +899,7 @@ ls 03_REFERENCE_MATERIAL/Framework_Mappings/Framework_Crosswalk_ARM.md
 | ❌ Usar AI RMF como placeholder | D9 — em Case_02, AI RMF é ACTIVE |
 | ❌ Escrever argumento académico no repo | D4 — vive na tese |
 | ❌ MAX(NI) em vez de AVG | §6.2 — mata SHOULD (AP-P2-09) |
-| ❌ Agregar maturidade num score único | D11 — preservar dessincronia tripla |
+| ❌ Agregar maturidade num score único | D11 — preservar dessincronia tripla | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 | ❌ Preencher coluna 800-53 | DF1 — fora de âmbito |
 | ❌ Apagar conteúdo do 04b | §5.4 — só deprecar, manter input |
 | ❌ Commit directo em main | AGENTS.md — 1 branch per contract |
@@ -911,7 +921,7 @@ ls 03_REFERENCE_MATERIAL/Framework_Mappings/Framework_Crosswalk_ARM.md
 | **Function** | Topo da hierarquia NIST (CSF: 6; Privacy: 5; AI RMF: 4) |
 | **Subcategory** | Unidade atómica mapeável (CSF: 106; Privacy: 138; AI RMF: 72) |
 | **Tier (CSF)** | Implementation Tier 1-4 (Partial/Risk-Informed/Repeatable/Adaptive) |
-| **Maturity 0-4** | None/Ad-hoc/Defined/Managed/Optimized — por-subcat, por framework |
+| **Maturity 0-4** | None/Ad-hoc/Defined/Managed/Optimized — por-subcat, por framework | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 | **Govern consolidada** | Vista que funde GV (CSF) + Govern-P (Privacy) + GOVERN (AI RMF) |
 | **Matriz unificada** | Vista única com colunas de cada framework — Doc 13 §1 |
 | **Track B** | Camada de proporção (LIGHTWEIGHT/STANDARD/RIGOROUS/DEFERRED) |
@@ -979,5 +989,5 @@ git push -u origin feature/aegis-p2-case02-csf-pf-airmf
 
 > Este documento fecha 17 decisões e especifica 7 artefactos em 8 blocos.
 > O Executor lê isto + os ficheiros referenciados e executa sem perguntas.
-> Se algo parecer ambíguo: alinha com §3 (princípio), §6 (NI), §7 (maturidade tripla).
+> Se algo parecer ambíguo: alinha com §3 (princípio), §6 (NI), §7 (maturidade tripla). *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 > Não reinventes decisões fechadas em §2.

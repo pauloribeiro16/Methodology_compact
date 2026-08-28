@@ -17,7 +17,7 @@ total_rules: 55
 total_tensions: 6
 total_source_clauses: 112
 total_detail_cards: 55
-total_cells_triple_maturity: 165
+implementation_posture_decision: Implementation Posture Model v2.0 adopted (port Fase 4); legacy triple-maturity 165 cells superseded via deterministic backfill
 frameworks_in_scope: [NIST_CSF_2.0, NIST_Privacy_FW_1.1, NIST_AI_RMF_1.0]
 sibling_of: ../02_PHASE2_RULES/
 sprints_complete: [A, B, C, D, E, F, G]
@@ -62,7 +62,7 @@ branch: feature/aegis-p2-case02-csf-pf-airmf
 | `10_Privacy_Security_Goals.md` | ✅ COPIED | — | 394 | 47 goal rows (10 PG + 37 SG, 1:1 OBL→goal) |
 | `11_Rules_Catalog.md` | ✅ COPIED + banner | — | 603 | 55 cards (38 CR + 17 BPR, 17 fields) + Rich banner pointing to canonical |
 | `12_Rules_Catalog.xlsx` | ✅ COPIED | — | 28KB | Excel catalog (canonical, unchanged) |
-| `13_Framework_Mapping_Matrix.md` | ✅ ACTIVE | C + D + F | ~2,400 | Unified matrix 3 frameworks (CSF + PF + AI RMF), 6 sub-sections, 165 triple-maturity cells |
+| `13_Framework_Mapping_Matrix.md` | ✅ ACTIVE | C + D + F | ~2,400 | Unified matrix 3 frameworks (CSF + PF + AI RMF), 6 sub-sections, 165 legacy triple-maturity cells |
 | `10b_Privacy_Security_Goals_NIST_Implications.md` | ✅ NEW | rich-symmetry | ~400 | 47 PG/SG × 3 frameworks implication catalog |
 | `SPEC_NIST_MATRIX_UNIFIED.md` | ✅ NEW | rich-symmetry | ~1,000 | 17-decision specification (Case_02 3-framework scenario) |
 | `PROJECT_STATE.md` | ✅ UPDATED | rich-symmetry | this file | Project state snapshot (v1.0) |
@@ -89,9 +89,9 @@ branch: feature/aegis-p2-case02-csf-pf-airmf
 |-------|------|-------|--------|:------:|
 | **Bloco A** | 2026-08-07 | Crosswalk DRAFT → ACTIVE | `Framework_Crosswalk_ARM.md` ACTIVE v1.0, 800-53 OUT OF SCOPE | ✅ COMPLETE |
 | **Bloco B** | 2026-08-07 | NI formal (AVG + AI MUST override) | 79 cart rows with field 18 (NI) populated; frontmatter `normative_intensity_rule: AVG_with_AI_MUST_override` | ✅ COMPLETE |
-| **Bloco C** | 2026-08-07 | Doc 13 unified matrix (3 frameworks) | 6 sub-sections (§1 matriz, §2 Govern, §3 n:m mapping, §4 maturidade, §5 aplicação, §6 gap); 38 unique CR YAML blocks; 17 BPR YAML blocks | ✅ COMPLETE |
-| **Bloco D** | 2026-08-07 | Doc 11 estendido (campos 19-24, tri-maturidade) | 6 new cols added: csf_subcats, priv_subcats, ai_rmf_subcats, maturity_csf, maturity_privacy, maturity_ai_rmf | ✅ COMPLETE |
-| **Bloco E** | 2026-08-07 | 04b deprecated for maturity | `04b_Security_Posture.md` → DEPRECATED_FOR_MATURITY; maturity_owner: 13_Framework_Mapping_Matrix.md | ✅ COMPLETE |
+| **Bloco C** | 2026-08-07 | Doc 13 unified matrix (3 frameworks) | 6 sub-sections (§1 matriz, §2 Govern, §3 n:m mapping, §4 maturidade (legacy), §5 aplicação, §6 gap); 38 unique CR YAML blocks; 17 BPR YAML blocks | ✅ COMPLETE |
+| **Bloco D** | 2026-08-07 | Doc 11 estendido (campos 19-24, tri-maturidade (legacy, superseded pela postura)) | 6 new cols added: csf_subcats, priv_subcats, ai_rmf_subcats, maturity_csf, maturity_privacy, maturity_ai_rmf | ✅ COMPLETE |
+| **Bloco E** | 2026-08-07 | 04b deprecated for legacy maturity | `04b_Security_Posture.md` → DEPRECATED_FOR_MATURITY; maturity_owner (legacy key): superseded by posture_owner — port Fase 4 | ✅ COMPLETE |
 | **Bloco F** | 2026-08-07 | 4 visualizações + 6 folhas Excel | V1 matriz cobertura, V2 mapa por Function, V3 Mermaid traceability, V4 heatmap; 6 new Excel sheets | ✅ COMPLETE |
 | **Bloco G fix** | 2026-08-07 | FN-01..FN-07 closure | All 7 Validator findings closed (frozen IDs, AI RMF anchor, heatmap, 35 active, path labels, field count) | ✅ COMPLETE |
 | **Validator** | 2026-08-07 | Tier 1+2 PASS_WITH_FINDINGS | Independent sub-agent verdict; 7 findings raised, all closed by Bloco G fix | ✅ PASS_WITH_FINDINGS |
@@ -104,7 +104,7 @@ branch: feature/aegis-p2-case02-csf-pf-airmf
 | B | PASS | AVG + AI MUST override; AI-C* → MUST (NI=3) preserved |
 | C | PASS_WITH_FINDINGS | FN-02 (AI RMF anchor) + FN-04 (35 active) raised |
 | D | PASS_WITH_FINDINGS | FN-07 (field count 15 vs 18) raised |
-| E | PASS | 04b DEPRECATED; maturity_owner Doc 13 |
+| E | PASS | 04b DEPRECATED; legacy maturity_owner Doc 13 |
 | F | PASS_WITH_FINDINGS | FN-01 (frozen IDs), FN-03 (heatmap), FN-05 (path labels) raised |
 | G fix | PASS | All 7 findings (FN-01..FN-07) closed |
 | Validator | PASS_WITH_FINDINGS | Tier 1+2 alignment check PASS; 7 findings tracked and closed |
@@ -116,7 +116,7 @@ branch: feature/aegis-p2-case02-csf-pf-airmf
 | Blocos complete | 6 of 7 | 7 of 7 | **8 of 8** ✅ (incl. Validator) |
 | Frameworks ACTIVE | n/a | **3 (CSF + PF + AI RMF)** | 3 ✅ |
 | Doc 13 unified matrix | absent | **ACTIVE** (3 frameworks, 6 sub-sections) | ✅ |
-| Triple-maturity cells | n/a | **165** (3 × 55 cards) | 165 ✅ |
+| Triple implementation status cells | n/a | **165** legacy numeric cells superseded by posture statuses (3 × 52 in-scope cards; port Fase 4) | ✅ |
 | Doc 11 fields per card | 17 | 18 (Bloco B + Bloco D) | 18 ✅ |
 | Excel sheets | n/a | 10 (4 legacy + 6 new from Bloco F) | 10 ✅ |
 | Findings open | 0 | 0 (all 7 closed) | 0 ✅ |
@@ -142,11 +142,11 @@ branch: feature/aegis-p2-case02-csf-pf-airmf
 | 13 | Dependencies | list | per card |
 | 14 | Risk if not met | H/M/L + 1-line | per card |
 | 15 | Affected Stakeholders | list | per card |
-| 16 | Maturity (CSF) | Cur X/4 → Tgt Y/4 | per card |
-| 17 | Maturity (Privacy) | Cur X/4 → Tgt Y/4 | per card |
-| 18 | Maturity (AI RMF) | Cur X/4 → Tgt Y/4 | per card |
+| 16 | Implementation Status (CSF) | posture model v2.0 | per card (was legacy Maturity) |
+| 17 | Implementation Status (Privacy) | posture model v2.0 | per card (was legacy Maturity) |
+| 18 | Implementation Status (AI RMF) | posture model v2.0 | per card (was legacy Maturity) |
 
-**Card population target:** 55 cards × 18 fields = 990 fields. Triple-maturity (CSF + Privacy + AI RMF) per D11 Case_02.
+**Card population target:** 55 cards × 18 fields = 990 fields. Triple implementation status (legacy triple-maturity superseded, port Fase 4) per D11 Case_02.
 
 ---
 
@@ -222,7 +222,7 @@ branch: feature/aegis-p2-case02-csf-pf-airmf
 | A | ✅ PASS | Crosswalk ACTIVE v1.0 |
 | B | ✅ PASS | AVG + AI MUST override, 79 cart rows with field 18 |
 | C | ✅ PASS_WITH_FINDINGS | Doc 13 unified matrix, 3 frameworks, 6 sub-sections |
-| D | ✅ PASS_WITH_FINDINGS | Doc 11 fields 19-24 (tri-maturidade) |
+| D | ✅ PASS_WITH_FINDINGS | Doc 11 fields 19-24 (tri-maturidade (legacy, superseded pela postura)) |
 | E | ✅ PASS | 04b DEPRECATED_FOR_MATURITY |
 | F | ✅ PASS_WITH_FINDINGS | 4 visualisations + 6 Excel sheets |
 | G fix | ✅ PASS | FN-01..FN-07 closed |
