@@ -176,6 +176,20 @@
       "phase": 1,
       "result": "Port Bloco A Fase 0: PORT_census_v0 baseline (188 UNMAPPED tokens, sprint keys, legacy-basename refs, /maturi/ census); D1 AI-C19 propagation completed (Doc10 v1.2, phase1_ontology v2.1, 112 to 111); state-chain repair (case+P1 PROJECT_STATE, P1 README links/statuses, Doc07/Doc11/Doc08 NOT_ADDRESSED set, Doc18 duplicate banner)",
       "action_taken": "See validation/PORT_census_v0.md; port Fases 1-2 follow in Bloco A"
+    },
+    {
+      "timestamp": "2026-08-28T00:00:00Z",
+      "event": "port_case01_campaign_blocob_complete",
+      "phase": 2,
+      "result": "Port Fases 1-5: AG- migration (70 goals) + corr-010 rename; frontmatter DocNN repair (279 refs); P1+P2 posture migration (Doc13 70 cards, Doc19 §4/§5/§6.4/V4 52 controls, Doc05 DEPRECATED_FOR_POSTURE); UNMAPPED adjudication (188 tokens: PRIVACY/AIRMF retired, 38 N/A non-AI-scope, real MEASURE-2.7/PR.PO-P4/GV anchors, frozen AI RMF 72-subcat list established); Control Set v1 (Doc18 v6.0, 63 controls, Annexes A-C, build_control_set.py with status-parse fix)",
+      "action_taken": "Commits bea1018..7b9e6e6; see VALIDATOR_UNMAPPED_AUDIT_v0.md and PRODUCTION_FLOW.md"
+    },
+    {
+      "timestamp": "2026-08-28T00:00:00Z",
+      "event": "port_case01_campaign_blococ_complete",
+      "phase": 2,
+      "result": "Port Fases 6-7: sprint-key sweep P2/P3/00_COMMON; gates v0.3 ported (check_unmapped.py + check_implementation_posture_case02.py) BOTH GATE PASS; PRODUCTION_FLOW.md v1.0; production-flow audit PASS_WITH_NOTES",
+      "action_taken": "Commits 78d895e..; gates: 02_PHASE2_RULES_RICH/validation/check_unmapped.py, validation/check_implementation_posture_case02.py"
     }
   ]
 }

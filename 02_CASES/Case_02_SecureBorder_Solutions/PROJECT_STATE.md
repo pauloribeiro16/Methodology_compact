@@ -1,7 +1,7 @@
 # Project State — Case 02: SecureBorder Solutions (High Complexity)
 
 **Last Updated:** 2026-08-28
-**Status:** 🟢 Phase 1 ✅ COMPLETE (Rich, superseded Sprint 3 CONDITIONAL_PASS) | Phase 2 ✅ COMPLETE (corr-008 migrated) | Phase 3 ✅ COMPLETE | 🔄 PORT CAMPAIGN Case_01→Case_02 IN PROGRESS (Fases 0–2, Bloco A)
+**Status:** 🟢 Phase 1 ✅ COMPLETE (Rich, superseded Sprint 3 CONDITIONAL_PASS) | Phase 2 ✅ COMPLETE (corr-008 migrated) | Phase 3 ✅ COMPLETE | 🟢 PORT CAMPAIGN Case_01→Case_02 COMPLETE (Fases 0–7 — all gates PASS)
 **Next Phase:** Port Fases 3–7 (UNMAPPED adjudication, posture, Control Set, gates, PRODUCTION_FLOW)
 **Complexity:** High (4 regulations: GDPR, CRA, NIS 2, AI Act)
 **Case Name:** SecureBorder Solutions B.V.
@@ -404,3 +404,12 @@ python lints/run_all_lints.py --case "SecureBorder Solutions"
 - **P5 record:** `kg.sh impact PG-D-01.1` resolves in KG E3 (legacy PG labels — stale until next graphify re-ingest in the main repo, F-S1-09); `AI-C19`/`SG-D-05.4`/doc-ID lookups: no unique match
 - **Verification (Bloco A exit):** `/maturi/` P1 = only 4 waived lines (real `MATURITY` xlsx-sheet inventory, marked "legacy sheet name"); PG/SG = only Doc16 Appendix A legacy aliases + Doc13/PHASE3_PLAN migration notes; P1 sprint keys = 0; legacy basenames in deliverables = 0; ontology YAML parses; all DocNN basenames resolve
 - **Next (Bloco B):** Fase 3 (UNMAPPED census/adjudication + §4.6 taxonomy + frozen AI RMF list), Fase 4 (P2 posture), Fase 5 (Control Set v1 + build script with status-parsing fix)
+
+## Port Blocos B+C — Fases 3–7 (2026-08-28)
+
+- **Fase 3 (UNMAPPED P2):** 188 tokens adjudicated per the Case_01 recipe — `UNMAPPED_PRIVACY`/`UNMAPPED_AIRMF` RETIRED (0 in deliverables); 21 CR without AI dimension → `N/A (non-AI scope)`; CR-D-07.1-001 → MEASURE-2.7; CR-D-07.3/BPR-D-07.5 → PR.PO-P4; Doc18 slot-filler collapse + 2 mis-celled rows fixed; 7 genuine PF gaps kept WITH justification; §4.6 marker vocabulary added to SPEC; **frozen AI RMF list established (72 subcats)** — the item Case_01's SPEC deferred to this contract; report `02_PHASE2_RULES_RICH/validation/VALIDATOR_UNMAPPED_AUDIT_v0.md`
+- **Fase 4 (postura P2):** Doc19 §4/§5.1/§5.2/§6.4/V4 migrated to Implementation Status (52 controls; 54 IMPLEMENTED / 67 PARTIAL / 35 N/A — non-uniform); Doc16/17/20 posture vocabulary; SPEC supersession banner; legacy-design lines marked
+- **Fase 5 (Control Set v1):** Doc18 v6.0 "AEGIS Control Set — Rich Mode (Case_02)" — corrected 24-field schema mapping (F21/F22 posture, F23 traceability Legal → AG-D → OBL-D → PSO, F24 anchors → §10.1), Annexes A–C; `validation/build_control_set.py` + `control_set.yaml` (63 controls; the Case_01 `'**'` status-parsing bug is fixed and asserted)
+- **Fase 6 (gates):** gates v0.3 ported and parameterised — `02_PHASE2_RULES_RICH/validation/check_unmapped.py` + repo-root `validation/check_implementation_posture_case02.py`; sprint-key sweep across P2/P3/00_COMMON/SPEC (indented keys included); **BOTH GATES PASS** (CSF frozen-list check is WARN-only: list not mirrored in the compact repo)
+- **Fase 7 (fecho):** `01_PHASE1_CONTEXT_RICH/PRODUCTION_FLOW.md` v1.0 (Layers 0/1/2, §3 goal-linkage with AG- IDs, §6 open items); `validation/P1_production_flow_audit_case02.md` (PASS_WITH_NOTES, incl. cross-case mirror refresh); progress.json Bloco B/C events
+- **Campaign exit state:** 18 commits `5bfd81f`..this; P1+P2 now carry the full Case_01 August-2026 campaign adapted to Case_02's 4-regulation scope (real AI RMF anchoring where Case_01 used placeholders)

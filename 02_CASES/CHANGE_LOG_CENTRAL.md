@@ -1,7 +1,7 @@
 # Central Change Log — AEGIS Methodology Implementation
 
-**Last Updated:** 2026-08-26
-**Version:** 6.0 (Case_01 Phase 3 RICH — Product Baseline Rewrite, Sprint 6)
+**Last Updated:** 2026-08-28
+**Version:** 6.1 (Case_02 port campaign — Fases 0–7 complete)
 **Scope:** All Cases
 
 ---
@@ -35,6 +35,24 @@
 3. `4256213 [EXECUTOR] xlsx 12-sheet + RULE_FREEZE v2.0 — Case_01`
 4. `05d75e7 [EXECUTOR] Doc26 v2.0 + drawio regen (product-root tree) — Case_01`
 5. (this commit) `[VALIDATOR] Sprint 6 validator + PROJECT_STATE + progress.json — Case_01`
+
+---
+
+## 0b. Port Campaign (2026-08-28) — Case_01→Case_02 upgrade (Fases 0–7)
+
+| Metric | Value |
+|--------|-------|
+| Scope | Case_02_SecureBorder_Solutions P1+P2 (+ transversal refs), port of the Case_01 Aug-2026 campaign |
+| Commits | 18 (`5bfd81f`..HEAD), `[EXECUTOR]/[VALIDATOR] port Case_02 FaseN` |
+| Fase 0 | PORT_census_v0 (188 UNMAPPED baseline); D1 AI-C19 propagation (Doc10 v1.2, ontology v2.1, 112→111); state-chain repair |
+| Fase 1 | corr-008 AG- migration (PG→-001, SG→-002, 70 goals); corr-010 rename Doc13_Adjusted_Goals; frontmatter DocNN repair (279 refs) |
+| Fase 2 | P1 posture migration (Doc13 70 cards, Doc05 DEPRECATED_FOR_POSTURE, Doc08 counts); ontology v2.2 kg_ontology alignment |
+| Fase 3 | UNMAPPED adjudication (PRIVACY/AIRMF retired; N/A non-AI scope ×21 CR; MEASURE-2.7/PR.PO-P4 anchors; 7 justified PF gaps); §4.6 vocabulary; frozen AI RMF 72-subcat list |
+| Fase 4 | P2 posture (Doc19 52 controls non-uniform; SPEC supersession banner) |
+| Fase 5 | Control Set v1: Doc18 v6.0, corrected 24-field schema, Annexes A–C, control_set.yaml 63 controls (status-parse fix) |
+| Fase 6 | Sprint sweep P2/P3/00_COMMON; gates v0.3 ported — BOTH GATE PASS |
+| Fase 7 | Case_02 PRODUCTION_FLOW v1.0; flow audit PASS_WITH_NOTES (mirror refresh) |
+| Verdict | PASS — Case_02 P1+P2 now at the Case_01 Aug-2026 standard, adapted to 4-regulation scope |
 
 ---
 

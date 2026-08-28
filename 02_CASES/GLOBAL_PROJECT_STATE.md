@@ -1,7 +1,7 @@
 # GLOBAL PROJECT STATE — AEGIS Methodology Implementation
 
-**Last Updated:** 2026-08-24
-**Version:** 6.3 (Phase 3 RICH Mode re-verification per VALIDATOR_SPRINT5 v2 — Case_01 PASS_WITH_FINDINGS recorded)
+**Last Updated:** 2026-08-28
+**Version:** 6.4 (Case_02 port campaign complete — P1+P2 at the Case_01 Aug-2026 standard; gates PASS)
 **Scope:** All Cases
 
 ---
@@ -13,7 +13,7 @@
 | Case ID | Name | Complexity | Status | Phase 1 | Phase 2 | Phase 3 | Phase 3 RICH | Quality Gate |
 |---------|------|------------|--------|---------|---------|---------|--------------|--------------|
 | **Case_01** | TinyTask SaaS | Low | 🟢 Active | ✅ Complete | ✅ Complete | ✅ Complete (v2.0) | 🟡 PASS_WITH_FINDINGS (v2 — see VALIDATOR_SPRINT5 2026-08-24 v2) | 78.6% (SC1-SC5) |
-| **Case_02** | SecureBorder Solutions | High | 🟢 Active | ✅ Complete | ✅ Complete | ✅ Complete (84.1%) | ⏳ Not started | 85.2% |
+| **Case_02** | SecureBorder Solutions | High | 🟢 Active — port campaign complete (2026-08-28) | ✅ Complete + campaign (AG-, posture, Control Set, gates PASS) | ✅ Complete + campaign | ✅ Complete (84.1%) | ⏳ Not started | 85.2% (pre-campaign) |
 | **Case_03** | OmniBank Financial Systems | Maximum | 🟢 Active | ✅ Complete | ✅ Complete | ✅ Complete (100%) | ⏳ Not started | 99.2% |
 
 ### 1.2 Overall Metrics
