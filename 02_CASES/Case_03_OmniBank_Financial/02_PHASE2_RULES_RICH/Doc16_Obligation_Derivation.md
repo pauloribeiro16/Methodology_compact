@@ -7,7 +7,7 @@ created: 2026-04-03
 updated: 2026-08-28
 author: Compliance Lead
 status: ACTIVE
-inputs: [Doc12_Structured_Compliance_Matrix.md, 06_Clause_Mapping_Matrix.xlsx]
+inputs: [Doc12_Structured_Compliance_Matrix.md, ../01_PHASE1_CONTEXT_RICH/Case_03_Phase1_RICH.xlsx]
 outputs: [Doc17_Strategic_Tensions_Report.md, Doc18_Privacy_Security_Objectives.md]
 traceability: AEGIS Class Model → RegulatoryObligation, RegulatoryClause classes
 related_documents: 00_Taxonomy_Reference.md, 03_Design_Decisions_Log.md
