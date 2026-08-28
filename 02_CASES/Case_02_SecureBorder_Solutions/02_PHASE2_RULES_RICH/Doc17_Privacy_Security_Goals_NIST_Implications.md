@@ -202,7 +202,7 @@ controls (model integrity, adversarial robustness, AI-specific risk management).
 | PO-D-09.1-001, PO-D-09.1-002, SO-D-09.1-001, SO-D-09.1-002 | D-09.1 | ID.RA-01, GV.RM-01 | GOVERN-5.2, MAP-3.1 | Risk assessment (AI-specific) |
 | PO-D-09.2-001, PO-D-09.2-002, SO-D-09.2-001, SO-D-09.2-002 | D-09.2 | ID.RA-04, RS.MA-02 | MEASURE-2.4 | AI threat modelling + adversarial analysis |
 | NOT_ADDRESSED | D-09.3 | RS.MA-01, RS.MA-02 | MANAGE-2.4 | AI incident response procedures |
-| PO-D-09.4-001, SO-D-09.4-001 | D-09.4 | GV.SC-03, UNMAPPED_CSF | MAP-1.5 | Third-party AI model risk assessment |
+| PO-D-09.4-001, SO-D-09.4-001 | D-09.4 | GV.SC-03 | MAP-1.5 | Third-party AI model risk assessment |
 | SO-D-10.1-001, SO-D-10.1-002, SO-D-10.1-003 | D-10.1 | RC.RP-01, ID.IM-03 | MANAGE-4.1 | AI system recovery procedures |
 
 > **Note:** 55 SO total (corr-008: SO-D-* namespace, 25/55 SO have AI RMF mappings; the

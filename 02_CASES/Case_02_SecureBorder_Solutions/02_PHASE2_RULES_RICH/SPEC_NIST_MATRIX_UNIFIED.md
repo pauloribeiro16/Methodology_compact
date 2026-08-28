@@ -217,8 +217,25 @@ O Executor **NÃO DEVE** reconstruir o seguinte — está feito e é input:
 ## §4 — Especificação dos frameworks (vocabulário)
 
 > O Executor DEVE usar apenas IDs das listas frozen. **NÃO inventar IDs.** Se um
-> mapeamento não encaixar em nenhuma subcategoria, usar `UNMAPPED_CSF` /
-> `UNMAPPED_PRIVACY` / `UNMAPPED_AIRMF` (espelhando a convenção do CSF).
+> mapeamento não encaixar em nenhuma subcategoria, aplicar o vocabulário de
+> marcadores da **§4.6** (port Fase 3, 2026-08-28 — alinhada com o SPEC v1.1 do
+> Case_01).
+
+### 4.6 Vocabulário de marcadores (canónico, 2026-08-28)
+
+- `UNMAPPED_PF` — gap element-level na coluna Privacy FW 1.0; OBRIGATÓRIO
+  justificação inline (parêntese) ou `unmapped_pf_justification` (YAML).
+- `UNMAPPED_CSF` — gap element-level na coluna CSF 2.0, com justificação.
+- `N/A (non-AI scope)` — a regra não tem dimensão AI (reg set sem AI_Act, ou
+  sem AI-C* nas cláusulas-fonte). Proibido quando a regra tem dimensão AI —
+  nesse caso exige âncora AI RMF real da lista frozen.
+- `UNMAPPED_PRIVACY` — **REFORMADO** (tolerância zero; ver case audit v0).
+- `UNMAPPED_AIRMF` — **REFORMADO** (token semanticamente errado; adjudicado
+  para âncoras reais ou `N/A (non-AI scope)` no port Fase 3).
+- **Proibido:** pseudo-ranges (`UNMAPPED_PF..P4`), substituição de ID real por
+  marcador, tokens sem justificação, exclusões de famílias baseadas em drafts.
+- Sourcing: apenas IDs das listas frozen (`CONTROLS/NIST_PF/*.json`,
+  `CONTROLS/NIST_AI_RMF/*.json`); nunca inventar.
 
 ### 4.1 NIST CSF 2.0 (segurança — eixo principal)
 
@@ -287,7 +304,10 @@ Esta tabela é a base do Doc 13 §2 (Vista Govern consolidada para Case_02 com 3
 1. O Executor **DEVE** tirar IDs CSF 2.0 de `NIST_CSF_2.0_subcategories.md`.
 2. O Executor **DEVE** tirar IDs Privacy FW de `NIST_PF_1.0_subcategories.md`.
 3. O Executor **DEVE** tirar IDs AI RMF de `NIST_AI_RMF_1.0_subcategories.md` — em Case_02, AI RMF é **ACTIVO**.
-4. O Executor **NÃO DEVE** inventar IDs. Se não há correspondência, usar `UNMAPPED_CSF`, `UNMAPPED_PRIVACY` ou `UNMAPPED_AIRMF`.
+4. O Executor **NÃO DEVE** inventar IDs. Se não há correspondência, aplicar o
+   vocabulário da §4.6: `UNMAPPED_PF`/`UNMAPPED_CSF` com justificação, ou
+   `N/A (non-AI scope)` na coluna AI RMF. `UNMAPPED_PRIVACY`/`UNMAPPED_AIRMF`
+   estão REFORMADOS (port Fase 3, 2026-08-28).
 
 ---
 
@@ -808,7 +828,7 @@ Validator [deps: G]  Tier 1+2 evaluation
 |---|---|---|
 | R1 | **Propagação ~6 artefactos** (acima do limiar P5 de 3) | Confinado ao Case_02; não fragmenta o método global. |
 | R2 | **Maturidade tripla = verbosidade** (3 scores por cartão) | Justificado pelo princípio D11; mitigado no heatmap via MAX para cor. |
-| R3 | **AI RMF subcats limitadas** (41/72 cobertas por AI_Act) | Aceitável; usar `UNMAPPED_AIRMF` para o resto. |
+| R3 | **AI RMF subcats limitadas** (41/72 cobertas por AI_Act) | Aceitável; sem dimensão AI usar `N/A (non-AI scope)` (§4.6; antiga recomendação `UNMAPPED_AIRMF` reformada no port Fase 3). |
 | R4 | **Consistência cross-case** (Case_01/03 dessincronizados) | Aceitável como piloto. Documentar. |
 | R5 | **Sub-domínios DEFERRED** (3/38) | Excluídos da avaliação de maturidade; justificação em Doc 13 §6. |
 
@@ -895,7 +915,7 @@ ls 03_REFERENCE_MATERIAL/Framework_Mappings/Framework_Crosswalk_ARM.md
 | **Govern consolidada** | Vista que funde GV (CSF) + Govern-P (Privacy) + GOVERN (AI RMF) |
 | **Matriz unificada** | Vista única com colunas de cada framework — Doc 13 §1 |
 | **Track B** | Camada de proporção (LIGHTWEIGHT/STANDARD/RIGOROUS/DEFERRED) |
-| **UNMAPPED_CSF/PRIVACY/AIRMF** | Marcador para quando não há correspondência numa subcategoria |
+| **UNMAPPED_CSF / UNMAPPED_PF** | Marcador element-level com justificação obrigatória (§4.6); `UNMAPPED_PRIVACY`/`UNMAPPED_AIRMF` reformados |
 | **AVG_with_AI_MUST_override** | Regra NI: AVG normal, mas presença de AI-C* força MUST (NI=3) |
 
 ### Apêndice B — Caminhos completos referenciados
