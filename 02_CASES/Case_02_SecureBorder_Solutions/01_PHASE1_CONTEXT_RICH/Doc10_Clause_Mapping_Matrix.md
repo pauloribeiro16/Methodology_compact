@@ -2,9 +2,9 @@
 document_id: AEGIS-P2-RICH-06-CLAUSES
 title: Clause Mapping Matrix (Rich Mode)
 phase: 1
-version: 1.1
+version: 1.2
 created: 2026-07-09
-updated: 2026-08-06
+updated: 2026-08-28
 author: Compliance Lead (Rich copy: Sprint 1 Executor, 2026-08-06)
 status: RECONCILED
 case: Case_02_SecureBorder_Solutions
@@ -106,11 +106,11 @@ This document specifies the Excel-based Clause Mapping Matrix (Step B2), mapping
 
 | Metric | Value |
 |--------|-------|
-| Total AI_Act Clauses | 29 |
-| Applicable to SecureBorder | 29 (High-Risk AI per Annex III — border control) |
-| Weight 3 (Mandatory) | 28 (96.6%) |
-| Weight 2 (Conditional) | 1 (3.4%) |
-| Mean NI | 2.966 |
+| Total AI_Act Clauses | 28 (AI-C19 removed per D1, 2026-08-13 — SecureBorder is PROVIDER only) |
+| Applicable to SecureBorder | 28 (High-Risk AI per Annex III — border control) |
+| Weight 3 (Mandatory) | 27 (96.4%) |
+| Weight 2 (Conditional) | 1 (3.6%) |
+| Mean NI | 2.964 |
 
 ### Sheet 6: DORA
 **Status:** Not applicable for SecureBorder — see `05_Regulatory_Applicability.md` §3.4 (not a financial entity per DORA Art. 2).
@@ -166,12 +166,12 @@ This document specifies the Excel-based Clause Mapping Matrix (Step B2), mapping
 
 **Totals:** 2 + 2 + 2 + 7 + 2 + 3 + 3 + 6 + 2 = 29 ✓
 
-### AI_Act Mapping (29 clauses → 10×38 taxonomy — High-Risk AI)
+### AI_Act Mapping (28 clauses → 10×38 taxonomy — High-Risk AI)
 
 | Sub-Domain | Clause Count | Clauses |
 |------------|--------------|---------|
 | D-01 (Encryption & Integrity) | 2 | AI-C17, C18 |
-| D-03 (Access Control) | 1 | AI-C19 (deployer obligations Art. 26) |
+| D-03 (Access Control) | 0 | — (AI-C19 Art. 26 deployer obligations removed per D1, 2026-08-13: SecureBorder is PROVIDER only; deployer duty falls on the border-control authority) |
 | D-04 (Incident Response) | 3 | AI-C25, C26, C27 (Art. 73 three-tier reporting) |
 | D-06 (Supply Chain) | 2 | AI-C28, C29 (Art. 25 downstream) |
 | D-07 (Secure Development) | 2 | AI-C06, C07 (Art. 10 data governance) |
@@ -179,7 +179,7 @@ This document specifies the Excel-based Clause Mapping Matrix (Step B2), mapping
 | D-09 (Governance) | 11 | AI-C01, C02, C03, C04, C05, C08, C11, C13, C16, C20, C24 |
 | D-10 (Monitoring) | 5 | AI-C09, C10, C21, C22, C23 |
 
-**Totals:** 2 + 1 + 3 + 2 + 2 + 3 + 11 + 5 = 29 ✓ (AI-C11/C23 deduplicated from duplicate D-09/D-09-Records row that was present in v1.0; both legitimately belong to D-09 governance sub-domain since the binding obligation is documentation/registration, with monitoring as implementation)
+**Totals:** 2 + 0 + 3 + 2 + 2 + 3 + 11 + 5 = 28 ✓ (AI-C11/C23 deduplicated from duplicate D-09/D-09-Records row that was present in v1.0; both legitimately belong to D-09 governance sub-domain since the binding obligation is documentation/registration, with monitoring as implementation. AI-C19 removed per D1, 2026-08-13.)
 
 ---
 
@@ -208,10 +208,10 @@ The methodology recommends Level 2 frameworks (ISO 27001 A.8, A.14; NIST SSDF) f
 | GDPR | 2.964 | 96.4% | 3.6% | 0.0% |
 | CRA | 2.923 | 92.3% | 7.7% | 0.0% |
 | NIS 2 | 2.897 | 89.7% | 10.3% | 0.0% |
-| AI_Act | 2.966 | 96.6% | 3.4% | 0.0% |
-| **COMBINED (SecureBorder)** | **2.937** | **93.8%** | **6.2%** | **0.0%** |
+| AI_Act | 2.964 | 96.4% | 3.6% | 0.0% |
+| **COMBINED (SecureBorder)** | **2.937** | **93.7%** | **6.3%** | **0.0%** |
 
-**Total Applicable Clauses:** 112 (GDPR 28 + CRA 26 + NIS 2 29 + AI_Act 29)
+**Total Applicable Clauses:** 111 (GDPR 28 + CRA 26 + NIS 2 29 + AI_Act 28 — AI-C19 removed per D1)
 
 ---
 
@@ -220,6 +220,7 @@ The methodology recommends Level 2 frameworks (ISO 27001 A.8, A.14; NIST SSDF) f
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
 | 1.0 | 2026-07-09 | Compliance Lead | Initial release — SecureBorder Solutions, 4 applicable regulations (112 total clauses), HIGH complexity tier |
+| 1.2 | 2026-08-28 | Executor (port Fase 0) | AI-C19 (Art. 26(1) deployer) removed per D1 (2026-08-13) — propagated to Sheet 5 metrics, AI_Act mapping table, totals and §8 shim markers. 112 → 111 clauses, AI_Act 29 → 28. |
 
 ---
 
@@ -235,7 +236,7 @@ The methodology recommends Level 2 frameworks (ISO 27001 A.8, A.14; NIST SSDF) f
 
 ## 8. CROSS-REFERENCE (Sprint 1 — I-01 partial FIX)
 
-> **Purpose:** This section provides a clause-ID shim table for the 112 applicable clauses (GDPR 28 + CRA 26 + NIS 2 29 + AI_Act 29), mapping case-form IDs (e.g. `GDPR-C01`) to corpus-form article references (e.g. `Art. 5(1)(c)`). Added in Sprint 1 to support cross-doc traceability and corpus linkage.
+> **Purpose:** This section provides a clause-ID shim table for the 111 applicable clauses (GDPR 28 + CRA 26 + NIS 2 29 + AI_Act 28), mapping case-form IDs (e.g. `GDPR-C01`) to corpus-form article references (e.g. `Art. 5(1)(c)`). Added in Sprint 1 to support cross-doc traceability and corpus linkage.
 
 ### 8.1 GDPR Clause ID Shim (28 clauses)
 
@@ -272,13 +273,13 @@ The methodology recommends Level 2 frameworks (ISO 27001 A.8, A.14; NIST SSDF) f
 
 > Note: Party-role entries in this table are descriptive (`controller`, `controller-processor`) and do NOT use the lint's obligated_party enum. The canonical obligated-party enum (CONTROLLER, PROCESSOR, JOINT_CONTROLLER) per `00_METHODOLOGY/SCHEMA/obligated_party.yaml` is maintained in the legacy `02_Regulatory_Mapping_Master.md` (DEPRECATED) and `02_PHASE2_RULES/`.
 
-### 8.2 CRA, NIS 2, AI_Act Clause ID Shim (84 clauses)
+### 8.2 CRA, NIS 2, AI_Act Clause ID Shim (83 clauses)
 
-The full 26 + 29 + 29 clause tables are too long to inline here. Sprint 2 will generate them programmatically from `00_METHODOLOGY/PREPROCESSING/Regulation/{CRA,NIS2,AI_Act}/Articles/Art_*.md` and `02_SecurityRules_NIST.md`. Sprint 1 markers:
+The full 26 + 29 + 28 clause tables are too long to inline here. Sprint 2 will generate them programmatically from `00_METHODOLOGY/PREPROCESSING/Regulation/{CRA,NIS2,AI_Act}/Articles/Art_*.md` and `02_SecurityRules_NIST.md`. Sprint 1 markers:
 
 - **CRA (26 clauses)**: `CRA-C01..CRA-C26` per legacy §3.2 mapping (5 sheets in xlsx). Canonical corpus-form: see `00_METHODOLOGY/PREPROCESSING/Regulation/CRA/Articles/`.
 - **NIS 2 (29 clauses)**: `NIS2-C01..NIS2-C29` per legacy §3.3. Canonical corpus-form: `00_METHODOLOGY/PREPROCESSING/Regulation/NIS2/Articles/`.
-- **AI_Act (29 clauses)**: `AI-C01..AI-C29` per legacy §3.5. Canonical corpus-form: `00_METHODOLOGY/PREPROCESSING/Regulation/AI_Act/Articles/`.
+- **AI_Act (28 clauses)**: `AI-C01..AI-C29` minus AI-C19 (removed per D1, 2026-08-13 — SecureBorder is PROVIDER only). Canonical corpus-form: `00_METHODOLOGY/PREPROCESSING/Regulation/AI_Act/Articles/`.
 
 ### 8.3 Tension IDs Reference
 

@@ -4,7 +4,15 @@
 #
 # This ontology is the canonical source for clause_id -> maps_to_subdomain
 # references in this case. Do not duplicate this mapping elsewhere.
-# Total clauses: 28 (GDPR) + 26 (CRA) + 29 (NIS 2) + 29 (AI_Act) = 112.
+# Total clauses: 28 (GDPR) + 26 (CRA) + 29 (NIS 2) + 28 (AI_Act) = 111.
+#
+# ⚠️ D1 PROPAGATION (v2.1, 2026-08-28, port Fase 0):
+#   - AI-C19 (Art. 26(1) deployer obligations) commented out below, per the D1
+#     decision of 2026-08-13 (branch feature/remediation-pf-airmf-audit):
+#     SecureBorder is PROVIDER only (04_Company_Context_Assessment.md L217);
+#     the deployer duty falls on the border-control authority.
+#   - AI_Act clause_count 29 → 28; total 112 → 111. Mirrors the frozen legacy
+#     copy `00_COMMON/phase1_ontology.yaml` and Doc10 v1.2.
 #
 # ⚠️ RECONCILIATION (v1.1, 2026-08-06, Sprint 1):
 #   - Tension IDs T-006/T-007/T-008 added to extend ontology beyond T-001–T-005.
@@ -19,7 +27,7 @@
 header:
   case_id: "Case_02_SecureBorder_Solutions"
   phase: 1
-  version: "2.0"
+  version: "2.1"
   generated_from:
     - "AEGIS-COMMON-00"  # Taxonomy Reference
     - "AEGIS-COMMON-01"  # Company Context
@@ -37,6 +45,7 @@ header:
       - "Generated date updated: 2026-07-09 → 2026-08-06."
       - "v1.3 (corr-Case02 Commit B, 2026-08-10): T-009 added (D-10.1 monitoring opt-out SCOPE_CONFLICT; F-03 RESOLVED); F-04 RESOLVED (AI Act Art. 12 → Art. 19(1) in T-002 citations); F-06 RESOLVED (AI_Act casing normalization across Case_02). Lint rule AI_ACT_CASING added."
       - "v2.0 (corr-Case02 Commit F, 2026-08-10): FINAL MIGRATION MARKER. Phase 1 RICH complete (35 ACTIVE subdomains, 07c tech-free). Phase 2 migration complete (89 PSOs = 34 PO + 55 SO; 63 rules = 38 CR + 25 BPR). Phase 3 harmonisation complete (UC/FR/NFR + AO/PSO linkage). 13_Framework_Mappings.xlsx created (3 sheets: NIST CSF + Privacy + AI RMF). Case root README.md authored. Author updated to corr-Case02 Commit F. sprint updated 1 → 9; role updated reconciliation → final_migration."
+      - "v2.1 (port Fase 0, 2026-08-28): D1 propagation — AI-C19 commented out, AI_Act 29 → 28, total 112 → 111. Aligns with frozen 00_COMMON copy and Doc10 v1.2."
 
 # ============================================================
 # COMPANY
@@ -129,11 +138,11 @@ regulations:
     applicable: true
     obligated_party: "provider"
     reason: "aiact_high_risk_system = true (Edge AI for border control — Annex III)"
-    clause_count: 29
-    key_articles: [5, 9, 10, 11, 12, 13, 14, 15, 25, 26, 27, 43, 49, 61, 72, 73]
+    clause_count: 28
+    key_articles: [5, 9, 10, 11, 12, 13, 14, 15, 25, 27, 43, 49, 61, 72, 73]
     high_risk_category: "Annex III §1 — migration, asylum and border control management"
     prohibited_practices_check: "Art. 5 negative analysis — GuardianGate performs 1:1 verification (not 1:N identification); no prohibited practices (a)-(h) apply"
-    key_clauses_in_scope: "AI-C01 through AI-C29 (all 29 applicable)"
+    key_clauses_in_scope: "AI-C01 through AI-C29 (28 applicable; AI-C19 Art. 26 deployer obligations excluded per D1 — SecureBorder is PROVIDER only)"
 
 # ============================================================
 # DOMAINS (All 10 security control domains)
@@ -1353,13 +1362,16 @@ clause_mappings:
     normative_strength: 3
     obligation_type: "mandatory"
 
-  - clause_id: "AI-C19"
-    regulation_id: "REG-AIAct"
-    article: "Art. 26(1)"
-    description: "Deployer obligations (when used as deployer)"
-    maps_to_subdomain: "D-03.3"
-    normative_strength: 3
-    obligation_type: "mandatory"
+  # AI-C19 COMMENTED OUT (D1, 2026-08-13; propagated 2026-08-28 port Fase 0):
+  # SecureBorder is PROVIDER only — Art. 26(1) deployer obligations apply to
+  # the deploying border-control authority, not to SecureBorder.
+  # - clause_id: "AI-C19"
+  #   regulation_id: "REG-AIAct"
+  #   article: "Art. 26(1)"
+  #   description: "Deployer obligations (when used as deployer)"
+  #   maps_to_subdomain: "D-03.3"
+  #   normative_strength: 3
+  #   obligation_type: "mandatory"
 
   - clause_id: "AI-C20"
     regulation_id: "REG-AIAct"
