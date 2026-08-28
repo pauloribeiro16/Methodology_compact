@@ -43,7 +43,7 @@
 | Metric | Value |
 |--------|-------|
 | Scope | Case_02_SecureBorder_Solutions P1+P2 (+ transversal refs), port of the Case_01 Aug-2026 campaign |
-| Commits | 18 (`5bfd81f`..HEAD), `[EXECUTOR]/[VALIDATOR] port Case_02 FaseN` |
+| Commits | 13 (`5bfd81f`..HEAD), `[EXECUTOR]/[VALIDATOR] port Case_02 FaseN` |
 | Fase 0 | PORT_census_v0 (188 UNMAPPED baseline); D1 AI-C19 propagation (Doc10 v1.2, ontology v2.1, 112→111); state-chain repair |
 | Fase 1 | corr-008 AG- migration (PG→-001, SG→-002, 70 goals); corr-010 rename Doc13_Adjusted_Goals; frontmatter DocNN repair (279 refs) |
 | Fase 2 | P1 posture migration (Doc13 70 cards, Doc05 DEPRECATED_FOR_POSTURE, Doc08 counts); ontology v2.2 kg_ontology alignment |
