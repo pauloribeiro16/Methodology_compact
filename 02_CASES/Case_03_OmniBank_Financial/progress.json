@@ -152,6 +152,20 @@
       "phase": 1,
       "result": "Port Bloco A Fase 0: PORT_census_v0 (262 UNMAPPED tokens baseline; maturi scales; sprint keys); adjudications: canonical tensions = 5 (T-005 DORA TLPT added to Doc17), AI-C19 KEPT (OmniBank is PROVIDER+DEPLOYER), PF 1.1->1.0, corr-012 (PO/SO deferral) registered; state-chain repair (case PS 3.1, P2 PS/README tension counts)",
       "action_taken": "See validation/PORT_census_v0.md; port Fases 1-2 follow in Bloco A"
+    },
+    {
+      "timestamp": "2026-08-28T00:00:00Z",
+      "event": "port_case01_campaign_fase123_complete",
+      "phase": 2,
+      "result": "Port Fases 1-5: sprint sweep + legacy→DocNN map (377 refs); Docs 16/17/18/20 DRAFT→ACTIVE; P1 posture purge; ontology v2.0-port kg_ontology with DORA branch; UNMAPPED adjudication (262 tokens: AIRMF/PRIVACY retired, 23 CR → N/A non-AI-scope, PF gaps justified); P2 posture (Doc21 78 controls); Control Set v1 (Doc20 v2.0, control_set.yaml 78 controls)",
+      "action_taken": "Commits f3fd04b..3dd0f1b; see VALIDATOR_UNMAPPED_AUDIT_v0.md"
+    },
+    {
+      "timestamp": "2026-08-28T00:00:00Z",
+      "event": "port_case01_campaign_blococ_complete",
+      "phase": 2,
+      "result": "Port Fases 6-7: gates v0.3 ported (check_unmapped.py + check_implementation_posture_case03.py) BOTH GATE PASS; PRODUCTION_FLOW.md v1.0; flow audit PASS_WITH_NOTES",
+      "action_taken": "Commits 049ef54..; campaign complete"
     }
   ]
 }

@@ -279,3 +279,12 @@ python lints/run_all_lints.py --case "OmniBank Financial Systems"
 - **P5 record:** kg.sh impact AG-D-05.2-001 / AEGIS-P3-RICH-07c → no match (KG E3 sem nós de Case_03 — sem contaminação F-S1-09)
 - **Verification (Bloco A exit):** 0 chaves sprint em deliverables; 0 basenames legacy em Doc*/READMEs (fora 00_Taxonomy_Reference ambíguo e RICH_VS_LEGACY histórico); /maturi/ P1 = só waivers legítimos (nomes reais de folhas xlsx + contexto de superssão); 76 AG goals verificados; YAMLs parseiam
 - **Next (Bloco B):** Fase 3 (UNMAPPED P2 — 262 tokens), Fase 4 (postura P2 — Doc21 §4 + Doc20 78 escalas), Fase 5 (Control Set v1 — 78 controlos) 
+
+## Port Blocos B+C — Fases 3–7 (2026-08-28)
+
+- **Fase 3 (UNMAPPED P2):** 262 tokens adjudicated — `UNMAPPED_AIRMF`/`UNMAPPED_PRIVACY` RETIRED (0 células); 23 CR sem dimensão AI → `N/A (non-AI scope)`; 15 CR com AI-C* mantêm âncoras reais (verificadas na frozen 72); 14 células PF justificadas em Doc20 + 24 em Doc21; 51 placeholders PT standardizados; SPEC §4.6 canónico; relatório `02_PHASE2_RULES_RICH/validation/VALIDATOR_UNMAPPED_AUDIT_v0.md`
+- **Fase 4 (postura P2):** Doc21 §4/§5.1/§5.2/V4 → Implementation Status (78 controlos: 177 PARTIAL / 57 N/A); Doc19 `posture_target_note_*`; SPEC banner de superssão
+- **Fase 5 (Control Set v1):** Doc20 v2.0 — schema 24 campos corrigido, F23 traceability com AG-D- (corr-012), F24 → Doc21 §1, Anexos A–C; `validation/build_control_set.py` + `control_set.yaml` (78 controlos = 38 CR + 40 BPR; bug `'**'` asserted)
+- **Fase 6 (gates):** `check_unmapped.py` + `check_implementation_posture_case03.py` — **BOTH GATE PASS**; marker sweep case-wide (36 linhas com nota de superssão); `_deprecated/` adicionado às exclusões do gate
+- **Fase 7 (fecho):** `01_PHASE1_CONTEXT_RICH/PRODUCTION_FLOW.md` v1.0 (slot map próprio, DORA via-CSF como invariante); `validation/P1_production_flow_audit_case03.md` PASS_WITH_NOTES; progress.json + CHANGE_LOG_CENTRAL 6.2 + GLOBAL_PROJECT_STATE 6.5
+- **Campaign exit:** 11 commits `c765800`..HEAD; Case_03 P1+P2 ao padrão Aug-2026, DORA-aware; AI-C19 mantido (PROVIDER+DEPLOYER); corr-012 pendente formal

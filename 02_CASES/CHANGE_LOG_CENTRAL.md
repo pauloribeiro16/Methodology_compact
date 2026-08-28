@@ -1,7 +1,7 @@
 # Central Change Log — AEGIS Methodology Implementation
 
 **Last Updated:** 2026-08-28
-**Version:** 6.1 (Case_02 port campaign — Fases 0–7 complete)
+**Version:** 6.2 (Case_02 + Case_03 port campaigns complete — gates PASS)
 **Scope:** All Cases
 
 ---
@@ -53,6 +53,24 @@
 | Fase 6 | Sprint sweep P2/P3/00_COMMON; gates v0.3 ported — BOTH GATE PASS |
 | Fase 7 | Case_02 PRODUCTION_FLOW v1.0; flow audit PASS_WITH_NOTES (mirror refresh) |
 | Verdict | PASS — Case_02 P1+P2 now at the Case_01 Aug-2026 standard, adapted to 4-regulation scope |
+
+---
+
+## 0c. Port Campaign (2026-08-28) — Case_01→Case_03 upgrade (Fases 0–7)
+
+| Metric | Value |
+|--------|-------|
+| Scope | Case_03_OmniBank_Financial P1+P2 (Maximum, 5/5 regs incl. DORA), port of the Case_01 Aug-2026 campaign |
+| Commits | 11 (`c765800`..HEAD), `[EXECUTOR]/[VALIDATOR] port Case_03 FaseN` |
+| Fase 0 | PORT_census_v0 (262 UNMAPPED baseline); tensions canonical = 5 (T-005 DORA TLPT added to Doc17); AI-C19 KEPT (PROVIDER+DEPLOYER); PF 1.0; corr-012 registered; state-chain repair |
+| Fase 1 | Sprint sweep; legacy→DocNN map by content (377 refs, shifted slot map); Docs 16-20 DRAFT→ACTIVE |
+| Fase 2 | P1 posture purge (Doc05, Doc08 158 cells, Doc13 76); ontology v2.0-port kg_ontology with DORA branch |
+| Fase 3 | UNMAPPED adjudication (AIRMF/PRIVACY retired; 23 CR → N/A non-AI-scope; 15 CR real anchors; PF gaps justified); SPEC §4.6 |
+| Fase 4 | P2 posture (Doc21 78 controls, 177 PARTIAL / 57 N/A); SPEC supersession banner |
+| Fase 5 | Control Set v1: Doc20 v2.0, control_set.yaml 78 controls (38 CR + 40 BPR), F23 traceability with AG- |
+| Fase 6 | Gates v0.3 ported — BOTH GATE PASS (CSF check WARN-only) |
+| Fase 7 | PRODUCTION_FLOW v1.0; flow audit PASS_WITH_NOTES (3-case mirror) |
+| Verdict | PASS — Case_03 P1+P2 at the Case_01 Aug-2026 standard, DORA-aware |
 
 ---
 
