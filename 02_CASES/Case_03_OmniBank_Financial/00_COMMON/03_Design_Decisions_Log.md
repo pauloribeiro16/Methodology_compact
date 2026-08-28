@@ -268,7 +268,7 @@ Each decision is recorded using the following template:
 | Decision Maker | DPO + CISO |
 | Decision Statement | T-002 resolved via Cryptographic Sharding — PII separation at log ingestion |
 | Alternatives Considered | 1. Dual retention (impossible — direct contradiction)<br>2. Cryptographic Sharding (selected) — PII separated, keys destroyed on erasure<br>3. Consent-based override of erasure right |
-| Rationale | 1. GDPR erasure and AI Act/DORA immutable logging are fundamentally incompatible without architectural intervention<br>2. Cryptographic sharding preserves audit integrity while enabling erasure via key destruction<br>3. Proportionate to OmniBank's high security maturity and available resources<br>4. Aligns with ECB guidance on data protection in financial logging |
+| Rationale | 1. GDPR erasure and AI Act/DORA immutable logging are fundamentally incompatible without architectural intervention<br>2. Cryptographic sharding preserves audit integrity while enabling erasure via key destruction<br>3. Proportionate to OmniBank's high security maturity and available resources<br>4. Aligns with ECB guidance on data protection in financial logging | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 | Class Model Reference | StrategicTension.resolutionStrategy + ConflictResolution |
 | Impact Assessment | - Positive: Resolves fundamental architectural contradiction<br>- Negative: Requires log pipeline redesign; key management infrastructure<br>- Mitigation: Phase in via logging architecture upgrade project |
 | Review Date | After logging architecture implementation |
@@ -296,7 +296,7 @@ Each decision is recorded using the following template:
 | Decision Maker | CTO + Compliance Lead |
 | Decision Statement | T-004 resolved by following CRA secure-by-default standard (higher bar) |
 | Alternatives Considered | 1. GDPR "appropriate measures" only (lower bar)<br>2. CRA "secure by default" (selected) — higher bar satisfies both<br>3. Hybrid approach per system criticality |
-| Rationale | 1. CRA NI=3 (unconditional) supersedes GDPR NI=2 (conditional) per T9.6 Intensity Gap resolution<br>2. CRA secure-by-default is a pass/fail criterion — simpler to verify than GDPR's contextual "appropriate"<br>3. Satisfies both regulations simultaneously<br>4. Consistent with OmniBank's high security maturity |
+| Rationale | 1. CRA NI=3 (unconditional) supersedes GDPR NI=2 (conditional) per T9.6 Intensity Gap resolution<br>2. CRA secure-by-default is a pass/fail criterion — simpler to verify than GDPR's contextual "appropriate"<br>3. Satisfies both regulations simultaneously<br>4. Consistent with OmniBank's high security maturity | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 | Class Model Reference | StrategicTension.resolutionStrategy |
 | Impact Assessment | - Positive: Higher security posture; simpler verification<br>- Negative: May require additional secure design controls for GDPR-only systems<br>- Mitigation: Apply CRA standard universally |
 | Review Date | Phase 3 Gate Review |
@@ -386,7 +386,7 @@ Each decision is recorded using the following template:
 | All 5 regulations = maximum coverage | Phase 1 | 100% sub-domain coverage; 0 gaps | Target state for critical sectors |
 | DORA + NIS 2 have significant overlap | Phase 1 | Can leverage common controls | Efficiency opportunity |
 | AI Act High-Risk requires conformity assessment | Phase 1 | Credit scoring is explicitly Annex III | Plan early for AI systems |
-| Financial sector has mature foundation | Phase 1 | BSI/ISO 27001 reduces implementation effort | Leverage existing maturity |
+| Financial sector has mature foundation | Phase 1 | BSI/ISO 27001 reduces implementation effort | Leverage existing maturity | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 | Extend rather than duplicate | Phase 1 | DORA extends BSI; AI Act extends model risk | Integration pattern |
 
 ---

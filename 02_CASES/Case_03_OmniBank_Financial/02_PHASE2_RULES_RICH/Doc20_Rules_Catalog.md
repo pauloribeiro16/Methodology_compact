@@ -1,4 +1,4 @@
-> **Note:** This is a Rich-Mode copy of the Phase 2 rules catalog. The canonical version (with Block D extensions: tri-maturidade CSF+PF+AI RMF, fields 19-24) lives in `../02_PHASE2_RULES_RICH/Doc20_Rules_Catalog.md`. This Rich copy preserves the original 17-field schema for reference; consult `../02_PHASE2_RULES_RICH/Doc20_Rules_Catalog.md` for the live operational document.
+> **Note:** This is a Rich-Mode copy of the Phase 2 rules catalog. The canonical version (with Block D extensions: tri-maturidade CSF+PF+AI RMF, fields 19-24) lives in `../02_PHASE2_RULES_RICH/Doc20_Rules_Catalog.md`. This Rich copy preserves the original 17-field schema for reference; consult `../02_PHASE2_RULES_RICH/Doc20_Rules_Catalog.md` for the live operational document. *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
 ---
 document_id: AEGIS-P2-11
@@ -31,8 +31,8 @@ ni_avg_rule_note: |
 frameworks_mapped: [NIST_CSF_2.0, NIST_Privacy_FW_1.0, NIST_AI_RMF_1.0]
 expected_fields_per_card: 15
 fields_per_card: 15
-maturity_dual_mode: triple   # CSF + Privacy + AI RMF (3 independent scores per control)
-# Case_03 Doc 11 is table-only; fields_per_card counts visible columns. Block D added 6 columns to the table (CSF/PF/AI RMF subcats + 3 maturity scores); the 9→10 increment in Block B was the NI (recomputed) column.
+maturity_dual_mode: triple   # CSF + Privacy + AI RMF (3 independent scores per control) *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
+# Case_03 Doc 11 is table-only; fields_per_card counts visible columns. Block D added 6 columns to the table (CSF/PF/AI RMF subcats + 3 maturity scores); the 9→10 increment in Block B was the NI (recomputed) column. *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 ---
 
 # Rules Catalog
@@ -487,7 +487,7 @@ Rules are classified by how OmniBank implements them: **NATIVE** (built/operated
 
 **Why 0% INHERITED:** Unlike cloud-native companies (e.g., small SaaS vendors with full external cloud-provider infrastructure), OmniBank operates a hybrid on-premise + cloud architecture with strict ECB/BaFin data sovereignty requirements. Even cloud-hosted services are configured and managed by OmniBank's own security teams, so they are classified as HYBRID rather than INHERITED.
 
-**Why 73% NATIVE:** OmniBank's very high security maturity (dedicated security org of 100+ people, ISO 27001 certified) means most controls are built and operated internally. This includes the SOC, incident response, security architecture, AI governance, and compliance processes.
+**Why 73% NATIVE:** OmniBank's very high security maturity (dedicated security org of 100+ people, ISO 27001 certified) means most controls are built and operated internally. This includes the SOC, incident response, security architecture, AI governance, and compliance processes. *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
 **Why 27% HYBRID:** Identity management, vendor risk scoring, and centralized audit-log/cloud logging require specialized third-party platforms that are not feasible to build in-house at scale.
 

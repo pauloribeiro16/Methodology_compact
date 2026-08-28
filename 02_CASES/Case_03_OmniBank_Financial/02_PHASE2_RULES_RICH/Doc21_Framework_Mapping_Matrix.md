@@ -64,7 +64,7 @@ note_inputs: >
 > 38 unique CR rows. Columns: `rule_id, sub_domain, regulations, NI (recomputed by AVG + AI-C MUST override), CSF 2.0 subcategories, Privacy FW 1.0 subcategories, AI RMF 1.0 subcategories, ISO 27001, SSDF, csf_norm, priv_norm, airmf_norm`.
 > Marker vocabulary per SPEC §4.6 (canonical, port Fase 3): `UNMAPPED_CSF` / `UNMAPPED_PF` with justification where no natural anchor exists; `N/A (non-AI scope)` where the rule has no AI dimension; `UNMAPPED_PRIVACY`/`UNMAPPED_AIRMF` are RETIRED tokens (zero tolerance). Legacy note: inline).
 > Privacy FW mapping sourced from `Regulation/GDPR/02b_SecurityRules_NISTPF.md` (68 SR, 59/104 active subcats; 100% coverage for GDPR-touched sub-domains).
-> AI RMF mapping sourced from `Regulation/AI_Act/02b_SecurityRules_NISTAIRMF.md` (24 SR, 41/72 active subcats). For CR with AI-C* source clauses (15 CR), AI RMF mapping is anchored via SR-AIACT-XXX. For 23 CR without AI-C*, `UNMAPPED_AIRMF` with justification.
+> AI RMF mapping sourced from `Regulation/AI_Act/02b_SecurityRules_NISTAIRMF.md` (24 SR, 41/72 active subcats). For CR with AI-C* source clauses (15 CR), AI RMF mapping is anchored via SR-AIACT-XXX. For 23 CR without AI-C*, `N/A (non-AI scope)` — adjudicated from the retired UNMAPPED_AIRMF token (port Fase 3).
 > ISO 27001 / SSDF from `Framework_Crosswalk_ARM.md` (ACTIVE v1.0; CSF 38/38, ISO 38/38, SSDF 23/38; 800-53 out of scope per `note_800_53`).
 
 | rule_id | sub_domain | regulations | NI | CSF 2.0 | Privacy FW 1.0 | AI RMF 1.0 | ISO 27001 | SSDF | csf_norm | priv_norm | airmf_norm |
@@ -1383,7 +1383,7 @@ note_inputs: >
 > - Business environment subcats (`ID.BE-P*`) — partially covered by `ID.IM-P*` (same intent)
 > - Training/awareness variants beyond what the GDPR-SR file covers
 
-**Verdict §6.2:** No critical gap. The 45 unused active PF subcategories are either specialised de-identification techniques or business-environment subcats without a direct GDPR clause. **Case_03-specific note**: D-02.3 (CRA SOLE), D-02.4 (DORA+AI), D-06.4 (NIS 2+DORA), D-07.2 (NIS 2+DORA), D-07.3 (NIS 2+DORA), D-07.4 (NIS 2+DORA), D-08.3 (NIS 2+DORA), D-09.3 (NIS 2+DORA) have no GDPR clause in source — PF anchor for these is via the **generic PF mapping** (ID.RA-P3 [v1.0 redirect, see FN-02 fix], ID.IM-P7) from Privacy FW 1.0 statements. No `UNMAPPED_PRIVACY` introduced.
+**Verdict §6.2:** No critical gap. The 45 unused active PF subcategories are either specialised de-identification techniques or business-environment subcats without a direct GDPR clause. **Case_03-specific note**: D-02.3 (CRA SOLE), D-02.4 (DORA+AI), D-06.4 (NIS 2+DORA), D-07.2 (NIS 2+DORA), D-07.3 (NIS 2+DORA), D-07.4 (NIS 2+DORA), D-08.3 (NIS 2+DORA), D-09.3 (NIS 2+DORA) have no GDPR clause in source — PF anchor for these is via the **generic PF mapping** (ID.RA-P3 [v1.0 redirect, see FN-02 fix], ID.IM-P7) from Privacy FW 1.0 statements. No retired `UNMAPPED_PRIVACY` token introduced.
 
 ### §6.3 — AI RMF 1.0 subcategories not covered
 

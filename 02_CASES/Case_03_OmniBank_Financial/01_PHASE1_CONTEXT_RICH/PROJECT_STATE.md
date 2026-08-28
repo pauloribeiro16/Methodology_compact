@@ -15,7 +15,6 @@ track: B
 tier: MAX
 scale: MAX
 sibling_of: ../01_PHASE1_CONTEXT_RICH/
-sprint_in_progress: none
 branch: feature/aegis-p1-case03-rich
 ---
 

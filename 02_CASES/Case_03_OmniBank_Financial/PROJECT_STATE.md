@@ -43,7 +43,7 @@
 - **High-Risk AI:** Credit scoring per AI Act Annex III
 - **DORA Financial Entity:** Credit institution under ECB/BaFin supervision
 - **Hybrid Architecture:** On-premise mainframe + EU cloud for AI/analytics
-- **Very High Security Maturity:** ISO 27001 certified, dedicated security org 100+
+- **Very High Security Maturity:** ISO 27001 certified, dedicated security org 100+ *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
 ---
 
@@ -266,7 +266,7 @@ python lints/run_all_lints.py --case "OmniBank Financial Systems"
 
 ## Sprint 0.5 — Port Campaign Case_01→Case_03, Fase 0 (2026-08-28)
 
-- `validation/PORT_census_v0.md` — full baseline: UNMAPPED 262 tokens (AIRMF 140 / PF 91 / CSF 20 / PRIVACY 8 / bare 3), sprint keys, maturi scales (Doc08=158, Doc13=76, Doc20=78), goal census (76 AG verified; PG/SG=0 em deliverables)
+- `validation/PORT_census_v0.md` — full baseline: UNMAPPED 262 tokens (AIRMF 140 / PF 91 / CSF 20 / PRIVACY 8 / bare 3), sprint keys, legacy maturi scales (Doc08=158, Doc13=76, Doc20=78), goal census (76 AG verified; PG/SG=0 em deliverables)
 - **Adjudicações:** tensões canónicas = **5** (T-005 DORA TLPT integrado no Doc17; claim "7" incorrecto); **AI-C19 MANTÉM-SE** (OmniBank é PROVIDER + DEPLOYER do OmniScore — inverso do D1 do Case_02; 150 cláusulas); PF 1.1 → 1.0 no P2 PS; **corr-012 registado** como pendência formal (split PO/SO adiado — decisão P7 2026-08-28, coerente com TRACEABILITY_AUDIT §5a)
 - **Cadeia de estado:** PS do caso 3.1 (banner + realidade Rich/corr-010, dirs `_RICH` no §9); progress.json com backfill Rich + corr-010 + evento Fase 0; P1 PS/README (sprints_complete 0–6, tabela deliverables DocNN, Doc14 ✅)
 - **Decisões P7 registadas:** manter AG-D- no P2 (corr-012 adiado); DORA mantém `via_CSF` sem coluna própria; cópia canónica da ontologia = P1 RICH

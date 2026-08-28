@@ -151,8 +151,8 @@ The corpus is **fully populated** under `00_METHODOLOGY/PREPROCESSING_by_domain/
 
 | Case field | Type | Corpus layer | Corpus path | Enrichment action |
 |---|---|---|---|---|
-| Current maturity (per macro-domain, 0-4) | Number | L3 | `D-XX.Y.json:requirements.sub_requirements[].priority` | **Anchor target maturity.** A sub-domain with 3+ MUST reqs should target maturity 3; 1-2 MUST should target 2. Case_03 has ISO 27001 → most sub-domains start at maturity 3. |
-| Target maturity (per macro-domain) | Number | L3 | `D-XX.Y.json:requirements.sub_requirements[].fit_criterion` | **Cite target fit_criterion** from corpus. |
+| Current maturity (per macro-domain, 0-4) | Number | L3 | `D-XX.Y.json:requirements.sub_requirements[].priority` | **Anchor target maturity.** A sub-domain with 3+ MUST reqs should target maturity 3; 1-2 MUST should target 2. Case_03 has ISO 27001 → most sub-domains start at maturity 3. | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
+| Target maturity (per macro-domain) | Number | L3 | `D-XX.Y.json:requirements.sub_requirements[].fit_criterion` | **Cite target fit_criterion** from corpus. | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 | Evidence (column in §2 tables) | Text | L2 | `D-XX.Y.manifest.json:nist_csf` | **Add NIST control IDs** as evidence anchors. |
 | Top 5 gaps (Section 4) | List | L3 | `D-XX.Y.json:emergent_tensions[]` + `considerations` | **Cross-reference corpus-detected tensions.** |
 | Per-control row in §2 tables | Row | L2 | `D-XX.Y.manifest.json:applicable_nist_controls_by_regulation` | **Add req_id column** showing which Volere reqs the control discharges. |

@@ -46,7 +46,7 @@ Replaces RECONCILED comment. Document copied from legacy 01_PHASE1_CONTEXT/Doc05
 Changes: (a) document_id migrated to AEGIS-P3-RICH-04b-SEC; (b) status DRAFT → RECONCILED;
 (c) applicable_regs normalized from [GDPR, NIS2, CRA, DORA, AI_Act] to [GDPR, CRA, NIS 2, DORA, AI Act] (canonical order);
 (d) Tension T-002 preserved as legacy case-specific (NOT registered in ground-truth ontology per legacy lint baseline I-C03-02 — Sprint 2+ candidate to register in ontology per Phase 2 derivation pattern).
-Sprint 2 (2026-08-06): New §2.1 Corpus-Derived Target fit_criteria section added with per-macro-domain + per-sub-domain fit_criteria + verification methods from corpus JSON sidecars; status RECONCILED → CORPUS_ENRICHED. Body content of maturity assessment preserved verbatim.
+Sprint 2 (2026-08-06): New §2.1 Corpus-Derived Target fit_criteria section added with per-macro-domain + per-sub-domain fit_criteria + verification methods from corpus JSON sidecars; status RECONCILED → CORPUS_ENRICHED. Body content of maturity assessment preserved verbatim. *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 -->
 
 ---

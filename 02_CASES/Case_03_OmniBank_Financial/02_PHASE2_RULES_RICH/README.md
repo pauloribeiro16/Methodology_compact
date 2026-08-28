@@ -33,7 +33,7 @@ verdict: PASS_WITH_FINDINGS
 | **Bloco G fix** | 2026-08-07 | FN-01 Crosswalk ACTIVE + FN-02 frozen IDs + FN-03 ni_avg_rule_note + FN-05 §6.5 inventory | ✅ DONE |
 | **Bloco F** | 2026-08-07 | 4 visualizações + Excel 10 sheets (3 frameworks, MAX complexity) | ✅ DONE |
 | **Bloco E** | 2026-08-07 | 04b deprecated (maturity moved to Doc 13) | ✅ DONE |
-| **Bloco D** | 2026-08-07 | Doc 11 estendido campos 19-24 (tri-maturidade CSF+PF+AI RMF) | ✅ DONE |
+| **Bloco D** | 2026-08-07 | Doc 11 estendido campos 19-24 (tri-maturidade CSF+PF+AI RMF) | ✅ DONE | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 | **Bloco C** | 2026-08-07 | Doc 13 unified matrix (3 frameworks CSF+PF+AI RMF) | ✅ DONE |
 | **Bloco B** | 2026-08-07 | NI formal (AVG+AI MUST), 78 cartões, DR-002 resolvido | ✅ DONE |
 | **Bloco A** | 2026-08-07 | (Reused from Case_02 — Crosswalk already ACTIVE) | ⚠ REUSED |
@@ -53,7 +53,7 @@ verdict: PASS_WITH_FINDINGS
 | `Doc18_Privacy_Security_Objectives.md` | 461 | 461 | 76 goal rows (24 PG + 52 SG) | legacy copy | ✅ COPIED |
 | `Doc20_Rules_Catalog.md` | 651 | 651+ | 78 cards (38 CR + 40 BPR, 17 fields + banner) | legacy copy + banner | ✅ COPIED |
 | `12_Rules_Catalog.xlsx` | 24KB | 24KB | Excel catalog (canonical) | legacy copy | ✅ COPIED |
-| `Doc21_Framework_Mapping_Matrix.md` | — | **unified matrix** | 3 frameworks (CSF + PF + AI RMF), triple maturity, DORA via CSF | C → D → F | ✅ DEEP_ENRICHED |
+| `Doc21_Framework_Mapping_Matrix.md` | — | **unified matrix** | 3 frameworks (CSF + PF + AI RMF), triple maturity, DORA via CSF | C → D → F | ✅ DEEP_ENRICHED | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 | `README.md` | — | this file | orientation + dashboard + schema | rich-symmetry | ✅ NEW |
 | `PROJECT_STATE.md` | — | sibling | project state snapshot | rich-symmetry | ✅ NEW |
 | `RICH_VS_LEGACY.md` | — | sibling | Rich vs legacy diff summary | rich-symmetry | ✅ NEW |
@@ -67,7 +67,7 @@ verdict: PASS_WITH_FINDINGS
 
 ## §3 18-Field Schema (canonical, Case_03)
 
-**12 base fields** (common to all tiers) + **3 triple-maturity fields** (CSF / Privacy FW / AI RMF) + **3 Case_03-specific fields** (MAX tier).
+**12 base fields** (common to all tiers) + **3 triple-maturity fields** (CSF / Privacy FW / AI RMF) + **3 Case_03-specific fields** (MAX tier). *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
 | # | Field | Type | Description |
 |---|-------|------|-------------|
@@ -86,9 +86,9 @@ verdict: PASS_WITH_FINDINGS
 | 13 | Dependencies | list | Related OBL/PG/SG IDs |
 | 14 | Risk if not met | H/M/L + 1-line | Qualitative risk |
 | 15 | Affected Stakeholders | list | Internal + external parties |
-| 16 | Maturity (CSF) | Cur X/4 → Tgt Y/4 | 0-4 scale |
-| 17 | Maturity (Privacy) | Cur X/4 → Tgt Y/4 | 0-4 scale |
-| 18 | Maturity (AI RMF) | Cur X/4 → Tgt Y/4 | 0-4 scale |
+| 16 | Maturity (CSF) | Cur X/4 → Tgt Y/4 | 0-4 scale | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
+| 17 | Maturity (Privacy) | Cur X/4 → Tgt Y/4 | 0-4 scale | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
+| 18 | Maturity (AI RMF) | Cur X/4 → Tgt Y/4 | 0-4 scale | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
 **3 Case_03-specific fields:**
 
@@ -145,21 +145,21 @@ verdict: PASS_WITH_FINDINGS
 - All 3 frameworks ACTIVE (CSF + PF + AI RMF); NO placeholder columns; DORA via CSF coverage
 - 6 sub-sections + 2 visualisation sections
 - 38 unique CR + 40 unique BPR = 78 YAML blocks
-- Commit: `a89fefe [EXECUTOR] Bloco C — Doc 13 unified matrix (3 frameworks) + triple maturity (MAX complexity)`
+- Commit: `a89fefe [EXECUTOR] Bloco C — Doc 13 unified matrix (3 frameworks) + triple maturity (MAX complexity)` *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
 ### Bloco D — Doc 11 extension ✅ COMPLETE
-- Fields 19-24 added: csf_subcategories, privacy_subcategories, ai_rmf_subcategories, maturity_csf, maturity_privacy, maturity_ai_rmf
+- Fields 19-24 added: csf_subcategories, privacy_subcategories, ai_rmf_subcategories, maturity_csf, maturity_privacy, maturity_ai_rmf *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 - 18 fields per card (15→17 from Bloco B + 6 columns from Bloco D)
-- Commit: `23e062c [EXECUTOR] Bloco D — Doc 11 estendido (campos 19-24, tri-maturidade CSF+PF+AI RMF)`
+- Commit: `23e062c [EXECUTOR] Bloco D — Doc 11 estendido (campos 19-24, tri-maturidade CSF+PF+AI RMF)` *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
 ### Bloco E — 04b deprecated ✅ COMPLETE
 - `Doc05_Security_Posture.md` status: DEPRECATED_FOR_MATURITY
-- Maturity model ownership moved to Doc 13
+- Maturity model ownership moved to Doc 13 *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 - Commit: `7f57c76 [EXECUTOR] Bloco E — 04b deprecated for maturity (moved to Doc 13)`
 
 ### Bloco F — 4 visualizations + Excel ✅ COMPLETE
 - V1 matriz cobertura, V2 mapa por Function, V3 Mermaid traceability graph, V4 heatmap
-- 6 new Excel sheets added (Unified_Matrix, Govern_Consolidated, Mapping_nm, Maturity_Dual, Cov_Function, Heatmap_Maturity)
+- 6 new Excel sheets added (Unified_Matrix, Govern_Consolidated, Mapping_nm, Maturity_Dual, Cov_Function, Heatmap_Maturity) *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 - Commit: `96364ed [EXECUTOR] Bloco F — 4 visualizações + 6 folhas Excel (3 frameworks, MAX complexity)`
 
 ### Bloco G fix — FN-01..FN-05 ✅ COMPLETE
@@ -186,7 +186,7 @@ verdict: PASS_WITH_FINDINGS
 - ✅ Document IDs: `AEGIS-P2-RICH-*-CASE03` (parallel to legacy `AEGIS-P2-*`)
 - ✅ Frontmatter status: ACTIVE on orchestration docs; legacy docs kept `status: DRAFT` (read-only)
 - ✅ No AI RMF placeholder — 3 frameworks all ACTIVE
-- ✅ Maturity TRIPLE (CSF + Privacy + AI RMF) per D11 Case_03
+- ✅ Maturity TRIPLE (CSF + Privacy + AI RMF) per D11 Case_03 *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 - ✅ DORA coverage via CSF subcats (per Case_03 SPEC §4.4, since DORA doesn't have a 1:1 NIST framework)
 
 ---
@@ -243,7 +243,7 @@ verdict: PASS_WITH_FINDINGS
 | Metric | Value |
 |--------|------:|
 | Doc 13 unified matrix rows | 78 (CR + BPR) |
-| Triple-maturity cells (3 per card × 78 cards) | 234 |
+| Triple-maturity cells (3 per card × 78 cards) | 234 | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 | Doc 11 fields per card | 18 |
 | Doc 11 total cells (post-D) | 1,404 (78 × 18) |
 

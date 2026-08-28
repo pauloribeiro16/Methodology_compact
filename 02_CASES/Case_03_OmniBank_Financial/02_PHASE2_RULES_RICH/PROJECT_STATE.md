@@ -17,11 +17,10 @@ total_rules: 78
 total_tensions: 5   # T-001..T-005 (T-005 DORA TLPT per ontology v1.1 + Doc11 §4.5); the earlier "7" figure was incorrect — port Fase 0
 total_source_clauses: 150
 total_detail_cards: 78
-total_cells_triple_maturity: 234
+total_cells_triple_maturity: 234 *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 frameworks_in_scope: [NIST_CSF_2.0, NIST_Privacy_FW_1.0, NIST_AI_RMF_1.0]   # PF 1.0 canonical frozen list (was 1.1 draft — port Fase 0)
 frameworks_dora_coverage: via_CSF_subcats
 sibling_of: ../02_PHASE2_RULES_RICH/
-sprint_in_progress: none
 verdict: PASS_WITH_FINDINGS
 branch: feature/aegis-p2-case03-csf-pf-airmf
 ---
@@ -89,7 +88,7 @@ branch: feature/aegis-p2-case03-csf-pf-airmf
 | **Bloco A** | 2026-08-07 | Crosswalk DRAFT → ACTIVE | `Framework_Crosswalk_ARM.md` ACTIVE v1.0 (REUSED from Case_02 commit `c972048`) | ⚠ REUSED |
 | **Bloco B** | 2026-08-07 | NI formal (AVG + AI MUST + DORA MUST) | 78 cart rows with field 18 (NI) populated | ✅ COMPLETE |
 | **Bloco C** | 2026-08-07 | Doc 13 unified matrix (3 frameworks) | 6 sub-sections + 2 viz sections; 78 YAML blocks (38 CR + 40 BPR) | ✅ COMPLETE |
-| **Bloco D** | 2026-08-07 | Doc 11 estendido (campos 19-24, tri-maturidade) | 6 new cols: csf_subcats, priv_subcats, ai_rmf_subcats, maturity_csf, maturity_privacy, maturity_ai_rmf | ✅ COMPLETE |
+| **Bloco D** | 2026-08-07 | Doc 11 estendido (campos 19-24, tri-maturidade) | 6 new cols: csf_subcats, priv_subcats, ai_rmf_subcats, maturity_csf, maturity_privacy, maturity_ai_rmf | ✅ COMPLETE | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 | **Bloco E** | 2026-08-07 | 04b deprecated for maturity | `Doc05_Security_Posture.md` → DEPRECATED_FOR_MATURITY; maturity_owner: Doc21_Framework_Mapping_Matrix.md | ✅ COMPLETE |
 | **Bloco F** | 2026-08-07 | 4 visualizações + 6 folhas Excel | V1-V4 visualisations; 6 new Excel sheets | ✅ COMPLETE |
 | **Bloco G fix** | 2026-08-07 | FN-01..FN-05 closure | All 4 Validator findings addressed (FN-01 Crosswalk ACTIVE reference, FN-02 frozen IDs, FN-03 ni_avg_rule_note, FN-05 §6.5 inventory) | ✅ COMPLETE |
@@ -115,7 +114,7 @@ branch: feature/aegis-p2-case03-csf-pf-airmf
 | Blocos complete | 6 of 7 | 7 of 7 | **8 of 8** ✅ (incl. Validator + reused A) |
 | Frameworks ACTIVE | n/a | **3 (CSF + PF + AI RMF); DORA via CSF** | 3 ✅ |
 | Doc 13 unified matrix | absent | **ACTIVE** (3 frameworks, 6+2 sub-sections) | ✅ |
-| Triple-maturity cells | n/a | **234** (3 × 78 cards) | 234 ✅ |
+| Triple-maturity cells | n/a | **234** (3 × 78 cards) | 234 ✅ | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 | Doc 11 fields per card | 17 | 18 (Bloco B + Bloco D) | 18 ✅ |
 | Excel sheets | n/a | 10 (4 legacy + 6 new from Bloco F) | 10 ✅ |
 | Findings open | 0 | 0 (all 4 addressed) | 0 ✅ |
@@ -141,11 +140,11 @@ branch: feature/aegis-p2-case03-csf-pf-airmf
 | 13 | Dependencies | list | per card |
 | 14 | Risk if not met | H/M/L + 1-line | per card |
 | 15 | Affected Stakeholders | list | per card |
-| 16 | Maturity (CSF) | Cur X/4 → Tgt Y/4 | per card |
-| 17 | Maturity (Privacy) | Cur X/4 → Tgt Y/4 | per card |
-| 18 | Maturity (AI RMF) | Cur X/4 → Tgt Y/4 | per card |
+| 16 | Maturity (CSF) | Cur X/4 → Tgt Y/4 | per card | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
+| 17 | Maturity (Privacy) | Cur X/4 → Tgt Y/4 | per card | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
+| 18 | Maturity (AI RMF) | Cur X/4 → Tgt Y/4 | per card | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
-**Card population target:** 78 cards × 18 fields = 1,404 fields. Triple-maturity (CSF + Privacy + AI RMF) per D11 Case_03.
+**Card population target:** 78 cards × 18 fields = 1,404 fields. Triple-maturity (CSF + Privacy + AI RMF) per D11 Case_03. *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
 ---
 
@@ -219,7 +218,7 @@ branch: feature/aegis-p2-case03-csf-pf-airmf
 | A | ⚠ REUSED | Crosswalk ACTIVE (from Case_02 contract) |
 | B | ✅ PASS | AVG + AI MUST + DORA MUST, 78 cart rows |
 | C | ✅ PASS_WITH_FINDINGS | Doc 13 unified matrix, 3 frameworks, 6 sub-sections |
-| D | ✅ PASS_WITH_FINDINGS | Doc 11 fields 19-24 (tri-maturidade) |
+| D | ✅ PASS_WITH_FINDINGS | Doc 11 fields 19-24 (tri-maturidade) | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 | E | ✅ PASS | 04b DEPRECATED_FOR_MATURITY |
 | F | ✅ PASS_WITH_FINDINGS | 4 visualisations + 6 Excel sheets |
 | G fix | ✅ PASS | FN-01..FN-05 addressed |
