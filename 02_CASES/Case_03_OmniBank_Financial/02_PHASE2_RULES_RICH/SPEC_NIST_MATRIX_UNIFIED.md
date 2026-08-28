@@ -32,9 +32,17 @@ anti_pattern_note: >
 > (5 regulations applicable: GDPR + CRA + NIS 2 + **DORA** + AI Act). DORA não
 > tem mapeamento 1:1 para um framework NIST específico; é coberto via CSF
 > subcats (per §4.4). Os 3 frameworks NIST mapeáveis (CSF + PF + AI RMF) são
-> todos ACTIVE. A maturity model é TRIPLE (3 scores independentes por controlo).
+> todos ACTIVE. A maturity model é TRIPLE (3 scores independentes por controlo). *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
 ---
+
+## ⚠️ POSTURE MODEL SUPERSESSION (2026-08-28, port Fase 4)
+
+> The triple-maturity scoring designed in this SPEC (legacy design, superseded)
+> is **SUPERSEDED** by `00_METHODOLOGY/IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md`
+> v2.0 (3 states + N/A categories, deterministic backfill). Doc21 §4/§5.1 and
+> Doc20 carry the adopted implementation. Sections still describing the legacy
+> scoring are marked *legacy design text*; they are not authoritative.
 
 ## Como ler este documento
 
@@ -42,7 +50,7 @@ anti_pattern_note: >
 2. **Lê §3** (princípio arquitectural) — é o teste de coerência para cada decisão.
 3. **Antes de executar qualquer bloco: lê §4** (vocabulário dos frameworks) e
    **§5** (artefactos) — são a especificação detalhada do *quê*.
-4. **Lê §6 e §7** — são a especificação do *como* (regras NI e maturidade).
+4. **Lê §6 e §7** — são a especificação do *como* (regras NI e maturidade). *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 5. **Segue §8** (blocos) em ordem estrita. Não saltes blocos.
 6. **Valida com §9** antes de declarar pronto.
 7. **Cumpre §11** (checklists) e §13 (branch).
@@ -75,7 +83,7 @@ anti_pattern_note: >
 - §4 Especificação dos frameworks (vocabulário)
 - §5 Artefactos a produzir
 - §6 Regra MUST/SHOULD/COULD (semântica operacional)
-- §7 Modelo de maturidade tripla
+- §7 Modelo de maturidade tripla *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 - §8 Blocos de trabalho (plano de execução)
 - §9 Critério "pronto" (validação)
 - §10 Riscos & decisões diferidas
@@ -103,8 +111,8 @@ Após a exploração do Phase 1 e Phase 2 legacy do Case_03, identificámos quat
 | # | Lacuna | Sintoma observado | Onde |
 |---|---|---|---|
 | L1 | **MUST/SHOULD informal** | BPR = P3 uniforme, sem `normative_intensity` formal. Case_03 tem `AVG_with_AI_MUST + DORA uniformly MUST` — 38 DORA cláusulas todas NI=3, 29 AI Act cláusulas todas NI=3. | Doc 11 §4/§5 |
-| L2 | **Maturidade deslocada** | Modelo 0-4 vive no Doc 04b com `phase: 1`, mas `PHASE1_STRATEGY.md §7` diz *"Phase 1 does NOT assess control maturity (Phase 2)."* | Doc 04b |
-| L3 | **Diferenciação não demonstrável** | MANIFESTO tem retórica forte mas sem demonstração operacional vs. análise compliance+maturidade convencional. | — |
+| L2 | **Maturidade deslocada** | Modelo 0-4 vive no Doc 04b com `phase: 1`, mas `PHASE1_STRATEGY.md §7` diz *"Phase 1 does NOT assess control maturity (Phase 2)."* | Doc 04b | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
+| L3 | **Diferenciação não demonstrável** | MANIFESTO tem retórica forte mas sem demonstração operacional vs. análise compliance+maturidade convencional. | — | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 | L4 | **DORA sem framework específico** | DORA não tem 1:1 NIST mapping; é coberto via CSF subcats. Sem documento a explicar essa cobertura, gera confusão. | Doc 13 §1 |
 
 ### 1.3 O que JÁ existe e NÃO DEVE ser recriado
@@ -126,7 +134,7 @@ O Executor **NÃO DEVE** reconstruir o seguinte — está feito e é input:
 ### 1.4 O que falta (4 itens)
 
 1. **Matriz unificada + Govern consolidada (3 frameworks)** — Doc 13 novo (§5.2).
-2. **Maturidade tripla por-controlo** — modelo novo (§7).
+2. **Maturidade tripla por-controlo** — modelo novo (§7). *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 3. **NI formal AVG + AI/DORA MUST override nos cartões** — campos novos no Doc 11 (§5.3).
 4. **Sub-domínios activos mapeados explicitamente** — 38/38 active (todos RIGOROUS/STANDARD; sem DEFERRED per Track B).
 
@@ -138,15 +146,15 @@ O Executor **NÃO DEVE** reconstruir o seguinte — está feito e é input:
 |---|---|---|---|---|
 | D1 | Âmbito de execução | **Só Case_03** | Piloto MAX complexity; Case_01/02 são outros contractos | Não tocar Case_01/02 |
 | D2 | Abordagem ao catálogo | **Híbrido: derivação AEGIS + CSF 2.0 como pivô** | Mantém identidade AEGIS; CSF dá esqueleto comparável | Frameworks = alvo de mapeamento, não fonte |
-| D3 | Maturidade | **Mover p/ Phase 2 + expandir tripla** | Resolve contradição PHASE1_STRATEGY §7 | Doc 04b deprecado; Doc 13 assume tripla maturidade |
+| D3 | Maturidade | **Mover p/ Phase 2 + expandir tripla** | Resolve contradição PHASE1_STRATEGY §7 | Doc 04b deprecado; Doc 13 assume tripla maturidade | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 | D4 | Argumento "AEGIS vs. convencional" | **Documento académico separado (tese)** | Repo fica neutro | Não escrever argumentação no repo |
 | D5 | Frameworks NIST a usar | **CSF 2.0 + Privacy FW 1.0 + AI RMF 1.0** (TODOS 3 ACTIVE; DORA via CSF) | Case_03 MAX: 5 regulations, AI Act + DORA applicable | Doc 13 §1 = matriz com colunas dos 3 frameworks + DORA coverage nota |
 | D6 | Articulação estrutural | **Matriz unificada** | Vista única evita triplicação | Doc 13 §1 = matriz com colunas de cada framework |
 | D7 | Função Govern sobreposta | **Vista Govern consolidada (3 frameworks)** | Os 3 frameworks têm Govern | Doc 13 §2 = Govern fundida (GV ∥ Govern-P ∥ GOVERN) |
 | D8 | Papel dos frameworks | **Só alvo de mapeamento** | MANIFESTO intacto; AEGIS deriva da lei | CR/BPR não se derivam de frameworks |
 | D9 | AI RMF no Case_03 | **ACTIVE (não placeholder)** | Case_03 tem IA (credit scoring); AI Act applicable | Schema com 3 colunas populated |
-| D10 | Escala de maturidade | **Tiers 1-4 + 0-4 nos 3 frameworks** | Comparabilidade directa CSF ↔ Privacy ↔ AI RMF | Definir 0-4 por-subcat para cada framework |
-| D11 | Score por controlo multi-framework | **TRÊS scores (csf + privacy + ai_rmf)** | Preserva dessincronia segurança/privacidade/IA | 6 campos de maturidade por cartão |
+| D10 | Escala de maturidade | **Tiers 1-4 + 0-4 nos 3 frameworks** | Comparabilidade directa CSF ↔ Privacy ↔ AI RMF | Definir 0-4 por-subcat para cada framework | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
+| D11 | Score por controlo multi-framework | **TRÊS scores (csf + privacy + ai_rmf)** | Preserva dessincronia segurança/privacidade/IA | 6 campos de maturidade por cartão | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 | D12 | Govern no Case_03 (3 frameworks) | **3 colunas populated** | Método completo | Coluna AI RMF = mapeamento real |
 | D13 | Estrutura do mapeamento | **n:m flexível** | Captura multi-mapping realista | Cada CR/BPR → lista de subcats por framework |
 | D14 | Vocabulário Privacy FW | **Lista frozen completa** | Consistência com tratamento CSF | Lista já existe |
@@ -164,7 +172,7 @@ O Executor **NÃO DEVE** reconstruir o seguinte — está feito e é input:
 > NI=1-2)** → ancora cada regra aos 38 sub-domínios → mapeia cada sub-domínio em
 > paralelo ao **CSF 2.0** (eixo segurança), **Privacy FW 1.0** (eixo privacidade)
 > e **AI RMF 1.0** (eixo IA), com **DORA coberto via CSF** subcats → mede
-> **maturidade tripla por-controlo** (Tiers 1-4 no programa/Function; 0-4
+> **maturidade tripla por-controlo** (Tiers 1-4 no programa/Function; 0-4 *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 > por-subcategoria no controlo) → liga tudo a ISO/secure-development standards via crosswalk já existente.
 
 ### 3.2 Diagrama de fluxo
@@ -196,7 +204,7 @@ O Executor **NÃO DEVE** reconstruir o seguinte — está feito e é input:
               │     └───────────┘       │              │
               │           └──────┬───────┴──────┬───────┘
               │                  ▼             ▼
-              │       MATURIDADE TRIPLA por-controlo
+              │       MATURIDADE TRIPLA por-controlo *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
               │         Programa: T1-T4 (CSF Tiers) por Function
               │         Controlo: 0-4 por-subcategoria (3 frameworks)
               │                  │
@@ -373,7 +381,7 @@ traceability: AEGIS Framework Mapping Layer (CSF + PF + AI RMF; DORA via CSF cov
 #### §1 — Matriz Unificada (3 frameworks)
 #### §2 — Vista Govern Consolidada (3 frameworks)
 #### §3 — Mapeamento n:m CR/BPR ↔ Subcategorias
-#### §4 — Modelo de Maturidade Tripla
+#### §4 — Modelo de Maturidade Tripla *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 #### §5 — Aplicação ao Case_03
 #### §6 — Gap Analysis (CSF + Privacy + AI RMF)
 
@@ -394,9 +402,9 @@ Plus: §6.5 (sub-domain inventory, added by Bloco G fix), §7 (V1-V4 visualizati
 19. CSF Subcategories: [PR.DS-01, PR.DS-10]
 20. Privacy FW Subcategories: [CT-P.DS-P:1]
 21. AI RMF Subcategories: [MAP-2.1, MANAGE-2.1]
-22. Maturity (CSF): cur 1/4 → tgt 3/4
-23. Maturity (Privacy): cur 1/4 → tgt 3/4
-24. Maturity (AI RMF): cur 1/4 → tgt 3/4
+22. Maturity (CSF): cur 1/4 → tgt 3/4 *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
+23. Maturity (Privacy): cur 1/4 → tgt 3/4 *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
+24. Maturity (AI RMF): cur 1/4 → tgt 3/4 *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 ```
 
 **Frontmatter updates:**
@@ -407,7 +415,7 @@ normative_intensity_rule: AVG_with_AI_MUST_override
 ni_avg_rule_note: |
   AVG(NI) per regulation source clauses. AI-C* and DORA-C* presence forces MUST (NI=3).
 frameworks_mapped: [NIST_CSF_2.0, NIST_Privacy_FW_1.0, NIST_AI_RMF_1.0]
-maturity_dual_mode: triple   # CSF + Privacy + AI RMF (D11 Case_03)
+maturity_dual_mode: triple   # CSF + Privacy + AI RMF (D11 Case_03) *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 ```
 
 ### 5.4 DEPRECAR — `04b_Security_Posture.md`
@@ -421,7 +429,7 @@ maturity_dual_mode: triple   # CSF + Privacy + AI RMF (D11 Case_03)
 
 ### 5.6 ESTENDER — `12_Rules_Catalog.xlsx`
 
-Adicionar 6 folhas: `Unified_Matrix`, `Govern_Consolidated`, `Mapping_nm` (78 linhas), `Maturity_Triple` (78 linhas), `Cov_Function` (15 Functions), `Heatmap_Maturity`.
+Adicionar 6 folhas: `Unified_Matrix`, `Govern_Consolidated`, `Mapping_nm` (78 linhas), `Maturity_Triple` (78 linhas), `Cov_Function` (15 Functions), `Heatmap_Maturity`. *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
 ### 5.7 NOVO — 4 Visualizações
 
@@ -436,7 +444,7 @@ V1 matriz cobertura, V2 mapa por Function, V3 Mermaid traceability, V4 heatmap (
 | NI | Label | Origem típica | Consequência operacional |
 |---|---|---|---|
 | **3** | **MUST** | Cláusula SHALL; obrigação incondicional | **Bloqueia gate de conformidade.** |
-| **2** | **SHOULD** | Cláusula SHOULD; recomendado | **Não bloqueia conformidade.** Alimenta gap de maturidade. |
+| **2** | **SHOULD** | Cláusula SHOULD; recomendado | **Não bloqueia conformidade.** Alimenta gap de maturidade. | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 | **1** | **COULD** | Cláusula MAY; aspiracional | Aspiracional. |
 
 ### 6.2 Regra de derivação DR-002 — RESOLVER com AVG + AI/DORA MUST override
@@ -481,14 +489,14 @@ Para cada um dos 78 cartões em Doc 11:
 
 ---
 
-## §7 — Modelo de maturidade tripla
+## §7 — Modelo de maturidade tripla *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
 ### 7.1 Duas escalas (D10)
 
 | Escala | Nível | Aplicação | Frameworks |
 |---|---|---|---|
 | **Implementation Tiers (T1-T4)** | Programa / por-Function | Avaliação macro | CSF (nativo); Privacy FW e AI RMF adoptam |
-| **Maturidade por-subcategoria (0-4)** | Por-controlo / por-subcat | Granularidade operacional | **Todos os 3 frameworks** |
+| **Maturidade por-subcategoria (0-4)** | Por-controlo / por-subcat | Granularidade operacional | **Todos os 3 frameworks** | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
 ### 7.2 Implementation Tiers (T1-T4)
 
@@ -515,17 +523,17 @@ Para cada um dos 78 cartões em Doc 11:
 ### 7.4 TRÊS scores por controlo (D11)
 
 Cada controlo mapeado aos 3 frameworks tem **três scores independentes**:
-- `maturity_csf: {cur: X, tgt: Y}`
-- `maturity_privacy: {cur: X, tgt: Y}`
-- `maturity_ai_rmf: {cur: X, tgt: Y}`
+- `maturity_csf: {cur: X, tgt: Y}` *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
+- `maturity_privacy: {cur: X, tgt: Y}` *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
+- `maturity_ai_rmf: {cur: X, tgt: Y}` *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
 ### 7.5 Heatmap — decisão técnica
 
 `gap = MAX(gap_csf, gap_priv, gap_ai_rmf)` para a **cor**.
 
-### 7.6 Ligação maturidade-alvo ↔ proporção
+### 7.6 Ligação maturidade-alvo ↔ proporção *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
-| Tier proporção (Track B) | Target maturidade esperado |
+| Tier proporção (Track B) | Target maturidade esperado | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 |---|---|
 | LIGHTWEIGHT | 2-3 |
 | MINIMAL | 2 |
@@ -551,7 +559,7 @@ Bloco A [deps: 0]  ⚠ REUSED (from Case_02 commit c972048)
 Bloco B [deps: A]  NI formal (AVG + AI/DORA MUST override) — 78 cartões
    │
    ▼
-Bloco C [deps: B, 0]  Doc 13: matriz unificada (3 frameworks) + Govern + maturidade tripla
+Bloco C [deps: B, 0]  Doc 13: matriz unificada (3 frameworks) + Govern + maturidade tripla *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
    │
    ├─────────────┬───────────┐
    ▼             ▼           ▼
@@ -575,7 +583,7 @@ Validator [deps: G]  Tier 1+2 evaluation
 #### Bloco 0 — ✅ CONCLUÍDO
 #### Bloco A — ⚠ REUSED from Case_02 (commit `c972048`)
 #### Bloco B — NI formalization ✅ COMPLETE
-#### Bloco C — Doc 13 (matriz + Govern + maturidade tripla) ✅ COMPLETE
+#### Bloco C — Doc 13 (matriz + Govern + maturidade tripla) ✅ COMPLETE *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 #### Bloco D — Estender Doc 11 (campos 19-24) ✅ COMPLETE
 #### Bloco E — Deprecar 04b ✅ COMPLETE
 #### Bloco F — Visualizações + Excel ✅ COMPLETE
@@ -595,7 +603,7 @@ Validator [deps: G]  Tier 1+2 evaluation
   - [ ] campo 19 (`csf_subcategories`) com pelo menos 1 subcat.
   - [ ] campo 20 (`privacy_subcategories`) — pode ser `[]` com justificação.
   - [ ] campo 21 (`ai_rmf_subcategories`) — populated.
-  - [ ] campos 22-24 (`maturity_csf`, `maturity_privacy`, `maturity_ai_rmf`) com cur/tgt.
+  - [ ] campos 22-24 (`maturity_csf`, `maturity_privacy`, `maturity_ai_rmf`) com cur/tgt. *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 
 - [ ] **40 BPR** têm campo 18 com NI 1-2 (SHOULD/COULD).
 
@@ -611,7 +619,7 @@ Validator [deps: G]  Tier 1+2 evaluation
 - [ ] DR-002 resolvido com AVG + AI/DORA MUST override.
 - [ ] AI RMF populated (D9) — sem placeholder.
 - [ ] DORA coverage via CSF documented (D5, §4.4).
-- [ ] Maturidade-alvo consistente com proporção Track B (§7.6).
+- [ ] Maturidade-alvo consistente com proporção Track B (§7.6). *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 - [ ] `ni_avg_rule_note` present in Doc 11 frontmatter (FN-03).
 
 ### 9.4 Lint & Validator
@@ -629,7 +637,7 @@ Validator [deps: G]  Tier 1+2 evaluation
 | # | Risco | Mitigação |
 |---|---|---|
 | R1 | **Propagação ~6 artefactos** (acima do limiar P5 de 3) | Confinado ao Case_03; não fragmenta o método global. |
-| R2 | **Maturidade tripla = verbosidade** (3 scores × 78 cards = 234 cells) | Justificado pelo princípio D11; mitigado no heatmap via MAX. |
+| R2 | **Maturidade tripla = verbosidade** (3 scores × 78 cards = 234 cells) | Justificado pelo princípio D11; mitigado no heatmap via MAX. | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 | R3 | **AI RMF subcats limitadas** (41/72 cobertas por AI Act) | Aceitável; sem dimensão AI usar `N/A (non-AI scope)` (§4.6; antiga recomendação `UNMAPPED_AIRMF` reformada no port Fase 3). |
 | R4 | **DORA sem framework 1:1** | Coberto via CSF subcats + `06b_DORA_ICT_Risk_Framework.md` (Phase 1). |
 | R5 | **F-01 legacy Doc 10 goal count** (33 vs 76) | Documented in README §4; canonical = 76. |
@@ -688,7 +696,7 @@ ls 03_REFERENCE_MATERIAL/Framework_Mappings/Framework_Crosswalk_ARM.md   # MUST 
 | ❌ Usar AI RMF como placeholder | D9 — em Case_03, AI RMF é ACTIVE |
 | ❌ Escrever argumento académico no repo | D4 — vive na tese |
 | ❌ MAX(NI) em vez de AVG | §6.2 — mata SHOULD |
-| ❌ Agregar maturidade num score único | D11 — preservar dessincronia tripla |
+| ❌ Agregar maturidade num score único | D11 — preservar dessincronia tripla | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 | ❌ Tratar DORA como framework separado | §4.4 — DORA via CSF subcats |
 | ❌ Apagar conteúdo do 04b | §5.4 — só deprecar |
 | ❌ Commit directo em main | AGENTS.md — 1 branch per contract |
@@ -710,7 +718,7 @@ ls 03_REFERENCE_MATERIAL/Framework_Mappings/Framework_Crosswalk_ARM.md   # MUST 
 | **DORA-C\*** | Source clauses da DORA (NI uniforme = 3) |
 | **DORA via CSF** | DORA não tem framework 1:1 NIST; é coberta via CSF subcats |
 | **Function** | Topo da hierarquia NIST |
-| **Maturity 0-4** | None/Ad-hoc/Defined/Managed/Optimized — por-subcat, por framework |
+| **Maturity 0-4** | None/Ad-hoc/Defined/Managed/Optimized — por-subcat, por framework | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 | **Track B** | Camada de proporção (LIGHTWEIGHT/STANDARD/RIGOROUS/DEFERRED) |
 | **UNMAPPED_CSF / UNMAPPED_PF** | Marcador element-level com justificação obrigatória (§4.6); `UNMAPPED_PRIVACY`/`UNMAPPED_AIRMF` reformados |
 | **AVG_with_AI_MUST_override** | Regra NI: AVG normal, mas presença de AI-C*/DORA-C* força MUST (NI=3) |
@@ -778,5 +786,5 @@ git push -u origin feature/aegis-p2-case03-csf-pf-airmf
 
 > Este documento fecha 17 decisões e especifica 7 artefactos em 8 blocos.
 > O Executor lê isto + os ficheiros referenciados e executa sem perguntas.
-> Se algo parecer ambíguo: alinha com §3 (princípio), §6 (NI), §7 (maturidade tripla).
+> Se algo parecer ambíguo: alinha com §3 (princípio), §6 (NI), §7 (maturidade tripla). *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 > Não reinventes decisões fechadas em §2.

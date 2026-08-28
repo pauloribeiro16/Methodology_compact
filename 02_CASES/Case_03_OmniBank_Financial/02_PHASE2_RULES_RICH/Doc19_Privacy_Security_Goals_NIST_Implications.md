@@ -24,7 +24,7 @@ traceability: PG/SG -> sub_domain -> NIST mapping (CSF+PF for PG, CSF for SG, AI
 related_documents: Doc18_Privacy_Security_Objectives.md, Doc20_Rules_Catalog.md, Doc21_Framework_Mapping_Matrix.md, Doc11_DORA_ICT_Risk_Framework.md
 forward_looking_note: >
   Case_03 has 3 ACTIVE frameworks (CSF + Privacy FW + AI RMF) + DORA covered via CSF.
-  Triple-maturity implications reference SPEC_NIST_MATRIX_UNIFIED.md §7.
+  Triple-maturity implications (legacy design note; superseded by the Implementation Posture Model, port Fase 4) reference SPEC_NIST_MATRIX_UNIFIED.md §7.
 coverage:
   goals: 76   # 24 PG + 52 SG (row-derived; legacy summary header says 33 — see §4 of README)
   pg_with_pf_mapping: 24/24
@@ -53,7 +53,7 @@ coverage:
 
 > **Four implication dimensions (per goal):**
 > 1. **Technical (controls):** OmniBank-relevant controls implied by the NIST subcategories.
-> 2. **Maturity [PENDENTE SPEC]:** triple-maturity target (current→target), consistent with MAX proportionality.
+> 2. **Posture note [was Maturity, PENDENTE SPEC — superseded]:** legacy triple-maturity target quote (current→target), consistent with MAX proportionality.
 > 3. **Priority/NI:** `AVG_with_AI_MUST_override` (AI-C* and DORA-C* sources → MUST).
 > 4. **Dependencies:** goals sharing NIST subcats → consolidation candidates.
 
@@ -122,8 +122,8 @@ for AI-relevant PG (data subject rights over AI-driven decisions, automated proc
       indústria (symmetric encryption) é requisito mínimo. AI Act Art. 10 (data
       governance) + DORA Art. 9 (ICT security) exigem protecção reforçada para dados
       de modelo.
-    maturity_target_max: |
-      [SPEC §7] Maturidade-alvo para MAX: CSF 3/4 → 4/4; PF 2/4 → 4/4;
+    posture_target_note_max: |  # legacy-scale quote; superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0
+      [Legacy scale quote — superseded; deterministic backfill per posture model §4] Target profile for MAX was: CSF 3/4 → 4/4; PF 2/4 → 4/4;
       AI RMF 2/4 → 4/4. Consistente com RIGOROUS Track B (sub-domain D-01.1
       é CRITICAL risk).
     ni_note: |
@@ -155,7 +155,7 @@ for AI-relevant PG (data subject rights over AI-driven decisions, automated proc
       5-year retention) — structural conflict. See TENSION-DORA-GDPR in Doc 09
       §4.5. Resolution: erasure procedure applied to customer-facing systems;
       ICT logs retained per DORA Art. 17 with pseudonymisation.
-    maturity_target_max: |
+    posture_target_note_max: |  # legacy-scale quote; superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0
       [SPEC §7] CSF 3/4 → 4/4; PF 2/4 → 4/4.
     ni_note: |
       AVG(NI) = 3.0 (GDPR + DORA + CRA clauses). MUST.
@@ -184,7 +184,7 @@ for AI-relevant PG (data subject rights over AI-driven decisions, automated proc
       GDPR Art. 35 + AI Act Art. 27 (FRIA) + DORA Art. 9 (ICT risk assessment).
       Triple impact assessment for high-risk AI systems (credit scoring is
       high-risk per AI Act Annex III §5(b)).
-    maturity_target_max: |
+    posture_target_note_max: |  # legacy-scale quote; superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0
       [SPEC §7] CSF 3/4 → 4/4; PF 2/4 → 4/4; AI RMF 2/4 → 4/4.
       Target elevado porque é requisito legal explícito em 3 regulamentos.
     ni_note: |
@@ -244,7 +244,7 @@ AI-security controls, and DORA coverage via CSF subcats.
       DORA Art. 10 (ICT-related incident detection) + AI Act Art. 9 (AI risk
       management). Continuous monitoring deve cobrir AI model drift (data
       drift, concept drift) e ICT incident detection.
-    maturity_target_max: |
+    posture_target_note_max: |  # legacy-scale quote; superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0
       [SPEC §7] CSF 3/4 → 4/4; AI RMF 2/4 → 4/4.
     ni_note: |
       AVG(NI) = 3.0 (DORA + NIS 2 + AI Act clauses). MUST.
@@ -272,7 +272,7 @@ AI-security controls, and DORA coverage via CSF subcats.
       DORA Art. 11 (operational resilience testing) + AI Act Art. 9 (risk mgmt)
       + NIS 2 Art. 21(2)(d). Threat modelling deve cobrir AI-specific threats
       (adversarial, model theft) e DORA scenarios (ICT disruption scenarios).
-    maturity_target_max: |
+    posture_target_note_max: |  # legacy-scale quote; superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0
       [SPEC §7] CSF 3/4 → 4/4; AI RMF 2/4 → 4/4.
     ni_note: |
       AVG(NI) = 3.0 (DORA + NIS 2 + AI Act clauses, all NI=3). MUST.
@@ -314,7 +314,7 @@ PLUS DORA is applicable. This means:
 1. **No AI RMF placeholder column.** Every Doc 13 row has a value in the AI RMF column.
 2. **DORA coverage via CSF.** DORA-specific sub-domains (ICT third-party risk, ICT resilience
    testing) have explicit CSF subcat anchors documented in `Doc11_DORA_ICT_Risk_Framework.md`.
-3. **Triple-maturity per control.** D11 forces 3 independent scores per cartão (CSF, Privacy, AI RMF).
+3. **Triple implementation-status per control (post-port).** The D11 triple-maturity scoring was superseded by the Implementation Posture Model v2.0 (port Fase 4); statuses live in Doc21 §5.1.
 4. **Heatmap uses MAX gap** across the 3 frameworks (worst case).
 5. **NI rule:** `AVG_with_AI_MUST_override` — AI-C* OR DORA-C* sources → MUST (NI=3).
 
@@ -335,7 +335,7 @@ These are the strongest candidates for **consolidation** across frameworks.
 - **76 goals** total: 24 PG + 52 SG (row-derived; legacy summary header says 33 — discrepancy documented as F-01)
 - **3 frameworks ACTIVE** (CSF + PF + AI RMF) + DORA via CSF coverage — no placeholder columns
 - **128 cross-framework anchors** (76 CSF + 24 PF + 28 AI RMF)
-- **Triple-maturity** (D11 Case_03): 3 scores per cartão, 234 cells total (3 × 78 cards)
+- **Triple implementation status** (D11 Case_03, post-port): 3 statuses per cartão in Doc21 §5.1; legacy 234 numeric cells superseded
 - **AVG_with_AI_MUST_override** NI rule: AI-C* OR DORA-C* sources → MUST (NI=3)
 - **MAX tier proportionality**: 31 RIGOROUS + 7 STANDARD + 0 DEFERRED (38/38 active)
 
