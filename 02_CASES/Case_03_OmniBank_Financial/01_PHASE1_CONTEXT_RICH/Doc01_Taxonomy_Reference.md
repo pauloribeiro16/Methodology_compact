@@ -14,7 +14,7 @@ inactive_documented: []
 source: Taxonomia.txt + Regulatory_Complementary_Mapping_Updated.txt (T6)
 traceability: PhD Thesis Chapter 5, Section 5.7
 inputs: []
-outputs: [01_INTAKE_FORM.md, 02_Regulatory_Mapping_Master.xlsx]
+outputs: [Doc02_INTAKE_FORM.md, 02_Regulatory_Mapping_Master.xlsx]
 sibling_of: ../../00_COMMON/00_Taxonomy_Reference.md
 reconciliation_notes:
   - "Sprint 1 (2026-08-06): Copied from 00_COMMON/00_Taxonomy_Reference.md → Rich folder; frontmatter migrated to AEGIS-P3-RICH-* prefix; status DRAFT → RECONCILED; active_subdomains confirmed = 38 (canonical for Case_03 MAX). Body unchanged."

@@ -7,22 +7,21 @@ created: 2026-08-08
 updated: 2026-08-08
 author: Rich-Symmetry Executor
 status: ACTIVE
-sprint: 8
 case: Case_03_OmniBank_Financial
 tier: MAX
 applicable_regulations: [GDPR, CRA, NIS 2, DORA, AI Act]
 inputs:
-  - 10_Privacy_Security_Objectives.md
-  - 11_Rules_Catalog.md
+  - Doc18_Privacy_Security_Objectives.md
+  - Doc20_Rules_Catalog.md
   - ../../../00_METHODOLOGY/PREPROCESSING/Regulation/GDPR/02b_SecurityRules_NISTPF.md
   - ../../../00_METHODOLOGY/PREPROCESSING/Regulation/AI_Act/02b_SecurityRules_NISTAIRMF.md
   - ../../../00_METHODOLOGY/PREPROCESSING_by_domain/_global/NIST_PF_1.0_subcategories.md
   - ../../../00_METHODOLOGY/PREPROCESSING/NIST_CSF_2.0_subcategories.md
   - ../../../00_METHODOLOGY/PREPROCESSING/NIST_AI_RMF_1.0_subcategories.md
-  - ../../../02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT_RICH/06b_DORA_ICT_Risk_Framework.md
-outputs: [11_Rules_Catalog.md (forward-link), Phase 3 inputs]
+  - ../../../02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT_RICH/Doc11_DORA_ICT_Risk_Framework.md
+outputs: [Doc20_Rules_Catalog.md (forward-link), Phase 3 inputs]
 traceability: PG/SG -> sub_domain -> NIST mapping (CSF+PF for PG, CSF for SG, AI RMF for AI-security, DORA via CSF)
-related_documents: 10_Privacy_Security_Objectives.md, 11_Rules_Catalog.md, 13_Framework_Mapping_Matrix.md, 06b_DORA_ICT_Risk_Framework.md
+related_documents: Doc18_Privacy_Security_Objectives.md, Doc20_Rules_Catalog.md, Doc21_Framework_Mapping_Matrix.md, Doc11_DORA_ICT_Risk_Framework.md
 forward_looking_note: >
   Case_03 has 3 ACTIVE frameworks (CSF + Privacy FW + AI RMF) + DORA covered via CSF.
   Triple-maturity implications reference SPEC_NIST_MATRIX_UNIFIED.md §7.
@@ -35,14 +34,14 @@ coverage:
   sg_with_ai_rmf_mapping: 20/52  # AI-security-relevant SG
   ai_rmf_applicable: true   # Case_03 has AI (credit scoring + fraud detection)
   dora_applicable: true   # Case_03 is financial — DORA applicable
-  dora_coverage: via_CSF_subcats   # see 06b_DORA_ICT_Risk_Framework.md
+  dora_coverage: via_CSF_subcats   # see Doc11_DORA_ICT_Risk_Framework.md
 ---
 
 # Privacy & Security Goals — NIST Implications (Case_03)
 
 > **Purpose.** For each of the 76 Privacy/Security Goals of Case_03 (OmniBank Financial,
 > MAX tier), this file documents the **operational implications** for implementation in the
-> OmniBank context, derived from the NIST mappings. Sibling to `10_Privacy_Security_Objectives.md`
+> OmniBank context, derived from the NIST mappings. Sibling to `Doc18_Privacy_Security_Objectives.md`
 > (declarative goals) — this file adds 4 implication dimensions.
 >
 > **Case_03 context.** OmniBank is a major banking/financial institution (5000+ FTE,
@@ -50,7 +49,7 @@ coverage:
 > **Privacy Goals (PG)** map to Privacy FW + CSF; **Security Goals (SG)** map to CSF +
 > AI RMF where AI-security-relevant. **AI RMF is fully ACTIVE** — Case_03 has AI systems
 > (credit scoring + fraud detection) subject to AI Act. **DORA is applicable** — covered
-> via CSF subcats per `06b_DORA_ICT_Risk_Framework.md`.
+> via CSF subcats per `Doc11_DORA_ICT_Risk_Framework.md`.
 
 > **Four implication dimensions (per goal):**
 > 1. **Technical (controls):** OmniBank-relevant controls implied by the NIST subcategories.
@@ -97,7 +96,7 @@ for AI-relevant PG (data subject rights over AI-driven decisions, automated proc
 | AG-D-09.4-001 | D-09.4 | GV-P.RM-P:1, ID-P.RA-P2 | GOVERN-5.1, MAP-3.1 | AI Act + DORA risk assessment |
 
 > **Note:** 24 PG total. The table above shows 12 representative PG; the remaining 12
-> follow the same structure. See `10_Privacy_Security_Objectives.md` for the complete catalog.
+> follow the same structure. See `Doc18_Privacy_Security_Objectives.md` for the complete catalog.
 
 ### PG Detail Implications (representative)
 
@@ -221,7 +220,7 @@ AI-security controls, and DORA coverage via CSF subcats.
 | AG-D-10.1-002 | D-10.1 | RC.RP-01, ID.IM-03 | MANAGE-4.1 | Recovery procedures (DORA Art. 11 resilience testing) |
 
 > **Note:** 52 SG total. The table above shows 14 representative SG; the remaining 38
-> follow the same structure. See `10_Privacy_Security_Objectives.md` for the complete catalog.
+> follow the same structure. See `Doc18_Privacy_Security_Objectives.md` for the complete catalog.
 
 ### SG Detail Implications (representative)
 
@@ -299,7 +298,7 @@ AI-security controls, and DORA coverage via CSF subcats.
 - 20 SG also map to AI RMF (AI-security: model integrity, drift, threat modelling, supply chain).
 - 0 SG map to Privacy FW (security goals don't have privacy-specific anchors).
 - DORA covered via CSF subcats (76/76 SG/PG have at least one CSF subcat; DORA-specific
-  mapping in `06b_DORA_ICT_Risk_Framework.md`).
+  mapping in `Doc11_DORA_ICT_Risk_Framework.md`).
 
 **Total framework mappings:** 76 (CSF) + 24 (PF) + 28 (AI RMF) = **128 cross-framework anchors**.
 
@@ -314,7 +313,7 @@ PLUS DORA is applicable. This means:
 
 1. **No AI RMF placeholder column.** Every Doc 13 row has a value in the AI RMF column.
 2. **DORA coverage via CSF.** DORA-specific sub-domains (ICT third-party risk, ICT resilience
-   testing) have explicit CSF subcat anchors documented in `06b_DORA_ICT_Risk_Framework.md`.
+   testing) have explicit CSF subcat anchors documented in `Doc11_DORA_ICT_Risk_Framework.md`.
 3. **Triple-maturity per control.** D11 forces 3 independent scores per cartão (CSF, Privacy, AI RMF).
 4. **Heatmap uses MAX gap** across the 3 frameworks (worst case).
 5. **NI rule:** `AVG_with_AI_MUST_override` — AI-C* OR DORA-C* sources → MUST (NI=3).
@@ -340,7 +339,7 @@ These are the strongest candidates for **consolidation** across frameworks.
 - **AVG_with_AI_MUST_override** NI rule: AI-C* OR DORA-C* sources → MUST (NI=3)
 - **MAX tier proportionality**: 31 RIGOROUS + 7 STANDARD + 0 DEFERRED (38/38 active)
 
-For per-card detail (each of the 76 PG/SG × 3 frameworks × 4 implication dimensions = 912 cells), see the corresponding sections in `10_Privacy_Security_Objectives.md` (legacy copy in this folder) and `13_Framework_Mapping_Matrix.md`.
+For per-card detail (each of the 76 PG/SG × 3 frameworks × 4 implication dimensions = 912 cells), see the corresponding sections in `Doc18_Privacy_Security_Objectives.md` (legacy copy in this folder) and `Doc21_Framework_Mapping_Matrix.md`.
 
 ---
 

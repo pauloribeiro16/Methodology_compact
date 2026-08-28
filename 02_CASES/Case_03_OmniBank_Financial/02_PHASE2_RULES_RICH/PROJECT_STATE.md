@@ -20,9 +20,7 @@ total_detail_cards: 78
 total_cells_triple_maturity: 234
 frameworks_in_scope: [NIST_CSF_2.0, NIST_Privacy_FW_1.0, NIST_AI_RMF_1.0]   # PF 1.0 canonical frozen list (was 1.1 draft — port Fase 0)
 frameworks_dora_coverage: via_CSF_subcats
-sibling_of: ../02_PHASE2_RULES/
-sprints_complete: [A_reused, B, C, D, E, F, G]
-sprints_pending: []
+sibling_of: ../02_PHASE2_RULES_RICH/
 sprint_in_progress: none
 verdict: PASS_WITH_FINDINGS
 branch: feature/aegis-p2-case03-csf-pf-airmf
@@ -58,12 +56,12 @@ branch: feature/aegis-p2-case03-csf-pf-airmf
 | Path | Status | Bloco | Lines / size | Description |
 |------|:------:|:-----:|-------------:|-------------|
 | `README.md` | ✅ v1.0 | rich-symmetry | ~300 | Orientation, dashboard, schema, bloco plan |
-| `08_Obligation_Derivation.md` | ✅ COPIED | — | 472 | 38 obligations (canonical, untouched) |
-| `09_Strategic_Tensions_Report.md` | ✅ COPIED | — | 687 | 5 tensions resolved (T-001..T-005; HIGH + MEDIUM + INACTIVE) |
-| `10_Privacy_Security_Objectives.md` | ✅ COPIED | — | 461 | 76 goal rows (24 PG + 52 SG; legacy header says 33 — see §4) |
-| `11_Rules_Catalog.md` | ✅ COPIED + banner | — | 652 | 78 cards (38 CR + 40 BPR, 17 fields) + Rich banner pointing to canonical |
+| `Doc16_Obligation_Derivation.md` | ✅ COPIED | — | 472 | 38 obligations (canonical, untouched) |
+| `Doc17_Strategic_Tensions_Report.md` | ✅ COPIED | — | 687 | 5 tensions resolved (T-001..T-005; HIGH + MEDIUM + INACTIVE) |
+| `Doc18_Privacy_Security_Objectives.md` | ✅ COPIED | — | 461 | 76 goal rows (24 PG + 52 SG; legacy header says 33 — see §4) |
+| `Doc20_Rules_Catalog.md` | ✅ COPIED + banner | — | 652 | 78 cards (38 CR + 40 BPR, 17 fields) + Rich banner pointing to canonical |
 | `12_Rules_Catalog.xlsx` | ✅ COPIED | — | 24KB | Excel catalog (canonical, unchanged) |
-| `13_Framework_Mapping_Matrix.md` | ✅ ACTIVE | C + D + F | ~2,800 | Unified matrix 3 frameworks (CSF + PF + AI RMF), DORA via CSF |
+| `Doc21_Framework_Mapping_Matrix.md` | ✅ ACTIVE | C + D + F | ~2,800 | Unified matrix 3 frameworks (CSF + PF + AI RMF), DORA via CSF |
 | `10b_Privacy_Security_Goals_NIST_Implications.md` | ✅ NEW | rich-symmetry | ~500 | 76 PG/SG × 3 frameworks implication catalog |
 | `SPEC_NIST_MATRIX_UNIFIED.md` | ✅ NEW | rich-symmetry | ~1,100 | 17-decision specification (Case_03 MAX 5-framework scenario) |
 | `PROJECT_STATE.md` | ✅ UPDATED | rich-symmetry | this file | Project state snapshot (v1.0) |
@@ -92,7 +90,7 @@ branch: feature/aegis-p2-case03-csf-pf-airmf
 | **Bloco B** | 2026-08-07 | NI formal (AVG + AI MUST + DORA MUST) | 78 cart rows with field 18 (NI) populated | ✅ COMPLETE |
 | **Bloco C** | 2026-08-07 | Doc 13 unified matrix (3 frameworks) | 6 sub-sections + 2 viz sections; 78 YAML blocks (38 CR + 40 BPR) | ✅ COMPLETE |
 | **Bloco D** | 2026-08-07 | Doc 11 estendido (campos 19-24, tri-maturidade) | 6 new cols: csf_subcats, priv_subcats, ai_rmf_subcats, maturity_csf, maturity_privacy, maturity_ai_rmf | ✅ COMPLETE |
-| **Bloco E** | 2026-08-07 | 04b deprecated for maturity | `04b_Security_Posture.md` → DEPRECATED_FOR_MATURITY; maturity_owner: 13_Framework_Mapping_Matrix.md | ✅ COMPLETE |
+| **Bloco E** | 2026-08-07 | 04b deprecated for maturity | `Doc05_Security_Posture.md` → DEPRECATED_FOR_MATURITY; maturity_owner: Doc21_Framework_Mapping_Matrix.md | ✅ COMPLETE |
 | **Bloco F** | 2026-08-07 | 4 visualizações + 6 folhas Excel | V1-V4 visualisations; 6 new Excel sheets | ✅ COMPLETE |
 | **Bloco G fix** | 2026-08-07 | FN-01..FN-05 closure | All 4 Validator findings addressed (FN-01 Crosswalk ACTIVE reference, FN-02 frozen IDs, FN-03 ni_avg_rule_note, FN-05 §6.5 inventory) | ✅ COMPLETE |
 | **Validator** | 2026-08-07 | Tier 1+2 PASS_WITH_FINDINGS | Independent sub-agent verdict; 4 findings raised, all addressed by Bloco G fix | ✅ PASS_WITH_FINDINGS |
@@ -196,17 +194,17 @@ branch: feature/aegis-p2-case03-csf-pf-airmf
 
 - `README.md` — Rich folder orientation + §8 status
 - `RICH_VS_LEGACY.md` — Rich vs legacy diff summary (Case_03)
-- `08_Obligation_Derivation.md` — 38 obligations (canonical)
-- `09_Strategic_Tensions_Report.md` — 7 multi-paragraph tensions
-- `10_Privacy_Security_Objectives.md` — 76 goal rows (24 PG + 52 SG)
-- `11_Rules_Catalog.md` — 78 cards (38 CR + 40 BPR) + Rich banner pointing to canonical with 18-field schema
+- `Doc16_Obligation_Derivation.md` — 38 obligations (canonical)
+- `Doc17_Strategic_Tensions_Report.md` — 7 multi-paragraph tensions
+- `Doc18_Privacy_Security_Objectives.md` — 76 goal rows (24 PG + 52 SG)
+- `Doc20_Rules_Catalog.md` — 78 cards (38 CR + 40 BPR) + Rich banner pointing to canonical with 18-field schema
 - `12_Rules_Catalog.xlsx` — 10-sheet workbook
-- `13_Framework_Mapping_Matrix.md` — unified matrix 3 frameworks (the main deliverable)
+- `Doc21_Framework_Mapping_Matrix.md` — unified matrix 3 frameworks (the main deliverable)
 - `10b_Privacy_Security_Goals_NIST_Implications.md` — 76 PG/SG implications
 - `SPEC_NIST_MATRIX_UNIFIED.md` — 17-decision specification
 - `validation/VALIDATOR_BLOCOG.md` — **Canonical** Validator Tier 1+2 verdict
 - `validation/SPRINT*_REPORT.md` — bloco completion reports
-- `../02_PHASE2_RULES/` — legacy (read-only, canonical with Bloco D extensions)
+- `../02_PHASE2_RULES_RICH/` — legacy (read-only, canonical with Bloco D extensions)
 - `../01_PHASE1_CONTEXT_RICH/` — Phase 1 Rich (template precedent)
 - `../../Case_01_TinyTask_SaaS/02_PHASE2_RULES_RICH/` — Case_01 Rich (template)
 - `../../Case_02_SecureBorder_Solutions/02_PHASE2_RULES_RICH/` — Case_02 Rich (sibling)

@@ -11,16 +11,16 @@ case: Case_03_OmniBank_Financial
 applicable_regs: [GDPR, CRA, NIS 2, DORA, AI Act]
 active_subdomains: 38
 inactive_documented: []
-inputs: [01_INTAKE_FORM.md]
-outputs: [05_Regulatory_Applicability.md]
+inputs: [Doc02_INTAKE_FORM.md]
+outputs: [Doc08_Regulatory_Applicability.md]
 traceability: AEGIS Class Model → CompanyContext, ComplianceContext classes
-related_documents: [00_Taxonomy_Reference.md, 01_INTAKE_FORM.md]
-sibling_of: ../../01_PHASE1_CONTEXT/04_Company_Context_Assessment.md
+related_documents: [00_Taxonomy_Reference.md, Doc02_INTAKE_FORM.md]
+sibling_of: ../../01_PHASE1_CONTEXT_RICH/Doc03_Company_Context_Assessment.md
 reconciliation_notes:
-  - "Sprint 1 (2026-08-06): Copied from 01_PHASE1_CONTEXT/04_Company_Context_Assessment.md → Rich folder; frontmatter migrated to AEGIS-P3-RICH-* prefix; status DRAFT → RECONCILED; active_subdomains confirmed = 38. Section 10 'OMNIBANK-SPECIFIC CONSIDERATIONS' (4 sub-sections DORA/AI Act/NIS 2/GDPR) preserved as case-specific extension (by-design for MAX complexity). Body unchanged."
+  - "Sprint 1 (2026-08-06): Copied from 01_PHASE1_CONTEXT/Doc03_Company_Context_Assessment.md → Rich folder; frontmatter migrated to AEGIS-P3-RICH-* prefix; status DRAFT → RECONCILED; active_subdomains confirmed = 38. Section 10 'OMNIBANK-SPECIFIC CONSIDERATIONS' (4 sub-sections DORA/AI Act/NIS 2/GDPR) preserved as case-specific extension (by-design for MAX complexity). Body unchanged."
 ---
 
-<!-- RECONCILED (Sprint 1, 2026-08-06): Document copied from legacy 01_PHASE1_CONTEXT/04_Company_Context_Assessment.md to Rich folder.
+<!-- RECONCILED (Sprint 1, 2026-08-06): Document copied from legacy 01_PHASE1_CONTEXT/Doc03_Company_Context_Assessment.md to Rich folder.
 Changes: (a) document_id migrated to AEGIS-P3-RICH-04-CCA; (b) status DRAFT → RECONCILED;
 (c) Section 10 'OMNIBANK-SPECIFIC CONSIDERATIONS' kept as by-design case-specific extension (4 sub-sections covering DORA/AI Act/NIS 2/GDPR specifics);
 (d) Per legacy lint baseline, 12/13 sections detected — Section 13 (DOCUMENT APPROVAL) was the canonical placeholder; Section 10 split into 10.1-10.4 in the Rich copy to align with Case_02 precedent.
@@ -290,7 +290,7 @@ This section provides the end-to-end traceability chain from company facts throu
 |-----------------|------:|---------------------|
 | Stakeholders (SH-001..SH-013) | 13 | ✅ Complete (Section 3) |
 | Business Goals (BG-001..BG-008) | 8 | ✅ Complete (Section 4) |
-| Layered Intake Form responses | 75 | ✅ Complete (Section 5; cross-ref 01_INTAKE_FORM.md) |
+| Layered Intake Form responses | 75 | ✅ Complete (Section 5; cross-ref Doc02_INTAKE_FORM.md) |
 | Regulatory applicability flags | 5 | ✅ Complete (Section 6) |
 | Architectural Implications (AI-001..AI-008) | 8 | ✅ Complete (Section 7) |
 | Data flow entries | 6 | ✅ Complete (Section 8) |
@@ -299,11 +299,11 @@ This section provides the end-to-end traceability chain from company facts throu
 | **Full traceability chain** | Company Context → 13 stakeholders → 8 goals → Intake Form (75 questions, 8 conditional blocks, 4 scans) → 5 applicability flags → 8 architectural implications → 6 data flows → Phase 2 (Regulatory Applicability) |
 
 **Cross-doc traceability:**
-- Upstream: `01_INTAKE_FORM.md` (Layer 0/1/2/3 intake form, 75 questions, 8 conditional blocks)
-- Downstream: `05_Regulatory_Applicability.md` (Phase 1 Step B — regulation-by-regulation applicability)
-- Sibling: `04a_Architecture_DataInventory.md`, `04b_Security_Posture.md`, `04c_ThirdParty_Landscape.md`, `04d_Org_Roles_RACI.md`
+- Upstream: `Doc02_INTAKE_FORM.md` (Layer 0/1/2/3 intake form, 75 questions, 8 conditional blocks)
+- Downstream: `Doc08_Regulatory_Applicability.md` (Phase 1 Step B — regulation-by-regulation applicability)
+- Sibling: `Doc04_Architecture_DataInventory.md`, `Doc05_Security_Posture.md`, `Doc06_ThirdParty_Landscape.md`, `Doc07_Org_Roles_RACI.md`
 
 ---
 
-**Next Document:** 05_Regulatory_Applicability.md  
+**Next Document:** Doc08_Regulatory_Applicability.md  
 **Gate Status:** ⏳ PENDING REVIEW

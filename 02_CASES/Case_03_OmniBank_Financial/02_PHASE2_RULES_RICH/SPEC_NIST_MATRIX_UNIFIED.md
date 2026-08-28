@@ -323,7 +323,6 @@ created: <data>
 updated: <data>
 author: Executor (Bloco C)
 status: ACTIVE
-sprint: 6
 case: Case_03_OmniBank_Financial
 tier: MAX
 applicable_regulations: [GDPR, CRA, NIS_2, DORA, AI_Act]

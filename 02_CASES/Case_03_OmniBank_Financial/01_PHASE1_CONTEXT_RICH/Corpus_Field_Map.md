@@ -17,14 +17,14 @@ active_subdomains: 38
 corpus_root: 00_METHODOLOGY/PREPROCESSING_by_domain/domains/
 tool: /tmp/extract_case03_corpus.py
 related_documents:
-  - ../01_PHASE1_CONTEXT/04_Company_Context_Assessment.md
-  - ../01_PHASE1_CONTEXT/04a_Architecture_DataInventory.md
-  - ../01_PHASE1_CONTEXT/04b_Security_Posture.md
-  - ../01_PHASE1_CONTEXT/04c_ThirdParty_Landscape.md
-  - ../01_PHASE1_CONTEXT/04d_Org_Roles_RACI.md
-  - ../01_PHASE1_CONTEXT/05_Regulatory_Applicability.md
-  - ../01_PHASE1_CONTEXT/06_Clause_Mapping_Matrix.ods
-  - ../01_PHASE1_CONTEXT/07_Structured_Compliance_Matrix.md
+  - ../01_PHASE1_CONTEXT_RICH/Doc03_Company_Context_Assessment.md
+  - ../01_PHASE1_CONTEXT_RICH/Doc04_Architecture_DataInventory.md
+  - ../01_PHASE1_CONTEXT_RICH/Doc05_Security_Posture.md
+  - ../01_PHASE1_CONTEXT_RICH/Doc06_ThirdParty_Landscape.md
+  - ../01_PHASE1_CONTEXT_RICH/Doc07_Org_Roles_RACI.md
+  - ../01_PHASE1_CONTEXT_RICH/Doc08_Regulatory_Applicability.md
+  - ../01_PHASE1_CONTEXT_RICH/Doc10_Clause_Mapping_Matrix.ods
+  - ../01_PHASE1_CONTEXT_RICH/Doc12_Structured_Compliance_Matrix.md
   - ../../../00_METHODOLOGY/PREPROCESSING_by_domain/domains/STRUCTURE_REFERENCE.md
   - ../../../00_METHODOLOGY/PHASE1_STRATEGY.md
 ---
@@ -116,7 +116,7 @@ The corpus is **fully populated** under `00_METHODOLOGY/PREPROCESSING_by_domain/
 
 ## §2 Case → Corpus Field Mapping (per doc)
 
-### Doc 04 — Company Context Assessment (`04_Company_Context_Assessment.md`)
+### Doc 04 — Company Context Assessment (`Doc03_Company_Context_Assessment.md`)
 
 | Case field pattern | Type | Corpus layer | Corpus path | Enrichment action |
 |---|---|---|---|---|
@@ -133,7 +133,7 @@ The corpus is **fully populated** under `00_METHODOLOGY/PREPROCESSING_by_domain/
 
 ---
 
-### Doc 04a — Architecture & Data Inventory (`04a_Architecture_DataInventory.md`)
+### Doc 04a — Architecture & Data Inventory (`Doc04_Architecture_DataInventory.md`)
 
 | Case field | Type | Corpus layer | Corpus path | Enrichment action |
 |---|---|---|---|---|
@@ -147,7 +147,7 @@ The corpus is **fully populated** under `00_METHODOLOGY/PREPROCESSING_by_domain/
 
 ---
 
-### Doc 04b — Security Posture (`04b_Security_Posture.md`)
+### Doc 04b — Security Posture (`Doc05_Security_Posture.md`)
 
 | Case field | Type | Corpus layer | Corpus path | Enrichment action |
 |---|---|---|---|---|
@@ -161,7 +161,7 @@ The corpus is **fully populated** under `00_METHODOLOGY/PREPROCESSING_by_domain/
 
 ---
 
-### Doc 04c — Third-Party Landscape (`04c_ThirdParty_Landscape.md`)
+### Doc 04c — Third-Party Landscape (`Doc06_ThirdParty_Landscape.md`)
 
 | Case field | Type | Corpus layer | Corpus path | Enrichment action |
 |---|---|---|---|---|
@@ -177,7 +177,7 @@ The corpus is **fully populated** under `00_METHODOLOGY/PREPROCESSING_by_domain/
 
 ---
 
-### Doc 04d — Org Roles & RACI (`04d_Org_Roles_RACI.md`)
+### Doc 04d — Org Roles & RACI (`Doc07_Org_Roles_RACI.md`)
 
 | Case field | Type | Corpus layer | Corpus path | Enrichment action |
 |---|---|---|---|---|
@@ -192,7 +192,7 @@ The corpus is **fully populated** under `00_METHODOLOGY/PREPROCESSING_by_domain/
 
 ---
 
-### Doc 05 — Regulatory Applicability (`05_Regulatory_Applicability.md`)
+### Doc 05 — Regulatory Applicability (`Doc08_Regulatory_Applicability.md`)
 
 | Case field | Type | Corpus layer | Corpus path | Enrichment action |
 |---|---|---|---|---|
@@ -221,7 +221,7 @@ The corpus is **fully populated** under `00_METHODOLOGY/PREPROCESSING_by_domain/
 
 ---
 
-### Doc 06 — Clause Mapping Matrix (`06_Clause_Mapping_Matrix.ods/.xlsx` — NO .md companion yet)
+### Doc 06 — Clause Mapping Matrix (`Doc10_Clause_Mapping_Matrix.ods/.xlsx` — NO .md companion yet)
 
 | Case field | Type | Corpus layer | Corpus path | Enrichment action |
 |---|---|---|---|---|
@@ -236,7 +236,7 @@ The corpus is **fully populated** under `00_METHODOLOGY/PREPROCESSING_by_domain/
 
 ---
 
-### Doc 07 — Structured Compliance Matrix (`07_Structured_Compliance_Matrix.md`)
+### Doc 07 — Structured Compliance Matrix (`Doc12_Structured_Compliance_Matrix.md`)
 
 | Case field | Type | Corpus layer | Corpus path | Enrichment action |
 |---|---|---|---|---|
@@ -253,7 +253,7 @@ The corpus is **fully populated** under `00_METHODOLOGY/PREPROCESSING_by_domain/
 
 ---
 
-### Doc 07b — Proportionality Profile (NEW for Rich) (`07b_Proportionality_Profile.md`)
+### Doc 07b — Proportionality Profile (NEW for Rich) (`Doc13_Proportionality_Profile.md`)
 
 | Case field | Type | Corpus layer | Corpus path | Enrichment action |
 |---|---|---|---|---|
@@ -268,7 +268,7 @@ The corpus is **fully populated** under `00_METHODOLOGY/PREPROCESSING_by_domain/
 
 ---
 
-### Doc 07c — Adjusted Objectives (NEW for Rich) (`07c_Adjusted_Goals.md`)
+### Doc 07c — Adjusted Objectives (NEW for Rich) (`Doc14_Adjusted_Goals.md`)
 
 | Case field | Type | Corpus layer | Corpus path | Enrichment action |
 |---|---|---|---|---|
@@ -383,7 +383,7 @@ Per `STRUCTURE_REFERENCE.md §3` caveats: case uses sequential `GDPR-C{NN}` (01-
 
 | Metric | Count | Notes |
 |---|---:|---|
-| Total case clauses (GDPR + CRA + NIS2 + DORA + AI Act) | 150 | All from `06_Clause_Mapping_Matrix.xlsx` (5 sheets) |
+| Total case clauses (GDPR + CRA + NIS2 + DORA + AI Act) | 150 | All from `Doc10_Clause_Mapping_Matrix.xlsx` (5 sheets) |
 | Corpus clauses total across active sub-domains | 1363 | Distributed: GDPR ~250, CRA ~190, NIS2 ~270, DORA ~470, AI Act ~120 (rough estimate from `clauses_per_reg` totals) |
 | Many-to-one mappings expected | ~30 | DORA + CRA + GDPR + NIS 2 all reuse clause IDs across sub-domains |
 | Unique (reg, clause_id) pairs | ~150 | After dedup, expect 150 unique case clauses + 50-100 corpus-only |
@@ -493,7 +493,7 @@ Track B = AEGIS Track B (proportionality): scale tier (LOW / MEDIUM / HIGH / MAX
 This document is the **blueprint for Sprint 1 (Reconciliation) + Sprint 2 (Corpus Enrichment)**.
 
 ### Sprint 1 deliverables
-1. **Generate Doc 06 Markdown companion** — `06_Clause_Mapping_Matrix.md` with 150-row summary table from `.xlsx`. Resolve lint cross-doc consistency.
+1. **Generate Doc 06 Markdown companion** — `Doc10_Clause_Mapping_Matrix.md` with 150-row summary table from `.xlsx`. Resolve lint cross-doc consistency.
 2. **Register T-001..T-004 in ontology** — update `01_IMPLEMENTATION_TOOLS/lints/phase1/lint_regulatory_ground_truth.py` ground truth ontology OR refactor Doc 07 to use ontology tension IDs.
 3. **Fix 5 obligated_party values** in `02_Regulatory_Mapping_Master.md`.
 4. **Fill 1 missing Doc 04 section** (12/13 layered coverage).

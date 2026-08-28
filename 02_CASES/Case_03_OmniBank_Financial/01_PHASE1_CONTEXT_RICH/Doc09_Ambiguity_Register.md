@@ -14,8 +14,8 @@ inactive_documented: []
 complexity_tier: MAX
 scale: MAX
 new_in_rich: true
-inputs: [05_Regulatory_Applicability.md]
-outputs: [07b_Proportionality_Profile.md, 06b_DORA_ICT_Risk_Framework.md]
+inputs: [Doc08_Regulatory_Applicability.md]
+outputs: [Doc13_Proportionality_Profile.md, Doc11_DORA_ICT_Risk_Framework.md]
 related_documents:
   - ../../../00_METHODOLOGY/PREPROCESSING_by_domain/domains/
   - ../../../00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-09_Governance-Documentation/D-09.1/D-09.1.json
@@ -773,7 +773,7 @@ Each row gives the corpus card count for the Case_03-applicable subset of regula
 
 ## 4. Recommended Disambiguation
 
-For each of the 20 top-priority cards, the recommended resolution approach is documented below. Resolution will be tracked in `07b_Proportionality_Profile.md` and the per-card closure status will be reflected in subsequent sprint reports.
+For each of the 20 top-priority cards, the recommended resolution approach is documented below. Resolution will be tracked in `Doc13_Proportionality_Profile.md` and the per-card closure status will be reflected in subsequent sprint reports.
 
 **Resolution framework:**
 1. **R1 reading** (corpus-preferred) — adopt as baseline for the Phase 2 strategic-tensions analysis.
@@ -813,10 +813,10 @@ For each of the 20 top-priority cards, the recommended resolution approach is do
 
 - **Corpus source:** `00_METHODOLOGY/PREPROCESSING_by_domain/domains/` (38 sub-domain JSON sidecars, each with `ambiguity_cards[]`).
 - **Berry lens methodology:** see `00_METHODOLOGY/PREPROCESSING_by_domain/domains/AMBIGUITY_ANALYSIS/01_Framework.md`.
-- **Strategic tensions (T-001..T-004):** mapped in `06b_DORA_ICT_Risk_Framework.md` and `07b_Proportionality_Profile.md`.
+- **Strategic tensions (T-001..T-004):** mapped in `Doc11_DORA_ICT_Risk_Framework.md` and `Doc13_Proportionality_Profile.md`.
 - **Top 20 verbatim:** §3 above.
 - **Per-sub-domain counts:** §2 above.
-- **Resolution status tracker:** §4 above (will be migrated to `07b_Proportionality_Profile.md` in Sprint 3).
+- **Resolution status tracker:** §4 above (will be migrated to `Doc13_Proportionality_Profile.md` in Sprint 3).
 
 ---
 
@@ -842,5 +842,5 @@ For each of the 20 top-priority cards, the recommended resolution approach is do
 - **Corpus root:** `00_METHODOLOGY/PREPROCESSING_by_domain/domains/`
 - **Highest-card sub-domains:** D-09.1 (131), D-09.4 (116), D-04.3 (94), D-09.2 (87), D-06.3 (76)
 - **Citation cross-ref:** `Citation_Index.md` for verbatim regulation text.
-- **Architecture context:** `04a_Architecture_DataInventory.md` §4 Corpus Provenance.
+- **Architecture context:** `Doc04_Architecture_DataInventory.md` §4 Corpus Provenance.
 - **MAXIMUM-tier context:** Case_03 has 5 applicable regulations (GDPR + CRA + NIS 2 + DORA + AI Act); D-08.3 ACTIVE under dual NIS 2 + DORA; AI Act Annex III for OmniScore; DORA financial entity for CBS mainframe + OmniScore.

@@ -12,24 +12,24 @@ applicable_regs: [GDPR, CRA, NIS 2, DORA, AI Act]
 active_subdomains: 38
 inactive_documented: []
 inputs:
-  - 04_Company_Context_Assessment.md
-  - 04a_Architecture_DataInventory.md
-  - 04b_Security_Posture.md
-  - 01_INTAKE_FORM.md
+  - Doc03_Company_Context_Assessment.md
+  - Doc04_Architecture_DataInventory.md
+  - Doc05_Security_Posture.md
+  - Doc02_INTAKE_FORM.md
 outputs:
-  - 04d_Org_Roles_RACI.md
-  - 06_Clause_Mapping_Matrix.md
-  - 07_Structured_Compliance_Matrix.md
+  - Doc07_Org_Roles_RACI.md
+  - Doc10_Clause_Mapping_Matrix.md
+  - Doc12_Structured_Compliance_Matrix.md
 related_documents:
   - ../../../00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-06_Supply-Chain/
-  - ../../../00_METHODOLOGY/TEMPLATES/04c_ThirdParty_Landscape.md
-sibling_of: ../01_PHASE1_CONTEXT/04c_ThirdParty_Landscape.md
+  - ../../../00_METHODOLOGY/TEMPLATES/Doc06_ThirdParty_Landscape.md
+sibling_of: ../01_PHASE1_CONTEXT_RICH/Doc06_ThirdParty_Landscape.md
 reconciliation_notes:
-  - "Sprint 1 (2026-08-06): Copied from 01_PHASE1_CONTEXT/04c_ThirdParty_Landscape.md → Rich folder; frontmatter migrated to AEGIS-P3-RICH-* prefix; status DRAFT → RECONCILED; applicable_regs normalized to [GDPR, CRA, NIS 2, DORA, AI Act]; active_subdomains confirmed = 38. Body unchanged."
+  - "Sprint 1 (2026-08-06): Copied from 01_PHASE1_CONTEXT/Doc06_ThirdParty_Landscape.md → Rich folder; frontmatter migrated to AEGIS-P3-RICH-* prefix; status DRAFT → RECONCILED; applicable_regs normalized to [GDPR, CRA, NIS 2, DORA, AI Act]; active_subdomains confirmed = 38. Body unchanged."
 ---
 
 <!-- CORPUS_ENRICHED (Sprint 2, 2026-08-06): Enrichment with verbatim GDPR Art. 28 + CRA Art. 13 + DORA Art. 30 + AI Act Art. 25 cross-references.
-Replaces RECONCILED comment. Document copied from legacy 01_PHASE1_CONTEXT/04c_ThirdParty_Landscape.md to Rich folder.
+Replaces RECONCILED comment. Document copied from legacy 01_PHASE1_CONTEXT/Doc06_ThirdParty_Landscape.md to Rich folder.
 Changes: (a) document_id migrated to AEGIS-P3-RICH-04c-3P; (b) status DRAFT → RECONCILED;
 (c) applicable_regs normalized from [GDPR, NIS2, CRA, DORA, AI_Act] to [GDPR, CRA, NIS 2, DORA, AI Act] (canonical order);
 (d) DORA Art. 28-30 CTPP register alignment cross-referenced (per Sprint 0.6 Doc 04a/04d deliverables).
@@ -47,9 +47,9 @@ supersedes: none
 
 This document inventories OmniBank Financial Systems S.A.'s third-party landscape: cloud providers, payment networks, card networks, AI/ML service providers, security tooling vendors, hardware suppliers, and regulatory/statutory counterparties. It maps directly to Regulatory Baseline sub-domain **D-06 (Supply Chain)** (D-06.1, D-06.2, D-06.3, D-06.4) and supports compliance with **GDPR Art. 28**, **CRA Annex I Part I (2)(h) + (i)**, **NIS 2 Art. 21(2)(d) supply chain**, **DORA Art. 28-30** (ICT third-party register + ICT contracts), and **AI Act Art. 25** (provider-deployer interface).
 
-**Scope:** Sub-domain D-06.x only. Architecture context is in `04a_Architecture_DataInventory.md`; security posture is in `04b_Security_Posture.md`; broader governance is in Phase 2 deliverables.
+**Scope:** Sub-domain D-06.x only. Architecture context is in `Doc04_Architecture_DataInventory.md`; security posture is in `Doc05_Security_Posture.md`; broader governance is in Phase 2 deliverables.
 
-**Method:** Inventory constructed from the architecture documentation (`04a §1.3` cloud services + supplier list in `04a §1.1`), the stakeholder register in `04_Company_Context_Assessment.md §3`, and the DORA Art. 28 ICT third-party register.
+**Method:** Inventory constructed from the architecture documentation (`04a §1.3` cloud services + supplier list in `04a §1.1`), the stakeholder register in `Doc03_Company_Context_Assessment.md §3`, and the DORA Art. 28 ICT third-party register.
 
 **Proportionality note (P2 — Company Reality First):** OmniBank is a MAXIMUM-tier credit institution (5,000+ employees, 5 regulations, mainframe + cloud hybrid, AI Act Annex III AI, DORA financial entity). Sub-processor inventory is extensive (~22 distinct vendors plus ~10 statutory / regulator / card scheme / network relationships). DORA Art. 28 ICT third-party register is maintained as a separate document by CRO; this 04c document cross-references it. All card networks and SWIFT are formal parties to OmniBank's vendor security programme. Software vendors are tiered by criticality per DORA Art. 30.
 
@@ -300,7 +300,7 @@ Active scope for OmniBank = 38 of 38 sub-domains. All 4 D-06.x sub-domains are A
 | GAP-TPL-05 | HSM firmware SBOM emission per release under CRA Annex I Part II (1) — pipeline integration test pending final acceptance | MEDIUM | D-06.2 |
 | GAP-TPL-06 | DORA Art. 28(4) sub-outsourcing register for all 11 cloud providers — sub-processor notification flow in place; register consolidation ongoing | LOW | D-06.4 |
 
-All six gaps are tracked in `04b_Security_Posture.md` for Phase 2 / Phase 3 remediation and in `PROJECT_STATE.md` §6.2.
+All six gaps are tracked in `Doc05_Security_Posture.md` for Phase 2 / Phase 3 remediation and in `PROJECT_STATE.md` §6.2.
 
 ---
 
@@ -326,7 +326,7 @@ This document is complete (Phase 1 Step D — Third-Party Landscape) when:
 
 | Version | Date | Author | Changes |
 |---|---|---|---|
-| 1.0 | 2026-07-11 | Executor | Populated from template `04c_ThirdParty_Landscape.md`; merged architecture data from `04a §1.3` and stakeholder register from `04 §3`. 22 distinct vendors + 10 statutory/regulator/card-scheme/network relationships, proportionate for MAXIMUM-tier credit institution with DORA Art. 28-30 CTPP framework + AI Act Annex III obligations. |
+| 1.0 | 2026-07-11 | Executor | Populated from template `Doc06_ThirdParty_Landscape.md`; merged architecture data from `04a §1.3` and stakeholder register from `04 §3`. 22 distinct vendors + 10 statutory/regulator/card-scheme/network relationships, proportionate for MAXIMUM-tier credit institution with DORA Art. 28-30 CTPP framework + AI Act Annex III obligations. |
 | 1.2 | 2026-08-06 | Executor | Sprint 2 corpus enrichment: new §2.1 Subprocessor GDPR Art. 28 Verbatim Anchor added (8 mandatory DPA clauses + SR rule titles); new §6.1 Supply Chain Risk Cross-Regulation References added (CRA Art. 13 + NIS 2 Art. 21(2)(d) + DORA Art. 30 + CRA Art. 7 + AI Act Art. 25 declared gap); §8 Compliance Mapping table extended with Corpus Manifest Path column for D-06.1..D-06.4. status RECONCILED → CORPUS_ENRICHED. |
 
 ## N. Document Approval
@@ -344,6 +344,6 @@ This document is complete (Phase 1 Step D — Third-Party Landscape) when:
 ## See also
 
 - **Data backbone:** `Case_03_Phase1.xlsx` (13 sheets: COVER, SYSTEMS, DATA_STORES, DATA_FLOWS, PERSONAL_DATA, THIRD_PARTIES, ROLES_RACI, MATURITY, SUBDOMAINS, REG_CHAIN, COMPLIANCE, GAPS, PRIORITIES)
-- **Architecture context:** `04a_Architecture_DataInventory.md` §1.1 (25 systems), §1.3 (cloud services table), §2.2 (25 flows).
-- **People / RACI:** `04d_Org_Roles_RACI.md` (CRO owns DORA Art. 28-30 ICT third-party register; CISO owns vendor-risk-assessment cadence; DPO owns DPA + DORA Art. 30 template library; Procurement Director owns vendor relationship management).
+- **Architecture context:** `Doc04_Architecture_DataInventory.md` §1.1 (25 systems), §1.3 (cloud services table), §2.2 (25 flows).
+- **People / RACI:** `Doc07_Org_Roles_RACI.md` (CRO owns DORA Art. 28-30 ICT third-party register; CISO owns vendor-risk-assessment cadence; DPO owns DPA + DORA Art. 30 template library; Procurement Director owns vendor relationship management).
 - **MAXIMUM-tier context:** `02_CASES/Case_03_OmniBank_Financial/00_COMMON/01_Company_Context.md` (5 applicable regulations; complexity tier MAXIMUM; 5,000+ employees; credit institution + DORA financial entity + NIS 2 essential entity + AI Act Annex III + CRA mobile app Default Class).

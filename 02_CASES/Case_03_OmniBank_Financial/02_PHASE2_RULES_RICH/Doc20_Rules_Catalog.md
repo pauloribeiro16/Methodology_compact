@@ -1,4 +1,4 @@
-> **Note:** This is a Rich-Mode copy of the Phase 2 rules catalog. The canonical version (with Block D extensions: tri-maturidade CSF+PF+AI RMF, fields 19-24) lives in `../02_PHASE2_RULES/11_Rules_Catalog.md`. This Rich copy preserves the original 17-field schema for reference; consult `../02_PHASE2_RULES/11_Rules_Catalog.md` for the live operational document.
+> **Note:** This is a Rich-Mode copy of the Phase 2 rules catalog. The canonical version (with Block D extensions: tri-maturidade CSF+PF+AI RMF, fields 19-24) lives in `../02_PHASE2_RULES_RICH/Doc20_Rules_Catalog.md`. This Rich copy preserves the original 17-field schema for reference; consult `../02_PHASE2_RULES_RICH/Doc20_Rules_Catalog.md` for the live operational document.
 
 ---
 document_id: AEGIS-P2-11
@@ -6,13 +6,15 @@ title: Rules Catalog
 phase: 2
 version: 1.0
 created: 2026-04-03
-updated: 2026-04-03
+updated: 2026-08-28
 author: Compliance Lead
-status: DRAFT
-inputs: [08_Obligation_Derivation.md, 09_Strategic_Tensions_Report.md, 10_Privacy_Security_Objectives.md]
+status: ACTIVE
+inputs: [Doc16_Obligation_Derivation.md, Doc17_Strategic_Tensions_Report.md, Doc18_Privacy_Security_Objectives.md]
 outputs: [Phase 3 inputs]
 traceability: AEGIS Class Model → RulesCatalog, AbstractRule, ComplianceRule, BestPracticeRule classes
 related_documents: 12_Rules_Catalog.xlsx, 00_Taxonomy_Reference.md
+case: Case_03_OmniBank_Financial
+applicable_regs: [GDPR, CRA, NIS 2, DORA, AI_Act]
 normative_intensity_rule: AVG_with_AI_MUST_override
 dr_002_resolution: >
   DR-002 definido como AVG (não MAX). MAX mata diferenciação (AP-P2-09).
@@ -83,7 +85,7 @@ Each rule in this catalog is defined by the following fields:
 | **Priority** | string | P1 (NI >= 2.5), P2 (NI 2.0–2.499), P3 (Best Practice) |
 | **Verification** | string | TEST, INSPECT, DEMONSTRATE, or ANALYZE |
 | **Implementation** | string | NATIVE (built in-house), INHERITED (cloud/third-party), HYBRID (combination) |
-| **Related Goals** | list | References to goals from 10_Privacy_Security_Objectives.md |
+| **Related Goals** | list | References to goals from Doc18_Privacy_Security_Objectives.md |
 | **Notes** | text | Additional context: tension resolution, sole authority, special conditions |
 
 ---
@@ -494,7 +496,7 @@ Rules are classified by how OmniBank implements them: **NATIVE** (built/operated
 
 ### Rules to Goals
 
-Each compliance rule maps to one or more privacy or security goals from 10_Privacy_Security_Objectives.md:
+Each compliance rule maps to one or more privacy or security goals from Doc18_Privacy_Security_Objectives.md:
 
 | Goal ID | Goal Type | Goal Description | Related Rules |
 |---------|-----------|-----------------|---------------|
@@ -541,7 +543,7 @@ Each compliance rule maps to one or more privacy or security goals from 10_Priva
 
 ### Rules to Obligations (1:1 Mapping)
 
-Each of the 38 compliance rules maps to exactly one obligation from 08_Obligation_Derivation.md:
+Each of the 38 compliance rules maps to exactly one obligation from Doc16_Obligation_Derivation.md:
 
 | Obligation ID | Rule ID | Sub-Domain |
 |--------------|---------|------------|
@@ -599,9 +601,9 @@ Each of the 38 compliance rules maps to exactly one obligation from 08_Obligatio
 
 | Gate Criterion | Status | Evidence |
 |---------------|--------|---------|
-| All obligations derived from Phase 1 clauses | PASS | 08_Obligation_Derivation.md — 38 obligations |
-| All strategic tensions identified and resolved | PASS | 09_Strategic_Tensions_Report.md — 4 tensions resolved |
-| All privacy/security goals defined | PASS | 10_Privacy_Security_Objectives.md — 27 goals |
+| All obligations derived from Phase 1 clauses | PASS | Doc16_Obligation_Derivation.md — 38 obligations |
+| All strategic tensions identified and resolved | PASS | Doc17_Strategic_Tensions_Report.md — 4 tensions resolved |
+| All privacy/security goals defined | PASS | Doc18_Privacy_Security_Objectives.md — 27 goals |
 | 1:1 obligation-to-rule mapping achieved | PASS | 38 obligations → 38 compliance rules |
 | All 38 sub-domains covered | PASS | Coverage matrix — 38/38 (100%) |
 | Best practice rules defined for all domains | PASS | 25 best practice rules across all 10 domains + AI |

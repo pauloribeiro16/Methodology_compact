@@ -6,8 +6,6 @@ version: 3.0
 created: 2026-08-06
 updated: 2026-08-14
 author: Sprint 4 + 5 + 6 Executor (adjusted-objectives-builder + deep-enrichment-builder + corr-010-standardisation)
-sprint_5_author: Sprint 5 Executor (deep-enrichment-builder)
-sprint_6_author: Sprint 6 Executor (corr-010-standardisation)
 status: STANDARDISED
 status_history:
   - { date: 2026-08-06, status: DRAFT, sprint: 0, by: 'Sprint 0 skeleton' }
@@ -29,11 +27,10 @@ active_subdomains_mapped: 38
 inactive_subdomains: []
 nist_controls_full_coverage: true
 nist_frameworks_covered: [NIST CSF 2.0, NIST PF 1.0, NIST AI RMF]
-sprint_role: adjusted_objectives_per_subdomain_deep_enriched_standardised
-cross_checked_against: [07b_Proportionality_Profile.md, 06b_DORA_ICT_Risk_Framework.md, 05b_Ambiguity_Register.md, proportionality_model.md, 00_METHODOLOGY/PREPROCESSING_by_domain/CONTROLS/by_subdomain/]
-inputs: [04_Company_Context_Assessment.md, 05_Regulatory_Applicability.md, 05b_Ambiguity_Register.md, 06b_DORA_ICT_Risk_Framework.md, 07_Structured_Compliance_Matrix.md, 07b_Proportionality_Profile.md, phase1_ontology.yaml, ../../../../../00_METHODOLOGY/REFERENCE/proportionality_model.md, ../../../../../00_METHODOLOGY/PREPROCESSING_by_domain/CONTROLS/by_subdomain/*.json]
-outputs: [phase 2 rules catalog (11_Rules_Catalog.md) consumes adjusted objectives + NIST controls mapping; _deprecated/07c_Appendix_A_OLD.md provides per-card detail archive]
-related_documents: [07b_Proportionality_Profile.md, 04_Company_Context_Assessment.md, 05_Regulatory_Applicability.md, 05b_Ambiguity_Register.md, 06b_DORA_ICT_Risk_Framework.md, phase1_ontology.yaml, ../../../../../00_METHODOLOGY/REFERENCE/proportionality_model.md, _deprecated/07c_Appendix_A_OLD.md]
+cross_checked_against: [Doc13_Proportionality_Profile.md, Doc11_DORA_ICT_Risk_Framework.md, Doc09_Ambiguity_Register.md, proportionality_model.md, 00_METHODOLOGY/PREPROCESSING_by_domain/CONTROLS/by_subdomain/]
+inputs: [Doc03_Company_Context_Assessment.md, Doc08_Regulatory_Applicability.md, Doc09_Ambiguity_Register.md, Doc11_DORA_ICT_Risk_Framework.md, Doc12_Structured_Compliance_Matrix.md, Doc13_Proportionality_Profile.md, phase1_ontology.yaml, ../../../../../00_METHODOLOGY/REFERENCE/proportionality_model.md, ../../../../../00_METHODOLOGY/PREPROCESSING_by_domain/CONTROLS/by_subdomain/*.json]
+outputs: [phase 2 rules catalog (Doc20_Rules_Catalog.md) consumes adjusted objectives + NIST controls mapping; _deprecated/07c_Appendix_A_OLD.md provides per-card detail archive]
+related_documents: [Doc13_Proportionality_Profile.md, Doc03_Company_Context_Assessment.md, Doc08_Regulatory_Applicability.md, Doc09_Ambiguity_Register.md, Doc11_DORA_ICT_Risk_Framework.md, phase1_ontology.yaml, ../../../../../00_METHODOLOGY/REFERENCE/proportionality_model.md, _deprecated/07c_Appendix_A_OLD.md]
 frozen: false
 supersedes: 02_PHASE2_RULES/10_Privacy_Security_Goals.md §3-§4 (legacy PG/SG — now elevated to Phase 1 in Rich Mode)
 corr: corr-010
@@ -47,11 +44,11 @@ corr_date: 2026-08-14
 > **corr-010 standardisation (2026-08-14):** Restructured from 3805 → ~1500 lines. New §2 Multi-Regulation Adjusted Objectives (merged table, 38 rows × 8 cols). New §5 NIST Controls Mapping (3 frameworks × 38 sub-domains, full coverage). 76 detail cards archived to `_deprecated/07c_Appendix_A_OLD.md` for per-card reference.
 >
 > **Companion documents:**
-> - Doc 07b `07b_Proportionality_Profile.md` — 5-attribute operationalisation per sub-domain (31 RIGOROUS + 7 STANDARD)
-> - Doc 04 `04_Company_Context_Assessment.md` — Business Goals (BG-001..BG-008) → linked to adjusted objectives here
-> - Doc 05 `05_Regulatory_Applicability.md` — GDPR + CRA + NIS 2 + DORA + AI Act applicability + 150 clauses
-> - Doc 05b `05b_Ambiguity_Register.md` — Top 20 ambiguity cards (V-04 fixed: 20 distinct clauses — GDPR 5 + CRA 4 + NIS 2 4 + DORA 4 + AI Act 3)
-> - Doc 06b `06b_DORA_ICT_Risk_Framework.md` — DORA Art. 5-34 mapped to AEGIS sub-domains; 5 tensions (T-001..T-005)
+> - Doc 07b `Doc13_Proportionality_Profile.md` — 5-attribute operationalisation per sub-domain (31 RIGOROUS + 7 STANDARD)
+> - Doc 04 `Doc03_Company_Context_Assessment.md` — Business Goals (BG-001..BG-008) → linked to adjusted objectives here
+> - Doc 05 `Doc08_Regulatory_Applicability.md` — GDPR + CRA + NIS 2 + DORA + AI Act applicability + 150 clauses
+> - Doc 05b `Doc09_Ambiguity_Register.md` — Top 20 ambiguity cards (V-04 fixed: 20 distinct clauses — GDPR 5 + CRA 4 + NIS 2 4 + DORA 4 + AI Act 3)
+> - Doc 06b `Doc11_DORA_ICT_Risk_Framework.md` — DORA Art. 5-34 mapped to AEGIS sub-domains; 5 tensions (T-001..T-005)
 > - `_deprecated/07c_Appendix_A_OLD.md` — 76 archived detail cards (38 PG + 38 SG, 18 fields each)
 > - Phase 2 legacy `02_PHASE2_RULES/10_Privacy_Security_Goals.md` §3-§4 — superseded by this doc per Sprint 4 (PG/SG now elevated from Phase 2 to Phase 1)
 
@@ -455,20 +452,20 @@ DORA Art. 26(1) mandates Threat-Led Penetration Testing (TLPT) "at least every 3
 
 ## §6 Cross-References
 
-- **Doc 04** `04_Company_Context_Assessment.md` — Company Context (S = MAX, FTE 100+, ISO 27001, ECB-supervised, AI Act High-Risk Annex III)
-- **Doc 04a** `04a_Architecture_DataInventory.md` — Architecture + data inventory (ECB data residency, core banking on-prem, model store EU cloud)
-- **Doc 04b** `04b_Security_Posture.md` — Security posture baseline
-- **Doc 04c** `04c_ThirdParty_Landscape.md` — Third-party landscape (DORA Art. 30 CTPP register planned §7)
-- **Doc 04d** `04d_Org_Roles_RACI.md` — Case-specific organisational roles (CRO, DORA ICT Risk Officer, AI Governance Lead)
-- **Doc 05** `05_Regulatory_Applicability.md` — Applicability + Native/Inherited classification (Doc 05 §5.1/§5.2) for Case_03
-- **Doc 05b** `05b_Ambiguity_Register.md` — Top 20 ambiguity cards (V-04 fixed: 20 distinct clauses — GDPR 5 + CRA 4 + NIS 2 4 + DORA 4 + AI Act 3) + per-sub-domain counts
-- **Doc 06b** `06b_DORA_ICT_Risk_Framework.md` — DORA Art. 5-34 mapped to AEGIS sub-domains (Doc 06b §3) + 5 tensions (Doc 06b §4)
-- **Doc 07** `07_Structured_Compliance_Matrix.md` — Priority (P) per sub-domain (Doc 07 §3) + complementarity analysis (Doc 07 §5) + strategic tensions (Doc 07 §5.5)
-- **Doc 07b** `07b_Proportionality_Profile.md` — Track B case instance (31 RIGOROUS + 7 STANDARD); §4 per-sub-domain table (Sprint 4 enriched with Risk/Maturity/Priority cols); §5.1 tension cross-reference; §11 decision table trail
-- **Doc 07c** `07c_Adjusted_Goals.md` — **THIS DOCUMENT** — adjusted objectives (§2 Multi-Regulation merged table, 38 rows × 8 cols) + 5 tensions (§3) + Track B decision trail (§4) + NIST controls mapping (§5, 3 frameworks × 38 sub-domains); 76 detail cards archived to `_deprecated/07c_Appendix_A_OLD.md`
-- **Phase 2 legacy** `02_PHASE2_RULES/08_Obligation_Derivation.md` — consumes adjusted objectives; supersedes 10_Privacy_Security_Objectives.md §3-§4
+- **Doc 04** `Doc03_Company_Context_Assessment.md` — Company Context (S = MAX, FTE 100+, ISO 27001, ECB-supervised, AI Act High-Risk Annex III)
+- **Doc 04a** `Doc04_Architecture_DataInventory.md` — Architecture + data inventory (ECB data residency, core banking on-prem, model store EU cloud)
+- **Doc 04b** `Doc05_Security_Posture.md` — Security posture baseline
+- **Doc 04c** `Doc06_ThirdParty_Landscape.md` — Third-party landscape (DORA Art. 30 CTPP register planned §7)
+- **Doc 04d** `Doc07_Org_Roles_RACI.md` — Case-specific organisational roles (CRO, DORA ICT Risk Officer, AI Governance Lead)
+- **Doc 05** `Doc08_Regulatory_Applicability.md` — Applicability + Native/Inherited classification (Doc 05 §5.1/§5.2) for Case_03
+- **Doc 05b** `Doc09_Ambiguity_Register.md` — Top 20 ambiguity cards (V-04 fixed: 20 distinct clauses — GDPR 5 + CRA 4 + NIS 2 4 + DORA 4 + AI Act 3) + per-sub-domain counts
+- **Doc 06b** `Doc11_DORA_ICT_Risk_Framework.md` — DORA Art. 5-34 mapped to AEGIS sub-domains (Doc 06b §3) + 5 tensions (Doc 06b §4)
+- **Doc 07** `Doc12_Structured_Compliance_Matrix.md` — Priority (P) per sub-domain (Doc 07 §3) + complementarity analysis (Doc 07 §5) + strategic tensions (Doc 07 §5.5)
+- **Doc 07b** `Doc13_Proportionality_Profile.md` — Track B case instance (31 RIGOROUS + 7 STANDARD); §4 per-sub-domain table (Sprint 4 enriched with Risk/Maturity/Priority cols); §5.1 tension cross-reference; §11 decision table trail
+- **Doc 07c** `Doc14_Adjusted_Goals.md` — **THIS DOCUMENT** — adjusted objectives (§2 Multi-Regulation merged table, 38 rows × 8 cols) + 5 tensions (§3) + Track B decision trail (§4) + NIST controls mapping (§5, 3 frameworks × 38 sub-domains); 76 detail cards archived to `_deprecated/07c_Appendix_A_OLD.md`
+- **Phase 2 legacy** `02_PHASE2_RULES/Doc16_Obligation_Derivation.md` — consumes adjusted objectives; supersedes Doc18_Privacy_Security_Objectives.md §3-§4
 - **Phase 2 legacy** `02_PHASE2_RULES/10_Privacy_Security_Goals.md` — superseded by Doc 07c (PG/SG elevated from Phase 2 to Phase 1 in Rich Mode)
-- **Phase 2 legacy** `02_PHASE2_RULES/09_Strategic_Tensions_Report.md` — 4 tensions (T-001..T-004), now resolved here with multi-paragraph treatment + T-005 NEW
+- **Phase 2 legacy** `02_PHASE2_RULES/Doc17_Strategic_Tensions_Report.md` — 4 tensions (T-001..T-004), now resolved here with multi-paragraph treatment + T-005 NEW
 - **Corpus** `00_METHODOLOGY/PREPROCESSING_by_domain/domains/` — 38 sub-domain JSON sidecars (HSO + sub-SOs frozen per `proportionality_model.md §1` invariant)
 - **Methodology** `00_METHODOLOGY/REFERENCE/proportionality_model.md` — Track B spec (Regulatory Baseline invariant §1, decision table §5, attribute definitions §6, validation §9)
 

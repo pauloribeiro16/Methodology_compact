@@ -4,13 +4,15 @@ title: Privacy and Security Operational Objectives Catalog
 phase: 2
 version: 1.0
 created: 2026-04-03
-updated: 2026-04-03
+updated: 2026-08-28
 author: Compliance Lead
-status: DRAFT
-inputs: [08_Obligation_Derivation.md, 09_Strategic_Tensions_Report.md, 04_Company_Context_Assessment.md]
-outputs: [11_Rules_Catalog.md, 12_Rules_Catalog.xlsx]
+status: ACTIVE
+inputs: [Doc16_Obligation_Derivation.md, Doc17_Strategic_Tensions_Report.md, Doc03_Company_Context_Assessment.md]
+outputs: [Doc20_Rules_Catalog.md, 12_Rules_Catalog.xlsx]
 traceability: AEGIS Class Model → PrivacyGoal, SecurityGoal, RiskProfile classes
 related_documents: 03_Design_Decisions_Log.md
+case: Case_03_OmniBank_Financial
+applicable_regs: [GDPR, CRA, NIS 2, DORA, AI_Act]
 ---
 
 # Privacy and Security Operational Objectives Catalog
@@ -23,7 +25,7 @@ related_documents: 03_Design_Decisions_Log.md
 
 ## 1. DOCUMENT PURPOSE
 
-This document defines the Privacy and Security Objectives derived from the 38 regulatory obligations identified in the Obligation Derivation (08_Obligation_Derivation.md) and informed by the Strategic Tensions Report (09_Strategic_Tensions_Report.md) and Company Context Assessment (04_Company_Context_Assessment.md).
+This document defines the Privacy and Security Objectives derived from the 38 regulatory obligations identified in the Obligation Derivation (Doc16_Obligation_Derivation.md) and informed by the Strategic Tensions Report (Doc17_Strategic_Tensions_Report.md) and Company Context Assessment (Doc03_Company_Context_Assessment.md).
 
 The objectives serve as the bridge between abstract regulatory obligations and concrete, implementable rules in the Rules Catalog. Each objective is traceable to its source obligations, assigned a risk profile, and prioritized for implementation sequencing.
 
@@ -42,8 +44,8 @@ The objectives serve as the bridge between abstract regulatory obligations and c
 | Created | 2026-04-03 |
 | Updated | 2026-04-03 |
 | Author | Compliance Lead |
-| Inputs | 08_Obligation_Derivation.md, 09_Strategic_Tensions_Report.md, 04_Company_Context_Assessment.md |
-| Outputs | 11_Rules_Catalog.md, 12_Rules_Catalog.xlsx |
+| Inputs | Doc16_Obligation_Derivation.md, Doc17_Strategic_Tensions_Report.md, Doc03_Company_Context_Assessment.md |
+| Outputs | Doc20_Rules_Catalog.md, 12_Rules_Catalog.xlsx |
 | Traceability | AEGIS Class Model → PrivacyGoal, SecurityGoal, RiskProfile classes |
 | Related Documents | 03_Design_Decisions_Log.md |
 
@@ -339,7 +341,7 @@ Assurance levels define the depth of verification required for each objective. H
 
 ## 8. PRIVACY/SECURITY CONFLICT RESOLUTION
 
-Conflicts between privacy and security objectives are identified through analysis of the Strategic Tensions Report (09_Strategic_Tensions_Report.md). Each conflict is resolved through documented resolution patterns.
+Conflicts between privacy and security objectives are identified through analysis of the Strategic Tensions Report (Doc17_Strategic_Tensions_Report.md). Each conflict is resolved through documented resolution patterns.
 
 ### 8.1 Identified Conflicts
 
@@ -458,4 +460,4 @@ Conflicts between privacy and security objectives are identified through analysi
 
 ---
 
-**Next Step:** Use these objectives to derive the Rules Catalog (11_Rules_Catalog.md / 12_Rules_Catalog.xlsx) via Phase 2, Step E — Rules Elaboration.
+**Next Step:** Use these objectives to derive the Rules Catalog (Doc20_Rules_Catalog.md / 12_Rules_Catalog.xlsx) via Phase 2, Step E — Rules Elaboration.

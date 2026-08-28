@@ -9,12 +9,8 @@ author: Rich-Symmetry Executor (Case_03 replication)
 status: ACTIVE
 case: Case_03_OmniBank_Financial
 tier: MAX
-sibling_of: ../02_PHASE2_RULES/
+sibling_of: ../02_PHASE2_RULES_RICH/
 branch: feature/aegis-p2-case03-csf-pf-airmf
-sprint: 8
-sprint_role: rich_symmetry_replication
-sprints_complete: [A, B, C, D, E, F, G]
-sprints_pending: []
 verdict: PASS_WITH_FINDINGS
 ---
 
@@ -52,12 +48,12 @@ verdict: PASS_WITH_FINDINGS
 
 | Doc | Lines (legacy) | Lines (Rich, now) | Cards / content | Bloco | Status |
 |-----|---------------:|------------------:|-----------------|:-----:|:------:|
-| `08_Obligation_Derivation.md` | 472 | 472 | 38 obligations, NI re-derived under AVG+AI MUST+DORA | legacy copy | ✅ COPIED |
-| `09_Strategic_Tensions_Report.md` | 687 | 687 | 5 tensions resolved (T-001..T-005; legacy row — port Fase 0) | legacy copy | ✅ COPIED |
-| `10_Privacy_Security_Objectives.md` | 461 | 461 | 76 goal rows (24 PG + 52 SG) | legacy copy | ✅ COPIED |
-| `11_Rules_Catalog.md` | 651 | 651+ | 78 cards (38 CR + 40 BPR, 17 fields + banner) | legacy copy + banner | ✅ COPIED |
+| `Doc16_Obligation_Derivation.md` | 472 | 472 | 38 obligations, NI re-derived under AVG+AI MUST+DORA | legacy copy | ✅ COPIED |
+| `Doc17_Strategic_Tensions_Report.md` | 687 | 687 | 5 tensions resolved (T-001..T-005; legacy row — port Fase 0) | legacy copy | ✅ COPIED |
+| `Doc18_Privacy_Security_Objectives.md` | 461 | 461 | 76 goal rows (24 PG + 52 SG) | legacy copy | ✅ COPIED |
+| `Doc20_Rules_Catalog.md` | 651 | 651+ | 78 cards (38 CR + 40 BPR, 17 fields + banner) | legacy copy + banner | ✅ COPIED |
 | `12_Rules_Catalog.xlsx` | 24KB | 24KB | Excel catalog (canonical) | legacy copy | ✅ COPIED |
-| `13_Framework_Mapping_Matrix.md` | — | **unified matrix** | 3 frameworks (CSF + PF + AI RMF), triple maturity, DORA via CSF | C → D → F | ✅ DEEP_ENRICHED |
+| `Doc21_Framework_Mapping_Matrix.md` | — | **unified matrix** | 3 frameworks (CSF + PF + AI RMF), triple maturity, DORA via CSF | C → D → F | ✅ DEEP_ENRICHED |
 | `README.md` | — | this file | orientation + dashboard + schema | rich-symmetry | ✅ NEW |
 | `PROJECT_STATE.md` | — | sibling | project state snapshot | rich-symmetry | ✅ NEW |
 | `RICH_VS_LEGACY.md` | — | sibling | Rich vs legacy diff summary | rich-symmetry | ✅ NEW |
@@ -111,20 +107,20 @@ verdict: PASS_WITH_FINDINGS
 **Case:** OmniBank Financial Systems (banking / financial services)
 **Tier:** MAX (5000+ FTE; multi-billion ARR)
 **Applicable regulations:** 5/5 (GDPR + CRA + NIS 2 + **DORA** + AI Act) — **all 5 applicable**
-**Sub-domains:** 38 obligation-bearing, all active (per `07b_Proportionality_Profile.md`)
+**Sub-domains:** 38 obligation-bearing, all active (per `Doc13_Proportionality_Profile.md`)
 
 | Metric | Value | Source |
 |--------|------:|--------|
-| Obligations (Doc 08) | 38 | `02_PHASE2_RULES/08_Obligation_Derivation.md` §4 |
+| Obligations (Doc 08) | 38 | `02_PHASE2_RULES/Doc16_Obligation_Derivation.md` §4 |
 | Privacy Goals (PG) | 24 | `02_PHASE2_RULES/10_Privacy_Security_Goals.md` §4 (rows) |
 | Security Goals (SG) | 52 | `02_PHASE2_RULES/10_Privacy_Security_Goals.md` §5 (rows) |
 | Total goal rows | 76 | (24 PG + 52 SG; legacy summary header says "33" but row count is 76) |
-| Tensions (Doc 09) | 7 (HIGH + MEDIUM + INACTIVE) | Rich `09_Strategic_Tensions_Report.md` §4 |
-| Compliance Rules (CR) | 38 unique | `02_PHASE2_RULES/11_Rules_Catalog.md` §4 |
-| Best Practice Rules (BPR) | 40 unique | `02_PHASE2_RULES/11_Rules_Catalog.md` §5 |
+| Tensions (Doc 09) | 7 (HIGH + MEDIUM + INACTIVE) | Rich `Doc17_Strategic_Tensions_Report.md` §4 |
+| Compliance Rules (CR) | 38 unique | `02_PHASE2_RULES/Doc20_Rules_Catalog.md` §4 |
+| Best Practice Rules (BPR) | 40 unique | `02_PHASE2_RULES/Doc20_Rules_Catalog.md` §5 |
 | Total Rules | 78 | Doc 11 §6 |
-| Track B distribution | 31 RIGOROUS + 7 STANDARD + 0 DEFERRED | `07b_Proportionality_Profile.md` §3 |
-| Active sub-domains | 38/38 (all active, no DEFERRED) | `07b_Proportionality_Profile.md` §3 |
+| Track B distribution | 31 RIGOROUS + 7 STANDARD + 0 DEFERRED | `Doc13_Proportionality_Profile.md` §3 |
+| Active sub-domains | 38/38 (all active, no DEFERRED) | `Doc13_Proportionality_Profile.md` §3 |
 | Source clauses | GDPR (28) + CRA (26) + NIS 2 (29) + DORA (38) + AI Act (29) = 150 | Doc 08 §5 + Phase 1 ontology |
 | Frameworks in scope | NIST CSF 2.0 + Privacy FW 1.0 + AI RMF 1.0 (all 3 ACTIVE; DORA via CSF coverage) | Doc 13 frontmatter |
 
@@ -157,7 +153,7 @@ verdict: PASS_WITH_FINDINGS
 - Commit: `23e062c [EXECUTOR] Bloco D — Doc 11 estendido (campos 19-24, tri-maturidade CSF+PF+AI RMF)`
 
 ### Bloco E — 04b deprecated ✅ COMPLETE
-- `04b_Security_Posture.md` status: DEPRECATED_FOR_MATURITY
+- `Doc05_Security_Posture.md` status: DEPRECATED_FOR_MATURITY
 - Maturity model ownership moved to Doc 13
 - Commit: `7f57c76 [EXECUTOR] Bloco E — 04b deprecated for maturity (moved to Doc 13)`
 
@@ -213,7 +209,7 @@ verdict: PASS_WITH_FINDINGS
 
 ### Related folders
 
-- Legacy Phase 2 (read-only): `../02_PHASE2_RULES/`
+- Legacy Phase 2 (read-only): `../02_PHASE2_RULES_RICH/`
 - Phase 1 Rich Mode (template precedent): `../01_PHASE1_CONTEXT_RICH/`
 - Case_01 Rich Mode (template): `../../Case_01_TinyTask_SaaS/02_PHASE2_RULES_RICH/`
 - Case_02 Rich Mode (sibling): `../../Case_02_SecureBorder_Solutions/02_PHASE2_RULES_RICH/`

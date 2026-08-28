@@ -14,10 +14,8 @@ inactive_documented: []
 track: B
 tier: MAX
 scale: MAX
-sibling_of: ../01_PHASE1_CONTEXT/
+sibling_of: ../01_PHASE1_CONTEXT_RICH/
 corpus_source: ../../../00_METHODOLOGY/PREPROCESSING_by_domain/domains/
-sprints_complete: [0, 0.5, 0.6, 1, 2, 3, 4, 5, 6]
-sprint_status: COMPLETE
 ---
 
 # Phase 1 Rich Mode — Case_03 (OmniBank Financial Systems)
@@ -32,7 +30,7 @@ It is **enriched with corpus data** from `00_METHODOLOGY/PREPROCESSING_by_domain
 
 ## 2. Relationship to legacy
 
-The legacy case (`../01_PHASE1_CONTEXT/`) is **read-only** and **stays frozen**. This Rich folder may cross-reference it but must not modify it. The legacy case is **Phase 1 + Phase 2 COMPLETE** (38 obligations derived, 4 strategic tensions resolved).
+The legacy case (`../01_PHASE1_CONTEXT_RICH/`) is **read-only** and **stays frozen**. This Rich folder may cross-reference it but must not modify it. The legacy case is **Phase 1 + Phase 2 COMPLETE** (38 obligations derived, 4 strategic tensions resolved).
 
 | Aspect | Legacy `01_PHASE1_CONTEXT/` | Rich `01_PHASE1_CONTEXT_RICH/` |
 |--------|----------------------------|--------------------------------|
@@ -117,18 +115,18 @@ The legacy case (`../01_PHASE1_CONTEXT/`) is **read-only** and **stays frozen**.
 | # | Doc | New in Rich? | Status (Sprint 0) | Lines (target) | Doc ID prefix |
 |---|-----|--------------|-------------------|----------------|---------------|
 | 00 | `00_Taxonomy_Reference.md` | no (was in `00_COMMON/`) | placeholder | 50-60 | AEGIS-P3-RICH-00-TAX |
-| 01 | `01_INTAKE_FORM.md` | no | placeholder | 50-60 | AEGIS-P3-RICH-01-INTAKE |
-| 04 | `04_Company_Context_Assessment.md` | no | placeholder | 50-60 | AEGIS-P3-RICH-04-CCA |
-| 04a | `04a_Architecture_DataInventory.md` | no | placeholder | 50-60 | AEGIS-P3-RICH-04a-ARCH |
-| 04b | `04b_Security_Posture.md` | no | placeholder | 50-60 | AEGIS-P3-RICH-04b-SEC |
-| 04c | `04c_ThirdParty_Landscape.md` | no | placeholder | 50-60 | AEGIS-P3-RICH-04c-3P |
-| 04d | `04d_Org_Roles_RACI.md` | no | placeholder | 50-60 | AEGIS-P3-RICH-04d-RACI |
-| 05 | `05_Regulatory_Applicability.md` | no | placeholder | 50-60 | AEGIS-P3-RICH-05-APP |
-| **05b** | `05b_Ambiguity_Register.md` | **YES** | placeholder | 50-60 | AEGIS-P3-RICH-05b-AMBIG |
-| 06 | `06_Clause_Mapping_Matrix.md` | no (CRITICAL: only .ods/.xlsx exist) | placeholder | 50-60 | AEGIS-P3-RICH-06-MAP |
-| 07 | `07_Structured_Compliance_Matrix.md` | no | placeholder | 50-60 | AEGIS-P3-RICH-07-MATRIX |
-| **07b** | `07b_Proportionality_Profile.md` | **YES** | placeholder | 50-60 | AEGIS-P3-RICH-07b-PROP |
-| **07c** | `07c_Adjusted_Goals.md` | **YES** | placeholder | 50-60 | AEGIS-P3-RICH-07c-ADJ |
+| 01 | `Doc02_INTAKE_FORM.md` | no | placeholder | 50-60 | AEGIS-P3-RICH-01-INTAKE |
+| 04 | `Doc03_Company_Context_Assessment.md` | no | placeholder | 50-60 | AEGIS-P3-RICH-04-CCA |
+| 04a | `Doc04_Architecture_DataInventory.md` | no | placeholder | 50-60 | AEGIS-P3-RICH-04a-ARCH |
+| 04b | `Doc05_Security_Posture.md` | no | placeholder | 50-60 | AEGIS-P3-RICH-04b-SEC |
+| 04c | `Doc06_ThirdParty_Landscape.md` | no | placeholder | 50-60 | AEGIS-P3-RICH-04c-3P |
+| 04d | `Doc07_Org_Roles_RACI.md` | no | placeholder | 50-60 | AEGIS-P3-RICH-04d-RACI |
+| 05 | `Doc08_Regulatory_Applicability.md` | no | placeholder | 50-60 | AEGIS-P3-RICH-05-APP |
+| **05b** | `Doc09_Ambiguity_Register.md` | **YES** | placeholder | 50-60 | AEGIS-P3-RICH-05b-AMBIG |
+| 06 | `Doc10_Clause_Mapping_Matrix.md` | no (CRITICAL: only .ods/.xlsx exist) | placeholder | 50-60 | AEGIS-P3-RICH-06-MAP |
+| 07 | `Doc12_Structured_Compliance_Matrix.md` | no | placeholder | 50-60 | AEGIS-P3-RICH-07-MATRIX |
+| **07b** | `Doc13_Proportionality_Profile.md` | **YES** | placeholder | 50-60 | AEGIS-P3-RICH-07b-PROP |
+| **07c** | `Doc14_Adjusted_Goals.md` | **YES** | placeholder | 50-60 | AEGIS-P3-RICH-07c-ADJ |
 | **Citation** | `Citation_Index.md` | **YES** | placeholder | 50-60 | AEGIS-P3-RICH-CITATION |
 
 ### 6.2 Orchestration files
@@ -267,19 +265,19 @@ DORA Art. 5-16 ICT Risk Management Framework is the **defining characteristic** 
 | Path | Type | Sprint | Doc ID | Highlight |
 |------|------|:------:|--------|-----------|
 | `00_Taxonomy_Reference.md` | doc | 0 | AEGIS-P3-RICH-00-TAX | D-01..D-10 macro-domains |
-| `01_INTAKE_FORM.md` | doc | 0 | AEGIS-P3-RICH-01-INTAKE | OmniBank intake snapshot |
-| `04_Company_Context_Assessment.md` | doc | 1 | AEGIS-P3-RICH-04-CCA | S = MAX, 5,000+ emp, ISO 27001 |
-| `04a_Architecture_DataInventory.md` | doc | 2 | AEGIS-P3-RICH-04a-ARCH | 38 sub-domains × corpus manifest path |
-| `04b_Security_Posture.md` | doc | 2 | AEGIS-P3-RICH-04b-SEC | ISO 27001 + DORA Art. 5-16 baseline |
-| `04c_ThirdParty_Landscape.md` | doc | 2 | AEGIS-P3-RICH-04c-3P | **DORA Art. 28-30 CTPP register** (Case_03-specific) |
-| `04d_Org_Roles_RACI.md` | doc | 1 | AEGIS-P3-RICH-04d-RACI | 38 active sub-domains (D-08.3 ACTIVE under NIS 2 + DORA) |
-| `05_Regulatory_Applicability.md` | doc | 1 | AEGIS-P3-RICH-05-APP | 5/5 regulations applicable |
-| `05b_Ambiguity_Register.md` | doc | 2 | AEGIS-P3-RICH-05b-AMBIG | **1,490 ambiguity cards** (NEW in Rich) |
-| `06_Clause_Mapping_Matrix.md` | doc | 1 | AEGIS-P3-RICH-06-MAP | 150 clauses (28+26+29+38+29) |
-| `07_Structured_Compliance_Matrix.md` | doc | 1 | AEGIS-P3-RICH-07-MATRIX | 4 strategic tensions (T-001..T-004) + T-005 |
-| **`06b_DORA_ICT_Risk_Framework.md`** | doc | 0.6 | AEGIS-P3-RICH-06b-DORA | **NEW — DORA-specific** (26 articles, 5 tensions) — not in legacy |
-| **`07b_Proportionality_Profile.md`** | doc | 0.5+3 | AEGIS-P3-07b | **NEW — Track B MAX** (38 sub-domains vs Case_02's 35); §14 Sprint 3 cross-check |
-| `07c_Adjusted_Goals.md` | doc | 2 | AEGIS-P3-RICH-07c-ADJ | Tensions resolved (T-001 max-SLA, T-002 cryptographic sharding, T-003 IPSARA, T-004 CRA-following) |
+| `Doc02_INTAKE_FORM.md` | doc | 0 | AEGIS-P3-RICH-01-INTAKE | OmniBank intake snapshot |
+| `Doc03_Company_Context_Assessment.md` | doc | 1 | AEGIS-P3-RICH-04-CCA | S = MAX, 5,000+ emp, ISO 27001 |
+| `Doc04_Architecture_DataInventory.md` | doc | 2 | AEGIS-P3-RICH-04a-ARCH | 38 sub-domains × corpus manifest path |
+| `Doc05_Security_Posture.md` | doc | 2 | AEGIS-P3-RICH-04b-SEC | ISO 27001 + DORA Art. 5-16 baseline |
+| `Doc06_ThirdParty_Landscape.md` | doc | 2 | AEGIS-P3-RICH-04c-3P | **DORA Art. 28-30 CTPP register** (Case_03-specific) |
+| `Doc07_Org_Roles_RACI.md` | doc | 1 | AEGIS-P3-RICH-04d-RACI | 38 active sub-domains (D-08.3 ACTIVE under NIS 2 + DORA) |
+| `Doc08_Regulatory_Applicability.md` | doc | 1 | AEGIS-P3-RICH-05-APP | 5/5 regulations applicable |
+| `Doc09_Ambiguity_Register.md` | doc | 2 | AEGIS-P3-RICH-05b-AMBIG | **1,490 ambiguity cards** (NEW in Rich) |
+| `Doc10_Clause_Mapping_Matrix.md` | doc | 1 | AEGIS-P3-RICH-06-MAP | 150 clauses (28+26+29+38+29) |
+| `Doc12_Structured_Compliance_Matrix.md` | doc | 1 | AEGIS-P3-RICH-07-MATRIX | 4 strategic tensions (T-001..T-004) + T-005 |
+| **`Doc11_DORA_ICT_Risk_Framework.md`** | doc | 0.6 | AEGIS-P3-RICH-06b-DORA | **NEW — DORA-specific** (26 articles, 5 tensions) — not in legacy |
+| **`Doc13_Proportionality_Profile.md`** | doc | 0.5+3 | AEGIS-P3-07b | **NEW — Track B MAX** (38 sub-domains vs Case_02's 35); §14 Sprint 3 cross-check |
+| `Doc14_Adjusted_Goals.md` | doc | 2 | AEGIS-P3-RICH-07c-ADJ | Tensions resolved (T-001 max-SLA, T-002 cryptographic sharding, T-003 IPSARA, T-004 CRA-following) |
 | `Citation_Index.md` | doc | 2 | AEGIS-P3-RICH-CITATION | Master citation registry |
 | `phase1_ontology.yaml` | ontology | 1 | — | 5 tensions + obligated_party enum normalised |
 | `corpus_field_map.md` | map | 0 | — | corpus L1/L2/L3 → case fields (500+ lines) |
@@ -313,7 +311,7 @@ DORA Art. 5-16 ICT Risk Management Framework is the **defining characteristic** 
 - `validation/LINT_REPORT_BEFORE.md` — Sprint 0 lint baseline (5/6 PASS, 1 FAIL on Doc 06 missing)
 - `corpus_field_map.md` — exact corpus field → case field mapping (500+ lines)
 - `../PROJECT_STATE.md` — case profile (Phase 1+2 COMPLETE, 38 obligations derived, 4 tensions resolved)
-- `../01_PHASE1_CONTEXT/` — legacy version (read-only, Phase 2 complete)
+- `../01_PHASE1_CONTEXT_RICH/` — legacy version (read-only, Phase 2 complete)
 - `../../../00_METHODOLOGY/PHASE1_STRATEGY.md` — Phase 1 strategy (Track B tier definition in §8)
 - `../../../00_METHODOLOGY/REGULATORY_BASELINE.md` — frozen corpus contract
 - `../../../00_METHODOLOGY/PREPROCESSING_by_domain/domains/STRUCTURE_REFERENCE.md` — corpus data dictionary

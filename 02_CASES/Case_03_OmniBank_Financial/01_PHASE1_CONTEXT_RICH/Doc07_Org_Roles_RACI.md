@@ -12,28 +12,28 @@ applicable_regs: [GDPR, CRA, NIS 2, DORA, AI Act]
 active_subdomains: 38
 inactive_documented: []
 inputs:
-  - 04_Company_Context_Assessment.md
-  - 04a_Architecture_DataInventory.md
-  - 04b_Security_Posture.md
-  - 04c_ThirdParty_Landscape.md
-  - 01_INTAKE_FORM.md
+  - Doc03_Company_Context_Assessment.md
+  - Doc04_Architecture_DataInventory.md
+  - Doc05_Security_Posture.md
+  - Doc06_ThirdParty_Landscape.md
+  - Doc02_INTAKE_FORM.md
 outputs:
-  - 04b_Security_Posture.md
-  - 05_Regulatory_Applicability.md
-  - 06_Clause_Mapping_Matrix.md
-  - 07_Structured_Compliance_Matrix.md
+  - Doc05_Security_Posture.md
+  - Doc08_Regulatory_Applicability.md
+  - Doc10_Clause_Mapping_Matrix.md
+  - Doc12_Structured_Compliance_Matrix.md
 related_documents:
   - ../../../00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-08_Human-Factors/
   - ../../../00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-09_Governance-Documentation/
-  - ../../../00_METHODOLOGY/TEMPLATES/04d_Org_Roles_RACI.md
+  - ../../../00_METHODOLOGY/TEMPLATES/Doc07_Org_Roles_RACI.md
   - ../../../00_METHODOLOGY/CONTEXT/CONTEXT_PHASE1.md
-sibling_of: ../01_PHASE1_CONTEXT/04d_Org_Roles_RACI.md
+sibling_of: ../01_PHASE1_CONTEXT_RICH/Doc07_Org_Roles_RACI.md
 reconciliation_notes:
-  - "Sprint 1 (2026-08-06): Copied from 01_PHASE1_CONTEXT/04d_Org_Roles_RACI.md → Rich folder; frontmatter migrated to AEGIS-P3-RICH-* prefix; status DRAFT → RECONCILED; applicable_regs normalized to [GDPR, CRA, NIS 2, DORA, AI Act] (was [GDPR, NIS2, CRA, DORA, AI_Act] in legacy, normalization to canonical order); active_subdomains confirmed = 38. D-08.3 (Management Board Training) ACTIVE for Case_03 (dual NIS 2 Art. 20 + DORA Art. 5 obligation) — preserved. Sprint 0.6 DORA-specific roles (CRO, DORA ICT Risk Officer) registered in body. Body unchanged."
+  - "Sprint 1 (2026-08-06): Copied from 01_PHASE1_CONTEXT/Doc07_Org_Roles_RACI.md → Rich folder; frontmatter migrated to AEGIS-P3-RICH-* prefix; status DRAFT → RECONCILED; applicable_regs normalized to [GDPR, CRA, NIS 2, DORA, AI Act] (was [GDPR, NIS2, CRA, DORA, AI_Act] in legacy, normalization to canonical order); active_subdomains confirmed = 38. D-08.3 (Management Board Training) ACTIVE for Case_03 (dual NIS 2 Art. 20 + DORA Art. 5 obligation) — preserved. Sprint 0.6 DORA-specific roles (CRO, DORA ICT Risk Officer) registered in body. Body unchanged."
 ---
 
 <!-- CORPUS_ENRICHED (Sprint 2, 2026-08-06): Enrichment with Corpus Reg Req column in §4 RACI tables + Corpus Manifest Path column in §6 Compliance Mapping.
-Replaces RECONCILED comment. Document copied from legacy 01_PHASE1_CONTEXT/04d_Org_Roles_RACI.md to Rich folder.
+Replaces RECONCILED comment. Document copied from legacy 01_PHASE1_CONTEXT/Doc07_Org_Roles_RACI.md to Rich folder.
 Changes: (a) document_id migrated to AEGIS-P3-RICH-04d-RACI; (b) status DRAFT → RECONCILED;
 (c) applicable_regs normalized from [GDPR, NIS2, CRA, DORA, AI_Act] to [GDPR, CRA, NIS 2, DORA, AI Act] (canonical order, matches all other Rich docs);
 (d) active_subdomains: 38 verified (Case_03 MAX — D-08.3 ACTIVE under dual NIS 2 Art. 20 + DORA Art. 5);
@@ -49,9 +49,9 @@ Sprint 2 (2026-08-06): §4 RACI tables extended with Corpus Reg Req column (regu
 
 This document describes OmniBank Financial Systems S.A.'s organisational structure and the per-activity RACI matrix that allocates information-security, data-protection, AI-governance, DORA ICT-risk, NIS 2 reporting, CRA mobile-app conformity-assessment, and AI Act Annex III responsibilities. It maps to Regulatory Baseline sub-domains **D-08 (Human Factors — D-08.1, D-08.2, D-08.3)** and **D-09 (Governance Documentation — D-09.1, D-09.2, D-09.3, D-09.4)**.
 
-**Scope:** D-08 + D-09. Architecture context in `04a_Architecture_DataInventory.md`; vendor context in `04c_ThirdParty_Landscape.md`; security posture in `04b_Security_Posture.md`.
+**Scope:** D-08 + D-09. Architecture context in `Doc04_Architecture_DataInventory.md`; vendor context in `Doc06_ThirdParty_Landscape.md`; security posture in `Doc05_Security_Posture.md`.
 
-**Critical caveat — D-08.3 IS ACTIVE for OmniBank.** Per `05_Regulatory_Applicability.md §6`, OmniBank has `applicable_regs = [GDPR, NIS2, CRA, DORA, AI_Act]` and BOTH NIS 2 (Art. 20) AND DORA (Art. 5 management liability) participate in D-08.3 (Management Board Training). D-08.3 is therefore ACTIVE under a **dual NIS 2 Art. 20 + DORA Art. 5 obligation**. This contrasts with Case 01 (LOW tier, no NIS 2 → D-08.3 INACTIVE) and Case 02 (HIGH tier, NIS 2 only → D-08.3 ACTIVE under NIS 2). The board-training row in the RACI matrix below is a derived mandatory requirement under NIS 2 + DORA.
+**Critical caveat — D-08.3 IS ACTIVE for OmniBank.** Per `Doc08_Regulatory_Applicability.md §6`, OmniBank has `applicable_regs = [GDPR, NIS2, CRA, DORA, AI_Act]` and BOTH NIS 2 (Art. 20) AND DORA (Art. 5 management liability) participate in D-08.3 (Management Board Training). D-08.3 is therefore ACTIVE under a **dual NIS 2 Art. 20 + DORA Art. 5 obligation**. This contrasts with Case 01 (LOW tier, no NIS 2 → D-08.3 INACTIVE) and Case 02 (HIGH tier, NIS 2 only → D-08.3 ACTIVE under NIS 2). The board-training row in the RACI matrix below is a derived mandatory requirement under NIS 2 + DORA.
 
 **Proportionality note (P2 — Company Reality First):** OmniBank has 5,000+ employees. Formal role separation is feasible — dedicated CISO, DPO, CRO, AI Governance Lead, CSIRT Lead, Internal Audit Lead, separate Compliance function, separate Legal function. This document enumerates the ~38 named-role roster that directly owns compliance activities; the wider 5,000+ employees are referenced as training targets and as activity participants but are not in the RACI column set (which is per-role for compliance activities).
 
@@ -431,7 +431,7 @@ This document is complete (Phase 1 Step E — Roles & RACI) when:
 
 | Version | Date | Author | Changes |
 |---|---|---|---|
-| 1.0 | 2026-07-11 | Executor | Populated from template `04d_Org_Roles_RACI.md`; integrated stakeholder register from `04 §3` and architecture from `04a`; D-08.3 ACTIVE flagged (NIS 2 Art. 20 + DORA Art. 5 dual obligation). ~38 named-RACI roles with dedicated CISO (100-person security team) + DPO + CRO + AI Governance Lead + DORA ICT Risk Manager functions appropriate for MAXIMUM-tier credit institution. |
+| 1.0 | 2026-07-11 | Executor | Populated from template `Doc07_Org_Roles_RACI.md`; integrated stakeholder register from `04 §3` and architecture from `04a`; D-08.3 ACTIVE flagged (NIS 2 Art. 20 + DORA Art. 5 dual obligation). ~38 named-RACI roles with dedicated CISO (100-person security team) + DPO + CRO + AI Governance Lead + DORA ICT Risk Manager functions appropriate for MAXIMUM-tier credit institution. |
 | 1.2 | 2026-08-06 | Executor | Sprint 2 corpus enrichment: §4 RACI tables extended with Corpus Reg Req column (40+ activity rows mapped to corpus article refs); §6 Compliance Mapping table extended with Corpus Manifest Path column for D-08.x + D-09.x. status RECONCILED → CORPUS_ENRICHED. |
 
 ## N. Document Approval
@@ -451,8 +451,8 @@ This document is complete (Phase 1 Step E — Roles & RACI) when:
 ## See also
 
 - **Data backbone:** `Case_03_Phase1.xlsx` (13 sheets: COVER, SYSTEMS, DATA_STORES, DATA_FLOWS, PERSONAL_DATA, THIRD_PARTIES, ROLES_RACI, MATURITY, SUBDOMAINS, REG_CHAIN, COMPLIANCE, GAPS, PRIORITIES)
-- **Architecture:** `04a_Architecture_DataInventory.md` (RACI maps activities to systems SYS-01..SYS-25).
-- **Vendors:** `04c_ThirdParty_Landscape.md` (CRO owns DORA Art. 28-30 ICT third-party register; CISO owns vendor-risk-assessment cadence; Procurement Director owns vendor relationship management).
-- **Maturity:** `04b_Security_Posture.md` (CISO + CRO + AI Governance Lead drive the top-gaps remediation; maturity averaging 3.8 across 10 macro-domains).
+- **Architecture:** `Doc04_Architecture_DataInventory.md` (RACI maps activities to systems SYS-01..SYS-25).
+- **Vendors:** `Doc06_ThirdParty_Landscape.md` (CRO owns DORA Art. 28-30 ICT third-party register; CISO owns vendor-risk-assessment cadence; Procurement Director owns vendor relationship management).
+- **Maturity:** `Doc05_Security_Posture.md` (CISO + CRO + AI Governance Lead drive the top-gaps remediation; maturity averaging 3.8 across 10 macro-domains).
 - **MAXIMUM-tier context:** `02_CASES/Case_03_OmniBank_Financial/00_COMMON/01_Company_Context.md` (5 applicable regulations; complexity tier MAXIMUM; 5,000+ employees; credit institution + DORA financial entity + NIS 2 essential entity + AI Act Annex III + CRA mobile app Default Class).
 - **D-08.3 ACTIVE note:** D-08.3 is ACTIVE here under a **dual NIS 2 Art. 20 + DORA Art. 5 obligation**. It was INACTIVE in Case 01 (LOW tier, no NIS 2 / no DORA), ACTIVE under NIS 2 only in Case 02 (HIGH tier, NIS 2 essential-entity supplier). The methodology treats activation consistently; the difference is the company's regulatory profile, not the methodology.

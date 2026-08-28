@@ -4,13 +4,15 @@ title: Obligation Derivation Report
 phase: 2
 version: 1.0
 created: 2026-04-03
-updated: 2026-04-03
+updated: 2026-08-28
 author: Compliance Lead
-status: DRAFT
-inputs: [07_Structured_Compliance_Matrix.md, 06_Clause_Mapping_Matrix.xlsx]
-outputs: [09_Strategic_Tensions_Report.md, 10_Privacy_Security_Objectives.md]
+status: ACTIVE
+inputs: [Doc12_Structured_Compliance_Matrix.md, 06_Clause_Mapping_Matrix.xlsx]
+outputs: [Doc17_Strategic_Tensions_Report.md, Doc18_Privacy_Security_Objectives.md]
 traceability: AEGIS Class Model → RegulatoryObligation, RegulatoryClause classes
 related_documents: 00_Taxonomy_Reference.md, 03_Design_Decisions_Log.md
+case: Case_03_OmniBank_Financial
+applicable_regs: [GDPR, CRA, NIS 2, DORA, AI_Act]
 ---
 
 # Obligation Derivation Report
@@ -468,5 +470,5 @@ Example: OBL-D-01.1-001
 
 ---
 
-**Next Document:** 09_Strategic_Tensions_Report.md
+**Next Document:** Doc17_Strategic_Tensions_Report.md
 **Phase 2 Step:** B ✅ COMPLETE

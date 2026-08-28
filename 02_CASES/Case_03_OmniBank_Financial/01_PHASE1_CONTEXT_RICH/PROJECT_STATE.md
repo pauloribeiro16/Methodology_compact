@@ -14,8 +14,7 @@ inactive_documented: []
 track: B
 tier: MAX
 scale: MAX
-sibling_of: ../01_PHASE1_CONTEXT/
-sprints_complete: [0, 0.5, 0.6, 1, 2, 3, 4, 5, 6]
+sibling_of: ../01_PHASE1_CONTEXT_RICH/
 sprint_in_progress: none
 branch: feature/aegis-p1-case03-rich
 ---
@@ -168,14 +167,14 @@ branch: feature/aegis-p1-case03-rich
 
 - `README.md` — Rich folder orientation
 - `RICH_VS_LEGACY.md` — Diff summary (Rich vs legacy)
-- `07b_Proportionality_Profile.md` — Track B MAX proportionality profile (the core of Rich Mode)
-- `06b_DORA_ICT_Risk_Framework.md` — DORA-specific Rich addition
-- `05b_Ambiguity_Register.md` — 1,490 ambiguity cards
+- `Doc13_Proportionality_Profile.md` — Track B MAX proportionality profile (the core of Rich Mode)
+- `Doc11_DORA_ICT_Risk_Framework.md` — DORA-specific Rich addition
+- `Doc09_Ambiguity_Register.md` — 1,490 ambiguity cards
 - `corpus_field_map.md` — corpus → case field mapping
 - `validation/SPRINT3_REPORT.md` — Sprint 3 completion summary
 - `validation/VALIDATOR_SPRINT3.md` — Validator verdict
 - `validation/LINT_REPORT_AFTER_RECONCILE.md` — lint state
-- `../01_PHASE1_CONTEXT/` — legacy (read-only, Phase 1+2 complete)
+- `../01_PHASE1_CONTEXT_RICH/` — legacy (read-only, Phase 1+2 complete)
 - `../PROJECT_STATE.md` — legacy case-level project state
 - `../../../00_METHODOLOGY/PHASE1_STRATEGY.md` — Phase 1 strategy
 - `../../../00_METHODOLOGY/REFERENCE/proportionality_model.md` — Track B spec

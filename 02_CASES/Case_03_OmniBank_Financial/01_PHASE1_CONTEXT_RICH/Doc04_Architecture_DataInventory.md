@@ -12,14 +12,14 @@ applicable_regs: [GDPR, CRA, NIS 2, DORA, AI Act]
 active_subdomains: 38
 inactive_documented: []
 inputs:
-  - 04_Company_Context_Assessment.md
-  - 01_INTAKE_FORM.md
-  - 05_Regulatory_Applicability.md
+  - Doc03_Company_Context_Assessment.md
+  - Doc02_INTAKE_FORM.md
+  - Doc08_Regulatory_Applicability.md
 outputs:
-  - 04b_Security_Posture.md
-  - 04c_ThirdParty_Landscape.md
-  - 04d_Org_Roles_RACI.md
-  - 07_Structured_Compliance_Matrix.md
+  - Doc05_Security_Posture.md
+  - Doc06_ThirdParty_Landscape.md
+  - Doc07_Org_Roles_RACI.md
+  - Doc12_Structured_Compliance_Matrix.md
 coverage_breakdown:
   substantive: 26      # 3+ regs
   partial: 12          # 1-2 regs
@@ -28,13 +28,13 @@ related_documents:
   - ../../../00_METHODOLOGY/PREPROCESSING_by_domain/domains/
   - ../../../00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-01_Data-Protection-Encryption/
   - ../../../00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-09_Governance-Documentation/D-09.4/D-09.4.md
-sibling_of: ../01_PHASE1_CONTEXT/04a_Architecture_DataInventory.md
+sibling_of: ../01_PHASE1_CONTEXT_RICH/Doc04_Architecture_DataInventory.md
 reconciliation_notes:
-  - "Sprint 1 (2026-08-06): Copied from 01_PHASE1_CONTEXT/04a_Architecture_DataInventory.md → Rich folder; frontmatter migrated to AEGIS-P3-RICH-* prefix; status DRAFT → RECONCILED; applicable_regs normalized to [GDPR, CRA, NIS 2, DORA, AI Act]; active_subdomains confirmed = 38; coverage_breakdown preserved (26 SUBSTANTIVE + 12 PARTIAL). Body unchanged."
+  - "Sprint 1 (2026-08-06): Copied from 01_PHASE1_CONTEXT/Doc04_Architecture_DataInventory.md → Rich folder; frontmatter migrated to AEGIS-P3-RICH-* prefix; status DRAFT → RECONCILED; applicable_regs normalized to [GDPR, CRA, NIS 2, DORA, AI Act]; active_subdomains confirmed = 38; coverage_breakdown preserved (26 SUBSTANTIVE + 12 PARTIAL). Body unchanged."
 ---
 
 <!-- CORPUS_ENRICHED (Sprint 2, 2026-08-06): Enrichment with corpus cross-references.
-Replaces RECONCILED comment. Document copied from legacy 01_PHASE1_CONTEXT/04a_Architecture_DataInventory.md to Rich folder.
+Replaces RECONCILED comment. Document copied from legacy 01_PHASE1_CONTEXT/Doc04_Architecture_DataInventory.md to Rich folder.
 Changes: (a) document_id migrated to AEGIS-P3-RICH-04a-ARCH; (b) status DRAFT → RECONCILED;
 (c) applicable_regs normalized from [GDPR, NIS2, CRA, DORA, AI_Act] to [GDPR, CRA, NIS 2, DORA, AI Act] (canonical order);
 (d) coverage_breakdown confirmed: 26 SUBSTANTIVE (3+ regs) + 12 PARTIAL (1-2 regs) + 0 unsupported = 38 total.
@@ -327,8 +327,8 @@ This section provides the corpus cross-reference map for all 38 active sub-domai
 ## See also
 
 - **Data backbone:** `Case_03_Phase1.xlsx` (13 sheets: COVER, SYSTEMS, DATA_STORES, DATA_FLOWS, PERSONAL_DATA, THIRD_PARTIES, ROLES_RACI, MATURITY, SUBDOMAINS, REG_CHAIN, COMPLIANCE, GAPS, PRIORITIES)
-- **Operational architecture:** mainframe-to-cloud hybrid described in §1.2; full DORA Art. 28 vendor register in `04c_ThirdParty_Landscape.md` §2.
-- **AI Act specifically:** OmniScore AI Platform (SYS-03) falls under Annex III (credit scoring) — see `05_Regulatory_Applicability.md §3.5` for AI Act overlay on D-09.2 (FRIA), D-09.4 (technical documentation), D-10.1 (post-market monitoring).
-- **DORA specifically:** CBS mainframe (SYS-01) + OmniScore AI (SYS-03) are the critical ICT systems per DORA Art. 6; TLPT every 3 years per DORA Art. 24; ICT third-party register in `04c_ThirdParty_Landscape.md`.
+- **Operational architecture:** mainframe-to-cloud hybrid described in §1.2; full DORA Art. 28 vendor register in `Doc06_ThirdParty_Landscape.md` §2.
+- **AI Act specifically:** OmniScore AI Platform (SYS-03) falls under Annex III (credit scoring) — see `Doc08_Regulatory_Applicability.md §3.5` for AI Act overlay on D-09.2 (FRIA), D-09.4 (technical documentation), D-10.1 (post-market monitoring).
+- **DORA specifically:** CBS mainframe (SYS-01) + OmniScore AI (SYS-03) are the critical ICT systems per DORA Art. 6; TLPT every 3 years per DORA Art. 24; ICT third-party register in `Doc06_ThirdParty_Landscape.md`.
 - **MAXIMUM-tier proportionality note (P2):** the HSM cluster (SYS-22), SIEM with HSM-signed hash chain (SYS-23 + STORE-05), and 24/7 SOC (SYS-25) are **not** over-engineering for a MAXIMUM-tier credit institution + DORA financial entity + AI Act Annex III company. They are the minimum proportionate baseline to satisfy GDPR Art. 32 + DORA Art. 9-12 + NIS 2 Art. 21 + AI Act Art. 9 + 15 + CRA Annex I Part I (2)(c).
 - **Corpus cross-reference:** see §4 Corpus Provenance for per-sub-domain manifest + JSON sidecar + articles folder paths. The 38 sub-domains map 1:1 to the 38 corpus entries under `00_METHODOLOGY/PREPROCESSING_by_domain/domains/`.

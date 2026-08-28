@@ -10,39 +10,39 @@ status: DEPRECATED_FOR_MATURITY
 status_history:
   - { date: '2026-08-07', from: CORPUS_ENRICHED, to: DEPRECATED_FOR_MATURITY,
       reason: 'Maturity model moved to Phase 2 Doc 13 — resolves PHASE1_STRATEGY §7 contradiction' }
-maturity_owner: 02_PHASE2_RULES_RICH/13_Framework_Mapping_Matrix.md
+maturity_owner: 02_PHASE2_RULES_RICH/Doc21_Framework_Mapping_Matrix.md
 note: >
   Este documento mantém-se como INPUT qualitativo (postura observada).
   A avaliação e o modelo de maturidade foram movidos para
-  02_PHASE2_RULES_RICH/13_Framework_Mapping_Matrix.md §4-5.
+  02_PHASE2_RULES_RICH/Doc21_Framework_Mapping_Matrix.md §4-5.
 case: Case_03_OmniBank_Financial
 applicable_regs: [GDPR, CRA, NIS 2, DORA, AI Act]
 active_subdomains: 38
 inactive_documented: []
 inputs:
-  - 04_Company_Context_Assessment.md
-  - 04a_Architecture_DataInventory.md
-  - 05_Regulatory_Applicability.md
+  - Doc03_Company_Context_Assessment.md
+  - Doc04_Architecture_DataInventory.md
+  - Doc08_Regulatory_Applicability.md
 outputs:
-  - 04c_ThirdParty_Landscape.md
-  - 04d_Org_Roles_RACI.md
-  - 07_Structured_Compliance_Matrix.md
+  - Doc06_ThirdParty_Landscape.md
+  - Doc07_Org_Roles_RACI.md
+  - Doc12_Structured_Compliance_Matrix.md
 related_documents:
-  - 04a_Architecture_DataInventory.md
+  - Doc04_Architecture_DataInventory.md
   - ../../../00_METHODOLOGY/PREPROCESSING_by_domain/domains/
-sibling_of: ../01_PHASE1_CONTEXT/04b_Security_Posture.md
+sibling_of: ../01_PHASE1_CONTEXT_RICH/Doc05_Security_Posture.md
 reconciliation_notes:
-  - "Sprint 1 (2026-08-06): Copied from 01_PHASE1_CONTEXT/04b_Security_Posture.md → Rich folder; frontmatter migrated to AEGIS-P3-RICH-* prefix; status DRAFT → RECONCILED; applicable_regs normalized to [GDPR, CRA, NIS 2, DORA, AI Act]; active_subdomains confirmed = 38. Tension T-002 (GDPR erasure vs AI Act immutability) preserved as case-specific (declared in legacy). Body unchanged."
+  - "Sprint 1 (2026-08-06): Copied from 01_PHASE1_CONTEXT/Doc05_Security_Posture.md → Rich folder; frontmatter migrated to AEGIS-P3-RICH-* prefix; status DRAFT → RECONCILED; applicable_regs normalized to [GDPR, CRA, NIS 2, DORA, AI Act]; active_subdomains confirmed = 38. Tension T-002 (GDPR erasure vs AI Act immutability) preserved as case-specific (declared in legacy). Body unchanged."
 ---
 
 > ⚠️ **DEPRECATED FOR MATURITY (2026-08-07).** A avaliação e o modelo de
 > maturidade vivem agora em
-> `02_PHASE2_RULES_RICH/13_Framework_Mapping_Matrix.md` §4-5. Este documento
+> `02_PHASE2_RULES_RICH/Doc21_Framework_Mapping_Matrix.md` §4-5. Este documento
 > mantém-se como input qualitativo (postura observada). Ver `status_history`
 > no frontmatter.
 
 <!-- CORPUS_ENRICHED (Sprint 2, 2026-08-06): Enrichment with corpus fit_criteria + verification methods.
-Replaces RECONCILED comment. Document copied from legacy 01_PHASE1_CONTEXT/04b_Security_Posture.md to Rich folder.
+Replaces RECONCILED comment. Document copied from legacy 01_PHASE1_CONTEXT/Doc05_Security_Posture.md to Rich folder.
 Changes: (a) document_id migrated to AEGIS-P3-RICH-04b-SEC; (b) status DRAFT → RECONCILED;
 (c) applicable_regs normalized from [GDPR, NIS2, CRA, DORA, AI_Act] to [GDPR, CRA, NIS 2, DORA, AI Act] (canonical order);
 (d) Tension T-002 preserved as legacy case-specific (NOT registered in ground-truth ontology per legacy lint baseline I-C03-02 — Sprint 2+ candidate to register in ontology per Phase 2 derivation pattern).
@@ -66,7 +66,7 @@ OmniBank is a **MAXIMUM-complexity** credit institution with 5,000+ employees, I
 | 3 | Managed | Implemented, monitored, measured, and regularly reviewed |
 | 4 | Optimized | Continuously improved and substantially automated |
 
-Evidence is drawn from `04a_Architecture_DataInventory.md`, `04_Company_Context_Assessment.md`, and `05_Regulatory_Applicability.md`. Active scope: 38 of 38 SubDomains (5 regulations applicable; no INACTIVE sub-domain for OmniBank).
+Evidence is drawn from `Doc04_Architecture_DataInventory.md`, `Doc03_Company_Context_Assessment.md`, and `Doc08_Regulatory_Applicability.md`. Active scope: 38 of 38 SubDomains (5 regulations applicable; no INACTIVE sub-domain for OmniBank).
 
 ## 2. Per-Domain Assessment
 
@@ -140,7 +140,7 @@ Evidence is drawn from `04a_Architecture_DataInventory.md`, `04_Company_Context_
 
 | Control | Current | Evidence | Notes |
 |---|---|---|---|
-| Vendor assessment | Tiered criticality; annual formal assessment for Critical + Important vendors; DORA Art. 28 ICT third-party register; ISO 27001 + documented third-party security attestation evidence required for all data processors | `04c_ThirdParty_Landscape.md §5` (separate document) | DORA Art. 30 ICT contracts register; BaFin-supervised vendor programme |
+| Vendor assessment | Tiered criticality; annual formal assessment for Critical + Important vendors; DORA Art. 28 ICT third-party register; ISO 27001 + documented third-party security attestation evidence required for all data processors | `Doc06_ThirdParty_Landscape.md §5` (separate document) | DORA Art. 30 ICT contracts register; BaFin-supervised vendor programme |
 | SBOM | Machine-readable SBOM format emission per release for SYS-02 mobile app + SYS-03 OmniScore; published per release; verified against ENISA SBOM guidance | SYS-11 build pipeline + STORE-02 in `04a §1.1`/`§2.1` | Required for CRA mobile app (CRA Art. 13(13) 10-year retention); AI Act Art. 11 technical documentation |
 | Contract clauses | GDPR Art. 28 DPA template; DORA Art. 30 ICT contract template (pre-contract + exit + audit + sub-outsourcing + termination); CRA Annex I Part I (2)(h); AI Act Art. 25 provider-deployer | (paper artefact; DPA + DORA contract template library) | Multi-regulation clause bank maintained by DPO + Legal + CRO |
 | Boundary management | Vendor egress reviewed; sub-processor chains tracked; pseudonymisation before logging egress; formal sub-processor change notifications | SYS-23 + DPAs in `04a §1.3` | GDPR Art. 28(2) sub-processor notification flow; DORA Art. 28 sub-outsourcing register |
@@ -473,7 +473,7 @@ This sub-section adds the Volere-style **Target fit_criterion** and **Verificati
 ## See also
 
 - **Data backbone:** `Case_03_Phase1.xlsx` (13 sheets: COVER, SYSTEMS, DATA_STORES, DATA_FLOWS, PERSONAL_DATA, THIRD_PARTIES, ROLES_RACI, MATURITY, SUBDOMAINS, REG_CHAIN, COMPLIANCE, GAPS, PRIORITIES)
-- **Architecture context:** `04a_Architecture_DataInventory.md` §1.1 (25 systems), §2.1 (12 stores), §2.2 (25 flows).
-- **People/RACI:** `04d_Org_Roles_RACI.md` (~40 named-RACI roles including CISO + DPO + CRO + AI Governance Lead + dedicated mainframe + AI + payments teams).
+- **Architecture context:** `Doc04_Architecture_DataInventory.md` §1.1 (25 systems), §2.1 (12 stores), §2.2 (25 flows).
+- **People/RACI:** `Doc07_Org_Roles_RACI.md` (~40 named-RACI roles including CISO + DPO + CRO + AI Governance Lead + dedicated mainframe + AI + payments teams).
 - **MAXIMUM-tier context:** `../../02_CASES/Case_03_OmniBank_Financial/00_COMMON/01_Company_Context.md` (5 applicable regulations; complexity tier MAXIMUM; 5,000+ employees; DORA financial entity + NIS 2 essential entity + AI Act Annex III + CRA mobile app).
 - **Corpus fit_criteria source:** see §2.1 for per-macro-domain + per-sub-domain Volere fit_criteria + verification methods derived from `00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-XX_Y/*.json` (Volere `requirements.sub_requirements[].yaml`). 134 sub-requirements total across 38 sub-domains; all MUST priority; verification methods TEST + INSPECT (D-05 + D-07).

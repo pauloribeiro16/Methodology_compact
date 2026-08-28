@@ -20,10 +20,10 @@ clause_breakdown:
   NIS_2: 29
   DORA: 38
   AI_Act: 29
-inputs: [05_Regulatory_Applicability.md]
-outputs: [07_Structured_Compliance_Matrix.md]
-sibling_of: ../01_PHASE1_CONTEXT/06_Clause_Mapping_Matrix.xlsx
-xlsx_companion: ../01_PHASE1_CONTEXT/06_Clause_Mapping_Matrix.xlsx
+inputs: [Doc08_Regulatory_Applicability.md]
+outputs: [Doc12_Structured_Compliance_Matrix.md]
+sibling_of: ../01_PHASE1_CONTEXT_RICH/06_Clause_Mapping_Matrix.xlsx
+xlsx_companion: ../01_PHASE1_CONTEXT_RICH/06_Clause_Mapping_Matrix.xlsx
 reconciliation_notes:
   - "Sprint 1 (2026-08-06): Created `.md` companion for the legacy `.xlsx` (10 sheets, 150 clauses). The xlsx remains the source of truth; this .md is the lint-consumable summary. I-C03-01 RESOLVED — lint_cross_document_consistency now finds Doc 06."
   - "Per-regulation clause ID shim table added (§8) for GDPR-CL/CP/RT and CRA-CL corpus form, NIS2-CL, DORA-CL, AIA-CL."
@@ -31,7 +31,7 @@ reconciliation_notes:
 ---
 
 <!-- RECONCILED (Sprint 1, 2026-08-06): Created Markdown companion for the legacy xlsx.
-The xlsx at `../01_PHASE1_CONTEXT/06_Clause_Mapping_Matrix.xlsx` is the source of truth (10 sheets, 150 clauses);
+The xlsx at `../01_PHASE1_CONTEXT_RICH/06_Clause_Mapping_Matrix.xlsx` is the source of truth (10 sheets, 150 clauses);
 this `.md` provides the same content in lint-consumable form. Section §8 adds the per-regulation clause ID
 shim table (GDPR-CL, CRA-CL, NIS2-CL, DORA-CL, AIA-CL) and migration notes for corpus integration.
 -->
@@ -42,14 +42,14 @@ shim table (GDPR-CL, CRA-CL, NIS2-CL, DORA-CL, AIA-CL) and migration notes for c
 
 This document is the **Markdown companion** to `06_Clause_Mapping_Matrix.xlsx` (the legacy xlsx is the source of truth; this `.md` is the lint-consumable summary). It presents the 150 regulatory clauses mapped to the AEGIS 10×38 sub-domain taxonomy for OmniBank Financial Systems.
 
-**Companion xlsx:** `../01_PHASE1_CONTEXT/06_Clause_Mapping_Matrix.xlsx` — 10 sheets (COVER, GDPR_MAPPING, CRA_MAPPING, NIS2_MAPPING, DORA_MAPPING, AIACT_MAPPING, CONSOLIDATED_VIEW, COMPLEMENTARITY_ANALYSIS, APPLICABILITY_CONDITIONS, NORMATIVE_INTENSITY).
+**Companion xlsx:** `../01_PHASE1_CONTEXT_RICH/06_Clause_Mapping_Matrix.xlsx` — 10 sheets (COVER, GDPR_MAPPING, CRA_MAPPING, NIS2_MAPPING, DORA_MAPPING, AIACT_MAPPING, CONSOLIDATED_VIEW, COMPLEMENTARITY_ANALYSIS, APPLICABILITY_CONDITIONS, NORMATIVE_INTENSITY).
 
 **Total clauses:** 150 (GDPR 28 + CRA 26 + NIS 2 29 + DORA 38 + AI Act 29).
 
 **Cross-references:**
-- `05_Regulatory_Applicability.md` — regulation-by-regulation applicability (per Clause).
-- `06b_DORA_ICT_Risk_Framework.md` — DORA-specific deep-dive (Sprint 0.6 deliverable).
-- `07_Structured_Compliance_Matrix.md` — per-sub-domain coverage matrix (Phase 1 output).
+- `Doc08_Regulatory_Applicability.md` — regulation-by-regulation applicability (per Clause).
+- `Doc11_DORA_ICT_Risk_Framework.md` — DORA-specific deep-dive (Sprint 0.6 deliverable).
+- `Doc12_Structured_Compliance_Matrix.md` — per-sub-domain coverage matrix (Phase 1 output).
 - `phase1_ontology.yaml` — machine-readable ontology (150 clause mappings).
 
 ---
@@ -297,7 +297,7 @@ This section provides the canonical clause ID mapping between the **case-form** 
 
 ## 10. DORA + AI Act Cross-References (from Doc 06b)
 
-Per Sprint 0.6 Doc 06b (`06b_DORA_ICT_Risk_Framework.md`), the following DORA articles and AI Act articles receive **deeper coverage** beyond the baseline mapping in §7/§8 above:
+Per Sprint 0.6 Doc 06b (`Doc11_DORA_ICT_Risk_Framework.md`), the following DORA articles and AI Act articles receive **deeper coverage** beyond the baseline mapping in §7/§8 above:
 
 ### 10.1 DORA — Articles with enhanced coverage
 
@@ -348,6 +348,6 @@ Per Sprint 0.6 Doc 06b (`06b_DORA_ICT_Risk_Framework.md`), the following DORA ar
 | Compliance Review (CRO) | | | |
 | AEGIS Methodology Review | | | |
 
-**Companion xlsx:** `../01_PHASE1_CONTEXT/06_Clause_Mapping_Matrix.xlsx` (source of truth)
-**Next Document:** `07_Structured_Compliance_Matrix.md`
+**Companion xlsx:** `../01_PHASE1_CONTEXT_RICH/06_Clause_Mapping_Matrix.xlsx` (source of truth)
+**Next Document:** `Doc12_Structured_Compliance_Matrix.md`
 **Phase 1 Gate Status:** ✅ READY for Sprint 2 (corpus enrichment)

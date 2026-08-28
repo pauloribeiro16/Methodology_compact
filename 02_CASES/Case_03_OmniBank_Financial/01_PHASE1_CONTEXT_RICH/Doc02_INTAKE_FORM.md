@@ -13,15 +13,15 @@ active_subdomains: 38
 inactive_documented: []
 traceability: AEGIS Class Model → CompanyContext class
 inputs: []
-outputs: [04_Company_Context_Assessment.md, 05_Regulatory_Applicability.md]
+outputs: [Doc03_Company_Context_Assessment.md, Doc08_Regulatory_Applicability.md]
 related_documents: [00_Taxonomy_Reference.md, 02_Regulatory_Mapping_Master.xlsx]
 supersedes: 01_Company_Context_LEGACY.md
 sibling_of: ../../00_COMMON/01_Company_Context.md
 reconciliation_notes:
-  - "Sprint 1 (2026-08-06): Copied from 00_COMMON/01_Company_Context.md → Rich folder as 01_INTAKE_FORM.md; frontmatter migrated to AEGIS-P3-RICH-* prefix; status DRAFT → RECONCILED; active_subdomains confirmed = 38 (Case_03 MAX). Body unchanged — layered intake format (Layer 0/1/2/3) preserved verbatim."
+  - "Sprint 1 (2026-08-06): Copied from 00_COMMON/01_Company_Context.md → Rich folder as Doc02_INTAKE_FORM.md; frontmatter migrated to AEGIS-P3-RICH-* prefix; status DRAFT → RECONCILED; active_subdomains confirmed = 38 (Case_03 MAX). Body unchanged — layered intake format (Layer 0/1/2/3) preserved verbatim."
 ---
 
-<!-- RECONCILED (Sprint 1, 2026-08-06): Document copied from legacy 00_COMMON/01_Company_Context.md to Rich folder, renamed 01_INTAKE_FORM.md (canonical filename pattern for Phase 1).
+<!-- RECONCILED (Sprint 1, 2026-08-06): Document copied from legacy 00_COMMON/01_Company_Context.md to Rich folder, renamed Doc02_INTAKE_FORM.md (canonical filename pattern for Phase 1).
 Changes: (a) document_id migrated to AEGIS-P3-RICH-01-INTAKE (P3 = Case_03 prefix); (b) status DRAFT → RECONCILED;
 (c) active_subdomains: 38 confirmed for Case_03 MAX; (d) Layer 0/1/2/3 intake format preserved (38 questions, 8 conditional blocks, 4 interaction scans).
 Body content unchanged — intake form is canonical and frozen at v2.0.
@@ -577,5 +577,5 @@ CompanyContext {
 
 ---
 
-**Next Document:** 04_Company_Context_Assessment.md
+**Next Document:** Doc03_Company_Context_Assessment.md
 **Dependency:** None (foundational input for Phase 1)

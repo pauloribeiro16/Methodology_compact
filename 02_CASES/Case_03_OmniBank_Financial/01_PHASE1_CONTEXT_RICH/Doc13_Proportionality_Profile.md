@@ -11,18 +11,12 @@ case: Case_03_OmniBank_Financial
 applicable_regs: [GDPR, CRA, NIS 2, DORA, AI Act]
 active_subdomains: 38
 inactive_subdomains: []
-inputs: [04_Company_Context_Assessment.md, 05_Regulatory_Applicability.md, 07_Structured_Compliance_Matrix.md, ../../../../../00_METHODOLOGY/REFERENCE/proportionality_model.md, ../../../../../00_METHODOLOGY/PREPROCESSING_by_domain/domains/]
-related_documents: [04_Company_Context_Assessment.md, 05_Regulatory_Applicability.md, 07_Structured_Compliance_Matrix.md, ../../../../../00_METHODOLOGY/REFERENCE/proportionality_model.md, ../../../../../00_METHODOLOGY/PREPROCESSING_by_domain/STRUCTURE_REFERENCE.md]
+inputs: [Doc03_Company_Context_Assessment.md, Doc08_Regulatory_Applicability.md, Doc12_Structured_Compliance_Matrix.md, ../../../../../00_METHODOLOGY/REFERENCE/proportionality_model.md, ../../../../../00_METHODOLOGY/PREPROCESSING_by_domain/domains/]
+related_documents: [Doc03_Company_Context_Assessment.md, Doc08_Regulatory_Applicability.md, Doc12_Structured_Compliance_Matrix.md, ../../../../../00_METHODOLOGY/REFERENCE/proportionality_model.md, ../../../../../00_METHODOLOGY/PREPROCESSING_by_domain/STRUCTURE_REFERENCE.md]
 frozen: false
-supersedes: ../01_PHASE1_CONTEXT/07b_Proportionality_Profile.md (none — NEW in Rich Mode per Phase 1 §8.3)
-sprint: 0.5
-sprint_role: track_b_proportionality_profile
+supersedes: ../01_PHASE1_CONTEXT_RICH/Doc13_Proportionality_Profile.md (none — NEW in Rich Mode per Phase 1 §8.3)
 cross_checked_against_corpus: true
 cross_check_date: 2026-08-06
-sprint_3_cross_check: true
-sprint_3_cross_check_date: 2026-08-06
-sprint_3_cross_check_rows: 14
-sprint_3_cross_check_mismatches: 0
 tier_distribution:
   rigorous: 31
   standard: 7
@@ -51,7 +45,7 @@ This document is the **case instance** of the Track B Proportionality Model for 
 
 ## §2 Company Profile Metadata
 
-Inputs read from `04_Company_Context_Assessment.md` §2 (size), §5.1 (intake form), §6 (regulatory applicability flags), and §10 (DORA / AI Act / NIS 2 / GDPR specifics).
+Inputs read from `Doc03_Company_Context_Assessment.md` §2 (size), §5.1 (intake form), §6 (regulatory applicability flags), and §10 (DORA / AI Act / NIS 2 / GDPR specifics).
 
 | Attribute | Value | Source |
 |-----------|-------|--------|
@@ -253,7 +247,7 @@ GATE-P exit code propagates to Phase 1 exit per `dependency_graph.yaml`. This do
 
 ## §7 Input to Phase 2
 
-Every obligation in Doc 08 (`08_Obligation_Derivation.md`), every rule in Doc 11 (`11_Rules_Catalog.md`), every architectural node in Doc 14 (`14_Architectural_Nodes.md`), and every allocation in Doc 15 (`15_Allocation.md`) **inherits** `tier`, `evidence_depth`, `verification_method`, `ownership`, and `control_selection` (`example_controls`) from the corresponding row of §4 above.
+Every obligation in Doc 08 (`Doc16_Obligation_Derivation.md`), every rule in Doc 11 (`Doc20_Rules_Catalog.md`), every architectural node in Doc 14 (`14_Architectural_Nodes.md`), and every allocation in Doc 15 (`15_Allocation.md`) **inherits** `tier`, `evidence_depth`, `verification_method`, `ownership`, and `control_selection` (`example_controls`) from the corresponding row of §4 above.
 
 **Cross-SO sub-SO pairs (per Doc 07 §5.5 + 07c §4):**
 - **T-001 timing pair** (Doc 07 §5.5 EVT-001) — D-04.3 §4.4 row carries max-SLA 24h routing (DORA 4h satisfies all shorter deadlines)
@@ -289,20 +283,20 @@ Every obligation in Doc 08 (`08_Obligation_Derivation.md`), every rule in Doc 11
 ## §10 See also
 
 - `00_METHODOLOGY/REFERENCE/proportionality_model.md` — Track B spec (Regulatory Baseline invariant §1, decision table §5, attribute definitions §6, validation §9).
-- `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT/04_Company_Context_Assessment.md` — company context (S = MAX, FTE 100+, ISO 27001, ECB-supervised).
-- `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT/05_Regulatory_Applicability.md` — applicability + Native/Inherited classification (Doc 05 §5.1/§5.2) for Case_03.
-- `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT/07_Structured_Compliance_Matrix.md` — priority (P) per sub-domain (Doc 07 §3) + complementarity analysis (Doc 07 §5) + strategic tensions (Doc 07 §5.5).
-- `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT_RICH/04d_Org_Roles_RACI.md` — case-specific organisational roles (CRO, DORA ICT Risk Officer, AI Governance Lead).
-- `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT_RICH/04c_ThirdParty_Landscape.md` — third-party landscape (DORA Art. 30 CTPP register, critical ICT providers).
-- `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT_RICH/04a_Architecture_DataInventory.md` — architecture + data inventory (ECB data residency, core banking on-prem, model store EU cloud).
-- `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT_RICH/07c_Adjusted_Goals.md` — adjusted HSO/SO with tensions resolved (max-SLA routing, cryptographic sharding, IPSARA framework).
+- `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT/Doc03_Company_Context_Assessment.md` — company context (S = MAX, FTE 100+, ISO 27001, ECB-supervised).
+- `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT/Doc08_Regulatory_Applicability.md` — applicability + Native/Inherited classification (Doc 05 §5.1/§5.2) for Case_03.
+- `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT/Doc12_Structured_Compliance_Matrix.md` — priority (P) per sub-domain (Doc 07 §3) + complementarity analysis (Doc 07 §5) + strategic tensions (Doc 07 §5.5).
+- `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT_RICH/Doc07_Org_Roles_RACI.md` — case-specific organisational roles (CRO, DORA ICT Risk Officer, AI Governance Lead).
+- `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT_RICH/Doc06_ThirdParty_Landscape.md` — third-party landscape (DORA Art. 30 CTPP register, critical ICT providers).
+- `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT_RICH/Doc04_Architecture_DataInventory.md` — architecture + data inventory (ECB data residency, core banking on-prem, model store EU cloud).
+- `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT_RICH/Doc14_Adjusted_Goals.md` — adjusted HSO/SO with tensions resolved (max-SLA routing, cryptographic sharding, IPSARA framework).
 - `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT_RICH/corpus_field_map.md` — exact corpus field → case field mapping.
 - `00_METHODOLOGY/PREPROCESSING_by_domain/STRUCTURE_REFERENCE.md` — corpus directory structure spec.
 - `00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-XX.Y/D-XX.Y.manifest.json` — 38 corpus L2 manifests (one per sub-domain) — used for priority + scope_overlap per regulation.
 - `00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-XX.Y/D-XX.Y.json` — 38 corpus L3 JSON sidecars (one per sub-domain) — used for `requirements.high_level.yaml.priority`.
 - Next documents that consume this profile:
-  - `08_Obligation_Derivation.md`
-  - `11_Rules_Catalog.md`
+  - `Doc16_Obligation_Derivation.md`
+  - `Doc20_Rules_Catalog.md`
   - `14_Architectural_Nodes.md`
   - `15_Allocation.md`
 

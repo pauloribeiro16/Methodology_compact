@@ -11,18 +11,18 @@ case: Case_03_OmniBank_Financial
 applicable_regs: [GDPR, CRA, NIS 2, DORA, AI Act]
 active_subdomains: 38
 inactive_documented: []
-inputs: [04_Company_Context_Assessment.md, 05_Regulatory_Applicability.md, 06_Clause_Mapping_Matrix.md]
-outputs: [08_Obligation_Derivation.md]
+inputs: [Doc03_Company_Context_Assessment.md, Doc08_Regulatory_Applicability.md, Doc10_Clause_Mapping_Matrix.md]
+outputs: [Doc16_Obligation_Derivation.md]
 traceability: AEGIS Class Model → StructuredComplianceMatrix, DomainCoverageEntry classes
-related_documents: [00_Taxonomy_Reference.md, 06b_DORA_ICT_Risk_Framework.md, 07b_Proportionality_Profile.md]
-sibling_of: ../01_PHASE1_CONTEXT/07_Structured_Compliance_Matrix.md
+related_documents: [00_Taxonomy_Reference.md, Doc11_DORA_ICT_Risk_Framework.md, Doc13_Proportionality_Profile.md]
+sibling_of: ../01_PHASE1_CONTEXT_RICH/Doc12_Structured_Compliance_Matrix.md
 reconciliation_notes:
-  - "Sprint 1 (2026-08-06): Copied from 01_PHASE1_CONTEXT/07_Structured_Compliance_Matrix.md → Rich folder; frontmatter migrated to AEGIS-P3-RICH-* prefix; status DRAFT → RECONCILED; inputs updated to reference 06_Clause_Mapping_Matrix.md (not .xlsx). 5 strategic tensions preserved: T-001..T-004 (pre-existing) + T-005 (NEW for DORA TLPT cycle from Sprint 0.6 Doc 06b §4.5) — added to Section 5.5. 9 case-specific sections (5.1-5.5 + 6.1-6.3 + 8) marked as by-design MAX extensions. Body largely unchanged — section 5.5 enriched to register T-005."
+  - "Sprint 1 (2026-08-06): Copied from 01_PHASE1_CONTEXT/Doc12_Structured_Compliance_Matrix.md → Rich folder; frontmatter migrated to AEGIS-P3-RICH-* prefix; status DRAFT → RECONCILED; inputs updated to reference Doc10_Clause_Mapping_Matrix.md (not .xlsx). 5 strategic tensions preserved: T-001..T-004 (pre-existing) + T-005 (NEW for DORA TLPT cycle from Sprint 0.6 Doc 06b §4.5) — added to Section 5.5. 9 case-specific sections (5.1-5.5 + 6.1-6.3 + 8) marked as by-design MAX extensions. Body largely unchanged — section 5.5 enriched to register T-005."
 ---
 
-<!-- RECONCILED (Sprint 1, 2026-08-06): Document copied from legacy 01_PHASE1_CONTEXT/07_Structured_Compliance_Matrix.md to Rich folder.
+<!-- RECONCILED (Sprint 1, 2026-08-06): Document copied from legacy 01_PHASE1_CONTEXT/Doc12_Structured_Compliance_Matrix.md to Rich folder.
 Changes: (a) document_id migrated to AEGIS-P3-RICH-07-MATRIX; (b) status DRAFT → RECONCILED;
-(c) inputs updated: 06_Clause_Mapping_Matrix.xlsx → 06_Clause_Mapping_Matrix.md (Sprint 1 I-C03-01 RESOLVED);
+(c) inputs updated: 06_Clause_Mapping_Matrix.xlsx → Doc10_Clause_Mapping_Matrix.md (Sprint 1 I-C03-01 RESOLVED);
 (d) Tension T-005 ADDED to §5.5 (DORA TLPT Triennial Cycle vs ISO 27001 Annual Testing Cycle, from Sprint 0.6 Doc 06b §4.5);
 (e) Tensions T-001..T-004 marked as case-specific (NOT in ground-truth ontology per legacy lint baseline I-C03-02 — Sprint 2+ candidate to register in ontology).
 Body content largely unchanged — Compliance Matrix (38 sub-domains × 5 regulations × 150 clauses) preserved verbatim; 5.5 enriched with T-005.
@@ -298,7 +298,7 @@ This section identifies **factual events** that can simultaneously trigger oblig
 | **T-004** | D-04.3 | NIS 2 (24h) vs DORA (24h) | Alignment Opportunity | LOW | Unified 24h workflow |
 | **T-005** | D-02.4 vs D-10.3 | DORA Art. 26 (TLPT triennial) vs ISO 27001 (annual testing) | Frequency Mismatch | MEDIUM | Cycle orchestration (DORA TLPT every 3y + ISO 27001 annual + AI Act conformity in between) |
 
-**T-005 — NEW in Sprint 1 (2026-08-06):** Added from Sprint 0.6 Doc 06b §4.5. DORA Art. 26 mandates Threat-Led Penetration Testing (TLPT) every 3 years for major financial entities (OmniBank qualifies per ECB-supervised significance). ISO 27001 surveillance cycle is annual. AI Act Art. 43 conformity assessment is per-market-placement. Resolved by **cycle orchestration**: DORA TLPT every 3y (most stringent), ISO 27001 annual in between (with TLPT-scope mini-tests in year 2), AI Act conformity at each major release. Cross-reference: `06b_DORA_ICT_Risk_Framework.md §4.5`.
+**T-005 — NEW in Sprint 1 (2026-08-06):** Added from Sprint 0.6 Doc 06b §4.5. DORA Art. 26 mandates Threat-Led Penetration Testing (TLPT) every 3 years for major financial entities (OmniBank qualifies per ECB-supervised significance). ISO 27001 surveillance cycle is annual. AI Act Art. 43 conformity assessment is per-market-placement. Resolved by **cycle orchestration**: DORA TLPT every 3y (most stringent), ISO 27001 annual in between (with TLPT-scope mini-tests in year 2), AI Act conformity at each major release. Cross-reference: `Doc11_DORA_ICT_Risk_Framework.md §4.5`.
 
 ---
 
@@ -371,8 +371,8 @@ This section identifies **factual events** that can simultaneously trigger oblig
 
 | Criterion | Status | Evidence |
 |-----------|--------|----------|
-| **Company Context complete (38/38 questions)** | ✅ PASS | 04_Company_Context_Assessment.md |
-| **Regulatory Applicability assessed (5/5 regulations)** | ✅ PASS | 05_Regulatory_Applicability.md |
+| **Company Context complete (38/38 questions)** | ✅ PASS | Doc03_Company_Context_Assessment.md |
+| **Regulatory Applicability assessed (5/5 regulations)** | ✅ PASS | Doc08_Regulatory_Applicability.md |
 | **Clause Mapping complete (150 clauses)** | ✅ PASS | 06_Clause_Mapping_Matrix.xlsx |
 | **Sub-Domain coverage complete (38 sub-domains)** | ✅ PASS | Section 3 of this document |
 | **Complementarity Analysis complete** | ✅ PASS | Section 5 of this document |
@@ -427,5 +427,5 @@ This section identifies **factual events** that can simultaneously trigger oblig
 ---
 
 **Phase 1 Status:** ✅ **COMPLETE**  
-**Next Phase:** 02_PHASE2_RULES → 08_Obligation_Derivation.md  
+**Next Phase:** 02_PHASE2_RULES → Doc16_Obligation_Derivation.md  
 **Companion File:** 06_Clause_Mapping_Matrix.xlsx

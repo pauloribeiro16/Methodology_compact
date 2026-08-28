@@ -9,12 +9,10 @@ author: Sprint 0.6 Executor (dora-mapper)
 status: DORA_MAPPED
 case: Case_03_OmniBank_Financial
 applicable_regs: [GDPR, CRA, NIS 2, DORA, AI Act]
-sprint: 0.6
-sprint_role: dora_specific_mapping
-cross_checked_against: [07b_Proportionality_Profile.md, proportionality_model.md]
-inputs: [05_Regulatory_Applicability.md, 07b_Proportionality_Profile.md, 00_METHODOLOGY/REFERENCE/proportionality_model.md, 00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-XX_Y/articles/DORA_Art_*.md]
-outputs: [07b_Proportionality_Profile.md §11, Phase 2 Doc 08 (forward reference)]
-related_documents: [07b_Proportionality_Profile.md, 05_Regulatory_Applicability.md, 07_Structured_Compliance_Matrix.md, 07c_Adjusted_Goals.md, 04c_ThirdParty_Landscape.md]
+cross_checked_against: [Doc13_Proportionality_Profile.md, proportionality_model.md]
+inputs: [Doc08_Regulatory_Applicability.md, Doc13_Proportionality_Profile.md, 00_METHODOLOGY/REFERENCE/proportionality_model.md, 00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-XX_Y/articles/DORA_Art_*.md]
+outputs: [Doc13_Proportionality_Profile.md §11, Phase 2 Doc 08 (forward reference)]
+related_documents: [Doc13_Proportionality_Profile.md, Doc08_Regulatory_Applicability.md, Doc12_Structured_Compliance_Matrix.md, Doc14_Adjusted_Goals.md, Doc06_ThirdParty_Landscape.md]
 frozen: false
 supersedes: none
 fields_excluded: [Effort Estimate, Cost Estimate, Target Timeline]
@@ -31,9 +29,9 @@ complexity_tier: MAX
 
 ## §1 Document Purpose
 
-This document is the **DORA-specific ICT risk framework mapping** for OmniBank Financial Systems. It binds every DORA article in scope for Case_03 (per `05_Regulatory_Applicability.md §3.4` — DORA-C01 through DORA-C38, all 38 DORA clauses applicable to credit institutions) to the AEGIS 38-sub-domain taxonomy and explicitly resolves the DORA-specific tier-justifications in Doc 07b §11.
+This document is the **DORA-specific ICT risk framework mapping** for OmniBank Financial Systems. It binds every DORA article in scope for Case_03 (per `Doc08_Regulatory_Applicability.md §3.4` — DORA-C01 through DORA-C38, all 38 DORA clauses applicable to credit institutions) to the AEGIS 38-sub-domain taxonomy and explicitly resolves the DORA-specific tier-justifications in Doc 07b §11.
 
-**Why this document exists.** Sprint 0.5 produced the case-level Track B proportionality profile (`07b_Proportionality_Profile.md`) with 31 RIGOROUS + 7 STANDARD sub-domain tiers, derived from the decision table `(S=MAX, I, P=MUST)`. DORA is the densest single source of those assignments — DORA participates in 38 of 38 DORA clauses and is the **dominant** regulator for 18 sub-domains (per `05_Regulatory_Applicability.md §9 Observation 3`). Without a dedicated DORA bridge, the corpus `requirements.high_level.yaml.priority` field would under-explain *why* Case_03's D-02.4 (TLPT), D-04.3 (notification), D-06.1/D-06.3/D-06.4 (third-party), D-09.1 (framework) and D-09.3 (inventory) all map to RIGOROUS tier with full DORA-specific operationalisation rather than a generic DEFERRED or LIGHTWEIGHT outcome.
+**Why this document exists.** Sprint 0.5 produced the case-level Track B proportionality profile (`Doc13_Proportionality_Profile.md`) with 31 RIGOROUS + 7 STANDARD sub-domain tiers, derived from the decision table `(S=MAX, I, P=MUST)`. DORA is the densest single source of those assignments — DORA participates in 38 of 38 DORA clauses and is the **dominant** regulator for 18 sub-domains (per `Doc08_Regulatory_Applicability.md §9 Observation 3`). Without a dedicated DORA bridge, the corpus `requirements.high_level.yaml.priority` field would under-explain *why* Case_03's D-02.4 (TLPT), D-04.3 (notification), D-06.1/D-06.3/D-06.4 (third-party), D-09.1 (framework) and D-09.3 (inventory) all map to RIGOROUS tier with full DORA-specific operationalisation rather than a generic DEFERRED or LIGHTWEIGHT outcome.
 
 **Case_03 specificity.** Case_03 is the only case in AEGIS where DORA applies (Case_01 = SaaS, Case_02 = defence industrial base). This is therefore a NEW document not present in Case_01/Case_02 — Case_03-specific.
 
@@ -575,13 +573,13 @@ This document is complete when the following checks pass:
 
 ### §7.1 Case_03-specific cross-references
 
-- `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT/05_Regulatory_Applicability.md` — DORA applicability (Doc 05 §3.4) including RTS deadlines, weekend clause, CTPP direct obligations.
-- `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT/07_Structured_Compliance_Matrix.md` — sub-domain coverage matrix (Doc 07 §3) + strategic tensions (Doc 07 §5.5).
-- `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT_RICH/07b_Proportionality_Profile.md` — Track B case instance (31 RIGOROUS + 7 STANDARD); §4 per-sub-domain table; §5.1 tension cross-reference; §11 decision table trail.
-- `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT_RICH/07c_Adjusted_Goals.md` — adjusted HSO/SO with tensions resolved (max-SLA routing, cryptographic sharding, IPSARA framework).
-- `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT_RICH/04c_ThirdParty_Landscape.md` — third-party landscape (planned §7 DORA CTPP register).
-- `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT_RICH/04d_Org_Roles_RACI.md` — case-specific organisational roles (CRO, DORA ICT Risk Officer, AI Governance Lead).
-- `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT_RICH/05b_Ambiguity_Register.md` — DORA-specific ambiguity cards (planned §5 D-09.1, D-09.4, D-04.3, D-09.3).
+- `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT/Doc08_Regulatory_Applicability.md` — DORA applicability (Doc 05 §3.4) including RTS deadlines, weekend clause, CTPP direct obligations.
+- `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT/Doc12_Structured_Compliance_Matrix.md` — sub-domain coverage matrix (Doc 07 §3) + strategic tensions (Doc 07 §5.5).
+- `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT_RICH/Doc13_Proportionality_Profile.md` — Track B case instance (31 RIGOROUS + 7 STANDARD); §4 per-sub-domain table; §5.1 tension cross-reference; §11 decision table trail.
+- `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT_RICH/Doc14_Adjusted_Goals.md` — adjusted HSO/SO with tensions resolved (max-SLA routing, cryptographic sharding, IPSARA framework).
+- `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT_RICH/Doc06_ThirdParty_Landscape.md` — third-party landscape (planned §7 DORA CTPP register).
+- `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT_RICH/Doc07_Org_Roles_RACI.md` — case-specific organisational roles (CRO, DORA ICT Risk Officer, AI Governance Lead).
+- `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT_RICH/Doc09_Ambiguity_Register.md` — DORA-specific ambiguity cards (planned §5 D-09.1, D-09.4, D-04.3, D-09.3).
 
 ### §7.2 Methodology references
 
@@ -599,8 +597,8 @@ This document is complete when the following checks pass:
 
 ### §7.3 Forward references (Phase 2 — out of Sprint 0.6 scope)
 
-- `02_CASES/Case_03_OmniBank_Financial/02_PHASE2_RULES/08_Obligation_Derivation.md` — consumes DORA clause → sub-domain mapping from §3.
-- `02_CASES/Case_03_OmniBank_Financial/02_PHASE2_RULES/11_Rules_Catalog.md` — consumes corpus SR-DORA-XXX titles.
+- `02_CASES/Case_03_OmniBank_Financial/02_PHASE2_RULES/Doc16_Obligation_Derivation.md` — consumes DORA clause → sub-domain mapping from §3.
+- `02_CASES/Case_03_OmniBank_Financial/02_PHASE2_RULES/Doc20_Rules_Catalog.md` — consumes corpus SR-DORA-XXX titles.
 - `02_CASES/Case_03_OmniBank_Financial/02_PHASE2_RULES/14_Architectural_Nodes.md` — consumes DORA-specific architectural nodes (§3.5 CTPP + BC/DR + TLPT).
 - `02_CASES/Case_03_OmniBank_Financial/02_PHASE2_RULES/15_Allocation.md` — consumes DORA-specific ownership (significance classification §2.2).
 

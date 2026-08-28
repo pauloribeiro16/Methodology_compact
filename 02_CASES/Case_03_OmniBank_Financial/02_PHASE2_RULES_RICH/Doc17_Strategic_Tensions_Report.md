@@ -2,15 +2,17 @@
 document_id: AEGIS-P2-09
 title: Strategic Tensions Report
 phase: 2
-version: 1.0
+version: 1.1
 created: 2026-04-03
-updated: 2026-04-03
+updated: 2026-08-28
 author: Compliance Lead
-status: DRAFT
-inputs: [08_Obligation_Derivation.md, 07_Structured_Compliance_Matrix.md]
-outputs: [10_Privacy_Security_Objectives.md]
+status: ACTIVE
+inputs: [Doc16_Obligation_Derivation.md, Doc12_Structured_Compliance_Matrix.md]
+outputs: [Doc18_Privacy_Security_Objectives.md]
 traceability: AEGIS Class Model -> StrategicTension, ConflictResolution classes
 related_documents: 03_Design_Decisions_Log.md
+case: Case_03_OmniBank_Financial
+applicable_regs: [GDPR, CRA, NIS 2, DORA, AI_Act]
 ---
 
 # Strategic Tensions Report
