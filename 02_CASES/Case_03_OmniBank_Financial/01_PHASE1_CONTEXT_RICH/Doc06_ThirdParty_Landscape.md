@@ -343,7 +343,7 @@ This document is complete (Phase 1 Step D — Third-Party Landscape) when:
 
 ## See also
 
-- **Data backbone:** `Case_03_Phase1.xlsx` (13 sheets: COVER, SYSTEMS, DATA_STORES, DATA_FLOWS, PERSONAL_DATA, THIRD_PARTIES, ROLES_RACI, MATURITY, SUBDOMAINS, REG_CHAIN, COMPLIANCE, GAPS, PRIORITIES)
+- **Data backbone:** `Case_03_Phase1.xlsx` (13 sheets: COVER, SYSTEMS, DATA_STORES, DATA_FLOWS, PERSONAL_DATA, THIRD_PARTIES, ROLES_RACI, MATURITY (legacy sheet name), SUBDOMAINS, REG_CHAIN, COMPLIANCE, GAPS, PRIORITIES)
 - **Architecture context:** `Doc04_Architecture_DataInventory.md` §1.1 (25 systems), §1.3 (cloud services table), §2.2 (25 flows).
 - **People / RACI:** `Doc07_Org_Roles_RACI.md` (CRO owns DORA Art. 28-30 ICT third-party register; CISO owns vendor-risk-assessment cadence; DPO owns DPA + DORA Art. 30 template library; Procurement Director owns vendor relationship management).
 - **MAXIMUM-tier context:** `02_CASES/Case_03_OmniBank_Financial/00_COMMON/01_Company_Context.md` (5 applicable regulations; complexity tier MAXIMUM; 5,000+ employees; credit institution + DORA financial entity + NIS 2 essential entity + AI Act Annex III + CRA mobile app Default Class).

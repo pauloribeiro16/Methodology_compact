@@ -403,7 +403,7 @@ These items are surfaced for Phase 2 / Phase 3 remediation and are **proportiona
 |---|---|---|---|
 | GAP-RACI-01 | Single AI Governance Lead as AI-Act point of accountability; backup is Deputy AI Governance Lead (good); AI Bias & Robustness + FRIA Lead + Post-Market Lead are well-staffed | LOW | D-09.1 |
 | GAP-RACI-02 | DPO operational reporting through DPO-line + independent access to CEO + Board; per Art. 38(3) independence is preserved but in operational matrix reports through DPO-line. Risk-accepted by Management Board | LOW (risk-accepted) | D-09.1 |
-| GAP-RACI-03 | D-08.3 ACTIVE under NIS 2 + DORA dual obligation — programme is mature (quarterly briefings since 2024-Q4) but DORA Art. 5 specific briefing was added in 2026-Q1; engagement maturing | LOW | D-08.3 |
+| GAP-RACI-03 | D-08.3 ACTIVE under NIS 2 + DORA dual obligation — programme is established (quarterly briefings since 2024-Q4) but DORA Art. 5 specific briefing was added in 2026-Q1; engagement ramping up | LOW | D-08.3 |
 | GAP-RACI-04 | In-house Legal Counsel (2.0 FTE) supplemented by external multi-jurisdiction retainers; in-house + external coverage sufficient | LOW | D-09.1 |
 | GAP-RACI-05 | Single IR Lead / CSIRT Lead as named-point-of-contact for DORA Art. 17-19 + NIS 2 24h reporting; backup is SOC Manager + CISO; 24/7 coverage sustained | LOW | D-04.3 |
 
@@ -450,9 +450,9 @@ This document is complete (Phase 1 Step E — Roles & RACI) when:
 
 ## See also
 
-- **Data backbone:** `Case_03_Phase1.xlsx` (13 sheets: COVER, SYSTEMS, DATA_STORES, DATA_FLOWS, PERSONAL_DATA, THIRD_PARTIES, ROLES_RACI, MATURITY, SUBDOMAINS, REG_CHAIN, COMPLIANCE, GAPS, PRIORITIES)
+- **Data backbone:** `Case_03_Phase1.xlsx` (13 sheets: COVER, SYSTEMS, DATA_STORES, DATA_FLOWS, PERSONAL_DATA, THIRD_PARTIES, ROLES_RACI, MATURITY (legacy sheet name), SUBDOMAINS, REG_CHAIN, COMPLIANCE, GAPS, PRIORITIES)
 - **Architecture:** `Doc04_Architecture_DataInventory.md` (RACI maps activities to systems SYS-01..SYS-25).
 - **Vendors:** `Doc06_ThirdParty_Landscape.md` (CRO owns DORA Art. 28-30 ICT third-party register; CISO owns vendor-risk-assessment cadence; Procurement Director owns vendor relationship management).
-- **Maturity:** `Doc05_Security_Posture.md` (CISO + CRO + AI Governance Lead drive the top-gaps remediation; maturity averaging 3.8 across 10 macro-domains).
+- **Posture ownership:** `Doc05_Security_Posture.md` (CISO + CRO + AI Governance Lead drive the top-gaps remediation; legacy posture averaging 3.8 across 10 macro-domains).
 - **MAXIMUM-tier context:** `02_CASES/Case_03_OmniBank_Financial/00_COMMON/01_Company_Context.md` (5 applicable regulations; complexity tier MAXIMUM; 5,000+ employees; credit institution + DORA financial entity + NIS 2 essential entity + AI Act Annex III + CRA mobile app Default Class).
 - **D-08.3 ACTIVE note:** D-08.3 is ACTIVE here under a **dual NIS 2 Art. 20 + DORA Art. 5 obligation**. It was INACTIVE in Case 01 (LOW tier, no NIS 2 / no DORA), ACTIVE under NIS 2 only in Case 02 (HIGH tier, NIS 2 essential-entity supplier). The methodology treats activation consistently; the difference is the company's regulatory profile, not the methodology.

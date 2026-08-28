@@ -414,7 +414,7 @@ Based on applicable regulations (GDPR + CRA + NIS 2 + DORA + AI Act):
 
 6. **Management Liability:** Both NIS 2 (Art. 20) and DORA (Art. 5) impose personal liability on management — board-level accountability required.
 
-7. **Existing Maturity Leverage:** ISO 27001/BSI foundation reduces DORA implementation effort by ~70% — extend rather than duplicate.
+7. **Existing posture leverage (legacy maturity wording):** ISO 27001/BSI foundation reduces DORA implementation effort by ~70% — extend rather than duplicate.
 
 8. **24h Notification:** Both NIS 2 and DORA require 24h early warning — unified incident response workflow required.
 
@@ -428,168 +428,168 @@ Based on applicable regulations (GDPR + CRA + NIS 2 + DORA + AI Act):
 
 ## 11. Per-Article Detailed Breakdown (150 rows — Sprint 5 enrichment)
 
-> Sprint 5 enrichment: 150 rows mapping every applicable clause (GDPR 28 + CRA 26 + NIS 2 29 + DORA 38 + AI Act 29 = 150) to Sub-Domains, Obligated Party, Verification Criteria, Evidence Type, Risk if not met, Maturity (cur→tgt), and Regulatory Reporting. Cross-references Doc 04 §7 (Architectural Implications), Doc 05 §3 (per-regulation applicability), Doc 06b §3 (DORA article mapping), Doc 07b §4 (sub-domain proportionality), Doc 07c §4 (tensions). **EXCLUDED Effort/Cost/Timeline** per project directive.
+> Sprint 5 enrichment: 150 rows mapping every applicable clause (GDPR 28 + CRA 26 + NIS 2 29 + DORA 38 + AI Act 29 = 150) to Sub-Domains, Obligated Party, Verification Criteria, Evidence Type, Risk if not met, Implementation Status (backfilled from legacy scale, port Fase 2), and Regulatory Reporting. Cross-references Doc 04 §7 (Architectural Implications), Doc 05 §3 (per-regulation applicability), Doc 06b §3 (DORA article mapping), Doc 07b §4 (sub-domain proportionality), Doc 07c §4 (tensions). **EXCLUDED Effort/Cost/Timeline** per project directive.
 
-| Reg | Article | Topic | Sub-Domains | Obligated Party | Verification Criteria | Evidence Type | Risk if not met | Maturity (cur→tgt) | Regulatory Reporting |
+| Reg | Article | Topic | Sub-Domains | Obligated Party | Verification Criteria | Evidence Type | Risk if not met | Impl. Status (backfilled) | Regulatory Reporting |
 |-----|---------|-------|-------------|------------------|----------------------|---------------|-----------------|-------------------|---------------------|
-| GDPR | Art. | 5(1)(a) Lawfulness, fairness, transparency | D-05.1, D-09.2 | CONTROLLER | Lawful basis documented per processing activity | RoPA + legal-basis register | HIGH | Cur 3/4 → Tgt 4/4 | BfDI + EDPB on complaint |
-| GDPR | Art. | 5(1)(b) Purpose limitation | D-05.1 | CONTROLLER | Purpose specified per collection; no incompatible use | RoPA + DPIA | HIGH | Cur 3/4 → Tgt 4/4 | BfDI + EDPB |
-| GDPR | Art. | 5(1)(c) Data minimisation | D-05.1 | CONTROLLER | Field-level enforcement; quarterly data minimisation audit | DB schema + audit log | MEDIUM | Cur 2/4 → Tgt 3/4 | BfDI + EDPB |
-| GDPR | Art. | 5(1)(d) Accuracy | D-01.4, D-05.1 | CONTROLLER | Updates within 30d; integrity checks at API | DB constraints + HMAC | MEDIUM | Cur 3/4 → Tgt 4/4 | BfDI + EDPB |
-| GDPR | Art. | 5(1)(e) Storage limitation | D-05.2 | CONTROLLER | Retention policy per BaFin 5-10y; quarterly deletion validation | Retention policy + automated deletion | MEDIUM | Cur 3/4 → Tgt 4/4 | BfDI + EDPB + ECB |
-| GDPR | Art. | 5(1)(f) Integrity & confidentiality | D-01.1, D-01.2, D-01.3, D-01.4 | CONTROLLER | Strong symmetric encryption + modern transport cryptographic standard + HSM + WORM audit | ISO 27001 audit + DORA ICT inspection | HIGH | Cur 3/4 → Tgt 4/4 | BfDI + EDPB + ECB + BaFin |
-| GDPR | Art. | 5(2) Accountability | D-09.1, D-09.2 | CONTROLLER | Accountability documentation; ISMS governance | ISMS (ISO 27001 + DORA Art. 5) | HIGH | Cur 3/4 → Tgt 4/4 | BfDI + EDPB + ECB JST |
-| GDPR | Art. | 6 Lawfulness | D-05.1 | CONTROLLER | Legal basis per processing; contracts + legal-obligation documented | RoPA + DPA | HIGH | Cur 3/4 → Tgt 4/4 | BfDI + EDPB |
-| GDPR | Art. | 7 Consent | D-08.3, D-05.1 | CONTROLLER | Consent management platform; withdrawal mechanism | Consent log | MEDIUM | Cur 2/4 → Tgt 3/4 | BfDI + EDPB |
-| GDPR | Art. | 13 Information to data subject | D-09.4 | CONTROLLER | Privacy notice at collection; clear language | Privacy notice + RoPA | LOW | Cur 3/4 → Tgt 4/4 | BfDI + EDPB |
-| GDPR | Art. | 14 Third-party-source information | D-09.4 | CONTROLLER | Information provided within 1 month; source documented | RoPA + intake log | MEDIUM | Cur 2/4 → Tgt 3/4 | BfDI + EDPB |
-| GDPR | Art. | 15 Right of access | D-05.4 | CONTROLLER | API endpoint + 30-day SLA | DSAR workflow | MEDIUM | Cur 2/4 → Tgt 3/4 | BfDI + EDPB |
-| GDPR | Art. | 16 Right to rectification | D-05.1 | CONTROLLER | Rectification within 30d | DSAR workflow | MEDIUM | Cur 2/4 → Tgt 3/4 | BfDI + EDPB |
-| GDPR | Art. | 17 Right to erasure (CRITICAL T-002) | D-05.3 | CONTROLLER | Cryptographic sharding + 30d SLA | Erasure API + tokenisation | HIGH | Cur 2/4 → Tgt 4/4 | BfDI + EDPB + ECB JST |
-| GDPR | Art. | 18 Right to restriction | D-05.3 | CONTROLLER | Restriction within 30d | DSAR workflow | MEDIUM | Cur 2/4 → Tgt 3/4 | BfDI + EDPB |
-| GDPR | Art. | 20 Right to data portability | D-05.4 | CONTROLLER | JSON export within 30d | Export API | MEDIUM | Cur 2/4 → Tgt 3/4 | BfDI + EDPB |
-| GDPR | Art. | 22 Automated decision-making | D-07.1, D-09.2 | CONTROLLER | Human oversight; AI Act Art. 14 + AI Act Art. 27 FRIA | AI governance + IPSARA | HIGH | Cur 2/4 → Tgt 4/4 | BfDI + EDPB + AI Office |
-| GDPR | Art. | 23 Restrictions | D-09.1 | MEMBER STATE | Restrictions scoped to Charter Art. 52 essence-test | Legal register | MEDIUM | Cur 3/4 → Tgt 4/4 | BfDI + EDPB |
-| GDPR | Art. | 24 Controller responsibility | D-09.1 | CONTROLLER | Material change documented; ISO 27001 + DORA Art. 5 | ISMS + DORA framework | MEDIUM | Cur 3/4 → Tgt 4/4 | BfDI + EDPB + ECB JST |
-| GDPR | Art. | 25 Data protection by design/default | D-01.1, D-07.1 | CONTROLLER | NIST SSDF + OWASP SAMM Level 3 + STRIDE | Architecture review board | HIGH | Cur 3/4 → Tgt 4/4 | BfDI + EDPB + ECB JST |
-| GDPR | Art. | 28 Processor | D-06.3 | CONTROLLER + PROCESSOR | DPA Art. 28 + DORA Art. 30 CTPP clauses | Contract templates | HIGH | Cur 3/4 → Tgt 4/4 | BfDI + EDPB + ECB JST |
-| GDPR | Art. | 30 Records of processing | D-09.4 | CONTROLLER + PROCESSOR | RoPA maintained; 5y retention | RoPA tool | MEDIUM | Cur 3/4 → Tgt 4/4 | BfDI + EDPB |
-| GDPR | Art. | 32 Security of processing (CRITICAL) | D-01.1, D-01.2, D-01.3, D-01.4, D-09.1 | CONTROLLER + PROCESSOR | Strong symmetric encryption + modern transport cryptographic standard + HSM + ISO 27001 | ISO 27001 audit + DORA | HIGH | Cur 3/4 → Tgt 4/4 | BfDI + EDPB + ECB JST |
-| GDPR | Art. | 33 Breach notification (CRITICAL T-001) | D-04.3 | CONTROLLER | 72h to DPA + 4h DORA RTS + 24h NIS 2 + 24h CRA + 15d AI Act | Max-SLA routing pipeline | HIGH | Cur 2/4 → Tgt 4/4 | BfDI + EDPB + ECB + BaFin + ENISA + AI Office |
-| GDPR | Art. | 33(2) Processor notification | D-06.3 | PROCESSOR | Notify controller within 4-8h (contractual) | DPA Art. 28 | MEDIUM | Cur 3/4 → Tgt 4/4 | BfDI + EDPB |
-| GDPR | Art. | 35 DPIA | D-09.2 | CONTROLLER | High-risk processing DPIA; integrates with AI Act FRIA via IPSARA | IPSARA framework | HIGH | Cur 2/4 → Tgt 4/4 | BfDI + EDPB + AI Office |
-| GDPR | Art. | 37 DPO | D-09.1 | CONTROLLER | DPO appointed (large-scale systematic monitoring per Art. 37(1)(b)) | DPO role | MEDIUM | Cur 4/4 → Tgt 4/4 | BfDI + EDPB |
-| GDPR | Art. | 5(2) + 24 Risk-based approach | D-09.2 | CONTROLLER | Risk-based PPSL; ISO 27005 + NIST CSF 2.0 | IPSARA + DORA Art. 6 | HIGH | Cur 2/4 → Tgt 4/4 | BfDI + EDPB + ECB JST |
-| CRA | Art. | 6(1) Products with digital elements — scope | D-09.1 | MANUFACTURER | Mobile banking app + web platform in scope (Standard class) | Conformity declaration | MEDIUM | Cur 3/4 → Tgt 4/4 | ENISA + BaFin |
-| CRA | Art. | 7(1) Important products classification (CRITICAL) | D-09.3 | MANUFACTURER | Important products Class I/II gate; mobile banking Standard | Conformity assessment | MEDIUM | Cur 3/4 → Tgt 4/4 | ENISA |
-| CRA | Art. | 7(4) Implementing acts | D-09.3 | COMMISSION | Implementing acts to specify; monitor for updates | Per-CRA monitoring | LOW | Cur 3/4 → Tgt 4/4 | ENISA |
-| CRA | Art. | 8 Critical products classification | D-09.3 | MANUFACTURER | Critical products Annex IV; not applicable to mobile banking | Conformity assessment | LOW | Cur 3/4 → Tgt 4/4 | ENISA |
-| CRA | Art. | 13(1) Secure-by-design | D-07.1 | MANUFACTURER | NIST SSDF + OWASP SAMM Level 3 + STRIDE | Architecture review board | HIGH | Cur 3/4 → Tgt 4/4 | ENISA + BaFin |
-| CRA | Art. | 13(2) Risk assessment (CRITICAL T-003) | D-09.2 | MANUFACTURER | IPSARA Unified Assessment Framework | Risk assessment | HIGH | Cur 2/4 → Tgt 4/4 | ENISA + ECB JST + AI Office |
-| CRA | Art. | 13(4) Documentation | D-09.4 | MANUFACTURER | Technical documentation 10y retention | Doc repo | MEDIUM | Cur 3/4 → Tgt 4/4 | ENISA + BaFin |
-| CRA | Art. | 13(5) Supply chain due diligence (CRITICAL) | D-06.1 | MANUFACTURER | DORA Art. 28 + Art. 30 CTPP clauses; quarterly critical-vendor review | Vendor risk programme | HIGH | Cur 3/4 → Tgt 4/4 | ENISA + ECB JST + ESAs Joint Committee |
-| CRA | Art. | 13(8) Support period (5y) | D-02.2 | MANUFACTURER | 5y security update commitment from product placement | Support period register | MEDIUM | Cur 3/4 → Tgt 4/4 | ENISA |
-| CRA | Art. | 13(9) Update retention (10y) | D-02.2 | MANUFACTURER | 10y security update retention | Update archive | MEDIUM | Cur 3/4 → Tgt 4/4 | ENISA |
-| CRA | Art. | 13(13) Documentation retention (10y) | D-09.4 | MANUFACTURER | 10y technical documentation retention | Doc archive | MEDIUM | Cur 3/4 → Tgt 4/4 | ENISA + BaFin |
-| CRA | Art. | 14(1-2) Actively exploited vulnerability | D-02.3, D-04.3 | MANUFACTURER | 24h early warning + 72h CSIRT/ENISA + 14d final | CVD pipeline + SBOM | HIGH | Cur 2/4 → Tgt 3/4 | ENISA + BSI CSIRT |
-| CRA | Art. | 14(3-5) Severe incidents | D-04.3 | MANUFACTURER | 24h early warning + 72h CSIRT/ENISA + 1m final | Incident pipeline | HIGH | Cur 2/4 → Tgt 4/4 | ENISA + BSI CSIRT |
-| CRA | Art. | 15 Voluntary reporting | D-02.3 | MANUFACTURER | Voluntary reporting encouraged | Voluntary disclosure | LOW | Cur 2/4 → Tgt 3/4 | ENISA |
-| CRA | Art. | 18 Conformity self-assessment | D-10.3 | MANUFACTURER | Self-declaration of conformity (Standard class) | Conformity declaration | MEDIUM | Cur 3/4 → Tgt 4/4 | ENISA |
-| CRA | Art. | 20 SBOM | D-06.2 | MANUFACTURER | Machine-readable SBOM format per release; 10y retention | SBOM tooling | MEDIUM | Cur 3/4 → Tgt 4/4 | ENISA |
-| CRA | Art. | 21 Technical documentation | D-09.4 | MANUFACTURER | Technical documentation per Annex VII | Doc repo | MEDIUM | Cur 3/4 → Tgt 4/4 | ENISA |
-| CRA | Art. | 22 Authorised representative | D-09.4 | MANUFACTURER | EU-authorised representative (if non-EU manufacturer) | Appointment letter | LOW | Cur 3/4 → Tgt 4/4 | ENISA |
-| CRA | Art. | 23 Obligations of importers | D-06.3 | IMPORTER | Verify conformity declaration | Import verification | LOW | Cur 3/4 → Tgt 4/4 | ENISA |
-| CRA | Art. | 24 Obligations of distributors | D-06.3 | DISTRIBUTOR | Verify conformity; pass documentation | Distributor verification | LOW | Cur 3/4 → Tgt 4/4 | ENISA |
-| CRA | Art. | 25 Downstream provider | D-06.3 | DOWNSTREAM PROVIDER | AI Act downstream provider obligations; written agreements | Downstream contracts | HIGH | Cur 3/4 → Tgt 4/4 | ENISA + AI Office + ECB JST |
-| CRA | Annex | I Part I (1) Cybersecurity property | D-07.1 | MANUFACTURER | State-of-the-art cybersecurity by design | Architecture review board | HIGH | Cur 3/4 → Tgt 4/4 | ENISA + ECB JST |
-| CRA | Annex | I Part I (2)(e) Confidentiality by encryption | D-01.1, D-01.2, D-01.3 | MANUFACTURER | Strong symmetric encryption + modern transport cryptographic standard + HSM | ISO 27001 audit | HIGH | Cur 3/4 → Tgt 4/4 | ENISA + ECB JST |
-| CRA | Annex | I Part I (2)(h) Patch management | D-02.2 | MANUFACTURER | Critical CVE 24h patch SLA | Patch tooling | HIGH | Cur 3/4 → Tgt 4/4 | ENISA + ECB JST |
-| CRA | Annex | I Part II Vulnerability handling | D-02.3, D-06.2 | MANUFACTURER | CVD + SBOM + 5y support | CVD programme | HIGH | Cur 2/4 → Tgt 3/4 | ENISA + BSI CSIRT |
-| NIS 2 | Art. | 21(1) Risk management core obligation | D-09.1, D-09.2 | ESSENTIAL_ENTITY | Compounded qualifier; Art. 21(2)(a)-(j) closed-AND-list | ISMS + DORA Art. 5 + AI Act Art. 9 | HIGH | Cur 3/4 → Tgt 4/4 | BaFin + BSI + ECB JST |
-| NIS 2 | Art. | 21(2)(a) Risk analysis | D-09.2 | ESSENTIAL_ENTITY | IPSARA annual review; continuous monitoring | IPSARA framework | HIGH | Cur 2/4 → Tgt 4/4 | BaFin + ECB JST |
-| NIS 2 | Art. | 21(2)(b) Incident handling | D-04.1, D-04.2 | ESSENTIAL_ENTITY | 24/7 SOC + IR team + 5-reg max-SLA routing | ISO 27001 + DORA | HIGH | Cur 3/4 → Tgt 4/4 | BaFin + ECB JST + ENISA |
-| NIS 2 | Art. | 21(2)(c) Business continuity | D-04.4 | ESSENTIAL_ENTITY | RTO 4h / RPO 15min + 2 active DCs + 1 cold standby | DR programme | HIGH | Cur 3/4 → Tgt 4/4 | BaFin + ECB JST |
-| NIS 2 | Art. | 21(2)(d) Supply chain security | D-06.1, D-06.3 | ESSENTIAL_ENTITY | DORA Art. 28-30 CTPP + AI Act Art. 25 | Vendor risk programme | HIGH | Cur 3/4 → Tgt 4/4 | BaFin + ECB JST + ESAs Joint Committee |
-| NIS 2 | Art. | 21(2)(e) Vulnerability handling | D-02.1, D-02.2 | ESSENTIAL_ENTITY | SAST + DAST + SCA + automated IaC scanner + AI adversarial | Vulnerability programme | HIGH | Cur 3/4 → Tgt 4/4 | BaFin + ECB JST + ENISA |
-| NIS 2 | Art. | 21(2)(f) Cryptography | D-01.1, D-01.2, D-01.3 | ESSENTIAL_ENTITY | Strong symmetric encryption + modern transport cryptographic standard + HSM | ISO 27001 audit | HIGH | Cur 3/4 → Tgt 4/4 | BSI + ECB JST |
-| NIS 2 | Art. | 21(2)(g) Access control | D-03.1, D-03.2, D-03.3 | ESSENTIAL_ENTITY | IAM + strong cryptographic hardware key + RBAC/ABAC + JIT | ISO 27001 + DORA | HIGH | Cur 3/4 → Tgt 4/4 | BaFin + ECB JST |
-| NIS 2 | Art. | 21(2)(h) Secure communication | D-01.2, D-01.3 | ESSENTIAL_ENTITY | Modern transport cryptographic standard + mutual transport cryptographic authentication + PKI | ISO 27001 audit | HIGH | Cur 3/4 → Tgt 4/4 | BaFin + ECB JST |
-| NIS 2 | Art. | 21(2)(i) HR security + training | D-08.1, D-08.2, D-08.3 | ESSENTIAL_ENTITY | Monthly phishing + quarterly training + annual certification + board briefing | Awareness programme | MEDIUM | Cur 3/4 → Tgt 4/4 | BaFin + ECB JST |
-| NIS 2 | Art. | 20 Management body liability | D-08.3 | ESSENTIAL_ENTITY (mgmt body) | Board briefing + documented personal liability | Board programme | HIGH | Cur 2/4 → Tgt 4/4 | BaFin + ECB JST |
-| NIS 2 | Art. | 23(4) Incident notification (CRITICAL T-001) | D-04.3 | ESSENTIAL_ENTITY | 24h early warning + 72h notification + 1m final | Max-SLA routing | HIGH | Cur 2/4 → Tgt 4/4 | BaFin + ECB JST + BSI CSIRT + ENISA |
-| NIS 2 | Art. | 12 CVD ecosystem | D-02.3 | ESSENTIAL_ENTITY | security.txt + dedicated mailbox + CVD page | CVD programme | MEDIUM | Cur 2/4 → Tgt 3/4 | BSI CSIRT + ENISA |
-| NIS 2 | Art. | 7 National cybersecurity strategy | D-09.1 | MEMBER STATE | Germany NIS 2 transposition | Federal law | MEDIUM | Cur 3/4 → Tgt 4/4 | BSI + BaFin |
-| NIS 2 | Art. | 8 National CSIRT | D-04.3 | MEMBER STATE | CSIRT cooperation; 24h warning | CSIRT network | MEDIUM | Cur 3/4 → Tgt 4/4 | BSI CSIRT + ENISA |
-| NIS 2 | Art. | 11 Risk classification | D-09.2 | MEMBER STATE | Annual risk classification | National register | LOW | Cur 3/4 → Tgt 4/4 | BSI + BaFin |
-| NIS 2 | Art. | 13 Information sharing | D-02.3 | ESSENTIAL_ENTITY | Voluntary info sharing | Trust circles | LOW | Cur 2/4 → Tgt 3/4 | ENISA + BSI |
-| NIS 2 | Art. | 14 Supervision | D-09.1 | NATIONAL_AUTHORITY | BaFin supervision; ECB for credit institutions | Supervisory framework | MEDIUM | Cur 3/4 → Tgt 4/4 | BaFin + ECB JST |
-| NIS 2 | Art. | 15 Enforcement | D-04.3 | NATIONAL_AUTHORITY | Penalty enforcement; member state sanctions | Supervisory action | MEDIUM | Cur 3/4 → Tgt 4/4 | BaFin + ECB JST |
-| NIS 2 | Art. | 16 Penalty framework | D-09.1 | NATIONAL_AUTHORITY | Penalty thresholds; member state defined | Penalty register | MEDIUM | Cur 3/4 → Tgt 4/4 | BaFin + ECB JST |
-| NIS 2 | Art. | 18 Mutual assistance | D-09.1 | MEMBER STATE | Cross-border assistance | Cooperation agreement | LOW | Cur 3/4 → Tgt 4/4 | BSI + ENISA |
-| NIS 2 | Art. | 19 EU CyCLONe | D-04.3 | MEMBER STATE | Crisis management network | Network register | LOW | Cur 3/4 → Tgt 4/4 | ENISA |
-| NIS 2 | Art. | 22 Coordinated risk assessment | D-09.2 | MEMBER STATE | Critical ICT supply chain assessment | Coordinated assessment | MEDIUM | Cur 3/4 → Tgt 4/4 | BSI + ENISA + ECB |
-| NIS 2 | Art. | 24 Essential entities register | D-09.4 | NATIONAL_AUTHORITY | Comparable categories | National register | LOW | Cur 3/4 → Tgt 4/4 | BaFin + ECB JST |
-| NIS 2 | Art. | 25 Important entities | D-09.4 | NATIONAL_AUTHORITY | Important entity obligations | National register | LOW | Cur 3/4 → Tgt 4/4 | BaFin + ECB JST |
-| NIS 2 | Art. | 26 Essential entities: incident notification | D-04.3 | ESSENTIAL_ENTITY | 24h EA + 72h notification + 1m final | Max-SLA routing | HIGH | Cur 2/4 → Tgt 4/4 | BaFin + BSI CSIRT + ENISA |
-| NIS 2 | Art. | 27 Important entities: incident notification | D-04.3 | IMPORTANT_ENTITY | 24h EA + 72h notification + 1m final | Max-SLA routing | HIGH | Cur 2/4 → Tgt 4/4 | BaFin + BSI CSIRT + ENISA |
-| NIS 2 | Art. | 28 Voluntary notification | D-04.3 | ESSENTIAL_ENTITY | Voluntary early warning | Voluntary disclosure | LOW | Cur 2/4 → Tgt 3/4 | BSI CSIRT + ENISA |
-| NIS 2 | Art. | 29 EU registry | D-09.4 | ENISA | EU registry of entities | EU registry | LOW | Cur 3/4 → Tgt 4/4 | ENISA |
-| DORA | Art. | 4 Definitions | D-09.1 | FINANCIAL_ENTITY | ICT-related vocabulary aligned with definitions | Glossary | LOW | Cur 4/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 5(1) Governance framework | D-09.1, D-08.3 | FINANCIAL_ENTITY (mgmt body) | Management body 4-verb coordination + accountability | ISMS + DORA ICT framework | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 5(2) Management body 4-verb | D-09.1, D-08.3 | FINANCIAL_ENTITY (mgmt body) | Define, approve, oversee, be responsible — 4 separate duties | Board programme | HIGH | Cur 2/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 5(4) Sufficient knowledge and skills | D-08.3 | FINANCIAL_ENTITY (mgmt body) | Board briefing + AI Act + DORA + NIS 2 | Board programme | HIGH | Cur 2/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 6(1) ICT risk management framework | D-09.1 | FINANCIAL_ENTITY | Sound, comprehensive, well-documented; 3-adjective AND | DORA ICT framework | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 6(2) Strategies, policies, procedures | D-09.1 | FINANCIAL_ENTITY | 5-element AND: strategies, policies, procedures, ICT protocols, tools | 5-policy architecture | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 6(8)(a) Continuous identification | D-09.2 | FINANCIAL_ENTITY | Continuous ICT risk identification including inter-entity | IPSARA continuous | HIGH | Cur 2/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 7(2) Risk sources (sentence 1) | D-02.1 | FINANCIAL_ENTITY | Continuously identify all sources of ICT risk | Threat intel + SAST | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 7(2) Risk scenario register (sentence 2) | D-09.2 | FINANCIAL_ENTITY | Annual risk-scenario refresh; at least yearly | IPSARA annual | HIGH | Cur 2/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 8(1) Identification function (OJ-literal) | D-09.3 | FINANCIAL_ENTITY | Identify all ICT-supported business functions + ICT assets | DORA Art. 8 ICT inventory | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 8(2) Dependencies | D-09.3 | FINANCIAL_ENTITY | Identify dependencies including third-party providers | Asset inventory | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 9(1) Continuous monitoring (OJ-literal) | D-04.1, D-10.1 | FINANCIAL_ENTITY | OJ-literal: continuously monitor + control security + functioning | 24/7 SOC + SIEM | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 9(2) CIA+A 4x3 matrix | D-01.1, D-01.2, D-01.4 | FINANCIAL_ENTITY | CIA+A 4-way AND: at rest, in use, in transit | Encryption + integrity | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 9(4)(a) Documented policies | D-09.1 | FINANCIAL_ENTITY | Information security policies, procedures | 5-policy architecture | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 9(4)(b) Network architecture | D-07.1 | FINANCIAL_ENTITY | Network segmentation + infra resilience | Architecture review | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 9(4)(c) Access policies | D-03.3 | FINANCIAL_ENTITY | Authorisation + RBAC/ABAC | IAM + JIT | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 9(4)(d) Strong authentication | D-03.2 | FINANCIAL_ENTITY | Strong cryptographic hardware key + AAL3 + PSD2 SCA | MFA programme | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 9(4)(e) Encryption | D-01.1, D-01.2, D-01.3 | FINANCIAL_ENTITY | Strong symmetric encryption + modern transport cryptographic standard + HSM | Encryption audit | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 9(4)(f) Patches and updates | D-02.2 | FINANCIAL_ENTITY | Critical CVE 24h SLA | Patch tooling | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 9(4)(g) ICT change management | D-07.4 | FINANCIAL_ENTITY | Managed change platform + 4-eyes + CAB | Change management | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 9(4)(h) ICT governance training | D-08.1, D-08.2 | FINANCIAL_ENTITY | Awareness + competence | Awareness programme | MEDIUM | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 10 Detection mechanisms | D-04.1, D-10.1 | FINANCIAL_ENTITY | Anomalous activity + ICT network performance | SIEM + EDR + NDR + UEBA | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 11 ICT BC policy | D-04.4, D-09.1 | FINANCIAL_ENTITY | Comprehensive BC policy + integral part of overall BC | BC policy | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 12 BC + DR plans | D-04.4, D-10.2 | FINANCIAL_ENTITY | Backup + recovery + records | DR programme + WORM | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 13 ICT change + monitoring + awareness | D-07.4, D-10.1, D-08.1, D-08.2 | FINANCIAL_ENTITY | 3-way AND: change + monitoring + training | DORA ICT programme | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 14 Crisis communication | D-04.3 | FINANCIAL_ENTITY | 3-way AND: clients + counterparts + public | Crisis communication | HIGH | Cur 2/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 15 Testing of ICT systems | D-10.3 | FINANCIAL_ENTITY | RTS mandate to specify measurement | DORA compliance testing | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 16/18 Classification criteria | D-04.1 | FINANCIAL_ENTITY | Major incident classification (RTS delegated) | Classification criteria | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 17(1) Incident management process | D-04.1, D-04.3 | FINANCIAL_ENTITY | Define, establish, implement — 3-verb coordination | Incident programme | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 19(1) Reporting to competent authority | D-04.3 | FINANCIAL_ENTITY | 4h initial + 72h intermediate + 1m final | Max-SLA routing | HIGH | Cur 2/4 → Tgt 4/4 | ECB JST + BaFin + EDPB + ENISA + AI Office |
-| DORA | Art. | 19(3) Client notification | D-04.3 | FINANCIAL_ENTITY | When impact on financial interests of clients | Client notification | HIGH | Cur 2/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 20 RTS authority | D-04.3 | COMMISSION | RTS for incident reporting deadlines | RTS Delegated Reg. (EU) 2025/301 | MEDIUM | Cur 4/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 21 General response/recovery | D-04.1, D-04.2, D-04.4 | FINANCIAL_ENTITY | Cross-cutting incident-handling | Incident programme | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 22 Client notification (payment) | D-04.3 | FINANCIAL_ENTITY | Payment-specific client notification | Client notification | HIGH | Cur 2/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 23 Payment-specific reporting | D-04.3 | FINANCIAL_ENTITY | EBA Guidelines on payment incidents | Max-SLA routing | HIGH | Cur 2/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 24(1) Digital operational resilience testing | D-10.3, D-02.4 | FINANCIAL_ENTITY | 3-verb coordination: establish, maintain, review | DORA testing programme | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 25 12 testing modalities | D-10.3 | FINANCIAL_ENTITY | 12-item list: vulnerability assessments, scans, OS analysis, etc. | Testing programme | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 26(1) TLPT (CRITICAL T-005) | D-02.4 | FINANCIAL_ENTITY | At least every 3 years; ECB significant entities may adjust to annual | TLPT programme | HIGH | Cur 1/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 27 Advanced testing | D-02.4 | FINANCIAL_ENTITY | On a regular basis supplementing TLPT | Advanced testing | HIGH | Cur 1/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 28 ICT third-party risk (CRITICAL) | D-06.1, D-06.3, D-06.4 | FINANCIAL_ENTITY | 4-factor proportionality + pre-contractual assessment + exit strategy | Vendor risk programme | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin + ESAs Joint Committee |
-| DORA | Art. | 29 Pre-contractual assessment | D-06.1 | FINANCIAL_ENTITY | Suitability + conflict + ICT compatibility + due diligence | Vendor risk programme | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 30(1) Contractual arrangements | D-06.3 | FINANCIAL_ENTITY | Rights + obligations clearly allocated in writing | Contract templates | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 30(2) 9-element minimum | D-06.3 | FINANCIAL_ENTITY | Functions + locations + data + access + audit + SLAs + termination + exit + sub-outsourcing | Contract templates | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 30(3)(e) CIF audit rights | D-06.3 | FINANCIAL_ENTITY | CIF-only: unrestricted access + inspection + audit | Contract templates | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 30(3)(f) CIF exit strategy | D-06.4 | FINANCIAL_ENTITY | CIF-only: exit strategies | Exit strategy | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 31-33 Register maintenance | D-09.4 | FINANCIAL_ENTITY | Register of contractual arrangements — annual update | DORA Art. 34 register | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| DORA | Art. | 34 Information register | D-09.4 | FINANCIAL_ENTITY | Annual update + 5y retention | DORA Art. 34 register | HIGH | Cur 3/4 → Tgt 4/4 | ECB JST + BaFin |
-| AI Act | Art. | 5 Prohibited AI | — | PROVIDER | No prohibited practices (OmniScore is credit scoring, lawful) | Compliance register | LOW | Cur 4/4 → Tgt 4/4 | AI Office + national DPA |
-| AI Act | Art. | 6 High-risk classification | D-09.1, D-09.2 | PROVIDER | Annex III §5 credit scoring — High-Risk | AI Act risk register | HIGH | Cur 3/4 → Tgt 4/4 | AI Office + EDPB + national DPA |
-| AI Act | Art. | 9 Risk management system | D-09.1, D-09.2 | PROVIDER | Continuous 5-step lifecycle: identify + estimate + evaluate + manage + communicate | AI Act risk system | HIGH | Cur 2/4 → Tgt 4/4 | AI Office + EDPB + ECB JST |
-| AI Act | Art. | 10 Data governance | D-05.1, D-05.2, D-09.4 | PROVIDER | Training data quality + bias detection + relevance + representativeness | Data governance | HIGH | Cur 2/4 → Tgt 2/4 | AI Office + EDPB + national DPA |
-| AI Act | Art. | 11 Technical documentation | D-09.4 | PROVIDER | Annex IV documentation; 10y retention | Technical documentation | MEDIUM | Cur 2/4 → Tgt 4/4 | AI Office + EDPB |
-| AI Act | Art. | 12 Record-keeping | D-10.2 | PROVIDER | Automatic logging; 6m minimum retention | AI Act log retention | HIGH | Cur 3/4 → Tgt 4/4 | AI Office + ECB JST |
-| AI Act | Art. | 13 Transparency to deployers | D-09.4 | PROVIDER | Instructions for use; information to deployers | Transparency docs | MEDIUM | Cur 2/4 → Tgt 4/4 | AI Office + EDPB |
-| AI Act | Art. | 14 Human oversight | D-03.3, D-08.3 | PROVIDER | Human-in-the-loop; oversight by trained staff | Human oversight | HIGH | Cur 2/4 → Tgt 4/4 | AI Office + EDPB + ECB JST |
-| AI Act | Art. | 15 Accuracy, robustness, cybersecurity | D-07.1, D-09.2 | PROVIDER | Appropriate levels calibrated to intended purpose | AI Act accuracy testing | HIGH | Cur 2/4 → Tgt 4/4 | AI Office + ECB JST |
-| AI Act | Art. | 16 Obligations of providers | D-09.1, D-09.4 | PROVIDER | Conformity + post-market monitoring + corrective measures | Provider obligations | HIGH | Cur 3/4 → Tgt 4/4 | AI Office + ECB JST |
-| AI Act | Art. | 17 Quality management system | D-09.1 | PROVIDER | Documented quality management system | Quality system | HIGH | Cur 3/4 → Tgt 4/4 | AI Office + ECB JST |
-| AI Act | Art. | 18 Automatically generated logs | D-10.2 | PROVIDER | Automatic logging of events | Logging system | HIGH | Cur 3/4 → Tgt 4/4 | AI Office + ECB JST |
-| AI Act | Art. | 19 Design for compliance | D-07.1 | PROVIDER | Designed for Art. 8-17 compliance | Design compliance | HIGH | Cur 3/4 → Tgt 4/4 | AI Office + ECB JST |
-| AI Act | Art. | 20-22 Quality + log + documentation | D-09.4 | PROVIDER | Quality + logs + documentation | Provider obligations | HIGH | Cur 3/4 → Tgt 4/4 | AI Office + ECB JST |
-| AI Act | Art. | 23 Corrective measures + duty to inform | D-04.3 | PROVIDER | Corrective measures + duty to inform | Corrective actions | HIGH | Cur 3/4 → Tgt 4/4 | AI Office + ECB JST |
-| AI Act | Art. | 25 Downstream provider obligations | D-06.3 | DOWNSTREAM PROVIDER | Substantial modification triggers provider status | Downstream contracts | HIGH | Cur 3/4 → Tgt 4/4 | AI Office + EDPB + ECB JST |
-| AI Act | Art. | 26 Obligations of deployers | D-09.1 | DEPLOYER | Use per instructions + monitoring + log-keeping | Deployer obligations | HIGH | Cur 3/4 → Tgt 4/4 | AI Office + EDPB + national DPA |
-| AI Act | Art. | 27 FRIA (CRITICAL T-003) | D-09.2 | DEPLOYER | Fundamental Rights Impact Assessment; integrated with DPIA via IPSARA | IPSARA framework | HIGH | Cur 2/4 → Tgt 4/4 | AI Office + EDPB + BfDI |
-| AI Act | Art. | 28 Notification to national authority | D-04.3 | DEPLOYER | Serious incident notification | AI Act incident reporting | HIGH | Cur 2/4 → Tgt 4/4 | AI Office + national DPA |
-| AI Act | Art. | 43 Conformity assessment | D-10.3 | PROVIDER | Pre-deployment conformity assessment; AI Office scrutiny | AI Act conformity | HIGH | Cur 2/4 → Tgt 4/4 | AI Office + ECB JST |
-| AI Act | Art. | 49 Registration | D-09.4 | PROVIDER | EU database registration of high-risk AI | EU database | MEDIUM | Cur 2/4 → Tgt 4/4 | AI Office |
-| AI Act | Art. | 50 Transparency (limited-risk) | D-09.1 | PROVIDER | Chatbot/deepfake transparency | Transparency docs | LOW | Cur 3/4 → Tgt 4/4 | AI Office + national DPA |
-| AI Act | Art. | 51-55 GPAI obligations | — | GPAI PROVIDER | GPAI (not applicable to OmniScore) | Not applicable | LOW | Cur 4/4 → Tgt 4/4 | AI Office |
-| AI Act | Art. | 60-62 Post-market monitoring (CRITICAL T-003) | D-10.1, D-10.3 | PROVIDER | Post-market monitoring integrated with DORA Art. 13 | AI Act PMM | HIGH | Cur 2/4 → Tgt 4/4 | AI Office + ECB JST |
-| AI Act | Art. | 65 Serious incident reporting | D-04.3 | PROVIDER | 15d default + 2d widespread + 10d death | AI Act incident reporting | HIGH | Cur 2/4 → Tgt 4/4 | AI Office + ECB JST + national DPA |
-| AI Act | Art. | 73(2) Default 15d | D-04.3 | PROVIDER | 15 days after becoming aware | Max-SLA routing | HIGH | Cur 2/4 → Tgt 4/4 | AI Office + ECB JST + national DPA |
-| AI Act | Art. | 73(3) Widespread 2d | D-04.3 | PROVIDER | 2 days for widespread infringement | Max-SLA routing | HIGH | Cur 2/4 → Tgt 4/4 | AI Office + ECB JST + national DPA |
-| AI Act | Art. | 73(4) Death 10d | D-04.3 | PROVIDER | 10 days after causal link established | Max-SLA routing | HIGH | Cur 2/4 → Tgt 4/4 | AI Office + ECB JST + national DPA |
-| AI Act | Art. | 85 Penalties | D-09.1 | NATIONAL_AUTHORITY | Penalty thresholds; member state-defined | Penalty register | MEDIUM | Cur 3/4 → Tgt 4/4 | AI Office + national DPA |
+| GDPR | Art. | 5(1)(a) Lawfulness, fairness, transparency | D-05.1, D-09.2 | CONTROLLER | Lawful basis documented per processing activity | RoPA + legal-basis register | HIGH | PARTIAL | BfDI + EDPB on complaint |
+| GDPR | Art. | 5(1)(b) Purpose limitation | D-05.1 | CONTROLLER | Purpose specified per collection; no incompatible use | RoPA + DPIA | HIGH | PARTIAL | BfDI + EDPB |
+| GDPR | Art. | 5(1)(c) Data minimisation | D-05.1 | CONTROLLER | Field-level enforcement; quarterly data minimisation audit | DB schema + audit log | MEDIUM | PARTIAL | BfDI + EDPB |
+| GDPR | Art. | 5(1)(d) Accuracy | D-01.4, D-05.1 | CONTROLLER | Updates within 30d; integrity checks at API | DB constraints + HMAC | MEDIUM | PARTIAL | BfDI + EDPB |
+| GDPR | Art. | 5(1)(e) Storage limitation | D-05.2 | CONTROLLER | Retention policy per BaFin 5-10y; quarterly deletion validation | Retention policy + automated deletion | MEDIUM | PARTIAL | BfDI + EDPB + ECB |
+| GDPR | Art. | 5(1)(f) Integrity & confidentiality | D-01.1, D-01.2, D-01.3, D-01.4 | CONTROLLER | Strong symmetric encryption + modern transport cryptographic standard + HSM + WORM audit | ISO 27001 audit + DORA ICT inspection | HIGH | PARTIAL | BfDI + EDPB + ECB + BaFin |
+| GDPR | Art. | 5(2) Accountability | D-09.1, D-09.2 | CONTROLLER | Accountability documentation; ISMS governance | ISMS (ISO 27001 + DORA Art. 5) | HIGH | PARTIAL | BfDI + EDPB + ECB JST |
+| GDPR | Art. | 6 Lawfulness | D-05.1 | CONTROLLER | Legal basis per processing; contracts + legal-obligation documented | RoPA + DPA | HIGH | PARTIAL | BfDI + EDPB |
+| GDPR | Art. | 7 Consent | D-08.3, D-05.1 | CONTROLLER | Consent management platform; withdrawal mechanism | Consent log | MEDIUM | PARTIAL | BfDI + EDPB |
+| GDPR | Art. | 13 Information to data subject | D-09.4 | CONTROLLER | Privacy notice at collection; clear language | Privacy notice + RoPA | LOW | PARTIAL | BfDI + EDPB |
+| GDPR | Art. | 14 Third-party-source information | D-09.4 | CONTROLLER | Information provided within 1 month; source documented | RoPA + intake log | MEDIUM | PARTIAL | BfDI + EDPB |
+| GDPR | Art. | 15 Right of access | D-05.4 | CONTROLLER | API endpoint + 30-day SLA | DSAR workflow | MEDIUM | PARTIAL | BfDI + EDPB |
+| GDPR | Art. | 16 Right to rectification | D-05.1 | CONTROLLER | Rectification within 30d | DSAR workflow | MEDIUM | PARTIAL | BfDI + EDPB |
+| GDPR | Art. | 17 Right to erasure (CRITICAL T-002) | D-05.3 | CONTROLLER | Cryptographic sharding + 30d SLA | Erasure API + tokenisation | HIGH | PARTIAL | BfDI + EDPB + ECB JST |
+| GDPR | Art. | 18 Right to restriction | D-05.3 | CONTROLLER | Restriction within 30d | DSAR workflow | MEDIUM | PARTIAL | BfDI + EDPB |
+| GDPR | Art. | 20 Right to data portability | D-05.4 | CONTROLLER | JSON export within 30d | Export API | MEDIUM | PARTIAL | BfDI + EDPB |
+| GDPR | Art. | 22 Automated decision-making | D-07.1, D-09.2 | CONTROLLER | Human oversight; AI Act Art. 14 + AI Act Art. 27 FRIA | AI governance + IPSARA | HIGH | PARTIAL | BfDI + EDPB + AI Office |
+| GDPR | Art. | 23 Restrictions | D-09.1 | MEMBER STATE | Restrictions scoped to Charter Art. 52 essence-test | Legal register | MEDIUM | PARTIAL | BfDI + EDPB |
+| GDPR | Art. | 24 Controller responsibility | D-09.1 | CONTROLLER | Material change documented; ISO 27001 + DORA Art. 5 | ISMS + DORA framework | MEDIUM | PARTIAL | BfDI + EDPB + ECB JST |
+| GDPR | Art. | 25 Data protection by design/default | D-01.1, D-07.1 | CONTROLLER | NIST SSDF + OWASP SAMM Level 3 + STRIDE | Architecture review board | HIGH | PARTIAL | BfDI + EDPB + ECB JST |
+| GDPR | Art. | 28 Processor | D-06.3 | CONTROLLER + PROCESSOR | DPA Art. 28 + DORA Art. 30 CTPP clauses | Contract templates | HIGH | PARTIAL | BfDI + EDPB + ECB JST |
+| GDPR | Art. | 30 Records of processing | D-09.4 | CONTROLLER + PROCESSOR | RoPA maintained; 5y retention | RoPA tool | MEDIUM | PARTIAL | BfDI + EDPB |
+| GDPR | Art. | 32 Security of processing (CRITICAL) | D-01.1, D-01.2, D-01.3, D-01.4, D-09.1 | CONTROLLER + PROCESSOR | Strong symmetric encryption + modern transport cryptographic standard + HSM + ISO 27001 | ISO 27001 audit + DORA | HIGH | PARTIAL | BfDI + EDPB + ECB JST |
+| GDPR | Art. | 33 Breach notification (CRITICAL T-001) | D-04.3 | CONTROLLER | 72h to DPA + 4h DORA RTS + 24h NIS 2 + 24h CRA + 15d AI Act | Max-SLA routing pipeline | HIGH | PARTIAL | BfDI + EDPB + ECB + BaFin + ENISA + AI Office |
+| GDPR | Art. | 33(2) Processor notification | D-06.3 | PROCESSOR | Notify controller within 4-8h (contractual) | DPA Art. 28 | MEDIUM | PARTIAL | BfDI + EDPB |
+| GDPR | Art. | 35 DPIA | D-09.2 | CONTROLLER | High-risk processing DPIA; integrates with AI Act FRIA via IPSARA | IPSARA framework | HIGH | PARTIAL | BfDI + EDPB + AI Office |
+| GDPR | Art. | 37 DPO | D-09.1 | CONTROLLER | DPO appointed (large-scale systematic monitoring per Art. 37(1)(b)) | DPO role | MEDIUM | IMPLEMENTED | BfDI + EDPB |
+| GDPR | Art. | 5(2) + 24 Risk-based approach | D-09.2 | CONTROLLER | Risk-based PPSL; ISO 27005 + NIST CSF 2.0 | IPSARA + DORA Art. 6 | HIGH | PARTIAL | BfDI + EDPB + ECB JST |
+| CRA | Art. | 6(1) Products with digital elements — scope | D-09.1 | MANUFACTURER | Mobile banking app + web platform in scope (Standard class) | Conformity declaration | MEDIUM | PARTIAL | ENISA + BaFin |
+| CRA | Art. | 7(1) Important products classification (CRITICAL) | D-09.3 | MANUFACTURER | Important products Class I/II gate; mobile banking Standard | Conformity assessment | MEDIUM | PARTIAL | ENISA |
+| CRA | Art. | 7(4) Implementing acts | D-09.3 | COMMISSION | Implementing acts to specify; monitor for updates | Per-CRA monitoring | LOW | PARTIAL | ENISA |
+| CRA | Art. | 8 Critical products classification | D-09.3 | MANUFACTURER | Critical products Annex IV; not applicable to mobile banking | Conformity assessment | LOW | PARTIAL | ENISA |
+| CRA | Art. | 13(1) Secure-by-design | D-07.1 | MANUFACTURER | NIST SSDF + OWASP SAMM Level 3 + STRIDE | Architecture review board | HIGH | PARTIAL | ENISA + BaFin |
+| CRA | Art. | 13(2) Risk assessment (CRITICAL T-003) | D-09.2 | MANUFACTURER | IPSARA Unified Assessment Framework | Risk assessment | HIGH | PARTIAL | ENISA + ECB JST + AI Office |
+| CRA | Art. | 13(4) Documentation | D-09.4 | MANUFACTURER | Technical documentation 10y retention | Doc repo | MEDIUM | PARTIAL | ENISA + BaFin |
+| CRA | Art. | 13(5) Supply chain due diligence (CRITICAL) | D-06.1 | MANUFACTURER | DORA Art. 28 + Art. 30 CTPP clauses; quarterly critical-vendor review | Vendor risk programme | HIGH | PARTIAL | ENISA + ECB JST + ESAs Joint Committee |
+| CRA | Art. | 13(8) Support period (5y) | D-02.2 | MANUFACTURER | 5y security update commitment from product placement | Support period register | MEDIUM | PARTIAL | ENISA |
+| CRA | Art. | 13(9) Update retention (10y) | D-02.2 | MANUFACTURER | 10y security update retention | Update archive | MEDIUM | PARTIAL | ENISA |
+| CRA | Art. | 13(13) Documentation retention (10y) | D-09.4 | MANUFACTURER | 10y technical documentation retention | Doc archive | MEDIUM | PARTIAL | ENISA + BaFin |
+| CRA | Art. | 14(1-2) Actively exploited vulnerability | D-02.3, D-04.3 | MANUFACTURER | 24h early warning + 72h CSIRT/ENISA + 14d final | CVD pipeline + SBOM | HIGH | PARTIAL | ENISA + BSI CSIRT |
+| CRA | Art. | 14(3-5) Severe incidents | D-04.3 | MANUFACTURER | 24h early warning + 72h CSIRT/ENISA + 1m final | Incident pipeline | HIGH | PARTIAL | ENISA + BSI CSIRT |
+| CRA | Art. | 15 Voluntary reporting | D-02.3 | MANUFACTURER | Voluntary reporting encouraged | Voluntary disclosure | LOW | PARTIAL | ENISA |
+| CRA | Art. | 18 Conformity self-assessment | D-10.3 | MANUFACTURER | Self-declaration of conformity (Standard class) | Conformity declaration | MEDIUM | PARTIAL | ENISA |
+| CRA | Art. | 20 SBOM | D-06.2 | MANUFACTURER | Machine-readable SBOM format per release; 10y retention | SBOM tooling | MEDIUM | PARTIAL | ENISA |
+| CRA | Art. | 21 Technical documentation | D-09.4 | MANUFACTURER | Technical documentation per Annex VII | Doc repo | MEDIUM | PARTIAL | ENISA |
+| CRA | Art. | 22 Authorised representative | D-09.4 | MANUFACTURER | EU-authorised representative (if non-EU manufacturer) | Appointment letter | LOW | PARTIAL | ENISA |
+| CRA | Art. | 23 Obligations of importers | D-06.3 | IMPORTER | Verify conformity declaration | Import verification | LOW | PARTIAL | ENISA |
+| CRA | Art. | 24 Obligations of distributors | D-06.3 | DISTRIBUTOR | Verify conformity; pass documentation | Distributor verification | LOW | PARTIAL | ENISA |
+| CRA | Art. | 25 Downstream provider | D-06.3 | DOWNSTREAM PROVIDER | AI Act downstream provider obligations; written agreements | Downstream contracts | HIGH | PARTIAL | ENISA + AI Office + ECB JST |
+| CRA | Annex | I Part I (1) Cybersecurity property | D-07.1 | MANUFACTURER | State-of-the-art cybersecurity by design | Architecture review board | HIGH | PARTIAL | ENISA + ECB JST |
+| CRA | Annex | I Part I (2)(e) Confidentiality by encryption | D-01.1, D-01.2, D-01.3 | MANUFACTURER | Strong symmetric encryption + modern transport cryptographic standard + HSM | ISO 27001 audit | HIGH | PARTIAL | ENISA + ECB JST |
+| CRA | Annex | I Part I (2)(h) Patch management | D-02.2 | MANUFACTURER | Critical CVE 24h patch SLA | Patch tooling | HIGH | PARTIAL | ENISA + ECB JST |
+| CRA | Annex | I Part II Vulnerability handling | D-02.3, D-06.2 | MANUFACTURER | CVD + SBOM + 5y support | CVD programme | HIGH | PARTIAL | ENISA + BSI CSIRT |
+| NIS 2 | Art. | 21(1) Risk management core obligation | D-09.1, D-09.2 | ESSENTIAL_ENTITY | Compounded qualifier; Art. 21(2)(a)-(j) closed-AND-list | ISMS + DORA Art. 5 + AI Act Art. 9 | HIGH | PARTIAL | BaFin + BSI + ECB JST |
+| NIS 2 | Art. | 21(2)(a) Risk analysis | D-09.2 | ESSENTIAL_ENTITY | IPSARA annual review; continuous monitoring | IPSARA framework | HIGH | PARTIAL | BaFin + ECB JST |
+| NIS 2 | Art. | 21(2)(b) Incident handling | D-04.1, D-04.2 | ESSENTIAL_ENTITY | 24/7 SOC + IR team + 5-reg max-SLA routing | ISO 27001 + DORA | HIGH | PARTIAL | BaFin + ECB JST + ENISA |
+| NIS 2 | Art. | 21(2)(c) Business continuity | D-04.4 | ESSENTIAL_ENTITY | RTO 4h / RPO 15min + 2 active DCs + 1 cold standby | DR programme | HIGH | PARTIAL | BaFin + ECB JST |
+| NIS 2 | Art. | 21(2)(d) Supply chain security | D-06.1, D-06.3 | ESSENTIAL_ENTITY | DORA Art. 28-30 CTPP + AI Act Art. 25 | Vendor risk programme | HIGH | PARTIAL | BaFin + ECB JST + ESAs Joint Committee |
+| NIS 2 | Art. | 21(2)(e) Vulnerability handling | D-02.1, D-02.2 | ESSENTIAL_ENTITY | SAST + DAST + SCA + automated IaC scanner + AI adversarial | Vulnerability programme | HIGH | PARTIAL | BaFin + ECB JST + ENISA |
+| NIS 2 | Art. | 21(2)(f) Cryptography | D-01.1, D-01.2, D-01.3 | ESSENTIAL_ENTITY | Strong symmetric encryption + modern transport cryptographic standard + HSM | ISO 27001 audit | HIGH | PARTIAL | BSI + ECB JST |
+| NIS 2 | Art. | 21(2)(g) Access control | D-03.1, D-03.2, D-03.3 | ESSENTIAL_ENTITY | IAM + strong cryptographic hardware key + RBAC/ABAC + JIT | ISO 27001 + DORA | HIGH | PARTIAL | BaFin + ECB JST |
+| NIS 2 | Art. | 21(2)(h) Secure communication | D-01.2, D-01.3 | ESSENTIAL_ENTITY | Modern transport cryptographic standard + mutual transport cryptographic authentication + PKI | ISO 27001 audit | HIGH | PARTIAL | BaFin + ECB JST |
+| NIS 2 | Art. | 21(2)(i) HR security + training | D-08.1, D-08.2, D-08.3 | ESSENTIAL_ENTITY | Monthly phishing + quarterly training + annual certification + board briefing | Awareness programme | MEDIUM | PARTIAL | BaFin + ECB JST |
+| NIS 2 | Art. | 20 Management body liability | D-08.3 | ESSENTIAL_ENTITY (mgmt body) | Board briefing + documented personal liability | Board programme | HIGH | PARTIAL | BaFin + ECB JST |
+| NIS 2 | Art. | 23(4) Incident notification (CRITICAL T-001) | D-04.3 | ESSENTIAL_ENTITY | 24h early warning + 72h notification + 1m final | Max-SLA routing | HIGH | PARTIAL | BaFin + ECB JST + BSI CSIRT + ENISA |
+| NIS 2 | Art. | 12 CVD ecosystem | D-02.3 | ESSENTIAL_ENTITY | security.txt + dedicated mailbox + CVD page | CVD programme | MEDIUM | PARTIAL | BSI CSIRT + ENISA |
+| NIS 2 | Art. | 7 National cybersecurity strategy | D-09.1 | MEMBER STATE | Germany NIS 2 transposition | Federal law | MEDIUM | PARTIAL | BSI + BaFin |
+| NIS 2 | Art. | 8 National CSIRT | D-04.3 | MEMBER STATE | CSIRT cooperation; 24h warning | CSIRT network | MEDIUM | PARTIAL | BSI CSIRT + ENISA |
+| NIS 2 | Art. | 11 Risk classification | D-09.2 | MEMBER STATE | Annual risk classification | National register | LOW | PARTIAL | BSI + BaFin |
+| NIS 2 | Art. | 13 Information sharing | D-02.3 | ESSENTIAL_ENTITY | Voluntary info sharing | Trust circles | LOW | PARTIAL | ENISA + BSI |
+| NIS 2 | Art. | 14 Supervision | D-09.1 | NATIONAL_AUTHORITY | BaFin supervision; ECB for credit institutions | Supervisory framework | MEDIUM | PARTIAL | BaFin + ECB JST |
+| NIS 2 | Art. | 15 Enforcement | D-04.3 | NATIONAL_AUTHORITY | Penalty enforcement; member state sanctions | Supervisory action | MEDIUM | PARTIAL | BaFin + ECB JST |
+| NIS 2 | Art. | 16 Penalty framework | D-09.1 | NATIONAL_AUTHORITY | Penalty thresholds; member state defined | Penalty register | MEDIUM | PARTIAL | BaFin + ECB JST |
+| NIS 2 | Art. | 18 Mutual assistance | D-09.1 | MEMBER STATE | Cross-border assistance | Cooperation agreement | LOW | PARTIAL | BSI + ENISA |
+| NIS 2 | Art. | 19 EU CyCLONe | D-04.3 | MEMBER STATE | Crisis management network | Network register | LOW | PARTIAL | ENISA |
+| NIS 2 | Art. | 22 Coordinated risk assessment | D-09.2 | MEMBER STATE | Critical ICT supply chain assessment | Coordinated assessment | MEDIUM | PARTIAL | BSI + ENISA + ECB |
+| NIS 2 | Art. | 24 Essential entities register | D-09.4 | NATIONAL_AUTHORITY | Comparable categories | National register | LOW | PARTIAL | BaFin + ECB JST |
+| NIS 2 | Art. | 25 Important entities | D-09.4 | NATIONAL_AUTHORITY | Important entity obligations | National register | LOW | PARTIAL | BaFin + ECB JST |
+| NIS 2 | Art. | 26 Essential entities: incident notification | D-04.3 | ESSENTIAL_ENTITY | 24h EA + 72h notification + 1m final | Max-SLA routing | HIGH | PARTIAL | BaFin + BSI CSIRT + ENISA |
+| NIS 2 | Art. | 27 Important entities: incident notification | D-04.3 | IMPORTANT_ENTITY | 24h EA + 72h notification + 1m final | Max-SLA routing | HIGH | PARTIAL | BaFin + BSI CSIRT + ENISA |
+| NIS 2 | Art. | 28 Voluntary notification | D-04.3 | ESSENTIAL_ENTITY | Voluntary early warning | Voluntary disclosure | LOW | PARTIAL | BSI CSIRT + ENISA |
+| NIS 2 | Art. | 29 EU registry | D-09.4 | ENISA | EU registry of entities | EU registry | LOW | PARTIAL | ENISA |
+| DORA | Art. | 4 Definitions | D-09.1 | FINANCIAL_ENTITY | ICT-related vocabulary aligned with definitions | Glossary | LOW | IMPLEMENTED | ECB JST + BaFin |
+| DORA | Art. | 5(1) Governance framework | D-09.1, D-08.3 | FINANCIAL_ENTITY (mgmt body) | Management body 4-verb coordination + accountability | ISMS + DORA ICT framework | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 5(2) Management body 4-verb | D-09.1, D-08.3 | FINANCIAL_ENTITY (mgmt body) | Define, approve, oversee, be responsible — 4 separate duties | Board programme | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 5(4) Sufficient knowledge and skills | D-08.3 | FINANCIAL_ENTITY (mgmt body) | Board briefing + AI Act + DORA + NIS 2 | Board programme | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 6(1) ICT risk management framework | D-09.1 | FINANCIAL_ENTITY | Sound, comprehensive, well-documented; 3-adjective AND | DORA ICT framework | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 6(2) Strategies, policies, procedures | D-09.1 | FINANCIAL_ENTITY | 5-element AND: strategies, policies, procedures, ICT protocols, tools | 5-policy architecture | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 6(8)(a) Continuous identification | D-09.2 | FINANCIAL_ENTITY | Continuous ICT risk identification including inter-entity | IPSARA continuous | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 7(2) Risk sources (sentence 1) | D-02.1 | FINANCIAL_ENTITY | Continuously identify all sources of ICT risk | Threat intel + SAST | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 7(2) Risk scenario register (sentence 2) | D-09.2 | FINANCIAL_ENTITY | Annual risk-scenario refresh; at least yearly | IPSARA annual | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 8(1) Identification function (OJ-literal) | D-09.3 | FINANCIAL_ENTITY | Identify all ICT-supported business functions + ICT assets | DORA Art. 8 ICT inventory | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 8(2) Dependencies | D-09.3 | FINANCIAL_ENTITY | Identify dependencies including third-party providers | Asset inventory | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 9(1) Continuous monitoring (OJ-literal) | D-04.1, D-10.1 | FINANCIAL_ENTITY | OJ-literal: continuously monitor + control security + functioning | 24/7 SOC + SIEM | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 9(2) CIA+A 4x3 matrix | D-01.1, D-01.2, D-01.4 | FINANCIAL_ENTITY | CIA+A 4-way AND: at rest, in use, in transit | Encryption + integrity | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 9(4)(a) Documented policies | D-09.1 | FINANCIAL_ENTITY | Information security policies, procedures | 5-policy architecture | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 9(4)(b) Network architecture | D-07.1 | FINANCIAL_ENTITY | Network segmentation + infra resilience | Architecture review | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 9(4)(c) Access policies | D-03.3 | FINANCIAL_ENTITY | Authorisation + RBAC/ABAC | IAM + JIT | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 9(4)(d) Strong authentication | D-03.2 | FINANCIAL_ENTITY | Strong cryptographic hardware key + AAL3 + PSD2 SCA | MFA programme | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 9(4)(e) Encryption | D-01.1, D-01.2, D-01.3 | FINANCIAL_ENTITY | Strong symmetric encryption + modern transport cryptographic standard + HSM | Encryption audit | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 9(4)(f) Patches and updates | D-02.2 | FINANCIAL_ENTITY | Critical CVE 24h SLA | Patch tooling | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 9(4)(g) ICT change management | D-07.4 | FINANCIAL_ENTITY | Managed change platform + 4-eyes + CAB | Change management | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 9(4)(h) ICT governance training | D-08.1, D-08.2 | FINANCIAL_ENTITY | Awareness + competence | Awareness programme | MEDIUM | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 10 Detection mechanisms | D-04.1, D-10.1 | FINANCIAL_ENTITY | Anomalous activity + ICT network performance | SIEM + EDR + NDR + UEBA | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 11 ICT BC policy | D-04.4, D-09.1 | FINANCIAL_ENTITY | Comprehensive BC policy + integral part of overall BC | BC policy | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 12 BC + DR plans | D-04.4, D-10.2 | FINANCIAL_ENTITY | Backup + recovery + records | DR programme + WORM | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 13 ICT change + monitoring + awareness | D-07.4, D-10.1, D-08.1, D-08.2 | FINANCIAL_ENTITY | 3-way AND: change + monitoring + training | DORA ICT programme | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 14 Crisis communication | D-04.3 | FINANCIAL_ENTITY | 3-way AND: clients + counterparts + public | Crisis communication | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 15 Testing of ICT systems | D-10.3 | FINANCIAL_ENTITY | RTS mandate to specify measurement | DORA compliance testing | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 16/18 Classification criteria | D-04.1 | FINANCIAL_ENTITY | Major incident classification (RTS delegated) | Classification criteria | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 17(1) Incident management process | D-04.1, D-04.3 | FINANCIAL_ENTITY | Define, establish, implement — 3-verb coordination | Incident programme | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 19(1) Reporting to competent authority | D-04.3 | FINANCIAL_ENTITY | 4h initial + 72h intermediate + 1m final | Max-SLA routing | HIGH | PARTIAL | ECB JST + BaFin + EDPB + ENISA + AI Office |
+| DORA | Art. | 19(3) Client notification | D-04.3 | FINANCIAL_ENTITY | When impact on financial interests of clients | Client notification | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 20 RTS authority | D-04.3 | COMMISSION | RTS for incident reporting deadlines | RTS Delegated Reg. (EU) 2025/301 | MEDIUM | IMPLEMENTED | ECB JST + BaFin |
+| DORA | Art. | 21 General response/recovery | D-04.1, D-04.2, D-04.4 | FINANCIAL_ENTITY | Cross-cutting incident-handling | Incident programme | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 22 Client notification (payment) | D-04.3 | FINANCIAL_ENTITY | Payment-specific client notification | Client notification | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 23 Payment-specific reporting | D-04.3 | FINANCIAL_ENTITY | EBA Guidelines on payment incidents | Max-SLA routing | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 24(1) Digital operational resilience testing | D-10.3, D-02.4 | FINANCIAL_ENTITY | 3-verb coordination: establish, maintain, review | DORA testing programme | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 25 12 testing modalities | D-10.3 | FINANCIAL_ENTITY | 12-item list: vulnerability assessments, scans, OS analysis, etc. | Testing programme | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 26(1) TLPT (CRITICAL T-005) | D-02.4 | FINANCIAL_ENTITY | At least every 3 years; ECB significant entities may adjust to annual | TLPT programme | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 27 Advanced testing | D-02.4 | FINANCIAL_ENTITY | On a regular basis supplementing TLPT | Advanced testing | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 28 ICT third-party risk (CRITICAL) | D-06.1, D-06.3, D-06.4 | FINANCIAL_ENTITY | 4-factor proportionality + pre-contractual assessment + exit strategy | Vendor risk programme | HIGH | PARTIAL | ECB JST + BaFin + ESAs Joint Committee |
+| DORA | Art. | 29 Pre-contractual assessment | D-06.1 | FINANCIAL_ENTITY | Suitability + conflict + ICT compatibility + due diligence | Vendor risk programme | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 30(1) Contractual arrangements | D-06.3 | FINANCIAL_ENTITY | Rights + obligations clearly allocated in writing | Contract templates | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 30(2) 9-element minimum | D-06.3 | FINANCIAL_ENTITY | Functions + locations + data + access + audit + SLAs + termination + exit + sub-outsourcing | Contract templates | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 30(3)(e) CIF audit rights | D-06.3 | FINANCIAL_ENTITY | CIF-only: unrestricted access + inspection + audit | Contract templates | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 30(3)(f) CIF exit strategy | D-06.4 | FINANCIAL_ENTITY | CIF-only: exit strategies | Exit strategy | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 31-33 Register maintenance | D-09.4 | FINANCIAL_ENTITY | Register of contractual arrangements — annual update | DORA Art. 34 register | HIGH | PARTIAL | ECB JST + BaFin |
+| DORA | Art. | 34 Information register | D-09.4 | FINANCIAL_ENTITY | Annual update + 5y retention | DORA Art. 34 register | HIGH | PARTIAL | ECB JST + BaFin |
+| AI Act | Art. | 5 Prohibited AI | — | PROVIDER | No prohibited practices (OmniScore is credit scoring, lawful) | Compliance register | LOW | IMPLEMENTED | AI Office + national DPA |
+| AI Act | Art. | 6 High-risk classification | D-09.1, D-09.2 | PROVIDER | Annex III §5 credit scoring — High-Risk | AI Act risk register | HIGH | PARTIAL | AI Office + EDPB + national DPA |
+| AI Act | Art. | 9 Risk management system | D-09.1, D-09.2 | PROVIDER | Continuous 5-step lifecycle: identify + estimate + evaluate + manage + communicate | AI Act risk system | HIGH | PARTIAL | AI Office + EDPB + ECB JST |
+| AI Act | Art. | 10 Data governance | D-05.1, D-05.2, D-09.4 | PROVIDER | Training data quality + bias detection + relevance + representativeness | Data governance | HIGH | IMPLEMENTED | AI Office + EDPB + national DPA |
+| AI Act | Art. | 11 Technical documentation | D-09.4 | PROVIDER | Annex IV documentation; 10y retention | Technical documentation | MEDIUM | PARTIAL | AI Office + EDPB |
+| AI Act | Art. | 12 Record-keeping | D-10.2 | PROVIDER | Automatic logging; 6m minimum retention | AI Act log retention | HIGH | PARTIAL | AI Office + ECB JST |
+| AI Act | Art. | 13 Transparency to deployers | D-09.4 | PROVIDER | Instructions for use; information to deployers | Transparency docs | MEDIUM | PARTIAL | AI Office + EDPB |
+| AI Act | Art. | 14 Human oversight | D-03.3, D-08.3 | PROVIDER | Human-in-the-loop; oversight by trained staff | Human oversight | HIGH | PARTIAL | AI Office + EDPB + ECB JST |
+| AI Act | Art. | 15 Accuracy, robustness, cybersecurity | D-07.1, D-09.2 | PROVIDER | Appropriate levels calibrated to intended purpose | AI Act accuracy testing | HIGH | PARTIAL | AI Office + ECB JST |
+| AI Act | Art. | 16 Obligations of providers | D-09.1, D-09.4 | PROVIDER | Conformity + post-market monitoring + corrective measures | Provider obligations | HIGH | PARTIAL | AI Office + ECB JST |
+| AI Act | Art. | 17 Quality management system | D-09.1 | PROVIDER | Documented quality management system | Quality system | HIGH | PARTIAL | AI Office + ECB JST |
+| AI Act | Art. | 18 Automatically generated logs | D-10.2 | PROVIDER | Automatic logging of events | Logging system | HIGH | PARTIAL | AI Office + ECB JST |
+| AI Act | Art. | 19 Design for compliance | D-07.1 | PROVIDER | Designed for Art. 8-17 compliance | Design compliance | HIGH | PARTIAL | AI Office + ECB JST |
+| AI Act | Art. | 20-22 Quality + log + documentation | D-09.4 | PROVIDER | Quality + logs + documentation | Provider obligations | HIGH | PARTIAL | AI Office + ECB JST |
+| AI Act | Art. | 23 Corrective measures + duty to inform | D-04.3 | PROVIDER | Corrective measures + duty to inform | Corrective actions | HIGH | PARTIAL | AI Office + ECB JST |
+| AI Act | Art. | 25 Downstream provider obligations | D-06.3 | DOWNSTREAM PROVIDER | Substantial modification triggers provider status | Downstream contracts | HIGH | PARTIAL | AI Office + EDPB + ECB JST |
+| AI Act | Art. | 26 Obligations of deployers | D-09.1 | DEPLOYER | Use per instructions + monitoring + log-keeping | Deployer obligations | HIGH | PARTIAL | AI Office + EDPB + national DPA |
+| AI Act | Art. | 27 FRIA (CRITICAL T-003) | D-09.2 | DEPLOYER | Fundamental Rights Impact Assessment; integrated with DPIA via IPSARA | IPSARA framework | HIGH | PARTIAL | AI Office + EDPB + BfDI |
+| AI Act | Art. | 28 Notification to national authority | D-04.3 | DEPLOYER | Serious incident notification | AI Act incident reporting | HIGH | PARTIAL | AI Office + national DPA |
+| AI Act | Art. | 43 Conformity assessment | D-10.3 | PROVIDER | Pre-deployment conformity assessment; AI Office scrutiny | AI Act conformity | HIGH | PARTIAL | AI Office + ECB JST |
+| AI Act | Art. | 49 Registration | D-09.4 | PROVIDER | EU database registration of high-risk AI | EU database | MEDIUM | PARTIAL | AI Office |
+| AI Act | Art. | 50 Transparency (limited-risk) | D-09.1 | PROVIDER | Chatbot/deepfake transparency | Transparency docs | LOW | PARTIAL | AI Office + national DPA |
+| AI Act | Art. | 51-55 GPAI obligations | — | GPAI PROVIDER | GPAI (not applicable to OmniScore) | Not applicable | LOW | IMPLEMENTED | AI Office |
+| AI Act | Art. | 60-62 Post-market monitoring (CRITICAL T-003) | D-10.1, D-10.3 | PROVIDER | Post-market monitoring integrated with DORA Art. 13 | AI Act PMM | HIGH | PARTIAL | AI Office + ECB JST |
+| AI Act | Art. | 65 Serious incident reporting | D-04.3 | PROVIDER | 15d default + 2d widespread + 10d death | AI Act incident reporting | HIGH | PARTIAL | AI Office + ECB JST + national DPA |
+| AI Act | Art. | 73(2) Default 15d | D-04.3 | PROVIDER | 15 days after becoming aware | Max-SLA routing | HIGH | PARTIAL | AI Office + ECB JST + national DPA |
+| AI Act | Art. | 73(3) Widespread 2d | D-04.3 | PROVIDER | 2 days for widespread infringement | Max-SLA routing | HIGH | PARTIAL | AI Office + ECB JST + national DPA |
+| AI Act | Art. | 73(4) Death 10d | D-04.3 | PROVIDER | 10 days after causal link established | Max-SLA routing | HIGH | PARTIAL | AI Office + ECB JST + national DPA |
+| AI Act | Art. | 85 Penalties | D-09.1 | NATIONAL_AUTHORITY | Penalty thresholds; member state-defined | Penalty register | MEDIUM | PARTIAL | AI Office + national DPA |
 
 ---
 

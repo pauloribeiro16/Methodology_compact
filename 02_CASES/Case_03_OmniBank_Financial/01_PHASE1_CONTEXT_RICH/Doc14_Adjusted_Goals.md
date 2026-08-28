@@ -66,7 +66,7 @@ This document is the **Phase 1 adjusted-objectives layer** for Case_03 OmniBank.
 
 **Sprint 4 (initial):** Adjusted objectives built per sub-domain, with §1 baseline, §2 PG table, §3 SG table, §4 5 tensions, §5 Track B decision trail, §6 cross-refs, §7 validation.
 
-**Sprint 5 (DEEP enrichment):** 76 detail cards (38 PG + 38 SG) with 18 fields each — Description (multi-paragraph), Source Article, NIST CSF Anchors, Verification Criteria, Verification Method, Owner, Status, Dependencies, Risk, Stakeholders, Maturity, Implementation Priority, Regulatory Reporting, External Auditor, Supervisory Body, plus Scope/Out-of-Scope. **EXCLUDED:** Effort Estimate, Cost Estimate, Target Timeline (per project directive).
+**Sprint 5 (DEEP enrichment):** 76 detail cards (38 PG + 38 SG) with 18 fields each — Description (multi-paragraph), Source Article, NIST CSF Anchors, Verification Criteria, Verification Method, Owner, Status, Dependencies, Risk, Stakeholders, legacy posture scale (superseded), Implementation Priority, Regulatory Reporting, External Auditor, Supervisory Body, plus Scope/Out-of-Scope. **EXCLUDED:** Effort Estimate, Cost Estimate, Target Timeline (per project directive).
 
 **Sprint 6 (corr-010 standardisation, 2026-08-14):** Restructured to reduce 3805-line monolith. New §2 merges PG/SG into single 38-row table with per-regulation cells. New §5 adds full NIST controls mapping (3 frameworks × 38 sub-domains). 76 detail cards archived to `_deprecated/07c_Appendix_A_OLD.md` (preserved verbatim, AG-D- IDs intact).
 
@@ -296,7 +296,7 @@ GDPR Art. 25 (data protection by design and by default) requires "appropriate te
 
 **Implementation:** NIST SSDF SP 800-218 + OWASP SAMM Level 3 + STRIDE threat modelling; architecture review board
 
-**Verification Criteria:** Architecture review board mandatory for all new systems; STRIDE applied; SAMM Level 3 verified; OWASP SAMM maturity assessment annually
+**Verification Criteria:** Architecture review board mandatory for all new systems; STRIDE applied; SAMM Level 3 verified; OWASP SAMM capability assessment annually
 
 **Risk if not resolved:** LOW — design weakness; CRA + DORA + AI Act compliance gap
 
@@ -461,7 +461,7 @@ DORA Art. 26(1) mandates Threat-Led Penetration Testing (TLPT) "at least every 3
 - **Doc 05b** `Doc09_Ambiguity_Register.md` — Top 20 ambiguity cards (V-04 fixed: 20 distinct clauses — GDPR 5 + CRA 4 + NIS 2 4 + DORA 4 + AI Act 3) + per-sub-domain counts
 - **Doc 06b** `Doc11_DORA_ICT_Risk_Framework.md` — DORA Art. 5-34 mapped to AEGIS sub-domains (Doc 06b §3) + 5 tensions (Doc 06b §4)
 - **Doc 07** `Doc12_Structured_Compliance_Matrix.md` — Priority (P) per sub-domain (Doc 07 §3) + complementarity analysis (Doc 07 §5) + strategic tensions (Doc 07 §5.5)
-- **Doc 07b** `Doc13_Proportionality_Profile.md` — Track B case instance (31 RIGOROUS + 7 STANDARD); §4 per-sub-domain table (Sprint 4 enriched with Risk/Maturity/Priority cols); §5.1 tension cross-reference; §11 decision table trail
+- **Doc 07b** `Doc13_Proportionality_Profile.md` — Track B case instance (31 RIGOROUS + 7 STANDARD); §4 per-sub-domain table (Sprint 4 enriched with Risk/legacy-posture/Priority cols (superseded)); §5.1 tension cross-reference; §11 decision table trail
 - **Doc 07c** `Doc14_Adjusted_Goals.md` — **THIS DOCUMENT** — adjusted objectives (§2 Multi-Regulation merged table, 38 rows × 8 cols) + 5 tensions (§3) + Track B decision trail (§4) + NIST controls mapping (§5, 3 frameworks × 38 sub-domains); 76 detail cards archived to `_deprecated/07c_Appendix_A_OLD.md`
 - **Phase 2 legacy** `02_PHASE2_RULES/Doc16_Obligation_Derivation.md` — consumes adjusted objectives; supersedes Doc18_Privacy_Security_Objectives.md §3-§4
 - **Phase 2 legacy** `02_PHASE2_RULES/10_Privacy_Security_Goals.md` — superseded by Doc 07c (PG/SG elevated from Phase 2 to Phase 1 in Rich Mode)

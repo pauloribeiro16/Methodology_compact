@@ -47,7 +47,7 @@ Sprint 2 (2026-08-06): §3 Compliance Mapping table extended with 2 columns (Cor
 
 ## 1. Technical Architecture
 
-OmniBank Financial Systems S.A. is a large credit institution (5,000+ employees, >€1.5B revenue) operating under ECB/BaFin supervision in Germany. The company provides consumer credit, mobile banking, and an AI-driven credit scoring platform (OmniScore). The architecture is hybrid: an on-premise core banking mainframe (regulatory-mandated data residency) coupled with EU-region cloud services for digital channels, AI/ML, analytics, and regulatory reporting. All five EU regulations apply (GDPR, CRA, NIS 2, DORA, AI Act), making OmniBank a DORA Financial Entity, NIS 2 Essential Entity, CRA mobile-app Manufacturer (Default Class), AI Act Annex III Provider+Deployer, and GDPR Controller+Processor. Maturity is high-tier: ISO 27001 certified + documented third-party security attestation for payment-card scope, 100-person security organisation, in-house 24/7 SOC + CSIRT, dedicated CISO/DPO/CRO/AI Governance Lead, ECB-supervised.
+OmniBank Financial Systems S.A. is a large credit institution (5,000+ employees, >€1.5B revenue) operating under ECB/BaFin supervision in Germany. The company provides consumer credit, mobile banking, and an AI-driven credit scoring platform (OmniScore). The architecture is hybrid: an on-premise core banking mainframe (regulatory-mandated data residency) coupled with EU-region cloud services for digital channels, AI/ML, analytics, and regulatory reporting. All five EU regulations apply (GDPR, CRA, NIS 2, DORA, AI Act), making OmniBank a DORA Financial Entity, NIS 2 Essential Entity, CRA mobile-app Manufacturer (Default Class), AI Act Annex III Provider+Deployer, and GDPR Controller+Processor. Implementation posture is strong (qualitative context; legacy "high-tier maturity"): ISO 27001 certified + documented third-party security attestation for payment-card scope, 100-person security organisation, in-house 24/7 SOC + CSIRT, dedicated CISO/DPO/CRO/AI Governance Lead, ECB-supervised.
 
 ### 1.1 System Inventory
 
@@ -326,7 +326,7 @@ This section provides the corpus cross-reference map for all 38 active sub-domai
 
 ## See also
 
-- **Data backbone:** `Case_03_Phase1.xlsx` (13 sheets: COVER, SYSTEMS, DATA_STORES, DATA_FLOWS, PERSONAL_DATA, THIRD_PARTIES, ROLES_RACI, MATURITY, SUBDOMAINS, REG_CHAIN, COMPLIANCE, GAPS, PRIORITIES)
+- **Data backbone:** `Case_03_Phase1.xlsx` (13 sheets: COVER, SYSTEMS, DATA_STORES, DATA_FLOWS, PERSONAL_DATA, THIRD_PARTIES, ROLES_RACI, MATURITY (legacy sheet name), SUBDOMAINS, REG_CHAIN, COMPLIANCE, GAPS, PRIORITIES)
 - **Operational architecture:** mainframe-to-cloud hybrid described in §1.2; full DORA Art. 28 vendor register in `Doc06_ThirdParty_Landscape.md` §2.
 - **AI Act specifically:** OmniScore AI Platform (SYS-03) falls under Annex III (credit scoring) — see `Doc08_Regulatory_Applicability.md §3.5` for AI Act overlay on D-09.2 (FRIA), D-09.4 (technical documentation), D-10.1 (post-market monitoring).
 - **DORA specifically:** CBS mainframe (SYS-01) + OmniScore AI (SYS-03) are the critical ICT systems per DORA Art. 6; TLPT every 3 years per DORA Art. 24; ICT third-party register in `Doc06_ThirdParty_Landscape.md`.

@@ -1,19 +1,19 @@
 ---
 document_id: AEGIS-P3-RICH-04b-SEC
-title: Security Posture Assessment — Maturity Model (Rich Mode)
+title: Security Posture Assessment (Rich Mode, superseded)
 phase: 1
 version: 1.2
 created: 2026-07-11
 updated: 2026-08-07
-author: Executor (Sprint 1 reconciliation copy; Phase 2 Bloco E maturity deprecation)
-status: DEPRECATED_FOR_MATURITY
+author: Executor (Sprint 1 reconciliation copy; Phase 2 Bloco E posture-model migration)
+status: DEPRECATED_FOR_POSTURE
 status_history:
-  - { date: '2026-08-07', from: CORPUS_ENRICHED, to: DEPRECATED_FOR_MATURITY,
-      reason: 'Maturity model moved to Phase 2 Doc 13 — resolves PHASE1_STRATEGY §7 contradiction' }
-maturity_owner: 02_PHASE2_RULES_RICH/Doc21_Framework_Mapping_Matrix.md
+  - { date: '2026-08-07', from: CORPUS_ENRICHED, to: DEPRECATED_FOR_POSTURE,
+      reason: 'Posture ownership moved to Phase 2 Doc21 (legacy 13_Framework_Mapping_Matrix) — resolves PHASE1_STRATEGY §7 contradiction' }
+posture_owner: 02_PHASE2_RULES_RICH/Doc21_Framework_Mapping_Matrix.md
 note: >
   Este documento mantém-se como INPUT qualitativo (postura observada).
-  A avaliação e o modelo de maturidade foram movidos para
+  A avaliação e o modelo de postura foram movidos para
   02_PHASE2_RULES_RICH/Doc21_Framework_Mapping_Matrix.md §4-5.
 case: Case_03_OmniBank_Financial
 applicable_regs: [GDPR, CRA, NIS 2, DORA, AI Act]
@@ -35,8 +35,8 @@ reconciliation_notes:
   - "Sprint 1 (2026-08-06): Copied from 01_PHASE1_CONTEXT/Doc05_Security_Posture.md → Rich folder; frontmatter migrated to AEGIS-P3-RICH-* prefix; status DRAFT → RECONCILED; applicable_regs normalized to [GDPR, CRA, NIS 2, DORA, AI Act]; active_subdomains confirmed = 38. Tension T-002 (GDPR erasure vs AI Act immutability) preserved as case-specific (declared in legacy). Body unchanged."
 ---
 
-> ⚠️ **DEPRECATED FOR MATURITY (2026-08-07).** A avaliação e o modelo de
-> maturidade vivem agora em
+> ⚠️ **DEPRECATED FOR POSTURE (2026-08-07).** A avaliação e o modelo de
+> postura vivem agora em
 > `02_PHASE2_RULES_RICH/Doc21_Framework_Mapping_Matrix.md` §4-5. Este documento
 > mantém-se como input qualitativo (postura observada). Ver `status_history`
 > no frontmatter.
@@ -52,11 +52,11 @@ Sprint 2 (2026-08-06): New §2.1 Corpus-Derived Target fit_criteria section adde
 ---
 ---
 
-# Security Posture Assessment (Maturity Model)
+# Security Posture Assessment (superseded by Implementation Posture Model v2.0)
 
 ## 1. Assessment Methodology
 
-OmniBank is a **MAXIMUM-complexity** credit institution with 5,000+ employees, ISO 27001 + documented third-party security attestation certified, in-house 24/7 SOC + CSIRT, 100-person security organisation, dedicated CISO/DPO/CRO/AI Governance Lead, and DORA financial entity + NIS 2 Essential Entity + CRA mobile-app Manufacturer + AI Act Annex III Provider+Deployer obligations. Current maturity reflects what exists today; target maturity reflects what the active 5-regulation SubDomains fit_criteria require (including DORA Art. 6 ICT risk management and AI Act Art. 9 risk-management). Financial-sector baseline is high (BaFin/ECB supervised, ISO 27001 + documented third-party security attestation certified), but DORA + AI Act overlays add specific maturity requirements (TLPT every 3 years, AI post-market monitoring, multi-deadline notification routing, cryptographic sharding for AI Act log-retention vs. GDPR Art. 17 erasure).
+OmniBank is a **MAXIMUM-complexity** credit institution with 5,000+ employees, ISO 27001 + documented third-party security attestation certified, in-house 24/7 SOC + CSIRT, 100-person security organisation, dedicated CISO/DPO/CRO/AI Governance Lead, and DORA financial entity + NIS 2 Essential Entity + CRA mobile-app Manufacturer + AI Act Annex III Provider+Deployer obligations. Current posture reflects what exists today; the target profile reflects what the active 5-regulation SubDomains fit_criteria require (including DORA Art. 6 ICT risk management and AI Act Art. 9 risk-management). Financial-sector baseline is high (BaFin/ECB supervised, ISO 27001 + documented third-party security attestation certified), but DORA + AI Act overlays add specific posture requirements (TLPT every 3 years, AI post-market monitoring, multi-deadline notification routing, cryptographic sharding for AI Act log-retention vs. GDPR Art. 17 erasure).
 
 | Level | Label | Description |
 |---|---|---|
@@ -70,7 +70,7 @@ Evidence is drawn from `Doc04_Architecture_DataInventory.md`, `Doc03_Company_Con
 
 ## 2. Per-Domain Assessment
 
-### D-01 Data Protection — Maturity: 4
+### D-01 Data Protection — Implementation Status: IMPLEMENTED (backfilled from legacy level 4)
 
 | Control | Current | Evidence | Notes |
 |---|---|---|---|
@@ -79,11 +79,11 @@ Evidence is drawn from `Doc04_Architecture_DataInventory.md`, `Doc03_Company_Con
 | Key management | FIPS 140-2 Level 3 HSM cluster (SYS-22: payment HSMs + general HSMs); dual-control key ceremonies; payment HSMs for PIN translation | SYS-22 in `04a §1.1` | Quarterly key ceremonies; HSM firmware SBOM per CRA Art. 13(13) |
 | Data integrity | HSM-signed hash chain for audit (STORE-05); co-signature-signed model artefacts (STORE-10); standardised regulatory-reporting integrity for regulatory submissions (STORE-09) | SYS-23 + SYS-12 + SYS-03 in `04a §1.1`; STORE-05 + STORE-09 + STORE-10 in `04a §2.1` | Tamper-evident immutable WORM with cryptographic hash chain; AI Act Art. 15 cybersecurity for models |
 
-**Target maturity**: 4
+**Target:** met (legacy level 4)
 **Gap**: 0
 **Notes**: D-01 achieves level 4 by combining HSM-backed keys, cryptographic integrity, and dual-control ceremonies. The CBS mainframe (SYS-01) uses mainframe cryptographic services integrated with SYS-22 HSM cluster. Relevant Regulatory Baseline files: [D-01.1](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-01_Data-Protection/D-01.1.md), [D-01.2](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-01_Data-Protection/D-01.2.md), [D-01.3](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-01_Data-Protection/D-01.3.md), [D-01.4](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-01_Data-Protection/D-01.4.md).
 
-### D-02 Vulnerability Management — Maturity: 4
+### D-02 Vulnerability Management — Implementation Status: IMPLEMENTED (backfilled from legacy level 4)
 
 | Control | Current | Evidence | Notes |
 |---|---|---|---|
@@ -92,11 +92,11 @@ Evidence is drawn from `Doc04_Architecture_DataInventory.md`, `Doc03_Company_Con
 | Pen testing | Annual external (industry-accredited) + 6-monthly internal red team; DORA Art. 24 TLPT every 3 years on CBS mainframe + OmniScore AI | STORE-05 in `04a §2.1`; FLOW-04 in `04a §2.2` | TLPT includes threat-led adversarial testing per EBA Guidelines; AI-system adversarial testing per AI Act Art. 15 |
 | CVD policy | Published at `/.well-known/security.txt` per CRA Art. 14; BSI/ENISA CVD hub registration; industry threat-sharing consortium member (German Banking consortium) | (paper artefact) | 24h early-warning notification channel to BSI per CRA Art. 14(1) |
 
-**Target maturity**: 4
+**Target:** met (legacy level 4)
 **Gap**: 0
 **Notes**: D-02.4 TLPT per DORA Art. 24 every 3 years is a hard obligation for a credit institution; first TLPT scheduled 2026-Q4. Threat-led adversarial testing for AI Act Annex III AI systems is integrated with TLPT scope. Relevant Regulatory Baseline files: [D-02.1](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-02_Vulnerability-Management/D-02.1.md), [D-02.2](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-02_Vulnerability-Management/D-02.2.md), [D-02.3](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-02_Vulnerability-Management/D-02.3.md), [D-02.4](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-02_Vulnerability-Management/D-02.4.md).
 
-### D-03 Access Control — Maturity: 4
+### D-03 Access Control — Implementation Status: IMPLEMENTED (backfilled from legacy level 4)
 
 | Control | Current | Evidence | Notes |
 |---|---|---|---|
@@ -106,11 +106,11 @@ Evidence is drawn from `Doc04_Architecture_DataInventory.md`, `Doc03_Company_Con
 | Privileged access management | Managed PAM for ~250 privileged accounts; just-in-time elevated access; HSM key access dual-control | SYS-22 dual-control + SYS-24 in `04a §1.4` | Managed PAM deployment — achieves D-03.3 level 4; mainframe Enhanced Session Management |
 | Default secure configs | Hardened-default baseline + ISO 27001 A.13 baseline + mainframe secure defaults (access-control defaults); CRA Annex I Part I (1) secure-by-default for SYS-02 mobile app | SYS-01 + SYS-02 + SYS-22 in `04a §1.1` | Mobile app ships in secure-default state (no debug ports, code obfuscation, certificate pinning) |
 
-**Target maturity**: 4
+**Target:** met (legacy level 4)
 **Gap**: 0
 **Notes**: D-03 achieves level 4 with managed PAM deployment; mainframe access-control integration is a financial-sector differentiator. PSD2 SCA for customer-facing access control is regulator-mandated. Relevant Regulatory Baseline files: [D-03.1](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-03_Access-Control/D-03.1.md), [D-03.2](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-03_Access-Control/D-03.2.md), [D-03.3](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-03_Access-Control/D-03.3.md), [D-03.4](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-03_Access-Control/D-03.4.md).
 
-### D-04 Incident Response — Maturity: 3
+### D-04 Incident Response — Implementation Status: PARTIAL (backfilled from legacy level 3; target 4 profile)
 
 | Control | Current | Evidence | Notes |
 |---|---|---|---|
@@ -119,11 +119,11 @@ Evidence is drawn from `Doc04_Architecture_DataInventory.md`, `Doc03_Company_Con
 | Notification process | CISO-owned 4h DORA RTS routing (per RTS Art. 6(1)(a)); 24h CSIRT routing (NIS 2 Art. 23(4)(a) + CRA Art. 14(1)); 72h DPA routing (GDPR Art. 33) via DPO; 15d AI Act routing (Art. 73(2)) via AI Governance Lead | FLOW-17 + FLOW-23 in `04a §2.2` | Tested quarterly; tabletop timings recorded in STORE-05 audit |
 | Recovery procedures | BCP tested annually + semi-annual DR tests (EU sites); RTO 4h, RPO 15min for critical CBS mainframe; 99.99% uptime SLA | STORE-01 + STORE-02 + STORE-05 backups in `04a §2.1`; FLOW-22 in `04a §2.2` | BaFin-required DR testing; ECB stress tests included |
 
-**Target maturity**: 4 (for D-04.3 multi-deadline routing + D-04.4 DR automation)
+**What's missing (PARTIAL):** uplift for D-04.3 multi-deadline routing + D-04.4 DR automation (legacy target level 4)
 **Gap**: 1 (D-04.3 multi-deadline routing workflow integration; D-04.4 DR automation partial)
 **Notes**: D-04.3 has the most complex routing logic (5 different deadlines for compound events). The integrated playbooks for compound events (e.g., AI-Act serious-incident that is also a GDPR personal-data breach + DORA major incident + CRA active-exploitation + NIS 2 significant incident) are tracked in Phase 2 strategic-tensions resolution. D-04.4 DR is at level 3 with mainframe automated (managed disaster replication) but cloud-region DR needs further automation. Relevant Regulatory Baseline files: [D-04.1](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-04_Incident-Response/D-04.1.md), [D-04.2](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-04_Incident-Response/D-04.2.md), [D-04.3](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-04_Incident-Response/D-04.3.md), [D-04.4](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-04_Incident-Response/D-04.4.md).
 
-### D-05 Data Lifecycle — Maturity: 3
+### D-05 Data Lifecycle — Implementation Status: PARTIAL (backfilled from legacy level 3; target 4 profile)
 
 | Control | Current | Evidence | Notes |
 |---|---|---|---|
@@ -132,11 +132,11 @@ Evidence is drawn from `Doc04_Architecture_DataInventory.md`, `Doc03_Company_Con
 | Erasure procedures | DPO workflow with BaFin retention exemption logic; CDW anonymisation pipeline; Art. 17 GDPR handled with retention override; DSAR via dedicated portal | SYS-13 + DPO workflow in `04a §2.4` | Tested annually via DSAR tabletop; crypto-shredding for HSM-managed keys |
 | Data portability | Customer data export via DSAR portal (Art. 20 GDPR); machine-readable format (JSON); 30-day SLA | SYS-02 export in `04a §2.4` | Open Banking / PSD2 also provides portability for account information |
 
-**Target maturity**: 4 (for D-05.3 erasure-vs-retention conflict resolution)
+**What's missing (PARTIAL):** uplift for D-05.3 erasure-vs-retention conflict resolution (legacy target level 4)
 **Gap**: 1 (D-05.3 cryptographic sharding for AI Act log retention vs. GDPR Art. 17 erasure — Phase 2 strategic-tensions resolution)
 **Notes**: D-05.3 has a known conflict between GDPR Art. 17 erasure and AI Act Art. 12 technical-documentation retention. The cryptographic-sharding solution (anonymise erasure target before applying erasure) is tracked in Phase 2. D-05.4 is mature due to PSD2/Open Banking portability infrastructure. Relevant Regulatory Baseline files: [D-05.1](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-05_Data-Lifecycle/D-05.1.md), [D-05.2](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-05_Data-Lifecycle/D-05.2.md), [D-05.3](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-05_Data-Lifecycle/D-05.3.md), [D-05.4](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-05_Data-Lifecycle/D-05.4.md).
 
-### D-06 Supply Chain — Maturity: 4
+### D-06 Supply Chain — Implementation Status: IMPLEMENTED (backfilled from legacy level 4)
 
 | Control | Current | Evidence | Notes |
 |---|---|---|---|
@@ -145,11 +145,11 @@ Evidence is drawn from `Doc04_Architecture_DataInventory.md`, `Doc03_Company_Con
 | Contract clauses | GDPR Art. 28 DPA template; DORA Art. 30 ICT contract template (pre-contract + exit + audit + sub-outsourcing + termination); CRA Annex I Part I (2)(h); AI Act Art. 25 provider-deployer | (paper artefact; DPA + DORA contract template library) | Multi-regulation clause bank maintained by DPO + Legal + CRO |
 | Boundary management | Vendor egress reviewed; sub-processor chains tracked; pseudonymisation before logging egress; formal sub-processor change notifications | SYS-23 + DPAs in `04a §1.3` | GDPR Art. 28(2) sub-processor notification flow; DORA Art. 28 sub-outsourcing register |
 
-**Target maturity**: 4
+**Target:** met (legacy level 4)
 **Gap**: 0
 **Notes**: D-06 covers both legal (DPA template library + DORA Art. 30 ICT contract template + sub-processor flow) and technical (SBOM pipeline). The DORA Art. 30 ICT contract register is maintained by CRO with annual re-assessment; critical CTPPs tracked separately. Relevant Regulatory Baseline files: [D-06.1](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-06_Supply-Chain/D-06.1.md), [D-06.2](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-06_Supply-Chain/D-06.2.md), [D-06.3](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-06_Supply-Chain/D-06.3.md), [D-06.4](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-06_Supply-Chain/D-06.4.md).
 
-### D-07 Secure Development — Maturity: 4
+### D-07 Secure Development — Implementation Status: IMPLEMENTED (backfilled from legacy level 4)
 
 | Control | Current | Evidence | Notes |
 |---|---|---|---|
@@ -158,11 +158,11 @@ Evidence is drawn from `Doc04_Architecture_DataInventory.md`, `Doc03_Company_Con
 | CI/CD pipeline security | Static + dependency + dynamic analysis + co-signature signing + managed artefact repository + machine-readable SBOM format emission per build; AI model signing per AI Act Art. 15 | SYS-11 build pipeline + STORE-02 + STORE-10 in `04a §1.1`/`§2.1` | SBOM + signed artefacts per CRA + AI Act Art. 15 cybersecurity |
 | Change management | PR review + CAB + dual approval for production; mainframe change-control; AI model changes follow AI Act Art. 9 + 16 change-control procedure | SYS-11 + AI Governance Lead + Mainframe Operations | Change triggers SBOM re-emission + AI Act documentation update; AI model version control per Art. 16 |
 
-**Target maturity**: 4
+**Target:** met (legacy level 4)
 **Gap**: 0
 **Notes**: D-07 achieves level 4 with full pipeline automation including AI model signing. AI Act Art. 16 change-control for high-risk AI systems (OmniScore) is a unique requirement tracked separately. Mainframe change-control is a financial-sector baseline. Relevant Regulatory Baseline files: [D-07.1](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-07_Secure-Development/D-07.1.md), [D-07.2](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-07_Secure-Development/D-07.2.md), [D-07.3](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-07_Secure-Development/D-07.3.md), [D-07.4](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-07_Secure-Development/D-07.4.md).
 
-### D-08 Human Factors — Maturity: 4
+### D-08 Human Factors — Implementation Status: IMPLEMENTED (backfilled from legacy level 4)
 
 | Control | Current | Evidence | Notes |
 |---|---|---|---|
@@ -170,11 +170,11 @@ Evidence is drawn from `Doc04_Architecture_DataInventory.md`, `Doc03_Company_Con
 | Role-specific training | Developers: secure coding + mobile security; SOC analysts: industry security certifications + IR + fraud; DPO: industry privacy certifications + GDPR; CRO: DORA + Basel; AI Governance Lead: AI Act bootcamp + ISO 42001; Compliance team: BaFin/ECB regulator engagement training | (LMS curriculum; certifications tracked) | EU AI Act Art. 4 (AI literacy) for staff operating AI systems; PSD2 SCA training for customer-facing |
 | Board training | **D-08.3 ACTIVE for OmniBank under NIS 2 + DORA Art. 5 management liability** — quarterly cybersecurity + AI risk briefings to Management Board + Non-Exec Directors; annual external cyber-board training | (governance records; board agenda minutes) | NIS 2 Art. 20 (Management bodies' training) + DORA Art. 5 management liability for ICT risk |
 
-**Target maturity**: 4
+**Target:** met (legacy level 4)
 **Gap**: 0
 **Notes**: All 3 sub-domains (D-08.1, D-08.2, D-08.3) are ACTIVE for OmniBank (NIS 2 + DORA + AI Act all apply). D-08.3 is a NIS 2 Art. 20 + DORA Art. 5 dual obligation — board is personally liable for ICT risk under DORA. AI literacy (Art. 4 AI Act) is integrated into general awareness. Board training is a dual NIS 2 + DORA obligation; quarterly briefings are recorded in board minutes. Relevant Regulatory Baseline files: [D-08.1](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-08_Human-Factors/D-08.1.md), [D-08.2](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-08_Human-Factors/D-08.2.md), [D-08.3 ACTIVE](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-08_Human-Factors/D-08.3.md) — note: ACTIVE for OmniBank (NIS 2 + DORA-applicable).
 
-### D-09 Governance & Documentation — Maturity: 4
+### D-09 Governance & Documentation — Implementation Status: IMPLEMENTED (backfilled from legacy level 4)
 
 | Control | Current | Evidence | Notes |
 |---|---|---|---|
@@ -183,11 +183,11 @@ Evidence is drawn from `Doc04_Architecture_DataInventory.md`, `Doc03_Company_Con
 | Asset inventories | CMDB with 100% asset coverage; DORA Art. 8 ICT asset register; auto-discovered monthly + manually reviewed quarterly; linked to ticket system for change control | (CMDB tool of record) | D-09.3 ACTIVE for OmniBank via NIS 2 + CRA + DORA + ISO 27001 |
 | RoPA | GDPR RoPA maintained; AI Act training-data lineage register; NIS 2 risk-assessment register; DORA Art. 8 ICT register; CRA Annex VII documentation; DPO + AI Lead + CRO + CISO co-own | (paper artefact; tooling) | D-09.4 highly developed for credit institution |
 
-**Target maturity**: 4
+**Target:** met (legacy level 4)
 **Gap**: 0
 **Notes**: D-09 is the strongest domain for OmniBank given ISO 27001 + documented third-party security attestation + DORA + NIS 2 + AI Act governance requirements. The asset inventory (D-09.3) is a derived strong point — DORA Art. 8 ICT register is mandatory for credit institutions. MaRisk AT 9 governance is a financial-sector baseline. Relevant Regulatory Baseline files: [D-09.1](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-09_Governance-Documentation/D-09.1.md), [D-09.2](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-09_Governance-Documentation/D-09.2.md), [D-09.3](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-09_Governance-Documentation/D-09.3.md), [D-09.4](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-09_Governance-Documentation/D-09.4.md).
 
-### D-10 Monitoring & Audit — Maturity: 4
+### D-10 Monitoring & Audit — Implementation Status: IMPLEMENTED (backfilled from legacy level 4)
 
 | Control | Current | Evidence | Notes |
 |---|---|---|---|
@@ -195,7 +195,7 @@ Evidence is drawn from `Doc04_Architecture_DataInventory.md`, `Doc03_Company_Con
 | Audit logging | Tamper-evident WORM with HSM-signed hash chain; 10-year retention; immutable across legal hold; mainframe audit + access-control logging + centralized audit-log correlation | SYS-23 + SYS-01 + STORE-05 in `04a §1.1`/`§2.1` | HSM-signed audit entries; chain anchored via SYS-22; DORA Art. 17 logging |
 | Compliance testing | Annual ISO 27001 surveillance audit + annual documented third-party security attestation ROC + annual MaRisk audit + AI Act conformity assessment (in progress) + DORA Art. 24 TLPT every 3 years | (paper + tool artefacts) | TLPT first scheduled 2026-Q4 per DORA Art. 24; AI Act conformity assessment 2026-Q3 |
 
-**Target maturity**: 4
+**Target:** met (legacy level 4)
 **Gap**: 0
 **Notes**: D-10 achieves level 4 with cryptographically HSM-signed audit chain, AI-system post-market monitoring, mainframe SMF integration, and ECB/BaFin-supervised compliance testing programme. DORA Art. 24 TLPT every 3 years is a hard obligation tracked. Relevant Regulatory Baseline files: [D-10.1](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-10_Monitoring-Audit/D-10.1.md), [D-10.2](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-10_Monitoring-Audit/D-10.2.md), [D-10.3](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-10_Monitoring-Audit/D-10.3.md).
 
@@ -436,7 +436,7 @@ This sub-section adds the Volere-style **Target fit_criterion** and **Verificati
 | Architecture evidence matches 04a | PASS | SYS-01..SYS-25, STORE-01..STORE-12, FLOW-01..FLOW-25 referenced consistently |
 | Regulatory scope matches Doc 04 and Doc 05 | PASS | `applicable_regs = [GDPR, NIS2, CRA, DORA, AI_Act]`; 38 active SubDomains; D-08.3 ACTIVE (NIS 2 + DORA) |
 | MAXIMUM-tier proportionality maintained | PASS | No over-engineering (HSM cluster + SIEM + EDR + managed PAM + mainframe access control are the minimum for a credit institution + 5-regulation overlap); no under-engineering (DORA Art. 24 TLPT + AI Act conformity assessment scheduled) |
-| Maturity scale used consistently | PASS | Current values are integers 0-4; target and gap shown numerically |
+| Legacy scale used consistently | PASS | Historical check — values were integers 0-4; target and gap shown numerically |
 | Evidence and gaps align | PASS | D-04, D-05 are top gaps (operationally); D-01, D-02, D-03, D-06, D-07, D-08, D-09, D-10 are strongest (mature) |
 | D-08.3 ACTIVE flagged correctly | PASS | D-08.3 participation: [NIS2, DORA]; applicable_regs includes both → ACTIVE. Dual NIS 2 Art. 20 + DORA Art. 5 obligation |
 
@@ -444,8 +444,8 @@ This sub-section adds the Volere-style **Target fit_criterion** and **Verificati
 
 | Gate Criterion | Status | Evidence |
 |---|---|---|
-| All 10 macro-domains assessed with maturity level and evidence | PASS | Section 2 |
-| Target maturity defined per macro-domain | PASS | Sections 2 and 3 |
+| All 10 macro-domains assessed with legacy posture level and evidence | PASS | Section 2 |
+| Target profile defined per macro-domain | PASS | Sections 2 and 3 |
 | Summary dashboard populated | PASS | Section 3 |
 | Top 5 gaps identified | PASS | Section 4 |
 | SubDomains references included | PASS | Each macro-domain section links to all 38 active Regulatory Baseline files |
@@ -455,7 +455,7 @@ This sub-section adds the Volere-style **Target fit_criterion** and **Verificati
 
 | Version | Date | Author | Changes |
 |---|---|---|---|
-| 1.0 | 2026-07-11 | Executor | Created OmniBank populated security posture assessment from the 04b template; MAXIMUM-tier maturity averaging 3.8 (vs SecureBorder's 3.0 for HIGH tier; vs TinyTask's 1.3 for LOW tier), with D-08.3 ACTIVE under NIS 2 + DORA Art. 5 dual obligation. |
+| 1.0 | 2026-07-11 | Executor | Created OmniBank populated security posture assessment from the 04b template; MAXIMUM-tier posture averaging legacy level 3.8 (vs SecureBorder's 3.0 for HIGH tier; vs TinyTask's 1.3 for LOW tier), with D-08.3 ACTIVE under NIS 2 + DORA Art. 5 dual obligation. |
 | 1.2 | 2026-08-06 | Executor | Sprint 2 corpus enrichment: new §2.1 added with per-macro-domain + per-sub-domain Volere fit_criteria + verification methods from corpus JSON sidecars (134 sub-requirements across 38 sub-domains aggregated to 10 macro-domains; MUST priority dominant); status RECONCILED → CORPUS_ENRICHED. |
 
 ## N. Document Approval
@@ -472,7 +472,7 @@ This sub-section adds the Volere-style **Target fit_criterion** and **Verificati
 
 ## See also
 
-- **Data backbone:** `Case_03_Phase1.xlsx` (13 sheets: COVER, SYSTEMS, DATA_STORES, DATA_FLOWS, PERSONAL_DATA, THIRD_PARTIES, ROLES_RACI, MATURITY, SUBDOMAINS, REG_CHAIN, COMPLIANCE, GAPS, PRIORITIES)
+- **Data backbone:** `Case_03_Phase1.xlsx` (13 sheets: COVER, SYSTEMS, DATA_STORES, DATA_FLOWS, PERSONAL_DATA, THIRD_PARTIES, ROLES_RACI, MATURITY (legacy sheet name), SUBDOMAINS, REG_CHAIN, COMPLIANCE, GAPS, PRIORITIES)
 - **Architecture context:** `Doc04_Architecture_DataInventory.md` §1.1 (25 systems), §2.1 (12 stores), §2.2 (25 flows).
 - **People/RACI:** `Doc07_Org_Roles_RACI.md` (~40 named-RACI roles including CISO + DPO + CRO + AI Governance Lead + dedicated mainframe + AI + payments teams).
 - **MAXIMUM-tier context:** `../../02_CASES/Case_03_OmniBank_Financial/00_COMMON/01_Company_Context.md` (5 applicable regulations; complexity tier MAXIMUM; 5,000+ employees; DORA financial entity + NIS 2 essential entity + AI Act Annex III + CRA mobile app).
