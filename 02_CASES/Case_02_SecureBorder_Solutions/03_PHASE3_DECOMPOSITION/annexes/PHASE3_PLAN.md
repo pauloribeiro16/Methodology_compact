@@ -26,9 +26,11 @@ status: DRAFT
 |----------|-------|-------|
 | Rules (Compliance) | 38 | CR-D-XX.X-NNN format |
 | Rules (Best Practice) | 15 | BPR-D-XX.X-NNN format (7 Security + 8 AI-Specific) |
-| Privacy Goals | 9 | PG-D-XX.X-NNN |
-| Security Goals | 29 | SG-D-XX.X-NNN |
+| Adjusted Goals (privacy set) | 9 | AG-D-XX.Y-001 format (post corr-008 AG- migration, 2026-08-28; was PG-D-XX.X-NNN) |
+| Adjusted Goals (security set) | 29 | AG-D-XX.Y-002 format (post corr-008 AG- migration, 2026-08-28; was SG-D-XX.X-NNN) |
 | Strategic Tensions | 8 | All resolved (2 CRITICAL, 2 HIGH, 3 MEDIUM, 1 LOW) |
+
+> ⚠️ Counts above are the April-2026 planning snapshot; current volumes: 63 rules (38 CR + 25 BPR), 9 tensions (T-001..T-009), 70 adjusted goals (35+35), 89 PSOs in Phase 2.
 | Sub-Domains Covered | 35/38 (92.1%) | Gaps: D-02.4, D-06.4, D-08.3 |
 
 ### Case-Specific Complexity Factors

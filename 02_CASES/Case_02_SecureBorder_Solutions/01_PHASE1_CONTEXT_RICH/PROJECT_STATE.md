@@ -61,7 +61,7 @@ frozen: false
 | 06 | `06_Clause_Mapping_Matrix.md` | ✅ RECONCILED |
 | 07 | `07_Structured_Compliance_Matrix.md` | ✅ RECONCILED |
 | **07b** | `07b_Proportionality_Profile.md` | ⚠️ ACTIVE + cross-checked — 1 MAJOR finding open (F-01) |
-| **07c** | `07c_Adjusted_Objectives.md` | ✅ **DEEP_ENRICHED** (2,169 lines, Sprint 5) |
+| **07c** | `Doc13_Adjusted_Goals.md` | ✅ **DEEP_ENRICHED** (2,169 lines, Sprint 5) |
 | — | `Citation_Index.md` | ✅ COMPLETE (Sprint 2) |
 | — | `corpus_field_map.md` | ⚠️ still `DRAFT` (Sprint 0) |
 | — | `README.md` | ✅ ACTIVE (Sprint 3) |
@@ -89,7 +89,7 @@ frozen: false
 | **Sprint 0.5** | 2026-08-06 | `07b` Track B instance — 35 active sub-domains, 8 RIGOROUS + 27 STANDARD, 3 NOT_ADDRESSED documented |
 | **Sprint 1** | 2026-08-06 | Reconciliation — 10 docs + ontology v1.1 into Rich; `active_subdomains` 38 → 35; T-006/007/008 added; by-design section markers |
 | **Sprint 3** | 2026-08-06 | `07b` §11 corpus cross-check (15 rows, 6 findings); README dashboard + navigation; `RICH_VS_LEGACY.md`; this file; Validator verdict |
-| **Sprint 4** | 2026-08-06 | Adjusted objectives — `07c_Adjusted_Objectives.md` delivered with 70 objective cards | 
+| **Sprint 4** | 2026-08-06 | Adjusted objectives — `Doc13_Adjusted_Goals.md` delivered with 70 objective cards | 
 | **Sprint 5** | 2026-08-06 | DEEP enrichment — `07c` status promoted to DEEP_ENRICHED; 70 detail cards and 3 tensions expanded |
 
 **Commits on `feature/aegis-p1-case02-rich`:** `5687792` (corpus cherry-pick) → `fff7915` (Sprint 0) → `1c74f6b` (Sprint 0.5) → `8decee0` (Sprint 1) → `973cc1e` (Sprint 2) → Sprint 3 *(uncommitted at time of writing)*.
@@ -149,7 +149,7 @@ Full ledger in `RICH_VS_LEGACY.md` §5. Blocking subset:
 |---|------|----------|
 | **O-01** | **F-01 — scale input.** `07b` sets `S = MEDIUM`; `proportionality_model.md` §2 puts 450 emp / €120M in **LARGE** on both axes (>250 emp, ≥€50M). Under LARGE, §5.1 makes all 35 rows RIGOROUS instead of 8 + 27. Invalidates the §3 distribution and the wording of `07b` §6 GATE-P check (c). | **BLOCKING** |
 | **O-02** | **Active-set disagreement.** `05b` §2: NOT_ADDRESSED = {D-07.2, D-07.4, D-09.3}, D-08.3 ACTIVE. `07b` §4: excluded = {D-07.4, D-08.3, D-09.3}, D-07.2 ACTIVE. Both total 35, so no count-based lint fires. | **BLOCKING** |
-| **O-03** | `07c_Adjusted_Objectives.md` delivered and marked DEEP_ENRICHED (Sprint 5). | CLOSED |
+| **O-03** | `Doc13_Adjusted_Goals.md` delivered and marked DEEP_ENRICHED (Sprint 5). | CLOSED |
 | **O-04** | `05b` §3 top-20 cards cover only 3 distinct GDPR clauses; zero CRA / NIS 2 / AI_Act cards. | HIGH |
 
 Items O-05 → O-12 (MEDIUM/LOW: ontology path, D-04.3 qualifier, D-10.1 tension, T-002 citation, D-02.4 attribution, corpus casing, `corpus_field_map` DRAFT, missing templates) are catalogued in `RICH_VS_LEGACY.md` §5.

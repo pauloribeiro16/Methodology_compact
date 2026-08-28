@@ -22,7 +22,7 @@
   - `06_Clause_Mapping_Matrix.md` (clauses → corpus)
   - `07_Structured_Compliance_Matrix.md` (sub-domain coverage matrix)
   - `07b_Proportionality_Profile.md` (Track B decisions; F-01 SETTLED)
-  - **`07c_Adjusted_Objectives.md`** (Phase 1 AO layer, 35 ACTIVE subdomains × 1-4 AOs each; tech-free)
+  - **`Doc13_Adjusted_Goals.md`** (Phase 1 AO layer, 35 ACTIVE subdomains × 1-4 AOs each; tech-free)
   - `phase1_ontology.yaml` (canonical ontology; F-01..F-06 status)
   - `Citation_Index.md`, `corpus_field_map.md`, `RICH_VS_LEGACY.md`, `PROJECT_STATE.md`
 

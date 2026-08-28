@@ -157,7 +157,7 @@ For each of the 14 Rich Phase 1 docs, the table below maps the legacy doc's surf
 | Per-sub-domain depth | `PREPROCESSING/SubDomains/D-*.md` (Compliance Score) | L1 | Some sub-domains have HIGH participation → RIGOROUS depth. |
 | Resource envelope | `02_CASES/Case_02.../00_COMMON/03_Design_Decisions_Log.md` | Legacy | Case-by-case effort estimates. |
 
-### 2.13 `07c_Adjusted_Objectives.md` (NEW in Rich)
+### 2.13 `Doc13_Adjusted_Goals.md` (NEW in Rich)
 
 | Legacy field | Corpus source | Layer | Notes |
 |--------------|---------------|-------|-------|

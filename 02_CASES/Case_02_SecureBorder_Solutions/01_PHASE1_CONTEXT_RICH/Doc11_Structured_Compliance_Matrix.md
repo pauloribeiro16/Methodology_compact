@@ -354,17 +354,17 @@ This section identifies **factual events** that can simultaneously trigger oblig
 
 ### BG-005 → Doc 07 §6.1 mapping (added 2026-08-06)
 - Affected sub-domains: D-04.4 (Data Restoration & Recovery), D-10.1 (Continuous Security Monitoring)
-- PG/SG references: PG-D-04.4-001 (RTO 24h), SG-D-10.1-001 (CloudWatch monitoring)
+- PG/SG references: AG-D-04.4-001 (RTO 24h), AG-D-10.1-002 (CloudWatch monitoring)
 - Verification criteria reinforce BG-005: AWS Backup with RTO 24h matches BG-005's "99.99% uptime" target
 
 ### BG-006 → Doc 07 §6.1 mapping (added 2026-08-06)
 - Affected sub-domains: D-09.1 (Policies per jurisdiction), D-04.3 (Incident notification)
-- PG/SG references: PG-D-09.1-001 (InfoSec Policies), SG-D-04.3-001 (max-SLA 24h incident routing)
+- PG/SG references: AG-D-09.1-001 (InfoSec Policies), AG-D-04.3-002 (max-SLA 24h incident routing)
 - Verification criteria reinforce BG-006: Multi-reg incident notification pipeline (GDPR SA + NIS 2 CSIRT + CRA ENISA + AI_Act supervisory authority) supports multi-jurisdiction compliance
 
 ### BG-007 → Doc 07 §6.1 mapping (added 2026-08-06)
 - Affected sub-domains: D-09.1 (InfoSec Policies), D-09.4 (Records of Processing), D-10.3 (Compliance Testing)
-- PG/SG references: PG-D-09.1-001 (Policies), PG-D-09.4-001 (Records), SG-D-10.3-001 (Quarterly compliance review)
+- PG/SG references: AG-D-09.1-001 (Policies), AG-D-09.4-001 (Records), AG-D-10.3-002 (Quarterly compliance review)
 - Verification criteria reinforce BG-007: ISO 27001 surveillance audit alignment with quarterly review
 
 <!-- BY-DESIGN: case-specific extension -->

@@ -1894,12 +1894,12 @@ findings:
     opened_date: "2026-08-06"
     resolved_by: "corr-Case02 Commit B Executor (Case_02, 2026-08-10)"
     resolved_date: "2026-08-10"
-    resolution: "F-04 fix: replaced 'AI_Act Art. 12' with 'AI_Act Art. 19(1)' in all T-002 citations across 07c §4/§8 (PG-D-05.3) and 09 §4.2; added inline note that AI_Act Art. 12 governs transparency and is NOT a D-05.3 (Right to Erasure) participant; erasure is GDPR Art. 17 only; AI_Act Art. 19(1) governs LOGGING retention which is D-10.2, not D-05.3."
+    resolution: "F-04 fix: replaced 'AI_Act Art. 12' with 'AI_Act Art. 19(1)' in all T-002 citations across 07c §4/§8 (AG-D-05.3-001) and 09 §4.2; added inline note that AI_Act Art. 12 governs transparency and is NOT a D-05.3 (Right to Erasure) participant; erasure is GDPR Art. 17 only; AI_Act Art. 19(1) governs LOGGING retention which is D-10.2, not D-05.3."
     rationale: |
       Prior citation conflated AI_Act Art. 12 (transparency obligations for certain AI
       systems) with AI_Act Art. 19(1) (logging capability and ≥6-month retention floor
       for high-risk AI systems). F-04 fix corrects citation in 07c_Adjusted_Objectives.md
-      §4 (T-002 narrative + Tensions Summary Table), §8 (PG-D-05.3 + SG-D-05.3 detail
+      §4 (T-002 narrative + Tensions Summary Table), §8 (AG-D-05.3-001 + AG-D-05.3-002 detail
       cards), and 09_Strategic_Tensions_Report.md §4.2 (T-002 narrative). Inline note
       added: AI_Act Art. 12 governs transparency and is NOT a D-05.3 participant;
       erasure is GDPR Art. 17 only; AI_Act Art. 19(1) governs LOGGING retention

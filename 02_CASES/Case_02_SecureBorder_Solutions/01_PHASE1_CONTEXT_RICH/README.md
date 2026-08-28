@@ -107,7 +107,7 @@ The Sprint 0 plan below was superseded during execution — themes were resequen
 | 06 | [`06_Clause_Mapping_Matrix.md`](Doc10_Clause_Mapping_Matrix.md) | no | RECONCILED | 301 |
 | 07 | [`07_Structured_Compliance_Matrix.md`](Doc11_Structured_Compliance_Matrix.md) | no | RECONCILED | 444 |
 | **07b** | [`07b_Proportionality_Profile.md`](Doc12_Proportionality_Profile.md) | **YES** | ACTIVE + cross-checked (Sprint 3; F-01 settled) | 308 |
-| **07c** | [`07c_Adjusted_Objectives.md`](Doc13_Adjusted_Objectives.md) | **YES** | **DEEP_ENRICHED** (Sprint 5) | 53 |
+| **07c** | [`Doc13_Adjusted_Goals.md`](Doc13_Adjusted_Goals.md) | **YES** | **DEEP_ENRICHED** (Sprint 5) | 53 |
 | **—** | [`Citation_Index.md`](Citation_Index.md) | **YES** | COMPLETE (Sprint 2) | 127 |
 | — | [`corpus_field_map.md`](Corpus_Field_Map.md) | yes | DRAFT (Sprint 0) | 211 |
 | — | `README.md` | this file | ACTIVE | — |

@@ -12,7 +12,7 @@ applicable_regs: [GDPR, CRA, NIS 2, AI_Act]
 active_subdomains: 35
 inactive_documented: [D-08.3 INACTIVE, 3 NOT_ADDRESSED]
 new_in_rich: true
-inputs: [07c_Adjusted_Objectives.md]
+inputs: [Doc13_Adjusted_Goals.md]
 outputs: []
 ---
 

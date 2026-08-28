@@ -7,7 +7,7 @@ created: 2026-04-04
 updated: 2026-08-10
 author: System Architect
 status: DRAFT
-inputs: [16_Compliance_Gates_Report.md, 15_Requirements_Allocation.md, 14_Architectural_Nodes.md, ../01_PHASE1_CONTEXT_RICH/07c_Adjusted_Objectives.md]
+inputs: [16_Compliance_Gates_Report.md, 15_Requirements_Allocation.md, 14_Architectural_Nodes.md, ../01_PHASE1_CONTEXT_RICH/Doc13_Adjusted_Goals.md]
 outputs: [18_Functional_Tree.drawio, 22_Traceability_Matrix.xlsx]
 traceability: AEGIS Class Model → FunctionalNode, DecompositionLevel, Track classes
 related_documents: 16_Compliance_Gates_Report.md, 03_Design_Decisions_Log.md

@@ -237,7 +237,7 @@ controls (model integrity, adversarial robustness, AI-specific risk management).
       AVG(NI) = 2.5 (NIS 2 = NI 2, AI_Act = NI 3) → bucket P1 → MUST
       (NI ≥ 2.5).
     dependencies: |
-      Forte ligação a PO-D-08.1-001 (monitoring) e SG-D-09.3 (incident response).
+      Forte ligação a PO-D-08.1-001 (monitoring) e AG-D-09.3-002 (incident response).
 ```
 
 #### SO-D-07.2-001, SO-D-07.2-002 — Implement AI model supply chain integrity (BPR)

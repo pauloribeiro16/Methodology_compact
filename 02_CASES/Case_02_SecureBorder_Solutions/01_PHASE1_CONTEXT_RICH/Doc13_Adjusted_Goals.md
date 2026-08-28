@@ -1,11 +1,11 @@
 ---
 document_id: AEGIS-P2-RICH-07c-ADJ
-title: Adjusted Objectives per Sub-Domain (Rich Mode)
+title: Adjusted Goals per Sub-Domain (Rich Mode)
 phase: 1
-version: 2.0
+version: 3.0
 created: 2026-08-06
-updated: 2026-08-06
-author: Sprint 4 Executor (adjusted-objectives-builder); Sprint 5 Executor (DEEP enrichment)
+updated: 2026-08-28
+author: Sprint 4 Executor (adjusted-objectives-builder); Sprint 5 Executor (DEEP enrichment); Port Fase 1 (corr-008 AG- migration)
 status: DEEP_ENRICHED
 status_history:
   - { date: 2026-08-06, status: DRAFT, sprint: 0, by: 'Sprint 0 skeleton' }
@@ -13,22 +13,24 @@ status_history:
   - { date: 2026-08-06, status: CORPUS_ENRICHED, sprint: 2, by: 'Sprint 2 corpus enrichment' }
   - { date: 2026-08-06, status: ADJUSTED_OBJECTIVES, sprint: 4, by: 'Sprint 4 adjusted objectives' }
   - { date: 2026-08-06, status: DEEP_ENRICHED, sprint: 5, by: 'Sprint 5 DEEP enrichment' }
+  - { date: 2026-08-28, status: AG_MIGRATED, by: 'Port Fase 1 (corr-008): PG-/SG- → AG-D-XX.Y-001/-002; renamed Adjusted_Goals per corr-010' }
 case: Case_02_SecureBorder_Solutions
 applicable_regs: [GDPR, CRA, NIS 2, AI_Act]
 active_subdomains: 35
 inactive_subdomains: [D-07.4, D-08.3, D-09.3]
-sprint: 5
-sprint_role: deep_enrichment
+id_format: AG-D-XX.Y-NNN (canonical Phase 1 per corr-008; privacy set -001, security set -002; legacy PG-/SG- aliases in Appendix A)
 detail_cards: 70
 tensions_expanded: 3
 fields_excluded: [Effort Estimate, Cost Estimate, Target Timeline]
 cross_checked_against: [07b_Proportionality_Profile.md, proportionality_model.md]
 ---
 
-# Adjusted Objectives per Sub-Domain (Rich Mode)
+# Adjusted Goals per Sub-Domain (Rich Mode)
 
-> Phase 1 adjusted objectives — generic baseline + company-tailored PG/SG + Track B tier + tensions resolved.
-> 35 active sub-domains × (1 PG + 1 SG) = 70 adjusted objectives + 3 resolved tensions + 35 Track B decision rows.
+> Phase 1 adjusted goals — generic baseline + company-tailored AG sets (privacy `-001` / security `-002`) + Track B tier + tensions resolved.
+> 35 active sub-domains × (1 privacy + 1 security goal) = 70 adjusted goals + 3 resolved tensions + 35 Track B decision rows.
+>
+> **corr-008 AG- migration (v3.0, 2026-08-28, port Fase 1):** all legacy `PG-D-XX.Y` / `SG-D-XX.Y` goal IDs migrated to the canonical `AG-D-XX.Y-NNN` format (PG → `-001`, SG → `-002`). Legacy aliases preserved in Appendix A. This closes the corr-007/008 prefix violation flagged by `../01_PHASE1_CONTEXT_RICH/validation/P1_cross_case_mirror_v0.md` and aligns the filename with corr-010 (`Adjusted_Goals`).
 
 ## §1 Generic Baseline (preserved from corpus)
 
@@ -82,41 +84,41 @@ Adjusted Privacy Goals are Case_02-specific restatements of the corpus generic G
 
 | Sub-Domain | Generic GDPR Sub-SO | Adjusted PG (Case_02-specific) | Tier | Priority | Details | | NIST Anchors | | NIST Anchors |
 |------------|---------------------|---------------------------------|------|----------|---------| | --- | | --- |
-| D-01.1 (Data at Rest Encryption) | `SO-D-01.1.GDPR` | All biometric reference datas and watchlist data at rest in eGate kiosks are protected by hardware cryptographic module-backed industry-standard authenticated encryption encryption with classified-key cipher strength, dedicated key-rotation policy (quarterly), cryptographic sharding separating biometric↔identity mapping, cryptographic module certified to applicable assurance level Level 3 hardware cryptographic module, and tamper-evident key-lineage logging — meeting GDPR Art. 9 (special category biometric) + Art. 32 risk-anchored floor + CRA state-of-the-art baseline on a single artefact. | RIGOROUS | MUST | [PG-D-01.1](#pg-d-d011) | | — | | — |
-| D-01.2 (Data in Transit Encryption) | `SO-D-01.2.GDPR` | All biometric and watchlist data in transit across kiosk↔cloud and kiosk↔government links is protected by modern transport security with mutual transport authentication on internal on-device↔backend, hardware cryptographic module-signed certificates, cipher suite allowlist (no RC4/3DES), and a documented transit-encryption policy anchored to GDPR Art. 32(1)(a)/(b). | STANDARD | MUST | [PG-D-01.2](#pg-d-d012) | | — | | — |
-| D-01.3 (Cryptographic Key Management) | `SO-D-01.3.GDPR` | Cryptographic key custody for biometric reference datas uses an hardware cryptographic module-anchored architecture with classified-key cipher strength per Art. 9 biometric sensitivity, key-lineage logging to tamper-evident audit log, functional-role-based access control separation (key-material custodian vs operational-environment custodian as distinct roles with distinct credentials), separation of biometric key material from non-biometric key material, and a documented de-attribution test procedure — meeting GDPR's Art. 4(5) pseudonymisation test on a single artefact. | RIGOROUS | MUST | [PG-D-01.3](#pg-d-d013) | | — | | — |
-| D-01.4 (Data Integrity Mechanisms) | `SO-D-01.4.GDPR` | Data integrity of biometric + watchlist records is protected by cryptographic integrity check-SHA256 on all biometric data, DB constraints + signed audit log, checksum validation on data restore, and GDPR Art. 5(1)(f) integrity principle documentation in the DPIA. | STANDARD | MUST | [PG-D-01.4](#pg-d-d014) | | — | | — |
-| D-02.1 (Vulnerability Identification) | `SO-D-02.1.GDPR` | Personal-data-impacting vulnerabilities identified by dependency vulnerability scanner + npm audit in CI, OSS advisories feed, and a monthly vulnerability review board with CISO + CTO participation; vulnerability findings link to the DPIA risk register per GDPR Art. 35. | STANDARD | MUST | [PG-D-02.1](#pg-d-d021) | | — | | — |
-| D-02.2 (Patch Management & Updates) | — | N/A — non-privacy sub-domain (CRA-only product-level patching). Personal data integrity protected by the integrity sub-domain (D-01.4) and the patch cadence satisfies GDPR Art. 32(1)(d) `regular testing` as a side-effect of CRA Art. 13(8) vulnerability handling. | STANDARD | MUST | [PG-D-02.2](#pg-d-d022) | | — | | — |
-| D-02.3 (Coordinated Vulnerability Disclosure) | — | N/A — non-privacy sub-domain (CRA + NIS 2 product/entity-level CVD). Personal-data-impacting vulnerabilities reach the controller via the processor→controller breach notification chain (D-04.3) within GDPR's 72h clock. | STANDARD | MUST | [PG-D-02.3](#pg-d-d023) | | — | | — |
-| D-02.4 (Threat-Led Penetration Testing) | — | N/A — non-privacy sub-domain (CRA + AI_Act + NIS 2 threat-led testing). Personal-data exposure from pen-test artefacts is governed by the controller's data-handling policy (D-04.4) and the test-environment segregation. | STANDARD | MUST | [PG-D-02.4](#pg-d-d024) | | — | | — |
-| D-03.1 (Identity Lifecycle Management) | `SO-D-03.1.GDPR` | Personal-data access identity lifecycle managed by a dedicated IAM (dedicated identity governance platform/dedicated identity provider — native, NOT Firebase INHERIT) with provisioning protocol provisioning, quarterly access reviews covering biometric-data scopes (NIS 2 Art. 21(2)(i) workforce-side joiner-mover-leaver), and DPO oversight on biometric scope authorisations per GDPR Art. 30 controller capacity. | STANDARD | MUST | [PG-D-03.1](#pg-d-d031) | | — | | — |
-| D-03.2 (Multi-Factor Authentication) | `SO-D-03.2.GDPR` | Personal-data access (including biometric-data scopes) requires phishing-resistant multi-factor authentication (hardware-backed second-factor authenticator/hardware-backed second-factor authenticator) for kiosk admin access; SMS+time-based one-time password fallback for read-only scopes; Art. 32(1) appropriate-and-proportionate multi-factor authentication aligned to biometric data sensitivity. | STANDARD | MUST | [PG-D-03.2](#pg-d-d032) | | — | | — |
-| D-03.3 (Authorisation & Least Privilege) | `SO-D-03.3.GDPR` | Personal-data access (biometric scope) is governed by role-based access control with least-privilege for kiosk operators + attribute-based access control for biometric-data access (purpose-bound) + segregation of duties (operator vs auditor); documented per GDPR Art. 5(1)(c) data minimisation principle. | STANDARD | MUST | [PG-D-03.3](#pg-d-d033) | | — | | — |
-| D-03.4 (Secure System Defaults) | `SO-D-03.4.GDPR` | N/A — non-privacy sub-domain (CRA secure-by-default). Personal-data exposure from insecure defaults is mitigated by the secure-defaults control itself (debug ports disabled, default passwords rotated, signed firmware required) — discharges GDPR Art. 25(2) privacy by default on the same artefact. | STANDARD | MUST | [PG-D-03.4](#pg-d-d034) | | — | | — |
-| D-04.1 (Incident Detection & Triage) | `SO-D-04.1.GDPR` | Personal-data breach detection via 24/7 SOC + Security Information and Event Management + AI-driven anomaly detection on on-device pipeline; playbooks per scenario including biometric-data breach (CRA Art. 14(3) severe incident); GDPR Art. 32(1)(d) `regular testing` of detection capability. | STANDARD | MUST | [PG-D-04.1](#pg-d-d041) | | — | | — |
-| D-04.2 (Incident Containment & Response) | `SO-D-04.2.GDPR` | Personal-data breach containment via documented documented incident response procedure (GDPR Art. 32 processor-side), chain-of-custody evidence pack, CSIRT coordination procedure; Art. 32(1)(c) `restore in timely manner` anchored to RTO 24h. | STANDARD | MUST | [PG-D-04.2](#pg-d-d042) | | — | | — |
-| D-04.3 (Incident Notification & Reporting) | `SO-D-04.3.GDPR` | Personal-data breach notification to controller and supervisory authority via **multi-reg max-SLA 24h routing** (resolves T-001): single workflow satisfies GDPR Art. 33(2) processor→controller `without undue delay` + CRA Art. 14(1-2) AEV + NIS 2 Art. 23(4)(a) significant incident + AI_Act Art. 73(3) 2-day widespread infringement; CEO/board liability (NIS 2 Art. 20). | RIGOROUS | MUST | [PG-D-04.3](#pg-d-d043) | | — | | — |
-| D-04.4 (Incident Recovery & Lessons Learned) | `SO-D-04.4.GDPR` | Personal-data restoration and recovery via RTO 24h, RPO 1h; immutable backup with 10-year retention; quarterly restore drill (ISO 27001 A.17); GDPR Art. 32(1)(b)(c) `restore availability and access in timely manner`. | STANDARD | MUST | [PG-D-04.4](#pg-d-d044) | | — | | — |
-| D-05.1 (Data Minimisation) | `SO-D-05.1.GDPR` | Personal-data minimisation enforced at field-level in schema; biometric reference data deleted after match (seconds, ephemeral); data minimisation review per release per AI_Act Art. 10 data governance + GDPR Art. 5(1)(c). | STANDARD | MUST | [PG-D-05.1](#pg-d-d051) | | — | | — |
-| D-05.2 (Retention & Archiving) | `SO-D-05.2.GDPR` | Personal-data retention policy (per data type): biometric ephemeral (seconds); audit logs 10 years (CRA Art. 13(13) + NIS 2); watchlist per government policy; documented per GDPR Art. 5(1)(e) storage limitation. | STANDARD | MUST | [PG-D-05.2](#pg-d-d052) | | — | | — |
-| D-05.3 (Right to Erasure) | `SO-D-05.3.GDPR` | Right-to-erasure endpoint + cryptographic sharding — destroy biometric↔identity mapping, retain anonymised audit trail (resolves T-002 GDPR Art. 17 vs AI_Act Art. 19(1) log retention — AI_Act Art. 12 governs transparency; AI_Act is not a D-05.3 participant); GDPR Art. 17 erasure per data subject request. | STANDARD | MUST | [PG-D-05.3](#pg-d-d053) | | — | | — |
-| D-05.4 (Data Portability) | `SO-D-05.4.GDPR` | Data portability endpoint (JSON export) per GDPR Art. 20; covers audit-log-controller capacity; machine-readable format documented per Art. 20(3). | STANDARD | MUST | [PG-D-05.4](#pg-d-d054) | | — | | — |
-| D-06.1 (Vendor Risk Assessment) | `SO-D-06.1.GDPR` | Personal-data processor (biometric sub-processor) agreements per GDPR Art. 28; due diligence on each processor covers Art. 28(1) `sufficient guarantees`; biometric-specific safeguards documented. | RIGOROUS | MUST | [PG-D-06.1](#pg-d-d061) | | — | | — |
-| D-06.2 (Software Bill of Materials (software bill of materials)) | — | N/A — non-privacy sub-domain (CRA-only software bill of materials). Personal-data exposure from vulnerable components is mitigated by the software bill of materials-anchored vulnerability tracking (D-02.1). | STANDARD | MUST | [PG-D-06.2](#pg-d-d062) |
-| D-06.3 (Contractual Security Obligations) | `SO-D-06.3.GDPR` | Personal-data contractual chain via DPA template + supplier security clauses; GDPR Art. 28(3) 8-element DPA list enforced; multi-tier sub-processor flowdown; right-to-audit clauses. | RIGOROUS | MUST | [PG-D-06.3](#pg-d-d063) | | — | | — |
-| D-06.4 (Third-Party Boundary Management) | `SO-D-06.4.GDPR` | Personal-data boundary management via network segmentation (SecureBorder/Cloud/Government); mutual transport authentication on all boundaries; zero-trust kiosk↔cloud; documented per GDPR Art. 32(1)(b) `ongoing confidentiality`. | STANDARD | MUST | [PG-D-06.4](#pg-d-d064) | | — | | — |
-| D-07.1 (Secure-by-Design Principles) | `SO-D-07.1.GDPR` | Personal-data protection by design via privacy-by-design (GDPR Art. 25(1)) integrated with AI_Act risk management system (Art. 9); unified SDLC covers high-risk AI; threat modelling per feature (STRIDE + AI-specific extensions). | RIGOROUS | MUST | [PG-D-07.1](#pg-d-d071) | | — | | — |
-| D-07.2 (Secure Coding Practices) | — | N/A — non-privacy sub-domain (CRA + AI_Act secure coding). Personal-data protection from vulnerable code is discharged via the secure-coding controls themselves (static application security testing/dynamic application security testing in CI). | STANDARD | MUST | [PG-D-07.2](#pg-d-d072) | | — | | — |
-| D-07.3 (CI/CD Pipeline Security) | — | N/A — non-privacy sub-domain (NIS 2 + CRA pipeline security). Personal-data integrity through the pipeline is protected by the pipeline-security controls themselves (signed artefacts, software bill of materials gate). | RIGOROUS | MUST | [PG-D-07.3](#pg-d-d073) | | — | | — |
-| D-08.1 (General Security Awareness) | `SO-D-08.1.GDPR` | Annual security awareness training includes GDPR-specific module (data subject rights, breach recognition, biometric-data handling); phishing simulation quarterly; kiosk-specific security guide; documented per GDPR Art. 39 DPO-informed training. | STANDARD | MUST | [PG-D-08.1](#pg-d-d081) | | — | | — |
-| D-08.2 (Role-Specific Competence) | `SO-D-08.2.GDPR` | DPO role-specific competence (Art. 37(1)(c) mandatory) — DPO training + AI Governance Lead training per AI_Act Art. 14 human oversight + SOC analyst certification; continuing professional education. | STANDARD | MUST | [PG-D-08.2](#pg-d-d082) | | — | | — |
-| D-09.1 (Information Security Policies) | `SO-D-09.1.GDPR` | Personal-data policies integrated in ISO 27001 certified ISMS (Doc 04 §10.4); unified policies with regulation-specific annexes; annual surveillance audit; DPO oversight. | STANDARD | MUST | [PG-D-09.1](#pg-d-d091) | | — | | — |
-| D-09.2 (Impact & Risk Assessments) | `SO-D-09.2.GDPR` | Personal-data impact assessment via unified DPIA (GDPR Art. 35) + FRIA (AI_Act Art. 27) single process with dual output; cross-impact CRDA analysis; threshold-trigger criteria per Art. 35(3) and Art. 27(1). | STANDARD | MUST | [PG-D-09.2](#pg-d-d092) | | — | | — |
-| D-09.4 (Records of Processing) | `SO-D-09.4.GDPR` | Records of processing activities (RoPA) cover personal-data processing per GDPR Art. 30; DPO oversight; immutable storage; 10-year retention. | STANDARD | MUST | [PG-D-09.4](#pg-d-d094) | | — | | — |
-| D-10.1 (Continuous Security Monitoring) | `SO-D-10.1.GDPR` | Personal-data security monitoring via 24/7 SOC with Security Information and Event Management; AI-driven anomaly detection on on-device pipeline; biometric-data scope alerts; documented per GDPR Art. 32(1)(d) `regular testing`. | RIGOROUS | MUST | [PG-D-10.1](#pg-d-d101) | | — | | — |
-| D-10.2 (Audit Logging & Traceability) | `SO-D-10.2.GDPR` | Personal-data audit log via tamper-evident log (GDPR Art. 30 controller capacity); 10-year retention; cryptographic hash chain; documented per Art. 5(2) accountability principle. | STANDARD | MUST | [PG-D-10.2](#pg-d-d102) | | — | | — |
-| D-10.3 (Compliance Testing) | `SO-D-10.3.GDPR` | Personal-data compliance testing via annual ISO 27001 surveillance audit + DPIA re-assessment + GDPR Art. 35(11) review on material change; CISO sign-off. | STANDARD | MUST | [PG-D-10.3](#pg-d-d103) | | — | | — |
+| D-01.1 (Data at Rest Encryption) | `SO-D-01.1.GDPR` | All biometric reference datas and watchlist data at rest in eGate kiosks are protected by hardware cryptographic module-backed industry-standard authenticated encryption encryption with classified-key cipher strength, dedicated key-rotation policy (quarterly), cryptographic sharding separating biometric↔identity mapping, cryptographic module certified to applicable assurance level Level 3 hardware cryptographic module, and tamper-evident key-lineage logging — meeting GDPR Art. 9 (special category biometric) + Art. 32 risk-anchored floor + CRA state-of-the-art baseline on a single artefact. | RIGOROUS | MUST | [AG-D-01.1-001](#ag-d-d01-1-001) | | — | | — |
+| D-01.2 (Data in Transit Encryption) | `SO-D-01.2.GDPR` | All biometric and watchlist data in transit across kiosk↔cloud and kiosk↔government links is protected by modern transport security with mutual transport authentication on internal on-device↔backend, hardware cryptographic module-signed certificates, cipher suite allowlist (no RC4/3DES), and a documented transit-encryption policy anchored to GDPR Art. 32(1)(a)/(b). | STANDARD | MUST | [AG-D-01.2-001](#ag-d-d01-2-001) | | — | | — |
+| D-01.3 (Cryptographic Key Management) | `SO-D-01.3.GDPR` | Cryptographic key custody for biometric reference datas uses an hardware cryptographic module-anchored architecture with classified-key cipher strength per Art. 9 biometric sensitivity, key-lineage logging to tamper-evident audit log, functional-role-based access control separation (key-material custodian vs operational-environment custodian as distinct roles with distinct credentials), separation of biometric key material from non-biometric key material, and a documented de-attribution test procedure — meeting GDPR's Art. 4(5) pseudonymisation test on a single artefact. | RIGOROUS | MUST | [AG-D-01.3-001](#ag-d-d01-3-001) | | — | | — |
+| D-01.4 (Data Integrity Mechanisms) | `SO-D-01.4.GDPR` | Data integrity of biometric + watchlist records is protected by cryptographic integrity check-SHA256 on all biometric data, DB constraints + signed audit log, checksum validation on data restore, and GDPR Art. 5(1)(f) integrity principle documentation in the DPIA. | STANDARD | MUST | [AG-D-01.4-001](#ag-d-d01-4-001) | | — | | — |
+| D-02.1 (Vulnerability Identification) | `SO-D-02.1.GDPR` | Personal-data-impacting vulnerabilities identified by dependency vulnerability scanner + npm audit in CI, OSS advisories feed, and a monthly vulnerability review board with CISO + CTO participation; vulnerability findings link to the DPIA risk register per GDPR Art. 35. | STANDARD | MUST | [AG-D-02.1-001](#ag-d-d02-1-001) | | — | | — |
+| D-02.2 (Patch Management & Updates) | — | N/A — non-privacy sub-domain (CRA-only product-level patching). Personal data integrity protected by the integrity sub-domain (D-01.4) and the patch cadence satisfies GDPR Art. 32(1)(d) `regular testing` as a side-effect of CRA Art. 13(8) vulnerability handling. | STANDARD | MUST | [AG-D-02.2-001](#ag-d-d02-2-001) | | — | | — |
+| D-02.3 (Coordinated Vulnerability Disclosure) | — | N/A — non-privacy sub-domain (CRA + NIS 2 product/entity-level CVD). Personal-data-impacting vulnerabilities reach the controller via the processor→controller breach notification chain (D-04.3) within GDPR's 72h clock. | STANDARD | MUST | [AG-D-02.3-001](#ag-d-d02-3-001) | | — | | — |
+| D-02.4 (Threat-Led Penetration Testing) | — | N/A — non-privacy sub-domain (CRA + AI_Act + NIS 2 threat-led testing). Personal-data exposure from pen-test artefacts is governed by the controller's data-handling policy (D-04.4) and the test-environment segregation. | STANDARD | MUST | [AG-D-02.4-001](#ag-d-d02-4-001) | | — | | — |
+| D-03.1 (Identity Lifecycle Management) | `SO-D-03.1.GDPR` | Personal-data access identity lifecycle managed by a dedicated IAM (dedicated identity governance platform/dedicated identity provider — native, NOT Firebase INHERIT) with provisioning protocol provisioning, quarterly access reviews covering biometric-data scopes (NIS 2 Art. 21(2)(i) workforce-side joiner-mover-leaver), and DPO oversight on biometric scope authorisations per GDPR Art. 30 controller capacity. | STANDARD | MUST | [AG-D-03.1-001](#ag-d-d03-1-001) | | — | | — |
+| D-03.2 (Multi-Factor Authentication) | `SO-D-03.2.GDPR` | Personal-data access (including biometric-data scopes) requires phishing-resistant multi-factor authentication (hardware-backed second-factor authenticator/hardware-backed second-factor authenticator) for kiosk admin access; SMS+time-based one-time password fallback for read-only scopes; Art. 32(1) appropriate-and-proportionate multi-factor authentication aligned to biometric data sensitivity. | STANDARD | MUST | [AG-D-03.2-001](#ag-d-d03-2-001) | | — | | — |
+| D-03.3 (Authorisation & Least Privilege) | `SO-D-03.3.GDPR` | Personal-data access (biometric scope) is governed by role-based access control with least-privilege for kiosk operators + attribute-based access control for biometric-data access (purpose-bound) + segregation of duties (operator vs auditor); documented per GDPR Art. 5(1)(c) data minimisation principle. | STANDARD | MUST | [AG-D-03.3-001](#ag-d-d03-3-001) | | — | | — |
+| D-03.4 (Secure System Defaults) | `SO-D-03.4.GDPR` | N/A — non-privacy sub-domain (CRA secure-by-default). Personal-data exposure from insecure defaults is mitigated by the secure-defaults control itself (debug ports disabled, default passwords rotated, signed firmware required) — discharges GDPR Art. 25(2) privacy by default on the same artefact. | STANDARD | MUST | [AG-D-03.4-001](#ag-d-d03-4-001) | | — | | — |
+| D-04.1 (Incident Detection & Triage) | `SO-D-04.1.GDPR` | Personal-data breach detection via 24/7 SOC + Security Information and Event Management + AI-driven anomaly detection on on-device pipeline; playbooks per scenario including biometric-data breach (CRA Art. 14(3) severe incident); GDPR Art. 32(1)(d) `regular testing` of detection capability. | STANDARD | MUST | [AG-D-04.1-001](#ag-d-d04-1-001) | | — | | — |
+| D-04.2 (Incident Containment & Response) | `SO-D-04.2.GDPR` | Personal-data breach containment via documented documented incident response procedure (GDPR Art. 32 processor-side), chain-of-custody evidence pack, CSIRT coordination procedure; Art. 32(1)(c) `restore in timely manner` anchored to RTO 24h. | STANDARD | MUST | [AG-D-04.2-001](#ag-d-d04-2-001) | | — | | — |
+| D-04.3 (Incident Notification & Reporting) | `SO-D-04.3.GDPR` | Personal-data breach notification to controller and supervisory authority via **multi-reg max-SLA 24h routing** (resolves T-001): single workflow satisfies GDPR Art. 33(2) processor→controller `without undue delay` + CRA Art. 14(1-2) AEV + NIS 2 Art. 23(4)(a) significant incident + AI_Act Art. 73(3) 2-day widespread infringement; CEO/board liability (NIS 2 Art. 20). | RIGOROUS | MUST | [AG-D-04.3-001](#ag-d-d04-3-001) | | — | | — |
+| D-04.4 (Incident Recovery & Lessons Learned) | `SO-D-04.4.GDPR` | Personal-data restoration and recovery via RTO 24h, RPO 1h; immutable backup with 10-year retention; quarterly restore drill (ISO 27001 A.17); GDPR Art. 32(1)(b)(c) `restore availability and access in timely manner`. | STANDARD | MUST | [AG-D-04.4-001](#ag-d-d04-4-001) | | — | | — |
+| D-05.1 (Data Minimisation) | `SO-D-05.1.GDPR` | Personal-data minimisation enforced at field-level in schema; biometric reference data deleted after match (seconds, ephemeral); data minimisation review per release per AI_Act Art. 10 data governance + GDPR Art. 5(1)(c). | STANDARD | MUST | [AG-D-05.1-001](#ag-d-d05-1-001) | | — | | — |
+| D-05.2 (Retention & Archiving) | `SO-D-05.2.GDPR` | Personal-data retention policy (per data type): biometric ephemeral (seconds); audit logs 10 years (CRA Art. 13(13) + NIS 2); watchlist per government policy; documented per GDPR Art. 5(1)(e) storage limitation. | STANDARD | MUST | [AG-D-05.2-001](#ag-d-d05-2-001) | | — | | — |
+| D-05.3 (Right to Erasure) | `SO-D-05.3.GDPR` | Right-to-erasure endpoint + cryptographic sharding — destroy biometric↔identity mapping, retain anonymised audit trail (resolves T-002 GDPR Art. 17 vs AI_Act Art. 19(1) log retention — AI_Act Art. 12 governs transparency; AI_Act is not a D-05.3 participant); GDPR Art. 17 erasure per data subject request. | STANDARD | MUST | [AG-D-05.3-001](#ag-d-d05-3-001) | | — | | — |
+| D-05.4 (Data Portability) | `SO-D-05.4.GDPR` | Data portability endpoint (JSON export) per GDPR Art. 20; covers audit-log-controller capacity; machine-readable format documented per Art. 20(3). | STANDARD | MUST | [AG-D-05.4-001](#ag-d-d05-4-001) | | — | | — |
+| D-06.1 (Vendor Risk Assessment) | `SO-D-06.1.GDPR` | Personal-data processor (biometric sub-processor) agreements per GDPR Art. 28; due diligence on each processor covers Art. 28(1) `sufficient guarantees`; biometric-specific safeguards documented. | RIGOROUS | MUST | [AG-D-06.1-001](#ag-d-d06-1-001) | | — | | — |
+| D-06.2 (Software Bill of Materials (software bill of materials)) | — | N/A — non-privacy sub-domain (CRA-only software bill of materials). Personal-data exposure from vulnerable components is mitigated by the software bill of materials-anchored vulnerability tracking (D-02.1). | STANDARD | MUST | [AG-D-06.2-001](#ag-d-d06-2-001) |
+| D-06.3 (Contractual Security Obligations) | `SO-D-06.3.GDPR` | Personal-data contractual chain via DPA template + supplier security clauses; GDPR Art. 28(3) 8-element DPA list enforced; multi-tier sub-processor flowdown; right-to-audit clauses. | RIGOROUS | MUST | [AG-D-06.3-001](#ag-d-d06-3-001) | | — | | — |
+| D-06.4 (Third-Party Boundary Management) | `SO-D-06.4.GDPR` | Personal-data boundary management via network segmentation (SecureBorder/Cloud/Government); mutual transport authentication on all boundaries; zero-trust kiosk↔cloud; documented per GDPR Art. 32(1)(b) `ongoing confidentiality`. | STANDARD | MUST | [AG-D-06.4-001](#ag-d-d06-4-001) | | — | | — |
+| D-07.1 (Secure-by-Design Principles) | `SO-D-07.1.GDPR` | Personal-data protection by design via privacy-by-design (GDPR Art. 25(1)) integrated with AI_Act risk management system (Art. 9); unified SDLC covers high-risk AI; threat modelling per feature (STRIDE + AI-specific extensions). | RIGOROUS | MUST | [AG-D-07.1-001](#ag-d-d07-1-001) | | — | | — |
+| D-07.2 (Secure Coding Practices) | — | N/A — non-privacy sub-domain (CRA + AI_Act secure coding). Personal-data protection from vulnerable code is discharged via the secure-coding controls themselves (static application security testing/dynamic application security testing in CI). | STANDARD | MUST | [AG-D-07.2-001](#ag-d-d07-2-001) | | — | | — |
+| D-07.3 (CI/CD Pipeline Security) | — | N/A — non-privacy sub-domain (NIS 2 + CRA pipeline security). Personal-data integrity through the pipeline is protected by the pipeline-security controls themselves (signed artefacts, software bill of materials gate). | RIGOROUS | MUST | [AG-D-07.3-001](#ag-d-d07-3-001) | | — | | — |
+| D-08.1 (General Security Awareness) | `SO-D-08.1.GDPR` | Annual security awareness training includes GDPR-specific module (data subject rights, breach recognition, biometric-data handling); phishing simulation quarterly; kiosk-specific security guide; documented per GDPR Art. 39 DPO-informed training. | STANDARD | MUST | [AG-D-08.1-001](#ag-d-d08-1-001) | | — | | — |
+| D-08.2 (Role-Specific Competence) | `SO-D-08.2.GDPR` | DPO role-specific competence (Art. 37(1)(c) mandatory) — DPO training + AI Governance Lead training per AI_Act Art. 14 human oversight + SOC analyst certification; continuing professional education. | STANDARD | MUST | [AG-D-08.2-001](#ag-d-d08-2-001) | | — | | — |
+| D-09.1 (Information Security Policies) | `SO-D-09.1.GDPR` | Personal-data policies integrated in ISO 27001 certified ISMS (Doc 04 §10.4); unified policies with regulation-specific annexes; annual surveillance audit; DPO oversight. | STANDARD | MUST | [AG-D-09.1-001](#ag-d-d09-1-001) | | — | | — |
+| D-09.2 (Impact & Risk Assessments) | `SO-D-09.2.GDPR` | Personal-data impact assessment via unified DPIA (GDPR Art. 35) + FRIA (AI_Act Art. 27) single process with dual output; cross-impact CRDA analysis; threshold-trigger criteria per Art. 35(3) and Art. 27(1). | STANDARD | MUST | [AG-D-09.2-001](#ag-d-d09-2-001) | | — | | — |
+| D-09.4 (Records of Processing) | `SO-D-09.4.GDPR` | Records of processing activities (RoPA) cover personal-data processing per GDPR Art. 30; DPO oversight; immutable storage; 10-year retention. | STANDARD | MUST | [AG-D-09.4-001](#ag-d-d09-4-001) | | — | | — |
+| D-10.1 (Continuous Security Monitoring) | `SO-D-10.1.GDPR` | Personal-data security monitoring via 24/7 SOC with Security Information and Event Management; AI-driven anomaly detection on on-device pipeline; biometric-data scope alerts; documented per GDPR Art. 32(1)(d) `regular testing`. | RIGOROUS | MUST | [AG-D-10.1-001](#ag-d-d10-1-001) | | — | | — |
+| D-10.2 (Audit Logging & Traceability) | `SO-D-10.2.GDPR` | Personal-data audit log via tamper-evident log (GDPR Art. 30 controller capacity); 10-year retention; cryptographic hash chain; documented per Art. 5(2) accountability principle. | STANDARD | MUST | [AG-D-10.2-001](#ag-d-d10-2-001) | | — | | — |
+| D-10.3 (Compliance Testing) | `SO-D-10.3.GDPR` | Personal-data compliance testing via annual ISO 27001 surveillance audit + DPIA re-assessment + GDPR Art. 35(11) review on material change; CISO sign-off. | STANDARD | MUST | [AG-D-10.3-001](#ag-d-d10-3-001) | | — | | — |
 
 **Total rows:** 35.
 
@@ -126,41 +128,41 @@ Adjusted Security Goals are Case_02-specific restatements of the corpus generic 
 
 | Sub-Domain | Generic Sub-SO (source reg) | Adjusted SG (Case_02-specific) | Tier | Priority | Details | | NIST Anchors | | NIST Anchors |
 |------------|------------------------------|---------------------------------|------|----------|---------| | --- | | --- |
-| D-01.1 (Data at Rest Encryption) | `SO-D-01.1.CRA` (CRA) | Annex I Part I (2)(e) `render unintelligible` test is met via hardware cryptographic module-backed industry-standard authenticated encryption for all stored data on the eGate kiosk (personal or other per Art. 3(47) cross-reference); Annex VII technical documentation references the hardware cryptographic module architecture; CRA conformity assessment module selected per critical-product classification. | RIGOROUS | MUST | [SG-D-01.1](#sg-d-d011) | | — | | — |
-| D-01.2 (Data in Transit Encryption) | `SO-D-01.2.CRA` (CRA) | CRA Annex I Part I (2)(e) extends to data in transit with state-of-the-art mechanisms; NIS 2 Art. 21(2)(h) cryptography policy covers transit; the hardware cryptographic module-signed cert chain and cipher-suite allowlist discharge both on a single kiosk-edge artefact. | STANDARD | MUST | [SG-D-01.2](#sg-d-d012) | | — | | — |
-| D-01.3 (Cryptographic Key Management) | `SO-D-01.3.CRA` (CRA) | CRA Annex I Part I (2)(e) `state-of-the-art mechanisms` baseline applies to key custody as well as ciphertext; the de-attribution test procedure is part of CRA conformity assessment technical documentation. | RIGOROUS | MUST | [SG-D-01.3](#sg-d-d013) | | — | | — |
-| D-01.4 (Data Integrity Mechanisms) | `SO-D-01.4.AI_Act` (AI_Act) | AI_Act Art. 15 (accuracy + robustness + cybersecurity) requires data integrity for high-risk AI training/inference data; AI_Act Art. 10 (data governance) requires data-quality checks; CRA Annex I Part I (2)(d) `integrity` baseline discharged by cryptographic integrity check + signed audit log. | STANDARD | MUST | [SG-D-01.4](#sg-d-d014) | | — | | — |
-| D-02.1 (Vulnerability Identification) | `SO-D-02.1.CRA` (CRA) | CRA Art. 13(8) `without delay` vulnerability handling during support period; CRA Art. 14(1) actively-exploited vulnerability (AEV) reporting; the dependency vulnerability scanner + npm audit + monthly vuln review board satisfies CRA software bill of materials-anchored vulnerability tracking on a single artefact. | STANDARD | MUST | [SG-D-02.1](#sg-d-d021) | | — | | — |
-| D-02.2 (Patch Management & Updates) | `SO-D-02.2.CRA` (CRA) | CRA-aligned patch SLA: critical 24h, high 7d (matches Doc 07 SI-002 24h max-SLA per T-001 resolution); secure OTA update pipeline with hardware cryptographic module-signed firmware; CRA Art. 13(8) 5y support period + Art. 13(9) 10y update availability tail. | STANDARD | MUST | [SG-D-02.2](#sg-d-d022) | | — | | — |
-| D-02.3 (Coordinated Vulnerability Disclosure) | `SO-D-02.3.CRA` (CRA) | CRA Art. 14 single point of contact + Art. 16 dissemination with delay grounds; security.txt at /.well-known/security.txt + CVD page + 24h acknowledgement SLA; CRA-Art. 14(1-2) AEV reporting aligned with NIS 2 Art. 23(4)(a) on a single workflow. | STANDARD | MUST | [SG-D-02.3](#sg-d-d023) | | — | | — |
-| D-02.4 (Threat-Led Penetration Testing) | `SO-D-02.4.AI_Act` (AI_Act) | AI_Act Art. 9 risk management system requires adversarial testing + robustness testing; AI_Act Art. 72 post-market monitoring feeds the threat-led pen test schedule; CRA Annex I Part I (2)(c) `attack surface minimisation` is tested via annual external pen test; certified penetration testing practitioners-accredited testers. | STANDARD | MUST | [SG-D-02.4](#sg-d-d024) | | — | | — |
-| D-03.1 (Identity Lifecycle Management) | `SO-D-03.1.CRA` (CRA) | CRA Art. 13(2) secure-by-default kiosk identity config + CRA Art. 14(1) AEV scope covers compromised credentials; NIS 2 Art. 21(2)(i) `joiner-mover-leaver` lifecycle discharged via provisioning protocol on the same artefact. | STANDARD | MUST | [SG-D-03.1](#sg-d-d031) | | — | | — |
-| D-03.2 (Multi-Factor Authentication) | `SO-D-03.2.CRA` (CRA) | CRA Art. 13(2) secure installation requires multi-factor authentication on first-boot setup; NIS 2 Art. 21(2)(g) training covers multi-factor authentication; hardware multi-factor authentication tokens (hardware-backed second-factor authenticator) discharge both on a single artefact. | STANDARD | MUST | [SG-D-03.2](#sg-d-d032) | | — | | — |
-| D-03.3 (Authorisation & Least Privilege) | `SO-D-03.3.NIS2` (NIS 2) | NIS 2 Art. 21(2)(i) access control policy + Art. 21(2)(d) supply-chain scope; role-based access control + attribute-based access control + separation of duties enforced on a single access-management artefact. | STANDARD | MUST | [SG-D-03.3](#sg-d-d033) | | — | | — |
-| D-03.4 (Secure System Defaults) | `SO-D-03.4.CRA` (CRA) | CRA Art. 13(2) secure-by-default kiosk config: debug ports disabled, default passwords rotated, signed firmware required; CRA conformity assessment includes defaults check. | STANDARD | MUST | [SG-D-03.4](#sg-d-d034) | | — | | — |
-| D-04.1 (Incident Detection & Triage) | `SO-D-04.1.CRA` (CRA) | CRA Art. 14(3) severe-incident detection duty; AI-driven on-device anomaly detection covers AI_Act Art. 72 post-market monitoring + Art. 73 serious-incident detection on a single SOC workflow. | STANDARD | MUST | [SG-D-04.1](#sg-d-d041) | | — | | — |
-| D-04.2 (Incident Containment & Response) | `SO-D-04.2.CRA` (CRA) | CRA Art. 21 manufacturer-equivalent trigger + CRA Art. 14(3) severe-incident containment; documented incident response procedure aligns with CRA + NIS 2 on a single CSIRT workflow. | STANDARD | MUST | [SG-D-04.2](#sg-d-d042) | | — | | — |
-| D-04.3 (Incident Notification & Reporting) | `SO-D-04.3.CRA` (CRA) | CRA Art. 14(1-2) AEV notification + Art. 14(3) severe-incident notification + Art. 14(8) user notification; the max-SLA 24h routing workflow is RIGOROUS — TEST + ANALYZE + external audit per Track B §6.4. | RIGOROUS | MUST | [SG-D-04.3](#sg-d-d043) | | — | | — |
-| D-04.4 (Incident Recovery & Lessons Learned) | `SO-D-04.4.NIS2` (NIS 2) | NIS 2 Art. 21(2)(c) business continuity + Art. 21(2)(d) supply-chain DR; 10y retention anchors CRA Art. 13(13) + NIS 2 Art. 21(2) on a single DR artefact. | STANDARD | MUST | [SG-D-04.4](#sg-d-d044) | | — | | — |
-| D-05.1 (Data Minimisation) | `SO-D-05.1.CRA` (CRA) | CRA Art. 13(3) intended purpose + reasonably foreseeable use; CRA Art. 13(5) supply-chain data minimisation; biometric ephemeral pattern documented in Annex VII technical file. | STANDARD | MUST | [SG-D-05.1](#sg-d-d051) | | — | | — |
-| D-05.2 (Retention & Archiving) | `SO-D-05.2.AIACT` (AI_Act) | AI_Act Art. 19(1) `at least six months` automatic logging retention; the 10y retention is above the AI_Act floor; CRA Art. 13(13) technical documentation retention aligned. | STANDARD | MUST | [SG-D-05.2](#sg-d-d052) | | — | | — |
-| D-05.3 (Right to Erasure) | `SO-D-05.3.CRA` (CRA) | CRA Art. 13(5) `deletes` = cryptographic erasure (key destruction) where data is replicated; physical destruction only for single-copy storage media; CRA Art. 13(8) `without delay` from awareness. | STANDARD | MUST | [SG-D-05.3](#sg-d-d053) | | — | | — |
-| D-05.4 (Data Portability) | — | N/A — GDPR-only sub-domain (data portability is GDPR Art. 20 with no CRA/NIS 2/AI_Act parallel); SG row omitted (PG only). | — | — | [SG-D-05.4 (N/A)](#sg-d-d054) |
-| D-06.1 (Vendor Risk Assessment) | `SO-D-06.1.NIS2` (NIS 2) | NIS 2 Art. 21(2)(d) supply-chain risk assessment (direct supplier scope per Art. 21(3) three-prong); annual supplier audit; RIGOROUS — TEST + ANALYZE + external audit per Track B §6.4. | RIGOROUS | MUST | [SG-D-06.1](#sg-d-d061) | | — | | — |
-| D-06.2 (Software Bill of Materials (software bill of materials)) | `SO-D-06.2.CRA` (CRA) | CRA Art. 13(11) software bill of materials per release; machine-readable software bill of materials format format; signed software bill of materials attached to firmware; vulnerability tracking against software bill of materials is the only applicable regulatory floor (CRA is the sole authority at D-06.2). | STANDARD | MUST | [SG-D-06.2](#sg-d-d062) |
-| D-06.3 (Contractual Security Obligations) | `SO-D-06.3.NIS2` (NIS 2) | NIS 2 Art. 21(2)(d) contractual chain + Art. 21(3) supplier assessment three-prong; GDPR Art. 46 transfer safeguards for non-EU suppliers; RIGOROUS — TEST + ANALYZE + external audit per Track B §6.4. | RIGOROUS | MUST | [SG-D-06.3](#sg-d-d063) | | — | | — |
-| D-06.4 (Third-Party Boundary Management) | `SO-D-06.4.NIS2` (NIS 2) | NIS 2 Art. 21(2)(d) supply-chain boundary + Art. 21(2)(e) network security; mutual transport authentication + segmentation discharge both on a single network-security artefact. | STANDARD | MUST | [SG-D-06.4](#sg-d-d064) | | — | | — |
-| D-07.1 (Secure-by-Design Principles) | `SO-D-07.1.AIACT` (AI_Act) | AI_Act Art. 9 risk management system + Art. 13 transparency + Art. 14 human oversight; CRA Art. 13(1)+(2) secure-by-default + risk assessment propagation across 6 lifecycle phases; RIGOROUS — TEST + ANALYZE + external audit per Track B §6.4. | RIGOROUS | MUST | [SG-D-07.1](#sg-d-d071) | | — | | — |
-| D-07.2 (Secure Coding Practices) | `SO-D-07.2.CRA` (CRA) | CRA Annex I Part I (2)(c) attack-surface minimisation via secure coding standards (application security maturity model at industry-standard level for AI components); static application security testing (static application security testing tool) + dynamic application security testing in CI; pre-commit secret scanning; CRA Art. 13(11) software bill of materials-anchored vulnerability tracking. | STANDARD | MUST | [SG-D-07.2](#sg-d-d072) | | — | | — |
-| D-07.3 (CI/CD Pipeline Security) | `SO-D-07.3.NIS2` (NIS 2) | NIS 2 Art. 21(2)(d) supply-chain security + CRA Art. 13(11) software bill of materials; signed CI artefacts + pipeline-as-code + supply-chain integrity controls Level 3; software bill of materials gate blocks on critical vulns; RIGOROUS — TEST + ANALYZE + external audit per Track B §6.4. | RIGOROUS | MUST | [SG-D-07.3](#sg-d-d073) | | — | | — |
-| D-08.1 (General Security Awareness) | `SO-D-08.1.NIS2` (NIS 2) | NIS 2 Art. 21(2)(g) basic cyber hygiene + Art. 21(2)(f) training; CRA Art. 13(2) installation/use training included; phishing simulation + kiosk-specific guide on a single training programme. | STANDARD | MUST | [SG-D-08.1](#sg-d-d081) | | — | | — |
-| D-08.2 (Role-Specific Competence) | `SO-D-08.2.NIS2` (NIS 2) | NIS 2 Art. 21(2)(g) role-specific competence + AI_Act Art. 4 AI literacy; SOC analyst certification + DPO + AI Lead training on a single competence framework. | STANDARD | MUST | [SG-D-08.2](#sg-d-d082) | | — | | — |
-| D-09.1 (Information Security Policies) | `SO-D-09.1.AI_Act` (AI_Act) | AI_Act Art. 9 risk-management policies + Art. 13 transparency policies + CRA Art. 13(8) support policies + NIS 2 Art. 21(1) framework policies + GDPR Art. 5(2) accountability; ISO 27001 certified ISMS discharges all four on a single policy artefact. | STANDARD | MUST | [SG-D-09.1](#sg-d-d091) | | — | | — |
-| D-09.2 (Impact & Risk Assessments) | `SO-D-09.2.AI_Act` (AI_Act) | AI_Act Art. 27 FRIA + Art. 9 risk-management system; CRA Art. 13(2) risk assessment + NIS 2 Art. 21(1) risk analysis; the unified DPIA+FRIA process discharges all four on a single impact-assessment artefact (resolves T-003). | STANDARD | MUST | [SG-D-09.2](#sg-d-d092) | | — | | — |
-| D-09.4 (Records of Processing) | `SO-D-09.4.AI_Act` (AI_Act) | AI_Act Art. 12 record-keeping + CRA Art. 13(12) technical documentation + NIS 2 Art. 21(2)(a) risk-assessment records + GDPR Art. 30 RoPA; DPO oversight + immutable storage on a single record-keeping artefact. | STANDARD | MUST | [SG-D-09.4](#sg-d-d094) | | — | | — |
-| D-10.1 (Continuous Security Monitoring) | `SO-D-10.1.AI_Act` (AI_Act) | AI_Act Art. 72 post-market monitoring + Art. 73 serious-incident detection + NIS 2 Art. 21(2)(g) continuous monitoring + CRA Art. 14(3) severe-incident detection; 24/7 SOC + AI model drift detection on a single monitoring artefact; RIGOROUS — TEST + ANALYZE + external audit per Track B §6.4. | RIGOROUS | MUST | [SG-D-10.1](#sg-d-d101) | | — | | — |
-| D-10.2 (Audit Logging & Traceability) | `SO-D-10.2.AI_Act` (AI_Act) | AI_Act Art. 12 logging capability + Art. 19(1) `at least six months` automatic retention + CRA Art. 13(14) logging + NIS 2 Art. 21(2)(h) cryptography-policy logging; tamper-evident + 10y retention above the Art. 19(1) floor on a single log artefact. | STANDARD | MUST | [SG-D-10.2](#sg-d-d102) | | — | | — |
-| D-10.3 (Compliance Testing) | `SO-D-10.3.AI_Act` (AI_Act) | AI_Act Art. 43 conformity assessment re-assessment + Art. 72 post-market re-evaluation + CRA Art. 24(3) OSS steward extension + NIS 2 Art. 21(2) controls test + GDPR Art. 28(3)(h) processor audit; annual ISO 27001 surveillance + AI_Act conformity re-assessment on a single compliance-test programme. | STANDARD | MUST | [SG-D-10.3](#sg-d-d103) | | — | | — |
+| D-01.1 (Data at Rest Encryption) | `SO-D-01.1.CRA` (CRA) | Annex I Part I (2)(e) `render unintelligible` test is met via hardware cryptographic module-backed industry-standard authenticated encryption for all stored data on the eGate kiosk (personal or other per Art. 3(47) cross-reference); Annex VII technical documentation references the hardware cryptographic module architecture; CRA conformity assessment module selected per critical-product classification. | RIGOROUS | MUST | [AG-D-01.1-002](#ag-d-d01-1-002) | | — | | — |
+| D-01.2 (Data in Transit Encryption) | `SO-D-01.2.CRA` (CRA) | CRA Annex I Part I (2)(e) extends to data in transit with state-of-the-art mechanisms; NIS 2 Art. 21(2)(h) cryptography policy covers transit; the hardware cryptographic module-signed cert chain and cipher-suite allowlist discharge both on a single kiosk-edge artefact. | STANDARD | MUST | [AG-D-01.2-002](#ag-d-d01-2-002) | | — | | — |
+| D-01.3 (Cryptographic Key Management) | `SO-D-01.3.CRA` (CRA) | CRA Annex I Part I (2)(e) `state-of-the-art mechanisms` baseline applies to key custody as well as ciphertext; the de-attribution test procedure is part of CRA conformity assessment technical documentation. | RIGOROUS | MUST | [AG-D-01.3-002](#ag-d-d01-3-002) | | — | | — |
+| D-01.4 (Data Integrity Mechanisms) | `SO-D-01.4.AI_Act` (AI_Act) | AI_Act Art. 15 (accuracy + robustness + cybersecurity) requires data integrity for high-risk AI training/inference data; AI_Act Art. 10 (data governance) requires data-quality checks; CRA Annex I Part I (2)(d) `integrity` baseline discharged by cryptographic integrity check + signed audit log. | STANDARD | MUST | [AG-D-01.4-002](#ag-d-d01-4-002) | | — | | — |
+| D-02.1 (Vulnerability Identification) | `SO-D-02.1.CRA` (CRA) | CRA Art. 13(8) `without delay` vulnerability handling during support period; CRA Art. 14(1) actively-exploited vulnerability (AEV) reporting; the dependency vulnerability scanner + npm audit + monthly vuln review board satisfies CRA software bill of materials-anchored vulnerability tracking on a single artefact. | STANDARD | MUST | [AG-D-02.1-002](#ag-d-d02-1-002) | | — | | — |
+| D-02.2 (Patch Management & Updates) | `SO-D-02.2.CRA` (CRA) | CRA-aligned patch SLA: critical 24h, high 7d (matches Doc 07 SI-002 24h max-SLA per T-001 resolution); secure OTA update pipeline with hardware cryptographic module-signed firmware; CRA Art. 13(8) 5y support period + Art. 13(9) 10y update availability tail. | STANDARD | MUST | [AG-D-02.2-002](#ag-d-d02-2-002) | | — | | — |
+| D-02.3 (Coordinated Vulnerability Disclosure) | `SO-D-02.3.CRA` (CRA) | CRA Art. 14 single point of contact + Art. 16 dissemination with delay grounds; security.txt at /.well-known/security.txt + CVD page + 24h acknowledgement SLA; CRA-Art. 14(1-2) AEV reporting aligned with NIS 2 Art. 23(4)(a) on a single workflow. | STANDARD | MUST | [AG-D-02.3-002](#ag-d-d02-3-002) | | — | | — |
+| D-02.4 (Threat-Led Penetration Testing) | `SO-D-02.4.AI_Act` (AI_Act) | AI_Act Art. 9 risk management system requires adversarial testing + robustness testing; AI_Act Art. 72 post-market monitoring feeds the threat-led pen test schedule; CRA Annex I Part I (2)(c) `attack surface minimisation` is tested via annual external pen test; certified penetration testing practitioners-accredited testers. | STANDARD | MUST | [AG-D-02.4-002](#ag-d-d02-4-002) | | — | | — |
+| D-03.1 (Identity Lifecycle Management) | `SO-D-03.1.CRA` (CRA) | CRA Art. 13(2) secure-by-default kiosk identity config + CRA Art. 14(1) AEV scope covers compromised credentials; NIS 2 Art. 21(2)(i) `joiner-mover-leaver` lifecycle discharged via provisioning protocol on the same artefact. | STANDARD | MUST | [AG-D-03.1-002](#ag-d-d03-1-002) | | — | | — |
+| D-03.2 (Multi-Factor Authentication) | `SO-D-03.2.CRA` (CRA) | CRA Art. 13(2) secure installation requires multi-factor authentication on first-boot setup; NIS 2 Art. 21(2)(g) training covers multi-factor authentication; hardware multi-factor authentication tokens (hardware-backed second-factor authenticator) discharge both on a single artefact. | STANDARD | MUST | [AG-D-03.2-002](#ag-d-d03-2-002) | | — | | — |
+| D-03.3 (Authorisation & Least Privilege) | `SO-D-03.3.NIS2` (NIS 2) | NIS 2 Art. 21(2)(i) access control policy + Art. 21(2)(d) supply-chain scope; role-based access control + attribute-based access control + separation of duties enforced on a single access-management artefact. | STANDARD | MUST | [AG-D-03.3-002](#ag-d-d03-3-002) | | — | | — |
+| D-03.4 (Secure System Defaults) | `SO-D-03.4.CRA` (CRA) | CRA Art. 13(2) secure-by-default kiosk config: debug ports disabled, default passwords rotated, signed firmware required; CRA conformity assessment includes defaults check. | STANDARD | MUST | [AG-D-03.4-002](#ag-d-d03-4-002) | | — | | — |
+| D-04.1 (Incident Detection & Triage) | `SO-D-04.1.CRA` (CRA) | CRA Art. 14(3) severe-incident detection duty; AI-driven on-device anomaly detection covers AI_Act Art. 72 post-market monitoring + Art. 73 serious-incident detection on a single SOC workflow. | STANDARD | MUST | [AG-D-04.1-002](#ag-d-d04-1-002) | | — | | — |
+| D-04.2 (Incident Containment & Response) | `SO-D-04.2.CRA` (CRA) | CRA Art. 21 manufacturer-equivalent trigger + CRA Art. 14(3) severe-incident containment; documented incident response procedure aligns with CRA + NIS 2 on a single CSIRT workflow. | STANDARD | MUST | [AG-D-04.2-002](#ag-d-d04-2-002) | | — | | — |
+| D-04.3 (Incident Notification & Reporting) | `SO-D-04.3.CRA` (CRA) | CRA Art. 14(1-2) AEV notification + Art. 14(3) severe-incident notification + Art. 14(8) user notification; the max-SLA 24h routing workflow is RIGOROUS — TEST + ANALYZE + external audit per Track B §6.4. | RIGOROUS | MUST | [AG-D-04.3-002](#ag-d-d04-3-002) | | — | | — |
+| D-04.4 (Incident Recovery & Lessons Learned) | `SO-D-04.4.NIS2` (NIS 2) | NIS 2 Art. 21(2)(c) business continuity + Art. 21(2)(d) supply-chain DR; 10y retention anchors CRA Art. 13(13) + NIS 2 Art. 21(2) on a single DR artefact. | STANDARD | MUST | [AG-D-04.4-002](#ag-d-d04-4-002) | | — | | — |
+| D-05.1 (Data Minimisation) | `SO-D-05.1.CRA` (CRA) | CRA Art. 13(3) intended purpose + reasonably foreseeable use; CRA Art. 13(5) supply-chain data minimisation; biometric ephemeral pattern documented in Annex VII technical file. | STANDARD | MUST | [AG-D-05.1-002](#ag-d-d05-1-002) | | — | | — |
+| D-05.2 (Retention & Archiving) | `SO-D-05.2.AIACT` (AI_Act) | AI_Act Art. 19(1) `at least six months` automatic logging retention; the 10y retention is above the AI_Act floor; CRA Art. 13(13) technical documentation retention aligned. | STANDARD | MUST | [AG-D-05.2-002](#ag-d-d05-2-002) | | — | | — |
+| D-05.3 (Right to Erasure) | `SO-D-05.3.CRA` (CRA) | CRA Art. 13(5) `deletes` = cryptographic erasure (key destruction) where data is replicated; physical destruction only for single-copy storage media; CRA Art. 13(8) `without delay` from awareness. | STANDARD | MUST | [AG-D-05.3-002](#ag-d-d05-3-002) | | — | | — |
+| D-05.4 (Data Portability) | — | N/A — GDPR-only sub-domain (data portability is GDPR Art. 20 with no CRA/NIS 2/AI_Act parallel); SG row omitted (PG only). | — | — | [AG-D-05.4-002 (N/A)](#ag-d-d05-4-002) |
+| D-06.1 (Vendor Risk Assessment) | `SO-D-06.1.NIS2` (NIS 2) | NIS 2 Art. 21(2)(d) supply-chain risk assessment (direct supplier scope per Art. 21(3) three-prong); annual supplier audit; RIGOROUS — TEST + ANALYZE + external audit per Track B §6.4. | RIGOROUS | MUST | [AG-D-06.1-002](#ag-d-d06-1-002) | | — | | — |
+| D-06.2 (Software Bill of Materials (software bill of materials)) | `SO-D-06.2.CRA` (CRA) | CRA Art. 13(11) software bill of materials per release; machine-readable software bill of materials format format; signed software bill of materials attached to firmware; vulnerability tracking against software bill of materials is the only applicable regulatory floor (CRA is the sole authority at D-06.2). | STANDARD | MUST | [AG-D-06.2-002](#ag-d-d06-2-002) |
+| D-06.3 (Contractual Security Obligations) | `SO-D-06.3.NIS2` (NIS 2) | NIS 2 Art. 21(2)(d) contractual chain + Art. 21(3) supplier assessment three-prong; GDPR Art. 46 transfer safeguards for non-EU suppliers; RIGOROUS — TEST + ANALYZE + external audit per Track B §6.4. | RIGOROUS | MUST | [AG-D-06.3-002](#ag-d-d06-3-002) | | — | | — |
+| D-06.4 (Third-Party Boundary Management) | `SO-D-06.4.NIS2` (NIS 2) | NIS 2 Art. 21(2)(d) supply-chain boundary + Art. 21(2)(e) network security; mutual transport authentication + segmentation discharge both on a single network-security artefact. | STANDARD | MUST | [AG-D-06.4-002](#ag-d-d06-4-002) | | — | | — |
+| D-07.1 (Secure-by-Design Principles) | `SO-D-07.1.AIACT` (AI_Act) | AI_Act Art. 9 risk management system + Art. 13 transparency + Art. 14 human oversight; CRA Art. 13(1)+(2) secure-by-default + risk assessment propagation across 6 lifecycle phases; RIGOROUS — TEST + ANALYZE + external audit per Track B §6.4. | RIGOROUS | MUST | [AG-D-07.1-002](#ag-d-d07-1-002) | | — | | — |
+| D-07.2 (Secure Coding Practices) | `SO-D-07.2.CRA` (CRA) | CRA Annex I Part I (2)(c) attack-surface minimisation via secure coding standards (application security maturity model at industry-standard level for AI components); static application security testing (static application security testing tool) + dynamic application security testing in CI; pre-commit secret scanning; CRA Art. 13(11) software bill of materials-anchored vulnerability tracking. | STANDARD | MUST | [AG-D-07.2-002](#ag-d-d07-2-002) | | — | | — |
+| D-07.3 (CI/CD Pipeline Security) | `SO-D-07.3.NIS2` (NIS 2) | NIS 2 Art. 21(2)(d) supply-chain security + CRA Art. 13(11) software bill of materials; signed CI artefacts + pipeline-as-code + supply-chain integrity controls Level 3; software bill of materials gate blocks on critical vulns; RIGOROUS — TEST + ANALYZE + external audit per Track B §6.4. | RIGOROUS | MUST | [AG-D-07.3-002](#ag-d-d07-3-002) | | — | | — |
+| D-08.1 (General Security Awareness) | `SO-D-08.1.NIS2` (NIS 2) | NIS 2 Art. 21(2)(g) basic cyber hygiene + Art. 21(2)(f) training; CRA Art. 13(2) installation/use training included; phishing simulation + kiosk-specific guide on a single training programme. | STANDARD | MUST | [AG-D-08.1-002](#ag-d-d08-1-002) | | — | | — |
+| D-08.2 (Role-Specific Competence) | `SO-D-08.2.NIS2` (NIS 2) | NIS 2 Art. 21(2)(g) role-specific competence + AI_Act Art. 4 AI literacy; SOC analyst certification + DPO + AI Lead training on a single competence framework. | STANDARD | MUST | [AG-D-08.2-002](#ag-d-d08-2-002) | | — | | — |
+| D-09.1 (Information Security Policies) | `SO-D-09.1.AI_Act` (AI_Act) | AI_Act Art. 9 risk-management policies + Art. 13 transparency policies + CRA Art. 13(8) support policies + NIS 2 Art. 21(1) framework policies + GDPR Art. 5(2) accountability; ISO 27001 certified ISMS discharges all four on a single policy artefact. | STANDARD | MUST | [AG-D-09.1-002](#ag-d-d09-1-002) | | — | | — |
+| D-09.2 (Impact & Risk Assessments) | `SO-D-09.2.AI_Act` (AI_Act) | AI_Act Art. 27 FRIA + Art. 9 risk-management system; CRA Art. 13(2) risk assessment + NIS 2 Art. 21(1) risk analysis; the unified DPIA+FRIA process discharges all four on a single impact-assessment artefact (resolves T-003). | STANDARD | MUST | [AG-D-09.2-002](#ag-d-d09-2-002) | | — | | — |
+| D-09.4 (Records of Processing) | `SO-D-09.4.AI_Act` (AI_Act) | AI_Act Art. 12 record-keeping + CRA Art. 13(12) technical documentation + NIS 2 Art. 21(2)(a) risk-assessment records + GDPR Art. 30 RoPA; DPO oversight + immutable storage on a single record-keeping artefact. | STANDARD | MUST | [AG-D-09.4-002](#ag-d-d09-4-002) | | — | | — |
+| D-10.1 (Continuous Security Monitoring) | `SO-D-10.1.AI_Act` (AI_Act) | AI_Act Art. 72 post-market monitoring + Art. 73 serious-incident detection + NIS 2 Art. 21(2)(g) continuous monitoring + CRA Art. 14(3) severe-incident detection; 24/7 SOC + AI model drift detection on a single monitoring artefact; RIGOROUS — TEST + ANALYZE + external audit per Track B §6.4. | RIGOROUS | MUST | [AG-D-10.1-002](#ag-d-d10-1-002) | | — | | — |
+| D-10.2 (Audit Logging & Traceability) | `SO-D-10.2.AI_Act` (AI_Act) | AI_Act Art. 12 logging capability + Art. 19(1) `at least six months` automatic retention + CRA Art. 13(14) logging + NIS 2 Art. 21(2)(h) cryptography-policy logging; tamper-evident + 10y retention above the Art. 19(1) floor on a single log artefact. | STANDARD | MUST | [AG-D-10.2-002](#ag-d-d10-2-002) | | — | | — |
+| D-10.3 (Compliance Testing) | `SO-D-10.3.AI_Act` (AI_Act) | AI_Act Art. 43 conformity assessment re-assessment + Art. 72 post-market re-evaluation + CRA Art. 24(3) OSS steward extension + NIS 2 Art. 21(2) controls test + GDPR Art. 28(3)(h) processor audit; annual ISO 27001 surveillance + AI_Act conformity re-assessment on a single compliance-test programme. | STANDARD | MUST | [AG-D-10.3-002](#ag-d-d10-3-002) | | — | | — |
 
 **Total rows:** 35 (D-05.4 GDPR-only has SG = `N/A`).
 
@@ -323,7 +325,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 
 ## §7 Validation
 
-- **35 sub-domains × 1 PG + 1 SG = 70 adjusted objectives** documented in §2 + §3 (D-05.4 has PG only; SG-D-05.4 placeholder documents N/A).
+- **35 sub-domains × 1 PG + 1 SG = 70 adjusted objectives** documented in §2 + §3 (D-05.4 has PG only; AG-D-05.4-002 placeholder documents N/A).
 - **70 DEEP detail cards** documented in §8 (35 PG + 35 SG) with 15 fields each (NO Effort/Cost/Timeline per task directive).
 - **3 tensions resolved** with multi-paragraph treatment per §4 (T-001 max-SLA 24h routing, T-002 cryptographic sharding, T-003 unified DPIA+FRIA).
 - **T-009 (D-10.1 monitoring opt-out)** documented in 09_Strategic_Tensions_Report.md §4.2; layered monitoring split (analytics opt-out, security-event mandatory) resolves CRA Annex I (2)(l) vs GDPR Art. 32(2) vs NIS 2 Art. 21(2)(b).
@@ -337,7 +339,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 > Each card has 15 fields per the Sprint 5 directive. **NO Effort/Cost/Timeline fields** per task constraint.
 > Click anchors from §2/§3 tables to navigate to cards below.
 
-### PG-D-01.1 — Data at Rest Encryption
+### AG-D-01.1-001 — Data at Rest Encryption
 
 **Description (multi-paragraph):**
 
@@ -363,7 +365,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P0
 
-### PG-D-01.2 — Data in Transit Encryption
+### AG-D-01.2-001 — Data in Transit Encryption
 
 **Description (multi-paragraph):**
 
@@ -389,7 +391,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P0
 
-### PG-D-01.3 — Cryptographic Key Management
+### AG-D-01.3-001 — Cryptographic Key Management
 
 **Description (multi-paragraph):**
 
@@ -415,7 +417,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P0
 
-### PG-D-01.4 — Data Integrity Mechanisms
+### AG-D-01.4-001 — Data Integrity Mechanisms
 
 **Description (multi-paragraph):**
 
@@ -441,7 +443,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 3/4
 **Implementation Priority:** P0
 
-### PG-D-02.1 — Vulnerability Identification
+### AG-D-02.1-001 — Vulnerability Identification
 
 **Description (multi-paragraph):**
 
@@ -467,7 +469,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P0
 
-### PG-D-02.2 — Patch Management & Updates
+### AG-D-02.2-001 — Patch Management & Updates
 
 **Description (multi-paragraph):**
 
@@ -493,7 +495,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P0
 
-### PG-D-02.3 — Coordinated Vulnerability Disclosure
+### AG-D-02.3-001 — Coordinated Vulnerability Disclosure
 
 **Description (multi-paragraph):**
 
@@ -519,7 +521,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P1
 
-### PG-D-02.4 — Threat-Led Penetration Testing
+### AG-D-02.4-001 — Threat-Led Penetration Testing
 
 **Description (multi-paragraph):**
 
@@ -545,7 +547,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 2/4 → Target 3/4
 **Implementation Priority:** P1
 
-### PG-D-03.1 — Identity Lifecycle Management
+### AG-D-03.1-001 — Identity Lifecycle Management
 
 **Description (multi-paragraph):**
 
@@ -571,7 +573,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P0
 
-### PG-D-03.2 — Multi-Factor Authentication
+### AG-D-03.2-001 — Multi-Factor Authentication
 
 **Description (multi-paragraph):**
 
@@ -597,7 +599,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P0
 
-### PG-D-03.3 — Authorisation & Least Privilege
+### AG-D-03.3-001 — Authorisation & Least Privilege
 
 **Description (multi-paragraph):**
 
@@ -623,7 +625,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P0
 
-### PG-D-03.4 — Secure System Defaults
+### AG-D-03.4-001 — Secure System Defaults
 
 **Description (multi-paragraph):**
 
@@ -649,7 +651,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P1
 
-### PG-D-04.1 — Incident Detection & Triage
+### AG-D-04.1-001 — Incident Detection & Triage
 
 **Description (multi-paragraph):**
 
@@ -675,7 +677,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P0
 
-### PG-D-04.2 — Incident Containment & Response
+### AG-D-04.2-001 — Incident Containment & Response
 
 **Description (multi-paragraph):**
 
@@ -701,7 +703,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P0
 
-### PG-D-04.3 — Incident Notification & Reporting
+### AG-D-04.3-001 — Incident Notification & Reporting
 
 **Description (multi-paragraph):**
 
@@ -727,7 +729,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 2/4 → Target 4/4
 **Implementation Priority:** P0
 
-### PG-D-04.4 — Incident Recovery & Lessons Learned
+### AG-D-04.4-001 — Incident Recovery & Lessons Learned
 
 **Description (multi-paragraph):**
 
@@ -753,7 +755,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P1
 
-### PG-D-05.1 — Data Minimisation
+### AG-D-05.1-001 — Data Minimisation
 
 **Description (multi-paragraph):**
 
@@ -779,7 +781,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P0
 
-### PG-D-05.2 — Retention & Archiving
+### AG-D-05.2-001 — Retention & Archiving
 
 **Description (multi-paragraph):**
 
@@ -805,7 +807,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P1
 
-### PG-D-05.3 — Right to Erasure
+### AG-D-05.3-001 — Right to Erasure
 
 **Description (multi-paragraph):**
 
@@ -831,7 +833,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 2/4 → Target 4/4
 **Implementation Priority:** P0
 
-### PG-D-05.4 — Data Portability
+### AG-D-05.4-001 — Data Portability
 
 **Description (multi-paragraph):**
 
@@ -857,7 +859,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P2
 
-### PG-D-06.1 — Vendor Risk Assessment
+### AG-D-06.1-001 — Vendor Risk Assessment
 
 **Description (multi-paragraph):**
 
@@ -883,7 +885,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P0
 
-### PG-D-06.2 — Software Bill of Materials (software bill of materials)
+### AG-D-06.2-001 — Software Bill of Materials (software bill of materials)
 
 **Description (multi-paragraph):**
 
@@ -909,7 +911,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P1
 
-### PG-D-06.3 — Contractual Security Obligations
+### AG-D-06.3-001 — Contractual Security Obligations
 
 **Description (multi-paragraph):**
 
@@ -935,7 +937,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P0
 
-### PG-D-06.4 — Third-Party Boundary Management
+### AG-D-06.4-001 — Third-Party Boundary Management
 
 **Description (multi-paragraph):**
 
@@ -961,7 +963,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P1
 
-### PG-D-07.1 — Secure-by-Design Principles
+### AG-D-07.1-001 — Secure-by-Design Principles
 
 **Description (multi-paragraph):**
 
@@ -987,7 +989,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 2/4 → Target 4/4
 **Implementation Priority:** P0
 
-### PG-D-07.2 — Secure Coding Practices
+### AG-D-07.2-001 — Secure Coding Practices
 
 **Description (multi-paragraph):**
 
@@ -1013,7 +1015,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P1
 
-### PG-D-07.3 — CI/CD Pipeline Security
+### AG-D-07.3-001 — CI/CD Pipeline Security
 
 **Description (multi-paragraph):**
 
@@ -1039,7 +1041,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 2/4 → Target 4/4
 **Implementation Priority:** P0
 
-### PG-D-08.1 — General Security Awareness
+### AG-D-08.1-001 — General Security Awareness
 
 **Description (multi-paragraph):**
 
@@ -1065,7 +1067,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P1
 
-### PG-D-08.2 — Role-Specific Competence
+### AG-D-08.2-001 — Role-Specific Competence
 
 **Description (multi-paragraph):**
 
@@ -1091,7 +1093,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P1
 
-### PG-D-09.1 — Information Security Policies
+### AG-D-09.1-001 — Information Security Policies
 
 **Description (multi-paragraph):**
 
@@ -1117,7 +1119,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 4/4 → Target 4/4
 **Implementation Priority:** P2
 
-### PG-D-09.2 — Impact & Risk Assessments
+### AG-D-09.2-001 — Impact & Risk Assessments
 
 **Description (multi-paragraph):**
 
@@ -1143,7 +1145,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P0
 
-### PG-D-09.4 — Records of Processing
+### AG-D-09.4-001 — Records of Processing
 
 **Description (multi-paragraph):**
 
@@ -1169,7 +1171,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P1
 
-### PG-D-10.1 — Continuous Security Monitoring
+### AG-D-10.1-001 — Continuous Security Monitoring
 
 **Description (multi-paragraph):**
 
@@ -1195,7 +1197,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 2/4 → Target 4/4
 **Implementation Priority:** P0
 
-### PG-D-10.2 — Audit Logging & Traceability
+### AG-D-10.2-001 — Audit Logging & Traceability
 
 **Description (multi-paragraph):**
 
@@ -1221,7 +1223,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P1
 
-### PG-D-10.3 — Compliance Testing
+### AG-D-10.3-001 — Compliance Testing
 
 **Description (multi-paragraph):**
 
@@ -1247,7 +1249,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P2
 
-### SG-D-01.1 — Data at Rest Encryption
+### AG-D-01.1-002 — Data at Rest Encryption
 
 **Description (multi-paragraph):**
 
@@ -1273,7 +1275,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P0
 
-### SG-D-01.2 — Data in Transit Encryption
+### AG-D-01.2-002 — Data in Transit Encryption
 
 **Description (multi-paragraph):**
 
@@ -1299,7 +1301,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P0
 
-### SG-D-01.3 — Cryptographic Key Management
+### AG-D-01.3-002 — Cryptographic Key Management
 
 **Description (multi-paragraph):**
 
@@ -1325,7 +1327,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P0
 
-### SG-D-01.4 — Data Integrity Mechanisms
+### AG-D-01.4-002 — Data Integrity Mechanisms
 
 **Description (multi-paragraph):**
 
@@ -1351,7 +1353,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 3/4
 **Implementation Priority:** P0
 
-### SG-D-02.1 — Vulnerability Identification
+### AG-D-02.1-002 — Vulnerability Identification
 
 **Description (multi-paragraph):**
 
@@ -1377,7 +1379,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P0
 
-### SG-D-02.2 — Patch Management & Updates
+### AG-D-02.2-002 — Patch Management & Updates
 
 **Description (multi-paragraph):**
 
@@ -1403,7 +1405,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P0
 
-### SG-D-02.3 — Coordinated Vulnerability Disclosure
+### AG-D-02.3-002 — Coordinated Vulnerability Disclosure
 
 **Description (multi-paragraph):**
 
@@ -1429,7 +1431,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P1
 
-### SG-D-02.4 — Threat-Led Penetration Testing
+### AG-D-02.4-002 — Threat-Led Penetration Testing
 
 **Description (multi-paragraph):**
 
@@ -1455,7 +1457,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 2/4 → Target 3/4
 **Implementation Priority:** P1
 
-### SG-D-03.1 — Identity Lifecycle Management
+### AG-D-03.1-002 — Identity Lifecycle Management
 
 **Description (multi-paragraph):**
 
@@ -1481,7 +1483,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P0
 
-### SG-D-03.2 — Multi-Factor Authentication
+### AG-D-03.2-002 — Multi-Factor Authentication
 
 **Description (multi-paragraph):**
 
@@ -1507,7 +1509,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P0
 
-### SG-D-03.3 — Authorisation & Least Privilege
+### AG-D-03.3-002 — Authorisation & Least Privilege
 
 **Description (multi-paragraph):**
 
@@ -1533,7 +1535,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P0
 
-### SG-D-03.4 — Secure System Defaults
+### AG-D-03.4-002 — Secure System Defaults
 
 **Description (multi-paragraph):**
 
@@ -1559,7 +1561,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P1
 
-### SG-D-04.1 — Incident Detection & Triage
+### AG-D-04.1-002 — Incident Detection & Triage
 
 **Description (multi-paragraph):**
 
@@ -1585,7 +1587,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P0
 
-### SG-D-04.2 — Incident Containment & Response
+### AG-D-04.2-002 — Incident Containment & Response
 
 **Description (multi-paragraph):**
 
@@ -1611,7 +1613,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P0
 
-### SG-D-04.3 — Incident Notification & Reporting
+### AG-D-04.3-002 — Incident Notification & Reporting
 
 **Description (multi-paragraph):**
 
@@ -1637,7 +1639,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 2/4 → Target 4/4
 **Implementation Priority:** P0
 
-### SG-D-04.4 — Incident Recovery & Lessons Learned
+### AG-D-04.4-002 — Incident Recovery & Lessons Learned
 
 **Description (multi-paragraph):**
 
@@ -1663,7 +1665,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P1
 
-### SG-D-05.1 — Data Minimisation
+### AG-D-05.1-002 — Data Minimisation
 
 **Description (multi-paragraph):**
 
@@ -1689,7 +1691,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P0
 
-### SG-D-05.2 — Retention & Archiving
+### AG-D-05.2-002 — Retention & Archiving
 
 **Description (multi-paragraph):**
 
@@ -1715,7 +1717,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P1
 
-### SG-D-05.3 — Right to Erasure
+### AG-D-05.3-002 — Right to Erasure
 
 **Description (multi-paragraph):**
 
@@ -1741,7 +1743,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 2/4 → Target 4/4
 **Implementation Priority:** P0
 
-### SG-D-05.4 — Data Portability
+### AG-D-05.4-002 — Data Portability
 
 **Description (multi-paragraph):**
 
@@ -1767,7 +1769,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P2
 
-### SG-D-06.1 — Vendor Risk Assessment
+### AG-D-06.1-002 — Vendor Risk Assessment
 
 **Description (multi-paragraph):**
 
@@ -1793,7 +1795,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P0
 
-### SG-D-06.2 — Software Bill of Materials (software bill of materials)
+### AG-D-06.2-002 — Software Bill of Materials (software bill of materials)
 
 **Description (multi-paragraph):**
 
@@ -1819,7 +1821,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P1
 
-### SG-D-06.3 — Contractual Security Obligations
+### AG-D-06.3-002 — Contractual Security Obligations
 
 **Description (multi-paragraph):**
 
@@ -1845,7 +1847,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P0
 
-### SG-D-06.4 — Third-Party Boundary Management
+### AG-D-06.4-002 — Third-Party Boundary Management
 
 **Description (multi-paragraph):**
 
@@ -1871,7 +1873,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P1
 
-### SG-D-07.1 — Secure-by-Design Principles
+### AG-D-07.1-002 — Secure-by-Design Principles
 
 **Description (multi-paragraph):**
 
@@ -1897,7 +1899,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 2/4 → Target 4/4
 **Implementation Priority:** P0
 
-### SG-D-07.2 — Secure Coding Practices
+### AG-D-07.2-002 — Secure Coding Practices
 
 **Description (multi-paragraph):**
 
@@ -1923,7 +1925,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P1
 
-### SG-D-07.3 — CI/CD Pipeline Security
+### AG-D-07.3-002 — CI/CD Pipeline Security
 
 **Description (multi-paragraph):**
 
@@ -1949,7 +1951,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 2/4 → Target 4/4
 **Implementation Priority:** P0
 
-### SG-D-08.1 — General Security Awareness
+### AG-D-08.1-002 — General Security Awareness
 
 **Description (multi-paragraph):**
 
@@ -1975,7 +1977,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P1
 
-### SG-D-08.2 — Role-Specific Competence
+### AG-D-08.2-002 — Role-Specific Competence
 
 **Description (multi-paragraph):**
 
@@ -2001,7 +2003,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P1
 
-### SG-D-09.1 — Information Security Policies
+### AG-D-09.1-002 — Information Security Policies
 
 **Description (multi-paragraph):**
 
@@ -2027,7 +2029,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 4/4 → Target 4/4
 **Implementation Priority:** P2
 
-### SG-D-09.2 — Impact & Risk Assessments
+### AG-D-09.2-002 — Impact & Risk Assessments
 
 **Description (multi-paragraph):**
 
@@ -2053,7 +2055,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P0
 
-### SG-D-09.4 — Records of Processing
+### AG-D-09.4-002 — Records of Processing
 
 **Description (multi-paragraph):**
 
@@ -2079,7 +2081,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P1
 
-### SG-D-10.1 — Continuous Security Monitoring
+### AG-D-10.1-002 — Continuous Security Monitoring
 
 **Description (multi-paragraph):**
 
@@ -2105,7 +2107,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 2/4 → Target 4/4
 **Implementation Priority:** P0
 
-### SG-D-10.2 — Audit Logging & Traceability
+### AG-D-10.2-002 — Audit Logging & Traceability
 
 **Description (multi-paragraph):**
 
@@ -2131,7 +2133,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Maturity Score:** Current 3/4 → Target 4/4
 **Implementation Priority:** P1
 
-### SG-D-10.3 — Compliance Testing
+### AG-D-10.3-002 — Compliance Testing
 
 **Description (multi-paragraph):**
 
@@ -2165,6 +2167,18 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 | 0.1 | 2026-08-06 | Sprint 0 Executor | Placeholder; 53 lines; structure plan only. |
 | 1.0 | 2026-08-06 | Sprint 4 Executor | Full content fill (V-03 fix): §1 generic baseline (35 rows × 7 columns from corpus), §2 adjusted PG (35 rows), §3 adjusted SG (35 rows; D-05.4 GDPR-only has SG = N/A), §4 tensions resolved (T-001/002/003), §5 Track B decision trail (35 rows; 8 RIGOROUS + 27 STANDARD), §6 cross-references, §7 validation. **70 adjusted objectives** (35 PG + 35 SG). All 35 active sub-domains covered; 3 inactive sub-domains (D-07.4, D-08.3, D-09.3) excluded. |
 | 2.0 | 2026-08-06 | Sprint 5 Executor | **DEEP enrichment without Effort/Cost/Timeline.** §2/§3 tables extended with "Details" anchor column (35 PG + 35 SG anchors). §4 Tensions Resolved: 3 tensions expanded to multi-paragraph form (T-001 4-way temporal conflict, T-002 cryptographic sharding, T-003 unified DPIA+FRIA). **§8 NEW: 70 DEEP detail cards** (35 PG + 35 SG) — each with 15 fields: Description (multi-paragraph), Source Article, NIST CSF Anchors, Verification Criteria (operational), Verification Method, Owner, Status, Dependencies, Risk if not met, Affected Stakeholders, Maturity Score, Implementation Priority. D-01.x (RIGOROUS) anchored to biometric Art. 9 hardware cryptographic module-backed architecture. D-04.3 RIGOROUS — 4-reg max-SLA 24h routing. D-06.x RIGOROUS — NIS 2 supply chain + biometric processor agreements. D-07.x RIGOROUS — AI_Act Annex III conformity + CRA + supply-chain integrity controls Level 3. D-10.x RIGOROUS — 24/7 SOC + ISO 27001 monitoring. Total file growth: 247 → ~1,500 lines. **Excluded** Effort/Cost/Timeline per user directive. |
+| 3.0 | 2026-08-28 | Executor (port Fase 1) | **corr-008 AG- migration + corr-010 rename.** File renamed `07c_Adjusted_Objectives.md` → `Doc13_Adjusted_Goals.md`. All `PG-D-XX.Y[...]` → `AG-D-XX.Y-001`, `SG-D-XX.Y[...]` → `AG-D-XX.Y-002` (70 goal IDs, 141 references incl. anchors); Appendix A added with the bijective legacy alias map; `sprint:` frontmatter keys removed; phantom suffixed references in Doc11/Doc30 (`PG-D-XX.Y-001` with no unsuffixed source) reconciled to the same canonical form. |
+
+## Appendix A — Legacy ID aliases (corr-007 → corr-008 AG- migration)
+
+Bijective map applied 2026-08-28 (port Fase 1). Old IDs are DEPRECATED — kept here for traceability with Doc16 Appendix A (P2 PO/SO aliases) and P3 references.
+
+| Legacy (corr-007) | Canonical (corr-008) |
+|---|---|
+| `PG-D-XX.Y` / `PG-D-XX.Y-001` | `AG-D-XX.Y-001` (privacy set) |
+| `SG-D-XX.Y` / `SG-D-XX.Y-001` | `AG-D-XX.Y-002` (security set) |
+
+Example: `PG-D-01.1` → `AG-D-01.1-001`; `SG-D-01.1` → `AG-D-01.1-002`. Anchor slugs follow (`#pg-d-d011` → `#ag-d-d011-001`).
 
 ## §N See also
 

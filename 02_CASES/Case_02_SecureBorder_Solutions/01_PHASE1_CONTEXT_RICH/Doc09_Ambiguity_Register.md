@@ -17,7 +17,7 @@ inputs:
   - 05_Regulatory_Applicability.md
   - 07b_Proportionality_Profile.md
 outputs:
-  - 07c_Adjusted_Objectives.md
+  - Doc13_Adjusted_Goals.md
   - 07_Structured_Compliance_Matrix.md
 ---
 
