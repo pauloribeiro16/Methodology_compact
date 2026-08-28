@@ -16,7 +16,7 @@ tier: MAX
 scale: MAX
 sibling_of: ../01_PHASE1_CONTEXT/
 corpus_source: ../../../00_METHODOLOGY/PREPROCESSING_by_domain/domains/
-sprints_complete: [0, 0.5, 0.6, 1, 2, 3]
+sprints_complete: [0, 0.5, 0.6, 1, 2, 3, 4, 5, 6]
 sprint_status: COMPLETE
 ---
 

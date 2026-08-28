@@ -14,11 +14,11 @@ active_subdomains: 38
 total_obligations: 38
 total_goals: 76
 total_rules: 78
-total_tensions: 7
+total_tensions: 5   # T-001..T-005 (T-005 DORA TLPT per ontology v1.1 + Doc11 §4.5); the earlier "7" figure was incorrect — port Fase 0
 total_source_clauses: 150
 total_detail_cards: 78
 total_cells_triple_maturity: 234
-frameworks_in_scope: [NIST_CSF_2.0, NIST_Privacy_FW_1.1, NIST_AI_RMF_1.0]
+frameworks_in_scope: [NIST_CSF_2.0, NIST_Privacy_FW_1.0, NIST_AI_RMF_1.0]   # PF 1.0 canonical frozen list (was 1.1 draft — port Fase 0)
 frameworks_dora_coverage: via_CSF_subcats
 sibling_of: ../02_PHASE2_RULES/
 sprints_complete: [A_reused, B, C, D, E, F, G]
@@ -40,7 +40,7 @@ branch: feature/aegis-p2-case03-csf-pf-airmf
 | Phase | Legacy | Rich `02_PHASE2_RULES_RICH/` |
 |-------|--------|------------------------------|
 | Phase 1 (Context) | ✅ COMPLETE | ✅ COMPLETE (Rich sibling 2026-08-06) |
-| Phase 2 (Obligations) | ✅ COMPLETE (38 obligations, 7 tensions, 78 rules) | ✅ **COMPLETE** — DEEP_ENRICHED (Bloco G fix) |
+| Phase 2 (Obligations) | ✅ COMPLETE (38 obligations, 5 tensions, 78 rules) | ✅ **COMPLETE** — DEEP_ENRICHED (Bloco G fix) |
 | Phase 3 (Architecture & Rules) | ✅ COMPLETE | ⏳ NOT STARTED (Rich scope deferred) |
 | **Aggregate** | **Phase 1+2+3 COMPLETE** | **Phase 2 Rich Mode: DEEP_ENRICHED, ready for orchestrator PR review** |
 
@@ -59,7 +59,7 @@ branch: feature/aegis-p2-case03-csf-pf-airmf
 |------|:------:|:-----:|-------------:|-------------|
 | `README.md` | ✅ v1.0 | rich-symmetry | ~300 | Orientation, dashboard, schema, bloco plan |
 | `08_Obligation_Derivation.md` | ✅ COPIED | — | 472 | 38 obligations (canonical, untouched) |
-| `09_Strategic_Tensions_Report.md` | ✅ COPIED | — | 687 | 7 tensions resolved (HIGH + MEDIUM + INACTIVE) |
+| `09_Strategic_Tensions_Report.md` | ✅ COPIED | — | 687 | 5 tensions resolved (T-001..T-005; HIGH + MEDIUM + INACTIVE) |
 | `10_Privacy_Security_Objectives.md` | ✅ COPIED | — | 461 | 76 goal rows (24 PG + 52 SG; legacy header says 33 — see §4) |
 | `11_Rules_Catalog.md` | ✅ COPIED + banner | — | 652 | 78 cards (38 CR + 40 BPR, 17 fields) + Rich banner pointing to canonical |
 | `12_Rules_Catalog.xlsx` | ✅ COPIED | — | 24KB | Excel catalog (canonical, unchanged) |
@@ -172,7 +172,7 @@ branch: feature/aegis-p2-case03-csf-pf-airmf
 | Match project YAML frontmatter conventions | ✅ PASS |
 | Use `document_id: AEGIS-P2-RICH-*` (RICH prefix) | ✅ PASS |
 | 18 fields per detail card (uniform) | ✅ PASS — Doc 11 (canonical) all use 18-field schema |
-| 7 multi-paragraph tensions | ✅ PASS (canonical Doc 09 with 7 tensions) |
+| 5 multi-paragraph tensions (canonical set T-001..T-005, port Fase 0) | ✅ PASS (T-005 detailed in Doc11 §4.5) |
 | Frontmatter: status → ACTIVE | ✅ PASS — Rich orchestration docs all `ACTIVE` |
 | All 3 frameworks ACTIVE (no placeholder) | ✅ PASS — Case_03 has no AI RMF placeholder |
 

@@ -53,7 +53,7 @@ verdict: PASS_WITH_FINDINGS
 | Doc | Lines (legacy) | Lines (Rich, now) | Cards / content | Bloco | Status |
 |-----|---------------:|------------------:|-----------------|:-----:|:------:|
 | `08_Obligation_Derivation.md` | 472 | 472 | 38 obligations, NI re-derived under AVG+AI MUST+DORA | legacy copy | ✅ COPIED |
-| `09_Strategic_Tensions_Report.md` | 687 | 687 | 7 tensions resolved (HIGH+MEDIUM context) | legacy copy | ✅ COPIED |
+| `09_Strategic_Tensions_Report.md` | 687 | 687 | 5 tensions resolved (T-001..T-005; legacy row — port Fase 0) | legacy copy | ✅ COPIED |
 | `10_Privacy_Security_Objectives.md` | 461 | 461 | 76 goal rows (24 PG + 52 SG) | legacy copy | ✅ COPIED |
 | `11_Rules_Catalog.md` | 651 | 651+ | 78 cards (38 CR + 40 BPR, 17 fields + banner) | legacy copy + banner | ✅ COPIED |
 | `12_Rules_Catalog.xlsx` | 24KB | 24KB | Excel catalog (canonical) | legacy copy | ✅ COPIED |

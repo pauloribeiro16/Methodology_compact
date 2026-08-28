@@ -1,10 +1,12 @@
 # Project State — Case 03: OmniBank Financial Systems (High Complexity)
 
-**Last Updated:** 2026-04-03
-**Status:** 🟢 Phase 2 COMPLETE
-**Next Phase:** Phase 3 (Decomposition & Risk Integration)
+**Last Updated:** 2026-08-28
+**Status:** 🟢 Phase 1 ✅ COMPLETE (Rich) | Phase 2 ✅ COMPLETE (Rich) | Phase 3 ✅ COMPLETE (Doc22–31) | 🔄 PORT CAMPAIGN Case_01→Case_03 IN PROGRESS (Fases 0–2, Bloco A)
+**Next Phase:** Port Fases 3–7 (UNMAPPED adjudication, posture, Control Set, gates, PRODUCTION_FLOW)
 **Complexity:** Maximum (5/5 regulations, 38/38 sub-domains)
 **Restructured:** 2026-04-02 (v2.0)
+
+> **⚠️ 2026-08-28 (port Fase 0).** The April sections below (§2–§5) are a historical baseline keyed to legacy doc names and April volumes. Current reality on disk: Rich P1 = Doc01–**Doc14** (Doc11_DORA inserted; Doc14_Adjusted_Goals, 76 AG goals), P2 = **Doc16–Doc21** (78 rules = 38 CR + 40 BPR; **5 tensions** T-001..T-005), P3 = Doc22–Doc31 (complete). Canonical narrative layers: the Aug-6/8 Rich campaign, the Aug-13/14 corr-010 wave (renames + AG- migration) and the port campaign started 2026-08-28.
 
 ---
 
@@ -233,11 +235,11 @@ python lints/run_all_lints.py --case "OmniBank Financial Systems"
 | Document Type | Path |
 |---------------|------|
 | **00_COMMON** | `02_CASES/Case_03_OmniBank_Financial/00_COMMON/` |
-| **01_PHASE1_CONTEXT** | `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT/` |
-| **02_PHASE2_RULES** | `02_CASES/Case_03_OmniBank_Financial/02_PHASE2_RULES/` |
+| **01_PHASE1_CONTEXT_RICH** | `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT_RICH/` |
+| **02_PHASE2_RULES_RICH** | `02_CASES/Case_03_OmniBank_Financial/02_PHASE2_RULES_RICH/` |
 | **03_PHASE3_DECOMPOSITION** | `02_CASES/Case_03_OmniBank_Financial/03_PHASE3_DECOMPOSITION/` (not yet created) |
-| **Phase 1 Excel** | `01_PHASE1_CONTEXT/06_Clause_Mapping_Matrix.xlsx` |
-| **Phase 2 Excel** | `02_PHASE2_RULES/outputs/12_Rules_Catalog.xlsx` |
+| **Phase 1 Excel** | `01_PHASE1_CONTEXT_RICH/Case_03_Phase1_RICH.xlsx` |
+| **Phase 2 Excel** | `02_PHASE2_RULES_RICH/12_Rules_Catalog.xlsx` |
 | **PROJECT_STATE.md** | `02_CASES/Case_03_OmniBank_Financial/PROJECT_STATE.md` |
 
 **Full Path:** `02_CASES/Case_03_OmniBank_Financial/`
@@ -258,6 +260,14 @@ python lints/run_all_lints.py --case "OmniBank Financial Systems"
 
 ---
 
-**Document Version:** 3.0 (Phase 2 COMPLETE)
-**Last Reviewed:** 2026-04-03
+**Document Version:** 3.1 (Port campaign Bloco A — Fase 0 state-chain repair)
+**Last Reviewed:** 2026-08-28
 **Next Review:** Phase 3 Kickoff
+
+## Sprint 0.5 — Port Campaign Case_01→Case_03, Fase 0 (2026-08-28)
+
+- `validation/PORT_census_v0.md` — full baseline: UNMAPPED 262 tokens (AIRMF 140 / PF 91 / CSF 20 / PRIVACY 8 / bare 3), sprint keys, maturi scales (Doc08=158, Doc13=76, Doc20=78), goal census (76 AG verified; PG/SG=0 em deliverables)
+- **Adjudicações:** tensões canónicas = **5** (T-005 DORA TLPT integrado no Doc17; claim "7" incorrecto); **AI-C19 MANTÉM-SE** (OmniBank é PROVIDER + DEPLOYER do OmniScore — inverso do D1 do Case_02; 150 cláusulas); PF 1.1 → 1.0 no P2 PS; **corr-012 registado** como pendência formal (split PO/SO adiado — decisão P7 2026-08-28, coerente com TRACEABILITY_AUDIT §5a)
+- **Cadeia de estado:** PS do caso 3.1 (banner + realidade Rich/corr-010, dirs `_RICH` no §9); progress.json com backfill Rich + corr-010 + evento Fase 0; P1 PS/README (sprints_complete 0–6, tabela deliverables DocNN, Doc14 ✅)
+- **Decisões P7 registadas:** manter AG-D- no P2 (corr-012 adiado); DORA mantém `via_CSF` sem coluna própria; cópia canónica da ontologia = P1 RICH
+- **Next:** Fase 1 (sprint sweep, refs legacy, Docs 16/18/20 DRAFT→ACTIVE), Fase 2 (postura P1 + kg_ontology com branch DORA) — Bloco A

@@ -120,9 +120,11 @@ The tension is not "the clauses contradict" — it is "the same event generates 
 | TENSION-M-001 | FREQUENCY_MISMATCH | MEDIUM | **Structural** | Yes | N/A — assessment triggers permanently satisfied by bank business model | DESIGN_DECISION |
 | TENSION-L-001 | INTENSITY_GAP | LOW | **Structural** | Yes | N/A — secure-by-design always active during design phase | DESIGN_DECISION |
 
-**Total Tensions:** 4
+**Total Tensions:** 5 (T-001..T-005 — T-005 DORA TLPT added per port Fase 0; see §4.1 note)
 **Contextual:** 1 (TENSION-H-001 — resolved via operational procedure)
-**Structural:** 3 (TENSION-H-002, TENSION-M-001, TENSION-L-001 — resolved via design decisions)
+**Structural:** 4 (TENSION-H-002, TENSION-M-001, TENSION-L-001, TENSION-M-002/T-005 — resolved via design decisions)
+
+> **T-005 addition (port Fase 0, 2026-08-28).** `TENSION-M-002` / **T-005** — DORA TLPT triennial cycle (Art. 26) vs ISO 27001 annual testing cycle, D-02.4 + D-10.3, MEDIUM, Structural — is the DORA-specific tension introduced by Sprint 0.6 and analysed in full in `../01_PHASE1_CONTEXT_RICH/Doc11_DORA_ICT_Risk_Framework.md` §4.5. With it, the canonical case tension set is **T-001..T-005 (5 tensions)**, matching `phase1_ontology.yaml` v1.1. The "7 tensions" figure in the P2 PROJECT_STATE/README was incorrect (no INACTIVE tensions exist in any document) and is corrected by the port campaign.
 
 ### 4.2 CRITICAL Priority Tensions
 

@@ -131,6 +131,27 @@
       "phase": 3,
       "result": "Phase 3 documents created and validated",
       "action_taken": "All Phase 3 documents linted, quality gate: 99.2%"
+    },
+    {
+      "timestamp": "2026-08-06T00:00:00Z",
+      "event": "rich_mode_campaign_complete",
+      "phase": 1,
+      "result": "Rich Mode campaign (P1 Sprints 0-5, P2 Blocos A-G): corpus enrichment, tri-framework matrix, DORA doc, Tier1/2 validators",
+      "action_taken": "Backfilled 2026-08-28 by port Fase 0 (entry was missing)"
+    },
+    {
+      "timestamp": "2026-08-14T00:00:00Z",
+      "event": "corr010_wave_complete",
+      "phase": 1,
+      "result": "corr-010 wave: DocNN renames (Doc11_DORA inserted; P1 Doc01-14, P2 Doc16-21), AG-D- goal migration in Doc14 (76 goals), STRICT traceability audit",
+      "action_taken": "Backfilled 2026-08-28 by port Fase 0 (entry was missing)"
+    },
+    {
+      "timestamp": "2026-08-28T00:00:00Z",
+      "event": "port_case01_campaign_fase0_complete",
+      "phase": 1,
+      "result": "Port Bloco A Fase 0: PORT_census_v0 (262 UNMAPPED tokens baseline; maturi scales; sprint keys); adjudications: canonical tensions = 5 (T-005 DORA TLPT added to Doc17), AI-C19 KEPT (OmniBank is PROVIDER+DEPLOYER), PF 1.1->1.0, corr-012 (PO/SO deferral) registered; state-chain repair (case PS 3.1, P2 PS/README tension counts)",
+      "action_taken": "See validation/PORT_census_v0.md; port Fases 1-2 follow in Bloco A"
     }
   ]
 }

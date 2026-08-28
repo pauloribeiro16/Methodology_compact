@@ -15,7 +15,7 @@ track: B
 tier: MAX
 scale: MAX
 sibling_of: ../01_PHASE1_CONTEXT/
-sprints_complete: [0, 0.5, 0.6, 1, 2, 3]
+sprints_complete: [0, 0.5, 0.6, 1, 2, 3, 4, 5, 6]
 sprint_in_progress: none
 branch: feature/aegis-p1-case03-rich
 ---
@@ -42,22 +42,26 @@ branch: feature/aegis-p1-case03-rich
 
 ## §2 Deliverables
 
+> **2026-08-28 (port Fase 0).** Table refreshed to the corr-010 DocNN names
+> (Aug 13–14 wave; legacy `00_/04a_…/07c_` names in git history). Statuses
+> updated: Doc14 delivered (Sprint 5 DEEP + Sprint 6 corr-010 AG- migration).
+
 | Path | Status | Sprint | Lines | Description |
 |------|:------:|:------:|------:|-------------|
-| `00_Taxonomy_Reference.md` | ✅ | 0 | — | Macro-domain taxonomy |
-| `01_INTAKE_FORM.md` | ✅ | 0 | — | OmniBank intake snapshot |
-| `04_Company_Context_Assessment.md` | ✅ | 1 | — | S = MAX, 5,000+ emp, ISO 27001 |
-| `04a_Architecture_DataInventory.md` | ✅ | 2 | 333 | 38 sub-domains × corpus manifest path |
-| `04b_Security_Posture.md` | ✅ | 2 | — | ISO 27001 + DORA Art. 5-16 baseline |
-| `04c_ThirdParty_Landscape.md` | ✅ | 2 | 345 | DORA Art. 28-30 CTPP register |
-| `04d_Org_Roles_RACI.md` | ✅ | 1 | — | 38 active sub-domains, +DORA-specific roles |
-| `05_Regulatory_Applicability.md` | ✅ | 1 | — | 5/5 regulations applicable |
-| `05b_Ambiguity_Register.md` | ✅ | 2 | 1,026 | **1,490 ambiguity cards** (NEW) |
-| `06_Clause_Mapping_Matrix.md` | ✅ | 1 | 353 | 150 clauses (28+26+29+38+29) |
-| **`06b_DORA_ICT_Risk_Framework.md`** | ✅ | 0.6 | 638 | **DORA-specific** (26 articles, 5 tensions) — NEW |
-| `07_Structured_Compliance_Matrix.md` | ✅ | 1 | — | 5 strategic tensions (T-001..T-005) |
-| **`07b_Proportionality_Profile.md`** | ✅ | 0.5+3 | ~440 | **Track B MAX** (38 sub-domains, 31 RIGOROUS + 7 STANDARD) — NEW |
-| `07c_Adjusted_Goals.md` | 🚧 | 2 | — | Tensions resolved (placeholder for Sprint 4 fill) |
+| `Doc01_Taxonomy_Reference.md` | ✅ | 0 | — | Macro-domain taxonomy |
+| `Doc02_INTAKE_FORM.md` | ✅ | 0 | — | OmniBank intake snapshot |
+| `Doc03_Company_Context_Assessment.md` | ✅ | 1 | — | S = MAX, 5,000+ emp, ISO 27001 |
+| `Doc04_Architecture_DataInventory.md` | ✅ | 2 | 333 | 38 sub-domains × corpus manifest path |
+| `Doc05_Security_Posture.md` | ✅ (deprecated) | 2 | — | ISO 27001 + DORA Art. 5-16 baseline; DEPRECATED_FOR_POSTURE (port Fase 2) |
+| `Doc06_ThirdParty_Landscape.md` | ✅ | 2 | 345 | DORA Art. 28-30 CTPP register |
+| `Doc07_Org_Roles_RACI.md` | ✅ | 1 | — | 38 active sub-domains, +DORA-specific roles |
+| `Doc08_Regulatory_Applicability.md` | ✅ | 1 | — | 5/5 regulations applicable |
+| `Doc09_Ambiguity_Register.md` | ✅ | 2 | 1,026 | **1,490 ambiguity cards** (NEW) |
+| `Doc10_Clause_Mapping_Matrix.md` | ✅ | 1 | 353 | 150 clauses (28+26+29+38+29) |
+| **`Doc11_DORA_ICT_Risk_Framework.md`** | ✅ | 0.6 | 638 | **DORA-specific** (26 articles, T-005) — NEW |
+| `Doc12_Structured_Compliance_Matrix.md` | ✅ | 1 | — | 5 strategic tensions (T-001..T-005) |
+| **`Doc13_Proportionality_Profile.md`** | ✅ | 0.5+3 | ~440 | **Track B MAX** (38 sub-domains, 31 RIGOROUS + 7 STANDARD)
+| `Doc14_Adjusted_Goals.md` | ✅ | 5+6 | — | **76 AG-D-XX.Y-001/-002 goals** (DEEP + corr-010 AG- migration) |
 | `Citation_Index.md` | ✅ | 2 | — | Master citation registry (NEW) |
 | `phase1_ontology.yaml` | ✅ | 1 | — | 5 tensions + obligated_party enum normalised |
 | `corpus_field_map.md` | ✅ | 0 | 500+ | Corpus L1/L2/L3 → case fields |
