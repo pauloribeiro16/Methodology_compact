@@ -27,7 +27,7 @@
 header:
   case_id: "Case_02_SecureBorder_Solutions"
   phase: 1
-  version: "2.1"
+  version: "2.2"
   generated_from:
     - "AEGIS-COMMON-00"  # Taxonomy Reference
     - "AEGIS-COMMON-01"  # Company Context
@@ -46,6 +46,7 @@ header:
       - "v1.3 (corr-Case02 Commit B, 2026-08-10): T-009 added (D-10.1 monitoring opt-out SCOPE_CONFLICT; F-03 RESOLVED); F-04 RESOLVED (AI Act Art. 12 → Art. 19(1) in T-002 citations); F-06 RESOLVED (AI_Act casing normalization across Case_02). Lint rule AI_ACT_CASING added."
       - "v2.0 (corr-Case02 Commit F, 2026-08-10): FINAL MIGRATION MARKER. Phase 1 RICH complete (35 ACTIVE subdomains, 07c tech-free). Phase 2 migration complete (89 PSOs = 34 PO + 55 SO; 63 rules = 38 CR + 25 BPR). Phase 3 harmonisation complete (UC/FR/NFR + AO/PSO linkage). 13_Framework_Mappings.xlsx created (3 sheets: NIST CSF + Privacy + AI RMF). Case root README.md authored. Author updated to corr-Case02 Commit F. sprint updated 1 → 9; role updated reconciliation → final_migration."
       - "v2.1 (port Fase 0, 2026-08-28): D1 propagation — AI-C19 commented out, AI_Act 29 → 28, total 112 → 111. Aligns with frozen 00_COMMON copy and Doc10 v1.2."
+      - "v2.2 (port Fase 2, 2026-08-28): additive kg_ontology section (schema instantiation of the canonical Case_01 kg_ontology; AG- id patterns, posture model rules, case invariants). Schema-first: no schema redefinition, Case_02 instantiates."
 
 # ============================================================
 # COMPANY
@@ -1958,3 +1959,60 @@ lint_rules:
     added_in_version: "1.3"
     added_by: "corr-Case02 Commit B Executor (Case_02, 2026-08-10)"
 
+
+# ============================================================
+# KG ONTOLOGY (additive v2.2, 2026-08-28, port Fase 2)
+# Schema instantiation of the canonical kg_ontology defined in
+# Case_01_TinyTask_SaaS/01_PHASE1_CONTEXT_RICH/phase1_ontology.yaml
+# (kg_ontology section, schema_version 1.6-lineage). Schema is defined
+# ONCE (ontology-first rule); this block declares the Case_02 instance.
+# ============================================================
+
+kg_ontology:
+  meta:
+    purpose: >
+      Formalise the Case_02 Phase 1 knowledge-graph class/relation schema so that
+      a future data/phase1_graph.json (build deferred by port decision 2, 2026-08-28)
+      can be validated before reaching any dashboard.
+    schema_canonical_source: "../Case_01_TinyTask_SaaS/01_PHASE1_CONTEXT_RICH/phase1_ontology.yaml#kg_ontology"
+    a_class_model: "00_METHODOLOGY/diagrams/Class_Models/phase1_contextual_definition.md"
+    schema_version: 1.0
+    generated: 2026-08-28
+    author: "Port Fase 2 Executor (Case_01→Case_02 campaign)"
+  id_patterns:
+    Stakeholder: "^STK-[A-Z]+-\\d{2}$"
+    BusinessGoal: "^BG-\\d{2}$"
+    CoverageGap: "^GAP-\\d{3}$"
+    AdjustedGoal: "^AG-D-\\d{2}\\.\\d{1}-(001|002)$"   # Case_02: privacy set -001, security set -002
+    RegulatoryClause: "^(GDPR|CRA|NIS2|AI)-C\\d{2}$"    # Case_02: 4 regulations (28 GDPR + 26 CRA + 29 NIS2 + 28 AI active)
+    SecurityControlDomain: "^D-\\d{2}\\.\\d{1}$"
+    Domain: "^D-\\d{2}$"
+    Regulation: "^REG-[A-Z0-9]+$"
+    CompanyContext: "^CC-[A-Z]+-\\d{4}-\\d{3}$"
+    Tension: "^T-\\d{3}$"                                # T-001..T-009 in Case_02
+    RaciRole: "^ROLE-[A-Z0-9]+$"
+    RaciActivity: "^ACT-\\d{2}$"
+    System: "^SYS-\\d{2}$"
+    DataStore: "^STORE-\\d{2}$"
+    DataFlow: "^FLOW-\\d{2}$"
+    ThirdParty: "^[A-Z][A-Za-z0-9_]+$"                   # vendor enumerations live in Doc06 (not duplicated here)
+    NistControl: "^(NIST-)?[A-Z0-9\\.\\-]+$"
+    NistControlSafe: "^NIST-[A-Za-z0-9._-]{1,80}$"
+  forbidden_subdomain_attrs: [tier, maturity_cur, maturity_tgt, maturity_score, capability_score]
+  implementation_posture:
+    authority: "00_METHODOLOGY/IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0"
+    states: [IMPLEMENTED, PARTIAL, NOT_IMPLEMENTED]
+    special_categories:
+      - "N/A — product-security deliverable (SSDF <ID>)"
+      - "N/A — statutory obligation"
+    rules:
+      - "IMPLEMENTED requires a mandatory evidence pointer"
+      - "PARTIAL / NOT IMPLEMENTED require a mandatory What's-missing note"
+      - "Statuses must be evidence-backed and non-uniform across the population"
+  case_invariants:
+    active_subdomains: 35
+    not_addressed: [D-07.4, D-08.3, D-09.3]
+    total_clauses: 111          # post-D1 (AI-C19 removed, 2026-08-13)
+    ai_act_clauses: 28
+    adjusted_goals: 70          # 35 privacy (-001) + 35 security (-002)
+    tensions: 9
