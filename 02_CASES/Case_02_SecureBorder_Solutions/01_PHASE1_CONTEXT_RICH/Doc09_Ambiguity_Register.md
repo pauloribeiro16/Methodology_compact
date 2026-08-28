@@ -14,11 +14,11 @@ inactive_subdomains: [D-07.4, D-08.3, D-09.3]
 new_in_rich: true
 inputs:
   - 00_METHODOLOGY/PREPROCESSING_by_domain/domains/
-  - 05_Regulatory_Applicability.md
-  - 07b_Proportionality_Profile.md
+  - Doc08_Regulatory_Applicability.md
+  - Doc12_Proportionality_Profile.md
 outputs:
   - Doc13_Adjusted_Goals.md
-  - 07_Structured_Compliance_Matrix.md
+  - Doc11_Structured_Compliance_Matrix.md
 ---
 
 # Ambiguity Register
@@ -100,7 +100,7 @@ Sorted by card count descending; the top sub-domains drive the top-20 cards in �
 1. **Severity filter** — keep only cards whose highest instance is `S3` (Berry §5.1 highest severity).
 2. **Case-02 impact tier** — prefer cards anchored in RIGOROUS sub-domains (8: D-01.1, D-01.3, D-04.3, D-06.1, D-06.3, D-07.1, D-07.3, D-10.1) over STANDARD sub-domains (27).
 3. **Regulatory balance** — round-robin across the four applicable regulations (GDPR + CRA + NIS 2 + AI_Act) to ensure each lens is represented. Distribution in the top-20: GDPR 10, NIS 2 5, CRA 5, AI_Act 0.
-4. **AI_Act gap (corpus-side)** — note that the corpus (`00_METHODOLOGY/PREPROCESSING_by_domain/domains/*/D-*.json`) carries 35 `AI_Act — No applicable ambiguity` placeholder cards (one per active sub-domain) and **0 substantive AI_Act ambiguity cards**. AI_Act obligations on SecureBorder are addressed in Doc 07 (`07_Structured_Compliance_Matrix.md`) Annex III §1 (biometric) + §7 (border control) compliance assessment, but the Berry-lens ambiguity register has no AI_Act entries to surface for this case. This is a corpus-coverage gap, not a Case-02 omission — see `00_METHODOLOGY/PREPROCESSING/AMBIGUITY_ANALYSIS/01_Framework.md` for Berry-lens methodology.
+4. **AI_Act gap (corpus-side)** — note that the corpus (`00_METHODOLOGY/PREPROCESSING_by_domain/domains/*/D-*.json`) carries 35 `AI_Act — No applicable ambiguity` placeholder cards (one per active sub-domain) and **0 substantive AI_Act ambiguity cards**. AI_Act obligations on SecureBorder are addressed in Doc 07 (`Doc11_Structured_Compliance_Matrix.md`) Annex III §1 (biometric) + §7 (border control) compliance assessment, but the Berry-lens ambiguity register has no AI_Act entries to surface for this case. This is a corpus-coverage gap, not a Case-02 omission — see `00_METHODOLOGY/PREPROCESSING/AMBIGUITY_ANALYSIS/01_Framework.md` for Berry-lens methodology.
 
 Each card shows: regulation + clause_id + article_ref + sub-domain + title + Berry type + severity + verbatim phrase + analysis + variant readings (R1/R2/R3 where present in corpus).
 
@@ -1274,7 +1274,7 @@ The Case-02 reading adopted in this register follows the **AEGIS Berry-lens conv
 
 **Distribution note.** The §3 top-20 selection (Sprint 4 fix) intentionally spans the three regulations with substantive corpus entries (GDPR 10 + NIS 2 5 + CRA 5); AI_Act entries are not surfaced because the corpus has 0 substantive AI_Act ambiguity cards (see §3 selection logic). The disambiguation conventions above cover all four applicable regulations regardless of §3 representation.
 
-**Resolution status:** All 20 cards above are flagged `OPEN` in this register; resolution is deferred to Phase 2 / Phase 3, where the chosen reading is formalised in the per-clause specifications of `07_Structured_Compliance_Matrix.md` and the strategic-tensions resolution document.
+**Resolution status:** All 20 cards above are flagged `OPEN` in this register; resolution is deferred to Phase 2 / Phase 3, where the chosen reading is formalised in the per-clause specifications of `Doc11_Structured_Compliance_Matrix.md` and the strategic-tensions resolution document.
 
 ---
 
@@ -1289,4 +1289,4 @@ The Case-02 reading adopted in this register follows the **AEGIS Berry-lens conv
 
 - **Corpus source:** `00_METHODOLOGY/PREPROCESSING_by_domain/domains/` (per-sub-domain `<SD_ID>.json` sidecar — `ambiguity_cards[]` field)
 - **Berry framework:** `00_METHODOLOGY/PREPROCESSING/AMBIGUITY_ANALYSIS/01_Framework.md`
-- **Strategic tensions:** `05_Regulatory_Applicability.md §6` (T-001 Temporal, T-002 Cryptographic, T-003 TRIGGER_MISMATCH)
+- **Strategic tensions:** `Doc08_Regulatory_Applicability.md §6` (T-001 Temporal, T-002 Cryptographic, T-003 TRIGGER_MISMATCH)

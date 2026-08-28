@@ -11,14 +11,14 @@ case: Case_02_SecureBorder_Solutions
 applicable_regs: [GDPR, CRA, NIS 2, AI_Act]
 active_subdomains: 35
 inactive_documented: [D-08.3 INACTIVE, 3 NOT_ADDRESSED]
-inputs: [01_INTAKE_FORM.md]
-outputs: [05_Regulatory_Applicability.md]
+inputs: [Doc02_INTAKE_FORM.md]
+outputs: [Doc08_Regulatory_Applicability.md]
 traceability: AEGIS Class Model → CompanyContext, ComplianceContext classes
-related_documents: [00_Taxonomy_Reference.md, 01_INTAKE_FORM.md]
+related_documents: [00_Taxonomy_Reference.md, Doc02_INTAKE_FORM.md]
 reconciliation:
   sprint: 1
   role: reconciliation
-  base_doc: ../01_PHASE1_CONTEXT/04_Company_Context_Assessment.md (legacy, frozen)
+  base_doc: ../01_PHASE1_CONTEXT/Doc03_Company_Context_Assessment.md (legacy, frozen)
   notes: |
     Sprint 1 reconciliation (Case_02, 2026-08-06):
     - Frontmatter updated to AEGIS-P2-RICH-* convention (P2 = Case_02).
@@ -32,7 +32,7 @@ reconciliation:
 
 <!-- RECONCILIATION BANNER (Sprint 1, 2026-08-06):
      This is the Rich Mode copy of AEGIS-P1-04.
-     Source: ../01_PHASE1_CONTEXT/04_Company_Context_Assessment.md.
+     Source: ../01_PHASE1_CONTEXT/Doc03_Company_Context_Assessment.md.
      Body unchanged from legacy. Sprint 2 will add corpus linkages (L1 sub-domain .md refs).
      See SPRINT1_REPORT.md for the full fix list.
 -->
@@ -170,7 +170,7 @@ The complete intake form responses are documented in `01_Company_Context.md` (AE
 
 ## 6. REGULATORY APPLICABILITY — DETAILED ANALYSIS
 
-The detailed clause-by-clause applicability rationale and obligated-party allocation for each regulation is documented in `05_Regulatory_Applicability.md` (Sections 3.1–3.5). This section provides the assessment summary table and per-regulation pointers for navigation.
+The detailed clause-by-clause applicability rationale and obligated-party allocation for each regulation is documented in `Doc08_Regulatory_Applicability.md` (Sections 3.1–3.5). This section provides the assessment summary table and per-regulation pointers for navigation.
 
 | Regulation | Applicability Field | Value | Preliminary Result | Confidence |
 |------------|---------------------|-------|--------------------|------------|
@@ -188,7 +188,7 @@ The detailed clause-by-clause applicability rationale and obligated-party alloca
 
 **Headline:** SecureBorder processes special category data (biometric facial templates) on behalf of government border control authorities. As processor, GDPR obligations apply via Art. 28 DPA. Also a controller for audit logs and compliance data. Large-scale processing of Art. 9 data triggers mandatory DPIA (Art. 35).
 
-**Key clauses in scope:** GDPR-C01 through GDPR-C28 (all 28). See `05_Regulatory_Applicability.md` §3.1 for the clause-by-clause applicability analysis.
+**Key clauses in scope:** GDPR-C01 through GDPR-C28 (all 28). See `Doc08_Regulatory_Applicability.md` §3.1 for the clause-by-clause applicability analysis.
 
 **Obligated party:** CONTROLLER (for audit logs) + PROCESSOR (for biometric facial templates).
 
@@ -196,7 +196,7 @@ The detailed clause-by-clause applicability rationale and obligated-party alloca
 
 **Headline:** GuardianGate eGate systems are digital products with critical security functions for border control. As manufacturer, SecureBorder must comply with CRA Essential Requirements (Annex I Parts I and II). Critical Class classification requires third-party conformity assessment by a notified body (Art. 32(3) until Art. 8 certification scheme exists).
 
-**Key clauses in scope:** CRA-C01 through CRA-C26 (all 26). See `05_Regulatory_Applicability.md` §3.2 for the clause-by-clause applicability analysis.
+**Key clauses in scope:** CRA-C01 through CRA-C26 (all 26). See `Doc08_Regulatory_Applicability.md` §3.2 for the clause-by-clause applicability analysis.
 
 **Obligated party:** MANUFACTURER (Critical Class — Art. 32(3) full quality assurance + EU-type examination).
 
@@ -204,7 +204,7 @@ The detailed clause-by-clause applicability rationale and obligated-party alloca
 
 **Headline:** SecureBorder qualifies as a medium-sized enterprise (450 employees, €120M revenue) operating in the defense/security sector. As a supplier of critical systems to government border control (essential entities), NIS 2 supply chain security obligations apply (Art. 21(2)(d)). Management liability applies for non-compliance.
 
-**Key clauses in scope:** NIS2-C01 through NIS2-C29 (all 29). See `05_Regulatory_Applicability.md` §3.3 for the clause-by-clause applicability analysis.
+**Key clauses in scope:** NIS2-C01 through NIS2-C29 (all 29). See `Doc08_Regulatory_Applicability.md` §3.3 for the clause-by-clause applicability analysis.
 
 **Obligated party:** ESSENTIAL_ENTITY_SUPPLIER (24h incident notification — Art. 23(4)(a)).
 
@@ -212,7 +212,7 @@ The detailed clause-by-clause applicability rationale and obligated-party alloca
 
 **Headline:** GuardianGate uses Edge AI for automated border control (face matching, liveness detection). This falls explicitly under AI_Act Annex III (migration, asylum and border control management) as a high-risk AI system. Conformity assessment required before EU market placement (Art. 43(4) — Annex III requires third-party assessment). Post-market monitoring system mandatory (Art. 72).
 
-**Key clauses in scope:** AI-C01 through AI-C29 (all 29). See `05_Regulatory_Applicability.md` §3.5 for the clause-by-clause applicability analysis.
+**Key clauses in scope:** AI-C01 through AI-C29 (all 29). See `Doc08_Regulatory_Applicability.md` §3.5 for the clause-by-clause applicability analysis.
 
 **Obligated party:** PROVIDER (High-Risk AI System per Annex III).
 
@@ -333,5 +333,5 @@ The detailed clause-by-clause applicability rationale and obligated-party alloca
 
 ---
 
-**Next Document:** 05_Regulatory_Applicability.md  
+**Next Document:** Doc08_Regulatory_Applicability.md  
 **Gate Status:** ⏳ PENDING REVIEW

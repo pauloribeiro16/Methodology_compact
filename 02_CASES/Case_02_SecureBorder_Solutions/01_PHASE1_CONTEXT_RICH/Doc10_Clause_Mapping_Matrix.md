@@ -11,14 +11,14 @@ case: Case_02_SecureBorder_Solutions
 applicable_regs: [GDPR, CRA, NIS 2, AI_Act]
 active_subdomains: 35
 inactive_documented: [D-08.3 INACTIVE, 3 NOT_ADDRESSED]
-inputs: [04_Company_Context_Assessment.md, 05_Regulatory_Applicability.md]
-outputs: [07_Structured_Compliance_Matrix.md]
+inputs: [Doc03_Company_Context_Assessment.md, Doc08_Regulatory_Applicability.md]
+outputs: [Doc11_Structured_Compliance_Matrix.md]
 traceability: AEGIS Class Model → RegulatoryClause, DomainCoverageEntry classes
 related_documents: [00_Taxonomy_Reference.md]
 reconciliation:
   sprint: 1
   role: reconciliation
-  base_doc: ../01_PHASE1_CONTEXT/06_Clause_Mapping_Matrix.md (legacy, frozen)
+  base_doc: ../01_PHASE1_CONTEXT/Doc10_Clause_Mapping_Matrix.md (legacy, frozen)
   notes: |
     Sprint 1 reconciliation (Case_02, 2026-08-06):
     - Frontmatter updated to AEGIS-P2-RICH-* convention (P2 = Case_02).
@@ -31,7 +31,7 @@ reconciliation:
 
 <!-- RECONCILIATION BANNER (Sprint 1, 2026-08-06):
      This is the Rich Mode copy of AEGIS-P1-06.
-     Source: ../01_PHASE1_CONTEXT/06_Clause_Mapping_Matrix.md.
+     Source: ../01_PHASE1_CONTEXT/Doc10_Clause_Mapping_Matrix.md.
      Body §1–§7 unchanged from legacy. §8 (Cross-Reference) added by Sprint 1 reconciliation.
      See SPRINT1_REPORT.md for the full fix list.
 -->
@@ -113,7 +113,7 @@ This document specifies the Excel-based Clause Mapping Matrix (Step B2), mapping
 | Mean NI | 2.964 |
 
 ### Sheet 6: DORA
-**Status:** Not applicable for SecureBorder — see `05_Regulatory_Applicability.md` §3.4 (not a financial entity per DORA Art. 2).
+**Status:** Not applicable for SecureBorder — see `Doc08_Regulatory_Applicability.md` §3.4 (not a financial entity per DORA Art. 2).
 
 ### Sheet 7: CONSOLIDATED_VIEW (T6 + T9)
 **Pivot Table:** Sub-Domain coverage across applicable regulations (4 pivots: GDPR, CRA, NIS 2, AI_Act).
@@ -298,5 +298,5 @@ T-006, T-007, T-008 were previously NOT in the ontology (T-001–T-005 only); th
 
 ---
 
-**Next Document:** 07_Structured_Compliance_Matrix.md
+**Next Document:** Doc11_Structured_Compliance_Matrix.md
 **Gate Status:** ⏳ PENDING REVIEW

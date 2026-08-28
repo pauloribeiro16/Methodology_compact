@@ -12,39 +12,39 @@ applicable_regs: ["GDPR", "CRA", "NIS 2", "AI_Act"]
 active_subdomains: 35  # RECONCILED (Sprint 1, I-02): was 38, corrected to 35 (canonical for Case_02 per README.md).
 inactive_documented: ["D-08.3 INACTIVE", "3 NOT_ADDRESSED (D-07.4, D-08.3, D-09.3 — canonical set per Doc09/Doc12 O-02 resolution; D-07.2 is ACTIVE)"]
 inputs:
-  - 04_Company_Context_Assessment.md
-  - 04a_Architecture_DataInventory.md
-  - 04b_Security_Posture.md
-  - 04c_ThirdParty_Landscape.md
-  - 01_INTAKE_FORM.md
+  - Doc03_Company_Context_Assessment.md
+  - Doc04_Architecture_DataInventory.md
+  - Doc05_Security_Posture.md
+  - Doc06_ThirdParty_Landscape.md
+  - Doc02_INTAKE_FORM.md
 outputs:
-  - 04b_Security_Posture.md
-  - 05_Regulatory_Applicability.md
-  - 06_Clause_Mapping_Matrix.md
-  - 07_Structured_Compliance_Matrix.md
+  - Doc05_Security_Posture.md
+  - Doc08_Regulatory_Applicability.md
+  - Doc10_Clause_Mapping_Matrix.md
+  - Doc11_Structured_Compliance_Matrix.md
 related_documents:
   - ../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-08_Human-Factors/
   - ../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-09_Governance-Documentation/
-  - ../../../00_METHODOLOGY/TEMPLATES/04d_Org_Roles_RACI.md
+  - ../../../00_METHODOLOGY/TEMPLATES/Doc07_Org_Roles_RACI.md
   - ../../../00_METHODOLOGY/CONTEXT/CONTEXT_PHASE1.md
 supersedes: none
 reconciliation:
   sprint: 1
   role: reconciliation
-  base_doc: ../01_PHASE1_CONTEXT/04d_Org_Roles_RACI.md (legacy, frozen)
+  base_doc: ../01_PHASE1_CONTEXT/Doc07_Org_Roles_RACI.md (legacy, frozen)
   notes: |
     Sprint 1 reconciliation (Case_02, 2026-08-06):
     - Frontmatter updated to AEGIS-P2-RICH-* convention (P2 = Case_02).
     - status: DRAFT → RECONCILED.
     - **I-02 FIXED**: active_subdomains: 38 → 35 (canonical for Case_02 per README.md).
     - applicable_regs aligned to [GDPR, CRA, NIS 2, AI_Act] (excludes DORA per Case_02).
-    - inputs reference updated (../00_COMMON/01_Company_Context.md → 01_INTAKE_FORM.md).
+    - inputs reference updated (../00_COMMON/01_Company_Context.md → Doc02_INTAKE_FORM.md).
     - Body preserved verbatim (Sprint 1 is content-neutral; Sprint 2 adds corpus linkages).
 ---
 
 <!-- CORPUS ENRICHMENT BANNER (Sprint 2, 2026-08-06):
      This is the Rich Mode copy of AEGIS-P1-04d.
-     Source: ../01_PHASE1_CONTEXT/04d_Org_Roles_RACI.md.
+     Source: ../01_PHASE1_CONTEXT/Doc07_Org_Roles_RACI.md.
      Sprint 2 added: §3 RACI matrix gains "Corpus Reg Req" column;
                      §6 Compliance Mapping gains "Corpus Manifest Path" column.
      See SPRINT2_ENRICHMENT_REPORT_EXISTING.md for the per-doc change list.
@@ -56,9 +56,9 @@ reconciliation:
 
 This document describes SecureBorder Solutions B.V.'s organisational structure and the per-activity RACI matrix that allocates information-security, data-protection, AI-governance, NIS 2 reporting, and CRA conformity-assessment responsibilities. It maps to Regulatory Baseline sub-domains **D-08 (Human Factors — D-08.1, D-08.2, D-08.3)** and **D-09 (Governance Documentation — D-09.1, D-09.2, D-09.3, D-09.4)**.
 
-**Scope:** D-08 + D-09. Architecture context in `04a_Architecture_DataInventory.md`; vendor context in `04c_ThirdParty_Landscape.md`; security posture in `04b_Security_Posture.md`.
+**Scope:** D-08 + D-09. Architecture context in `Doc04_Architecture_DataInventory.md`; vendor context in `Doc06_ThirdParty_Landscape.md`; security posture in `Doc05_Security_Posture.md`.
 
-**Critical caveat — D-08.3 IS ACTIVE for SecureBorder.** Per `05_Regulatory_Applicability.md §6`, SecureBorder has `applicable_regs = [GDPR, CRA, NIS2, AI_Act]` and NIS 2 participates in D-08.3 (Management Board Training). D-08.3 is therefore ACTIVE and constitutes a **NIS 2 Art. 20 obligation** (training of management bodies). This contrasts with Case 01 (LOW tier, no NIS 2 → D-08.3 INACTIVE). The board-training row in the RACI matrix below is a derived mandatory requirement under NIS 2 + the EU national transposition.
+**Critical caveat — D-08.3 IS ACTIVE for SecureBorder.** Per `Doc08_Regulatory_Applicability.md §6`, SecureBorder has `applicable_regs = [GDPR, CRA, NIS2, AI_Act]` and NIS 2 participates in D-08.3 (Management Board Training). D-08.3 is therefore ACTIVE and constitutes a **NIS 2 Art. 20 obligation** (training of management bodies). This contrasts with Case 01 (LOW tier, no NIS 2 → D-08.3 INACTIVE). The board-training row in the RACI matrix below is a derived mandatory requirement under NIS 2 + the EU national transposition.
 
 **Proportionality note (P2 — Company Reality First):** SecureBorder has 450 employees. Formal role separation is feasible — dedicated CISO, DPO, AI Governance Lead, SOC Manager, Compliance Lead, Internal Audit Lead, separate Legal counsel. This document enumerates the 22 named-role roster that directly owns compliance activities; the wider 450 employees are referenced as training targets and as activity participants but are not in the RACI column set (which is per-role for compliance activities).
 
@@ -388,7 +388,7 @@ This document is complete (Phase 1 Step E — Roles & RACI) when:
 
 | Version | Date | Author | Changes |
 |---|---|---|---|
-| 1.0 | 2026-07-11 | Executor | Populated from template `04d_Org_Roles_RACI.md`; integrated stakeholder register from `04 §3` and architecture from `04a`; D-08.3 ACTIVE flagged (NIS 2 Art. 20 obligation). 22 named-RACI roles with dedicated CISO/DPO/AI Governance Lead functions appropriate for HIGH-tier. |
+| 1.0 | 2026-07-11 | Executor | Populated from template `Doc07_Org_Roles_RACI.md`; integrated stakeholder register from `04 §3` and architecture from `04a`; D-08.3 ACTIVE flagged (NIS 2 Art. 20 obligation). 22 named-RACI roles with dedicated CISO/DPO/AI Governance Lead functions appropriate for HIGH-tier. |
 | 1.1 | 2026-08-06 | Executor | Sprint 1 reconciliation: frontmatter → AEGIS-P2-RICH-*, status: DRAFT → RECONCILED, active_subdomains 38 → 35 (canonical for Case_02), applicable_regs aligned. Body preserved verbatim. |
 | 1.2 | 2026-08-06 | Executor | Sprint 2 corpus enrichment: §3 RACI matrix gains Corpus Reg Req column (10 per-macro-domain tables); §5 Training Status gains Corpus Reg Req column; §6 Compliance Mapping gains Corpus Manifest Path column. active_subdomains: 35 verified (Sprint 1 fix retained). Source: `00_METHODOLOGY/PREPROCESSING_by_domain/domains/`. |
 
@@ -407,8 +407,8 @@ This document is complete (Phase 1 Step E — Roles & RACI) when:
 ## See also
 
 - **Data backbone:** `Case_02_Phase1.xlsx` (13 sheets: COVER, SYSTEMS, DATA_STORES, DATA_FLOWS, PERSONAL_DATA, THIRD_PARTIES, ROLES_RACI, MATURITY, SUBDOMAINS, REG_CHAIN, COMPLIANCE, GAPS, PRIORITIES)
-- **Architecture:** `04a_Architecture_DataInventory.md` (RACI maps activities to systems SYS-01..SYS-13).
-- **Vendors:** `04c_ThirdParty_Landscape.md` (Procurement Director vendor-risk-assessment cadence).
-- **Maturity:** `04b_Security_Posture.md` (CISO + AI Governance Lead drive the top-gaps remediation).
+- **Architecture:** `Doc04_Architecture_DataInventory.md` (RACI maps activities to systems SYS-01..SYS-13).
+- **Vendors:** `Doc06_ThirdParty_Landscape.md` (Procurement Director vendor-risk-assessment cadence).
+- **Maturity:** `Doc05_Security_Posture.md` (CISO + AI Governance Lead drive the top-gaps remediation).
 - **HIGH-tier context:** `02_CASES/Case_02_SecureBorder_Solutions/00_COMMON/01_Company_Context.md` (4 applicable regulations; complexity tier HIGH; 450 employees; NIS 2 essential-entity supplier + CRA Critical Class + AI_Act Annex III).
 - **D-08.3 ACTIVE note:** D-08.3 is ACTIVE here (NIS 2-applicable). It was INACTIVE in Case 01 (no NIS 2). The methodology treats activation consistently; the difference is the company's regulatory profile, not the methodology.

@@ -10,31 +10,31 @@ status: DEPRECATED_FOR_MATURITY
 status_history:
   - { date: '2026-08-07', from: CORPUS_ENRICHED, to: DEPRECATED_FOR_MATURITY,
       reason: 'Maturity model moved to Phase 2 Doc 13 — resolves PHASE1_STRATEGY §7 contradiction' }
-maturity_owner: 13_Framework_Mapping_Matrix.md
+maturity_owner: Doc19_Framework_Mapping_Matrix.md
 note: >
   Este documento mantém-se como INPUT qualitativo (postura observada).
   A avaliação e o modelo de maturidade foram movidos para
-  02_PHASE2_RULES_RICH/13_Framework_Mapping_Matrix.md §4-5.
+  02_PHASE2_RULES_RICH/Doc19_Framework_Mapping_Matrix.md §4-5.
 case: Case_02_SecureBorder_Solutions
 applicable_regs: [GDPR, CRA, NIS 2, AI_Act]
 active_subdomains: 35
 inactive_documented: [D-08.3 INACTIVE, 3 NOT_ADDRESSED]
 inputs:
-  - 04_Company_Context_Assessment.md
-  - 04a_Architecture_DataInventory.md
-  - 05_Regulatory_Applicability.md
+  - Doc03_Company_Context_Assessment.md
+  - Doc04_Architecture_DataInventory.md
+  - Doc08_Regulatory_Applicability.md
 outputs:
-  - 04c_ThirdParty_Landscape.md
-  - 04d_Org_Roles_RACI.md
-  - 07_Structured_Compliance_Matrix.md
+  - Doc06_ThirdParty_Landscape.md
+  - Doc07_Org_Roles_RACI.md
+  - Doc11_Structured_Compliance_Matrix.md
 related_documents:
-  - 04a_Architecture_DataInventory.md
+  - Doc04_Architecture_DataInventory.md
   - ../../../00_METHODOLOGY/PREPROCESSING/SubDomains/index.md
   - ../../../00_METHODOLOGY/PREPROCESSING/SubDomains/
 reconciliation:
   sprint: 1
   role: reconciliation
-  base_doc: ../01_PHASE1_CONTEXT/04b_Security_Posture.md (legacy, frozen)
+  base_doc: ../01_PHASE1_CONTEXT/Doc05_Security_Posture.md (legacy, frozen)
   notes: |
     Sprint 1 reconciliation (Case_02, 2026-08-06):
     - Frontmatter updated to AEGIS-P2-RICH-* convention (P2 = Case_02).
@@ -49,13 +49,13 @@ reconciliation:
 
 > ⚠️ **DEPRECATED FOR MATURITY (2026-08-07).** A avaliação e o modelo de
 > maturidade vivem agora em
-> `02_PHASE2_RULES_RICH/13_Framework_Mapping_Matrix.md` §4-5. Este documento
+> `02_PHASE2_RULES_RICH/Doc19_Framework_Mapping_Matrix.md` §4-5. Este documento
 > mantém-se como input qualitativo (postura observada). Ver `status_history`
 > no frontmatter.
 
 <!-- CORPUS ENRICHMENT BANNER (Sprint 2, 2026-08-06):
      This is the Rich Mode copy of AEGIS-P1-04b.
-     Source: ../01_PHASE1_CONTEXT/04b_Security_Posture.md.
+     Source: ../01_PHASE1_CONTEXT/Doc05_Security_Posture.md.
      Sprint 2 added: §2 per-macro-domain (D-01..D-10) Corpus fit_criterion + Verification Method;
                      new §6 Corpus Provenance.
      See SPRINT2_ENRICHMENT_REPORT_EXISTING.md for the per-doc change list.
@@ -75,7 +75,7 @@ SecureBorder is a **HIGH-complexity** company with 450 employees, ISO 27001 + IS
 | 3 | Managed | Implemented, monitored, measured, and regularly reviewed |
 | 4 | Optimized | Continuously improved and substantially automated |
 
-Evidence is drawn from `04a_Architecture_DataInventory.md`, `04_Company_Context_Assessment.md`, and `05_Regulatory_Applicability.md`. Active scope: 38 of 38 SubDomains (4 regulations applicable; no INACTIVE sub-domain for SecureBorder).
+Evidence is drawn from `Doc04_Architecture_DataInventory.md`, `Doc03_Company_Context_Assessment.md`, and `Doc08_Regulatory_Applicability.md`. Active scope: 38 of 38 SubDomains (4 regulations applicable; no INACTIVE sub-domain for SecureBorder).
 
 ## 2. Per-Domain Assessment
 
@@ -194,14 +194,14 @@ Evidence is drawn from `04a_Architecture_DataInventory.md`, `04_Company_Context_
 
 | Control | Current | Evidence | Notes |
 |---|---|---|---|
-| Vendor assessment | Tiered criticality; annual formal assessment for Critical + Important vendors; ISO 27001 + third-party assurance attestation + ISO 27701 evidence required for all data processors | `04c_ThirdParty_Landscape.md §5` (separate document) | NIS 2 supply-chain security obligations (Art. 21(2)(d)) |
+| Vendor assessment | Tiered criticality; annual formal assessment for Critical + Important vendors; ISO 27001 + third-party assurance attestation + ISO 27701 evidence required for all data processors | `Doc06_ThirdParty_Landscape.md §5` (separate document) | NIS 2 supply-chain security obligations (Art. 21(2)(d)) |
 | software bill of materials | machine-readable software bill of materials format 1.5 emission per release; published per OTA; verified against ENISA software bill of materials guidance | SYS-11 + STORE-02 in `04a §1.1`; FLOW-04 in `04a §2.2` | Required for CRA Critical Class (Art. 13(13)); integrated with vulnerability management |
 | Contract clauses | Article 28 GDPR DPA template; CRA Annex I Part I (2)(h) (component security) clauses; NIS 2 supply-chain addendum; AI_Act provider-deployer interface clauses (Art. 25) | (paper artefact; DPA template library) | Multi-regulation clause bank maintained by DPO + Legal |
 | Boundary management | Vendor egress reviewed; sub-processor chains tracked; pseudonymisation before any logging egress; formal sub-processor change notifications | SYS-09 + DPAs in `04a §1.3` | Per GDPR Art. 28(2) sub-processor notification flow |
 
 **Target maturity**: 3
 **Gap**: 0
-**Notes**: D-06 covers both legal (DPA template library, sub-processor flow) and technical (software bill of materials pipeline). The cross-border aspects (different DPAs per country deployment) are tracked separately in `04c_ThirdParty_Landscape.md`. Relevant Regulatory Baseline files: [D-06.1](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-06_Supply-Chain/D-06.1.md), [D-06.2](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-06_Supply-Chain/D-06.2.md), [D-06.3](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-06_Supply-Chain/D-06.3.md), [D-06.4](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-06_Supply-Chain/D-06.4.md).
+**Notes**: D-06 covers both legal (DPA template library, sub-processor flow) and technical (software bill of materials pipeline). The cross-border aspects (different DPAs per country deployment) are tracked separately in `Doc06_ThirdParty_Landscape.md`. Relevant Regulatory Baseline files: [D-06.1](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-06_Supply-Chain/D-06.1.md), [D-06.2](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-06_Supply-Chain/D-06.2.md), [D-06.3](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-06_Supply-Chain/D-06.3.md), [D-06.4](../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-06_Supply-Chain/D-06.4.md).
 
 
 **Corpus Target fit_criterion** (from `00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-06_Supply-Chain/D-06.manifest.json` + first applicable sub-domain JSON sidecar):
@@ -388,6 +388,6 @@ Corpus source: `00_METHODOLOGY/PREPROCESSING_by_domain/domains/` — each macro-
 ## See also
 
 - **Data backbone:** `Case_02_Phase1.xlsx` (13 sheets: COVER, SYSTEMS, DATA_STORES, DATA_FLOWS, PERSONAL_DATA, THIRD_PARTIES, ROLES_RACI, MATURITY, SUBDOMAINS, REG_CHAIN, COMPLIANCE, GAPS, PRIORITIES)
-- **Architecture context:** `04a_Architecture_DataInventory.md` §1.1 (13 systems), §2.1 (7 stores), §2.2 (12 flows).
-- **People/RACI:** `04d_Org_Roles_RACI.md` (15-25 staff, dedicated CISO + DPO + AI Governance Lead + SOC Manager + Compliance Analyst roles).
+- **Architecture context:** `Doc04_Architecture_DataInventory.md` §1.1 (13 systems), §2.1 (7 stores), §2.2 (12 flows).
+- **People/RACI:** `Doc07_Org_Roles_RACI.md` (15-25 staff, dedicated CISO + DPO + AI Governance Lead + SOC Manager + Compliance Analyst roles).
 - **HIGH-tier context:** `../../02_CASES/Case_02_SecureBorder_Solutions/00_COMMON/01_Company_Context.md` (4 applicable regulations, complexity tier HIGH).

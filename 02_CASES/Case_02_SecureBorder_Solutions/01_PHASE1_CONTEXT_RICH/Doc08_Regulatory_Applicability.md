@@ -11,19 +11,19 @@ case: Case_02_SecureBorder_Solutions
 applicable_regs: ["GDPR", "CRA", "NIS 2", "AI_Act"]
 active_subdomains: 35
 inactive_documented: ["D-08.3 INACTIVE", "3 NOT_ADDRESSED"]
-inputs: ["04_Company_Context_Assessment.md", "01_INTAKE_FORM.md"]
-outputs: ["06_Clause_Mapping_Matrix.md"]
+inputs: ["Doc03_Company_Context_Assessment.md", "Doc02_INTAKE_FORM.md"]
+outputs: ["Doc10_Clause_Mapping_Matrix.md"]
 traceability: "AEGIS Class Model → ComplianceContext, RegulatoryClause classes"
-related_documents: ["00_Taxonomy_Reference.md", "04_Company_Context_Assessment.md"]
+related_documents: ["00_Taxonomy_Reference.md", "Doc03_Company_Context_Assessment.md"]
 reconciliation:
   sprint: 1
   role: reconciliation
-  base_doc: ../01_PHASE1_CONTEXT/05_Regulatory_Applicability.md (legacy, frozen)
+  base_doc: ../01_PHASE1_CONTEXT/Doc08_Regulatory_Applicability.md (legacy, frozen)
   notes: |
     Sprint 1 reconciliation (Case_02, 2026-08-06):
     - Frontmatter updated to AEGIS-P2-RICH-* convention (P2 = Case_02).
     - status: DRAFT → RECONCILED.
-    - inputs reference updated (02_Regulatory_Mapping_Master.xlsx → 01_INTAKE_FORM.md,
+    - inputs reference updated (02_Regulatory_Mapping_Master.xlsx → Doc02_INTAKE_FORM.md,
       deprecation banner added below).
     - APP-{REG} applicability flags added below (§3.1–§3.5) per LINT_REPORT_BEFORE.md Issue 5
       (case has 4 applicable regulations, all 4 already covered in legacy §3.1–§3.5).
@@ -37,7 +37,7 @@ reconciliation:
 
 <!-- RECONCILIATION BANNER (Sprint 1, 2026-08-06):
      This is the Rich Mode copy of AEGIS-P1-05.
-     Source: ../01_PHASE1_CONTEXT/05_Regulatory_Applicability.md.
+     Source: ../01_PHASE1_CONTEXT/Doc08_Regulatory_Applicability.md.
      Body unchanged from legacy. Sprint 2 will add corpus linkages (L2 Regulation/* refs).
      See SPRINT1_REPORT.md for the full fix list.
 -->

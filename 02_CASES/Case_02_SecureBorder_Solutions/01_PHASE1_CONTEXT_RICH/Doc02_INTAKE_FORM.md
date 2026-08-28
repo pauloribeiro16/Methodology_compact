@@ -13,16 +13,16 @@ active_subdomains: 35
 inactive_documented: [D-08.3 INACTIVE, 3 NOT_ADDRESSED]
 traceability: AEGIS Class Model → CompanyContext class
 inputs: []
-outputs: [04_Company_Context_Assessment.md, 05_Regulatory_Applicability.md]
+outputs: [Doc03_Company_Context_Assessment.md, Doc08_Regulatory_Applicability.md]
 related_documents: [00_Taxonomy_Reference.md]
 supersedes: 01_Company_Context_LEGACY.md
 reconciliation:
   sprint: 1
   role: reconciliation
-  base_doc: ../00_COMMON/01_Company_Context.md (legacy, frozen; originally named `01_Company_Context.md`, renamed to `01_INTAKE_FORM.md` per Rich Mode convention)
+  base_doc: ../00_COMMON/01_Company_Context.md (legacy, frozen; originally named `01_Company_Context.md`, renamed to `Doc02_INTAKE_FORM.md` per Rich Mode convention)
   notes: |
     Sprint 1 reconciliation (Case_02, 2026-08-06):
-    - Filename renamed from `01_Company_Context.md` to `01_INTAKE_FORM.md` per Rich Mode convention
+    - Filename renamed from `01_Company_Context.md` to `Doc02_INTAKE_FORM.md` per Rich Mode convention
       (mirrors Case_01 pattern). The legacy filename is kept as a symlink/path reference in
       `validation/SPRINT1_REPORT.md` for lint-tooling compatibility.
     - Frontmatter updated to AEGIS-P2-RICH-* convention (P2 = Case_02).
@@ -607,5 +607,5 @@ CompanyContext {
 
 ---
 
-**Next Document:** 04_Company_Context_Assessment.md
+**Next Document:** Doc03_Company_Context_Assessment.md
 **Dependency:** None (foundational input for Phase 1)

@@ -7,8 +7,8 @@ created: 2026-04-03
 updated: 2026-08-13
 author: Compliance Lead
 status: DRAFT
-inputs: [08_Obligation_Derivation.md, 07_Structured_Compliance_Matrix.md]
-outputs: [10_Privacy_Security_Goals.md]
+inputs: [Doc14_Obligation_Derivation.md, Doc11_Structured_Compliance_Matrix.md]
+outputs: [Doc16_Privacy_Security_Goals.md]
 traceability: AEGIS Class Model → StrategicTension, ConflictResolution classes
 related_documents: 03_Design_Decisions_Log.md
 ---
@@ -681,5 +681,5 @@ The structural tensions also increase with each regulation added, as each new re
 
 ---
 
-**Next Document:** 10_Privacy_Security_Goals.md
+**Next Document:** Doc16_Privacy_Security_Goals.md
 **Gate Status:** ✅ PASS — Ready for Privacy and Security Goals Definition

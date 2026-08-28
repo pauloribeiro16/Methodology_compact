@@ -14,7 +14,7 @@ inactive_documented: [D-08.3 INACTIVE, 3 NOT_ADDRESSED]
 source: Taxonomia.txt + Regulatory_Complementary_Mapping_Updated.txt (T6)
 traceability: PhD Thesis Chapter 5, Section 5.7
 inputs: []
-outputs: [01_INTAKE_FORM.md, 05_Regulatory_Applicability.md, 06_Clause_Mapping_Matrix.md]
+outputs: [Doc02_INTAKE_FORM.md, Doc08_Regulatory_Applicability.md, Doc10_Clause_Mapping_Matrix.md]
 reconciliation:
   sprint: 1
   role: reconciliation

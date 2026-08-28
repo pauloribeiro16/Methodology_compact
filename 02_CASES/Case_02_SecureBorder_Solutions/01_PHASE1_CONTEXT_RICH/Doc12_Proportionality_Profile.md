@@ -13,15 +13,15 @@ cross_checked_against_corpus: true
 cross_check_sprint: 3
 cross_check_scope: 15 of 35 rows spot-checked (see §11)
 inputs:
-  - 04_Company_Context_Assessment.md
-  - 05_Regulatory_Applicability.md
-  - 07_Structured_Compliance_Matrix.md
+  - Doc03_Company_Context_Assessment.md
+  - Doc08_Regulatory_Applicability.md
+  - Doc11_Structured_Compliance_Matrix.md
   - ../../../../../00_METHODOLOGY/REFERENCE/proportionality_model.md
   - ../../../../../00_METHODOLOGY/PREPROCESSING_by_domain/domains/
 related_documents:
-  - 04_Company_Context_Assessment.md
-  - 05_Regulatory_Applicability.md
-  - 07_Structured_Compliance_Matrix.md
+  - Doc03_Company_Context_Assessment.md
+  - Doc08_Regulatory_Applicability.md
+  - Doc11_Structured_Compliance_Matrix.md
   - ../../../../../00_METHODOLOGY/REFERENCE/proportionality_model.md
 frozen: false
 ---
@@ -45,7 +45,7 @@ This document **does not alter Regulatory Baseline**. The `fit_criterion` and th
 
 ## §2 Company Profile Metadata
 
-Inputs are read from `04_Company_Context_Assessment.md` §2 (size) and §5 (intake summary, complexity tier, FTE).
+Inputs are read from `Doc03_Company_Context_Assessment.md` §2 (size) and §5 (intake summary, complexity tier, FTE).
 
 | Attribute | Value | Source |
 |-----------|-------|--------|
@@ -197,7 +197,7 @@ GATE-P exit code propagates to Phase 1 exit per `dependency_graph.yaml`. This do
 
 ## §7 Input to Phase 2
 
-Every obligation in Doc 08 (`08_Obligation_Derivation.md`), every rule in Doc 11 (`11_Rules_Catalog.md`), every architectural node in Doc 14 (`14_Architectural_Nodes.md`), and every allocation in Doc 15 (`15_Allocation.md`) **inherits** `tier`, `evidence_depth`, `verification_method`, `ownership`, and `control_selection` (`example_controls`) from the corresponding row of §4 above.
+Every obligation in Doc 08 (`Doc14_Obligation_Derivation.md`), every rule in Doc 11 (`Doc18_Rules_Catalog.md`), every architectural node in Doc 14 (`14_Architectural_Nodes.md`), and every allocation in Doc 15 (`15_Allocation.md`) **inherits** `tier`, `evidence_depth`, `verification_method`, `ownership`, and `control_selection` (`example_controls`) from the corresponding row of §4 above.
 
 **Specific Tier → Phase 2 propagation notes:**
 
@@ -233,14 +233,14 @@ Every obligation in Doc 08 (`08_Obligation_Derivation.md`), every rule in Doc 11
 ## §10 See also
 
 - `00_METHODOLOGY/REFERENCE/proportionality_model.md` — Track B spec (Regulatory Baseline invariant, decision table §5, attribute definitions §6, validation §9).
-- `02_CASES/Case_02_SecureBorder_Solutions/01_PHASE1_CONTEXT/04_Company_Context_Assessment.md` — company context (S = MEDIUM, FTE 5–8, ISO 27001 certified, 4 applicable regs).
-- `02_CASES/Case_02_SecureBorder_Solutions/01_PHASE1_CONTEXT/05_Regulatory_Applicability.md` — applicability + scope_overlap for inheritability (I).
-- `02_CASES/Case_02_SecureBorder_Solutions/01_PHASE1_CONTEXT/07_Structured_Compliance_Matrix.md` — priority (P) per sub-domain + strategic tensions T-001/002/003.
+- `02_CASES/Case_02_SecureBorder_Solutions/01_PHASE1_CONTEXT/Doc03_Company_Context_Assessment.md` — company context (S = MEDIUM, FTE 5–8, ISO 27001 certified, 4 applicable regs).
+- `02_CASES/Case_02_SecureBorder_Solutions/01_PHASE1_CONTEXT/Doc08_Regulatory_Applicability.md` — applicability + scope_overlap for inheritability (I).
+- `02_CASES/Case_02_SecureBorder_Solutions/01_PHASE1_CONTEXT/Doc11_Structured_Compliance_Matrix.md` — priority (P) per sub-domain + strategic tensions T-001/002/003.
 - `00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-XX_<Name>/D-XX.Y.json` — per-subdomain corpus data (scope_overlap, fit_criterion, NIST CSF anchors).
-- Companion Case_01 reference: `02_CASES/Case_01_TinyTask_SaaS/01_PHASE1_CONTEXT/07b_Proportionality_Profile.md` — same template at MICRO scale (37 rows: 31 LIGHTWEIGHT + 5 MINIMAL + 1 DEFERRED).
+- Companion Case_01 reference: `02_CASES/Case_01_TinyTask_SaaS/01_PHASE1_CONTEXT/Doc12_Proportionality_Profile.md` — same template at MICRO scale (37 rows: 31 LIGHTWEIGHT + 5 MINIMAL + 1 DEFERRED).
 - Next documents that consume this profile:
-  - `08_Obligation_Derivation.md`
-  - `11_Rules_Catalog.md`
+  - `Doc14_Obligation_Derivation.md`
+  - `Doc18_Rules_Catalog.md`
   - `14_Architectural_Nodes.md`
   - `15_Allocation.md`
 
@@ -301,7 +301,7 @@ No finding below changes a tier. All are recorded for orchestrator adjudication.
 | **F-03** | MINOR | **D-10.1 carries an unrecorded genuine tension.** The corpus flags 1 CRDA GENUINE TENSION at D-10.1 requiring Layer 2 OJ-level resolution: CRA Annex I Part I (2)(l) user opt-out vs. mandatory-monitoring duties (GDPR Art. 32(2), NIS 2 Art. 21(2)(b)). This profile tracks only T-001/T-002/T-003 and does not surface it. For eGate kiosks the opt-out limb is arguably inapplicable (no consumer user controls monitoring), but that reasoning is nowhere stated. Recommend adding it as T-004 or documenting why it does not bind. |
 | **F-04** | MINOR | **T-002 retention citation.** T-002 is framed as "GDPR Art. 17 erasure vs **AI_Act Art. 12** log retention", and AI_Act is listed as a D-05.3 participant. Per corpus, D-05.3 participants are **GDPR + CRA only** (no AI_Act), and the AI_Act *retention floor* lives at D-10.2 as **Art. 19(1)** ("at least six months") — Art. 12 is the logging-capability duty, not the retention period. T-002's resolution (cryptographic sharding) is unaffected and corpus-confirmed; only the citation and the owning sub-domain need correcting. |
 | **F-05** | INFO | **D-02.4 regulation attribution.** The row's note cites "NIS 2 threat-led + AI_Act post-market pen test". Corpus participants at D-02.4 are [CRA, DORA, AI_Act] — NIS 2 is not among them. The AI_Act half is corpus-correct. |
-| **F-06** | INFO | **Corpus-side regulation-name inconsistency** (upstream, not a case defect): the corpus uses `AI_Act` at D-01.4/D-02.1/D-04.3/D-07.x and `AI_Act` at D-05.1/D-05.2. Any case-side filter keying on the exact string risks silently dropping rows. This is a plausible contributor to the empty "Applicable regs" cells at D-02.4/D-06.2/D-07.2/D-07.3 in `05b_Ambiguity_Register.md` §2. Recommend an upstream normalisation ticket. |
+| **F-06** | INFO | **Corpus-side regulation-name inconsistency** (upstream, not a case defect): the corpus uses `AI_Act` at D-01.4/D-02.1/D-04.3/D-07.x and `AI_Act` at D-05.1/D-05.2. Any case-side filter keying on the exact string risks silently dropping rows. This is a plausible contributor to the empty "Applicable regs" cells at D-02.4/D-06.2/D-07.2/D-07.3 in `Doc09_Ambiguity_Register.md` §2. Recommend an upstream normalisation ticket. |
 
 #### 11.3.1 F-01 Settlement (SETTLED, corr-Case02 Commit A, 2026-08-10) — Scale classification: MEDIUM
 

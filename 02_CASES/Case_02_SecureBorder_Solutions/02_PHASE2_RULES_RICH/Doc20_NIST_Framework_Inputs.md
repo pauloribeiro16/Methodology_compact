@@ -10,7 +10,7 @@ status: ACTIVE
 case: Case_02_SecureBorder_Solutions
 applicable_regs: [GDPR, CRA, NIS_2, AI_Act]
 inputs:
-  - 13_Framework_Mapping_Matrix.md
+  - Doc19_Framework_Mapping_Matrix.md
   - 00_METHODOLOGY/PREPROCESSING_by_domain/MAPPINGS/OVERLAY_AI_Act_v2024.md
   - 00_METHODOLOGY/PREPROCESSING_by_domain/MAPPINGS/OVERLAY_NIST_CSF_2.0.md
   - 00_METHODOLOGY/PREPROCESSING_by_domain/MAPPINGS/OVERLAY_NIST_PF_1.1.md
@@ -19,17 +19,17 @@ inputs:
 outputs:
   - (none — this is a cross-reference doc, not a derivation source)
 related_documents:
-  - 13_Framework_Mapping_Matrix.md
-  - 08_Obligation_Derivation.md
+  - Doc19_Framework_Mapping_Matrix.md
+  - Doc14_Obligation_Derivation.md
   - 10b_Privacy_Security_Goals_NIST_Implications.md
-  - 11_Rules_Catalog.md
-  - 05_Regulatory_Applicability.md
+  - Doc18_Rules_Catalog.md
+  - Doc08_Regulatory_Applicability.md
 supersedes: none
 ---
 
 # NIST Framework Inputs — Cross-Reference & Provenance
 
-> **Purpose of this document:** Explain how the NIST frameworks (CSF 2.0, PF 1.0, AI RMF 1.0) are integrated into the AEGIS Case_02 corpus — **without duplicating content** that already exists in `13_Framework_Mapping_Matrix.md` and elsewhere.
+> **Purpose of this document:** Explain how the NIST frameworks (CSF 2.0, PF 1.0, AI RMF 1.0) are integrated into the AEGIS Case_02 corpus — **without duplicating content** that already exists in `Doc19_Framework_Mapping_Matrix.md` and elsewhere.
 >
 > **Note (2026-08-13, R9 of remediation contract):** Doc 14 now aligns with the canonical PF 1.0 (`NIST_PF_1.0_subcategories.md` — 100 subcats, ACTIVE). The historical PF 1.0→1.1 delta is preserved only as a note (see §3 raw materials and §7 exclusions); `OVERLAY_NIST_PF_1.1.md` exists for future migration reference but is NOT the canonical frozen list used by the Case_02 corpus.
 >
@@ -70,18 +70,18 @@ The AEGIS methodology uses a **3-layer model** for external frameworks:
 
 | Pergunta | Onde está a resposta | Ficheiro |
 |---|---|---|
-| Quais regulamentos se aplicam ao SecureBorder? | §3.1–§3.4, §8.5-A..D | `05_Regulatory_Applicability.md` |
-| Que obligations derivam dos 4 regulamentos? | §11.1–§11.4 | `08_Obligation_Derivation.md` |
-| Que tensões há entre regulamentos? | (T-001..T-004) | `09_Strategic_Tensions_Report.md` |
+| Quais regulamentos se aplicam ao SecureBorder? | §3.1–§3.4, §8.5-A..D | `Doc08_Regulatory_Applicability.md` |
+| Que obligations derivam dos 4 regulamentos? | §11.1–§11.4 | `Doc14_Obligation_Derivation.md` |
+| Que tensões há entre regulamentos? | (T-001..T-004) | `Doc15_Strategic_Tensions_Report.md` |
 | **Como é que AI Act Art. X mapeia para AIGIS D-XX.Y?** | (este doc) | **`OVERLAYS/OVERLAY_AI_Act_v2024.md`** |
 | **Como é que CSF/PF/AI RMF subcats mapeiam para D-XX.Y?** | (este doc) | **`OVERLAYS/OVERLAY_NIST_*.md` (3 ficheiros: CSF 2.0, PF 1.0/1.1, AI RMF 1.0)** |
 | **Que mudou entre PF 1.0 e 1.1?** | §3 (raw materials) | **`VERSION_CHANGELOG.md` (PF 1.1 é delta histórico, NÃO o canónico)** |
-| **Que regras concretas (CR/BPR) derivam das obligations?** | §4, §5 | `11_Rules_Catalog.md` |
-| **Que maturity tem cada control?** | §4, V4 | `13_Framework_Mapping_Matrix.md` |
+| **Que regras concretas (CR/BPR) derivam das obligations?** | §4, §5 | `Doc18_Rules_Catalog.md` |
+| **Que maturity tem cada control?** | §4, V4 | `Doc19_Framework_Mapping_Matrix.md` |
 | **Que goals NIST-aligned temos para cada PO/SO?** | (todos) | `10b_Privacy_Security_Goals_NIST_Implications.md` |
-| **Que gaps NIST-identified temos (CSFs não cobertas)?** | §6 | `13_Framework_Mapping_Matrix.md` |
+| **Que gaps NIST-identified temos (CSFs não cobertas)?** | §6 | `Doc19_Framework_Mapping_Matrix.md` |
 
-**Regra de ouro:** se o leitor procura um mapeamento, vai aos `OVERLAYS/*.md`. Se procura regras, vai ao `11_Rules_Catalog.md`. Se procura obligations, vai ao `08_Obligation_Derivation.md`. **Nunca duplicar conteúdo entre eles.**
+**Regra de ouro:** se o leitor procura um mapeamento, vai aos `OVERLAYS/*.md`. Se procura regras, vai ao `Doc18_Rules_Catalog.md`. Se procura obligations, vai ao `Doc14_Obligation_Derivation.md`. **Nunca duplicar conteúdo entre eles.**
 
 ## 3. NIST Input files (raw materials)
 
@@ -96,19 +96,19 @@ Localizados em `00_METHODOLOGY/PREPROCESSING_by_domain/`:
 ## 4. How to navigate the SecureBorder corpus (read order for reviewers)
 
 1. **`00_VISUALISATIONS/Case_02_P1_Dashboard.html`** (se existir) — orient by doc
-2. **`01_PHASE1_CONTEXT_RICH/05_Regulatory_Applicability.md`** §3.5 — o que se aplica (AI Act + GDPR + CRA + NIS 2)
-3. **`01_PHASE1_CONTEXT_RICH/05_Regulatory_Applicability.md`** §8.5-D — os 29 AI Act articles
+2. **`01_PHASE1_CONTEXT_RICH/Doc08_Regulatory_Applicability.md`** §3.5 — o que se aplica (AI Act + GDPR + CRA + NIS 2)
+3. **`01_PHASE1_CONTEXT_RICH/Doc08_Regulatory_Applicability.md`** §8.5-D — os 29 AI Act articles
 4. **`OVERLAYS/OVERLAY_AI_Act_v2024.md`** — AI Act filtrado ao SecureBorder
-5. **`02_PHASE2_RULES_RICH/08_Obligation_Derivation.md`** §11.4 — 14 obligations AI Act
-6. **`02_PHASE2_RULES_RICH/11_Rules_Catalog.md`** — 38 CR + 15+ BPR (com AI-specific)
-7. **`02_PHASE2_RULES_RICH/13_Framework_Mapping_Matrix.md`** — Unified NIST view (CSF + PF + AI RMF)
+5. **`02_PHASE2_RULES_RICH/Doc14_Obligation_Derivation.md`** §11.4 — 14 obligations AI Act
+6. **`02_PHASE2_RULES_RICH/Doc18_Rules_Catalog.md`** — 38 CR + 15+ BPR (com AI-specific)
+7. **`02_PHASE2_RULES_RICH/Doc19_Framework_Mapping_Matrix.md`** — Unified NIST view (CSF + PF + AI RMF)
 8. **`OVERLAYS/OVERLAY_NIST_*.md`** (3 ficheiros) — extrações filtradas por relevância
 9. **`02_PHASE2_RULES_RICH/10b_Privacy_Security_Goals_NIST_Implications.md`** — PO/SO com NIST implications
-10. **`02_PHASE2_RULES_RICH/09_Strategic_Tensions_Report.md`** — T-001..T-004 (T-001=incident, T-002=retention, T-003=DPIA+FRIA, T-004=jurisdição)
+10. **`02_PHASE2_RULES_RICH/Doc15_Strategic_Tensions_Report.md`** — T-001..T-004 (T-001=incident, T-002=retention, T-003=DPIA+FRIA, T-004=jurisdição)
 
-## 5. Validation against `13_Framework_Mapping_Matrix.md`
+## 5. Validation against `Doc19_Framework_Mapping_Matrix.md`
 
-The 38 CR rows in `13_Framework_Mapping_Matrix.md` §1 already contain the full mapping:
+The 38 CR rows in `Doc19_Framework_Mapping_Matrix.md` §1 already contain the full mapping:
 - AIGIS D-XX.Y
 - Source regulations
 - CSF 2.0 subcats
@@ -123,14 +123,14 @@ The **3 OVERLAY_NIST_*.md** files I generated are **filtered extractions** of th
 
 **No new mapping is introduced** by the OVERLAY files. They are a different **view** of the same data, organised by NIST framework instead of by AIGIS sub-domain. This is by design — the reader picks the lens that matches their question.
 
-**Validation result:** the 3 OVERLAY_NIST_*.md files **are consistent** with `13_Framework_Mapping_Matrix.md` §1, §3.1, §3.2. Spot-checks on 5 random rows show identical CSF/PF/AI RMF subcat strings.
+**Validation result:** the 3 OVERLAY_NIST_*.md files **are consistent** with `Doc19_Framework_Mapping_Matrix.md` §1, §3.1, §3.2. Spot-checks on 5 random rows show identical CSF/PF/AI RMF subcat strings.
 
 ## 6. Gaps & future work
 
 ### 6.1 Known gaps (not in this iteration)
 
 - **NIST GenAI Profile (Jul 2024)** — not extracted. If SecureBorder adds GenAI components, this profile becomes relevant. Suggested next input file.
-- **NIST SP 800-53 Rev. 5** — referenced in `13_Framework_Mapping_Matrix.md` but not extracted as overlay (already integrated via `10b_Privacy_Security_Goals_NIST_Implications.md` references).
+- **NIST SP 800-53 Rev. 5** — referenced in `Doc19_Framework_Mapping_Matrix.md` but not extracted as overlay (already integrated via `10b_Privacy_Security_Goals_NIST_Implications.md` references).
 - **ISO/IEC 42001 (AIMS)** — AEGIS 10×38 is designed to accommodate it (D-09.1 + D-09.2 + D-10.x), but no formal mapping yet.
 
 ### 6.2 Recommended next steps
@@ -142,9 +142,9 @@ The **3 OVERLAY_NIST_*.md** files I generated are **filtered extractions** of th
 
 ## 7. What is intentionally NOT in this document
 
-- ❌ Per-article AI Act analysis (already in `05_Regulatory_Applicability.md` §8.5-D)
-- ❌ Per-CR NIST mapping (already in `13_Framework_Mapping_Matrix.md` §1)
-- ❌ Per-rule implementation guidance (already in `11_Rules_Catalog.md` §8)
+- ❌ Per-article AI Act analysis (already in `Doc08_Regulatory_Applicability.md` §8.5-D)
+- ❌ Per-CR NIST mapping (already in `Doc19_Framework_Mapping_Matrix.md` §1)
+- ❌ Per-rule implementation guidance (already in `Doc18_Rules_Catalog.md` §8)
 - ❌ PF 1.0→1.1 raw delta table (extracted to `pf_delta.json`; summary in `VERSION_CHANGELOG.md` §3; PF 1.0 é canónico, PF 1.1 é delta apenas)
 - ❌ Re-derivation of the AIGIS 10×38 taxonomy (out of scope; the taxonomy is the AEGIS core, not Case_02 specific)
 

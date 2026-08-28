@@ -22,7 +22,7 @@ id_format: AG-D-XX.Y-NNN (canonical Phase 1 per corr-008; privacy set -001, secu
 detail_cards: 70
 tensions_expanded: 3
 fields_excluded: [Effort Estimate, Cost Estimate, Target Timeline]
-cross_checked_against: [07b_Proportionality_Profile.md, proportionality_model.md]
+cross_checked_against: [Doc12_Proportionality_Profile.md, proportionality_model.md]
 ---
 
 # Adjusted Goals per Sub-Domain (Rich Mode)
@@ -315,20 +315,20 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 
 ## §6 Cross-References
 
-- **Doc 04** (`04_Company_Context_Assessment.md`) — company context (S = MEDIUM, FTE 5–8, ISO 27001 certified, 4 applicable regs).
-- **Doc 05** (`05_Regulatory_Applicability.md`) — applicability + scope_overlap for INHERIT pattern (no INHERITABLE rows for Case_02).
-- **Doc 05b** (`05b_Ambiguity_Register.md`) — Berry-lens ambiguity register (215 distinct substantive cards; 20 documented as Top-20 in §3).
-- **Doc 07** (`07_Structured_Compliance_Matrix.md`) — coverage matrix (35/38 = 92.1%); §5.5 strategic tensions T-001/002/003.
-- **Doc 07b** (`07b_Proportionality_Profile.md`) — Track B tier assignment (8 RIGOROUS + 27 STANDARD); per-sub-domain realisation of §4/§5 of this document.
+- **Doc 04** (`Doc03_Company_Context_Assessment.md`) — company context (S = MEDIUM, FTE 5–8, ISO 27001 certified, 4 applicable regs).
+- **Doc 05** (`Doc08_Regulatory_Applicability.md`) — applicability + scope_overlap for INHERIT pattern (no INHERITABLE rows for Case_02).
+- **Doc 05b** (`Doc09_Ambiguity_Register.md`) — Berry-lens ambiguity register (215 distinct substantive cards; 20 documented as Top-20 in §3).
+- **Doc 07** (`Doc11_Structured_Compliance_Matrix.md`) — coverage matrix (35/38 = 92.1%); §5.5 strategic tensions T-001/002/003.
+- **Doc 07b** (`Doc12_Proportionality_Profile.md`) — Track B tier assignment (8 RIGOROUS + 27 STANDARD); per-sub-domain realisation of §4/§5 of this document.
 - **Legacy Phase 1** (`01_PHASE1_CONTEXT/`) — frozen base; this Rich doc extends, not replaces.
-- **Phase 2 / Phase 3** — Doc 10 (`10_Privacy_Security_Goals.md`), Doc 11 (`11_Rules_Catalog.md`), Doc 14 (`14_Architectural_Nodes.md`), Doc 15 (`15_Allocation.md`) consume this adjusted-objectives catalog as input.
+- **Phase 2 / Phase 3** — Doc 10 (`Doc16_Privacy_Security_Goals.md`), Doc 11 (`Doc18_Rules_Catalog.md`), Doc 14 (`14_Architectural_Nodes.md`), Doc 15 (`15_Allocation.md`) consume this adjusted-objectives catalog as input.
 
 ## §7 Validation
 
 - **35 sub-domains × 1 PG + 1 SG = 70 adjusted objectives** documented in §2 + §3 (D-05.4 has PG only; AG-D-05.4-002 placeholder documents N/A).
 - **70 DEEP detail cards** documented in §8 (35 PG + 35 SG) with 15 fields each (NO Effort/Cost/Timeline per task directive).
 - **3 tensions resolved** with multi-paragraph treatment per §4 (T-001 max-SLA 24h routing, T-002 cryptographic sharding, T-003 unified DPIA+FRIA).
-- **T-009 (D-10.1 monitoring opt-out)** documented in 09_Strategic_Tensions_Report.md §4.2; layered monitoring split (analytics opt-out, security-event mandatory) resolves CRA Annex I (2)(l) vs GDPR Art. 32(2) vs NIS 2 Art. 21(2)(b).
+- **T-009 (D-10.1 monitoring opt-out)** documented in Doc15_Strategic_Tensions_Report.md §4.2; layered monitoring split (analytics opt-out, security-event mandatory) resolves CRA Annex I (2)(l) vs GDPR Art. 32(2) vs NIS 2 Art. 21(2)(b).
 - **Track B decision table applied** to all 35 active sub-domains per §5; 8 RIGOROUS overrides documented with rationale.
 - **No tier was changed** vs Doc 07b §3 (Sprint 4 fills content; Sprint 0.5 set tiers; Sprint 5 deepens content).
 - **§2/§3 tables extended** with "Details" anchor column pointing to §8 detail cards (35 PG + 35 SG anchors).
@@ -2182,9 +2182,9 @@ Example: `PG-D-01.1` → `AG-D-01.1-001`; `SG-D-01.1` → `AG-D-01.1-002`. Ancho
 
 ## §N See also
 
-- **Doc 04** (`04_Company_Context_Assessment.md`)
-- **Doc 05** (`05_Regulatory_Applicability.md`)
-- **Doc 05b** (`05b_Ambiguity_Register.md`)
-- **Doc 07** (`07_Structured_Compliance_Matrix.md`)
-- **Doc 07b** (`07b_Proportionality_Profile.md`)
+- **Doc 04** (`Doc03_Company_Context_Assessment.md`)
+- **Doc 05** (`Doc08_Regulatory_Applicability.md`)
+- **Doc 05b** (`Doc09_Ambiguity_Register.md`)
+- **Doc 07** (`Doc11_Structured_Compliance_Matrix.md`)
+- **Doc 07b** (`Doc12_Proportionality_Profile.md`)
 - **Corpus source** (`00_METHODOLOGY/PREPROCESSING_by_domain/domains/`)

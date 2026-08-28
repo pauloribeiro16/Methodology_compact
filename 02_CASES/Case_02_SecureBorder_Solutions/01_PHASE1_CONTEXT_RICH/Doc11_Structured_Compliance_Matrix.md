@@ -11,14 +11,14 @@ case: Case_02_SecureBorder_Solutions
 applicable_regs: [GDPR, CRA, NIS 2, AI_Act]
 active_subdomains: 35
 inactive_documented: [D-07.4 INACTIVE, D-08.3 INACTIVE, D-09.3 INACTIVE]
-inputs: [04_Company_Context_Assessment.md, 05_Regulatory_Applicability.md, 06_Clause_Mapping_Matrix.md]
-outputs: [08_Obligation_Derivation.md]
+inputs: [Doc03_Company_Context_Assessment.md, Doc08_Regulatory_Applicability.md, Doc10_Clause_Mapping_Matrix.md]
+outputs: [Doc14_Obligation_Derivation.md]
 traceability: AEGIS Class Model → StructuredComplianceMatrix, DomainCoverageEntry classes
 related_documents: [00_Taxonomy_Reference.md, 03_Design_Decisions_Log.md]
 reconciliation:
   sprint: 1
   role: reconciliation
-  base_doc: ../01_PHASE1_CONTEXT/07_Structured_Compliance_Matrix.md (legacy, frozen)
+  base_doc: ../01_PHASE1_CONTEXT/Doc11_Structured_Compliance_Matrix.md (legacy, frozen)
   notes: |
     Sprint 1 reconciliation (Case_02, 2026-08-06):
     - Frontmatter updated to AEGIS-P2-RICH-* convention (P2 = Case_02).
@@ -35,7 +35,7 @@ reconciliation:
 
 <!-- RECONCILIATION BANNER (Sprint 1, 2026-08-06):
      This is the Rich Mode copy of AEGIS-P1-07.
-     Source: ../01_PHASE1_CONTEXT/07_Structured_Compliance_Matrix.md.
+     Source: ../01_PHASE1_CONTEXT/Doc11_Structured_Compliance_Matrix.md.
      Body unchanged from legacy. Sprint 2 will add corpus linkages (L1/L3 sub-domain .md refs).
      See SPRINT1_REPORT.md for the full fix list.
 -->
@@ -399,8 +399,8 @@ This section identifies **factual events** that can simultaneously trigger oblig
 
 | Criterion | Status | Evidence |
 |-----------|--------|----------|
-| **Company Context complete (38/38 questions)** | ✅ PASS | 04_Company_Context_Assessment.md |
-| **Regulatory Applicability assessed (5/5 regulations)** | ✅ PASS | 05_Regulatory_Applicability.md |
+| **Company Context complete (38/38 questions)** | ✅ PASS | Doc03_Company_Context_Assessment.md |
+| **Regulatory Applicability assessed (5/5 regulations)** | ✅ PASS | Doc08_Regulatory_Applicability.md |
 | **Clause Mapping complete (112 clauses)** | ✅ PASS | 06_Clause_Mapping_Matrix.xlsx |
 | **Sub-Domain coverage complete (38 sub-domains)** | ✅ PASS | Section 3 of this document |
 | **Complementarity Analysis complete** | ✅ PASS | Section 5 of this document |
@@ -455,5 +455,5 @@ This section identifies **factual events** that can simultaneously trigger oblig
 ---
 
 **Phase 1 Status:** ✅ **COMPLETE**  
-**Next Phase:** 02_PHASE2_RULES → 08_Obligation_Derivation.md  
+**Next Phase:** 02_PHASE2_RULES → Doc14_Obligation_Derivation.md  
 **Companion File:** 06_Clause_Mapping_Matrix.xlsx

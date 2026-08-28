@@ -7,8 +7,8 @@ created: 2026-04-03
 updated: 2026-08-13
 author: Compliance Lead
 status: MIGRATED
-inputs: [07_Structured_Compliance_Matrix.md, 06_Clause_Mapping_Matrix.xlsx]
-outputs: [09_Strategic_Tensions_Report.md, 10_Privacy_Security_Goals.md]
+inputs: [Doc11_Structured_Compliance_Matrix.md, 06_Clause_Mapping_Matrix.xlsx]
+outputs: [Doc15_Strategic_Tensions_Report.md, Doc16_Privacy_Security_Goals.md]
 traceability: AEGIS Class Model → RegulatoryObligation, AbstractNFR classes
 related_documents: 00_Taxonomy_Reference.md, 03_Design_Decisions_Log.md
 ---
@@ -749,6 +749,6 @@ These obligations require SecureBorder to act in ALL 4 roles simultaneously:
 
 ---
 
-**Next Document:** 09_Strategic_Tensions_Report.md
+**Next Document:** Doc15_Strategic_Tensions_Report.md
 **Gate Status:** ✅ PASS — Ready for Strategic Tensions Analysis
 **Companion File:** 06_Clause_Mapping_Matrix.xlsx (source data)

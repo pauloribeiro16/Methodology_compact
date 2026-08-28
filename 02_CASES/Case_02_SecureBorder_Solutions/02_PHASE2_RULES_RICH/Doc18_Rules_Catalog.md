@@ -1,6 +1,6 @@
 > **Sprint 10 note (corr-008 migration):** This document has been migrated from corr-007 (PG/SG) to corr-008 (PO/SO). All PG/SG references have been replaced with PO/SO IDs. BPR-AI-NN rules have been migrated to BPR-D-XX.Y-NNN format with AI_Act framework flag. Multi-PSO per CR rule is now supported via the multi-PSO relationship in the catalog.
 >
-> **Note (2026-08-13, R9 of remediation contract):** This is the canonical Rich Mode version of the Phase 2 rules catalog for Case_02. Earlier text referenced a sibling `../02_PHASE2_RULES/11_Rules_Catalog.md` (a path that no longer exists in this case); that reference has been removed and replaced with this self-referential canonical statement.
+> **Note (2026-08-13, R9 of remediation contract):** This is the canonical Rich Mode version of the Phase 2 rules catalog for Case_02. Earlier text referenced a sibling `../02_PHASE2_RULES/Doc18_Rules_Catalog.md` (a path that no longer exists in this case); that reference has been removed and replaced with this self-referential canonical statement.
 
 ---
 document_id: AEGIS-P2-11
@@ -11,7 +11,7 @@ created: 2026-04-03
 updated: 2026-08-13
 author: Compliance Lead
 status: MIGRATED
-inputs: [08_Obligation_Derivation.md, 09_Strategic_Tensions_Report.md, 10_Privacy_Security_Goals.md]
+inputs: [Doc14_Obligation_Derivation.md, Doc15_Strategic_Tensions_Report.md, Doc16_Privacy_Security_Goals.md]
 outputs: [13_Use_Cases_Catalog.md, 14_Architectural_Nodes.md]
 traceability: AEGIS Class Model → RulesCatalog, AbstractRule, ComplianceRule, BestPracticeRule classes
 related_documents: 12_Rules_Catalog.xlsx, 00_Taxonomy_Reference.md

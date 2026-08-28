@@ -25,26 +25,26 @@ ni_avg_rule_note: |
   AVG(NI) per regulation source clauses. AI-C* presence forces MUST (NI=3)
   to preserve AI_Act signal (baseline). NIS2-C10/C19/C29 with NI=2 do
   not override the AI MUST signal.
-inputs: [11_Rules_Catalog.md,           # in 02_PHASE2_RULES_RICH/ (Rich copy)
-         08_Obligation_Derivation.md,   # in 02_PHASE2_RULES_RICH/ (Rich copy)
-         09_Strategic_Tensions_Report.md,
-         10_Privacy_Security_Goals.md,
+inputs: [Doc18_Rules_Catalog.md,           # in 02_PHASE2_RULES_RICH/ (Rich copy)
+         Doc14_Obligation_Derivation.md,   # in 02_PHASE2_RULES_RICH/ (Rich copy)
+         Doc15_Strategic_Tensions_Report.md,
+         Doc16_Privacy_Security_Goals.md,
          12_Rules_Catalog.xlsx,
          README.md,
          PROJECT_STATE.md,
          Framework_Crosswalk_ARM.md, NIST_PF_1.0_subcategories.md,
          NIST_AI_RMF_1.0_subcategories.md, NIST_CSF_2.0_subcategories.md,
          GDPR/02b_SecurityRules_NISTPF.md, AI_Act/02b_SecurityRules_NISTAIRMF.md,
-         07b_Proportionality_Profile.md, 04b_Security_Posture.md]
+         Doc12_Proportionality_Profile.md, Doc05_Security_Posture.md]
 outputs: [Phase 3 inputs, 12_Rules_Catalog.xlsx]
 traceability: AEGIS Framework Mapping Layer (CSF + PF + AI RMF)
-related_documents: 11_Rules_Catalog.md, 12_Rules_Catalog.xlsx, 04b_Security_Posture.md,
-                   09_Strategic_Tensions_Report.md
+related_documents: Doc18_Rules_Catalog.md, 12_Rules_Catalog.xlsx, Doc05_Security_Posture.md,
+                   Doc15_Strategic_Tensions_Report.md
 note_inputs: >
   (2026-08-13, R9) Earlier this note referenced a `../02_PHASE2_RULES/`
-  sibling folder that no longer exists. The current 11_Rules_Catalog.md
+  sibling folder that no longer exists. The current Doc18_Rules_Catalog.md
   in this RICH folder is now self-canonical for Case_02; cross-case
-  references should treat `02_PHASE2_RULES_RICH/11_Rules_Catalog.md`
+  references should treat `02_PHASE2_RULES_RICH/Doc18_Rules_Catalog.md`
   as the live operational document. The earlier pointer has been
   removed as it pointed to a non-existent path.
 ---
@@ -53,7 +53,7 @@ note_inputs: >
 
 > **Case_02 — SecureBorder Solutions B.V.** (HIGH complexity; 4 applicable regulations: GDPR + CRA + NIS 2 + AI_Act).
 > This document unifies the three NIST frameworks against the 38 unique Compliance Rules (CR) and 17 Best Practice Rules (BPR-D-*) — 55 cards total — derived from Phase 2.
-> All three frameworks are ACTIVE for Case_02 (AI_Act applicable). The matrix follows the AEGIS invariant: **frameworks are mapping targets, never derivation sources.** CR and BPR are derived from regulatory obligations (`11_Rules_Catalog.md`); this matrix anchors each rule to the corresponding subcategory(ies) in the three frameworks.
+> All three frameworks are ACTIVE for Case_02 (AI_Act applicable). The matrix follows the AEGIS invariant: **frameworks are mapping targets, never derivation sources.** CR and BPR are derived from regulatory obligations (`Doc18_Rules_Catalog.md`); this matrix anchors each rule to the corresponding subcategory(ies) in the three frameworks.
 
 ---
 
@@ -108,7 +108,7 @@ note_inputs: >
 | CR-D-10.2-001 | D-10.2 | CRA,NIS2,AI_Act | 3.00 (MUST) | PR.PS-04,DE.AE-03,RS.AN-06 | CT.DM-P9 | MEASURE-2.4,MEASURE-3.1,GOVERN-1.6,MEASURE-4.2,GOVERN-1.4,GOVERN-2.1 | A.8.15, A.5.28, A.8.17 | PO.3 | 3 | 1 | 6 |
 | CR-D-10.3-001 | D-10.3 | GDPR,CRA,NIS2,AI_Act | 3.00 (MUST) | ID.IM-01,ID.IM-02,ID.IM-03 | UNMAPPED_PF | MEASURE-2.7,MEASURE-2.11,MANAGE-1.2,MEASURE-3.1 | A.5.35, A.5.36, A.8.29 | PW.7, PW.8 | 3 | 1 | 4 |
 
-**Regulations column legend.** `GDPR,CRA,NIS2,AI_Act` (4) — all 4 apply. `GDPR,CRA,NIS2` (3) — 3 apply. `CRA,NIS2,AI_Act` (3) — 3 apply. `GDPR,AI_Act` (2), `GDPR,CRA` (2), `CRA,NIS2` (2), `GDPR,NIS2` (2), `NIS2,AI_Act` (2), `CRA` (1), `GDPR` (1), `NIS2` (1) — fewer apply (Sole-Authority rules per `11_Rules_Catalog.md` §6.4).
+**Regulations column legend.** `GDPR,CRA,NIS2,AI_Act` (4) — all 4 apply. `GDPR,CRA,NIS2` (3) — 3 apply. `CRA,NIS2,AI_Act` (3) — 3 apply. `GDPR,AI_Act` (2), `GDPR,CRA` (2), `CRA,NIS2` (2), `GDPR,NIS2` (2), `NIS2,AI_Act` (2), `CRA` (1), `GDPR` (1), `NIS2` (1) — fewer apply (Sole-Authority rules per `Doc18_Rules_Catalog.md` §6.4).
 
 **`UNMAPPED_*` rationale (Case_02 specifics):**
 - `UNMAPPED_CSF` (1 row — `CR-D-05.4-001` data portability): CSF 2.0 has no subcategory addressing data subject portability rights (confirmed in `Framework_Crosswalk_ARM.md` §3.D-05.4 — NONE for CSF). Privacy FW 1.0 covers it natively via `CT.DM-P1/P6`.
@@ -153,7 +153,7 @@ note_inputs: >
 | Privacy FW | `GV.PO-P5` | Requisitos legais, regulatórios, contratuais relativos a privacidade compreendidos e geridos | ✅ CR-D-09.1-001, CR-D-06.3-001, CR-D-09.4-001 |
 | AI RMF | `GOVERN-1.1` | Requisitos legais e regulatórios (AI_Act) | ✅ CR-D-09.1-001, CR-D-09.2-001, CR-D-04.3-001 (AI_Act market surveillance) |
 
-**4-regulation convergence.** All 4 regulations (GDPR, CRA, NIS 2, AI_Act) anchor in this section — SecureBorder's ISMS (CR-D-09.1-001) explicitly carries "regulation-specific annexes" per the implementation guidance in `11_Rules_Catalog.md` §8.3.
+**4-regulation convergence.** All 4 regulations (GDPR, CRA, NIS 2, AI_Act) anchor in this section — SecureBorder's ISMS (CR-D-09.1-001) explicitly carries "regulation-specific annexes" per the implementation guidance in `Doc18_Rules_Catalog.md` §8.3.
 
 ### §2.3 — Política de segurança / privacidade / IA (policy)
 
@@ -179,7 +179,7 @@ note_inputs: >
 | Privacy FW | `ID.RA-P1..P5`, `GV.RM-P1..P4` | Ações de dados problemáticos identificadas; respostas; estratégia revista | ✅ CR-D-09.2-001, CR-D-09.4-001 |
 | AI RMF | `GOVERN-5.*`, `MAP-5.*` (impactos), `MANAGE-1.*` (tratamento) | Feedback externo; impactos; tratamento priorizado | ✅ CR-D-09.2-001, CR-D-10.1-001 |
 
-**Strategic tensions cross-reference** (per `09_Strategic_Tensions_Report.md`):
+**Strategic tensions cross-reference** (per `Doc15_Strategic_Tensions_Report.md`):
 
 | Tension | Sub-Domain | Risk-framework convergence point | Resolution pattern (in Doc 11 / Phase 2) |
 |---------|-----------|----------------------------------|------------------------------------------|
@@ -895,7 +895,7 @@ note_inputs: >
 | **3** | Managed | Implementado, monitorizado, medido |
 | **4** | Optimized | Melhoria contínua, automatizado |
 
-> Ancorada aos *statements* + *informative references* de cada subcategoria CSF 2.0 no `NIST_CSF_2.0_subcategories.md` (frozen). O target deriva de (a) Track B tier (`07b_Proportionality_Profile.md` §6) e (b) NI da regra (MUST → target ≥ 3; SHOULD → 2-3; COULD → 1-2; EXCLUDED → N/A). Para Case_02 (HIGH), Track B aplica: RIGOROUS → tgt 4, STANDARD → tgt 3-4.
+> Ancorada aos *statements* + *informative references* de cada subcategoria CSF 2.0 no `NIST_CSF_2.0_subcategories.md` (frozen). O target deriva de (a) Track B tier (`Doc12_Proportionality_Profile.md` §6) e (b) NI da regra (MUST → target ≥ 3; SHOULD → 2-3; COULD → 1-2; EXCLUDED → N/A). Para Case_02 (HIGH), Track B aplica: RIGOROUS → tgt 4, STANDARD → tgt 3-4.
 
 ### §4.3 — Escala 0-4 por-subcategoria — Privacy FW 1.0
 
@@ -919,7 +919,7 @@ note_inputs: >
 
 ### §4.5 — Tabela de avaliação por-Function Case_02 (15 rows: 6 CSF + 5 Privacy + 4 AI RMF)
 
-> `cur_tier` from Doc 11 column 13 (Maturity Score) aggregated per Function; `tgt_tier` from Track B tier (`07b_Proportionality_Profile.md` §3) and posture assessment (`04b_Security_Posture.md` §3).
+> `cur_tier` from Doc 11 column 13 (Maturity Score) aggregated per Function; `tgt_tier` from Track B tier (`Doc12_Proportionality_Profile.md` §3) and posture assessment (`Doc05_Security_Posture.md` §3).
 
 | # | Framework | Function | cur_tier | tgt_tier | Justification |
 |---|-----------|----------|---------:|---------:|---------------|
@@ -965,11 +965,11 @@ These rules are applied to every row in §5.1 and to every row in V4.
 ### §5.1 — Per-control table (52 cards: 38 CR + 17 BPR, excl. 3 OUT-OF-SCOPE per Track B)
 
 > 52 rows × `[rule_id, sub_domain, cur_csf, tgt_csf, cur_priv, tgt_priv, cur_airmf, tgt_airmf, gap_csf, gap_priv, gap_airmf, gap_min, gap_worst]`.
-> `cur_csf` = Doc 11 column 13 (Maturity Score); `tgt_csf` = Track B target per `07b_Proportionality_Profile.md` §3 (RIGOROUS → 4, STANDARD → 3, EXCLUDED → N/A).
+> `cur_csf` = Doc 11 column 13 (Maturity Score); `tgt_csf` = Track B target per `Doc12_Proportionality_Profile.md` §3 (RIGOROUS → 4, STANDARD → 3, EXCLUDED → N/A).
 > `cur/tgt_priv` and `cur/tgt_airmf` = Track B tier default: RIGOROUS → 3-4, STANDARD → 3, EXCLUDED → N/A. CR without AI-C* → airmf N/A; same for PF (none in Case_02).
 > `gap_min` = MIN of applicable gaps per §4.6 N/A-exclusion rule (coverage indicator; preserved for backwards compatibility).
 > `gap_worst` = MAX of applicable gaps per §4.6 N/A-exclusion rule (worst-axis heatmap value used by V4).
-> **OUT-OF-SCOPE per Track B:** D-07.4, D-08.3, D-09.3 (excluded from `07b_Proportionality_Profile.md` §4 + §11.4 F-01/F-05); not in this per-control table.
+> **OUT-OF-SCOPE per Track B:** D-07.4, D-08.3, D-09.3 (excluded from `Doc12_Proportionality_Profile.md` §4 + §11.4 F-01/F-05); not in this per-control table.
 
 | rule_id | sub_domain | cur_csf | tgt_csf | cur_priv | tgt_priv | cur_airmf | tgt_airmf | gap_csf | gap_priv | gap_airmf | gap_min | gap_worst |
 |---------|-----------|--------:|--------:|---------:|---------:|----------:|----------:|--------:|---------:|----------:|--------:|----------:|
@@ -1029,7 +1029,7 @@ These rules are applied to every row in §5.1 and to every row in V4.
 
 **Per-control summary stats:** 52 cards in scope (38 CR + 17 BPR = 55 minus 3 OUT-OF-SCOPE per Track B: D-07.4, D-08.3, D-09.3). FN-02 — CR-D-07.1-001 has airmf = N/A (no AI-C* in Doc 11 source). FN-03 — `gap_worst` distribution: 0 (D-01.4, D-09.1 + BPR-D-09.1 + BPR-D-09.5), 1 (most — gap_worst = 1 means at least one applicable axis has gap 1), 2 (D-04.3, D-05.3, D-07.1, D-07.3, D-10.1, BPR-D-07.1, BPR-D-07.5, BPR-D-10.1, BPR-D-10.4 — RIGOROUS tiers with explicit cur deficits from `04b §4` top-gaps list).
 
-> **Note — AI-specific BPR subset (8 cards):** The 8 AI-specific BPR rows in `11_Rules_Catalog.md` §5.2 (`BPR-D-07.1-002`, `BPR-D-10.5-001`, `BPR-D-02.4-001`, `BPR-D-02.4-002`, `BPR-D-03.1-002`, `BPR-D-10.2-001`, `BPR-D-04.2-001`, `BPR-D-05.1-001`) are intentionally excluded from the per-control table above because they sit outside the 38 CR + 17 BPR = 55 card count. Their CSF/PF/AI RMF mappings and maturity values are documented in `11_Rules_Catalog.md` §5.2 (see Doc 11 for the authoritative mappings per NIST remediation B1, 2026-08).
+> **Note — AI-specific BPR subset (8 cards):** The 8 AI-specific BPR rows in `Doc18_Rules_Catalog.md` §5.2 (`BPR-D-07.1-002`, `BPR-D-10.5-001`, `BPR-D-02.4-001`, `BPR-D-02.4-002`, `BPR-D-03.1-002`, `BPR-D-10.2-001`, `BPR-D-04.2-001`, `BPR-D-05.1-001`) are intentionally excluded from the per-control table above because they sit outside the 38 CR + 17 BPR = 55 card count. Their CSF/PF/AI RMF mappings and maturity values are documented in `Doc18_Rules_Catalog.md` §5.2 (see Doc 11 for the authoritative mappings per NIST remediation B1, 2026-08).
 
 ### §5.2 — Per-Function aggregated tiers (15 rows)
 
@@ -1154,11 +1154,11 @@ These rules are applied to every row in §5.1 and to every row in V4.
 
 **No active sub-domain has tgt < 3** in Case_02 (Track B floor enforced). The 3 sub-domains at tgt 3 are justified by (a) Track B STANDARD tier, (b) post-floor rationale (target 4 requires continued investment beyond HIGH-tier proportionality), and (c) Doc 04b posture evidence.
 
-> **FN-04 alignment note.** This section now reflects the 35 active sub-domains per Track B (`07b_Proportionality_Profile.md` §4 + §11.4 F-01/F-05). D-07.4, D-08.3, and D-09.3 are OUT-OF-SCOPE for Track B and are not counted in §5.1, §5.2 (except as excluded), or §8.4 (V4 heatmap). D-07.4 carries NI=2 SHOULD per Doc 11 §4.7; D-08.3 carries NIS 2 Art. 20 board-training; D-09.3 carries NIS 2 Art. 21 asset inventory — all deferred to a future contract if Track B scope expands.
+> **FN-04 alignment note.** This section now reflects the 35 active sub-domains per Track B (`Doc12_Proportionality_Profile.md` §4 + §11.4 F-01/F-05). D-07.4, D-08.3, and D-09.3 are OUT-OF-SCOPE for Track B and are not counted in §5.1, §5.2 (except as excluded), or §8.4 (V4 heatmap). D-07.4 carries NI=2 SHOULD per Doc 11 §4.7; D-08.3 carries NIS 2 Art. 20 board-training; D-09.3 carries NIS 2 Art. 21 asset inventory — all deferred to a future contract if Track B scope expands.
 
 ### §6.5 — Tension cross-reference (T-001..T-004)
 
-> Per `09_Strategic_Tensions_Report.md` (Case_02: 8 tensions; this section cross-references the 4 most relevant for the Govern view §2.5 — T-001, T-002, T-003, T-004).
+> Per `Doc15_Strategic_Tensions_Report.md` (Case_02: 8 tensions; this section cross-references the 4 most relevant for the Govern view §2.5 — T-001, T-002, T-003, T-004).
 
 | Tension | Sub-Domain | Risk-framework convergence | Doc 13 anchor |
 |---------|-----------|-----------------------------|---------------|
@@ -1167,7 +1167,7 @@ These rules are applied to every row in §5.1 and to every row in V4.
 | T-003 (TRIGGER_MISMATCH, HIGH, structural) | D-09.2 | GDPR DPIA vs AI_Act FRIA; unified DPIA+FRIA single process | §2.5 risk view, §3 CR-D-09.2-001, §5.1 row, §5.2 row 1 (CSF GV) / row 7 (PF ID-P) / row 13 (AI RMF MAP) |
 | T-004 (RESOURCE_CONFLICT, HIGH, structural) | D-09.1 | 4-reg documentation overlap; unified ISMS with 4 annexes | §2.5 risk view, §3 CR-D-09.1-001, §5.1 row, §5.2 row 1 (CSF GV) / row 8 (PF GV-P) / row 12 (AI RMF GOVERN) |
 
-> **No resolution here** — resolutions live in `09_Strategic_Tensions_Report.md` §4 and `11_Rules_Catalog.md` §8. This section is a **pointer** for the framework mapping view.
+> **No resolution here** — resolutions live in `Doc15_Strategic_Tensions_Report.md` §4 and `Doc18_Rules_Catalog.md` §8. This section is a **pointer** for the framework mapping view.
 
 ### §6.6 — SO/FRIA + AI risk treatment convergence (additional)
 
@@ -1461,7 +1461,7 @@ graph LR
 
 ### V4 — Heatmap de Maturidade (Tri-axis Worst-Axis)
 
-> 35-row table (one per active Case_02 sub-domain per Track B). D-07.4, D-08.3, D-09.3 are OUT-OF-SCOPE per `07b_Proportionality_Profile.md` §4 + §11.4 F-01/F-05 and excluded from this heatmap. Columns: `sub_domain, cur_csf, tgt_csf, cur_priv, tgt_priv, cur_airmf, tgt_airmf, gap_csf, gap_priv, gap_airmf, gap_min, gap_worst, color`. Heatmap color driven by `gap_worst` (MAX of applicable gaps per §4.6 N/A-exclusion rule); `gap_min` (MIN) is preserved as a coverage indicator. Color buckets: GREEN (gap_worst 0), YELLOW (gap_worst 1), ORANGE (gap_worst 2), RED (gap_worst 3-4), GREY (N/A). Sorted by `gap_worst` descending (worst at top).
+> 35-row table (one per active Case_02 sub-domain per Track B). D-07.4, D-08.3, D-09.3 are OUT-OF-SCOPE per `Doc12_Proportionality_Profile.md` §4 + §11.4 F-01/F-05 and excluded from this heatmap. Columns: `sub_domain, cur_csf, tgt_csf, cur_priv, tgt_priv, cur_airmf, tgt_airmf, gap_csf, gap_priv, gap_airmf, gap_min, gap_worst, color`. Heatmap color driven by `gap_worst` (MAX of applicable gaps per §4.6 N/A-exclusion rule); `gap_min` (MIN) is preserved as a coverage indicator. Color buckets: GREEN (gap_worst 0), YELLOW (gap_worst 1), ORANGE (gap_worst 2), RED (gap_worst 3-4), GREY (N/A). Sorted by `gap_worst` descending (worst at top).
 
 | sub_domain | cur_csf | tgt_csf | cur_priv | tgt_priv | cur_airmf | tgt_airmf | gap_csf | gap_priv | gap_airmf | gap_min | gap_worst | color |
 |------------|--------:|--------:|---------:|---------:|----------:|----------:|--------:|---------:|----------:|--------:|----------:|:------|
@@ -1501,7 +1501,7 @@ graph LR
 | D-01.4 | 3 | 3 | 3 | 3 | 3 | 3 | 0 | 0 | 0 | 0 | 0 | GREEN |
 | D-09.1 | 4 | 4 | 3 | 3 | 3 | 3 | 0 | 0 | 0 | 0 | 0 | GREEN |
 
-**Heatmap summary (35 rows).** GREEN (gap_worst 0): 2 rows. YELLOW (gap_worst 1): 28 rows. ORANGE (gap_worst 2): 5 rows. RED (gap_worst 3-4): 0 rows. GREY (N/A): 0 rows. **Top attention (ORANGE — worst axis gap 2):** D-04.3 (Regulatory Notification, T-001 multi-reg), D-05.3 (Erasure, T-002), D-07.1 (Secure-by-Design, T-007; airmf N/A per FN-02), D-07.3 (CI/CD), D-10.1 (Continuous Monitoring + AI post-market, T-005). These are the RIGOROUS-tier sub-domains with explicit cur deficits from `04b_Security_Posture.md` §4. The methodology's D11 desynchrony is preserved: each axis (csf/priv/airmf) carries its own score; the heatmap is the **worst axis** (FN-03 — `gap_worst = MAX(...)` with N/A exclusion).
+**Heatmap summary (35 rows).** GREEN (gap_worst 0): 2 rows. YELLOW (gap_worst 1): 28 rows. ORANGE (gap_worst 2): 5 rows. RED (gap_worst 3-4): 0 rows. GREY (N/A): 0 rows. **Top attention (ORANGE — worst axis gap 2):** D-04.3 (Regulatory Notification, T-001 multi-reg), D-05.3 (Erasure, T-002), D-07.1 (Secure-by-Design, T-007; airmf N/A per FN-02), D-07.3 (CI/CD), D-10.1 (Continuous Monitoring + AI post-market, T-005). These are the RIGOROUS-tier sub-domains with explicit cur deficits from `Doc05_Security_Posture.md` §4. The methodology's D11 desynchrony is preserved: each axis (csf/priv/airmf) carries its own score; the heatmap is the **worst axis** (FN-03 — `gap_worst = MAX(...)` with N/A exclusion).
 
 ---
 
@@ -1510,7 +1510,7 @@ graph LR
 > Pre-`validate_doc.py` notes; full validation in `12_Rules_Catalog.xlsx` (Block F).
 
 - **§1 coverage:** 38 CR × 12 columns = 456 cells. UNMAPPED tokens: 1 CSF (D-05.4), 0 Privacy FW, 21 AI RMF (justified by no AI-C* in source).
-- **§3 coverage:** 38 CR + 17 BPR = 55 YAML blocks. BPR-D-* count = 17 (matches `11_Rules_Catalog.md` BPR list with `BPR-D-*` prefix). BPR-AI-* are documented in `11_Rules_Catalog.md` §5.2 / §9.2 but treated as a separate AI-specific BPR subset (not part of the 17 BPR-D-* mapping in §3.2).
+- **§3 coverage:** 38 CR + 17 BPR = 55 YAML blocks. BPR-D-* count = 17 (matches `Doc18_Rules_Catalog.md` BPR list with `BPR-D-*` prefix). BPR-AI-* are documented in `Doc18_Rules_Catalog.md` §5.2 / §9.2 but treated as a separate AI-specific BPR subset (not part of the 17 BPR-D-* mapping in §3.2).
 - **§4.5 / §5.2 Function coverage:** 15 Functions (6 CSF + 5 Privacy + 4 AI RMF). No UNMAPPED Functions.
 - **§6 framework unused subcategories:** CSF ~14 acceptable, PF 45 acceptable, AI RMF 31 documented in `02b_SecurityRules_NISTAIRMF.md`.
 - **§7 Mermaid:** 5 paths (a/b/c/d/e) + governance convergence sub-path. 6 tensions referenced (T-001, T-002, T-003 visible; T-004 via D-09.1).
@@ -1527,10 +1527,10 @@ graph LR
 
 ## See also
 
-- `02_CASES/Case_02_SecureBorder_Solutions/02_PHASE2_RULES_RICH/11_Rules_Catalog.md` — 38 CR + 25 BPR (canonical Rich Mode catalog for Case_02).
-- `02_CASES/Case_02_SecureBorder_Solutions/02_PHASE2_RULES_RICH/09_Strategic_Tensions_Report.md` — 8 tensions (T-001..T-008); T-001..T-004 are the most relevant for the Govern view §2.5.
-- `02_CASES/Case_02_SecureBorder_Solutions/01_PHASE1_CONTEXT_RICH/07b_Proportionality_Profile.md` — Track B tier per sub-domain (8 RIGOROUS + 27 STANDARD + 3 EXCLUDED).
-- `02_CASES/Case_02_SecureBorder_Solutions/01_PHASE1_CONTEXT_RICH/04b_Security_Posture.md` — current maturity per macro-domain (3.0 overall).
+- `02_CASES/Case_02_SecureBorder_Solutions/02_PHASE2_RULES_RICH/Doc18_Rules_Catalog.md` — 38 CR + 25 BPR (canonical Rich Mode catalog for Case_02).
+- `02_CASES/Case_02_SecureBorder_Solutions/02_PHASE2_RULES_RICH/Doc15_Strategic_Tensions_Report.md` — 8 tensions (T-001..T-008); T-001..T-004 are the most relevant for the Govern view §2.5.
+- `02_CASES/Case_02_SecureBorder_Solutions/01_PHASE1_CONTEXT_RICH/Doc12_Proportionality_Profile.md` — Track B tier per sub-domain (8 RIGOROUS + 27 STANDARD + 3 EXCLUDED).
+- `02_CASES/Case_02_SecureBorder_Solutions/01_PHASE1_CONTEXT_RICH/Doc05_Security_Posture.md` — current maturity per macro-domain (3.0 overall).
 - `00_METHODOLOGY/PREPROCESSING/Regulation/GDPR/02b_SecurityRules_NISTPF.md` — 68 SR GDPR→PF (100% coverage; 59/104 active PF subcats used).
 - `00_METHODOLOGY/PREPROCESSING/Regulation/AI_Act/02b_SecurityRules_NISTAIRMF.md` — 24 SR AI_Act→AI RMF (100% coverage; 41/72 active AI RMF subcats used).
 - `00_METHODOLOGY/PREPROCESSING/NIST_CSF_2.0_subcategories.md` — CSF 2.0 frozen list (106 subcats).

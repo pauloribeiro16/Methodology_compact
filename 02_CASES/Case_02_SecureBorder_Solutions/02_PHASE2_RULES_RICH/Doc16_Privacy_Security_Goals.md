@@ -13,8 +13,8 @@ expected_objectives: 89
 expected_fields_per_card: 17
 detail_cards_count: 89
 fields_per_card: 17
-inputs: [08_Obligation_Derivation.md, 09_Strategic_Tensions_Report.md, 04_Company_Context_Assessment.md, ../01_PHASE1_CONTEXT_RICH/Doc13_Adjusted_Goals.md]
-outputs: [11_Rules_Catalog.md, 12_Rules_Catalog.xlsx, 13_Framework_Mappings.xlsx]
+inputs: [Doc14_Obligation_Derivation.md, Doc15_Strategic_Tensions_Report.md, Doc03_Company_Context_Assessment.md, ../01_PHASE1_CONTEXT_RICH/Doc13_Adjusted_Goals.md]
+outputs: [Doc18_Rules_Catalog.md, 12_Rules_Catalog.xlsx, 13_Framework_Mappings.xlsx]
 traceability: AEGIS Class Model -> PrivacyOperationalObjective, SecurityOperationalObjective, RiskProfile classes
 related_documents: 03_Design_Decisions_Log.md
 case: Case_02_SecureBorder_Solutions
@@ -31,7 +31,7 @@ status_history:
 
 # Privacy and Security Operational Objectives Catalog — Rich Mode (Case_02)
 
-> **Sprint 10 placeholder** — this document is the Rich Mode sibling of legacy `02_PHASE2_RULES/10_Privacy_Security_Goals.md`.
+> **Sprint 10 placeholder** — this document is the Rich Mode sibling of legacy `02_PHASE2_RULES/Doc16_Privacy_Security_Goals.md`.
 > Migrated to corr-008 (PO/SO) with multi-PSO generation per sub-domain; total 89 objectives (34 PO + 55 SO) across 35 active sub-domains.
 
 ---
@@ -335,7 +335,7 @@ This is the Rich Mode version of the Goals Catalog. It defines **89 objectives (
 
 ## 8. APPENDIX A — LEGACY PG/SG ALIASES (DEPRECATED)
 
-> **DEPRECATED** — corr-007 namespace. Preserved for traceability with Phase 1 `Doc13_Adjusted_Goals.md` Appendix A and legacy `02_PHASE2_RULES/10_Privacy_Security_Goals.md`. **DO NOT use these IDs in new content.** All new content MUST use the corr-008 schema (`PO-D-XX.X-NNN`, `SO-D-XX.X-NNN`).
+> **DEPRECATED** — corr-007 namespace. Preserved for traceability with Phase 1 `Doc13_Adjusted_Goals.md` Appendix A and legacy `02_PHASE2_RULES/Doc16_Privacy_Security_Goals.md`. **DO NOT use these IDs in new content.** All new content MUST use the corr-008 schema (`PO-D-XX.X-NNN`, `SO-D-XX.X-NNN`).
 
 | Legacy ID (corr-007) | Cluster | Migrated To (corr-008) |
 |----------------------|---------|------------------------|
@@ -391,5 +391,5 @@ This is the Rich Mode version of the Goals Catalog. It defines **89 objectives (
 
 ---
 
-**Next Document:** 11_Rules_Catalog.md
+**Next Document:** Doc18_Rules_Catalog.md
 **Sprint 10 Status:** PASS — corr-008 PO/SO migration complete; ready for 11_Rules_Catalog validation

@@ -12,16 +12,16 @@ case: Case_02_SecureBorder_Solutions
 tier: HIGH
 applicable_regulations: [GDPR, CRA, NIS 2, AI_Act]
 inputs:
-  - 10_Privacy_Security_Goals.md
-  - 11_Rules_Catalog.md
+  - Doc16_Privacy_Security_Goals.md
+  - Doc18_Rules_Catalog.md
   - ../../../00_METHODOLOGY/PREPROCESSING/Regulation/GDPR/02b_SecurityRules_NISTPF.md
   - ../../../00_METHODOLOGY/PREPROCESSING/Regulation/AI_Act/02b_SecurityRules_NISTAIRMF.md
   - ../../../00_METHODOLOGY/PREPROCESSING_by_domain/_global/NIST_PF_1.0_subcategories.md
   - ../../../00_METHODOLOGY/PREPROCESSING/NIST_CSF_2.0_subcategories.md
   - ../../../00_METHODOLOGY/PREPROCESSING/NIST_AI_RMF_1.0_subcategories.md
-outputs: [11_Rules_Catalog.md (forward-link), Phase 3 inputs]
+outputs: [Doc18_Rules_Catalog.md (forward-link), Phase 3 inputs]
 traceability: PG/SG -> sub_domain -> NIST mapping (CSF+PF for PG, CSF for SG, AI RMF for AI-security)
-related_documents: 10_Privacy_Security_Goals.md, 11_Rules_Catalog.md, 13_Framework_Mapping_Matrix.md
+related_documents: Doc16_Privacy_Security_Goals.md, Doc18_Rules_Catalog.md, Doc19_Framework_Mapping_Matrix.md
 forward_looking_note: >
   Case_02 has 3 ACTIVE frameworks (CSF + Privacy FW + AI RMF). All three
   are populated below — no placeholder columns. Triple-maturity
@@ -41,7 +41,7 @@ coverage:
 > **Purpose.** For each of the 89 Privacy/Security Operational Objectives of Case_02 (SecureBorder Solutions,
 > HIGH tier), this file documents the **operational implications** for implementation in the
 > SecureBorder context, derived from the NIST mappings (Privacy FW for PG, CSF for SG,
-> AI RMF for AI-relevant controls). Sibling to `10_Privacy_Security_Goals.md` (declarative
+> AI RMF for AI-relevant controls). Sibling to `Doc16_Privacy_Security_Goals.md` (declarative
 > goals) — this file adds 4 implication dimensions, reusing the PO-D-*/SO-D-* namespace.
 >
 > **Case_02 context.** SecureBorder is a biometric border-control technology company
@@ -84,7 +84,7 @@ biometric data processing).
 | PO-D-09.1-001, PO-D-09.1-002 | D-09.1 | GV-P.PO:2, ID-P.RA-P1 | GOVERN-4.1, GOVERN-5.2 | DPIA + AI fundamental rights impact assessment (FRIA, AI_Act Art. 27) |
 
 > **Note:** PO-D-09.2-001, PO-D-09.2-002 and PO-D-09.4-001 are also mapped in the full Case_02
-> PG catalog (10 PG total); abbreviated here for space. See `10_Privacy_Security_Goals.md`
+> PG catalog (10 PG total); abbreviated here for space. See `Doc16_Privacy_Security_Goals.md`
 > for the complete list.
 
 ### PO Detail Implications (representative)
@@ -207,7 +207,7 @@ controls (model integrity, adversarial robustness, AI-specific risk management).
 
 > **Note:** 55 SO total (corr-008: SO-D-* namespace, 25/55 SO have AI RMF mappings; the
 > remaining 30 SO map to CSF only). The table above shows 14 representative SO with
-> AI RMF mappings. See `10_Privacy_Security_Goals.md` for the complete catalog.
+> AI RMF mappings. See `Doc16_Privacy_Security_Goals.md` for the complete catalog.
 
 ### SO Detail Implications (representative)
 
@@ -320,7 +320,7 @@ These are the strongest candidates for **consolidation** across frameworks — s
 - **AVG_with_AI_MUST_override** NI rule: AI-C* sources → MUST (NI=3)
 - **HIGH tier proportionality**: 7 RIGOROUS + 27 STANDARD + 1 DEFERRED + 3 LIGHTWEIGHT
 
-For per-card detail (each of the 89 PO/SO × 3 frameworks × 4 implication dimensions = 1068 cells), see the corresponding sections in `10_Privacy_Security_Goals.md` (legacy copy in this folder) and `13_Framework_Mapping_Matrix.md`.
+For per-card detail (each of the 89 PO/SO × 3 frameworks × 4 implication dimensions = 1068 cells), see the corresponding sections in `Doc16_Privacy_Security_Goals.md` (legacy copy in this folder) and `Doc19_Framework_Mapping_Matrix.md`.
 
 ---
 

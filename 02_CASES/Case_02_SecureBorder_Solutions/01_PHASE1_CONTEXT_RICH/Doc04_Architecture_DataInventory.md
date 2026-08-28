@@ -12,31 +12,31 @@ applicable_regs: [GDPR, CRA, NIS 2, AI_Act]
 active_subdomains: 35
 inactive_documented: [D-08.3 INACTIVE, 3 NOT_ADDRESSED]
 inputs:
-  - 04_Company_Context_Assessment.md
-  - 01_INTAKE_FORM.md
-  - 05_Regulatory_Applicability.md
+  - Doc03_Company_Context_Assessment.md
+  - Doc02_INTAKE_FORM.md
+  - Doc08_Regulatory_Applicability.md
 outputs:
-  - 04b_Security_Posture.md
-  - 04c_ThirdParty_Landscape.md
-  - 04d_Org_Roles_RACI.md
-  - 07_Structured_Compliance_Matrix.md
+  - Doc05_Security_Posture.md
+  - Doc06_ThirdParty_Landscape.md
+  - Doc07_Org_Roles_RACI.md
+  - Doc11_Structured_Compliance_Matrix.md
 related_documents:
   - ../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-08_Human-Factors/
   - ../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-09_Governance-Documentation/
-  - ../../../00_METHODOLOGY/TEMPLATES/04a_Architecture_DataInventory.md
+  - ../../../00_METHODOLOGY/TEMPLATES/Doc04_Architecture_DataInventory.md
   - ../../../00_METHODOLOGY/CONTEXT/CONTEXT_PHASE1.md
 supersedes: none
 reconciliation:
   sprint: 1
   role: reconciliation
-  base_doc: ../01_PHASE1_CONTEXT/04a_Architecture_DataInventory.md (legacy, frozen)
+  base_doc: ../01_PHASE1_CONTEXT/Doc04_Architecture_DataInventory.md (legacy, frozen)
   notes: |
     Sprint 1 reconciliation (Case_02, 2026-08-06):
     - Frontmatter updated to AEGIS-P2-RICH-* convention (P2 = Case_02).
     - status: DRAFT → RECONCILED.
     - active_subdomains aligned to 35 (legacy declared 38, canonical for Case_02 is 35).
     - applicable_regs aligned to [GDPR, CRA, NIS 2, AI_Act] (excludes DORA per Case_02).
-    - inputs/outputs references updated (../00_COMMON/01_Company_Context.md → 01_INTAKE_FORM.md).
+    - inputs/outputs references updated (../00_COMMON/01_Company_Context.md → Doc02_INTAKE_FORM.md).
     - Body preserved verbatim (Sprint 1 is content-neutral; Sprint 2 adds corpus linkages).
     - Sprint 2 Corpus Enrichment:
       - §3 Compliance Mapping: added "Corpus Manifest Path" + "NIST CSF Anchors" columns (38 rows enriched).
@@ -45,7 +45,7 @@ reconciliation:
 
 <!-- CORPUS ENRICHMENT BANNER (Sprint 2, 2026-08-06):
      This is the Rich Mode copy of AEGIS-P1-04a.
-     Source: ../01_PHASE1_CONTEXT/04a_Architecture_DataInventory.md.
+     Source: ../01_PHASE1_CONTEXT/Doc04_Architecture_DataInventory.md.
      Sprint 2 added: §3 "Corpus Manifest Path" + "NIST CSF Anchors" columns per sub-domain;
                      new §4 Corpus Provenance.
      See SPRINT2_ENRICHMENT_REPORT_EXISTING.md for the per-doc change list.
@@ -311,6 +311,6 @@ Source: `00_METHODOLOGY/PREPROCESSING_by_domain/domains/` (Sprint 2 corpus root)
 ## See also
 
 - **Data backbone:** `Case_02_Phase1.xlsx` (13 sheets: COVER, SYSTEMS, DATA_STORES, DATA_FLOWS, PERSONAL_DATA, THIRD_PARTIES, ROLES_RACI, MATURITY, SUBDOMAINS, REG_CHAIN, COMPLIANCE, GAPS, PRIORITIES)
-- **Operational architecture:** the kiosk-to-cloud flow is detailed in §1.2; for full mTLS endpoint inventory see `04c_ThirdParty_Landscape.md` §2.
-- **AI_Act specifically:** the Edge AI inference engine on SYS-04 falls under Annex III — see `05_Regulatory_Applicability.md §3.5` for AI_Act overlay on D-09.2 (FRIA), D-09.4 (technical documentation), D-10.1 (post-market monitoring).
+- **Operational architecture:** the kiosk-to-cloud flow is detailed in §1.2; for full mTLS endpoint inventory see `Doc06_ThirdParty_Landscape.md` §2.
+- **AI_Act specifically:** the Edge AI inference engine on SYS-04 falls under Annex III — see `Doc08_Regulatory_Applicability.md §3.5` for AI_Act overlay on D-09.2 (FRIA), D-09.4 (technical documentation), D-10.1 (post-market monitoring).
 - **High-tier proportionality note (P2):** the HSM cluster (SYS-07) and immutable WORM store (STORE-04) are **not** over-engineering for a HIGH-tier Critical Class + Annex III AI company. They are the minimum proportionate baseline to satisfy GDPR Art. 32 + CRA Annex I Part I (2)(c) + NIS 2 Art. 21 + AI_Act Art. 9.

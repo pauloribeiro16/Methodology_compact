@@ -12,36 +12,36 @@ applicable_regs: [GDPR, CRA, NIS 2, AI_Act]
 active_subdomains: 35
 inactive_documented: [D-08.3 INACTIVE, 3 NOT_ADDRESSED]
 inputs:
-  - 04_Company_Context_Assessment.md
-  - 04a_Architecture_DataInventory.md
-  - 04b_Security_Posture.md
-  - 01_INTAKE_FORM.md
+  - Doc03_Company_Context_Assessment.md
+  - Doc04_Architecture_DataInventory.md
+  - Doc05_Security_Posture.md
+  - Doc02_INTAKE_FORM.md
 outputs:
-  - 04d_Org_Roles_RACI.md
-  - 06_Clause_Mapping_Matrix.md
-  - 07_Structured_Compliance_Matrix.md
+  - Doc07_Org_Roles_RACI.md
+  - Doc10_Clause_Mapping_Matrix.md
+  - Doc11_Structured_Compliance_Matrix.md
 related_documents:
   - ../../../00_METHODOLOGY/PREPROCESSING/SubDomains/D-06_Supply-Chain/
-  - ../../../00_METHODOLOGY/TEMPLATES/04c_ThirdParty_Landscape.md
+  - ../../../00_METHODOLOGY/TEMPLATES/Doc06_ThirdParty_Landscape.md
   - ../../../00_METHODOLOGY/CONTEXT/CONTEXT_PHASE1.md
 supersedes: none
 reconciliation:
   sprint: 1
   role: reconciliation
-  base_doc: ../01_PHASE1_CONTEXT/04c_ThirdParty_Landscape.md (legacy, frozen)
+  base_doc: ../01_PHASE1_CONTEXT/Doc06_ThirdParty_Landscape.md (legacy, frozen)
   notes: |
     Sprint 1 reconciliation (Case_02, 2026-08-06):
     - Frontmatter updated to AEGIS-P2-RICH-* convention (P2 = Case_02).
     - status: DRAFT → RECONCILED.
     - active_subdomains aligned to 35 (legacy declared 38, canonical for Case_02 is 35).
     - applicable_regs aligned to [GDPR, CRA, NIS 2, AI_Act] (excludes DORA per Case_02).
-    - inputs reference updated (../00_COMMON/01_Company_Context.md → 01_INTAKE_FORM.md).
+    - inputs reference updated (../00_COMMON/01_Company_Context.md → Doc02_INTAKE_FORM.md).
     - Body preserved verbatim (Sprint 1 is content-neutral; Sprint 2 adds corpus linkages).
 ---
 
 <!-- CORPUS ENRICHMENT BANNER (Sprint 2, 2026-08-06):
      This is the Rich Mode copy of AEGIS-P1-04c.
-     Source: ../01_PHASE1_CONTEXT/04c_ThirdParty_Landscape.md.
+     Source: ../01_PHASE1_CONTEXT/Doc06_ThirdParty_Landscape.md.
      Sprint 2 added: §3 GDPR Art. 28 verbatim (incl. biometric-data processor clauses);
                      §4 CRA Art. 7 + NIS 2 supply-chain verbatim;
                      §6 Compliance Mapping gains "Corpus Manifest Path" column.
@@ -54,9 +54,9 @@ reconciliation:
 
 This document inventories SecureBorder Solutions B.V.'s third-party landscape: cloud providers, hardware suppliers, identity services, security tooling vendors, regulatory notifiers, and notified bodies. It maps directly to Regulatory Baseline sub-domain **D-06 (Supply Chain)** (D-06.1, D-06.2, D-06.3, D-06.4) and supports compliance with **GDPR Art. 28**, **CRA Annex I Part I (2)(h) + (i)**, **NIS 2 Art. 21(2)(d) supply chain**, and **AI_Act Art. 25 (provider-deployer interface)**.
 
-**Scope:** Sub-domain D-06.x only. Architecture context is in `04a_Architecture_DataInventory.md`; security posture is in `04b_Security_Posture.md`; broader governance is in Phase 2 deliverables.
+**Scope:** Sub-domain D-06.x only. Architecture context is in `Doc04_Architecture_DataInventory.md`; security posture is in `Doc05_Security_Posture.md`; broader governance is in Phase 2 deliverables.
 
-**Method:** Inventory constructed from the architecture documentation (`04a §1.3` cloud services + supplier list in `04a §1.1`), the stakeholder register in `04_Company_Context_Assessment.md §3`, and the intake-form layer-2 block B6 (Supply Chain: software bill of materials + supplier security assessment + component vulnerability).
+**Method:** Inventory constructed from the architecture documentation (`04a §1.3` cloud services + supplier list in `04a §1.1`), the stakeholder register in `Doc03_Company_Context_Assessment.md §3`, and the intake-form layer-2 block B6 (Supply Chain: software bill of materials + supplier security assessment + component vulnerability).
 
 **Proportionality note (P2 — Company Reality First):** SecureBorder is a HIGH-tier company (450 employees, 4 regulations, hardware+software product deployed at critical infrastructure). Sub-processor inventory is appropriately extensive (12 distinct vendors plus 4 government / regulator / auditor relationships). All hardware suppliers are formally audited annually per the CRA Critical Class programme; software vendors are tiered by criticality.
 
@@ -254,7 +254,7 @@ Active scope for SecureBorder = 38 of 38 sub-domains. All 4 D-06.x sub-domains a
 | GAP-TPL-04 | Per-country government authority DPA chain — 5 additional Schengen countries expansion pending country-by-country DPA in BG-006 (18-month expansion project) | MEDIUM (planned) | D-06.1, D-06.3 |
 | GAP-TPL-05 | hardware cryptographic module firmware software bill of materials emission per release under CRDA Annex I Part II (1) — pipeline integration test pending final acceptance | MEDIUM | D-06.2 |
 
-All five gaps are tracked in `04b_Security_Posture.md` for Phase 2 / Phase 3 remediation and in `PROJECT_STATE.md` §6.2.
+All five gaps are tracked in `Doc05_Security_Posture.md` for Phase 2 / Phase 3 remediation and in `PROJECT_STATE.md` §6.2.
 
 ---
 
@@ -280,7 +280,7 @@ This document is complete (Phase 1 Step D — Third-Party Landscape) when:
 
 | Version | Date | Author | Changes |
 |---|---|---|---|
-| 1.0 | 2026-07-11 | Executor | Populated from template `04c_ThirdParty_Landscape.md`; merged architecture data from `04a §1.3` and stakeholder register from `04 §3`. 12 distinct vendors + 5 regulator/notified-body relationships, proportionate for HIGH-tier. |
+| 1.0 | 2026-07-11 | Executor | Populated from template `Doc06_ThirdParty_Landscape.md`; merged architecture data from `04a §1.3` and stakeholder register from `04 §3`. 12 distinct vendors + 5 regulator/notified-body relationships, proportionate for HIGH-tier. |
 | 1.1 | 2026-08-06 | Executor | Sprint 1 reconciliation: frontmatter → AEGIS-P2-RICH-*, status: DRAFT → RECONCILED, active_subdomains 38 → 35, applicable_regs aligned. Body preserved verbatim. |
 | 1.2 | 2026-08-06 | Executor | Sprint 2 corpus enrichment: §3.0 GDPR Art. 28 verbatim (incl. biometric-data processor clauses); §4.0 CRA Art. 7 + NIS 2 Art. 21(2)(d) supply-chain verbatim + AI_Act high-risk conformity assessment; §8 Compliance Mapping gains Corpus Manifest Path column. Source: `00_METHODOLOGY/PREPROCESSING_by_domain/domains/`. |
 
@@ -298,6 +298,6 @@ This document is complete (Phase 1 Step D — Third-Party Landscape) when:
 ## See also
 
 - **Data backbone:** `Case_02_Phase1.xlsx` (13 sheets: COVER, SYSTEMS, DATA_STORES, DATA_FLOWS, PERSONAL_DATA, THIRD_PARTIES, ROLES_RACI, MATURITY, SUBDOMAINS, REG_CHAIN, COMPLIANCE, GAPS, PRIORITIES)
-- **Architecture context:** `04a_Architecture_DataInventory.md` §1.1 (13 systems), §1.3 (cloud services table).
-- **People / RACI:** `04d_Org_Roles_RACI.md` (CISO owns vendor-risk-assessment cadence; DPO owns DPA template library; Compliance Lead owns notified-body relationship).
+- **Architecture context:** `Doc04_Architecture_DataInventory.md` §1.1 (13 systems), §1.3 (cloud services table).
+- **People / RACI:** `Doc07_Org_Roles_RACI.md` (CISO owns vendor-risk-assessment cadence; DPO owns DPA template library; Compliance Lead owns notified-body relationship).
 - **HIGH-tier context:** `02_CASES/Case_02_SecureBorder_Solutions/00_COMMON/01_Company_Context.md` (4 applicable regulations; critical infrastructure supplier to government border control).
