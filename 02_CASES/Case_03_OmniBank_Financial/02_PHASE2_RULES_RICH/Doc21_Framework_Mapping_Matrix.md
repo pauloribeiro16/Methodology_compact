@@ -61,7 +61,7 @@ note_inputs: >
 ## §1 — Matriz Unificada (CSF 2.0 + Privacy FW 1.0 + AI RMF 1.0)
 
 > 38 unique CR rows. Columns: `rule_id, sub_domain, regulations, NI (recomputed by AVG + AI-C MUST override), CSF 2.0 subcategories, Privacy FW 1.0 subcategories, AI RMF 1.0 subcategories, ISO 27001, SSDF, csf_norm, priv_norm, airmf_norm`.
-> `csf_norm = |CSF subcats|`; `priv_norm` and `airmf_norm` same convention. `UNMAPPED_CSF` / `UNMAPPED_PRIVACY` / `UNMAPPED_AIRMF` where no natural anchor exists (justification inline).
+> Marker vocabulary per SPEC §4.6 (canonical, port Fase 3): `UNMAPPED_CSF` / `UNMAPPED_PF` with justification where no natural anchor exists; `N/A (non-AI scope)` where the rule has no AI dimension; `UNMAPPED_PRIVACY`/`UNMAPPED_AIRMF` are RETIRED tokens (zero tolerance). Legacy note: inline).
 > Privacy FW mapping sourced from `Regulation/GDPR/02b_SecurityRules_NISTPF.md` (68 SR, 59/104 active subcats; 100% coverage for GDPR-touched sub-domains).
 > AI RMF mapping sourced from `Regulation/AI_Act/02b_SecurityRules_NISTAIRMF.md` (24 SR, 41/72 active subcats). For CR with AI-C* source clauses (15 CR), AI RMF mapping is anchored via SR-AIACT-XXX. For 23 CR without AI-C*, `UNMAPPED_AIRMF` with justification.
 > ISO 27001 / SSDF from `Framework_Crosswalk_ARM.md` (ACTIVE v1.0; CSF 38/38, ISO 38/38, SSDF 23/38; 800-53 out of scope per `note_800_53`).
@@ -70,50 +70,50 @@ note_inputs: >
 |---------|-----------|-------------|----|---------|----------------|-----------|-----------|------|----------|-----------|-----------|
 
 | CR-D-01.1-001 | D-01.1 | GDPR,CRA,NIS2,DORA,AI_Act | 3.00 (MUST) | PR.DS-01 | PR.DS-P1,CT.DP-P2 | GOVERN-1.6,MEASURE-2.7,MEASURE-2.5 | A.8.24, A.8.13 | PO.5 | 1 | 2 | 3 |
-| CR-D-01.2-001 | D-01.2 | GDPR,CRA,DORA | 2.00 (SHOULD) | PR.DS-02 | PR.DS-P2 | UNMAPPED_AIRMF | A.8.24, A.8.20 | — | 1 | 2 | 0 |
+| CR-D-01.2-001 | D-01.2 | GDPR,CRA,DORA | 2.00 (SHOULD) | PR.DS-02 | PR.DS-P2 | N/A (non-AI scope) | A.8.24, A.8.20 | — | 1 | 2 | 0 |
 | CR-D-01.3-001 | D-01.3 | CRA,DORA | 3.00 (MUST) | PR.DS-01 | PR.DS-P1,CT.DP-P2 | MEASURE-2.7,GOVERN-1.6 | A.8.24 | — | 1 | 2 | 2 |
 | CR-D-01.4-001 | D-01.4 | GDPR,CRA,AI_Act | 3.00 (MUST) | PR.DS-01,PR.DS-02 | PR.DS-P1,CT.DM-P1,CT.DM-P3 | MEASURE-2.6,MEASURE-2.7,MANAGE-2.3 | A.8.24, A.5.14 | — | 2 | 3 | 3 |
 | CR-D-02.1-001 | D-02.1 | CRA,NIS2,DORA,AI_Act | 3.00 (MUST) | ID.RA-01; ID.RA-08 | ID.RA-P3; ID.RA-P5 | MEASURE-2.1,MEASURE-2.3,MANAGE-1.3 | A.8.8, A.5.7 | RV.1, RV.3 | 2 | 2 | 3 |
-| CR-D-02.2-001 | D-02.2 | CRA,NIS2,DORA | 3.00 (MUST) | PR.PS-02 | UNMAPPED_PF | UNMAPPED_AIRMF | A.8.8, A.8.19 | RV.2 | 1 | 1 | 0 |
-| CR-D-02.3-001 | D-02.3 | CRA | 3.00 (MUST) | ID.RA-08 | ID.IM-P7; GV.PO-P5 | UNMAPPED_AIRMF | A.5.5, A.5.6 | RV.1 | 1 | 2 | 0 |
+| CR-D-02.2-001 | D-02.2 | CRA,NIS2,DORA | 3.00 (MUST) | PR.PS-02 | UNMAPPED_PF (no PF 1.0 analogue for product patch/OTA update management) | N/A (non-AI scope) | A.8.8, A.8.19 | RV.2 | 1 | 1 | 0 |
+| CR-D-02.3-001 | D-02.3 | CRA | 3.00 (MUST) | ID.RA-08 | ID.IM-P7; GV.PO-P5 | N/A (non-AI scope) | A.5.5, A.5.6 | RV.1 | 1 | 2 | 0 |
 | CR-D-02.4-001 | D-02.4 | DORA,AI_Act | 3.00 (MUST) | ID.IM-02,ID.RA-03 | ID.RA-P3,ID.RA-P4,ID.RA-P5 | MEASURE-1.1,MEASURE-2.1,MEASURE-2.3,MAP-3.3,MEASURE-2.7 | A.5.35, A.5.36 | PW.8 | 2 | 3 | 5 |
 | CR-D-03.1-001 | D-03.1 | CRA,NIS2,DORA,AI_Act | 3.00 (MUST) | PR.AA-01,PR.AA-03,PR.AA-05 | CT.PO-P1 | GOVERN-1.4,MAP-3.4,GOVERN-2.1 | A.5.16, A.5.18 | — | 3 | 5 | 3 |
-| CR-D-03.2-001 | D-03.2 | CRA,NIS2,DORA | 2.00 (SHOULD) | PR.AA-03 | UNMAPPED_PF | UNMAPPED_AIRMF | A.8.5, A.8.2 | — | 1 | 1 | 0 |
-| CR-D-03.3-001 | D-03.3 | GDPR,NIS2,DORA | 3.00 (MUST) | PR.AA-05,PR.AA-01 | CT.PO-P1 | UNMAPPED_AIRMF | A.5.15, A.5.18, A.8.3 | — | 2 | 3 | 0 |
-| CR-D-03.4-001 | D-03.4 | CRA | 3.00 (MUST) | PR.PS-01 | CT.DP-P4,CT.PO-P4 | UNMAPPED_AIRMF | A.8.9 | PW.9 | 1 | 2 | 0 |
-| CR-D-04.1-001 | D-04.1 | CRA,NIS2,DORA | 3.00 (MUST) | DE.AE-02,DE.CM-01,DE.CM-09 | CM.AW-P7 | UNMAPPED_AIRMF | A.5.25, A.8.16 | RV.1 | 3 | 2 | 0 |
-| CR-D-04.2-001 | D-04.2 | GDPR,CRA,NIS2,DORA | 2.00 (SHOULD) | RS.MI-01,RS.MI-02 | PR.PO-P7,CT.DM-P10 | UNMAPPED_AIRMF | A.5.26, A.5.29 | — | 2 | 4 | 0 |
+| CR-D-03.2-001 | D-03.2 | CRA,NIS2,DORA | 2.00 (SHOULD) | PR.AA-03 | UNMAPPED_PF (no PF 1.0 MFA subcategory) | N/A (non-AI scope) | A.8.5, A.8.2 | — | 1 | 1 | 0 |
+| CR-D-03.3-001 | D-03.3 | GDPR,NIS2,DORA | 3.00 (MUST) | PR.AA-05,PR.AA-01 | CT.PO-P1 | N/A (non-AI scope) | A.5.15, A.5.18, A.8.3 | — | 2 | 3 | 0 |
+| CR-D-03.4-001 | D-03.4 | CRA | 3.00 (MUST) | PR.PS-01 | CT.DP-P4,CT.PO-P4 | N/A (non-AI scope) | A.8.9 | PW.9 | 1 | 2 | 0 |
+| CR-D-04.1-001 | D-04.1 | CRA,NIS2,DORA | 3.00 (MUST) | DE.AE-02,DE.CM-01,DE.CM-09 | CM.AW-P7 | N/A (non-AI scope) | A.5.25, A.8.16 | RV.1 | 3 | 2 | 0 |
+| CR-D-04.2-001 | D-04.2 | GDPR,CRA,NIS2,DORA | 2.00 (SHOULD) | RS.MI-01,RS.MI-02 | PR.PO-P7,CT.DM-P10 | N/A (non-AI scope) | A.5.26, A.5.29 | — | 2 | 4 | 0 |
 | CR-D-04.3-001 | D-04.3 | GDPR,CRA,NIS2,DORA,AI_Act | 3.00 (MUST) | RS.CO-02,RS.CO-03 | CM.AW-P7,CM.PO-P2,CM.PO-P1,GV.PO-P5 | MANAGE-2.3,MANAGE-4.3,GOVERN-1.1 | A.5.24, A.5.5 | — | 2 | 4 | 3 |
-| CR-D-04.4-001 | D-04.4 | GDPR,NIS2,DORA | 2.00 (SHOULD) | RC.RP-01,RC.RP-03,RC.RP-05 | UNMAPPED_PF | UNMAPPED_AIRMF | A.8.13, A.8.14, A.5.30 | — | 3 | 3 | 0 |
+| CR-D-04.4-001 | D-04.4 | GDPR,NIS2,DORA | 2.00 (SHOULD) | RC.RP-01,RC.RP-03,RC.RP-05 | UNMAPPED_PF (no PF 1.0 backup/DR recovery subcategory) | N/A (non-AI scope) | A.8.13, A.8.14, A.5.30 | — | 3 | 3 | 0 |
 | CR-D-05.1-001 | D-05.1 | GDPR,CRA,AI_Act | 3.00 (MUST) | ID.AM-02,ID.AM-03 | CT.PO-P4,CT.DP-P4,ID.RA-P3 | GOVERN-1.4,MAP-2.1,MEASURE-2.11,MAP-2.2 | A.8.10 | — | 2 | 3 | 4 |
 | CR-D-05.2-001 | D-05.2 | GDPR,AI_Act | 3.00 (MUST) | PR.DS-01,PR.PS-06 | CT.PO-P4,CT.DM-P5 | MAP-2.1,MEASURE-2.4,MEASURE-2.11 | A.5.33, A.5.31 | PS.3 | 2 | 2 | 3 |
-| CR-D-05.3-001 | D-05.3 | GDPR,CRA | 3.00 (MUST) | PR.DS-10 | CT.DM-P4,CT.DM-P5 | UNMAPPED_AIRMF | A.8.10, A.7.14, A.5.34 | — | 1 | 2 | 0 |
-| CR-D-05.4-001 | D-05.4 | GDPR | 3.00 (MUST) | UNMAPPED_CSF | CT.DM-P1,CT.DM-P6 | UNMAPPED_AIRMF | A.5.14, A.5.34 | — | 0 | 2 | 0 |
-| CR-D-06.1-001 | D-06.1 | GDPR,NIS2,DORA | 3.00 (MUST) | GV.SC-04; GV.SC-07; ID.RA-10 | ID.IM-P2 | UNMAPPED_AIRMF | A.5.19, A.5.20, A.5.22 | PW.4 | 3 | 2 | 0 |
-| CR-D-06.2-001 | D-06.2 | CRA | 3.00 (MUST) | GV.SC-09 | ID.IM-P7 | UNMAPPED_AIRMF | A.5.21, A.5.9 | PS.3 | 1 | 1 | 0 |
-| CR-D-06.3-001 | D-06.3 | GDPR,NIS2,DORA | 3.00 (MUST) | GV.SC-05; GV.SC-06 | GV.PO-P5 | UNMAPPED_AIRMF | A.5.20, A.5.31 | — | 2 | 3 | 0 |
-| CR-D-06.4-001 | D-06.4 | NIS2,DORA | 3.00 (MUST) | DE.CM-06,PR.IR-01 | UNMAPPED_PF | UNMAPPED_AIRMF | A.8.22, A.8.21 | — | 2 | 1 | 0 |
-| CR-D-07.1-001 | D-07.1 | GDPR,CRA | 2.00 (SHOULD) | PR.PS-06,ID.RA-01 | GV.PO-P2,CT.PO-P4,CT.DP-P2,CT.DP-P5 | UNMAPPED_AIRMF | A.8.25, A.8.27, A.5.8 | PO.1, PW.1 | 2 | 4 | 0 |
-| CR-D-07.2-001 | D-07.2 | NIS2,DORA | 3.00 (MUST) | PR.PS-06 | UNMAPPED_PF | UNMAPPED_AIRMF | A.8.28, A.8.26 | PW.5 | 1 | 1 | 0 |
-| CR-D-07.3-001 | D-07.3 | NIS2,DORA | 3.00 (MUST) | PR.PS-06,PR.PS-02 | UNMAPPED_PF | UNMAPPED_AIRMF | A.8.4, A.8.31, A.8.29 | PO.3, PW.6 | 2 | 1 | 0 |
-| CR-D-07.4-001 | D-07.4 | NIS2,DORA | 3.00 (MUST) | ID.RA-07 | ID.RA-P3 | UNMAPPED_AIRMF | A.8.32, A.8.19 | RV.3 | 1 | 1 | 0 |
-| CR-D-08.1-001 | D-08.1 | GDPR,NIS2 | 3.00 (MUST) | PR.AT-01 | GV.AT-P1,GV.AT-P2 | UNMAPPED_AIRMF | A.6.3 | PO.2 | 1 | 2 | 0 |
+| CR-D-05.3-001 | D-05.3 | GDPR,CRA | 3.00 (MUST) | PR.DS-10 | CT.DM-P4,CT.DM-P5 | N/A (non-AI scope) | A.8.10, A.7.14, A.5.34 | — | 1 | 2 | 0 |
+| CR-D-05.4-001 | D-05.4 | GDPR | 3.00 (MUST) | UNMAPPED_CSF | CT.DM-P1,CT.DM-P6 | N/A (non-AI scope) | A.5.14, A.5.34 | — | 0 | 2 | 0 |
+| CR-D-06.1-001 | D-06.1 | GDPR,NIS2,DORA | 3.00 (MUST) | GV.SC-04; GV.SC-07; ID.RA-10 | ID.IM-P2 | N/A (non-AI scope) | A.5.19, A.5.20, A.5.22 | PW.4 | 3 | 2 | 0 |
+| CR-D-06.2-001 | D-06.2 | CRA | 3.00 (MUST) | GV.SC-09 | ID.IM-P7 | N/A (non-AI scope) | A.5.21, A.5.9 | PS.3 | 1 | 1 | 0 |
+| CR-D-06.3-001 | D-06.3 | GDPR,NIS2,DORA | 3.00 (MUST) | GV.SC-05; GV.SC-06 | GV.PO-P5 | N/A (non-AI scope) | A.5.20, A.5.31 | — | 2 | 3 | 0 |
+| CR-D-06.4-001 | D-06.4 | NIS2,DORA | 3.00 (MUST) | DE.CM-06,PR.IR-01 | UNMAPPED_PF (no PF 1.0 analogue for third-party boundary isolation) | N/A (non-AI scope) | A.8.22, A.8.21 | — | 2 | 1 | 0 |
+| CR-D-07.1-001 | D-07.1 | GDPR,CRA | 2.00 (SHOULD) | PR.PS-06,ID.RA-01 | GV.PO-P2,CT.PO-P4,CT.DP-P2,CT.DP-P5 | N/A (non-AI scope) | A.8.25, A.8.27, A.5.8 | PO.1, PW.1 | 2 | 4 | 0 |
+| CR-D-07.2-001 | D-07.2 | NIS2,DORA | 3.00 (MUST) | PR.PS-06 | UNMAPPED_PF (no PF 1.0 secure-SDLC subcategory) | N/A (non-AI scope) | A.8.28, A.8.26 | PW.5 | 1 | 1 | 0 |
+| CR-D-07.3-001 | D-07.3 | NIS2,DORA | 3.00 (MUST) | PR.PS-06,PR.PS-02 | UNMAPPED_PF (no PF 1.0 analogue for CI/CD pipeline security controls) | N/A (non-AI scope) | A.8.4, A.8.31, A.8.29 | PO.3, PW.6 | 2 | 1 | 0 |
+| CR-D-07.4-001 | D-07.4 | NIS2,DORA | 3.00 (MUST) | ID.RA-07 | ID.RA-P3 | N/A (non-AI scope) | A.8.32, A.8.19 | RV.3 | 1 | 1 | 0 |
+| CR-D-08.1-001 | D-08.1 | GDPR,NIS2 | 3.00 (MUST) | PR.AT-01 | GV.AT-P1,GV.AT-P2 | N/A (non-AI scope) | A.6.3 | PO.2 | 1 | 2 | 0 |
 | CR-D-08.2-001 | D-08.2 | GDPR,NIS2,AI_Act | 3.00 (MUST) | PR.AT-02 | GV.AT-P1,GV.AT-P2 | MAP-3.5,GOVERN-2.1,GOVERN-2.2,GOVERN-3.1 | A.6.3, A.6.1 | PO.2 | 1 | 2 | 4 |
-| CR-D-08.3-001 | D-08.3 | NIS2,DORA | 3.00 (MUST) | GV.RR-01,PR.AT-02 | UNMAPPED_PF | UNMAPPED_AIRMF | A.5.4, A.5.35 | PO.2 | 2 | 1 | 0 |
+| CR-D-08.3-001 | D-08.3 | NIS2,DORA | 3.00 (MUST) | GV.RR-01,PR.AT-02 | UNMAPPED_PF (no PF 1.0 board-training subcategory) | N/A (non-AI scope) | A.5.4, A.5.35 | PO.2 | 2 | 1 | 0 |
 | CR-D-09.1-001 | D-09.1 | GDPR,CRA,NIS2,DORA,AI_Act | 3.00 (MUST) | GV.PO-01,GV.PO-02 | GV.PO-P1,GV.PO-P5,CM.PO-P1 | GOVERN-1.1,GOVERN-1.3,GOVERN-2.1 | A.5.1, A.5.36, A.5.37 | PO.4 | 2 | 5 | 3 |
 | CR-D-09.2-001 | D-09.2 | GDPR,CRA,NIS2,DORA,AI_Act | 3.00 (MUST) | ID.RA-04,ID.RA-05,GV.RM-06 | ID.RA-P3,ID.RA-P4,ID.RA-P5 | GOVERN-1.5,MAP-5.1,MANAGE-1.2 | A.5.7, A.5.9, A.5.12 | PW.1 | 3 | 4 | 3 |
-| CR-D-09.3-001 | D-09.3 | NIS2,DORA | 3.00 (MUST) | ID.AM-01,ID.AM-02,ID.AM-07 | ID.IM-P1,ID.IM-P4,ID.IM-P6,ID.IM-P8 | UNMAPPED_AIRMF | A.5.9, A.7.10 | — | 3 | 4 | 0 |
+| CR-D-09.3-001 | D-09.3 | NIS2,DORA | 3.00 (MUST) | ID.AM-01,ID.AM-02,ID.AM-07 | ID.IM-P1,ID.IM-P4,ID.IM-P6,ID.IM-P8 | N/A (non-AI scope) | A.5.9, A.7.10 | — | 3 | 4 | 0 |
 | CR-D-09.4-001 | D-09.4 | GDPR,DORA,AI_Act | 3.00 (MUST) | ID.AM-07,GV.OC-03 | ID.IM-P1,ID.IM-P4,ID.IM-P6,ID.IM-P8,CM.PO-P1 | GOVERN-1.4,MAP-1.1,MAP-3.4 | A.5.33, A.5.34, A.5.31 | PO.3 | 2 | 5 | 3 |
 | CR-D-10.1-001 | D-10.1 | CRA,NIS2,DORA,AI_Act | 3.00 (MUST) | DE.CM-01,DE.CM-09,DE.AE-02 | CM.AW-P7 | MANAGE-4.1,MEASURE-3.1,MEASURE-4.1,GOVERN-1.5,MEASURE-2.4 | A.8.16, A.7.4, A.5.22 | RV.1 | 3 | 2 | 5 |
 | CR-D-10.2-001 | D-10.2 | CRA,NIS2,DORA,AI_Act | 3.00 (MUST) | PR.PS-04,DE.AE-03,RS.AN-06 | CT.DM-P9 | MEASURE-2.4,MEASURE-3.1,GOVERN-1.6 | A.8.15, A.5.28, A.8.17 | PO.3 | 3 | 1 | 3 |
-| CR-D-10.3-001 | D-10.3 | GDPR,CRA,NIS2,DORA,AI_Act | 3.00 (MUST) | ID.IM-01,ID.IM-02,ID.IM-03 | UNMAPPED_PF | MEASURE-1.1,MEASURE-2.1,MEASURE-2.3,MEASURE-2.7,MAP-3.3 | A.5.35, A.5.36, A.8.29 | PW.7, PW.8 | 3 | 1 | 5 |
+| CR-D-10.3-001 | D-10.3 | GDPR,CRA,NIS2,DORA,AI_Act | 3.00 (MUST) | ID.IM-01,ID.IM-02,ID.IM-03 | UNMAPPED_PF (no PF 1.0 compliance-testing subcategory) | MEASURE-1.1,MEASURE-2.1,MEASURE-2.3,MEASURE-2.7,MAP-3.3 | A.5.35, A.5.36, A.8.29 | PW.7, PW.8 | 3 | 1 | 5 |
 
 **Regulations column legend.** `GDPR,CRA,NIS2,DORA,AI_Act` (5) — all 5 apply (3 CR: D-01.1, D-04.3, D-09.1, D-09.2, D-10.3). `GDPR,CRA,NIS2,DORA` (4) — 4 apply (1 CR: D-04.2). `CRA,NIS2,DORA,AI_Act` (4) — 4 apply (3 CR: D-02.1, D-03.1, D-10.1, D-10.2). `GDPR,CRA,NIS2,DORA` (no such in Case_03 — replaced by 4 above). `GDPR,CRA,NIS2,DORA,AI_Act` (5) appears 5 times. `GDPR,CRA,DORA` (3) — 3 apply (1 CR: D-01.2). `CRA,NIS2,DORA` (3) — 3 apply (5 CR: D-01.3, D-02.2, D-04.1, D-06.4 (paired with NIS2/DORA but D-03.2/NIS2/DORA included), wait recompute). Full distribution per CR (re-tag): 5-reg: 5 CR (D-01.1, D-04.3, D-09.1, D-09.2, D-10.3); 4-reg `CRA,NIS2,DORA,AI_Act`: 4 CR (D-02.1, D-03.1, D-10.1, D-10.2); 4-reg `GDPR,CRA,NIS2,DORA`: 1 CR (D-04.2); 3-reg `GDPR,CRA,DORA`: 1 CR (D-01.2); 3-reg `GDPR,NIS2,DORA`: 4 CR (D-03.3, D-04.4, D-06.1, D-06.3); 3-reg `CRA,NIS2,DORA` (only D-04.1 has CRA/NIS2/DORA; wait D-04.1 = CRA,NIS2,DORA → 3-reg); 3-reg `GDPR,CRA,AI_Act`: 1 CR (D-01.4); 3-reg `CRA,DORA`: 1 CR (D-01.3); 3-reg `GDPR,DORA,AI_Act`: 1 CR (D-09.4); 3-reg `GDPR,NIS2,AI_Act`: 1 CR (D-08.2); 2-reg `CRA,DORA`: — none; 2-reg `DORA,AI_Act`: 1 CR (D-02.4); 2-reg `GDPR,CRA`: 1 CR (D-07.1); 2-reg `GDPR,AI_Act`: 1 CR (D-05.2); 2-reg `NIS2,DORA`: 4 CR (D-06.4, D-07.2, D-07.3, D-07.4, D-09.3 — 5 actually); 2-reg `GDPR,NIS2`: 1 CR (D-08.1); 1-reg Sole Authority: 3 CR (D-02.3 CRA, D-03.4 CRA, D-05.4 GDPR, D-06.2 CRA — 4 actually). Final tally: 38 CR distributed across 5/4/3/2/1 regulation counts.
 
 **`UNMAPPED_*` rationale (Case_03 specifics):**
 - `UNMAPPED_CSF` (1 row — `CR-D-05.4-001` data portability): CSF 2.0 has no subcategory addressing data subject portability rights (confirmed in `Framework_Crosswalk_ARM.md` §3.D-05.4 — NONE for CSF). Privacy FW 1.0 covers it natively via `CT.DM-P1/P6`.
 - `UNMAPPED_PRIVACY` (0 rows): all 38 CR touch at least one GDPR-touched sub-domain (even D-02.3 CRA-only has Privacy FW anchors via GDPR SR coverage). The 68 SR in `02b_SecurityRules_NISTPF.md` provide 100% PF coverage for the GDPR axis. **Case_03 exception**: 5 sub-domains (D-02.3, D-02.4, D-06.4, D-07.2, D-07.3, D-07.4) have no GDPR clause in source — for these the PF anchor is via the Privacy FW subcats generic to data processing (ID.RA-P3 [v1.0 redirect, see FN-02 fix]). Not `UNMAPPED_PRIVACY` but inherited from generic SR mapping.
-- `UNMAPPED_AIRMF` (23 rows): 23 CR have no AI-C* in source clauses (no AI Act duty). The 15 CR with AI-C* (D-01.1, D-01.4, D-02.1, D-02.4, D-03.1, D-04.3, D-05.1, D-05.2, D-08.2, D-09.1, D-09.2, D-09.4, D-10.1, D-10.2, D-10.3) carry AI RMF anchors via the 24 SR-AIACT-XXX mappings. The 31/72 unused AI RMF subcategories are the `GOVERN-1.7` (decommissioning), `MEASURE-2.*` (environmental / human subjects), `MANAGE-2.*` (sustaining value) clusters that have no AI Act T5 counterpart (documented in `02b_SecurityRules_NISTAIRMF.md` §"Unused AI RMF Subcategories").
+- `N/A (non-AI scope)` (23 rows, adjudicated from the retired `UNMAPPED_AIRMF` token per SPEC §4.6, port Fase 3): 23 CR have no AI-C* in source clauses (no AI dimension). The 15 CR with AI-C* (D-01.1, D-01.4, D-02.1, D-02.4, D-03.1, D-04.3, D-05.1, D-05.2, D-08.2, D-09.1, D-09.2, D-09.4, D-10.1, D-10.2, D-10.3) carry AI RMF anchors via the 24 SR-AIACT-XXX mappings. The 31/72 unused AI RMF subcategories are the `GOVERN-1.7` (decommissioning), `MEASURE-2.*` (environmental / human subjects), `MANAGE-2.*` (sustaining value) clusters that have no AI Act T5 counterpart (documented in `02b_SecurityRules_NISTAIRMF.md` §"Unused AI RMF Subcategories").
 
 **Distribution snapshot:**
 
@@ -229,7 +229,7 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [PR.DS-02]
   privacy_subcategories: [PR.DS-P2]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* in source clauses — no AI Act duty; AI RMF anchor not applicable; AVG(NI)=2.667 below MUST threshold and no AI-C MUST override → SHOULD; DORA via PR.DS-02 (in-transit encryption); frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -277,7 +277,8 @@ note_inputs: >
   priority_label: MUST
   csf_subcategories: [PR.PS-02]
   privacy_subcategories: [UNMAPPED_PF]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  unmapped_pf_justification: "no PF 1.0 analogue for this rule's privacy dimension (element-level gap, per SPEC §4.6)"
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* in source clauses — no AI Act duty; AI RMF anchor not applicable; DORA Art. 16 ICT operations via PR.PS-02; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -289,7 +290,7 @@ note_inputs: >
   priority_label: MUST
   csf_subcategories: [ID.RA-08]
   privacy_subcategories: [ID.IM-P7,GV.PO-P5]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: SOLE AUTHORITY CRA (no GDPR/NIS2/DORA/AI Act); no AI-C* — no AI Act duty; AI RMF anchor not applicable; PF coverage via generic ID.IM-P7 (data processing environment) + GV.PO-P5 (legal requirements); frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -325,7 +326,8 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [PR.AA-03]
   privacy_subcategories: [UNMAPPED_PF]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  unmapped_pf_justification: "no PF 1.0 analogue for this rule's privacy dimension (element-level gap, per SPEC §4.6)"
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* in source clauses — no AI Act duty; AI RMF anchor not applicable; AVG(NI)=2.667 below MUST threshold and no AI-C MUST override → SHOULD; PSD2 SCA MFA baseline; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -337,7 +339,7 @@ note_inputs: >
   priority_label: MUST
   csf_subcategories: [PR.AA-05,PR.AA-01]
   privacy_subcategories: [CT.PO-P1]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* in source — no AI Act duty at the rule level; PAM via managed privileged access management + JIT access; DORA Art. 9 + NIS 2 Art. 21 + GDPR Art. 32; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -349,7 +351,7 @@ note_inputs: >
   priority_label: MUST
   csf_subcategories: [PR.PS-01]
   privacy_subcategories: [CT.DP-P4,CT.PO-P4]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: SOLE AUTHORITY CRA (no GDPR/NIS2/DORA/AI Act); no AI-C* — no AI Act duty; hardened-default baseline Level 2 + automated config baseline; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -361,7 +363,7 @@ note_inputs: >
   priority_label: MUST
   csf_subcategories: [DE.AE-02,DE.CM-01,DE.CM-09]
   privacy_subcategories: [CM.AW-P7]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* in source clauses — no AI Act duty at the rule level; DORA Art. 17 ICT incident management process via RS.MA-*; 24/7 SOC + centralized audit-log + AI-driven detection; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -373,7 +375,7 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [RS.MI-01,RS.MI-02]
   privacy_subcategories: [PR.PO-P7,CT.DM-P10]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* in source — AVG(NI)=2.833 below MUST threshold → SHOULD; BCP/DRP per ISO 22301 + DORA Art. 12 ICT business continuity + NIS 2 Art. 21; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -397,7 +399,8 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [RC.RP-01,RC.RP-03,RC.RP-05]
   privacy_subcategories: [UNMAPPED_PF]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  unmapped_pf_justification: "no PF 1.0 analogue for this rule's privacy dimension (element-level gap, per SPEC §4.6)"
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* in source — AVG(NI)=2.750 below MUST threshold → SHOULD; DORA Art. 12 ICT business continuity + GDPR Art. 16 + NIS 2 Art. 21; RTO 4h / RPO 15min; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -433,7 +436,7 @@ note_inputs: >
   priority_label: MUST
   csf_subcategories: [PR.DS-10]
   privacy_subcategories: [CT.DM-P4,CT.DM-P5]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* in source — no AI Act duty at the rule level; **T-002 RESOLVED** — cryptographic sharding (key destruction = erasure); 30-day SLA per GDPR Art. 17; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -445,7 +448,7 @@ note_inputs: >
   priority_label: MUST
   csf_subcategories: [UNMAPPED_CSF]
   privacy_subcategories: [CT.DM-P1,CT.DM-P6]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: SOLE AUTHORITY GDPR; CSF 2.0 has no direct subcategory for data portability (NONE per Framework_Crosswalk_ARM.md §3.D-05.4); no AI-C* — no AI Act duty; AI RMF anchor not applicable; PF coverage via CT.DM-P1 (data access for review) + CT.DM-P6 (standardized formats); frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -457,7 +460,7 @@ note_inputs: >
   priority_label: MUST
   csf_subcategories: [GV.SC-04,GV.SC-07,ID.RA-10]
   privacy_subcategories: [ID.IM-P2]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* in source — no AI Act duty at the rule level; **DORA Art. 28 pre-contractual assessment + Art. 30 CTPP register** via GV.SC-04 + GV.SC-07 (supplier risks understood/recorded/prioritized/assessed/responded/monitored) + ID.RA-10 (critical suppliers assessed prior to acquisition); NIS 2 + GDPR + CRA; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -469,7 +472,7 @@ note_inputs: >
   priority_label: MUST
   csf_subcategories: [GV.SC-09]
   privacy_subcategories: [ID.IM-P7]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: SOLE AUTHORITY CRA (no GDPR/NIS2/DORA/AI Act); no AI-C* — no AI Act duty; structured bill-of-materials (industry-standard formats) in CI/CD; CRA Art. 13(13) 10-year documentation retention; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -481,7 +484,7 @@ note_inputs: >
   priority_label: MUST
   csf_subcategories: [GV.SC-05,GV.SC-06]
   privacy_subcategories: [GV.PO-P5]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* in source — no AI Act duty at the rule level; **DORA Art. 30 mandatory CTPP clauses** (9 elements per OJ) + NIS 2 supply chain + AI Act Art. 25 downstream; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -493,7 +496,8 @@ note_inputs: >
   priority_label: MUST
   csf_subcategories: [DE.CM-06,PR.IR-01]
   privacy_subcategories: [UNMAPPED_PF]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  unmapped_pf_justification: "no PF 1.0 analogue for this rule's privacy dimension (element-level gap, per SPEC §4.6)"
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* in source — no AI Act duty; **DORA Art. 28 exit strategy mandatory for critical vendors** + NIS 2 supply chain; API gateway enforces schema validation + rate limiting; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -505,7 +509,7 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [PR.PS-06,ID.RA-01]
   privacy_subcategories: [GV.PO-P2,CT.PO-P4,CT.DP-P2,CT.DP-P5]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* in source — AVG(NI)=2.667 below MUST threshold → SHOULD; **T-004 RESOLVED** — Follow CRA higher bar (NI=3 MUST); industry secure software development framework (SP 800-218) + industry software assurance maturity model Level 3 + architecture review board; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -517,7 +521,8 @@ note_inputs: >
   priority_label: MUST
   csf_subcategories: [PR.PS-06]
   privacy_subcategories: [UNMAPPED_PF]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  unmapped_pf_justification: "no PF 1.0 analogue for this rule's privacy dimension (element-level gap, per SPEC §4.6)"
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* in source — no AI Act duty at the rule level; DORA Art. 10 + NIS 2 Art. 21 secure SDLC; SAST (Checkmarx) blocking merge + DAST + secrets; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -529,7 +534,8 @@ note_inputs: >
   priority_label: MUST
   csf_subcategories: [PR.PS-06,PR.PS-02]
   privacy_subcategories: [UNMAPPED_PF]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  unmapped_pf_justification: "no PF 1.0 analogue for this rule's privacy dimension (element-level gap, per SPEC §4.6)"
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* in source — no AI Act duty at the rule level; DORA Art. 10 + NIS 2 Art. 21; SLSA Level 3 build provenance + image signing (Cosign); frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -541,7 +547,7 @@ note_inputs: >
   priority_label: MUST
   csf_subcategories: [ID.RA-08]
   privacy_subcategories: [ID.RA-P3]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* in source — no AI Act duty; **DORA Art. 10 ICT change management** (mandatory for ICT systems) + NIS 2 Art. 10; managed change management + 4-eyes + CAB review for critical changes; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -553,7 +559,7 @@ note_inputs: >
   priority_label: MUST
   csf_subcategories: [PR.AT-01]
   privacy_subcategories: [GV.AT-P1,GV.AT-P2]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* in source — no AI Act duty at the rule level; dedicated security awareness programme (SANS framework) + monthly phishing simulation + annual certification; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -577,7 +583,8 @@ note_inputs: >
   priority_label: MUST
   csf_subcategories: [GV.RR-01,PR.AT-02]
   privacy_subcategories: [UNMAPPED_PF]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  unmapped_pf_justification: "no PF 1.0 analogue for this rule's privacy dimension (element-level gap, per SPEC §4.6)"
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* in source — no AI Act duty at the rule level; **NIS 2 Art. 20 + DORA Art. 5(2) dual mandate** — management body may be held **personally liable**; board briefing programme + personal liability acknowledged in writing; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -613,7 +620,7 @@ note_inputs: >
   priority_label: MUST
   csf_subcategories: [ID.AM-01,ID.AM-02,ID.AM-07]
   privacy_subcategories: [ID.IM-P1,ID.IM-P4,ID.IM-P6,ID.IM-P8]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* in source — no AI Act duty at the rule level; **DORA Art. 8 ICT systems inventory mandatory** + NIS 2 Art. 21 + CRA Annex VII; managed CMDB + automated discovery + quarterly reconciliation; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -661,6 +668,7 @@ note_inputs: >
   priority_label: MUST
   csf_subcategories: [ID.IM-01,ID.IM-02,ID.IM-03]
   privacy_subcategories: [UNMAPPED_PF]
+  unmapped_pf_justification: "no PF 1.0 analogue for this rule's privacy dimension (element-level gap, per SPEC §4.6)"
   airmf_subcategories: [MEASURE-1.1,MEASURE-2.1,MEASURE-2.3,MEASURE-2.7,MAP-3.3]
   mapping_rationale: AI-C* present (AI-C21, AI-C27) — AI RMF anchor via SR-AIACT-003 (AI metrics + adversarial robustness); **DORA Art. 24-27 testing programme** + AI Act Art. 43 conformity assessment + GDPR DPIA review + CRA self-declaration; T-005 cycle orchestration (DORA TLPT every 3y + ISO 27001 annual + AI Act conformity in between); frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
@@ -676,7 +684,7 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [PR.DS-01,PR.DS-10]
   privacy_subcategories: [PR.DS-P1,CT.DP-P2]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3 framework-anchored; industry-standard symmetric encryption with authenticated mode per documented storage cryptographic standard; ISO 27001 A.8.24; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -688,7 +696,7 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [PR.DS-02]
   privacy_subcategories: [PR.DS-P2]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; modern transport cryptographic standard with forward secrecy + certificate transparency; documented transport cryptographic standard; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -700,7 +708,7 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [PR.DS-01]
   privacy_subcategories: [PR.DS-P1,CT.DP-P2]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; designated cryptographic material custody with validated modules and automated material rotation; documented key-management standard; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -712,7 +720,7 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [PR.DS-01,PR.DS-02]
   privacy_subcategories: [PR.DS-P1,CT.DM-P1,CT.DM-P3]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; SHA-256+ file integrity monitoring (FIM) for AI model artifacts; ISO 27001 A.8.28; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -724,7 +732,7 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [ID.RA-01,DE.CM-01]
   privacy_subcategories: [ID.RA-P3,ID.RA-P5]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; authenticated vulnerability scanning with CVSS v3.1; industry security testing standards (V1) + NIST RA-5 + CIS Control 7; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -736,7 +744,7 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [GV.SC-09]
   privacy_subcategories: [ID.IM-P7]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; machine-readable bill-of-materials (SPDX and industry-standard structured formats) in CI/CD; documented supply-chain risk standard + EO 14028; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -748,7 +756,8 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [PR.PS-02]
   privacy_subcategories: [UNMAPPED_PF]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  unmapped_pf_justification: "no PF 1.0 analogue for this rule's privacy dimension (element-level gap, per SPEC §4.6)"
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; vulnerability management programme with MTTD/MTTR metrics; ISO 27001 A.8.8 + NIST SI-2; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -760,7 +769,7 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [ID.IM-02,ID.RA-03]
   privacy_subcategories: [ID.RA-P3,ID.RA-P4,ID.RA-P5]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; TIBER-EU methodology for TLPT; DORA RTS on TLPT; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -772,7 +781,7 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [PR.AA-01,PR.AA-05]
   privacy_subcategories: [CT.PO-P1]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; RBAC with HR system integration; ISO 27001 A.9.2 + NIST AC-2; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -784,7 +793,8 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [PR.AA-03]
   privacy_subcategories: [UNMAPPED_PF]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  unmapped_pf_justification: "no PF 1.0 analogue for this rule's privacy dimension (element-level gap, per SPEC §4.6)"
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; phishing-resistant authentication mechanisms with hardware security tokens for documented identity assurance framework AAL3; documented identity assurance framework + industry phishing-resistant auth standards; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -796,7 +806,7 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [PR.AA-05,PR.AA-01]
   privacy_subcategories: [CT.PO-P1]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; PAM with JIT access, session recording, credential vaulting; NIST AC-6 + CIS Control 6; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -808,7 +818,7 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [PR.PS-01]
   privacy_subcategories: [CT.DP-P4,CT.PO-P4]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; hardened-default baseline Level 2 for all server/network/cloud; documented open-source configuration tool automation; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -820,7 +830,7 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [DE.AE-02,DE.CM-01]
   privacy_subcategories: [CM.AW-P7]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; incident response playbooks covering data breach, ransomware, AI model compromise, supply chain attack; ISO 27001 A.5.24/A.5.26 + NIST IR-8; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -832,7 +842,7 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [RS.MI-01,RS.MI-02]
   privacy_subcategories: [PR.PO-P7,CT.DM-P10]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; BCP/DRP per ISO 22301 with annual BCP test + semi-annual DRP failover drill; ISO 22301:2019 + NIST CP-2/CP-10; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -844,7 +854,7 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [RS.CO-02,RS.CO-03]
   privacy_subcategories: [CM.AW-P7,CM.PO-P2,CM.PO-P1,GV.PO-P5]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; quarterly tabletop exercises for IR teams; NIST CSF 2.0 RS.MA-01 + NIST IR-3; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -856,7 +866,8 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [RC.RP-01,RC.RP-03,RC.RP-05]
   privacy_subcategories: [UNMAPPED_PF]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  unmapped_pf_justification: "no PF 1.0 analogue for this rule's privacy dimension (element-level gap, per SPEC §4.6)"
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; automated backup verification with quarterly full restore drills + immutable backups isolated from production; NIST CP-9 + ISO 27001 A.8.13; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -868,7 +879,7 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [PR.DS-10,ID.AM-03]
   privacy_subcategories: [CT.PO-P4,CT.DP-P4,ID.RA-P3]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; data classification schema with automated discovery and tagging; ISO 27001 A.8.2/A.8.3 + NIST AC-16; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -880,7 +891,7 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [PR.DS-10]
   privacy_subcategories: [CT.DM-P4,CT.DM-P5]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; media sanitization per documented media sanitization standard (Clear/Purge/Destroy) with cryptographic erase; documented media sanitization standard; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -892,7 +903,7 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [UNMAPPED_CSF]
   privacy_subcategories: [CT.DM-P1,CT.DM-P6]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; UNMAPPED_CSF mirrors CR-D-05.4-001 (portability has no CSF anchor); GDPR Art. 20 + JSON/CSV export formats; ISO 27001 A.8.10 + NIST AC-4; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -904,7 +915,7 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [GV.SC-04,GV.SC-07]
   privacy_subcategories: [ID.IM-P2]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; SIG Lite v7 + CSA CAIQ v4 vendor assessment; documented third-party security attestation / ISO 27001 certification requirement for critical vendors; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -916,7 +927,7 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [GV.SC-05,GV.SC-06]
   privacy_subcategories: [GV.PO-P5]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; minimum security requirements in vendor contracts (audit rights, 24h breach notification, DPA, subcontractor controls); ISO 27001 A.5.19/A.5.20 + NIST SA-9; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -928,7 +939,8 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [DE.CM-06,PR.IR-01]
   privacy_subcategories: [UNMAPPED_PF]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  unmapped_pf_justification: "no PF 1.0 analogue for this rule's privacy dimension (element-level gap, per SPEC §4.6)"
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; vendor exit strategies with data migration plans + alternative provider identification; documented supply-chain risk standard; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -940,7 +952,7 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [PR.PS-06,ID.RA-01]
   privacy_subcategories: [GV.PO-P2,CT.PO-P4,CT.DP-P2,CT.DP-P5]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; industry secure software development framework practices (Prepare/Protect/Produce/Respond) integrated with SDLC; documented secure software development framework; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -952,7 +964,8 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [PR.PS-06]
   privacy_subcategories: [UNMAPPED_PF]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  unmapped_pf_justification: "no PF 1.0 analogue for this rule's privacy dimension (element-level gap, per SPEC §4.6)"
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; static and dynamic analysis tools per industry security testing standards Level 2 in CI/CD + dependency scanning + secrets detection; industry security testing standards (V3/V4/V14) + NIST SI-2; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -964,7 +977,8 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [PR.PS-06,PR.PS-02]
   privacy_subcategories: [UNMAPPED_PF]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  unmapped_pf_justification: "no PF 1.0 analogue for this rule's privacy dimension (element-level gap, per SPEC §4.6)"
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; IaC scanning with documented open-source IaC scanner + container image scanning before deployment; documented container security standard + hardened-default baseline Control 16; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -976,7 +990,7 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [ID.RA-08]
   privacy_subcategories: [ID.RA-P3]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; change management with peer review + automated testing + dual approval; CAB for high-risk changes; ISO 27001 A.8.29/A.8.32 + NIST CM-3; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -988,7 +1002,7 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [PR.AT-01]
   privacy_subcategories: [GV.AT-P1,GV.AT-P2]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; security awareness per SANS framework + phishing simulations + social engineering defense + secure coding for developers + AI ethics for data science teams; SANS + ISO 27001 A.6.3; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -1000,7 +1014,7 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [PR.AT-02]
   privacy_subcategories: [GV.AT-P1,GV.AT-P2]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; security competence framework with role-based certification paths (CISSP/CISM + cloud + AI governance training for ML teams); NIST NICE + ISO 27001 A.6.3; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -1012,7 +1026,8 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [GV.RR-01,PR.AT-02]
   privacy_subcategories: [UNMAPPED_PF]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  unmapped_pf_justification: "no PF 1.0 analogue for this rule's privacy dimension (element-level gap, per SPEC §4.6)"
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; executive cyber risk reporting with board-level dashboards + regulatory compliance status + risk metrics + incident trends + AI governance indicators; NIST CSF 2.0 GV.OC + ISO 27001 A.5.1; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -1024,7 +1039,7 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [GV.PO-01,GV.PO-02]
   privacy_subcategories: [GV.PO-P1,GV.PO-P5]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; ISMS per ISO 27001:2022 with risk assessment, treatment plan, SoA, management review; integrate regulatory compliance requirements into ISMS scope; ISO 27001:2022 + ISO 27002:2022; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -1036,7 +1051,7 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [ID.RA-04,ID.RA-05,GV.RM-06]
   privacy_subcategories: [ID.RA-P3,ID.RA-P4,ID.RA-P5]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; risk assessments per ISO 27005 with asset-based risk analysis + threat modeling + vulnerability assessment + residual risk calculation + AI-specific risk factors; ISO 27005:2022 + documented risk assessment standard; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -1072,7 +1087,7 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [DE.CM-01,DE.CM-09,DE.AE-02]
   privacy_subcategories: [CM.AW-P7]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; centralized audit-log/automated-orchestration platform with automated threat correlation, incident orchestration, response playbooks; integrate with all data sources (network/endpoint/cloud/application/AI system logs); documented incident response standard + SI-4; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -1084,7 +1099,7 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [PR.PS-04,DE.AE-03,RS.AN-06]
   privacy_subcategories: [CT.DM-P9]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; centralized log management per documented log management standard with cryptographic hashing + PII separation + access controls; documented log management standard + AU-2/AU-3/AU-11; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -1096,7 +1111,8 @@ note_inputs: >
   priority_label: SHOULD
   csf_subcategories: [ID.IM-01,ID.IM-02,ID.IM-03]
   privacy_subcategories: [UNMAPPED_PF]
-  airmf_subcategories: [UNMAPPED_AIRMF]
+  unmapped_pf_justification: "no PF 1.0 analogue for this rule's privacy dimension (element-level gap, per SPEC §4.6)"
+  airmf_subcategories: [N/A (non-AI scope)]
   mapping_rationale: no AI-C* — P3; penetration testing per industry security testing framework v4 (web/API/infrastructure/AI system testing) + annual independent third-party testers; industry security testing framework (v4) + PT-ES; frameworks are mapping targets, never derivation sources (AEGIS invariant)
 ```
 
@@ -1385,7 +1401,7 @@ This rule is applied to every row in §5.1.
 ### §6.2 — Privacy FW 1.0 subcategories not covered
 
 > The 68 SR in `02b_SecurityRules_NISTPF.md` cover 59/104 active PF subcategories (100% of GDPR-touched sub-domains). The 45 unused active PF subcategories (104-59) are:
-> - Specialised de-identification (`UNMAPPED_PRIVACY (CT.DP family has -P1..-P5 only)` range -P6..-P9) — no direct GDPR clause
+> - Specialised de-identification (`UNMAPPED_PF (CT.DP family has -P1..-P5 only)` range -P6..-P9) — no direct GDPR clause
 > - Data provenance lineage (`CM.AW-P6`) — not required by GDPR
 > - Business environment subcats (`ID.BE-P*`) — partially covered by `ID.IM-P*` (same intent)
 > - Training/awareness variants beyond what the GDPR-SR file covers
@@ -1451,7 +1467,7 @@ After the FN-02 fix, the following transformations were applied (literal IDs omi
 
 2. **1 v1.0-redirect PF ID (resolved)** — replaced in §1, §3, §6.2, §8: the redirect source (PR.PO family) is replaced with `UNMAPPED_PF` (v1.0 redirect target) — 7 occurrences across the affected §1 table cell, §3 YAML CR + BPR cards, §6.2 explanatory text, §6.5.1 (this section), and §8 unified matrix table.
 
-3. **1 non-existent PF ID (UNMAPPED)** — replaced in §6.2: the `CT.DP` family beyond `-P5` is replaced with `UNMAPPED_PRIVACY (CT.DP family has -P1..-P5 only)` — descriptive reference only (the range `-P6..-P9` describes special de-identification techniques not anchored by a Case_03 CR).
+3. **1 non-existent PF ID (UNMAPPED)** — replaced in §6.2: the `CT.DP` family beyond `-P5` is replaced with `UNMAPPED_PF (CT.DP family has -P1..-P5 only)` — descriptive reference only (the range `-P6..-P9` describes special de-identification techniques not anchored by a Case_03 CR).
 
 4. **6 descriptive CSF IDs in §6.1 table (non-frozen references, not in active mapping)** — kept as descriptive references with `("non-frozen" reference) ` prefix (see §6.1 table): one ID in the GV.SC family beyond -05, two in the DE.CM family beyond -03, one in the RS.MI family beyond -02, one in the RS.AN family range starting -01, and one in the RC.CO family range starting -01. These are NOT used in active CR/BPR mappings — they are gap-analysis references described in §6.1 only. The original §6.5 self-check that referenced two legacy Case_02 carry-over IDs (one in the ID.AM family beyond -07 and one in the RS.RP family beyond -01) was dropped during the FN-02 cleanup (no active or descriptive mention of these IDs remains in Doc 13 — note: the literal strings have been removed from the inventory text to avoid the §6.5 self-check round-tripping the FN-02 false-positive; the IDs are documented in the Validator's report at `02_PHASE2_RULES_RICH/validation/VALIDATOR_BLOCOG.md` §C FN-02).
 
@@ -1639,79 +1655,79 @@ graph LR
 | rule_id | type | NI | regulations | subdomain | csf_subcats | priv_subcats | airmf_subcats |
 |---------|------|----|-------------|-----------|-------------|--------------|---------------|
 | CR-D-01.1-001 | CR | 3.00 (MUST) | GDPR,CRA,NIS2,DORA,AI_Act | D-01.1 | PR.DS-01 | PR.DS-P1,CT.DP-P2 | GOVERN-1.6,MEASURE-2.7,MEASURE-2.5 |
-| CR-D-01.2-001 | CR | 2.00 (SHOULD) | GDPR,CRA,DORA | D-01.2 | PR.DS-02 | PR.DS-P2 | UNMAPPED_AIRMF |
+| CR-D-01.2-001 | CR | 2.00 (SHOULD) | GDPR,CRA,DORA | D-01.2 | PR.DS-02 | PR.DS-P2 | N/A (non-AI scope) |
 | CR-D-01.3-001 | CR | 3.00 (MUST) | CRA,DORA | D-01.3 | PR.DS-01 | PR.DS-P1,CT.DP-P2 | MEASURE-2.7,GOVERN-1.6 |
 | CR-D-01.4-001 | CR | 3.00 (MUST) | GDPR,CRA,AI_Act | D-01.4 | PR.DS-01,PR.DS-02 | PR.DS-P1,CT.DM-P1,CT.DM-P3 | MEASURE-2.6,MEASURE-2.7,MANAGE-2.3 |
 | CR-D-02.1-001 | CR | 3.00 (MUST) | CRA,NIS2,DORA,AI_Act | D-02.1 | ID.RA-01; ID.RA-08 | ID.RA-P3; ID.RA-P5 | MEASURE-2.1,MEASURE-2.3,MANAGE-1.3 |
-| CR-D-02.2-001 | CR | 3.00 (MUST) | CRA,NIS2,DORA | D-02.2 | PR.PS-02 | UNMAPPED_PF | UNMAPPED_AIRMF |
-| CR-D-02.3-001 | CR | 3.00 (MUST) | CRA | D-02.3 | ID.RA-08 | ID.IM-P7,GV.PO-P5 | UNMAPPED_AIRMF |
+| CR-D-02.2-001 | CR | 3.00 (MUST) | CRA,NIS2,DORA | D-02.2 | PR.PS-02 | UNMAPPED_PF (no PF 1.0 analogue for product patch/OTA update management) | N/A (non-AI scope) |
+| CR-D-02.3-001 | CR | 3.00 (MUST) | CRA | D-02.3 | ID.RA-08 | ID.IM-P7,GV.PO-P5 | N/A (non-AI scope) |
 | CR-D-02.4-001 | CR | 3.00 (MUST) | DORA,AI_Act | D-02.4 | ID.IM-02,ID.RA-03 | ID.RA-P3,ID.RA-P4,ID.RA-P5 | MEASURE-1.1,MEASURE-2.1,MEASURE-2.3,MAP-3.3,MEASURE-2.7 |
 | CR-D-03.1-001 | CR | 3.00 (MUST) | CRA,NIS2,DORA,AI_Act | D-03.1 | PR.AA-01,PR.AA-03,PR.AA-05 | CT.PO-P1 | GOVERN-1.4,MAP-3.4,GOVERN-2.1 |
-| CR-D-03.2-001 | CR | 2.00 (SHOULD) | CRA,NIS2,DORA | D-03.2 | PR.AA-03 | UNMAPPED_PF | UNMAPPED_AIRMF |
-| CR-D-03.3-001 | CR | 3.00 (MUST) | GDPR,NIS2,DORA | D-03.3 | PR.AA-05,PR.AA-01 | CT.PO-P1 | UNMAPPED_AIRMF |
-| CR-D-03.4-001 | CR | 3.00 (MUST) | CRA | D-03.4 | PR.PS-01 | CT.DP-P4,CT.PO-P4 | UNMAPPED_AIRMF |
-| CR-D-04.1-001 | CR | 3.00 (MUST) | CRA,NIS2,DORA | D-04.1 | DE.AE-02,DE.CM-01,DE.CM-09 | CM.AW-P7 | UNMAPPED_AIRMF |
-| CR-D-04.2-001 | CR | 2.00 (SHOULD) | GDPR,CRA,NIS2,DORA | D-04.2 | RS.MI-01,RS.MI-02 | PR.PO-P7,CT.DM-P10 | UNMAPPED_AIRMF |
+| CR-D-03.2-001 | CR | 2.00 (SHOULD) | CRA,NIS2,DORA | D-03.2 | PR.AA-03 | UNMAPPED_PF (no PF 1.0 MFA subcategory) | N/A (non-AI scope) |
+| CR-D-03.3-001 | CR | 3.00 (MUST) | GDPR,NIS2,DORA | D-03.3 | PR.AA-05,PR.AA-01 | CT.PO-P1 | N/A (non-AI scope) |
+| CR-D-03.4-001 | CR | 3.00 (MUST) | CRA | D-03.4 | PR.PS-01 | CT.DP-P4,CT.PO-P4 | N/A (non-AI scope) |
+| CR-D-04.1-001 | CR | 3.00 (MUST) | CRA,NIS2,DORA | D-04.1 | DE.AE-02,DE.CM-01,DE.CM-09 | CM.AW-P7 | N/A (non-AI scope) |
+| CR-D-04.2-001 | CR | 2.00 (SHOULD) | GDPR,CRA,NIS2,DORA | D-04.2 | RS.MI-01,RS.MI-02 | PR.PO-P7,CT.DM-P10 | N/A (non-AI scope) |
 | CR-D-04.3-001 | CR | 3.00 (MUST) | GDPR,CRA,NIS2,DORA,AI_Act | D-04.3 | RS.CO-02,RS.CO-03 | CM.AW-P7,CM.PO-P2,CM.PO-P1,GV.PO-P5 | MANAGE-2.3,MANAGE-4.3,GOVERN-1.1 |
-| CR-D-04.4-001 | CR | 2.00 (SHOULD) | GDPR,NIS2,DORA | D-04.4 | RC.RP-01,RC.RP-03,RC.RP-05 | UNMAPPED_PF | UNMAPPED_AIRMF |
+| CR-D-04.4-001 | CR | 2.00 (SHOULD) | GDPR,NIS2,DORA | D-04.4 | RC.RP-01,RC.RP-03,RC.RP-05 | UNMAPPED_PF (no PF 1.0 backup/DR recovery subcategory) | N/A (non-AI scope) |
 | CR-D-05.1-001 | CR | 3.00 (MUST) | GDPR,CRA,AI_Act | D-05.1 | PR.DS-10,ID.AM-03 | CT.PO-P4,CT.DP-P4,ID.RA-P3 | GOVERN-1.4,MAP-2.1,MEASURE-2.11,MAP-2.2 |
 | CR-D-05.2-001 | CR | 3.00 (MUST) | GDPR,AI_Act | D-05.2 | PR.DS-01,PR.PS-06 | CT.PO-P4,CT.DM-P5 | MAP-2.1,MEASURE-2.4,MEASURE-2.11 |
-| CR-D-05.3-001 | CR | 3.00 (MUST) | GDPR,CRA | D-05.3 | PR.DS-10 | CT.DM-P4,CT.DM-P5 | UNMAPPED_AIRMF |
-| CR-D-05.4-001 | CR | 3.00 (MUST) | GDPR | D-05.4 | UNMAPPED_CSF | CT.DM-P1,CT.DM-P6 | UNMAPPED_AIRMF |
-| CR-D-06.1-001 | CR | 3.00 (MUST) | GDPR,NIS2,DORA | D-06.1 | GV.SC-04; GV.SC-07; ID.RA-10 | ID.IM-P2 | UNMAPPED_AIRMF |
-| CR-D-06.2-001 | CR | 3.00 (MUST) | CRA | D-06.2 | GV.SC-09 | ID.IM-P7 | UNMAPPED_AIRMF |
-| CR-D-06.3-001 | CR | 3.00 (MUST) | GDPR,NIS2,DORA | D-06.3 | GV.SC-05; GV.SC-06 | GV.PO-P5 | UNMAPPED_AIRMF |
-| CR-D-06.4-001 | CR | 3.00 (MUST) | NIS2,DORA | D-06.4 | DE.CM-06,PR.IR-01 | UNMAPPED_PF | UNMAPPED_AIRMF |
-| CR-D-07.1-001 | CR | 2.00 (SHOULD) | GDPR,CRA | D-07.1 | PR.PS-06,ID.RA-01 | GV.PO-P2,CT.PO-P4,CT.DP-P2,CT.DP-P5 | UNMAPPED_AIRMF |
-| CR-D-07.2-001 | CR | 3.00 (MUST) | NIS2,DORA | D-07.2 | PR.PS-06 | UNMAPPED_PF | UNMAPPED_AIRMF |
-| CR-D-07.3-001 | CR | 3.00 (MUST) | NIS2,DORA | D-07.3 | PR.PS-06,PR.PS-02 | UNMAPPED_PF | UNMAPPED_AIRMF |
-| CR-D-07.4-001 | CR | 3.00 (MUST) | NIS2,DORA | D-07.4 | ID.RA-07 | ID.RA-P3 | UNMAPPED_AIRMF |
-| CR-D-08.1-001 | CR | 3.00 (MUST) | GDPR,NIS2 | D-08.1 | PR.AT-01 | GV.AT-P1,GV.AT-P2 | UNMAPPED_AIRMF |
+| CR-D-05.3-001 | CR | 3.00 (MUST) | GDPR,CRA | D-05.3 | PR.DS-10 | CT.DM-P4,CT.DM-P5 | N/A (non-AI scope) |
+| CR-D-05.4-001 | CR | 3.00 (MUST) | GDPR | D-05.4 | UNMAPPED_CSF | CT.DM-P1,CT.DM-P6 | N/A (non-AI scope) |
+| CR-D-06.1-001 | CR | 3.00 (MUST) | GDPR,NIS2,DORA | D-06.1 | GV.SC-04; GV.SC-07; ID.RA-10 | ID.IM-P2 | N/A (non-AI scope) |
+| CR-D-06.2-001 | CR | 3.00 (MUST) | CRA | D-06.2 | GV.SC-09 | ID.IM-P7 | N/A (non-AI scope) |
+| CR-D-06.3-001 | CR | 3.00 (MUST) | GDPR,NIS2,DORA | D-06.3 | GV.SC-05; GV.SC-06 | GV.PO-P5 | N/A (non-AI scope) |
+| CR-D-06.4-001 | CR | 3.00 (MUST) | NIS2,DORA | D-06.4 | DE.CM-06,PR.IR-01 | UNMAPPED_PF (no PF 1.0 analogue for third-party boundary isolation) | N/A (non-AI scope) |
+| CR-D-07.1-001 | CR | 2.00 (SHOULD) | GDPR,CRA | D-07.1 | PR.PS-06,ID.RA-01 | GV.PO-P2,CT.PO-P4,CT.DP-P2,CT.DP-P5 | N/A (non-AI scope) |
+| CR-D-07.2-001 | CR | 3.00 (MUST) | NIS2,DORA | D-07.2 | PR.PS-06 | UNMAPPED_PF (no PF 1.0 secure-SDLC subcategory) | N/A (non-AI scope) |
+| CR-D-07.3-001 | CR | 3.00 (MUST) | NIS2,DORA | D-07.3 | PR.PS-06,PR.PS-02 | UNMAPPED_PF (no PF 1.0 analogue for CI/CD pipeline security controls) | N/A (non-AI scope) |
+| CR-D-07.4-001 | CR | 3.00 (MUST) | NIS2,DORA | D-07.4 | ID.RA-07 | ID.RA-P3 | N/A (non-AI scope) |
+| CR-D-08.1-001 | CR | 3.00 (MUST) | GDPR,NIS2 | D-08.1 | PR.AT-01 | GV.AT-P1,GV.AT-P2 | N/A (non-AI scope) |
 | CR-D-08.2-001 | CR | 3.00 (MUST) | GDPR,NIS2,AI_Act | D-08.2 | PR.AT-02 | GV.AT-P1,GV.AT-P2 | MAP-3.5,GOVERN-2.1,GOVERN-2.2,GOVERN-3.1 |
-| CR-D-08.3-001 | CR | 3.00 (MUST) | NIS2,DORA | D-08.3 | GV.RR-01,PR.AT-02 | UNMAPPED_PF | UNMAPPED_AIRMF |
+| CR-D-08.3-001 | CR | 3.00 (MUST) | NIS2,DORA | D-08.3 | GV.RR-01,PR.AT-02 | UNMAPPED_PF (no PF 1.0 board-training subcategory) | N/A (non-AI scope) |
 | CR-D-09.1-001 | CR | 3.00 (MUST) | GDPR,CRA,NIS2,DORA,AI_Act | D-09.1 | GV.PO-01,GV.PO-02 | GV.PO-P1,GV.PO-P5,CM.PO-P1 | GOVERN-1.1,GOVERN-1.3,GOVERN-2.1 |
 | CR-D-09.2-001 | CR | 3.00 (MUST) | GDPR,CRA,NIS2,DORA,AI_Act | D-09.2 | ID.RA-04,ID.RA-05,GV.RM-06 | ID.RA-P3,ID.RA-P4,ID.RA-P5 | GOVERN-1.5,MAP-5.1,MANAGE-1.2 |
-| CR-D-09.3-001 | CR | 3.00 (MUST) | NIS2,DORA | D-09.3 | ID.AM-01,ID.AM-02,ID.AM-07 | ID.IM-P1,ID.IM-P4,ID.IM-P6,ID.IM-P8 | UNMAPPED_AIRMF |
+| CR-D-09.3-001 | CR | 3.00 (MUST) | NIS2,DORA | D-09.3 | ID.AM-01,ID.AM-02,ID.AM-07 | ID.IM-P1,ID.IM-P4,ID.IM-P6,ID.IM-P8 | N/A (non-AI scope) |
 | CR-D-09.4-001 | CR | 3.00 (MUST) | GDPR,DORA,AI_Act | D-09.4 | ID.AM-07,GV.OC-03 | ID.IM-P1,ID.IM-P4,ID.IM-P6,ID.IM-P8,CM.PO-P1 | GOVERN-1.4,MAP-1.1,MAP-3.4 |
 | CR-D-10.1-001 | CR | 3.00 (MUST) | CRA,NIS2,DORA,AI_Act | D-10.1 | DE.CM-01,DE.CM-09,DE.AE-02 | CM.AW-P7 | MANAGE-4.1,MEASURE-3.1,MEASURE-4.1,GOVERN-1.5,MEASURE-2.4 |
 | CR-D-10.2-001 | CR | 3.00 (MUST) | CRA,NIS2,DORA,AI_Act | D-10.2 | PR.PS-04,DE.AE-03,RS.AN-06 | CT.DM-P9 | MEASURE-2.4,MEASURE-3.1,GOVERN-1.6 |
-| CR-D-10.3-001 | CR | 3.00 (MUST) | GDPR,CRA,NIS2,DORA,AI_Act | D-10.3 | ID.IM-01,ID.IM-02,ID.IM-03 | UNMAPPED_PF | MEASURE-1.1,MEASURE-2.1,MEASURE-2.3,MEASURE-2.7,MAP-3.3 |
-| BPR-D-01.1-001 | BPR | 2.00 (SHOULD) | — | D-01.1 | PR.DS-01,PR.DS-10 | PR.DS-P1,CT.DP-P2 | UNMAPPED_AIRMF |
-| BPR-D-01.2-001 | BPR | 2.00 (SHOULD) | — | D-01.2 | PR.DS-02 | PR.DS-P2 | UNMAPPED_AIRMF |
-| BPR-D-01.3-001 | BPR | 2.00 (SHOULD) | — | D-01.3 | PR.DS-01 | PR.DS-P1,CT.DP-P2 | UNMAPPED_AIRMF |
-| BPR-D-01.4-001 | BPR | 2.00 (SHOULD) | — | D-01.4 | PR.DS-01,PR.DS-02 | PR.DS-P1,CT.DM-P1,CT.DM-P3 | UNMAPPED_AIRMF |
-| BPR-D-02.1-001 | BPR | 2.00 (SHOULD) | — | D-02.1 | ID.RA-01,DE.CM-01 | ID.RA-P3,ID.RA-P5 | UNMAPPED_AIRMF |
-| BPR-D-02.2-001 | BPR | 2.00 (SHOULD) | — | D-06.2 | GV.SC-09 | ID.IM-P7 | UNMAPPED_AIRMF |
-| BPR-D-02.3-001 | BPR | 2.00 (SHOULD) | — | D-02.2 | PR.PS-02 | UNMAPPED_PF | UNMAPPED_AIRMF |
-| BPR-D-02.4-001 | BPR | 2.00 (SHOULD) | — | D-02.4 | ID.IM-02,ID.RA-03 | ID.RA-P3,ID.RA-P4,ID.RA-P5 | UNMAPPED_AIRMF |
-| BPR-D-03.1-001 | BPR | 2.00 (SHOULD) | — | D-03.1 | PR.AA-01,PR.AA-05 | CT.PO-P1 | UNMAPPED_AIRMF |
-| BPR-D-03.2-001 | BPR | 2.00 (SHOULD) | — | D-03.2 | PR.AA-03 | UNMAPPED_PF | UNMAPPED_AIRMF |
-| BPR-D-03.3-001 | BPR | 2.00 (SHOULD) | — | D-03.3 | PR.AA-05,PR.AA-01 | CT.PO-P1 | UNMAPPED_AIRMF |
-| BPR-D-03.4-001 | BPR | 2.00 (SHOULD) | — | D-03.4 | PR.PS-01 | CT.DP-P4,CT.PO-P4 | UNMAPPED_AIRMF |
-| BPR-D-04.1-001 | BPR | 2.00 (SHOULD) | — | D-04.1 | DE.AE-02,DE.CM-01 | CM.AW-P7 | UNMAPPED_AIRMF |
-| BPR-D-04.2-001 | BPR | 2.00 (SHOULD) | — | D-04.2 | RS.MI-01,RS.MI-02 | PR.PO-P7,CT.DM-P10 | UNMAPPED_AIRMF |
-| BPR-D-04.3-001 | BPR | 2.00 (SHOULD) | — | D-04.3 | RS.CO-02,RS.CO-03 | CM.AW-P7,CM.PO-P2,CM.PO-P1,GV.PO-P5 | UNMAPPED_AIRMF |
-| BPR-D-04.4-001 | BPR | 2.00 (SHOULD) | — | D-04.4 | RC.RP-01,RC.RP-03,RC.RP-05 | UNMAPPED_PF | UNMAPPED_AIRMF |
-| BPR-D-05.1-001 | BPR | 2.00 (SHOULD) | — | D-05.1 | PR.DS-10,ID.AM-03 | CT.PO-P4,CT.DP-P4,ID.RA-P3 | UNMAPPED_AIRMF |
-| BPR-D-05.3-001 | BPR | 2.00 (SHOULD) | — | D-05.3 | PR.DS-10 | CT.DM-P4,CT.DM-P5 | UNMAPPED_AIRMF |
-| BPR-D-05.4-001 | BPR | 2.00 (SHOULD) | — | D-05.4 | UNMAPPED_CSF | CT.DM-P1,CT.DM-P6 | UNMAPPED_AIRMF |
-| BPR-D-06.1-001 | BPR | 2.00 (SHOULD) | — | D-06.1 | GV.SC-04; GV.SC-07 | ID.IM-P2 | UNMAPPED_AIRMF |
-| BPR-D-06.3-001 | BPR | 2.00 (SHOULD) | — | D-06.3 | GV.SC-05; GV.SC-06 | GV.PO-P5 | UNMAPPED_AIRMF |
-| BPR-D-06.4-001 | BPR | 2.00 (SHOULD) | — | D-06.4 | DE.CM-06,PR.IR-01 | UNMAPPED_PF | UNMAPPED_AIRMF |
-| BPR-D-07.1-001 | BPR | 2.00 (SHOULD) | — | D-07.1 | PR.PS-06,ID.RA-01 | GV.PO-P2,CT.PO-P4,CT.DP-P2,CT.DP-P5 | UNMAPPED_AIRMF |
-| BPR-D-07.2-001 | BPR | 2.00 (SHOULD) | — | D-07.2 | PR.PS-06 | UNMAPPED_PF | UNMAPPED_AIRMF |
-| BPR-D-07.3-001 | BPR | 2.00 (SHOULD) | — | D-07.3 | PR.PS-06,PR.PS-02 | UNMAPPED_PF | UNMAPPED_AIRMF |
-| BPR-D-07.4-001 | BPR | 2.00 (SHOULD) | — | D-07.4 | ID.RA-07 | ID.RA-P3 | UNMAPPED_AIRMF |
-| BPR-D-08.1-001 | BPR | 2.00 (SHOULD) | — | D-08.1 | PR.AT-01 | GV.AT-P1,GV.AT-P2 | UNMAPPED_AIRMF |
-| BPR-D-08.2-001 | BPR | 2.00 (SHOULD) | — | D-08.2 | PR.AT-02 | GV.AT-P1,GV.AT-P2 | UNMAPPED_AIRMF |
-| BPR-D-08.3-001 | BPR | 2.00 (SHOULD) | — | D-08.3 | GV.RR-01,PR.AT-02 | UNMAPPED_PF | UNMAPPED_AIRMF |
-| BPR-D-09.1-001 | BPR | 2.00 (SHOULD) | — | D-09.1 | GV.PO-01,GV.PO-02 | GV.PO-P1,GV.PO-P5 | UNMAPPED_AIRMF |
-| BPR-D-09.2-001 | BPR | 2.00 (SHOULD) | — | D-09.2 | ID.RA-04,ID.RA-05,GV.RM-06 | ID.RA-P3,ID.RA-P4,ID.RA-P5 | UNMAPPED_AIRMF |
+| CR-D-10.3-001 | CR | 3.00 (MUST) | GDPR,CRA,NIS2,DORA,AI_Act | D-10.3 | ID.IM-01,ID.IM-02,ID.IM-03 | UNMAPPED_PF (no PF 1.0 compliance-testing subcategory) | MEASURE-1.1,MEASURE-2.1,MEASURE-2.3,MEASURE-2.7,MAP-3.3 |
+| BPR-D-01.1-001 | BPR | 2.00 (SHOULD) | — | D-01.1 | PR.DS-01,PR.DS-10 | PR.DS-P1,CT.DP-P2 | N/A (non-AI scope) |
+| BPR-D-01.2-001 | BPR | 2.00 (SHOULD) | — | D-01.2 | PR.DS-02 | PR.DS-P2 | N/A (non-AI scope) |
+| BPR-D-01.3-001 | BPR | 2.00 (SHOULD) | — | D-01.3 | PR.DS-01 | PR.DS-P1,CT.DP-P2 | N/A (non-AI scope) |
+| BPR-D-01.4-001 | BPR | 2.00 (SHOULD) | — | D-01.4 | PR.DS-01,PR.DS-02 | PR.DS-P1,CT.DM-P1,CT.DM-P3 | N/A (non-AI scope) |
+| BPR-D-02.1-001 | BPR | 2.00 (SHOULD) | — | D-02.1 | ID.RA-01,DE.CM-01 | ID.RA-P3,ID.RA-P5 | N/A (non-AI scope) |
+| BPR-D-02.2-001 | BPR | 2.00 (SHOULD) | — | D-06.2 | GV.SC-09 | ID.IM-P7 | N/A (non-AI scope) |
+| BPR-D-02.3-001 | BPR | 2.00 (SHOULD) | — | D-02.2 | PR.PS-02 | UNMAPPED_PF | N/A (non-AI scope) |
+| BPR-D-02.4-001 | BPR | 2.00 (SHOULD) | — | D-02.4 | ID.IM-02,ID.RA-03 | ID.RA-P3,ID.RA-P4,ID.RA-P5 | N/A (non-AI scope) |
+| BPR-D-03.1-001 | BPR | 2.00 (SHOULD) | — | D-03.1 | PR.AA-01,PR.AA-05 | CT.PO-P1 | N/A (non-AI scope) |
+| BPR-D-03.2-001 | BPR | 2.00 (SHOULD) | — | D-03.2 | PR.AA-03 | UNMAPPED_PF (no PF 1.0 MFA subcategory) | N/A (non-AI scope) |
+| BPR-D-03.3-001 | BPR | 2.00 (SHOULD) | — | D-03.3 | PR.AA-05,PR.AA-01 | CT.PO-P1 | N/A (non-AI scope) |
+| BPR-D-03.4-001 | BPR | 2.00 (SHOULD) | — | D-03.4 | PR.PS-01 | CT.DP-P4,CT.PO-P4 | N/A (non-AI scope) |
+| BPR-D-04.1-001 | BPR | 2.00 (SHOULD) | — | D-04.1 | DE.AE-02,DE.CM-01 | CM.AW-P7 | N/A (non-AI scope) |
+| BPR-D-04.2-001 | BPR | 2.00 (SHOULD) | — | D-04.2 | RS.MI-01,RS.MI-02 | PR.PO-P7,CT.DM-P10 | N/A (non-AI scope) |
+| BPR-D-04.3-001 | BPR | 2.00 (SHOULD) | — | D-04.3 | RS.CO-02,RS.CO-03 | CM.AW-P7,CM.PO-P2,CM.PO-P1,GV.PO-P5 | N/A (non-AI scope) |
+| BPR-D-04.4-001 | BPR | 2.00 (SHOULD) | — | D-04.4 | RC.RP-01,RC.RP-03,RC.RP-05 | UNMAPPED_PF (no PF 1.0 backup/DR recovery subcategory) | N/A (non-AI scope) |
+| BPR-D-05.1-001 | BPR | 2.00 (SHOULD) | — | D-05.1 | PR.DS-10,ID.AM-03 | CT.PO-P4,CT.DP-P4,ID.RA-P3 | N/A (non-AI scope) |
+| BPR-D-05.3-001 | BPR | 2.00 (SHOULD) | — | D-05.3 | PR.DS-10 | CT.DM-P4,CT.DM-P5 | N/A (non-AI scope) |
+| BPR-D-05.4-001 | BPR | 2.00 (SHOULD) | — | D-05.4 | UNMAPPED_CSF | CT.DM-P1,CT.DM-P6 | N/A (non-AI scope) |
+| BPR-D-06.1-001 | BPR | 2.00 (SHOULD) | — | D-06.1 | GV.SC-04; GV.SC-07 | ID.IM-P2 | N/A (non-AI scope) |
+| BPR-D-06.3-001 | BPR | 2.00 (SHOULD) | — | D-06.3 | GV.SC-05; GV.SC-06 | GV.PO-P5 | N/A (non-AI scope) |
+| BPR-D-06.4-001 | BPR | 2.00 (SHOULD) | — | D-06.4 | DE.CM-06,PR.IR-01 | UNMAPPED_PF (no PF 1.0 analogue for third-party boundary isolation) | N/A (non-AI scope) |
+| BPR-D-07.1-001 | BPR | 2.00 (SHOULD) | — | D-07.1 | PR.PS-06,ID.RA-01 | GV.PO-P2,CT.PO-P4,CT.DP-P2,CT.DP-P5 | N/A (non-AI scope) |
+| BPR-D-07.2-001 | BPR | 2.00 (SHOULD) | — | D-07.2 | PR.PS-06 | UNMAPPED_PF (no PF 1.0 secure-SDLC subcategory) | N/A (non-AI scope) |
+| BPR-D-07.3-001 | BPR | 2.00 (SHOULD) | — | D-07.3 | PR.PS-06,PR.PS-02 | UNMAPPED_PF (no PF 1.0 analogue for CI/CD pipeline security controls) | N/A (non-AI scope) |
+| BPR-D-07.4-001 | BPR | 2.00 (SHOULD) | — | D-07.4 | ID.RA-07 | ID.RA-P3 | N/A (non-AI scope) |
+| BPR-D-08.1-001 | BPR | 2.00 (SHOULD) | — | D-08.1 | PR.AT-01 | GV.AT-P1,GV.AT-P2 | N/A (non-AI scope) |
+| BPR-D-08.2-001 | BPR | 2.00 (SHOULD) | — | D-08.2 | PR.AT-02 | GV.AT-P1,GV.AT-P2 | N/A (non-AI scope) |
+| BPR-D-08.3-001 | BPR | 2.00 (SHOULD) | — | D-08.3 | GV.RR-01,PR.AT-02 | UNMAPPED_PF (no PF 1.0 board-training subcategory) | N/A (non-AI scope) |
+| BPR-D-09.1-001 | BPR | 2.00 (SHOULD) | — | D-09.1 | GV.PO-01,GV.PO-02 | GV.PO-P1,GV.PO-P5 | N/A (non-AI scope) |
+| BPR-D-09.2-001 | BPR | 2.00 (SHOULD) | — | D-09.2 | ID.RA-04,ID.RA-05,GV.RM-06 | ID.RA-P3,ID.RA-P4,ID.RA-P5 | N/A (non-AI scope) |
 | BPR-D-09.3-001 | BPR | 2.00 (SHOULD) | — | D-09.2 | GV.PO-01,GV.PO-02 | GV.PO-P1,GV.PO-P5 | GOVERN-1.1,GOVERN-1.4,GOVERN-1.5 |
 | BPR-D-09.4-001 | BPR | 2.00 (SHOULD) | — | D-09.1 | GV.PO-01,GV.PO-02 | GV.PO-P1,GV.PO-P5 | GOVERN-1.1,GOVERN-1.4,GOVERN-1.5 |
-| BPR-D-10.1-001 | BPR | 2.00 (SHOULD) | — | D-10.1 | DE.CM-01,DE.CM-09,DE.AE-02 | CM.AW-P7 | UNMAPPED_AIRMF |
-| BPR-D-10.2-001 | BPR | 2.00 (SHOULD) | — | D-10.2 | PR.PS-04,DE.AE-03,RS.AN-06 | CT.DM-P9 | UNMAPPED_AIRMF |
-| BPR-D-10.3-001 | BPR | 2.00 (SHOULD) | — | D-10.3 | ID.IM-01,ID.IM-02,ID.IM-03 | UNMAPPED_PF | UNMAPPED_AIRMF |
+| BPR-D-10.1-001 | BPR | 2.00 (SHOULD) | — | D-10.1 | DE.CM-01,DE.CM-09,DE.AE-02 | CM.AW-P7 | N/A (non-AI scope) |
+| BPR-D-10.2-001 | BPR | 2.00 (SHOULD) | — | D-10.2 | PR.PS-04,DE.AE-03,RS.AN-06 | CT.DM-P9 | N/A (non-AI scope) |
+| BPR-D-10.3-001 | BPR | 2.00 (SHOULD) | — | D-10.3 | ID.IM-01,ID.IM-02,ID.IM-03 | UNMAPPED_PF (no PF 1.0 compliance-testing subcategory) | N/A (non-AI scope) |
 | BPR-D-12.1-001 | BPR | 2.00 (SHOULD) | — | D-02.4 | ID.IM-02,ID.RA-03 | ID.RA-P3,ID.RA-P4,ID.RA-P5 | MEASURE-2.11 |
 | BPR-D-12.2-001 | BPR | 2.00 (SHOULD) | — | D-10.1 | DE.CM-01,DE.CM-09,DE.AE-02 | CM.AW-P7 | MANAGE-4.1,MEASURE-3.1 |
 | BPR-D-12.3-001 | BPR | 2.00 (SHOULD) | — | D-08.2 | PR.AT-02 | GV.AT-P1,GV.AT-P2 | MAP-3.5,GOVERN-2.1,GOVERN-3.1 |

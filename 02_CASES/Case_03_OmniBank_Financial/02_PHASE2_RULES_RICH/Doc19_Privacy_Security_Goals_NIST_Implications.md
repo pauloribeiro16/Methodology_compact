@@ -216,7 +216,7 @@ AI-security controls, and DORA coverage via CSF subcats.
 | AG-D-09.1-002 | D-09.1 | ID.RA-01, GV.RM-01 | GOVERN-5.2, MAP-3.1 | Risk assessment (DORA + AI Act integrated) |
 | AG-D-09.2-002 | D-09.2 | ID.RA-04, RS.MA-02 | MEASURE-2.4 | AI threat modelling + adversarial analysis |
 | AG-D-09.3-002 | D-09.3 | RS.MA-01, RS.MA-02 | MANAGE-2.4 | AI/DORA incident response |
-| AG-D-09.4-002 | D-09.4 | GV.SC-03, UNMAPPED_CSF | MAP-1.5 | Third-party AI model risk (DORA Art. 28 critical ICT) |
+| AG-D-09.4-002 | D-09.4 | GV.SC-03 | MAP-1.5 | Third-party AI model risk (DORA Art. 28 critical ICT) |
 | AG-D-10.1-002 | D-10.1 | RC.RP-01, ID.IM-03 | MANAGE-4.1 | Recovery procedures (DORA Art. 11 resilience testing) |
 
 > **Note:** 52 SG total. The table above shows 14 representative SG; the remaining 38
