@@ -16,7 +16,6 @@ outputs: [Doc11_Structured_Compliance_Matrix.md]
 traceability: AEGIS Class Model → RegulatoryClause, DomainCoverageEntry classes
 related_documents: [00_Taxonomy_Reference.md]
 reconciliation:
-  sprint: 1
   role: reconciliation
   base_doc: ../01_PHASE1_CONTEXT/Doc10_Clause_Mapping_Matrix.md (legacy, frozen)
   notes: |

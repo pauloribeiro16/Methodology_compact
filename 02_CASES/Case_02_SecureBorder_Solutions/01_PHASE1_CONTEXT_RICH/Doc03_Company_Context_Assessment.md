@@ -16,7 +16,6 @@ outputs: [Doc08_Regulatory_Applicability.md]
 traceability: AEGIS Class Model → CompanyContext, ComplianceContext classes
 related_documents: [00_Taxonomy_Reference.md, Doc02_INTAKE_FORM.md]
 reconciliation:
-  sprint: 1
   role: reconciliation
   base_doc: ../01_PHASE1_CONTEXT/Doc03_Company_Context_Assessment.md (legacy, frozen)
   notes: |

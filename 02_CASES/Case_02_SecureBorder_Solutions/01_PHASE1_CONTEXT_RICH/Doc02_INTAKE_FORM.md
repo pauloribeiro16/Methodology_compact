@@ -17,7 +17,6 @@ outputs: [Doc03_Company_Context_Assessment.md, Doc08_Regulatory_Applicability.md
 related_documents: [00_Taxonomy_Reference.md]
 supersedes: 01_Company_Context_LEGACY.md
 reconciliation:
-  sprint: 1
   role: reconciliation
   base_doc: ../00_COMMON/01_Company_Context.md (legacy, frozen; originally named `01_Company_Context.md`, renamed to `Doc02_INTAKE_FORM.md` per Rich Mode convention)
   notes: |

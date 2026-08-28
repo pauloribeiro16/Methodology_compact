@@ -7,7 +7,6 @@ created: 2026-08-07
 updated: 2026-08-13
 author: Executor (Bloco C)
 status: ACTIVE
-sprint: 10
 case: Case_02_SecureBorder_Solutions
 tier: HIGH
 applicable_regulations: [GDPR, CRA, NIS_2, AI_Act]
@@ -63,7 +62,7 @@ note_inputs: >
 > `csf_norm = min(|CSF subcats|) if |CSF subcats|>0 else '—'`; `priv_norm` and `airmf_norm` same convention.
 > Marker vocabulary per SPEC §4.6 (canonical, port Fase 3): `UNMAPPED_CSF` / `UNMAPPED_PF` with justification where no natural anchor exists; `N/A (non-AI scope)` where the rule has no AI dimension; `UNMAPPED_PRIVACY` is a RETIRED token (zero tolerance).
 > Privacy FW mapping sourced from `Regulation/GDPR/02b_SecurityRules_NISTPF.md` (68 SR, 59/104 active subcats; 100% coverage for GDPR-touched sub-domains).
-> AI RMF mapping sourced from `Regulation/AI_Act/02b_SecurityRules_NISTAIRMF.md` (24 SR, 41/72 active subcats). For CR with AI-C* source clauses, AI RMF mapping is anchored via SR-AIACT-XXX. For CR without AI-C* (21 CR), `UNMAPPED_AIRMF` with justification.
+> AI RMF mapping source: the frozen 72-subcategory list `00_METHODOLOGY/PREPROCESSING_by_domain/CONTROLS/NIST_AI_RMF/*.json` (19 GOVERN + 18 MAP + 22 MEASURE + 13 MANAGE). For CR with AI-C* source clauses, AI RMF mapping is anchored via SR-AIACT-XXX; for CR without AI-C* (21 CR), `N/A (non-AI scope)` — adjudicated from the retired UNMAPPED_AIRMF token (port Fase 3).
 > ISO 27001 mapping / secure-development standards mapping from `Framework_Crosswalk_ARM.md` (ACTIVE v1.0; CSF 38/38, ISO 38/38, secure-development standards 23/38; 800-53 out of scope per `note_800_53`).
 
 | rule_id | sub_domain | regulations | NI | CSF 2.0 | Privacy FW 1.0 | AI RMF 1.0 | ISO 27001 | SSDF | csf_norm | priv_norm | airmf_norm |
@@ -894,7 +893,7 @@ note_inputs: >
 >   **NOT IMPLEMENTED** ("what's missing" note mandatory), plus special
 >   categories `N/A — product-security deliverable (SSDF <ID>)` and
 >   `N/A — statutory obligation`.
-> - Numerical maturity scores, 0–4 scales and Tier designations are
+> - Numerical maturity scores, 0–4 scales and Tier designations are PROHIBITED at control and Function level (legacy design, superseded — Posture Model §9).
 >   PROHIBITED at control and Function level (Model §9).
 > - The §5.1 per-control table and the §4.5/§5.2 Function views use the
 >   deterministic legacy backfill (Model §4); the historical scale
@@ -1007,7 +1006,7 @@ note_inputs: >
 
 **Per-control summary stats:** 52 cards in scope (38 CR + 17 BPR = 55 minus 3 OUT-OF-SCOPE per Track B: D-07.4, D-08.3, D-09.3). FN-02 (updated, port Fase 3) — CR-D-07.1-001 airmf anchored to MEASURE-2.7 (previously N/A; no AI-C* in Doc 11 source). FN-03 — `gap_worst` distribution: 0 (D-01.4, D-09.1 + BPR-D-09.1 + BPR-D-09.5), 1 (most — gap_worst = 1 means at least one applicable axis has gap 1), 2 (D-04.3, D-05.3, D-07.1, D-07.3, D-10.1, BPR-D-07.1, BPR-D-07.5, BPR-D-10.1, BPR-D-10.4 — RIGOROUS tiers with explicit cur deficits from `04b §4` top-gaps list).
 
-> **Note — AI-specific BPR subset (8 cards):** The 8 AI-specific BPR rows in `Doc18_Rules_Catalog.md` §5.2 (`BPR-D-07.1-002`, `BPR-D-10.5-001`, `BPR-D-02.4-001`, `BPR-D-02.4-002`, `BPR-D-03.1-002`, `BPR-D-10.2-001`, `BPR-D-04.2-001`, `BPR-D-05.1-001`) are intentionally excluded from the per-control table above because they sit outside the 38 CR + 17 BPR = 55 card count. Their CSF/PF/AI RMF mappings and maturity values are documented in `Doc18_Rules_Catalog.md` §5.2 (see Doc 11 for the authoritative mappings per NIST remediation B1, 2026-08).
+> **Note — AI-specific BPR subset (8 cards):** The 8 AI-specific BPR rows in `Doc18_Rules_Catalog.md` §5.2 (`BPR-D-07.1-002`, `BPR-D-10.5-001`, `BPR-D-02.4-001`, `BPR-D-02.4-002`, `BPR-D-03.1-002`, `BPR-D-10.2-001`, `BPR-D-04.2-001`, `BPR-D-05.1-001`) are intentionally excluded from the per-control table above because they sit outside the 38 CR + 17 BPR = 55 card count. Their CSF/PF/AI RMF mappings and legacy maturity values are documented in `Doc18_Rules_Catalog.md` §5.2 (see Doc 11 for the authoritative mappings per NIST remediation B1, 2026-08).
 
 ### §5.2 — Per-Function aggregated implementation context (15 rows)
 
@@ -1038,7 +1037,7 @@ note_inputs: >
 
 ## §6 — Gap Analysis
 
-> Three axes: (a) framework subcategories not covered by any Case_02 CR/BPR; (b) sub-domains with low target maturity; (c) tension cross-reference.
+> Three axes: (a) framework subcategories not covered by any Case_02 CR/BPR; (b) sub-domains with low target maturity (legacy axis, superseded); (c) tension cross-reference.
 
 ### §6.1 — CSF 2.0 subcategories not covered by any Case_02 CR/BPR
 
@@ -1501,7 +1500,7 @@ graph LR
 
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
-| 1.0 | 2026-08-07 | Executor (Bloco C) | Initial release — Case_02 unified matrix (3 frameworks CSF + Privacy FW + AI RMF) + triple maturity. 38 CR + 17 BPR = 55 cards. §1-§8 present. Tensions T-001..T-004 cross-referenced in §2.5 and §6.5. AI RMF column ACTIVE (not placeholder). |
+| 1.0 | 2026-08-07 | Executor (Bloco C) | Initial release — Case_02 unified matrix (3 frameworks CSF + Privacy FW + AI RMF) + triple maturity (legacy design, superseded by posture statuses port Fase 4). 38 CR + 17 BPR = 55 cards. §1-§8 present. Tensions T-001..T-004 cross-referenced in §2.5 and §6.5. AI RMF column ACTIVE (not placeholder). |
 
 ---
 

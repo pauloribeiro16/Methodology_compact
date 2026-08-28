@@ -11,7 +11,6 @@ inputs: [01_Company_Context.md, 11_Rules_Catalog.md, 10_Privacy_Security_Goals.m
 outputs: [14_Architectural_Nodes.md, 15_Requirements_Allocation.md, 23_Functional_Requirements.md]
 traceability: AEGIS Class Model → UseCase, BusinessGoal, Stakeholder classes
 related_documents: 04_Company_Context_Assessment.md, 07_Structured_Compliance_Matrix.md
-sprint_11_scope: corr-008 Phase 3 ID harmonisation — add Related PSOs column linking UC to PO/SO from Commit D; migrate BPR-AI-NN → BPR-D-XX.Y-NNN; add T-009 (D-10.1 monitoring opt-out) cross-ref; tech-strip vendor/tool mentions.
 ---
 
 # Use Cases Catalog — SecureBorder Solutions

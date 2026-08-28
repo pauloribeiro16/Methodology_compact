@@ -32,7 +32,6 @@ related_documents:
   - ../../../00_METHODOLOGY/PREPROCESSING/SubDomains/index.md
   - ../../../00_METHODOLOGY/PREPROCESSING/SubDomains/
 reconciliation:
-  sprint: 1
   role: reconciliation
   base_doc: ../01_PHASE1_CONTEXT/Doc05_Security_Posture.md (legacy, frozen)
   notes: |

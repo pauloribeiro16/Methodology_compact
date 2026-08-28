@@ -26,7 +26,6 @@ related_documents:
   - ../../../00_METHODOLOGY/CONTEXT/CONTEXT_PHASE1.md
 supersedes: none
 reconciliation:
-  sprint: 1
   role: reconciliation
   base_doc: ../01_PHASE1_CONTEXT/Doc06_ThirdParty_Landscape.md (legacy, frozen)
   notes: |

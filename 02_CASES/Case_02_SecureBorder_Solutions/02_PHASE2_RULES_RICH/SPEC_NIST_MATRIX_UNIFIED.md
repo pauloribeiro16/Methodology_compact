@@ -37,7 +37,7 @@ anti_pattern_note: >
 
 ## ⚠️ POSTURE MODEL SUPERSESSION (2026-08-28, port Fase 4)
 
-> The triple-maturity scoring designed in this SPEC (Tiers T1–T4, 0–4
+> The triple-maturity scoring (legacy design, superseded) in this SPEC (Tiers T1–T4, 0–4
 > per-subcategory scales, 165 numeric cells, fields 16–18 "Maturity") is
 > **SUPERSEDED** by `00_METHODOLOGY/IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md`
 > v2.0 (3 states + N/A categories, deterministic backfill). Doc19 §4/§5.1 and
@@ -233,7 +233,7 @@ O Executor **NÃO DEVE** reconstruir o seguinte — está feito e é input:
 
 ### 4.6 Vocabulário de marcadores (canónico, 2026-08-28)
 
-- `UNMAPPED_PF` — gap element-level na coluna Privacy FW 1.0; OBRIGATÓRIO
+- `UNMAPPED_PF` — gap element-level na coluna Privacy FW 1.0; justificação OBRIGATÓRIA (justification mandatory)
   justificação inline (parêntese) ou `unmapped_pf_justification` (YAML).
 - `UNMAPPED_CSF` — gap element-level na coluna CSF 2.0, com justificação.
 - `N/A (non-AI scope)` — a regra não tem dimensão AI (reg set sem AI_Act, ou
@@ -357,7 +357,6 @@ created: <data>
 updated: <data>
 author: Executor (Bloco C)
 status: ACTIVE
-sprint: 6
 case: Case_02_SecureBorder_Solutions
 tier: HIGH
 applicable_regulations: [GDPR, CRA, NIS_2, AI_Act]

@@ -16,7 +16,6 @@ outputs: ["Doc10_Clause_Mapping_Matrix.md"]
 traceability: "AEGIS Class Model → ComplianceContext, RegulatoryClause classes"
 related_documents: ["00_Taxonomy_Reference.md", "Doc03_Company_Context_Assessment.md"]
 reconciliation:
-  sprint: 1
   role: reconciliation
   base_doc: ../01_PHASE1_CONTEXT/Doc08_Regulatory_Applicability.md (legacy, frozen)
   notes: |

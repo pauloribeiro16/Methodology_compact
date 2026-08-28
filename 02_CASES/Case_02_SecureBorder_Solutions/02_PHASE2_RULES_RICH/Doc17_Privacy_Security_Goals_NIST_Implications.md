@@ -7,7 +7,6 @@ created: 2026-08-08
 updated: 2026-08-13
 author: Rich-Symmetry Executor
 status: ACTIVE
-sprint: 10
 case: Case_02_SecureBorder_Solutions
 tier: HIGH
 applicable_regulations: [GDPR, CRA, NIS 2, AI_Act]

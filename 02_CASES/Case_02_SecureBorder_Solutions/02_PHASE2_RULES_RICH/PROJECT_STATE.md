@@ -20,9 +20,6 @@ total_detail_cards: 55
 implementation_posture_decision: Implementation Posture Model v2.0 adopted (port Fase 4); legacy triple-maturity 165 cells superseded via deterministic backfill
 frameworks_in_scope: [NIST_CSF_2.0, NIST_Privacy_FW_1.1, NIST_AI_RMF_1.0]
 sibling_of: ../02_PHASE2_RULES/
-sprints_complete: [A, B, C, D, E, F, G]
-sprints_pending: []
-sprint_in_progress: none
 verdict: PASS_WITH_FINDINGS
 branch: feature/aegis-p2-case02-csf-pf-airmf
 ---

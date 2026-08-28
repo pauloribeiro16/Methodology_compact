@@ -11,7 +11,6 @@ inputs: [16_Compliance_Gates_Report.md, 15_Requirements_Allocation.md, 14_Archit
 outputs: [18_Functional_Tree.drawio, 22_Traceability_Matrix.xlsx]
 traceability: AEGIS Class Model → FunctionalNode, DecompositionLevel, Track classes
 related_documents: 16_Compliance_Gates_Report.md, 03_Design_Decisions_Log.md
-sprint_11_scope: corr-008 Phase 3 ID harmonisation — introduce FT-X.Y section identifiers and link each L1/L2 functional group to Phase 1 AOs (sub-domain level); tech-strip track-vendor-implementation references; preserve abstract decomposition-level / verification-method axes.
 ---
 
 # Functional Tree — SecureBorder Solutions

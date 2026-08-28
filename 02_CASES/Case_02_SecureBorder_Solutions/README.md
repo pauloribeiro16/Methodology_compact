@@ -14,7 +14,7 @@
   - `01_INTAKE_FORM.md` (Q1-Q72 intake)
   - `04_Company_Context_Assessment.md` (BG-01..BG-05 business goals)
   - `04a_Architecture_DataInventory.md` (system inventory + data flows)
-  - `04b_Security_Posture.md` (current controls + maturity)
+  - `04b_Security_Posture.md` (current controls + legacy maturity, superseded by posture)
   - `04c_ThirdParty_Landscape.md` (subprocessors + DPAs)
   - `04d_Org_Roles_RACI.md` (RACI matrix)
   - `05_Regulatory_Applicability.md` (per-article applicability)

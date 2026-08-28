@@ -138,7 +138,7 @@ The Sprint 0 plan below was superseded during execution — themes were resequen
 
 ### Excel sheet index (`Case_02_Phase1_RICH.xlsx`)
 
-`CORPUS_SUMMARY` · `COVER` · `SYSTEMS` · `DATA_STORES` · `DATA_FLOWS` · `PERSONAL_DATA` · `THIRD_PARTIES` · `ROLES_RACI` · `MATURITY` · `SUBDOMAINS` · `REG_CHAIN` · `COMPLIANCE` · `GAPS` · `PRIORITIES` · `Corpus Cross-Reference`
+`CORPUS_SUMMARY` · `COVER` · `SYSTEMS` · `DATA_STORES` · `DATA_FLOWS` · `PERSONAL_DATA` · `THIRD_PARTIES` · `ROLES_RACI` · `MATURITY` (legacy sheet) · `SUBDOMAINS` · `REG_CHAIN` · `COMPLIANCE` · `GAPS` · `PRIORITIES` · `Corpus Cross-Reference`
 
 ## Lint status
 

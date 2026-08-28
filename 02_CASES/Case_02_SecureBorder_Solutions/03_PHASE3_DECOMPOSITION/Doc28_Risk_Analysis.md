@@ -11,7 +11,6 @@ inputs: [13_Use_Cases_Catalog.md, 23_Functional_Requirements.md, 24_Non_Function
 outputs: [22_Traceability_Matrix.xlsx, 16_Compliance_Gates_Report.md]
 traceability: AEGIS Class Model → ThreatAnalysis, RiskAssessment, MitigationRequirement
 related_documents: [23_Functional_Requirements.md, 24_Non_Functional_Requirements.md, 09_Strategic_Tensions_Report.md]
-sprint_11_scope: corr-008 Phase 3 ID harmonisation — add T-009 (D-10.1 monitoring opt-out) cross-reference; tech-strip vendor/tool mentions (HSM, FIPS 140-2 Level 3); refresh tension counts (8→9); align rule references with post-Commit D scheme.
 ---
 
 # Risk Analysis Report — SecureBorder Solutions

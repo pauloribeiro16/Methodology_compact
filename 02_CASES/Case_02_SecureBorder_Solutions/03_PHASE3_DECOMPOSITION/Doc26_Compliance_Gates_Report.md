@@ -11,7 +11,6 @@ inputs: [15_Requirements_Allocation.md, 23_Functional_Requirements.md, 14_Archit
 outputs: [17_Functional_Tree.md, 22_Traceability_Matrix.xlsx]
 traceability: AEGIS Class Model → ComplianceGate, AssetContext, ComplianceAnalysis, GateResult classes
 related_documents: 03_Design_Decisions_Log.md
-sprint_11_scope: corr-008 Phase 3 ID harmonisation — refresh Gate rule linkages to post-Commit D IDs (migrate BPR-AI-NN → BPR-D-XX.Y-NNN); tech-strip vendor/tool mentions; update rule count to 38 CR + 25 BPR.
 ---
 
 # Compliance Gates Report — SecureBorder Solutions

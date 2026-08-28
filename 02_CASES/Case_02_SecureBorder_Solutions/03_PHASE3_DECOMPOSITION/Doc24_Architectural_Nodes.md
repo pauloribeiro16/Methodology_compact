@@ -11,7 +11,6 @@ inputs: [13_Use_Cases_Catalog.md, 11_Rules_Catalog.md, 10_Privacy_Security_Goals
 outputs: [15_Requirements_Allocation.md, 16_Compliance_Gates_Report.md, 17_Functional_Tree.md]
 traceability: AEGIS Class Model → ArchitecturalNode, FunctionalNode, Process, ITSystem, HumanRole classes
 related_documents: 03_Design_Decisions_Log.md
-sprint_11_scope: corr-008 Phase 3 ID harmonisation — add PSO Coverage column listing applicable PO/SO from Commit D; migrate BPR-AI-NN → BPR-D-XX.Y-NNN; tech-strip vendor/tool mentions.
 ---
 
 # Architectural Nodes Catalog — SecureBorder Solutions

@@ -11,10 +11,6 @@ case: Case_02_SecureBorder_Solutions
 tier: HIGH
 sibling_of: ../02_PHASE2_RULES/
 branch: feature/aegis-p2-case02-csf-pf-airmf
-sprint: 8
-sprint_role: rich_symmetry_replication
-sprints_complete: [A, B, C, D, E, F, G]
-sprints_pending: []
 verdict: PASS_WITH_FINDINGS
 ---
 

@@ -16,7 +16,6 @@ traceability: PhD Thesis Chapter 5, Section 5.7
 inputs: []
 outputs: [Doc02_INTAKE_FORM.md, Doc08_Regulatory_Applicability.md, Doc10_Clause_Mapping_Matrix.md]
 reconciliation:
-  sprint: 1
   role: reconciliation
   base_doc: ../00_COMMON/00_Taxonomy_Reference.md (legacy, frozen)
   notes: |

@@ -11,7 +11,6 @@ inputs: [14_Architectural_Nodes.md, 11_Rules_Catalog.md, 13_Use_Cases_Catalog.md
 outputs: [16_Compliance_Gates_Report.md, 17_Functional_Tree.md]
 traceability: AEGIS Class Model → DerivationNode, AllocatedRequirement classes
 related_documents: 03_Design_Decisions_Log.md
-sprint_11_scope: corr-008 Phase 3 ID harmonisation — refresh DN derivation table to use post-Commit D BPR-D-XX.Y-NNN IDs (migrate BPR-AI-NN); add PSO coverage column; verify all 38 CR + 25 BPR referenced.
 ---
 
 # Requirements Allocation Report — SecureBorder Solutions

@@ -16,7 +16,6 @@ outputs: [Doc14_Obligation_Derivation.md]
 traceability: AEGIS Class Model → StructuredComplianceMatrix, DomainCoverageEntry classes
 related_documents: [00_Taxonomy_Reference.md, 03_Design_Decisions_Log.md]
 reconciliation:
-  sprint: 1
   role: reconciliation
   base_doc: ../01_PHASE1_CONTEXT/Doc11_Structured_Compliance_Matrix.md (legacy, frozen)
   notes: |

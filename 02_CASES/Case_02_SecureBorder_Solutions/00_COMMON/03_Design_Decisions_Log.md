@@ -198,7 +198,7 @@ Each decision is recorded using the following template:
 | Alternatives Considered | 1. Consent (not feasible for border control)<br>2. Legal obligation (Selected): Government contract as legal basis |
 | Rationale | 1. GDPR Art. 9: Biometric data requires explicit legal basis<br>2. Border control context: Consent not feasible (mandatory process)<br>3. Government contract provides legal obligation basis<br>4. DPIA mandatory (large-scale special category data) |
 | Class Model Reference | CompanyContext.specialCategoryData + GDPR Art. 9 |
-| Impact Assessment | - Positive: Legal compliance for biometric processing<br>- Negative: DPIA required; additional documentation<br>- Mitigation: DPIA already completed per securityMaturity assessment |
+| Impact Assessment | - Positive: Legal compliance for biometric processing<br>- Negative: DPIA required; additional documentation<br>- Mitigation (legacy maturity wording, superseded): DPIA already completed per securityMaturity assessment |
 | Review Date | Annual or upon contract renewal |
 | Status | ✅ APPROVED |
 

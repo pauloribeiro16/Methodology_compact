@@ -7,7 +7,6 @@ created: 2026-04-03
 updated: 2026-08-13
 author: Sprint 1+3+4+5+8+10 Executor (corr-008 PO/SO migration + AI-Act activation + canonical anchor tables)
 status: DEEP_ENRICHED
-sprint: 10
 id_format: PO-D-XX.X-NNN, SO-D-XX.X-NNN
 expected_objectives: 89
 expected_fields_per_card: 17
@@ -22,8 +21,6 @@ tier: HIGH
 branch: feature/aegis-p2-case02-full-migration
 applicable_regulations: [GDPR, CRA, NIS_2, AI_Act]
 id_namespace_policy: GDPR/NIS2 -> PO; CRA/AI_Act -> SO
-sprint_10_scope: corr-008 migration — rename all PG-D-XX.X-NNN -> PO-D-XX.X-NNN (Privacy Goal -> Privacy Operational Objective) and SG-D-XX.X-NNN -> SO-D-XX.X-NNN (Security Goal -> Security Operational Objective); generate multi-PSO per sub-domain based on applicable regulation axis (GDPR/NIS2 -> PO; CRA/AI_Act -> SO); tech-strip all vendor/tool/mechanism references; preserve regulatory citations (Art. X, Annex I sec Y, NIST CSF/PF/AI RMF anchors) and abstract operational concepts; add Appendix A preserving legacy PG/SG aliases (DEPRECATED, for traceability with Phase 1 07c Appendix A)
-sprint_10_verdict: PASS — 89 objectives generated (34 PO + 55 SO); 35 active sub-domains + 3 NOT_ADDRESSED (D-07.4, D-08.3, D-09.3)
 status_history:
   - 1.0: 2026-04-03 initial release (9 PG + 29 SG, corr-007)
   - 5.0: 2026-08-10 Sprint 10 corr-008 migration (PO/SO rename + tech-strip + multi-PSO generation)
