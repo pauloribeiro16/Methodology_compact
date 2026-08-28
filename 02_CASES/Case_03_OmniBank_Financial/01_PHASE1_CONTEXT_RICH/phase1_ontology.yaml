@@ -25,7 +25,7 @@
 header:
   case_id: "Case_03_OmniBank_Financial"
   phase: 1
-  version: "1.1"
+  version: "2.0-port"
   generated_from:
     - "AEGIS-COMMON-00"
     - "AEGIS-COMMON-01"
@@ -1741,7 +1741,7 @@ tensions:
 # ============================================================
 
 inference:
-  version: "1.1"
+  version: "1.1"   # inference metadata unchanged (restored — port bump applies to header only)
   generated_by: "AEGIS Phase 1 Ontology Generator"
   generation_date: "2026-08-06"
 
@@ -1764,3 +1764,64 @@ inference:
       description: "Find parent domain of a sub-domain"
     - path: "clause -> HAS_OBLIGATED_PARTY -> role"
       description: "Find which obligated_party roles (controller, processor, etc.) apply to a clause"
+
+# ============================================================
+# KG ONTOLOGY (additive v2.0-port, 2026-08-28, port Fase 2)
+# Schema instantiation of the canonical kg_ontology defined in
+# Case_01_TinyTask_SaaS/01_PHASE1_CONTEXT_RICH/phase1_ontology.yaml.
+# Schema is defined ONCE (ontology-first rule); this block declares the
+# Case_03 instance. Case_03-specifics: DORA axis (5 regulations), AI-C19
+# KEPT (OmniBank is PROVIDER + DEPLOYER — inverse of Case_02's D1 removal),
+# DORA coverage via CSF subcategories (no dedicated framework column).
+# ============================================================
+
+kg_ontology:
+  meta:
+    purpose: >
+      Formalise the Case_03 Phase 1 knowledge-graph class/relation schema so
+      that a future data/phase1_graph.json (build deferred, mirroring the
+      Case_02 port decision) can be validated before any dashboard.
+    schema_canonical_source: "../Case_01_TinyTask_SaaS/01_PHASE1_CONTEXT_RICH/phase1_ontology.yaml#kg_ontology"
+    a_class_model: "00_METHODOLOGY/diagrams/Class_Models/phase1_contextual_definition.md"
+    schema_version: 1.0
+    generated: 2026-08-28
+    author: "Port Fase 2 Executor (Case_01→Case_03 campaign)"
+  id_patterns:
+    Stakeholder: "^STK-[A-Z]+-\\d{2}$"
+    BusinessGoal: "^BG-\\d{2}$"
+    CoverageGap: "^GAP-\\d{3}$"
+    AdjustedGoal: "^AG-D-\\d{2}\\.\\d{1}-(001|002)$"   # Case_03: privacy -001, security -002 (corr-010)
+    RegulatoryClause: "^(GDPR|CRA|NIS2|DORA|AI)-C\\d{2}$"   # Case_03: 5 regulations, incl. DORA-C01..C38
+    SecurityControlDomain: "^D-\\d{2}\\.\\d{1}$"
+    Domain: "^D-\\d{2}$"
+    Regulation: "^REG-[A-Z0-9]+$"
+    CompanyContext: "^CC-[A-Z]+-\\d{4}-\\d{3}$"
+    Tension: "^T-\\d{3}$"                                # T-001..T-005 in Case_03
+    RaciRole: "^ROLE-[A-Z0-9]+$"
+    RaciActivity: "^ACT-\\d{2}$"
+    System: "^SYS-\\d{2}$"
+    DataStore: "^STORE-\\d{2}$"
+    DataFlow: "^FLOW-\\d{2}$"
+    ThirdParty: "^[A-Z][A-Za-z0-9_]+$"
+    NistControl: "^(NIST-)?[A-Z0-9\\.\\-]+$"
+    NistControlSafe: "^NIST-[A-Za-z0-9._-]{1,80}$"
+  forbidden_subdomain_attrs: [tier, maturity_cur, maturity_tgt, maturity_score, capability_score]
+  implementation_posture:
+    authority: "00_METHODOLOGY/IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0"
+    states: [IMPLEMENTED, PARTIAL, NOT_IMPLEMENTED]
+    special_categories:
+      - "N/A — product-security deliverable (SSDF <ID>)"
+      - "N/A — statutory obligation"
+    rules:
+      - "IMPLEMENTED requires a mandatory evidence pointer"
+      - "PARTIAL / NOT IMPLEMENTED require a mandatory What's-missing note"
+      - "Statuses must be evidence-backed and non-uniform across the population"
+  case_invariants:
+    active_subdomains: 38
+    not_addressed: []
+    total_clauses: 150          # GDPR 28 + CRA 26 + NIS2 29 + DORA 38 + AI 29
+    ai_act_clauses: 29          # AI-C19 KEPT: OmniBank is PROVIDER + DEPLOYER (inverse of Case_02 D1)
+    dora_clauses: 38
+    dora_coverage: via_CSF      # no dedicated DORA framework column (Doc21 design decision)
+    adjusted_goals: 76          # 38 privacy (-001) + 38 security (-002)
+    tensions: 5                 # T-001..T-005 (T-005 DORA TLPT)

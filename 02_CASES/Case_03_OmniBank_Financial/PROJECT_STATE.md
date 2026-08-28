@@ -271,3 +271,11 @@ python lints/run_all_lints.py --case "OmniBank Financial Systems"
 - **Cadeia de estado:** PS do caso 3.1 (banner + realidade Rich/corr-010, dirs `_RICH` no §9); progress.json com backfill Rich + corr-010 + evento Fase 0; P1 PS/README (sprints_complete 0–6, tabela deliverables DocNN, Doc14 ✅)
 - **Decisões P7 registadas:** manter AG-D- no P2 (corr-012 adiado); DORA mantém `via_CSF` sem coluna própria; cópia canónica da ontologia = P1 RICH
 - **Next:** Fase 1 (sprint sweep, refs legacy, Docs 16/18/20 DRAFT→ACTIVE), Fase 2 (postura P1 + kg_ontology com branch DORA) — Bloco A
+
+## Port Bloco A — Fases 1–2 (2026-08-28)
+
+- **Fase 1 (higiene estrutural):** sprint sweep em deliverables (Doc11/13/14/19/21, SPEC, READMEs, PS); mapeamento legacy→DocNN por conteúdo (slot map C3: Doc12=C2·Doc11 … Doc21=C2·Doc19; 377 refs, 19 basenames); refs a dirs apagados (`../02_PHASE2_RULES/` → `_RICH`, xlsx repoint); Docs 16/17/18/20 DRAFT→ACTIVE com frontmatter de 5 regulações + `case:`; Doc17 v1.1 (T-005)
+- **Fase 2 (postura P1 + ontologia):** `/maturi/` purge — Doc05 → `DEPRECATED_FOR_POSTURE` + `posture_owner: Doc21`, Doc08 158 células backfilled, Doc13 76, Doc02/04/06/07/14 reescritos; `phase1_ontology.yaml` v2.0-port — kg_ontology aditivo com **branch DORA** no RegulatoryClause, posture block, invariants (150 cláusulas, 38/38, 76 goals, 5 tensões, `dora_coverage: via_CSF`, AI-C19 KEPT); validação PASS em `01_PHASE1_CONTEXT_RICH/validation/P1_ontology_port_validation.md`
+- **P5 record:** kg.sh impact AG-D-05.2-001 / AEGIS-P3-RICH-07c → no match (KG E3 sem nós de Case_03 — sem contaminação F-S1-09)
+- **Verification (Bloco A exit):** 0 chaves sprint em deliverables; 0 basenames legacy em Doc*/READMEs (fora 00_Taxonomy_Reference ambíguo e RICH_VS_LEGACY histórico); /maturi/ P1 = só waivers legítimos (nomes reais de folhas xlsx + contexto de superssão); 76 AG goals verificados; YAMLs parseiam
+- **Next (Bloco B):** Fase 3 (UNMAPPED P2 — 262 tokens), Fase 4 (postura P2 — Doc21 §4 + Doc20 78 escalas), Fase 5 (Control Set v1 — 78 controlos) 
