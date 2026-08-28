@@ -267,7 +267,7 @@ START: Does the company develop/deploy/use AI systems?
 | **B1: AI Governance** | AI_Act applicable | **ACTIVATED** | Q39-Q46 |
 | **B2: NIS 2 / SOC** | NIS 2 applicable | **ACTIVATED** | Q47-Q52 |
 | B3: DORA Financial | DORA applicable | NOT APPLICABLE | Q53-Q56 |
-| **B4: Security Org** | size ≥50 OR maturity ≥Managed | **ACTIVATED** | Q57-Q61 |
+| **B4: Security Org** | size ≥50 OR security posture ≥Managed | **ACTIVATED** | Q57-Q61 |
 | **B5: Special Category Data** | GDPR + special category data | **ACTIVATED** | Q62-Q65 |
 | **B6: Supply Chain** | supplyChainVisibility = Low OR hardware | **ACTIVATED** | Q66-Q68 |
 | **B7: CRA Classification** | CRA applicable | **ACTIVATED** | Q69-Q72 |
@@ -277,7 +277,7 @@ START: Does the company develop/deploy/use AI systems?
 > Block B1: **ACTIVATED** — AI_Act applicable (Annex III border control AI)
 > Block B2: **ACTIVATED** — NIS 2 applicable (Essential entity supplier)
 > Block B3: NOT APPLICABLE — DORA not applicable
-> Block B4: **ACTIVATED** — 450 employees, securityMaturity = HIGH
+> Block B4: **ACTIVATED** — 450 employees, security posture = HIGH
 > Block B5: **ACTIVATED** — GDPR applicable + special category data (biometric)
 > Block B6: **ACTIVATED** — Hardware + Software product type
 > Block B7: **ACTIVATED** — CRA applicable (Critical Class)
@@ -317,8 +317,8 @@ START: Does the company develop/deploy/use AI systems?
 
 ---
 
-#### BLOCK B4: Security Organization Maturity Extension
-**Trigger:** size ≥50 employees OR securityMaturity ≥ Managed
+#### BLOCK B4: Security Organization Posture Extension
+**Trigger:** size ≥50 employees OR security posture ≥ Managed
 **Activated:** YES
 
 | Question | Response | Notes |

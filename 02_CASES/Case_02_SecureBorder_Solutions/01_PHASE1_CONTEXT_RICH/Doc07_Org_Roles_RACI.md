@@ -406,9 +406,9 @@ This document is complete (Phase 1 Step E — Roles & RACI) when:
 
 ## See also
 
-- **Data backbone:** `Case_02_Phase1.xlsx` (13 sheets: COVER, SYSTEMS, DATA_STORES, DATA_FLOWS, PERSONAL_DATA, THIRD_PARTIES, ROLES_RACI, MATURITY, SUBDOMAINS, REG_CHAIN, COMPLIANCE, GAPS, PRIORITIES)
+- **Data backbone:** `Case_02_Phase1.xlsx` (13 sheets: COVER, SYSTEMS, DATA_STORES, DATA_FLOWS, PERSONAL_DATA, THIRD_PARTIES, ROLES_RACI, MATURITY (legacy sheet name), SUBDOMAINS, REG_CHAIN, COMPLIANCE, GAPS, PRIORITIES)
 - **Architecture:** `Doc04_Architecture_DataInventory.md` (RACI maps activities to systems SYS-01..SYS-13).
 - **Vendors:** `Doc06_ThirdParty_Landscape.md` (Procurement Director vendor-risk-assessment cadence).
-- **Maturity:** `Doc05_Security_Posture.md` (CISO + AI Governance Lead drive the top-gaps remediation).
+- **Posture ownership:** `Doc05_Security_Posture.md` (CISO + AI Governance Lead drive the top-gaps remediation).
 - **HIGH-tier context:** `02_CASES/Case_02_SecureBorder_Solutions/00_COMMON/01_Company_Context.md` (4 applicable regulations; complexity tier HIGH; 450 employees; NIS 2 essential-entity supplier + CRA Critical Class + AI_Act Annex III).
 - **D-08.3 ACTIVE note:** D-08.3 is ACTIVE here (NIS 2-applicable). It was INACTIVE in Case 01 (no NIS 2). The methodology treats activation consistently; the difference is the company's regulatory profile, not the methodology.

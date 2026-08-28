@@ -297,7 +297,7 @@ This document is complete (Phase 1 Step D — Third-Party Landscape) when:
 
 ## See also
 
-- **Data backbone:** `Case_02_Phase1.xlsx` (13 sheets: COVER, SYSTEMS, DATA_STORES, DATA_FLOWS, PERSONAL_DATA, THIRD_PARTIES, ROLES_RACI, MATURITY, SUBDOMAINS, REG_CHAIN, COMPLIANCE, GAPS, PRIORITIES)
+- **Data backbone:** `Case_02_Phase1.xlsx` (13 sheets: COVER, SYSTEMS, DATA_STORES, DATA_FLOWS, PERSONAL_DATA, THIRD_PARTIES, ROLES_RACI, MATURITY (legacy sheet name), SUBDOMAINS, REG_CHAIN, COMPLIANCE, GAPS, PRIORITIES)
 - **Architecture context:** `Doc04_Architecture_DataInventory.md` §1.1 (13 systems), §1.3 (cloud services table).
 - **People / RACI:** `Doc07_Org_Roles_RACI.md` (CISO owns vendor-risk-assessment cadence; DPO owns DPA template library; Compliance Lead owns notified-body relationship).
 - **HIGH-tier context:** `02_CASES/Case_02_SecureBorder_Solutions/00_COMMON/01_Company_Context.md` (4 applicable regulations; critical infrastructure supplier to government border control).

@@ -153,7 +153,7 @@ Adjusted Security Goals are Case_02-specific restatements of the corpus generic 
 | D-06.3 (Contractual Security Obligations) | `SO-D-06.3.NIS2` (NIS 2) | NIS 2 Art. 21(2)(d) contractual chain + Art. 21(3) supplier assessment three-prong; GDPR Art. 46 transfer safeguards for non-EU suppliers; RIGOROUS — TEST + ANALYZE + external audit per Track B §6.4. | RIGOROUS | MUST | [AG-D-06.3-002](#ag-d-d06-3-002) | | — | | — |
 | D-06.4 (Third-Party Boundary Management) | `SO-D-06.4.NIS2` (NIS 2) | NIS 2 Art. 21(2)(d) supply-chain boundary + Art. 21(2)(e) network security; mutual transport authentication + segmentation discharge both on a single network-security artefact. | STANDARD | MUST | [AG-D-06.4-002](#ag-d-d06-4-002) | | — | | — |
 | D-07.1 (Secure-by-Design Principles) | `SO-D-07.1.AIACT` (AI_Act) | AI_Act Art. 9 risk management system + Art. 13 transparency + Art. 14 human oversight; CRA Art. 13(1)+(2) secure-by-default + risk assessment propagation across 6 lifecycle phases; RIGOROUS — TEST + ANALYZE + external audit per Track B §6.4. | RIGOROUS | MUST | [AG-D-07.1-002](#ag-d-d07-1-002) | | — | | — |
-| D-07.2 (Secure Coding Practices) | `SO-D-07.2.CRA` (CRA) | CRA Annex I Part I (2)(c) attack-surface minimisation via secure coding standards (application security maturity model at industry-standard level for AI components); static application security testing (static application security testing tool) + dynamic application security testing in CI; pre-commit secret scanning; CRA Art. 13(11) software bill of materials-anchored vulnerability tracking. | STANDARD | MUST | [AG-D-07.2-002](#ag-d-d07-2-002) | | — | | — |
+| D-07.2 (Secure Coding Practices) | `SO-D-07.2.CRA` (CRA) | CRA Annex I Part I (2)(c) attack-surface minimisation via secure coding standards (application security capability model at industry-standard level (OWASP SAMM-class) for AI components); static application security testing (static application security testing tool) + dynamic application security testing in CI; pre-commit secret scanning; CRA Art. 13(11) software bill of materials-anchored vulnerability tracking. | STANDARD | MUST | [AG-D-07.2-002](#ag-d-d07-2-002) | | — | | — |
 | D-07.3 (CI/CD Pipeline Security) | `SO-D-07.3.NIS2` (NIS 2) | NIS 2 Art. 21(2)(d) supply-chain security + CRA Art. 13(11) software bill of materials; signed CI artefacts + pipeline-as-code + supply-chain integrity controls Level 3; software bill of materials gate blocks on critical vulns; RIGOROUS — TEST + ANALYZE + external audit per Track B §6.4. | RIGOROUS | MUST | [AG-D-07.3-002](#ag-d-d07-3-002) | | — | | — |
 | D-08.1 (General Security Awareness) | `SO-D-08.1.NIS2` (NIS 2) | NIS 2 Art. 21(2)(g) basic cyber hygiene + Art. 21(2)(f) training; CRA Art. 13(2) installation/use training included; phishing simulation + kiosk-specific guide on a single training programme. | STANDARD | MUST | [AG-D-08.1-002](#ag-d-d08-1-002) | | — | | — |
 | D-08.2 (Role-Specific Competence) | `SO-D-08.2.NIS2` (NIS 2) | NIS 2 Art. 21(2)(g) role-specific competence + AI_Act Art. 4 AI literacy; SOC analyst certification + DPO + AI Lead training on a single competence framework. | STANDARD | MUST | [AG-D-08.2-002](#ag-d-d08-2-002) | | — | | — |
@@ -362,7 +362,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-01.3 (key custody), D-02.1 (vuln identification)
 **Risk if not met:** HIGH — Biometric data breach exposure; GDPR Art. 83(5) up to €20M or 4% turnover + CRA Art. 56 + AI_Act Art. 99 fines
 **Affected Stakeholders:** Travelers (data subjects), Regulators (DPA, ENISA, CSIRT), Internal: CISO, CTO, DPO
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-01.2-001 — Data in Transit Encryption
@@ -388,7 +388,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-01.3 (key custody), D-06.4 (boundary mgmt)
 **Risk if not met:** HIGH — Man-in-the-middle attack on biometric data in transit; GDPR + CRA + NIS 2 fines
 **Affected Stakeholders:** Travelers (data subjects), Regulators (DPA, ENISA), Internal: CTO, CISO
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-01.3-001 — Cryptographic Key Management
@@ -414,7 +414,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-01.1 (at-rest), D-01.2 (transit)
 **Risk if not met:** HIGH — Key compromise exposes every biometric reference data; Art. 9 + integrity principle breach
 **Affected Stakeholders:** Travelers (data subjects), Regulators (DPA, ENISA), Internal: CISO, DPO
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-01.4-001 — Data Integrity Mechanisms
@@ -440,7 +440,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-01.1 (at-rest), D-10.2 (audit log)
 **Risk if not met:** MEDIUM — Tampered biometric data leads to false matches and integrity principle breach
 **Affected Stakeholders:** Travelers (data subjects), Regulators (DPA, AI Supervisory Authority), Internal: CTO, DPO
-**Maturity Score:** Current 3/4 → Target 3/4
+**Implementation Status:** IMPLEMENTED — Evidence: operational state and Verification Criteria above (backfilled from legacy 3/4 → 3/4, target met, posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-02.1-001 — Vulnerability Identification
@@ -466,7 +466,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-06.2 (software bill of materials), D-09.2 (DPIA risk link)
 **Risk if not met:** HIGH — Unidentified CVE exploited; CRA Art. 14 AEV reporting + GDPR Art. 32(1)(d) failure
 **Affected Stakeholders:** Travelers (data subjects), Regulators (ENISA, CSIRT), Internal: CISO, CTO
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-02.2-001 — Patch Management & Updates
@@ -492,7 +492,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-02.1 (vuln ID), D-06.2 (software bill of materials)
 **Risk if not met:** HIGH — Unpatched critical CVE; CRA Art. 13(8) without delay breach + security update retention failure
 **Affected Stakeholders:** Travelers (data subjects), Regulators (ENISA), Internal: CTO, CISO
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-02.3-001 — Coordinated Vulnerability Disclosure
@@ -518,7 +518,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-02.1 (vuln ID), D-04.3 (incident reporting)
 **Risk if not met:** MEDIUM — Unmanaged vulnerability disclosure; CRA Art. 14 AEV reporting failure
 **Affected Stakeholders:** Researchers (security community), Regulators (ENISA, CSIRT), Internal: CISO, Legal
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P1
 
 ### AG-D-02.4-001 — Threat-Led Penetration Testing
@@ -544,7 +544,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-02.1 (vuln ID), D-07.1 (secure-by-design)
 **Risk if not met:** MEDIUM — Undiscovered attack surface; AI_Act Art. 9 risk-management + CRA Annex I (2)(c) failure
 **Affected Stakeholders:** Travelers (data subjects), Internal: CTO, CISO, AI Governance Lead
-**Maturity Score:** Current 2/4 → Target 3/4
+**Implementation Status:** PARTIAL — What's missing: gap to the target profile in the Verification Criteria above (backfilled from legacy 2/4 → 3/4 per posture model §4)
 **Implementation Priority:** P1
 
 ### AG-D-03.1-001 — Identity Lifecycle Management
@@ -570,7 +570,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-03.2 (multi-factor authentication), D-03.3 (authorisation)
 **Risk if not met:** HIGH — Orphaned accounts access biometric data; GDPR Art. 32 + CRA Art. 13(2) failure
 **Affected Stakeholders:** Internal: All employees with biometric access, Internal: HR, CISO
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-03.2-001 — Multi-Factor Authentication
@@ -596,7 +596,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-03.1 (identity), D-03.4 (secure defaults)
 **Risk if not met:** HIGH — Credential compromise on biometric scopes; Art. 9 + ISO 27001 A.9.4 failure
 **Affected Stakeholders:** Internal: All employees with biometric access, Internal: CISO
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-03.3-001 — Authorisation & Least Privilege
@@ -622,7 +622,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-03.1 (identity), D-10.2 (audit log)
 **Risk if not met:** HIGH — Privilege escalation on biometric data; GDPR Art. 5(1)(c) + NIS 2 Art. 21(2)(i) failure
 **Affected Stakeholders:** Internal: All employees with biometric access, Internal: CISO, DPO
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-03.4-001 — Secure System Defaults
@@ -648,7 +648,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-07.3 (CI/CD pipeline), D-03.1 (identity)
 **Risk if not met:** MEDIUM — Default credentials/product config exploitable; CRA Art. 13(2) + GDPR Art. 25(2) failure
 **Affected Stakeholders:** Travelers (data subjects), Internal: CTO, CISO
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P1
 
 ### AG-D-04.1-001 — Incident Detection & Triage
@@ -674,7 +674,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-10.1 (continuous monitoring), D-10.2 (audit log)
 **Risk if not met:** HIGH — Delayed incident detection; CRA Art. 14(3) severe-incident + AI_Act Art. 73 failure
 **Affected Stakeholders:** Travelers (data subjects), Regulators (DPA, ENISA, CSIRT), Internal: CISO, SOC
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-04.2-001 — Incident Containment & Response
@@ -700,7 +700,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-04.1 (detection), D-04.3 (notification)
 **Risk if not met:** HIGH — Uncontained breach spreads; GDPR Art. 32(1)(c) + CRA Art. 14(3) failure
 **Affected Stakeholders:** Travelers (data subjects), Regulators (DPA, ENISA), Internal: CISO, SOC, Legal
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-04.3-001 — Incident Notification & Reporting
@@ -726,7 +726,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-04.1 (detection), D-04.2 (containment), D-10.2 (audit log)
 **Risk if not met:** CRITICAL — Late notification to 4 regulators; GDPR Art. 83(4) + CRA Art. 56 + NIS 2 Art. 20 management liability + AI_Act Art. 99 fines
 **Affected Stakeholders:** Travelers (data subjects), Regulators (DPA, ENISA, CSIRT, Notified Body), Internal: CEO, CISO, DPO, Legal
-**Maturity Score:** Current 2/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: substantial gap to the target profile in the Verification Criteria above (backfilled from legacy 2/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-04.4-001 — Incident Recovery & Lessons Learned
@@ -752,7 +752,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-04.2 (containment), D-09.1 (policies)
 **Risk if not met:** HIGH — Extended downtime; NIS 2 Art. 21(2)(c) BCP + 10y retention breach
 **Affected Stakeholders:** Travelers (data subjects), Airport operators, Internal: CISO, CTO, Operations
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P1
 
 ### AG-D-05.1-001 — Data Minimisation
@@ -778,7 +778,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-09.2 (DPIA), D-07.1 (secure-by-design)
 **Risk if not met:** MEDIUM — Over-collection of biometric data; GDPR Art. 5(1)(c) + Art. 9 + AI_Act Art. 10
 **Affected Stakeholders:** Travelers (data subjects), Internal: DPO, CTO
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-05.2-001 — Retention & Archiving
@@ -804,7 +804,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-05.1 (minimisation), D-09.4 (RoPA)
 **Risk if not met:** MEDIUM — Retention beyond policy; GDPR Art. 5(1)(e) + AI_Act Art. 19(1) floor
 **Affected Stakeholders:** Travelers (data subjects), Internal: DPO, CISO
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P1
 
 ### AG-D-05.3-001 — Right to Erasure
@@ -830,7 +830,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-01.3 (key custody), D-10.2 (audit log)
 **Risk if not met:** HIGH — Right-to-erasure failure; GDPR Art. 17 + Art. 83(5) fines + biometric Art. 9 sensitivity
 **Affected Stakeholders:** Travelers (data subjects), Regulators (DPA), Internal: DPO, CISO
-**Maturity Score:** Current 2/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: substantial gap to the target profile in the Verification Criteria above (backfilled from legacy 2/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-05.4-001 — Data Portability
@@ -856,7 +856,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-09.4 (RoPA)
 **Risk if not met:** MEDIUM — Data portability failure; GDPR Art. 20 + Art. 83(4) fines
 **Affected Stakeholders:** Travelers (data subjects), Internal: DPO, CTO
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P2
 
 ### AG-D-06.1-001 — Vendor Risk Assessment
@@ -882,7 +882,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-06.3 (contractual), D-06.4 (boundary)
 **Risk if not met:** HIGH — Unmanaged supplier exposes biometric data; NIS 2 Art. 21(2)(d) + GDPR Art. 28 failure
 **Affected Stakeholders:** Suppliers (biometric sub-processors), Regulators (DPA, CSIRT), Internal: CISO, Procurement, Legal
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-06.2-001 — Software Bill of Materials (software bill of materials)
@@ -908,7 +908,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-02.1 (vuln ID), D-07.3 (CI/CD)
 **Risk if not met:** MEDIUM — Untracked OSS vulnerability; CRA Art. 13(11) + unexpected CVE exposure
 **Affected Stakeholders:** Suppliers (OSS, commercial), Internal: CTO, CISO
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P1
 
 ### AG-D-06.3-001 — Contractual Security Obligations
@@ -934,7 +934,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-06.1 (vendor risk), D-09.4 (RoPA)
 **Risk if not met:** HIGH — Sub-processor breach without DPA; GDPR Art. 28(3) + Art. 46 transfer safeguards failure
 **Affected Stakeholders:** Suppliers (all processors), Regulators (DPA, CSIRT), Internal: CISO, Legal, Procurement
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-06.4-001 — Third-Party Boundary Management
@@ -960,7 +960,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-06.1 (vendor risk), D-01.2 (transit)
 **Risk if not met:** HIGH — Lateral movement from compromised boundary; NIS 2 Art. 21(2)(e) + AI_Act Art. 15
 **Affected Stakeholders:** Government back-end, Cloud providers, Internal: CTO, CISO
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P1
 
 ### AG-D-07.1-001 — Secure-by-Design Principles
@@ -986,14 +986,14 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-09.2 (DPIA), D-07.2 (secure coding)
 **Risk if not met:** HIGH — Insecure high-risk AI in production; AI_Act Art. 9 + Art. 13 + Art. 14 failure
 **Affected Stakeholders:** Travelers (data subjects), Regulators (AI Supervisory Authority, ENISA, DPA), Internal: CTO, AI Governance Lead, DPO
-**Maturity Score:** Current 2/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: substantial gap to the target profile in the Verification Criteria above (backfilled from legacy 2/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-07.2-001 — Secure Coding Practices
 
 **Description (multi-paragraph):**
 
-**Context:** Secure coding practices meet CRA Annex I Part I (2)(c) attack-surface minimisation, AI_Act Art. 15 robustness, and NIS 2 Art. 21(2)(d) supply-chain security. static application security testing (static application security testing tool) + dynamic application security testing in CI; pre-commit secret scanning; application security maturity model at industry-standard level for AI components. Personal-data protection from vulnerable code is discharged via the secure-coding controls themselves.
+**Context:** Secure coding practices meet CRA Annex I Part I (2)(c) attack-surface minimisation, AI_Act Art. 15 robustness, and NIS 2 Art. 21(2)(d) supply-chain security. static application security testing (static application security testing tool) + dynamic application security testing in CI; pre-commit secret scanning; application security capability model at industry-standard level (OWASP SAMM-class) for AI components. Personal-data protection from vulnerable code is discharged via the secure-coding controls themselves.
 
 **Scope:** All code in the eGate stack and back-end services. The objective includes the secure coding standards and the CI gating.
 
@@ -1003,7 +1003,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **NIST CSF Anchors:** PR.PS-06, PR.PS-02, PR.PS-01
 **Verification Criteria (operational):**
 - static application security testing (static application security testing tool) + dynamic application security testing in CI blocking merge on high-severity findings
-- application security maturity model at industry-standard level secure coding standards applied for AI components with documented verification
+- application security capability model at industry-standard level (OWASP SAMM-class) secure coding standards applied for AI components with documented verification
 - Pre-commit secret scanning demonstrated to catch 100% of test tokens in last regression exercise
 
 **Verification Method:** TEST + DEMONSTRATE
@@ -1012,7 +1012,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-07.1 (secure-by-design), D-07.3 (CI/CD)
 **Risk if not met:** MEDIUM — Vulnerable code in production; CRA Annex I Part I (2)(c) + AI_Act Art. 15
 **Affected Stakeholders:** Travelers (data subjects), Internal: CTO, CISO
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P1
 
 ### AG-D-07.3-001 — CI/CD Pipeline Security
@@ -1038,7 +1038,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-06.2 (software bill of materials), D-02.1 (vuln ID)
 **Risk if not met:** HIGH — Supply-chain attack via CI/CD; NIS 2 Art. 21(2)(d) + CRA Art. 13(11) failure
 **Affected Stakeholders:** Regulators (ENISA, CSIRT), Internal: CTO, CISO
-**Maturity Score:** Current 2/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: substantial gap to the target profile in the Verification Criteria above (backfilled from legacy 2/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-08.1-001 — General Security Awareness
@@ -1064,7 +1064,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-09.1 (policies)
 **Risk if not met:** MEDIUM — Social engineering compromise; NIS 2 Art. 21(2)(g) + GDPR Art. 39(1)(b) failure
 **Affected Stakeholders:** Internal: All employees, Internal: CISO, HR
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P1
 
 ### AG-D-08.2-001 — Role-Specific Competence
@@ -1090,7 +1090,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-08.1 (awareness), D-09.1 (policies)
 **Risk if not met:** MEDIUM — Unqualified role-holder; AI_Act Art. 4 + Art. 14 + DPO Art. 37(1)(c) failure
 **Affected Stakeholders:** Internal: Security, Privacy, AI, SOC roles, Internal: CISO, DPO, HR
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P1
 
 ### AG-D-09.1-001 — Information Security Policies
@@ -1116,7 +1116,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-09.2 (DPIA), D-09.4 (RoPA)
 **Risk if not met:** LOW — ISO 27001 certified; policies maintained; failure unlikely
 **Affected Stakeholders:** Regulators (DPA, ENISA, CSIRT, AI Supervisory Authority), Internal: CISO, DPO, Legal
-**Maturity Score:** Current 4/4 → Target 4/4
+**Implementation Status:** IMPLEMENTED — Evidence: operational state and Verification Criteria above (backfilled from legacy 4/4 → 4/4 per IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md §4)
 **Implementation Priority:** P2
 
 ### AG-D-09.2-001 — Impact & Risk Assessments
@@ -1142,7 +1142,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-09.1 (policies), D-09.4 (RoPA)
 **Risk if not met:** HIGH — DPIA/FRIA missing for high-risk AI; GDPR Art. 35(3) + AI_Act Art. 27(1) failure
 **Affected Stakeholders:** Travelers (data subjects), Regulators (DPA, AI Supervisory Authority), Internal: DPO, AI Governance Lead, Legal
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-09.4-001 — Records of Processing
@@ -1168,7 +1168,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-09.1 (policies), D-05.2 (retention)
 **Risk if not met:** MEDIUM — Missing RoPA entry; GDPR Art. 30 + AI_Act Art. 12 record-keeping failure
 **Affected Stakeholders:** Regulators (DPA, AI Supervisory Authority), Internal: DPO, CISO
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P1
 
 ### AG-D-10.1-001 — Continuous Security Monitoring
@@ -1194,7 +1194,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-04.1 (incident detection), D-10.2 (audit log)
 **Risk if not met:** HIGH — AI model drift undetected; AI_Act Art. 72 + Art. 73 + NIS 2 Art. 21(2)(g) failure
 **Affected Stakeholders:** Travelers (data subjects), Regulators (DPA, ENISA, CSIRT, AI Supervisory Authority), Internal: CISO, SOC, AI Governance Lead
-**Maturity Score:** Current 2/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: substantial gap to the target profile in the Verification Criteria above (backfilled from legacy 2/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-10.2-001 — Audit Logging & Traceability
@@ -1220,7 +1220,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-09.1 (policies), D-09.4 (RoPA)
 **Risk if not met:** MEDIUM — Audit log tamper; GDPR Art. 5(2) accountability + AI_Act Art. 12 failure
 **Affected Stakeholders:** Regulators (DPA, AI Supervisory Authority), Internal: CISO, DPO, Legal
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P1
 
 ### AG-D-10.3-001 — Compliance Testing
@@ -1246,7 +1246,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-09.1 (policies), D-10.1 (monitoring)
 **Risk if not met:** MEDIUM — Compliance drift; ISO 27001 surveillance + AI_Act re-assessment failure
 **Affected Stakeholders:** Regulators (DPA, ENISA, CSIRT, AI Supervisory Authority, Notified Body), Internal: CISO, DPO, Legal
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P2
 
 ### AG-D-01.1-002 — Data at Rest Encryption
@@ -1272,7 +1272,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-01.3 (key custody), D-02.1 (vuln identification)
 **Risk if not met:** HIGH — Biometric data breach exposure; GDPR Art. 83(5) up to €20M or 4% turnover + CRA Art. 56 + AI_Act Art. 99 fines
 **Affected Stakeholders:** Travelers (data subjects), Regulators (DPA, ENISA, CSIRT), Internal: CISO, CTO, DPO
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-01.2-002 — Data in Transit Encryption
@@ -1298,7 +1298,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-01.3 (key custody), D-06.4 (boundary mgmt)
 **Risk if not met:** HIGH — Man-in-the-middle attack on biometric data in transit; GDPR + CRA + NIS 2 fines
 **Affected Stakeholders:** Travelers (data subjects), Regulators (DPA, ENISA), Internal: CTO, CISO
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-01.3-002 — Cryptographic Key Management
@@ -1324,7 +1324,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-01.1 (at-rest), D-01.2 (transit)
 **Risk if not met:** HIGH — Key compromise exposes every biometric reference data; Art. 9 + integrity principle breach
 **Affected Stakeholders:** Travelers (data subjects), Regulators (DPA, ENISA), Internal: CISO, DPO
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-01.4-002 — Data Integrity Mechanisms
@@ -1350,7 +1350,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-01.1 (at-rest), D-10.2 (audit log)
 **Risk if not met:** MEDIUM — Tampered biometric data leads to false matches and integrity principle breach
 **Affected Stakeholders:** Travelers (data subjects), Regulators (DPA, AI Supervisory Authority), Internal: CTO, DPO
-**Maturity Score:** Current 3/4 → Target 3/4
+**Implementation Status:** IMPLEMENTED — Evidence: operational state and Verification Criteria above (backfilled from legacy 3/4 → 3/4, target met, posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-02.1-002 — Vulnerability Identification
@@ -1376,7 +1376,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-06.2 (software bill of materials), D-09.2 (DPIA risk link)
 **Risk if not met:** HIGH — Unidentified CVE exploited; CRA Art. 14 AEV reporting + GDPR Art. 32(1)(d) failure
 **Affected Stakeholders:** Travelers (data subjects), Regulators (ENISA, CSIRT), Internal: CISO, CTO
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-02.2-002 — Patch Management & Updates
@@ -1402,7 +1402,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-02.1 (vuln ID), D-06.2 (software bill of materials)
 **Risk if not met:** HIGH — Unpatched critical CVE; CRA Art. 13(8) without delay breach + security update retention failure
 **Affected Stakeholders:** Travelers (data subjects), Regulators (ENISA), Internal: CTO, CISO
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-02.3-002 — Coordinated Vulnerability Disclosure
@@ -1428,7 +1428,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-02.1 (vuln ID), D-04.3 (incident reporting)
 **Risk if not met:** MEDIUM — Unmanaged vulnerability disclosure; CRA Art. 14 AEV reporting failure
 **Affected Stakeholders:** Researchers (security community), Regulators (ENISA, CSIRT), Internal: CISO, Legal
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P1
 
 ### AG-D-02.4-002 — Threat-Led Penetration Testing
@@ -1454,7 +1454,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-02.1 (vuln ID), D-07.1 (secure-by-design)
 **Risk if not met:** MEDIUM — Undiscovered attack surface; AI_Act Art. 9 risk-management + CRA Annex I (2)(c) failure
 **Affected Stakeholders:** Travelers (data subjects), Internal: CTO, CISO, AI Governance Lead
-**Maturity Score:** Current 2/4 → Target 3/4
+**Implementation Status:** PARTIAL — What's missing: gap to the target profile in the Verification Criteria above (backfilled from legacy 2/4 → 3/4 per posture model §4)
 **Implementation Priority:** P1
 
 ### AG-D-03.1-002 — Identity Lifecycle Management
@@ -1480,7 +1480,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-03.2 (multi-factor authentication), D-03.3 (authorisation)
 **Risk if not met:** HIGH — Orphaned accounts access biometric data; GDPR Art. 32 + CRA Art. 13(2) failure
 **Affected Stakeholders:** Internal: All employees with biometric access, Internal: HR, CISO
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-03.2-002 — Multi-Factor Authentication
@@ -1506,7 +1506,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-03.1 (identity), D-03.4 (secure defaults)
 **Risk if not met:** HIGH — Credential compromise on biometric scopes; Art. 9 + ISO 27001 A.9.4 failure
 **Affected Stakeholders:** Internal: All employees with biometric access, Internal: CISO
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-03.3-002 — Authorisation & Least Privilege
@@ -1532,7 +1532,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-03.1 (identity), D-10.2 (audit log)
 **Risk if not met:** HIGH — Privilege escalation on biometric data; GDPR Art. 5(1)(c) + NIS 2 Art. 21(2)(i) failure
 **Affected Stakeholders:** Internal: All employees with biometric access, Internal: CISO, DPO
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-03.4-002 — Secure System Defaults
@@ -1558,7 +1558,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-07.3 (CI/CD pipeline), D-03.1 (identity)
 **Risk if not met:** MEDIUM — Default credentials/product config exploitable; CRA Art. 13(2) + GDPR Art. 25(2) failure
 **Affected Stakeholders:** Travelers (data subjects), Internal: CTO, CISO
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P1
 
 ### AG-D-04.1-002 — Incident Detection & Triage
@@ -1584,7 +1584,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-10.1 (continuous monitoring), D-10.2 (audit log)
 **Risk if not met:** HIGH — Delayed incident detection; CRA Art. 14(3) severe-incident + AI_Act Art. 73 failure
 **Affected Stakeholders:** Travelers (data subjects), Regulators (DPA, ENISA, CSIRT), Internal: CISO, SOC
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-04.2-002 — Incident Containment & Response
@@ -1610,7 +1610,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-04.1 (detection), D-04.3 (notification)
 **Risk if not met:** HIGH — Uncontained breach spreads; GDPR Art. 32(1)(c) + CRA Art. 14(3) failure
 **Affected Stakeholders:** Travelers (data subjects), Regulators (DPA, ENISA), Internal: CISO, SOC, Legal
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-04.3-002 — Incident Notification & Reporting
@@ -1636,7 +1636,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-04.1 (detection), D-04.2 (containment), D-10.2 (audit log)
 **Risk if not met:** CRITICAL — Late notification to 4 regulators; GDPR Art. 83(4) + CRA Art. 56 + NIS 2 Art. 20 management liability + AI_Act Art. 99 fines
 **Affected Stakeholders:** Travelers (data subjects), Regulators (DPA, ENISA, CSIRT, Notified Body), Internal: CEO, CISO, DPO, Legal
-**Maturity Score:** Current 2/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: substantial gap to the target profile in the Verification Criteria above (backfilled from legacy 2/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-04.4-002 — Incident Recovery & Lessons Learned
@@ -1662,7 +1662,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-04.2 (containment), D-09.1 (policies)
 **Risk if not met:** HIGH — Extended downtime; NIS 2 Art. 21(2)(c) BCP + 10y retention breach
 **Affected Stakeholders:** Travelers (data subjects), Airport operators, Internal: CISO, CTO, Operations
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P1
 
 ### AG-D-05.1-002 — Data Minimisation
@@ -1688,7 +1688,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-09.2 (DPIA), D-07.1 (secure-by-design)
 **Risk if not met:** MEDIUM — Over-collection of biometric data; GDPR Art. 5(1)(c) + Art. 9 + AI_Act Art. 10
 **Affected Stakeholders:** Travelers (data subjects), Internal: DPO, CTO
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-05.2-002 — Retention & Archiving
@@ -1714,7 +1714,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-05.1 (minimisation), D-09.4 (RoPA)
 **Risk if not met:** MEDIUM — Retention beyond policy; GDPR Art. 5(1)(e) + AI_Act Art. 19(1) floor
 **Affected Stakeholders:** Travelers (data subjects), Internal: DPO, CISO
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P1
 
 ### AG-D-05.3-002 — Right to Erasure
@@ -1740,7 +1740,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-01.3 (key custody), D-10.2 (audit log)
 **Risk if not met:** HIGH — Right-to-erasure failure; GDPR Art. 17 + Art. 83(5) fines + biometric Art. 9 sensitivity
 **Affected Stakeholders:** Travelers (data subjects), Regulators (DPA), Internal: DPO, CISO
-**Maturity Score:** Current 2/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: substantial gap to the target profile in the Verification Criteria above (backfilled from legacy 2/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-05.4-002 — Data Portability
@@ -1766,7 +1766,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-09.4 (RoPA)
 **Risk if not met:** MEDIUM — Data portability failure; GDPR Art. 20 + Art. 83(4) fines
 **Affected Stakeholders:** Travelers (data subjects), Internal: DPO, CTO
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P2
 
 ### AG-D-06.1-002 — Vendor Risk Assessment
@@ -1792,7 +1792,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-06.3 (contractual), D-06.4 (boundary)
 **Risk if not met:** HIGH — Unmanaged supplier exposes biometric data; NIS 2 Art. 21(2)(d) + GDPR Art. 28 failure
 **Affected Stakeholders:** Suppliers (biometric sub-processors), Regulators (DPA, CSIRT), Internal: CISO, Procurement, Legal
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-06.2-002 — Software Bill of Materials (software bill of materials)
@@ -1818,7 +1818,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-02.1 (vuln ID), D-07.3 (CI/CD)
 **Risk if not met:** MEDIUM — Untracked OSS vulnerability; CRA Art. 13(11) + unexpected CVE exposure
 **Affected Stakeholders:** Suppliers (OSS, commercial), Internal: CTO, CISO
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P1
 
 ### AG-D-06.3-002 — Contractual Security Obligations
@@ -1844,7 +1844,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-06.1 (vendor risk), D-09.4 (RoPA)
 **Risk if not met:** HIGH — Sub-processor breach without DPA; GDPR Art. 28(3) + Art. 46 transfer safeguards failure
 **Affected Stakeholders:** Suppliers (all processors), Regulators (DPA, CSIRT), Internal: CISO, Legal, Procurement
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-06.4-002 — Third-Party Boundary Management
@@ -1870,7 +1870,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-06.1 (vendor risk), D-01.2 (transit)
 **Risk if not met:** HIGH — Lateral movement from compromised boundary; NIS 2 Art. 21(2)(e) + AI_Act Art. 15
 **Affected Stakeholders:** Government back-end, Cloud providers, Internal: CTO, CISO
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P1
 
 ### AG-D-07.1-002 — Secure-by-Design Principles
@@ -1896,14 +1896,14 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-09.2 (DPIA), D-07.2 (secure coding)
 **Risk if not met:** HIGH — Insecure high-risk AI in production; AI_Act Art. 9 + Art. 13 + Art. 14 failure
 **Affected Stakeholders:** Travelers (data subjects), Regulators (AI Supervisory Authority, ENISA, DPA), Internal: CTO, AI Governance Lead, DPO
-**Maturity Score:** Current 2/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: substantial gap to the target profile in the Verification Criteria above (backfilled from legacy 2/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-07.2-002 — Secure Coding Practices
 
 **Description (multi-paragraph):**
 
-**Context:** CRA Annex I Part I (2)(c) attack-surface minimisation via secure coding standards (application security maturity model at industry-standard level for AI components). static application security testing (static application security testing tool) + dynamic application security testing in CI. Pre-commit secret scanning. CRA Art. 13(11) software bill of materials-anchored vulnerability tracking. AI_Act Art. 15 robustness via secure coding.
+**Context:** CRA Annex I Part I (2)(c) attack-surface minimisation via secure coding standards (application security capability model at industry-standard level (OWASP SAMM-class) for AI components). static application security testing (static application security testing tool) + dynamic application security testing in CI. Pre-commit secret scanning. CRA Art. 13(11) software bill of materials-anchored vulnerability tracking. AI_Act Art. 15 robustness via secure coding.
 
 **Scope:** All code in the eGate stack and back-end services. The objective includes the secure coding standards and the CI gating.
 
@@ -1913,7 +1913,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **NIST CSF Anchors:** PR.PS-06, PR.PS-02, PR.PS-01
 **Verification Criteria (operational):**
 - static application security testing (static application security testing tool) + dynamic application security testing in CI blocking merge on high-severity findings
-- application security maturity model at industry-standard level secure coding standards applied for AI components with documented verification
+- application security capability model at industry-standard level (OWASP SAMM-class) secure coding standards applied for AI components with documented verification
 - Pre-commit secret scanning demonstrated to catch 100% of test tokens in last regression exercise
 
 **Verification Method:** TEST + DEMONSTRATE
@@ -1922,7 +1922,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-07.1 (secure-by-design), D-07.3 (CI/CD)
 **Risk if not met:** MEDIUM — Vulnerable code in production; CRA Annex I Part I (2)(c) + AI_Act Art. 15
 **Affected Stakeholders:** Travelers (data subjects), Internal: CTO, CISO
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P1
 
 ### AG-D-07.3-002 — CI/CD Pipeline Security
@@ -1948,7 +1948,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-06.2 (software bill of materials), D-02.1 (vuln ID)
 **Risk if not met:** HIGH — Supply-chain attack via CI/CD; NIS 2 Art. 21(2)(d) + CRA Art. 13(11) failure
 **Affected Stakeholders:** Regulators (ENISA, CSIRT), Internal: CTO, CISO
-**Maturity Score:** Current 2/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: substantial gap to the target profile in the Verification Criteria above (backfilled from legacy 2/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-08.1-002 — General Security Awareness
@@ -1974,7 +1974,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-09.1 (policies)
 **Risk if not met:** MEDIUM — Social engineering compromise; NIS 2 Art. 21(2)(g) + GDPR Art. 39(1)(b) failure
 **Affected Stakeholders:** Internal: All employees, Internal: CISO, HR
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P1
 
 ### AG-D-08.2-002 — Role-Specific Competence
@@ -2000,7 +2000,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-08.1 (awareness), D-09.1 (policies)
 **Risk if not met:** MEDIUM — Unqualified role-holder; AI_Act Art. 4 + Art. 14 + DPO Art. 37(1)(c) failure
 **Affected Stakeholders:** Internal: Security, Privacy, AI, SOC roles, Internal: CISO, DPO, HR
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P1
 
 ### AG-D-09.1-002 — Information Security Policies
@@ -2026,7 +2026,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-09.2 (DPIA), D-09.4 (RoPA)
 **Risk if not met:** LOW — ISO 27001 certified; policies maintained; failure unlikely
 **Affected Stakeholders:** Regulators (DPA, ENISA, CSIRT, AI Supervisory Authority), Internal: CISO, DPO, Legal
-**Maturity Score:** Current 4/4 → Target 4/4
+**Implementation Status:** IMPLEMENTED — Evidence: operational state and Verification Criteria above (backfilled from legacy 4/4 → 4/4 per IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md §4)
 **Implementation Priority:** P2
 
 ### AG-D-09.2-002 — Impact & Risk Assessments
@@ -2052,7 +2052,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-09.1 (policies), D-09.4 (RoPA)
 **Risk if not met:** HIGH — DPIA/FRIA missing for high-risk AI; GDPR Art. 35(3) + AI_Act Art. 27(1) failure
 **Affected Stakeholders:** Travelers (data subjects), Regulators (DPA, AI Supervisory Authority), Internal: DPO, AI Governance Lead, Legal
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-09.4-002 — Records of Processing
@@ -2078,7 +2078,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-09.1 (policies), D-05.2 (retention)
 **Risk if not met:** MEDIUM — Missing RoPA entry; GDPR Art. 30 + AI_Act Art. 12 record-keeping failure
 **Affected Stakeholders:** Regulators (DPA, AI Supervisory Authority), Internal: DPO, CISO
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P1
 
 ### AG-D-10.1-002 — Continuous Security Monitoring
@@ -2104,7 +2104,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-04.1 (incident detection), D-10.2 (audit log)
 **Risk if not met:** HIGH — AI model drift undetected; AI_Act Art. 72 + Art. 73 + NIS 2 Art. 21(2)(g) failure
 **Affected Stakeholders:** Travelers (data subjects), Regulators (DPA, ENISA, CSIRT, AI Supervisory Authority), Internal: CISO, SOC, AI Governance Lead
-**Maturity Score:** Current 2/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: substantial gap to the target profile in the Verification Criteria above (backfilled from legacy 2/4 → 4/4 per posture model §4)
 **Implementation Priority:** P0
 
 ### AG-D-10.2-002 — Audit Logging & Traceability
@@ -2130,7 +2130,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-09.1 (policies), D-09.4 (RoPA)
 **Risk if not met:** MEDIUM — Audit log tamper; GDPR Art. 5(2) accountability + AI_Act Art. 12 failure
 **Affected Stakeholders:** Regulators (DPA, AI Supervisory Authority), Internal: CISO, DPO, Legal
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P1
 
 ### AG-D-10.3-002 — Compliance Testing
@@ -2156,7 +2156,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 **Dependencies:** D-09.1 (policies), D-10.1 (monitoring)
 **Risk if not met:** MEDIUM — Compliance drift; ISO 27001 surveillance + AI_Act re-assessment failure
 **Affected Stakeholders:** Regulators (DPA, ENISA, CSIRT, AI Supervisory Authority, Notified Body), Internal: CISO, DPO, Legal
-**Maturity Score:** Current 3/4 → Target 4/4
+**Implementation Status:** PARTIAL — What's missing: close the delta between the current operational state and the target profile in the Verification Criteria above (backfilled from legacy 3/4 → 4/4 per posture model §4)
 **Implementation Priority:** P2
 
 
@@ -2166,7 +2166,7 @@ Track B decision table per Doc 07b §4: the deterministic decision table `(S=MED
 |---------|------|--------|---------|
 | 0.1 | 2026-08-06 | Sprint 0 Executor | Placeholder; 53 lines; structure plan only. |
 | 1.0 | 2026-08-06 | Sprint 4 Executor | Full content fill (V-03 fix): §1 generic baseline (35 rows × 7 columns from corpus), §2 adjusted PG (35 rows), §3 adjusted SG (35 rows; D-05.4 GDPR-only has SG = N/A), §4 tensions resolved (T-001/002/003), §5 Track B decision trail (35 rows; 8 RIGOROUS + 27 STANDARD), §6 cross-references, §7 validation. **70 adjusted objectives** (35 PG + 35 SG). All 35 active sub-domains covered; 3 inactive sub-domains (D-07.4, D-08.3, D-09.3) excluded. |
-| 2.0 | 2026-08-06 | Sprint 5 Executor | **DEEP enrichment without Effort/Cost/Timeline.** §2/§3 tables extended with "Details" anchor column (35 PG + 35 SG anchors). §4 Tensions Resolved: 3 tensions expanded to multi-paragraph form (T-001 4-way temporal conflict, T-002 cryptographic sharding, T-003 unified DPIA+FRIA). **§8 NEW: 70 DEEP detail cards** (35 PG + 35 SG) — each with 15 fields: Description (multi-paragraph), Source Article, NIST CSF Anchors, Verification Criteria (operational), Verification Method, Owner, Status, Dependencies, Risk if not met, Affected Stakeholders, Maturity Score, Implementation Priority. D-01.x (RIGOROUS) anchored to biometric Art. 9 hardware cryptographic module-backed architecture. D-04.3 RIGOROUS — 4-reg max-SLA 24h routing. D-06.x RIGOROUS — NIS 2 supply chain + biometric processor agreements. D-07.x RIGOROUS — AI_Act Annex III conformity + CRA + supply-chain integrity controls Level 3. D-10.x RIGOROUS — 24/7 SOC + ISO 27001 monitoring. Total file growth: 247 → ~1,500 lines. **Excluded** Effort/Cost/Timeline per user directive. |
+| 2.0 | 2026-08-06 | Sprint 5 Executor | **DEEP enrichment without Effort/Cost/Timeline.** §2/§3 tables extended with "Details" anchor column (35 PG + 35 SG anchors). §4 Tensions Resolved: 3 tensions expanded to multi-paragraph form (T-001 4-way temporal conflict, T-002 cryptographic sharding, T-003 unified DPIA+FRIA). **§8 NEW: 70 DEEP detail cards** (35 PG + 35 SG) — each with 15 fields: Description (multi-paragraph), Source Article, NIST CSF Anchors, Verification Criteria (operational), Verification Method, Owner, Status, Dependencies, Risk if not met, Affected Stakeholders, legacy posture scale (superseded), Implementation Priority. D-01.x (RIGOROUS) anchored to biometric Art. 9 hardware cryptographic module-backed architecture. D-04.3 RIGOROUS — 4-reg max-SLA 24h routing. D-06.x RIGOROUS — NIS 2 supply chain + biometric processor agreements. D-07.x RIGOROUS — AI_Act Annex III conformity + CRA + supply-chain integrity controls Level 3. D-10.x RIGOROUS — 24/7 SOC + ISO 27001 monitoring. Total file growth: 247 → ~1,500 lines. **Excluded** Effort/Cost/Timeline per user directive. |
 | 3.0 | 2026-08-28 | Executor (port Fase 1) | **corr-008 AG- migration + corr-010 rename.** File renamed `07c_Adjusted_Objectives.md` → `Doc13_Adjusted_Goals.md`. All `PG-D-XX.Y[...]` → `AG-D-XX.Y-001`, `SG-D-XX.Y[...]` → `AG-D-XX.Y-002` (70 goal IDs, 141 references incl. anchors); Appendix A added with the bijective legacy alias map; `sprint:` frontmatter keys removed; phantom suffixed references in Doc11/Doc30 (`PG-D-XX.Y-001` with no unsuffixed source) reconciled to the same canonical form. |
 
 ## Appendix A — Legacy ID aliases (corr-007 → corr-008 AG- migration)

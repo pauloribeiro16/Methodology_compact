@@ -262,7 +262,7 @@ If an incident is still ongoing at the time of the final report (1 month), the e
 
 **Total Applicable Regulations:** 4/5
 
-**Total Applicable Clauses:** 112 (GDPR 28 + CRA 26 + NIS 2 29 + AI_Act 29)
+**Total Applicable Clauses:** 111 (GDPR 28 + CRA 26 + NIS 2 29 + AI_Act 28 — AI-C19 removed per D1)
 
 ---
 
@@ -401,75 +401,75 @@ Based on applicable regulations (GDPR + CRA + NIS 2 + AI_Act):
 
 ## 8.5 Per-Article Detailed Breakdown
 
-> Sprint 5 DEEP enrichment. 112 rows: 28 GDPR + 26 CRA + 29 NIS 2 + 29 AI_Act. Each row maps a regulatory clause to its sub-domain, obligated party, verification criteria, evidence type, risk if not met, and maturity (current → target). This complements the §3 Regulation-by-Regulation Applicability Analysis and the §4 Applicability Matrix Summary by providing per-article operational depth.
+> Sprint 5 DEEP enrichment. 112 table rows: 28 GDPR + 26 CRA + 29 NIS 2 + 29 AI_Act. Note: the §8D AI_Act section uses the Sprint 5 local article decomposition with its own (Cnn) coding — 29 rows, none is Art. 26; the canonical AI_Act clause set is 28 post-D1 (AI-C19 removed, deployer duty). Each row maps a regulatory article to its sub-domain, obligated party, verification criteria, evidence type, risk if not met, and implementation status (backfilled from the legacy scale per IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md §4). This complements the §3 Regulation-by-Regulation Applicability Analysis and the §4 Applicability Matrix Summary by providing per-article operational depth.
 
 ### A. GDPR (28 articles)
 
 | GDPR — Total rows: 28 |
 
-| Article | Topic | Sub-Domains | Obligated Party | Verification Criteria | Evidence Type | Risk if not met | Maturity (cur→tgt) |
+| Article | Topic | Sub-Domains | Obligated Party | Verification Criteria | Evidence Type | Risk if not met | Impl. Status (backfilled) |
 |---------|-------|-------------|-----------------|------------------------|---------------|-----------------|--------------------|
-| Art. 5 (C01) | Principles relating to processing | D-05.1, D-05.2, D-09.1 | CONTROLLER | Doc 04 §10.4 + DPIA on change | POLICY + AUDIT | HIGH — Art. 5(1)(a) lawfulness breach triggers Art. 83(4) fine | 3/4 → 4/4 |
-| Art. 6 (C02) | Lawfulness of processing | D-05.1, D-09.4 | CONTROLLER | Legal basis documented per processing activity | POLICY | HIGH — No legal basis = unlawful processing, Art. 83(4) fine | 3/4 → 4/4 |
-| Art. 7 (C03) | Conditions for consent | D-05.1 | CONTROLLER | Consent record per processing activity | POLICY | LOW — Art. 9(2)(g) is the SecureBorder legal basis, not consent | 3/4 → 4/4 |
+| Art. 5 (C01) | Principles relating to processing | D-05.1, D-05.2, D-09.1 | CONTROLLER | Doc 04 §10.4 + DPIA on change | POLICY + AUDIT | HIGH — Art. 5(1)(a) lawfulness breach triggers Art. 83(4) fine | PARTIAL |
+| Art. 6 (C02) | Lawfulness of processing | D-05.1, D-09.4 | CONTROLLER | Legal basis documented per processing activity | POLICY | HIGH — No legal basis = unlawful processing, Art. 83(4) fine | PARTIAL |
+| Art. 7 (C03) | Conditions for consent | D-05.1 | CONTROLLER | Consent record per processing activity | POLICY | LOW — Art. 9(2)(g) is the SecureBorder legal basis, not consent | PARTIAL |
 | Art. 8 (C04) | Child's consent in information society services | — | N/A | N/A — no children data subjects | N/A | LOW — Not applicable; travelers are adults | — |
-| Art. 9 (C05) | Processing of special categories of data | D-01.x, D-03.x, D-05.1, D-05.3 | CONTROLLER + PROCESSOR | DPIA + Art. 9(2)(g) explicit legal basis | DPIA + AUDIT | HIGH — Art. 9 biometric breach = Art. 83(5) fine (up to €20M / 4%) | 3/4 → 4/4 |
-| Art. 10 (C06) | Processing of data on criminal convictions | D-05.1 | CONTROLLER | Limited scope; watchlist data is government-owned | POLICY | MEDIUM — Criminal-record data only via government controller | 3/4 → 4/4 |
-| Art. 11 (C07) | Processing not requiring identification | D-05.1 | CONTROLLER | Anonymisation policy for non-identification scope | POLICY | LOW — Anonymisation handled by cryptographic sharding | 3/4 → 4/4 |
-| Art. 12 (C08) | Transparent information, communication, modalities | D-05.4, D-09.1 | CONTROLLER | Privacy notice + DPO contact information | POLICY | MEDIUM — Art. 12(3) one-month response deadline | 3/4 → 4/4 |
-| Art. 13 (C09) | Information to be provided when data is collected | D-09.1 | CONTROLLER | Privacy notice at data collection point | POLICY | MEDIUM | 3/4 → 4/4 |
-| Art. 14 (C10) | Information when data is not collected from the data subject | D-09.1 | CONTROLLER | Indirect-source notice (watchlist data from government) | POLICY | MEDIUM | 3/4 → 4/4 |
-| Art. 15 (C11) | Right of access by the data subject | D-05.4 | CONTROLLER | JSON export endpoint covers access request | TEST + DEMONSTRATE | MEDIUM | 3/4 → 4/4 |
-| Art. 16 (C12) | Right to rectification | D-05.3 | CONTROLLER | Rectification endpoint + privileged access review | TEST + DEMONSTRATE | MEDIUM | 3/4 → 4/4 |
-| Art. 17 (C13) | Right to erasure ('right to be forgotten') | D-05.3 | CONTROLLER + PROCESSOR | Erasure endpoint + cryptographic sharding (T-002) | TEST + DEMONSTRATE | HIGH — Art. 17 failure on biometric = Art. 83(5) fine | 2/4 → 4/4 |
-| Art. 18 (C14) | Right to restriction of processing | D-05.3 | CONTROLLER | Restriction endpoint + audit log | TEST + DEMONSTRATE | MEDIUM | 3/4 → 4/4 |
-| Art. 19 (C15) | Notification obligation regarding rectification/erasure/restriction | D-05.3 | CONTROLLER | Notification to recipients on erasure | POLICY | MEDIUM | 3/4 → 4/4 |
-| Art. 20 (C16) | Right to data portability | D-05.4 | CONTROLLER | JSON export endpoint per Art. 20 | TEST + DEMONSTRATE | MEDIUM | 3/4 → 4/4 |
-| Art. 21 (C17) | Right to object + automated decision-making | D-05.1 | CONTROLLER | Objection endpoint + manual review process | TEST + DEMONSTRATE | MEDIUM | 3/4 → 4/4 |
-| Art. 22 (C18) | Automated decision-making, including profiling | D-09.2 | CONTROLLER | Human oversight per AI_Act Art. 14 + GDPR Art. 22 | TEST + DEMONSTRATE | HIGH — eGate AI may be subject to Art. 22 constraints | 3/4 → 4/4 |
-| Art. 23 (C19) | Restrictions on scope of obligations | D-09.1 | CONTROLLER + MEMBER STATE | Restriction scope documented in DPIA | POLICY | LOW | 3/4 → 4/4 |
-| Art. 24 (C20) | Responsibility of the controller | D-09.1 | CONTROLLER | ISO 27001 ISMS demonstrates accountability | POLICY + AUDIT | MEDIUM | 4/4 → 4/4 |
-| Art. 25 (C21) | Data protection by design and by default | D-03.4, D-07.1 | CONTROLLER | Privacy by design in SDLC + secure defaults | TEST + DEMONSTRATE | HIGH — Art. 25 breach compounds other Art. failures | 3/4 → 4/4 |
-| Art. 26 (C22) | Joint controllers | D-09.1 | CONTROLLER | Joint-controller arrangement with government (out of scope) | POLICY | MEDIUM | 3/4 → 4/4 |
-| Art. 28 (C23) | Processor | D-06.1, D-06.3 | PROCESSOR | DPA template + 8-element list + sub-processor flowdown | TEST + ANALYZE + external audit | HIGH — Art. 28(3) DPA breach = Art. 83(4) fine | 3/4 → 4/4 |
-| Art. 30 (C24) | Records of processing activities | D-09.4 | CONTROLLER + PROCESSOR | RoPA covering all 4 regs with DPO oversight | TEST + DEMONSTRATE | MEDIUM | 3/4 → 4/4 |
-| Art. 33 (C25) | Breach notification to supervisory authority | D-04.3 | CONTROLLER | Multi-reg max-SLA 24h routing (T-001) | TEST + ANALYZE + external audit | CRITICAL — 4 fines on single incident | 2/4 → 4/4 |
-| Art. 34 (C26) | Communication of breach to data subject | D-04.3 | CONTROLLER | Communication template per Art. 34(3) | POLICY + AUDIT | HIGH | 3/4 → 4/4 |
-| Art. 32 (C27) | Security of processing | D-01.x, D-02.x, D-03.x, D-04.x, D-08.x, D-09.x, D-10.x | CONTROLLER + PROCESSOR | Art. 32(1) 4-element list (closed AND) | TEST + ANALYZE + external audit (RIGOROUS) | HIGH — Art. 32 breach + Art. 9 = Art. 83(5) fine | 3/4 → 4/4 |
-| Art. 35 (C28) | Data protection impact assessment | D-09.2 | CONTROLLER | Unified DPIA + FRIA single process (T-003) | TEST + DEMONSTRATE | HIGH — Art. 35(3)(b) automatic DPIA trigger failure | 3/4 → 4/4 |
+| Art. 9 (C05) | Processing of special categories of data | D-01.x, D-03.x, D-05.1, D-05.3 | CONTROLLER + PROCESSOR | DPIA + Art. 9(2)(g) explicit legal basis | DPIA + AUDIT | HIGH — Art. 9 biometric breach = Art. 83(5) fine (up to €20M / 4%) | PARTIAL |
+| Art. 10 (C06) | Processing of data on criminal convictions | D-05.1 | CONTROLLER | Limited scope; watchlist data is government-owned | POLICY | MEDIUM — Criminal-record data only via government controller | PARTIAL |
+| Art. 11 (C07) | Processing not requiring identification | D-05.1 | CONTROLLER | Anonymisation policy for non-identification scope | POLICY | LOW — Anonymisation handled by cryptographic sharding | PARTIAL |
+| Art. 12 (C08) | Transparent information, communication, modalities | D-05.4, D-09.1 | CONTROLLER | Privacy notice + DPO contact information | POLICY | MEDIUM — Art. 12(3) one-month response deadline | PARTIAL |
+| Art. 13 (C09) | Information to be provided when data is collected | D-09.1 | CONTROLLER | Privacy notice at data collection point | POLICY | MEDIUM | PARTIAL |
+| Art. 14 (C10) | Information when data is not collected from the data subject | D-09.1 | CONTROLLER | Indirect-source notice (watchlist data from government) | POLICY | MEDIUM | PARTIAL |
+| Art. 15 (C11) | Right of access by the data subject | D-05.4 | CONTROLLER | JSON export endpoint covers access request | TEST + DEMONSTRATE | MEDIUM | PARTIAL |
+| Art. 16 (C12) | Right to rectification | D-05.3 | CONTROLLER | Rectification endpoint + privileged access review | TEST + DEMONSTRATE | MEDIUM | PARTIAL |
+| Art. 17 (C13) | Right to erasure ('right to be forgotten') | D-05.3 | CONTROLLER + PROCESSOR | Erasure endpoint + cryptographic sharding (T-002) | TEST + DEMONSTRATE | HIGH — Art. 17 failure on biometric = Art. 83(5) fine | PARTIAL |
+| Art. 18 (C14) | Right to restriction of processing | D-05.3 | CONTROLLER | Restriction endpoint + audit log | TEST + DEMONSTRATE | MEDIUM | PARTIAL |
+| Art. 19 (C15) | Notification obligation regarding rectification/erasure/restriction | D-05.3 | CONTROLLER | Notification to recipients on erasure | POLICY | MEDIUM | PARTIAL |
+| Art. 20 (C16) | Right to data portability | D-05.4 | CONTROLLER | JSON export endpoint per Art. 20 | TEST + DEMONSTRATE | MEDIUM | PARTIAL |
+| Art. 21 (C17) | Right to object + automated decision-making | D-05.1 | CONTROLLER | Objection endpoint + manual review process | TEST + DEMONSTRATE | MEDIUM | PARTIAL |
+| Art. 22 (C18) | Automated decision-making, including profiling | D-09.2 | CONTROLLER | Human oversight per AI_Act Art. 14 + GDPR Art. 22 | TEST + DEMONSTRATE | HIGH — eGate AI may be subject to Art. 22 constraints | PARTIAL |
+| Art. 23 (C19) | Restrictions on scope of obligations | D-09.1 | CONTROLLER + MEMBER STATE | Restriction scope documented in DPIA | POLICY | LOW | PARTIAL |
+| Art. 24 (C20) | Responsibility of the controller | D-09.1 | CONTROLLER | ISO 27001 ISMS demonstrates accountability | POLICY + AUDIT | MEDIUM | IMPLEMENTED |
+| Art. 25 (C21) | Data protection by design and by default | D-03.4, D-07.1 | CONTROLLER | Privacy by design in SDLC + secure defaults | TEST + DEMONSTRATE | HIGH — Art. 25 breach compounds other Art. failures | PARTIAL |
+| Art. 26 (C22) | Joint controllers | D-09.1 | CONTROLLER | Joint-controller arrangement with government (out of scope) | POLICY | MEDIUM | PARTIAL |
+| Art. 28 (C23) | Processor | D-06.1, D-06.3 | PROCESSOR | DPA template + 8-element list + sub-processor flowdown | TEST + ANALYZE + external audit | HIGH — Art. 28(3) DPA breach = Art. 83(4) fine | PARTIAL |
+| Art. 30 (C24) | Records of processing activities | D-09.4 | CONTROLLER + PROCESSOR | RoPA covering all 4 regs with DPO oversight | TEST + DEMONSTRATE | MEDIUM | PARTIAL |
+| Art. 33 (C25) | Breach notification to supervisory authority | D-04.3 | CONTROLLER | Multi-reg max-SLA 24h routing (T-001) | TEST + ANALYZE + external audit | CRITICAL — 4 fines on single incident | PARTIAL |
+| Art. 34 (C26) | Communication of breach to data subject | D-04.3 | CONTROLLER | Communication template per Art. 34(3) | POLICY + AUDIT | HIGH | PARTIAL |
+| Art. 32 (C27) | Security of processing | D-01.x, D-02.x, D-03.x, D-04.x, D-08.x, D-09.x, D-10.x | CONTROLLER + PROCESSOR | Art. 32(1) 4-element list (closed AND) | TEST + ANALYZE + external audit (RIGOROUS) | HIGH — Art. 32 breach + Art. 9 = Art. 83(5) fine | PARTIAL |
+| Art. 35 (C28) | Data protection impact assessment | D-09.2 | CONTROLLER | Unified DPIA + FRIA single process (T-003) | TEST + DEMONSTRATE | HIGH — Art. 35(3)(b) automatic DPIA trigger failure | PARTIAL |
 
 
 ### B. CRA (26 articles)
 
 | CRA — Total rows: 26 |
 
-| Article | Topic | Sub-Domains | Obligated Party | Verification Criteria | Evidence Type | Risk if not met | Maturity (cur→tgt) |
+| Article | Topic | Sub-Domains | Obligated Party | Verification Criteria | Evidence Type | Risk if not met | Impl. Status (backfilled) |
 |---------|-------|-------------|-----------------|------------------------|---------------|-----------------|--------------------|
-| Art. 1 (C01) | Subject matter and objectives | D-09.1 | MANUFACTURER | CRA conformed products only | POLICY | HIGH | 3/4 → 4/4 |
-| Art. 6(a) (C02) | Essential requirements — proper installation | D-03.4, D-07.1 | MANUFACTURER | Per Annex II §8 (R1 literal reading) | TEST + DEMONSTRATE | HIGH | 3/4 → 4/4 |
-| Art. 6(b) (C03) | Essential requirements — secure-by-default | D-03.4, D-07.1 | MANUFACTURER | CRA Art. 13(2) secure-by-default | TEST + DEMONSTRATE | HIGH | 3/4 → 4/4 |
-| Art. 7 (C04) | Critical products (Annex IV) | D-09.1 | MANUFACTURER | Critical Class conformity assessment | TEST + ANALYZE + external audit | CRITICAL — Market access blocked if no certification | 2/4 → 4/4 |
-| Art. 13(1) (C05) | Risk assessment | D-09.2 | MANUFACTURER | Risk assessment per Art. 13(1) | TEST + DEMONSTRATE | HIGH | 3/4 → 4/4 |
-| Art. 13(2) (C06) | Secure-by-default | D-03.4, D-07.1 | MANUFACTURER | CRA Art. 13(2) secure-by-default | TEST + DEMONSTRATE | HIGH | 3/4 → 4/4 |
-| Art. 13(3) (C07) | Intended purpose + reasonably foreseeable use | D-05.1, D-07.1 | MANUFACTURER | Intended purpose documented | TEST + DEMONSTRATE | MEDIUM | 3/4 → 4/4 |
-| Art. 13(8) (C08) | Support period (5y) | D-02.2 | MANUFACTURER | 5-year support period | TEST + DEMONSTRATE | HIGH — Support period failure | 3/4 → 4/4 |
-| Art. 13(9) (C09) | Update availability (10y) | D-02.2 | MANUFACTURER | 10-year update availability | TEST + DEMONSTRATE | HIGH | 3/4 → 4/4 |
-| Art. 13(11) (C10) | SBOM | D-06.2 | MANUFACTURER | CycloneDX SBOM per release | TEST + DEMONSTRATE | HIGH | 3/4 → 4/4 |
-| Art. 13(12) (C11) | Technical documentation | D-09.4 | MANUFACTURER | Annex VII technical documentation | TEST + ANALYZE + external audit | HIGH | 3/4 → 4/4 |
-| Art. 13(13) (C12) | Technical documentation retention (10y) | D-05.2, D-09.4 | MANUFACTURER | 10-year retention | TEST + DEMONSTRATE | HIGH | 3/4 → 4/4 |
-| Art. 13(14) (C13) | Logging | D-10.2 | MANUFACTURER | Tamper-evident logging | TEST + DEMONSTRATE | HIGH | 3/4 → 4/4 |
-| Art. 14(1) (C14) | AEV early warning (24h) | D-04.3 | MANUFACTURER | Multi-reg max-SLA 24h routing (T-001) | TEST + ANALYZE + external audit | CRITICAL | 2/4 → 4/4 |
-| Art. 14(2) (C15) | AEV notification + final report (14d) | D-04.3 | MANUFACTURER | AEV notification pipeline | TEST + ANALYZE + external audit | CRITICAL | 2/4 → 4/4 |
-| Art. 14(3) (C16) | Severe incident early warning (24h) | D-04.1, D-04.3 | MANUFACTURER | Severe incident detection + notification | TEST + ANALYZE + external audit | CRITICAL | 2/4 → 4/4 |
-| Art. 14(4) (C17) | Severe incident notification (72h) | D-04.3 | MANUFACTURER | Notification pipeline | TEST + ANALYZE + external audit | CRITICAL | 2/4 → 4/4 |
-| Art. 14(5) (C18) | Severe incident final report (1 month) | D-04.3, D-04.4 | MANUFACTURER | Final report pipeline | TEST + ANALYZE + external audit | CRITICAL | 2/4 → 4/4 |
-| Art. 14(8) (C19) | User notification | D-04.3 | MANUFACTURER | User notification template | POLICY | HIGH | 3/4 → 4/4 |
-| Art. 16 (C20) | Dissemination with delay grounds | D-02.3 | MANUFACTURER | security.txt + CVD page | TEST + DEMONSTRATE | MEDIUM | 3/4 → 4/4 |
-| Art. 21 (C21) | Manufacturer-equivalent trigger | D-04.2 | MANUFACTURER | Containment playbook | TEST + DEMONSTRATE | HIGH | 3/4 → 4/4 |
-| Art. 24 (C22) | Exclusions | — | MANUFACTURER | Exclusions analysis (no exclusions apply) | POLICY | LOW | 3/4 → 4/4 |
-| Art. 27 (C23) | Harmonised standards | D-09.1 | MANUFACTURER | CRA Art. 27 harmonised standards presumption | POLICY | MEDIUM | 3/4 → 4/4 |
-| Art. 32(3) (C24) | Critical Class conformity assessment | D-09.1 | MANUFACTURER + NOTIFIED BODY | Notified Body engagement (Art. 32(3) until certification scheme) | TEST + ANALYZE + external audit | CRITICAL — Market access blocked | 2/4 → 4/4 |
-| Art. 43 (C25) | Conformity assessment procedures | D-10.3 | MANUFACTURER | Annex VII + Annex VIII conformity assessment | TEST + ANALYZE + external audit | CRITICAL | 2/4 → 4/4 |
+| Art. 1 (C01) | Subject matter and objectives | D-09.1 | MANUFACTURER | CRA conformed products only | POLICY | HIGH | PARTIAL |
+| Art. 6(a) (C02) | Essential requirements — proper installation | D-03.4, D-07.1 | MANUFACTURER | Per Annex II §8 (R1 literal reading) | TEST + DEMONSTRATE | HIGH | PARTIAL |
+| Art. 6(b) (C03) | Essential requirements — secure-by-default | D-03.4, D-07.1 | MANUFACTURER | CRA Art. 13(2) secure-by-default | TEST + DEMONSTRATE | HIGH | PARTIAL |
+| Art. 7 (C04) | Critical products (Annex IV) | D-09.1 | MANUFACTURER | Critical Class conformity assessment | TEST + ANALYZE + external audit | CRITICAL — Market access blocked if no certification | PARTIAL |
+| Art. 13(1) (C05) | Risk assessment | D-09.2 | MANUFACTURER | Risk assessment per Art. 13(1) | TEST + DEMONSTRATE | HIGH | PARTIAL |
+| Art. 13(2) (C06) | Secure-by-default | D-03.4, D-07.1 | MANUFACTURER | CRA Art. 13(2) secure-by-default | TEST + DEMONSTRATE | HIGH | PARTIAL |
+| Art. 13(3) (C07) | Intended purpose + reasonably foreseeable use | D-05.1, D-07.1 | MANUFACTURER | Intended purpose documented | TEST + DEMONSTRATE | MEDIUM | PARTIAL |
+| Art. 13(8) (C08) | Support period (5y) | D-02.2 | MANUFACTURER | 5-year support period | TEST + DEMONSTRATE | HIGH — Support period failure | PARTIAL |
+| Art. 13(9) (C09) | Update availability (10y) | D-02.2 | MANUFACTURER | 10-year update availability | TEST + DEMONSTRATE | HIGH | PARTIAL |
+| Art. 13(11) (C10) | SBOM | D-06.2 | MANUFACTURER | CycloneDX SBOM per release | TEST + DEMONSTRATE | HIGH | PARTIAL |
+| Art. 13(12) (C11) | Technical documentation | D-09.4 | MANUFACTURER | Annex VII technical documentation | TEST + ANALYZE + external audit | HIGH | PARTIAL |
+| Art. 13(13) (C12) | Technical documentation retention (10y) | D-05.2, D-09.4 | MANUFACTURER | 10-year retention | TEST + DEMONSTRATE | HIGH | PARTIAL |
+| Art. 13(14) (C13) | Logging | D-10.2 | MANUFACTURER | Tamper-evident logging | TEST + DEMONSTRATE | HIGH | PARTIAL |
+| Art. 14(1) (C14) | AEV early warning (24h) | D-04.3 | MANUFACTURER | Multi-reg max-SLA 24h routing (T-001) | TEST + ANALYZE + external audit | CRITICAL | PARTIAL |
+| Art. 14(2) (C15) | AEV notification + final report (14d) | D-04.3 | MANUFACTURER | AEV notification pipeline | TEST + ANALYZE + external audit | CRITICAL | PARTIAL |
+| Art. 14(3) (C16) | Severe incident early warning (24h) | D-04.1, D-04.3 | MANUFACTURER | Severe incident detection + notification | TEST + ANALYZE + external audit | CRITICAL | PARTIAL |
+| Art. 14(4) (C17) | Severe incident notification (72h) | D-04.3 | MANUFACTURER | Notification pipeline | TEST + ANALYZE + external audit | CRITICAL | PARTIAL |
+| Art. 14(5) (C18) | Severe incident final report (1 month) | D-04.3, D-04.4 | MANUFACTURER | Final report pipeline | TEST + ANALYZE + external audit | CRITICAL | PARTIAL |
+| Art. 14(8) (C19) | User notification | D-04.3 | MANUFACTURER | User notification template | POLICY | HIGH | PARTIAL |
+| Art. 16 (C20) | Dissemination with delay grounds | D-02.3 | MANUFACTURER | security.txt + CVD page | TEST + DEMONSTRATE | MEDIUM | PARTIAL |
+| Art. 21 (C21) | Manufacturer-equivalent trigger | D-04.2 | MANUFACTURER | Containment playbook | TEST + DEMONSTRATE | HIGH | PARTIAL |
+| Art. 24 (C22) | Exclusions | — | MANUFACTURER | Exclusions analysis (no exclusions apply) | POLICY | LOW | PARTIAL |
+| Art. 27 (C23) | Harmonised standards | D-09.1 | MANUFACTURER | CRA Art. 27 harmonised standards presumption | POLICY | MEDIUM | PARTIAL |
+| Art. 32(3) (C24) | Critical Class conformity assessment | D-09.1 | MANUFACTURER + NOTIFIED BODY | Notified Body engagement (Art. 32(3) until certification scheme) | TEST + ANALYZE + external audit | CRITICAL — Market access blocked | PARTIAL |
+| Art. 43 (C25) | Conformity assessment procedures | D-10.3 | MANUFACTURER | Annex VII + Annex VIII conformity assessment | TEST + ANALYZE + external audit | CRITICAL | PARTIAL |
 | Art. 56 (C26) | Penalties | D-09.1 | MEMBER STATE | Fine schedule per Art. 56 | POLICY | CRITICAL — Up to €15M / 2.5% turnover | — |
 
 
@@ -477,77 +477,77 @@ Based on applicable regulations (GDPR + CRA + NIS 2 + AI_Act):
 
 | NIS 2 — Total rows: 29 |
 
-| Article | Topic | Sub-Domains | Obligated Party | Verification Criteria | Evidence Type | Risk if not met | Maturity (cur→tgt) |
+| Article | Topic | Sub-Domains | Obligated Party | Verification Criteria | Evidence Type | Risk if not met | Impl. Status (backfilled) |
 |---------|-------|-------------|-----------------|------------------------|---------------|-----------------|--------------------|
-| Art. 21(1) (C01) | Risk-management measures (10 factors) | D-09.2 | ESSENTIAL ENTITY SUPPLIER | Risk assessment per Art. 21(1) sentence 2 | TEST + DEMONSTRATE | HIGH | 3/4 → 4/4 |
-| Art. 21(2)(a) (C02) | Risk assessment policies | D-09.4 | ESSENTIAL ENTITY SUPPLIER | Risk assessment policy documented | TEST + DEMONSTRATE | MEDIUM | 3/4 → 4/4 |
-| Art. 21(2)(b) (C03) | Incident handling | D-04.x | ESSENTIAL ENTITY SUPPLIER | Incident handling playbook | TEST + DEMONSTRATE | HIGH | 3/4 → 4/4 |
-| Art. 21(2)(c) (C04) | Business continuity + DR | D-04.4 | ESSENTIAL ENTITY SUPPLIER | RTO 24h, RPO 1h, 10y retention | TEST + DEMONSTRATE | HIGH | 3/4 → 4/4 |
-| Art. 21(2)(d) (C05) | Supply chain security | D-06.1, D-06.3, D-06.4, D-07.x | ESSENTIAL ENTITY SUPPLIER | NIS 2 Art. 21(3) three-prong supplier assessment | TEST + ANALYZE + external audit | HIGH | 3/4 → 4/4 |
-| Art. 21(2)(e) (C06) | Network security + testing | D-02.1, D-02.4, D-06.4, D-08.1 | ESSENTIAL ENTITY SUPPLIER | Network security + threat-led testing | TEST + DEMONSTRATE | HIGH | 3/4 → 4/4 |
-| Art. 21(2)(f) (C07) | Effectiveness evaluation | D-10.3 | ESSENTIAL ENTITY SUPPLIER | Annual control test | TEST + DEMONSTRATE | MEDIUM | 3/4 → 4/4 |
-| Art. 21(2)(g) (C08) | Cyber hygiene + training | D-08.1, D-08.2, D-10.1 | ESSENTIAL ENTITY SUPPLIER | Annual awareness + quarterly phishing + role-specific training | TEST + DEMONSTRATE | MEDIUM | 3/4 → 4/4 |
-| Art. 21(2)(h) (C09) | Cryptography + encryption | D-01.1, D-01.2, D-01.3, D-10.2 | ESSENTIAL ENTITY SUPPLIER | Cryptography policy + AES-256 + HSM-backed KMS | TEST + ANALYZE + external audit | HIGH | 3/4 → 4/4 |
-| Art. 21(2)(i) (C10) | Access control + HR security | D-03.1, D-03.3 | ESSENTIAL ENTITY SUPPLIER | Joinder-mover-leaver + RBAC + ABAC + SoD | TEST + DEMONSTRATE | HIGH | 3/4 → 4/4 |
-| Art. 21(2)(j) (C11) | MFA + secure communications | D-03.2, D-06.4 | ESSENTIAL ENTITY SUPPLIER | Hardware MFA + mTLS on boundaries | TEST + DEMONSTRATE | HIGH | 3/4 → 4/4 |
-| Art. 23(1) (C12) | Incident handling (process) | D-04.1 | ESSENTIAL ENTITY SUPPLIER | CSIRT notification process | TEST + DEMONSTRATE | HIGH | 3/4 → 4/4 |
-| Art. 23(3) (C13) | Early warning (24h) | D-04.3 | ESSENTIAL ENTITY SUPPLIER | Multi-reg max-SLA 24h routing (T-001) | TEST + ANALYZE + external audit | CRITICAL | 2/4 → 4/4 |
-| Art. 23(4)(a) (C14) | Incident notification (72h) | D-04.3 | ESSENTIAL ENTITY SUPPLIER | Notification pipeline | TEST + ANALYZE + external audit | CRITICAL | 2/4 → 4/4 |
-| Art. 23(4)(b) (C15) | Trust service provider derogation (24h) | D-04.3 | ESSENTIAL ENTITY SUPPLIER | If trust service provider in chain: 24h notification | TEST + ANALYZE + external audit | HIGH | 2/4 → 4/4 |
-| Art. 23(4)(e) (C16) | Ongoing incident provision | D-04.3, D-04.4 | ESSENTIAL ENTITY SUPPLIER | Progress report + final report on incident handling | TEST + DEMONSTRATE | MEDIUM | 3/4 → 4/4 |
-| Art. 21(2)(h) (C17) | Cryptography policy | D-01.x, D-10.2 | ESSENTIAL ENTITY SUPPLIER | Cryptography policy documented | TEST + DEMONSTRATE | HIGH | 3/4 → 4/4 |
-| Art. 24 (C18) | Voluntary reporting | D-02.3 | ESSENTIAL ENTITY SUPPLIER | Voluntary CVD report channel | POLICY | LOW | 3/4 → 4/4 |
+| Art. 21(1) (C01) | Risk-management measures (10 factors) | D-09.2 | ESSENTIAL ENTITY SUPPLIER | Risk assessment per Art. 21(1) sentence 2 | TEST + DEMONSTRATE | HIGH | PARTIAL |
+| Art. 21(2)(a) (C02) | Risk assessment policies | D-09.4 | ESSENTIAL ENTITY SUPPLIER | Risk assessment policy documented | TEST + DEMONSTRATE | MEDIUM | PARTIAL |
+| Art. 21(2)(b) (C03) | Incident handling | D-04.x | ESSENTIAL ENTITY SUPPLIER | Incident handling playbook | TEST + DEMONSTRATE | HIGH | PARTIAL |
+| Art. 21(2)(c) (C04) | Business continuity + DR | D-04.4 | ESSENTIAL ENTITY SUPPLIER | RTO 24h, RPO 1h, 10y retention | TEST + DEMONSTRATE | HIGH | PARTIAL |
+| Art. 21(2)(d) (C05) | Supply chain security | D-06.1, D-06.3, D-06.4, D-07.x | ESSENTIAL ENTITY SUPPLIER | NIS 2 Art. 21(3) three-prong supplier assessment | TEST + ANALYZE + external audit | HIGH | PARTIAL |
+| Art. 21(2)(e) (C06) | Network security + testing | D-02.1, D-02.4, D-06.4, D-08.1 | ESSENTIAL ENTITY SUPPLIER | Network security + threat-led testing | TEST + DEMONSTRATE | HIGH | PARTIAL |
+| Art. 21(2)(f) (C07) | Effectiveness evaluation | D-10.3 | ESSENTIAL ENTITY SUPPLIER | Annual control test | TEST + DEMONSTRATE | MEDIUM | PARTIAL |
+| Art. 21(2)(g) (C08) | Cyber hygiene + training | D-08.1, D-08.2, D-10.1 | ESSENTIAL ENTITY SUPPLIER | Annual awareness + quarterly phishing + role-specific training | TEST + DEMONSTRATE | MEDIUM | PARTIAL |
+| Art. 21(2)(h) (C09) | Cryptography + encryption | D-01.1, D-01.2, D-01.3, D-10.2 | ESSENTIAL ENTITY SUPPLIER | Cryptography policy + AES-256 + HSM-backed KMS | TEST + ANALYZE + external audit | HIGH | PARTIAL |
+| Art. 21(2)(i) (C10) | Access control + HR security | D-03.1, D-03.3 | ESSENTIAL ENTITY SUPPLIER | Joinder-mover-leaver + RBAC + ABAC + SoD | TEST + DEMONSTRATE | HIGH | PARTIAL |
+| Art. 21(2)(j) (C11) | MFA + secure communications | D-03.2, D-06.4 | ESSENTIAL ENTITY SUPPLIER | Hardware MFA + mTLS on boundaries | TEST + DEMONSTRATE | HIGH | PARTIAL |
+| Art. 23(1) (C12) | Incident handling (process) | D-04.1 | ESSENTIAL ENTITY SUPPLIER | CSIRT notification process | TEST + DEMONSTRATE | HIGH | PARTIAL |
+| Art. 23(3) (C13) | Early warning (24h) | D-04.3 | ESSENTIAL ENTITY SUPPLIER | Multi-reg max-SLA 24h routing (T-001) | TEST + ANALYZE + external audit | CRITICAL | PARTIAL |
+| Art. 23(4)(a) (C14) | Incident notification (72h) | D-04.3 | ESSENTIAL ENTITY SUPPLIER | Notification pipeline | TEST + ANALYZE + external audit | CRITICAL | PARTIAL |
+| Art. 23(4)(b) (C15) | Trust service provider derogation (24h) | D-04.3 | ESSENTIAL ENTITY SUPPLIER | If trust service provider in chain: 24h notification | TEST + ANALYZE + external audit | HIGH | PARTIAL |
+| Art. 23(4)(e) (C16) | Ongoing incident provision | D-04.3, D-04.4 | ESSENTIAL ENTITY SUPPLIER | Progress report + final report on incident handling | TEST + DEMONSTRATE | MEDIUM | PARTIAL |
+| Art. 21(2)(h) (C17) | Cryptography policy | D-01.x, D-10.2 | ESSENTIAL ENTITY SUPPLIER | Cryptography policy documented | TEST + DEMONSTRATE | HIGH | PARTIAL |
+| Art. 24 (C18) | Voluntary reporting | D-02.3 | ESSENTIAL ENTITY SUPPLIER | Voluntary CVD report channel | POLICY | LOW | PARTIAL |
 | Art. 20 (C19) | Management liability | D-08.3 (board briefing) | MANAGEMENT | CEO/board acknowledgement | POLICY | CRITICAL — CEO/board personally liable | — |
-| Art. 21(3) (C20) | Supplier assessment (three-prong) | D-06.1, D-06.3 | ESSENTIAL ENTITY SUPPLIER | Direct supplier assessment per Art. 21(3) | TEST + ANALYZE + external audit | HIGH | 3/4 → 4/4 |
-| Art. 21(4) (C21) | Proportionality | D-09.2 | ESSENTIAL ENTITY SUPPLIER | Risk-based proportionality | TEST + DEMONSTRATE | LOW | 3/4 → 4/4 |
+| Art. 21(3) (C20) | Supplier assessment (three-prong) | D-06.1, D-06.3 | ESSENTIAL ENTITY SUPPLIER | Direct supplier assessment per Art. 21(3) | TEST + ANALYZE + external audit | HIGH | PARTIAL |
+| Art. 21(4) (C21) | Proportionality | D-09.2 | ESSENTIAL ENTITY SUPPLIER | Risk-based proportionality | TEST + DEMONSTRATE | LOW | PARTIAL |
 | Art. 21(5) (C22) | Delegated granularity (IR 2024/2690) | D-09.1 | ESSENTIAL ENTITY SUPPLIER | Not directly applicable to SecureBorder (not in IR 2024/2690 sector list) | POLICY | LOW | — |
-| Art. 23(1) §1 (C23) | CSIRT notification — `incident` definition | D-04.3 | ESSENTIAL ENTITY SUPPLIER | Confirmed and materialised incident (not detection) | TEST + DEMONSTRATE | HIGH | 3/4 → 4/4 |
-| Art. 23(1) §6 (C24) | Significant impact assessment | D-04.3 | ESSENTIAL ENTITY SUPPLIER | Significant impact criteria per Art. 23(1) §6 | TEST + DEMONSTRATE | HIGH | 3/4 → 4/4 |
-| Art. 23(1) (C25) | Reporting cascade | D-04.3 | ESSENTIAL ENTITY SUPPLIER | CSIRT or CA notification | TEST + DEMONSTRATE | HIGH | 3/4 → 4/4 |
-| Art. 23(1) ¶1 (C26) | CSIRT notification | D-04.3 | ESSENTIAL ENTITY SUPPLIER | Confirmed and materialised incident starts 24h clock | TEST + DEMONSTRATE | CRITICAL | 3/4 → 4/4 |
-| Art. 23(3)(a) (C27) | Early warning recipients | D-04.3 | ESSENTIAL ENTITY SUPPLIER | CSIRT or CA notification | TEST + ANALYZE + external audit | CRITICAL | 2/4 → 4/4 |
-| Art. 23(3) (C28) | Early warning content | D-04.3 | ESSENTIAL ENTITY SUPPLIER | Indication of incident + suspected cause + affected systems | TEST + ANALYZE + external audit | CRITICAL | 2/4 → 4/4 |
-| Art. 23(4) (C29) | Notification + final report | D-04.3 | ESSENTIAL ENTITY SUPPLIER | 72h notification + 1 month final report | TEST + ANALYZE + external audit | CRITICAL | 2/4 → 4/4 |
+| Art. 23(1) §1 (C23) | CSIRT notification — `incident` definition | D-04.3 | ESSENTIAL ENTITY SUPPLIER | Confirmed and materialised incident (not detection) | TEST + DEMONSTRATE | HIGH | PARTIAL |
+| Art. 23(1) §6 (C24) | Significant impact assessment | D-04.3 | ESSENTIAL ENTITY SUPPLIER | Significant impact criteria per Art. 23(1) §6 | TEST + DEMONSTRATE | HIGH | PARTIAL |
+| Art. 23(1) (C25) | Reporting cascade | D-04.3 | ESSENTIAL ENTITY SUPPLIER | CSIRT or CA notification | TEST + DEMONSTRATE | HIGH | PARTIAL |
+| Art. 23(1) ¶1 (C26) | CSIRT notification | D-04.3 | ESSENTIAL ENTITY SUPPLIER | Confirmed and materialised incident starts 24h clock | TEST + DEMONSTRATE | CRITICAL | PARTIAL |
+| Art. 23(3)(a) (C27) | Early warning recipients | D-04.3 | ESSENTIAL ENTITY SUPPLIER | CSIRT or CA notification | TEST + ANALYZE + external audit | CRITICAL | PARTIAL |
+| Art. 23(3) (C28) | Early warning content | D-04.3 | ESSENTIAL ENTITY SUPPLIER | Indication of incident + suspected cause + affected systems | TEST + ANALYZE + external audit | CRITICAL | PARTIAL |
+| Art. 23(4) (C29) | Notification + final report | D-04.3 | ESSENTIAL ENTITY SUPPLIER | 72h notification + 1 month final report | TEST + ANALYZE + external audit | CRITICAL | PARTIAL |
 
 
-### D. AI_Act (29 articles)
+### D. AI_Act (29 article rows — Sprint 5 local decomposition; canonical applicable set is 28 clauses post-D1)
 
 | AI_Act — Total rows: 29 |
 
-| Article | Topic | Sub-Domains | Obligated Party | Verification Criteria | Evidence Type | Risk if not met | Maturity (cur→tgt) |
+| Article | Topic | Sub-Domains | Obligated Party | Verification Criteria | Evidence Type | Risk if not met | Impl. Status (backfilled) |
 |---------|-------|-------------|-----------------|------------------------|---------------|-----------------|--------------------|
-| Art. 4 (C01) | AI literacy | D-08.2 | PROVIDER | AI literacy training for relevant roles | TEST + DEMONSTRATE | MEDIUM | 3/4 → 4/4 |
-| Art. 5 (C02) | Prohibited practices | — | PROVIDER | Negative analysis (no prohibited practices) | POLICY | LOW | 3/4 → 4/4 |
-| Art. 9 (C03) | Risk management system | D-09.1, D-09.2, D-07.1 | PROVIDER | Risk management system across 6 lifecycle phases | TEST + ANALYZE + external audit | HIGH | 2/4 → 4/4 |
-| Art. 10 (C04) | Data governance | D-05.1, D-01.4 | PROVIDER | Data-quality checks + AI training data integrity | TEST + DEMONSTRATE | HIGH | 3/4 → 4/4 |
-| Art. 11 (C05) | Technical documentation | D-09.4 | PROVIDER | Annex IV technical documentation | TEST + ANALYZE + external audit | HIGH | 3/4 → 4/4 |
-| Art. 12 (C06) | Logging capability | D-09.4, D-10.2 | PROVIDER | Tamper-evident logging + 10y retention | TEST + DEMONSTRATE | HIGH | 3/4 → 4/4 |
-| Art. 13 (C07) | Transparency to deployers | D-09.1 | PROVIDER | Transparency documentation for deployers | TEST + DEMONSTRATE | MEDIUM | 3/4 → 4/4 |
-| Art. 14 (C08) | Human oversight | D-08.2, D-09.1 | PROVIDER | Human oversight procedures per AI_Act Art. 14 | TEST + DEMONSTRATE | HIGH | 3/4 → 4/4 |
-| Art. 15 (C09) | Accuracy + robustness + cybersecurity | D-01.4, D-07.2 | PROVIDER | Accuracy + robustness + cybersecurity baseline | TEST + DEMONSTRATE | HIGH | 3/4 → 4/4 |
-| Art. 19(1) (C10) | Automatic logging retention (≥6 months) | D-05.2, D-10.2 | PROVIDER | 10-year retention (above-floor) | TEST + DEMONSTRATE | HIGH | 3/4 → 4/4 |
-| Art. 25 (C11) | Downstream provider | D-09.1 | PROVIDER | Written agreements with downstream entities | POLICY | MEDIUM | 3/4 → 4/4 |
-| Art. 27 (C12) | FRIA — fundamental rights impact assessment | D-09.2 | PROVIDER | Unified DPIA + FRIA (T-003) | TEST + DEMONSTRATE | HIGH | 3/4 → 4/4 |
-| Art. 43 (C13) | Conformity assessment | D-10.3 | PROVIDER | Third-party assessment (Annex III) | TEST + ANALYZE + external audit | CRITICAL — Market access blocked | 2/4 → 4/4 |
-| Art. 49 (C14) | Registration | D-09.4 | PROVIDER | EU database registration | POLICY | MEDIUM | 3/4 → 4/4 |
-| Art. 72 (C15) | Post-market monitoring | D-10.1 | PROVIDER | Post-market monitoring system | TEST + ANALYZE + external audit | HIGH | 2/4 → 4/4 |
-| Art. 73(1) (C16) | Serious incident reporting — general | D-04.3 | PROVIDER | Multi-reg max-SLA 24h routing (T-001) | TEST + ANALYZE + external audit | CRITICAL | 2/4 → 4/4 |
-| Art. 73(2) (C17) | Serious incident — default 15d | D-04.3 | PROVIDER | 15-day clock for serious incident (default) | TEST + DEMONSTRATE | HIGH | 3/4 → 4/4 |
-| Art. 73(3) (C18) | Widespread infringement — 2d | D-04.3 | PROVIDER | 2-day clock for widespread infringement | TEST + ANALYZE + external audit | CRITICAL | 2/4 → 4/4 |
-| Art. 73(4) (C19) | Death of person — 10d | D-04.3 | PROVIDER | 10-day clock after causal link established | TEST + DEMONSTRATE | HIGH | 3/4 → 4/4 |
-| Art. 75 (C20) | Reporting to market surveillance authorities | D-04.3 | PROVIDER | MSA notification | TEST + DEMONSTRATE | HIGH | 3/4 → 4/4 |
-| Art. 76 (C21) | Investigation of AI systems | D-09.1 | PROVIDER | Investigation cooperation | POLICY | MEDIUM | 3/4 → 4/4 |
-| Art. 79 (C22) | Classification rules for high-risk AI systems | D-09.1 | PROVIDER | Annex III §1 (biometric) + §7 (border control) classification | POLICY | HIGH | 3/4 → 4/4 |
+| Art. 4 (C01) | AI literacy | D-08.2 | PROVIDER | AI literacy training for relevant roles | TEST + DEMONSTRATE | MEDIUM | PARTIAL |
+| Art. 5 (C02) | Prohibited practices | — | PROVIDER | Negative analysis (no prohibited practices) | POLICY | LOW | PARTIAL |
+| Art. 9 (C03) | Risk management system | D-09.1, D-09.2, D-07.1 | PROVIDER | Risk management system across 6 lifecycle phases | TEST + ANALYZE + external audit | HIGH | PARTIAL |
+| Art. 10 (C04) | Data governance | D-05.1, D-01.4 | PROVIDER | Data-quality checks + AI training data integrity | TEST + DEMONSTRATE | HIGH | PARTIAL |
+| Art. 11 (C05) | Technical documentation | D-09.4 | PROVIDER | Annex IV technical documentation | TEST + ANALYZE + external audit | HIGH | PARTIAL |
+| Art. 12 (C06) | Logging capability | D-09.4, D-10.2 | PROVIDER | Tamper-evident logging + 10y retention | TEST + DEMONSTRATE | HIGH | PARTIAL |
+| Art. 13 (C07) | Transparency to deployers | D-09.1 | PROVIDER | Transparency documentation for deployers | TEST + DEMONSTRATE | MEDIUM | PARTIAL |
+| Art. 14 (C08) | Human oversight | D-08.2, D-09.1 | PROVIDER | Human oversight procedures per AI_Act Art. 14 | TEST + DEMONSTRATE | HIGH | PARTIAL |
+| Art. 15 (C09) | Accuracy + robustness + cybersecurity | D-01.4, D-07.2 | PROVIDER | Accuracy + robustness + cybersecurity baseline | TEST + DEMONSTRATE | HIGH | PARTIAL |
+| Art. 19(1) (C10) | Automatic logging retention (≥6 months) | D-05.2, D-10.2 | PROVIDER | 10-year retention (above-floor) | TEST + DEMONSTRATE | HIGH | PARTIAL |
+| Art. 25 (C11) | Downstream provider | D-09.1 | PROVIDER | Written agreements with downstream entities | POLICY | MEDIUM | PARTIAL |
+| Art. 27 (C12) | FRIA — fundamental rights impact assessment | D-09.2 | PROVIDER | Unified DPIA + FRIA (T-003) | TEST + DEMONSTRATE | HIGH | PARTIAL |
+| Art. 43 (C13) | Conformity assessment | D-10.3 | PROVIDER | Third-party assessment (Annex III) | TEST + ANALYZE + external audit | CRITICAL — Market access blocked | PARTIAL |
+| Art. 49 (C14) | Registration | D-09.4 | PROVIDER | EU database registration | POLICY | MEDIUM | PARTIAL |
+| Art. 72 (C15) | Post-market monitoring | D-10.1 | PROVIDER | Post-market monitoring system | TEST + ANALYZE + external audit | HIGH | PARTIAL |
+| Art. 73(1) (C16) | Serious incident reporting — general | D-04.3 | PROVIDER | Multi-reg max-SLA 24h routing (T-001) | TEST + ANALYZE + external audit | CRITICAL | PARTIAL |
+| Art. 73(2) (C17) | Serious incident — default 15d | D-04.3 | PROVIDER | 15-day clock for serious incident (default) | TEST + DEMONSTRATE | HIGH | PARTIAL |
+| Art. 73(3) (C18) | Widespread infringement — 2d | D-04.3 | PROVIDER | 2-day clock for widespread infringement | TEST + ANALYZE + external audit | CRITICAL | PARTIAL |
+| Art. 73(4) (C19) | Death of person — 10d | D-04.3 | PROVIDER | 10-day clock after causal link established | TEST + DEMONSTRATE | HIGH | PARTIAL |
+| Art. 75 (C20) | Reporting to market surveillance authorities | D-04.3 | PROVIDER | MSA notification | TEST + DEMONSTRATE | HIGH | PARTIAL |
+| Art. 76 (C21) | Investigation of AI systems | D-09.1 | PROVIDER | Investigation cooperation | POLICY | MEDIUM | PARTIAL |
+| Art. 79 (C22) | Classification rules for high-risk AI systems | D-09.1 | PROVIDER | Annex III §1 (biometric) + §7 (border control) classification | POLICY | HIGH | PARTIAL |
 | Art. 80 (C23) | Annex III amendments | D-09.1 | PROVIDER | Annex III review | POLICY | LOW | — |
-| Art. 84 (C24) | Market surveillance | D-09.1 | PROVIDER | Market surveillance cooperation | POLICY | MEDIUM | 3/4 → 4/4 |
-| Art. 85 (C25) | Confidentiality | D-09.1 | PROVIDER | Confidentiality of trade secrets | POLICY | LOW | 3/4 → 4/4 |
-| Art. 86 (C26) | Information to data subjects | D-09.1 | PROVIDER | Data subject information per AI_Act | POLICY | MEDIUM | 3/4 → 4/4 |
-| Art. 87 (C27) | Complaints | D-09.1 | PROVIDER | Complaints handling | POLICY | MEDIUM | 3/4 → 4/4 |
+| Art. 84 (C24) | Market surveillance | D-09.1 | PROVIDER | Market surveillance cooperation | POLICY | MEDIUM | PARTIAL |
+| Art. 85 (C25) | Confidentiality | D-09.1 | PROVIDER | Confidentiality of trade secrets | POLICY | LOW | PARTIAL |
+| Art. 86 (C26) | Information to data subjects | D-09.1 | PROVIDER | Data subject information per AI_Act | POLICY | MEDIUM | PARTIAL |
+| Art. 87 (C27) | Complaints | D-09.1 | PROVIDER | Complaints handling | POLICY | MEDIUM | PARTIAL |
 | Art. 99 (C28) | Penalties | D-09.1 | MEMBER STATE | Fine schedule per Art. 99 | POLICY | CRITICAL — Up to €15M / 3% turnover | — |
-| Annex III (C29) | High-risk AI system categories | D-09.1 | PROVIDER | §1 biometric + §7 border control | POLICY | HIGH | 3/4 → 4/4 |
+| Annex III (C29) | High-risk AI system categories | D-09.1 | PROVIDER | §1 biometric + §7 border control | POLICY | HIGH | PARTIAL |
 
 
-**Total rows:** 112 (28 GDPR + 26 CRA + 29 NIS 2 + 29 AI_Act).
+**Total rows:** 112 table rows (28 GDPR + 26 CRA + 29 NIS 2 + 29 Sprint-5 AI_Act article rows; canonical applicable clause count is 111 = 28 AI_Act post-D1).
 
 ---
 ## 9. KEY OBSERVATIONS

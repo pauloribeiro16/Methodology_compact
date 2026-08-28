@@ -55,7 +55,7 @@ reconciliation:
 
 ## 1. Technical Architecture
 
-SecureBorder Solutions B.V. is a medium-large enterprise (450 employees, ~€120M revenue) operating in the defence/security/critical-infrastructure sector. It manufactures and operates **GuardianGate** eGate kiosks — hardware + software systems with on-board Edge AI for biometric facial verification (1:1 match), deployed at Schengen border crossings. The architecture is hybrid: Edge AI on the kiosk for biometric matching, with European-region cloud services for model updates, audit log aggregation, and the corporate back-office. Four regulations apply (GDPR, CRA, NIS 2, AI_Act), with CRA classified as **Critical Class** and the AI system classified as **Annex III (border control)**. Maturity is medium-tier: a 24/7 SOC, ISO 27001 certified, dedicated CISO, DPO, AI Governance Lead.
+SecureBorder Solutions B.V. is a medium-large enterprise (450 employees, ~€120M revenue) operating in the defence/security/critical-infrastructure sector. It manufactures and operates **GuardianGate** eGate kiosks — hardware + software systems with on-board Edge AI for biometric facial verification (1:1 match), deployed at Schengen border crossings. The architecture is hybrid: Edge AI on the kiosk for biometric matching, with European-region cloud services for model updates, audit log aggregation, and the corporate back-office. Four regulations apply (GDPR, CRA, NIS 2, AI_Act), with CRA classified as **Critical Class** and the AI system classified as **Annex III (border control)**. Implementation posture is strong (qualitative context): a 24/7 SOC, ISO 27001 certified, dedicated CISO, DPO, AI Governance Lead.
 
 ### 1.1 System Inventory
 
@@ -310,7 +310,7 @@ Source: `00_METHODOLOGY/PREPROCESSING_by_domain/domains/` (Sprint 2 corpus root)
 
 ## See also
 
-- **Data backbone:** `Case_02_Phase1.xlsx` (13 sheets: COVER, SYSTEMS, DATA_STORES, DATA_FLOWS, PERSONAL_DATA, THIRD_PARTIES, ROLES_RACI, MATURITY, SUBDOMAINS, REG_CHAIN, COMPLIANCE, GAPS, PRIORITIES)
+- **Data backbone:** `Case_02_Phase1.xlsx` (13 sheets: COVER, SYSTEMS, DATA_STORES, DATA_FLOWS, PERSONAL_DATA, THIRD_PARTIES, ROLES_RACI, MATURITY (legacy sheet name), SUBDOMAINS, REG_CHAIN, COMPLIANCE, GAPS, PRIORITIES)
 - **Operational architecture:** the kiosk-to-cloud flow is detailed in §1.2; for full mTLS endpoint inventory see `Doc06_ThirdParty_Landscape.md` §2.
 - **AI_Act specifically:** the Edge AI inference engine on SYS-04 falls under Annex III — see `Doc08_Regulatory_Applicability.md §3.5` for AI_Act overlay on D-09.2 (FRIA), D-09.4 (technical documentation), D-10.1 (post-market monitoring).
 - **High-tier proportionality note (P2):** the HSM cluster (SYS-07) and immutable WORM store (STORE-04) are **not** over-engineering for a HIGH-tier Critical Class + Annex III AI company. They are the minimum proportionate baseline to satisfy GDPR Art. 32 + CRA Annex I Part I (2)(c) + NIS 2 Art. 21 + AI_Act Art. 9.
