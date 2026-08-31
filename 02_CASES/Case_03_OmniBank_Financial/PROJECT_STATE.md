@@ -1,8 +1,8 @@
 # Project State — Case 03: OmniBank Financial Systems (High Complexity)
 
 **Last Updated:** 2026-08-28
-**Status:** 🟢 Phase 1 ✅ COMPLETE (Rich) | Phase 2 ✅ COMPLETE (Rich) | Phase 3 ✅ COMPLETE (Doc22–31) | 🔄 PORT CAMPAIGN Case_01→Case_03 IN PROGRESS (Fases 0–2, Bloco A)
-**Next Phase:** Port Fases 3–7 (UNMAPPED adjudication, posture, Control Set, gates, PRODUCTION_FLOW)
+**Status:** 🟢 Phase 1 ✅ COMPLETE (Rich) | Phase 2 ✅ COMPLETE (Rich) | Phase 3 ✅ COMPLETE (Doc22–31) | ✅ PORT CAMPAIGN Case_01→Case_03 COMPLETE (Fases 0–7, all gates PASS — see commit b0cddb6)
+**Next Phase:** Maturity v1.6 migration / P3 follow-ups (parallel Case_01/02)
 **Complexity:** Maximum (5/5 regulations, 38/38 sub-domains)
 **Restructured:** 2026-04-02 (v2.0)
 

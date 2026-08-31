@@ -1,8 +1,8 @@
 # Project State — Case 02: SecureBorder Solutions (High Complexity)
 
 **Last Updated:** 2026-08-28
-**Status:** 🟢 Phase 1 ✅ COMPLETE (Rich, superseded Sprint 3 CONDITIONAL_PASS) | Phase 2 ✅ COMPLETE (corr-008 migrated) | Phase 3 ✅ COMPLETE | 🟢 PORT CAMPAIGN Case_01→Case_02 COMPLETE (Fases 0–7 — all gates PASS)
-**Next Phase:** Port Fases 3–7 (UNMAPPED adjudication, posture, Control Set, gates, PRODUCTION_FLOW)
+**Status:** 🟢 Phase 1 ✅ COMPLETE (Rich, superseded Sprint 3 CONDITIONAL_PASS) | Phase 2 ✅ COMPLETE (corr-008 migrated) | Phase 3 ✅ COMPLETE | 🟢 PORT CAMPAIGN Case_01→Case_02 COMPLETE (Fases 0–7 — all gates PASS) | 🟢 MATURITY v1.6 INTEGRATED (Folio VIII + AI-RMF capability anchors)
+**Next Phase:** Maturity v1.6 migration / P3 follow-ups (parallel Case_01/03)
 **Complexity:** High (4 regulations: GDPR, CRA, NIS 2, AI Act)
 **Case Name:** SecureBorder Solutions B.V.
 
