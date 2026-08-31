@@ -1,7 +1,7 @@
 # GLOBAL PROJECT STATE — AEGIS Methodology Implementation
 
-**Last Updated:** 2026-08-28
-**Version:** 6.5 (Case_02 + Case_03 port campaigns complete — all three cases at the Aug-2026 standard)
+**Last Updated:** 2026-08-27
+**Version:** 6.6 (Case_01 Maturity redesign v1.6 — MATURITY_MODEL_CSF_STRICT.md + EvidenceItem + Folio VIII + PF seed)
 **Scope:** All Cases
 
 ---
@@ -118,6 +118,8 @@ Methodology/
 
 | Date | Type | Affected Cases | Description | Impact |
 |------|------|----------------|-------------|--------|
+| 2026-08-27 | METHODOLOGY (v1.6) | Case_01 (+ cross-case referencial) | Maturity redesign: `00_METHODOLOGY/MATURITY_MODEL_CSF_STRICT.md` v1.0 + `EvidenceItem` nodes (47 seed + 10 PF = 57 total) + Folio VIII (4 KPI tiles + tier-bar Function + 2 radares ECharts CSF/PF + callout pedagógico). Validator v1.6: 4 gates PASS (no Tier scalars on sub-domínio, sources[] resolved, proportionality_tier non-null). Legacy `#maturity` section em `Case_01_Dashboard.html` removido. | High (referencial único agora CSF 2.0 §3.4, documentado e auditado) |
+| 2026-08-27 | METHODOLOGY (v2.3) | Case_02 (+ AI-RMF anchors) | Maturity redesign: `00_METHODOLOGY/MATURITY_MODEL_CSF_STRICT.md` v1.0 (referencial partilhado) + `phase1_ontology.yaml` v2.3 + `compact.json` schema 1.1 + `scripts/build_p1_graph.py` (de-novo, 19 node types, 311 links, 59 EvidenceItems — 34 Coverage + 25 Capability: 10 CSF + 10 PF + 5 AI-RMF, 15 NistControl). Validator v2.3: 4 gates PASS. `00_VISUALISATIONS/Case_02/Case_02_P1_Maturity.html` (Folio VIII standalone) + `build_case02_dashboard.py`. Smoke 10/10 dashboards. Doc05 v1.3 + Doc12 v1.3 com nota v2.3. AI-RMF anchors aplicáveis (SecureBorder é AI Act provider) — Framework=AI na tabela Scale A, sem radar dedicado. | High (Case_02 agora alinhado com Case_01 no mesmo modelo; AI Act coberto por anchors AI-RMF) |
 | 2026-05-06 | TOOLS | All | self_review.py regex bugs fixed (FR/NFR/CR/BPR/NODE false positives) | High |
 | 2026-05-06 | TOOLS | All | quality_gate.py coverage calculation fixed (canonical FR-NN format, cross-doc search) | High |
 | 2026-05-06 | PHASE 3 | Case_02 | Duplicate FRs renumbered (FR-80/81/82/84 → FR-85-90), quality gate: 98.9% → 85.2% | High |

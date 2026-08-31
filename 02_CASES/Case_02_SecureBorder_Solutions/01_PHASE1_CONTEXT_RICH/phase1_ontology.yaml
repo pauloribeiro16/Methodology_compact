@@ -23,18 +23,29 @@
 #   - Generated date updated to 2026-08-06.
 #   - All other sections preserved verbatim for diff-ability with the legacy
 #     `00_COMMON/phase1_ontology.yaml` (read-only, frozen).
+#
+# Maturity model changes (v2.2 → v2.3) — ADDITIVE ONLY (00_METHODOLOGY/MATURITY_MODEL_CSF_STRICT.md v1.0):
+#   - Version bumped 2.2 → 2.3
+#   - Generated date updated 2026-08-10 → 2026-08-27
+#   - Added kg_ontology.maturity_model section (CSF 2.0 strict): two scales
+#     (Capability A per Function, Coverage B per sub-domain), EvidenceItem +
+#     TierDecision classes, 5 relations, invariants (forbidden_in_subdomain,
+#     citation_required, scale_consistency).
+#   - Schema-first instantiation: Case_02 mirrors Case_01 v1.6 (cross-case shared
+#     normative reference). No schema redefinition; Case_02 instantiation adds
+#     AI-RMF anchors (SecureBorder AI Act applicable) on top of CSF + PF.
 
 header:
   case_id: "Case_02_SecureBorder_Solutions"
   phase: 1
-  version: "2.2"
+  version: "2.3"
   generated_from:
     - "AEGIS-COMMON-00"  # Taxonomy Reference
     - "AEGIS-COMMON-01"  # Company Context
     - "AEGIS-P1-05"      # Regulatory Applicability
     - "AEGIS-P1-06"      # Clause Mapping Matrix
-  generated_date: "2026-08-10"
-  author: "AEGIS Implementation (corr-Case02 Commit F)"
+  generated_date: "2026-08-27"
+  author: "AEGIS Implementation (corr-Case02 Commit F; v2.3 maturity_model addition)"
   reconciliation:
     sprint: 9
     role: final_migration
@@ -2016,3 +2027,86 @@ kg_ontology:
     ai_act_clauses: 28
     adjusted_goals: 70          # 35 privacy (-001) + 35 security (-002)
     tensions: 9
+  # ---- v2.3 ADDITION — MATURITY MODEL (CSF 2.0 STRICT) ------------------
+  # Purely additive. Mirrors Case_01 v1.6 (cross-case shared normative reference).
+  # Authoritative reference: 00_METHODOLOGY/MATURITY_MODEL_CSF_STRICT.md v1.0.
+  # Crosswalk authority: 00_METHODOLOGY/PREPROCESSING_by_domain/MAPPINGS/OVERLAYS/OVERLAY_NIST_CSF_2.0.md §2
+  # SecureBorder-specific addition: AI-RMF anchors (Case_02 AI Act applicable).
+  maturity_model:
+    authority: "00_METHODOLOGY/MATURITY_MODEL_CSF_STRICT.md v1.0"
+    reference_framework: "NIST CSF 2.0 §3.4 Implementation Tiers (Feb 2024)"
+    crosswalk_authorities:
+      csf:  "00_METHODOLOGY/PREPROCESSING_by_domain/MAPPINGS/OVERLAYS/OVERLAY_NIST_CSF_2.0.md §2"
+      pf:   "00_METHODOLOGY/PREPROCESSING_by_domain/MAPPINGS/OVERLAYS/OVERLAY_NIST_PF_1.1.md §2"
+      airmf: "00_METHODOLOGY/PREPROCESSING_by_domain/MAPPINGS/OVERLAYS/OVERLAY_NIST_AI_RMF_1.0.md"
+    schema_version: 1.0
+    generated: 2026-08-27
+    scales:
+      capability:  # Scale A
+        name: "Capability (CSF 2.0 native)"
+        scope: ["Organisation", "Function"]
+        measure: "Tier T1..T4"
+        decision_rule: "max T s.t. all characteristic questions of T'<=T are satisfied by evidence"
+        cite: "MATURITY_MODEL_CSF_STRICT.md §4"
+      coverage:  # Scale B
+        name: "Regulatory Treatment (Coverage, AEGIS-local)"
+        scope: ["SecurityControlDomain"]
+        measure: "CoverageLevel enum (SUBSTANTIVE/PARTIAL/NOT_ADDRESSED)"
+        anchors:
+          SUBSTANTIVE:    "Applicable regulation's obligations are addressed by an established process / documented control / RACI-assigned activity / verified artefact."
+          PARTIAL:        "Obligations are addressed informally or partially; gaps declared."
+          NOT_ADDRESSED:  "Applicable, but no treatment in place."
+        cite: "MATURITY_MODEL_CSF_STRICT.md §5"
+    classes:
+      EvidenceItem:
+        attrs:
+          ev_id: String
+          subdomain_id: String  # D-XX.Y
+          scale: enum(ScaleRef)
+          outcome: String       # clause id (Scale B) or CSF/PF/AI-RMF subcategory (Scale A)
+          claim: String
+          sources: List[String>
+          observed: Boolean
+        source: "MATURITY_MODEL_CSF_STRICT.md §6"
+        example: "EV-D-07.1-001"
+        citation_required: true
+      TierDecision:
+        attrs:
+          td_id: String
+          scope: enum(Organisation|Function)
+          function: enum(GOVERN|IDENTIFY|PROTECT|DETECT|RESPOND|RECOVER, nullable)
+          assigned_tier: enum(T1|T2|T3|T4)
+          characteristics_passed:
+            T1: List<String>
+            T2: List<String>
+            T3: List<String>
+            T4: List<String>
+          characteristics_failed: List<String>
+          gap_reason: String(nullable)
+          evidence_ids: List<String>
+          decided_by: String
+          decided_at: String
+        invariants:
+          - "assigned_tier == max T in {T1,T2,T3,T4} s.t. all characteristics of T'<=T are passed"
+          - "scope=Function ⇒ function set; scope=Organisation ⇒ function null"
+        source: "MATURITY_MODEL_CSF_STRICT.md §7"
+        example: "TD-SECUREBORDER-2026-GV-001"
+    relations:
+      - { verb: HAS_EVIDENCE,  from: SecurityControlDomain, to: EvidenceItem }
+      - { verb: CITES_OUTCOME, from: EvidenceItem,          to: NistControl,  # always when scale=capability
+          scope_constraint: "scale=capability" }
+      - { verb: CITES_CLAUSE,  from: EvidenceItem,          to: RegulatoryClause,
+          scope_constraint: "scale=coverage" }
+      - { verb: DECIDED_AT,    from: TierDecision,          to: SecurityControlDomain }
+      - { verb: USED_IN,       from: EvidenceItem,          to: TierDecision }
+    invariants:
+      forbidden_in_subdomain_attrs: [tier, maturity_cur, maturity_tgt, maturity_score, capability_score]
+      citation_required: true
+      empty_sources_fail: true
+      scale_consistency:
+        EvidenceItem_scale_capability: "CITES_OUTCOME target exists (NistControl)"
+        EvidenceItem_scale_coverage:   "CITES_CLAUSE target exists (RegulatoryClause)"
+      case_overrides:
+        ai_act_applicable: true   # SecureBorder is PROVIDER per 04_Company_Context §L217; AI-RMF anchors admissible
+        dora_applicable: false
+        nis2_applicable: true

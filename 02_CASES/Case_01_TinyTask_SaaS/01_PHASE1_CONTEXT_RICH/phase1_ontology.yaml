@@ -60,7 +60,7 @@
 #   - Added kg_ontology.classes.NistControl + NistFramework enum + ALIGNS_TO relation.
 #     Additive (Phase D — Doc13 §7 NIST CSF/PF/AI-RMF mapping).
 #
-# Maturity model changes (v1.5 → v1.6) — ADDITIVE ONLY (00_METHODOLOGY/IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v1.0):
+# Maturity model changes (v1.5 → v1.6) — ADDITIVE ONLY (00_METHODOLOGY/MATURITY_MODEL_CSF_STRICT.md v1.0):
 #   - Version bumped 1.5 → 1.6
 #   - Added kg_ontology.maturity_model section (CSF 2.0 strict) defining EvidenceItem,
 #     TierDecision, the two scales (Capability A / Coverage B), and the citation discipline
@@ -76,7 +76,7 @@ header:
     - "AEGIS-P1-05"      # Regulatory Applicability
     - "AEGIS-P1-06"      # Clause Mapping Matrix
   generated_date: "2026-08-27"
-  author: "AEGIS Implementation (v1.6 — maturity_model addition, 00_METHODOLOGY/IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md)"
+  author: "AEGIS Implementation (v1.6 — maturity_model addition, 00_METHODOLOGY/MATURITY_MODEL_CSF_STRICT.md)"
 
 # ============================================================
 # COMPANY
@@ -1589,7 +1589,7 @@ kg_ontology:
       third_parties: 6               # Doc06 §5 (AWS, Stripe, Auth0, Datadog, GitHub, Snyk)
       compliance_mapping_rows: 37    # Doc04 §3 (one per active sub-domain; D-08.3 excluded)
       # v1.5 — NIST Controls (Phase D · Doc13 §7 NIST CSF/PF/AI-RMF mapping)
-      nist_controls: 117                  # 77 CSF + 38 PF + 2 AI-RMF (verified by Phase D extraction)
+      nist_controls: 127                  # 117 CSF+AI-RMF (Phase D) + 10 PF Capability anchors (v1.6) (verified by Phase D extraction)
       nist_alignments: 513                # 35 sub-domains × ~14.6 controls each (Doc13 §7 ground truth)
       nist_aimrm_subdomains: 1            # only D-04.2 has AI-RMF mapping
     id_patterns:
@@ -1628,12 +1628,12 @@ kg_ontology:
 
   # ── v1.6 ADDITION — MATURITY MODEL (CSF 2.0 STRICT) ────────────────
   # Purely additive. All v1.5 fields above are unchanged.
-  # Authoritative reference: 00_METHODOLOGY/IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v1.0.
+  # Authoritative reference: 00_METHODOLOGY/MATURITY_MODEL_CSF_STRICT.md v1.0.
   # This block mirrors its data shape so data/phase1_graph.json instances can
   # be validated against it. Replaces prior ad-hoc 'maturity_cur'/'maturity_tgt'
-  # attributes (now deprecated — see IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md §9).
+  # attributes (now deprecated — see MATURITY_MODEL_CSF_STRICT.md §9).
   maturity_model:
-    authority: "00_METHODOLOGY/IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v1.0"
+    authority: "00_METHODOLOGY/MATURITY_MODEL_CSF_STRICT.md v1.0"
     reference_framework: "NIST CSF 2.0 §3.4 Implementation Tiers (Feb 2024)"
     crosswalk_authority: "00_METHODOLOGY/PREPROCESSING_by_domain/MAPPINGS/OVERLAYS/OVERLAY_NIST_CSF_2.0.md §2"
     schema_version: 1.0
@@ -1652,7 +1652,7 @@ kg_ontology:
           T3: Repeatable
           T4: Adaptive
         decision_rule: "max T s.t. all characteristic questions of T'<=T are satisfied by evidence"
-        cite: "IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md §4"
+        cite: "MATURITY_MODEL_CSF_STRICT.md §4"
       coverage:                                          # Scale B
         name: "Regulatory Treatment (Coverage, AEGIS-local)"
         scope: ["SecurityControlDomain"]                 # per sub-domain, per applicable regulation
@@ -1662,7 +1662,7 @@ kg_ontology:
           SUBSTANTIVE: "Applicable regulation's obligations are addressed by an established process / documented control / RACI-assigned activity / verified artefact."
           PARTIAL:       "Obligations are addressed informally or partially; gaps declared."
           NOT_ADDRESSED: "Applicable, but no treatment in place."
-        cite: "IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md §5"
+        cite: "MATURITY_MODEL_CSF_STRICT.md §5"
 
     classes:
 
@@ -1675,7 +1675,7 @@ kg_ontology:
           claim: String                # one-sentence observable fact; no scale number
           sources: List<String>        # MUST resolve to existing graph node ids
           observed: Boolean            # false → CoverageGap, not Evidence
-        source: "IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md §6"
+        source: "MATURITY_MODEL_CSF_STRICT.md §6"
         example: "EV-D-07.1-001"
         citation_required: true
 
@@ -1698,31 +1698,31 @@ kg_ontology:
         invariants:
           - "assigned_tier == max{ t in {T1,T2,T3,T4} | all characteristics of t'<=t are passed }"
           - "scope=Function ⇒ function is set; scope=Organisation ⇒ function is null"
-        source: "IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md §7"
+        source: "MATURITY_MODEL_CSF_STRICT.md §7"
         example: "TD-TINYTASK-2026-GV-001"
 
     relations:
 
       - { verb: HAS_EVIDENCE,  from: SecurityControlDomain, to: EvidenceItem,
           cardinality: "1..N (a sub-domain typically has multiple evidence items)",
-          source: "IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md §6; EvidenceItem is anchored at sub-domain level" }
+          source: "MATURITY_MODEL_CSF_STRICT.md §6; EvidenceItem is anchored at sub-domain level" }
       - { verb: CITES_OUTCOME, from: EvidenceItem,          to: NistControl,
           cardinality: "N:1 when scale=capability; 0 when scale=coverage",
-          source: "IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md §5/§6" }
+          source: "MATURITY_MODEL_CSF_STRICT.md §5/§6" }
       - { verb: CITES_CLAUSE,  from: EvidenceItem,          to: RegulatoryClause,
           cardinality: "N:1 when scale=coverage; 0 when scale=capability",
-          source: "IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md §5/§6" }
+          source: "MATURITY_MODEL_CSF_STRICT.md §5/§6" }
       - { verb: DECIDED_AT,    from: TierDecision,          to: SecurityControlDomain,
           cardinality: "N:N (a Function-level decision references many sub-domains' evidence)",
-          source: "IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md §7" }
+          source: "MATURITY_MODEL_CSF_STRICT.md §7" }
       - { verb: USED_IN,       from: EvidenceItem,          to: TierDecision,
           cardinality: "N:N",
-          source: "IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md §7" }
+          source: "MATURITY_MODEL_CSF_STRICT.md §7" }
 
     invariants:
       counts_v1_6_initial:
         # v1.6 introduced EvidenceItem and TierDecision; first increment
-        # instantiates a seed set per IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md §9.
+        # instantiates a seed set per MATURITY_MODEL_CSF_STRICT.md §9.
         evidence_items_min: 0         # set by first increment; validator will pin
         tier_decisions_min: 0         # set by first increment
         tier_decisions_per_function: 6   # when org-wide assessment: GV/ID/PR/RS/RC

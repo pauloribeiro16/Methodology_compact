@@ -2,23 +2,32 @@
 document_id: AEGIS-P2-RICH-04b-POSTURE
 title: Security Posture Assessment (Rich Mode, superseded)
 phase: 1
-version: 1.2
+version: 1.3
 created: 2026-07-11
-updated: 2026-08-07
-author: Executor (Sprint 2 Corpus Enrichment, 2026-08-06; Phase 2 Bloco E posture-model migration)
-status: DEPRECATED_FOR_POSTURE
+updated: 2026-08-27
+author: Executor (Sprint 2 Corpus Enrichment, 2026-08-06; Phase 2 Bloco E posture-model migration; v2.3 maturity redesign note)
+status: DEPRECATED_FOR_MATURITY
 status_history:
   - { date: '2026-08-07', from: CORPUS_ENRICHED, to: DEPRECATED_FOR_POSTURE,
       reason: 'Posture ownership moved to Doc19 (legacy 13_Framework_Mapping_Matrix) — resolves PHASE1_STRATEGY §7 contradiction' }
+  - { date: '2026-08-27', from: DEPRECATED_FOR_POSTURE, to: DEPRECATED_FOR_MATURITY,
+      reason: 'Maturity redesigned per MATURITY_MODEL_CSF_STRICT.md (CSF 2.0 strict, two scales, evidence-based); see Case_02_P1_Maturity.html Folio VIII' }
+maturity_owner: 00_METHODOLOGY/MATURITY_MODEL_CSF_STRICT.md
 posture_owner: Doc19_Framework_Mapping_Matrix.md
 note: >
   Este documento mantém-se como INPUT qualitativo (postura observada).
-  A avaliação e o modelo de postura foram movidos para
+  v2.3 — A avaliação de maturidade foi movida para
+  00_METHODOLOGY/MATURITY_MODEL_CSF_STRICT.md §3-§6 (referencial único
+  CSF 2.0 §3.4, Tiers T1-T4 ao nível Organisation/Function, EvidenceItem
+  nodes no grafo P1, sem maturity_cur/maturity_tgt scalars no sub-domínio).
+  Ver Case_02_P1_Maturity.html Folio VIII para visualização. AI-RMF anchors
+  aplicáveis (SecureBorder é AI Act provider) aparecem na tabela Scale A.
+  A avaliação de postura (Implementation Posture) continua em
   02_PHASE2_RULES_RICH/Doc19_Framework_Mapping_Matrix.md §4-5.
 case: Case_02_SecureBorder_Solutions
 applicable_regs: [GDPR, CRA, NIS 2, AI_Act]
-active_subdomains: 35
-inactive_documented: [D-08.3 INACTIVE, 3 NOT_ADDRESSED]
+active_subdomains: 34
+inactive_documented: [D-06.4, D-07.4, D-08.3, D-09.3 NOT_ADDRESSED]
 inputs:
   - Doc03_Company_Context_Assessment.md
   - Doc04_Architecture_DataInventory.md

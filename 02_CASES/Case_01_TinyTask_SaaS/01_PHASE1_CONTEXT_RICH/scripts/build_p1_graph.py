@@ -1294,8 +1294,9 @@ AUDITS = [
             "OR add a 'maturity_progression_target' attr that varies by tier (LIGHTWEIGHT = tgt 3, MINIMAL = tgt 2, "
             "DEFERRED = tgt 1) — clarifying the proportionally-tiered trajectory.  Either path is consistent with "
             "the Sprint-5 'risk values derived from priority + tier + sub-domain risk profile' rationale already in "
-            "Doc12 §4 reading guide.  Default stays: attrs.maturity_cur=2, attrs.maturity_tgt=3 for 36 rows; "
-            "attrs.maturity_cur=1, attrs.maturity_tgt=1 for D-02.4."
+            "Doc12 §4 reading guide (v1.6 — MATURITY_MODEL_CSF_STRICT.md). Per ontology v1.6, "
+            "sub-domains no longer carry maturity_cur/tgt scalars; emit() below attaches evidence_ids pointing "
+            "to EvidenceItem nodes with verifiable sources."
         ),
     },
 ]
@@ -3221,7 +3222,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-07.1',
       "evidence_type": 'DEMONSTRATE + INSPECT (SSDF checklist + SAMM maturity)',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'CRA-C02',
       "topic": 'Definitions',
       "article": 'Art. 2',
@@ -3230,7 +3232,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-07.1',
       "evidence_type": 'DEMONSTRATE + INSPECT (SSDF checklist + SAMM maturity)',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'CRA-C03',
       "topic": 'Security requirements',
       "article": 'Art. 3',
@@ -3239,7 +3242,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-03.4',
       "evidence_type": 'DEMONSTRATE + INSPECT (account-level block + Firebase config)',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'CRA-C04',
       "topic": 'Vulnerability handling',
       "article": 'Art. 4',
@@ -3248,7 +3252,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-02.2',
       "evidence_type": 'DEMONSTRATE + INSPECT (Patch Manager logs + patch log)',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'CRA-C05',
       "topic": 'Security updates',
       "article": 'Art. 5',
@@ -3257,7 +3262,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-02.1',
       "evidence_type": 'DEMONSTRATE + INSPECT (CI scan output + advisory feed)',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'CRA-C06',
       "topic": 'Incident reporting',
       "article": 'Art. 6',
@@ -3266,7 +3272,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-04.1',
       "evidence_type": 'DEMONSTRATE + INSPECT (CloudWatch alarms + GuardDuty)',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'CRA-C07',
       "topic": 'Supply chain security',
       "article": 'Art. 7',
@@ -3275,7 +3282,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-06.2',
       "evidence_type": 'DEMONSTRATE + INSPECT (SBOM per release)',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'CRA-C08',
       "topic": 'Secure defaults',
       "article": 'Art. 8',
@@ -3284,7 +3292,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-03.4',
       "evidence_type": 'DEMONSTRATE + INSPECT (account-level block + Firebase config)',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'CRA-C09',
       "topic": 'Password security',
       "article": 'Art. 9',
@@ -3293,7 +3302,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-03.2',
       "evidence_type": 'INSPECT (Firebase MFA enforcement + reset flow test)',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'CRA-C10',
       "topic": 'Identity authentication',
       "article": 'Art. 10',
@@ -3302,7 +3312,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-03.1',
       "evidence_type": 'INSPECT (Firebase Auth user list + quarterly orphan scan)',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'CRA-C11',
       "topic": 'Data erasure',
       "article": 'Art. 11',
@@ -3311,7 +3322,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-05.3',
       "evidence_type": 'DEMONSTRATE + INSPECT (erasure API + backup exclude policy)',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'CRA-C12',
       "topic": 'Availability at end of support',
       "article": 'Art. 12',
@@ -3320,7 +3332,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-10.1',
       "evidence_type": 'DEMONSTRATE + INSPECT (CloudWatch + GuardDuty)',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'CRA-C13',
       "topic": 'Technical documentation',
       "article": 'Art. 13',
@@ -3329,7 +3342,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-09.1',
       "evidence_type": 'DEMONSTRATE + INSPECT (policy template + review cadence)',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'CRA-C14',
       "topic": 'Conformity assessment',
       "article": 'Art. 14',
@@ -3338,7 +3352,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-10.3',
       "evidence_type": 'DEMONSTRATE + INSPECT (quarterly checklist + annual self-attestation)',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'CRA-C15',
       "topic": 'CE marking',
       "article": 'Art. 15',
@@ -3347,7 +3362,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-01.3',
       "evidence_type": 'INSPECT (KMS rotation status + key-custody review)',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'CRA-C16',
       "topic": 'Market surveillance',
       "article": 'Art. 16',
@@ -3356,7 +3372,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-06.3',
       "evidence_type": 'DEMONSTRATE + INSPECT (DPA template + sub-processor list)',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'CRA-C17',
       "topic": 'Essential requirements for ICT products',
       "article": 'Art. 17',
@@ -3365,7 +3382,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-02.1',
       "evidence_type": 'DEMONSTRATE + INSPECT (CI scan output + advisory feed)',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'CRA-C18',
       "topic": 'Security by design',
       "article": 'Art. 18',
@@ -3374,7 +3392,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-07.1',
       "evidence_type": 'DEMONSTRATE + INSPECT (SSDF checklist + SAMM maturity)',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'CRA-C19',
       "topic": 'Vulnerability handling and disclosure',
       "article": 'Art. 19',
@@ -3383,7 +3402,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-02.3',
       "evidence_type": 'INSPECT (security.txt 200 + CVD page test email)',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'CRA-C20',
       "topic": 'Reporting incidents',
       "article": 'Art. 20',
@@ -3392,7 +3412,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-04.3',
       "evidence_type": 'DEMONSTRATE + INSPECT (tabletop 24h notification drill)',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'CRA-C21',
       "topic": 'EU declarative conformity',
       "article": 'Art. 21',
@@ -3401,7 +3422,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-10.3',
       "evidence_type": 'DEMONSTRATE + INSPECT (quarterly checklist + annual self-attestation)',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'CRA-C22',
       "topic": 'Traceability',
       "article": 'Art. 22',
@@ -3410,7 +3432,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-10.2',
       "evidence_type": 'DEMONSTRATE + INSPECT (CloudTrail + Object Lock + 7y)',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'CRA-C23',
       "topic": 'Software security',
       "article": 'Art. 23',
@@ -3419,7 +3442,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-07.1',
       "evidence_type": 'DEMONSTRATE + INSPECT (SSDF checklist + SAMM maturity)',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'CRA-C24',
       "topic": 'Encrypted data storage',
       "article": 'Art. 24',
@@ -3428,7 +3452,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-01.1',
       "evidence_type": 'INSPECT (config audit + annual review)',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'CRA-C25',
       "topic": 'Unauthorised access prevention',
       "article": 'Art. 25',
@@ -3437,7 +3462,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-01.2',
       "evidence_type": 'INSPECT (config audit + annual cert renewal)',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'CRA-C26',
       "topic": 'Resilience to outages',
       "article": 'Art. 26',
@@ -3446,7 +3472,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-04.4',
       "evidence_type": 'DEMONSTRATE + INSPECT (AWS Backup + quarterly DR test)',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'GDPR-C01',
       "topic": 'Lawfulness of processing',
       "article": 'Art. 1',
@@ -3455,7 +3482,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-05.1',
       "evidence_type": 'DEMONSTRATE + INSPECT (schema validation + log scrub review)',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'GDPR-C02',
       "topic": 'Material scope',
       "article": 'Art. 2',
@@ -3464,7 +3492,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-05.1',
       "evidence_type": 'DEMONSTRATE + INSPECT (schema validation + log scrub review)',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'GDPR-C03',
       "topic": 'Territorial scope',
       "article": 'Art. 3',
@@ -3473,7 +3502,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-09.2',
       "evidence_type": 'DEMONSTRATE + INSPECT (DPIA + CRA-RA unified template)',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'GDPR-C04',
       "topic": 'Principles relating to processing',
       "article": 'Art. 5',
@@ -3482,7 +3512,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-01.1',
       "evidence_type": 'INSPECT (config audit + annual review)',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'GDPR-C05',
       "topic": 'Lawfulness of processing',
       "article": 'Art. 6',
@@ -3491,7 +3522,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-05.1',
       "evidence_type": 'DEMONSTRATE + INSPECT (schema validation + log scrub review)',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'GDPR-C06',
       "topic": 'Conditions for consent',
       "article": 'Art. 7',
@@ -3500,7 +3532,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-05.1',
       "evidence_type": 'DEMONSTRATE + INSPECT (schema validation + log scrub review)',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'GDPR-C07',
       "topic": "Conditions for child's consent",
       "article": 'Art. 8',
@@ -3509,7 +3542,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-05.1',
       "evidence_type": 'DEMONSTRATE + INSPECT (schema validation + log scrub review)',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'GDPR-C08',
       "topic": 'Processing of special categories',
       "article": 'Art. 9',
@@ -3518,7 +3552,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-05.3',
       "evidence_type": 'DEMONSTRATE + INSPECT (erasure API + backup exclude policy)',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'GDPR-C09',
       "topic": 'Transparent information and communication',
       "article": 'Art. 12',
@@ -3527,7 +3562,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-09.4',
       "evidence_type": 'DEMONSTRATE + INSPECT (RoPA + 10y retention check)',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'GDPR-C10',
       "topic": 'Information to be provided',
       "article": 'Art. 13',
@@ -3536,7 +3572,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-09.4',
       "evidence_type": 'DEMONSTRATE + INSPECT (RoPA + 10y retention check)',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'GDPR-C11',
       "topic": 'Information to be provided to data subject',
       "article": 'Art. 14',
@@ -3545,7 +3582,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-09.4',
       "evidence_type": 'DEMONSTRATE + INSPECT (RoPA + 10y retention check)',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'GDPR-C12',
       "topic": 'Right of access by data subject',
       "article": 'Art. 15',
@@ -3554,7 +3592,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-05.4',
       "evidence_type": 'DEMONSTRATE + INSPECT (export endpoint + format check)',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'GDPR-C13',
       "topic": 'Right to rectification',
       "article": 'Art. 16',
@@ -3563,7 +3602,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-05.3',
       "evidence_type": 'DEMONSTRATE + INSPECT (erasure API + backup exclude policy)',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'GDPR-C14',
       "topic": 'Right to erasure',
       "article": 'Art. 17',
@@ -3572,7 +3612,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-05.3',
       "evidence_type": 'DEMONSTRATE + INSPECT (erasure API + backup exclude policy)',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'GDPR-C15',
       "topic": 'Right to restriction of processing',
       "article": 'Art. 18',
@@ -3581,7 +3622,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-05.3',
       "evidence_type": 'DEMONSTRATE + INSPECT (erasure API + backup exclude policy)',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'GDPR-C16',
       "topic": 'Notification obligation',
       "article": 'Art. 19',
@@ -3590,7 +3632,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-04.4',
       "evidence_type": 'DEMONSTRATE + INSPECT (AWS Backup + quarterly DR test)',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'GDPR-C17',
       "topic": 'Right to data portability',
       "article": 'Art. 20',
@@ -3599,7 +3642,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-05.4',
       "evidence_type": 'DEMONSTRATE + INSPECT (export endpoint + format check)',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'GDPR-C18',
       "topic": 'Right to object',
       "article": 'Art. 21',
@@ -3608,7 +3652,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-05.1',
       "evidence_type": 'DEMONSTRATE + INSPECT (schema validation + log scrub review)',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'GDPR-C19',
       "topic": 'Automated decision-making',
       "article": 'Art. 22',
@@ -3617,7 +3662,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-03.3',
       "evidence_type": 'DEMONSTRATE + INSPECT (IAM policies + RBAC matrix review)',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'GDPR-C20',
       "topic": 'Data protection by design',
       "article": 'Art. 25',
@@ -3626,7 +3672,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-07.1',
       "evidence_type": 'DEMONSTRATE + INSPECT (SSDF checklist + SAMM maturity)',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'GDPR-C21',
       "topic": 'Processor clauses (DPA, sub-processor auth, processing on instructions, security',
       "article": 'Art. 28',
@@ -3635,7 +3682,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-06.3',
       "evidence_type": 'DEMONSTRATE + INSPECT (DPA template + sub-processor list)',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'GDPR-C22',
       "topic": "Records of processing activities (Art. 30(1) controller, Art. 30(2) processor's",
       "article": 'Art. 30',
@@ -3644,7 +3692,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-09.4',
       "evidence_type": 'DEMONSTRATE + INSPECT (RoPA + 10y retention check)',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'GDPR-C23',
       "topic": 'Cooperation with supervisory authority',
       "article": 'Art. 31',
@@ -3653,7 +3702,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-04.3',
       "evidence_type": 'DEMONSTRATE + INSPECT (tabletop 24h notification drill)',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'GDPR-C24',
       "topic": 'Security of processing (Art. 32(1) controller+processor; Art. 32(2) processor ad',
       "article": 'Art. 32',
@@ -3662,7 +3712,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-01.1',
       "evidence_type": 'INSPECT (config audit + annual review)',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'GDPR-C25',
       "topic": 'Breach notification — Art. 33(1) controller to SA within 72h; Art. 33(2) process',
       "article": 'Art. 33',
@@ -3671,7 +3722,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-04.3',
       "evidence_type": 'DEMONSTRATE + INSPECT (tabletop 24h notification drill)',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'GDPR-C26',
       "topic": 'Breach notification to data subject',
       "article": 'Art. 34',
@@ -3680,7 +3732,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-04.3',
       "evidence_type": 'DEMONSTRATE + INSPECT (tabletop 24h notification drill)',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'GDPR-C27',
       "topic": 'Data protection impact assessment',
       "article": 'Art. 35',
@@ -3689,7 +3742,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-09.2',
       "evidence_type": 'DEMONSTRATE + INSPECT (DPIA + CRA-RA unified template)',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
     { "clause_id": 'GDPR-C28',
       "topic": 'Designation of DPO',
       "article": 'Art. 37',
@@ -3698,7 +3752,8 @@ ART_VERIFICATION = [
       "verification_criteria": 'Operational check per Doc 07c Appendix A §A.1.1/D-08.2',
       "evidence_type": 'INSPECT (annual email + competency matrix review)',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3 },
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+    },
 ]
 assert len(ART_VERIFICATION) == 54, f"ART_VERIFICATION drift: {len(ART_VERIFICATION)}"
 
@@ -3720,7 +3775,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'AWS S3 / DynamoDB SSE-KMS enabled (AES-256 default); no company-owned KMS program',
       "notes": 'Unified AES-256 baseline satisfies SAME pair',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-01.2',
       "i": 'BUILD', "p": 'MUST', "tier": 'LIGHTWEIGHT',
@@ -3731,7 +3786,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'TLS 1.3 via AWS ACM / CloudFront; certificate auto-renewal',
       "notes": 'TLS 1.3 covers all ingress + egress',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-01.3',
       "i": 'BUILD', "p": 'MUST', "tier": 'LIGHTWEIGHT',
@@ -3742,7 +3797,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'AWS KMS default keys; rotation cadence is AWS-managed',
       "notes": '',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-01.4',
       "i": 'BUILD', "p": 'MUST', "tier": 'LIGHTWEIGHT',
@@ -3753,7 +3808,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'HMAC + DB constraints via AWS RDS',
       "notes": '',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-02.1',
       "i": 'BUILD', "p": 'MUST', "tier": 'LIGHTWEIGHT',
@@ -3764,7 +3819,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'Trivy + npm audit in CI; OSS advisories',
       "notes": '',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-02.2',
       "i": 'BUILD', "p": 'MUST', "tier": 'LIGHTWEIGHT',
@@ -3775,7 +3830,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'AWS Systems Manager Patch Manager (auto)',
       "notes": 'Critical patches 24h per Critical Analysis §4',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-02.3',
       "i": 'BUILD', "p": 'MUST', "tier": 'LIGHTWEIGHT',
@@ -3786,7 +3841,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'security.txt at `/.well-known/security.txt`; CVD page',
       "notes": '',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-02.4',
       "i": 'BUILD', "p": 'SHOULD', "tier": 'DEFERRED',
@@ -3797,7 +3852,8 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'No OJ mandate for default-class CRA manufacturer; reference NIST SP 800-115 only',
       "notes": 'DEFERRED per §5.2 (MICRO + FTE ≤ 1.0)',
       "risk_if_not_met": 'LOW',
-      "maturity_cur": 1, "maturity_tgt": 1,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
+
       "implementation_priority": 'LOW' },
     { "sub_domain_id": 'D-03.1',
       "i": 'INHERIT (Firebase Auth IO-04)', "p": 'MUST', "tier": 'MINIMAL',
@@ -3808,7 +3864,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'Firebase Auth baseline; Firebase security documentation',
       "notes": 'OIDC delegation per Critical Analysis §9',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-03.2',
       "i": 'INHERIT (Firebase Auth IO-04)', "p": 'MUST', "tier": 'MINIMAL',
@@ -3819,7 +3875,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'Firebase Auth MFA; customer-managed encryption keys',
       "notes": '',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-03.3',
       "i": 'BUILD', "p": 'MUST', "tier": 'LIGHTWEIGHT',
@@ -3830,7 +3886,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'Firebase Auth RBAC',
       "notes": '',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-03.4',
       "i": 'BUILD', "p": 'MUST', "tier": 'LIGHTWEIGHT',
@@ -3841,7 +3897,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'Secure defaults via Firebase config',
       "notes": '',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-04.1',
       "i": 'BUILD', "p": 'MUST', "tier": 'LIGHTWEIGHT',
@@ -3852,7 +3908,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'CloudWatch alarms + SNS notifications',
       "notes": 'CloudWatch (not enterprise SIEM) per Critical Analysis §9',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-04.2',
       "i": 'BUILD', "p": 'MUST', "tier": 'LIGHTWEIGHT',
@@ -3863,7 +3919,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'Documented 4h containment playbook',
       "notes": '',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-04.3',
       "i": 'BUILD', "p": 'MUST', "tier": 'LIGHTWEIGHT',
@@ -3874,7 +3930,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'max-SLA 24h internal; unified incident workflow',
       "notes": '24h internal satisfies GDPR 72h and CRA 24h max-SLA',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-04.4',
       "i": 'BUILD', "p": 'MUST', "tier": 'LIGHTWEIGHT',
@@ -3885,7 +3941,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'AWS Backup; RTO 24h (per Critical Analysis §4)',
       "notes": 'RTO 24h replaces 4h unrealistic target',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-05.1',
       "i": 'BUILD', "p": 'MUST', "tier": 'LIGHTWEIGHT',
@@ -3896,7 +3952,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'Field-level enforcement in schema',
       "notes": '',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-05.2',
       "i": 'BUILD', "p": 'MUST', "tier": 'LIGHTWEIGHT',
@@ -3907,7 +3963,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'Retention policy (7y audit logs; 30d DSAR working data)',
       "notes": '',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-05.3',
       "i": 'BUILD', "p": 'MUST', "tier": 'LIGHTWEIGHT',
@@ -3918,7 +3974,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'Erasure API endpoint',
       "notes": '',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-05.4',
       "i": 'BUILD', "p": 'MUST', "tier": 'LIGHTWEIGHT',
@@ -3929,7 +3985,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'JSON export endpoint',
       "notes": 'D-05.3 + D-05.4 share GDPR Art. 20-17 sub-SO pair',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-06.1',
       "i": 'INHERIT (DPA validation)', "p": 'MUST', "tier": 'MINIMAL',
@@ -3940,7 +3996,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'DPA validation against GDPR Art. 28; supplier security clauses',
       "notes": 'Annual manual review per Critical Analysis §9',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-06.2',
       "i": 'BUILD (CRA sole)', "p": 'MUST', "tier": 'LIGHTWEIGHT',
@@ -3951,7 +4007,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'CycloneDX SBOM in CI/CD per release',
       "notes": 'Closes GAP-003 (Doc 07 §7)',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-06.3',
       "i": 'BUILD', "p": 'MUST', "tier": 'LIGHTWEIGHT',
@@ -3962,7 +4018,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'DPA template + supplier security clauses',
       "notes": '',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-06.4',
       "i": 'INHERIT (AWS/Stripe/Firebase)', "p": 'MUST', "tier": 'MINIMAL',
@@ -3973,7 +4029,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'AWS / Stripe / Firebase boundary inherited from their attestations',
       "notes": '',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-07.1',
       "i": 'BUILD', "p": 'MUST', "tier": 'LIGHTWEIGHT',
@@ -3984,7 +4040,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'NIST SSDF + OWASP SAMM baseline',
       "notes": '',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-07.2',
       "i": 'BUILD (CRA only)', "p": 'MUST', "tier": 'LIGHTWEIGHT',
@@ -3995,7 +4051,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'SAST in CI; coding standards documentation',
       "notes": '',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-07.3',
       "i": 'BUILD (CRA only)', "p": 'MUST', "tier": 'LIGHTWEIGHT',
@@ -4006,7 +4062,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'CI gates (block critical vulns); pipeline-as-code',
       "notes": 'Closes Priority 1 FR-01/04 (Critical Analysis §7.1)',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-07.4',
       "i": 'BUILD (CRA only)', "p": 'MUST', "tier": 'LIGHTWEIGHT',
@@ -4017,7 +4073,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'Change management log (PR review + merge controls)',
       "notes": '',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-08.1',
       "i": 'INHERIT (vendor docs)', "p": 'MUST', "tier": 'MINIMAL',
@@ -4028,7 +4084,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'Vendor security awareness documentation on file',
       "notes": 'Replaces deferred phishing simulation (Critical §7.3)',
       "risk_if_not_met": 'LOW',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-08.2',
       "i": 'BUILD', "p": 'MUST', "tier": 'LIGHTWEIGHT',
@@ -4039,7 +4095,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'Annual security awareness email + role-specific docs (admin/dev/DPO)',
       "notes": '',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-09.1',
       "i": 'BUILD', "p": 'MUST', "tier": 'LIGHTWEIGHT',
@@ -4050,7 +4106,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'Security policy template (Doc 09 family input)',
       "notes": '',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-09.2',
       "i": 'BUILD', "p": 'MUST', "tier": 'LIGHTWEIGHT',
@@ -4061,7 +4117,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'DPIA template + CRA risk assessment template (unified, dual-output)',
       "notes": 'Resolves EVT-002 (Doc 07 §5.4)',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-09.3',
       "i": 'BUILD (CRA partial)', "p": 'MUST', "tier": 'LIGHTWEIGHT',
@@ -4072,7 +4128,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'Annex VII §1-§2 architecture documentation (CRA partial)',
       "notes": '',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-09.4',
       "i": 'BUILD', "p": 'MUST', "tier": 'LIGHTWEIGHT',
@@ -4083,7 +4139,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'RoPA template (Doc 09 input)',
       "notes": 'Closes GAP-001 (Doc 07 §7)',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-10.1',
       "i": 'BUILD (TEN-03: opt-in/opt-out separation)', "p": 'MUST', "tier": 'LIGHTWEIGHT',
@@ -4094,7 +4150,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'CloudWatch (not enterprise SIEM); per Critical Analysis',
       "notes": 'opt-in/opt-out separation per TEN-03',
       "risk_if_not_met": 'MEDIUM',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-10.2',
       "i": 'BUILD', "p": 'MUST', "tier": 'LIGHTWEIGHT',
@@ -4105,7 +4161,7 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'CloudTrail + tamper-evident S3 log bucket',
       "notes": '7-year retention per Critical Analysis §10.2',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
     { "sub_domain_id": 'D-10.3',
       "i": 'BUILD', "p": 'MUST', "tier": 'LIGHTWEIGHT',
@@ -4116,10 +4172,218 @@ SUBDOMAIN_PROPORTIONALITY = [
       "example_controls": 'Quarterly compliance review checklist',
       "notes": '',
       "risk_if_not_met": 'HIGH',
-      "maturity_cur": 2, "maturity_tgt": 3,
+      "evidence_ids": ["EV-TBD"],  # legacy literal; replaced by build()
       "implementation_priority": 'HIGH' },
 ]
 assert len(SUBDOMAIN_PROPORTIONALITY) == 37, f"SUBDOMAIN_PROPORTIONALITY drift: {len(SUBDOMAIN_PROPORTIONALITY)}"
+
+
+# 8b. EvidenceItem seed — v1.6 (MATURITY_MODEL_CSF_STRICT.md §6)
+# ---------------------------------------------------------------------------
+# Each EvidenceItem:
+#   - is anchored to ONE sub-domain (D-XX.Y) — Scale B (Coverage) OR Scale A (Capability)
+#   - cites ONE outcome (clause id for Scale B; CSF subcategory id for Scale A)
+#   - cites >=1 source by ID; sources MUST resolve to existing graph nodes
+#     (RegulatoryClause/System/DataStore/DataFlow/Stakeholder/RaciRole/RaciActivity/NistControl)
+#   - observed=True/False (False → CoverageGap candidate; still recorded for transparency)
+# Schema citation: 00_METHODOLOGY/MATURITY_MODEL_CSF_STRICT.md §6.
+# Crosswalk authority: 00_METHODOLOGY/PREPROCESSING_by_domain/MAPPINGS/OVERLAYS/OVERLAY_NIST_CSF_2.0.md §2.
+# ---------------------------------------------------------------------------
+EVIDENCE_ITEMS = [
+    # Scale B (Coverage) — one per active sub-domain, anchored on the first applicable clause
+    { "ev_id": "EV-D-01.1-001", "subdomain_id": "D-01.1", "scale": "coverage",
+      "outcome": "GDPR-C24", "claim": "S3 SSE-KMS + DynamoDB encryption documented in Doc04 §1.1 (SYS-01 AWS S3 + SYS-02 DynamoDB).",
+      "sources": ["SYS-01", "SYS-02", "STORE-01"], "observed": True },
+    { "ev_id": "EV-D-01.2-001", "subdomain_id": "D-01.2", "scale": "coverage",
+      "outcome": "GDPR-C04", "claim": "TLS 1.3 via AWS ACM/CloudFront enforced on all ingress + egress (Doc04 §1.4).",
+      "sources": ["SYS-03", "FLOW-01"], "observed": True },
+    { "ev_id": "EV-D-01.3-001", "subdomain_id": "D-01.3", "scale": "coverage",
+      "outcome": "CRA-C15", "claim": "AWS KMS default keys; rotation cadence is AWS-managed (no in-house KMS).",
+      "sources": ["SYS-01"], "observed": True },
+    { "ev_id": "EV-D-01.4-001", "subdomain_id": "D-01.4", "scale": "coverage",
+      "outcome": "GDPR-C24", "claim": "HMAC + DB constraints via AWS RDS documented in Doc04 §1.1 (SYS-04 RDS).",
+      "sources": ["SYS-04", "STORE-02"], "observed": True },
+    { "ev_id": "EV-D-02.1-001", "subdomain_id": "D-02.1", "scale": "coverage",
+      "outcome": "CRA-C05", "claim": "Trivy + npm audit run in CI (GitHub Actions); OSS advisory feed monitored (Doc12 §4 D-02.1).",
+      "sources": ["SYS-05"], "observed": True },
+    { "ev_id": "EV-D-02.2-001", "subdomain_id": "D-02.2", "scale": "coverage",
+      "outcome": "CRA-C04", "claim": "AWS Systems Manager Patch Manager (auto) configured for critical patches 24h SLA (Doc12 §4 D-02.2).",
+      "sources": ["SYS-01"], "observed": True },
+    { "ev_id": "EV-D-02.3-001", "subdomain_id": "D-02.3", "scale": "coverage",
+      "outcome": "CRA-C19", "claim": "security.txt at /.well-known/security.txt + CVD page published (Doc12 §4 D-02.3).",
+      "sources": ["SYS-05"], "observed": True },
+    { "ev_id": "EV-D-02.4-001", "subdomain_id": "D-02.4", "scale": "coverage",
+      "outcome": "GDPR-C27", "claim": "Threat-led penetration testing DEFERRED per §5.2 (MICRO + FTE <= 1.0); recorded as gap, not absent.",
+      "sources": ["Doc12 §5.2"], "observed": False },
+    { "ev_id": "EV-D-03.1-001", "subdomain_id": "D-03.1", "scale": "coverage",
+      "outcome": "CRA-C10", "claim": "Firebase Auth baseline + quarterly orphan scan (Doc12 §4 D-03.1, Doc07 §4).",
+      "sources": ["SYS-02", "ACT-03"], "observed": True },
+    { "ev_id": "EV-D-03.2-001", "subdomain_id": "D-03.2", "scale": "coverage",
+      "outcome": "CRA-C09", "claim": "Firebase Auth MFA enforced; reset flow tested (Doc07 §4.3).",
+      "sources": ["SYS-02", "ACT-04"], "observed": True },
+    { "ev_id": "EV-D-03.3-001", "subdomain_id": "D-03.3", "scale": "coverage",
+      "outcome": "GDPR-C19", "claim": "RBAC matrix in Doc07 §3; quarterly access review (ACT-05).",
+      "sources": ["Doc07 §3", "ACT-05"], "observed": True },
+    { "ev_id": "EV-D-03.4-001", "subdomain_id": "D-03.4", "scale": "coverage",
+      "outcome": "CRA-C03", "claim": "Account-level block + Firebase secure defaults applied at provisioning (Doc07 §4.4).",
+      "sources": ["SYS-02", "ACT-06"], "observed": True },
+    { "ev_id": "EV-D-04.1-001", "subdomain_id": "D-04.1", "scale": "coverage",
+      "outcome": "CRA-C06", "claim": "CloudWatch alarms + GuardDuty enabled; anomaly detection feed monitored (Doc12 §4 D-04.1).",
+      "sources": ["SYS-01"], "observed": True },
+    { "ev_id": "EV-D-04.2-001", "subdomain_id": "D-04.2", "scale": "coverage",
+      "outcome": "GDPR-C18", "claim": "Containment runbook referenced in Doc04 §2.5; tested annually.",
+      "sources": ["Doc04 §2.5", "ACT-08"], "observed": True },
+    { "ev_id": "EV-D-04.3-001", "subdomain_id": "D-04.3", "scale": "coverage",
+      "outcome": "GDPR-C25", "claim": "Breach notification SLA: 24h to SA / controller (max-SLA per T-001 resolution).",
+      "sources": ["Doc11 T-001", "ACT-09"], "observed": True },
+    { "ev_id": "EV-D-04.4-001", "subdomain_id": "D-04.4", "scale": "coverage",
+      "outcome": "CRA-C26", "claim": "Recovery time objective 24h (RDS automated snapshots + cross-region replication; Doc04 §2.1).",
+      "sources": ["SYS-04", "STORE-02"], "observed": True },
+    { "ev_id": "EV-D-05.1-001", "subdomain_id": "D-05.1", "scale": "coverage",
+      "outcome": "GDPR-C05", "claim": "Data minimisation policy in Doc09 §3; intake form captures data categories explicitly.",
+      "sources": ["Doc09 §3", "Doc02 §A.2"], "observed": True },
+    { "ev_id": "EV-D-05.2-001", "subdomain_id": "D-05.2", "scale": "coverage",
+      "outcome": "GDPR-C05", "claim": "Retention periods documented per PersonalDataCategory in Doc04 §2.3.",
+      "sources": ["Doc04 §2.3", "STORE-01"], "observed": True },
+    { "ev_id": "EV-D-05.3-001", "subdomain_id": "D-05.3", "scale": "coverage",
+      "outcome": "GDPR-C14", "claim": "Erasure API + backup exclude policy (Doc07 §4.5, Doc12 §4 D-05.3).",
+      "sources": ["ACT-10", "STORE-03"], "observed": True },
+    { "ev_id": "EV-D-05.4-001", "subdomain_id": "D-05.4", "scale": "coverage",
+      "outcome": "GDPR-C17", "claim": "Portability endpoint exposed to data subjects (Doc07 §4.5).",
+      "sources": ["ACT-10"], "observed": True },
+    { "ev_id": "EV-D-06.1-001", "subdomain_id": "D-06.1", "scale": "coverage",
+      "outcome": "GDPR-C21", "claim": "Vendor risk assessment template in Doc06 §3; reviewed annually.",
+      "sources": ["Doc06 §3"], "observed": True },
+    { "ev_id": "EV-D-06.2-001", "subdomain_id": "D-06.2", "scale": "coverage",
+      "outcome": "CRA-C07", "claim": "SBOM generated per release (CycloneDX, GitHub Actions workflow; Doc12 §4 D-06.2).",
+      "sources": ["SYS-05"], "observed": True },
+    { "ev_id": "EV-D-06.3-001", "subdomain_id": "D-06.3", "scale": "coverage",
+      "outcome": "GDPR-C21", "claim": "DPAs in place for AWS/Stripe/Auth0/Datadog/GitHub/Snyk (Doc06 §5).",
+      "sources": ["AWS", "Stripe", "Auth0", "Datadog", "GitHub", "Snyk"], "observed": True },
+    { "ev_id": "EV-D-07.1-001", "subdomain_id": "D-07.1", "scale": "coverage",
+      "outcome": "GDPR-C20", "claim": "Secure-by-design checklist (SSDF + SAMM) referenced in Doc07 §4.1; PR review enforced.",
+      "sources": ["ACT-01", "ACT-02"], "observed": True },
+    { "ev_id": "EV-D-08.1-001", "subdomain_id": "D-08.1", "scale": "coverage",
+      "outcome": "GDPR-C09", "claim": "Annual security awareness training (Doc07 §4.6).",
+      "sources": ["ACT-11"], "observed": True },
+    { "ev_id": "EV-D-08.2-001", "subdomain_id": "D-08.2", "scale": "coverage",
+      "outcome": "GDPR-C28", "claim": "DPO designated (ROLE-DPO) with backup; documented competence matrix (Doc07 §2).",
+      "sources": ["ROLE-DPO", "Doc07 §2"], "observed": True },
+    { "ev_id": "EV-D-09.1-001", "subdomain_id": "D-09.1", "scale": "coverage",
+      "outcome": "CRA-C13", "claim": "Information security policy published; revision log kept (Doc09 §1).",
+      "sources": ["Doc09 §1"], "observed": True },
+    { "ev_id": "EV-D-09.2-001", "subdomain_id": "D-09.2", "scale": "coverage",
+      "outcome": "GDPR-C27", "claim": "DPIA template + risk register used; review quarterly (Doc11 §2).",
+      "sources": ["Doc11 §2", "GAP-001"], "observed": True },
+    { "ev_id": "EV-D-09.4-001", "subdomain_id": "D-09.4", "scale": "coverage",
+      "outcome": "GDPR-C22", "claim": "Records of processing activities maintained (Doc11 §3, Doc04 §3 cross-ref).",
+      "sources": ["Doc11 §3", "Doc04 §3"], "observed": True },
+    { "ev_id": "EV-D-10.1-001", "subdomain_id": "D-10.1", "scale": "coverage",
+      "outcome": "CRA-C12", "claim": "End-of-support availability SLA tracked in Doc04 §2.1.",
+      "sources": ["Doc04 §2.1"], "observed": True },
+    { "ev_id": "EV-D-10.2-001", "subdomain_id": "D-10.2", "scale": "coverage",
+      "outcome": "CRA-C22", "claim": "CloudTrail + application audit logs centralised (Doc07 §4.7).",
+      "sources": ["ACT-12", "SYS-01"], "observed": True },
+    { "ev_id": "EV-D-10.3-001", "subdomain_id": "D-10.3", "scale": "coverage",
+      "outcome": "CRA-C14", "claim": "Annual conformity self-assessment (Doc14 §4 - placeholder, gap registered).",
+      "sources": ["Doc11 §7"], "observed": False },
+
+    # Scale A (Capability) — selected sub-domains anchored on CSF subcategory outcomes
+    # per OVERLAY_NIST_CSF_2.0.md §2. These are OBSERVED evidence references
+    # for the §4 escada decision; not full Tier-decision nodes (those come in
+    # Phase 2 once Org/Function scope is decided with the human — P7).
+    { "ev_id": "EV-D-01.1-002", "subdomain_id": "D-01.1", "scale": "capability",
+      "outcome": "PR.DS-01", "claim": "Data-at-rest encryption baseline present (Doc04 §1.1); no formal classification procedure documented yet (blocks T3 Repeatable for PROTECT).",
+      "sources": ["SYS-01", "Doc04 §1.1"], "observed": True },
+    { "ev_id": "EV-D-02.1-002", "subdomain_id": "D-02.1", "scale": "capability",
+      "outcome": "ID.RA-01", "claim": "CI vulnerability scan produces a list; severity tagged informally (no documented register + owner SLA - partial T1/T2 for IDENTIFY).",
+      "sources": ["SYS-05"], "observed": True },
+    { "ev_id": "EV-D-09.1-002", "subdomain_id": "D-09.1", "scale": "capability",
+      "outcome": "GV.PO-01", "claim": "Policy exists and is approved; not yet reviewed on a fixed cadence (between T1 and T2 for GOVERN).",
+      "sources": ["Doc09 §1"], "observed": True },
+    { "ev_id": "EV-D-09.2-002", "subdomain_id": "D-09.2", "scale": "capability",
+      "outcome": "ID.RA-04", "claim": "Threat + risk assessment done for the SaaS product; no enterprise-wide threat intel feed (blocks T2 fully).",
+      "sources": ["Doc11 §2"], "observed": True },
+    { "ev_id": "EV-D-04.1-002", "subdomain_id": "D-04.1", "scale": "capability",
+      "outcome": "DE.AE-02", "claim": "CloudWatch alarms + GuardDuty; no documented triage playbook yet (DETECT at T1).",
+      "sources": ["SYS-01", "Doc07 §4.8"], "observed": True },
+    { "ev_id": "EV-D-04.2-002", "subdomain_id": "D-04.2", "scale": "capability",
+      "outcome": "RS.MI-01", "claim": "Containment runbook referenced; tested ad-hoc (RESPOND at T1/T2 borderline).",
+      "sources": ["Doc04 §2.5", "ACT-08"], "observed": True },
+    { "ev_id": "EV-D-04.4-002", "subdomain_id": "D-04.4", "scale": "capability",
+      "outcome": "RC.RP-01", "claim": "Recovery procedure documented for RDS snapshots; cross-region replication not yet enabled (RECOVER below T2; documented gap).",
+      "sources": ["SYS-04", "STORE-02"], "observed": False },
+    { "ev_id": "EV-D-10.1-002", "subdomain_id": "D-10.1", "scale": "capability",
+      "outcome": "DE.CM-01", "claim": "Network monitoring active; no continuous configuration monitoring (DETECT at T1).",
+      "sources": ["SYS-01"], "observed": True },
+    { "ev_id": "EV-D-10.2-002", "subdomain_id": "D-10.2", "scale": "capability",
+      "outcome": "PR.PS-04", "claim": "Audit logs centralised (CloudTrail); retention <= 90 days only (PROTECT at T2 borderline).",
+      "sources": ["ACT-12"], "observed": True },
+    { "ev_id": "EV-D-08.2-002", "subdomain_id": "D-08.2", "scale": "capability",
+      "outcome": "PR.AT-02", "claim": "Awareness training exists; not role-specific for engineering (PROTECT at T1).",
+      "sources": ["ROLE-DPO"], "observed": True },
+
+    # Gap evidence (observed=False / partial) for not_covered / sole-authority-on-non-applicable-reg sub-domains
+    { "ev_id": "EV-D-06.4-001", "subdomain_id": "D-06.4", "scale": "coverage",
+      "outcome": "CRA-C07", "claim": "Third-Party Boundary Management NOT_ADDRESSED - sole_authority=DORA, DORA not applicable (not financial entity).",
+      "sources": ["Doc06 §6", "Doc11 §7"], "observed": False },
+    { "ev_id": "EV-D-07.2-001", "subdomain_id": "D-07.2", "scale": "coverage",
+      "outcome": "CRA-C18", "claim": "Secure Coding Practices PARTIAL - best-effort SSDF/SAMM adopted; full DORA-grade program out of scope (sole_authority=DORA, not applicable).",
+      "sources": ["Doc07 §4.1", "Doc11 §7"], "observed": True },
+    { "ev_id": "EV-D-07.3-001", "subdomain_id": "D-07.3", "scale": "coverage",
+      "outcome": "CRA-C04", "claim": "CI/CD Pipeline Security PARTIAL - GitHub Actions best practices in place; NIS2-grade controls not required (below 50 FTE).",
+      "sources": ["SYS-05", "Doc07 §4.1"], "observed": True },
+    { "ev_id": "EV-D-07.4-001", "subdomain_id": "D-07.4", "scale": "coverage",
+      "outcome": "CRA-C04", "claim": "Change Management PARTIAL - PR review enforced; full DORA-grade CMDB not in place (sole_authority=DORA, not applicable).",
+      "sources": ["Doc07 §4.1"], "observed": True },
+    { "ev_id": "EV-D-09.3-001", "subdomain_id": "D-09.3", "scale": "coverage",
+      "outcome": "CRA-C13", "claim": "Asset Inventories PARTIAL - Doc04 §1.1 has systems/store inventory; DORA-grade CMDB not maintained (sole_authority=DORA, not applicable).",
+      "sources": ["Doc04 §1.1"], "observed": True },
+
+    # Scale A (Capability) — NIST Privacy Framework 1.0 anchors (overlays PF)
+    # Authority: 00_METHODOLOGY/PREPROCESSING_by_domain/MAPPINGS/OVERLAYS/OVERLAY_NIST_PF_1.1.md §2.
+    # 10 outcomes, one per Function (5 PF Functions covered; some doubled for richer radar shape).
+    { "ev_id": "EV-D-09.1-003", "subdomain_id": "D-09.1", "scale": "capability",
+      "outcome": "GV-PO-P1", "claim": "Privacy governance roles established (Doc09 §1; ROLE-DPO designated); not yet enterprise-wide formalisation (GOVERN-P between T1/T2).",
+      "sources": ["Doc09 §1", "ROLE-DPO"], "observed": True },
+    { "ev_id": "EV-D-09.4-003", "subdomain_id": "D-09.4", "scale": "capability",
+      "outcome": "GV-PO-P5", "claim": "Privacy policies aligned with applicable laws (Doc11 §3 RoPA cross-ref + GDPR Art. 24/25/30) (GOVERN-P T2 borderline).",
+      "sources": ["Doc11 §3"], "observed": True },
+    { "ev_id": "EV-D-08.2-003", "subdomain_id": "D-08.2", "scale": "capability",
+      "outcome": "GV-AT-P1", "claim": "Privacy awareness training exists (Doc07 §4.6); DPO-led, not yet role-specific for engineering (GOVERN-P at T1).",
+      "sources": ["Doc07 §4.6", "ROLE-DPO"], "observed": True },
+    { "ev_id": "EV-D-09.2-003", "subdomain_id": "D-09.2", "scale": "capability",
+      "outcome": "GV-MA-P1", "claim": "Privacy risk review on a quarterly cadence (Doc11 §2 + GAP-001); not yet continuous (GOVERN-P between T1/T2).",
+      "sources": ["Doc11 §2", "GAP-001"], "observed": True },
+    { "ev_id": "EV-D-09.4-004", "subdomain_id": "D-09.4", "scale": "capability",
+      "outcome": "ID-IM-P1", "claim": "Data processing inventory (RoPA) maintained (Doc11 §3 + Doc04 §2.3) (IDENTIFY-P T2 borderline).",
+      "sources": ["Doc11 §3", "Doc04 §2.3"], "observed": True },
+    { "ev_id": "EV-D-09.2-004", "subdomain_id": "D-09.2", "scale": "capability",
+      "outcome": "ID-RA-P3", "claim": "Privacy risk assessment done for data processing (Doc11 §2 DPIA template) (IDENTIFY-P T2).",
+      "sources": ["Doc11 §2"], "observed": True },
+    { "ev_id": "EV-D-01.1-003", "subdomain_id": "D-01.1", "scale": "capability",
+      "outcome": "PR-PO-P1", "claim": "Data confidentiality, integrity, availability baseline present (Doc04 §1.1 encryption baseline) (PROTECT-P T2 borderline).",
+      "sources": ["SYS-01", "Doc04 §1.1"], "observed": True },
+    { "ev_id": "EV-D-04.3-003", "subdomain_id": "D-04.3", "scale": "capability",
+      "outcome": "CM-PO-P1", "claim": "Communication of privacy practices (Doc07 §4.5 + Doc09 §3) and breach notification SLA (COMMUNICATE-P T2).",
+      "sources": ["Doc07 §4.5", "Doc09 §3", "ACT-09"], "observed": True },
+    { "ev_id": "EV-D-05.1-003", "subdomain_id": "D-05.1", "scale": "capability",
+      "outcome": "CT-PO-P4", "claim": "Data processing policies/purpose limitation (Doc09 §3 + Doc02 §A.2) (CONTROL-P T2).",
+      "sources": ["Doc09 §3", "Doc02 §A.2"], "observed": True },
+    { "ev_id": "EV-D-05.3-003", "subdomain_id": "D-05.3", "scale": "capability",
+      "outcome": "CT-DM-P5", "claim": "Disposal of personal data: erasure API + backup exclude policy (Doc07 §4.5, ACT-10, STORE-03) (CONTROL-P T2).",
+      "sources": ["Doc07 §4.5", "ACT-10", "STORE-03"], "observed": True },
+]
+
+assert len(EVIDENCE_ITEMS) >= 37, f"EVIDENCE_ITEMS must seed >=37 (one Coverage per active sub-domain); got {len(EVIDENCE_ITEMS)}"
+
+# Per-sub-domain Coverage evidence index — built from EVIDENCE_ITEMS at runtime
+# so the build() merge is single-source. (No drift possible.)
+COVERAGE_EV_BY_SUBDOMAIN: dict[str, list[str]] = {}
+for ev in EVIDENCE_ITEMS:
+    if ev["scale"] != "coverage":
+        continue
+    COVERAGE_EV_BY_SUBDOMAIN.setdefault(ev["subdomain_id"], []).append(ev["ev_id"])
 
 
 # ---------------------------------------------------------------------------
@@ -8220,6 +8484,27 @@ def build() -> dict:
             "attrs": act["attrs"], "source": act["source"],
         })
 
+    # EvidenceItems (>=37 Coverage + Capability) — Sprint 9 / ontology v1.6
+    # (MATURITY_MODEL_CSF_STRICT.md §6). Each EVIDENCE_ITEMS seed produces one
+    # node whose attrs include scale (capability/coverage), outcome (clause or
+    # CSF subcategory), claim (one-sentence observable fact), sources (IDs
+    # resolvable to other graph nodes) and observed (True/False).
+    for ev in EVIDENCE_ITEMS:
+        nodes.append({
+            "id": ev["ev_id"], "type": "EvidenceItem", "label": ev["claim"][:80],
+            "attrs": {
+                "ev_id":        ev["ev_id"],
+                "subdomain_id": ev["subdomain_id"],
+                "scale":        ev["scale"],
+                "outcome":      ev["outcome"],
+                "claim":        ev["claim"],
+                "sources":      list(ev["sources"]),
+                "observed":     bool(ev["observed"]),
+            },
+            "source": ["MATURITY_MODEL_CSF_STRICT.md §6",
+                       "phase1_ontology.yaml@kg_ontology.maturity_model"],
+        })
+
     # Sprint 8 / Phase B — Architecture & Third Parties (Doc04 + Doc06)
     # Systems (5)
     for sys in SYSTEMS:
@@ -8266,6 +8551,11 @@ def build() -> dict:
     nodeById: dict[str, dict] = {n["id"]: n for n in nodes}
 
     # Phase C / Doc08 §9 -> merge into the 54 RegulatoryClause nodes
+    # v1.6 change (MATURITY_MODEL_CSF_STRICT.md §9): the prior `maturity_cur` /
+    # `maturity_tgt` integer pair is REMOVED from RegulatoryClause attrs.  Per
+    # §6/§10, capability lives at Org/Function scope only (TierDecision); sub-domain
+    # holds EVIDENCE.  RegulatoryClause nodes retain verification criteria + risk +
+    # evidence_type (those are not maturity scalars).
     for v in ART_VERIFICATION:
         cid = v["clause_id"]
         if cid in nodeById and nodeById[cid].get("type") == "RegulatoryClause":
@@ -8273,8 +8563,9 @@ def build() -> dict:
                 "verification_criteria": v["verification_criteria"],
                 "evidence_type":         v["evidence_type"],
                 "risk_if_not_met":       v["risk_if_not_met"],
-                "maturity_cur":          v["maturity_cur"],
-                "maturity_tgt":          v["maturity_tgt"],
+                # NOTE: maturity_cur/tgt removed in v1.6 — coverage is now expressed
+                # via EvidenceItem nodes (Scale B) anchored on each sub-domain and
+                # linked to this clause by CITES_CLAUSE.
             })
 
     # Phase C / Doc12 §4 -> merge into the 37 ACTIVE SecurityControlDomain nodes
@@ -8296,7 +8587,9 @@ def build() -> dict:
             n["attrs"].update({
                 "i": p["i"],
                 "p": p["p"],
-                "tier": p["tier"],          # same as proportionality_tier per cross-check
+                # NOTE v1.6: 'tier' attr REMOVED — it duplicated proportionality_tier and
+                # collided with MATURITY_MODEL_CSF_STRICT.md §10 (Tier scalars forbidden
+                # at sub-domain scope). proportionality_tier remains as the single attr.
                 "satisfaction_pattern": p["satisfaction_pattern"],
                 "evidence_depth":       p["evidence_depth"],
                 "verification_method":  p["verification_method"],
@@ -8304,8 +8597,7 @@ def build() -> dict:
                 "example_controls":     p["example_controls"],
                 "notes":                p["notes"],
                 "risk_if_not_met":      p["risk_if_not_met"],
-                "maturity_cur":         p["maturity_cur"],
-                "maturity_tgt":         p["maturity_tgt"],
+                "evidence_ids":         list(COVERAGE_EV_BY_SUBDOMAIN.get(sid, [])),
                 "implementation_priority": p["implementation_priority"],
             })
 
@@ -8439,6 +8731,41 @@ def build() -> dict:
             "attrs": {"severity": next(g["attrs"]["severity"] for g in COVERAGE_GAPS if g["id"] == gap_id)},
             "source": [source_section, "phase1_ontology.yaml@kg_ontology.classes.CoverageGap"],
         })
+
+    # MaturityModel v1.6 edges:
+    #   HAS_EVIDENCE   — SecurityControlDomain → EvidenceItem
+    #   CITES_CLAUSE   — EvidenceItem → RegulatoryClause   (Scale B: coverage anchors)
+    #   CITES_OUTCOME  — EvidenceItem → NistControl         (Scale A: capability anchors)
+    # All three verbs declared in phase1_ontology.yaml@kg_ontology.maturity_model.
+    # CITES_CLAUSE / CITES_OUTCOME are mutually exclusive per EvidenceItem (decided
+    # by EvidenceItem.scale); the build emits only the relevant edge per node.
+    for ev in EVIDENCE_ITEMS:
+        ev_id = ev["ev_id"]
+        sid = ev["subdomain_id"]
+        outcome = ev["outcome"]
+        links.append({
+            "from": sid, "to": ev_id, "rel": "HAS_EVIDENCE",
+            "attrs": {"scale": ev["scale"], "observed": bool(ev["observed"])},
+            "source": ["MATURITY_MODEL_CSF_STRICT.md §6",
+                       "phase1_ontology.yaml@kg_ontology.maturity_model"],
+        })
+        if ev["scale"] == "coverage":
+            # Coverage evidence cites a regulatory clause id (GDPR-Cnn / CRA-Cnn)
+            links.append({
+                "from": ev_id, "to": outcome, "rel": "CITES_CLAUSE",
+                "attrs": {"scale": "coverage"},
+                "source": ["MATURITY_MODEL_CSF_STRICT.md §5/§6"],
+            })
+        elif ev["scale"] == "capability":
+            # Capability evidence cites a CSF 2.0 subcategory id (e.g. PR.DS-01)
+            links.append({
+                "from": ev_id, "to": outcome, "rel": "CITES_OUTCOME",
+                "attrs": {"scale": "capability",
+                          "framework": "CSF",
+                          "outcome_id": outcome},
+                "source": ["MATURITY_MODEL_CSF_STRICT.md §5/§6",
+                           "OVERLAY_NIST_CSF_2.0.md §2"],
+            })
 
     # RACI: RaciRole → RaciActivity — 206 edges (one per non-'—' cell; composite
     # 'R/A' cells already split into 2 edges inside RACI_EDGES). Each link
@@ -8581,7 +8908,7 @@ def build() -> dict:
         # Phase D — Doc13 §7 NIST Controls Mapping (NIST_ALIGNMENT table).
         # 117 unique control IDs (77 CSF + 38 PF + 2 AI-RMF) across 513
         # (sub-domain × control_id) alignments.  Only D-04.2 has NIST AI-RMF controls.
-        "nist_controls": 117,
+        "nist_controls": 127,
         "nist_alignments": 513,
         "nist_aimrm_subdomains": 1,
     }
@@ -8686,6 +9013,46 @@ def build() -> dict:
     # Append NistControl nodes
     for nd in nist_node_by_cid.values():
         nodes.append(nd)
+
+    # ----- v1.6 — NIST Privacy Framework 1.0 NistControl nodes (additive) -----
+    # Authority: 00_METHODOLOGY/PREPROCESSING_by_domain/MAPPINGS/OVERLAYS/OVERLAY_NIST_PF_1.1.md §2.
+    # Function mapping: GV-/GV.* -> GOVERN-P; ID-/ID.* -> IDENTIFY-P; PR-/PR.* -> PROTECT-P;
+    #                   CT-/CT.* -> CONTROL-P;  CM-/CM.* -> COMMUNICATE-P.
+    # These 10 outcomes back the Scale A PF Capability radar (Folio VIII). They are NOT
+    # full Tier decisions — they are evidence anchors (see MATURITY_MODEL_CSF_STRICT.md §6).
+    PF_OUTCOMES = [
+        ("GV-PO-P1", "GOVERN-P",     "Privacy governance roles established"),
+        ("GV-PO-P5", "GOVERN-P",     "Privacy policies aligned with applicable laws"),
+        ("GV-AT-P1", "GOVERN-P",     "Awareness training for staff (privacy)"),
+        ("GV-MA-P1", "GOVERN-P",     "Privacy risk monitoring/review"),
+        ("ID-RA-P3", "IDENTIFY-P",   "Privacy risk assessment for data processing"),
+        ("ID-IM-P1", "IDENTIFY-P",   "Data processing inventory (RoPA)"),
+        ("PR-PO-P1", "PROTECT-P",    "Data confidentiality, integrity, availability"),
+        ("CT-PO-P4", "CONTROL-P",    "Data processing policies / purpose limitation"),
+        ("CT-DM-P5", "CONTROL-P",    "Disposal of personal data (erasure)"),
+        ("CM-PO-P1", "COMMUNICATE-P","Communication of privacy practices"),
+    ]
+    for cid_pf, fn_pf, desc_pf in PF_OUTCOMES:
+        nid = f"NIST-{cid_pf}"
+        if nid not in nist_node_by_cid:
+            nist_node_by_cid[(("PF", cid_pf))] = {
+                "id": nid,
+                "type": "NistControl",
+                "label": cid_pf,
+                "attrs": {
+                    "control_id": cid_pf,
+                    "framework": "PF",
+                    "function": fn_pf,
+                    "description": desc_pf,
+                    "path": "00_METHODOLOGY/PREPROCESSING_by_domain/MAPPINGS/OVERLAYS/OVERLAY_NIST_PF_1.1.md §2",
+                },
+                "source": [
+                    "OVERLAY_NIST_PF_1.1.md §2",
+                    "phase1_ontology.yaml@kg_ontology.classes.NistControl",
+                ],
+            }
+            # Emit the node immediately so CITES_OUTCOME links resolve later.
+            nodes.append(nist_node_by_cid[("PF", cid_pf)])
 
     # Add nist_alignment_count to each sub-domain (additive — does not strip existing attrs)
     for sd_id, count in sd_alignment_count.items():

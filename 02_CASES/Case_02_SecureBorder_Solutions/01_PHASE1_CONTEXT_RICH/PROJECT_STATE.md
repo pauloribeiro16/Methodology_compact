@@ -2,13 +2,14 @@
 document_id: AEGIS-P2-RICH-STATE
 title: Project State — Phase 1 Rich Mode (Case_02)
 phase: 1
-version: 1.0
+version: 1.1
 created: 2026-08-06
-author: Sprint 3 Executor
+updated: 2026-08-27
+author: Sprint 3 Executor (+ Sprint 10 maturation note: v2.3 maturity_model)
 status: FINAL
 case: Case_02_SecureBorder_Solutions
 applicable_regs: [GDPR, CRA, NIS 2, AI_Act]
-active_subdomains: 35
+active_subdomains: 34   # 35 ACTIVE in ontology; 4 are NOT_ADDRESSED (D-06.4, D-07.4, D-08.3, D-09.3)
 track: B
 tier: MEDIUM (settled by P7 human arbitration, 2026-08-10 — see §7 F-01)
 related_documents:
@@ -89,8 +90,10 @@ frozen: false
 | **Sprint 0.5** | 2026-08-06 | `07b` Track B instance — 35 active sub-domains, 8 RIGOROUS + 27 STANDARD, 3 NOT_ADDRESSED documented |
 | **Sprint 1** | 2026-08-06 | Reconciliation — 10 docs + ontology v1.1 into Rich; `active_subdomains` 38 → 35; T-006/007/008 added; by-design section markers |
 | **Sprint 3** | 2026-08-06 | `07b` §11 corpus cross-check (15 rows, 6 findings); README dashboard + navigation; `RICH_VS_LEGACY.md`; this file; Validator verdict |
-| **Sprint 4** | 2026-08-06 | Adjusted objectives — `Doc13_Adjusted_Goals.md` delivered with 70 objective cards | 
+| **Sprint 4** | 2026-08-06 | Adjusted objectives — `Doc13_Adjusted_Goals.md` delivered with 70 objective cards |
 | **Sprint 5** | 2026-08-06 | DEEP enrichment — `07c` status promoted to DEEP_ENRICHED; 70 detail cards and 3 tensions expanded |
+| **Sprint 9 (port campaign)** | 2026-08-28 | Port Caso 01→02: AG- verified, posture fields, Control Set 78 (38 CR + 40 BPR), gates PASS — see Case root README §8 |
+| **Sprint 10 (maturation)** | 2026-08-27 | **Maturity redesign v2.3** (MATURITY_MODEL_CSF_STRICT.md). `phase1_ontology.yaml` v2.2→v2.3 (additive maturity_model block, EvidenceItem/TierDecision, 5 relations); `data/phase1_ontology.compact.json` schema 1.0→1.1; `scripts/build_p1_graph.py` (de-novo, 19 node types from YAML+XLSX, 311 links, 59 EvidenceItems, 15 NistControl); `scripts/build_p1_dashboard.py` (validator v2.3, 4 gates); `00_VISUALISATIONS/Case_02/Case_02_P1_Maturity.html` (Folio VIII standalone) + `build_case02_dashboard.py` (inline JSON for file://); Doc05 v1.2→v1.3 + Doc12 v1.0→v1.3 (nota v2.3). Validator v2.3 `--check` PASS; smoke 10/10 dashboards. |
 
 **Commits on `feature/aegis-p1-case02-rich`:** `5687792` (corpus cherry-pick) → `fff7915` (Sprint 0) → `1c74f6b` (Sprint 0.5) → `8decee0` (Sprint 1) → `973cc1e` (Sprint 2) → Sprint 3 *(uncommitted at time of writing)*.
 

@@ -116,7 +116,8 @@ def check_invariants(graph: dict) -> list[str]:
         "articles_with_verification": 54,
         "subdomains_with_proportionality": 37,
         # Phase D (Doc13 §7) — NIST Controls Mapping counts
-        "nist_controls": 117,
+        # v1.6 — 10 PF Capability anchors added (Phase 3a): 117 → 127
+        "nist_controls": 127,
         "nist_alignments": 513,
         "nist_aimrm_subdomains": 1,
     }
@@ -242,54 +243,57 @@ def check_audit_node_ids(graph: dict) -> list[str]:
 # ---------------------------------------------------------------------------
 
 def check_phase_c(graph: dict) -> list[str]:
-    """Phase C validators (Doc08 §9 + Doc12 §4 derived attrs).
+    """Phase C validators (Doc08 §9 + Doc12 §4 derived attrs) — v1.6 regime.
 
     Returns a list of error messages (empty = pass).  Each error is fatal
     under `--check` (rolled into the existing invariant exit code 1).
 
-    Validates:
-      1. Every RegulatoryClause node has maturity_cur / maturity_tgt integers
-         in range [0, 4] with cur ≤ tgt.
-      2. Every Active SecurityControlDomain node has the 13 proportionality keys
-         populated (i, p, tier, satisfaction_pattern, evidence_depth,
-         verification_method, ownership, example_controls, notes,
-         risk_if_not_met, maturity_cur, maturity_tgt, implementation_priority).
-      3. attrs.tier (Doc12 §4) == attrs.proportionality_tier (v1.2) for every
-         ACTIVE SecurityControlDomain; drift is surfaced as an error.
+    Validates (v1.6 — MATURITY_MODEL_CSF_STRICT.md §10):
+      1. NO forbidden maturity scalars appear on SecurityControlDomain
+         (tier / maturity_cur / maturity_tgt / maturity_score / capability_score
+          are FORBIDDEN at sub-domain scope). Gate 1 of the maturity model.
+      2. Every Active SecurityControlDomain node has the 11 proportionality keys
+         populated (the v1.6 set: maturity_cur/maturity_tgt REMOVED;
+         evidence_ids ADDED; tier attr REMOVED — proportionality_tier is canonical).
+      3. proportionality_tier is non-null on every active sub-domain.
       4. Every ART_VERIFICATION clause_id (derived from Doc08 §9 ordinal) is
          bound to a real RegulatoryClause node.
       5. Every SUBDOMAIN_PROPORTIONALITY sub_domain_id (Doc12 §4) is bound to
          a real SecurityControlDomain node with attrs.active == True.
       6. New invariants.articles_with_verification == 54 and
          invariants.subdomains_with_proportionality == 37.
+      7. GATE 3 (citation discipline): every EvidenceItem carries a non-empty
+         sources[] list AND every source id resolves to a real graph node.
     """
     errors: list[str] = []
 
     # Counters / lookups
     clauses = {n["id"]: n for n in graph.get("nodes", []) if n["type"] == "RegulatoryClause"}
     sds     = {n["id"]: n for n in graph.get("nodes", []) if n["type"] == "SecurityControlDomain"}
+    all_node_ids = {n["id"] for n in graph.get("nodes", [])}
 
-    # (1) Maturity format validation for clauses
-    bad_maturity_clause = 0
-    for cid, n in clauses.items():
+    # (1) Forbidden maturity scalars on sub-domain scope (Gate 1)
+    FORBIDDEN_SUBDOMAIN = ("tier", "maturity_cur", "maturity_tgt",
+                           "maturity_score", "capability_score")
+    forbidden_hits = []
+    for sid, n in sds.items():
         a = n.get("attrs", {})
-        cur, tgt = a.get("maturity_cur"), a.get("maturity_tgt")
-        if not isinstance(cur, int) or not isinstance(tgt, int):
-            bad_maturity_clause += 1
-            continue
-        if not (0 <= cur <= 4 and 0 <= tgt <= 4):
-            bad_maturity_clause += 1
-            continue
-        if cur > tgt:
-            bad_maturity_clause += 1
-    if bad_maturity_clause:
-        errors.append(f"Phase C: {bad_maturity_clause} RegulatoryClause node(s) fail maturity_cur/maturity_tgt range or cur<=tgt invariant")
+        for fk in FORBIDDEN_SUBDOMAIN:
+            if fk in a:
+                forbidden_hits.append((sid, fk))
+    if forbidden_hits:
+        sample = forbidden_hits[:5]
+        errors.append(
+            "Phase C: forbidden maturity scalars on sub-domain scope "
+            f"({len(forbidden_hits)} hits); sample: " +
+            ", ".join(f"{sid}.{fk}" for sid, fk in sample)
+        )
 
-    # (2) 13 proportionality keys on every active sub-domain
+    # (2) 11 proportionality keys on every active sub-domain (v1.6: tier/maturity_cur/tgt OUT, evidence_ids IN)
     sd_required_keys = (
-        "i", "p", "tier", "satisfaction_pattern", "evidence_depth",
+        "i", "p", "satisfaction_pattern", "evidence_depth",
         "verification_method", "ownership", "example_controls", "notes",
-        "risk_if_not_met", "maturity_cur", "maturity_tgt",
+        "risk_if_not_met", "evidence_ids",
         "implementation_priority",
     )
     bad_sd_attrs = 0
@@ -303,31 +307,33 @@ def check_phase_c(graph: dict) -> list[str]:
     if bad_sd_attrs:
         errors.append(f"Phase C: {bad_sd_attrs} active SecurityControlDomain(s) missing proportionality attrs keys")
 
-    # (3) Tier consistency: attrs.tier == attrs.proportionality_tier on every active sub-domain
-    tier_drift = []
+    # (3) proportionality_tier non-null on every active sub-domain
+    bad_prop_tier = []
     for sid, n in sds.items():
         a = n.get("attrs", {})
         if a.get("active") is not True:
             continue
-        new_tier = a.get("tier")
-        old_tier = a.get("proportionality_tier")
-        if new_tier != old_tier:
-            tier_drift.append((sid, new_tier, old_tier))
-    if tier_drift:
-        # Report up to 5 drift items in the error message
-        sample = tier_drift[:5]
+        if a.get("proportionality_tier") is None:
+            bad_prop_tier.append(sid)
+    if bad_prop_tier:
         errors.append(
-            f"Phase C: tier drift on {len(tier_drift)} active sub-domain(s); sample: " +
-            ", ".join(f"{sid}(tier={nt!r}, prop_tier={pt!r})" for sid, nt, pt in sample)
+            f"Phase C: {len(bad_prop_tier)} active SecurityControlDomain(s) lack proportionality_tier"
         )
 
     # (4) Verify the §9 54-row derivation bound: every existing RegulatoryClause
-    # node MUST carry maturity_cur + maturity_tgt now (so 54 = 54 cross-check).
-    missing_clause_phasec = [cid for cid, n in clauses.items()
-                             if "maturity_cur" not in n.get("attrs", {})
-                             or "maturity_tgt" not in n.get("attrs", {})]
-    if missing_clause_phasec:
-        errors.append(f"Phase C: {len(missing_clause_phasec)} RegulatoryClause node(s) lack Phase-C maturity_cur/tgt attrs (sample: {missing_clause_phasec[:3]})")
+    # node MUST carry verification_criteria/evidence_type/risk_if_not_met.
+    # v1.6: clause-level attrs no longer require maturity_cur/tgt.
+    clause_required_keys = ("verification_criteria", "evidence_type", "risk_if_not_met")
+    bad_clause_phasec = 0
+    for cid, n in clauses.items():
+        a = n.get("attrs", {})
+        missing = [k for k in clause_required_keys if k not in a]
+        if missing:
+            bad_clause_phasec += 1
+    if bad_clause_phasec:
+        errors.append(
+            f"Phase C: {bad_clause_phasec} RegulatoryClause node(s) lack phase-C verification keys"
+        )
 
     # (5) 54 articles + 37 sub-domains attested counts on the graph invariants
     inv = graph.get("invariants", {})
@@ -341,6 +347,34 @@ def check_phase_c(graph: dict) -> list[str]:
     for need in ("NEW-06", "NEW-07", "NEW-08"):
         if need not in audit_ids:
             errors.append(f"Phase C: expected audit id '{need}' missing from audits list")
+
+    # (7) GATE 3 — citation discipline on every EvidenceItem (v1.6)
+    #   (a) sources[] MUST be non-empty
+    #   (b) every source id MUST resolve to an existing graph node (allow doc-section strings)
+    evidence_items = [n for n in graph.get("nodes", []) if n["type"] == "EvidenceItem"]
+    bad_source_discipline = []
+    for n in evidence_items:
+        a = n.get("attrs", {})
+        sources = a.get("sources") or []
+        if not sources:
+            bad_source_discipline.append((n["id"], "EMPTY_SOURCES"))
+            continue
+        for src in sources:
+            # Source ids that look like graph-node ids (uppercase + digits + hyphens)
+            # must exist; free-text doc-section citations ("Doc12 §4") are allowed.
+            if src.startswith(("Doc", "doc", "§", "OVERLAY")) or " " in src:
+                continue
+            if src not in all_node_ids:
+                bad_source_discipline.append((n["id"], f"UNKNOWN_SOURCE:{src}"))
+    if bad_source_discipline:
+        sample = bad_source_discipline[:5]
+        errors.append(
+            "Phase C: GATE 3 (citation discipline) failed on "
+            f"{len(bad_source_discipline)} EvidenceItem entries; sample: " +
+            ", ".join(f"{eid}[{why}]" for eid, why in sample)
+        )
+
+    return errors
 
     return errors
 
@@ -399,9 +433,11 @@ def check_phase_d(graph: dict) -> list[str]:
         errors.append(f"Phase D: {len(bad_targets)} ALIGNS_TO edge(s) point to non-NistControl target (sample: {bad_targets[:3]})")
 
     # (4) Invariant count matches
+    # v1.6 — MATURITY_MODEL_CSF_STRICT.md: 10 NIST PF outcomes added (Phase 3a).
+    # nist_controls invariant changes from 117 → 127 (117 CSF+AI-RMF + 10 PF Capability anchors).
     inv = graph.get("invariants", {})
-    if inv.get("nist_controls") != 117:
-        errors.append(f"Phase D: invariants.nist_controls expected 117, got {inv.get('nist_controls')}")
+    if inv.get("nist_controls") not in (117, 127):
+        errors.append(f"Phase D: invariants.nist_controls expected 117 (pre-PF) or 127 (post-PF), got {inv.get('nist_controls')}")
     if inv.get("nist_alignments") != 513:
         errors.append(f"Phase D: invariants.nist_alignments expected 513, got {inv.get('nist_alignments')}")
     # nist_aimrm_subdomains: count distinct SecurityControlDomain IDs that have at

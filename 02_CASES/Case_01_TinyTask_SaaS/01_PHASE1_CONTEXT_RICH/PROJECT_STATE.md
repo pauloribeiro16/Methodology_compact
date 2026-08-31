@@ -2,10 +2,10 @@
 document_id: AEGIS-P1-RICH-STATE
 title: Project State — Phase 1 Rich Mode
 phase: 1
-version: 1.1
+version: 1.2
 created: 2026-08-06
-updated: 2026-08-26
-author: Sprint 3 Executor (+ Knowledge Articulation addendum)
+updated: 2026-08-27
+author: Sprint 3 Executor (+ Knowledge Articulation addendum; v1.6 maturity redesign)
 status: FINAL
 case: Case_01_TinyTask_SaaS
 ---
@@ -49,6 +49,7 @@ case: Case_01_TinyTask_SaaS
 | 1 | 2026-08-06 | Reconciliation (6/16 inconsistencies fixed: I-01, I-02, I-05/06, I-07, I-10, I-13); lint 31W → 10W (−68%) |
 | 2 | 2026-08-06 | Corpus enrichment (4 docs enriched with 135 cells; 2 NEW docs filled with 417 ambiguity cards + 18 citations; 4 status flips to CORPUS_ENRICHED) |
 | 3 | 2026-08-06 | Final docs (README v1.0, RICH_VS_LEGACY, PROJECT_STATE) + 07b cross-check (10/10 PASS) + Validator verdict + final lint pass |
+| 9 | 2026-08-27 | **Maturity redesign v1.6** (MATURITY_MODEL_CSF_STRICT.md). Removed `maturity_cur`/`maturity_tgt` scalars from sub-domínio/regulatory-clause; introduced `EvidenceItem` nodes (47 seed: 32 Coverage + 10 Capability CSF + 5 gaps; +10 PF anchors in v1.6 Phase 3a = 57 total). Folio VIII added to Case_01_P1_Dashboard.html (4 KPI tiles + tier-bar Function + 2 radares ECharts CSF/PF + callout pedagógico). Legacy `#maturity` section in `Case_01_Dashboard.html` removed; Doc05 + Doc12 banner-updated. Validator v1.6: Gate 1 (no Tier scalars on sub-domain) + Gate 2 (12 keys, evidence_ids) + Gate 3 (sources[] resolved) + Gate 4 (proportionality_tier non-null). `--check` PASS. |
 
 ## §4 Lint Status
 

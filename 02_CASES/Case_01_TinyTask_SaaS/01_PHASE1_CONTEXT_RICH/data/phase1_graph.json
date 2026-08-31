@@ -347,7 +347,6 @@
         ],
         "i": "BUILD",
         "p": "MUST",
-        "tier": "LIGHTWEIGHT",
         "satisfaction_pattern": "BUY_MANAGED",
         "evidence_depth": "Managed-service config documented + annual review; no dedicated in-house program",
         "verification_method": "DEMONSTRATE + INSPECT",
@@ -355,8 +354,9 @@
         "example_controls": "AWS S3 / DynamoDB SSE-KMS enabled (AES-256 default); no company-owned KMS program",
         "notes": "Unified AES-256 baseline satisfies SAME pair",
         "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-01.1-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 9
       },
@@ -383,7 +383,6 @@
         ],
         "i": "BUILD",
         "p": "MUST",
-        "tier": "LIGHTWEIGHT",
         "satisfaction_pattern": "BUY_MANAGED",
         "evidence_depth": "Managed-service config documented + annual review",
         "verification_method": "DEMONSTRATE + INSPECT",
@@ -391,8 +390,9 @@
         "example_controls": "TLS 1.3 via AWS ACM / CloudFront; certificate auto-renewal",
         "notes": "TLS 1.3 covers all ingress + egress",
         "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-01.2-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 9
       },
@@ -418,7 +418,6 @@
         ],
         "i": "BUILD",
         "p": "MUST",
-        "tier": "LIGHTWEIGHT",
         "satisfaction_pattern": "BUY_MANAGED",
         "evidence_depth": "Managed-service config documented + annual review",
         "verification_method": "DEMONSTRATE + INSPECT",
@@ -426,8 +425,9 @@
         "example_controls": "AWS KMS default keys; rotation cadence is AWS-managed",
         "notes": "",
         "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-01.3-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 18
       },
@@ -454,7 +454,6 @@
         ],
         "i": "BUILD",
         "p": "MUST",
-        "tier": "LIGHTWEIGHT",
         "satisfaction_pattern": "BUY_MANAGED",
         "evidence_depth": "Managed-service config documented + annual review",
         "verification_method": "DEMONSTRATE + INSPECT",
@@ -462,8 +461,9 @@
         "example_controls": "HMAC + DB constraints via AWS RDS",
         "notes": "",
         "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-01.4-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 14
       },
@@ -489,7 +489,6 @@
         ],
         "i": "BUILD",
         "p": "MUST",
-        "tier": "LIGHTWEIGHT",
         "satisfaction_pattern": "BUY_MANAGED",
         "evidence_depth": "Managed-service config documented + annual review",
         "verification_method": "DEMONSTRATE + INSPECT",
@@ -497,8 +496,9 @@
         "example_controls": "Trivy + npm audit in CI; OSS advisories",
         "notes": "",
         "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-02.1-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 30
       },
@@ -524,7 +524,6 @@
         ],
         "i": "BUILD",
         "p": "MUST",
-        "tier": "LIGHTWEIGHT",
         "satisfaction_pattern": "BUY_MANAGED",
         "evidence_depth": "Managed-service config documented + annual review",
         "verification_method": "DEMONSTRATE + INSPECT",
@@ -532,8 +531,9 @@
         "example_controls": "AWS Systems Manager Patch Manager (auto)",
         "notes": "Critical patches 24h per Critical Analysis §4",
         "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-02.2-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 15
       },
@@ -559,7 +559,6 @@
         ],
         "i": "BUILD",
         "p": "MUST",
-        "tier": "LIGHTWEIGHT",
         "satisfaction_pattern": "BUY_MANAGED",
         "evidence_depth": "Managed-service config documented + annual review",
         "verification_method": "DEMONSTRATE + INSPECT",
@@ -567,8 +566,9 @@
         "example_controls": "security.txt at `/.well-known/security.txt`; CVD page",
         "notes": "",
         "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-02.3-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 11
       },
@@ -593,7 +593,6 @@
         "gap_reason": "DORA not applicable (not financial entity)",
         "i": "BUILD",
         "p": "SHOULD",
-        "tier": "DEFERRED",
         "satisfaction_pattern": "—",
         "evidence_depth": "—",
         "verification_method": "—",
@@ -601,8 +600,9 @@
         "example_controls": "No OJ mandate for default-class CRA manufacturer; reference NIST SP 800-115 only",
         "notes": "DEFERRED per §5.2 (MICRO + FTE ≤ 1.0)",
         "risk_if_not_met": "LOW",
-        "maturity_cur": 1,
-        "maturity_tgt": 1,
+        "evidence_ids": [
+          "EV-D-02.4-001"
+        ],
         "implementation_priority": "LOW"
       },
       "source": [
@@ -627,7 +627,6 @@
         ],
         "i": "INHERIT (Firebase Auth IO-04)",
         "p": "MUST",
-        "tier": "MINIMAL",
         "satisfaction_pattern": "INHERIT",
         "evidence_depth": "Supplier attestation on file (SOC 2 / ISO 27001) + 1-page internal statement",
         "verification_method": "INSPECT",
@@ -635,8 +634,9 @@
         "example_controls": "Firebase Auth baseline; Firebase security documentation",
         "notes": "OIDC delegation per Critical Analysis §9",
         "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-03.1-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 20
       },
@@ -662,7 +662,6 @@
         ],
         "i": "INHERIT (Firebase Auth IO-04)",
         "p": "MUST",
-        "tier": "MINIMAL",
         "satisfaction_pattern": "INHERIT",
         "evidence_depth": "Supplier attestation on file + 1-page internal statement",
         "verification_method": "INSPECT",
@@ -670,8 +669,9 @@
         "example_controls": "Firebase Auth MFA; customer-managed encryption keys",
         "notes": "",
         "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-03.2-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 22
       },
@@ -697,7 +697,6 @@
         ],
         "i": "BUILD",
         "p": "MUST",
-        "tier": "LIGHTWEIGHT",
         "satisfaction_pattern": "BUY_MANAGED",
         "evidence_depth": "Managed-service config documented + annual review",
         "verification_method": "DEMONSTRATE + INSPECT",
@@ -705,8 +704,9 @@
         "example_controls": "Firebase Auth RBAC",
         "notes": "",
         "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-03.3-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 20
       },
@@ -732,7 +732,6 @@
         ],
         "i": "BUILD",
         "p": "MUST",
-        "tier": "LIGHTWEIGHT",
         "satisfaction_pattern": "BUY_MANAGED",
         "evidence_depth": "Managed-service config documented + annual review",
         "verification_method": "DEMONSTRATE + INSPECT",
@@ -740,8 +739,9 @@
         "example_controls": "Secure defaults via Firebase config",
         "notes": "",
         "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-03.4-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 11
       },
@@ -767,7 +767,6 @@
         ],
         "i": "BUILD",
         "p": "MUST",
-        "tier": "LIGHTWEIGHT",
         "satisfaction_pattern": "BUY_MANAGED",
         "evidence_depth": "Managed-service config documented + annual review",
         "verification_method": "DEMONSTRATE + INSPECT",
@@ -775,8 +774,9 @@
         "example_controls": "CloudWatch alarms + SNS notifications",
         "notes": "CloudWatch (not enterprise SIEM) per Critical Analysis §9",
         "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-04.1-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 13
       },
@@ -803,7 +803,6 @@
         ],
         "i": "BUILD",
         "p": "MUST",
-        "tier": "LIGHTWEIGHT",
         "satisfaction_pattern": "BUY_MANAGED",
         "evidence_depth": "Managed-service config documented + annual review",
         "verification_method": "DEMONSTRATE + INSPECT",
@@ -811,8 +810,9 @@
         "example_controls": "Documented 4h containment playbook",
         "notes": "",
         "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-04.2-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 22
       },
@@ -839,7 +839,6 @@
         ],
         "i": "BUILD",
         "p": "MUST",
-        "tier": "LIGHTWEIGHT",
         "satisfaction_pattern": "BUY_MANAGED",
         "evidence_depth": "Managed-service config documented + annual review",
         "verification_method": "DEMONSTRATE + INSPECT",
@@ -847,8 +846,9 @@
         "example_controls": "max-SLA 24h internal; unified incident workflow",
         "notes": "24h internal satisfies GDPR 72h and CRA 24h max-SLA",
         "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-04.3-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 10
       },
@@ -874,7 +874,6 @@
         ],
         "i": "BUILD",
         "p": "MUST",
-        "tier": "LIGHTWEIGHT",
         "satisfaction_pattern": "BUY_MANAGED",
         "evidence_depth": "Managed-service config documented + annual review",
         "verification_method": "DEMONSTRATE + INSPECT",
@@ -882,8 +881,9 @@
         "example_controls": "AWS Backup; RTO 24h (per Critical Analysis §4)",
         "notes": "RTO 24h replaces 4h unrealistic target",
         "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-04.4-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 13
       },
@@ -909,7 +909,6 @@
         ],
         "i": "BUILD",
         "p": "MUST",
-        "tier": "LIGHTWEIGHT",
         "satisfaction_pattern": "BUY_MANAGED",
         "evidence_depth": "Managed-service config documented + annual review",
         "verification_method": "DEMONSTRATE + INSPECT",
@@ -917,8 +916,9 @@
         "example_controls": "Field-level enforcement in schema",
         "notes": "",
         "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-05.1-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 16
       },
@@ -944,7 +944,6 @@
         ],
         "i": "BUILD",
         "p": "MUST",
-        "tier": "LIGHTWEIGHT",
         "satisfaction_pattern": "BUY_MANAGED",
         "evidence_depth": "Managed-service config documented + annual review",
         "verification_method": "DEMONSTRATE + INSPECT",
@@ -952,8 +951,9 @@
         "example_controls": "Retention policy (7y audit logs; 30d DSAR working data)",
         "notes": "",
         "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-05.2-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 19
       },
@@ -979,7 +979,6 @@
         ],
         "i": "BUILD",
         "p": "MUST",
-        "tier": "LIGHTWEIGHT",
         "satisfaction_pattern": "BUY_MANAGED",
         "evidence_depth": "Managed-service config documented + annual review",
         "verification_method": "DEMONSTRATE + INSPECT",
@@ -987,8 +986,9 @@
         "example_controls": "Erasure API endpoint",
         "notes": "",
         "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-05.3-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 6
       },
@@ -1014,7 +1014,6 @@
         ],
         "i": "BUILD",
         "p": "MUST",
-        "tier": "LIGHTWEIGHT",
         "satisfaction_pattern": "BUY_MANAGED",
         "evidence_depth": "Managed-service config documented + annual review",
         "verification_method": "DEMONSTRATE + INSPECT",
@@ -1022,8 +1021,9 @@
         "example_controls": "JSON export endpoint",
         "notes": "D-05.3 + D-05.4 share GDPR Art. 20-17 sub-SO pair",
         "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-05.4-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 4
       },
@@ -1049,7 +1049,6 @@
         ],
         "i": "INHERIT (DPA validation)",
         "p": "MUST",
-        "tier": "MINIMAL",
         "satisfaction_pattern": "INHERIT",
         "evidence_depth": "Supplier attestation on file + 1-page internal statement",
         "verification_method": "INSPECT",
@@ -1057,8 +1056,9 @@
         "example_controls": "DPA validation against GDPR Art. 28; supplier security clauses",
         "notes": "Annual manual review per Critical Analysis §9",
         "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-06.1-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 15
       },
@@ -1084,7 +1084,6 @@
         ],
         "i": "BUILD (CRA sole)",
         "p": "MUST",
-        "tier": "LIGHTWEIGHT",
         "satisfaction_pattern": "BUY_MANAGED",
         "evidence_depth": "Managed-service config documented + annual review",
         "verification_method": "DEMONSTRATE + INSPECT",
@@ -1092,8 +1091,9 @@
         "example_controls": "CycloneDX SBOM in CI/CD per release",
         "notes": "Closes GAP-003 (Doc 07 §7)",
         "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-06.2-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 6
       },
@@ -1119,7 +1119,6 @@
         ],
         "i": "BUILD",
         "p": "MUST",
-        "tier": "LIGHTWEIGHT",
         "satisfaction_pattern": "BUY_MANAGED",
         "evidence_depth": "Managed-service config documented + annual review",
         "verification_method": "DEMONSTRATE + INSPECT",
@@ -1127,8 +1126,9 @@
         "example_controls": "DPA template + supplier security clauses",
         "notes": "",
         "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-06.3-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 29
       },
@@ -1153,7 +1153,6 @@
         "gap_reason": "DORA not applicable (not financial entity)",
         "i": "INHERIT (AWS/Stripe/Firebase)",
         "p": "MUST",
-        "tier": "MINIMAL",
         "satisfaction_pattern": "INHERIT",
         "evidence_depth": "Supplier attestation on file + 1-page internal statement",
         "verification_method": "INSPECT",
@@ -1161,8 +1160,9 @@
         "example_controls": "AWS / Stripe / Firebase boundary inherited from their attestations",
         "notes": "",
         "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-06.4-001"
+        ],
         "implementation_priority": "HIGH"
       },
       "source": [
@@ -1188,7 +1188,6 @@
         ],
         "i": "BUILD",
         "p": "MUST",
-        "tier": "LIGHTWEIGHT",
         "satisfaction_pattern": "BUY_MANAGED",
         "evidence_depth": "Managed-service config documented + annual review",
         "verification_method": "DEMONSTRATE + INSPECT",
@@ -1196,8 +1195,9 @@
         "example_controls": "NIST SSDF + OWASP SAMM baseline",
         "notes": "",
         "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-07.1-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 11
       },
@@ -1223,7 +1223,6 @@
         ],
         "i": "BUILD (CRA only)",
         "p": "MUST",
-        "tier": "LIGHTWEIGHT",
         "satisfaction_pattern": "BUY_MANAGED",
         "evidence_depth": "Managed-service config documented + annual review",
         "verification_method": "DEMONSTRATE + INSPECT",
@@ -1231,8 +1230,9 @@
         "example_controls": "SAST in CI; coding standards documentation",
         "notes": "",
         "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-07.2-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 7
       },
@@ -1258,7 +1258,6 @@
         ],
         "i": "BUILD (CRA only)",
         "p": "MUST",
-        "tier": "LIGHTWEIGHT",
         "satisfaction_pattern": "BUY_MANAGED",
         "evidence_depth": "Managed-service config documented + annual review",
         "verification_method": "DEMONSTRATE + INSPECT",
@@ -1266,8 +1265,9 @@
         "example_controls": "CI gates (block critical vulns); pipeline-as-code",
         "notes": "Closes Priority 1 FR-01/04 (Critical Analysis §7.1)",
         "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-07.3-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 7
       },
@@ -1293,7 +1293,6 @@
         ],
         "i": "BUILD (CRA only)",
         "p": "MUST",
-        "tier": "LIGHTWEIGHT",
         "satisfaction_pattern": "BUY_MANAGED",
         "evidence_depth": "Managed-service config documented + annual review",
         "verification_method": "DEMONSTRATE + INSPECT",
@@ -1301,8 +1300,9 @@
         "example_controls": "Change management log (PR review + merge controls)",
         "notes": "",
         "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-07.4-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 17
       },
@@ -1328,7 +1328,6 @@
         ],
         "i": "INHERIT (vendor docs)",
         "p": "MUST",
-        "tier": "MINIMAL",
         "satisfaction_pattern": "INHERIT",
         "evidence_depth": "Supplier attestation on file + 1-page internal statement",
         "verification_method": "INSPECT",
@@ -1336,8 +1335,9 @@
         "example_controls": "Vendor security awareness documentation on file",
         "notes": "Replaces deferred phishing simulation (Critical §7.3)",
         "risk_if_not_met": "LOW",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-08.1-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 6
       },
@@ -1363,7 +1363,6 @@
         ],
         "i": "BUILD",
         "p": "MUST",
-        "tier": "LIGHTWEIGHT",
         "satisfaction_pattern": "BUY_MANAGED",
         "evidence_depth": "Managed-service config documented + annual review",
         "verification_method": "DEMONSTRATE + INSPECT",
@@ -1371,8 +1370,9 @@
         "example_controls": "Annual security awareness email + role-specific docs (admin/dev/DPO)",
         "notes": "",
         "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-08.2-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 11
       },
@@ -1419,7 +1419,6 @@
         ],
         "i": "BUILD",
         "p": "MUST",
-        "tier": "LIGHTWEIGHT",
         "satisfaction_pattern": "BUY_MANAGED",
         "evidence_depth": "Managed-service config documented + annual review",
         "verification_method": "DEMONSTRATE + INSPECT",
@@ -1427,8 +1426,9 @@
         "example_controls": "Security policy template (Doc 09 family input)",
         "notes": "",
         "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-09.1-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 24
       },
@@ -1454,7 +1454,6 @@
         ],
         "i": "BUILD",
         "p": "MUST",
-        "tier": "LIGHTWEIGHT",
         "satisfaction_pattern": "BUY_MANAGED",
         "evidence_depth": "Managed-service config documented + annual review",
         "verification_method": "DEMONSTRATE + INSPECT",
@@ -1462,8 +1461,9 @@
         "example_controls": "DPIA template + CRA risk assessment template (unified, dual-output)",
         "notes": "Resolves EVT-002 (Doc 07 §5.4)",
         "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-09.2-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 15
       },
@@ -1489,7 +1489,6 @@
         ],
         "i": "BUILD (CRA partial)",
         "p": "MUST",
-        "tier": "LIGHTWEIGHT",
         "satisfaction_pattern": "BUY_MANAGED",
         "evidence_depth": "Managed-service config documented + annual review",
         "verification_method": "DEMONSTRATE + INSPECT",
@@ -1497,8 +1496,9 @@
         "example_controls": "Annex VII §1-§2 architecture documentation (CRA partial)",
         "notes": "",
         "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-09.3-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 8
       },
@@ -1524,7 +1524,6 @@
         ],
         "i": "BUILD",
         "p": "MUST",
-        "tier": "LIGHTWEIGHT",
         "satisfaction_pattern": "BUY_MANAGED",
         "evidence_depth": "Managed-service config documented + annual review",
         "verification_method": "DEMONSTRATE + INSPECT",
@@ -1532,8 +1531,9 @@
         "example_controls": "RoPA template (Doc 09 input)",
         "notes": "Closes GAP-001 (Doc 07 §7)",
         "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-09.4-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 13
       },
@@ -1559,7 +1559,6 @@
         ],
         "i": "BUILD (TEN-03: opt-in/opt-out separation)",
         "p": "MUST",
-        "tier": "LIGHTWEIGHT",
         "satisfaction_pattern": "BUY_MANAGED",
         "evidence_depth": "Managed-service config documented + annual review",
         "verification_method": "DEMONSTRATE + INSPECT",
@@ -1567,8 +1566,9 @@
         "example_controls": "CloudWatch (not enterprise SIEM); per Critical Analysis",
         "notes": "opt-in/opt-out separation per TEN-03",
         "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-10.1-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 20
       },
@@ -1594,7 +1594,6 @@
         ],
         "i": "BUILD",
         "p": "MUST",
-        "tier": "LIGHTWEIGHT",
         "satisfaction_pattern": "BUY_MANAGED",
         "evidence_depth": "Managed-service config documented + annual review",
         "verification_method": "DEMONSTRATE + INSPECT",
@@ -1602,8 +1601,9 @@
         "example_controls": "CloudTrail + tamper-evident S3 log bucket",
         "notes": "7-year retention per Critical Analysis §10.2",
         "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-10.2-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 29
       },
@@ -1630,7 +1630,6 @@
         ],
         "i": "BUILD",
         "p": "MUST",
-        "tier": "LIGHTWEIGHT",
         "satisfaction_pattern": "BUY_MANAGED",
         "evidence_depth": "Managed-service config documented + annual review",
         "verification_method": "DEMONSTRATE + INSPECT",
@@ -1638,8 +1637,9 @@
         "example_controls": "Quarterly compliance review checklist",
         "notes": "",
         "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3,
+        "evidence_ids": [
+          "EV-D-10.3-001"
+        ],
         "implementation_priority": "HIGH",
         "nist_alignment_count": 13
       },
@@ -1663,9 +1663,7 @@
         "maps_to_subdomain": "D-05.1",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-05.1",
         "evidence_type": "DEMONSTRATE + INSPECT (schema validation + log scrub review)",
-        "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "MEDIUM"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -1686,9 +1684,7 @@
         "maps_to_subdomain": "D-05.1",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-05.1",
         "evidence_type": "DEMONSTRATE + INSPECT (schema validation + log scrub review)",
-        "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "MEDIUM"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -1709,9 +1705,7 @@
         "maps_to_subdomain": "D-09.2",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-09.2",
         "evidence_type": "DEMONSTRATE + INSPECT (DPIA + CRA-RA unified template)",
-        "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "HIGH"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -1735,9 +1729,7 @@
         "maps_to_subdomain": "D-01.1",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-01.1",
         "evidence_type": "INSPECT (config audit + annual review)",
-        "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "HIGH"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -1758,9 +1750,7 @@
         "maps_to_subdomain": "D-05.1",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-05.1",
         "evidence_type": "DEMONSTRATE + INSPECT (schema validation + log scrub review)",
-        "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "MEDIUM"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -1781,9 +1771,7 @@
         "maps_to_subdomain": "D-05.1",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-05.1",
         "evidence_type": "DEMONSTRATE + INSPECT (schema validation + log scrub review)",
-        "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "MEDIUM"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -1804,9 +1792,7 @@
         "maps_to_subdomain": "D-05.1",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-05.1",
         "evidence_type": "DEMONSTRATE + INSPECT (schema validation + log scrub review)",
-        "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "MEDIUM"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -1830,9 +1816,7 @@
         "maps_to_subdomain": "D-05.3",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-05.3",
         "evidence_type": "DEMONSTRATE + INSPECT (erasure API + backup exclude policy)",
-        "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "HIGH"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -1853,9 +1837,7 @@
         "maps_to_subdomain": "D-09.4",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-09.4",
         "evidence_type": "DEMONSTRATE + INSPECT (RoPA + 10y retention check)",
-        "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "HIGH"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -1876,9 +1858,7 @@
         "maps_to_subdomain": "D-09.4",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-09.4",
         "evidence_type": "DEMONSTRATE + INSPECT (RoPA + 10y retention check)",
-        "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "HIGH"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -1899,9 +1879,7 @@
         "maps_to_subdomain": "D-09.4",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-09.4",
         "evidence_type": "DEMONSTRATE + INSPECT (RoPA + 10y retention check)",
-        "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "HIGH"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -1922,9 +1900,7 @@
         "maps_to_subdomain": "D-05.4",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-05.4",
         "evidence_type": "DEMONSTRATE + INSPECT (export endpoint + format check)",
-        "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "MEDIUM"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -1945,9 +1921,7 @@
         "maps_to_subdomain": "D-05.3",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-05.3",
         "evidence_type": "DEMONSTRATE + INSPECT (erasure API + backup exclude policy)",
-        "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "HIGH"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -1968,9 +1942,7 @@
         "maps_to_subdomain": "D-05.3",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-05.3",
         "evidence_type": "DEMONSTRATE + INSPECT (erasure API + backup exclude policy)",
-        "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "HIGH"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -1991,9 +1963,7 @@
         "maps_to_subdomain": "D-05.3",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-05.3",
         "evidence_type": "DEMONSTRATE + INSPECT (erasure API + backup exclude policy)",
-        "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "HIGH"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2014,9 +1984,7 @@
         "maps_to_subdomain": "D-04.4",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-04.4",
         "evidence_type": "DEMONSTRATE + INSPECT (AWS Backup + quarterly DR test)",
-        "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "HIGH"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2037,9 +2005,7 @@
         "maps_to_subdomain": "D-05.4",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-05.4",
         "evidence_type": "DEMONSTRATE + INSPECT (export endpoint + format check)",
-        "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "MEDIUM"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2060,9 +2026,7 @@
         "maps_to_subdomain": "D-05.1",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-05.1",
         "evidence_type": "DEMONSTRATE + INSPECT (schema validation + log scrub review)",
-        "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "MEDIUM"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2083,9 +2047,7 @@
         "maps_to_subdomain": "D-03.3",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-03.3",
         "evidence_type": "DEMONSTRATE + INSPECT (IAM policies + RBAC matrix review)",
-        "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "MEDIUM"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2109,9 +2071,7 @@
         "maps_to_subdomain": "D-07.1",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-07.1",
         "evidence_type": "DEMONSTRATE + INSPECT (SSDF checklist + SAMM maturity)",
-        "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "MEDIUM"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2135,9 +2095,7 @@
         "maps_to_subdomain": "D-06.3",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-06.3",
         "evidence_type": "DEMONSTRATE + INSPECT (DPA template + sub-processor list)",
-        "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "HIGH"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2161,9 +2119,7 @@
         "maps_to_subdomain": "D-09.4",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-09.4",
         "evidence_type": "DEMONSTRATE + INSPECT (RoPA + 10y retention check)",
-        "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "HIGH"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2187,9 +2143,7 @@
         "maps_to_subdomain": "D-04.3",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-04.3",
         "evidence_type": "DEMONSTRATE + INSPECT (tabletop 24h notification drill)",
-        "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "HIGH"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2213,9 +2167,7 @@
         "maps_to_subdomain": "D-01.1",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-01.1",
         "evidence_type": "INSPECT (config audit + annual review)",
-        "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "HIGH"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2239,9 +2191,7 @@
         "maps_to_subdomain": "D-04.3",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-04.3",
         "evidence_type": "DEMONSTRATE + INSPECT (tabletop 24h notification drill)",
-        "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "HIGH"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2262,9 +2212,7 @@
         "maps_to_subdomain": "D-04.3",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-04.3",
         "evidence_type": "DEMONSTRATE + INSPECT (tabletop 24h notification drill)",
-        "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "HIGH"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2285,9 +2233,7 @@
         "maps_to_subdomain": "D-09.2",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-09.2",
         "evidence_type": "DEMONSTRATE + INSPECT (DPIA + CRA-RA unified template)",
-        "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "HIGH"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2308,9 +2254,7 @@
         "maps_to_subdomain": "D-09.2",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-08.2",
         "evidence_type": "INSPECT (annual email + competency matrix review)",
-        "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "MEDIUM"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2331,9 +2275,7 @@
         "maps_to_subdomain": "D-07.1",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-07.1",
         "evidence_type": "DEMONSTRATE + INSPECT (SSDF checklist + SAMM maturity)",
-        "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "MEDIUM"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2354,9 +2296,7 @@
         "maps_to_subdomain": "D-07.1",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-07.1",
         "evidence_type": "DEMONSTRATE + INSPECT (SSDF checklist + SAMM maturity)",
-        "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "MEDIUM"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2377,9 +2317,7 @@
         "maps_to_subdomain": "D-03.4",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-03.4",
         "evidence_type": "DEMONSTRATE + INSPECT (account-level block + Firebase config)",
-        "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "MEDIUM"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2400,9 +2338,7 @@
         "maps_to_subdomain": "D-02.2",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-02.2",
         "evidence_type": "DEMONSTRATE + INSPECT (Patch Manager logs + patch log)",
-        "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "MEDIUM"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2423,9 +2359,7 @@
         "maps_to_subdomain": "D-02.1",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-02.1",
         "evidence_type": "DEMONSTRATE + INSPECT (CI scan output + advisory feed)",
-        "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "MEDIUM"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2446,9 +2380,7 @@
         "maps_to_subdomain": "D-04.1",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-04.1",
         "evidence_type": "DEMONSTRATE + INSPECT (CloudWatch alarms + GuardDuty)",
-        "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "MEDIUM"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2469,9 +2401,7 @@
         "maps_to_subdomain": "D-06.2",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-06.2",
         "evidence_type": "DEMONSTRATE + INSPECT (SBOM per release)",
-        "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "MEDIUM"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2492,9 +2422,7 @@
         "maps_to_subdomain": "D-03.4",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-03.4",
         "evidence_type": "DEMONSTRATE + INSPECT (account-level block + Firebase config)",
-        "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "MEDIUM"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2515,9 +2443,7 @@
         "maps_to_subdomain": "D-03.2",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-03.2",
         "evidence_type": "INSPECT (Firebase MFA enforcement + reset flow test)",
-        "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "MEDIUM"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2538,9 +2464,7 @@
         "maps_to_subdomain": "D-03.1",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-03.1",
         "evidence_type": "INSPECT (Firebase Auth user list + quarterly orphan scan)",
-        "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "MEDIUM"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2561,9 +2485,7 @@
         "maps_to_subdomain": "D-05.3",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-05.3",
         "evidence_type": "DEMONSTRATE + INSPECT (erasure API + backup exclude policy)",
-        "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "HIGH"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2584,9 +2506,7 @@
         "maps_to_subdomain": "D-10.1",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-10.1",
         "evidence_type": "DEMONSTRATE + INSPECT (CloudWatch + GuardDuty)",
-        "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "MEDIUM"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2607,9 +2527,7 @@
         "maps_to_subdomain": "D-09.1",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-09.1",
         "evidence_type": "DEMONSTRATE + INSPECT (policy template + review cadence)",
-        "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "MEDIUM"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2630,9 +2548,7 @@
         "maps_to_subdomain": "D-10.3",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-10.3",
         "evidence_type": "DEMONSTRATE + INSPECT (quarterly checklist + annual self-attestation)",
-        "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "HIGH"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2653,9 +2569,7 @@
         "maps_to_subdomain": "D-01.3",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-01.3",
         "evidence_type": "INSPECT (KMS rotation status + key-custody review)",
-        "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "MEDIUM"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2676,9 +2590,7 @@
         "maps_to_subdomain": "D-06.3",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-06.3",
         "evidence_type": "DEMONSTRATE + INSPECT (DPA template + sub-processor list)",
-        "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "HIGH"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2699,9 +2611,7 @@
         "maps_to_subdomain": "D-02.1",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-02.1",
         "evidence_type": "DEMONSTRATE + INSPECT (CI scan output + advisory feed)",
-        "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "MEDIUM"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2722,9 +2632,7 @@
         "maps_to_subdomain": "D-07.1",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-07.1",
         "evidence_type": "DEMONSTRATE + INSPECT (SSDF checklist + SAMM maturity)",
-        "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "MEDIUM"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2745,9 +2653,7 @@
         "maps_to_subdomain": "D-02.3",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-02.3",
         "evidence_type": "INSPECT (security.txt 200 + CVD page test email)",
-        "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "MEDIUM"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2768,9 +2674,7 @@
         "maps_to_subdomain": "D-04.3",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-04.3",
         "evidence_type": "DEMONSTRATE + INSPECT (tabletop 24h notification drill)",
-        "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "HIGH"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2791,9 +2695,7 @@
         "maps_to_subdomain": "D-10.3",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-10.3",
         "evidence_type": "DEMONSTRATE + INSPECT (quarterly checklist + annual self-attestation)",
-        "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "HIGH"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2814,9 +2716,7 @@
         "maps_to_subdomain": "D-10.2",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-10.2",
         "evidence_type": "DEMONSTRATE + INSPECT (CloudTrail + Object Lock + 7y)",
-        "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "HIGH"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2837,9 +2737,7 @@
         "maps_to_subdomain": "D-07.1",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-07.1",
         "evidence_type": "DEMONSTRATE + INSPECT (SSDF checklist + SAMM maturity)",
-        "risk_if_not_met": "MEDIUM",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "MEDIUM"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2860,9 +2758,7 @@
         "maps_to_subdomain": "D-01.1",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-01.1",
         "evidence_type": "INSPECT (config audit + annual review)",
-        "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "HIGH"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2883,9 +2779,7 @@
         "maps_to_subdomain": "D-01.2",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-01.2",
         "evidence_type": "INSPECT (config audit + annual cert renewal)",
-        "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "HIGH"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -2906,9 +2800,7 @@
         "maps_to_subdomain": "D-04.4",
         "verification_criteria": "Operational check per Doc 07c Appendix A §A.1.1/D-04.4",
         "evidence_type": "DEMONSTRATE + INSPECT (AWS Backup + quarterly DR test)",
-        "risk_if_not_met": "HIGH",
-        "maturity_cur": 2,
-        "maturity_tgt": 3
+        "risk_if_not_met": "HIGH"
       },
       "source": [
         "phase1_ontology.yaml@clause_mappings",
@@ -5069,6 +4961,1187 @@
       },
       "source": [
         "Doc07 §4.10 L258 row 'Annual compliance testing'"
+      ]
+    },
+    {
+      "id": "EV-D-01.1-001",
+      "type": "EvidenceItem",
+      "label": "S3 SSE-KMS + DynamoDB encryption documented in Doc04 §1.1 (SYS-01 AWS S3 + SYS-0",
+      "attrs": {
+        "ev_id": "EV-D-01.1-001",
+        "subdomain_id": "D-01.1",
+        "scale": "coverage",
+        "outcome": "GDPR-C24",
+        "claim": "S3 SSE-KMS + DynamoDB encryption documented in Doc04 §1.1 (SYS-01 AWS S3 + SYS-02 DynamoDB).",
+        "sources": [
+          "SYS-01",
+          "SYS-02",
+          "STORE-01"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-01.2-001",
+      "type": "EvidenceItem",
+      "label": "TLS 1.3 via AWS ACM/CloudFront enforced on all ingress + egress (Doc04 §1.4).",
+      "attrs": {
+        "ev_id": "EV-D-01.2-001",
+        "subdomain_id": "D-01.2",
+        "scale": "coverage",
+        "outcome": "GDPR-C04",
+        "claim": "TLS 1.3 via AWS ACM/CloudFront enforced on all ingress + egress (Doc04 §1.4).",
+        "sources": [
+          "SYS-03",
+          "FLOW-01"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-01.3-001",
+      "type": "EvidenceItem",
+      "label": "AWS KMS default keys; rotation cadence is AWS-managed (no in-house KMS).",
+      "attrs": {
+        "ev_id": "EV-D-01.3-001",
+        "subdomain_id": "D-01.3",
+        "scale": "coverage",
+        "outcome": "CRA-C15",
+        "claim": "AWS KMS default keys; rotation cadence is AWS-managed (no in-house KMS).",
+        "sources": [
+          "SYS-01"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-01.4-001",
+      "type": "EvidenceItem",
+      "label": "HMAC + DB constraints via AWS RDS documented in Doc04 §1.1 (SYS-04 RDS).",
+      "attrs": {
+        "ev_id": "EV-D-01.4-001",
+        "subdomain_id": "D-01.4",
+        "scale": "coverage",
+        "outcome": "GDPR-C24",
+        "claim": "HMAC + DB constraints via AWS RDS documented in Doc04 §1.1 (SYS-04 RDS).",
+        "sources": [
+          "SYS-04",
+          "STORE-02"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-02.1-001",
+      "type": "EvidenceItem",
+      "label": "Trivy + npm audit run in CI (GitHub Actions); OSS advisory feed monitored (Doc12",
+      "attrs": {
+        "ev_id": "EV-D-02.1-001",
+        "subdomain_id": "D-02.1",
+        "scale": "coverage",
+        "outcome": "CRA-C05",
+        "claim": "Trivy + npm audit run in CI (GitHub Actions); OSS advisory feed monitored (Doc12 §4 D-02.1).",
+        "sources": [
+          "SYS-05"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-02.2-001",
+      "type": "EvidenceItem",
+      "label": "AWS Systems Manager Patch Manager (auto) configured for critical patches 24h SLA",
+      "attrs": {
+        "ev_id": "EV-D-02.2-001",
+        "subdomain_id": "D-02.2",
+        "scale": "coverage",
+        "outcome": "CRA-C04",
+        "claim": "AWS Systems Manager Patch Manager (auto) configured for critical patches 24h SLA (Doc12 §4 D-02.2).",
+        "sources": [
+          "SYS-01"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-02.3-001",
+      "type": "EvidenceItem",
+      "label": "security.txt at /.well-known/security.txt + CVD page published (Doc12 §4 D-02.3)",
+      "attrs": {
+        "ev_id": "EV-D-02.3-001",
+        "subdomain_id": "D-02.3",
+        "scale": "coverage",
+        "outcome": "CRA-C19",
+        "claim": "security.txt at /.well-known/security.txt + CVD page published (Doc12 §4 D-02.3).",
+        "sources": [
+          "SYS-05"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-02.4-001",
+      "type": "EvidenceItem",
+      "label": "Threat-led penetration testing DEFERRED per §5.2 (MICRO + FTE <= 1.0); recorded ",
+      "attrs": {
+        "ev_id": "EV-D-02.4-001",
+        "subdomain_id": "D-02.4",
+        "scale": "coverage",
+        "outcome": "GDPR-C27",
+        "claim": "Threat-led penetration testing DEFERRED per §5.2 (MICRO + FTE <= 1.0); recorded as gap, not absent.",
+        "sources": [
+          "Doc12 §5.2"
+        ],
+        "observed": false
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-03.1-001",
+      "type": "EvidenceItem",
+      "label": "Firebase Auth baseline + quarterly orphan scan (Doc12 §4 D-03.1, Doc07 §4).",
+      "attrs": {
+        "ev_id": "EV-D-03.1-001",
+        "subdomain_id": "D-03.1",
+        "scale": "coverage",
+        "outcome": "CRA-C10",
+        "claim": "Firebase Auth baseline + quarterly orphan scan (Doc12 §4 D-03.1, Doc07 §4).",
+        "sources": [
+          "SYS-02",
+          "ACT-03"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-03.2-001",
+      "type": "EvidenceItem",
+      "label": "Firebase Auth MFA enforced; reset flow tested (Doc07 §4.3).",
+      "attrs": {
+        "ev_id": "EV-D-03.2-001",
+        "subdomain_id": "D-03.2",
+        "scale": "coverage",
+        "outcome": "CRA-C09",
+        "claim": "Firebase Auth MFA enforced; reset flow tested (Doc07 §4.3).",
+        "sources": [
+          "SYS-02",
+          "ACT-04"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-03.3-001",
+      "type": "EvidenceItem",
+      "label": "RBAC matrix in Doc07 §3; quarterly access review (ACT-05).",
+      "attrs": {
+        "ev_id": "EV-D-03.3-001",
+        "subdomain_id": "D-03.3",
+        "scale": "coverage",
+        "outcome": "GDPR-C19",
+        "claim": "RBAC matrix in Doc07 §3; quarterly access review (ACT-05).",
+        "sources": [
+          "Doc07 §3",
+          "ACT-05"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-03.4-001",
+      "type": "EvidenceItem",
+      "label": "Account-level block + Firebase secure defaults applied at provisioning (Doc07 §4",
+      "attrs": {
+        "ev_id": "EV-D-03.4-001",
+        "subdomain_id": "D-03.4",
+        "scale": "coverage",
+        "outcome": "CRA-C03",
+        "claim": "Account-level block + Firebase secure defaults applied at provisioning (Doc07 §4.4).",
+        "sources": [
+          "SYS-02",
+          "ACT-06"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-04.1-001",
+      "type": "EvidenceItem",
+      "label": "CloudWatch alarms + GuardDuty enabled; anomaly detection feed monitored (Doc12 §",
+      "attrs": {
+        "ev_id": "EV-D-04.1-001",
+        "subdomain_id": "D-04.1",
+        "scale": "coverage",
+        "outcome": "CRA-C06",
+        "claim": "CloudWatch alarms + GuardDuty enabled; anomaly detection feed monitored (Doc12 §4 D-04.1).",
+        "sources": [
+          "SYS-01"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-04.2-001",
+      "type": "EvidenceItem",
+      "label": "Containment runbook referenced in Doc04 §2.5; tested annually.",
+      "attrs": {
+        "ev_id": "EV-D-04.2-001",
+        "subdomain_id": "D-04.2",
+        "scale": "coverage",
+        "outcome": "GDPR-C18",
+        "claim": "Containment runbook referenced in Doc04 §2.5; tested annually.",
+        "sources": [
+          "Doc04 §2.5",
+          "ACT-08"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-04.3-001",
+      "type": "EvidenceItem",
+      "label": "Breach notification SLA: 24h to SA / controller (max-SLA per T-001 resolution).",
+      "attrs": {
+        "ev_id": "EV-D-04.3-001",
+        "subdomain_id": "D-04.3",
+        "scale": "coverage",
+        "outcome": "GDPR-C25",
+        "claim": "Breach notification SLA: 24h to SA / controller (max-SLA per T-001 resolution).",
+        "sources": [
+          "Doc11 T-001",
+          "ACT-09"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-04.4-001",
+      "type": "EvidenceItem",
+      "label": "Recovery time objective 24h (RDS automated snapshots + cross-region replication;",
+      "attrs": {
+        "ev_id": "EV-D-04.4-001",
+        "subdomain_id": "D-04.4",
+        "scale": "coverage",
+        "outcome": "CRA-C26",
+        "claim": "Recovery time objective 24h (RDS automated snapshots + cross-region replication; Doc04 §2.1).",
+        "sources": [
+          "SYS-04",
+          "STORE-02"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-05.1-001",
+      "type": "EvidenceItem",
+      "label": "Data minimisation policy in Doc09 §3; intake form captures data categories expli",
+      "attrs": {
+        "ev_id": "EV-D-05.1-001",
+        "subdomain_id": "D-05.1",
+        "scale": "coverage",
+        "outcome": "GDPR-C05",
+        "claim": "Data minimisation policy in Doc09 §3; intake form captures data categories explicitly.",
+        "sources": [
+          "Doc09 §3",
+          "Doc02 §A.2"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-05.2-001",
+      "type": "EvidenceItem",
+      "label": "Retention periods documented per PersonalDataCategory in Doc04 §2.3.",
+      "attrs": {
+        "ev_id": "EV-D-05.2-001",
+        "subdomain_id": "D-05.2",
+        "scale": "coverage",
+        "outcome": "GDPR-C05",
+        "claim": "Retention periods documented per PersonalDataCategory in Doc04 §2.3.",
+        "sources": [
+          "Doc04 §2.3",
+          "STORE-01"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-05.3-001",
+      "type": "EvidenceItem",
+      "label": "Erasure API + backup exclude policy (Doc07 §4.5, Doc12 §4 D-05.3).",
+      "attrs": {
+        "ev_id": "EV-D-05.3-001",
+        "subdomain_id": "D-05.3",
+        "scale": "coverage",
+        "outcome": "GDPR-C14",
+        "claim": "Erasure API + backup exclude policy (Doc07 §4.5, Doc12 §4 D-05.3).",
+        "sources": [
+          "ACT-10",
+          "STORE-03"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-05.4-001",
+      "type": "EvidenceItem",
+      "label": "Portability endpoint exposed to data subjects (Doc07 §4.5).",
+      "attrs": {
+        "ev_id": "EV-D-05.4-001",
+        "subdomain_id": "D-05.4",
+        "scale": "coverage",
+        "outcome": "GDPR-C17",
+        "claim": "Portability endpoint exposed to data subjects (Doc07 §4.5).",
+        "sources": [
+          "ACT-10"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-06.1-001",
+      "type": "EvidenceItem",
+      "label": "Vendor risk assessment template in Doc06 §3; reviewed annually.",
+      "attrs": {
+        "ev_id": "EV-D-06.1-001",
+        "subdomain_id": "D-06.1",
+        "scale": "coverage",
+        "outcome": "GDPR-C21",
+        "claim": "Vendor risk assessment template in Doc06 §3; reviewed annually.",
+        "sources": [
+          "Doc06 §3"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-06.2-001",
+      "type": "EvidenceItem",
+      "label": "SBOM generated per release (CycloneDX, GitHub Actions workflow; Doc12 §4 D-06.2)",
+      "attrs": {
+        "ev_id": "EV-D-06.2-001",
+        "subdomain_id": "D-06.2",
+        "scale": "coverage",
+        "outcome": "CRA-C07",
+        "claim": "SBOM generated per release (CycloneDX, GitHub Actions workflow; Doc12 §4 D-06.2).",
+        "sources": [
+          "SYS-05"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-06.3-001",
+      "type": "EvidenceItem",
+      "label": "DPAs in place for AWS/Stripe/Auth0/Datadog/GitHub/Snyk (Doc06 §5).",
+      "attrs": {
+        "ev_id": "EV-D-06.3-001",
+        "subdomain_id": "D-06.3",
+        "scale": "coverage",
+        "outcome": "GDPR-C21",
+        "claim": "DPAs in place for AWS/Stripe/Auth0/Datadog/GitHub/Snyk (Doc06 §5).",
+        "sources": [
+          "AWS",
+          "Stripe",
+          "Auth0",
+          "Datadog",
+          "GitHub",
+          "Snyk"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-07.1-001",
+      "type": "EvidenceItem",
+      "label": "Secure-by-design checklist (SSDF + SAMM) referenced in Doc07 §4.1; PR review enf",
+      "attrs": {
+        "ev_id": "EV-D-07.1-001",
+        "subdomain_id": "D-07.1",
+        "scale": "coverage",
+        "outcome": "GDPR-C20",
+        "claim": "Secure-by-design checklist (SSDF + SAMM) referenced in Doc07 §4.1; PR review enforced.",
+        "sources": [
+          "ACT-01",
+          "ACT-02"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-08.1-001",
+      "type": "EvidenceItem",
+      "label": "Annual security awareness training (Doc07 §4.6).",
+      "attrs": {
+        "ev_id": "EV-D-08.1-001",
+        "subdomain_id": "D-08.1",
+        "scale": "coverage",
+        "outcome": "GDPR-C09",
+        "claim": "Annual security awareness training (Doc07 §4.6).",
+        "sources": [
+          "ACT-11"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-08.2-001",
+      "type": "EvidenceItem",
+      "label": "DPO designated (ROLE-DPO) with backup; documented competence matrix (Doc07 §2).",
+      "attrs": {
+        "ev_id": "EV-D-08.2-001",
+        "subdomain_id": "D-08.2",
+        "scale": "coverage",
+        "outcome": "GDPR-C28",
+        "claim": "DPO designated (ROLE-DPO) with backup; documented competence matrix (Doc07 §2).",
+        "sources": [
+          "ROLE-DPO",
+          "Doc07 §2"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-09.1-001",
+      "type": "EvidenceItem",
+      "label": "Information security policy published; revision log kept (Doc09 §1).",
+      "attrs": {
+        "ev_id": "EV-D-09.1-001",
+        "subdomain_id": "D-09.1",
+        "scale": "coverage",
+        "outcome": "CRA-C13",
+        "claim": "Information security policy published; revision log kept (Doc09 §1).",
+        "sources": [
+          "Doc09 §1"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-09.2-001",
+      "type": "EvidenceItem",
+      "label": "DPIA template + risk register used; review quarterly (Doc11 §2).",
+      "attrs": {
+        "ev_id": "EV-D-09.2-001",
+        "subdomain_id": "D-09.2",
+        "scale": "coverage",
+        "outcome": "GDPR-C27",
+        "claim": "DPIA template + risk register used; review quarterly (Doc11 §2).",
+        "sources": [
+          "Doc11 §2",
+          "GAP-001"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-09.4-001",
+      "type": "EvidenceItem",
+      "label": "Records of processing activities maintained (Doc11 §3, Doc04 §3 cross-ref).",
+      "attrs": {
+        "ev_id": "EV-D-09.4-001",
+        "subdomain_id": "D-09.4",
+        "scale": "coverage",
+        "outcome": "GDPR-C22",
+        "claim": "Records of processing activities maintained (Doc11 §3, Doc04 §3 cross-ref).",
+        "sources": [
+          "Doc11 §3",
+          "Doc04 §3"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-10.1-001",
+      "type": "EvidenceItem",
+      "label": "End-of-support availability SLA tracked in Doc04 §2.1.",
+      "attrs": {
+        "ev_id": "EV-D-10.1-001",
+        "subdomain_id": "D-10.1",
+        "scale": "coverage",
+        "outcome": "CRA-C12",
+        "claim": "End-of-support availability SLA tracked in Doc04 §2.1.",
+        "sources": [
+          "Doc04 §2.1"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-10.2-001",
+      "type": "EvidenceItem",
+      "label": "CloudTrail + application audit logs centralised (Doc07 §4.7).",
+      "attrs": {
+        "ev_id": "EV-D-10.2-001",
+        "subdomain_id": "D-10.2",
+        "scale": "coverage",
+        "outcome": "CRA-C22",
+        "claim": "CloudTrail + application audit logs centralised (Doc07 §4.7).",
+        "sources": [
+          "ACT-12",
+          "SYS-01"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-10.3-001",
+      "type": "EvidenceItem",
+      "label": "Annual conformity self-assessment (Doc14 §4 - placeholder, gap registered).",
+      "attrs": {
+        "ev_id": "EV-D-10.3-001",
+        "subdomain_id": "D-10.3",
+        "scale": "coverage",
+        "outcome": "CRA-C14",
+        "claim": "Annual conformity self-assessment (Doc14 §4 - placeholder, gap registered).",
+        "sources": [
+          "Doc11 §7"
+        ],
+        "observed": false
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-01.1-002",
+      "type": "EvidenceItem",
+      "label": "Data-at-rest encryption baseline present (Doc04 §1.1); no formal classification ",
+      "attrs": {
+        "ev_id": "EV-D-01.1-002",
+        "subdomain_id": "D-01.1",
+        "scale": "capability",
+        "outcome": "PR.DS-01",
+        "claim": "Data-at-rest encryption baseline present (Doc04 §1.1); no formal classification procedure documented yet (blocks T3 Repeatable for PROTECT).",
+        "sources": [
+          "SYS-01",
+          "Doc04 §1.1"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-02.1-002",
+      "type": "EvidenceItem",
+      "label": "CI vulnerability scan produces a list; severity tagged informally (no documented",
+      "attrs": {
+        "ev_id": "EV-D-02.1-002",
+        "subdomain_id": "D-02.1",
+        "scale": "capability",
+        "outcome": "ID.RA-01",
+        "claim": "CI vulnerability scan produces a list; severity tagged informally (no documented register + owner SLA - partial T1/T2 for IDENTIFY).",
+        "sources": [
+          "SYS-05"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-09.1-002",
+      "type": "EvidenceItem",
+      "label": "Policy exists and is approved; not yet reviewed on a fixed cadence (between T1 a",
+      "attrs": {
+        "ev_id": "EV-D-09.1-002",
+        "subdomain_id": "D-09.1",
+        "scale": "capability",
+        "outcome": "GV.PO-01",
+        "claim": "Policy exists and is approved; not yet reviewed on a fixed cadence (between T1 and T2 for GOVERN).",
+        "sources": [
+          "Doc09 §1"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-09.2-002",
+      "type": "EvidenceItem",
+      "label": "Threat + risk assessment done for the SaaS product; no enterprise-wide threat in",
+      "attrs": {
+        "ev_id": "EV-D-09.2-002",
+        "subdomain_id": "D-09.2",
+        "scale": "capability",
+        "outcome": "ID.RA-04",
+        "claim": "Threat + risk assessment done for the SaaS product; no enterprise-wide threat intel feed (blocks T2 fully).",
+        "sources": [
+          "Doc11 §2"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-04.1-002",
+      "type": "EvidenceItem",
+      "label": "CloudWatch alarms + GuardDuty; no documented triage playbook yet (DETECT at T1).",
+      "attrs": {
+        "ev_id": "EV-D-04.1-002",
+        "subdomain_id": "D-04.1",
+        "scale": "capability",
+        "outcome": "DE.AE-02",
+        "claim": "CloudWatch alarms + GuardDuty; no documented triage playbook yet (DETECT at T1).",
+        "sources": [
+          "SYS-01",
+          "Doc07 §4.8"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-04.2-002",
+      "type": "EvidenceItem",
+      "label": "Containment runbook referenced; tested ad-hoc (RESPOND at T1/T2 borderline).",
+      "attrs": {
+        "ev_id": "EV-D-04.2-002",
+        "subdomain_id": "D-04.2",
+        "scale": "capability",
+        "outcome": "RS.MI-01",
+        "claim": "Containment runbook referenced; tested ad-hoc (RESPOND at T1/T2 borderline).",
+        "sources": [
+          "Doc04 §2.5",
+          "ACT-08"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-04.4-002",
+      "type": "EvidenceItem",
+      "label": "Recovery procedure documented for RDS snapshots; cross-region replication not ye",
+      "attrs": {
+        "ev_id": "EV-D-04.4-002",
+        "subdomain_id": "D-04.4",
+        "scale": "capability",
+        "outcome": "RC.RP-01",
+        "claim": "Recovery procedure documented for RDS snapshots; cross-region replication not yet enabled (RECOVER below T2; documented gap).",
+        "sources": [
+          "SYS-04",
+          "STORE-02"
+        ],
+        "observed": false
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-10.1-002",
+      "type": "EvidenceItem",
+      "label": "Network monitoring active; no continuous configuration monitoring (DETECT at T1)",
+      "attrs": {
+        "ev_id": "EV-D-10.1-002",
+        "subdomain_id": "D-10.1",
+        "scale": "capability",
+        "outcome": "DE.CM-01",
+        "claim": "Network monitoring active; no continuous configuration monitoring (DETECT at T1).",
+        "sources": [
+          "SYS-01"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-10.2-002",
+      "type": "EvidenceItem",
+      "label": "Audit logs centralised (CloudTrail); retention <= 90 days only (PROTECT at T2 bo",
+      "attrs": {
+        "ev_id": "EV-D-10.2-002",
+        "subdomain_id": "D-10.2",
+        "scale": "capability",
+        "outcome": "PR.PS-04",
+        "claim": "Audit logs centralised (CloudTrail); retention <= 90 days only (PROTECT at T2 borderline).",
+        "sources": [
+          "ACT-12"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-08.2-002",
+      "type": "EvidenceItem",
+      "label": "Awareness training exists; not role-specific for engineering (PROTECT at T1).",
+      "attrs": {
+        "ev_id": "EV-D-08.2-002",
+        "subdomain_id": "D-08.2",
+        "scale": "capability",
+        "outcome": "PR.AT-02",
+        "claim": "Awareness training exists; not role-specific for engineering (PROTECT at T1).",
+        "sources": [
+          "ROLE-DPO"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-06.4-001",
+      "type": "EvidenceItem",
+      "label": "Third-Party Boundary Management NOT_ADDRESSED - sole_authority=DORA, DORA not ap",
+      "attrs": {
+        "ev_id": "EV-D-06.4-001",
+        "subdomain_id": "D-06.4",
+        "scale": "coverage",
+        "outcome": "CRA-C07",
+        "claim": "Third-Party Boundary Management NOT_ADDRESSED - sole_authority=DORA, DORA not applicable (not financial entity).",
+        "sources": [
+          "Doc06 §6",
+          "Doc11 §7"
+        ],
+        "observed": false
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-07.2-001",
+      "type": "EvidenceItem",
+      "label": "Secure Coding Practices PARTIAL - best-effort SSDF/SAMM adopted; full DORA-grade",
+      "attrs": {
+        "ev_id": "EV-D-07.2-001",
+        "subdomain_id": "D-07.2",
+        "scale": "coverage",
+        "outcome": "CRA-C18",
+        "claim": "Secure Coding Practices PARTIAL - best-effort SSDF/SAMM adopted; full DORA-grade program out of scope (sole_authority=DORA, not applicable).",
+        "sources": [
+          "Doc07 §4.1",
+          "Doc11 §7"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-07.3-001",
+      "type": "EvidenceItem",
+      "label": "CI/CD Pipeline Security PARTIAL - GitHub Actions best practices in place; NIS2-g",
+      "attrs": {
+        "ev_id": "EV-D-07.3-001",
+        "subdomain_id": "D-07.3",
+        "scale": "coverage",
+        "outcome": "CRA-C04",
+        "claim": "CI/CD Pipeline Security PARTIAL - GitHub Actions best practices in place; NIS2-grade controls not required (below 50 FTE).",
+        "sources": [
+          "SYS-05",
+          "Doc07 §4.1"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-07.4-001",
+      "type": "EvidenceItem",
+      "label": "Change Management PARTIAL - PR review enforced; full DORA-grade CMDB not in plac",
+      "attrs": {
+        "ev_id": "EV-D-07.4-001",
+        "subdomain_id": "D-07.4",
+        "scale": "coverage",
+        "outcome": "CRA-C04",
+        "claim": "Change Management PARTIAL - PR review enforced; full DORA-grade CMDB not in place (sole_authority=DORA, not applicable).",
+        "sources": [
+          "Doc07 §4.1"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-09.3-001",
+      "type": "EvidenceItem",
+      "label": "Asset Inventories PARTIAL - Doc04 §1.1 has systems/store inventory; DORA-grade C",
+      "attrs": {
+        "ev_id": "EV-D-09.3-001",
+        "subdomain_id": "D-09.3",
+        "scale": "coverage",
+        "outcome": "CRA-C13",
+        "claim": "Asset Inventories PARTIAL - Doc04 §1.1 has systems/store inventory; DORA-grade CMDB not maintained (sole_authority=DORA, not applicable).",
+        "sources": [
+          "Doc04 §1.1"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-09.1-003",
+      "type": "EvidenceItem",
+      "label": "Privacy governance roles established (Doc09 §1; ROLE-DPO designated); not yet en",
+      "attrs": {
+        "ev_id": "EV-D-09.1-003",
+        "subdomain_id": "D-09.1",
+        "scale": "capability",
+        "outcome": "GV-PO-P1",
+        "claim": "Privacy governance roles established (Doc09 §1; ROLE-DPO designated); not yet enterprise-wide formalisation (GOVERN-P between T1/T2).",
+        "sources": [
+          "Doc09 §1",
+          "ROLE-DPO"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-09.4-003",
+      "type": "EvidenceItem",
+      "label": "Privacy policies aligned with applicable laws (Doc11 §3 RoPA cross-ref + GDPR Ar",
+      "attrs": {
+        "ev_id": "EV-D-09.4-003",
+        "subdomain_id": "D-09.4",
+        "scale": "capability",
+        "outcome": "GV-PO-P5",
+        "claim": "Privacy policies aligned with applicable laws (Doc11 §3 RoPA cross-ref + GDPR Art. 24/25/30) (GOVERN-P T2 borderline).",
+        "sources": [
+          "Doc11 §3"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-08.2-003",
+      "type": "EvidenceItem",
+      "label": "Privacy awareness training exists (Doc07 §4.6); DPO-led, not yet role-specific f",
+      "attrs": {
+        "ev_id": "EV-D-08.2-003",
+        "subdomain_id": "D-08.2",
+        "scale": "capability",
+        "outcome": "GV-AT-P1",
+        "claim": "Privacy awareness training exists (Doc07 §4.6); DPO-led, not yet role-specific for engineering (GOVERN-P at T1).",
+        "sources": [
+          "Doc07 §4.6",
+          "ROLE-DPO"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-09.2-003",
+      "type": "EvidenceItem",
+      "label": "Privacy risk review on a quarterly cadence (Doc11 §2 + GAP-001); not yet continu",
+      "attrs": {
+        "ev_id": "EV-D-09.2-003",
+        "subdomain_id": "D-09.2",
+        "scale": "capability",
+        "outcome": "GV-MA-P1",
+        "claim": "Privacy risk review on a quarterly cadence (Doc11 §2 + GAP-001); not yet continuous (GOVERN-P between T1/T2).",
+        "sources": [
+          "Doc11 §2",
+          "GAP-001"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-09.4-004",
+      "type": "EvidenceItem",
+      "label": "Data processing inventory (RoPA) maintained (Doc11 §3 + Doc04 §2.3) (IDENTIFY-P ",
+      "attrs": {
+        "ev_id": "EV-D-09.4-004",
+        "subdomain_id": "D-09.4",
+        "scale": "capability",
+        "outcome": "ID-IM-P1",
+        "claim": "Data processing inventory (RoPA) maintained (Doc11 §3 + Doc04 §2.3) (IDENTIFY-P T2 borderline).",
+        "sources": [
+          "Doc11 §3",
+          "Doc04 §2.3"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-09.2-004",
+      "type": "EvidenceItem",
+      "label": "Privacy risk assessment done for data processing (Doc11 §2 DPIA template) (IDENT",
+      "attrs": {
+        "ev_id": "EV-D-09.2-004",
+        "subdomain_id": "D-09.2",
+        "scale": "capability",
+        "outcome": "ID-RA-P3",
+        "claim": "Privacy risk assessment done for data processing (Doc11 §2 DPIA template) (IDENTIFY-P T2).",
+        "sources": [
+          "Doc11 §2"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-01.1-003",
+      "type": "EvidenceItem",
+      "label": "Data confidentiality, integrity, availability baseline present (Doc04 §1.1 encry",
+      "attrs": {
+        "ev_id": "EV-D-01.1-003",
+        "subdomain_id": "D-01.1",
+        "scale": "capability",
+        "outcome": "PR-PO-P1",
+        "claim": "Data confidentiality, integrity, availability baseline present (Doc04 §1.1 encryption baseline) (PROTECT-P T2 borderline).",
+        "sources": [
+          "SYS-01",
+          "Doc04 §1.1"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-04.3-003",
+      "type": "EvidenceItem",
+      "label": "Communication of privacy practices (Doc07 §4.5 + Doc09 §3) and breach notificati",
+      "attrs": {
+        "ev_id": "EV-D-04.3-003",
+        "subdomain_id": "D-04.3",
+        "scale": "capability",
+        "outcome": "CM-PO-P1",
+        "claim": "Communication of privacy practices (Doc07 §4.5 + Doc09 §3) and breach notification SLA (COMMUNICATE-P T2).",
+        "sources": [
+          "Doc07 §4.5",
+          "Doc09 §3",
+          "ACT-09"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-05.1-003",
+      "type": "EvidenceItem",
+      "label": "Data processing policies/purpose limitation (Doc09 §3 + Doc02 §A.2) (CONTROL-P T",
+      "attrs": {
+        "ev_id": "EV-D-05.1-003",
+        "subdomain_id": "D-05.1",
+        "scale": "capability",
+        "outcome": "CT-PO-P4",
+        "claim": "Data processing policies/purpose limitation (Doc09 §3 + Doc02 §A.2) (CONTROL-P T2).",
+        "sources": [
+          "Doc09 §3",
+          "Doc02 §A.2"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "id": "EV-D-05.3-003",
+      "type": "EvidenceItem",
+      "label": "Disposal of personal data: erasure API + backup exclude policy (Doc07 §4.5, ACT-",
+      "attrs": {
+        "ev_id": "EV-D-05.3-003",
+        "subdomain_id": "D-05.3",
+        "scale": "capability",
+        "outcome": "CT-DM-P5",
+        "claim": "Disposal of personal data: erasure API + backup exclude policy (Doc07 §4.5, ACT-10, STORE-03) (CONTROL-P T2).",
+        "sources": [
+          "Doc07 §4.5",
+          "ACT-10",
+          "STORE-03"
+        ],
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
       ]
     },
     {
@@ -7486,6 +8559,166 @@
       },
       "source": [
         "Doc13 §7 NIST Controls Mapping",
+        "phase1_ontology.yaml@kg_ontology.classes.NistControl"
+      ]
+    },
+    {
+      "id": "NIST-GV-PO-P1",
+      "type": "NistControl",
+      "label": "GV-PO-P1",
+      "attrs": {
+        "control_id": "GV-PO-P1",
+        "framework": "PF",
+        "function": "GOVERN-P",
+        "description": "Privacy governance roles established",
+        "path": "00_METHODOLOGY/PREPROCESSING_by_domain/MAPPINGS/OVERLAYS/OVERLAY_NIST_PF_1.1.md §2"
+      },
+      "source": [
+        "OVERLAY_NIST_PF_1.1.md §2",
+        "phase1_ontology.yaml@kg_ontology.classes.NistControl"
+      ]
+    },
+    {
+      "id": "NIST-GV-PO-P5",
+      "type": "NistControl",
+      "label": "GV-PO-P5",
+      "attrs": {
+        "control_id": "GV-PO-P5",
+        "framework": "PF",
+        "function": "GOVERN-P",
+        "description": "Privacy policies aligned with applicable laws",
+        "path": "00_METHODOLOGY/PREPROCESSING_by_domain/MAPPINGS/OVERLAYS/OVERLAY_NIST_PF_1.1.md §2"
+      },
+      "source": [
+        "OVERLAY_NIST_PF_1.1.md §2",
+        "phase1_ontology.yaml@kg_ontology.classes.NistControl"
+      ]
+    },
+    {
+      "id": "NIST-GV-AT-P1",
+      "type": "NistControl",
+      "label": "GV-AT-P1",
+      "attrs": {
+        "control_id": "GV-AT-P1",
+        "framework": "PF",
+        "function": "GOVERN-P",
+        "description": "Awareness training for staff (privacy)",
+        "path": "00_METHODOLOGY/PREPROCESSING_by_domain/MAPPINGS/OVERLAYS/OVERLAY_NIST_PF_1.1.md §2"
+      },
+      "source": [
+        "OVERLAY_NIST_PF_1.1.md §2",
+        "phase1_ontology.yaml@kg_ontology.classes.NistControl"
+      ]
+    },
+    {
+      "id": "NIST-GV-MA-P1",
+      "type": "NistControl",
+      "label": "GV-MA-P1",
+      "attrs": {
+        "control_id": "GV-MA-P1",
+        "framework": "PF",
+        "function": "GOVERN-P",
+        "description": "Privacy risk monitoring/review",
+        "path": "00_METHODOLOGY/PREPROCESSING_by_domain/MAPPINGS/OVERLAYS/OVERLAY_NIST_PF_1.1.md §2"
+      },
+      "source": [
+        "OVERLAY_NIST_PF_1.1.md §2",
+        "phase1_ontology.yaml@kg_ontology.classes.NistControl"
+      ]
+    },
+    {
+      "id": "NIST-ID-RA-P3",
+      "type": "NistControl",
+      "label": "ID-RA-P3",
+      "attrs": {
+        "control_id": "ID-RA-P3",
+        "framework": "PF",
+        "function": "IDENTIFY-P",
+        "description": "Privacy risk assessment for data processing",
+        "path": "00_METHODOLOGY/PREPROCESSING_by_domain/MAPPINGS/OVERLAYS/OVERLAY_NIST_PF_1.1.md §2"
+      },
+      "source": [
+        "OVERLAY_NIST_PF_1.1.md §2",
+        "phase1_ontology.yaml@kg_ontology.classes.NistControl"
+      ]
+    },
+    {
+      "id": "NIST-ID-IM-P1",
+      "type": "NistControl",
+      "label": "ID-IM-P1",
+      "attrs": {
+        "control_id": "ID-IM-P1",
+        "framework": "PF",
+        "function": "IDENTIFY-P",
+        "description": "Data processing inventory (RoPA)",
+        "path": "00_METHODOLOGY/PREPROCESSING_by_domain/MAPPINGS/OVERLAYS/OVERLAY_NIST_PF_1.1.md §2"
+      },
+      "source": [
+        "OVERLAY_NIST_PF_1.1.md §2",
+        "phase1_ontology.yaml@kg_ontology.classes.NistControl"
+      ]
+    },
+    {
+      "id": "NIST-PR-PO-P1",
+      "type": "NistControl",
+      "label": "PR-PO-P1",
+      "attrs": {
+        "control_id": "PR-PO-P1",
+        "framework": "PF",
+        "function": "PROTECT-P",
+        "description": "Data confidentiality, integrity, availability",
+        "path": "00_METHODOLOGY/PREPROCESSING_by_domain/MAPPINGS/OVERLAYS/OVERLAY_NIST_PF_1.1.md §2"
+      },
+      "source": [
+        "OVERLAY_NIST_PF_1.1.md §2",
+        "phase1_ontology.yaml@kg_ontology.classes.NistControl"
+      ]
+    },
+    {
+      "id": "NIST-CT-PO-P4",
+      "type": "NistControl",
+      "label": "CT-PO-P4",
+      "attrs": {
+        "control_id": "CT-PO-P4",
+        "framework": "PF",
+        "function": "CONTROL-P",
+        "description": "Data processing policies / purpose limitation",
+        "path": "00_METHODOLOGY/PREPROCESSING_by_domain/MAPPINGS/OVERLAYS/OVERLAY_NIST_PF_1.1.md §2"
+      },
+      "source": [
+        "OVERLAY_NIST_PF_1.1.md §2",
+        "phase1_ontology.yaml@kg_ontology.classes.NistControl"
+      ]
+    },
+    {
+      "id": "NIST-CT-DM-P5",
+      "type": "NistControl",
+      "label": "CT-DM-P5",
+      "attrs": {
+        "control_id": "CT-DM-P5",
+        "framework": "PF",
+        "function": "CONTROL-P",
+        "description": "Disposal of personal data (erasure)",
+        "path": "00_METHODOLOGY/PREPROCESSING_by_domain/MAPPINGS/OVERLAYS/OVERLAY_NIST_PF_1.1.md §2"
+      },
+      "source": [
+        "OVERLAY_NIST_PF_1.1.md §2",
+        "phase1_ontology.yaml@kg_ontology.classes.NistControl"
+      ]
+    },
+    {
+      "id": "NIST-CM-PO-P1",
+      "type": "NistControl",
+      "label": "CM-PO-P1",
+      "attrs": {
+        "control_id": "CM-PO-P1",
+        "framework": "PF",
+        "function": "COMMUNICATE-P",
+        "description": "Communication of privacy practices",
+        "path": "00_METHODOLOGY/PREPROCESSING_by_domain/MAPPINGS/OVERLAYS/OVERLAY_NIST_PF_1.1.md §2"
+      },
+      "source": [
+        "OVERLAY_NIST_PF_1.1.md §2",
         "phase1_ontology.yaml@kg_ontology.classes.NistControl"
       ]
     }
@@ -10750,6 +11983,1434 @@
       "source": [
         "Doc11 §7 GAP-004 row: Sub-Domain D-02.3, Clause Art.21, Regulation CRA",
         "phase1_ontology.yaml@kg_ontology.classes.CoverageGap"
+      ]
+    },
+    {
+      "from": "D-01.1",
+      "to": "EV-D-01.1-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-01.1-001",
+      "to": "GDPR-C24",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-01.2",
+      "to": "EV-D-01.2-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-01.2-001",
+      "to": "GDPR-C04",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-01.3",
+      "to": "EV-D-01.3-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-01.3-001",
+      "to": "CRA-C15",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-01.4",
+      "to": "EV-D-01.4-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-01.4-001",
+      "to": "GDPR-C24",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-02.1",
+      "to": "EV-D-02.1-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-02.1-001",
+      "to": "CRA-C05",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-02.2",
+      "to": "EV-D-02.2-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-02.2-001",
+      "to": "CRA-C04",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-02.3",
+      "to": "EV-D-02.3-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-02.3-001",
+      "to": "CRA-C19",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-02.4",
+      "to": "EV-D-02.4-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": false
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-02.4-001",
+      "to": "GDPR-C27",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-03.1",
+      "to": "EV-D-03.1-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-03.1-001",
+      "to": "CRA-C10",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-03.2",
+      "to": "EV-D-03.2-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-03.2-001",
+      "to": "CRA-C09",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-03.3",
+      "to": "EV-D-03.3-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-03.3-001",
+      "to": "GDPR-C19",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-03.4",
+      "to": "EV-D-03.4-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-03.4-001",
+      "to": "CRA-C03",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-04.1",
+      "to": "EV-D-04.1-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-04.1-001",
+      "to": "CRA-C06",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-04.2",
+      "to": "EV-D-04.2-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-04.2-001",
+      "to": "GDPR-C18",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-04.3",
+      "to": "EV-D-04.3-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-04.3-001",
+      "to": "GDPR-C25",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-04.4",
+      "to": "EV-D-04.4-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-04.4-001",
+      "to": "CRA-C26",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-05.1",
+      "to": "EV-D-05.1-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-05.1-001",
+      "to": "GDPR-C05",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-05.2",
+      "to": "EV-D-05.2-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-05.2-001",
+      "to": "GDPR-C05",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-05.3",
+      "to": "EV-D-05.3-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-05.3-001",
+      "to": "GDPR-C14",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-05.4",
+      "to": "EV-D-05.4-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-05.4-001",
+      "to": "GDPR-C17",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-06.1",
+      "to": "EV-D-06.1-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-06.1-001",
+      "to": "GDPR-C21",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-06.2",
+      "to": "EV-D-06.2-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-06.2-001",
+      "to": "CRA-C07",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-06.3",
+      "to": "EV-D-06.3-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-06.3-001",
+      "to": "GDPR-C21",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-07.1",
+      "to": "EV-D-07.1-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-07.1-001",
+      "to": "GDPR-C20",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-08.1",
+      "to": "EV-D-08.1-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-08.1-001",
+      "to": "GDPR-C09",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-08.2",
+      "to": "EV-D-08.2-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-08.2-001",
+      "to": "GDPR-C28",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-09.1",
+      "to": "EV-D-09.1-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-09.1-001",
+      "to": "CRA-C13",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-09.2",
+      "to": "EV-D-09.2-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-09.2-001",
+      "to": "GDPR-C27",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-09.4",
+      "to": "EV-D-09.4-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-09.4-001",
+      "to": "GDPR-C22",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-10.1",
+      "to": "EV-D-10.1-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-10.1-001",
+      "to": "CRA-C12",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-10.2",
+      "to": "EV-D-10.2-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-10.2-001",
+      "to": "CRA-C22",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-10.3",
+      "to": "EV-D-10.3-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": false
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-10.3-001",
+      "to": "CRA-C14",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-01.1",
+      "to": "EV-D-01.1-002",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "capability",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-01.1-002",
+      "to": "PR.DS-01",
+      "rel": "CITES_OUTCOME",
+      "attrs": {
+        "scale": "capability",
+        "framework": "CSF",
+        "outcome_id": "PR.DS-01"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6",
+        "OVERLAY_NIST_CSF_2.0.md §2"
+      ]
+    },
+    {
+      "from": "D-02.1",
+      "to": "EV-D-02.1-002",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "capability",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-02.1-002",
+      "to": "ID.RA-01",
+      "rel": "CITES_OUTCOME",
+      "attrs": {
+        "scale": "capability",
+        "framework": "CSF",
+        "outcome_id": "ID.RA-01"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6",
+        "OVERLAY_NIST_CSF_2.0.md §2"
+      ]
+    },
+    {
+      "from": "D-09.1",
+      "to": "EV-D-09.1-002",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "capability",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-09.1-002",
+      "to": "GV.PO-01",
+      "rel": "CITES_OUTCOME",
+      "attrs": {
+        "scale": "capability",
+        "framework": "CSF",
+        "outcome_id": "GV.PO-01"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6",
+        "OVERLAY_NIST_CSF_2.0.md §2"
+      ]
+    },
+    {
+      "from": "D-09.2",
+      "to": "EV-D-09.2-002",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "capability",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-09.2-002",
+      "to": "ID.RA-04",
+      "rel": "CITES_OUTCOME",
+      "attrs": {
+        "scale": "capability",
+        "framework": "CSF",
+        "outcome_id": "ID.RA-04"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6",
+        "OVERLAY_NIST_CSF_2.0.md §2"
+      ]
+    },
+    {
+      "from": "D-04.1",
+      "to": "EV-D-04.1-002",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "capability",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-04.1-002",
+      "to": "DE.AE-02",
+      "rel": "CITES_OUTCOME",
+      "attrs": {
+        "scale": "capability",
+        "framework": "CSF",
+        "outcome_id": "DE.AE-02"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6",
+        "OVERLAY_NIST_CSF_2.0.md §2"
+      ]
+    },
+    {
+      "from": "D-04.2",
+      "to": "EV-D-04.2-002",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "capability",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-04.2-002",
+      "to": "RS.MI-01",
+      "rel": "CITES_OUTCOME",
+      "attrs": {
+        "scale": "capability",
+        "framework": "CSF",
+        "outcome_id": "RS.MI-01"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6",
+        "OVERLAY_NIST_CSF_2.0.md §2"
+      ]
+    },
+    {
+      "from": "D-04.4",
+      "to": "EV-D-04.4-002",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "capability",
+        "observed": false
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-04.4-002",
+      "to": "RC.RP-01",
+      "rel": "CITES_OUTCOME",
+      "attrs": {
+        "scale": "capability",
+        "framework": "CSF",
+        "outcome_id": "RC.RP-01"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6",
+        "OVERLAY_NIST_CSF_2.0.md §2"
+      ]
+    },
+    {
+      "from": "D-10.1",
+      "to": "EV-D-10.1-002",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "capability",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-10.1-002",
+      "to": "DE.CM-01",
+      "rel": "CITES_OUTCOME",
+      "attrs": {
+        "scale": "capability",
+        "framework": "CSF",
+        "outcome_id": "DE.CM-01"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6",
+        "OVERLAY_NIST_CSF_2.0.md §2"
+      ]
+    },
+    {
+      "from": "D-10.2",
+      "to": "EV-D-10.2-002",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "capability",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-10.2-002",
+      "to": "PR.PS-04",
+      "rel": "CITES_OUTCOME",
+      "attrs": {
+        "scale": "capability",
+        "framework": "CSF",
+        "outcome_id": "PR.PS-04"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6",
+        "OVERLAY_NIST_CSF_2.0.md §2"
+      ]
+    },
+    {
+      "from": "D-08.2",
+      "to": "EV-D-08.2-002",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "capability",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-08.2-002",
+      "to": "PR.AT-02",
+      "rel": "CITES_OUTCOME",
+      "attrs": {
+        "scale": "capability",
+        "framework": "CSF",
+        "outcome_id": "PR.AT-02"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6",
+        "OVERLAY_NIST_CSF_2.0.md §2"
+      ]
+    },
+    {
+      "from": "D-06.4",
+      "to": "EV-D-06.4-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": false
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-06.4-001",
+      "to": "CRA-C07",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-07.2",
+      "to": "EV-D-07.2-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-07.2-001",
+      "to": "CRA-C18",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-07.3",
+      "to": "EV-D-07.3-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-07.3-001",
+      "to": "CRA-C04",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-07.4",
+      "to": "EV-D-07.4-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-07.4-001",
+      "to": "CRA-C04",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-09.3",
+      "to": "EV-D-09.3-001",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "coverage",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-09.3-001",
+      "to": "CRA-C13",
+      "rel": "CITES_CLAUSE",
+      "attrs": {
+        "scale": "coverage"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6"
+      ]
+    },
+    {
+      "from": "D-09.1",
+      "to": "EV-D-09.1-003",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "capability",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-09.1-003",
+      "to": "GV-PO-P1",
+      "rel": "CITES_OUTCOME",
+      "attrs": {
+        "scale": "capability",
+        "framework": "CSF",
+        "outcome_id": "GV-PO-P1"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6",
+        "OVERLAY_NIST_CSF_2.0.md §2"
+      ]
+    },
+    {
+      "from": "D-09.4",
+      "to": "EV-D-09.4-003",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "capability",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-09.4-003",
+      "to": "GV-PO-P5",
+      "rel": "CITES_OUTCOME",
+      "attrs": {
+        "scale": "capability",
+        "framework": "CSF",
+        "outcome_id": "GV-PO-P5"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6",
+        "OVERLAY_NIST_CSF_2.0.md §2"
+      ]
+    },
+    {
+      "from": "D-08.2",
+      "to": "EV-D-08.2-003",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "capability",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-08.2-003",
+      "to": "GV-AT-P1",
+      "rel": "CITES_OUTCOME",
+      "attrs": {
+        "scale": "capability",
+        "framework": "CSF",
+        "outcome_id": "GV-AT-P1"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6",
+        "OVERLAY_NIST_CSF_2.0.md §2"
+      ]
+    },
+    {
+      "from": "D-09.2",
+      "to": "EV-D-09.2-003",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "capability",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-09.2-003",
+      "to": "GV-MA-P1",
+      "rel": "CITES_OUTCOME",
+      "attrs": {
+        "scale": "capability",
+        "framework": "CSF",
+        "outcome_id": "GV-MA-P1"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6",
+        "OVERLAY_NIST_CSF_2.0.md §2"
+      ]
+    },
+    {
+      "from": "D-09.4",
+      "to": "EV-D-09.4-004",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "capability",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-09.4-004",
+      "to": "ID-IM-P1",
+      "rel": "CITES_OUTCOME",
+      "attrs": {
+        "scale": "capability",
+        "framework": "CSF",
+        "outcome_id": "ID-IM-P1"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6",
+        "OVERLAY_NIST_CSF_2.0.md §2"
+      ]
+    },
+    {
+      "from": "D-09.2",
+      "to": "EV-D-09.2-004",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "capability",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-09.2-004",
+      "to": "ID-RA-P3",
+      "rel": "CITES_OUTCOME",
+      "attrs": {
+        "scale": "capability",
+        "framework": "CSF",
+        "outcome_id": "ID-RA-P3"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6",
+        "OVERLAY_NIST_CSF_2.0.md §2"
+      ]
+    },
+    {
+      "from": "D-01.1",
+      "to": "EV-D-01.1-003",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "capability",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-01.1-003",
+      "to": "PR-PO-P1",
+      "rel": "CITES_OUTCOME",
+      "attrs": {
+        "scale": "capability",
+        "framework": "CSF",
+        "outcome_id": "PR-PO-P1"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6",
+        "OVERLAY_NIST_CSF_2.0.md §2"
+      ]
+    },
+    {
+      "from": "D-04.3",
+      "to": "EV-D-04.3-003",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "capability",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-04.3-003",
+      "to": "CM-PO-P1",
+      "rel": "CITES_OUTCOME",
+      "attrs": {
+        "scale": "capability",
+        "framework": "CSF",
+        "outcome_id": "CM-PO-P1"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6",
+        "OVERLAY_NIST_CSF_2.0.md §2"
+      ]
+    },
+    {
+      "from": "D-05.1",
+      "to": "EV-D-05.1-003",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "capability",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-05.1-003",
+      "to": "CT-PO-P4",
+      "rel": "CITES_OUTCOME",
+      "attrs": {
+        "scale": "capability",
+        "framework": "CSF",
+        "outcome_id": "CT-PO-P4"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6",
+        "OVERLAY_NIST_CSF_2.0.md §2"
+      ]
+    },
+    {
+      "from": "D-05.3",
+      "to": "EV-D-05.3-003",
+      "rel": "HAS_EVIDENCE",
+      "attrs": {
+        "scale": "capability",
+        "observed": true
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §6",
+        "phase1_ontology.yaml@kg_ontology.maturity_model"
+      ]
+    },
+    {
+      "from": "EV-D-05.3-003",
+      "to": "CT-DM-P5",
+      "rel": "CITES_OUTCOME",
+      "attrs": {
+        "scale": "capability",
+        "framework": "CSF",
+        "outcome_id": "CT-DM-P5"
+      },
+      "source": [
+        "MATURITY_MODEL_CSF_STRICT.md §5/§6",
+        "OVERLAY_NIST_CSF_2.0.md §2"
       ]
     },
     {
@@ -23726,7 +26387,7 @@
     "compliance_mapping_rows": 37,
     "articles_with_verification": 54,
     "subdomains_with_proportionality": 37,
-    "nist_controls": 117,
+    "nist_controls": 127,
     "nist_alignments": 513,
     "nist_aimrm_subdomains": 1
   },
@@ -24328,7 +26989,7 @@
         "D-02.4",
         "D-10.3"
       ],
-      "recommendation": "Human (P7) — accept the uniform 2/4 → 3/4 baseline as the Phase-1 floor for downstream gate evaluation, OR add a 'maturity_progression_target' attr that varies by tier (LIGHTWEIGHT = tgt 3, MINIMAL = tgt 2, DEFERRED = tgt 1) — clarifying the proportionally-tiered trajectory.  Either path is consistent with the Sprint-5 'risk values derived from priority + tier + sub-domain risk profile' rationale already in Doc12 §4 reading guide.  Default stays: attrs.maturity_cur=2, attrs.maturity_tgt=3 for 36 rows; attrs.maturity_cur=1, attrs.maturity_tgt=1 for D-02.4."
+      "recommendation": "Human (P7) — accept the uniform 2/4 → 3/4 baseline as the Phase-1 floor for downstream gate evaluation, OR add a 'maturity_progression_target' attr that varies by tier (LIGHTWEIGHT = tgt 3, MINIMAL = tgt 2, DEFERRED = tgt 1) — clarifying the proportionally-tiered trajectory.  Either path is consistent with the Sprint-5 'risk values derived from priority + tier + sub-domain risk profile' rationale already in Doc12 §4 reading guide (v1.6 — MATURITY_MODEL_CSF_STRICT.md). Per ontology v1.6, sub-domains no longer carry maturity_cur/tgt scalars; emit() below attaches evidence_ids pointing to EvidenceItem nodes with verifiable sources."
     },
     {
       "id": "NEW-09",

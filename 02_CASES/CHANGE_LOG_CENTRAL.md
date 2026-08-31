@@ -1,8 +1,53 @@
 # Central Change Log — AEGIS Methodology Implementation
 
-**Last Updated:** 2026-08-28
-**Version:** 6.2 (Case_02 + Case_03 port campaigns complete — gates PASS)
+**Last Updated:** 2026-08-27
+**Version:** 6.4 (Case_02 v2.3 maturity_model — MATURITY_MODEL_CSF_STRICT.md + Folio VIII standalone + EvidenceItem seed CSF + PF + AI-RMF)
 **Scope:** All Cases
+
+---
+
+## 0.2 2026-08-27 — Case_02 Maturity redesign v2.3 (campaign)
+
+| Metric | Value |
+|--------|-------|
+| Files changed | 4 doc + 3 script + 1 dashboard — `01_PHASE1_CONTEXT_RICH/phase1_ontology.yaml` v2.2→v2.3 + `data/phase1_ontology.compact.json` schema 1.0→1.1 + `scripts/build_p1_graph.py` (de-novo, 19 node types from YAML+XLSX) + `scripts/build_p1_dashboard.py` (validator v2.3, 4 gates) + `Doc05_Security_Posture.md` v1.2→v1.3 + `Doc12_Proportionality_Profile.md` v1.0→v1.3 + `00_VISUALISATIONS/Case_02/Case_02_P1_Maturity.html` (Folio VIII standalone) + `build_case02_dashboard.py` (inline JSON for file://) |
+| New doc | `00_METHODOLOGY/00_VISUALISATIONS/Case_02/Case_02_P1_Maturity.html` (Folio VIII standalone for Case_02) |
+| New node types | EvidenceItem (57 seed: 34 Coverage + 25 Capability — 10 CSF + 10 PF + 5 AI-RMF); TierDecision deferred to P7 |
+| New relations | HAS_EVIDENCE / CITES_OUTCOME / CITES_CLAUSE / DECIDED_AT / USED_IN (mirror Case_01 v1.6) |
+| EvidenceItems seed | 59 total (57 EVIDENCE_ITEMS seed + 2 inferred; 34 Coverage + 25 Capability) |
+| NistControl nodes | 15 (10 PF + 5 AI-RMF — CSF anchors implicit via Doc13 §7 crosswalk) |
+| Validator gates (v2.3) | Gate 1 (no Tier scalars on sub-domain — passes: 0 hits) + Gate 2 (11 proportionality keys + evidence_ids — passes: 34/34 active SDs) + Gate 3 (proportionality_tier non-null — passes) + Gate 4 (sources[] resolved — passes: 0 unresolved) — `--check` PASS |
+| Folio VIII rendering | 4 KPI tiles (59 / 34 / 25 / 3) + tier-bar Function (6 segments, GV/ID/PR/DE/RS/RC) + 2 radares ECharts (CSF hexagonal + PF pentagonal — primeiros radares do repo) + AI-RMF callout (SecureBorder AI Act provider; AI-RMF anchors without radar) + Citation discipline callout + 2 tabelas (Scale B com PF anchor + Scale A com Framework=CSF/PF/AI-RMF) |
+| Counts | 35/35 active SDs with proportionality; 34/34 with evidence_ids; 4 NOT_ADDRESSED sub-domínios (D-06.4, D-07.4, D-08.3, D-09.3) explicit |
+| Legacy cleanup | Doc05 banner atualizado para `DEPRECATED_FOR_MATURITY`; Doc12 nota v2.3 (frontmatter v1.3); Doc19 intocado (posture já resolvido lá) |
+| Tier assignment | **NÃO feito** — P7 / human decision per §4 escada rule; Folio VIII mostra evidência apenas |
+| Smoke 10/10 | `00_VISUALISATIONS/Case_02/Case_02_P1_Maturity.html` (118 ROWS, 0 ERR) joins the 9 dashboards — total 10/10 PASS |
+| Verdict | PASS (validator v2.3 — 59 EvidenceItems, 34/34 sub-domínios activos com evidence_ids, 0 forbidden scalars, 0 unresolved sources) |
+
+**AI Act applicable in Case_02**: SecureBorder is AI Act provider per `04_Company_Context_Assessment.md` §L217; AI-RMF anchors (GOVERN-1.2, MAP-2.1, MEASURE-3.2, MEASURE-4.1, MANAGE-5.2) added as Capability EvidenceItems. No radar (AI-RMF has 4 functions vs CSF's 6; mixing axes would mislead) — they appear in the Scale A table with `Framework=AI-RMF`.
+
+**User complaint addressed (same as Case_01 round 1)**: "não vejo propriamente o referencial que é visto como o de referencia... parece ser muito ad-hoc" — referencial único agora declarado (NIST CSF 2.0 §3.4) na ontologia Case_02 v2.3. User complaint addressed (round 2): "não quero que te focques apenas no NIST CSF, também tens o PF" — AI-RMF anchors + PF anchors all in CSF+PF radares + AI-RMF table.
+
+---
+
+## 0.1 2026-08-27 — Case_01 Maturity redesign v1.6 (cross-phase)
+
+| Metric | Value |
+|--------|-------|
+| Files changed | 4 doc + 3 script + 2 dashboard artefact — `00_METHODOLOGY/MATURITY_MODEL_CSF_STRICT.md` (new, v1.0, 13 sections) + `phase1_ontology.yaml` v1.5→v1.6 + `phase1_ontology.compact.json` schema 1.0→1.1 + `scripts/build_p1_graph.py` (EVIDENCE_ITEMS seed 47 + emits) + `scripts/build_p1_dashboard.py` (check_phase_c v1.6, 4 gates) + `Case_01_P1_Dashboard.html` (Folio VIII CSS/JS) + `Case_01_Dashboard.html` (legacy `#maturity` removed) + `Doc05_Security_Posture.md` (banner v1.6) + `Doc12_Proportionality_Profile.md` (note v1.6) + Case_01 P1 PROJECT_STATE (Sprint 9 log) |
+| New doc | `00_METHODOLOGY/MATURITY_MODEL_CSF_STRICT.md` v1.0 (single normative reference for maturity across all phases/cases) |
+| New node types | `EvidenceItem`, `TierDecision` (v1.6; TierDecision instantiated in later session per P7) |
+| New relations | HAS_EVIDENCE / CITES_OUTCOME / CITES_CLAUSE / DECIDED_AT / USED_IN |
+| New invariants | forbidden_in_subdomain_attrs, citation_required, scale_consistency |
+| EvidenceItems seed | 47 (32 Coverage + 10 Capability CSF + 5 gap) → 57 after Phase 3a (+10 PF anchors) |
+| NistControl PF nodes | 10 (framework=PF, anchored on OVERLAY_NIST_PF_1.1.md §2) |
+| Validator gates (v1.6) | Gate 1 (no Tier scalars on sub-domain) + Gate 2 (12 proportionality keys, evidence_ids) + Gate 3 (sources[] resolved) + Gate 4 (proportionality_tier non-null) — `--check` PASS |
+| Folio VIII rendering | 4 KPI tiles (mini-executive) + tier-bar Function (6 segments, paleta alinhada) + 2 radares ECharts lado a lado (CSF hexagonal + PF pentagonal — primeiros radares do repo) + callout pedagógico "How evidence works" + 2 tabelas (Scale B com coluna PF anchor + Scale A com coluna Framework) |
+| Legacy cleanup | `#maturity` section em `Case_01_Dashboard.html` removido; Doc05 banner atualizado para `DEPRECATED_FOR_MATURITY`; Doc12 §4 nota v1.6 |
+| Tier assignment | **NÃO feito** — P7 / human decision per §4 escada rule; Folio VIII mostra evidência apenas |
+| Verdict | PASS (validator v1.6 — 57 EvidenceItems, 37/37 sub-domínios activos com evidence_ids, 0 forbidden scalars, 0 unresolved sources) |
+
+**User complaint addressed:** "não vejo propriamente o referencial que é visto como o de referencia... parece ser muito ad-hoc, não vejo propriamente o referencial" — referencial único agora declarado: NIST CSF 2.0 §3.4 (citado verbatim em MATURITY_MODEL_CSF_STRICT.md §2). User complaint addressed (round 2): "não quero que te focques apenas no NIST CSF, também tens o PF" — Phase 3a seed adicionou 10 EvidenceItems PF + 10 NistControl PF; Folio VIII tem 2 radares lado a lado.
 
 ---
 

@@ -2,10 +2,10 @@
 document_id: AEGIS-P2-07b
 title: Proportionality Profile — SecureBorder Solutions
 phase: 1
-version: 1.0
+version: 1.3
 created: 2026-08-06
-updated: 2026-08-06
-author: Sprint 0.5 Executor (track-b-applier)
+updated: 2026-08-27
+author: Sprint 0.5 Executor (track-b-applier; v1.3 v2.3 maturity redesign note)
 status: ACTIVE
 case: Case_02_SecureBorder_Solutions
 applicable_regs: [GDPR, CRA, NIS 2, AI_Act]
@@ -215,6 +215,7 @@ Every obligation in Doc 08 (`Doc14_Obligation_Derivation.md`), every rule in Doc
 | 1.0 | 2026-08-06 | Sprint 0.5 Executor (track-b-applier) | Initial release — case instance of Track B proportionality model for SecureBorder Solutions. 35 active sub-domains covered (8 RIGOROUS + 27 STANDARD); 3 NOT_ADDRESSED sub-domains documented. |
 | 1.1 | 2026-08-06 | Sprint 3 Executor | Added §11 Sprint 3 Corpus Cross-Check (15 rows spot-checked against `PREPROCESSING_by_domain/domains/*.json`). Frontmatter gains `cross_checked_against_corpus: true`. **No tier was changed** — §11 records 4 findings (F-01 scale-input contradiction, F-02 D-04.3 recipient segregation, F-03 D-10.1 unrecorded CRDA tension, F-04 T-002 article citation) for orchestrator adjudication. |
 | 1.2 | 2026-08-10 | corr-Case02 Commit A Executor | F-01 SETTLED — P7 human arbiter decision: S = MEDIUM preserved (450 emp / €120M exceeds §2 ceilings 1.8× / 2.4×; conscious deviation accepted to preserve 8 RIGOROUS + 27 STANDARD). §11.3.1 added. §11.4 verdict updated. **No tier changed.** |
+| 1.3 | 2026-08-27 | v2.3 maturity redesign (maturation campaign) | **Note v1.6** added in §4 (Implementation Status column already canonical from v1.2; prior `maturity_cur`/`maturity_tgt` 0-4 scalars removed per `00_METHODOLOGY/MATURITY_MODEL_CSF_STRICT.md §9` DEPRECATED). Capability assessment now lives in the graph as `EvidenceItem` nodes (Scale A per Function, Scale B per sub-domain) — see `00_VISUALISATIONS/Case_02/Case_02_P1_Maturity.html` Folio VIII. AI-RMF anchors applicable (SecureBorder AI Act provider per `04_Company_Context_Assessment.md` §L217); appear in Scale A table with `Framework=AI`. Builder: `scripts/build_p1_graph.py` (v2.3, 19 node types, 311 links, 59 EvidenceItems, 15 NistControl). Validator: `scripts/build_p1_dashboard.py --check` (4 gates PASS). |
 
 ---
 

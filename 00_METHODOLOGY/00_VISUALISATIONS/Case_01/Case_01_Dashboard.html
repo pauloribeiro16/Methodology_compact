@@ -44,7 +44,7 @@
   .pill.dora { background: #7030A0; }
   .pill.aiact { background: #C00000; }
   .chart-wrap { position: relative; height: 320px; margin: 10px 0 20px 0; }
-  .maturity-bar { display: inline-block; height: 16px; background: linear-gradient(90deg, #F8696B 0%, #FFEB84 50%, #63BE7B 100%); border-radius: 3px; }
+  /* legacy .maturity-bar removed in v1.6 — see MATURITY_MODEL_CSF_STRICT.md */
   code { background: #f3f4f6; padding: 2px 6px; border-radius: 3px; font-size: 12px; }
   .nav-external { margin-top: 24px; padding-top: 16px; border-top: 1px solid #e5e7eb; }
   .nav-external a { color: #2c7cb0; text-decoration: none; font-size: 13px; display: block; padding: 6px 20px; }
@@ -62,7 +62,7 @@
     <a class="nav-link active" href="#overview">📊 Visão geral</a>
     <a class="nav-link" href="#taxonomy">🏷 Sub-domínios (D-XX.Y)</a>
     <a class="nav-link" href="#heatmap">🔥 Heatmap regulatório</a>
-    <a class="nav-link" href="#maturity">📈 Maturidade</a>
+    <!-- legacy #maturity section removed in v1.6 (MATURITY_MODEL_CSF_STRICT.md); new home: Case_01_P1_Dashboard.html Folio VIII -->
     <a class="nav-link" href="#clauses">⚖️ Mapeamento de cláusulas</a>
     <a class="nav-link" href="#obligations">📋 Obligations (30)</a>
     <a class="nav-link" href="#ambiguity">⚠ Ambiguity cards</a>
@@ -94,14 +94,7 @@
       <p style="color:#6b7280; font-size:13px;">Contagem de referências no <code>06_Clause_Mapping_Matrix.md</code>. Quanto mais escuro, mais cobertura.</p>
       <table id="tblHeatmap"></table>
     </section>
-    <section id="maturity" class="section">
-      <h2>📈 Avaliação de maturidade por sub-domínio</h2>
-      <div class="chart-wrap"><canvas id="chartMaturity" style="height:400px"></canvas></div>
-      <table id="tblMaturity">
-        <thead><tr><th>Sub-domínio</th><th>Atual</th><th>Target</th><th>Gap</th><th>Verificação</th></tr></thead>
-        <tbody></tbody>
-      </table>
-    </section>
+    <!-- v1.6 — legacy #maturity section removed (DEPRECATED_FOR_MATURITY since Sprint 6). New authoritative home: Case_01_P1_Dashboard.html Folio VIII (Maturity (CSF 2.0 strict)) — see 00_METHODOLOGY/MATURITY_MODEL_CSF_STRICT.md. -->
     <section id="clauses" class="section">
       <h2>⚖️ Mapeamento de cláusulas (clause × sub-domínio × regulação)</h2>
       <table id="tblClauses">
@@ -223,34 +216,10 @@ document.addEventListener('DOMContentLoaded', function() {
   }).join('');
   document.getElementById('tblHeatmap').innerHTML = '<thead>' + heatHeaders + '</thead><tbody>' + heatBody + '</tbody>';
 
-  // Maturity
-  if (DATA.maturity.length > 0) {
-    const maturityData = DATA.maturity.map(m => {
-      const cur = parseFloat(m['Maturidade Atual'] || m['Current'] || m['Atual'] || 0);
-      const tgt = parseFloat(m['Maturidade Target'] || m['Target'] || 0);
-      return { label: m['Sub-domínio'] || m['Subdomain'] || '?', cur, tgt };
-    });
-    new Chart(document.getElementById('chartMaturity'), {
-      type: 'bar',
-      data: {
-        labels: maturityData.map(m => m.label),
-        datasets: [
-          { label: 'Atual', data: maturityData.map(m => m.cur), backgroundColor: '#ED7D31' },
-          { label: 'Target', data: maturityData.map(m => m.tgt), backgroundColor: '#70AD47' },
-        ],
-      },
-      options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
-        scales: { x: { beginAtZero: true, max: 5 } } },
-    });
-    const matBody = maturityData.map(m => {
-      const gap = (m.tgt - m.cur).toFixed(1);
-      return `<tr><td><code>${m.label}</code></td><td>${m.cur}</td><td>${m.tgt}</td><td>${gap}</td><td><div class="maturity-bar" style="width:${m.cur*30}px"></div></td></tr>`;
-    }).join('');
-    document.querySelector('#tblMaturity tbody').innerHTML = matBody;
-    $('#tblMaturity').DataTable({ pageLength: 10 });
-  } else {
-    document.getElementById('chartMaturity').remove();
-  }
+  // v1.6 — legacy #maturity section removed (DEPRECATED_FOR_MATURITY since Sprint 6).
+  // New authoritative home: Case_01_P1_Dashboard.html Folio VIII.
+  // See 00_METHODOLOGY/MATURITY_MODEL_CSF_STRICT.md.
+  console.info('[Case_01_Dashboard] #maturity section removed in v1.6; see Folio VIII of Case_01_P1_Dashboard.html');
 
   // Clauses
   const clausesBody = DATA.clauses.map(c => {

@@ -2,10 +2,10 @@
 document_id: AEGIS-P1-07b
 title: Proportionality Profile — TinyTask SaaS
 phase: 1
-version: 1.4
+version: 1.5
 created: 2026-07-13
-updated: 2026-08-06
-author: Fase de Especificação 5 Executor (deep-enrichment-builder)
+updated: 2026-08-27
+author: Fase de Especificação 5 Executor (deep-enrichment-builder; v1.6 maturity redesign note)
 status: DEEP_ENRICHED
 status_history:
   - { date: 2026-08-06, status: DRAFT, sprint: 0, by: 'Fase de Especificação 0 skeleton' }
@@ -89,7 +89,9 @@ No tier floor is breached: every MUST is at MINIMAL or above (proportionality_mo
 
 ## 4. PER-SUB-DOMAIN PROPORTIONALITY TABLE
 
-Columns: `Sub-domain | I (BUILD/INHERIT) | P | Tier | satisfaction_pattern | evidence_depth | verification_method | ownership | example_controls | Notes`. One row per ACTIVE sub-domain (37 rows). D-08.3 is omitted.
+Columns: `Sub-domain | I (BUILD/INHERIT) | P | Tier | satisfaction_pattern | evidence_depth | verification_method | ownership | example_controls | Notes | Implementation Status | Implementation Priority`. One row per ACTIVE sub-domain (37 rows). D-08.3 is omitted.
+
+**v1.6 note** — `Implementation Status` (PARTIAL / NOT IMPLEMENTED / IMPLEMENTED) is the sole posture field; the prior `maturity_cur` / `maturity_tgt` 0–4 scalars were removed per `00_METHODOLOGY/MATURITY_MODEL_CSF_STRICT.md §9` (DEPRECATED). Capability assessment now lives in the graph as `EvidenceItem` nodes (Scale A per Function, Scale B per sub-domain) — see Case_01_P1_Dashboard.html Folio VIII.
 
 | Sub-domain                                | I       | P    | Tier        | satisfaction_pattern | evidence_depth                                                                       | verification_method              | ownership                | example_controls                                                                                                          | Notes                                                  | Risk if not met | Implementation Status | Implementation Priority |
 |-------------------------------------------|---------|------|-------------|----------------------|--------------------------------------------------------------------------------------|----------------------------------|--------------------------|---------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------|-----------------|------------------|-----------------------|

@@ -2,18 +2,26 @@
 document_id: AEGIS-P1-04b
 title: Security Posture Assessment (Implementation Posture)
 phase: 1
-version: 1.1
+version: 1.2
 created: 2026-07-11
-updated: 2026-08-07
-author: Executor (Fase de Especificação 1 reconciliation; Fase de Especificação 2 corpus enrichment; Implementation Posture transition)
-status: DEPRECATED_FOR_POSTURE
+updated: 2026-08-27
+author: Executor (Fase de Especificação 1 reconciliation; Fase de Especificação 2 corpus enrichment; Implementation Posture transition; v1.6 maturity redesign)
+status: DEPRECATED_FOR_MATURITY
 status_history:
   - { date: '2026-08-07', from: CORPUS_ENRICHED, to: DEPRECATED_FOR_POSTURE,
       reason: 'Implementation Posture model adopted — resolves PHASE1_STRATEGY §7 contradiction' }
+  - { date: '2026-08-27', from: DEPRECATED_FOR_POSTURE, to: DEPRECATED_FOR_MATURITY,
+      reason: 'Maturity redesigned per MATURITY_MODEL_CSF_STRICT.md (CSF 2.0 strict, two scales, evidence-based); see Folio VIII of Case_01_P1_Dashboard.html' }
+maturity_owner: 00_METHODOLOGY/MATURITY_MODEL_CSF_STRICT.md
 posture_owner: 13_Framework_Mapping_Matrix.md
 note: >
   Este documento mantém-se como INPUT qualitativo (postura observada).
-  A avaliação de postura foi movida para
+  v1.6 — A avaliação de maturidade foi movida para
+  00_METHODOLOGY/MATURITY_MODEL_CSF_STRICT.md §3-§6 (referencial único
+  CSF 2.0 §3.4, Tiers T1-T4 ao nível Organisation/Function, EvidenceItem
+  nodes no grafo, sem maturity_cur/maturity_tgt scalars no sub-domínio).
+  Ver Case_01_P1_Dashboard.html Folio VIII para visualização.
+  A avaliação de postura (Implementation Posture) continua em
   02_PHASE2_RULES_RICH/13_Framework_Mapping_Matrix.md §4-5.
 case_study: TinyTask Lda.
 inputs:
