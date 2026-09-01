@@ -1,11 +1,19 @@
 # Reconciliation — git vs state files
 
-_Generated 2026-08-28 by `scripts/dream/reconcile.py` — deterministic._
+_Generated 2026-09-01 by `scripts/dream/reconcile.py` — deterministic._
 
 ## Recent commits (last 15)
 
 | Date | SHA | Subject |
 |---|---|---|
+| 2026-09-01T13:03:16 | `643e7840` | [ORCHESTRATOR] brief.sh: robust drift regex + 2 new LESSONS entries |
+| 2026-08-31T23:56:54 | `3566983e` | [DREAM 2026-09-01] nightly consolidation (0 amendments, 2 drifts, 1 lesson) |
+| 2026-08-31T09:48:35 | `7a5384ea` | [ORCHESTRATOR] LESSONS: resolve-pending pattern + harness-audit-effect confirmation |
+| 2026-08-31T09:47:00 | `904eb6ba` | [EXECUTOR] Case-side work: dashboard v1.6, Case_02 v1.6 artefacts, project state sync (UI + ontology + scripts) |
+| 2026-08-31T09:44:44 | `fc9af460` | [ORCHESTRATOR] Archive one-shot port scripts + LESSONS entry |
+| 2026-08-31T09:43:24 | `a5873e2b` | [ORCHESTRATOR] State sync: Case_02/03 PROJECT_STATE + Case_03 progress.json (port campaigns complete) |
+| 2026-08-30T23:01:10 | `a5589190` | [HARNESS 2026-08-30] weekly audit (21 healthy, 10 weak, 0 dead, 0 live-probe-failures, 0 cri) |
+| 2026-08-28T23:56:40 | `42d6aa76` | [DREAM 2026-08-28] nightly consolidation (1 amendment, 1 drift, 0 lessons) |
 | 2026-08-28T14:13:24 | `b0cddb68` | [EXECUTOR+VALIDATOR] port Case_03 Fase 7: PRODUCTION_FLOW v1.0 + flow audit PASS_WITH_NOTES + bookkeeping (progress.json, CHANGE_LOG_CENTRAL 6.2, GLOBAL_PROJECT_STATE 6.5, case PS) — campaign complete — Case_03 |
 | 2026-08-28T14:11:31 | `049ef543` | [EXECUTOR+VALIDATOR] port Case_03 Fase 6: legacy-marker sweep case-wide + gates v0.3 ported (check_unmapped.py + check_implementation_posture_case03.py) — GATE PASS — Case_03 |
 | 2026-08-28T13:49:07 | `3dd0f1b2` | [EXECUTOR] port Case_03 Fase 5: Control Set v1 — Doc20 v2.0 (F21/F22/F23 statuses backfilled, traceability with AG-, F24 → Doc21 §1, Annexes A-C), build_control_set.py + control_set.yaml 78 controls (38 CR + 40 BPR) with '**' assert — Case_03 |
@@ -13,14 +21,6 @@ _Generated 2026-08-28 by `scripts/dream/reconcile.py` — deterministic._
 | 2026-08-28T13:39:58 | `6149d578` | [EXECUTOR+VALIDATOR] port Case_03 Fase 3: UNMAPPED adjudication — AIRMF 140→N/A non-AI-scope (23 CR) + real anchors kept (15 CR), PRIVACY retired, PF gaps justified (7 CR + 7 BPR), Doc20 PT placeholders standardised (51), SPEC §4.6, audit report — Case_03 |
 | 2026-08-28T13:32:44 | `bf0969e4` | [EXECUTOR+VALIDATOR] port Case_03 Fase 2b: ontology v2.0-port kg_ontology (DORA branch, posture, invariants) + port validation report + PROJECT_STATE Bloco A summary — Case_03 |
 | 2026-08-28T13:31:24 | `cc55eda3` | [EXECUTOR] port Case_03 Fase 2a: P1 posture purge — Doc05 DEPRECATED_FOR_POSTURE, Doc08 158 cells backfilled, Doc13 76 cells, Doc02/04/06/07/14 vocabulary — Case_03 |
-| 2026-08-28T13:28:07 | `daf49fda` | [EXECUTOR] port Case_03 Fase 1 fixup: Doc16 inputs xlsx repoint — Case_03 |
-| 2026-08-28T13:27:50 | `f3fd04b9` | [EXECUTOR] port Case_03 Fase 1: sprint sweep deliverables + legacy basename→DocNN map (content-based slot map) + dead-dir refs + Docs 16/17/18/20 DRAFT→ACTIVE with 5-reg frontmatter + Doc17 v1.1 (T-005) — Case_03 |
-| 2026-08-28T13:25:55 | `6ad9c64d` | [EXECUTOR] port Case_03 Fase 0: adjudications (tensions=5 w/ T-005, AI-C19 kept, PF 1.0, corr-012 registered) + state-chain repair (case PS 3.1, P1 PS/README, P2 PS/README, progress.json) — Case_03 |
-| 2026-08-28T13:22:50 | `c7658000` | [EXECUTOR] port Case_03 Fase 0: PORT_census_v0 baseline (262 UNMAPPED tokens, sprint keys, maturi scales, AG- verified, divergences adjudicated) — Case_03 |
-| 2026-08-28T13:01:18 | `5608d142` | [EXECUTOR] port Case_02: fix commit count in bookkeeping (13, not 18) — Case_02 |
-| 2026-08-28T13:01:10 | `b42602db` | [EXECUTOR+VALIDATOR] port Case_02 Fase 7: PRODUCTION_FLOW v1.0 + flow audit (PASS_WITH_NOTES, mirror refresh) + bookkeeping (progress.json, CHANGE_LOG_CENTRAL 6.1, GLOBAL_PROJECT_STATE 6.4, case PS) — campaign complete — Case_02 |
-| 2026-08-28T12:58:11 | `78d895e3` | [EXECUTOR+VALIDATOR] port Case_02 Fase 6: sprint-key sweep (P2/P3/00_COMMON/SPEC) + gates v0.3 ported (check_unmapped.py + check_implementation_posture_case02.py) — GATE PASS — Case_02 |
-| 2026-08-28T12:51:11 | `7b9e6e6f` | [EXECUTOR] port Case_02 Fase 5: Control Set v1 — Doc18 v6.0 (F21/F22 posture statuses, F23 traceability, F24 anchors, Annexes A-C), build_control_set.py + control_set.yaml 63 controls with status-parsing fix — Case_02 |
 
 ## State files behind git
 
@@ -28,7 +28,8 @@ _`PROJECT_STATE.md` declares an older date than the last git touch._
 
 | File | Declared | Last git touch | Drift |
 |---|---|---|---|
-| 02_CASES/GLOBAL_PROJECT_STATE.md | 2026-08-27 | 2026-08-28 | **1d (medium)** |
+| 02_CASES/Case_03_OmniBank_Financial/PROJECT_STATE.md | 2026-08-28 | 2026-08-31 | **3d (medium)** |
+| 02_CASES/Case_02_SecureBorder_Solutions/PROJECT_STATE.md | 2026-08-28 | 2026-08-31 | **3d (medium)** |
 
 ## Hardcoded main-repo paths still referenced
 
@@ -188,18 +189,26 @@ _These will mislead any agent reading case docs as canonical._
 
 ## progress.json vs phase folder consistency
 
-- Case_03_OmniBank_Financial/progress.json: declared phase 2 but highest phase folder is 03 (03_PHASE3_DECOMPOSITION)
+_All progress.json current_phase fields match the highest phase folder._
 
 ## Proposed state-file patches (never auto-applied — P7)
 
 _For each drift item, the proposed edit is to bump the `Last Updated` header on the affected `PROJECT_STATE.md` to the last git-touch date, and add a one-line summary of the commits that changed the file since._
 
-### 02_CASES/GLOBAL_PROJECT_STATE.md
+### 02_CASES/Case_03_OmniBank_Financial/PROJECT_STATE.md
 
 ```diff
-- **Last Updated:** 2026-08-27
-+ **Last Updated:** 2026-08-28  (bumps: 1d of drift since last state bump)
-+ **Drift note:** run `git log --since=2026-08-27 -- 02_CASES/GLOBAL_PROJECT_STATE.md` and summarise in the appropriate status table.
+- **Last Updated:** 2026-08-28
++ **Last Updated:** 2026-08-31  (bumps: 3d of drift since last state bump)
++ **Drift note:** run `git log --since=2026-08-28 -- 02_CASES/Case_03_OmniBank_Financial/PROJECT_STATE.md` and summarise in the appropriate status table.
+```
+
+### 02_CASES/Case_02_SecureBorder_Solutions/PROJECT_STATE.md
+
+```diff
+- **Last Updated:** 2026-08-28
++ **Last Updated:** 2026-08-31  (bumps: 3d of drift since last state bump)
++ **Drift note:** run `git log --since=2026-08-28 -- 02_CASES/Case_02_SecureBorder_Solutions/PROJECT_STATE.md` and summarise in the appropriate status table.
 ```
 
 
