@@ -31,7 +31,10 @@ line ""
 line "## State-file drift"
 DRIFT_FILE="$REPO_ROOT/dream/RECONCILIATION.md"
 if [ -f "$DRIFT_FILE" ]; then
-  drift_count=$(grep -c "^| .02_CASES/" "$DRIFT_FILE" 2>/dev/null || true)
+  # Count drift rows in the "State files behind git" table.
+  # The table rows start with "| 02_CASES/" (or similar) after the header divider.
+  # Match either `| .02_CASES/` (legacy commit format) or `| 02_CASES/` (modern).
+  drift_count=$(grep -cE "^\|[ ]+\.?02_CASES/" "$DRIFT_FILE" 2>/dev/null || true)
   drift_count=${drift_count:-0}
   if [ "${drift_count:-0}" -gt 0 ] 2>/dev/null; then
     line "  $drift_count PROJECT_STATE.md file(s) behind git touch — see $DRIFT_FILE"
