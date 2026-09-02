@@ -1,10 +1,10 @@
 # Adoption Report — AEGIS Methodology_compact
 
-_Generated 2026-09-01 by `scripts/dream/adoption_audit.py` — deterministic (no LLM)._
+_Generated 2026-09-02 by `scripts/dream/adoption_audit.py` — deterministic (no LLM)._
 
 ## Activity
 
-- **Project exchanges scanned:** 243 user messages
+- **Project exchanges scanned:** 0 user messages
 - **Exchanges with KG usage:** 0
 - **Exchanges with mandated skill:** 0
 
@@ -47,17 +47,17 @@ _Logged by `.zcode/hooks/guard-bash.sh` (every Bash call, including denials are 
 | Leading verb | Count |
 |---|---|
 | `cd` | 238 |
-| `grep` | 101 |
+| `grep` | 103 |
 | `timeout` | 92 |
-| `python3` | 75 |
+| `python3` | 83 |
 | `C=\` | 52 |
 | `sleep` | 43 |
-| `ls` | 26 |
+| `ls` | 28 |
+| `git` | 26 |
 | `export` | 21 |
-| `git` | 19 |
-| `cat` | 9 |
+| `cat` | 11 |
 
-_Window:_ 2026-08-27T10:30:54+01:00 → 2026-09-01T23:55:12+01:00 (754 calls)
+_Window:_ 2026-08-27T10:30:54+01:00 → 2026-09-02T23:55:23+01:00 (779 calls)
 
 ## Case progress snapshot (ground truth)
 
@@ -84,17 +84,7 @@ Either:
   (b) Drop the mandatory items from pre-flight if the human prefers to invoke manually.
 ```
 
-### 2. Document the pre-flight checklist as a tool-call contract
-
-**Rationale:** Pre-flight is text-only; an agent may follow it silently and produce no detectable signal. Codifying 'if you didn't run X, your output is invalid' as a self-check rule would make it enforceable.
-
-**Proposed patch:**
-
-```
-Add to each pre-flight item: a short machine-checkable assertion. E.g. 'If touching an ID-bearing doc: scripts/kg.sh impact <ID> must appear in tool calls of this turn'.
-```
-
-### 3. Invoke case-context-loader at the start of any case session
+### 2. Invoke case-context-loader at the start of any case session
 
 **Rationale:** 3 case(s) tracked in 02_CASES/. case-context-loader is the only skill that bootstraps a session with the actual current state. Use it before planning case work.
 
@@ -104,7 +94,7 @@ Add to each pre-flight item: a short machine-checkable assertion. E.g. 'If touch
 Add to the 'Where to start' section: 'Always start by running case-context-loader — the in-line read of GLOBAL+case+progress.json+phases below is the manual fallback, not the default.'
 ```
 
-### 4. Log hook firings for the dream to consume
+### 3. Log hook firings for the dream to consume
 
 **Rationale:** The kg-reminder hook fires once per session and the script writes nothing. For adoption measurement we need a side-effect log line per fire (e.g. `echo "$(date -Iseconds) kg-reminder" >> dream/STATE/hook.log`).
 

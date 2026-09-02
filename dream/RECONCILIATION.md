@@ -1,11 +1,12 @@
 # Reconciliation — git vs state files
 
-_Generated 2026-09-01 by `scripts/dream/reconcile.py` — deterministic._
+_Generated 2026-09-02 by `scripts/dream/reconcile.py` — deterministic._
 
 ## Recent commits (last 15)
 
 | Date | SHA | Subject |
 |---|---|---|
+| 2026-09-01T23:55:57 | `4c8fc9ff` | [DREAM 2026-09-01] nightly consolidation (0 amendments, 2 drifts, 0 lessons) |
 | 2026-09-01T13:03:16 | `643e7840` | [ORCHESTRATOR] brief.sh: robust drift regex + 2 new LESSONS entries |
 | 2026-08-31T23:56:54 | `3566983e` | [DREAM 2026-09-01] nightly consolidation (0 amendments, 2 drifts, 1 lesson) |
 | 2026-08-31T09:48:35 | `7a5384ea` | [ORCHESTRATOR] LESSONS: resolve-pending pattern + harness-audit-effect confirmation |
@@ -20,7 +21,6 @@ _Generated 2026-09-01 by `scripts/dream/reconcile.py` — deterministic._
 | 2026-08-28T13:43:04 | `5e17b5fa` | [EXECUTOR] port Case_03 Fase 4: P2 posture migration — Doc21 §4/§5.1 (78 controls, 177 PARTIAL/57 N/A)/§5.2/§6.4/V4, Doc19 posture fields, SPEC supersession banner — Case_03 |
 | 2026-08-28T13:39:58 | `6149d578` | [EXECUTOR+VALIDATOR] port Case_03 Fase 3: UNMAPPED adjudication — AIRMF 140→N/A non-AI-scope (23 CR) + real anchors kept (15 CR), PRIVACY retired, PF gaps justified (7 CR + 7 BPR), Doc20 PT placeholders standardised (51), SPEC §4.6, audit report — Case_03 |
 | 2026-08-28T13:32:44 | `bf0969e4` | [EXECUTOR+VALIDATOR] port Case_03 Fase 2b: ontology v2.0-port kg_ontology (DORA branch, posture, invariants) + port validation report + PROJECT_STATE Bloco A summary — Case_03 |
-| 2026-08-28T13:31:24 | `cc55eda3` | [EXECUTOR] port Case_03 Fase 2a: P1 posture purge — Doc05 DEPRECATED_FOR_POSTURE, Doc08 158 cells backfilled, Doc13 76 cells, Doc02/04/06/07/14 vocabulary — Case_03 |
 
 ## State files behind git
 
