@@ -98,6 +98,11 @@ def regression_check(commit: dict) -> tuple[bool, list[str]]:
         # No dream script changes — skip (e.g. commit only touched dream/LESSONS.md)
         return True, []
 
+    # Avoid recursive self-test: regression_check.py itself contains the
+    # string "--self-test" in its own source, so we exclude it explicitly.
+    SELF = Path(__file__).resolve().relative_to(ROOT)
+    scripts = [t for t in scripts if t != str(SELF)]
+
     for rel in scripts:
         abs_path = ROOT / rel
         if not abs_path.exists():
@@ -110,18 +115,18 @@ def regression_check(commit: dict) -> tuple[bool, list[str]]:
 
         # If the script has --self-test, run it
         if rel.endswith(".py"):
-            rc, out, err = run_git("cat-file", "-e", f"HEAD:{rel}")  # sanity
-            rc, out, err = run_git("--no-pager", "show", f"HEAD:{rel}")
-            if "--self-test" in out:
-                rc, sout, serr = run_git("show", f"HEAD:{rel}")
-                # can't easily exec from show output; instead just run the file
+            try:
+                src = abs_path.read_text(encoding="utf-8")
+            except OSError:
+                continue
+            if '"--self-test"' in src or "'--self-test'" in src:
                 r = subprocess.run([sys.executable, str(abs_path), "--self-test"],
                                    capture_output=True, text=True, timeout=60,
                                    cwd=ROOT)
                 if r.returncode != 0:
                     failures.append(
                         f"{rel}: --self-test failed (rc={r.returncode}): "
-                        f"{(serr or sout).strip()[:200]}"
+                        f"{(r.stderr or r.stdout).strip()[:200]}"
                     )
 
     return (len(failures) == 0), failures
