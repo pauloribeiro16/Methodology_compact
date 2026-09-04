@@ -19,6 +19,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sys
 import time
 from pathlib import Path
@@ -32,6 +33,42 @@ SHOTS = TESTS_DIR / "screenshots"
 
 # All dashboards, relative to repo root.
 DASHBOARDS = sorted(p for p in (VIS).rglob("*.html"))
+
+# --- PORT-PARITY-2 · block F3b: explicit entries ---------------------------
+# The default suite discovers dashboards via rglob above; these entries pin
+# the Case_03 parity dashboards so (a) they fail loudly if missing and (b)
+# each carries a static Case_02-identity purge check (leaks OUTSIDE the
+# inlined graph JSON blob are build failures; the blob itself is verbatim
+# F3a data and may legitimately reference sibling cases in audit prose).
+REQUIRED_DASHBOARDS = [
+    "00_METHODOLOGY/00_VISUALISATIONS/Case_03/Case_03_P1_Dashboard.html",
+    "00_METHODOLOGY/00_VISUALISATIONS/Case_03/Case_03_P1_Maturity.html",
+]
+CASE03_IDENTITY_TOKENS = [
+    "SecureBorder", "SECUREBORDER", "Case 02", "Case_02",
+    "The Hague", "GuardianGate", "TinyTask",
+]
+
+
+def check_case03_identity_purge() -> list[str]:
+    """Return a list of purge-check failure strings (empty = pass)."""
+    failures: list[str] = []
+    for rel in REQUIRED_DASHBOARDS:
+        path = ROOT / rel
+        if not path.exists():
+            failures.append(f"{rel}: file missing")
+            continue
+        html = path.read_text(encoding="utf-8")
+        stripped = re.sub(
+            r'<script type="application/json" id="phase1-graph-data">.*?</script>',
+            "", html, flags=re.DOTALL)
+        stripped = re.sub(
+            r'<script>window\.PHASE1_GRAPH_DATA = \{.*?\};</script>',
+            "", stripped, flags=re.DOTALL)
+        for tok in CASE03_IDENTITY_TOKENS:
+            if tok in stripped:
+                failures.append(f"{rel}: identity leak outside JSON blob: {tok!r}")
+    return failures
 
 
 def main() -> int:
@@ -55,6 +92,25 @@ def main() -> int:
     print(f"# smoke for {len(targets)} dashboard(s)")
     rows: list[dict] = []
     overall_ok = True
+
+    # Explicit F3b entries: must exist — and, on full-suite runs, must be part
+    # of the rglob discovery set (guards accidental exclusion).
+    for req in REQUIRED_DASHBOARDS:
+        if not (ROOT / req).exists():
+            print(f"test_dashboards: REQUIRED dashboard missing: {req}")
+            return 2
+        if args.only is None and (ROOT / req) not in targets:
+            print(f"test_dashboards: REQUIRED dashboard not in discovery set: {req}")
+            return 2
+
+    # Static identity-purge check (F3b) — independent of Playwright.
+    purge_failures = check_case03_identity_purge()
+    if purge_failures:
+        overall_ok = False
+        for f in purge_failures:
+            print(f"test_dashboards: PURGE FAIL — {f}")
+    else:
+        print("# case03 identity purge: OK (0 Case_02 identity strings outside the inlined graph JSON)")
 
     with sync_playwright() as pw:
         browser = pw.chromium.launch()
