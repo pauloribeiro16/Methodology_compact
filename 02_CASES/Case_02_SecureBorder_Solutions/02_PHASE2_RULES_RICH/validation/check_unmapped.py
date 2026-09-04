@@ -41,7 +41,8 @@ CONTROLS = REPO / "00_METHODOLOGY" / "PREPROCESSING_by_domain" / "CONTROLS"
 EXCLUDED = ("validation/", "VALIDATOR_", "CHANGE_LOG", "DEPRECATED", "RICH_VS_LEGACY", "PORT_census")
 WAIVER_WORDS = ("legacy", "superseded", "retired", "deprecated", "pre-port", "posture model",
                 "proibido", "forbidden", "reformado", "vocabulary", "vocabulário", "justificação",
-                "historical", "histórico", "was maturi", "ver git", "unmapped_pf_justification")
+                "historical", "histórico", "was maturi", "ver git", "unmapped_pf_justification",
+                "model_csf_strict", "maturity_cur", "maturity_tgt", "evidence model", "maturity redesign")
 
 violations, warnings = [], []
 

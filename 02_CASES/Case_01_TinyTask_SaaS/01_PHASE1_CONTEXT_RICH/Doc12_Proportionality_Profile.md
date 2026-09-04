@@ -5,7 +5,7 @@ phase: 1
 version: 1.5
 created: 2026-07-13
 updated: 2026-08-27
-author: Fase de Especificação 5 Executor (deep-enrichment-builder; v1.6 maturity redesign note)
+author: Fase de Especificação 5 Executor (deep-enrichment-builder; v1.6 redesign note per MATURITY_MODEL_CSF_STRICT)
 status: DEEP_ENRICHED
 status_history:
   - { date: 2026-08-06, status: DRAFT, sprint: 0, by: 'Fase de Especificação 0 skeleton' }

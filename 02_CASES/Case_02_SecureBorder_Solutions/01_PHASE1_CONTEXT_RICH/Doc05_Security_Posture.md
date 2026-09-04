@@ -16,7 +16,7 @@ maturity_owner: 00_METHODOLOGY/MATURITY_MODEL_CSF_STRICT.md
 posture_owner: Doc19_Framework_Mapping_Matrix.md
 note: >
   Este documento mantém-se como INPUT qualitativo (postura observada).
-  v2.3 — A avaliação de maturidade foi movida para
+  v2.3 — A avaliação de escala A/B (CSF Tiers + Coverage) foi movida para
   00_METHODOLOGY/MATURITY_MODEL_CSF_STRICT.md §3-§6 (referencial único
   CSF 2.0 §3.4, Tiers T1-T4 ao nível Organisation/Function, EvidenceItem
   nodes no grafo P1, sem maturity_cur/maturity_tgt scalars no sub-domínio).

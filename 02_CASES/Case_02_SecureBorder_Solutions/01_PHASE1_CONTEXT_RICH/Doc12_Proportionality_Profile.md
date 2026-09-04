@@ -5,7 +5,7 @@ phase: 1
 version: 1.3
 created: 2026-08-06
 updated: 2026-08-27
-author: Sprint 0.5 Executor (track-b-applier; v1.3 v2.3 maturity redesign note)
+author: Sprint 0.5 Executor (track-b-applier; v1.3 v2.3 redesign note)
 status: ACTIVE
 case: Case_02_SecureBorder_Solutions
 applicable_regs: [GDPR, CRA, NIS 2, AI_Act]

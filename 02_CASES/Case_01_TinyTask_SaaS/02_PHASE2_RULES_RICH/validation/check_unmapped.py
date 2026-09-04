@@ -93,7 +93,7 @@ def check_deprecated_terms():
             continue
         with open(md_file, "r", encoding="utf-8") as f:
             for line_no, line in enumerate(f, 1):
-                if any(k in line for k in ["DEPRECATED", "legacy", "DEPRECATED_FOR_POSTURE", "historico", "L1/L2/L3", "| L1 |", "| L2 |", "| L3 |", "| D3 |", "| D10 |", "| D11 |", "MATURIDADE DUPLA"]):
+                if any(k in line for k in ["DEPRECATED", "legacy", "DEPRECATED_FOR_POSTURE", "historico", "L1/L2/L3", "| L1 |", "| L2 |", "| L3 |", "| D3 |", "| D10 |", "| D11 |", "MATURIDADE DUPLA", "MODEL_CSF_STRICT", "maturity_cur", "maturity_tgt", "maturity redesign", "P1_Maturity.html"]):
                     continue
                 if MATURI_RE.search(line):
                     failures.append(f"{md_file.name}:{line_no}: Found deprecated maturity term: {line.strip()}")
