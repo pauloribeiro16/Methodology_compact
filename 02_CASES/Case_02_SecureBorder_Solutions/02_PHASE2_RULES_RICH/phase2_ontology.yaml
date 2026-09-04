@@ -1,0 +1,283 @@
+# AEGIS Phase 2 Case Ontology — Case_02_SecureBorder_Solutions
+# Machine-readable representation of Phase 2 obligation derivation, operational
+# objectives, rules catalog, strategic tensions, and framework mappings.
+# Schema: mirror of Case_01 phase2_ontology.yaml v1.0 (phase1_schema.yaml v1.6 lineage)
+#
+# v1.0 (2026-09-04) — INITIAL RELEASE for Phase 2 dashboard parity
+#   (campaign PORT-PARITY-2, block F4; ports Case_01's content wave of
+#   2026-08-31, commit 7be0b3b):
+#   - 7 entity classes (Obligation, PrivacyOperationalObjective,
+#     SecurityOperationalObjective, ComplianceRule, BestPracticeRule,
+#     Tension, NistSubcategory).
+#   - 6 relations (OBLIGATES_TO, GENERATES, YIELDS, MITIGATES, MAPS_TO,
+#     IN_TENSION_WITH).
+#   - Count invariants are the MECHANICAL canonical counts of the Case_02
+#     Rich corpus (2026-09-04): obligations=38, tensions=9, po=34, so=55,
+#     cr=38, bpr=25, controls=63, source_clauses=111, applicable_regs=4.
+#     Case_02 naming note: Doc16 keeps its historic name
+#     `Doc16_Privacy_Security_Goals.md` (Case_01 uses ..._Objectives.md).
+#   - Sources: control_set.yaml (P2 ROOT — canonical; Doc18 port,
+#     machine-readable), Doc14, Doc15, Doc16, Doc17, Doc19.
+#     Maturity model mirrors Phase 1 v2.3 (MATURITY_MODEL_CSF_STRICT.md v1.0).
+
+header:
+  case_id: "Case_02_SecureBorder_Solutions"
+  phase: 2
+  version: "1.0"
+  generated_from:
+    - "Doc14_Obligation_Derivation.md"      # 38 obligations (canonical §3.3 tables)
+    - "Doc15_Strategic_Tensions_Report.md"  # 9 tensions (T-001..T-009, §4.1 + §4.2-4.4 cards)
+    - "Doc16_Privacy_Security_Goals.md"     # 34 PO (§3.1) + 55 SO (§4.1) — historic name kept
+    - "Doc17_Privacy_Security_Goals_NIST_Implications.md"
+    - "Doc18_Rules_Catalog.md"              # 63 controls (38 CR + 25 BPR)
+    - "Doc19_Framework_Mapping_Matrix.md"   # NIST CSF + PF + AI RMF mapping (§1/§3)
+    - "Doc20_NIST_Framework_Inputs.md"
+    - "control_set.yaml"                    # Doc18 port, machine-readable (P2 ROOT canonical)
+  generated_date: "2026-09-04"
+  author: "AEGIS Implementation (v1.0 — Phase 2 dashboard parity, PORT-PARITY-2 F4)"
+  sibling_of: "../01_PHASE1_CONTEXT_RICH/phase1_ontology.yaml"
+
+# ============================================================
+# COMPANY (carried over from Phase 1 for graph linkage)
+# ============================================================
+company:
+  id: "CC-SECUREBORDER-2026-001"
+  name: "SecureBorder Solutions B.V."
+  phase1_ontology_ref: "../01_PHASE1_CONTEXT_RICH/phase1_ontology.yaml@company"
+
+# ============================================================
+# kg_ontology — formal class/relation/invariants schema
+# ============================================================
+kg_ontology:
+
+  meta:
+    purpose: >
+      Formalise the Phase 2 knowledge graph's class/relation/invariants
+      schema, so that data/phase2_graph.json and downstream Folio VIII
+      (Security Posture) can be validated against a canonical schema.
+    sources:
+      A_class_model: "00_METHODOLOGY/diagrams/Class_Models/phase1_contextual_definition.md"
+      B_phase2_yaml: "02_PHASE2_RULES_RICH/phase2_ontology.yaml"
+      C_phase1_yaml: "01_PHASE1_CONTEXT_RICH/phase1_ontology.yaml"
+    schema_version: 1.0
+    generated: "2026-09-04"
+
+  classes:
+
+    Obligation:
+      attrs:
+        id: String  # OBL-D-XX.Y-NNN
+        subdomain_id: String  # D-XX.Y
+        source_clause_ids: List<String>  # GDPR-CNN / CRA-NNN / NIS2-CNN / AI-CNN
+        title: String
+        description: String
+        normative_intensity: Float  # 1.0..3.0
+        priority: enum(Priority)
+        verification_method: String
+        owner: String
+        risks_if_not_met: String
+      source: "Doc14 §3.3 canonical obligation tables (38 rows: id | title | clauses | D-XX.Y | NI | cadence | obligated parties)"
+      example: "OBL-D-01.1-001"
+
+    PrivacyOperationalObjective:
+      attrs:
+        id: String  # PO-D-XX.Y-NNN
+        subdomain_id: String
+        title: String
+        description: String
+        derives_from_obligation_id: String  # OBL-D-XX.Y-NNN (Doc16 §3.1 source-obligation column)
+        nist_csf_anchors: List<String>
+        priority: enum(Priority)
+        verification_method: String
+      source: "Doc16 §3.1 canonical PO table (34 rows × 11 cols)"
+      example: "PO-D-01.1-001"
+
+    SecurityOperationalObjective:
+      attrs:
+        id: String  # SO-D-XX.Y-NNN
+        subdomain_id: String
+        title: String
+        description: String
+        derives_from_obligation_id: String  # OBL-D-XX.Y-NNN (Doc16 §4.1 source-obligation column)
+        nist_csf_anchors: List<String>
+        nist_pf_anchors: List<String>
+        priority: enum(Priority)
+        verification_method: String
+      source: "Doc16 §4.1 canonical SO table (55 rows × 11 cols)"
+      example: "SO-D-01.3-001"
+
+    ComplianceRule:
+      attrs:
+        id: String  # CR-D-XX.Y-NNN
+        subdomain_id: String
+        title: String  # control_set@description
+        register: enum(OBLIGATION)
+        normative_intensity: Float
+        bucket: enum(Priority)
+        legal: List<String>  # control_set@source
+        phase1_goal_id: String  # AG-D-XX.Y-NNN (from control_set@traceability)
+        obligations_addressed: List<String>  # parsed from control_set@traceability
+        objectives_addressed: List<String>  # PO/SO ids parsed from control_set@traceability + related_goals
+        anchors_csf: List<String>
+        anchors_pf: List<String>
+        anchors_airmf: List<String>  # List for Case_02 (multi-anchor, e.g. GOVERN-1.6;MEASURE-2.7)
+        status_csf: String
+        status_privacy: String
+        status_airmf: String
+        verification_method: String
+      source: "control_set.yaml@control_set.controls[kind=CR] (38 controls; P2 ROOT canonical)"
+      example: "CR-D-01.1-001"
+
+    BestPracticeRule:
+      attrs:
+        id: String  # BPR-D-XX.Y-NNN
+        subdomain_id: String
+        title: String
+        register: enum(BEST_PRACTICE)
+        normative_intensity: Float
+        bucket: enum(Priority)
+        legal: List<String>
+        obligations_addressed: List<String>  # empty for Case_02 (BPRs link to CRs, not OBLs)
+        objectives_addressed: List<String>  # derived transitively via related CRs (audited as derived)
+        related_crs: List<String>  # control_set@related_goals (CR ids)
+        anchors_csf: List<String>
+        anchors_pf: List<String>
+        anchors_airmf: List<String>
+        verification_method: String
+      source: "control_set.yaml@control_set.controls[kind=BPR] (25 controls)"
+      example: "BPR-D-01.1-001"
+
+    Tension:
+      attrs:
+        id: String  # T-NNN
+        title: String
+        nature: enum(STRUCTURAL | CONTEXTUAL)
+        severity: enum(CRITICAL | HIGH | MEDIUM | LOW)
+        type: enum(TEMPORAL_CONFLICT | REQUIREMENT_CONFLICT | TRIGGER_MISMATCH | RESOURCE_CONFLICT | SCOPE_CONFLICT)
+        always_active: Boolean
+        overlap_condition: String
+        clause_1: String  # source regulations (condensed)
+        affected_subdomains: List<String>
+        affected_regulations: List<String>
+        resolution_approach: String  # OPERATIONAL_PROCEDURE / DESIGN_DECISION
+        resolution_description: String
+      source: "Doc15 §4.1 classification table + §4.2-4.4 cards (9 tensions, T-001..T-009)"
+      example: "T-001"
+
+    NistSubcategory:
+      attrs:
+        id: String  # NIST-<framework>-<subcat>
+        control_id: String  # e.g. PR.DS-01 / PR.DS-P1 / GOVERN-1.6
+        framework: enum(NistFramework)
+        function: String  # GV/ID/PR/DE/RS/RC for CSF; PF category; AI RMF function
+        description: String
+        source_doc: String  # Doc19 §3 / control_set.yaml@anchors
+      source: "control_set.yaml@{csf,pf,airmf} fields (pattern-validated); Doc19 §3 cross-walk"
+      example: "NIST-CSF-PR.DS-01"
+
+  enums:
+    Priority: [P1_MUST, P2_SHOULD, P3_COULD]
+    NistFramework: [CSF, PF, AI-RMF]
+    TensionNature: [STRUCTURAL, CONTEXTUAL]
+    TensionSeverity: [CRITICAL, HIGH, MEDIUM, LOW]
+    TensionType: [TEMPORAL_CONFLICT, REQUIREMENT_CONFLICT, TRIGGER_MISMATCH, RESOURCE_CONFLICT, SCOPE_CONFLICT]
+    RegisterType: [OBLIGATION, BEST_PRACTICE]
+
+  relations:
+
+    # Phase 2 core chain: source clauses → obligations → objectives → rules
+    - { verb: OBLIGATES_TO,    from: RegulatoryClause,    to: Obligation,
+        cardinality: "N:N (a clause obligates one or more obligations; an obligation derives from one or more clauses)",
+        source: "Doc14 §3.3 canonical tables (OBL → source clause column)" }
+    - { verb: GENERATES,       from: Obligation,          to: Tension,
+        cardinality: "N:N (an obligation can generate one or more tensions when paired with another)",
+        source: "Doc15 §4.2-4.4 cards (Conflicting Obligations field)" }
+    - { verb: YIELDS,          from: Obligation,          to: PrivacyOperationalObjective,
+        cardinality: "1:N (an obligation may yield one or more POs; Doc16 §3.1 source-obligation column)",
+        source: "Doc16 §3.1 (source obligation per PO row)" }
+    - { verb: YIELDS,          from: Obligation,          to: SecurityOperationalObjective,
+        cardinality: "1:N",
+        source: "Doc16 §4.1 (source obligation per SO row)" }
+    - { verb: MITIGATES,       from: ComplianceRule,      to: PrivacyOperationalObjective,
+        cardinality: "N:N (a rule mitigates one or more objectives)",
+        source: "control_set.yaml@{traceability,related_goals} (PO/SO ids parsed mechanically)" }
+    - { verb: MITIGATES,       from: ComplianceRule,      to: SecurityOperationalObjective,
+        cardinality: "N:N",
+        source: "control_set.yaml@{traceability,related_goals}" }
+    - { verb: MITIGATES,       from: BestPracticeRule,    to: PrivacyOperationalObjective,
+        cardinality: "N:N",
+        source: "derived transitively: BPR@related_goals → CR@objectives (Case_02 BPRs name CRs, not objectives; flagged as derived in graph audits)" }
+    - { verb: MITIGATES,       from: BestPracticeRule,    to: SecurityOperationalObjective,
+        cardinality: "N:N",
+        source: "derived transitively: BPR@related_goals → CR@objectives" }
+    - { verb: MAPS_TO,         from: ComplianceRule,      to: NistSubcategory,
+        cardinality: "N:N (a rule maps to one or more NIST subcats; a subcat is cited by many rules)",
+        source: "control_set.yaml@{csf,pf,airmf}; Doc19 §3.1" }
+    - { verb: MAPS_TO,         from: BestPracticeRule,    to: NistSubcategory,
+        cardinality: "N:N",
+        source: "control_set.yaml@{csf,pf,airmf}; Doc19 §3.1" }
+    - { verb: IN_TENSION_WITH, from: Tension,             to: Tension,
+        cardinality: "N:0..1 (symmetric pairings per Doc15)",
+        source: "Doc15 §4 (each tension pairs two or more regulations or sub-domains)",
+        status: "informative" }
+
+  invariants:
+    counts:
+      obligations_total: 38                # Doc14 §3.3 canonical tables (38 rows)
+      obligations_with_cr: 38             # all 38 addressed by ≥1 CR (control_set@traceability; AUD-P2-005 = 0 orphans)
+      po_total: 34                         # Doc16 §3.1 (34 canonical rows; matches §3.2 summary)
+      so_total: 55                         # Doc16 §4.1 (55 canonical rows; matches §4.2 summary)
+      objectives_total: 89                 # 34 PO + 55 SO
+      compliance_rules_total: 38           # control_set.yaml@kind=CR
+      best_practice_rules_total: 25        # control_set.yaml@kind=BPR
+      controls_total: 63                   # 38 CR + 25 BPR
+      tensions_total: 9                    # Doc15 §4.1 (T-001..T-009)
+      source_clauses_total: 111            # phase1_ontology.yaml v2.3@case_invariants.total_clauses
+      applicable_regs: 4                   # GDPR + CRA + NIS 2 + AI Act
+      nist_subcategories_min: 40           # audit-only minimum (collected from anchors, not enumerated in Doc19 §3)
+    id_patterns:
+      obligation: "^OBL-D-[0-9]+\\.[0-9]+-[0-9]{3}$"
+      privacy_objective: "^PO-D-[0-9]+\\.[0-9]+-[0-9]{3}$"
+      security_objective: "^SO-D-[0-9]+\\.[0-9]+-[0-9]{3}$"
+      compliance_rule: "^CR-D-[0-9]+\\.[0-9]+-[0-9]{3}$"
+      best_practice_rule: "^BPR-D-[0-9]+\\.[0-9]+-[0-9]{3}$"
+      tension: "^T-[0-9]{3}$"
+      nist_subcategory_csf: "^NIST-CSF-[A-Z]{2}\\.[A-Z]{2}-[0-9]{2}$"
+      nist_subcategory_pf: "^NIST-PF-[A-Z]{2}\\.[A-Z]{2}-[A-Z][0-9]$"
+
+  maturity_model:
+    authority: "00_METHODOLOGY/MATURITY_MODEL_CSF_STRICT.md v1.0"
+    reference_framework: "NIST CSF 2.0 §3.4 Implementation Tiers (Feb 2024)"
+    crosswalk_authority: "00_METHODOLOGY/PREPROCESSING_by_domain/MAPPINGS/OVERLAYS/OVERLAY_NIST_CSF_2.0.md §2"
+    schema_version: 1.0
+    generated: "2026-09-04"
+    phase1_reference: "../01_PHASE1_CONTEXT_RICH/phase1_ontology.yaml@kg_ontology.maturity_model"
+    notes: >
+      Phase 2 maturity uses the same two-scale model as Phase 1 (Capability A
+      per Function + Coverage B per sub-domain). Phase 2 evidence shifts from
+      AdjustedGoal evidence (Phase 1) to Rule/Objective evidence (Phase 2):
+      every ComplianceRule and BestPracticeRule contributes 1 Capability
+      EvidenceItem and 1 Coverage EvidenceItem per addressed objective.
+      Phase 1 maturity_model block (v2.3) is the authoritative reference; this
+      block only re-asserts the schema_version and adds a phase-specific
+      data-source pointer.
+    scales:
+      A_capability_by_function:
+        scale_id: "A"
+        reference: "NIST CSF 2.0 §3.4 (5 Functions + GOVERN)"
+        tiers: [T1_PARTIAL, T2_RISK_INFORMED, T3_REPEATABLE, T4_ADAPTIVE]
+        unit: "Score (0.0..4.0) per Function"
+        notes: "Score derived from per-rule Implementation Posture Cur X/4 → Tgt Y/4 values (control_set.yaml@status)"
+      B_coverage_by_subdomain:
+        scale_id: "B"
+        reference: "AEGIS D-XX.Y taxonomy (10 domains × 4 sub-domains = 38 subdomains; Case_02 active = 35, per phase1_ontology v2.3@case_invariants)"
+        tiers: [NOT_ADDRESSED, PARTIAL, SUBSTANTIVE]
+        unit: "Boolean + tier per active subdomain"
+        notes: "Coverage derived from control_set.yaml@traceability per sub-domain"
+    evidence_classes:
+      CapabilityEvidence:
+        attrs: { id, rule_id, function, current_posture, target_posture, evidence }
+        source: "control_set.yaml@status_csf + Doc18 verification"
+      CoverageEvidence:
+        attrs: { id, subdomain_id, controls_count, objectives_count, evidence }
+        source: "control_set.yaml + Doc16/18 cross-walk"

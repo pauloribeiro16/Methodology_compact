@@ -1,0 +1,263 @@
+{
+  "_provenance": {
+    "source_yaml": "02_CASES/Case_02_SecureBorder_Solutions/02_PHASE2_RULES_RICH/phase2_ontology.yaml",
+    "schema_version": 1.1,
+    "generated": "2026-09-04",
+    "generator": "build_p2_graph.py v1.0 (emits from YAML — mechanical)",
+    "phase1_reference": "01_PHASE1_CONTEXT_RICH/data/phase1_ontology.compact.json"
+  },
+  "classes": {
+    "Obligation": {
+      "attrs": [
+        "id",
+        "subdomain_id",
+        "source_clause_ids",
+        "title",
+        "description",
+        "normative_intensity",
+        "priority",
+        "verification_method",
+        "owner",
+        "risks_if_not_met"
+      ],
+      "example": "OBL-D-01.1-001"
+    },
+    "PrivacyOperationalObjective": {
+      "attrs": [
+        "id",
+        "subdomain_id",
+        "title",
+        "description",
+        "derives_from_obligation_id",
+        "nist_csf_anchors",
+        "priority",
+        "verification_method"
+      ],
+      "example": "PO-D-01.1-001"
+    },
+    "SecurityOperationalObjective": {
+      "attrs": [
+        "id",
+        "subdomain_id",
+        "title",
+        "description",
+        "derives_from_obligation_id",
+        "nist_csf_anchors",
+        "nist_pf_anchors",
+        "priority",
+        "verification_method"
+      ],
+      "example": "SO-D-01.3-001"
+    },
+    "ComplianceRule": {
+      "attrs": [
+        "id",
+        "subdomain_id",
+        "title",
+        "register",
+        "normative_intensity",
+        "bucket",
+        "legal",
+        "phase1_goal_id",
+        "obligations_addressed",
+        "objectives_addressed",
+        "anchors_csf",
+        "anchors_pf",
+        "anchors_airmf",
+        "status_csf",
+        "status_privacy",
+        "status_airmf",
+        "verification_method"
+      ],
+      "example": "CR-D-01.1-001"
+    },
+    "BestPracticeRule": {
+      "attrs": [
+        "id",
+        "subdomain_id",
+        "title",
+        "register",
+        "normative_intensity",
+        "bucket",
+        "legal",
+        "obligations_addressed",
+        "objectives_addressed",
+        "related_crs",
+        "anchors_csf",
+        "anchors_pf",
+        "anchors_airmf",
+        "verification_method"
+      ],
+      "example": "BPR-D-01.1-001"
+    },
+    "Tension": {
+      "attrs": [
+        "id",
+        "title",
+        "nature",
+        "severity",
+        "type",
+        "always_active",
+        "overlap_condition",
+        "clause_1",
+        "affected_subdomains",
+        "affected_regulations",
+        "resolution_approach",
+        "resolution_description"
+      ],
+      "example": "T-001"
+    },
+    "NistSubcategory": {
+      "attrs": [
+        "id",
+        "control_id",
+        "framework",
+        "function",
+        "description",
+        "source_doc"
+      ],
+      "example": "NIST-CSF-PR.DS-01"
+    }
+  },
+  "relations": [
+    {
+      "verb": "OBLIGATES_TO",
+      "from": "RegulatoryClause",
+      "to": "Obligation",
+      "cardinality": "N:N (a clause obligates one or more obligations; an obligation derives from one or more clauses)"
+    },
+    {
+      "verb": "GENERATES",
+      "from": "Obligation",
+      "to": "Tension",
+      "cardinality": "N:N (an obligation can generate one or more tensions when paired with another)"
+    },
+    {
+      "verb": "YIELDS",
+      "from": "Obligation",
+      "to": "PrivacyOperationalObjective",
+      "cardinality": "1:N (an obligation may yield one or more POs; Doc16 §3.1 source-obligation column)"
+    },
+    {
+      "verb": "YIELDS",
+      "from": "Obligation",
+      "to": "SecurityOperationalObjective",
+      "cardinality": "1:N"
+    },
+    {
+      "verb": "MITIGATES",
+      "from": "ComplianceRule",
+      "to": "PrivacyOperationalObjective",
+      "cardinality": "N:N (a rule mitigates one or more objectives)"
+    },
+    {
+      "verb": "MITIGATES",
+      "from": "ComplianceRule",
+      "to": "SecurityOperationalObjective",
+      "cardinality": "N:N"
+    },
+    {
+      "verb": "MITIGATES",
+      "from": "BestPracticeRule",
+      "to": "PrivacyOperationalObjective",
+      "cardinality": "N:N"
+    },
+    {
+      "verb": "MITIGATES",
+      "from": "BestPracticeRule",
+      "to": "SecurityOperationalObjective",
+      "cardinality": "N:N"
+    },
+    {
+      "verb": "MAPS_TO",
+      "from": "ComplianceRule",
+      "to": "NistSubcategory",
+      "cardinality": "N:N (a rule maps to one or more NIST subcats; a subcat is cited by many rules)"
+    },
+    {
+      "verb": "MAPS_TO",
+      "from": "BestPracticeRule",
+      "to": "NistSubcategory",
+      "cardinality": "N:N"
+    },
+    {
+      "verb": "IN_TENSION_WITH",
+      "from": "Tension",
+      "to": "Tension",
+      "cardinality": "N:0..1 (symmetric pairings per Doc15)"
+    }
+  ],
+  "enums": {
+    "Priority": [
+      "P1_MUST",
+      "P2_SHOULD",
+      "P3_COULD"
+    ],
+    "NistFramework": [
+      "CSF",
+      "PF",
+      "AI-RMF"
+    ],
+    "TensionNature": [
+      "STRUCTURAL",
+      "CONTEXTUAL"
+    ],
+    "TensionSeverity": [
+      "CRITICAL",
+      "HIGH",
+      "MEDIUM",
+      "LOW"
+    ],
+    "TensionType": [
+      "TEMPORAL_CONFLICT",
+      "REQUIREMENT_CONFLICT",
+      "TRIGGER_MISMATCH",
+      "RESOURCE_CONFLICT",
+      "SCOPE_CONFLICT"
+    ],
+    "RegisterType": [
+      "OBLIGATION",
+      "BEST_PRACTICE"
+    ]
+  },
+  "invariants": {
+    "id_patterns": {
+      "obligation": "^OBL-D-[0-9]+\\.[0-9]+-[0-9]{3}$",
+      "privacy_objective": "^PO-D-[0-9]+\\.[0-9]+-[0-9]{3}$",
+      "security_objective": "^SO-D-[0-9]+\\.[0-9]+-[0-9]{3}$",
+      "compliance_rule": "^CR-D-[0-9]+\\.[0-9]+-[0-9]{3}$",
+      "best_practice_rule": "^BPR-D-[0-9]+\\.[0-9]+-[0-9]{3}$",
+      "tension": "^T-[0-9]{3}$",
+      "nist_subcategory_csf": "^NIST-CSF-[A-Z]{2}\\.[A-Z]{2}-[0-9]{2}$",
+      "nist_subcategory_pf": "^NIST-PF-[A-Z]{2}\\.[A-Z]{2}-[A-Z][0-9]$"
+    },
+    "counts": {
+      "obligations_total": 38,
+      "obligations_with_cr": 38,
+      "po_total": 34,
+      "so_total": 55,
+      "objectives_total": 89,
+      "compliance_rules_total": 38,
+      "best_practice_rules_total": 25,
+      "controls_total": 63,
+      "tensions_total": 9,
+      "source_clauses_total": 111,
+      "applicable_regs": 4,
+      "nist_subcategories_min": 40
+    }
+  },
+  "provenance_rules": {
+    "every_node_must_have_source": true,
+    "every_relation_must_have_source": true,
+    "node_id_pattern_match_class": true,
+    "invariants_are_minimums_not_maximums": true
+  },
+  "maturity_model": {
+    "authority": "00_METHODOLOGY/MATURITY_MODEL_CSF_STRICT.md v1.0",
+    "reference_framework": "NIST CSF 2.0 §3.4 Implementation Tiers (Feb 2024)",
+    "crosswalk_authority": "00_METHODOLOGY/PREPROCESSING_by_domain/MAPPINGS/OVERLAYS/OVERLAY_NIST_CSF_2.0.md §2",
+    "schema_version": 1.0,
+    "generated": "2026-09-04",
+    "phase1_reference": "../01_PHASE1_CONTEXT_RICH/phase1_ontology.yaml@kg_ontology.maturity_model"
+  }
+}

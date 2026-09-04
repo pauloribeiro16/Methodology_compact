@@ -490,15 +490,16 @@ const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">"
 
 function frameworkOf(outcome) {
   if (!outcome) return "—";
-  if (outcome.startsWith(("GV-","ID-","PR-","CM-","CT-"))) return "PF";
-  if (outcome.startsWith(("GOVERN-","MAP-","MEASURE-","MANAGE-"))) return "AI-RMF";
-  return "CSF";   // GV./ID./PR./DE./RS./RC. or bare
+  if (/^(GOVERN-|MAP-|MEASURE-|MANAGE-)/.test(outcome)) return "AI-RMF";
+  if (/-P\d+$/.test(outcome)) return "PF";   // PF anchor: dotted id + -P<lvl> suffix (CT.DM-P1) — port of Case_03 fix
+  return "CSF";   // GV./ID./PR./DE./RS./RC. (GV.RM-04 style)
 }
 
 function csfFunction(outcome) {
   const FN_OF = { "GV.":"GOVERN","ID.":"IDENTIFY","PR.":"PROTECT",
                   "DE.":"DETECT","RS.":"RESPOND","RC.":"RECOVER" };
-  for (const p of Object.keys(FN_OF)) if (outcome && outcome.startsWith(p)) return FN_OF[p];
+  if (!outcome || frameworkOf(outcome) !== "CSF") return null;  // keep PF/AI out of the CSF axis — port of Case_03 fix
+  for (const p of Object.keys(FN_OF)) if (outcome.startsWith(p)) return FN_OF[p];
   return null;
 }
 
@@ -538,7 +539,7 @@ function initMaturity(D) {
   $("mat-kpi-evi-obs").textContent = observed.length;
   const activeSDs = D.nodes.filter(n => n.type === "SecurityControlDomain" && n.attrs && n.attrs.active === true).length;
   $("mat-kpi-cov").textContent = coverage.length;
-  $("mat-kpi-active").textContent = activeSDs + " active";
+  $("mat-kpi-active").textContent = String(activeSDs);
   $("mat-kpi-cap").textContent = capability.length;
   $("mat-kpi-gap").textContent = gap.length;
 
@@ -772,6 +773,13 @@ function initMaturity(D) {
   // Reveal view
   document.getElementById("loading").style.display = "none";
   document.getElementById("maturity-view").style.display = "block";
+  // The radars were initialised while #maturity-view was still display:none
+  // (0x0 canvas); resize now that the container is visible so they paint.
+  // Port of Case_03_P1_Maturity.html fix (campaign PORT-PARITY-2 F4).
+  ["mat-radar-csf", "mat-radar-pf"].forEach(id => {
+    const c = window[id];
+    if (c && typeof c.resize === "function") c.resize();
+  });
 }
 
 async function load() {

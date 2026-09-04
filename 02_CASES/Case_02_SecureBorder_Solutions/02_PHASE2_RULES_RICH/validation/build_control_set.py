@@ -15,7 +15,12 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 DOC18 = ROOT.parent / "Doc18_Rules_Catalog.md"
-OUT = ROOT / "control_set.yaml"
+# PORT-PARITY-2 F4: canonical location is the P2 ROOT (matching Case_01);
+# validation/control_set.yaml becomes a byte-identical mirror so the
+# check_unmapped + posture gates (which read BUILD.parent/control_set.yaml)
+# keep passing unchanged.
+OUT = ROOT.parent / "control_set.yaml"
+MIRROR = ROOT / "control_set.yaml"
 
 STATUSES = {"IMPLEMENTED", "PARTIAL", "NOT IMPLEMENTED", "N/A", "—", "N/A (non-AI scope)"}
 
@@ -120,10 +125,13 @@ def main():
         out.append(f"      traceability: {y(c['traceability'])}")
         out.append(f"      frameworks_ref: {y(c['frameworks_ref'])}")
     OUT.write_text("\n".join(out) + "\n", encoding="utf-8")
+    MIRROR.write_text("\n".join(out) + "\n", encoding="utf-8")
     dist_csf = {}
     for c in controls:
         dist_csf[c["status_csf"]] = dist_csf.get(c["status_csf"], 0) + 1
     print(f"control_set.yaml written: {len(controls)} controls (38 CR + 25 BPR)")
+    print(f"  canonical: {OUT}")
+    print(f"  mirror:    {MIRROR}")
     print("status_csf distribution:", dist_csf)
     print("GATE-PASS condition: exit 0")
 
