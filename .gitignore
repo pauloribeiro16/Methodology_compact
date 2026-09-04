@@ -7,3 +7,5 @@ dream/STATE/
 00_METHODOLOGY/00_VISUALISATIONS/tests/screenshots/
 02_CASES.original-*/
 scripts/archive/
+02_CASES/Case_*/01_PHASE1_CONTEXT_RICH/validation/snapshots/
+gui-test-screenshots/
