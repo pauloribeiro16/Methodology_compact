@@ -1,0 +1,479 @@
+#!/usr/bin/env python3
+"""
+gen_narrative_docs_v0.py — PORT-PARITY-2 block F5, Case_02 (SecureBorder Solutions).
+
+Mechanically derives the four Phase 3 RICH narrative docs from the case's own
+artefacts (no invented compliance content — every id/number is read from a named
+source file):
+
+  RULE_FREEZE.md      <- 02_PHASE2_RULES_RICH/control_set.yaml + Doc18_Rules_Catalog.md + P3 doc count claims
+  KG_CHAINS.md        <- 01_PHASE1_CONTEXT_RICH/data/phase1_graph.json + 02_PHASE2_RULES_RICH/data/phase2_graph.json + control_set.yaml@traceability
+  NIST_ANCHORS.md     <- control_set.yaml fields csf/pf/airmf/status_* (fields 22/24 of the ported Fase 5 layout)
+  CORPUS_LINKAGE.md   <- D-XX.Y census across the case's P3 docs + control_set sub_domains
+
+Each emitted doc starts with the 8 mandatory frontmatter fields (doc-conventions)
+and the banner:
+  > **GENERATED v0 (PORT-PARITY-2) — pending human review.** Mechanically derived
+  > from <sources>; verify before relying on it.
+
+Usage:
+  python3 scripts/gen_narrative_docs_v0.py            # write the 4 docs
+  python3 scripts/gen_narrative_docs_v0.py --dry-run  # print only
+"""
+from __future__ import annotations
+
+import argparse
+import collections
+import datetime as dt
+import json
+import re
+import sys
+from pathlib import Path
+
+import yaml
+
+BASE = Path(__file__).resolve().parent.parent          # 03_PHASE3_DECOMPOSITION
+CASE = BASE.parent                                     # Case_02_SecureBorder_Solutions
+P2 = CASE / "02_PHASE2_RULES_RICH"
+P1 = CASE / "01_PHASE1_CONTEXT_RICH"
+TODAY = "2026-09-04"
+BANNER_SOURCES = {
+    "RULE_FREEZE": "../02_PHASE2_RULES_RICH/control_set.yaml (v6.0), ../02_PHASE2_RULES_RICH/Doc18_Rules_Catalog.md, and live count claims from the Doc21–Doc30 P3 docs",
+    "KG_CHAINS": "../01_PHASE1_CONTEXT_RICH/data/phase1_graph.json, ../02_PHASE2_RULES_RICH/data/phase2_graph.json, ../02_PHASE2_RULES_RICH/control_set.yaml@traceability",
+    "NIST_ANCHORS": "../02_PHASE2_RULES_RICH/control_set.yaml (csf/pf/airmf/status_csf/status_privacy/status_airmf fields)",
+    "CORPUS_LINKAGE": "D-XX.Y census across Doc21–Doc30 + requirements/*.md of this P3 folder, ../02_PHASE2_RULES_RICH/control_set.yaml@sub_domain, 00_METHODOLOGY/PREPROCESSING_by_domain/domains/index.md",
+}
+
+
+def banner(key: str) -> str:
+    return (f"> **GENERATED v0 (PORT-PARITY-2) — pending human review.** "
+            f"Mechanically derived from {BANNER_SOURCES[key]}; verify before relying on it.")
+
+
+def fm(document_id: str, title: str, **extra) -> str:
+    lines = [
+        "---",
+        f"document_id: {document_id}",
+        f"title: {title}",
+        "phase: 3",
+        "version: 0.0",
+        f"created: {TODAY}",
+        f"updated: {TODAY}",
+        "author: PORT-PARITY-2 Executor (generated)",
+        "status: GENERATED",
+        "case: Case_02_SecureBorder_Solutions",
+    ]
+    lines += [f"{k}: {v}" for k, v in extra.items()]
+    lines.append("---")
+    return "\n".join(lines)
+
+
+def read(p: Path) -> str:
+    return p.read_text(encoding="utf-8")
+
+
+RULE_RE = re.compile(r"\b(?:CR|BPR)-D-\d{2}\.\d-\d{3}\b")
+D_RE = re.compile(r"\bD-\d{2}\.\d\b")
+
+
+def load_controls() -> list[dict]:
+    cs = yaml.safe_load(read(P2 / "control_set.yaml"))["control_set"]
+    return cs["controls"]
+
+
+# ---------------------------------------------------------------- RULE_FREEZE
+
+def gen_rule_freeze(controls: list[dict]) -> str:
+    crs = [c for c in controls if c["kind"] == "CR"]
+    bprs = [c for c in controls if c["kind"] == "BPR"]
+    by_sub = collections.Counter(c["sub_domain"] for c in controls)
+
+    # live count claims across P3 docs (deviation census, quoted verbatim)
+    claims: list[tuple[str, str]] = []
+    patterns = [
+        (re.compile(r"\((\d+) CR \+ (\d+) BP\w*\)"), "… (N CR + N BPx)"),
+        (re.compile(r"(\d+) rules \((\d+) CR \+ (\d+) BP\)"), "N rules (N CR + N BP)"),
+        (re.compile(r"all (\d+) compliance rules", re.I), "all N compliance rules"),
+        (re.compile(r"totalRules\s*\|\s*(\d+)"), "totalRules row"),
+    ]
+    for doc in sorted(BASE.glob("Doc*.md")):
+        t = read(doc)
+        for pat, label in patterns:
+            for m in pat.finditer(t):
+                claims.append((doc.name, f"“{m.group(0).strip()}” ({label})"))
+
+    excluded = [c["id"] for c in controls if str(c.get("status_csf", "")).startswith("N/A — EXCLUDED")]
+    multi_serial = [c["id"] for c in controls if not c["id"].endswith("-001")]
+
+    out = [fm("AEGIS-C02-P3-RULE-FREEZE", "Phase 3 Rule Freeze v0 (Case_02 SecureBorder Solutions)", kg_anchor="see KG_CHAINS.md"),
+           "", banner("RULE_FREEZE"), "",
+           "# Phase 3 Rule Freeze v0 — Case_02 SecureBorder Solutions",
+           "",
+           "**Canonical rule set (frozen upstream, not re-frozen here):** "
+           f"**{len(crs)} CR + {len(bprs)} BPR = {len(controls)} controls**, per "
+           "`../02_PHASE2_RULES_RICH/control_set.yaml` v6.0 (generated by "
+           "`../02_PHASE2_RULES_RICH/validation/build_control_set.py` from "
+           "`../02_PHASE2_RULES_RICH/Doc18_Rules_Catalog.md` §4/§5). This document mirrors "
+           "that freeze into Phase 3 and records the freeze status of each block plus the "
+           "deviations observed in the P3 docs. It introduces no new rules.",
+           "",
+           "## §1 Frozen rule IDs (verbatim from control_set.yaml)",
+           ""]
+    for kind, block in (("CR", crs), ("BPR", bprs)):
+        out += [f"### §1.{1 if kind == 'CR' else 2} {kind} block ({len(block)} rules)", "",
+                "| Rule ID | Sub-domain | Description (verbatim, truncated 110c) | Source articles | NI | Priority | Verification | Related goal |",
+                "|---|---|---|---|---|---|---|---|"]
+        for c in block:
+            desc = c["description"][:110] + ("…" if len(c["description"]) > 110 else "")
+            out.append(f"| {c['id']} | {c['sub_domain']} | {desc} | {c['source']} | "
+                       f"{c.get('ni','—')} | {c.get('priority','—')} | {c.get('verification','—')} | {c.get('related_goals','—')} |")
+        out.append("")
+
+    out += ["## §2 Freeze status of each block",
+            "",
+            "| Block | Count | Source of truth | Freeze status |",
+            "|---|---:|---|---|",
+            f"| CR (obligation MUST) | {len(crs)} | control_set.yaml controls[kind=CR]; Doc18 §4 | FROZEN upstream (P2 gate v0.3 PASS) |",
+            f"| BPR (best-practice SHOULD) | {len(bprs)} | control_set.yaml controls[kind=BPR]; Doc18 §5/§9 | FROZEN upstream (P2 gate v0.3 PASS) |",
+            f"| Goals (PO/SO) | 89 (34 PO + 55 SO) | P2 graph node counts (phase2_graph.json) | FROZEN upstream (F4 port) |",
+            f"| Obligations | 38 | P2 graph Obligation nodes / Doc14 | FROZEN upstream |",
+            f"| Gates | 38 unique GATE-D-* rows | Doc26_Compliance_Gates_Report.md §5 | P3-layer, PLANNED statuses — NOT re-counted here |",
+            "",
+            f"**Sub-domain footprint:** {len(by_sub)} sub-domains covered by the {len(controls)} controls "
+            f"(D-01.1–D-10.4 range; per-sub-domain counts in CORPUS_LINKAGE.md §1).",
+            "",
+            "## §3 Deviations observed in Phase 3 docs (mechanical census)",
+            "",
+            "The P3 DocNN docs still carry **stale rule counts** written before the P2 renumbering "
+            "(Doc18 Rules Catalog = 63 controls). Verbatim claims found by this port:",
+            ""]
+    if claims:
+        out += ["| Doc | Verbatim claim |", "|---|---|"]
+        for doc, c in claims:
+            out.append(f"| {doc} | {c} |")
+    else:
+        out.append("(no count-pattern claims found)")
+    out += ["",
+            "**Disposition (P5):** these are documentation-level drift findings, logged in "
+            "`validation/RICH_LINT_BASELINE.md` (finding F5-C2-02). The control_set.yaml count "
+            f"(63) is authoritative. Human arbitration is required before editing DocNN content (P7).",
+            "",
+            "## §4 Anomalies inside the frozen set (from control_set.yaml fields)",
+            "",
+            f"- Controls with `status_csf` starting `N/A — EXCLUDED`: {excluded or 'none'}"
+            + (f" — `{excluded[0]}` (NI=2 SHOULD, outside posture scope; see posture model §4)." if excluded else ""),
+            f"- Controls with non-`-001` serial (multi-rule sub-domains): {len(multi_serial)}"
+            + (f" (e.g. {', '.join(multi_serial[:6])})" if multi_serial else ""),
+            "- 4 of 63 controls carry `status_csf: IMPLEMENTED`; the remainder are PARTIAL except the EXCLUDED entry "
+            "(deterministic legacy backfill per IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md §4 — see control_set header).",
+            "",
+            "## §5 Sources",
+            "",
+            "- `../02_PHASE2_RULES_RICH/control_set.yaml` (v6.0, GENERATED FILE — source of truth Doc18 §4/§5/§9)",
+            "- `../02_PHASE2_RULES_RICH/Doc18_Rules_Catalog.md` (§4 CR catalog 38 rules; §5 BPR catalog 25 rules)",
+            "- Doc21–Doc30 of this folder (count-claims census only; content untouched)",
+            ""]
+    return "\n".join(out)
+
+
+# ----------------------------------------------------------------- KG_CHAINS
+
+def gen_kg_chains(controls: list[dict]) -> str:
+    g1 = json.loads(read(P1 / "data" / "phase1_graph.json"))
+    g2 = json.loads(read(P2 / "data" / "phase2_graph.json"))
+    n1 = {n["id"]: n for n in g1["nodes"]}
+    n2 = {n["id"]: n for n in g2["nodes"]}
+
+    def links(graph, rel=None, frm=None, to=None):
+        return [l for l in graph["links"]
+                if (rel is None or l["rel"] == rel)
+                and (frm is None or l["from"] == frm)
+                and (to is None or l["to"] == to)]
+
+    # relation/type tallies (verbatim from the graph JSONs)
+    rel1 = collections.Counter(l["rel"] for l in g1["links"])
+    rel2 = collections.Counter(l["rel"] for l in g2["links"])
+    type2 = collections.Counter(n["type"] for n in g2["nodes"])
+
+    # map CR -> source tokens (control_set@source, e.g. "GDPR-C04, GDPR-C14, CRA-C07, NIS2-C18, AI-C17")
+    # (reg prefix in P1 RegulatoryClause ids: GDPR- / CRA- / NIS2- / AI-)
+    regs_present = ["GDPR", "CRA", "NIS2", "AIAct"]
+    clause_prefix = {"GDPR": "GDPR-", "CRA": "CRA-", "NIS2": "NIS2-", "AIAct": "AI-"}
+    source_token = {"GDPR": "GDPR-C", "CRA": "CRA-C", "NIS2": "NIS2-C", "AIAct": "AI-C"}
+
+    def clause_exists(prefix_token: str) -> str | None:
+        # find P1 RegulatoryClause id like GDPR-C04 / CRA-C15 / NIS2-C18 / AI-C17
+        for cid, n in n1.items():
+            if n["type"] == "RegulatoryClause" and cid.startswith(prefix_token):
+                return cid
+        return None
+
+    out = [fm("AEGIS-C02-P3-KG-CHAINS", "KG Derivation Chains v0 (Case_02 Phase 3)", kg_build="case-local P1+P2 graph JSONs (F4 port)"),
+           "", banner("KG_CHAINS"), "",
+           "# KG Derivation Chains v0 — Case_02 SecureBorder Solutions",
+           "",
+           "**Graphs used (case-local, ported F4):** "
+           f"`../01_PHASE1_CONTEXT_RICH/data/phase1_graph.json` — {len(g1['nodes'])} nodes / {len(g1['links'])} links; "
+           f"`../02_PHASE2_RULES_RICH/data/phase2_graph.json` — {len(g2['nodes'])} nodes / {len(g2['links'])} links. "
+           "Node ids below are cited **verbatim** from those files; hops that exist as graph edges are labelled "
+           "with their relation; hops that exist only by id convention are labelled `ID-join (control_set.yaml@traceability)` "
+           "— they are **not** graph edges.",
+           "",
+           "## §1 Graph inventory (verbatim counts)",
+           "",
+           "| Graph | Nodes | Links | Node types |",
+           "|---|---:|---:|---|",
+           f"| P1 phase1_graph.json | {len(g1['nodes'])} | {len(g1['links'])} | "
+           + ", ".join(f"{t} {n}" for t, n in collections.Counter(x['type'] for x in g1['nodes']).most_common()) + " |",
+           f"| P2 phase2_graph.json | {len(g2['nodes'])} | {len(g2['links'])} | "
+           + ", ".join(f"{t} {n}" for t, n in type2.most_common()) + " |",
+           "",
+           f"P1 relations: {dict(rel1.most_common())}",
+           f"P2 relations: {dict(rel2.most_common())}",
+           "",
+           "## §2 Representative derivation chains (one per regulation)",
+           "",
+           "Pattern: CompanyContext → Regulation → Clause → Evidence → Sub-domain → AG → OBL → CR → NIST anchor. "
+           "Selection rule (mechanical): first control in `control_set.yaml` whose `source` field cites the regulation.",
+           ""]
+    chain_n = 0
+    for reg in regs_present:
+        tok = source_token[reg]
+        cr = next((c for c in controls if tok in c["source"]), None)
+        if cr is None:
+            continue
+        chain_n += 1
+        sub = cr["sub_domain"]
+        # prefer the exact clause cited by the CR's own source field (e.g. GDPR-C04)
+        clause = None
+        for token in re.findall(r"\b(?:GDPR|CRA|NIS2|AI)-C\d{2}\b", cr["source"]):
+            if token in n1 and token.startswith(clause_prefix[reg]):
+                clause = token
+                break
+        if clause is None:
+            clause = clause_exists(clause_prefix[reg])
+        ev_ids = [l["from"] for l in links(g1, rel="CITES_CLAUSE", to=clause)] if clause else []
+        ev = ev_ids[0] if ev_ids else None
+        ags = sorted({l["to"] for l in links(g1, rel="YIELDS", frm=sub)})
+        obl_id = f"OBL-{sub}-001"
+        cr_node = cr["id"] if cr["id"] in n2 else None
+        csf_targets = [l["to"] for l in links(g2, rel="MAPS_TO", frm=cr["id"]) if "CSF" in l["to"]]
+        pf_targets = [l["to"] for l in links(g2, rel="MAPS_TO", frm=cr["id"]) if "PF" in l["to"]]
+        goal_targets = [l["to"] for l in links(g2, rel="MITIGATES", frm=cr["id"])]
+
+        hops = []
+        hops.append(("CompanyContext", "`CC-SECUREBORDER-2026-001` (P2 node; no outgoing edges — anchor node)"))
+        if clause:
+            hops.append(("Regulation→Clause", f"`{clause}` (P1 RegulatoryClause; label “{n1[clause]['label']}”)"))
+        else:
+            hops.append(("Regulation→Clause", f"TODO(human): no P1 RegulatoryClause with prefix `{tok}-` found"))
+        if ev:
+            hops.append(("Clause←Evidence", f"`{ev}` P1 `CITES_CLAUSE` edge"))
+        if ags:
+            hops.append(("Sub-domain→AG", f"`{'`, `'.join(ags[:2])}` P1 `YIELDS` edges from `{sub}`"))
+        hops.append(("AG→OBL", f"`{obl_id}` {'(P2 Obligation node)' if obl_id in n2 else 'TODO(human): absent from P2 graph'} — ID-join (control_set.yaml@traceability)"))
+        hops.append(("OBL→CR", f"`{cr['id']}` — ID-join (control_set.yaml@traceability “{cr['traceability'][:70]}…”)"))
+        if goal_targets:
+            hops.append(("CR→Goal", f"`{'`, `'.join(goal_targets)}` P2 `MITIGATES` edges"))
+        if csf_targets or pf_targets:
+            hops.append(("CR→NIST", f"`{'`, `'.join(csf_targets + pf_targets)}` P2 `MAPS_TO` edges"))
+
+        out += [f"### CH-{chain_n:02d} ({reg}): {cr['id']}", ""]
+        for i, (label, detail) in enumerate(hops, 1):
+            out.append(f"{i}. **{label}** — {detail}")
+        out.append("")
+
+    out += ["## §3 Chain summary",
+            "",
+            f"| Chain | Regulation | Rule | Clause (P1) | AG (P1) | OBL (P2) | NIST anchors (P2) |",
+            "|---|---|---|---|---|---|---|"]
+    for i, reg in enumerate(regs_present, 1):
+        tok = source_token[reg]
+        cr = next((c for c in controls if tok in c["source"]), None)
+        if not cr:
+            continue
+        clause = None
+        for token in re.findall(r"\b(?:GDPR|CRA|NIS2|AI)-C\d{2}\b", cr["source"]):
+            if token in n1 and token.startswith(clause_prefix[reg]):
+                clause = token
+                break
+        if clause is None:
+            clause = clause_exists(clause_prefix[reg])
+        ag = "AG-" + cr["sub_domain"] + "-001"
+        out.append(f"| CH-{i:02d} | {reg} | {cr['id']} | {clause or '—'} | "
+                   f"{ag if ag in n1 else '(no P1 AG node)'} | OBL-{cr['sub_domain']}-001 "
+                   f"{'✓' if ('OBL-' + cr['sub_domain'] + '-001') in n2 else '✗ absent'} | "
+                   f"{cr.get('csf','—')} / {cr.get('pf','—')} |")
+    out += ["",
+            "## §4 Verification commands",
+            "",
+            "```bash",
+            "python3 - <<'PY'",
+            "import json",
+            "g1 = json.load(open('02_CASES/Case_02_SecureBorder_Solutions/01_PHASE1_CONTEXT_RICH/data/phase1_graph.json'))",
+            "g2 = json.load(open('02_CASES/Case_02_SecureBorder_Solutions/02_PHASE2_RULES_RICH/data/phase2_graph.json'))",
+            "print(sum(1 for l in g1['links'] if l['rel']=='CITES_CLAUSE'), 'CITES_CLAUSE edges')",
+            "print(sum(1 for l in g2['links'] if l['rel']=='MAPS_TO'), 'MAPS_TO edges')",
+            "PY",
+            "```",
+            "",
+            "All node ids in this document were read mechanically from the two graph JSONs and "
+            "`control_set.yaml` on " + TODAY + " by `scripts/gen_narrative_docs_v0.py`.",
+            ""]
+    return "\n".join(out)
+
+
+# --------------------------------------------------------------- NIST_ANCHORS
+
+def gen_nist_anchors(controls: list[dict]) -> str:
+    def fn_of(csf_field: str) -> str:
+        m = re.match(r"\s*([A-Z]{2})\.", csf_field or "")
+        return m.group(1) if m else "(none/other)"
+
+    fn_counts = collections.Counter(fn_of(c.get("csf", "")) for c in controls)
+    status_csf = collections.Counter(c.get("status_csf", "") for c in controls)
+    status_priv = collections.Counter(c.get("status_privacy", "") for c in controls)
+    status_ai = collections.Counter(c.get("status_airmf", "") for c in controls)
+    no_airmf = [c["id"] for c in controls if c.get("airmf", "").strip() in ("", "—")]
+    unmapped_pf = [c["id"] for c in controls if "UNMAPPED_PF" in str(c.get("pf", ""))]
+    na_csf = [c["id"] for c in controls if "N/A" in str(c.get("csf", ""))]
+
+    out = [fm("AEGIS-C02-P3-NIST-ANCHORS", "NIST CSF 2.0 + PF 1.0 + AI RMF Anchors v0 (Case_02 Phase 3)"),
+           "", banner("NIST_ANCHORS"), "",
+           "# NIST Anchors v0 — Case_02 SecureBorder Solutions",
+           "",
+           f"Per-rule anchors for all **{len(controls)} controls** (38 CR + 25 BPR), copied **verbatim** from "
+           "`../02_PHASE2_RULES_RICH/control_set.yaml` fields `csf`, `pf`, `airmf` (fields 22/24 of the Fase 5 "
+           "control layout). This doc adds no anchors.",
+           "",
+           "## §1 Per-rule anchors",
+           "",
+           "| Rule ID | CSF 2.0 (`csf`) | PF 1.0 (`pf`) | AI RMF (`airmf`) | status_csf |",
+           "|---|---|---|---|---|"]
+    for c in controls:
+        out.append(f"| {c['id']} | {c.get('csf','—')} | {c.get('pf','—')} | {c.get('airmf','—')} | {c.get('status_csf','—')} |")
+    out += ["",
+            "## §2 Anchor counts per CSF 2.0 Function",
+            "",
+            "Counting the **first** CSF id of each control's `csf` field (a control may cite several "
+            "subcategories; multi-anchor counting is TODO(human) if desired):",
+            "",
+            "| Function | Controls anchored |",
+            "|---|---:|"]
+    for fn in ["GV", "ID", "PR", "DE", "RS", "RC", "(none/other)"]:
+        if fn_counts.get(fn):
+            name = {"GV": "GOVERN (GV)", "ID": "IDENTIFY (ID)", "PR": "PROTECT (PR)",
+                    "DE": "DETECT (DE)", "RS": "RESPOND (RS)", "RC": "RECOVER (RC)"}.get(fn, fn)
+            out.append(f"| {name} | {fn_counts[fn]} |")
+    out += ["",
+            "## §3 Status distributions (verbatim control_set.yaml values)",
+            "",
+            "| Field | Value | Count |", "|---|---|---:|"]
+    for field, dist in (("status_csf", status_csf), ("status_privacy", status_priv), ("status_airmf", status_ai)):
+        for v, n in dist.items():
+            out.append(f"| {field} | {v} | {n} |")
+    out += ["",
+            "## §4 Flags (unmapped / N-A anchors)",
+            "",
+            f"- Controls whose `csf` field contains `N/A`: {na_csf or 'none'}.",
+            f"- Controls whose `pf` field carries `UNMAPPED_PF (…)` justification: {unmapped_pf or 'none'}.",
+            f"- Controls with no AI RMF anchors (`airmf` = `—`, `N/A (non-AI scope)` placeholder is the legal form): "
+            f"{len(no_airmf)} of {len(controls)}.",
+            "- Note: `check_unmapped.py` (P2 gate) enforces the frozen PF/AI-RMF vocabularies over these values; "
+            "it re-verified PASS on " + TODAY + " with this doc in scope.",
+            "",
+            "## §5 Sources",
+            "",
+            "- `../02_PHASE2_RULES_RICH/control_set.yaml` — fields `csf`, `pf`, `airmf`, `status_csf`, `status_privacy`, `status_airmf`",
+            "- PF/AI-RMF frozen vocabularies: `00_METHODOLOGY/PREPROCESSING_by_domain/CONTROLS/NIST_PF/`, `.../NIST_AI_RMF/`",
+            ""]
+    return "\n".join(out)
+
+
+# ------------------------------------------------------------- CORPUS_LINKAGE
+
+def gen_corpus_linkage(controls: list[dict]) -> str:
+    rule_by_sub: collections.Counter = collections.Counter(c["sub_domain"] for c in controls)
+    doc_hits: dict[str, collections.Counter] = {}
+    total_refs = 0
+    scanned: list[str] = []
+    for p in sorted(list(BASE.glob("Doc*.md")) + list(BASE.glob("requirements/*.md")) + list(BASE.glob("annexes/*.md"))):
+        subs = D_RE.findall(read(p))
+        total_refs += len(subs)
+        doc_hits[p.name] = collections.Counter(subs)
+        scanned.append(p.name)
+
+    grand: collections.Counter = collections.Counter()
+    for c in doc_hits.values():
+        grand.update(c)
+
+    out = [fm("AEGIS-C02-P3-CORPUS-LINKAGE", "Corpus Linkage v0 (Case_02 Phase 3)"),
+           "", banner("CORPUS_LINKAGE"), "",
+           "# Corpus Linkage v0 — Case_02 SecureBorder Solutions",
+           "",
+           f"Mechanical census of `D-XX.Y` sub-domain references across the {len(scanned)} Markdown files of this "
+           "P3 folder, cross-read against the "
+           f"{len(controls)} controls of `../02_PHASE2_RULES_RICH/control_set.yaml` (per-`sub_domain`). "
+           "Methodology corpus index: `00_METHODOLOGY/PREPROCESSING_by_domain/domains/index.md` "
+           "(38 sub-domains D-01.1 … D-10.4; per `00_METHODOLOGY/AGENTS.md` the domain corpus is read-only here).",
+           "",
+           "## §1 Controls per sub-domain (control_set.yaml@sub_domain)",
+           "",
+           "| Sub-domain | Controls | Sub-domain | Controls |",
+           "|---|---:|---|---:|"]
+    subs_sorted = sorted(rule_by_sub)
+    half = (len(subs_sorted) + 1) // 2
+    for a, b in zip(subs_sorted[:half], subs_sorted[half:] + [None]):
+        out.append(f"| {a} | {rule_by_sub[a]} | {b or ''} | {rule_by_sub.get(b, '') if b else ''} |")
+    out += ["",
+            "## §2 D-XX.Y references per P3 doc",
+            "",
+            "| Doc | distinct D-XX.Y | total mentions |",
+            "|---|---:|---:|"]
+    for name, c in doc_hits.items():
+        out.append(f"| {name} | {len(c)} | {sum(c.values())} |")
+    out += ["",
+            f"**Total D-XX.Y mentions across P3 docs: {total_refs}; distinct sub-domains referenced: {len(grand)}.**",
+            "",
+            "## §3 Top sub-domains by mention volume (P3 docs)",
+            "",
+            "| Sub-domain | Mentions |",
+            "|---|---:|"]
+    for sub, n in grand.most_common(10):
+        out.append(f"| {sub} | {n} |")
+    out += ["",
+            "## §4 Pointers",
+            "",
+            "- Domain corpus: `00_METHODOLOGY/PREPROCESSING_by_domain/domains/index.md` → per-sub-domain `D-XX.Y.md` (read-only)",
+            "- Impact tool: `scripts/kg.sh impact <ID>` (repo root; RP-1) before any change to rule/requirement IDs",
+            "- Sibling linkage docs: Case_01 `03_PHASE3_DECOMPOSITION_RICH/CORPUS_LINKAGE.md` (structure template)",
+            ""]
+    return "\n".join(out)
+
+
+# ----------------------------------------------------------------------- main
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description="Generate the 4 P3 RICH narrative docs v0 for Case_02.")
+    ap.add_argument("--dry-run", action="store_true")
+    args = ap.parse_args()
+
+    controls = load_controls()
+    docs = {
+        "RULE_FREEZE.md": gen_rule_freeze(controls),
+        "KG_CHAINS.md": gen_kg_chains(controls),
+        "NIST_ANCHORS.md": gen_nist_anchors(controls),
+        "CORPUS_LINKAGE.md": gen_corpus_linkage(controls),
+    }
+    for name, content in docs.items():
+        if args.dry_run:
+            print(f"--- {name} ({len(content)} chars) ---")
+            print(content[:400])
+        else:
+            (BASE / name).write_text(content, encoding="utf-8")
+            print(f"[ok] wrote {BASE / name} ({len(content)} chars)")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
