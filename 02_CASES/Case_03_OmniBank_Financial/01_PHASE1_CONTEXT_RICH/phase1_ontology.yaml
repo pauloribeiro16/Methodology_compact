@@ -1822,6 +1822,6 @@ kg_ontology:
     total_clauses: 150          # GDPR 28 + CRA 26 + NIS2 29 + DORA 38 + AI 29
     ai_act_clauses: 29          # AI-C19 KEPT: OmniBank is PROVIDER + DEPLOYER (inverse of Case_02 D1)
     dora_clauses: 38
-    dora_coverage: via_CSF      # no dedicated DORA framework column (Doc21 design decision)
+    dora_coverage: via_CSF      # no dedicated DORA framework column (Doc20 design decision)
     adjusted_goals: 76          # 38 privacy (-001) + 38 security (-002)
     tensions: 5                 # T-001..T-005 (T-005 DORA TLPT)

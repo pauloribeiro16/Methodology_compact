@@ -9,7 +9,7 @@ author: Orchestrator (port campaign Fase 7)
 status: ACTIVE
 case: Case_03_OmniBank_Financial
 note: META document — not a numbered deliverable. Mirrors the Case_01/Case_02
-  instances; Case_03 slot map differs (Doc11_DORA inserted; P2 = Doc16–Doc21).
+  instances; Case_03 slot map differs (Doc11_DORA inserted; P2 = Doc15–Doc20).
 ---
 
 # PRODUCTION_FLOW — Case_03 Phase 1
@@ -28,7 +28,7 @@ Doc01_Taxonomy_Reference → Doc02_INTAKE_FORM → Doc03_Company_Context_Assessm
                               ├→ Doc04_Architecture_DataInventory (lens)
                               ├→ Doc06_ThirdParty_Landscape (lens, DORA CTPP register)
                               └→ Doc07_Org_Roles_RACI (lens)
-Doc02 → Doc05_Security_Posture (DEPRECATED_FOR_POSTURE; ownership → Doc21)
+Doc02 → Doc05_Security_Posture (DEPRECATED_FOR_POSTURE; ownership → Doc20)
 Doc03/04 → Doc08_Regulatory_Applicability → Doc10_Clause_Mapping_Matrix
 Doc10 → Doc11_DORA_ICT_Risk_Framework (DORA-specific: 38 clauses, T-005, TLPT)
 Doc08/10/11 → Doc12_Structured_Compliance_Matrix → Doc13_Proportionality_Profile
@@ -36,9 +36,9 @@ Doc12/13 → Doc14_Adjusted_Goals  (SOLE goal producer: 76 AG-D-XX.Y-001/-002)
 Doc09_Ambiguity_Register (sidecar, 1,490 cards)
 ```
 
-P1 → P2 hand-off (Case_03 slot map): Doc14 goals → Doc16 obligations
-(OBL-D-XX.Y-NNN) → Doc18 objectives (AG-D-, corr-012 PO/SO split deferred) →
-Doc20 Control Set (CR/BPR-D-XX.Y-NNN, 78 controls) → Doc21 aggregate matrix.
+P1 → P2 hand-off (Case_03 slot map): Doc14 goals → Doc15 obligations
+(OBL-D-XX.Y-NNN) → Doc17 objectives (AG-D-, corr-012 PO/SO split deferred) →
+Doc19 Control Set (CR/BPR-D-XX.Y-NNN, 78 controls) → Doc20 aggregate matrix.
 P3 = Doc22–Doc31 (complete). NOTE: C2's Doc20_NIST_Framework_Inputs has no
 Case_03 counterpart (port rule: map by content, not number).
 

@@ -597,8 +597,8 @@ This document is complete when the following checks pass:
 
 ### §7.3 Forward references (Phase 2 — out of Sprint 0.6 scope)
 
-- `02_CASES/Case_03_OmniBank_Financial/02_PHASE2_RULES/Doc16_Obligation_Derivation.md` — consumes DORA clause → sub-domain mapping from §3.
-- `02_CASES/Case_03_OmniBank_Financial/02_PHASE2_RULES/Doc20_Rules_Catalog.md` — consumes corpus SR-DORA-XXX titles.
+- `02_CASES/Case_03_OmniBank_Financial/02_PHASE2_RULES/Doc15_Obligation_Derivation.md` — consumes DORA clause → sub-domain mapping from §3.
+- `02_CASES/Case_03_OmniBank_Financial/02_PHASE2_RULES/Doc19_Rules_Catalog.md` — consumes corpus SR-DORA-XXX titles.
 - `02_CASES/Case_03_OmniBank_Financial/02_PHASE2_RULES/14_Architectural_Nodes.md` — consumes DORA-specific architectural nodes (§3.5 CTPP + BC/DR + TLPT).
 - `02_CASES/Case_03_OmniBank_Financial/02_PHASE2_RULES/15_Allocation.md` — consumes DORA-specific ownership (significance classification §2.2).
 

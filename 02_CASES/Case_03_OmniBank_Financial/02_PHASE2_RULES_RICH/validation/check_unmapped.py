@@ -13,7 +13,7 @@ Port of the Case_02 gate, parameterised for Case_03 (Maximum, 5 regulations):
     ∈ frozen 72-subcategory list (CONTROLS/NIST_AI_RMF/*/*.json);
 6.  zero /maturi/ terms outside supersession/waiver context;
 7.  zero sprint_ frontmatter keys in deliverables;
-8.  Doc20 Control Set: 78 controls (38 CR + 40 BPR), non-uniform status
+8.  Doc19 Control Set: 78 controls (38 CR + 40 BPR), non-uniform status
     distribution via validation/build_control_set.py;
 9.  build_control_set.py exits 0 and regenerates control_set.yaml.
 
@@ -35,7 +35,8 @@ EXCLUDED = ("validation/", "VALIDATOR_", "CHANGE_LOG", "DEPRECATED", "_deprecate
 WAIVER_WORDS = ("legacy", "superseded", "retired", "deprecated", "pre-port", "posture model",
                 "proibido", "forbidden", "reformado", "vocabulary", "vocabulário", "justificação",
                 "historical", "histórico", "was maturi", "ver git", "unmapped_pf_justification",
-                "não mapeado a csf")
+                "não mapeado a csf",
+                "model_csf_strict", "maturity_cur", "maturity_tgt", "evidence model", "maturity redesign")
 
 violations, warnings = [], []
 

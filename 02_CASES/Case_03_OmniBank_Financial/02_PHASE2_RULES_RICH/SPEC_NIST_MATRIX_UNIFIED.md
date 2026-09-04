@@ -40,8 +40,8 @@ anti_pattern_note: >
 
 > The triple-maturity scoring designed in this SPEC (legacy design, superseded)
 > is **SUPERSEDED** by `00_METHODOLOGY/IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md`
-> v2.0 (3 states + N/A categories, deterministic backfill). Doc21 §4/§5.1 and
-> Doc20 carry the adopted implementation. Sections still describing the legacy
+> v2.0 (3 states + N/A categories, deterministic backfill). Doc20 §4/§5.1 and
+> Doc19 carry the adopted implementation. Sections still describing the legacy
 > scoring are marked *legacy design text*; they are not authoritative.
 
 ## Como ler este documento
@@ -244,7 +244,7 @@ O Executor **NÃO DEVE** reconstruir o seguinte — está feito e é input:
 - `UNMAPPED_PRIVACY` — **REFORMADO** (tolerância zero).
 - `UNMAPPED_AIRMF` — **REFORMADO** (adjudicado no port Fase 3).
 - DORA: sem coluna própria — cobertura registada na coluna `regulations`
-  e ancorada via CSF (decisão de desenho do Doc21, preservada como
+  e ancorada via CSF (decisão de desenho do Doc20, preservada como
   invariante `dora_coverage: via_CSF`).
 - **Proibido:** pseudo-ranges, substituição de ID real por marcador, tokens
   sem justificação, exclusões de famílias baseadas em drafts.

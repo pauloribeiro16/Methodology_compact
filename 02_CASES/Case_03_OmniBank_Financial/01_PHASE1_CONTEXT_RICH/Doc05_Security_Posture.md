@@ -9,12 +9,12 @@ author: Executor (Sprint 1 reconciliation copy; Phase 2 Bloco E posture-model mi
 status: DEPRECATED_FOR_POSTURE
 status_history:
   - { date: '2026-08-07', from: CORPUS_ENRICHED, to: DEPRECATED_FOR_POSTURE,
-      reason: 'Posture ownership moved to Phase 2 Doc21 (legacy 13_Framework_Mapping_Matrix) — resolves PHASE1_STRATEGY §7 contradiction' }
-posture_owner: 02_PHASE2_RULES_RICH/Doc21_Framework_Mapping_Matrix.md
+      reason: 'Posture ownership moved to Phase 2 Doc20 (legacy 13_Framework_Mapping_Matrix) — resolves PHASE1_STRATEGY §7 contradiction' }
+posture_owner: 02_PHASE2_RULES_RICH/Doc20_Framework_Mapping_Matrix.md
 note: >
   Este documento mantém-se como INPUT qualitativo (postura observada).
   A avaliação e o modelo de postura foram movidos para
-  02_PHASE2_RULES_RICH/Doc21_Framework_Mapping_Matrix.md §4-5.
+  02_PHASE2_RULES_RICH/Doc20_Framework_Mapping_Matrix.md §4-5.
 case: Case_03_OmniBank_Financial
 applicable_regs: [GDPR, CRA, NIS 2, DORA, AI Act]
 active_subdomains: 38
@@ -37,7 +37,7 @@ reconciliation_notes:
 
 > ⚠️ **DEPRECATED FOR POSTURE (2026-08-07).** A avaliação e o modelo de
 > postura vivem agora em
-> `02_PHASE2_RULES_RICH/Doc21_Framework_Mapping_Matrix.md` §4-5. Este documento
+> `02_PHASE2_RULES_RICH/Doc20_Framework_Mapping_Matrix.md` §4-5. Este documento
 > mantém-se como input qualitativo (postura observada). Ver `status_history`
 > no frontmatter.
 

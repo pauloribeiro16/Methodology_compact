@@ -247,7 +247,7 @@ GATE-P exit code propagates to Phase 1 exit per `dependency_graph.yaml`. This do
 
 ## §7 Input to Phase 2
 
-Every obligation in Doc 08 (`Doc16_Obligation_Derivation.md`), every rule in Doc 11 (`Doc20_Rules_Catalog.md`), every architectural node in Doc 14 (`14_Architectural_Nodes.md`), and every allocation in Doc 15 (`15_Allocation.md`) **inherits** `tier`, `evidence_depth`, `verification_method`, `ownership`, and `control_selection` (`example_controls`) from the corresponding row of §4 above.
+Every obligation in Doc 08 (`Doc15_Obligation_Derivation.md`), every rule in Doc 11 (`Doc19_Rules_Catalog.md`), every architectural node in Doc 14 (`14_Architectural_Nodes.md`), and every allocation in Doc 15 (`15_Allocation.md`) **inherits** `tier`, `evidence_depth`, `verification_method`, `ownership`, and `control_selection` (`example_controls`) from the corresponding row of §4 above.
 
 **Cross-SO sub-SO pairs (per Doc 07 §5.5 + 07c §4):**
 - **T-001 timing pair** (Doc 07 §5.5 EVT-001) — D-04.3 §4.4 row carries max-SLA 24h routing (DORA 4h satisfies all shorter deadlines)
@@ -295,8 +295,8 @@ Every obligation in Doc 08 (`Doc16_Obligation_Derivation.md`), every rule in Doc
 - `00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-XX.Y/D-XX.Y.manifest.json` — 38 corpus L2 manifests (one per sub-domain) — used for priority + scope_overlap per regulation.
 - `00_METHODOLOGY/PREPROCESSING_by_domain/domains/D-XX.Y/D-XX.Y.json` — 38 corpus L3 JSON sidecars (one per sub-domain) — used for `requirements.high_level.yaml.priority`.
 - Next documents that consume this profile:
-  - `Doc16_Obligation_Derivation.md`
-  - `Doc20_Rules_Catalog.md`
+  - `Doc15_Obligation_Derivation.md`
+  - `Doc19_Rules_Catalog.md`
   - `14_Architectural_Nodes.md`
   - `15_Allocation.md`
 

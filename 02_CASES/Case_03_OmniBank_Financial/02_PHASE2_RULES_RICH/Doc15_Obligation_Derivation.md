@@ -8,7 +8,7 @@ updated: 2026-08-28
 author: Compliance Lead
 status: ACTIVE
 inputs: [Doc12_Structured_Compliance_Matrix.md, ../01_PHASE1_CONTEXT_RICH/Case_03_Phase1_RICH.xlsx]
-outputs: [Doc17_Strategic_Tensions_Report.md, Doc18_Privacy_Security_Objectives.md]
+outputs: [Doc16_Strategic_Tensions_Report.md, Doc17_Privacy_Security_Objectives.md]
 traceability: AEGIS Class Model → RegulatoryObligation, RegulatoryClause classes
 related_documents: 00_Taxonomy_Reference.md, 03_Design_Decisions_Log.md
 case: Case_03_OmniBank_Financial
@@ -470,5 +470,5 @@ Example: OBL-D-01.1-001
 
 ---
 
-**Next Document:** Doc17_Strategic_Tensions_Report.md
+**Next Document:** Doc16_Strategic_Tensions_Report.md
 **Phase 2 Step:** B ✅ COMPLETE

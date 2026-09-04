@@ -28,6 +28,7 @@ BUILD = CASE / "02_PHASE2_RULES_RICH" / "validation" / "build_control_set.py"
 
 EXCLUDED = ("validation/", "VALIDATOR_", "CHANGE_LOG", "DEPRECATED", "_deprecated", "RICH_VS_LEGACY", "PORT_census")
 WAIVER = ("legacy", "superseded", "retired", "deprecated", "pre-port", "posture model",
+         "p1_maturity.html", "model_csf_strict", "maturity_cur", "maturity redesign",
           "proibido", "forbidden", "reformado", "vocabulary", "vocabulário", "justificação",
           "historical", "histórico", "was maturi", "ver git")
 

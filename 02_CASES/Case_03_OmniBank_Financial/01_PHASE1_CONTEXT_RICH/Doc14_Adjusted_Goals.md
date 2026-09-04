@@ -29,7 +29,7 @@ nist_controls_full_coverage: true
 nist_frameworks_covered: [NIST CSF 2.0, NIST PF 1.0, NIST AI RMF]
 cross_checked_against: [Doc13_Proportionality_Profile.md, Doc11_DORA_ICT_Risk_Framework.md, Doc09_Ambiguity_Register.md, proportionality_model.md, 00_METHODOLOGY/PREPROCESSING_by_domain/CONTROLS/by_subdomain/]
 inputs: [Doc03_Company_Context_Assessment.md, Doc08_Regulatory_Applicability.md, Doc09_Ambiguity_Register.md, Doc11_DORA_ICT_Risk_Framework.md, Doc12_Structured_Compliance_Matrix.md, Doc13_Proportionality_Profile.md, phase1_ontology.yaml, ../../../../../00_METHODOLOGY/REFERENCE/proportionality_model.md, ../../../../../00_METHODOLOGY/PREPROCESSING_by_domain/CONTROLS/by_subdomain/*.json]
-outputs: [phase 2 rules catalog (Doc20_Rules_Catalog.md) consumes adjusted objectives + NIST controls mapping; _deprecated/07c_Appendix_A_OLD.md provides per-card detail archive]
+outputs: [phase 2 rules catalog (Doc19_Rules_Catalog.md) consumes adjusted objectives + NIST controls mapping; _deprecated/07c_Appendix_A_OLD.md provides per-card detail archive]
 related_documents: [Doc13_Proportionality_Profile.md, Doc03_Company_Context_Assessment.md, Doc08_Regulatory_Applicability.md, Doc09_Ambiguity_Register.md, Doc11_DORA_ICT_Risk_Framework.md, phase1_ontology.yaml, ../../../../../00_METHODOLOGY/REFERENCE/proportionality_model.md, _deprecated/07c_Appendix_A_OLD.md]
 frozen: false
 supersedes: 02_PHASE2_RULES/10_Privacy_Security_Goals.md §3-§4 (legacy PG/SG — now elevated to Phase 1 in Rich Mode)
@@ -463,9 +463,9 @@ DORA Art. 26(1) mandates Threat-Led Penetration Testing (TLPT) "at least every 3
 - **Doc 07** `Doc12_Structured_Compliance_Matrix.md` — Priority (P) per sub-domain (Doc 07 §3) + complementarity analysis (Doc 07 §5) + strategic tensions (Doc 07 §5.5)
 - **Doc 07b** `Doc13_Proportionality_Profile.md` — Track B case instance (31 RIGOROUS + 7 STANDARD); §4 per-sub-domain table (Sprint 4 enriched with Risk/legacy-posture/Priority cols (superseded)); §5.1 tension cross-reference; §11 decision table trail
 - **Doc 07c** `Doc14_Adjusted_Goals.md` — **THIS DOCUMENT** — adjusted objectives (§2 Multi-Regulation merged table, 38 rows × 8 cols) + 5 tensions (§3) + Track B decision trail (§4) + NIST controls mapping (§5, 3 frameworks × 38 sub-domains); 76 detail cards archived to `_deprecated/07c_Appendix_A_OLD.md`
-- **Phase 2 legacy** `02_PHASE2_RULES/Doc16_Obligation_Derivation.md` — consumes adjusted objectives; supersedes Doc18_Privacy_Security_Objectives.md §3-§4
+- **Phase 2 legacy** `02_PHASE2_RULES/Doc15_Obligation_Derivation.md` — consumes adjusted objectives; supersedes Doc17_Privacy_Security_Objectives.md §3-§4
 - **Phase 2 legacy** `02_PHASE2_RULES/10_Privacy_Security_Goals.md` — superseded by Doc 07c (PG/SG elevated from Phase 2 to Phase 1 in Rich Mode)
-- **Phase 2 legacy** `02_PHASE2_RULES/Doc17_Strategic_Tensions_Report.md` — 4 tensions (T-001..T-004), now resolved here with multi-paragraph treatment + T-005 NEW
+- **Phase 2 legacy** `02_PHASE2_RULES/Doc16_Strategic_Tensions_Report.md` — 4 tensions (T-001..T-004), now resolved here with multi-paragraph treatment + T-005 NEW
 - **Corpus** `00_METHODOLOGY/PREPROCESSING_by_domain/domains/` — 38 sub-domain JSON sidecars (HSO + sub-SOs frozen per `proportionality_model.md §1` invariant)
 - **Methodology** `00_METHODOLOGY/REFERENCE/proportionality_model.md` — Track B spec (Regulatory Baseline invariant §1, decision table §5, attribute definitions §6, validation §9)
 

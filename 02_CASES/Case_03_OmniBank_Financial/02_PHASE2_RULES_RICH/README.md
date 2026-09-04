@@ -48,12 +48,12 @@ verdict: PASS_WITH_FINDINGS
 
 | Doc | Lines (legacy) | Lines (Rich, now) | Cards / content | Bloco | Status |
 |-----|---------------:|------------------:|-----------------|:-----:|:------:|
-| `Doc16_Obligation_Derivation.md` | 472 | 472 | 38 obligations, NI re-derived under AVG+AI MUST+DORA | legacy copy | ✅ COPIED |
-| `Doc17_Strategic_Tensions_Report.md` | 687 | 687 | 5 tensions resolved (T-001..T-005; legacy row — port Fase 0) | legacy copy | ✅ COPIED |
-| `Doc18_Privacy_Security_Objectives.md` | 461 | 461 | 76 goal rows (24 PG + 52 SG) | legacy copy | ✅ COPIED |
-| `Doc20_Rules_Catalog.md` | 651 | 651+ | 78 cards (38 CR + 40 BPR, 17 fields + banner) | legacy copy + banner | ✅ COPIED |
+| `Doc15_Obligation_Derivation.md` | 472 | 472 | 38 obligations, NI re-derived under AVG+AI MUST+DORA | legacy copy | ✅ COPIED |
+| `Doc16_Strategic_Tensions_Report.md` | 687 | 687 | 5 tensions resolved (T-001..T-005; legacy row — port Fase 0) | legacy copy | ✅ COPIED |
+| `Doc17_Privacy_Security_Objectives.md` | 461 | 461 | 76 goal rows (24 PG + 52 SG) | legacy copy | ✅ COPIED |
+| `Doc19_Rules_Catalog.md` | 651 | 651+ | 78 cards (38 CR + 40 BPR, 17 fields + banner) | legacy copy + banner | ✅ COPIED |
 | `12_Rules_Catalog.xlsx` | 24KB | 24KB | Excel catalog (canonical) | legacy copy | ✅ COPIED |
-| `Doc21_Framework_Mapping_Matrix.md` | — | **unified matrix** | 3 frameworks (CSF + PF + AI RMF), triple maturity, DORA via CSF | C → D → F | ✅ DEEP_ENRICHED | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
+| `Doc20_Framework_Mapping_Matrix.md` | — | **unified matrix** | 3 frameworks (CSF + PF + AI RMF), triple maturity, DORA via CSF | C → D → F | ✅ DEEP_ENRICHED | *(legacy design text — superseded by IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0, port Fase 4)*
 | `README.md` | — | this file | orientation + dashboard + schema | rich-symmetry | ✅ NEW |
 | `PROJECT_STATE.md` | — | sibling | project state snapshot | rich-symmetry | ✅ NEW |
 | `RICH_VS_LEGACY.md` | — | sibling | Rich vs legacy diff summary | rich-symmetry | ✅ NEW |
@@ -111,13 +111,13 @@ verdict: PASS_WITH_FINDINGS
 
 | Metric | Value | Source |
 |--------|------:|--------|
-| Obligations (Doc 08) | 38 | `02_PHASE2_RULES/Doc16_Obligation_Derivation.md` §4 |
+| Obligations (Doc 08) | 38 | `02_PHASE2_RULES/Doc15_Obligation_Derivation.md` §4 |
 | Privacy Goals (PG) | 24 | `02_PHASE2_RULES/10_Privacy_Security_Goals.md` §4 (rows) |
 | Security Goals (SG) | 52 | `02_PHASE2_RULES/10_Privacy_Security_Goals.md` §5 (rows) |
 | Total goal rows | 76 | (24 PG + 52 SG; legacy summary header says "33" but row count is 76) |
-| Tensions (Doc 09) | 7 (HIGH + MEDIUM + INACTIVE) | Rich `Doc17_Strategic_Tensions_Report.md` §4 |
-| Compliance Rules (CR) | 38 unique | `02_PHASE2_RULES/Doc20_Rules_Catalog.md` §4 |
-| Best Practice Rules (BPR) | 40 unique | `02_PHASE2_RULES/Doc20_Rules_Catalog.md` §5 |
+| Tensions (Doc 09) | 7 (HIGH + MEDIUM + INACTIVE) | Rich `Doc16_Strategic_Tensions_Report.md` §4 |
+| Compliance Rules (CR) | 38 unique | `02_PHASE2_RULES/Doc19_Rules_Catalog.md` §4 |
+| Best Practice Rules (BPR) | 40 unique | `02_PHASE2_RULES/Doc19_Rules_Catalog.md` §5 |
 | Total Rules | 78 | Doc 11 §6 |
 | Track B distribution | 31 RIGOROUS + 7 STANDARD + 0 DEFERRED | `Doc13_Proportionality_Profile.md` §3 |
 | Active sub-domains | 38/38 (all active, no DEFERRED) | `Doc13_Proportionality_Profile.md` §3 |

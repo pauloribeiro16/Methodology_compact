@@ -7,8 +7,8 @@ created: 2026-04-03
 updated: 2026-08-28
 author: Compliance Lead
 status: ACTIVE
-inputs: [Doc16_Obligation_Derivation.md, Doc12_Structured_Compliance_Matrix.md]
-outputs: [Doc18_Privacy_Security_Objectives.md]
+inputs: [Doc15_Obligation_Derivation.md, Doc12_Structured_Compliance_Matrix.md]
+outputs: [Doc17_Privacy_Security_Objectives.md]
 traceability: AEGIS Class Model -> StrategicTension, ConflictResolution classes
 related_documents: 03_Design_Decisions_Log.md
 case: Case_03_OmniBank_Financial

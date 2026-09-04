@@ -12,7 +12,7 @@ applicable_regs: [GDPR, CRA, NIS 2, DORA, AI Act]
 active_subdomains: 38
 inactive_documented: []
 inputs: [Doc03_Company_Context_Assessment.md, Doc08_Regulatory_Applicability.md, Doc10_Clause_Mapping_Matrix.md]
-outputs: [Doc16_Obligation_Derivation.md]
+outputs: [Doc15_Obligation_Derivation.md]
 traceability: AEGIS Class Model → StructuredComplianceMatrix, DomainCoverageEntry classes
 related_documents: [00_Taxonomy_Reference.md, Doc11_DORA_ICT_Risk_Framework.md, Doc13_Proportionality_Profile.md]
 sibling_of: ../01_PHASE1_CONTEXT_RICH/Doc12_Structured_Compliance_Matrix.md
@@ -427,5 +427,5 @@ This section identifies **factual events** that can simultaneously trigger oblig
 ---
 
 **Phase 1 Status:** ✅ **COMPLETE**  
-**Next Phase:** 02_PHASE2_RULES → Doc16_Obligation_Derivation.md  
+**Next Phase:** 02_PHASE2_RULES → Doc15_Obligation_Derivation.md  
 **Companion File:** 06_Clause_Mapping_Matrix.xlsx

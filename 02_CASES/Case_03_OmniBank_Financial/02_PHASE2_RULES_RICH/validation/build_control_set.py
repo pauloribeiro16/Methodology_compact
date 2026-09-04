@@ -2,7 +2,7 @@
 """build_control_set.py — Case_03 (port Fase 5).
 
 Generates 02_CASES/Case_03_OmniBank_Financial/02_PHASE2_RULES_RICH/validation/control_set.yaml
-from the Control Set tables in Doc20_Rules_Catalog.md (single source of truth).
+from the Control Set tables in Doc19_Rules_Catalog.md (single source of truth).
 
 Case_03 layout: CR rows 19 cells (17 + F23/F24) or 18 cells (16 + F23/F24);
 BPR rows 17 cells (15 + F23/F24). Counts pinned: 38 CR + 40 BPR = 78.
@@ -14,7 +14,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DOC20 = ROOT / "Doc20_Rules_Catalog.md"
+DOC20 = ROOT / "Doc19_Rules_Catalog.md"
 OUT = Path(__file__).resolve().parent / "control_set.yaml"
 
 def parse_row(ln):
@@ -102,7 +102,7 @@ def main():
 
     out = [
         "# AEGIS Control Set — Case_03 (OmniBank Financial Systems) — GENERATED FILE",
-        "# Source of truth: Doc20_Rules_Catalog.md §4/§5 (DO NOT EDIT by hand).",
+        "# Source of truth: Doc19_Rules_Catalog.md §4/§5 (DO NOT EDIT by hand).",
         "# Regenerate: python3 validation/build_control_set.py",
         "# Port Fase 5, 2026-08-28. Statuses = deterministic legacy backfill (posture model §4).",
         "control_set:",

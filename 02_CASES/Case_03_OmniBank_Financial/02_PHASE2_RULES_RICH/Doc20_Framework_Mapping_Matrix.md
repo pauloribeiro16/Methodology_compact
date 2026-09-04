@@ -27,10 +27,10 @@ ni_avg_rule_note: |
   (all 38); NIS2 clauses are uniformly NI=3 (all 29); GDPR has 10 NI=2
   + 18 NI=3; CRA has 2 NI=2 + 24 NI=3. DORA + AI are MUST-preserved
   by source.
-inputs: [Doc20_Rules_Catalog.md,           # in 02_PHASE2_RULES_RICH/ (Rich copy)
-         Doc16_Obligation_Derivation.md,   # in 02_PHASE2_RULES_RICH/ (Rich copy)
-         Doc17_Strategic_Tensions_Report.md,
-         Doc18_Privacy_Security_Objectives.md,
+inputs: [Doc19_Rules_Catalog.md,           # in 02_PHASE2_RULES_RICH/ (Rich copy)
+         Doc15_Obligation_Derivation.md,   # in 02_PHASE2_RULES_RICH/ (Rich copy)
+         Doc16_Strategic_Tensions_Report.md,
+         Doc17_Privacy_Security_Objectives.md,
          12_Rules_Catalog.xlsx,
          README.md,
          PROJECT_STATE.md,
@@ -41,10 +41,10 @@ inputs: [Doc20_Rules_Catalog.md,           # in 02_PHASE2_RULES_RICH/ (Rich copy
          Doc11_DORA_ICT_Risk_Framework.md]
 outputs: [Phase 3 inputs, 12_Rules_Catalog.xlsx]
 traceability: AEGIS Framework Mapping Layer (CSF + PF + AI RMF; DORA via CSF coverage)
-related_documents: Doc20_Rules_Catalog.md, 12_Rules_Catalog.xlsx, Doc05_Security_Posture.md,
-                   Doc17_Strategic_Tensions_Report.md, Doc11_DORA_ICT_Risk_Framework.md
+related_documents: Doc19_Rules_Catalog.md, 12_Rules_Catalog.xlsx, Doc05_Security_Posture.md,
+                   Doc16_Strategic_Tensions_Report.md, Doc11_DORA_ICT_Risk_Framework.md
 note_inputs: >
-  Canonical Doc20_Rules_Catalog.md lives in ../02_PHASE2_RULES_RICH/ (with Bloco D extensions
+  Canonical Doc19_Rules_Catalog.md lives in ../02_PHASE2_RULES_RICH/ (with Bloco D extensions
   fields 19-24, tri-maturidade — legacy design, superseded by posture statuses). The Rich copy in this folder preserves the legacy
   17-field schema for reference and is annotated with a banner pointing to the canonical.
 ---
@@ -53,7 +53,7 @@ note_inputs: >
 
 > **Case_03 — OmniBank Financial Systems S.A.** (MAX complexity; 5 applicable regulations: GDPR + CRA + NIS 2 + DORA + AI Act; ISO 27001 certified; ECB-supervised credit institution; AI Act High-Risk Annex III §5 credit scoring).
 > This document unifies the three NIST frameworks against the 38 unique Compliance Rules (CR) and 40 unique Best Practice Rules (BPR-D-* — 45 table rows incl. BPR-D-02.2/-02.3 cross-domain) — **78 cards total** — derived from Phase 2.
-> All three frameworks are ACTIVE for Case_03 (DORA APPLICABLE; AI Act APPLICABLE — both third and fifth framework ACTIVE in this case). The matrix follows the AEGIS invariant: **frameworks are mapping targets, never derivation sources.** CR and BPR are derived from regulatory obligations (`Doc20_Rules_Catalog.md`); this matrix anchors each rule to the corresponding subcategory(ies) in the three frameworks.
+> All three frameworks are ACTIVE for Case_03 (DORA APPLICABLE; AI Act APPLICABLE — both third and fifth framework ACTIVE in this case). The matrix follows the AEGIS invariant: **frameworks are mapping targets, never derivation sources.** CR and BPR are derived from regulatory obligations (`Doc19_Rules_Catalog.md`); this matrix anchors each rule to the corresponding subcategory(ies) in the three frameworks.
 >
 > **DORA mapping note.** DORA is APPLICABLE for Case_03 (38 clauses; DORA Art. 5-16 ICT risk framework, Art. 17-19 incident reporting, Art. 24-27 testing, Art. 28-30 CTPP). However, DORA has NO dedicated column in the Doc 13 matrix — DORA maps to CSF 2.0 via the existing baseline (`GV.RM-*` for ICT risk governance → D-09.1; `RC.RP-*` for BC/DR → D-04.4; `GV.SC-*` for third-party risk → D-06.x; `RS.MA-*` for incident management → D-04.x; `DE.CM-*` for monitoring → D-10.x). The `regulations` column in §1 records DORA presence for each CR; §2.5 (Risk) and §6.7 explicitly reference DORA Art. 5-6 ICT governance and DORA Art. 9 ICT risk management.
 
@@ -181,7 +181,7 @@ note_inputs: >
 | Privacy FW | `ID-P.RA-P1..P5`, `GV-P.RM-P1..P4` | Ações de dados problemáticos identificadas; respostas; estratégia revista | ✅ CR-D-09.2-001, CR-D-09.4-001 |
 | AI RMF | `GOVERN-5.*`, `MAP-5.*` (impactos), `MANAGE-1.*` (tratamento) | Feedback externo; impactos; tratamento priorizado | ✅ CR-D-09.2-001, CR-D-10.1-001 |
 
-**Strategic tensions cross-reference** (per `Doc17_Strategic_Tensions_Report.md`):
+**Strategic tensions cross-reference** (per `Doc16_Strategic_Tensions_Report.md`):
 
 | Tension | Sub-Domain | Risk-framework convergence point | Resolution pattern (in Doc 11 / Phase 2) |
 |---------|-----------|----------------------------------|------------------------------------------|
@@ -1466,7 +1466,7 @@ After the FN-02 fix, the following transformations were applied (literal IDs omi
 
 ### §6.7 — Tension cross-reference (T-001..T-004 — pointer only)
 
-> Per `Doc17_Strategic_Tensions_Report.md` (Case_03: 4 tensions; this section cross-references all 4 for the Govern view §2.5 — T-001, T-002, T-003, T-004 + T-005 from Sprint 1).
+> Per `Doc16_Strategic_Tensions_Report.md` (Case_03: 4 tensions; this section cross-references all 4 for the Govern view §2.5 — T-001, T-002, T-003, T-004 + T-005 from Sprint 1).
 
 | Tension | Sub-Domain | Risk-framework convergence | Doc 13 anchor |
 |---------|-----------|-----------------------------|---------------|
@@ -1476,7 +1476,7 @@ After the FN-02 fix, the following transformations were applied (literal IDs omi
 | T-004 (INTENSITY_GAP, LOW, structural) | D-07.1 | GDPR Art. 25 "appropriate measures" (NI=2) vs CRA Annex I "secure by default" (NI=3); NI Delta = 1.000; **Follow CRA higher bar** | §2.5 risk view, §3 CR-D-07.1-001, §5.1 row, §5.2 row 1 (CSF GV) / row 8 (PF GV-P) |
 | T-005 (FREQUENCY_MISMATCH, MEDIUM, structural — NEW in Sprint 1) | D-02.4 vs D-10.3 | DORA Art. 26 TLPT triennial vs ISO 27001 annual surveillance vs AI Act Art. 43 conformity per-market-placement; **cycle orchestration** | §3 CR-D-02.4-001, §3 CR-D-10.3-001, §5.1 rows, §5.2 row 2 (CSF ID) |
 
-> **No resolution here** — resolutions live in `Doc17_Strategic_Tensions_Report.md` §4 and `Doc20_Rules_Catalog.md` §8. This section is a **pointer** for the framework mapping view. **DORA-specific note**: T-001 explicitly references DORA Art. 19 + RTS 2025/301 Art. 6 (4h post-classification); T-002 references DORA Art. 11 immutable logs; T-005 references DORA Art. 26 TLPT. DORA is the **defining characteristic** of Case_03 per `Doc11_DORA_ICT_Risk_Framework.md`.
+> **No resolution here** — resolutions live in `Doc16_Strategic_Tensions_Report.md` §4 and `Doc19_Rules_Catalog.md` §8. This section is a **pointer** for the framework mapping view. **DORA-specific note**: T-001 explicitly references DORA Art. 19 + RTS 2025/301 Art. 6 (4h post-classification); T-002 references DORA Art. 11 immutable logs; T-005 references DORA Art. 26 TLPT. DORA is the **defining characteristic** of Case_03 per `Doc11_DORA_ICT_Risk_Framework.md`.
 
 ---
 
@@ -1846,7 +1846,7 @@ graph LR
 > Pre-`validate_doc.py` notes; full validation in `12_Rules_Catalog.xlsx` (Block F).
 
 - **§1 coverage:** 38 CR × 12 columns = 456 cells. UNMAPPED tokens: 1 CSF (D-05.4), 0 Privacy FW, 23 AI RMF (justified by no AI-C* in source).
-- **§3 coverage:** 38 CR + 40 BPR = 78 YAML blocks. BPR-D-* count = 40 unique (matches `Doc20_Rules_Catalog.md` BPR list with `BPR-D-*` prefix including D-12 cross-domain BPR). BPR-D-02.2 maps to D-06.2 (SBOM), BPR-D-02.3 maps to D-02.2 (vulnerability mgmt) — cross-domain mappings preserved.
+- **§3 coverage:** 38 CR + 40 BPR = 78 YAML blocks. BPR-D-* count = 40 unique (matches `Doc19_Rules_Catalog.md` BPR list with `BPR-D-*` prefix including D-12 cross-domain BPR). BPR-D-02.2 maps to D-06.2 (SBOM), BPR-D-02.3 maps to D-02.2 (vulnerability mgmt) — cross-domain mappings preserved.
 - **§4.5 / §5.2 Function coverage:** 15 Functions (6 CSF + 5 Privacy + 4 AI RMF). No UNMAPPED Functions.
 - **§6 framework unused subcategories:** CSF ~14 acceptable, PF 45 acceptable, AI RMF 31 documented in `02b_SecurityRules_NISTAIRMF.md`.
 - **§7 Mermaid:** 6 paths (a GDPR, b CRA, c NIS 2, d DORA, e AI Act, f 5-reg T-001) + 3 multi-regulation convergence paths (T-001 D-04.3, T-002 D-05.3↔D-10.2, T-003 D-09.2). DORA Art. 5 + Art. 10 highlighted as Case_03-defining.
@@ -1865,8 +1865,8 @@ graph LR
 
 ## See also
 
-- `02_CASES/Case_03_OmniBank_Financial/02_PHASE2_RULES/Doc20_Rules_Catalog.md` — 38 CR + 40 BPR (+ 5 BPR-D-12 cross-domain); the 40 BPR-D-* used here are the 7 from §5.1 + 10 from §9.1 + 4 from §9.2 + 4 cross-domain).
-- `02_CASES/Case_03_OmniBank_Financial/02_PHASE2_RULES/Doc17_Strategic_Tensions_Report.md` — 4 tensions (T-001..T-004) + T-005 from Sprint 1; T-001..T-005 are all referenced in §2.5 and §6.7.
+- `02_CASES/Case_03_OmniBank_Financial/02_PHASE2_RULES/Doc19_Rules_Catalog.md` — 38 CR + 40 BPR (+ 5 BPR-D-12 cross-domain); the 40 BPR-D-* used here are the 7 from §5.1 + 10 from §9.1 + 4 from §9.2 + 4 cross-domain).
+- `02_CASES/Case_03_OmniBank_Financial/02_PHASE2_RULES/Doc16_Strategic_Tensions_Report.md` — 4 tensions (T-001..T-004) + T-005 from Sprint 1; T-001..T-005 are all referenced in §2.5 and §6.7.
 - `02_CASES/Case_03_OmniBank_Financial/02_PHASE2_RULES/Doc10_Clause_Mapping_Matrix.md` — 150 clauses (28 GDPR + 26 CRA + 29 NIS 2 + 38 DORA + 29 AI Act) source for §6.6 NI distribution.
 - `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT_RICH/Doc13_Proportionality_Profile.md` — Track B tier per sub-domain (31 RIGOROUS + 7 STANDARD).
 - `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT_RICH/Doc05_Security_Posture.md` — current maturity per sub-domain (cur values in §5.1). (legacy design text, superseded by the Implementation Posture Model v2.0 — port Fase 4)
@@ -1877,7 +1877,7 @@ graph LR
 - `00_METHODOLOGY/PREPROCESSING_by_domain/_global/NIST_PF_1.0_subcategories.md` — Privacy FW 1.0 frozen list (138 IDs; 104 active + 34 v1.0 redirects).
 - `00_METHODOLOGY/PREPROCESSING/NIST_AI_RMF_1.0_subcategories.md` — AI RMF 1.0 frozen list (72 IDs, 4 Functions).
 - `03_REFERENCE_MATERIAL/Framework_Mappings/Framework_Crosswalk_ARM.md` — Framework crosswalk ACTIVE v1.0 (38/38 CSF, 38/38 ISO, 23/38 SSDF).
-- `02_CASES/Case_02_SecureBorder_Solutions/02_PHASE2_RULES_RICH/Doc21_Framework_Mapping_Matrix.md` — Case_02 reference for methodology (FN-03 fix for N/A exclusion rule; 3 frameworks).
+- `02_CASES/Case_02_SecureBorder_Solutions/02_PHASE2_RULES_RICH/Doc20_Framework_Mapping_Matrix.md` — Case_02 reference for methodology (FN-03 fix for N/A exclusion rule; 3 frameworks).
 - `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT_RICH/phase1_ontology.yaml` — clause IDs and NI baseline.
 - `02_CASES/Case_03_OmniBank_Financial/01_PHASE1_CONTEXT_RICH/Doc08_Regulatory_Applicability.md` — 5/5 regulations applicable (GDPR, CRA, NIS 2, DORA, AI Act).
 - Root `AGENTS.md` — branch workflow + methodology invariants.

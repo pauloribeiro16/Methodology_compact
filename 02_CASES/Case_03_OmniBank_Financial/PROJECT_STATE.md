@@ -2,11 +2,11 @@
 
 **Last Updated:** 2026-08-28
 **Status:** 🟢 Phase 1 ✅ COMPLETE (Rich) | Phase 2 ✅ COMPLETE (Rich) | Phase 3 ✅ COMPLETE (Doc22–31) | ✅ PORT CAMPAIGN Case_01→Case_03 COMPLETE (Fases 0–7, all gates PASS — see commit b0cddb6)
-**Next Phase:** Maturity v1.6 migration / P3 follow-ups (parallel Case_01/02)
+**Next Phase:** v1.6 evidence-model parity — Folio VIII + EvidenceItems (campaign PORT-PARITY-2) / P3 follow-ups (parallel Case_01/02)
 **Complexity:** Maximum (5/5 regulations, 38/38 sub-domains)
 **Restructured:** 2026-04-02 (v2.0)
 
-> **⚠️ 2026-08-28 (port Fase 0).** The April sections below (§2–§5) are a historical baseline keyed to legacy doc names and April volumes. Current reality on disk: Rich P1 = Doc01–**Doc14** (Doc11_DORA inserted; Doc14_Adjusted_Goals, 76 AG goals), P2 = **Doc16–Doc21** (78 rules = 38 CR + 40 BPR; **5 tensions** T-001..T-005), P3 = Doc22–Doc31 (complete). Canonical narrative layers: the Aug-6/8 Rich campaign, the Aug-13/14 corr-010 wave (renames + AG- migration) and the port campaign started 2026-08-28.
+> **⚠️ 2026-08-28 (port Fase 0).** The April sections below (§2–§5) are a historical baseline keyed to legacy doc names and April volumes. Current reality on disk: Rich P1 = Doc01–**Doc14** (Doc11_DORA inserted; Doc14_Adjusted_Goals, 76 AG goals), P2 = **Doc15–Doc20** (78 rules = 38 CR + 40 BPR; **5 tensions** T-001..T-005), P3 = Doc22–Doc31 (complete). Canonical narrative layers: the Aug-6/8 Rich campaign, the Aug-13/14 corr-010 wave (renames + AG- migration) and the port campaign started 2026-08-28.
 
 ---
 
@@ -266,25 +266,25 @@ python lints/run_all_lints.py --case "OmniBank Financial Systems"
 
 ## Sprint 0.5 — Port Campaign Case_01→Case_03, Fase 0 (2026-08-28)
 
-- `validation/PORT_census_v0.md` — full baseline: UNMAPPED 262 tokens (AIRMF 140 / PF 91 / CSF 20 / PRIVACY 8 / bare 3), sprint keys, legacy maturi scales (Doc08=158, Doc13=76, Doc20=78), goal census (76 AG verified; PG/SG=0 em deliverables)
-- **Adjudicações:** tensões canónicas = **5** (T-005 DORA TLPT integrado no Doc17; claim "7" incorrecto); **AI-C19 MANTÉM-SE** (OmniBank é PROVIDER + DEPLOYER do OmniScore — inverso do D1 do Case_02; 150 cláusulas); PF 1.1 → 1.0 no P2 PS; **corr-012 registado** como pendência formal (split PO/SO adiado — decisão P7 2026-08-28, coerente com TRACEABILITY_AUDIT §5a)
+- `validation/PORT_census_v0.md` — full baseline: UNMAPPED 262 tokens (AIRMF 140 / PF 91 / CSF 20 / PRIVACY 8 / bare 3), sprint keys, legacy maturi scales (Doc08=158, Doc13=76, Doc19=78), goal census (76 AG verified; PG/SG=0 em deliverables)
+- **Adjudicações:** tensões canónicas = **5** (T-005 DORA TLPT integrado no Doc16; claim "7" incorrecto); **AI-C19 MANTÉM-SE** (OmniBank é PROVIDER + DEPLOYER do OmniScore — inverso do D1 do Case_02; 150 cláusulas); PF 1.1 → 1.0 no P2 PS; **corr-012 registado** como pendência formal (split PO/SO adiado — decisão P7 2026-08-28, coerente com TRACEABILITY_AUDIT §5a)
 - **Cadeia de estado:** PS do caso 3.1 (banner + realidade Rich/corr-010, dirs `_RICH` no §9); progress.json com backfill Rich + corr-010 + evento Fase 0; P1 PS/README (sprints_complete 0–6, tabela deliverables DocNN, Doc14 ✅)
 - **Decisões P7 registadas:** manter AG-D- no P2 (corr-012 adiado); DORA mantém `via_CSF` sem coluna própria; cópia canónica da ontologia = P1 RICH
 - **Next:** Fase 1 (sprint sweep, refs legacy, Docs 16/18/20 DRAFT→ACTIVE), Fase 2 (postura P1 + kg_ontology com branch DORA) — Bloco A
 
 ## Port Bloco A — Fases 1–2 (2026-08-28)
 
-- **Fase 1 (higiene estrutural):** sprint sweep em deliverables (Doc11/13/14/19/21, SPEC, READMEs, PS); mapeamento legacy→DocNN por conteúdo (slot map C3: Doc12=C2·Doc11 … Doc21=C2·Doc19; 377 refs, 19 basenames); refs a dirs apagados (`../02_PHASE2_RULES/` → `_RICH`, xlsx repoint); Docs 16/17/18/20 DRAFT→ACTIVE com frontmatter de 5 regulações + `case:`; Doc17 v1.1 (T-005)
-- **Fase 2 (postura P1 + ontologia):** `/maturi/` purge — Doc05 → `DEPRECATED_FOR_POSTURE` + `posture_owner: Doc21`, Doc08 158 células backfilled, Doc13 76, Doc02/04/06/07/14 reescritos; `phase1_ontology.yaml` v2.0-port — kg_ontology aditivo com **branch DORA** no RegulatoryClause, posture block, invariants (150 cláusulas, 38/38, 76 goals, 5 tensões, `dora_coverage: via_CSF`, AI-C19 KEPT); validação PASS em `01_PHASE1_CONTEXT_RICH/validation/P1_ontology_port_validation.md`
+- **Fase 1 (higiene estrutural):** sprint sweep em deliverables (Doc11/13/14/19/21, SPEC, READMEs, PS); mapeamento legacy→DocNN por conteúdo (slot map C3: Doc12=C2·Doc11 … Doc20=C2·Doc18; 377 refs, 19 basenames); refs a dirs apagados (`../02_PHASE2_RULES/` → `_RICH`, xlsx repoint); Docs 16/17/18/20 DRAFT→ACTIVE com frontmatter de 5 regulações + `case:`; Doc16 v1.1 (T-005)
+- **Fase 2 (postura P1 + ontologia):** `/maturi/` purge — Doc05 → `DEPRECATED_FOR_POSTURE` + `posture_owner: Doc20`, Doc08 158 células backfilled, Doc13 76, Doc02/04/06/07/14 reescritos; `phase1_ontology.yaml` v2.0-port — kg_ontology aditivo com **branch DORA** no RegulatoryClause, posture block, invariants (150 cláusulas, 38/38, 76 goals, 5 tensões, `dora_coverage: via_CSF`, AI-C19 KEPT); validação PASS em `01_PHASE1_CONTEXT_RICH/validation/P1_ontology_port_validation.md`
 - **P5 record:** kg.sh impact AG-D-05.2-001 / AEGIS-P3-RICH-07c → no match (KG E3 sem nós de Case_03 — sem contaminação F-S1-09)
 - **Verification (Bloco A exit):** 0 chaves sprint em deliverables; 0 basenames legacy em Doc*/READMEs (fora 00_Taxonomy_Reference ambíguo e RICH_VS_LEGACY histórico); /maturi/ P1 = só waivers legítimos (nomes reais de folhas xlsx + contexto de superssão); 76 AG goals verificados; YAMLs parseiam
-- **Next (Bloco B):** Fase 3 (UNMAPPED P2 — 262 tokens), Fase 4 (postura P2 — Doc21 §4 + Doc20 78 escalas), Fase 5 (Control Set v1 — 78 controlos) 
+- **Next (Bloco B):** Fase 3 (UNMAPPED P2 — 262 tokens), Fase 4 (postura P2 — Doc20 §4 + Doc19 78 escalas), Fase 5 (Control Set v1 — 78 controlos) 
 
 ## Port Blocos B+C — Fases 3–7 (2026-08-28)
 
-- **Fase 3 (UNMAPPED P2):** 262 tokens adjudicated — `UNMAPPED_AIRMF`/`UNMAPPED_PRIVACY` RETIRED (0 células); 23 CR sem dimensão AI → `N/A (non-AI scope)`; 15 CR com AI-C* mantêm âncoras reais (verificadas na frozen 72); 14 células PF justificadas em Doc20 + 24 em Doc21; 51 placeholders PT standardizados; SPEC §4.6 canónico; relatório `02_PHASE2_RULES_RICH/validation/VALIDATOR_UNMAPPED_AUDIT_v0.md`
-- **Fase 4 (postura P2):** Doc21 §4/§5.1/§5.2/V4 → Implementation Status (78 controlos: 177 PARTIAL / 57 N/A); Doc19 `posture_target_note_*`; SPEC banner de superssão
-- **Fase 5 (Control Set v1):** Doc20 v2.0 — schema 24 campos corrigido, F23 traceability com AG-D- (corr-012), F24 → Doc21 §1, Anexos A–C; `validation/build_control_set.py` + `control_set.yaml` (78 controlos = 38 CR + 40 BPR; bug `'**'` asserted)
+- **Fase 3 (UNMAPPED P2):** 262 tokens adjudicated — `UNMAPPED_AIRMF`/`UNMAPPED_PRIVACY` RETIRED (0 células); 23 CR sem dimensão AI → `N/A (non-AI scope)`; 15 CR com AI-C* mantêm âncoras reais (verificadas na frozen 72); 14 células PF justificadas em Doc19 + 24 em Doc20; 51 placeholders PT standardizados; SPEC §4.6 canónico; relatório `02_PHASE2_RULES_RICH/validation/VALIDATOR_UNMAPPED_AUDIT_v0.md`
+- **Fase 4 (postura P2):** Doc20 §4/§5.1/§5.2/V4 → Implementation Status (78 controlos: 177 PARTIAL / 57 N/A); Doc18 `posture_target_note_*`; SPEC banner de superssão
+- **Fase 5 (Control Set v1):** Doc19 v2.0 — schema 24 campos corrigido, F23 traceability com AG-D- (corr-012), F24 → Doc20 §1, Anexos A–C; `validation/build_control_set.py` + `control_set.yaml` (78 controlos = 38 CR + 40 BPR; bug `'**'` asserted)
 - **Fase 6 (gates):** `check_unmapped.py` + `check_implementation_posture_case03.py` — **BOTH GATE PASS**; marker sweep case-wide (36 linhas com nota de superssão); `_deprecated/` adicionado às exclusões do gate
 - **Fase 7 (fecho):** `01_PHASE1_CONTEXT_RICH/PRODUCTION_FLOW.md` v1.0 (slot map próprio, DORA via-CSF como invariante); `validation/P1_production_flow_audit_case03.md` PASS_WITH_NOTES; progress.json + CHANGE_LOG_CENTRAL 6.2 + GLOBAL_PROJECT_STATE 6.5
 - **Campaign exit:** 11 commits `c765800`..HEAD; Case_03 P1+P2 ao padrão Aug-2026, DORA-aware; AI-C19 mantido (PROVIDER+DEPLOYER); corr-012 pendente formal
