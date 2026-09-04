@@ -1,6 +1,6 @@
 # Project State — Case 02: SecureBorder Solutions (High Complexity)
 
-**Last Updated:** 2026-08-28
+**Last Updated:** 2026-09-04
 **Status:** 🟢 Phase 1 ✅ COMPLETE (Rich, superseded Sprint 3 CONDITIONAL_PASS) | Phase 2 ✅ COMPLETE (corr-008 migrated) | Phase 3 ✅ COMPLETE | 🟢 PORT CAMPAIGN Case_01→Case_02 COMPLETE (Fases 0–7 — all gates PASS) | 🟢 MATURITY v1.6 INTEGRATED (Folio VIII + AI-RMF capability anchors)
 **Next Phase:** Maturity v1.6 migration / P3 follow-ups (parallel Case_01/03)
 **Complexity:** High (4 regulations: GDPR, CRA, NIS 2, AI Act)
@@ -413,3 +413,13 @@ python lints/run_all_lints.py --case "SecureBorder Solutions"
 - **Fase 6 (gates):** gates v0.3 ported and parameterised — `02_PHASE2_RULES_RICH/validation/check_unmapped.py` + repo-root `validation/check_implementation_posture_case02.py`; sprint-key sweep across P2/P3/00_COMMON/SPEC (indented keys included); **BOTH GATES PASS** (CSF frozen-list check is WARN-only: list not mirrored in the compact repo)
 - **Fase 7 (fecho):** `01_PHASE1_CONTEXT_RICH/PRODUCTION_FLOW.md` v1.0 (Layers 0/1/2, §3 goal-linkage with AG- IDs, §6 open items); `validation/P1_production_flow_audit_case02.md` (PASS_WITH_NOTES, incl. cross-case mirror refresh); progress.json Bloco B/C events
 - **Campaign exit state:** 13 commits `5bfd81f`..`b42602d`; P1+P2 now carry the full Case_01 August-2026 campaign adapted to Case_02's 4-regulation scope (real AI RMF anchoring where Case_01 used placeholders)
+
+## PORT-PARITY-2 — P2 wave + P3 rich v0 (2026-09-04)
+
+- **Baseline:** the uncommitted Sprint 10/11 parity work (P1 graph v2.4 521n/1205l, Folios I–VIII, validator 9 checks) was gated and committed at campaign start (commit 49aa5e4); link count corrected 505→1205 in state files.
+- **corr-013 did NOT apply to Case_02:** P2 was already Doc14–Doc20 (aligned with Case_01's scheme; extra Doc20_NIST_Framework_Inputs is a Case_02-only doc). Only Case_03 needed renumbering.
+- **P2 wave:** `phase2_ontology.yaml` v1.0; `scripts/build_p2_graph.py` (278n/356l/4 audits — 0 orphan obligations; objective-coverage audit: 14 PO/40 SO without objective) + `build_p2_dashboard.py` validator (strict PASS); `Case_02_P2_Dashboard.html` + `build_case02_p2_dashboard.py`; `control_set.yaml` canonical at P2 root (validation/ copy = mirror).
+- **P1 Maturity back-ports** (latent bugs found via Case_03 build): radar 0-width canvas fix, `frameworkOf()` fix, "34 active SDs" data-driven label — `Case_02_P1_Maturity.html` radars now paint.
+- **P3 rich layer v0:** scripts ported + run (verify_rich **2 FAIL/6 PASS** — honest, see `03_PHASE3_DECOMPOSITION/validation/RICH_LINT_BASELINE.md`); 4 narrative docs GENERATED v0 with banner (RULE_FREEZE, KG_CHAINS, NIST_ANCHORS, CORPUS_LINKAGE); functional tree 29n/28e; `TRACEABILITY_AUDIT.md` created for P2.
+- **Findings for human review:** 25/84 FRs carry Source Rule "—"; only 10/63 rules FR-traced at requirement level (catalog level 63/63 via allocation); stale "53 rules" claims; duplicated FR-71/72 rows. Full list: `02_CASES/PORT_PARITY2_REPORT.md`.
+- **Gates:** 3× check_unmapped + 2× posture ALL PASS post-campaign; smoke 16/16.

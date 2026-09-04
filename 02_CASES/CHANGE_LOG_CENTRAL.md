@@ -1,8 +1,26 @@
 # Central Change Log — AEGIS Methodology Implementation
 
-**Last Updated:** 2026-09-02
-**Version:** 6.6 (Case_02 Complete Dashboard Parity — Folios I–VIII, 521 nodes, 1205 links, RACI 63x12, 8 rich audits, 70 AGs, AI-RMF)
+**Last Updated:** 2026-09-04
+**Version:** 6.8 (PORT-PARITY-2 — cross-case content parity: corr-013 C3 renumber, C3 P1 v1.6 layer 749n/2054l, P2 waves C2+C3, P3 rich v0 C2+C3, dashboards 16/16 smoke)
 **Scope:** All Cases
+
+---
+
+## 0.4 2026-09-04 — PORT-PARITY-2 (cross-case content propagation Case_01 → Case_02/03)
+
+| Item | Value |
+|------|-------|
+| Baseline | 5 commits gating+committing the uncommitted Sprint 10/11 parity work (incl. link count fix 505→1205) |
+| Source fix (Case_01) | Folio IV "Maturity EV" column (v1.6 evidence_ids badge; gridMaturityClass retired); NEW-08 audit rewritten as evidence-coverage; Folio I prose 31 audits; JSON re-inlined |
+| corr-013 (Case_03 only) | P2 renumber Doc16–21 → Doc15–20 (206 refs, single-pass census-driven; phantoms preserved); control_set.yaml regenerated; C2 already Doc14–20 — no renumber |
+| Case_03 P1 | ontology v2.1-port (maturity_model + 7 promoted classes, DORA kept); compact.json 1.1; build_p1_graph 749n/2054l/9 audits; 119 EvidenceItems (37 cov + 38 CSF + 38 PF + 6 AI-RMF real); validator v2.4 strict PASS; dashboards Folios I–VIII + Maturity |
+| Case_02+03 P2 wave | phase2_ontology v1.0 ×2; build_p2_graph (C2 278n/356l, C3 242n/340l) + validators strict PASS; P2 dashboards ×2; control_set canonical at P2 root; C2 TRACEABILITY_AUDIT.md |
+| Case_02+03 P3 v0 | verify_rich ported + run (C2 2 FAIL/6 PASS; C3 3 FAIL/5 PASS — honest); RULE_FREEZE/KG_CHAINS/NIST_ANCHORS/CORPUS_LINKAGE GENERATED v0 + banner; RICH_LINT_BASELINE ×2; functional trees |
+| Back-ports to Case_02 | P1 Maturity radars 0-width canvas fix + frameworkOf + 34-active label |
+| Gates | 3× check_unmapped + 2× posture ALL PASS; smoke 16/16 (14 dashboards + 2 new); waiver harmonisation for v1.6 provenance lines (model_csf_strict/maturity scalars/maturity redesign/P1_Maturity.html) |
+| Verification | subagent outputs independently verified by orchestrator (gates re-run, JSON deep-checks 0 dangling/0 forbidden scalars, screenshots read back) |
+| Human-review queue | 02_CASES/PORT_PARITY2_REPORT.md — orphan obligations (C3: 10; C2: 14 PO/40 SO objective-coverage), verify_rich FAILs, D-07.2 coverage decision, phantom refs left untouched |
+| Status | Campaign complete; P7 items queued for human |
 
 ---
 

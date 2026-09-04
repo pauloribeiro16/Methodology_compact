@@ -173,6 +173,13 @@
       "phase": 3,
       "result": "phase corrected from 2 to 3 after Port Fases 6-7 completed (commit b0cddb6, 2026-08-28)",
       "action_taken": "Backfilled by Dream consolidation 2026-08-31 (manual orchestration approved)"
+    },
+    {
+      "timestamp": "2026-09-04T00:00:00Z",
+      "event": "port_parity2_campaign_complete",
+      "phase": 3,
+      "result": "PORT-PARITY-2 (executed 2026-09-04): corr-013 P2 renumber Doc16-21 -> Doc15-20 (206 refs, gates PASS); P1 v1.6 parity (ontology maturity_model, build_p1_graph 749n/2054l, 119 EvidenceItems = 37 cov + 38 CSF + 38 PF + 6 AI-RMF, validator v2.4 strict PASS); P1 dashboards Folios I-VIII + standalone Maturity (smoke 16/16, screenshots verified); P2 wave (phase2_ontology v1.0, graph 242n/340l incl. AUD-P2-005b 10 orphan obligations, P2 dashboard); P3 rich layer v0 (verify_rich 3 FAIL/5 PASS honest, 4 narrative docs GENERATED v0, RICH_LINT_BASELINE, functional tree)",
+      "action_taken": "Findings needing human review listed in 02_CASES/PORT_PARITY2_REPORT.md; commits 75bd626..637ccc5"
     }
   ]
 }

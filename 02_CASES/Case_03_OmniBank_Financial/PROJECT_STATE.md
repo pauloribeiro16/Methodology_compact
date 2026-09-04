@@ -1,6 +1,6 @@
 # Project State — Case 03: OmniBank Financial Systems (High Complexity)
 
-**Last Updated:** 2026-08-28
+**Last Updated:** 2026-09-04
 **Status:** 🟢 Phase 1 ✅ COMPLETE (Rich) | Phase 2 ✅ COMPLETE (Rich) | Phase 3 ✅ COMPLETE (Doc22–31) | ✅ PORT CAMPAIGN Case_01→Case_03 COMPLETE (Fases 0–7, all gates PASS — see commit b0cddb6)
 **Next Phase:** v1.6 evidence-model parity — Folio VIII + EvidenceItems (campaign PORT-PARITY-2) / P3 follow-ups (parallel Case_01/02)
 **Complexity:** Maximum (5/5 regulations, 38/38 sub-domains)
@@ -184,6 +184,7 @@ python lints/run_all_lints.py --case "OmniBank Financial Systems"
 
 | Date | Document | Change Type | Description | Impact |
 |------|----------|-------------|-------------|--------|
+| 2026-09-04 | P1 data layer + P2 wave + P3 rich v0 | CAMPAIGN PORT-PARITY-2 | corr-013 renumber (Doc16–21 → Doc15–20, 206 refs); ontology v2.1-port maturity_model; build_p1_graph 749n/2054l + validator v2.4 strict PASS; P1 dashboards Folios I–VIII + Maturity (smoke 16/16); phase2_ontology + P2 graph 242n/340l (AUD-P2-005b: 10 orphan obligations); P2 dashboard; P3 scripts + 4 narrative docs GENERATED v0 + RICH_LINT (verify_rich 3 FAIL/5 PASS — findings for human review) | High |
 | 2026-04-04 | lints/ | TOOLS RESTRUCTURE | Per-phase runners + 9 per-document lint scripts created | High |
 | 2026-04-03 | 08_Obligation_Derivation.md | NEW | 38 obligations derived from 150 clauses | High |
 | 2026-04-03 | 09_Strategic_Tensions_Report.md | NEW | 4 tensions detected and resolved (2 CRITICAL) | High |

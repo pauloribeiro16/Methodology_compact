@@ -1,7 +1,7 @@
 # GLOBAL PROJECT STATE — AEGIS Methodology Implementation
 
-**Last Updated:** 2026-08-31
-**Version:** 6.7 (Case_02 Full Dashboard Parity — Folios I–VIII, 521 nodes, validator v2.4, 8 audits, 70 AGs)
+**Last Updated:** 2026-09-04
+**Version:** 6.8 (PORT-PARITY-2 — cross-case content parity: C3 P1 v1.6 layer + corr-013, P2 waves C2+C3, P3 rich v0 C2+C3, 16/16 smoke, all gates PASS)
 **Scope:** All Cases
 
 ---
@@ -13,8 +13,8 @@
 | Case ID | Name | Complexity | Status | Phase 1 | Phase 2 | Phase 3 | Phase 3 RICH | Quality Gate |
 |---------|------|------------|--------|---------|---------|---------|--------------|--------------|
 | **Case_01** | TinyTask SaaS | Low | 🟢 Active | ✅ Complete | ✅ Complete | ✅ Complete (v2.0) | 🟡 PASS_WITH_FINDINGS (v2 — see VALIDATOR_SPRINT5 2026-08-24 v2) | 78.6% (SC1-SC5) |
-| **Case_02** | SecureBorder Solutions | High | 🟢 Active — port campaign & P1 parity complete (2026-08-31) | ✅ Complete + parity (521 nodes, 8 audits, Folios I–VIII PASS) | ✅ Complete + campaign | ✅ Complete (84.1%) | ⏳ Not started | 85.2% (pre-campaign) |
-| **Case_03** | OmniBank Financial Systems | Maximum | 🟢 Active — port campaign complete (2026-08-28) | ✅ Complete + campaign (AG- verified, posture, Control Set 78, gates PASS) | ✅ Complete + campaign | ✅ Complete (100%) | ⏳ Not started | 99.2% (pre-campaign) |
+| **Case_02** | SecureBorder Solutions | High | 🟢 Active — PORT-PARITY-2 complete (2026-09-04) | ✅ Complete + parity (521n/1205l, Folios I–VIII) | ✅ Complete + P2 wave (278n/356l, P2 dashboard) | ✅ Complete (84.1%) + rich layer v0 (verify_rich 2 FAIL/6 PASS — findings queued) | 🟡 v0 generated (narrative docs + lint) | gates PASS |
+| **Case_03** | OmniBank Financial Systems | Maximum | 🟢 Active — PORT-PARITY-2 complete (2026-09-04) | ✅ Complete + v1.6 layer (749n/2054l, 119 EV, corr-013, Folios I–VIII) | ✅ Complete + P2 wave (242n/340l, AUD-P2-005b 10 orphans) | ✅ Complete (100%) + rich layer v0 (verify_rich 3 FAIL/5 PASS — findings queued) | 🟡 v0 generated (narrative docs + lint) | gates PASS |
 
 ### 1.2 Overall Metrics
 
@@ -118,6 +118,7 @@ Methodology/
 
 | Date | Type | Affected Cases | Description | Impact |
 |------|------|----------------|-------------|--------|
+| 2026-09-04 | CAMPAIGN (PORT-PARITY-2) | Case_02 + Case_03 | Cross-case content propagation from Case_01: corr-013 (C3 P2 Doc16–21→Doc15–20, 206 refs); C3 P1 v1.6 layer (ontology maturity_model, 749n/2054l, 119 EvidenceItems, dashboards Folios I–VIII); P2 waves (phase2_ontology + graphs + P2 dashboards + control_set canonical at root); P3 rich v0 (scripts + narrative docs GENERATED + RICH_LINT); Case_02 P1 Maturity back-ports. 16/16 smoke; all 5 case gates PASS. Human-review queue: 02_CASES/PORT_PARITY2_REPORT.md | High |
 | 2026-08-31 | VISUALISATIONS (v2.4) | Case_02 (Full Dashboard Parity) | Parity Folios I–VIII em `Case_02_P1_Dashboard.html`: 521 nodes / 1205 links (70 AdjustedGoals de Doc13 §8, 10 DataSubjectCategory, 1071 ambiguidade Doc09, 45 NistControl via REG_CHAIN + PF + AI-RMF, 59 EvidenceItems, 8 audits). Validator v2.4 (9 gates + strict PASS). Folio I patched (SecureBorder, 450 emp, 4/5 regs, 34 tiers, 70 AGs, 8 audits). Folio VIII AI-RMF table parsing. Smoke 11/11 dashboards PASS. | High (Case_02 atinge 100% de paridade com Case_01 nos 8 Folios) |
 | 2026-08-27 | METHODOLOGY (v1.6) | Case_01 (+ cross-case referencial) | Maturity redesign: `00_METHODOLOGY/MATURITY_MODEL_CSF_STRICT.md` v1.0 + `EvidenceItem` nodes (47 seed + 10 PF = 57 total) + Folio VIII (4 KPI tiles + tier-bar Function + 2 radares ECharts CSF/PF + callout pedagógico). Validator v1.6: 4 gates PASS (no Tier scalars on sub-domínio, sources[] resolved, proportionality_tier non-null). Legacy `#maturity` section em `Case_01_Dashboard.html` removido. | High (referencial único agora CSF 2.0 §3.4, documentado e auditado) |
 | 2026-08-27 | METHODOLOGY (v2.3) | Case_02 (+ AI-RMF anchors) | Maturity redesign: `00_METHODOLOGY/MATURITY_MODEL_CSF_STRICT.md` v1.0 (referencial partilhado) + `phase1_ontology.yaml` v2.3 + `compact.json` schema 1.1 + `scripts/build_p1_graph.py` (de-novo, 19 node types, 311 links, 59 EvidenceItems — 34 Coverage + 25 Capability: 10 CSF + 10 PF + 5 AI-RMF, 15 NistControl). Validator v2.3: 4 gates PASS. `00_VISUALISATIONS/Case_02/Case_02_P1_Maturity.html` (Folio VIII standalone) + `build_case02_dashboard.py`. Smoke 10/10 dashboards. Doc05 v1.3 + Doc12 v1.3 com nota v2.3. AI-RMF anchors aplicáveis (SecureBorder é AI Act provider) — Framework=AI na tabela Scale A, sem radar dedicado. | High (Case_02 agora alinhado com Case_01 no mesmo modelo; AI Act coberto por anchors AI-RMF) |
