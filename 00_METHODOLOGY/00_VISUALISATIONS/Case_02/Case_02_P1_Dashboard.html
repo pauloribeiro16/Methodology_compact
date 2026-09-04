@@ -1373,7 +1373,7 @@ footer.foot .right { text-align: right; }
   </div>
   <div id="grid-col-toggles" class="col-toggle-bar" aria-label="Toggle optional Folio IV columns">
     <span class="ctb-label">Show columns &middot;</span>
-    <label class="ctb-cb"><input type="checkbox" data-col-key="maturity" checked> <span class="ctb-name">Maturity</span><span class="ctb-hint">cur &rarr; tgt</span></label>
+    <label class="ctb-cb"><input type="checkbox" data-col-key="maturity" checked> <span class="ctb-name">Maturity EV</span><span class="ctb-hint">evidence ids &middot; v1.6</span></label>
     <label class="ctb-cb"><input type="checkbox" data-col-key="verification" checked> <span class="ctb-name">Verification</span><span class="ctb-hint">method</span></label>
     <label class="ctb-cb"><input type="checkbox" data-col-key="evidence" checked> <span class="ctb-name">Evidence</span><span class="ctb-hint">depth</span></label>
     <label class="ctb-cb"><input type="checkbox" data-col-key="owner" checked> <span class="ctb-name">Owner</span></label>
@@ -1395,7 +1395,7 @@ footer.foot .right { text-align: right; }
         <th data-col-key="sec">Security Goal</th>
         <th data-col-key="active">Active</th>
         <th data-col-key="ambig">Ambig in scope</th>
-        <th data-col-key="maturity">Maturity</th>
+        <th data-col-key="maturity">Maturity EV</th>
         <th data-col-key="verification">Verification</th>
         <th data-col-key="evidence">Evidence</th>
         <th data-col-key="owner">Owner</th>
@@ -2579,12 +2579,7 @@ renderAuditColumns();
 // VIEW IV — GRID
 // ===================================================================
 // Phase C — helpers for the new proportionality/verification cells.
-function gridMaturityClass(cur, tgt) {
-  if (cur == null || tgt == null) return "deferred";
-  if (cur === tgt) return "flat";      // 1→1, 2→2, ...
-  if (cur < tgt && tgt - cur === 1) return "growing";
-  return "advanced";
-}
+// (gridMaturityClass retired with the v1.6 model — sub-domains hold evidence_ids, not cur/tgt scalars.)
 function gridRiskClass(r) {
   if (!r) return "";
   if (r === "HIGH") return "pill-risk-high";
@@ -2618,11 +2613,10 @@ function initGrid() {
     const node = nodeById.get(sid);
     const a = (node && node.attrs) || {};
 
-    // --- Maturity (cur -> tgt) badge ---
-    const cur = a.maturity_cur, tgt = a.maturity_tgt;
-    const matCls = gridMaturityClass(cur, tgt);
-    const matHtml = (cur != null && tgt != null)
-      ? `<span class="mat-badge ${matCls}" title="Doc12 §4 maturity ${cur} → ${tgt}">${cur}<span class="arrow">→</span>${tgt}</span>`
+    // --- Maturity EV badge (v1.6: evidence anchoring, Folio VIII) ---
+    const evIds = a.evidence_ids || [];
+    const matHtml = evIds.length
+      ? `<span class="mat-badge flat" title="Evidence anchoring this sub-domain (Folio VIII): ${escapeHtml(evIds.join(', '))}">${evIds.length} EV</span>`
       : `<span style="color:var(--faint)">—</span>`;
 
     // --- Verification method (cell text) ---

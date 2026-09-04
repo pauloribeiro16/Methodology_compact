@@ -1269,34 +1269,26 @@ AUDITS = [
         "id": "NEW-08",
         "kind": "coverage_gap",
         "severity": "low",
-        "title": "Doc12 §4 maturity scores are uniform 2/4 → 3/4 across 36 of 37 active sub-domains; only D-02.4 is 1/4 → 1/4 (DEFERRED)",
+        "title": "Evidence coverage v1.6: all 37 active sub-domains carry evidence_ids; D-08.3 (NOT_ADDRESSED, inactive) has none by design",
         "detail": (
-            "Doc12 §4 'Maturity (cur→tgt)' column carries '2/4 → 3/4' for 36 of the 37 ACTIVE sub-domains; the "
-            "single exception is D-02.4 (Threat-Led Penetration Testing, DEFERRED) which is '1/4 → 1/4'.  "
-            "Implication: the baseline maturity floor across the 36 LIGHTWEIGHT/MINIMAL MUST rows is uniform — "
-            "the current picture shows TinyTask at 2/4 maturity across nearly every domain and aiming for 3/4 by "
-            "Phase-1 exit.  Downstream Phase-2/Phase-3 gate evaluators should use this uniform baseline (cur=2, "
-            "tgt=3) as the comparison anchor against which individual rule-level maturity is measured.  D-02.4's "
-            "1/4 → 1/4 (DEFERRED) is correctly NOT pulling the baseline down — it is scoped-out per §5.2's "
-            "drop-one-tier rule (MICRO + FTE ≤ 1.0).  Coverage gap: the uniformity hides sectoral differentiation; "
-            "Phase-2 maturity scoring could check tier-aware progression (LIGHTWEIGHT rows get a tier-aware weight, "
-            "MINIMAL rows get a lighter-weight progression) but those refinements live downstream, not in §4."
+            "Per ontology v1.6 (MATURITY_MODEL_CSF_STRICT.md), sub-domains hold EVIDENCE, not maturity scalars: the "
+            "prior Doc12 \u00a74 'Maturity (cur\u2192tgt)' column was removed and this audit superseded the old uniform-2/4\u21923/4 "
+            "finding.  Coverage verified at build time: 37 of 38 SecurityControlDomain nodes carry attrs.evidence_ids "
+            "pointing at Coverage EvidenceItem nodes (Scale B) whose sources[] must resolve (validator check_phase_c "
+            "Gates 2\u20134).  The single exception is D-08.3 (Threat-Led Penetration Testing, NOT_ADDRESSED, inactive), "
+            "which holds no evidence by design \u2014 a NOT_ADDRESSED sub-domain has no obligations to evidence."
         ),
         "evidence": [
-            "Doc12 §4 rows 99-136: 36 rows carry '2/4 → 3/4' (all but D-02.4); D-02.4 row carries '1/4 → 1/4'",
-            "phase1_ontology.yaml@proportionality_model §5.2: 'SHOULD + FTE ≤ 1.0 → DEFERRED' applies only to D-02.4",
-            "phase1_ontology.yaml@proportionality_model §6: tier-specific verification_method (MINIMAL=INSPECT, LIGHTWEIGHT=DEMONSTRATE+INSPECT, DEFERRED='—') but does not differentiate maturity scoring",
-            "phase1_graph.json@invariants.subdomains_active = 37; uniform-2/4→3/4 subset = 36",
+            "phase1_graph.json: 37/38 SecurityControlDomain nodes with non-empty attrs.evidence_ids (only D-08.3 empty)",
+            "Doc12 \u00a74 v1.6 note: maturity_cur/maturity_tgt removed; Implementation Status is the sole posture field",
+            "phase1_ontology.yaml@kg_ontology.maturity_model: forbidden_subdomain_attrs = [tier, maturity_cur, maturity_tgt, maturity_score, capability_score]",
+            "scripts/build_p1_dashboard.py check_phase_c Gates 2\u20134: proportionality keys + evidence_ids + sources[] resolution",
         ],
-        "node_ids": ["D-01.1", "D-02.4", "D-10.3"],
+        "node_ids": ["D-01.1", "D-08.3"],
         "recommendation": (
-            "Human (P7) — accept the uniform 2/4 → 3/4 baseline as the Phase-1 floor for downstream gate evaluation, "
-            "OR add a 'maturity_progression_target' attr that varies by tier (LIGHTWEIGHT = tgt 3, MINIMAL = tgt 2, "
-            "DEFERRED = tgt 1) — clarifying the proportionally-tiered trajectory.  Either path is consistent with "
-            "the Sprint-5 'risk values derived from priority + tier + sub-domain risk profile' rationale already in "
-            "Doc12 §4 reading guide (v1.6 — MATURITY_MODEL_CSF_STRICT.md). Per ontology v1.6, "
-            "sub-domains no longer carry maturity_cur/tgt scalars; emit() below attaches evidence_ids pointing "
-            "to EvidenceItem nodes with verifiable sources."
+            "Human (P7) \u2014 no action required; this is the positive coverage marker for the v1.6 model.  Standing "
+            "rule: if D-08.3 (or any other NOT_ADDRESSED sub-domain) is ever activated, it MUST gain evidence_ids "
+            "with resolvable sources[] before the Phase C gates pass."
         ),
     },
 ]
