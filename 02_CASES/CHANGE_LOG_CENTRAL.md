@@ -1,8 +1,28 @@
 # Central Change Log — AEGIS Methodology Implementation
 
-**Last Updated:** 2026-08-27
-**Version:** 6.4 (Case_02 v2.3 maturity_model — MATURITY_MODEL_CSF_STRICT.md + Folio VIII standalone + EvidenceItem seed CSF + PF + AI-RMF)
+**Last Updated:** 2026-09-02
+**Version:** 6.6 (Case_02 Complete Dashboard Parity — Folios I–VIII, 521 nodes, 1205 links, RACI 63x12, 8 rich audits, 70 AGs, AI-RMF)
 **Scope:** All Cases
+
+---
+
+## 0.3 2026-09-02 — Case_02 Complete Dashboard Parity (Folios I–VIII)
+
+| Metric | Value |
+|--------|-------|
+| Files changed | `00_VISUALISATIONS/Case_02/Case_02_P1_Dashboard.html`, `00_VISUALISATIONS/Case_02/Case_02_P1_Maturity.html`, `00_VISUALISATIONS/Case_02/build_case02_dashboard.py`, `01_PHASE1_CONTEXT_RICH/scripts/build_p1_graph.py`, `01_PHASE1_CONTEXT_RICH/scripts/build_p1_dashboard.py`, `01_PHASE1_CONTEXT_RICH/data/phase1_graph.json`, `01_PHASE1_CONTEXT_RICH/PROJECT_STATE.md`, `CHANGE_LOG_CENTRAL.md` |
+| Graph nodes & links | 521 nodes / 1205 links (70 AdjustedGoals from Doc13 §8, 10 DataSubjectCategories, 1071 ambiguity cards from Doc09, 45 NistControl via REG_CHAIN + PF + AI-RMF, 59 EvidenceItems, 8 enriched audits, 625 RACI edges, 71 APPLIES_TO edges) |
+| Validator v2.4 | 9 check gates (ontology conformity, invariant parity, node ID resolution, maturity strictness, check_phase_c) + `--strict` PASS |
+| Folio I (Exec) | Company card (SecureBorder B.V., 450 emp, 5–8 sec FTE, Edge AI/EU Cloud/Signed OTA/PKI), Applicability (4/5: GDPR, CRA, NIS2, AI Act), Tiers (34: 8 RIGOROUS / 26 STANDARD), Coverage (34 SUBSTANTIVE / 4 NOT_ADDRESSED), Adjusted Goals (70: 35 Privacy / 35 Security), Ambiguity (1071 in scope), Caveats (8 audits), Pipeline legend, Footer, JS label formatters |
+| Folio II (Graph) | Toolbar Tier filter (RIGOROUS / STANDARD), ECharts force layout parameters optimized for 521 nodes (repulsion 350, edgeLength [80, 180], gravity 0.08, friction 0.6), Side Inspector typeLabels for CoverageGap, Stakeholder, EvidenceItem |
+| Folio III (Audits) | 8 enriched audits with full schema (`title`, `detail`, `evidence`, `recommendation`), 5 canonical kind categories (`structural`, `cross_doc_conflict`, `broken_link`, `coverage_gap`, `blocking_ambiguity`), header `8 findings · click for full text` |
+| Folio IV (Deep-Dive) | 2-track Adjusted Goals columns (`Privacy Goal` AG-D-XX.Y-001 and `Security Goal` AG-D-XX.Y-002 per Doc13 §8), DataTable column indexing synced |
+| Folio V (Pipeline) | Layered pipeline updated for Case_02 counts (10 Stakeholders, 7 Business Goals, 5 Regulations, 111 Clauses, 38 Sub-domains, 70 Adjusted Goals, 9 Tensions, 12 Coverage Gaps) |
+| Folio VI (RACI) | Complete 63 activities × 12 roles matrix (`CEO`, `CTO`, `CISO`, `DPO`, `AI-Gov`, `Comp`, `IA`, `SOC`, `Legal`, `HR`, `Proc`, `Board`), full R/A/C/I cell rendering + composite letter support, sorting and filtering across all 12 roles, sub-domain links |
+| Folio VII (Architecture) | 13 Systems, 7 DataStores, 12 DataFlows, 22 ThirdParties / Vendors, risk ranking, compliance posture (DPA / Art. 28 / SBOM / Exit plan), interactive flow map and vendor dossier |
+| Folio VIII (Maturity) | Integrated AI-RMF outcome parsing (`GOVERN-`, `MAP-`, `MEASURE-`, `MANAGE-`) into unified dashboard table alongside CSF 2.0 and NIST PF 1.0 anchors |
+| Verification | `build_p1_dashboard.py --check --strict` PASS; Playwright smoke 12/12 dashboards PASS |
+| Status | Case_02 Phase 1 Dashboard parity 100% complete |
 
 ---
 

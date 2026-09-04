@@ -2,10 +2,10 @@
 document_id: AEGIS-P2-RICH-STATE
 title: Project State — Phase 1 Rich Mode (Case_02)
 phase: 1
-version: 1.1
+version: 1.3
 created: 2026-08-06
-updated: 2026-08-27
-author: Sprint 3 Executor (+ Sprint 10 maturation note: v2.3 maturity_model)
+updated: 2026-09-02
+author: Sprint 3 Executor (+ Sprint 10 maturation + Sprint 11 dashboard parity)
 status: FINAL
 case: Case_02_SecureBorder_Solutions
 applicable_regs: [GDPR, CRA, NIS 2, AI_Act]
@@ -94,6 +94,7 @@ frozen: false
 | **Sprint 5** | 2026-08-06 | DEEP enrichment — `07c` status promoted to DEEP_ENRICHED; 70 detail cards and 3 tensions expanded |
 | **Sprint 9 (port campaign)** | 2026-08-28 | Port Caso 01→02: AG- verified, posture fields, Control Set 78 (38 CR + 40 BPR), gates PASS — see Case root README §8 |
 | **Sprint 10 (maturation)** | 2026-08-27 | **Maturity redesign v2.3** (MATURITY_MODEL_CSF_STRICT.md). `phase1_ontology.yaml` v2.2→v2.3 (additive maturity_model block, EvidenceItem/TierDecision, 5 relations); `data/phase1_ontology.compact.json` schema 1.0→1.1; `scripts/build_p1_graph.py` (de-novo, 19 node types from YAML+XLSX, 311 links, 59 EvidenceItems, 15 NistControl); `scripts/build_p1_dashboard.py` (validator v2.3, 4 gates); `00_VISUALISATIONS/Case_02/Case_02_P1_Maturity.html` (Folio VIII standalone) + `build_case02_dashboard.py` (inline JSON for file://); Doc05 v1.2→v1.3 + Doc12 v1.0→v1.3 (nota v2.3). Validator v2.3 `--check` PASS; smoke 10/10 dashboards. |
+| **Sprint 11 (dashboard parity)** | 2026-08-31 | **Full Dashboard Parity (Folios I–VIII)**. `build_p1_graph.py` generates 521 nodes / 1205 links (70 AdjustedGoals from Doc13 §8, 10 DataSubjectCategories, 1071 ambiguity cards per Doc09, 45 NistControl via REG_CHAIN + PF + AI-RMF, 59 EvidenceItems, 8 audits). Validator v2.4 in `build_p1_dashboard.py` (9 checks + strict PASS). `Case_02_P1_Dashboard.html` patched via `build_case02_dashboard.py` across Folio I cards, metadata, JS formatters, and AI-RMF recognition. Smoke 11/11 dashboards PASS. |
 
 **Commits on `feature/aegis-p1-case02-rich`:** `5687792` (corpus cherry-pick) → `fff7915` (Sprint 0) → `1c74f6b` (Sprint 0.5) → `8decee0` (Sprint 1) → `973cc1e` (Sprint 2) → Sprint 3 *(uncommitted at time of writing)*.
 
