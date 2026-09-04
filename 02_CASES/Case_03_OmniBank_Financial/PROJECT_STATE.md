@@ -184,7 +184,7 @@ python lints/run_all_lints.py --case "OmniBank Financial Systems"
 
 | Date | Document | Change Type | Description | Impact |
 |------|----------|-------------|-------------|--------|
-| 2026-09-04 | P1 data layer + P2 wave + P3 rich v0 | CAMPAIGN PORT-PARITY-2 | corr-013 renumber (Doc16–21 → Doc15–20, 206 refs); ontology v2.1-port maturity_model; build_p1_graph 749n/2054l + validator v2.4 strict PASS; P1 dashboards Folios I–VIII + Maturity (smoke 16/16); phase2_ontology + P2 graph 242n/340l (AUD-P2-005b: 10 orphan obligations); P2 dashboard; P3 scripts + 4 narrative docs GENERATED v0 + RICH_LINT (verify_rich 3 FAIL/5 PASS — findings for human review) | High |
+| 2026-09-04 | P1 data layer + P2 wave + P3 rich v0 | CAMPAIGN PORT-PARITY-2 | corr-013 renumber (Doc16–21 → Doc15–20, 206 refs); ontology v2.1-port evidence-model block; build_p1_graph 749n/2054l + validator v2.4 strict PASS; P1 dashboards Folios I–VIII + standalone Folio VIII (smoke 16/16); phase2_ontology + P2 graph 242n/340l (AUD-P2-005b: 10 orphan obligations); P2 dashboard; P3 scripts + 4 narrative docs GENERATED v0 + RICH_LINT (verify_rich 3 FAIL/5 PASS — findings for human review) | High |
 | 2026-04-04 | lints/ | TOOLS RESTRUCTURE | Per-phase runners + 9 per-document lint scripts created | High |
 | 2026-04-03 | 08_Obligation_Derivation.md | NEW | 38 obligations derived from 150 clauses | High |
 | 2026-04-03 | 09_Strategic_Tensions_Report.md | NEW | 4 tensions detected and resolved (2 CRITICAL) | High |

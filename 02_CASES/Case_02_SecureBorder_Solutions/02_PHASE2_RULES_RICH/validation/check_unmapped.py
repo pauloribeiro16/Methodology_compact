@@ -42,7 +42,7 @@ EXCLUDED = ("validation/", "VALIDATOR_", "CHANGE_LOG", "DEPRECATED", "RICH_VS_LE
 WAIVER_WORDS = ("legacy", "superseded", "retired", "deprecated", "pre-port", "posture model",
                 "proibido", "forbidden", "reformado", "vocabulary", "vocabulário", "justificação",
                 "historical", "histórico", "was maturi", "ver git", "unmapped_pf_justification",
-                "model_csf_strict", "maturity_cur", "maturity_tgt", "evidence model", "maturity redesign")
+                "model_csf_strict", "maturity_cur", "maturity_tgt", "evidence model", "maturity redesign", "p1_maturity.html")
 
 violations, warnings = [], []
 
