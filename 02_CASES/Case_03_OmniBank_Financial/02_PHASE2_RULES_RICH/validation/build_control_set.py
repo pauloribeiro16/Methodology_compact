@@ -15,7 +15,12 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DOC20 = ROOT / "Doc19_Rules_Catalog.md"
-OUT = Path(__file__).resolve().parent / "control_set.yaml"
+# PORT-PARITY-2 F4: canonical location is the P2 ROOT (matching Case_01);
+# validation/control_set.yaml becomes a byte-identical mirror so the
+# check_unmapped + posture gates (which read BUILD.parent/control_set.yaml)
+# keep passing unchanged.
+OUT = ROOT / "control_set.yaml"
+MIRROR = Path(__file__).resolve().parent / "control_set.yaml"
 
 def parse_row(ln):
     cells = [c.strip() for c in ln.split("|")[1:-1]]
@@ -134,10 +139,13 @@ def main():
         out.append(f"      traceability: {y(c['traceability'])}")
         out.append(f"      frameworks_ref: {y(c['frameworks_ref'])}")
     OUT.write_text("\n".join(out) + "\n", encoding="utf-8")
+    MIRROR.write_text("\n".join(out) + "\n", encoding="utf-8")
     dist = {}
     for c in controls:
         dist[c["status_csf"]] = dist.get(c["status_csf"], 0) + 1
     print(f"control_set.yaml written: {len(controls)} controls (38 CR + 40 BPR)")
+    print(f"  canonical: {OUT}")
+    print(f"  mirror:    {MIRROR}")
     print("status_csf distribution:", dist)
 
 if __name__ == "__main__":

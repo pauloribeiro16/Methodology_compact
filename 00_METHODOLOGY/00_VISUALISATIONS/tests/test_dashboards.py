@@ -34,41 +34,73 @@ SHOTS = TESTS_DIR / "screenshots"
 # All dashboards, relative to repo root.
 DASHBOARDS = sorted(p for p in (VIS).rglob("*.html"))
 
-# --- PORT-PARITY-2 · block F3b: explicit entries ---------------------------
+# --- PORT-PARITY-2 · blocks F3b/F4: explicit entries ------------------------
 # The default suite discovers dashboards via rglob above; these entries pin
-# the Case_03 parity dashboards so (a) they fail loudly if missing and (b)
-# each carries a static Case_02-identity purge check (leaks OUTSIDE the
-# inlined graph JSON blob are build failures; the blob itself is verbatim
-# F3a data and may legitimately reference sibling cases in audit prose).
+# the Case_03 (P1, F3b) and Case_02/Case_03 (P2, F4) parity dashboards so
+# (a) they fail loudly if missing and (b) each carries a static cross-case
+# identity purge check (leaks OUTSIDE the inlined graph JSON blob are build
+# failures; the blob itself is verbatim builder data and may legitimately
+# reference sibling cases in audit prose).
 REQUIRED_DASHBOARDS = [
     "00_METHODOLOGY/00_VISUALISATIONS/Case_03/Case_03_P1_Dashboard.html",
     "00_METHODOLOGY/00_VISUALISATIONS/Case_03/Case_03_P1_Maturity.html",
+    "00_METHODOLOGY/00_VISUALISATIONS/Case_02/Case_02_P2_Dashboard.html",
+    "00_METHODOLOGY/00_VISUALISATIONS/Case_03/Case_03_P2_Dashboard.html",
 ]
-CASE03_IDENTITY_TOKENS = [
-    "SecureBorder", "SECUREBORDER", "Case 02", "Case_02",
-    "The Hague", "GuardianGate", "TinyTask",
+# (dashboard substring, forbidden identity tokens, injected-JSON script ids)
+IDENTITY_PURGE = [
+    ("case_03_p1_dashboard",
+     ["SecureBorder", "SECUREBORDER", "Case 02", "Case_02", "The Hague",
+      "GuardianGate", "TinyTask"],
+     ["phase1-graph-data", "PHASE1_GRAPH_DATA"]),
+    ("case_03_p1_maturity",
+     ["SecureBorder", "SECUREBORDER", "Case 02", "Case_02", "The Hague",
+      "GuardianGate", "TinyTask"],
+     ["phase1-graph-data", "PHASE1_GRAPH_DATA"]),
+    ("case_02_p2_dashboard",
+     ["TinyTask", "TINYTASK", "Case 01", "Case_01", "Lisbon",
+      "OmniBank", "Case 03", "Case_03"],
+     ["phase2-graph-data"]),
+    ("case_03_p2_dashboard",
+     ["TinyTask", "TINYTASK", "Case 01", "Case_01", "Lisbon",
+      "SecureBorder", "Case 02", "Case_02"],
+     ["phase2-graph-data"]),
 ]
 
 
-def check_case03_identity_purge() -> list[str]:
+def check_identity_purge() -> list[str]:
     """Return a list of purge-check failure strings (empty = pass)."""
     failures: list[str] = []
-    for rel in REQUIRED_DASHBOARDS:
-        path = ROOT / rel
-        if not path.exists():
-            failures.append(f"{rel}: file missing")
+    for name, tokens, json_ids in IDENTITY_PURGE:
+        matches = [rel for rel in REQUIRED_DASHBOARDS if name in rel.lower()]
+        if not matches:
+            failures.append(f"{name}: no REQUIRED dashboard matches purge entry")
             continue
-        html = path.read_text(encoding="utf-8")
-        stripped = re.sub(
-            r'<script type="application/json" id="phase1-graph-data">.*?</script>',
-            "", html, flags=re.DOTALL)
-        stripped = re.sub(
-            r'<script>window\.PHASE1_GRAPH_DATA = \{.*?\};</script>',
-            "", stripped, flags=re.DOTALL)
-        for tok in CASE03_IDENTITY_TOKENS:
-            if tok in stripped:
-                failures.append(f"{rel}: identity leak outside JSON blob: {tok!r}")
+        for rel in matches:
+            path = ROOT / rel
+            if not path.exists():
+                failures.append(f"{rel}: file missing")
+                continue
+            html = path.read_text(encoding="utf-8")
+            stripped = html
+            for jid in json_ids:
+                if jid.startswith("PHASE1_GRAPH_DATA"):
+                    stripped = re.sub(
+                        r'<script>window\.PHASE1_GRAPH_DATA = \{.*?\};</script>',
+                        "", stripped, flags=re.DOTALL)
+                else:
+                    stripped = re.sub(
+                        rf'<script type="application/json" id="{jid}">.*?</script>',
+                        "", stripped, flags=re.DOTALL)
+            for tok in tokens:
+                if tok in stripped:
+                    failures.append(f"{rel}: identity leak outside JSON blob: {tok!r}")
     return failures
+
+
+# Back-compat alias (F3b entry point name)
+def check_case03_identity_purge() -> list[str]:
+    return check_identity_purge()
 
 
 def main() -> int:
@@ -103,14 +135,14 @@ def main() -> int:
             print(f"test_dashboards: REQUIRED dashboard not in discovery set: {req}")
             return 2
 
-    # Static identity-purge check (F3b) — independent of Playwright.
-    purge_failures = check_case03_identity_purge()
+    # Static identity-purge check (F3b + F4) — independent of Playwright.
+    purge_failures = check_identity_purge()
     if purge_failures:
         overall_ok = False
         for f in purge_failures:
             print(f"test_dashboards: PURGE FAIL — {f}")
     else:
-        print("# case03 identity purge: OK (0 Case_02 identity strings outside the inlined graph JSON)")
+        print("# identity purge: OK (0 cross-case identity strings outside the inlined graph JSON)")
 
     with sync_playwright() as pw:
         browser = pw.chromium.launch()
