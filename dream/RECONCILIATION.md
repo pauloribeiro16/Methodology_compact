@@ -1,11 +1,16 @@
 # Reconciliation — git vs state files
 
-_Generated 2026-09-02 by `scripts/dream/reconcile.py` — deterministic._
+_Generated 2026-09-03 by `scripts/dream/reconcile.py` — deterministic._
 
 ## Recent commits (last 15)
 
 | Date | SHA | Subject |
 |---|---|---|
+| 2026-09-03T16:32:35 | `6470bac1` | [DREAM SELF-TUNE] regression_check: exclude self from recursive --self-test |
+| 2026-09-03T16:29:33 | `79e55e76` | [DREAM SELF-TUNE] regression_check.py (Phase 3 watchdog + auto-revert) |
+| 2026-09-03T16:29:20 | `2637f60d` | [DREAM SELF-TUNE] auto_tune + stale_archive + run_nightly (Phase 2) |
+| 2026-09-03T16:22:41 | `0df528c2` | [DREAM SELF-TUNE] self_tune infrastructure: scope guard + validators + self-test |
+| 2026-09-02T23:56:17 | `5c7662c2` | [DREAM 2026-09-02] nightly consolidation (0 amendments, 2 drifts, 1 lesson) |
 | 2026-09-01T23:55:57 | `4c8fc9ff` | [DREAM 2026-09-01] nightly consolidation (0 amendments, 2 drifts, 0 lessons) |
 | 2026-09-01T13:03:16 | `643e7840` | [ORCHESTRATOR] brief.sh: robust drift regex + 2 new LESSONS entries |
 | 2026-08-31T23:56:54 | `3566983e` | [DREAM 2026-09-01] nightly consolidation (0 amendments, 2 drifts, 1 lesson) |
@@ -16,11 +21,6 @@ _Generated 2026-09-02 by `scripts/dream/reconcile.py` — deterministic._
 | 2026-08-30T23:01:10 | `a5589190` | [HARNESS 2026-08-30] weekly audit (21 healthy, 10 weak, 0 dead, 0 live-probe-failures, 0 cri) |
 | 2026-08-28T23:56:40 | `42d6aa76` | [DREAM 2026-08-28] nightly consolidation (1 amendment, 1 drift, 0 lessons) |
 | 2026-08-28T14:13:24 | `b0cddb68` | [EXECUTOR+VALIDATOR] port Case_03 Fase 7: PRODUCTION_FLOW v1.0 + flow audit PASS_WITH_NOTES + bookkeeping (progress.json, CHANGE_LOG_CENTRAL 6.2, GLOBAL_PROJECT_STATE 6.5, case PS) — campaign complete — Case_03 |
-| 2026-08-28T14:11:31 | `049ef543` | [EXECUTOR+VALIDATOR] port Case_03 Fase 6: legacy-marker sweep case-wide + gates v0.3 ported (check_unmapped.py + check_implementation_posture_case03.py) — GATE PASS — Case_03 |
-| 2026-08-28T13:49:07 | `3dd0f1b2` | [EXECUTOR] port Case_03 Fase 5: Control Set v1 — Doc20 v2.0 (F21/F22/F23 statuses backfilled, traceability with AG-, F24 → Doc21 §1, Annexes A-C), build_control_set.py + control_set.yaml 78 controls (38 CR + 40 BPR) with '**' assert — Case_03 |
-| 2026-08-28T13:43:04 | `5e17b5fa` | [EXECUTOR] port Case_03 Fase 4: P2 posture migration — Doc21 §4/§5.1 (78 controls, 177 PARTIAL/57 N/A)/§5.2/§6.4/V4, Doc19 posture fields, SPEC supersession banner — Case_03 |
-| 2026-08-28T13:39:58 | `6149d578` | [EXECUTOR+VALIDATOR] port Case_03 Fase 3: UNMAPPED adjudication — AIRMF 140→N/A non-AI-scope (23 CR) + real anchors kept (15 CR), PRIVACY retired, PF gaps justified (7 CR + 7 BPR), Doc20 PT placeholders standardised (51), SPEC §4.6, audit report — Case_03 |
-| 2026-08-28T13:32:44 | `bf0969e4` | [EXECUTOR+VALIDATOR] port Case_03 Fase 2b: ontology v2.0-port kg_ontology (DORA branch, posture, invariants) + port validation report + PROJECT_STATE Bloco A summary — Case_03 |
 
 ## State files behind git
 
