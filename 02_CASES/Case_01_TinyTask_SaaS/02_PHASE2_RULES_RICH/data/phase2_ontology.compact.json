@@ -1,0 +1,124 @@
+{
+  "_provenance": {
+    "source_yaml": "02_CASES/Case_01_TinyTask_SaaS/02_PHASE2_RULES_RICH/phase2_ontology.yaml",
+    "schema_version": 1.1,
+    "generated": "2026-08-31",
+    "generator": "manual (YAML hand-compacted; builder emits from YAML in v1.1+)",
+    "phase1_reference": "01_PHASE1_CONTEXT_RICH/data/phase1_ontology.compact.json"
+  },
+  "classes": {
+    "Obligation": {
+      "attrs": ["id", "subdomain_id", "source_clause_ids", "title", "description", "normative_intensity", "priority", "verification_method", "owner", "risks_if_not_met"],
+      "example": "OBL-D-01.1-001"
+    },
+    "PrivacyOperationalObjective": {
+      "attrs": ["id", "subdomain_id", "title", "description", "derives_from_obligation_id", "nist_csf_anchors", "priority", "verification_method"],
+      "example": "PO-D-01.1-001"
+    },
+    "SecurityOperationalObjective": {
+      "attrs": ["id", "subdomain_id", "title", "description", "derives_from_obligation_id", "nist_csf_anchors", "nist_pf_anchors", "priority", "verification_method"],
+      "example": "SO-D-01.1-001"
+    },
+    "ComplianceRule": {
+      "attrs": ["id", "subdomain_id", "title", "register", "normative_intensity", "bucket", "legal", "phase1_goal_id", "obligations_addressed", "objectives_addressed", "anchors_csf", "anchors_pf", "anchors_airmf", "anchors_iso", "anchors_ssdf", "status_csf", "status_privacy", "verification_method", "verification_owner"],
+      "example": "CR-D-01.1-001"
+    },
+    "BestPracticeRule": {
+      "attrs": ["id", "subdomain_id", "title", "register", "normative_intensity", "bucket", "legal", "obligations_addressed", "objectives_addressed", "anchors_csf", "anchors_pf", "anchors_airmf", "verification_method", "verification_owner"],
+      "example": "BPR-D-01.1-001"
+    },
+    "Tension": {
+      "attrs": ["id", "title", "nature", "severity", "type", "clause_1", "clause_2", "affected_subdomains", "affected_regulations", "resolution_approach", "resolution_description"],
+      "example": "T-001"
+    },
+    "NistSubcategory": {
+      "attrs": ["id", "control_id", "framework", "function", "description", "source_doc"],
+      "example": "NIST-CSF-PR.DS-01"
+    }
+  },
+  "relations": [
+    {"verb": "OBLIGATES_TO", "from": "RegulatoryClause", "to": "Obligation", "cardinality": "N:N"},
+    {"verb": "GENERATES", "from": "Obligation", "to": "Tension", "cardinality": "N:N"},
+    {"verb": "YIELDS", "from": "Obligation", "to": "PrivacyOperationalObjective", "cardinality": "1:0..1"},
+    {"verb": "YIELDS", "from": "Obligation", "to": "SecurityOperationalObjective", "cardinality": "1:0..1"},
+    {"verb": "MITIGATES", "from": "ComplianceRule", "to": "PrivacyOperationalObjective", "cardinality": "N:N"},
+    {"verb": "MITIGATES", "from": "ComplianceRule", "to": "SecurityOperationalObjective", "cardinality": "N:N"},
+    {"verb": "MITIGATES", "from": "BestPracticeRule", "to": "PrivacyOperationalObjective", "cardinality": "N:N"},
+    {"verb": "MITIGATES", "from": "BestPracticeRule", "to": "SecurityOperationalObjective", "cardinality": "N:N"},
+    {"verb": "MAPS_TO", "from": "ComplianceRule", "to": "NistSubcategory", "cardinality": "N:N"},
+    {"verb": "MAPS_TO", "from": "BestPracticeRule", "to": "NistSubcategory", "cardinality": "N:N"},
+    {"verb": "IN_TENSION_WITH", "from": "Tension", "to": "Tension", "cardinality": "N:0..1"}
+  ],
+  "enums": {
+    "Priority": ["MUST", "SHOULD", "COULD"],
+    "NistFramework": ["CSF", "PF", "AI-RMF"],
+    "TensionNature": ["STRUCTURAL", "CONTEXTUAL", "INACTIVE"],
+    "TensionSeverity": ["HIGH", "MEDIUM", "LOW"],
+    "TensionType": ["timing", "scope", "requirement", "intensity"],
+    "RegisterType": ["OBLIGATION", "BEST_PRACTICE"]
+  },
+  "invariants": {
+    "counts": {
+      "obligations_total": 34,
+      "obligations_with_cr": 30,
+      "po_total": 11,
+      "so_total": 20,
+      "objectives_total": 31,
+      "compliance_rules_total": 30,
+      "best_practice_rules_total": 16,
+      "controls_total": 46,
+      "tensions_total": 4,
+      "source_clauses_total": 54,
+      "applicable_regs": 2,
+      "nist_subcategories_min": 30
+    },
+    "id_patterns": {
+      "obligation": "^OBL-D-[0-9]+\\.[0-9]+-[0-9]{3}$",
+      "privacy_objective": "^PO-D-[0-9]+\\.[0-9]+-[0-9]{3}$",
+      "security_objective": "^SO-D-[0-9]+\\.[0-9]+-[0-9]{3}$",
+      "compliance_rule": "^CR-D-[0-9]+\\.[0-9]+-[0-9]{3}$",
+      "best_practice_rule": "^BPR-D-[0-9]+\\.[0-9]+-[0-9]{3}$",
+      "tension": "^T(-[A-Z])?-[0-9]{3}$",
+      "nist_subcategory_csf": "^NIST-CSF-[A-Z]{2}\\.[A-Z]{2}-[0-9]{2}$",
+      "nist_subcategory_pf": "^NIST-PF-[A-Z]{2}\\.[A-Z]{2}-[A-Z][0-9]$"
+    }
+  },
+  "provenance_rules": {
+    "every_node_must_have_source": true,
+    "every_relation_must_have_source": true,
+    "node_id_pattern_match_class": true,
+    "invariants_are_minimums_not_maximums": true
+  },
+  "maturity_model": {
+    "authority": "00_METHODOLOGY/MATURITY_MODEL_CSF_STRICT.md v1.0",
+    "reference_framework": "NIST CSF 2.0 §3.4 Implementation Tiers (Feb 2024)",
+    "crosswalk_authority": "00_METHODOLOGY/PREPROCESSING_by_domain/MAPPINGS/OVERLAYS/OVERLAY_NIST_CSF_2.0.md §2",
+    "schema_version": 1.0,
+    "generated": "2026-08-31",
+    "phase1_reference": "../01_PHASE1_CONTEXT_RICH/phase1_ontology.yaml@kg_ontology.maturity_model",
+    "scales": {
+      "A_capability_by_function": {
+        "scale_id": "A",
+        "reference": "NIST CSF 2.0 §3.4 (5 Functions + GOVERN)",
+        "tiers": ["T1_PARTIAL", "T2_RISK_INFORMED", "T3_REPEATABLE", "T4_ADAPTIVE"],
+        "unit": "Score (0.0..4.0) per Function"
+      },
+      "B_coverage_by_subdomain": {
+        "scale_id": "B",
+        "reference": "AEGIS D-XX.Y taxonomy (10 domains × 4 sub-domains = 38 subdomains; Case_01 active = 30)",
+        "tiers": ["NOT_ADDRESSED", "PARTIAL", "SUBSTANTIVE"],
+        "unit": "Boolean + tier per active subdomain"
+      }
+    },
+    "evidence_classes": {
+      "CapabilityEvidence": {
+        "attrs": ["id", "rule_id", "function", "current_posture", "target_posture", "evidence"],
+        "source": "control_set.yaml@status.csf + Doc18 verification"
+      },
+      "CoverageEvidence": {
+        "attrs": ["id", "subdomain_id", "controls_count", "objectives_count", "evidence"],
+        "source": "control_set.yaml + Doc16/18 cross-walk"
+      }
+    }
+  }
+}

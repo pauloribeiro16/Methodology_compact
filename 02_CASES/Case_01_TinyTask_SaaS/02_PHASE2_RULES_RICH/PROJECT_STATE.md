@@ -2,16 +2,17 @@
 document_id: AEGIS-P2-RICH-STATE
 title: Project State — Phase 2 Rich Mode (Case_01)
 phase: 2
-version: 1.2
+version: 1.3
 created: 2026-08-07
-updated: 2026-08-07
-author: Sprint 0 Orchestrator / Sprint 3 Executor (final-docs-builder) / Sprint 5 Executor + Validator (deep-enrichment)
+updated: 2026-08-31
+author: Sprint 0 Orchestrator / Sprint 3 Executor (final-docs-builder) / Sprint 5 Executor + Validator (deep-enrichment) / v1.3 Phase 2 Dashboard Executor
 status: ACTIVE
 case: Case_01_TinyTask_SaaS
 tier: MICRO
 applicable_regs: [GDPR, CRA]
 active_subdomains: 30
-total_obligations: 30
+total_obligations: 34
+total_obligations_with_cr: 30
 total_goals: 31
 total_goals_legacy_summary: 30
 total_rules: 46
@@ -21,10 +22,25 @@ total_detail_cards: 107
 total_cells_sprint5: 1819
 fields_per_card_sprint5: 17
 sibling_of: ../02_PHASE2_RULES/
-sprints_complete: [0, 1, 2, 3, 4, 5]
+sprints_complete: [0, 1, 2, 3, 4, 5, "6-dashboard"]
 sprints_pending: []
 verdict: PASS_WITH_FINDINGS
 branch: feature/aegis-p2-case01-rich
+phase2_dashboard_parity:
+  status: DEEP_ENRICHED
+  delivered: 2026-08-31
+  scope: "Folio VIII Security Posture standalone (paridade Case_02_P1_Maturity.html)"
+  files_added:
+    - "phase2_ontology.yaml v1.0"
+    - "data/phase2_ontology.compact.json v1.1"
+    - "data/phase2_graph.json (216 nodes / 433 links / 1 audit)"
+    - "scripts/build_p2_graph.py v1.0"
+    - "scripts/build_p2_dashboard.py v1.0 (validator, 7 checks)"
+    - "../../../00_METHODOLOGY/00_VISUALISATIONS/Case_01/Case_01_P2_Dashboard.html"
+    - "../../../00_METHODOLOGY/00_VISUALISATIONS/Case_01/build_case01_p2_dashboard.py"
+  smoke: "12/12 dashboards PASS (10 prior + Case_01_P2_Dashboard.html)"
+  findings: "AUD-P2-005 — 4 obligations (D-07.2/3/4, D-10.1) are orphan (no CR addressing them; mitigated by BPR-D-07.2-001 with N/A marker). Carried from Sprint 6+ F-07."
+  stale_scalar_fixed: "total_obligations: 30 → 34 (Doc14 §3.1 canonical, post-Sprint 6+ fix)"
 ---
 
 # Project State — Phase 2 Rich Mode (Case 01)
