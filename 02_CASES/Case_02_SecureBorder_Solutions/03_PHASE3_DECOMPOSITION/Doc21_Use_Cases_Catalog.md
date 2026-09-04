@@ -7,7 +7,7 @@ created: 2026-04-04
 updated: 2026-08-10
 author: System Architect
 status: DRAFT
-inputs: [01_Company_Context.md, 11_Rules_Catalog.md, 10_Privacy_Security_Goals.md, 09_Strategic_Tensions_Report.md]
+inputs: [Doc03_Company_Context_Assessment.md, Doc18_Rules_Catalog.md, Doc16_Privacy_Security_Goals.md, Doc15_Strategic_Tensions_Report.md]
 outputs: [14_Architectural_Nodes.md, 15_Requirements_Allocation.md, 23_Functional_Requirements.md]
 traceability: AEGIS Class Model → UseCase, BusinessGoal, Stakeholder classes
 related_documents: 04_Company_Context_Assessment.md, 07_Structured_Compliance_Matrix.md
@@ -204,9 +204,204 @@ useCaseDiagram
 
 ---
 
-## 6. DOMAIN DECOMPOSITION
+## 6. PRODUCT FUNCTIONAL USE CASES (U.C.8+, PKG-8..12) — GuardianGate product
 
-### 6.1 UC-DP: Data Protection
+> **v1.3 (PORT-PARITY-2 Phase 3 restructure, 2026-09-04).** This section models the
+> **GuardianGate product itself** as a normal software product: actor-goal use cases in
+> fully-dressed form (Cockburn), with security/compliance layered on as an annex per use
+> case (constrained-by, rules, threats, anchors) rather than as the use case's reason to
+> exist. **Nomenclature is unchanged**: the pre-existing security/compliance use cases
+> (U.C.1–U.C.7) keep their IDs and content verbatim (now §7, §9); functional product use
+> cases take the free range **U.C.8+**. ID scheme: `U.C.<package>.<group>.<uc>`.
+
+### 6.0 Product actors (reuse of existing stakeholder IDs — no new ID scheme)
+
+| Actor (existing SH- ID) | Role in the product | Drives |
+|-------------------------|---------------------|--------|
+| SH-EXT-002 (Traveler) | Primary product user: crosses the border via the eGate. | U.C.8.1.*, U.C.8.2.*, U.C.8.3.1, U.C.8.4.1 |
+| SH-EXT-001 (Border Officer) | Human oversight: handles referrals, manual verification, overrides. | U.C.8.3.2 |
+| SH-INT-007 (Ops Lead) | Kiosk fleet operations (provisioning, health, OTA supervision). | U.C.8 (PKG-10, massification) |
+| SH-INT-005 (AI Governance Lead) | AI model lifecycle oversight (rollout, drift, bias review). | U.C.8 (PKG-11, massification) |
+| SH-INT-008 (SOC Manager) | Consumes security events raised by the journey (tamper, spoofing, lockouts). | Annex targets |
+| SYS-04 / SYS-06 (kiosk) | The product itself: Edge AI firmware + kiosk hardware acting for the actors above. | All U.C.8.* |
+
+### 6.1 PKG-8 — Traveller eGate Journey (7)
+
+| UC ID | Title | Primary Actor | Prio |
+|-------|-------|---------------|------|
+| U.C.8.1.1 | Scan Travel Document (MRZ + NFC chip) | SH-EXT-002 | CRITICAL |
+| U.C.8.2.1 | Capture Facial Biometric Sample | SH-EXT-002 | CRITICAL |
+| U.C.8.2.2 | Liveness Detection (Presentation Attack Detection) | SH-EXT-002 | CRITICAL |
+| U.C.8.2.3 | Face Match 1:1 Against Chip Portrait | SH-EXT-002 | CRITICAL |
+| U.C.8.3.1 | Gate Decision & Release | SH-EXT-002 | CRITICAL |
+| U.C.8.3.2 | Referral to Operator Desk | SH-EXT-001 | HIGH |
+| U.C.8.4.1 | Traveller Privacy Notice & Consent Capture | SH-EXT-002 | HIGH |
+
+#### U.C.8.1.1 — Scan Travel Document (MRZ + NFC chip)
+
+**Primary Actor:** SH-EXT-002 (Traveler)
+**Stakeholders:** SH-EXT-001 (Border Officer — receives failures), National Border Control authority via SYS-02 (data controller of crossing records)
+**Preconditions:** Kiosk idle, healthy and enrolled (PKG-10); traveller holds an eMRTD passport.
+**Trigger:** Traveller confirms start on the kiosk screen and places the passport on the reader.
+**Main Success Scenario:**
+1. Kiosk displays on-screen instructions (language auto-selected from setting).
+2. Traveller places the passport on the MRZ reader; kiosk reads the MRZ optical line.
+3. Kiosk derives BAC/PACE keys from the MRZ and opens the NFC chip channel.
+4. Kiosk reads the chip (portrait + MRZ data) and validates Passive Authentication against the CSCA chain.
+5. Kiosk displays the extracted document data for the traveller to confirm.
+**Extensions:**
+- 3a. MRZ unreadable → guide re-placement (max 3 attempts), then offer referral (U.C.8.3.2).
+- 4a. Chip read fails or Passive Authentication invalid → do NOT continue on MRZ alone; route to referral (U.C.8.3.2) and raise a security event (U.C.2.1.1).
+- 5a. MRZ-vs-chip data mismatch → treat as suspected forged document: referral + security event (MUC-C2-03).
+**Postconditions:** Chip portrait and document data available to the match step (in-kiosk, transient); attempt logged in the decision log with no biometric payload.
+**Provenance:** [ATTESTED] `01_PHASE1_CONTEXT_RICH/Doc04_Architecture_DataInventory.md` §1.1 SYS-06 (3D camera + passport MRZ scanner) and SYS-04 (signed Edge AI firmware, TPM 2.0 secure boot); §2.1 STORE-05 (transient on-kiosk template cache, deleted within seconds post-match per Art. 5(1)(c) minimisation).
+**Security & Compliance Annex:**
+- **Constrained by:** U.C.1.1.1 (data subject rights), U.C.6.1.1 / U.C.6.2.1 (AI oversight), U.C.2.1.1 (security events).
+- **Rules / NFR:** CR-D-01.1-001 (kiosk flash encryption), CR-D-04.1-001 (security event pipeline), BPR-D-01.1-001.
+- **Threats addressed:** MUC-C2-03 (forged/cloned eMRTD), MUC-C2-04 (kiosk tamper → TPM secure boot refuses compromised firmware).
+- **NIST anchors:** PR.DS-01, DE.CM-01.
+
+#### U.C.8.2.1 — Capture Facial Biometric Sample
+
+**Primary Actor:** SH-EXT-002 (Traveler)
+**Stakeholders:** SH-EXT-001 (Border Officer — referrals), SH-INT-005 (AI Gov — quality thresholds)
+**Preconditions:** U.C.8.1.1 completed (chip portrait available as reference).
+**Trigger:** Kiosk prompts the traveller to look at the camera.
+**Main Success Scenario:**
+1. Traveller aligns with the on-screen positioning guide.
+2. Kiosk captures a short burst (3D depth + RGB frames).
+3. Kiosk runs frame quality checks (pose, illumination, single face).
+4. Kiosk computes the biometric template in-kiosk from the best frame.
+5. Kiosk purges raw frames immediately after template creation (STORE-05 policy).
+**Extensions:**
+- 3a. Quality below threshold → guided re-capture (max 2 retries), then referral (U.C.8.3.2).
+- 3b. More than one face in frame → suspected tailgating (MUC-C2-02): security event + referral.
+- 4a. Template computation fails (hardware anomaly) → referral; kiosk flagged for health check (PKG-10).
+**Postconditions:** One match-ready template exists in volatile, encrypted memory; raw frames discarded.
+**Provenance:** [ATTESTED] Doc04 §1.1 SYS-04 (TensorRT CNN face match + liveness), SYS-06 (3D camera); §2.1 STORE-05 (no persistence across reboot; immediate purge).
+**Security & Compliance Annex:**
+- **Constrained by:** U.C.1.1.1 (minimisation), U.C.6.2.1 (AI operating conditions).
+- **Rules / NFR:** CR-D-01.2-001 (template encryption), CR-D-10.1-001 (event monitoring).
+- **Threats addressed:** MUC-C2-02 (tailgating detection at frame stage).
+- **NIST anchors:** PR.DS-01, DE.CM-03.
+
+#### U.C.8.2.2 — Liveness Detection (Presentation Attack Detection)
+
+**Primary Actor:** SH-EXT-002 (Traveler)
+**Stakeholders:** SH-INT-005 (AI Gov — PAD threshold governance), SH-INT-008 (SOC — spoof alerts)
+**Preconditions:** U.C.8.2.1 produced a quality template.
+**Trigger:** Template creation completes.
+**Main Success Scenario:**
+1. Kiosk issues a passive+active liveness challenge (micro-movement and depth/texture analysis).
+2. Edge CNN computes the liveness score in-kiosk.
+3. Score ≥ configured threshold → sample certified as live; continue to U.C.8.2.3.
+**Extensions:**
+- 3a. Score below threshold → one re-challenge; second failure = suspected presentation attack (MUC-C2-01): gate stays locked, security event with kiosk ID + timestamp to SOC (U.C.2.1.1), traveller referred (U.C.8.3.2).
+- 2a. Camera/depth anomaly (sensor health) → referral; raise maintenance event (PKG-10).
+**Postconditions:** Liveness verdict recorded in the decision log (score bucket, not raw score).
+**Provenance:** [ATTESTED] Doc04 §1.1 SYS-04 (CNN liveness on ARM SoC, TPM-bound firmware); Doc03 §4 (eGate automated border control product).
+**Security & Compliance Annex:**
+- **Constrained by:** U.C.6.3.1 (AI model change control — thresholds are governed artefacts), U.C.2.1.1.
+- **Rules / NFR:** CR-D-01.2-001, CR-D-02.4-001 (red-team validation of the PAD path), CR-D-10.1-001.
+- **Threats addressed:** MUC-C2-01 (presentation attack: photo/video/3D mask/deepfake injection).
+- **NIST anchors:** PR.AA-01, DE.CM-01.
+
+#### U.C.8.2.3 — Face Match 1:1 Against Chip Portrait
+
+**Primary Actor:** SH-EXT-002 (Traveler)
+**Stakeholders:** SH-EXT-001 (Border Officer — grey-band referrals), National Border Control authority (SYS-02)
+**Preconditions:** U.C.8.1.1 (reference portrait) + U.C.8.2.2 (live sample) completed.
+**Trigger:** Liveness verdict = live.
+**Main Success Scenario:**
+1. Kiosk compares the live template against the chip portrait (1:1 similarity).
+2. Kiosk computes the similarity score (target ≤ 2 s end-to-end).
+3. Score ≥ match threshold → decision input TRUE; continue to U.C.8.3.1.
+4. Template and frames are purged; only the decision record persists.
+**Extensions:**
+- 3a. Score below match threshold → NEVER auto-reject on the biometric alone: referral (U.C.8.3.2) with reason "match" (AI Act human oversight, Art. 14).
+- 3b. Score in the grey band (configurable) → referral regardless.
+- 1a. Chip portrait quality insufficient → document-level fallback rules apply; referral.
+**Postconditions:** Match verdict in the decision log; no biometric data persisted on kiosk or cloud.
+**Provenance:** [ATTESTED] Doc04 §1.1 SYS-04 (CNN face match), SYS-02 (match decisions shared with national border control); Doc02 §gates (AI Act provider role).
+**Security & Compliance Annex:**
+- **Constrained by:** U.C.6.2.1, U.C.6.4.1 (AI incident reporting), U.C.1.1.1.
+- **Rules / NFR:** CR-D-01.3-001 (decision log content), CR-D-10.1-001.
+- **Threats addressed:** MUC-C2-01 (residual deepfake risk after PAD), MUC-C2-03 (enrolment-fraud variants).
+- **NIST anchors:** PR.AA-01, PR.DS-01.
+
+#### U.C.8.3.1 — Gate Decision & Release
+
+**Primary Actor:** SH-EXT-002 (Traveler)
+**Stakeholders:** SH-EXT-001 (Border Officer), National Border Control authority (SYS-02 — crossing record)
+**Preconditions:** U.C.8.1.1 ✓ PA; U.C.8.2.2 ✓ live; U.C.8.2.3 ✓ match; watchlist status resolvable.
+**Trigger:** All decision inputs available.
+**Main Success Scenario:**
+1. Kiosk combines decision inputs (PA, liveness, match, watchlist status).
+2. Decision = RELEASE → door opens; traveller exits into the border zone.
+3. Kiosk emits the crossing event to SYS-02 (national border control integration).
+4. Decision record written to the immutable decision log (U.C. audit chain) — no biometric payload.
+**Extensions:**
+- 1a. Watchlist hit → QUIET referral (U.C.8.3.2) with reason "authority"; traveller is not alerted of the reason (officer-display only).
+- 2a. Door obstructed / timed out → safe re-lock, assisted retry, then referral.
+- 3a. SYS-02 unreachable → offline mode: store-and-forward the crossing event (signed, queued) per PKG-10 failover policy; gate may stay open under locally cached rules only if policy allows.
+**Postconditions:** Crossing recorded by the authority; kiosk back to idle; decision log complete.
+**Provenance:** [ATTESTED] Doc04 §1.1 SYS-02 (mTLS gateway to government DBs), §1.2 (outbound-only kiosk channel, mTLS/QUIC); STORE-04 (WORM audit chain).
+**Security & Compliance Annex:**
+- **Constrained by:** U.C.2.6.1 (continuous monitoring), U.C.5.7.1 (authority reporting).
+- **Rules / NFR:** CR-D-04.3-001 (notification workflows), CR-D-01.4-001 (log integrity), BPR-D-04.2-001.
+- **Threats addressed:** MUC-C2-02 (tailgating: one-traveller interlock), MUC-07-analogue (availability: offline failover).
+- **NIST anchors:** PR.DS-01, PR.IR-01.
+
+#### U.C.8.3.2 — Referral to Operator Desk
+
+**Primary Actor:** SH-EXT-001 (Border Officer)
+**Stakeholders:** SH-EXT-002 (Traveler), SH-INT-008 (SOC — escalation path), SH-INT-004 (DPO — override audits)
+**Preconditions:** Any referral reason raised by U.C.8.1.1–8.3.1 (document, liveness, match, watchlist, quality).
+**Trigger:** Kiosk issues a queue token and directs the traveller to the desk.
+**Main Success Scenario:**
+1. Officer console (SYS-08 SSO + FIDO2) shows the queue position and the traveller entry.
+2. Officer reviews the reason class, the chip data and the live camera view.
+3. Officer verifies identity manually (visual + document cross-check).
+4. Officer records the decision (approve / deny) + mandatory reason code.
+5. Gate or manual lane proceeds accordingly; decision logged to the immutable audit chain.
+**Extensions:**
+- 2a. Officer console session fails MFA → no referral data displayed; fail-closed.
+- 4a. Confirmed impostor → deny + escalate to SOC incident flow (U.C.2.1.1) + authority notification (U.C.2.5.1 if reportable).
+- 1a. Queue overflow (all officers busy) → kiosks throttle intake (entry doors locked), SOC informed.
+**Postconditions:** Human decision on record with officer ID, reason code and timestamps.
+**Provenance:** [ATTESTED] Doc04 §1.1 SYS-08 (Okta+ADFS, FIDO2 mandatory), SYS-12 (SOC playbooks); Doc03 §4 (referral desk operations).
+**Security & Compliance Annex:**
+- **Constrained by:** U.C.3.1.1 / U.C.3.2.1 (officer authn+MFA), U.C.3.5.1-analogue (override audit), U.C.6.1.1 (human oversight duty for AI-assisted decisions).
+- **Rules / NFR:** CR-D-03.1-001 (identity lifecycle), CR-D-03.2-001 (MFA), CR-D-10.1-001.
+- **Threats addressed:** MUC-C2-05 (rubber-stamp overrides — reason codes + audit sampling), MUC-C2-02.
+- **NIST anchors:** PR.AA-01, PR.AA-05, DE.CM-01.
+
+#### U.C.8.4.1 — Traveller Privacy Notice & Consent Capture
+
+**Primary Actor:** SH-EXT-002 (Traveler)
+**Stakeholders:** SH-INT-004 (DPO — notice content), National Border Control authority (controller)
+**Preconditions:** Kiosk journey started (U.C.8.1.1 trigger).
+**Trigger:** First interaction screen.
+**Main Success Scenario:**
+1. Kiosk displays the privacy notice (selected language): purposes, biometric processing, retention (seconds-to-minutes per STORE-05), controller identity, rights.
+2. Traveller acknowledges; where consent is the basis, kiosk records the consent token.
+3. Journey continues; acknowledgement reference stored with the decision log.
+**Extensions:**
+- 2a. Traveller declines consent (where consent-based) → directed to the manual officer lane; travel right is never blocked by consent refusal.
+- 1a. Language not available → pictogram flow + printed notice; referral available.
+**Postconditions:** Notice/consent evidence linked to the journey record (no biometric data).
+**Provenance:** [ATTESTED] Doc04 §2.1 STORE-05 retention policy; Doc02 §gates (GDPR Arts. 12–14 transparency); Doc16 goals.
+**Security & Compliance Annex:**
+- **Constrained by:** U.C.1.1.1 / U.C.1.4.1 (rights & consent records), U.C.1.3.1 (transparency).
+- **Rules / NFR:** CR-D-01.1-001, BPR-D-01.2-001.
+- **Threats addressed:** MUC-04-analogue (notice-bypass / accountability gap).
+- **NIST anchors:** GV.PO-P1, PR.DS-01.
+
+*PKG-9 (Operator Referral Desk product operations), PKG-10 (Kiosk Fleet Operations), PKG-11 (AI Model Lifecycle) and PKG-12 (Admin & Reporting) are written in the massification pass of this campaign (pending pilot approval).*
+
+## 7. DOMAIN DECOMPOSITION
+
+### 9.1 UC-DP: Data Protection
 
 | UC ID | Use Case Name | Description | Primary Actor | Related Rules | Related Goals | Related PSOs | Priority | Regulation | SLA |
 |-------|---------------|-------------|---------------|---------------|---------------|--------------|----------|------------|-----|
@@ -217,7 +412,7 @@ useCaseDiagram
 | U.C.1.5.1 | Data Minimization Review | Review and minimize data collection fields for AI training and operational processing | SH-INT-004 (DPO) | CR-D-05.1-001 | PO-D-05.1-001 | PO-D-05.1-001, PO-D-07.1-001, SO-D-05.1-001 | HIGH | GDPR Art. 5(1)(c) | Annual |
 | U.C.1.6.1 | RoPA Maintenance | Maintain records of processing activities for biometric and passport data processing | SH-INT-004 (DPO) | CR-D-09.4-001 | PO-D-09.4-001 | PO-D-09.4-001, PO-D-09.1-001 | HIGH | GDPR Art. 30 | Continuous |
 
-### 6.2 UC-SEC: Security Operations
+### 9.2 UC-SEC: Security Operations
 
 | UC ID | Use Case Name | Description | Primary Actor | Related Rules | Related Goals | Related PSOs | Priority | Regulation | SLA |
 |-------|---------------|-------------|---------------|---------------|---------------|--------------|----------|------------|-----|
@@ -230,7 +425,7 @@ useCaseDiagram
 | U.C.2.7.1 | Disaster Recovery & Business Continuity | Activate DR procedures and restore systems after incidents | SH-INT-007 (Ops Lead) | CR-D-04.4-001, BPR-D-04.2-001 | PO-D-04.4-001 | PO-D-04.4-001, PO-D-04.4-002 | HIGH | NIS 2 Art. 21 | RTO: 1h, RPO: 15min |
 | U.C.2.8.1 | Threat-Led Penetration Testing | Conduct TLPT and adversarial AI testing for border control systems | SH-INT-009 (Sec Eng) | CR-D-02.4-001, BPR-D-02.4-002 | SO-D-02.4-001 | SO-D-02.4-001, SO-D-02.4-002 | HIGH | NIS 2 Art. 21(2)(d) | Annual |
 
-### 6.3 UC-IAM: Identity & Access Management
+### 9.3 UC-IAM: Identity & Access Management
 
 | UC ID | Use Case Name | Description | Primary Actor | Related Rules | Related Goals | Related PSOs | Priority | Regulation | SLA |
 |-------|---------------|-------------|---------------|---------------|---------------|--------------|----------|------------|-----|
@@ -242,7 +437,7 @@ useCaseDiagram
 | U.C.3.6.1 | Access Rights Review | Periodic review of access rights for all system users | SH-INT-007 (Ops Lead) | CR-D-03.3-001 | PO-D-03.3-001 | PO-D-03.3-001, PO-D-03.3-002 | MEDIUM | NIS 2 Art. 21 | Quarterly |
 | U.C.3.7.1 | Human-in-the-Loop Override | Border officer overrides AI border control decision with documented procedure | SH-EXT-001 (Border Officer) | BPR-D-03.1-002 | SO-D-03.1-001 | SO-D-03.1-001, SO-D-03.1-002, SO-D-03.1-003 | CRITICAL | AI_Act Art. 14 | Real-time |
 
-### 6.4 UC-DEV: Secure Development
+### 9.4 UC-DEV: Secure Development
 
 | UC ID | Use Case Name | Description | Primary Actor | Related Rules | Related Goals | Related PSOs | Priority | Regulation | SLA |
 |-------|---------------|-------------|---------------|---------------|---------------|--------------|----------|------------|-----|
@@ -253,7 +448,7 @@ useCaseDiagram
 | U.C.4.5.1 | Privacy-by-Design Integration | Integrate privacy-by-design and secure-by-default into product design | SH-INT-002 (CTO) | CR-D-07.1-001, BPR-D-07.1-002 | PO-D-07.1-001 | PO-D-07.1-001, PO-D-07.1-002, SO-D-07.1-001 | HIGH | GDPR/CRA | Per design phase |
 | U.C.4.6.1 | AI Model Versioning & Rollback | Version AI models with rollback capability for production border control models | SH-INT-006 (Dev Lead) | BPR-D-07.1-002 | PO-D-07.1-001 | PO-D-07.1-001, PO-D-07.1-002, SO-D-02.2-001 | HIGH | AI_Act | Per model update |
 
-### 6.5 UC-GOV: Governance & Compliance
+### 9.5 UC-GOV: Governance & Compliance
 
 | UC ID | Use Case Name | Description | Primary Actor | Related Rules | Related Goals | Related PSOs | Priority | Regulation | SLA |
 |-------|---------------|-------------|---------------|---------------|---------------|--------------|----------|------------|-----|
@@ -266,7 +461,7 @@ useCaseDiagram
 | U.C.5.7.1 | Regulatory Notification & Cooperation | Cooperate with market surveillance, CSIRT, ENISA, and data protection authorities | SH-INT-010 (Compliance) | CR-D-04.3-001 | PO-D-04.3-001 | PO-D-04.3-001, PO-D-04.3-002 | CRITICAL | All 4 regs | Per regulation |
 | U.C.5.8.1 | Third-Party Boundary Management | Enforce physical isolation per airport/country instance | SH-INT-007 (Ops Lead) | CR-D-06.4-001 | SO-D-06.4-001 | SO-D-06.4-001, PO-D-06.1-001 | MEDIUM | NIS 2 | Per deployment |
 
-### 6.6 UC-AI: AI Systems Management (NEW Category for SecureBorder)
+### 9.6 UC-AI: AI Systems Management (NEW Category for SecureBorder)
 
 | UC ID | Use Case Name | Description | Primary Actor | Related Rules | Related Goals | Related PSOs | Priority | Regulation | SLA |
 |-------|---------------|-------------|---------------|---------------|---------------|--------------|----------|------------|-----|
@@ -278,7 +473,7 @@ useCaseDiagram
 | U.C.6.6.1 | AI Adversarial Testing | Quarterly red-team exercises targeting biometric spoofing and adversarial attacks | SH-INT-009 (Sec Eng) | BPR-D-02.4-002, CR-D-02.4-001 | SO-D-02.4-001 | SO-D-02.4-001, SO-D-02.4-002 | HIGH | AI_Act Art. 9 | Quarterly |
 | U.C.6.7.1 | AI Training Data Management | Version and track lineage of all AI training datasets with representativeness checks | SH-INT-005 (AI Gov) | BPR-D-05.1-001, CR-D-05.1-001 | PO-D-05.1-001 | PO-D-05.1-001, SO-D-05.1-001, SO-D-05.1-002 | HIGH | AI_Act Art. 10 | Per training cycle |
 
-### 6.7 UC-TRN: Training & Awareness
+### 9.7 UC-TRN: Training & Awareness
 
 | UC ID | Use Case Name | Description | Primary Actor | Related Rules | Related Goals | Related PSOs | Priority | Regulation | SLA |
 |-------|---------------|-------------|---------------|---------------|---------------|--------------|----------|------------|-----|
@@ -290,9 +485,97 @@ useCaseDiagram
 
 ---
 
-## 7. DETAILED USE CASES
+## 8. MISUSE CASES (Sindre & Opdahl base + GuardianGate-specific)
 
-### 7.1 U.C.1.2.1: Right to Erasure with Cryptographic Sharding (Detailed)
+> **v1.3 (2026-09-04).** Base misuse cases MUC-01..MUC-08 keep the Case_01 semantics
+> (common threat classes), instantiated on GuardianGate targets. GuardianGate-specific
+> product threats take IDs **MUC-C2-01+** so the two families never collide.
+
+### 8.1 Misactors
+
+| ID | Misactor | Profile |
+|----|----------|---------|
+| A-MIS-01 | External Cyber Attacker | Remote attacks on kiosk/cloud: credential attacks, exploitation, DoS. |
+| A-MIS-02 | Malicious Insider | Privileged staff (ops, ML, SOC) abusing access. |
+| A-MIS-C2-01 | Fraudulent Traveller | Presents spoofed biometrics (photo/video/3D mask/deepfake) or impostor travel. |
+| A-MIS-C2-02 | Document-Fraud Syndicate | Forged/cloned eMRTD supply; coordinated crossing fraud. |
+| A-MIS-C2-03 | Corrupt/Rubber-Stamp Operator | Referral-desk officer approving without verifying. |
+| A-MIS-C2-04 | Supply-Chain Implant | Compromised model artefact / OTA package / vendor component. |
+
+### 8.2 MUC inventory
+
+| MUC | Misactor | Target functional UC(s) | Mitigated by U.C. |
+|-----|----------|-------------------------|-------------------|
+| MUC-01 (credential attack) | A-MIS-01 | Officer console access path of U.C.8.3.2 | U.C.3.1.1, U.C.3.2.1, U.C.2.4.1 |
+| MUC-02 (privilege escalation) | A-MIS-01, A-MIS-02 | U.C.8.3.2 (override rights), PKG-12 admin | U.C.3.2.1, U.C.3.5.1-analogue |
+| MUC-03 (injection/cross-tenant read) | A-MIS-01 | Kiosk→cloud channels (SYS-02/03 interfaces) | U.C.2.1.1, mTLS + DMZ controls (Doc04 §1.2) |
+| MUC-04 (data exfiltration/notice bypass) | A-MIS-02 | U.C.8.4.1 evidence, decision logs | U.C.1.3.1, STORE-04 WORM, U.C.2.4.1 |
+| MUC-05 (compromised integration) | A-MIS-01 | SYS-02/SYS-03 government feeds | U.C.5.4.1, mTLS + HSM-bound TLS (Doc04 §1.1) |
+| MUC-06 (insider data access) | A-MIS-02 | All U.C.8.* decision data | U.C.3.2.1, U.C.2.6.1, dual-control (HSM) |
+| MUC-07 (availability/DoS on border lane) | A-MIS-01 | U.C.8.3.1, kiosk fleet availability | U.C.2.4.2, PKG-10 offline failover |
+| MUC-08 (malicious content upload) | A-MIS-01 | Referral desk document upload path | U.C.2.4.1, U.C.4.2.1 |
+| **MUC-C2-01** | A-MIS-C2-01 | U.C.8.2.2, U.C.8.2.3 | PAD challenge + thresholds (governed), referral, red-team validation |
+| **MUC-C2-02** | A-MIS-C2-01 | U.C.8.2.1 (multi-face), U.C.8.3.1 (interlock) | Single-face checks, door interlock, SOC events |
+| **MUC-C2-03** | A-MIS-C2-02 | U.C.8.1.1 | Passive Authentication, MRZ-vs-chip cross-check, referral |
+| **MUC-C2-04** | A-MIS-01, A-MIS-C2-04 | Kiosk fleet (PKG-10) | TPM 2.0 secure boot, signed OTA, tamper-evident enclosure |
+| **MUC-C2-05** | A-MIS-C2-03 | U.C.8.3.2 | Mandatory reason codes, override audit sampling, dual review on watchlist |
+| **MUC-C2-06** | A-MIS-C2-04 | PKG-10 OTA, PKG-11 model rollout | cosign-signed artefacts, CycloneDX SBOM, staged rollout + rollback |
+
+### 8.3 MUC detail cards (pilot: those referenced by PKG-8)
+
+#### MUC-C2-01 — Presentation Attack Against Face Match (photo / video / 3D mask / deepfake injection)
+
+**Misactor:** A-MIS-C2-01 (Fraudulent Traveller), possibly equipped by A-MIS-C2-02.
+**Threatens:** U.C.8.2.2 (PAD), U.C.8.2.3 (match).
+**Preconditions:** Attacker holds the (stolen/lost) genuine eMRTD of the imposted person, plus a reproduction of their face.
+**Attack Flow:**
+1. Attacker presents a reproduction (printed photo, replayed video, 3D mask, or a deepfake-driven injection attempt) at the camera stage.
+2. Goal: pass PAD and match against the genuine chip portrait, releasing the gate for a non-holder.
+**Impact:** Illegal border crossing attributed to a genuine identity; authority-level trust damage; AI Act serious-incident exposure.
+**Mitigated by:** U.C.8.2.2 (passive+active PAD with governed thresholds), U.C.8.2.3 (grey-band referral, never auto-reject→human decides), CR-D-02.4-001 (TLPT/red-team validation of the PAD path), U.C.2.1.1 (spoof events to SOC feed threshold tuning), U.C.6.3.1 (model/threshold change control).
+**NIST anchors:** PR.AA-01, DE.CM-01, DE.AE-02.
+
+#### MUC-C2-02 — Tailgating / Social Engineering at the Gate
+
+**Misactor:** A-MIS-C2-01 ( Fraudulent Traveller + accomplice).
+**Threatens:** U.C.8.2.1 (capture), U.C.8.3.1 (release).
+**Preconditions:** Physical access to the kiosk lane; second person following an authenticated traveller.
+**Attack Flow:**
+1. Accomplice slips through the door behind the authenticated traveller before re-lock.
+2. Alternative: distraction during capture so the template is computed with two faces present, degrading match.
+**Impact:** One crossing per event without any biometric record; untraceable if door telemetry is not correlated.
+**Mitigated by:** U.C.8.2.1 extension 3b (multi-face detection → security event), U.C.8.3.1 (one-traveller door interlock + safe re-lock), U.C.2.6.1 (lane telemetry correlation), PKG-10 (door sensors health).
+**NIST anchors:** PE.OE-01-analogue (physical), DE.CM-01.
+
+#### MUC-C2-03 — Forged / Cloned eMRTD
+
+**Misactor:** A-MIS-C2-02 (Document-Fraud Syndicate).
+**Threatens:** U.C.8.1.1 (document scan).
+**Preconditions:** Syndicate produces a forged document with a workable MRZ and, in clone variants, a copied chip.
+**Attack Flow:**
+1. Present forged document; attempt MRZ-only acceptance if kiosk degrades gracefully.
+2. Clone variants: genuine chip data on a different physical document.
+**Impact:** Fraudulent crossings at scale; undermines PA trust chain.
+**Mitigated by:** U.C.8.1.1 extension 4a/5a (no MRZ-only path; PA against CSCA chain; MRZ-vs-chip mismatch → referral + event), U.C.2.1.1, authority watchlist correlation at U.C.8.3.1.
+**NIST anchors:** PR.AA-05-analogue (authenticity), DE.AE-02.
+
+#### MUC-C2-05 — Rubber-Stamp Referral Overrides
+
+**Misactor:** A-MIS-C2-03 (Corrupt/Rubber-Stamp Operator), possibly coerced.
+**Threatens:** U.C.8.3.2 (manual verification & override).
+**Preconditions:** Officer account (or stolen session); queue pressure as cover.
+**Attack Flow:**
+1. Officer approves referrals without verification (habitual or targeted).
+2. Targeted variant: specific traveller always approved regardless of match outcome.
+**Impact:** Human oversight becomes a formality — the AI Act Art. 14 safeguard is voided; audit shows approvals without evidence.
+**Mitigated by:** U.C.8.3.2 (mandatory reason codes, fail-closed MFA), override audit sampling (DPO + SOC), dual review on watchlist referrals, U.C.3.5.1-analogue (override logs immutable), periodic officer performance review (CR-D-08.2-001 training + competency).
+**NIST anchors:** PR.AA-05, DE.CM-09-analogue (personnel), AU.A-06-analogue (audit review).
+
+*Remaining base MUC detail cards (MUC-01..08 instantiated) and C2-specific MUC-C2-04/06 cards are written in the massification pass (pending pilot approval).*
+
+## 9. DETAILED USE CASES
+
+### 9.1 U.C.1.2.1: Right to Erasure with Cryptographic Sharding (Detailed)
 
 **Use Case ID:** U.C.1.2.1
 **Name:** Right to Erasure (Cryptographic Sharding)
@@ -358,7 +641,7 @@ useCaseDiagram
 
 ---
 
-### 7.2 U.C.2.1.1: Incident Detection & Triage (Detailed)
+### 9.2 U.C.2.1.1: Incident Detection & Triage (Detailed)
 
 **Use Case ID:** U.C.2.1.1
 **Name:** Incident Detection & Triage
@@ -430,7 +713,7 @@ useCaseDiagram
 
 ---
 
-### 7.3 U.C.2.5.1: Regulatory Notification — Unified 24h/72h Workflow (Detailed)
+### 9.3 U.C.2.5.1: Regulatory Notification — Unified 24h/72h Workflow (Detailed)
 
 **Use Case ID:** U.C.2.5.1
 **Name:** Regulatory Notification (Unified 24h/72h Workflow)
@@ -498,7 +781,7 @@ useCaseDiagram
 
 ---
 
-### 7.4 U.C.3.3.1: Biometric Enrollment (Detailed)
+### 9.4 U.C.3.3.1: Biometric Enrollment (Detailed)
 
 **Use Case ID:** U.C.3.3.1
 **Name:** Biometric Enrollment
@@ -562,7 +845,7 @@ useCaseDiagram
 
 ---
 
-### 7.5 U.C.6.1.1: AI Conformity Assessment (Detailed)
+### 9.5 U.C.6.1.1: AI Conformity Assessment (Detailed)
 
 **Use Case ID:** U.C.6.1.1
 **Name:** AI Conformity Assessment
@@ -630,7 +913,7 @@ useCaseDiagram
 
 ---
 
-### 7.6 U.C.6.3.1: AI Bias Testing & Fairness Assessment (Detailed)
+### 9.6 U.C.6.3.1: AI Bias Testing & Fairness Assessment (Detailed)
 
 **Use Case ID:** U.C.6.3.1
 **Name:** AI Bias Testing & Fairness Assessment
@@ -696,7 +979,7 @@ useCaseDiagram
 
 ---
 
-### 7.7 U.C.5.2.1: Unified Impact Assessment — DPIA+FRIA (Detailed)
+### 9.7 U.C.5.2.1: Unified Impact Assessment — DPIA+FRIA (Detailed)
 
 **Use Case ID:** U.C.5.2.1
 **Name:** Unified Impact Assessment (DPIA + FRIA)
@@ -774,7 +1057,7 @@ useCaseDiagram
 
 ---
 
-## 8. UC TO BUSINESS GOALS
+## 10. UC TO BUSINESS GOALS
 
 ### 8.1 Use Case to Business Goal Matrix
 
@@ -830,7 +1113,7 @@ useCaseDiagram
 
 ---
 
-## 9. UC TO STAKEHOLDERS
+## 11. UC TO STAKEHOLDERS
 
 ### 9.1 Use Case to Stakeholder Matrix
 
@@ -888,7 +1171,7 @@ useCaseDiagram
 
 ---
 
-## 10. REQUIREMENTS PRIORITIZATION
+## 12. REQUIREMENTS PRIORITIZATION
 
 ### 5.1 Priority Distribution
 
@@ -910,7 +1193,7 @@ useCaseDiagram
 
 ---
 
-## 11. RULE COVERAGE ANALYSIS
+## 13. RULE COVERAGE ANALYSIS
 
 ### 11.1 Compliance Rule Coverage
 
@@ -1007,7 +1290,7 @@ useCaseDiagram
 
 ---
 
-## 12. USE CASE STATISTICS
+## 14. USE CASE STATISTICS
 
 | Metric | Value |
 |--------|-------|
@@ -1028,7 +1311,7 @@ useCaseDiagram
 
 ---
 
-## 13. VERSION HISTORY
+## 15. VERSION HISTORY
 
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
@@ -1038,7 +1321,7 @@ useCaseDiagram
 
 ---
 
-## 14. DOCUMENT APPROVAL
+## 16. DOCUMENT APPROVAL
 
 | Role | Name | Signature | Date |
 |------|------|-----------|------|
@@ -1055,3 +1338,4 @@ useCaseDiagram
 **Phase 3 Step:** B (Use Cases Catalog) COMPLETE (pending final approval)
 **Gate Status:** All 63 rules covered (100%), all 38 goals mapped (100%), all 9 tensions addressed (100%)
 **Review Status:** DRAFT — awaiting CTO, CISO, DPO, and AI Governance Lead review
+| 1.3 | 2026-09-04 | PORT-PARITY-2 Executor (Phase 3 product-first pilot) | Added §6 Product Functional Use Cases (PKG-8 Traveller eGate Journey, 7 fully-dressed UCs U.C.8.x.y) + §8 Misuse Cases (base MUC-01..08 instantiated + GuardianGate-specific MUC-C2-01..06, 4 pilot cards); compliance UCs U.C.1–7 preserved verbatim (former §6→§7, §7→§9; detail cards unchanged in §9); frontmatter inputs legacy→DocNN | High |
