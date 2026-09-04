@@ -225,11 +225,12 @@ useCaseDiagram
 | Actor (existing SH- ID) | Role in the product | Drives |
 |-------------------------|---------------------|--------|
 | SH-EXT-002 (Traveler) | Primary product user: crosses the border via the eGate. | U.C.8.1.*, U.C.8.2.*, U.C.8.3.1, U.C.8.4.1 |
-| SH-EXT-001 (Border Officer) | Human oversight: handles referrals, manual verification, overrides. | U.C.8.3.2 |
-| SH-INT-007 (Ops Lead) | Kiosk fleet operations (provisioning, health, OTA supervision). | U.C.8 (PKG-10, massification) |
-| SH-INT-005 (AI Governance Lead) | AI model lifecycle oversight (rollout, drift, bias review). | U.C.8 (PKG-11, massification) |
-| SH-INT-008 (SOC Manager) | Consumes security events raised by the journey (tamper, spoofing, lockouts). | Annex targets |
-| SYS-04 / SYS-06 (kiosk) | The product itself: Edge AI firmware + kiosk hardware acting for the actors above. | All U.C.8.* |
+| SH-EXT-001 (Border Officer) | Human oversight: handles referrals, manual verification, overrides. | U.C.8.3.2, U.C.9.1.1–U.C.9.5.1 (PKG-9) |
+| SH-INT-007 (Ops Lead) | Kiosk fleet operations (provisioning, health, OTA supervision, administration). | U.C.10.1.1–U.C.10.5.1 (PKG-10), U.C.11.5.1, U.C.12.1.1, U.C.12.3.1, U.C.12.4.1 |
+| SH-INT-005 (AI Governance Lead) | AI model lifecycle oversight (training, rollout, rollback, drift/bias review). | U.C.11.1.1–U.C.11.4.1 (PKG-11) |
+| SH-INT-008 (SOC Manager) | Consumes security events raised by the journey (tamper, spoofing, lockouts); owns incident response paths. | U.C.9.4.1, U.C.10.4.1, U.C.12.2.1 |
+| SH-EXT-003 (National Border Authority) | Data controller; requests and receives audit evidence exports. | U.C.12.2.1 |
+| SYS-04 / SYS-06 (kiosk) | The product itself: Edge AI firmware + kiosk hardware acting for the actors above. | All U.C.8.*–U.C.12.* |
 
 ### 6.1 PKG-8 — Traveller eGate Journey (7)
 
@@ -1103,7 +1104,2361 @@ accountability gaps prevented (MUC-04-analogue).
 - **Threats addressed:** MUC-04-analogue (notice-bypass / accountability gap).
 - **NIST anchors:** GV.PO-P1, PR.DS-01.
 
-*PKG-9 (Operator Referral Desk product operations), PKG-10 (Kiosk Fleet Operations), PKG-11 (AI Model Lifecycle) and PKG-12 (Admin & Reporting) will be written in this template (fully-dressed RUP-style, sections 1–10 + AEGIS annex) in the massification pass of this campaign (pending pilot approval).*
+### 6.2 PKG-9 — Operator Referral Desk (5)
+
+| UC ID | Title | Primary Actor | Prio |
+|-------|-------|---------------|------|
+| U.C.9.1.1 | Operator Console Session (SSO/FIDO2, Fail-Closed) | SH-EXT-001 | CRITICAL |
+| U.C.9.2.1 | Referral Queue Handling & Triage | SH-EXT-001 | HIGH |
+| U.C.9.3.1 | Manual Identity Verification & Override (Reason Codes) | SH-EXT-001 | CRITICAL |
+| U.C.9.4.1 | Incident Flag & Gate Lock | SH-EXT-001 | CRITICAL |
+| U.C.9.5.1 | Shift Handover & Referral Report | SH-EXT-001 | HIGH |
+
+#### Use-Case: {U.C.9.1.1} Operator Console Session (SSO/FIDO2, Fail-Closed)
+
+##### 1 Brief Description
+
+The operator console establishes an authenticated, role-scoped working session for the
+border officer before any referral data is shown. It is triggered when the officer opens
+the console client at the desk. The session is the trust anchor of PKG-9: without a
+successful SSO authentication with mandatory FIDO2, no referral queue, no biometric
+evidence and no override action is ever presented — the console fails closed.
+
+##### 2 Actor Brief Descriptions
+
+###### 2.1 SH-EXT-001 (Border Officer) — Primary Actor:
+
+Authenticates and works inside the session; every recorded console action binds to this
+identity.
+
+###### 2.2 SYS-08 (SSO / IdP):
+
+Okta + on-prem ADFS SSO (SAML 2.0/OIDC) with mandatory FIDO2 (TOTP fallback per policy)
+and adaptive risk-based re-authentication for high-risk actions.
+
+###### 2.3 SYS-08 console client:
+
+Presents the referral work surface only after a valid role-scoped session token exists.
+
+###### 2.4 SH-INT-007 (Ops Lead):
+
+Administers officer roles and console entitlements (U.C.12.4.1).
+
+###### 2.5 SH-INT-008 (SOC Manager):
+
+Receives console authentication anomalies from continuous monitoring (U.C.2.6.1).
+
+##### 3 Preconditions
+
+- Officer identity exists and is active (identity lifecycle per U.C.3.1.1).
+- Officer holds a valid FIDO2 authenticator.
+- Console client healthy and on the managed network path.
+
+##### 4 Basic Flow of Events
+
+1. Officer opens the console client and is redirected to SSO (SYS-08).
+2. SYS-08 authenticates the officer with mandatory FIDO2.
+3. SYS-08 releases a role-scoped session token (least-privilege entitlements).
+4. Console opens the referral work surface; the session binds the officer identity to every subsequent action.
+5. Idle timeout or shift end terminates the session and requires re-authentication.
+
+```mermaid
+sequenceDiagram
+    participant OFF as SH-EXT-001 (Border Officer)
+    participant SSO as SYS-08 (Okta + ADFS)
+    participant CON as Console client
+    OFF->>SSO: Open console; present FIDO2 assertion
+    SSO->>SSO: Verify FIDO2 (mandatory) + risk check
+    SSO-->>CON: Role-scoped session token
+    CON-->>OFF: Referral work surface (actions bound to officer ID)
+```
+
+##### 5 Alternative Flows
+
+###### 5.1 <Alternate flow: FIDO2 unavailable or fails>
+
+Trigger: step 2. No session is established; the console stays locked (fail-closed). The
+officer falls back to the physical manual lane; no referral data is ever displayed
+(MUC-01).
+
+###### 5.2 <Alternate flow: Risk-based step-up>
+
+Trigger: step 2 risk engine flags an anomaly (new device/location). SYS-08 demands
+re-authentication; failure ends the attempt and raises a security event (U.C.2.1.1).
+
+###### 5.3 <Alternate flow: Deprovisioned or suspended account>
+
+Trigger: step 3 entitlement lookup fails. Access denied; Ops/HR notified (identity
+lifecycle U.C.3.1.1).
+
+##### 6 Subflows
+
+###### 6.1 <Subflow: Session binding>
+
+1. The console stamps the officer ID on every queue action, override and annotation.
+2. Action events stream to the immutable audit chain (CR-D-10.1-001 monitoring).
+
+###### 6.2 <Subflow: High-risk action step-up>
+
+1. Override-class actions (U.C.9.3.1) trigger adaptive re-authentication before execution.
+
+##### 7 Key Scenarios
+
+###### 7.1 <Scenario: Authenticated session established>
+
+1. The officer works within entitlements; all actions attributable to the officer ID.
+
+###### 7.2 <Scenario: Credential attack resisted>
+
+1. A phished password alone is useless without the FIDO2 factor; anomalies surface in SOC
+monitoring (MUC-01).
+
+##### 8 Post-conditions
+
+###### 8.1
+
+An active role-scoped session exists, bound to the officer identity.
+
+###### 8.2
+
+Session events are recorded in the audit chain; no referral data was exposed without
+authentication.
+
+##### 9 Special Requirements (FURPS+)
+
+**Functional (F):** SSO with mandatory FIDO2; role-scoped token issuance; fail-closed
+console.
+
+**Usability (U):** Single sign-on across console surfaces; no local passwords.
+
+**Reliability (R):** Fail-closed on MFA failure; session terminates on idle timeout or
+shift end.
+
+**Performance (P):** N/A — no attested timing constraint for console login.
+
+**Supportability (S):** Identity lifecycle and MFA policy governed via SYS-08
+(CR-D-03.1-001 / CR-D-03.2-001); adaptive risk-based re-authentication for high-risk
+actions.
+
+##### 10 Security & Compliance Annex (AEGIS)
+
+- **Provenance:** [ATTESTED] Doc04 §1.1 SYS-08 (Okta + on-prem ADFS, FIDO2 mandatory, TOTP fallback, adaptive risk-based re-auth for high-risk actions); Doc04 §1.4 (SYS-08 row: SAML 2.0/OIDC, NIST SP 800-63B password policy).
+- **Constrained by:** U.C.3.1.1 (identity lifecycle), U.C.3.2.1 (MFA), U.C.3.4.1 (least privilege), U.C.8.3.2 (referral work item origin).
+- **Rules / NFR:** CR-D-03.1-001, CR-D-03.2-001, CR-D-03.3-001.
+- **Threats addressed:** MUC-01 (credential attack on officer console), MUC-02 (privilege escalation — role-scoped token).
+- **NIST anchors:** PR.AA-01, PR.AA-03, PR.AA-05.
+
+#### Use-Case: {U.C.9.2.1} Referral Queue Handling & Triage
+
+##### 1 Brief Description
+
+The console organises every kiosk-raised referral into a single triaged work queue with
+claiming, ordering and evidence bundling. It is triggered when a kiosk issues a queue
+token (U.C.8.3.2) or when a desk officer opens the queue. Triage keeps the evidence
+attached to the work item so that decisions downstream are made on the full case, not on
+queue pressure.
+
+##### 2 Actor Brief Descriptions
+
+###### 2.1 SH-EXT-001 (Border Officer) — Primary Actor:
+
+Claims, triages and resolves referral work items.
+
+###### 2.2 SYS-08 console client:
+
+Presents the ordered queue and the per-item evidence bundle.
+
+###### 2.3 SYS-04 / SYS-06 (Kiosk):
+
+Raises referrals with a reason class and queue token (U.C.8.1.1–U.C.8.3.1).
+
+###### 2.4 SH-INT-008 (SOC Manager):
+
+Informed on queue overflow and correlated referral patterns.
+
+##### 3 Preconditions
+
+- Officer session active (U.C.9.1.1).
+- At least one referral raised by U.C.8.1.1–U.C.8.3.1 (document, liveness, match,
+watchlist or quality).
+
+##### 4 Basic Flow of Events
+
+1. Kiosk issues a queue token and routes the traveller to the desk; the referral enters the queue with its reason class.
+2. Console presents the queue ordered by wait time and severity.
+3. Officer pulls the next work item; the token is claimed and marked in-service.
+4. Officer triages the reason class and proceeds to manual verification (U.C.9.3.1) or dispatches the case to the manual lane.
+5. Queue telemetry (depth, wait time, state) is recorded for the SLA dashboard (U.C.12.3.1).
+
+```mermaid
+sequenceDiagram
+    participant KIOSK as SYS-04/SYS-06 (Kiosk)
+    participant CON as Console queue (SYS-08)
+    participant OFF as SH-EXT-001 (Border Officer)
+    KIOSK->>CON: Referral + reason class + queue token
+    CON-->>OFF: Ordered queue; officer claims item
+    OFF->>CON: Triage reason class; open work item
+    CON->>CON: Record state + queue telemetry (U.C.12.3.1)
+```
+
+##### 5 Alternative Flows
+
+###### 5.1 <Alternate flow: Queue overflow>
+
+Trigger: step 2, wait threshold breached. Kiosk intake is throttled (entry doors locked)
+and SOC informed (same behaviour as U.C.8.3.2 §5.3); handled as an availability event
+(MUC-07).
+
+###### 5.2 <Alternate flow: Traveller no-show>
+
+Trigger: claimed token not presented within the grace period. Item expires and returns to
+the waiting state; expiry noted on the queue telemetry.
+
+###### 5.3 <Alternate flow: Correlated referrals>
+
+Trigger: step 1, the same traveller is flagged by multiple kiosks. Items are merged for
+one work-up; the correlation is visible to SOC (U.C.2.6.1).
+
+##### 6 Subflows
+
+###### 6.1 <Subflow: Reason-class triage>
+
+1. Classify the referral reason (document / liveness / match / watchlist / quality).
+2. Attach the evidence bundle (chip data reference, live camera view, journey metrics) to the work item.
+
+###### 6.2 <Subflow: Queue telemetry>
+
+1. Queue depth, wait time and state transitions feed the SLA dashboard (U.C.12.3.1) and the audit chain.
+
+##### 7 Key Scenarios
+
+###### 7.1 <Scenario: Referral resolved in queue>
+
+1. Work item moves to resolved with a decision reference (U.C.9.3.1 record).
+
+###### 7.2 <Scenario: Pressure resisted>
+
+1. Evidence stays attached to the item; habitual non-verification under queue pressure
+remains auditable (MUC-C2-05).
+
+##### 8 Post-conditions
+
+###### 8.1
+
+Every referral has an owner, a state (waiting / in-service / resolved) and a decision
+reference where resolved.
+
+###### 8.2
+
+Queue telemetry is on record for SLA reporting.
+
+##### 9 Special Requirements (FURPS+)
+
+**Functional (F):** Queue claiming and ordering, state machine, evidence bundling.
+
+**Usability (U):** Single ordered work list with reason class and wait time per item.
+
+**Reliability (R):** Queue state survives console restart; overflow throttling engages
+automatically.
+
+**Performance (P):** N/A — no attested queue-latency constraint.
+
+**Supportability (S):** Telemetry feeds the SLA dashboard (U.C.12.3.1) and SOC
+correlation (U.C.2.6.1).
+
+##### 10 Security & Compliance Annex (AEGIS)
+
+- **Provenance:** [ATTESTED] Doc04 §1.1 SYS-08 (console surface), SYS-09 (audit event sink); Doc03 §4 (referral desk operations); U.C.8.3.2 §5.3 (intake throttling on overflow).
+- **Constrained by:** U.C.8.3.2 (referral origin), U.C.2.1.1 (security events), U.C.2.6.1 (correlation), U.C.12.3.1 (SLA telemetry).
+- **Rules / NFR:** CR-D-10.1-001, CR-D-10.2-001.
+- **Threats addressed:** MUC-C2-05 (queue pressure as cover), MUC-07 (overflow as availability impact).
+- **NIST anchors:** DE.CM-01, DE.AE-02.
+
+#### Use-Case: {U.C.9.3.1} Manual Identity Verification & Override (Reason Codes)
+
+##### 1 Brief Description
+
+The officer performs the human decision the kiosk deferred: verifies the traveller's
+identity manually and records an approve/deny/override outcome with a mandatory reason
+code. It is triggered when the officer opens a triaged work item (U.C.9.2.1). The officer
+— not the AI — is the decision-maker here; this is the product's AI_Act Art. 14
+human-oversight point, and every outcome lands on the immutable audit chain.
+
+##### 2 Actor Brief Descriptions
+
+###### 2.1 SH-EXT-001 (Border Officer) — Primary Actor:
+
+Reviews the evidence, verifies identity manually and records the decision with a reason
+code.
+
+###### 2.2 SH-EXT-002 (Traveler):
+
+Presents at the desk for manual verification.
+
+###### 2.3 SYS-08 console client:
+
+Presents the evidence bundle; enforces the mandatory reason code before submission.
+
+###### 2.4 SYS-04 (Edge AI firmware):
+
+Source of the journey metrics shown (match score bucket, liveness verdict).
+
+###### 2.5 SH-INT-008 (SOC Manager):
+
+Escalation path for confirmed impostors.
+
+###### 2.6 SH-INT-004 (DPO):
+
+Audits overrides via sampling.
+
+##### 3 Preconditions
+
+- Work item claimed (U.C.9.2.1).
+- Officer session active (U.C.9.1.1).
+
+##### 4 Basic Flow of Events
+
+1. Console presents the evidence bundle: reason class, chip data reference, live camera view, journey metrics.
+2. Officer verifies identity manually (visual + document cross-check).
+3. Officer selects the outcome: approve / deny / override-with-review.
+4. Console enforces a mandatory reason code (free-text annotation optional).
+5. Decision + officer ID + timestamps append to the immutable audit chain; gate or manual lane proceeds accordingly.
+
+```mermaid
+sequenceDiagram
+    participant OFF as SH-EXT-001 (Border Officer)
+    participant CON as Console (SYS-08)
+    participant LOG as Immutable audit chain (STORE-04)
+    CON-->>OFF: Evidence bundle (reason class, chip data, live view)
+    OFF->>CON: Outcome (approve/deny/override) + mandatory reason code
+    CON->>LOG: Append decision (officer ID, timestamps)
+    CON-->>OFF: Lane dispatch confirmed
+```
+
+##### 5 Alternative Flows
+
+###### 5.1 <Alternate flow: Step-up demanded>
+
+Trigger: step 3, high-risk action (override on a watchlist case). Re-authentication per
+U.C.9.1.1 §6.2; failure means no override is executed.
+
+###### 5.2 <Alternate flow: Confirmed impostor>
+
+Trigger: step 3, deny outcome. Escalate to the SOC incident flow (U.C.2.1.1) and authority
+notification (U.C.2.5.1 if reportable).
+
+###### 5.3 <Alternate flow: Dual review on watchlist>
+
+Trigger: step 3, watchlist-referral approval. A second officer must concur before the
+approve is recorded (dual review against MUC-C2-05).
+
+##### 6 Subflows
+
+###### 6.1 <Subflow: Reason code enforcement>
+
+1. The console blocks submission without a reason code.
+2. The code taxonomy is aligned to the referral reason classes.
+
+###### 6.2 <Subflow: Decision log write>
+
+Same reusable fragment as U.C.8.3.2 §6.2: decision + mandatory reason code appended to
+the immutable audit chain (STORE-04, CR-D-10.2-001 traceability).
+
+##### 7 Key Scenarios
+
+###### 7.1 <Scenario: Identity resolved>
+
+1. Human decision on record with officer ID, outcome, reason code and timestamps; lane
+proceeds accordingly.
+
+###### 7.2 <Scenario: Rubber-stamp resisted>
+
+1. Reason codes plus DPO/SOC audit sampling make habitual non-verification visible
+(MUC-C2-05).
+
+##### 8 Post-conditions
+
+###### 8.1
+
+Human decision recorded with officer ID, outcome, reason code and timestamps.
+
+###### 8.2
+
+Downstream actions completed (lane dispatch, SOC escalation, authority notification where
+reportable).
+
+##### 9 Special Requirements (FURPS+)
+
+**Functional (F):** Evidence presentation, outcome recording with mandatory reason code,
+lane dispatch.
+
+**Usability (U):** Single work-item view combining evidence and decision controls.
+
+**Reliability (R):** Fail-closed — no decision can be recorded from an unauthenticated
+session; audit-chain append is mandatory.
+
+**Performance (P):** N/A — no attested timing constraint for referral handling.
+
+**Supportability (S):** Override logs immutable (STORE-04); audit sampling supported for
+DPO/SOC review.
+
+##### 10 Security & Compliance Annex (AEGIS)
+
+- **Provenance:** [ATTESTED] Doc04 §1.1 SYS-09 (immutable WORM STORE-04, hash-chained entries), SYS-08 (console); Doc03 §4 (referral desk operations).
+- **Constrained by:** U.C.3.7.1 (documented HITL override procedure), U.C.8.3.2 (referral desk baseline), U.C.6.4.1 (explainability reporting per decision), U.C.2.5.1 (reportable escalations).
+- **Rules / NFR:** BPR-D-03.1-002 (override documented procedure), CR-D-10.2-001, CR-D-10.1-001.
+- **Threats addressed:** MUC-C2-05 (rubber-stamp overrides), MUC-02 (override rights abuse).
+- **NIST anchors:** PR.AA-05, DE.CM-09, PR.DS-11.
+
+#### Use-Case: {U.C.9.4.1} Incident Flag & Gate Lock
+
+##### 1 Brief Description
+
+The console raises a security flag and locks the implicated lane when a referral reveals
+an attack pattern (suspected impostor, presentation attack, tamper indicator) or when
+case integrity requires it. It is triggered by the flag action on a work item. The lock
+is fail-closed: the kiosk gate cannot release until SOC explicitly clears the case.
+
+##### 2 Actor Brief Descriptions
+
+###### 2.1 SH-EXT-001 (Border Officer) — Primary Actor:
+
+Flags the case and selects the incident class.
+
+###### 2.2 SH-INT-008 (SOC Manager):
+
+Owns the triage and the clearance decision (U.C.2.1.1).
+
+###### 2.3 SYS-06 / SYS-04 (Kiosk):
+
+Enforces the gate lock on the management channel.
+
+###### 2.4 SYS-12 (SOC platform):
+
+Runs the incident playbook and containment tooling.
+
+##### 3 Preconditions
+
+- Active work item (U.C.9.2.1) or observed anomaly.
+- Kiosk reachable via the outbound management channel.
+
+##### 4 Basic Flow of Events
+
+1. Officer flags the case selecting an incident class (impostor / spoof / tamper / other).
+2. Console raises a security event with kiosk ID, queue token and evidence references (event pipeline per U.C.2.1.1).
+3. Kiosk gate locked; traveller intake halted for the implicated unit.
+4. SOC triages (U.C.2.1.1) and decides clearance or escalation to containment (U.C.2.2.1).
+5. Clearance releases the lock; all state transitions are logged to the audit chain.
+
+```mermaid
+sequenceDiagram
+    participant OFF as SH-EXT-001 (Border Officer)
+    participant SOC as SH-INT-008 (SOC, SYS-12)
+    participant KIOSK as SYS-06/SYS-04 (Kiosk)
+    OFF->>SOC: Flag case (incident class + evidence refs)
+    SOC->>KIOSK: Lock gate; halt intake
+    KIOSK-->>SOC: Lock state confirmed
+    SOC-->>KIOSK: On clearance: release lock (logged)
+```
+
+##### 5 Alternative Flows
+
+###### 5.1 <Alternate flow: SOC unreachable or timeout>
+
+Trigger: step 4, no SOC response. The lock remains (fail-closed); the secondary on-call
+is engaged per the SYS-12 playbook.
+
+###### 5.2 <Alternate flow: False flag>
+
+Trigger: step 4, SOC clears the case. Release recorded with a reason code; flag-quality
+statistics feed officer training (U.C.7.3.1).
+
+##### 6 Subflows
+
+###### 6.1 <Subflow: Gate lock enforcement>
+
+1. Lock command issued via the mTLS management channel.
+2. Kiosk confirms the lock state; lock state is visible on the fleet dashboard (U.C.12.3.1).
+
+###### 6.2 <Subflow: Incident record>
+
+Same reusable fragment as U.C.2.1.1 triage record; the evidence bundle is attached to the
+incident.
+
+##### 7 Key Scenarios
+
+###### 7.1 <Scenario: Lane locked pending SOC>
+
+1. No release without an explicit SOC decision; traveller routed to the manual lane.
+
+###### 7.2 <Scenario: Attack contained>
+
+1. Suspected impostor or spoof held at the desk; SOC escalates (MUC-C2-01 / MUC-02
+containment).
+
+##### 8 Post-conditions
+
+###### 8.1
+
+Lane locked with an open incident, or released with the SOC decision recorded.
+
+###### 8.2
+
+All transitions (flag, lock, clearance) are in the audit chain.
+
+##### 9 Special Requirements (FURPS+)
+
+**Functional (F):** Flag taxonomy, lock command path, SOC clearance workflow.
+
+**Usability (U):** One-click flag from the work item.
+
+**Reliability (R):** Fail-closed — lock persists on timeout; lock state reconciled by
+fleet monitoring (U.C.10.2.1).
+
+**Performance (P):** N/A — no attested lock-latency constraint; SOC triage inherits the
+U.C.2.1.1 SLA.
+
+**Supportability (S):** Playbooks maintained in SYS-12; integrates with containment
+(U.C.2.2.1).
+
+##### 10 Security & Compliance Annex (AEGIS)
+
+- **Provenance:** [ATTESTED] Doc04 §1.1 SYS-12 (Splunk ES + CrowdStrike EDR + custom playbooks, 24/7 staffed), SYS-06 (tamper-evident enclosure); Doc04 §1.2 (outbound-only management channel).
+- **Constrained by:** U.C.2.1.1 (incident detection & triage), U.C.2.2.1 (containment), U.C.6.5.1 (AI-specific incident path), U.C.8.3.1 (gate interlock).
+- **Rules / NFR:** CR-D-04.1-001, CR-D-04.2-001, CR-D-10.1-001.
+- **Threats addressed:** MUC-07 (lane closure control), MUC-C2-01 (spoof containment), MUC-C2-04 (tamper containment).
+- **NIST anchors:** DE.AE-02, RS.MI-01, PR.IR-04.
+
+#### Use-Case: {U.C.9.5.1} Shift Handover & Referral Report
+
+##### 1 Brief Description
+
+At shift change the outgoing officer produces a referral report — open items, overrides,
+flagged incidents — and hands the queue to the incoming officer. It is triggered at shift
+end or on demand. The handover keeps the human-oversight record continuous: no work item
+is left without an accountable owner across a shift boundary.
+
+##### 2 Actor Brief Descriptions
+
+###### 2.1 SH-EXT-001 (Border Officer, outgoing) — Primary Actor:
+
+Produces the report and transfers queue ownership.
+
+###### 2.2 SH-EXT-001 (Border Officer, incoming):
+
+Authenticates and accepts the queue.
+
+###### 2.3 SYS-08 console client:
+
+Generates the per-shift referral report from queue and decision data.
+
+###### 2.4 SH-INT-010 (Compliance Analyst):
+
+Consumes archived reports for audit sampling.
+
+###### 2.5 SH-INT-004 (DPO):
+
+Uses the override sections for sampling (MUC-C2-05).
+
+##### 3 Preconditions
+
+- Outgoing officer session active (U.C.9.1.1).
+- Queue and decision data available for the shift window.
+
+##### 4 Basic Flow of Events
+
+1. Outgoing officer opens the handover view: open items, in-service items, flagged incidents.
+2. Console generates the referral report (per-shift summary including overrides and reason codes).
+3. Outgoing officer annotates open items with status notes.
+4. Incoming officer authenticates (U.C.9.1.1) and accepts the queue; in-service items return to waiting.
+5. Report archived to the audit chain; the outgoing session terminates.
+
+```mermaid
+sequenceDiagram
+    participant OUT as SH-EXT-001 (outgoing)
+    participant CON as Console (SYS-08)
+    participant IN as SH-EXT-001 (incoming)
+    OUT->>CON: Open handover view
+    CON-->>OUT: Referral report (items, overrides, incidents)
+    OUT->>CON: Annotate + transfer queue
+    IN->>CON: Authenticate (U.C.9.1.1); accept queue
+    CON->>CON: Archive report to audit chain
+```
+
+##### 5 Alternative Flows
+
+###### 5.1 <Alternate flow: Unresolved critical item>
+
+Trigger: step 3, a flagged item is still open. It cannot be silently closed at handover;
+it must be escalated to SOC (U.C.2.1.1) before the handover completes.
+
+###### 5.2 <Alternate flow: Report export requested>
+
+Trigger: step 2, compliance pulls archived reports for audit sampling (U.C.5.4.1).
+
+##### 6 Subflows
+
+###### 6.1 <Subflow: Report generation>
+
+1. Aggregate queue telemetry, decisions and overrides for the shift window.
+2. Render the report and archive it (CR-D-10.2-001 traceability).
+
+###### 6.2 <Subflow: Session termination>
+
+1. The outgoing session ends per U.C.9.1.1; queue ownership cannot outlive a session.
+
+##### 7 Key Scenarios
+
+###### 7.1 <Scenario: Clean handover>
+
+1. The incoming officer owns the queue with the full history attached.
+
+###### 7.2 <Scenario: Override pattern review>
+
+1. Per-shift reports feed DPO/SOC sampling of overrides (MUC-C2-05).
+
+##### 8 Post-conditions
+
+###### 8.1
+
+Shift report archived; queue ownership transferred to the incoming officer.
+
+###### 8.2
+
+No orphaned in-service items; no queue without an active accountable session.
+
+##### 9 Special Requirements (FURPS+)
+
+**Functional (F):** Handover view, report generation, queue transfer with ownership.
+
+**Usability (U):** Checklist-style handover flow.
+
+**Reliability (R):** Report archived to the immutable chain; no data loss on session
+termination.
+
+**Performance (P):** N/A — no attested handover timing constraint.
+
+**Supportability (S):** Reports reusable for compliance audits (U.C.5.4.1) and access/
+performance reviews.
+
+##### 10 Security & Compliance Annex (AEGIS)
+
+- **Provenance:** [ATTESTED] Doc03 §3.3 (SH-EXT-001 operates per shift); Doc04 §1.1 SYS-09 (STORE-04, 10-year retention).
+- **Constrained by:** U.C.8.3.2 (referral desk baseline), U.C.9.1.1 (session lifecycle), U.C.5.4.1 (audit reporting), U.C.2.6.1 (monitoring).
+- **Rules / NFR:** CR-D-10.2-001, CR-D-10.3-001, BPR-D-10.2-001.
+- **Threats addressed:** MUC-C2-05 (sampling input), MUC-02 (no unowned queue across shifts).
+- **NIST anchors:** PR.DS-11, DE.AE-03.
+
+
+### 6.3 PKG-10 — Kiosk Fleet Operations (5)
+
+| UC ID | Title | Primary Actor | Prio |
+|-------|-------|---------------|------|
+| U.C.10.1.1 | Kiosk Provisioning & Enrolment (TPM-Bound Identity) | SH-INT-007 | CRITICAL |
+| U.C.10.2.1 | Fleet Health Monitoring | SH-INT-007 | HIGH |
+| U.C.10.3.1 | Signed OTA Firmware Update (Cosign, Staged) | SH-INT-007 | CRITICAL |
+| U.C.10.4.1 | Tamper Alert Response | SH-INT-008 | CRITICAL |
+| U.C.10.5.1 | Offline/Failover Mode (Store-and-Forward Crossing Events) | SH-INT-007 | HIGH |
+
+#### Use-Case: {U.C.10.1.1} Kiosk Provisioning & Enrolment (TPM-Bound Identity)
+
+##### 1 Brief Description
+
+Operations provisions a new kiosk into the fleet: hardware is brought up, the TPM-bound
+device identity is attested, an mTLS client certificate is enrolled from the internal CA
+and the signed firmware baseline is verified. It is triggered when a unit is installed at
+an airport or replaced in the field. Enrolment is the birth of the device identity: only
+TPM-bound, secure-boot units can ever join the fleet.
+
+##### 2 Actor Brief Descriptions
+
+###### 2.1 SH-INT-007 (Ops Lead) — Primary Actor:
+
+Runs provisioning, approves the enrolment request against the procurement manifest.
+
+###### 2.2 SYS-06 (Kiosk hardware):
+
+Industrial PC with TPM 2.0; provides the hardware root of trust and the secure-boot chain.
+
+###### 2.3 SYS-04 (Edge AI firmware):
+
+Signed firmware verified at boot; runs the attestation client.
+
+###### 2.4 SYS-01 (EU cloud enrolment endpoint):
+
+Terminates the outbound-only enrolment channel; internal CA issues the mTLS certificate.
+
+###### 2.5 SH-EXT-004 (Airport Operator):
+
+Provides the physical installation environment and site network handoff.
+
+##### 3 Preconditions
+
+- Hardware from an audited supplier with SBOM provided (Doc06 §3).
+- Unit at the installation site with backhaul available (private LTE/5G or fibre).
+
+##### 4 Basic Flow of Events
+
+1. Unit powers on; TPM 2.0 secure boot verifies the signed firmware chain (SYS-04).
+2. Device presents its TPM-bound key to the enrolment endpoint over the outbound-only channel.
+3. Ops approves the enrolment request (unit serial vs procurement manifest).
+4. Internal CA issues the mTLS client certificate bound to the TPM key; quarterly rotation and OCSP revocation scheduled.
+5. Unit registered in the fleet inventory with its SBOM reference; baseline configuration applied (secure defaults, U.C.3.5.1); unit becomes enrolled and healthy for PKG-8.
+
+```mermaid
+sequenceDiagram
+    participant KIOSK as SYS-06/SYS-04 (Kiosk)
+    participant ENR as SYS-01 (Enrolment + internal CA)
+    participant OPS as SH-INT-007 (Ops Lead)
+    KIOSK->>ENR: Secure boot OK; present TPM-bound key (outbound)
+    ENR->>OPS: Enrolment request (serial, attestation)
+    OPS->>ENR: Approve (manifest match)
+    ENR-->>KIOSK: mTLS certificate (TPM-bound); baseline config
+```
+
+##### 5 Alternative Flows
+
+###### 5.1 <Alternate flow: Boot chain invalid>
+
+Trigger: step 1, secure boot verification fails. The unit refuses service; it is
+quarantined and handled per U.C.10.4.1.
+
+###### 5.2 <Alternate flow: Serial/manifest mismatch>
+
+Trigger: step 3. Enrolment denied; procurement/supplier review (U.C.5.5.1).
+
+###### 5.3 <Alternate flow: Backhaul unavailable>
+
+Trigger: step 2. Enrolment deferred; the unit stays out of production (no bypass or
+temporary enrolment exists).
+
+##### 6 Subflows
+
+###### 6.1 <Subflow: TPM key attestation>
+
+1. The TPM-bound key cannot be exported; certificate issuance happens only after
+attestation of the boot measurements.
+
+###### 6.2 <Subflow: Fleet inventory registration>
+
+1. Asset record created with unit serial, SBOM reference and certificate fingerprint
+(inventory discipline per ID.AM-01).
+
+##### 7 Key Scenarios
+
+###### 7.1 <Scenario: Unit enrolled>
+
+1. Production-ready kiosk with a hardware-bound identity and inventory record.
+
+###### 7.2 <Scenario: Implant resisted>
+
+1. A non-genuine unit or modified firmware cannot enrol or boot into service
+(MUC-C2-04).
+
+##### 8 Post-conditions
+
+###### 8.1
+
+Enrolled unit with a TPM-bound certificate and a fleet inventory record.
+
+###### 8.2
+
+No unit is in production without a verified boot chain and an approved enrolment record.
+
+##### 9 Special Requirements (FURPS+)
+
+**Functional (F):** Secure-boot verification, TPM attestation, certificate issuance,
+inventory registration.
+
+**Usability (U):** Guided provisioning runbook for field operations.
+
+**Reliability (R):** Fail-closed — enrolment denied on any verification failure;
+outbound-only channel only.
+
+**Performance (P):** N/A — no attested provisioning time.
+
+**Supportability (S):** Quarterly certificate rotation via the internal CA; per-unit
+CycloneDX SBOM from SYS-11.
+
+##### 10 Security & Compliance Annex (AEGIS)
+
+- **Provenance:** [ATTESTED] Doc04 §1.1 SYS-04 (TPM 2.0 secure boot, signed firmware), SYS-06 (industrial-grade PC); Doc04 §1.4 (SYS-04 row: FIDO device-bound credentials in TPM 2.0, mTLS certificates rotated quarterly via internal CA, OCSP revocation); Doc04 §1.2 (outbound-only channel); Doc06 §3 (Advantech IPC + TPM 2.0, secure-boot obligation).
+- **Constrained by:** U.C.3.5.1 (secure default configuration), U.C.3.1.1 (identity lifecycle — device identity), U.C.5.8.1 (per-airport boundary), U.C.5.5.1 (supplier risk).
+- **Rules / NFR:** CR-D-03.4-001, CR-D-03.1-001, CR-D-01.3-001.
+- **Threats addressed:** MUC-C2-04 (tamper/implant resisted at birth of trust), MUC-03 (no inbound channels created).
+- **NIST anchors:** ID.AM-01, PR.AA-05, PR.PS-01.
+
+#### Use-Case: {U.C.10.2.1} Fleet Health Monitoring
+
+##### 1 Brief Description
+
+Operations monitors the fleet's operational and security health — connectivity, sensors,
+door interlocks, firmware/model versions, unit state — from the fleet dashboard, and
+anomalies are classified into maintenance-class and security-class events. It runs
+continuously and on dashboard open. Health monitoring is what turns a silent fleet into
+an observable one: tamper indicators and degraded sensors surface before travellers are
+affected.
+
+##### 2 Actor Brief Descriptions
+
+###### 2.1 SH-INT-007 (Ops Lead) — Primary Actor:
+
+Watches the fleet view, triages maintenance-class anomalies, raises work orders.
+
+###### 2.2 SYS-06 (Kiosk fleet):
+
+Emits health telemetry (heartbeat, sensor state, versions) over the outbound channel.
+
+###### 2.3 SYS-09 / SYS-12 (SIEM/SOC platform):
+
+Aggregates telemetry; routes security-class anomalies to SOC.
+
+###### 2.4 SH-INT-008 (SOC Manager):
+
+Receives security-class events (tamper indicators, lock anomalies).
+
+##### 3 Preconditions
+
+- Units enrolled (U.C.10.1.1).
+- Telemetry channel up (outbound-only mTLS).
+
+##### 4 Basic Flow of Events
+
+1. Units emit health telemetry (heartbeat + sensor state + firmware/model versions).
+2. Telemetry is aggregated; the dashboard shows fleet status per site/unit (feeds U.C.12.3.1).
+3. Rules classify anomalies: maintenance-class vs security-class.
+4. Maintenance-class anomalies become Ops work orders; security-class anomalies raise SOC events (U.C.2.1.1), including tamper indicators (U.C.10.4.1).
+5. Anomalies are correlated per unit/lane in the SIEM (U.C.2.6.1).
+
+```mermaid
+sequenceDiagram
+    participant KIOSK as SYS-06 (Kiosk fleet)
+    participant SIEM as SYS-09/SYS-12 (Aggregation)
+    participant OPS as SH-INT-007 (Ops Lead)
+    participant SOC as SH-INT-008 (SOC)
+    KIOSK->>SIEM: Heartbeat + sensor state + versions
+    SIEM->>OPS: Maintenance-class anomaly -> work order
+    SIEM->>SOC: Security-class anomaly (e.g. tamper)
+    SIEM->>SIEM: Correlate per unit/lane (U.C.2.6.1)
+```
+
+##### 5 Alternative Flows
+
+###### 5.1 <Alternate flow: Heartbeat loss>
+
+Trigger: step 1, a unit greys out. Offline/failover state assessed (U.C.10.5.1); site
+informed; availability window recorded for SLA (U.C.12.3.1).
+
+###### 5.2 <Alternate flow: Sensor drift>
+
+Trigger: step 3, camera or MRZ reader quality degrades. Unit marked degraded; referral
+rate expected to rise; maintenance scheduled before journey impact.
+
+##### 6 Subflows
+
+###### 6.1 <Subflow: Health rule set>
+
+1. Per-component thresholds; tamper-evident enclosure switches are always mapped to the
+security class.
+
+###### 6.2 <Subflow: SOC correlation>
+
+Same reusable fragment as U.C.2.6.1: unit/lane telemetry correlated with security events.
+
+##### 7 Key Scenarios
+
+###### 7.1 <Scenario: Degraded unit caught early>
+
+1. Maintenance before traveller impact; referral queues stay short.
+
+###### 7.2 <Scenario: Tamper indicator surfaces>
+
+1. Enclosure event classified security-class; SOC response path engages (MUC-C2-04,
+U.C.10.4.1).
+
+##### 8 Post-conditions
+
+###### 8.1
+
+Fleet state on record; every anomaly ticketed as maintenance or security class.
+
+###### 8.2
+
+Availability windows on record for SLA reporting.
+
+##### 9 Special Requirements (FURPS+)
+
+**Functional (F):** Telemetry collection, anomaly classification, dashboard.
+
+**Usability (U):** Single fleet view with per-unit drill-down.
+
+**Reliability (R):** 24/7 monitoring; missing heartbeats alerted.
+
+**Performance (P):** N/A — no attested telemetry latency constraint.
+
+**Supportability (S):** SIEM retention per STORE-04/telemetry policy; feeds the SLA
+dashboard (U.C.12.3.1).
+
+##### 10 Security & Compliance Annex (AEGIS)
+
+- **Provenance:** [ATTESTED] Doc04 §1.1 SYS-06 (tamper-evident enclosure, LTE/5G failover), SYS-09/SYS-12 (SIEM + EDR telemetry); Doc04 §1.2 (vendor-managed private LTE/5G backhaul, outbound-only).
+- **Constrained by:** U.C.2.6.1 (continuous monitoring), U.C.2.1.1 (security events), U.C.12.3.1 (SLA dashboard), U.C.10.4.1 (tamper response).
+- **Rules / NFR:** CR-D-10.1-001, CR-D-04.1-001, BPR-D-10.4-001.
+- **Threats addressed:** MUC-C2-04 (tamper indicators surface), MUC-07 (degradation detected early).
+- **NIST anchors:** DE.CM-01, DE.AE-02.
+
+#### Use-Case: {U.C.10.3.1} Signed OTA Firmware Update (Cosign, Staged)
+
+##### 1 Brief Description
+
+Operations rolls a signed firmware package to the fleet through staged rings; each kiosk
+verifies the cosign signature in the TPM before applying, and a rollback path stays armed
+at every ring. It is triggered by an approved release (security patch or feature). No
+unsigned artefact can ever reach a booting kiosk.
+
+##### 2 Actor Brief Descriptions
+
+###### 2.1 SH-INT-007 (Ops Lead) — Primary Actor:
+
+Schedules and drives the staged rollout; confirms ring promotions.
+
+###### 2.2 SYS-11 (OTA pipeline):
+
+Distributes cosign-signed packages with CycloneDX SBOM attached.
+
+###### 2.3 SYS-06 / SYS-04 (Kiosk):
+
+Verifies the signature in the TPM; applies atomically; reports the new version.
+
+###### 2.4 SH-INT-006 (Dev Lead):
+
+Release origin; CI/CD gates passed upstream (U.C.4.3.1).
+
+###### 2.5 SH-INT-008 (SOC Manager):
+
+Informed/engaged on rollout anomalies or aborts.
+
+##### 3 Preconditions
+
+- Release artefact signed in SYS-11 with CycloneDX SBOM attached.
+- Target units enrolled (U.C.10.1.1) and healthy (U.C.10.2.1).
+
+##### 4 Basic Flow of Events
+
+1. Release approved in the pipeline (CI/CD security gates passed, U.C.4.3.1).
+2. Ops schedules a staged rollout: canary units, then ring 1, then the full fleet.
+3. Each kiosk pulls the package over mTLS; the cosign signature is verified in the TPM and the SBOM manifest checked.
+4. Package applied atomically; the unit self-tests and reports its new version.
+5. Ring progression is gated on canary health; abort/rollback remains armed until promotion is confirmed.
+
+```mermaid
+sequenceDiagram
+    participant OPS as SH-INT-007 (Ops Lead)
+    participant PIPE as SYS-11 (OTA pipeline)
+    participant KIOSK as SYS-06/SYS-04 (Kiosk)
+    OPS->>PIPE: Schedule staged rollout (canary -> rings)
+    PIPE->>KIOSK: Signed package + CycloneDX SBOM (mTLS)
+    KIOSK->>KIOSK: Verify cosign signature in TPM; atomic apply
+    KIOSK-->>OPS: New version reported; ring gate on health
+```
+
+##### 5 Alternative Flows
+
+###### 5.1 <Alternate flow: Signature invalid>
+
+Trigger: step 3, verification fails. The unit refuses the package and stays on its
+current signed version; a security event is raised (MUC-C2-06 attempt).
+
+###### 5.2 <Alternate flow: Canary health regression>
+
+Trigger: step 5, canary metrics regress. Rollout halts automatically; canary units roll
+back to the previous version.
+
+###### 5.3 <Alternate flow: Unit offline mid-rollout>
+
+Trigger: step 3. The unit resumes on reconnection (no partial apply); the rollout view
+tracks the outstanding units.
+
+##### 6 Subflows
+
+###### 6.1 <Subflow: Staged ring promotion>
+
+1. Promotion to the next ring requires explicit Ops confirmation plus healthy canary
+metrics.
+
+###### 6.2 <Subflow: Rollback arming>
+
+1. The previous signed version is retained on the unit until the new version's ring is
+confirmed stable.
+
+##### 7 Key Scenarios
+
+###### 7.1 <Scenario: Fleet updated staged>
+
+1. Fleet at the target version with zero failed units; every application logged.
+
+###### 7.2 <Scenario: Forged package resisted>
+
+1. An unsigned or re-signed package never applies (MUC-C2-06).
+
+##### 8 Post-conditions
+
+###### 8.1
+
+Fleet at the target version or held at the last known-good version; per-unit versions on
+record.
+
+###### 8.2
+
+All applications and holds logged (package retention per STORE-02: product lifetime + 5
+years post-EOL).
+
+##### 9 Special Requirements (FURPS+)
+
+**Functional (F):** Staged distribution, in-TPM signature verification, atomic apply,
+rollback.
+
+**Usability (U):** Rollout console with ring/canary view.
+
+**Reliability (R):** Automatic halt on health regression; no partial update states.
+
+**Performance (P):** N/A — no attested rollout window.
+
+**Supportability (S):** Packages and SBOMs retained in STORE-02; versions traceable per
+unit.
+
+##### 10 Security & Compliance Annex (AEGIS)
+
+- **Provenance:** [ATTESTED] Doc04 §1.1 SYS-11 (cosign-signed OTA packages, CycloneDX SBOM per release); Doc04 §2.2 FLOW-04 (signature verified in TPM); Doc04 §2.1 STORE-02 (OTA package retention: lifetime of product + 5 years post-EOL).
+- **Constrained by:** U.C.2.4.1 (signed OTA patch deployment), U.C.4.2.1 (SBOM), U.C.4.3.1 (CI/CD gates), U.C.4.4.1 (change management).
+- **Rules / NFR:** CR-D-02.2-001, CR-D-07.3-001, CR-D-06.2-001, CR-D-01.4-001.
+- **Threats addressed:** MUC-C2-06 (supply-chain implant), MUC-C2-04 (firmware-swap variant).
+- **NIST anchors:** PR.PS-02, PR.DS-12, ID.RA-01.
+
+#### Use-Case: {U.C.10.4.1} Tamper Alert Response
+
+##### 1 Brief Description
+
+When a tamper indicator fires — enclosure switch, TPM measurement anomaly, EDR detection
+on the unit — SOC and Operations execute the tamper response: contain the unit, verify
+its integrity, then re-image or retire it. It is triggered by a security-class health
+event (U.C.10.2.1) or a manual flag (U.C.9.4.1). The unit never keeps serving travellers
+while its integrity is in doubt.
+
+##### 2 Actor Brief Descriptions
+
+###### 2.1 SH-INT-008 (SOC Manager) — Primary Actor:
+
+Owns the response: triage, containment decision, closure.
+
+###### 2.2 SH-INT-007 (Ops Lead):
+
+Executes field containment, inspection and re-provisioning.
+
+###### 2.3 SYS-06 (Kiosk hardware):
+
+Tamper-evident enclosure; source of the physical indicator.
+
+###### 2.4 SYS-12 (SOC platform):
+
+Playbooks and EDR telemetry for the triage.
+
+###### 2.5 SH-EXT-004 (Airport Operator):
+
+Coordinates site security for physical inspection.
+
+##### 3 Preconditions
+
+- Unit enrolled (U.C.10.1.1).
+- Tamper indicator received with unit ID and indicator class.
+
+##### 4 Basic Flow of Events
+
+1. Tamper alert received with unit ID + indicator class.
+2. Unit locked (U.C.9.4.1 lock path) and pulled from traveller service.
+3. SOC triages per playbook (U.C.2.1.1): physical inspection request + EDR/telemetry review.
+4. Outcome: verified-false (sensors re-armed) or confirmed tamper (contain: certificate revoked via OCSP, firmware quarantined, unit re-imaged from the signed baseline or retired).
+5. Incident record closed on the audit chain; authority notification if reportable (U.C.2.5.1).
+
+```mermaid
+sequenceDiagram
+    participant MON as SYS-09/SYS-12 (Telemetry)
+    participant SOC as SH-INT-008 (SOC)
+    participant OPS as SH-INT-007 (Ops Lead)
+    MON->>SOC: Tamper alert (unit ID + class)
+    SOC->>OPS: Contain: lock unit (U.C.9.4.1); revoke cert
+    OPS-->>SOC: Inspection result (false / confirmed)
+    SOC->>SOC: Re-image from signed baseline or retire; log
+```
+
+##### 5 Alternative Flows
+
+###### 5.1 <Alternate flow: Confirmed malware implant>
+
+Trigger: step 4. Unit isolated and forensically imaged; serious-incident assessment
+(U.C.2.5.1) and a fleet-wide sweep for similar indicators.
+
+###### 5.2 <Alternate flow: False positive>
+
+Trigger: step 4, inspection clears the unit. Enclosure sensors re-armed; event closed
+with a reason code.
+
+##### 6 Subflows
+
+###### 6.1 <Subflow: Unit containment>
+
+1. Lock + removal from traveller service + session/certificate revocation (OCSP).
+
+###### 6.2 <Subflow: Re-image from signed baseline>
+
+1. Re-provision per U.C.10.1.1 with fresh TPM attestation before any return to service.
+
+##### 7 Key Scenarios
+
+###### 7.1 <Scenario: Tamper contained>
+
+1. The unit never processes travellers while suspect; evidence preserved.
+
+###### 7.2 <Scenario: Implant caught>
+
+1. MUC-C2-04 contained at one unit; fleet sweep prevents spread.
+
+##### 8 Post-conditions
+
+###### 8.1
+
+Unit contained, re-provisioned or retired; incident record complete.
+
+###### 8.2
+
+All response steps logged; reportable events notified per U.C.2.5.1.
+
+##### 9 Special Requirements (FURPS+)
+
+**Functional (F):** Alert triage, containment (lock + revoke), re-image, retirement.
+
+**Usability (U):** Playbook-driven console guidance.
+
+**Reliability (R):** Containment is automatic on critical indicators; fail-closed
+throughout.
+
+**Performance (P):** N/A — no attested response-time constraint (SOC triage inherits the
+U.C.2.1.1 SLA).
+
+**Supportability (S):** Playbooks maintained in SYS-12; lessons feed continuity reviews
+(U.C.2.7.1).
+
+##### 10 Security & Compliance Annex (AEGIS)
+
+- **Provenance:** [ATTESTED] Doc04 §1.1 SYS-06 (tamper-evident enclosure), SYS-12 (Splunk ES + CrowdStrike Falcon EDR + custom playbooks, 24/7 staffed).
+- **Constrained by:** U.C.2.1.1 (detection & triage), U.C.2.2.1 (containment incl. firmware quarantine), U.C.10.2.1 (indicator source), U.C.9.4.1 (lock path).
+- **Rules / NFR:** CR-D-04.1-001, CR-D-04.2-001, CR-D-10.1-001.
+- **Threats addressed:** MUC-C2-04 (kiosk physical tamper / malware implant).
+- **NIST anchors:** DE.AE-02, RS.MI-01, RS.MA-01.
+
+#### Use-Case: {U.C.10.5.1} Offline/Failover Mode (Store-and-Forward Crossing Events)
+
+##### 1 Brief Description
+
+When a kiosk loses its cloud/backhaul channel it enters offline mode: the unit first
+fails over to the alternate backhaul, and if that also fails it degrades to a restricted
+mode in which audit/crossing events are queued in the on-kiosk encrypted store and
+forwarded to the cloud audit sink once connectivity returns. It is triggered by heartbeat
+loss detected in fleet monitoring (U.C.10.2.1). No crossing event is ever silently lost.
+
+##### 2 Actor Brief Descriptions
+
+###### 2.1 SH-INT-007 (Ops Lead) — Primary Actor:
+
+Monitors offline windows and decides on prolonged-outage handling.
+
+###### 2.2 SYS-06 (Kiosk hardware):
+
+Provides the alternate LTE/5G failover backhaul and the encrypted local store.
+
+###### 2.3 SYS-04 (Edge AI firmware):
+
+Buffers, sequences and flushes the event queue.
+
+###### 2.4 SYS-09 (Audit sink):
+
+Receives the forwarded events and reconciles completeness.
+
+###### 2.5 SH-INT-008 (SOC Manager):
+
+Engaged on prolonged outages or queue-integrity anomalies.
+
+##### 3 Preconditions
+
+- Unit enrolled and previously in service.
+- Loss of primary backhaul detected (heartbeat timeouts).
+
+##### 4 Basic Flow of Events
+
+1. Connectivity loss detected via heartbeat timeouts to SYS-01.
+2. Unit switches to the alternate LTE/5G backhaul if available.
+3. If still offline: unit enters restricted mode — watchlist-dependent release suspends to the manual lane; crossing/audit events (timestamp + outcome + node ID, no biometric content) queue in the encrypted local store.
+4. Queued events are encrypted (HSM-bound key class) and retained until the channel returns.
+5. On reconnection: store-and-forward flush to SYS-09 in strict order; completeness reconciled; the offline window is recorded for SLA (U.C.12.3.1).
+
+```mermaid
+sequenceDiagram
+    participant KIOSK as SYS-06/SYS-04 (Kiosk)
+    participant SINK as SYS-09 (Audit sink)
+    participant OPS as SH-INT-007 (Ops Lead)
+    KIOSK->>KIOSK: Heartbeat loss -> failover -> restricted mode
+    KIOSK->>KIOSK: Queue events (encrypted, sequenced)
+    KIOSK->>SINK: On reconnect: ordered store-and-forward flush
+    SINK-->>OPS: Completeness reconciled; offline window logged
+```
+
+##### 5 Alternative Flows
+
+###### 5.1 <Alternate flow: Prolonged outage>
+
+Trigger: step 3, outage beyond the policy window. Unit moved to manual-lane-only; site
+and SOC informed; availability event handled (MUC-07).
+
+###### 5.2 <Alternate flow: Queue integrity anomaly on flush>
+
+Trigger: step 5, sequence gap or integrity failure. Flush halted; SOC engaged (possible
+tamper, MUC-C2-04).
+
+##### 6 Subflows
+
+###### 6.1 <Subflow: Ordered flush>
+
+1. FIFO ordering with monotonic sequence numbers per unit; duplicates dropped.
+
+###### 6.2 <Subflow: Completeness reconciliation>
+
+1. SYS-09 verifies a gap-free sequence per unit; any gap raises a security event.
+
+##### 7 Key Scenarios
+
+###### 7.1 <Scenario: Brief outage, zero loss>
+
+1. All events arrive in order after reconnection; no manual intervention.
+
+###### 7.2 <Scenario: Extended outage>
+
+1. Lane degrades gracefully to manual processing; the SLA report shows the evidenced
+offline window (U.C.12.3.1).
+
+##### 8 Post-conditions
+
+###### 8.1
+
+Event stream complete and ordered in STORE-04; no silent data loss.
+
+###### 8.2
+
+Offline windows on record for SLA and incident review.
+
+##### 9 Special Requirements (FURPS+)
+
+**Functional (F):** Backhaul failover, encrypted local queueing, ordered store-and-
+forward, completeness reconciliation.
+
+**Usability (U):** N/A — automated; offline state visible on the fleet dashboard only.
+
+**Reliability (R):** No event loss within queue capacity; completeness verified on
+flush.
+
+**Performance (P):** N/A — no attested offline-window limit (policy threshold governs
+prolonged-outage handling).
+
+**Supportability (S):** Queue encrypted with the HSM-bound key class; offline windows
+reported for SLA accounting.
+
+##### 10 Security & Compliance Annex (AEGIS)
+
+- **Provenance:** [ATTESTED] Doc04 §1.1 SYS-06 (LTE/5G failover); Doc04 §2.2 FLOW-03 (audit event class: timestamp + decision outcome + edge node ID, no biometric data); Doc04 §2.1 STORE-05 (on-kiosk encrypted flash pattern, HSM-bound key). The store-and-forward queue behaviour itself is specified by this use case.
+- **Constrained by:** U.C.2.7.1 (DR & business continuity), U.C.2.6.1 (monitoring), U.C.12.3.1 (SLA window reporting), U.C.10.2.1 (detection).
+- **Rules / NFR:** CR-D-04.4-001, CR-D-10.2-001, CR-D-01.1-001, CR-D-01.2-001.
+- **Threats addressed:** MUC-07 (graceful degradation instead of lane failure), MUC-C2-04 (queue tamper caught by integrity check).
+- **NIST anchors:** PR.DS-11, RC.RP-04, PR.DS-01.
+
+### 6.4 PKG-11 — AI Model Lifecycle (5)
+
+| UC ID | Title | Primary Actor | Prio |
+|-------|-------|---------------|------|
+| U.C.11.1.1 | Model Training & Release Packaging (EU-only, SYS-05) | SH-INT-005 | CRITICAL |
+| U.C.11.2.1 | Signed Model Rollout to Fleet (Staged) | SH-INT-005 | CRITICAL |
+| U.C.11.3.1 | Model Rollback | SH-INT-005 | HIGH |
+| U.C.11.4.1 | Drift/Bias Monitoring & Review | SH-INT-005 | HIGH |
+| U.C.11.5.1 | Watchlist Cache Sync (SYS-03 sFTP, HSM-Bound) | SH-INT-007 | HIGH |
+
+#### Use-Case: {U.C.11.1.1} Model Training & Release Packaging (EU-only, SYS-05)
+
+##### 1 Brief Description
+
+AI Governance and ML engineering train or retrain the face-match/PAD models in the
+EU-only training platform and package a release candidate: evaluated artefact, versioned
+registry entry, signature and SBOM. It is triggered by a retraining cycle or by a
+drift/bias finding (U.C.11.4.1). No model reaches the fleet without passing through this
+packaging gate.
+
+##### 2 Actor Brief Descriptions
+
+###### 2.1 SH-INT-005 (AI Governance Lead) — Primary Actor:
+
+Owns the release decision against conformity documentation and evaluation gates.
+
+###### 2.2 SH-INT-006 (Dev Lead):
+
+Operates the training/packaging pipeline.
+
+###### 2.3 SYS-05 (Cloud model training):
+
+EU-only training in a segregated account; signed model artefact registry.
+
+###### 2.4 SYS-11 (SBOM pipeline):
+
+Packages the artefact with cosign signature and CycloneDX SBOM.
+
+###### 2.5 SH-INT-004 (DPO):
+
+Reviews training-data minimisation inputs.
+
+##### 3 Preconditions
+
+- Training dataset lineage and representativeness documented (U.C.6.7.1).
+- Conformity posture current (U.C.6.1.1).
+
+##### 4 Basic Flow of Events
+
+1. Training run executes in SYS-05 (EU region, segregated account, deny-by-default egress).
+2. Candidate is evaluated: accuracy, bias across demographic groups (U.C.6.3.1), PAD threshold behaviour.
+3. Release candidate is packaged: versioned artefact in the signed registry + CycloneDX SBOM (SYS-11).
+4. AI Governance signs off against the Annex III technical documentation (U.C.6.1.1).
+5. The candidate becomes eligible for fleet rollout (U.C.11.2.1).
+
+```mermaid
+sequenceDiagram
+    participant ML as SH-INT-006 (ML pipeline)
+    participant SYS5 as SYS-05 (EU-only training)
+    participant AIG as SH-INT-005 (AI Governance)
+    ML->>SYS5: Training run (segregated account)
+    SYS5-->>AIG: Candidate + evaluation metrics (accuracy, bias)
+    AIG->>SYS5: Sign-off vs conformity docs (U.C.6.1.1)
+    SYS5-->>ML: Versioned artefact + cosign + SBOM (SYS-11)
+```
+
+##### 5 Alternative Flows
+
+###### 5.1 <Alternate flow: Evaluation gate fails>
+
+Trigger: step 2, bias or accuracy gate fails. Candidate rejected; findings feed the
+U.C.6.3.1 review; no release is produced.
+
+###### 5.2 <Alternate flow: Training data gap>
+
+Trigger: step 1, lineage or representativeness check fails (U.C.6.7.1). Training is
+blocked until the dataset governance gap is closed.
+
+##### 6 Subflows
+
+###### 6.1 <Subflow: Evaluation gate>
+
+1. Metrics and the bias report are attached to the artefact record as conformity
+evidence.
+
+###### 6.2 <Subflow: Artefact signing>
+
+1. cosign signature produced in SYS-11; signature and hash recorded in the registry.
+
+##### 7 Key Scenarios
+
+###### 7.1 <Scenario: Candidate released for rollout>
+
+1. Fully traceable artefact (version, signature, SBOM, evaluation) enters U.C.11.2.1.
+
+###### 7.2 <Scenario: Non-compliant candidate blocked>
+
+1. Gate evidence prevents an uncontrolled model change at the origin (MUC-C2-06).
+
+##### 8 Post-conditions
+
+###### 8.1
+
+Release candidate versioned, signed and documented — or rejected with recorded reasons.
+
+###### 8.2
+
+Evaluation evidence retained as conformity documentation.
+
+##### 9 Special Requirements (FURPS+)
+
+**Functional (F):** EU-only training, evaluation gates, versioned signed packaging.
+
+**Usability (U):** N/A — engineering workflow.
+
+**Reliability (R):** Training runs in a segregated account with deny-by-default egress.
+
+**Performance (P):** N/A — no attested training-time constraint.
+
+**Supportability (S):** Registry retains artefacts for the lifetime of the model version
+(STORE-02).
+
+##### 10 Security & Compliance Annex (AEGIS)
+
+- **Provenance:** [ATTESTED] Doc04 §1.1 SYS-05 (EU-only training, signed model artefact registry); Doc04 §1.2 (separate AWS account segregated from production, deny-by-default egress); SYS-11 (SBOM emission per release).
+- **Constrained by:** U.C.6.1.1 (conformity assessment), U.C.6.3.1 (bias gates), U.C.6.7.1 (training data management), U.C.4.5.1 (privacy/secure by design).
+- **Rules / NFR:** CR-D-05.1-001, CR-D-07.1-001, CR-D-06.2-001.
+- **Threats addressed:** MUC-C2-06 (poisoned artefact blocked at origin), MUC-02 (unauthorised model change).
+- **NIST anchors:** PR.PS-06, GV.SC-04, ID.AM-08.
+
+#### Use-Case: {U.C.11.2.1} Signed Model Rollout to Fleet (Staged)
+
+##### 1 Brief Description
+
+AI Governance rolls the signed model artefact to the fleet through staged rings, with
+each kiosk verifying the artefact signature in the TPM before loading it and the previous
+version retained for rollback. It is triggered when a release candidate is approved
+(U.C.11.1.1). The fleet never loads an unverified model.
+
+##### 2 Actor Brief Descriptions
+
+###### 2.1 SH-INT-005 (AI Governance Lead) — Primary Actor:
+
+Approves and drives the staged model rollout; decides ring promotions.
+
+###### 2.2 SYS-11 (Distribution):
+
+Distributes the signed artefact over the OTA channel.
+
+###### 2.3 SYS-04 (Edge AI runtime):
+
+Verifies the signature in the TPM; pins and loads the model version.
+
+###### 2.4 SH-INT-007 (Ops Lead):
+
+Schedules rollout windows with firmware maintenance.
+
+###### 2.5 SH-INT-008 (SOC Manager):
+
+Engaged on rollout anomalies or aborts.
+
+##### 3 Preconditions
+
+- Candidate approved and signed (U.C.11.1.1).
+- Target units enrolled (U.C.10.1.1) and healthy (U.C.10.2.1).
+
+##### 4 Basic Flow of Events
+
+1. Approved artefact scheduled for staged rollout (canary units first).
+2. Each kiosk pulls the artefact over mTLS; the cosign signature is verified in the TPM and version/hash checked against the registry.
+3. Model version pinned per unit; canary units operate live crossings on the candidate.
+4. Ring promotion on canary metrics within governed bounds (drift monitoring U.C.11.4.1); otherwise auto-halt.
+5. Fleet-wide completion recorded; the previous version is retained for rollback (U.C.11.3.1).
+
+```mermaid
+sequenceDiagram
+    participant AIG as SH-INT-005 (AI Governance)
+    participant PIPE as SYS-11 (Distribution)
+    participant KIOSK as SYS-04 (Edge AI runtime)
+    AIG->>PIPE: Approve staged rollout (canary -> rings)
+    PIPE->>KIOSK: Signed model artefact (cosign + SBOM)
+    KIOSK->>KIOSK: Verify signature in TPM; pin version
+    KIOSK-->>AIG: Canary metrics -> ring gate (vs governed bounds)
+```
+
+##### 5 Alternative Flows
+
+###### 5.1 <Alternate flow: Signature or version mismatch>
+
+Trigger: step 2. The load is refused; security event raised (MUC-C2-06 attempt).
+
+###### 5.2 <Alternate flow: Canary regression>
+
+Trigger: step 4, metrics outside governed bounds. Rollout halts; canary units revert;
+AI incident path engages (U.C.6.5.1).
+
+##### 6 Subflows
+
+###### 6.1 <Subflow: Canary validation>
+
+1. Canary units process live crossings on the candidate while their metrics are compared
+against the governed bounds from U.C.11.4.1.
+
+###### 6.2 <Subflow: Version pinning>
+
+1. Each unit records its active model version in subsequent audit events (traceability
+to U.C.6.4.1 reporting).
+
+##### 7 Key Scenarios
+
+###### 7.1 <Scenario: Fleet model updated>
+
+1. Every crossing event traceable to the exact model version.
+
+###### 7.2 <Scenario: Implanted artefact resisted>
+
+1. An unsigned artefact never loads (MUC-C2-06).
+
+##### 8 Post-conditions
+
+###### 8.1
+
+Fleet on the approved model version; per-unit versions pinned and on record.
+
+###### 8.2
+
+Rollback path armed; rollout evidence archived.
+
+##### 9 Special Requirements (FURPS+)
+
+**Functional (F):** Staged distribution, in-TPM verification, version pinning.
+
+**Usability (U):** Rollout ring view shared with the firmware console (U.C.10.3.1).
+
+**Reliability (R):** Auto-halt on regression; atomic version switch.
+
+**Performance (P):** N/A — no attested rollout window.
+
+**Supportability (S):** Version registry in STORE-02; traceability to conformity
+documentation.
+
+##### 10 Security & Compliance Annex (AEGIS)
+
+- **Provenance:** [ATTESTED] Doc04 §2.2 FLOW-04 (signed model artefact, cosign signature, CycloneDX SBOM attached, signature verified in TPM); Doc04 §1.1 SYS-05/SYS-11 (registry + distribution pipeline).
+- **Constrained by:** U.C.2.4.1 (signed OTA deployment), U.C.4.6.1 (AI model versioning & rollback), U.C.4.4.1 (change management), U.C.6.5.1 (AI incident path).
+- **Rules / NFR:** CR-D-02.2-001, CR-D-01.4-001, CR-D-07.4-001.
+- **Threats addressed:** MUC-C2-06 (OTA/model supply-chain implant).
+- **NIST anchors:** PR.DS-12, PR.PS-02, ID.IM-04.
+
+#### Use-Case: {U.C.11.3.1} Model Rollback
+
+##### 1 Brief Description
+
+When a deployed model version misbehaves — drift, a bias finding, an incident — AI
+Governance reverts affected units to the previous known-good version. It is triggered by
+a U.C.11.4.1 review disposition, a U.C.6.5.1 incident or a rollout abort. Rollback is the
+fast containment lever for the model plane, mirroring firmware rollback on the firmware
+plane.
+
+##### 2 Actor Brief Descriptions
+
+###### 2.1 SH-INT-005 (AI Governance Lead) — Primary Actor:
+
+Decides and scopes the rollback; records the trigger.
+
+###### 2.2 SYS-04 (Edge AI runtime):
+
+Reverts to the retained previous signed version.
+
+###### 2.3 SH-INT-008 (SOC Manager):
+
+Links the rollback to the incident record.
+
+###### 2.4 SH-INT-006 (Dev Lead):
+
+Opens the root-cause fix track.
+
+##### 3 Preconditions
+
+- Previous version retained on the unit/registry (per U.C.11.2.1 rollback arming).
+- Trigger recorded (review finding, incident or aborted rollout).
+
+##### 4 Basic Flow of Events
+
+1. Rollback decision recorded with trigger and scope (canary / ring / fleet).
+2. Units revert to the previous signed version.
+3. Version pins updated; subsequent audit events reflect the reverted version.
+4. Rollback verified via health and drift metrics (U.C.11.4.1).
+5. Root-cause ticket opened; any re-release requires fresh packaging (U.C.11.1.1).
+
+```mermaid
+sequenceDiagram
+    participant AIG as SH-INT-005 (AI Governance)
+    participant KIOSK as SYS-04 (Edge AI runtime)
+    participant SOC as SH-INT-008 (SOC)
+    AIG->>KIOSK: Rollback to previous signed version (scope)
+    KIOSK->>KIOSK: Revert; update version pins
+    KIOSK-->>AIG: Health + drift metrics confirm revert
+    AIG->>SOC: Link rollback to incident record
+```
+
+##### 5 Alternative Flows
+
+###### 5.1 <Alternate flow: Rollback fails on a unit>
+
+Trigger: step 2. The unit is held out of service (fail-closed) until re-imaged from the
+signed baseline (U.C.10.4.1 path).
+
+###### 5.2 <Alternate flow: Partial fleet rollback>
+
+Trigger: mixed-version state during rollout abort. Mixed state flagged on the dashboard
+until reconciliation completes.
+
+##### 6 Subflows
+
+###### 6.1 <Subflow: Version reconciliation>
+
+1. Registry and per-unit pins reconciled; mismatches raised as events.
+
+###### 6.2 <Subflow: Incident linkage>
+
+1. The rollback record references the triggering U.C.6.5.1 / U.C.2.1.1 incident.
+
+##### 7 Key Scenarios
+
+###### 7.1 <Scenario: Fast revert>
+
+1. The bad version is out of production; service continuity via the retained version.
+
+###### 7.2 <Scenario: Supply-chain response>
+
+1. Rollback is the containment step when MUC-C2-06 is confirmed post-rollout.
+
+##### 8 Post-conditions
+
+###### 8.1
+
+Fleet on the known-good version; version state reconciled.
+
+###### 8.2
+
+Incident record updated with the rollback evidence.
+
+##### 9 Special Requirements (FURPS+)
+
+**Functional (F):** Versioned revert with scope control.
+
+**Usability (U):** N/A — engineering/console workflow.
+
+**Reliability (R):** Previous version retained until the new one is confirmed stable;
+fail-closed on failed revert.
+
+**Performance (P):** N/A — no attested rollback time.
+
+**Supportability (S):** Rollback history retained in the registry; feeds post-incident
+review.
+
+##### 10 Security & Compliance Annex (AEGIS)
+
+- **Provenance:** [ATTESTED] Doc04 §1.1 SYS-05 (model artefact registry); Doc04 §2.1 STORE-02 (model artefact retention: lifetime of model version).
+- **Constrained by:** U.C.4.6.1 (AI model versioning & rollback), U.C.6.5.1 (AI incident response), U.C.2.4.1 (rollback capability), U.C.11.2.1 (retained previous version).
+- **Rules / NFR:** CR-D-04.2-001, CR-D-04.4-001, BPR-D-07.1-002.
+- **Threats addressed:** MUC-C2-06 (containment), MUC-07 (service restoration).
+- **NIST anchors:** RS.MI-02, RC.RP-04.
+
+#### Use-Case: {U.C.11.4.1} Drift/Bias Monitoring & Review
+
+##### 1 Brief Description
+
+AI Governance reviews continuous drift and bias telemetry for the deployed fleet:
+accuracy deltas, demographic bias indicators and threshold behaviour, per model version.
+It is triggered by the scheduled review cadence (quarterly bias testing, U.C.6.3.1) or by
+automated drift alerts (degradation beyond governed bounds, U.C.6.2.1). The review turns
+post-market telemetry into dispositions: tune, retrain or roll back.
+
+##### 2 Actor Brief Descriptions
+
+###### 2.1 SH-INT-005 (AI Governance Lead) — Primary Actor:
+
+Runs the review, records dispositions.
+
+###### 2.2 SYS-09 / SYS-12 (Telemetry aggregation):
+
+Provides decision metadata and anomaly views.
+
+###### 2.3 SH-INT-008 (SOC Manager):
+
+Receives drift alerts raised as anomaly events.
+
+###### 2.4 SH-EXT-011 (AI Market Surveillance Authority):
+
+Downstream consumer of post-market evidence via U.C.5.7.1.
+
+##### 3 Preconditions
+
+- Fleet telemetry flowing (U.C.10.2.1).
+- Model versions pinned and traceable (U.C.11.2.1).
+
+##### 4 Basic Flow of Events
+
+1. Drift metrics computed from decision/quality telemetry per model version.
+2. Automated alert on degradation beyond the governed bound (per U.C.6.2.1 threshold).
+3. AI Governance reviews: true degradation vs data/seasonality effects; bias view per demographic group.
+4. Disposition recorded: threshold tune (governed change), retrain (U.C.11.1.1) or rollback (U.C.11.3.1).
+5. Review record and metrics archived; reportable findings follow U.C.2.5.1 / U.C.5.7.1.
+
+```mermaid
+sequenceDiagram
+    participant TEL as SYS-09/SYS-12 (Telemetry)
+    participant AIG as SH-INT-005 (AI Governance)
+    participant ACT as U.C.11.1.1 / U.C.11.3.1
+    TEL->>AIG: Drift/bias metrics per model version
+    TEL-->>AIG: Alert on governed-bound breach (U.C.6.2.1)
+    AIG->>AIG: Review; record disposition
+    AIG->>ACT: Retrain or rollback per disposition
+```
+
+##### 5 Alternative Flows
+
+###### 5.1 <Alternate flow: Serious incident suspected>
+
+Trigger: step 3. Escalation to the AI incident path (U.C.6.5.1) and notification
+assessment (U.C.2.5.1).
+
+###### 5.2 <Alternate flow: Metric gap>
+
+Trigger: step 1, telemetry loss. Review runs on partial data flagged as incomplete;
+completeness restored via the U.C.10.5.1 flush.
+
+##### 6 Subflows
+
+###### 6.1 <Subflow: Drift alert rule>
+
+1. Accuracy-degradation threshold per U.C.6.2.1 (>1% degradation alerting, attested in
+§7).
+
+###### 6.2 <Subflow: Bias review cadence>
+
+1. Quarterly documented bias testing (U.C.6.3.1) consumes the same metrics.
+
+##### 7 Key Scenarios
+
+###### 7.1 <Scenario: Drift caught early>
+
+1. Threshold tune or retrain scheduled before service impact.
+
+###### 7.2 <Scenario: Bad version detected post-rollout>
+
+1. Review triggers rollback (U.C.11.3.1) — the detection net for MUC-C2-06.
+
+##### 8 Post-conditions
+
+###### 8.1
+
+Disposition on record with the supporting metrics.
+
+###### 8.2
+
+Metrics and reviews archived as post-market conformity evidence.
+
+##### 9 Special Requirements (FURPS+)
+
+**Functional (F):** Drift computation, alerting, bias review, disposition recording.
+
+**Usability (U):** Review dashboard per model version.
+
+**Reliability (R):** Real-time monitoring per the U.C.6.2.1 SLA.
+
+**Performance (P):** N/A — no attested review-latency constraint.
+
+**Supportability (S):** Metrics retained as post-market monitoring evidence (AI_Act
+post-market obligations via U.C.6.2.1).
+
+##### 10 Security & Compliance Annex (AEGIS)
+
+- **Provenance:** [ATTESTED] Doc04 §1.1 SYS-09 (decision audit metadata, no biometric content); Doc03 §4 (BG-008 note: AI false-match-rate target moved to Phase 3 as a technical requirement).
+- **Constrained by:** U.C.6.2.1 (drift detection), U.C.6.3.1 (bias testing), U.C.6.5.1 (AI incidents), U.C.8.2.2 (governed PAD thresholds).
+- **Rules / NFR:** BPR-D-10.5-001, CR-D-10.1-001, BPR-D-02.4-001.
+- **Threats addressed:** MUC-C2-06 (detection net for implanted/degraded models), MUC-02 (threshold tamper becomes visible).
+- **NIST anchors:** DE.CM-01, DE.AE-02, GV.OV-02.
+
+#### Use-Case: {U.C.11.5.1} Watchlist Cache Sync (SYS-03 sFTP, HSM-Bound)
+
+##### 1 Brief Description
+
+The fleet's watchlist cache is synchronised from the government watchlist service: the
+bilateral sFTP feed delivers update batches to the DMZ, decryption is HSM-bound, and the
+isolated cache is readable only through the kiosk read endpoints. It is triggered by the
+feed schedule or a controller instruction; the cache mirrors the controller's data 1:1.
+The sync keeps the border-security feed fresh without ever widening the attack surface
+beyond the DMZ pattern.
+
+##### 2 Actor Brief Descriptions
+
+###### 2.1 SH-INT-007 (Ops Lead) — Primary Actor:
+
+Monitors sync health and staleness; escalates feed failures.
+
+###### 2.2 SYS-03 (Watchlist service):
+
+Government-supplied bilateral sFTP feed.
+
+###### 2.3 SYS-07 (HSM cluster):
+
+HSM-bound decryption and key material for the cache.
+
+###### 2.4 SYS-04 (Kiosk read endpoints):
+
+Consume the cache via the probe path only (FLOW-02).
+
+###### 2.5 SH-EXT-003 (National Border Authority):
+
+Controller of the watchlist data; defines policy and deletion.
+
+##### 3 Preconditions
+
+- Bilateral feed agreement active.
+- Cache partition isolated (STORE-03 controls).
+
+##### 4 Basic Flow of Events
+
+1. SYS-03 pushes the update batch over the bilateral sFTP feed to the DMZ segment.
+2. Session/decryption keys are bound to the SYS-07 HSM; only the kiosk subservice account can initiate sessions from the inside.
+3. The cache is updated in its isolated partition (encrypted, HSM-bound CMK) with 1:1 mirror semantics.
+4. Kiosks read the cache through the read endpoints only; the FLOW-02 probe path is unchanged.
+5. Sync result and cache version logged; controller-side deletions propagate per policy.
+
+```mermaid
+sequenceDiagram
+    participant SYS3 as SYS-03 (Gov feed)
+    participant CACHE as STORE-03 (Isolated cache)
+    participant KIOSK as SYS-04 (Read endpoints)
+    SYS3->>CACHE: sFTP batch to DMZ; HSM-bound decryption
+    CACHE->>CACHE: 1:1 mirror update (encrypted, HSM CMK)
+    KIOSK->>CACHE: Read via subservice endpoints only
+    CACHE-->>SYS3: Sync version logged; deletions propagated
+```
+
+##### 5 Alternative Flows
+
+###### 5.1 <Alternate flow: Feed failure>
+
+Trigger: step 1. The previous cache is retained; crossing decisions continue on the
+last-good cache; sync alert to Ops. Cache flagged stale beyond the policy window →
+watchlist-dependent releases suspend to the manual lane.
+
+###### 5.2 <Alternate flow: Batch integrity failure>
+
+Trigger: step 2, decryption/integrity check fails. Batch rejected and re-requested; SOC
+informed (MUC-05).
+
+##### 6 Subflows
+
+###### 6.1 <Subflow: Staleness policy>
+
+1. Cache age monitored continuously; beyond the policy window the watchlist-dependent
+release path suspends to the manual lane.
+
+###### 6.2 <Subflow: End-of-contract deletion>
+
+1. Cache deleted per the SLA when the contract ends (per STORE-03 policy).
+
+##### 7 Key Scenarios
+
+###### 7.1 <Scenario: Fresh cache, isolation intact>
+
+1. Fleet decides on current watchlist data with the DMZ/HSM pattern unchanged.
+
+###### 7.2 <Scenario: Compromised feed resisted>
+
+1. HSM-bound decryption plus integrity checks block planted data (MUC-05).
+
+##### 8 Post-conditions
+
+###### 8.1
+
+Cache mirrored to the controller's state; sync audited.
+
+###### 8.2
+
+No watchlist data outside the isolated, encrypted partition.
+
+##### 9 Special Requirements (FURPS+)
+
+**Functional (F):** Scheduled sFTP ingest, HSM-bound decryption, isolated cache update,
+1:1 mirror with deletion propagation.
+
+**Usability (U):** N/A — automated operations workflow.
+
+**Reliability (R):** Last-good cache retained on feed failure; staleness window enforced.
+
+**Performance (P):** N/A — no attested sync cadence.
+
+**Supportability (S):** Retention per government policy (STORE-03); key lifecycle per
+SYS-07 (quarterly ceremonies).
+
+##### 10 Security & Compliance Annex (AEGIS)
+
+- **Provenance:** [ATTESTED] Doc04 §1.1 SYS-03 (bilateral sFTP feed, HSM-bound decryption); Doc04 §1.2 (DMZ termination; only the eGate kiosk subservice account initiates from the inside); Doc04 §2.1 STORE-03 (encrypted isolated cache, 1:1 mirror, deleted on contract end); Doc04 §2.2 FLOW-02.
+- **Constrained by:** U.C.8.3.1 (watchlist check at the gate), U.C.3.4.1 (least-privilege read endpoints), U.C.5.8.1 (third-party boundary), U.C.5.5.1 (government relationship risk).
+- **Rules / NFR:** CR-D-01.1-001, CR-D-01.3-001, CR-D-05.2-001.
+- **Threats addressed:** MUC-05 (compromised integration), MUC-03 (injection / cross-tenant read).
+- **NIST anchors:** PR.DS-01, PR.DS-02, PR.AA-05.
+
+### 6.5 PKG-12 — Administration & Reporting (4)
+
+| UC ID | Title | Primary Actor | Prio |
+|-------|-------|---------------|------|
+| U.C.12.1.1 | Kiosk Admin Configuration (TPM-Bound, Dual Control) | SH-INT-007 | HIGH |
+| U.C.12.2.1 | Audit Export for Authorities (WORM STORE-04) | SH-EXT-003 | HIGH |
+| U.C.12.3.1 | SLA & Fleet Status Dashboard | SH-INT-007 | MEDIUM |
+| U.C.12.4.1 | User/Role Administration for Console | SH-INT-007 | HIGH |
+
+#### Use-Case: {U.C.12.1.1} Kiosk Admin Configuration (TPM-Bound, Dual Control)
+
+##### 1 Brief Description
+
+Operations performs administrative configuration on kiosk units — settings, threshold
+deployment, network profile, feature flags — through the TPM-bound admin channel, and
+sensitive changes require a second approver before dispatch. It is triggered by a change
+request or a deployment need. Every configuration change is a versioned, attributable
+artefact; nothing lands on a unit outside this path.
+
+##### 2 Actor Brief Descriptions
+
+###### 2.1 SH-INT-007 (Ops Lead) — Primary Actor:
+
+Prepares and dispatches configuration changes.
+
+###### 2.2 Second approver (SH-INT-003 delegate or SH-INT-009):
+
+Reviews and approves sensitive change classes (dual control).
+
+###### 2.3 SYS-06 / SYS-04 (Target unit):
+
+Verifies and applies the configuration over the mTLS management channel.
+
+###### 2.4 SH-INT-008 (SOC Manager):
+
+Receives configuration-drift alerts (U.C.10.2.1).
+
+##### 3 Preconditions
+
+- Unit enrolled (U.C.10.1.1); admin credentials TPM-bound (FIDO device-bound in TPM 2.0).
+- Change prepared as a reviewable version against the current baseline.
+
+##### 4 Basic Flow of Events
+
+1. Admin authenticates via SSO + FIDO2 (SYS-08) to the fleet admin console.
+2. Change is prepared as a versioned configuration artefact (diff vs current baseline).
+3. Sensitive change classes require a second approver (dual control) before dispatch.
+4. Configuration is dispatched over the mTLS management channel; the unit verifies and applies it, secure defaults preserved (U.C.3.5.1).
+5. The applied version is recorded per unit; drift against the baseline is alerted (U.C.10.2.1).
+
+```mermaid
+sequenceDiagram
+    participant OPS as SH-INT-007 (Ops Lead)
+    participant APP as Second approver (dual control)
+    participant KIOSK as SYS-06/SYS-04 (Unit)
+    OPS->>APP: Config version (diff vs baseline)
+    APP->>OPS: Approve (sensitive classes)
+    OPS->>KIOSK: Dispatch over mTLS management channel
+    KIOSK-->>OPS: Applied; version recorded; drift watched
+```
+
+##### 5 Alternative Flows
+
+###### 5.1 <Alternate flow: Second approver declines>
+
+Trigger: step 3. The change is not dispatched; the request returns with the reason
+recorded.
+
+###### 5.2 <Alternate flow: Apply failure>
+
+Trigger: step 4. The unit stays on its last-known-good configuration; an alert is raised
+(fail-safe, no partial configuration).
+
+##### 6 Subflows
+
+###### 6.1 <Subflow: Configuration versioning>
+
+1. Every change is a versioned artefact carrying author and approver identities.
+
+###### 6.2 <Subflow: Drift detection>
+
+1. Periodic baseline comparison per unit; unexplained deviations become security events.
+
+##### 7 Key Scenarios
+
+###### 7.1 <Scenario: Controlled change applied>
+
+1. Author + approver traceable on the audit chain; unit at the approved version.
+
+###### 7.2 <Scenario: Rogue configuration resisted>
+
+1. Single-admin or unapproved changes cannot land (MUC-02).
+
+##### 8 Post-conditions
+
+###### 8.1
+
+Unit at an approved configuration version; change record archived.
+
+###### 8.2
+
+Drift monitoring armed against the new baseline.
+
+##### 9 Special Requirements (FURPS+)
+
+**Functional (F):** Versioned configuration dispatch, dual control on sensitive classes,
+drift detection.
+
+**Usability (U):** Diff-based review console.
+
+**Reliability (R):** Fail-safe apply (no partial configuration); last-known-good
+retained.
+
+**Performance (P):** N/A — no attested configuration window.
+
+**Supportability (S):** Baselines aligned to secure defaults (CR-D-03.4-001).
+
+##### 10 Security & Compliance Annex (AEGIS)
+
+- **Provenance:** [ATTESTED] Doc04 §1.4 (SYS-04 row: FIDO device-bound credentials stored in TPM 2.0 for kiosk admin); Doc04 §1.1 SYS-07 (dual-control pattern for sensitive key operations); Doc04 §1.2 (zero-trust, named flows only).
+- **Constrained by:** U.C.3.5.1 (secure defaults), U.C.3.4.1 (least privilege), U.C.12.4.1 (admin entitlements), U.C.10.2.1 (drift alerts).
+- **Rules / NFR:** CR-D-03.3-001, CR-D-03.4-001, CR-D-01.3-001.
+- **Threats addressed:** MUC-02 (rogue admin change), MUC-C2-04 (configuration-borne implant resisted).
+- **NIST anchors:** PR.AA-05, PR.AA-06, PR.PS-01.
+
+#### Use-Case: {U.C.12.2.1} Audit Export for Authorities (WORM STORE-04)
+
+##### 1 Brief Description
+
+The authority — data controller for the crossing records — requests audit evidence
+(crossing decisions, referral records, incident history) for a case or period, and the
+product exports a signed, tamper-evident evidence bundle from the immutable WORM store.
+It is triggered by an authority request or a regulatory procedure. The export proves
+integrity independently: the signature chain lets the authority verify the evidence
+without trusting SecureBorder's word for it.
+
+##### 2 Actor Brief Descriptions
+
+###### 2.1 SH-EXT-003 (National Border Authority) — Primary Actor:
+
+Requests and receives the evidence bundle; verifies the chain independently.
+
+###### 2.2 SH-INT-010 (Compliance Analyst):
+
+Registers the request, prepares the scoped export.
+
+###### 2.3 SH-INT-008 (SOC Manager):
+
+Approves extraction as STORE-04 owner.
+
+###### 2.4 SH-INT-004 (DPO):
+
+Checks the export scope for data minimisation.
+
+###### 2.5 SYS-09 (WORM store):
+
+Source of the signature-chained records.
+
+##### 3 Preconditions
+
+- Lawful request with a defined scope (case IDs / time window).
+- Controller relationship established (bilateral DPA chain).
+
+##### 4 Basic Flow of Events
+
+1. Authority request registered with its scope.
+2. Compliance + DPO verify the scope (minimisation: only the requested records).
+3. SOC approves the extraction from STORE-04.
+4. Signed evidence bundle generated (signature-chained entries + integrity proof).
+5. Bundle delivered via the agreed secure channel; the export itself is recorded in the audit chain.
+
+```mermaid
+sequenceDiagram
+    participant AUTH as SH-EXT-003 (Authority)
+    participant COMP as SH-INT-010 + DPO (Scope check)
+    participant WORM as SYS-09 STORE-04 (WORM)
+    AUTH->>COMP: Evidence request (case/period scope)
+    COMP->>WORM: Approved scoped extraction
+    WORM-->>AUTH: Signed bundle (signature chain + integrity proof)
+    COMP->>COMP: Export recorded in audit chain
+```
+
+##### 5 Alternative Flows
+
+###### 5.1 <Alternate flow: Out-of-scope request>
+
+Trigger: step 2. The request is partially fulfilled; the exceedance is documented and
+refused.
+
+###### 5.2 <Alternate flow: Integrity verification fails>
+
+Trigger: step 4, chain verification fails on extraction. The export halts; SOC
+investigates (tamper attempt, MUC-04).
+
+##### 6 Subflows
+
+###### 6.1 <Subflow: Evidence bundle format>
+
+1. Entries carry the chain signatures enabling independent verification by the
+authority.
+
+###### 6.2 <Subflow: Export accounting>
+
+1. Every export is logged (who, what, when, for whom) — the export never weakens the
+trail.
+
+##### 7 Key Scenarios
+
+###### 7.1 <Scenario: Evidence delivered>
+
+1. The authority verifies the chain independently; no re-formatting or re-signing needed.
+
+###### 7.2 <Scenario: Over-broad request resisted>
+
+1. Minimisation enforced at export, not just at collection (MUC-04 accountability
+limb).
+
+##### 8 Post-conditions
+
+###### 8.1
+
+The authority holds verifiable evidence for the requested scope.
+
+###### 8.2
+
+The export is on record; STORE-04 content unchanged (immutable).
+
+##### 9 Special Requirements (FURPS+)
+
+**Functional (F):** Scoped extraction, chain-signature bundle, export accounting.
+
+**Usability (U):** Request-to-delivery handled as a trackable workflow.
+
+**Reliability (R):** WORM source guarantees immutability; 10-year retention window.
+
+**Performance (P):** N/A — no attested export SLA (statutory clocks run in U.C.2.5.1 /
+U.C.5.7.1).
+
+**Supportability (S):** Bundle format stable across the retention period.
+
+##### 10 Security & Compliance Annex (AEGIS)
+
+- **Provenance:** [ATTESTED] Doc04 §2.1 STORE-04 (immutable, signature-chained by HSM key, 10-year retention); Doc04 §1.1 SYS-09; Doc04 §2.2 FLOW-03 (audit event classes).
+- **Constrained by:** U.C.5.4.1 (compliance audit & reporting), U.C.5.7.1 (regulatory cooperation), U.C.2.5.1 (notification evidence), U.C.1.4.1 (breach notification evidence).
+- **Rules / NFR:** CR-D-10.2-001, CR-D-10.3-001, BPR-D-10.2-001.
+- **Threats addressed:** MUC-04 (evidence tampering/exfiltration resisted), MUC-02 (uncontrolled extraction blocked by approval).
+- **NIST anchors:** PR.DS-11, PR.DS-12, DE.AE-03.
+
+#### Use-Case: {U.C.12.3.1} SLA & Fleet Status Dashboard
+
+##### 1 Brief Description
+
+Operations and management see fleet availability and SLA posture — uptime against the
+99.99% target, referral load, lane/lock status, offline windows, rollout state — in a
+live dashboard. It is triggered on open and refreshed continuously. The dashboard is
+honest by construction: degraded visibility is shown as degraded, never as
+assumed-healthy.
+
+##### 2 Actor Brief Descriptions
+
+###### 2.1 SH-INT-007 (Ops Lead) — Primary Actor:
+
+Uses the dashboard for daily fleet and SLA management.
+
+###### 2.2 SH-INT-003 (CISO):
+
+Consumes the oversight view for management reporting.
+
+###### 2.3 SH-EXT-004 (Airport Operator):
+
+Sees site-level status as the B2B SLA consumer.
+
+###### 2.4 SYS-09 (Telemetry source):
+
+Aggregates fleet and SLA counters.
+
+##### 3 Preconditions
+
+- Fleet enrolled (U.C.10.1.1) with telemetry flowing (U.C.10.2.1).
+
+##### 4 Basic Flow of Events
+
+1. Dashboard aggregates per-unit status and SLA counters.
+2. Uptime computed against the SLA target; breach windows annotated (offline windows from U.C.10.5.1).
+3. Referral queue load and lock states surfaced (PKG-9 telemetry).
+4. Threshold breaches alert Ops/SOC.
+5. Periodic SLA reports archived for the B2G/B2B contracts.
+
+```mermaid
+sequenceDiagram
+    participant TEL as SYS-09 (Telemetry)
+    participant DASH as SLA & Fleet dashboard
+    participant OPS as SH-INT-007 (Ops Lead)
+    TEL->>DASH: Unit status + SLA counters
+    DASH->>DASH: Uptime vs 99.99%; breach windows annotated
+    DASH-->>OPS: Live view + threshold alerts
+    DASH->>DASH: Periodic SLA report archived
+```
+
+##### 5 Alternative Flows
+
+###### 5.1 <Alternate flow: Telemetry gap>
+
+Trigger: step 1, a site stops reporting. The dashboard marks degraded visibility for
+that scope rather than assuming health.
+
+###### 5.2 <Alternate flow: SLA breach event>
+
+Trigger: step 4. The breach is flagged; the report feeds the continuity review
+(U.C.2.7.1).
+
+##### 6 Subflows
+
+###### 6.1 <Subflow: Uptime accounting>
+
+1. Include/exclude windows follow the contract definitions; annotations are immutable.
+
+###### 6.2 <Subflow: Executive view>
+
+1. Aggregated view supports CEO/CISO board reporting.
+
+##### 7 Key Scenarios
+
+###### 7.1 <Scenario: Healthy fleet at a glance>
+
+1. Sites, units and SLA counters green with drill-down.
+
+###### 7.2 <Scenario: Breach made visible>
+
+1. Offline windows evidenced (MUC-07 impact visibility) — SLA claims are
+evidence-backed.
+
+##### 8 Post-conditions
+
+###### 8.1
+
+SLA posture on record with annotated breach windows.
+
+###### 8.2
+
+Periodic reports archived for contract and regulatory use.
+
+##### 9 Special Requirements (FURPS+)
+
+**Functional (F):** Aggregation, uptime accounting, alerting, periodic reporting.
+
+**Usability (U):** Live dashboard with per-site drill-down.
+
+**Reliability (R):** Degraded-visibility honesty (no assumed-healthy gaps).
+
+**Performance (P):** N/A — no attested refresh-latency requirement.
+
+**Supportability (S):** Reports archived; feed contract reviews.
+
+##### 10 Security & Compliance Annex (AEGIS)
+
+- **Provenance:** [ATTESTED] Doc03 §4 BG-005 (99.99% uptime SLA target); Doc04 §1.2 (fleet backhaul telemetry basis); Doc04 §1.1 SYS-09 (aggregation).
+- **Constrained by:** U.C.2.6.1 (monitoring), U.C.2.7.1 (continuity), U.C.10.2.1 (health source), U.C.10.5.1 (offline windows).
+- **Rules / NFR:** CR-D-10.1-001, BPR-D-10.4-001.
+- **Threats addressed:** MUC-07 (availability impact evidenced and alerted).
+- **NIST anchors:** DE.CM-01, GV.OV-03.
+
+#### Use-Case: {U.C.12.4.1} User/Role Administration for Console
+
+##### 1 Brief Description
+
+Operations administers console users and roles — officers, supervisors, auditors,
+administrators — through joiner/mover/leaver flows tied to the enterprise IdP, with
+least-privilege profiles and periodic review. It is triggered by an HR/Ops request or the
+review cycle. Entitlements are the boundary of the human-oversight plane: whoever can
+work the queue or the override must have exactly the role that says so.
+
+##### 2 Actor Brief Descriptions
+
+###### 2.1 SH-INT-007 (Ops Lead) — Primary Actor:
+
+Executes joiner/mover/leaver flows and role assignments.
+
+###### 2.2 SYS-08 (SSO / IdP):
+
+Source of identity, groups and role assignments.
+
+###### 2.3 SH-EXT-001 (Border Officer):
+
+Affected user; receives/loses entitlements.
+
+###### 2.4 SH-INT-008 (SOC Manager):
+
+Sees privileged entitlement changes streamed from the IdP.
+
+##### 3 Preconditions
+
+- Identity exists in SYS-08 (officer lifecycle per U.C.3.1.1).
+- Role profile defined for the request (role taxonomy).
+
+##### 4 Basic Flow of Events
+
+1. Request raised (joiner/mover/leaver) with the target role profile.
+2. Admin assigns roles/groups in SYS-08; entitlements are picked up by the console at next login (U.C.9.1.1).
+3. Sensitive roles (override, export, admin) require step-up approval.
+4. The entitlement change is recorded; privileged changes stream to SOC.
+5. Quarterly review reconciles entitlements against actual use (U.C.3.6.1).
+
+```mermaid
+sequenceDiagram
+    participant OPS as SH-INT-007 (Ops Lead)
+    participant SSO as SYS-08 (IdP)
+    participant SOC as SH-INT-008 (SOC)
+    OPS->>SSO: Role assignment per approved profile
+    SSO->>SSO: Step-up approval for sensitive roles
+    SSO-->>SOC: Privileged change event
+    SSO-->>OPS: Entitlements effective at next console login
+```
+
+##### 5 Alternative Flows
+
+###### 5.1 <Alternate flow: Leaver not processed on time>
+
+Trigger: step 2, employment ended but entitlement active. Deprovisioning alert fires;
+sessions are force-revoked.
+
+###### 5.2 <Alternate flow: Separation-of-duties conflict>
+
+Trigger: step 3, requested role combination conflicts with existing duties. The
+assignment is rejected with the conflict recorded.
+
+##### 6 Subflows
+
+###### 6.1 <Subflow: Role taxonomy>
+
+1. Officer / supervisor / auditor / admin profiles map to console capabilities.
+
+###### 6.2 <Subflow: Privileged change alerting>
+
+1. Privileged entitlement changes stream to SOC (U.C.2.6.1 correlation).
+
+##### 7 Key Scenarios
+
+###### 7.1 <Scenario: Officer onboarded with least privilege>
+
+1. Entitlements exactly match the approved profile from day one.
+
+###### 7.2 <Scenario: Escalation resisted>
+
+1. SoD checks and quarterly review constrain privilege creep (MUC-02).
+
+##### 8 Post-conditions
+
+###### 8.1
+
+Entitlements match approved profiles; changes on the audit chain.
+
+###### 8.2
+
+Review state current for the next cycle.
+
+##### 9 Special Requirements (FURPS+)
+
+**Functional (F):** JML flows, role profiles, SoD checks, review support.
+
+**Usability (U):** Admin console integrated with SYS-08 groups.
+
+**Reliability (R):** Deprovisioning alerts; forced session revocation on leavers.
+
+**Performance (P):** N/A — no attested provisioning SLA (officer identity lifecycle runs
+on the U.C.3.1.1 24h SLA).
+
+**Supportability (S):** Quarterly review cadence per U.C.3.6.1.
+
+##### 10 Security & Compliance Annex (AEGIS)
+
+- **Provenance:** [ATTESTED] Doc04 §1.1 SYS-08 (RBAC via IdP); Doc04 §1.4 (SYS-08: FIDO2 for privileged users, SAML 2.0/OIDC across corporate apps).
+- **Constrained by:** U.C.3.1.1 (identity lifecycle), U.C.3.4.1 (least privilege), U.C.3.6.1 (access rights review), U.C.9.1.1 (session entitlements).
+- **Rules / NFR:** CR-D-03.1-001, CR-D-03.2-001, CR-D-03.3-001.
+- **Threats addressed:** MUC-02 (privilege escalation), MUC-01 (credential attack surface limited by role scope).
+- **NIST anchors:** PR.AA-05, PR.AA-06, DE.CM-09.
 
 ## 7. DOMAIN DECOMPOSITION
 
@@ -1227,7 +3582,7 @@ accountability gaps prevented (MUC-04-analogue).
 | **MUC-C2-05** | A-MIS-C2-03 | U.C.8.3.2 | Mandatory reason codes, override audit sampling, dual review on watchlist |
 | **MUC-C2-06** | A-MIS-C2-04 | PKG-10 OTA, PKG-11 model rollout | cosign-signed artefacts, CycloneDX SBOM, staged rollout + rollback |
 
-### 8.3 MUC detail cards (pilot: those referenced by PKG-8)
+### 8.3 MUC detail cards (pilot PKG-8 + massification pass: MUC-01, MUC-02, MUC-07, MUC-C2-04, MUC-C2-06)
 
 #### MUC-C2-01 — Presentation Attack Against Face Match (photo / video / 3D mask / deepfake injection)
 
@@ -1277,7 +3632,70 @@ accountability gaps prevented (MUC-04-analogue).
 **Mitigated by:** U.C.8.3.2 (mandatory reason codes, fail-closed MFA), override audit sampling (DPO + SOC), dual review on watchlist referrals, U.C.3.5.1-analogue (override logs immutable), periodic officer performance review (CR-D-08.2-001 training + competency).
 **NIST anchors:** PR.AA-05, DE.CM-09-analogue (personnel), AU.A-06-analogue (audit review).
 
-*Remaining base MUC detail cards (MUC-01..08 instantiated) and C2-specific MUC-C2-04/06 cards are written in the massification pass (pending pilot approval).*
+#### MUC-01 — Credential Attack on the Officer Console
+
+**Misactor:** A-MIS-01 (External Cyber Attacker).
+**Threatens:** U.C.9.1.1 (console session), U.C.8.3.2 (referral work).
+**Preconditions:** Officer credentials obtainable (phishing, credential stuffing from breach dumps) or an exposed console surface.
+**Attack Flow:**
+1. Attacker harvests officer credentials (phish / stuffing / infostealer).
+2. Password-only access attempted against the console or the SSO.
+3. Goal: work the referral queue under a genuine officer identity.
+**Impact:** Fraudulent approvals/denials attributed to a real officer; poisoned audit chain; human oversight (AI_Act Art. 14) voided.
+**Mitigated by:** U.C.9.1.1 (mandatory FIDO2, fail-closed, adaptive step-up), U.C.3.1.1 (identity lifecycle), U.C.3.2.1 (MFA at every access point), U.C.12.4.1 (least-privilege roles), U.C.2.6.1 (anomalous session monitoring).
+**NIST anchors:** PR.AA-01, PR.AA-03, PR.AA-05, DE.CM-01.
+
+#### MUC-02 — Privilege Escalation to Override/Admin Rights
+
+**Misactor:** A-MIS-01 (External, after a foothold), A-MIS-02 (Malicious Insider).
+**Threatens:** U.C.12.4.1 (role admin), U.C.12.1.1 (kiosk admin config), U.C.9.3.1 (override rights).
+**Preconditions:** Initial foothold in the corporate VPC, or an insider with partial privileges.
+**Attack Flow:**
+1. Escalate role: self-assign override/admin entitlements in SYS-08.
+2. Use the gained rights to rubber-stamp approvals or push a rogue kiosk configuration.
+3. Goal: influence crossing decisions or fleet behaviour without attribution.
+**Impact:** Human oversight and fleet integrity voided at scale; configuration-borne implant of the high-risk AI system.
+**Mitigated by:** U.C.12.4.1 (SoD checks + quarterly review U.C.3.6.1), U.C.12.1.1 (dual control on sensitive configuration), U.C.3.4.1 (least privilege, CR-D-03.3-001), privileged-change alerting to SOC (U.C.2.6.1), immutable override logs (STORE-04).
+**NIST anchors:** PR.AA-05, PR.AA-06, DE.CM-09.
+
+#### MUC-07 — Denial of Service on the Border Lane
+
+**Misactor:** A-MIS-01 (External Cyber Attacker).
+**Threatens:** U.C.8.3.1 (gate release), U.C.10.5.1 (lane availability), fleet availability targets (BG-005).
+**Preconditions:** Reachability of kiosk backhaul/cloud endpoints, or the ability to flood session intake (token starts, booked slots).
+**Attack Flow:**
+1. Flood the lane: session starts, LTE/5G backhaul saturation, or cloud endpoint exhaustion.
+2. Kiosks degrade or queue overflow forces intake throttling.
+3. Goal: close border lanes and damage the 99.99% SLA.
+**Impact:** Border lane downtime; B2G/B2B SLA penalties; NIS 2 significant-incident exposure.
+**Mitigated by:** U.C.2.2.1 (containment with DoS resilience), U.C.10.5.1 (offline failover — the lane degrades gracefully instead of failing), U.C.10.2.1 (early detection), U.C.9.2.1 (intake throttling + SOC), U.C.12.3.1 (SLA evidence). *(The §8.2 inventory row cites "U.C.2.4.2", which does not exist — the canonical mitigation ids are U.C.2.2.1/U.C.2.7.1; see massification report.)*
+**NIST anchors:** PR.IR-01, DE.CM-01, RS.MI-01.
+
+#### MUC-C2-04 — Kiosk Physical Tamper / Malware Implant
+
+**Misactor:** A-MIS-01 (External, with physical opportunity), A-MIS-C2-04 (Supply-Chain Implant).
+**Threatens:** U.C.10.1.1 (provisioned trust), U.C.10.3.1 (firmware integrity), the kiosk fleet as biometric capture source.
+**Preconditions:** Physical access to an installed unit (airport side), or an implanted component from the hardware supply chain.
+**Attack Flow:**
+1. Open the enclosure / attach a hardware implant, or attempt a firmware swap in maintenance mode.
+2. Alternative: a compromised vendor component activates post-deployment.
+3. Goal: capture or alter biometric data at the source, or persist malware inside the trust boundary.
+**Impact:** Compromised biometric capture at scale; poisoned evidence chain; authority-level trust damage; CRA vulnerability/incident exposure.
+**Mitigated by:** TPM 2.0 secure boot + signed firmware only (U.C.10.1.1, U.C.10.3.1), tamper-evident enclosure with security-class alerts (U.C.10.2.1, U.C.10.4.1), EDR on units (SYS-12), transient biometric cache purge (STORE-05), supplier audits + SBOM (U.C.5.5.1, Doc06 §3).
+**NIST anchors:** PR.DS-12, DE.CM-01, PR.PS-06.
+
+#### MUC-C2-06 — OTA / Model Supply-Chain Implant
+
+**Misactor:** A-MIS-C2-04 (Supply-Chain Implant), possibly with A-MIS-02 complicity.
+**Threatens:** U.C.10.3.1 (firmware OTA), U.C.11.2.1 (model rollout), the whole fleet.
+**Preconditions:** Write access to the build pipeline (SYS-11) or the model registry (SYS-05), a stolen/compromised signing identity, or a compromised upstream dependency.
+**Attack Flow:**
+1. Implant malicious code or a backdoored model into a release artefact.
+2. Sign it with the compromised identity so fleet-side verification passes.
+3. Goal: fleet-wide implant via the trusted update channel.
+**Impact:** Compromise of the high-risk AI system at fleet scale; mass crossing-fraud capability; CRA/AI_Act critical incident.
+**Mitigated by:** cosign signatures verified in the TPM (FLOW-04), CycloneDX SBOM checks (U.C.4.2.1, CR-D-06.2-001), CI/CD gates (U.C.4.3.1), staged rollout with canary auto-halt (U.C.10.3.1, U.C.11.2.1), rapid rollback (U.C.11.3.1), HSM dual-control signing keys (SYS-07), drift/bias review as detection net (U.C.11.4.1).
+**NIST anchors:** PR.DS-12, GV.SC-04, DE.AE-02.
 
 ## 9. DETAILED USE CASES
 
@@ -2024,6 +4442,8 @@ accountability gaps prevented (MUC-04-analogue).
 | 1.0 | 2026-04-04 | System Architect | Initial release — SecureBorder Solutions (44 UCs: 6 DP + 8 SEC + 7 IAM + 6 DEV + 8 GOV + 7 AI + 5 TRN) |
 | 1.1 | 2026-04-16 | System Architect | Added Activation Condition annotations to detailed UCs (U.C.1.2.1, U.C.2.1.1, U.C.2.5.1, U.C.6.1.1, U.C.5.2.1); updated SLA lines for incident notification and impact assessment UCs |
 | 1.2 | 2026-08-10 | Sprint 11 Executor (corr-008 Phase 3 ID harmonisation) | Added Related PSOs column to all UC tables (linking to PO/SO from Commit D); migrated BPR-AI-NN → BPR-D-XX.Y-NNN (15 BPR refs updated); tech-stripped SIEM/Cloud/FIPS 140-2/AES-256 mentions; added T-009 (D-10.1 monitoring opt-out) cross-ref; updated §11.2 BPR coverage (15→25) and §11.3 tension coverage (8→9) |
+| 1.3 | 2026-09-04 | PORT-PARITY-2 Executor (Phase 3 product-first pilot) | Added §6 Product Functional Use Cases (PKG-8 Traveller eGate Journey, 7 fully-dressed UCs U.C.8.x.y) + §8 Misuse Cases (base MUC-01..08 instantiated + GuardianGate-specific MUC-C2-01..06, 4 pilot cards); compliance UCs U.C.1–7 preserved verbatim (former §6→§7, §7→§9; detail cards unchanged in §9); frontmatter inputs legacy→DocNN |
+| 1.4 | 2026-09-04 | PORT-PARITY-2 Executor (Phase 3 massification, C2) | §6 massified: PKG-9 Operator Referral Desk (U.C.9.1.1–9.5.1), PKG-10 Kiosk Fleet Operations (U.C.10.1.1–10.5.1), PKG-11 AI Model Lifecycle (U.C.11.1.1–11.5.1), PKG-12 Administration & Reporting (U.C.12.1.1–12.4.1) — 19 fully-dressed UCs, same template as §6.1; §6.0 Drives column updated to real package ranges; §8.3 detail cards completed with MUC-01, MUC-02, MUC-07, MUC-C2-04, MUC-C2-06; repaired orphaned v1.3 row (was appended at EOF, outside this table) |
 
 ---
 
@@ -2044,4 +4464,3 @@ accountability gaps prevented (MUC-04-analogue).
 **Phase 3 Step:** B (Use Cases Catalog) COMPLETE (pending final approval)
 **Gate Status:** All 63 rules covered (100%), all 38 goals mapped (100%), all 9 tensions addressed (100%)
 **Review Status:** DRAFT — awaiting CTO, CISO, DPO, and AI Governance Lead review
-| 1.3 | 2026-09-04 | PORT-PARITY-2 Executor (Phase 3 product-first pilot) | Added §6 Product Functional Use Cases (PKG-8 Traveller eGate Journey, 7 fully-dressed UCs U.C.8.x.y) + §8 Misuse Cases (base MUC-01..08 instantiated + GuardianGate-specific MUC-C2-01..06, 4 pilot cards); compliance UCs U.C.1–7 preserved verbatim (former §6→§7, §7→§9; detail cards unchanged in §9); frontmatter inputs legacy→DocNN | High |
