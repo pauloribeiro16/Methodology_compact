@@ -213,6 +213,12 @@ useCaseDiagram
 > exist. **Nomenclature is unchanged**: the pre-existing security/compliance use cases
 > (U.C.1–U.C.7) keep their IDs and content verbatim (now §7, §9); functional product use
 > cases take the free range **U.C.8+**. ID scheme: `U.C.<package>.<group>.<uc>`.
+>
+> **Template (2026-09-04):** the §6.1 use cases are written fully-dressed in the RUP-style
+> per-UC template of `03_REFERENCE_MATERIAL/P3_E2_Requirement_Analysis_Bike4All_Maintenance_platform_v1r2.md`
+> (sections 1–10, one Mermaid sequence diagram per UC), adjusted to AEGIS: section 10 is the
+> **Security & Compliance Annex (AEGIS)** carrying provenance, constrained-by, rules, threats
+> and NIST anchors; MUC linkage is preserved.
 
 ### 6.0 Product actors (reuse of existing stakeholder IDs — no new ID scheme)
 
@@ -237,167 +243,867 @@ useCaseDiagram
 | U.C.8.3.2 | Referral to Operator Desk | SH-EXT-001 | HIGH |
 | U.C.8.4.1 | Traveller Privacy Notice & Consent Capture | SH-EXT-002 | HIGH |
 
-#### U.C.8.1.1 — Scan Travel Document (MRZ + NFC chip)
+#### Use-Case: {U.C.8.1.1} Scan Travel Document (MRZ + NFC chip)
 
-**Primary Actor:** SH-EXT-002 (Traveler)
-**Stakeholders:** SH-EXT-001 (Border Officer — receives failures), National Border Control authority via SYS-02 (data controller of crossing records)
-**Preconditions:** Kiosk idle, healthy and enrolled (PKG-10); traveller holds an eMRTD passport.
-**Trigger:** Traveller confirms start on the kiosk screen and places the passport on the reader.
-**Main Success Scenario:**
+##### 1 Brief Description
+
+The kiosk reads the traveller's eMRTD passport and establishes an authenticated channel to
+its NFC chip, producing the reference portrait and document data used by the rest of the
+journey. It is triggered when the traveller confirms start on the kiosk screen and places
+the passport on the reader. This is the entry use case of the GuardianGate eGate journey
+(PKG-8): without a Passive-Authenticated chip read, the journey never proceeds on the
+optical MRZ alone.
+
+##### 2 Actor Brief Descriptions
+
+###### 2.1 SH-EXT-002 (Traveler) — Primary Actor:
+
+Places the passport on the reader and confirms the extracted document data.
+
+###### 2.2 SYS-06 (Kiosk hardware):
+
+Provides the passport MRZ scanner and NFC reader; captures the optical MRZ line and reads
+the chip (portrait + MRZ data).
+
+###### 2.3 SYS-04 (Edge AI firmware):
+
+Runs as signed firmware on TPM 2.0 secure boot; performs the in-kiosk document processing
+of this use case.
+
+###### 2.4 SH-EXT-001 (Border Officer):
+
+Receives the traveller at the referral desk when the document step fails (U.C.8.3.2).
+
+###### 2.5 National Border Control authority (via SYS-02):
+
+Data controller of the crossing records; downstream consumer of the journey outcome.
+
+##### 3 Preconditions
+
+- Kiosk idle, healthy and enrolled (PKG-10).
+- Traveller holds an eMRTD passport.
+
+##### 4 Basic Flow of Events
+
 1. Kiosk displays on-screen instructions (language auto-selected from setting).
 2. Traveller places the passport on the MRZ reader; kiosk reads the MRZ optical line.
 3. Kiosk derives BAC/PACE keys from the MRZ and opens the NFC chip channel.
 4. Kiosk reads the chip (portrait + MRZ data) and validates Passive Authentication against the CSCA chain.
 5. Kiosk displays the extracted document data for the traveller to confirm.
-**Extensions:**
-- 3a. MRZ unreadable → guide re-placement (max 3 attempts), then offer referral (U.C.8.3.2).
-- 4a. Chip read fails or Passive Authentication invalid → do NOT continue on MRZ alone; route to referral (U.C.8.3.2) and raise a security event (U.C.2.1.1).
-- 5a. MRZ-vs-chip data mismatch → treat as suspected forged document: referral + security event (MUC-C2-03).
-**Postconditions:** Chip portrait and document data available to the match step (in-kiosk, transient); attempt logged in the decision log with no biometric payload.
-**Provenance:** [ATTESTED] `01_PHASE1_CONTEXT_RICH/Doc04_Architecture_DataInventory.md` §1.1 SYS-06 (3D camera + passport MRZ scanner) and SYS-04 (signed Edge AI firmware, TPM 2.0 secure boot); §2.1 STORE-05 (transient on-kiosk template cache, deleted within seconds post-match per Art. 5(1)(c) minimisation).
-**Security & Compliance Annex:**
+
+```mermaid
+sequenceDiagram
+    participant TRV as SH-EXT-002 (Traveler)
+    participant KIOSK as SYS-06 + SYS-04 (Kiosk)
+    TRV->>KIOSK: Confirm start; place passport on reader
+    KIOSK->>KIOSK: Read MRZ, derive BAC/PACE, open NFC chip channel
+    KIOSK->>KIOSK: Read chip (portrait + MRZ), validate PA vs CSCA
+    KIOSK-->>TRV: Display extracted document data for confirmation
+```
+
+##### 5 Alternative Flows
+
+###### 5.1 <Alternate flow: MRZ unreadable>
+
+Trigger: step 2 fails optically. The kiosk guides re-placement (max 3 attempts), then
+offers referral (U.C.8.3.2).
+
+###### 5.2 <Alternate flow: Chip read fails or Passive Authentication invalid>
+
+Trigger: step 4 fails. The kiosk does NOT continue on MRZ alone; it routes to referral
+(U.C.8.3.2) and raises a security event (U.C.2.1.1).
+
+###### 5.3 <Alternate flow: MRZ-vs-chip data mismatch>
+
+Trigger: step 5 comparison fails. The case is treated as a suspected forged document:
+referral + security event (MUC-C2-03).
+
+##### 6 Subflows
+
+###### 6.1 <Subflow: Chip authentication (BAC/PACE + PA)>
+
+1. Derive BAC/PACE keys from the optical MRZ line.
+2. Open the NFC chip channel.
+3. Validate Passive Authentication of the chip certificate chain against the CSCA chain.
+
+###### 6.2 <Subflow: Security event raise>
+
+1. Kiosk assembles the event context (kiosk ID, timestamp, reason class).
+2. Event is forwarded on the security event pipeline (U.C.2.1.1, CR-D-04.1-001).
+
+##### 7 Key Scenarios
+
+###### 7.1 <Scenario: Document accepted>
+
+1. Chip portrait and document data become available to the match step; the traveller confirms and proceeds to U.C.8.2.1.
+
+###### 7.2 <Scenario: Forged/cloned document suspected>
+
+1. MRZ-vs-chip mismatch or invalid PA routes the traveller to the referral desk with a security event raised (MUC-C2-03).
+
+##### 8 Post-conditions
+
+###### 8.1
+
+Chip portrait and document data available to the match step (in-kiosk, transient).
+
+###### 8.2
+
+Attempt logged in the decision log with no biometric payload.
+
+##### 9 Special Requirements (FURPS+)
+
+**Functional (F):** MRZ + NFC chip read with Passive Authentication; no continuation on
+MRZ alone when PA fails (privacy/security constraint by design).
+
+**Usability (U):** On-screen instructions with automatic language selection; guided
+re-placement on read failure (max 3 attempts).
+
+**Reliability (R):** A security event is raised on every failure path (CR-D-04.1-001);
+tamper resistance anchored in signed firmware + TPM 2.0 secure boot (MUC-C2-04).
+
+**Performance (P):** N/A — no attested timing constraint for the document step.
+
+**Supportability (S):** Runs as signed Edge AI firmware with TPM 2.0 secure boot (SYS-04);
+firmware lifecycle operated under kiosk fleet operations (PKG-10, SH-INT-007).
+
+##### 10 Security & Compliance Annex (AEGIS)
+
+- **Provenance:** [ATTESTED] `01_PHASE1_CONTEXT_RICH/Doc04_Architecture_DataInventory.md` §1.1 SYS-06 (3D camera + passport MRZ scanner) and SYS-04 (signed Edge AI firmware, TPM 2.0 secure boot); §2.1 STORE-05 (transient on-kiosk template cache, deleted within seconds post-match per Art. 5(1)(c) minimisation).
 - **Constrained by:** U.C.1.1.1 (data subject rights), U.C.6.1.1 / U.C.6.2.1 (AI oversight), U.C.2.1.1 (security events).
 - **Rules / NFR:** CR-D-01.1-001 (kiosk flash encryption), CR-D-04.1-001 (security event pipeline), BPR-D-01.1-001.
 - **Threats addressed:** MUC-C2-03 (forged/cloned eMRTD), MUC-C2-04 (kiosk tamper → TPM secure boot refuses compromised firmware).
 - **NIST anchors:** PR.DS-01, DE.CM-01.
 
-#### U.C.8.2.1 — Capture Facial Biometric Sample
+#### Use-Case: {U.C.8.2.1} Capture Facial Biometric Sample
 
-**Primary Actor:** SH-EXT-002 (Traveler)
-**Stakeholders:** SH-EXT-001 (Border Officer — referrals), SH-INT-005 (AI Gov — quality thresholds)
-**Preconditions:** U.C.8.1.1 completed (chip portrait available as reference).
-**Trigger:** Kiosk prompts the traveller to look at the camera.
-**Main Success Scenario:**
+##### 1 Brief Description
+
+The kiosk captures the traveller's facial biometric sample and converts it into a
+match-ready template entirely in-kiosk. It is triggered when the kiosk prompts the
+traveller to look at the camera, after the document step (U.C.8.1.1) has produced the chip
+portrait as reference. Raw frames never persist: they are purged immediately after
+template creation (STORE-05 policy).
+
+##### 2 Actor Brief Descriptions
+
+###### 2.1 SH-EXT-002 (Traveler) — Primary Actor:
+
+Aligns with the positioning guide; subject of the biometric capture.
+
+###### 2.2 SYS-06 (Kiosk hardware):
+
+3D camera captures the frame burst (3D depth + RGB).
+
+###### 2.3 SYS-04 (Edge AI firmware):
+
+Runs frame quality checks and computes the biometric template in-kiosk (TensorRT CNN face
+match + liveness stack).
+
+###### 2.4 SH-EXT-001 (Border Officer):
+
+Receives the traveller on quality-exhaustion or hardware-anomaly referrals.
+
+###### 2.5 SH-INT-005 (AI Governance Lead):
+
+Owns the quality thresholds applied at the frame checks.
+
+##### 3 Preconditions
+
+- U.C.8.1.1 completed (chip portrait available as reference).
+
+##### 4 Basic Flow of Events
+
 1. Traveller aligns with the on-screen positioning guide.
 2. Kiosk captures a short burst (3D depth + RGB frames).
 3. Kiosk runs frame quality checks (pose, illumination, single face).
 4. Kiosk computes the biometric template in-kiosk from the best frame.
 5. Kiosk purges raw frames immediately after template creation (STORE-05 policy).
-**Extensions:**
-- 3a. Quality below threshold → guided re-capture (max 2 retries), then referral (U.C.8.3.2).
-- 3b. More than one face in frame → suspected tailgating (MUC-C2-02): security event + referral.
-- 4a. Template computation fails (hardware anomaly) → referral; kiosk flagged for health check (PKG-10).
-**Postconditions:** One match-ready template exists in volatile, encrypted memory; raw frames discarded.
-**Provenance:** [ATTESTED] Doc04 §1.1 SYS-04 (TensorRT CNN face match + liveness), SYS-06 (3D camera); §2.1 STORE-05 (no persistence across reboot; immediate purge).
-**Security & Compliance Annex:**
+
+```mermaid
+sequenceDiagram
+    participant TRV as SH-EXT-002 (Traveler)
+    participant KIOSK as SYS-06 + SYS-04 (Kiosk)
+    KIOSK->>TRV: Prompt to look at camera
+    TRV->>KIOSK: Align with positioning guide
+    KIOSK->>KIOSK: Capture burst (3D depth + RGB), run quality checks
+    KIOSK->>KIOSK: Compute template in-kiosk; purge raw frames (STORE-05)
+```
+
+##### 5 Alternative Flows
+
+###### 5.1 <Alternate flow: Quality below threshold>
+
+Trigger: step 3. Guided re-capture (max 2 retries), then referral (U.C.8.3.2).
+
+###### 5.2 <Alternate flow: More than one face in frame>
+
+Trigger: step 3. Suspected tailgating (MUC-C2-02): security event + referral.
+
+###### 5.3 <Alternate flow: Template computation failure>
+
+Trigger: step 4 (hardware anomaly). Referral; kiosk flagged for health check (PKG-10).
+
+##### 6 Subflows
+
+###### 6.1 <Subflow: Biometric template purge>
+
+1. Template is held in volatile, encrypted memory (CR-D-01.2-001).
+2. Raw frames are deleted immediately after template creation.
+3. Nothing persists across reboot (STORE-05: no persistence across reboot; immediate purge).
+
+###### 6.2 <Subflow: Guided re-capture>
+
+1. Kiosk shows corrective guidance (pose, illumination, single face).
+2. Maximum 2 retries; on exhaustion route to the referral desk (U.C.8.3.2).
+
+##### 7 Key Scenarios
+
+###### 7.1 <Scenario: Live sample captured>
+
+1. One match-ready template exists in volatile, encrypted memory; the journey continues to liveness detection (U.C.8.2.2).
+
+###### 7.2 <Scenario: Suspected tailgating>
+
+1. More than one face in frame raises a security event and routes the case to referral (MUC-C2-02).
+
+##### 8 Post-conditions
+
+###### 8.1
+
+One match-ready template exists in volatile, encrypted memory.
+
+###### 8.2
+
+Raw frames discarded.
+
+##### 9 Special Requirements (FURPS+)
+
+**Functional (F):** In-kiosk burst capture and template computation; immediate purge of
+raw frames after template creation (STORE-05 — privacy constraint built into the function).
+
+**Usability (U):** On-screen positioning guide; guided re-capture on quality failure.
+
+**Reliability (R):** Purge guarantee holds on every path, including template computation
+failure; template encryption (CR-D-01.2-001) and event monitoring (CR-D-10.1-001).
+
+**Performance (P):** N/A — no attested timing constraint for the capture step.
+
+**Supportability (S):** Capture quality thresholds are configurable and governed by
+SH-INT-005 (AI Gov — quality thresholds).
+
+##### 10 Security & Compliance Annex (AEGIS)
+
+- **Provenance:** [ATTESTED] Doc04 §1.1 SYS-04 (TensorRT CNN face match + liveness), SYS-06 (3D camera); §2.1 STORE-05 (no persistence across reboot; immediate purge).
 - **Constrained by:** U.C.1.1.1 (minimisation), U.C.6.2.1 (AI operating conditions).
 - **Rules / NFR:** CR-D-01.2-001 (template encryption), CR-D-10.1-001 (event monitoring).
 - **Threats addressed:** MUC-C2-02 (tailgating detection at frame stage).
 - **NIST anchors:** PR.DS-01, DE.CM-03.
 
-#### U.C.8.2.2 — Liveness Detection (Presentation Attack Detection)
+#### Use-Case: {U.C.8.2.2} Liveness Detection (Presentation Attack Detection)
 
-**Primary Actor:** SH-EXT-002 (Traveler)
-**Stakeholders:** SH-INT-005 (AI Gov — PAD threshold governance), SH-INT-008 (SOC — spoof alerts)
-**Preconditions:** U.C.8.2.1 produced a quality template.
-**Trigger:** Template creation completes.
-**Main Success Scenario:**
+##### 1 Brief Description
+
+The kiosk certifies that the captured biometric sample comes from a live person present at
+the sensor, using a passive+active presentation-attack detection challenge. It is triggered
+automatically when template creation completes (U.C.8.2.1). A failed challenge never ends
+in a silent automated rejection: the gate stays locked, the SOC is informed and the
+traveller is referred to a human.
+
+##### 2 Actor Brief Descriptions
+
+###### 2.1 SH-EXT-002 (Traveler) — Primary Actor:
+
+Subject of the liveness challenge.
+
+###### 2.2 SYS-04 (Edge AI firmware):
+
+Computes the liveness score in-kiosk (CNN liveness on ARM SoC, TPM-bound firmware).
+
+###### 2.3 SH-INT-005 (AI Governance Lead):
+
+Governs the PAD threshold — a governed artefact under AI model change control (U.C.6.3.1).
+
+###### 2.4 SH-INT-008 (SOC Manager):
+
+Receives spoof-alert security events.
+
+###### 2.5 SH-EXT-001 (Border Officer):
+
+Receives the traveller after a failed challenge.
+
+##### 3 Preconditions
+
+- U.C.8.2.1 produced a quality template.
+
+##### 4 Basic Flow of Events
+
 1. Kiosk issues a passive+active liveness challenge (micro-movement and depth/texture analysis).
 2. Edge CNN computes the liveness score in-kiosk.
 3. Score ≥ configured threshold → sample certified as live; continue to U.C.8.2.3.
-**Extensions:**
-- 3a. Score below threshold → one re-challenge; second failure = suspected presentation attack (MUC-C2-01): gate stays locked, security event with kiosk ID + timestamp to SOC (U.C.2.1.1), traveller referred (U.C.8.3.2).
-- 2a. Camera/depth anomaly (sensor health) → referral; raise maintenance event (PKG-10).
-**Postconditions:** Liveness verdict recorded in the decision log (score bucket, not raw score).
-**Provenance:** [ATTESTED] Doc04 §1.1 SYS-04 (CNN liveness on ARM SoC, TPM-bound firmware); Doc03 §4 (eGate automated border control product).
-**Security & Compliance Annex:**
+
+```mermaid
+sequenceDiagram
+    participant TRV as SH-EXT-002 (Traveler)
+    participant KIOSK as SYS-04 (Edge AI PAD)
+    participant SOC as SH-INT-008 (SOC)
+    TRV->>KIOSK: Present to sensor
+    KIOSK->>KIOSK: Passive+active challenge; CNN liveness score in-kiosk
+    KIOSK->>KIOSK: Score >= threshold -> sample certified live
+    KIOSK-->>SOC: On failure: spoof security event (kiosk ID + timestamp)
+```
+
+##### 5 Alternative Flows
+
+###### 5.1 <Alternate flow: Liveness score below threshold>
+
+Trigger: step 3. One re-challenge; a second failure = suspected presentation attack
+(MUC-C2-01): gate stays locked, security event with kiosk ID + timestamp to SOC
+(U.C.2.1.1), traveller referred (U.C.8.3.2).
+
+###### 5.2 <Alternate flow: Camera/depth sensor anomaly>
+
+Trigger: step 2 (sensor health). Referral; raise maintenance event (PKG-10).
+
+##### 6 Subflows
+
+###### 6.1 <Subflow: Presentation-attack challenge>
+
+1. Issue the passive+active challenge (micro-movement, depth/texture analysis).
+2. Compute the liveness score in-kiosk on the ARM SoC.
+3. Compare against the configured (governed) threshold.
+
+###### 6.2 <Subflow: Security event raise>
+
+Same reusable fragment as U.C.8.1.1 §6.2: event context (kiosk ID, timestamp, reason
+class) forwarded to SOC via the security event pipeline (U.C.2.1.1).
+
+##### 7 Key Scenarios
+
+###### 7.1 <Scenario: Live sample certified>
+
+1. Liveness verdict recorded (score bucket); the journey continues to face match (U.C.8.2.3).
+
+###### 7.2 <Scenario: Presentation attack suspected>
+
+1. Gate stays locked; SOC receives the spoof event with kiosk ID + timestamp; traveller referred (MUC-C2-01).
+
+##### 8 Post-conditions
+
+###### 8.1
+
+Liveness verdict recorded in the decision log (score bucket, not raw score).
+
+###### 8.2
+
+On success the sample is certified live and the journey continues (U.C.8.2.3); on failure
+the kiosk remains locked and the case is referred.
+
+##### 9 Special Requirements (FURPS+)
+
+**Functional (F):** Passive+active PAD challenge executed fully in-kiosk; verdict recorded
+as score bucket only.
+
+**Usability (U):** N/A — fully automated step; the traveller only experiences the
+challenge prompt.
+
+**Reliability (R):** Fail-closed behaviour on suspected attack (gate stays locked);
+red-team validated PAD path (CR-D-02.4-001) with event monitoring (CR-D-10.1-001).
+
+**Performance (P):** N/A — no attested timing constraint for the liveness step (the ≤ 2 s
+end-to-end target belongs to the match step, U.C.8.2.3).
+
+**Supportability (S):** PAD thresholds are governed artefacts under AI model change
+control (U.C.6.3.1).
+
+##### 10 Security & Compliance Annex (AEGIS)
+
+- **Provenance:** [ATTESTED] Doc04 §1.1 SYS-04 (CNN liveness on ARM SoC, TPM-bound firmware); Doc03 §4 (eGate automated border control product).
 - **Constrained by:** U.C.6.3.1 (AI model change control — thresholds are governed artefacts), U.C.2.1.1.
 - **Rules / NFR:** CR-D-01.2-001, CR-D-02.4-001 (red-team validation of the PAD path), CR-D-10.1-001.
 - **Threats addressed:** MUC-C2-01 (presentation attack: photo/video/3D mask/deepfake injection).
 - **NIST anchors:** PR.AA-01, DE.CM-01.
 
-#### U.C.8.2.3 — Face Match 1:1 Against Chip Portrait
+#### Use-Case: {U.C.8.2.3} Face Match 1:1 Against Chip Portrait
 
-**Primary Actor:** SH-EXT-002 (Traveler)
-**Stakeholders:** SH-EXT-001 (Border Officer — grey-band referrals), National Border Control authority (SYS-02)
-**Preconditions:** U.C.8.1.1 (reference portrait) + U.C.8.2.2 (live sample) completed.
-**Trigger:** Liveness verdict = live.
-**Main Success Scenario:**
+##### 1 Brief Description
+
+The kiosk compares the live biometric template against the chip portrait (1:1 similarity)
+and produces the match decision input for the gate decision. It is triggered when the
+liveness verdict is "live" (U.C.8.2.3 precondition from U.C.8.2.2). Biometric data is
+transient by design: once the verdict exists, template and frames are purged and only the
+decision record persists.
+
+##### 2 Actor Brief Descriptions
+
+###### 2.1 SH-EXT-002 (Traveler) — Primary Actor:
+
+Subject of the match; waits while the comparison runs.
+
+###### 2.2 SYS-04 (Edge AI firmware):
+
+CNN face match; computes the 1:1 similarity score (target ≤ 2 s end-to-end).
+
+###### 2.3 SH-EXT-001 (Border Officer):
+
+Receives below-threshold and grey-band referrals with reason "match".
+
+###### 2.4 National Border Control authority (via SYS-02):
+
+Match decisions are shared with the national border control system.
+
+##### 3 Preconditions
+
+- U.C.8.1.1 (reference portrait) + U.C.8.2.2 (live sample) completed.
+
+##### 4 Basic Flow of Events
+
 1. Kiosk compares the live template against the chip portrait (1:1 similarity).
 2. Kiosk computes the similarity score (target ≤ 2 s end-to-end).
 3. Score ≥ match threshold → decision input TRUE; continue to U.C.8.3.1.
 4. Template and frames are purged; only the decision record persists.
-**Extensions:**
-- 3a. Score below match threshold → NEVER auto-reject on the biometric alone: referral (U.C.8.3.2) with reason "match" (AI Act human oversight, Art. 14).
-- 3b. Score in the grey band (configurable) → referral regardless.
-- 1a. Chip portrait quality insufficient → document-level fallback rules apply; referral.
-**Postconditions:** Match verdict in the decision log; no biometric data persisted on kiosk or cloud.
-**Provenance:** [ATTESTED] Doc04 §1.1 SYS-04 (CNN face match), SYS-02 (match decisions shared with national border control); Doc02 §gates (AI Act provider role).
-**Security & Compliance Annex:**
+
+```mermaid
+sequenceDiagram
+    participant KIOSK as SYS-04 (Edge AI)
+    participant AUTH as SYS-02 (Border authority)
+    KIOSK->>KIOSK: 1:1 live template vs chip portrait; similarity score (<= 2 s)
+    KIOSK->>KIOSK: Threshold decision; purge template + frames, keep decision record
+    KIOSK-->>AUTH: Match decision shared with national border control
+```
+
+##### 5 Alternative Flows
+
+###### 5.1 <Alternate flow: Score below match threshold>
+
+Trigger: step 3. NEVER auto-reject on the biometric alone: referral (U.C.8.3.2) with
+reason "match" (AI Act human oversight, Art. 14).
+
+###### 5.2 <Alternate flow: Grey-band score>
+
+Trigger: step 3, score in the configurable grey band → referral regardless.
+
+###### 5.3 <Alternate flow: Chip portrait quality insufficient>
+
+Trigger: step 1. Document-level fallback rules apply; referral.
+
+##### 6 Subflows
+
+###### 6.1 <Subflow: Biometric template purge>
+
+Same reusable fragment as U.C.8.2.1 §6.1, executed after the verdict: template and frames
+purged, only the decision record persists (STORE-05; Art. 5(1)(c) minimisation).
+
+###### 6.2 <Subflow: Decision log write>
+
+1. Assemble the decision record (verdict, score bucket, reason class; no biometric payload).
+2. Append to the decision log per the content rule CR-D-01.3-001.
+
+##### 7 Key Scenarios
+
+###### 7.1 <Scenario: Match confirmed>
+
+1. Decision input TRUE; the journey continues to gate decision (U.C.8.3.1); no biometric data persisted on kiosk or cloud.
+
+###### 7.2 <Scenario: Below threshold or grey band>
+
+1. Human referral with reason "match" — never an automated rejection on the biometric alone (Art. 14).
+
+##### 8 Post-conditions
+
+###### 8.1
+
+Match verdict in the decision log.
+
+###### 8.2
+
+No biometric data persisted on kiosk or cloud.
+
+##### 9 Special Requirements (FURPS+)
+
+**Functional (F):** 1:1 similarity against the chip portrait; threshold + grey-band
+routing to human review; purge-after-verdict.
+
+**Usability (U):** N/A — automated step; the traveller only experiences the waiting time.
+
+**Reliability (R):** No-auto-reject policy on biometric failure (fail-safe to human
+oversight); decision log content per CR-D-01.3-001 with event monitoring (CR-D-10.1-001).
+
+**Performance (P):** Match computed with a target of ≤ 2 s end-to-end.
+
+**Supportability (S):** Match and grey-band thresholds remain configurable under the AI
+oversight constraint chain (U.C.6.2.1 / U.C.6.3.1).
+
+##### 10 Security & Compliance Annex (AEGIS)
+
+- **Provenance:** [ATTESTED] Doc04 §1.1 SYS-04 (CNN face match), SYS-02 (match decisions shared with national border control); Doc02 §gates (AI Act provider role).
 - **Constrained by:** U.C.6.2.1, U.C.6.4.1 (AI incident reporting), U.C.1.1.1.
 - **Rules / NFR:** CR-D-01.3-001 (decision log content), CR-D-10.1-001.
 - **Threats addressed:** MUC-C2-01 (residual deepfake risk after PAD), MUC-C2-03 (enrolment-fraud variants).
 - **NIST anchors:** PR.AA-01, PR.DS-01.
 
-#### U.C.8.3.1 — Gate Decision & Release
+#### Use-Case: {U.C.8.3.1} Gate Decision & Release
 
-**Primary Actor:** SH-EXT-002 (Traveler)
-**Stakeholders:** SH-EXT-001 (Border Officer), National Border Control authority (SYS-02 — crossing record)
-**Preconditions:** U.C.8.1.1 ✓ PA; U.C.8.2.2 ✓ live; U.C.8.2.3 ✓ match; watchlist status resolvable.
-**Trigger:** All decision inputs available.
-**Main Success Scenario:**
+##### 1 Brief Description
+
+The kiosk combines the decision inputs (document PA, liveness, match, watchlist status)
+and releases or holds the traveller. It is triggered when all decision inputs are
+available. On release the door opens, the crossing event reaches the national border
+control system (SYS-02), and the decision record lands in the immutable decision log —
+with no biometric payload.
+
+##### 2 Actor Brief Descriptions
+
+###### 2.1 SH-EXT-002 (Traveler) — Primary Actor:
+
+Exits through the gate into the border zone on a RELEASE decision.
+
+###### 2.2 SYS-06 + SYS-04 (Kiosk):
+
+Combines the decision inputs, controls the door interlock and emits the crossing event.
+
+###### 2.3 SYS-02 (National border control gateway):
+
+mTLS gateway to government DBs; receives the crossing event for the crossing record.
+
+###### 2.4 SH-EXT-001 (Border Officer):
+
+Receives watchlist-hit and door-failure referrals.
+
+##### 3 Preconditions
+
+- U.C.8.1.1 ✓ PA; U.C.8.2.2 ✓ live; U.C.8.2.3 ✓ match; watchlist status resolvable.
+
+##### 4 Basic Flow of Events
+
 1. Kiosk combines decision inputs (PA, liveness, match, watchlist status).
 2. Decision = RELEASE → door opens; traveller exits into the border zone.
 3. Kiosk emits the crossing event to SYS-02 (national border control integration).
 4. Decision record written to the immutable decision log (U.C. audit chain) — no biometric payload.
-**Extensions:**
-- 1a. Watchlist hit → QUIET referral (U.C.8.3.2) with reason "authority"; traveller is not alerted of the reason (officer-display only).
-- 2a. Door obstructed / timed out → safe re-lock, assisted retry, then referral.
-- 3a. SYS-02 unreachable → offline mode: store-and-forward the crossing event (signed, queued) per PKG-10 failover policy; gate may stay open under locally cached rules only if policy allows.
-**Postconditions:** Crossing recorded by the authority; kiosk back to idle; decision log complete.
-**Provenance:** [ATTESTED] Doc04 §1.1 SYS-02 (mTLS gateway to government DBs), §1.2 (outbound-only kiosk channel, mTLS/QUIC); STORE-04 (WORM audit chain).
-**Security & Compliance Annex:**
+
+```mermaid
+sequenceDiagram
+    participant KIOSK as SYS-06 + SYS-04 (Kiosk)
+    participant AUTH as SYS-02 (Border authority)
+    KIOSK->>KIOSK: Combine inputs (PA, liveness, match, watchlist)
+    KIOSK->>KIOSK: RELEASE -> door opens
+    KIOSK->>AUTH: Crossing event (outbound-only mTLS/QUIC channel)
+    KIOSK->>KIOSK: Decision record -> immutable log (no biometric payload)
+```
+
+##### 5 Alternative Flows
+
+###### 5.1 <Alternate flow: Watchlist hit>
+
+Trigger: step 1. QUIET referral (U.C.8.3.2) with reason "authority"; the traveller is not
+alerted of the reason (officer-display only).
+
+###### 5.2 <Alternate flow: Door obstructed / timed out>
+
+Trigger: step 2. Safe re-lock, assisted retry, then referral.
+
+###### 5.3 <Alternate flow: SYS-02 unreachable>
+
+Trigger: step 3. Offline mode: store-and-forward the crossing event (signed, queued) per
+PKG-10 failover policy; gate may stay open under locally cached rules only if policy
+allows.
+
+##### 6 Subflows
+
+###### 6.1 <Subflow: Decision log write>
+
+1. Assemble the decision record (inputs, verdict, timestamps; no biometric payload).
+2. Append to the immutable decision log (STORE-04 WORM audit chain; log integrity per CR-D-01.4-001).
+
+###### 6.2 <Subflow: Offline store-and-forward>
+
+1. Sign the crossing event locally.
+2. Queue it per the PKG-10 failover policy.
+3. Forward to SYS-02 when connectivity is restored.
+
+##### 7 Key Scenarios
+
+###### 7.1 <Scenario: Release>
+
+1. Crossing recorded by the authority; kiosk back to idle; decision log complete.
+
+###### 7.2 <Scenario: Watchlist hit>
+
+1. Quiet referral — the traveller is unaware of the reason; the officer sees "authority" only; one-traveller interlock discipline kept (MUC-C2-02).
+
+##### 8 Post-conditions
+
+###### 8.1
+
+Crossing recorded by the authority.
+
+###### 8.2
+
+Kiosk back to idle; decision log complete.
+
+##### 9 Special Requirements (FURPS+)
+
+**Functional (F):** Decision composition and release; crossing-event emission to SYS-02;
+offline failover mode with store-and-forward.
+
+**Usability (U):** N/A for the decision logic itself; door UX covered by the assisted
+retry on obstruction.
+
+**Reliability (R):** Immutable decision log (STORE-04 WORM audit chain, CR-D-01.4-001);
+store-and-forward survives SYS-02 outages (availability discipline, MUC-07-analogue).
+
+**Performance (P):** N/A — no attested timing constraint for the decision step.
+
+**Supportability (S):** Outbound-only kiosk channel (mTLS/QUIC, Doc04 §1.2) keeps the
+integration surface minimal to operate and monitor.
+
+##### 10 Security & Compliance Annex (AEGIS)
+
+- **Provenance:** [ATTESTED] Doc04 §1.1 SYS-02 (mTLS gateway to government DBs), §1.2 (outbound-only kiosk channel, mTLS/QUIC); STORE-04 (WORM audit chain).
 - **Constrained by:** U.C.2.6.1 (continuous monitoring), U.C.5.7.1 (authority reporting).
 - **Rules / NFR:** CR-D-04.3-001 (notification workflows), CR-D-01.4-001 (log integrity), BPR-D-04.2-001.
 - **Threats addressed:** MUC-C2-02 (tailgating: one-traveller interlock), MUC-07-analogue (availability: offline failover).
 - **NIST anchors:** PR.DS-01, PR.IR-01.
 
-#### U.C.8.3.2 — Referral to Operator Desk
+#### Use-Case: {U.C.8.3.2} Referral to Operator Desk
 
-**Primary Actor:** SH-EXT-001 (Border Officer)
-**Stakeholders:** SH-EXT-002 (Traveler), SH-INT-008 (SOC — escalation path), SH-INT-004 (DPO — override audits)
-**Preconditions:** Any referral reason raised by U.C.8.1.1–8.3.1 (document, liveness, match, watchlist, quality).
-**Trigger:** Kiosk issues a queue token and directs the traveller to the desk.
-**Main Success Scenario:**
+##### 1 Brief Description
+
+The border officer resolves at the desk every case the kiosk could not: document,
+liveness, match, watchlist or quality referrals. It is triggered when the kiosk issues a
+queue token and directs the traveller to the desk. The officer — not the AI — is the
+decision-maker here, with mandatory reason codes recorded on the immutable audit chain.
+
+##### 2 Actor Brief Descriptions
+
+###### 2.1 SH-EXT-001 (Border Officer) — Primary Actor:
+
+Reviews the reason class and evidence, verifies identity manually and records the
+decision.
+
+###### 2.2 SH-EXT-002 (Traveler):
+
+Presents at the desk with the queue token.
+
+###### 2.3 SYS-08 (Officer console):
+
+SSO (Okta+ADFS) with mandatory FIDO2; presents the queue and referral data.
+
+###### 2.4 SH-INT-008 (SOC Manager):
+
+Escalation path for confirmed impostors.
+
+###### 2.5 SH-INT-004 (DPO):
+
+Audits overrides.
+
+##### 3 Preconditions
+
+- Any referral reason raised by U.C.8.1.1–8.3.1 (document, liveness, match, watchlist, quality).
+
+##### 4 Basic Flow of Events
+
 1. Officer console (SYS-08 SSO + FIDO2) shows the queue position and the traveller entry.
 2. Officer reviews the reason class, the chip data and the live camera view.
 3. Officer verifies identity manually (visual + document cross-check).
 4. Officer records the decision (approve / deny) + mandatory reason code.
 5. Gate or manual lane proceeds accordingly; decision logged to the immutable audit chain.
-**Extensions:**
-- 2a. Officer console session fails MFA → no referral data displayed; fail-closed.
-- 4a. Confirmed impostor → deny + escalate to SOC incident flow (U.C.2.1.1) + authority notification (U.C.2.5.1 if reportable).
-- 1a. Queue overflow (all officers busy) → kiosks throttle intake (entry doors locked), SOC informed.
-**Postconditions:** Human decision on record with officer ID, reason code and timestamps.
-**Provenance:** [ATTESTED] Doc04 §1.1 SYS-08 (Okta+ADFS, FIDO2 mandatory), SYS-12 (SOC playbooks); Doc03 §4 (referral desk operations).
-**Security & Compliance Annex:**
+
+```mermaid
+sequenceDiagram
+    participant OFF as SH-EXT-001 (Border Officer)
+    participant CON as SYS-08 (Console, SSO+FIDO2)
+    participant LOG as Immutable audit chain
+    OFF->>CON: Authenticate (FIDO2); open work item
+    CON-->>OFF: Reason class, chip data, live camera view
+    OFF->>CON: Record decision (approve/deny) + reason code
+    CON->>LOG: Append decision (officer ID, timestamps)
+```
+
+##### 5 Alternative Flows
+
+###### 5.1 <Alternate flow: Console MFA failure>
+
+Trigger: step 1. No referral data displayed; fail-closed.
+
+###### 5.2 <Alternate flow: Confirmed impostor>
+
+Trigger: step 4. Deny + escalate to SOC incident flow (U.C.2.1.1) + authority
+notification (U.C.2.5.1 if reportable).
+
+###### 5.3 <Alternate flow: Queue overflow>
+
+Trigger: step 1, all officers busy. Kiosks throttle intake (entry doors locked), SOC
+informed.
+
+##### 6 Subflows
+
+###### 6.1 <Subflow: Officer console session>
+
+1. SYS-08 SSO with mandatory FIDO2 authentication (CR-D-03.2-001).
+2. The authenticated session binds the officer identity to every recorded action (identity lifecycle per CR-D-03.1-001).
+
+###### 6.2 <Subflow: Decision log write>
+
+Same reusable fragment as U.C.8.3.1 §6.1: officer decision + mandatory reason code
+appended to the immutable audit chain (CR-D-10.1-001 event monitoring applies).
+
+##### 7 Key Scenarios
+
+###### 7.1 <Scenario: Identity resolved>
+
+1. Human decision on record with officer ID, reason code and timestamps; gate or manual lane proceeds accordingly.
+
+###### 7.2 <Scenario: Rubber-stamp resistance>
+
+1. Overrides and decision patterns remain auditable (reason codes + audit sampling) against MUC-C2-05.
+
+##### 8 Post-conditions
+
+###### 8.1
+
+Human decision on record with officer ID, reason code and timestamps.
+
+###### 8.2
+
+Where applicable, escalation and notification completed (SOC incident flow, authority
+notification if reportable).
+
+##### 9 Special Requirements (FURPS+)
+
+**Functional (F):** Queue management, manual verification workflow, decision recording
+with mandatory reason codes, lane dispatch.
+
+**Usability (U):** Console presents reason class, chip data and live camera view in a
+single work item.
+
+**Reliability (R):** Fail-closed on console MFA failure; every decision reaches the
+immutable audit chain (CR-D-10.1-001 monitoring).
+
+**Performance (P):** N/A — no attested timing constraint for referral handling.
+
+**Supportability (S):** Officer identity lifecycle and MFA governed (CR-D-03.1-001 /
+CR-D-03.2-001); SOC playbooks (SYS-12) support the escalation path.
+
+##### 10 Security & Compliance Annex (AEGIS)
+
+- **Provenance:** [ATTESTED] Doc04 §1.1 SYS-08 (Okta+ADFS, FIDO2 mandatory), SYS-12 (SOC playbooks); Doc03 §4 (referral desk operations).
 - **Constrained by:** U.C.3.1.1 / U.C.3.2.1 (officer authn+MFA), U.C.3.5.1-analogue (override audit), U.C.6.1.1 (human oversight duty for AI-assisted decisions).
 - **Rules / NFR:** CR-D-03.1-001 (identity lifecycle), CR-D-03.2-001 (MFA), CR-D-10.1-001.
 - **Threats addressed:** MUC-C2-05 (rubber-stamp overrides — reason codes + audit sampling), MUC-C2-02.
 - **NIST anchors:** PR.AA-01, PR.AA-05, DE.CM-01.
 
-#### U.C.8.4.1 — Traveller Privacy Notice & Consent Capture
+#### Use-Case: {U.C.8.4.1} Traveller Privacy Notice & Consent Capture
 
-**Primary Actor:** SH-EXT-002 (Traveler)
-**Stakeholders:** SH-INT-004 (DPO — notice content), National Border Control authority (controller)
-**Preconditions:** Kiosk journey started (U.C.8.1.1 trigger).
-**Trigger:** First interaction screen.
-**Main Success Scenario:**
+##### 1 Brief Description
+
+The kiosk presents the privacy notice and, where consent is the lawful basis, captures the
+traveller's acknowledgement before any biometric processing. It is triggered at the first
+interaction screen of the journey (same trigger as U.C.8.1.1). Consent refusal never
+blocks the right to travel: the traveller is directed to the manual officer lane.
+
+##### 2 Actor Brief Descriptions
+
+###### 2.1 SH-EXT-002 (Traveler) — Primary Actor:
+
+Reads the notice and acknowledges; grants consent where consent-based.
+
+###### 2.2 SYS-06 (Kiosk):
+
+Displays the notice in the selected language; records the consent token.
+
+###### 2.3 SH-INT-004 (DPO):
+
+Owns the notice content.
+
+###### 2.4 National Border Control authority:
+
+Controller for the processing described in the notice.
+
+##### 3 Preconditions
+
+- Kiosk journey started (U.C.8.1.1 trigger).
+
+##### 4 Basic Flow of Events
+
 1. Kiosk displays the privacy notice (selected language): purposes, biometric processing, retention (seconds-to-minutes per STORE-05), controller identity, rights.
 2. Traveller acknowledges; where consent is the basis, kiosk records the consent token.
 3. Journey continues; acknowledgement reference stored with the decision log.
-**Extensions:**
-- 2a. Traveller declines consent (where consent-based) → directed to the manual officer lane; travel right is never blocked by consent refusal.
-- 1a. Language not available → pictogram flow + printed notice; referral available.
-**Postconditions:** Notice/consent evidence linked to the journey record (no biometric data).
-**Provenance:** [ATTESTED] Doc04 §2.1 STORE-05 retention policy; Doc02 §gates (GDPR Arts. 12–14 transparency); Doc16 goals.
-**Security & Compliance Annex:**
+
+```mermaid
+sequenceDiagram
+    participant TRV as SH-EXT-002 (Traveler)
+    participant KIOSK as SYS-06 (Kiosk)
+    KIOSK->>TRV: Privacy notice (purposes, biometrics, retention, rights)
+    TRV->>KIOSK: Acknowledge; consent token where consent-based
+    KIOSK->>KIOSK: Link acknowledgement reference to the journey record
+```
+
+##### 5 Alternative Flows
+
+###### 5.1 <Alternate flow: Consent declined>
+
+Trigger: step 2, where consent-based. Traveller is directed to the manual officer lane;
+the travel right is never blocked by consent refusal.
+
+###### 5.2 <Alternate flow: Language not available>
+
+Trigger: step 1. Pictogram flow + printed notice; referral available.
+
+##### 6 Subflows
+
+###### 6.1 <Subflow: Consent token capture>
+
+1. Render the notice (purposes, biometric processing, retention seconds-to-minutes per STORE-05, controller identity, rights).
+2. Record the consent token with the traveller's acknowledgement.
+3. Link the acknowledgement reference to the journey record (no biometric data).
+
+##### 7 Key Scenarios
+
+###### 7.1 <Scenario: Informed journey start>
+
+1. Notice/consent evidence linked to the journey record; transparency duties met (GDPR Arts. 12–14).
+
+###### 7.2 <Scenario: Consent refused>
+
+1. Manual officer lane; the right to travel is preserved.
+
+##### 8 Post-conditions
+
+###### 8.1
+
+Notice/consent evidence linked to the journey record (no biometric data).
+
+###### 8.2
+
+Where consent-based, a consent token exists on record before any biometric processing
+continues.
+
+##### 9 Special Requirements (FURPS+)
+
+**Functional (F):** Notice display, consent token capture, evidence linkage to the
+journey record.
+
+**Usability (U):** Language auto-selection; pictogram + printed-notice fallback when the
+language is not available.
+
+**Reliability (R):** Evidence always stored with the journey record — notice-bypass and
+accountability gaps prevented (MUC-04-analogue).
+
+**Performance (P):** N/A — no attested timing constraint.
+
+**Supportability (S):** Notice content is a governed artefact owned by the DPO
+(SH-INT-004).
+
+##### 10 Security & Compliance Annex (AEGIS)
+
+- **Provenance:** [ATTESTED] Doc04 §2.1 STORE-05 retention policy; Doc02 §gates (GDPR Arts. 12–14 transparency); Doc16 goals.
 - **Constrained by:** U.C.1.1.1 / U.C.1.4.1 (rights & consent records), U.C.1.3.1 (transparency).
 - **Rules / NFR:** CR-D-01.1-001, BPR-D-01.2-001.
 - **Threats addressed:** MUC-04-analogue (notice-bypass / accountability gap).
 - **NIST anchors:** GV.PO-P1, PR.DS-01.
 
-*PKG-9 (Operator Referral Desk product operations), PKG-10 (Kiosk Fleet Operations), PKG-11 (AI Model Lifecycle) and PKG-12 (Admin & Reporting) are written in the massification pass of this campaign (pending pilot approval).*
+*PKG-9 (Operator Referral Desk product operations), PKG-10 (Kiosk Fleet Operations), PKG-11 (AI Model Lifecycle) and PKG-12 (Admin & Reporting) will be written in this template (fully-dressed RUP-style, sections 1–10 + AEGIS annex) in the massification pass of this campaign (pending pilot approval).*
 
 ## 7. DOMAIN DECOMPOSITION
 

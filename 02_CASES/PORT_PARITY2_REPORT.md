@@ -64,3 +64,64 @@
 | 468c500 / 491cf74 | F4 P2 wave C2 / C3 |
 | e73dfed / 637ccc5 | F5 P3 rich v0 C2 / C3 |
 | (this commit) | F6 bookkeeping + report |
+
+---
+
+## TEMPLATE CONVERSION 2026-09-04
+
+**Follow-up campaign (Executor, single session).** Converted the two product-UC pilot
+sections from compact Cockburn cards to the **Bike4All RUP-style fully-dressed template**
+(`Methodology-main/03_REFERENCE_MATERIAL/P3_E2_Requirement_Analysis_Bike4All_Maintenance_platform_v1r2.md`),
+adjusted to AEGIS: per-UC section 10 = **Security & Compliance Annex (AEGIS)** (provenance,
+constrained-by, rules/NFR, threats, NIST anchors — carried over verbatim), MUC linkage
+preserved. Format upgrade + enrichment only; **no UC/rule/MUC/NIST ID changed or dropped**
+(31 checked IDs in Doc21, 26 in Doc22 — all present).
+
+**Files (only these two edited; no commit):**
+- `Case_02_SecureBorder_Solutions/03_PHASE3_DECOMPOSITION/Doc21_Use_Cases_Catalog.md` — §6 intro + §6.1 PKG-8: 7 UCs (`U.C.8.1.1`…`U.C.8.4.1`) rewritten as `#### Use-Case: {…}` blocks; PKG-9..12 pending note updated ("will be written in this template").
+- `Case_03_OmniBank_Financial/03_PHASE3_DECOMPOSITION/Doc22_Use_Cases_Catalog.md` — §6B intro + §6B.1 PKG-C: 6 UCs (UC-63…UC-68); MUC-C3-01/04/05 cards left verbatim; pending note updated.
+
+**Per-UC structure:** `##### 1 Brief Description` … `##### 10 Security & Compliance Annex (AEGIS)`, with `######` subsections; Mermaid `sequenceDiagram` (4–8 lines, participants = actor/SYS ids) placed right after §4 in every UC.
+
+**Enrichments added (derived from existing card facts + attested Doc03/Doc04 only; no new compliance claims):**
+- **Subflows (24 headings; 21 distinct reusable fragments + 3 explicit cross-references):** C2 — chip authentication BAC/PACE+PA, security-event raise, biometric template purge, guided re-capture, presentation-attack challenge, decision-log write, offline store-and-forward, officer console session, consent token capture. C3 — bureau consent capture, fraud screening, decision-context record write, reason-code generation, explanation package dispatch, override justification logging, fail-closed context validation, KYC vault filing, step-up signing, stale-data guard, early-repayment settlement.
+- **Key Scenarios (26):** success + main failure outcome per UC.
+- **FURPS+ (13 UCs × 5 labels):** anchors from attested facts (≤2 s match → P; WORM/immutable decision log + audit trail → R; in-kiosk purge/consent-gating → F; plain-language UI/guided capture → U; model-version pinning/governed thresholds → S). Slots with no attested fact filled honestly with "N/A".
+- **Alternative Flows (35):** every card extension became a named `#### 5.n <Alternate flow: …>`.
+- Intro notes (v1.3/v2.1) extended with template-adoption sentence.
+
+**Known cosmetic drift (registered):** MUC cards keep old extension labels ("UC-64 ext. 1a", "UC-66 ext. 1a") which now map to §5.3 / §5.1 of the converted UCs — MUC cards were out of scope by instruction.
+
+**Gates (all unchanged from baseline):**
+```
+C2 check_unmapped → GATE PASS (Case_02 v0.3)
+C3 check_unmapped → GATE PASS (Case_03 v0.3)
+C2 verify_rich → summary: 8 checks, 2 FAIL, 6 PASS   (FAILs pre-existing: CHK-1 frontmatter, CHK-2 FR census)
+C3 verify_rich → summary: 8 checks, 3 FAIL, 5 PASS   (FAILs pre-existing: CHK-1, CHK-3 NFR census, CHK-6 cross-refs)
+```
+
+**Sanity (python):** Doc21 UC blocks = 7/7, Doc22 = 6/6; all 13 UC blocks have 10/10 numbered sections + exactly 1 mermaid; sequenceDiagram total = 13 (Doc21 keeps its pre-existing §5.1 useCaseDiagram); `git diff` hunks confined to the §6 / §6B ranges (old lines 215–400 and 998–1196).
+
+## TEMPLATE CONVERSION — CASE_01 (2026-09-04)
+
+**Scope:** `Case_01_TinyTask_SaaS/03_PHASE3_DECOMPOSITION_RICH/Doc20_Use_Cases_Catalog.md` §2 only — the 23 functional product UCs (U.C.7.1.1…U.C.11.3.1; PKG-7: 5, PKG-8: 6, PKG-9: 5, PKG-10: 4, PKG-11: 3) converted from compact Cockburn cards to the Bike4All RUP-style 10-section template (same reference + AEGIS adjustments as C2/C3: §10 Security & Compliance Annex, [ATTESTED]/[ASSUMED] provenance bullet, MUC linkage). §1 Actors, §3 (U.C.1-6, locked), §4 MUCs, §5–§8, frontmatter: untouched. Package summary tables kept as-is. §2 intro gained the template-adoption sentence. No commit made.
+
+**Per-UC structure:** `#### Use-Case: {U.C.x.y.z} …` with `##### 1`…`##### 10`; mermaid `sequenceDiagram` (4–8 lines, participants = actor/SYS ids) directly after §4 in all 23 UCs.
+
+**Enrichments (derived from the cards + attested Doc03/Doc04 facts only; no new compliance claims):**
+- **Alternative Flows (50):** every card extension bullet (2a/3a/…, incl. inline Extensions lines) became one named `###### 5.n <Alternate flow: …>` — 1:1, verified per-UC.
+- **Subflows (32):** reusable fragments extracted from existing flow facts (account provisioning, consent capture, SSO/OIDC dance, session invalidation sweep, reset-token lifecycle, pending-membership lifecycle, task field validation, tenant-scoped persistence, board query, comment sanitisation, mention parsing, notification delivery, upload validation + AV scan, signed-webhook intake, admin action application, IdP metadata onboarding, archive assembly, signed-URL delivery, grace-period handling, cryptographic erasure, …).
+- **Key Scenarios (46):** success + main failure per UC.
+- **Post-condition blocks (46):** card Postconditions split into `###### 8.n` statements (content verbatim per clause).
+- **FURPS+ (23 UCs × 5 labels = 115 slots):** 80 filled from attested facts only (NFR-01/02, 30-min idle timeout, 5-failure lockout, 1-hour reset token, 7-day purge, 25 MB + MIME allowlist, ClamAV quarantine, ≤5 min digest, 24h URL, 100 MB async, 30-day grace, ≤200-char title, ≤10 000 chars, last-writer-wins, no-PAN, workspace_id scoping…); 35 slots honestly **N/A** (P: 19, U: 12, R: 4; F/S: 0).
+
+**Preservation (python diff vs git HEAD §2):** Main Success Scenario steps 83/83 verbatim; precondition fragments and postcondition clauses all present; annex bullet lines 0 missing (Provenance 23/23 verbatim, Constrained by 23/23, Rules/NFR 23/23, NIST anchors 23/23, Threats 18/23 — 5 cards never had one); CR-/PO-/FR-/NFR-/MUC ID sets equal; whole-file U.C. ID set (59 unique) unchanged; [ATTESTED]/[ASSUMED] counts preserved (+1 each from the new intro sentence quoting the convention).
+
+**Gates:**
+```
+check_unmapped (Case_01) → GATE PASS (v0.3 real: UNMAPPED, Posture, Frontmatter, Control Set YAML verified)  [baseline and after]
+Sanity: 23 UC blocks × 10/10 numbered sections (in order) · 23 mermaid sequenceDiagrams · 0 ##### orphans outside §2 · fences balanced · mermaid structural check clean (0 issues)
+git diff: Doc20 = +2162/−283 — only file touched by this session (Doc21/Doc22/report hunks belong to the parallel C2/C3 conversion session)
+```
+
+**Notes:** zero "maturi" tokens; U.C.10.2.1 MSS keeps the card's original step numbering (1,2,4,5,6) verbatim; package header "U.C.10.3.2 … Enterprise SSO [ASSUMED]" table title unchanged (card heading "Enterprise SSO").
