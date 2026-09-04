@@ -987,6 +987,214 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
+## 6B. PRODUCT FUNCTIONAL USE CASES (UC-63+, PKG-A..F) — OmniBank platform product
+
+> **v2.1 (PORT-PARITY-2 Phase 3 restructure pilot, 2026-09-04).** This section models the
+> **OmniBank product itself** (digital channels, OmniScore, lending) as a normal software
+> product: actor-goal use cases in fully-dressed form (Cockburn), with security/compliance
+> layered on as a per-UC annex. **Nomenclature unchanged**: the pre-existing compliance use
+> cases UC-01..UC-62 (§6) keep IDs and content verbatim; new product use cases continue the
+> flat numbering at **UC-63+** and never reuse existing IDs. This pilot delivers PKG-C
+> (Lending & OmniScore); PKG-A/B/D/E/F follow after pilot approval.
+
+### 6B.0 Product actors (reuse of existing stakeholder/system IDs)
+
+| Actor | Role in the product | Drives |
+|-------|---------------------|--------|
+| Customer (Retail) | Primary product user: onboards, banks, borrows via SYS-02 app. | UC-63, UC-65, UC-67, UC-68 |
+| OmniScore AI Platform (SYS-03) | The scoring system itself — acts, never decides alone. | UC-64 |
+| Underwriter (Consumer Lending) | Human oversight on borderline/high-risk credit decisions. | UC-66 |
+| Head of AI Governance (stakeholder) | Owns bias/drift monitoring and model governance. | Annex targets |
+| Fraud & AML Platform (SYS-11) | Consumes journey telemetry for fraud patterns. | Annex targets |
+
+### 6B.1 PKG-C — Lending & OmniScore (6)
+
+| UC ID | Title | Primary Actor | Prio |
+|-------|-------|---------------|------|
+| UC-63 | Apply for Consumer Credit | Customer (Retail) | CRITICAL |
+| UC-64 | OmniScore Computes Credit Score | SYS-03 (AI Platform) | CRITICAL |
+| UC-65 | Customer Receives Score Explanation | Customer (Retail) | HIGH |
+| UC-66 | Underwriter Reviews Borderline Application | Underwriter | CRITICAL |
+| UC-67 | Customer Accepts Offer & Contract Signed | Customer (Retail) | CRITICAL |
+| UC-68 | Customer Manages Repayment & Arrears View | Customer (Retail) | HIGH |
+
+#### UC-63 — Apply for Consumer Credit
+
+**Primary Actor:** Customer (Retail)
+**Stakeholders:** SYS-14 (Loan Origination — consumes application), SYS-11 (Fraud/AML — application screening), DPO (consent records)
+**Preconditions:** Customer onboarded (PKG-A, pending) with verified identity; app session under PSD2 SCA.
+**Trigger:** Customer opens the credit product and submits the application form.
+**Main Success Scenario:**
+1. Customer selects product, amount and term; app shows the pre-contractual information sheet (SECCI).
+2. Customer grants the credit-bureau check consent; consent recorded with timestamp.
+3. Customer submits income/expense declarations; app validates completeness.
+4. SYS-14 creates the application record; SYS-11 screens for fraud patterns (no hit → continue).
+5. SYS-14 invokes the OmniScore decisioning flow (UC-64) and awaits the outcome.
+**Extensions:**
+- 2a. Consent declined → application cannot proceed under automated scoring; customer is offered the manual-review path (UC-66 without score, Art. 22(3) right not to be subject to solely automated decisions).
+- 4a. Fraud screening hit → application frozen; sent to financial-crime queue (no decision until cleared).
+- 3a. Data incomplete → guided correction (max 3 attempts), then save-as-draft.
+**Postconditions:** Application exists with status SUBMITTED; consent + screening evidence on record.
+**Provenance:** [ATTESTED] Doc04 §1.1 SYS-14 (consumer credit origination + decision engine, integrates OmniScore), SYS-02 (SCA app channel); Doc19 CR-D-05.4-001 (credit scoring factors exportable).
+**Security & Compliance Annex:**
+- **Constrained by:** UC-16/UC-17 (identity, MFA), UC-06 (field-level encryption of declarations), UC-21 (AI platform access).
+- **Rules / NFR:** CR-D-05.4-001 (data export incl. scoring factors), CR-D-10.1-001 (journey monitoring).
+- **Threats addressed:** MUC-C3-05 (application data crafted to game scoring), MUC-01-analogue (session takeover).
+- **NIST anchors:** PR.AA-01, PR.DS-01.
+
+#### UC-64 — OmniScore Computes Credit Score
+
+**Primary Actor:** SYS-03 (OmniScore AI Platform) — acts on behalf of SYS-14
+**Stakeholders:** Head of AI Governance (model governance), Underwriter (consumer of the score), DPO (automated-decision records)
+**Preconditions:** Application SUBMITTED (UC-63); model version approved and deployed per change control.
+**Trigger:** SYS-14 decisioning request arrives.
+**Main Success Scenario:**
+1. SYS-03 fetches application features (declared data + internal account data where consented).
+2. SYS-03 runs the approved model version; computes the score + confidence band.
+3. SYS-03 generates the reason-code set (top contributing factors, GDPR-compliant granularity).
+4. SYS-03 returns score + reasons + model version id to SYS-14; decision-context record written (who/what/when/version).
+5. Score band routes the application: auto-approve / auto-decline / **borderline → UC-66** (never silent auto-decline without a human path).
+**Extensions:**
+- 2a. Model service unavailable → SYS-14 queues to the manual underwriting path; NO fallback to an unapproved model version.
+- 3a. Reason-code generation fails → decision blocked (explainability is a release condition, not a nice-to-have).
+- 1a. Input features out of expected distribution → flag possible data-quality/manipulation issue (MUC-C3-01) + route to UC-66.
+**Postconditions:** Score + reasons + model version immutably recorded; borderline cases queued to a human.
+**Provenance:** [ATTESTED] Doc04 §1.1 SYS-03 (managed ML runtime + explainability layer + bias monitoring pipeline); Doc19 BPR-D-12.3-001 (AI Act Art. 14 human oversight thresholds/overrides for credit scoring).
+**Security & Compliance Annex:**
+- **Constrained by:** UC-05 (model integrity validation), UC-08 (model tampering detection), UC-61 (AI model performance drift monitoring), UC-21 (AI model access control).
+- **Rules / NFR:** BPR-D-12.3-001 (Art. 14 human oversight), CR-D-05.4-001 (scoring-factor transparency feeds UC-65), CR-D-09.1-001 (governance documentation).
+- **Threats addressed:** MUC-C3-01 (input manipulation), MUC-C3-02 (training-data poisoning — detected via drift/bias pipeline), MUC-C3-04 (discriminatory outcomes — bias monitoring pipeline).
+- **NIST anchors:** GV.MT-01, MEASURE-2.7.
+
+#### UC-65 — Customer Receives Score Explanation
+
+**Primary Actor:** Customer (Retail)
+**Stakeholders:** DPO (Art. 22 transparency), Head of AI Governance (XAI quality)
+**Preconditions:** A decision (or borderline outcome) exists from UC-64/UC-66.
+**Trigger:** Customer opens the decision screen in the app.
+**Main Success Scenario:**
+1. App presents the outcome with the principal reason codes, in plain language.
+2. Customer can request the machine-readable explanation package (CR-D-05.4-001 format).
+3. Request/dispatch is logged against the decision record.
+**Extensions:**
+- 1a. Customer disputes a reason code (factually wrong data) → opens a data-correction flow (GDPR Art. 16 path) linked to the decision; re-scoring after correction.
+- 2a. Explanation package generation fails → human contact channel offered within SLA; never silent.
+**Postconditions:** Explanation evidence stored with the decision (audit complete).
+**Provenance:** [ATTESTED] Doc19 CR-D-05.4-001 verbatim ("Include AI model decisions, training data lineage, and credit scoring factors"); Doc04 §1.1 SYS-03 explainability layer.
+**Security & Compliance Annex:**
+- **Constrained by:** UC-01 (data subject requests), UC-63 consent record.
+- **Rules / NFR:** CR-D-05.4-001, CR-D-09.2-001 (governance reporting).
+- **Threats addressed:** MUC-C3-05 (explainability spoofing — reason codes are generated, not hand-written, and log-anchored).
+- **NIST anchors:** GV.PO-P1.
+
+#### UC-66 — Underwriter Reviews Borderline Application
+
+**Primary Actor:** Underwriter (Consumer Lending)
+**Stakeholders:** SYS-14 (record owner), Head of AI Governance (oversight metrics), Customer
+**Preconditions:** UC-64 returned a borderline/blocked outcome (or customer invoked the manual path per UC-63 ext. 2a).
+**Trigger:** Work item lands in the underwriting queue.
+**Main Success Scenario:**
+1. Underwriter opens the work item: full application, score + reason codes, model version, confidence band.
+2. Underwriter performs independent review (documents, bureau data, overrides only with recorded justification).
+3. Underwriter records the decision (approve/decline + mandatory reason code) — the human, not the model, is the decision-maker here (Art. 14).
+4. Decision flows to UC-67; the override-vs-score delta is logged for AI-governance metrics.
+**Extensions:**
+- 1a. Decision-context record incomplete (no model version / no reasons) → work item is BLOCKED; underwriter cannot decide on an unexplainable recommendation (fail-closed).
+- 2a. Suspected manipulation indicators (MUC-C3-01 flag from UC-64 ext. 1a) → escalate to financial crime before deciding.
+- 3a. Override rate anomaly for this underwriter → governance review trigger (anti-rubber-stamp, mirrors MUC-C2-05 discipline).
+**Postconditions:** Human decision with justification on the immutable record; AI-governance metrics updated.
+**Provenance:** [ATTESTED] Doc19 BPR-D-12.3-001 (human intervention thresholds, override mechanisms, escalation paths); Doc04 §1.1 SYS-14 (business-rules engine + underwriter flow).
+**Security & Compliance Annex:**
+- **Constrained by:** UC-17 (MFA privileged), UC-18 (quarterly access review), UC-66-audit chain.
+- **Rules / NFR:** BPR-D-12.3-001, CR-D-08.2-001 (competence training), CR-D-10.1-001.
+- **Threats addressed:** MUC-C3-05, insider rubber-stamping (audit sampling discipline).
+- **NIST anchors:** PR.AA-05, DE.CM-09.
+
+#### UC-67 — Customer Accepts Offer & Contract Signed
+
+**Primary Actor:** Customer (Retail)
+**Stakeholders:** SYS-14 (contract issuance), SYS-16 (KYC/document vault), SYS-11 (AML monitoring)
+**Preconditions:** Approved decision (UC-64 auto-band or UC-66).
+**Trigger:** Customer reviews the offer in the app.
+**Main Success Scenario:**
+1. App presents the final offer (rate, term, SECCI deltas already shown at UC-63).
+2. Customer signs with PSD2 SCA-grade signing (hardware-backed).
+3. SYS-14 issues the contract; SYS-16 files it in the KYC vault (10-year retention).
+4. Disbursement initiated to the customer account; AML monitoring tags the new credit exposure.
+**Extensions:**
+- 2a. Signing certificate/SCA fails → offer held; retry with step-up; no SMS-fallback signing (phishing-resistant policy).
+- 4a. AML hit post-acceptance → freeze disbursement, financial-crime queue (U.C. incident flow).
+**Postconditions:** Contract signed and archived; credit line live.
+**Provenance:** [ATTESTED] Doc04 §1.1 SYS-14, SYS-16 (10-year retention per BaFin/GoBD), SYS-11.
+**Security & Compliance Annex:**
+- **Constrained by:** UC-22 (FIDO2), UC-01 (records).
+- **Rules / NFR:** CR-D-04.3-001 (reportable events), CR-D-10.2-001 (audit trail).
+- **Threats addressed:** MUC-01-analogue (account takeover at signing step — SCA required).
+- **NIST anchors:** PR.AA-01, AU.A-06.
+
+#### UC-68 — Customer Manages Repayment & Arrears View
+
+**Primary Actor:** Customer (Retail)
+**Stakeholders:** SYS-15 (Loan Servicing), SYS-11 (arrears fraud patterns)
+**Preconditions:** Live credit (UC-67).
+**Trigger:** Customer opens the credit management screen.
+**Main Success Scenario:**
+1. App shows the repayment schedule, next instalment, remaining capital.
+2. Customer can make an early repayment (partial/full) — app computes settlement figure.
+3. Arrears view: if instalments missed, shows the arrears position and self-service cure options.
+4. All actions hit SYS-15 and return updated state.
+**Extensions:**
+- 2a. Settlement quote expired → recompute before accepting.
+- 3a. Arrears beyond policy threshold → self-service cure disabled; routed to servicing ops (human contact) with vulnerability handling.
+- 1a. Data desync SYS-15 ↔ app → stale-data banner, no actions allowed on stale figures (fail-safe).
+**Postconditions:** Servicing records consistent; customer actions logged.
+**Provenance:** [ATTESTED] Doc04 §1.1 SYS-15 (repayment schedules, arrears management, collections).
+**Security & Compliance Annex:**
+- **Constrained by:** UC-17 (MFA), UC-06 (sensitive financial PII encryption).
+- **Rules / NFR:** CR-D-10.2-001, CR-D-09.1-001 (records).
+- **Threats addressed:** MUC-01-analogue (session takeover → fraudulent early repayments), payment-fraud class (full set with PKG-D).
+- **NIST anchors:** PR.DS-01, AU.A-06.
+
+*MUC-C3 detail cards (referenced above):*
+
+#### MUC-C3-01 — Application Data Crafted to Game OmniScore
+
+**Misactor:** Fraudulent applicant (or organised broker).
+**Threatens:** UC-63 (declarations), UC-64 (scoring).
+**Preconditions:** Knowledge (or probing) of the model's feature sensitivities.
+**Attack Flow:**
+1. Applicant inflates/stabilises declared income features or times account movements to maximise score.
+2. Organised variant: many applications probing decision boundaries.
+**Impact:** Bad debt booked on manipulated inputs; model drift masked as market change.
+**Mitigated by:** UC-64 ext. 1a (out-of-distribution flags → human path), SYS-11 fraud screening (UC-63 step 4), bias/drift monitoring pipeline (SYS-03), bureau cross-checks at UC-66.
+**NIST anchors:** DE.AE-02, GV.MT-01.
+
+#### MUC-C3-04 — Discriminatory Bias Exploitation / Harm
+
+**Misactor:** None (emergent model behaviour) or adversarial probing by researchers/regulators.
+**Threatens:** UC-64 (score), UC-65 (explanation), bank's AI Act/GDPR posture.
+**Preconditions:** Training data with historical bias slipping past validation.
+**Attack Flow:**
+1. Protected-class proxies correlate with score; adverse impact concentrated in a group.
+2. Explanations (UC-65) surface the pattern publicly.
+**Impact:** Regulatory enforcement (AI Act Art. 26/GDPR Art. 22), reputational damage, remediation cost.
+**Mitigated by:** SYS-03 bias monitoring pipeline (Doc04 §1.1 attested), UC-61 (drift monitoring), UC-64 reason codes + UC-65 transparency, governance review (CR-D-09.x), BPR-D-12.3-001 oversight thresholds.
+**NIST anchors:** MEASURE-2.7, GV.PO-P1.
+
+#### MUC-C3-05 — Explainability Gaming (spoofed reason codes)
+
+**Misactor:** Malicious insider (ML engineering) or compromised pipeline.
+**Threatens:** UC-64 step 3, UC-65.
+**Preconditions:** Write access to the reason-code generation or decision records.
+**Attack Flow:**
+1. Reason codes decoupled from actual model behaviour (cosmetic explanations hiding discriminatory factors).
+2. Audit trail shows plausible explanations inconsistent with model versions.
+**Impact:** Systemic compliance fraud — explanations exist but are false; worst-case discovery by a regulator.
+**Mitigated by:** UC-64 (reason codes generated in the model runtime, log-anchored to model version), UC-66 ext. 1a (fail-closed on incomplete context), UC-08 (model tampering detection), immutable decision records (CR-D-10.2-001), quarterly access reviews (UC-18).
+**NIST anchors:** PR.DS-01, AU.A-06, DE.CM-09.
+
+*PKG-A/B/D/E/F + remaining MUC-C3 cards (MUC-C3-02 poisoning, MUC-C3-03 inversion) are written in the massification pass (pending pilot approval).*
+
 ## 7. USE CASE METRICS SUMMARY
 
 ### 5.1 Distribution by Priority
@@ -1070,6 +1278,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
+| 2.1 | 2026-09-04 | PORT-PARITY-2 Executor (Phase 3 product-first pilot) | Added §6B Product Functional Use Cases (PKG-C Lending & OmniScore, 6 fully-dressed UCs UC-63..68) + MUC-C3-01/04/05 cards; compliance UCs UC-01..62 (§6) preserved verbatim | High |
 | 1.0 | 2026-04-28 | Compliance Lead | Initial creation — 62 UCs across 10 packages derived from 63 rules |
 
 ---
