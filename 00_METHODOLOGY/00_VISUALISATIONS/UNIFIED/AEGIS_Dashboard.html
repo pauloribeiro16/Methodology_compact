@@ -61,6 +61,9 @@ header {
 main { max-width: 1800px; margin: 0 auto; padding: 20px; }
 .tab-panel { display: none; }
 .tab-panel.active { display: block; }
+/* Pre-init support: keep hidden panels in the layout so ECharts can measure
+   width when the chart is created before the user clicks the tab. */
+.tab-panel.preinit { visibility: hidden; display: block; pointer-events: none; position: absolute; left: -99999px; top: 0; width: 1400px; }
 
 .card { background: var(--bg-card); border-radius: 8px; box-shadow: var(--shadow); padding: 18px; margin-bottom: 16px; border: 1px solid var(--border); }
 .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 16px; }
@@ -23692,6 +23695,15 @@ function activateTab(tabKey) {
   if (tabKey === 'dominios') renderDominios();
   if (tabKey === 'framework') renderFramework();
   if (tabKey === 'secondary') renderSecondary();
+
+  // Resize any visible Sankey after the panel becomes display:block (else
+  // ECharts measured 0×0 while the panel was display:none). rAF ensures the
+  // browser has applied the new display before we measure.
+  requestAnimationFrame(() => {
+    if (window._mySankeyMapa)    window._mySankeyMapa.resize();
+    if (window._mySankeyCsf)     window._mySankeyCsf.resize();
+    if (window._mySankeySecondary) window._mySankeySecondary.resize();
+  });
 }
 
 function renderOverview() {
@@ -23792,6 +23804,121 @@ function renderOverview() {
   hm.innerHTML = html;
 }
 
+// ── Path-complete hover highlight (BFS over links) ──
+function setupPathHighlight(chart, links) {
+  // adjacency: nodeName → Set<linkIndex>
+  const nameToLinkIdxs = new Map();
+  links.forEach((l, i) => {
+    if (!nameToLinkIdxs.has(l.source)) nameToLinkIdxs.set(l.source, new Set());
+    if (!nameToLinkIdxs.has(l.target)) nameToLinkIdxs.set(l.target, new Set());
+    nameToLinkIdxs.get(l.source).add(i);
+    nameToLinkIdxs.get(l.target).add(i);
+  });
+  // neighbours: nodeName → Set<nodeName>
+  const neighbours = new Map();
+  links.forEach(l => {
+    if (!neighbours.has(l.source)) neighbours.set(l.source, new Set());
+    if (!neighbours.has(l.target)) neighbours.set(l.target, new Set());
+    neighbours.get(l.source).add(l.target);
+    neighbours.get(l.target).add(l.source);
+  });
+  function bfsPath(startName) {
+    const visitedNodes = new Set([startName]);
+    const visitedLinks = new Set();
+    const queue = [startName];
+    while (queue.length) {
+      const n = queue.shift();
+      const linksHere = nameToLinkIdxs.get(n) || new Set();
+      const nsHere = neighbours.get(n) || new Set();
+      for (const idx of linksHere) visitedLinks.add(idx);
+      for (const adj of nsHere) {
+        if (!visitedNodes.has(adj)) { visitedNodes.add(adj); queue.push(adj); }
+      }
+    }
+    return { nodes: visitedNodes, links: visitedLinks };
+  }
+  // Stash chart ref so we can re-call from outside (programmatic hover)
+  if (chart._id === undefined) {
+    chart._id = (window._sankeyCharts = (window._sankeyCharts || [])).length;
+    window._sankeyCharts.push({ chart, links });
+  }
+  chart.on('mouseover', { dataType: 'node' }, (p) => {
+    const path = bfsPath(p.name);
+    path.nodes.forEach(name => chart.dispatchAction({ type: 'highlight', seriesIndex: 0, name }));
+    path.links.forEach(idx => chart.dispatchAction({ type: 'highlight', seriesIndex: 0, dataType: 'edge', dataIndex: idx }));
+  });
+  chart.on('mouseout', { dataType: 'node' }, () => {
+    chart.dispatchAction({ type: 'downplay', seriesIndex: 0 });
+  });
+}
+
+// ── Node tooltip lookup (rationale excerpts) ──
+window._getNodeTooltip = function(node) {
+  const n = (node && node.name) || '';
+  // SR-XXX → show regulatory_rationale excerpt
+  if (/^SR-/.test(n)) {
+    const sr = (window._srs || []).find(s => s.sr_id === n);
+    if (sr) {
+      const r = (sr.regulatory_rationale || '').slice(0, 280);
+      const tail = (sr.regulatory_rationale || '').length > 280 ? '…' : '';
+      const title = sr.title ? `<div style="font-weight:600;color:#1f4e78;margin-top:4px">${escapeHtml(sr.title)}</div>` : '';
+      return title + `<div style="color:#5a5345;font-size:11px;margin-top:4px"><b>Regulatory:</b> ${escapeHtml(r)}${tail}</div>`;
+    }
+  }
+  // Art. 5(1) → show SRs that cite it
+  if (/^Art\./.test(n) || /^Annex/i.test(n)) {
+    const srs = (window._srs || []).filter(s =>
+      (s.source_article === n) ||
+      ((s.regulatory_rationale || '').indexOf(n) !== -1) ||
+      ((s.source_articles || []).indexOf(n) !== -1)
+    );
+    if (srs.length) {
+      const list = srs.slice(0, 4).map(s => `<code style="font-family:var(--mono);font-size:10px">${escapeHtml(s.sr_id)}</code>`).join(' ');
+      return `<div style="color:#5a5345;font-size:11px;margin-top:4px"><b>${srs.length}</b> security rule(s) derive from this article: ${list}${srs.length > 4 ? ' …' : ''}</div>`;
+    }
+  }
+  // GDPR-CNN, CRA-CNN → show articles referencing it
+  if (/^[A-Z][A-Z0-9-]*-C\d+$/i.test(n) || /^GDPR-CL|^DORA-CL|^NIS2-CL|^CRA-CL/i.test(n)) {
+    const srs = (window._srs || []).filter(s =>
+      ((s.regulatory_rationale || '').indexOf(n) !== -1) ||
+      ((s.source_clauses || []).indexOf(n) !== -1) ||
+      ((s.source_clause_ids || []).indexOf(n) !== -1)
+    );
+    if (srs.length) {
+      const list = srs.slice(0, 4).map(s => `<code style="font-family:var(--mono);font-size:10px">${escapeHtml(s.sr_id)}</code>`).join(' ');
+      return `<div style="color:#5a5345;font-size:11px;margin-top:4px"><b>${srs.length}</b> rule(s): ${list}</div>`;
+    }
+  }
+  // NistSubcategory (PR.DS-01 etc.) → show description
+  if (/^[A-Z]{2}\.[A-Z]{2}-\d{2}$/.test(n) || /^[A-Z]{2}\.[A-Z]{2}-[A-Z]\d$/.test(n)) {
+    return `<div style="color:#5a5345;font-size:11px;margin-top:4px">NIST control reference — see OVERLAY_NIST_CSF_2.0.md or OVERLAY_NIST_PF_1.1.md for full description.</div>`;
+  }
+  return null;
+};
+
+// Custom tooltip formatter factory
+window._makeSankeyTooltip = function() {
+  return {
+    trigger: 'item',
+    extraCssText: 'max-width:380px;white-space:normal;',
+    formatter: (params) => {
+      if (params.dataType === 'edge') {
+        return `<div style="font-family:var(--sans);font-size:12px"><b>${escapeHtml(params.data.source)}</b> → <b>${escapeHtml(params.data.target)}</b></div>`;
+      }
+      const rationale = window._getNodeTooltip ? window._getNodeTooltip(params.data) : null;
+      const head = `<div style="font-family:var(--sans);font-size:13px;font-weight:700;color:#0d1b2a">${escapeHtml(params.name)}</div>`;
+      if (rationale) {
+        return `<div style="font-family:var(--sans);font-size:12px;line-height:1.5">${head}${rationale}</div>`;
+      }
+      return head;
+    },
+    backgroundColor: '#fbf9f5',
+    borderColor: '#b8893a',
+    borderWidth: 1,
+    textStyle: { color: '#0d1b2a', fontFamily: 'Inter, sans-serif' }
+  };
+};
+
 function renderMapa() {
   if (renderMapa._done) return;
   renderMapa._done = true;
@@ -23818,6 +23945,7 @@ function renderMapa() {
   document.getElementById('sankey-mapa-pill').innerHTML = `🇪🇺 ${escapeHtml(reg.name)}`;
 
   const srs = reg.srs || [];
+  window._srs = srs;
   if ($.fn.DataTable.isDataTable('#table-srs')) $('#table-srs').DataTable().destroy();
 
   const rows = srs.map(sr => [
@@ -23876,9 +24004,12 @@ function renderMapa() {
   });
 
   chart.setOption({
-    tooltip: { trigger: 'item' },
+    tooltip: window._makeSankeyTooltip(),
     series: [{
-      type: 'sankey', data: nodes, links, emphasis: { focus: 'adjacency' },
+      type: 'sankey', data: nodes, links,
+      emphasis: { focus: 'adjacency', itemStyle: { opacity: 1 }, lineStyle: { opacity: 0.85 } },
+      blur:    { itemStyle: { opacity: 0.12 }, lineStyle: { opacity: 0.04 } },
+      select:  { itemStyle: { borderColor: '#1f2937', borderWidth: 2 }, lineStyle: { opacity: 1 } },
       lineStyle: { color: 'source', curveness: 0.5, opacity: 0.4 },
       label: { fontSize: 11, color: '#1e293b', fontWeight: 500 }, nodeWidth: 14, nodeGap: 8
     }]
@@ -23903,6 +24034,8 @@ function renderMapa() {
       showClauseDetail(name);
     }
   });
+
+  setupPathHighlight(chart, links);
 }
 
 function renderDominios() {
@@ -23966,6 +24099,7 @@ function renderFramework() {
   document.getElementById('sankey-csf-pill').innerHTML = `🇪🇺 ${escapeHtml(reg.name)}`;
 
   const srs = reg.srs || [];
+  window._srs = srs;
   if ($.fn.DataTable.isDataTable('#table-fw')) $('#table-fw').DataTable().destroy();
 
   const rows = srs.map(sr => [
@@ -24028,9 +24162,12 @@ function renderFramework() {
   });
 
   chart.setOption({
-    tooltip: { trigger: 'item' },
+    tooltip: window._makeSankeyTooltip(),
     series: [{
-      type: 'sankey', data: nodes, links, emphasis: { focus: 'adjacency' },
+      type: 'sankey', data: nodes, links,
+      emphasis: { focus: 'adjacency', itemStyle: { opacity: 1 }, lineStyle: { opacity: 0.85 } },
+      blur:    { itemStyle: { opacity: 0.12 }, lineStyle: { opacity: 0.04 } },
+      select:  { itemStyle: { borderColor: '#1f2937', borderWidth: 2 }, lineStyle: { opacity: 1 } },
       lineStyle: { color: 'source', curveness: 0.5, opacity: 0.45 },
       label: { fontSize: 11, color: '#1e293b', fontWeight: 500 }, nodeWidth: 18, nodeGap: 12
     }]
@@ -24052,6 +24189,8 @@ function renderFramework() {
       showClauseDetail(name);
     }
   });
+
+  setupPathHighlight(chart, links);
 }
 
 function renderSecondary() {
@@ -24065,6 +24204,7 @@ function renderSecondary() {
   document.getElementById('secondary-table-title').textContent = `SecurityRules ↔ ${reg.secondary_fw}`;
 
   const srs = reg.srs || [];
+  window._srs = srs;
   if ($.fn.DataTable.isDataTable('#table-secondary')) $('#table-secondary').DataTable().destroy();
 
   const rows = srs.map(sr => [
@@ -24130,9 +24270,12 @@ function renderSecondary() {
   });
 
   chart.setOption({
-    tooltip: { trigger: 'item' },
+    tooltip: window._makeSankeyTooltip(),
     series: [{
-      type: 'sankey', data: nodes, links, emphasis: { focus: 'adjacency' },
+      type: 'sankey', data: nodes, links,
+      emphasis: { focus: 'adjacency', itemStyle: { opacity: 1 }, lineStyle: { opacity: 0.85 } },
+      blur:    { itemStyle: { opacity: 0.12 }, lineStyle: { opacity: 0.04 } },
+      select:  { itemStyle: { borderColor: '#1f2937', borderWidth: 2 }, lineStyle: { opacity: 1 } },
       lineStyle: { color: 'source', curveness: 0.5, opacity: 0.4 },
       label: { fontSize: 11, color: '#1e293b', fontWeight: 500 }, nodeWidth: 18, nodeGap: 12
     }]
@@ -24146,6 +24289,8 @@ function renderSecondary() {
     const sr = srs.find(s => s.sr_id === srId);
     if (sr) showDetail(sr, 'secondarySankeyDetalhe');
   });
+
+  setupPathHighlight(chart, links);
 }
 
 function showDetail(sr, panelId) {
@@ -24351,6 +24496,34 @@ window.addEventListener('hashchange', () => {
 const _initHash = parseHash();
 setInstrument(_initHash.reg || 'gdpr');
 if (_initHash.tab) activateTab(_initHash.tab);
+
+// Eager-init the three Sankey charts so window._mySankeyMapa / _mySankeyCsf /
+// _mySankeySecondary and window._sankeyCharts[] are populated as soon as the
+// page loads, regardless of which tab the user starts on. Each render is
+// guarded by a `._done` flag inside the function, so it only ever runs once
+// per instrument change.
+//
+// Trick: hidden panels (display:none) collapse to 0×0 and ECharts measures
+// zero width on init. We briefly apply `.preinit` to each panel (off-screen
+// + width:1400px) so the chart can lay out, then restore normal tab CSS
+// once init is done. The active tab keeps its `display:block` via the
+// `.active` class; the chart then resizes properly when its tab is opened.
+['tab-mapa', 'tab-framework', 'tab-secondary'].forEach(id => {
+  const p = document.getElementById(id);
+  if (p && !p.classList.contains('active')) p.classList.add('preinit');
+});
+renderMapa();
+renderFramework();
+renderSecondary();
+['tab-mapa', 'tab-framework', 'tab-secondary'].forEach(id => {
+  const p = document.getElementById(id);
+  if (p) p.classList.remove('preinit');
+});
+// Re-measure in case the active tab was one of the pre-init'd ones
+// (it shouldn't be at first boot, but defensive).
+if (window._mySankeyMapa)    window._mySankeyMapa.resize();
+if (window._mySankeyCsf)     window._mySankeyCsf.resize();
+if (window._mySankeySecondary) window._mySankeySecondary.resize();
 </script>
 </body>
 </html>
