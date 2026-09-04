@@ -1,0 +1,614 @@
+{
+  "_provenance": {
+    "source_yaml": "01_PHASE1_CONTEXT_RICH/phase1_ontology.yaml v2.1-port (kg_ontology.maturity_model + architecture/NistControl class promotions added 2026-09-04, campaign PORT-PARITY-2 block F3a)",
+    "schema_version": "1.1",
+    "generated": "2026-09-04",
+    "purpose": "Compact JSON sibling of phase1_ontology.yaml@kg_ontology — lets stdlib-only Python validate phase1_graph.json nodes/links against the v2.1-port schema (including maturity_model) without a YAML parser. Maintained in lock-step with the YAML body.",
+    "sibling_yaml_section": "kg_ontology"
+  },
+  "classes": {
+    "CompanyContext": {
+      "attrs": [
+        "id",
+        "scale",
+        "employees",
+        "security_fte",
+        "data_types",
+        "roles"
+      ]
+    },
+    "Regulation": {
+      "attrs": [
+        "id",
+        "abbreviation",
+        "name",
+        "eu_reference",
+        "applicable",
+        "obligated_party",
+        "clause_count",
+        "reason"
+      ]
+    },
+    "RegulatoryClause": {
+      "attrs": [
+        "id",
+        "regulation_id",
+        "article",
+        "description",
+        "maps_to_subdomain",
+        "normative_weight",
+        "obligation_type",
+        "obligated_party"
+      ]
+    },
+    "Domain": {
+      "attrs": [
+        "id",
+        "name",
+        "description",
+        "primary_regulatory_driver"
+      ]
+    },
+    "SecurityControlDomain": {
+      "attrs": [
+        "id",
+        "domain_id",
+        "name",
+        "covered",
+        "active",
+        "coverage_level",
+        "proportionality_tier",
+        "sole_authority_regulation",
+        "gap_reason",
+        "clause_count",
+        "ambiguity_in_scope"
+      ]
+    },
+    "AdjustedGoal": {
+      "attrs": [
+        "id",
+        "subdomain_id",
+        "track",
+        "priority",
+        "tier",
+        "objective",
+        "adjustment_note"
+      ]
+    },
+    "Tension": {
+      "attrs": [
+        "id",
+        "type",
+        "severity",
+        "clause_1",
+        "clause_2",
+        "affected_subdomains",
+        "resolution"
+      ]
+    },
+    "Stakeholder": {
+      "attrs": [
+        "id",
+        "name",
+        "role",
+        "type",
+        "department_or_relationship",
+        "note"
+      ]
+    },
+    "BusinessGoal": {
+      "attrs": [
+        "id",
+        "description",
+        "priority",
+        "status",
+        "stakeholders",
+        "strategic_alignment"
+      ]
+    },
+    "CoverageGap": {
+      "attrs": [
+        "id",
+        "title",
+        "severity",
+        "regulation",
+        "affected_subdomain_ids",
+        "description",
+        "status"
+      ]
+    },
+    "RaciRole": {
+      "attrs": [
+        "id",
+        "name",
+        "maps_to_stakeholder",
+        "fte_allocation",
+        "reports_to",
+        "backup"
+      ]
+    },
+    "RaciActivity": {
+      "attrs": [
+        "id",
+        "name",
+        "domain_id",
+        "sub_domain_id",
+        "corpus_reg_req",
+        "active"
+      ]
+    },
+    "System": {
+      "attrs": [
+        "id",
+        "name",
+        "type",
+        "tech_stack",
+        "criticality",
+        "hosts_personal_data"
+      ]
+    },
+    "DataStore": {
+      "attrs": [
+        "id",
+        "type",
+        "location",
+        "encryption_at_rest",
+        "retention_period",
+        "backup"
+      ]
+    },
+    "DataFlow": {
+      "attrs": [
+        "id",
+        "data_type",
+        "volume",
+        "encryption_in_transit",
+        "protocol",
+        "subprocessor"
+      ]
+    },
+    "ThirdParty": {
+      "attrs": [
+        "name",
+        "aliases",
+        "services",
+        "regions",
+        "criticality",
+        "risk_score",
+        "dpa_in_place",
+        "article_28_compliant",
+        "dora_art30_contract",
+        "exit_plan",
+        "last_assessment",
+        "next_review",
+        "sbom_available",
+        "art_28_dpa",
+        "art_30_clauses",
+        "security_audit_right",
+        "subprocessor_approval",
+        "data_accessed"
+      ]
+    },
+    "PersonalDataCategory": {
+      "attrs": [
+        "category",
+        "legal_basis_art6_gdpr",
+        "retention",
+        "erasure_mechanism"
+      ]
+    },
+    "DataSubjectCategory": {
+      "attrs": [
+        "category",
+        "access_mechanism",
+        "erasure_mechanism"
+      ]
+    },
+    "NistControl": {
+      "attrs": [
+        "control_id",
+        "framework",
+        "function",
+        "description",
+        "path"
+      ]
+    },
+    "EvidenceItem": {
+      "attrs": [
+        "ev_id",
+        "subdomain_id",
+        "scale",
+        "outcome",
+        "claim",
+        "sources",
+        "observed"
+      ]
+    },
+    "TierDecision": {
+      "attrs": [
+        "td_id",
+        "scope",
+        "function",
+        "assigned_tier",
+        "characteristics_passed",
+        "characteristics_failed",
+        "gap_reason",
+        "evidence_ids",
+        "decided_by",
+        "decided_at"
+      ]
+    }
+  },
+  "relations": [
+    {
+      "verb": "ASSESSES",
+      "from": "CompanyContext",
+      "to": "Regulation"
+    },
+    {
+      "verb": "MAPS_TO",
+      "from": "RegulatoryClause",
+      "to": "SecurityControlDomain"
+    },
+    {
+      "verb": "BELONGS_TO",
+      "from": "SecurityControlDomain",
+      "to": "Domain"
+    },
+    {
+      "verb": "COVERS",
+      "from": "Regulation",
+      "to": "SecurityControlDomain"
+    },
+    {
+      "verb": "HAS_TENSION_WITH",
+      "from": "RegulatoryClause",
+      "to": "RegulatoryClause"
+    },
+    {
+      "verb": "DEFINES",
+      "from": "Stakeholder",
+      "to": "BusinessGoal"
+    },
+    {
+      "verb": "ADDRESSED_IN",
+      "from": "RegulatoryClause",
+      "to": "SecurityControlDomain"
+    },
+    {
+      "verb": "FLAGS",
+      "from": "CoverageGap",
+      "to": "SecurityControlDomain"
+    },
+    {
+      "verb": "YIELDS",
+      "from": "SecurityControlDomain",
+      "to": "AdjustedGoal"
+    },
+    {
+      "verb": "OVERLAPS_WITH",
+      "from": "Regulation",
+      "to": "Regulation"
+    },
+    {
+      "verb": "RACI",
+      "from": "RaciRole",
+      "to": "RaciActivity",
+      "status": "active"
+    },
+    {
+      "verb": "APPLIES_TO",
+      "from": "RaciActivity",
+      "to": "SecurityControlDomain",
+      "status": "active"
+    },
+    {
+      "verb": "MAPS_TO_STK",
+      "from": "RaciRole",
+      "to": "Stakeholder",
+      "status": "deferred"
+    },
+    {
+      "verb": "HOSTS",
+      "from": "System",
+      "to": "DataStore"
+    },
+    {
+      "verb": "PROCESSES",
+      "from": "DataFlow",
+      "to": "ThirdParty"
+    },
+    {
+      "verb": "INVOLVES",
+      "from": "SecurityControlDomain",
+      "to": "System"
+    },
+    {
+      "verb": "INVOLVES_STORE",
+      "from": "SecurityControlDomain",
+      "to": "DataStore"
+    },
+    {
+      "verb": "INVOLVES_FLOW",
+      "from": "SecurityControlDomain",
+      "to": "DataFlow"
+    },
+    {
+      "verb": "PROCESSED_BY",
+      "from": "PersonalDataCategory",
+      "to": "System"
+    },
+    {
+      "verb": "PROCESSED_BY_3P",
+      "from": "PersonalDataCategory",
+      "to": "ThirdParty"
+    },
+    {
+      "verb": "CAPTURES",
+      "from": "DataSubjectCategory",
+      "to": "PersonalDataCategory"
+    },
+    {
+      "verb": "CORRESPONDS_TO",
+      "from": "ThirdParty",
+      "to": "Stakeholder",
+      "status": "partial"
+    },
+    {
+      "verb": "FLOWS_BETWEEN",
+      "from": "DataFlow",
+      "to": "System",
+      "status": "deferred"
+    },
+    {
+      "verb": "USES",
+      "from": "System",
+      "to": "ThirdParty",
+      "status": "deferred"
+    },
+    {
+      "verb": "ALIGNS_TO",
+      "from": "SecurityControlDomain",
+      "to": "NistControl",
+      "status": "active",
+      "added_in": "v2.1-port"
+    },
+    {
+      "verb": "SOURCED_FROM",
+      "from": "NistControl",
+      "to": "Regulation",
+      "status": "deferred"
+    },
+    {
+      "verb": "HAS_EVIDENCE",
+      "from": "SecurityControlDomain",
+      "to": "EvidenceItem",
+      "status": "active",
+      "added_in": "v2.1-port"
+    },
+    {
+      "verb": "CITES_OUTCOME",
+      "from": "EvidenceItem",
+      "to": "NistControl",
+      "status": "active",
+      "added_in": "v2.1-port"
+    },
+    {
+      "verb": "CITES_CLAUSE",
+      "from": "EvidenceItem",
+      "to": "RegulatoryClause",
+      "status": "active",
+      "added_in": "v2.1-port"
+    },
+    {
+      "verb": "DECIDED_AT",
+      "from": "TierDecision",
+      "to": "SecurityControlDomain",
+      "status": "active",
+      "added_in": "v2.1-port"
+    },
+    {
+      "verb": "USED_IN",
+      "from": "EvidenceItem",
+      "to": "TierDecision",
+      "status": "active",
+      "added_in": "v2.1-port"
+    }
+  ],
+  "enums": {
+    "Scale": [
+      "MICRO",
+      "SMALL",
+      "MEDIUM",
+      "LARGE",
+      "MAX"
+    ],
+    "ProportionalityTier": [
+      "MINIMAL",
+      "LIGHTWEIGHT",
+      "STANDARD",
+      "RIGOROUS",
+      "DEFERRED"
+    ],
+    "CoverageLevel": [
+      "SUBSTANTIVE",
+      "PARTIAL",
+      "NOT_ADDRESSED"
+    ],
+    "Priority": [
+      "MUST",
+      "SHOULD",
+      "COULD"
+    ],
+    "ObligationType": [
+      "mandatory",
+      "conditional",
+      "prohibited"
+    ],
+    "ObligatedPartyType": [
+      "CONTROLLER",
+      "PROCESSOR",
+      "MANUFACTURER",
+      "IMPORTER",
+      "DISTRIBUTOR",
+      "ESSENTIAL_OR_IMPORTANT_ENTITY",
+      "FINANCIAL_ENTITY",
+      "PROVIDER",
+      "DEPLOYER"
+    ],
+    "Severity": [
+      "high",
+      "medium",
+      "low"
+    ],
+    "StakeholderType": [
+      "Internal",
+      "External"
+    ],
+    "TensionType": [
+      "timing",
+      "scope",
+      "requirement",
+      "intensity"
+    ],
+    "RaciLetter": [
+      "R",
+      "A",
+      "C",
+      "I"
+    ],
+    "RiskScore": [
+      "L",
+      "M",
+      "H",
+      "VH"
+    ],
+    "NistFramework": [
+      "CSF",
+      "PF",
+      "AI-RMF"
+    ],
+    "ScaleRef": [
+      "capability",
+      "coverage"
+    ],
+    "TierScope": [
+      "Organisation",
+      "Function"
+    ],
+    "CsfFunction": [
+      "GOVERN",
+      "IDENTIFY",
+      "PROTECT",
+      "DETECT",
+      "RESPOND",
+      "RECOVER"
+    ],
+    "CsfTier": [
+      "T1",
+      "T2",
+      "T3",
+      "T4"
+    ]
+  },
+  "invariants": {
+    "counts": {
+      "regulations_total": 5,
+      "regulations_applicable": 5,
+      "domains": 10,
+      "subdomains_total": 38,
+      "subdomains_covered": 38,
+      "subdomains_active": 38,
+      "clauses_total": 150,
+      "clauses_gdpr": 28,
+      "clauses_cra": 26,
+      "clauses_nis2": 29,
+      "clauses_dora": 38,
+      "clauses_aiact": 29,
+      "adjusted_goals": 76,
+      "tensions": 5,
+      "nist_controls_estimated": 121
+    },
+    "id_patterns": {
+      "Stakeholder": "^STK-[A-Z]+-\\d{2}$",
+      "BusinessGoal": "^BG-\\d{2}$",
+      "CoverageGap": "^GAP-\\d{2,3}$",
+      "AdjustedGoal": "^AG-D-\\d{2}\\.\\d{1}-(001|002)$",
+      "RegulatoryClause": "^(GDPR|CRA|NIS2|DORA|AI)-C\\d{2}$",
+      "SecurityControlDomain": "^D-\\d{2}\\.\\d{1}$",
+      "Domain": "^D-\\d{2}$",
+      "Regulation": "^REG-[A-Z0-9]+$",
+      "CompanyContext": "^CC-[A-Z]+-\\d{4}-\\d{3}$",
+      "Tension": "^T-\\d{3}$",
+      "RaciRole": "^ROLE-[A-Z0-9]+$",
+      "RaciActivity": "^ACT-\\d{2}$",
+      "System": "^SYS-\\d{2}$",
+      "DataStore": "^STORE-\\d{2}$",
+      "DataFlow": "^FLOW-\\d{2}$",
+      "ThirdParty": "^[A-Z][A-Za-z0-9_]+$",
+      "NistControl": "^(NIST-)?[A-Z0-9\\.\\-]+$",
+      "NistControlSafe": "^NIST-[A-Za-z0-9._-]{1,80}$",
+      "EvidenceItem": "^EV-D-\\d{2}\\.\\d{1}-\\d{3}$",
+      "TierDecision": "^TD-[A-Z0-9-]+-(GV|ID|PR|DE|RS|RC|ORG)-\\d{3}$"
+    }
+  },
+  "provenance_rules": {
+    "node_source_min": [
+      "Every node.source[] MUST list >=1 doc-or-yaml path with section."
+    ],
+    "link_source_min": [
+      "Every link.source[] MUST list >=1 source."
+    ],
+    "audit_linkage": [
+      "Any new audit-finding node_ids[] MUST be a subset of existing graph node ids."
+    ]
+  },
+  "maturity_model": {
+    "authority": "00_METHODOLOGY/MATURITY_MODEL_CSF_STRICT.md v1.0",
+    "reference_framework": "NIST CSF 2.0 §3.4 Implementation Tiers (Feb 2024)",
+    "crosswalk_authorities": {
+      "csf": "00_METHODOLOGY/PREPROCESSING_by_domain/MAPPINGS/OVERLAYS/OVERLAY_NIST_CSF_2.0.md §2",
+      "pf": "00_METHODOLOGY/PREPROCESSING_by_domain/MAPPINGS/OVERLAYS/OVERLAY_NIST_PF_1.1.md §2",
+      "airmf": "00_METHODOLOGY/PREPROCESSING_by_domain/MAPPINGS/OVERLAYS/OVERLAY_NIST_AI_RMF_1.0.md"
+    },
+    "schema_version": 1.0,
+    "generated": "2026-09-04",
+    "case_overrides": {
+      "ai_act_applicable": true,
+      "dora_applicable": true,
+      "nis2_applicable": true,
+      "airmf_subdomains": 6
+    },
+    "scales": {
+      "capability": {
+        "name": "Capability (CSF 2.0 native)",
+        "scope": [
+          "Organisation",
+          "Function"
+        ],
+        "measure": "Tier T1..T4",
+        "decision_rule": "max T s.t. all characteristic questions of T'<=T are satisfied by evidence"
+      },
+      "coverage": {
+        "name": "Regulatory Treatment (Coverage, AEGIS-local)",
+        "scope": [
+          "SecurityControlDomain"
+        ],
+        "measure": "CoverageLevel enum (SUBSTANTIVE/PARTIAL/NOT_ADDRESSED)"
+      }
+    },
+    "forbidden_in_subdomain_attrs": [
+      "tier",
+      "maturity_cur",
+      "maturity_tgt",
+      "maturity_score",
+      "capability_score"
+    ],
+    "citation_required": true,
+    "empty_sources_fail": true,
+    "scale_consistency": {
+      "EvidenceItem.scale=capability": "CITES_OUTCOME target exists (NistControl)",
+      "EvidenceItem.scale=coverage": "CITES_CLAUSE target exists (RegulatoryClause)"
+    }
+  }
+}

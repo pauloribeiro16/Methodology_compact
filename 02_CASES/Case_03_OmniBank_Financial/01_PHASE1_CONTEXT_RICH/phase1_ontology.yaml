@@ -25,7 +25,16 @@
 header:
   case_id: "Case_03_OmniBank_Financial"
   phase: 1
-  version: "2.0-port"
+  # v2.1-port (2026-09-04, campaign PORT-PARITY-2 block F3a): additive only.
+  #   - kg_ontology: maturity_model block added (EvidenceItem/TierDecision, 5
+  #     maturity relations, scales, invariants) — mirrors Case_02 v2.3 block.
+  #   - kg_ontology: architecture + NistControl id_patterns promoted to full
+  #     class definitions (System/DataStore/DataFlow/PersonalDataCategory/
+  #     DataSubjectCategory/ThirdParty/NistControl + NistFramework enum +
+  #     ALIGNS_TO relation), shape per Case_01 v1.6.
+  #   - id_patterns: EvidenceItem (EV-) + TierDecision (TD-) added.
+  #   - DORA branch in RegulatoryClause id_pattern KEPT (5-regulation case).
+  version: "2.1-port"
   generated_from:
     - "AEGIS-COMMON-00"
     - "AEGIS-COMMON-01"
@@ -1781,6 +1790,12 @@ kg_ontology:
       Formalise the Case_03 Phase 1 knowledge-graph class/relation schema so
       that a future data/phase1_graph.json (build deferred, mirroring the
       Case_02 port decision) can be validated before any dashboard.
+    build_note: >-
+      v2.1-port (2026-09-04, PORT-PARITY-2 F3a): the deferred data layer now
+      EXISTS — data/phase1_graph.json + data/phase1_ontology.compact.json are
+      emitted by scripts/build_p1_graph.py and validated by
+      scripts/build_p1_dashboard.py (9 checks + --strict). Original purpose
+      text above kept for provenance.
     schema_canonical_source: "../Case_01_TinyTask_SaaS/01_PHASE1_CONTEXT_RICH/phase1_ontology.yaml#kg_ontology"
     a_class_model: "00_METHODOLOGY/diagrams/Class_Models/phase1_contextual_definition.md"
     schema_version: 1.0
@@ -1805,6 +1820,83 @@ kg_ontology:
     ThirdParty: "^[A-Z][A-Za-z0-9_]+$"
     NistControl: "^(NIST-)?[A-Z0-9\\.\\-]+$"
     NistControlSafe: "^NIST-[A-Za-z0-9._-]{1,80}$"
+    # v2.1-port — maturity layer id patterns (mirror Case_02 compact schema 1.1)
+    EvidenceItem: "^EV-D-\\d{2}\\.\\d{1}-\\d{3}$"
+    TierDecision: "^TD-[A-Z0-9-]+-(GV|ID|PR|DE|RS|RC|ORG)-\\d{3}$"
+
+  # ── v2.1-port ADDITION — CLASS DEFINITIONS (Phase B/D promotion) ────────
+  # Purely additive. Promotes the architecture + NistControl id_patterns above
+  # to full class definitions; shape copied from Case_01 v1.6
+  # (kg_ontology.classes), data sources retargeted to Case_03 documents.
+  classes:
+    System:
+      attrs: { id: SYS-*, name, type, tech_stack, criticality,
+               hosts_personal_data: Boolean }
+      source: "Doc04 §1.1 'System Inventory' table; no Class_Models precedent — case-level"
+      data_source: "Doc04 §1.1 + Case_03_Phase1_RICH.xlsx::SYSTEMS (25 rows)"
+      example: "SYS-01"
+
+    DataStore:
+      attrs: { id: STORE-*, type, location, encryption_at_rest,
+               retention_period, backup: Boolean }
+      source: "Doc04 §2.1 'Data Stores' table; no Class_Models precedent — case-level"
+      data_source: "Doc04 §2.1 + Case_03_Phase1_RICH.xlsx::DATA_STORES (12 rows)"
+      example: "STORE-01"
+
+    DataFlow:
+      attrs: { id: FLOW-*, data_type, volume, encryption_in_transit,
+               protocol, subprocessor: Boolean }
+      source: "Doc04 §2.2 'Data Flows' table; no Class_Models precedent — case-level"
+      data_source: "Doc04 §2.2 + Case_03_Phase1_RICH.xlsx::DATA_FLOWS (25 rows)"
+      example: "FLOW-01"
+
+    ThirdParty:
+      attrs: { name, aliases: List<String>, services: List<String>,
+               regions: List<String>, criticality,
+               risk_score: enum(L|M|H|VH),
+               dpa_in_place: Boolean, article_28_compliant: Boolean,
+               dora_art30_contract: Boolean,
+               exit_plan: nullable,
+               last_assessment, next_review,
+               sbom_available: Boolean,
+               art_28_dpa: Boolean, art_30_clauses, security_audit_right,
+               subprocessor_approval,
+               data_accessed: List<String> }
+      source: "Doc06 §2 + §5 + §6 'Third Party' tables; no Class_Models precedent — case-level"
+      data_source: "Doc06 + Case_03_Phase1_RICH.xlsx::THIRD_PARTIES (33 rows; DORA Art. 30 column is Case_03-specific)"
+      example: "AWS__EU___eu-central-1___eu-west-1_"
+
+    PersonalDataCategory:
+      attrs: { category, legal_basis_art6_gdpr,
+               retention, erasure_mechanism }
+      source: "Doc04 §2.3 'Personal Data Categories' table; no Class_Models precedent — case-level"
+      data_source: "Doc04 §2.3 + Case_03_Phase1_RICH.xlsx::PERSONAL_DATA (13 rows)"
+      example: "Customer identification data (name, address, DOB, ID document)"
+
+    DataSubjectCategory:
+      attrs: { category, access_mechanism, erasure_mechanism }
+      source: "Doc04 §2.4 'Data Subject Categories' table; no Class_Models precedent — case-level"
+      data_source: "Doc04 §2.4 (9 rows)"
+      example: "Retail banking customers (~3 million)"
+
+    # v1.5-shape — NIST Controls (Phase D · Doc14 §5 NIST Controls Mapping)
+    NistControl:
+      attrs: { id: NIST-*, control_id, framework, function,
+               description, path }
+      source: "Doc14 §5 (per-sub-domain NIST CSF 2.0 + PF 1.0 + AI RMF table); Class_Models has no precedent — case-level"
+      data_source: "Doc14 §5 (38 rows × 3 frameworks; 79 CSF + 38 PF + 4 AI-RMF distinct controls)"
+      example: "NIST-PR.DS-01"
+
+  # ── v2.1-port ADDITION — NIST ENUM ──────────────────────────────────────
+  enums:
+    NistFramework: [CSF, PF, AI-RMF]
+
+  # ── v2.1-port ADDITION — ALIGNS_TO relation (Phase D) ───────────────────
+  relations:
+    - { verb: ALIGNS_TO,        from: SecurityControlDomain,  to: NistControl,
+        cardinality: "N:N (one sub-domain aligns to many controls; one control cited in many sub-domains)",
+        source: "Doc14 §5 per-sub-domain NIST tables (CSF + PF + AI-RMF); Class_Models has no precedent" }
+
   forbidden_subdomain_attrs: [tier, maturity_cur, maturity_tgt, maturity_score, capability_score]
   implementation_posture:
     authority: "00_METHODOLOGY/IMPLEMENTATION_POSTURE_MODEL_CSF_STRICT.md v2.0"
@@ -1825,3 +1917,92 @@ kg_ontology:
     dora_coverage: via_CSF      # no dedicated DORA framework column (Doc20 design decision)
     adjusted_goals: 76          # 38 privacy (-001) + 38 security (-002)
     tensions: 5                 # T-001..T-005 (T-005 DORA TLPT)
+
+  # ---- v2.1-port ADDITION — MATURITY MODEL (CSF 2.0 STRICT) --------------
+  # Purely additive. Mirrors Case_02 v2.3 / Case_01 v1.6 (cross-case shared
+  # normative reference). Authoritative reference:
+  # 00_METHODOLOGY/MATURITY_MODEL_CSF_STRICT.md v1.0.
+  # Crosswalk authorities: OVERLAY_NIST_CSF_2.0.md §2 / OVERLAY_NIST_PF_1.1.md
+  # §2 / OVERLAY_NIST_AI_RMF_1.0.md.
+  # OmniBank-specific: AI-RMF anchors are REAL (OmniBank is AI Act PROVIDER +
+  # DEPLOYER — OmniScore high-risk Annex III) and DORA applies (5-reg case);
+  # 6 sub-domains carry AI-RMF anchors per Doc14 §5.
+  maturity_model:
+    authority: "00_METHODOLOGY/MATURITY_MODEL_CSF_STRICT.md v1.0"
+    reference_framework: "NIST CSF 2.0 §3.4 Implementation Tiers (Feb 2024)"
+    crosswalk_authorities:
+      csf:  "00_METHODOLOGY/PREPROCESSING_by_domain/MAPPINGS/OVERLAYS/OVERLAY_NIST_CSF_2.0.md §2"
+      pf:   "00_METHODOLOGY/PREPROCESSING_by_domain/MAPPINGS/OVERLAYS/OVERLAY_NIST_PF_1.1.md §2"
+      airmf: "00_METHODOLOGY/PREPROCESSING_by_domain/MAPPINGS/OVERLAYS/OVERLAY_NIST_AI_RMF_1.0.md"
+    schema_version: 1.0
+    generated: 2026-09-04
+    scales:
+      capability:  # Scale A
+        name: "Capability (CSF 2.0 native)"
+        scope: ["Organisation", "Function"]
+        measure: "Tier T1..T4"
+        decision_rule: "max T s.t. all characteristic questions of T'<=T are satisfied by evidence"
+        cite: "MATURITY_MODEL_CSF_STRICT.md §4"
+      coverage:  # Scale B
+        name: "Regulatory Treatment (Coverage, AEGIS-local)"
+        scope: ["SecurityControlDomain"]
+        measure: "CoverageLevel enum (SUBSTANTIVE/PARTIAL/NOT_ADDRESSED)"
+        anchors:
+          SUBSTANTIVE:    "Applicable regulation's obligations are addressed by an established process / documented control / RACI-assigned activity / verified artefact."
+          PARTIAL:        "Obligations are addressed informally or partially; gaps declared."
+          NOT_ADDRESSED:  "Applicable, but no treatment in place."
+        cite: "MATURITY_MODEL_CSF_STRICT.md §5"
+    classes:
+      EvidenceItem:
+        attrs:
+          ev_id: String
+          subdomain_id: String  # D-XX.Y
+          scale: enum(ScaleRef)
+          outcome: String       # clause id (Scale B) or CSF/PF/AI-RMF subcategory (Scale A)
+          claim: String
+          sources: List<String>
+          observed: Boolean
+        source: "MATURITY_MODEL_CSF_STRICT.md §6"
+        example: "EV-D-07.1-001"
+        citation_required: true
+      TierDecision:
+        attrs:
+          td_id: String
+          scope: enum(Organisation|Function)
+          function: enum(GOVERN|IDENTIFY|PROTECT|DETECT|RESPOND|RECOVER, nullable)
+          assigned_tier: enum(T1|T2|T3|T4)
+          characteristics_passed:
+            T1: List<String>
+            T2: List<String>
+            T3: List<String>
+            T4: List<String>
+          characteristics_failed: List<String>
+          gap_reason: String(nullable)
+          evidence_ids: List<String>
+          decided_by: String
+          decided_at: String
+        invariants:
+          - "assigned_tier == max T in {T1,T2,T3,T4} s.t. all characteristics of T'<=T are passed"
+          - "scope=Function ⇒ function set; scope=Organisation ⇒ function null"
+        source: "MATURITY_MODEL_CSF_STRICT.md §7"
+        example: "TD-OMNIBANK-2026-GV-001"
+    relations:
+      - { verb: HAS_EVIDENCE,  from: SecurityControlDomain, to: EvidenceItem }
+      - { verb: CITES_OUTCOME, from: EvidenceItem,          to: NistControl,  # always when scale=capability
+          scope_constraint: "scale=capability" }
+      - { verb: CITES_CLAUSE,  from: EvidenceItem,          to: RegulatoryClause,
+          scope_constraint: "scale=coverage" }
+      - { verb: DECIDED_AT,    from: TierDecision,          to: SecurityControlDomain }
+      - { verb: USED_IN,       from: EvidenceItem,          to: TierDecision }
+    invariants:
+      forbidden_in_subdomain_attrs: [tier, maturity_cur, maturity_tgt, maturity_score, capability_score]
+      citation_required: true
+      empty_sources_fail: true
+      scale_consistency:
+        EvidenceItem_scale_capability: "CITES_OUTCOME target exists (NistControl)"
+        EvidenceItem_scale_coverage:   "CITES_CLAUSE target exists (RegulatoryClause)"
+      case_overrides:
+        ai_act_applicable: true   # OmniBank is PROVIDER + DEPLOYER (OmniScore Annex III) — AI-RMF anchors admissible
+        dora_applicable: true     # 5-regulation case: DORA Art. 5-34 (Doc11)
+        nis2_applicable: true
+        airmf_subdomains: 6       # Doc14 §5: D-02.1, D-07.1, D-07.2, D-07.3, D-09.2, D-10.1
