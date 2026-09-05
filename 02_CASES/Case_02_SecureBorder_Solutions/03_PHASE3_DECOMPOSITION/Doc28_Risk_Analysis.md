@@ -6,6 +6,7 @@ version: 1.1
 created: 2026-04-04
 updated: 2026-08-10
 author: Security Architect
+case: Case_02_SecureBorder_Solutions
 status: DRAFT
 inputs: [13_Use_Cases_Catalog.md, 23_Functional_Requirements.md, 24_Non_Functional_Requirements.md, 09_Strategic_Tensions_Report.md]
 outputs: [22_Traceability_Matrix.xlsx, 16_Compliance_Gates_Report.md]

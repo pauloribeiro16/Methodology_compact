@@ -7,6 +7,7 @@ created: 2026-04-04
 updated: 2026-09-05
 author: System Architect
 status: DRAFT
+case: Case_02_SecureBorder_Solutions
 inputs: [Doc03_Company_Context_Assessment.md, Doc18_Rules_Catalog.md, Doc16_Privacy_Security_Goals.md, Doc15_Strategic_Tensions_Report.md]
 outputs: [14_Architectural_Nodes.md, 15_Requirements_Allocation.md, 23_Functional_Requirements.md]
 traceability: AEGIS Class Model → UseCase, BusinessGoal, Stakeholder classes

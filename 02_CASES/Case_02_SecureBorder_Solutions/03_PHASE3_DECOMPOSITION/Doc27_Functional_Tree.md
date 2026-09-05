@@ -2,11 +2,12 @@
 document_id: AEGIS-P3-17
 title: Functional Tree
 phase: 3
-version: 1.1
+version: 1.2
 created: 2026-04-04
-updated: 2026-08-10
+updated: 2026-09-05
 author: System Architect
 status: DRAFT
+case: Case_02_SecureBorder_Solutions
 inputs: [16_Compliance_Gates_Report.md, 15_Requirements_Allocation.md, 14_Architectural_Nodes.md, ../01_PHASE1_CONTEXT_RICH/Doc13_Adjusted_Goals.md]
 outputs: [18_Functional_Tree.drawio, 22_Traceability_Matrix.xlsx]
 traceability: AEGIS Class Model → FunctionalNode, DecompositionLevel, Track classes
@@ -159,9 +160,107 @@ ROOT: SecureBorder Solutions Compliance Architecture
         └── L3: Security Engineer (NODE-ROLE-007)
 ```
 
----
+### 3.1 PRODUCT BRANCH (PKG-8..12 — GuardianGate product use cases, U.C.8.x–12.x)
 
-### 3.1 MERMAID DIAGRAM (Functional Tree View)
+Additive branch per Doc21 v1.3 §6 (product-first restructure). Compliance use cases
+U.C.1–U.C.7 (47) remain realising the L1 branches above; the product journey is
+decomposed below.
+
+```
+├── L1: GuardianGate Product — PKG-8..12 (26 UCs, U.C.8.x–12.x)
+│   ├── L2: PKG-8 — Traveller eGate Journey (7)
+│   │   ├── U.C.8.1.1  Scan Travel Document (MRZ + NFC chip)
+│   │   ├── U.C.8.2.1  Capture Facial Biometric Sample
+│   │   ├── U.C.8.2.2  Liveness Detection (PAD)
+│   │   ├── U.C.8.2.3  Face Match 1:1 Against Chip Portrait
+│   │   ├── U.C.8.3.1  Gate Decision & Release
+│   │   ├── U.C.8.3.2  Referral to Operator Desk
+│   │   └── U.C.8.4.1  Traveller Privacy Notice & Consent Capture
+│   │
+│   ├── L2: PKG-9 — Operator Referral Desk (5)
+│   │   ├── U.C.9.1.1  Operator Console Session (SSO/FIDO2, Fail-Closed)
+│   │   ├── U.C.9.2.1  Referral Queue Handling & Triage
+│   │   ├── U.C.9.3.1  Manual Identity Verification & Override (Reason Codes)
+│   │   ├── U.C.9.4.1  Incident Flag & Gate Lock
+│   │   └── PROC-23    Shift Handover & Referral Report (formerly U.C.9.5.1)
+│   │
+│   ├── L2: PKG-10 — Kiosk Fleet Operations (5)
+│   │   ├── PROC-24    Kiosk Provisioning & Enrolment (TPM-Bound Identity) (formerly U.C.10.1.1)
+│   │   ├── U.C.10.2.1 Fleet Health Monitoring
+│   │   ├── U.C.10.3.1 Signed OTA Firmware Update (Cosign, Staged)
+│   │   ├── U.C.10.4.1 Tamper Alert Response
+│   │   └── U.C.10.5.1 Offline/Failover Mode (Store-and-Forward Crossing Events)
+│   │
+│   ├── L2: PKG-11 — AI Model Lifecycle (5)
+│   │   ├── PROC-25    Model Training & Release Packaging (EU-only, SYS-05) (formerly U.C.11.1.1)
+│   │   ├── U.C.11.2.1 Signed Model Rollout to Fleet (Staged)
+│   │   ├── U.C.11.3.1 Model Rollback
+│   │   ├── PROC-26    Drift/Bias Monitoring & Review (formerly U.C.11.4.1)
+│   │   └── U.C.11.5.1 Watchlist Cache Sync (SYS-03 sFTP, HSM-Bound)
+│   │
+│   └── L2: PKG-12 — Administration & Reporting (4)
+│       ├── U.C.12.1.1 Kiosk Admin Configuration (TPM-Bound, Dual Control)
+│       ├── U.C.12.2.1 Audit Export for Authorities (WORM STORE-04)
+│       ├── U.C.12.3.1 SLA & Fleet Status Dashboard
+│       └── PROC-27    User/Role Administration for Console (formerly U.C.12.4.1)
+```
+
+### 3.2 LANE BRANCHES (PROC-01..27 by domain family; CAP-01..10)
+
+Additive lane branches per Doc31 (RULE → CAP → PROC → UC). PROC-23..27 appear in the
+product branch above; PROC-01..22 are the compliance-side process lane.
+
+```
+├── L1: Process Lane — PROC-01..27 (grouped by domain family)
+│   ├── L2: Data Protection family (D-01/D-05)
+│   │   ├── PROC-01 Data Subject Access Request (DSAR)
+│   │   ├── PROC-02 Data Portability Export
+│   │   ├── PROC-03 Biometric Breach Notification
+│   │   └── PROC-04 Data Minimization Review
+│   ├── L2: Security Operations family (D-02/D-04)
+│   │   ├── PROC-05 Incident Detection & Triage
+│   │   ├── PROC-06 Incident Response & Containment
+│   │   ├── PROC-07 Regulatory Notification (Unified 24h/72h)
+│   │   ├── PROC-08 Disaster Recovery & Business Continuity
+│   │   └── PROC-09 Threat-Led Penetration Testing
+│   ├── L2: Identity & Access family (D-03)
+│   │   ├── PROC-10 Border Officer Identity Lifecycle
+│   │   └── PROC-11 Access Rights Review
+│   ├── L2: Secure Development family (D-06/D-07)
+│   │   ├── PROC-12 Secure Code Review
+│   │   └── PROC-13 Change Management
+│   ├── L2: Governance & Compliance family (D-09)
+│   │   ├── PROC-14 Unified Impact Assessment (DPIA + FRIA)
+│   │   ├── PROC-15 Risk Assessment & Management
+│   │   ├── PROC-16 Compliance Audit & Reporting
+│   │   ├── PROC-17 Vendor Risk Assessment
+│   │   └── PROC-18 Regulatory Notification & Cooperation
+│   ├── L2: AI Compliance family (D-10)
+│   │   ├── PROC-19 AI Conformity Assessment
+│   │   ├── PROC-20 AI Bias Testing & Fairness Assessment
+│   │   ├── PROC-21 AI Incident Response
+│   │   └── PROC-22 AI Adversarial Testing
+│   └── L2: Product Operations family (PKG-9..12 — see §3.1)
+│       ├── PROC-23 Shift Handover & Referral Report
+│       ├── PROC-24 Kiosk Provisioning & Enrolment
+│       ├── PROC-25 Model Training & Release Packaging
+│       ├── PROC-26 Drift/Bias Monitoring & Review
+│       └── PROC-27 User/Role Administration for Console
+│
+├── L1: Capability Lane — CAP-01..10
+│   ├── CAP-01 RoPA Maintenance
+│   ├── CAP-02 Continuous Security Monitoring
+│   ├── CAP-03 Privacy-by-Design Integration
+│   ├── CAP-04 ISMS Maintenance
+│   ├── CAP-05 Asset Inventory Management
+│   ├── CAP-06 Security Awareness Training
+│   ├── CAP-07 Role-Specific Security Training
+│   ├── CAP-08 AI Competence Training
+│   ├── CAP-09 Management Board Cybersecurity Training
+│   └── CAP-10 Phishing Simulation
+```
+
+### 3.3 MERMAID DIAGRAM (Functional Tree View)
 
 ```mermaid
 graph TB
@@ -204,7 +303,7 @@ graph TB
     L1_HF --> L2_HF_SOR[Security Operations Roles]
 ```
 
-### 3.2 FT-X.Y → Phase 1 AO Linkage
+### 3.4 FT-X.Y → Phase 1 AO Linkage
 
 Functional Tree sections (FT-X.Y) are numbered against the L1/L2 decomposition groups and linked to Phase 1 Adjusted Objectives (07c §3 PG/SG per sub-domain). Each FT node maps to the sub-domain whose AOs it operationalises.
 
@@ -277,7 +376,7 @@ Functional Tree sections (FT-X.Y) are numbered against the L1/L2 decomposition g
 | Phase 1 AOs (sub-domain level, 07c §3) | 35 active | ✅ Complete |
 | Obligations (Phase 2) | 38 | ✅ Complete |
 | Rules (Phase 2) | 63 (38 CR + 25 BP) | ✅ Complete |
-| Use Cases (Phase 3) | 44 | ✅ Complete |
+| Use Cases (Phase 3) | 73 (47 compliance U.C.1–7 + 26 product U.C.8–12) + lane cards PROC-01..27, CAP-01..10 | ✅ Complete |
 | Architectural Nodes (Phase 3) | 27 | ✅ Complete |
 | Requirements Allocation (Phase 3) | 89 derivations | ✅ Complete |
 | Functional Requirements (Phase 3) | 72 | ✅ Complete |
@@ -359,6 +458,7 @@ Functional Tree sections (FT-X.Y) are numbered against the L1/L2 decomposition g
 |---------|------|--------|---------|
 | 1.0 | 2026-04-04 | System Architect | Initial release — SecureBorder Solutions (71 nodes: 7 L1 + 22 L2 + 42 L3) |
 | 1.1 | 2026-08-10 | Sprint 11 Executor (corr-008 Phase 3 ID harmonisation) | Introduced FT-X.Y section identifiers (§3.2) linking each L1/L2 functional group to Phase 1 AOs; refreshed §7 traceability summary to include FT-X.Y chain; refreshed §9 gate criteria (63/63 rules, 48 gates); tech-stripped BUILD/BUY/CONFIGURE/OUTSOURCE track labels → abstract track taxonomy (TECHNOLOGY/PROCESS/CAPABILITY_SUBREQ) |
+| 1.2 | 2026-09-05 | Executor (product-first restructure) | Additive: §3.1 product branch (PKG-8..12 with all U.C.8.x–12.x leaves, 26 UCs); §3.2 lane branches (PROC-01..27 by domain family, CAP-01..10); §7 UC count corrected 44 → 73 (47 compliance + 26 product) + lane cards. Existing compliance tree nodes unchanged (§3.2 renumbered to §3.4). Sources: Doc21 v1.3 + Doc31. |
 
 ---
 

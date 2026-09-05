@@ -6,6 +6,7 @@ version: 1.1
 created: 2026-04-04
 updated: 2026-08-10
 author: System Architect
+case: Case_02_SecureBorder_Solutions
 status: DRAFT
 inputs: [13_Use_Cases_Catalog.md, 11_Rules_Catalog.md, 10_Privacy_Security_Goals.md, 01_Company_Context.md]
 outputs: [15_Requirements_Allocation.md, 16_Compliance_Gates_Report.md, 17_Functional_Tree.md]

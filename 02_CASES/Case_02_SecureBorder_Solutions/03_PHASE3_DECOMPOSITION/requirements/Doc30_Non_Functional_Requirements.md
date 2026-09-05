@@ -6,6 +6,7 @@ version: 1.0
 created: 2026-04-04
 updated: 2026-04-04
 author: Security Architect
+case: Case_02_SecureBorder_Solutions
 status: DRAFT
 inputs: [10_Privacy_Security_Goals.md, 11_Rules_Catalog.md, 13_Use_Cases_Catalog.md, 01_Company_Context.md]
 outputs: [23_Functional_Requirements.md, 25_Risk_Analysis.md, 16_Compliance_Gates_Report.md]

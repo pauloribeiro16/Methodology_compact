@@ -6,6 +6,7 @@ version: 1.1
 created: 2026-04-04
 updated: 2026-08-10
 author: System Architect
+case: Case_02_SecureBorder_Solutions
 status: DRAFT
 inputs: [15_Requirements_Allocation.md, 23_Functional_Requirements.md, 14_Architectural_Nodes.md, 11_Rules_Catalog.md]
 outputs: [17_Functional_Tree.md, 22_Traceability_Matrix.xlsx]
