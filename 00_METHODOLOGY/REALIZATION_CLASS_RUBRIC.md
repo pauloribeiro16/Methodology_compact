@@ -2,7 +2,7 @@
 document_id: AEGIS-METHODOLOGY-REALIZATION-CLASS-RUBRIC
 title: AEGIS Realization Class Rubric (Phase 2 Rule Attribute)
 phase: Cross-phase
-version: 1.9
+version: 1.10
 created: 2026-09-05
 updated: 2026-09-05
 author: Executor
@@ -140,6 +140,16 @@ Rules:
    kinds in one catalog. Retired numbers are NOT reused: Case_03 `PROC-39`/`PROC-40`
    are re-adjudicated back to `UC-66`/`UC-92` (genuine actor→system form); Case_03
    PROC numbering continues from `PROC-41`; the 39/40 gaps remain documented here.
+7. **Compact renumbering (human decision 2026-09-05, RENUMBER campaign — supersedes
+   the "retired numbers are NOT reused" clause and all historical numbering):** lane
+   ids are numbered **flat 1..N per lane per case** — no gaps, no retired numbers,
+   no legacy dotted schemes (`U.C.x.y.z` flattened to `UC-NN` in all cases). New
+   numbers are assigned in ascending old-id order with compliance-lane UCs first,
+   then product UCs (each ascending natural). The old→new mapping is the mandatory
+   registry: `00_METHODOLOGY/validation/RENUMBER_REGISTRY_2026-09-05.md`. Renames
+   are applied in TWO PHASES (old → temp token → new) to avoid collision chains.
+   Historical "formerly" provenance records keep referring to the ids they named at
+   the time; live references everywhere else use the new ids.
 
 
 ## §5C Lane Card Schemas (normative)
@@ -323,3 +333,4 @@ three ratios per case (`obj→ctrl coverage`, `ctrl→obj back-link coverage`,
 | 1.7 | 2026-09-05 | Orchestrator | §5C.5 UML diagram conventions added: useCaseDiagram (Mermaid ≥ v11.6) system-wide + per package; sequence diagrams are annex-only (Annex B per case), catalogs keep a 1-line pointer |
 | 1.8 | 2026-09-05 | Orchestrator | §5B rule 6 + §5C.5: lane-pure catalogs (UC catalogs hold UC cards only; PROC/CAP live in DocNN_Process_Capability_Cards); annex A diagrams carry UC ovals only; Case_03 PROC-39/40 re-adjudicated to UC-66/92 (39/40 retired, numbering continues at 41) — UC SEPARATION campaign |
 | 1.9 | 2026-09-05 | Orchestrator | §5C.5 notation fix (render-validated): Mermaid has no `useCaseDiagram` (#4628) — use-case diagrams are native PlantUML source + committed SVG in `annexes/svg/` embedded as image; sequence authoring rules added (`;` separator, `OFF` keyword); real-render validation now required for all diagram blocks — MERMAID RENDER FIX campaign |
+| 1.10 | 2026-09-05 | Orchestrator | §5B rule 7: compact renumbering — flat 1..N per lane per case, no gaps/retired numbers, dotted U.C.x.y.z flattened to UC-NN; ascending old-id order (compliance UCs first); registry `RENUMBER_REGISTRY_2026-09-05.md`; two-phase rename mandatory — RENUMBER campaign (supersedes the non-reuse clause) |

@@ -33,6 +33,16 @@ no `useCaseDiagram` (#4628), so the 26 UC diagrams became **PlantUML + SVG hybri
 (human decision; rubric v1.9 §5C.5) and sequence syntax was repaired (`;` separators,
 `OFF` keyword). Mermaid check 192/192 OK · smoke 16/16 · audit 100/100/100.
 
+## 1C. IN EXECUTION — RENUMBER (2026-09-05)
+
+Human decision: lane ids grew large/gapped through the re-lanes (C3 UC jump 34→63, PROC
+39/40 retired, C1/C2 legacy dotted `U.C.x.y.z`). Renumber every lane **flat 1..N per
+case** — no gaps, no retired numbers, dotted flattened to UC-NN (C3: UC 33→01..93→33 +
+PROC-41..52→39..50; C1 → UC-01..40; C2 → UC-01..36). Registry:
+`00_METHODOLOGY/validation/RENUMBER_REGISTRY_2026-09-05.md`. Rubric v1.10 §5B rule 7.
+**Decisions locked:** `02_CASES/RENUMBER_CAMPAIGN_2026-09-05.md` (all FINAL).
+**Progress:** F0 done — F1 (Case_03) next.
+
 ## 2. DEFERRED BY HUMAN DECISION (2026-09-05, documents-only scope) — Realization Class follow-ups
 
 Committed as `2948fb8` (rubric v1.2 + C1 tag wave, T17/P23/C6, 9 secondaries). Deferred:
