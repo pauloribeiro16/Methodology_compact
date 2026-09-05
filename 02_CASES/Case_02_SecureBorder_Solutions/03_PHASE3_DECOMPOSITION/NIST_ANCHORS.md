@@ -25,17 +25,17 @@ Per-rule anchors for all **63 controls** (38 CR + 25 BPR), copied **verbatim** f
 | CR-D-01.3-001 | PR.DS-01 | PR.DS-P1;CT.DP-P2 | MEASURE-2.7;GOVERN-1.6 | PARTIAL |
 | CR-D-01.4-001 | PR.DS-01;PR.DS-02 | PR.DS-P1;CT.DM-P1;CT.DM-P3 | MEASURE-2.6;MEASURE-2.7;MANAGE-2.3 | IMPLEMENTED |
 | CR-D-02.1-001 | ID.RA-01; ID.RA-08 | ID.RA-P3;ID.RA-P5 | MEASURE-1.1;MEASURE-2.1;MEASURE-2.3;MAP-3.3;MEASURE-2.7;MANAGE-1.3;MAP-3.2 | PARTIAL |
-| CR-D-02.2-001 | PR.PS-02 | UNMAPPED_PF (no PF 1.0 analogue for product patch/OTA update management) | — | PARTIAL |
+| CR-D-02.2-001 | PR.PS-02 | ALT-ANCHOR (SSDF PS.1; 800-53r5 SI-2) (no PF 1.0 analogue for product patch/OTA update management) | — | PARTIAL |
 | CR-D-02.3-001 | ID.RA-08 | ID.IM-P7;GV.PO-P5 | — | PARTIAL |
 | CR-D-02.4-001 | ID.IM-02;ID.RA-03 | ID.RA-P3;ID.RA-P4;ID.RA-P5 | MEASURE-2.7;MEASURE-2.11 | PARTIAL |
 | CR-D-03.1-001 | PR.AA-01;PR.AA-03;PR.AA-05 | CT.PO-P1 | MAP-3.5;GOVERN-2.1;GOVERN-3.1 | PARTIAL |
-| CR-D-03.2-001 | PR.AA-03 | UNMAPPED_PF (no PF 1.0 MFA subcategory) | — | PARTIAL |
+| CR-D-03.2-001 | PR.AA-03 | ALT-ANCHOR (800-53r5 IA-2(1); ASVS V3.3) (no PF 1.0 MFA subcategory) | — | PARTIAL |
 | CR-D-03.3-001 | PR.AA-05;PR.AA-01 | CT.PO-P1 | — | PARTIAL |
 | CR-D-03.4-001 | PR.PS-01 | CT.DP-P4;CT.PO-P4 | — | PARTIAL |
 | CR-D-04.1-001 | DE.AE-02;DE.CM-01;DE.CM-09 | CM.AW-P7 | MEASURE-2.4;MEASURE-3.1;MANAGE-2.3;MANAGE-4.1 | PARTIAL |
 | CR-D-04.2-001 | RS.MI-01;RS.MI-02 | PR.PO-P7;CT.DM-P10 | — | PARTIAL |
 | CR-D-04.3-001 | RS.CO-02;RS.CO-03 | CM.AW-P7;CM.PO-P2;CM.PO-P1;GV.PO-P5 | MANAGE-2.3;MANAGE-4.3;GOVERN-1.1 | PARTIAL |
-| CR-D-04.4-001 | UNMAPPED_PF (no PF 1.0 backup/DR recovery subcategory; CSF IDs corrected to CSF column per Doc19 §1) | UNMAPPED_PF | — | PARTIAL |
+| CR-D-04.4-001 | ALT-ANCHOR (800-53r5 CP-9; CP-10) (no PF 1.0 backup/DR recovery subcategory; CSF IDs corrected to CSF column per Doc19 §1) | ALT-ANCHOR (800-53r5 CP-9; CP-10) | — | PARTIAL |
 | CR-D-05.1-001 | PR.DS-10;ID.AM-03 | CT.PO-P4;CT.DP-P4;ID.RA-P3 | GOVERN-1.4;MAP-2.1;MEASURE-2.11;MAP-2.2 | PARTIAL |
 | CR-D-05.2-001 | PR.DS-01;PR.PS-06 | CT.PO-P4;CT.DM-P5 | MEASURE-2.4;MEASURE-4.2;GOVERN-1.4 | PARTIAL |
 | CR-D-05.3-001 | PR.DS-10 | CT.DM-P4;CT.DM-P5 | — | PARTIAL |
@@ -43,21 +43,21 @@ Per-rule anchors for all **63 controls** (38 CR + 25 BPR), copied **verbatim** f
 | CR-D-06.1-001 | GV.SC-04; GV.SC-07; ID.RA-10 | ID.IM-P2 | — | PARTIAL |
 | CR-D-06.2-001 | GV.SC-09 | ID.IM-P7 | — | PARTIAL |
 | CR-D-06.3-001 | GV.SC-05;GV.SC-06 | GV.PO-P5 | — | PARTIAL |
-| CR-D-06.4-001 | DE.CM-06;PR.IR-01 | UNMAPPED_PF (no PF 1.0 analogue for physical third-party boundary isolation) | — | PARTIAL |
+| CR-D-06.4-001 | DE.CM-06;PR.IR-01 | ALT-ANCHOR (800-53r5 PE-3; PE-6) (no PF 1.0 analogue for physical third-party boundary isolation) | — | PARTIAL |
 | CR-D-07.1-001 | PR.PS-06;ID.RA-01 | GV.PO-P2;CT.PO-P4;CT.DP-P2;CT.DP-P5 | GOVERN-4.1;GOVERN-4.3;MEASURE-2.5;MEASURE-2.6;MEASURE-2.7;GOVERN-1.2 | PARTIAL |
-| CR-D-07.2-001 | PR.PS-06 | UNMAPPED_PF (no PF 1.0 secure-SDLC subcategory) | — | PARTIAL |
+| CR-D-07.2-001 | PR.PS-06 | ALT-ANCHOR (SSDF PW.1; 800-53r5 SA-8) (no PF 1.0 secure-SDLC subcategory) | — | PARTIAL |
 | CR-D-07.3-001 | PR.PS-06;PR.PS-02 | PR.PO-P4 | — | PARTIAL |
 | CR-D-07.4-001 | ID.RA-07 | ID.RA-P3 | — | N/A — EXCLUDED (NI=2 SHOULD; not in posture scope (legacy maturity wording)) |
 | CR-D-08.1-001 | PR.AT-01 | GV.AT-P1;GV.AT-P2 | — | PARTIAL |
 | CR-D-08.2-001 | PR.AT-02 | GV.AT-P1;GV.AT-P2 | MAP-3.5;GOVERN-2.1;GOVERN-2.2;GOVERN-3.1 | PARTIAL |
-| CR-D-08.3-001 | GV.RR-01;PR.AT-02 | UNMAPPED_PF (no PF 1.0 board-training subcategory) | — | PARTIAL |
+| CR-D-08.3-001 | GV.RR-01;PR.AT-02 | ALT-ANCHOR (SAMM G-EG-A-1; 800-53r5 AT-2) (no PF 1.0 board-training subcategory) | — | PARTIAL |
 | CR-D-09.1-001 | GV.PO-01;GV.PO-02 | GV.PO-P1;GV.PO-P5;CM.PO-P1 | GOVERN-1.1;GOVERN-1.3;GOVERN-1.4;GOVERN-1.6;MAP-1.1;MEASURE-2.8;MEASURE-2.9;MAP-3.4 | IMPLEMENTED |
 | CR-D-09.2-001 | ID.RA-04;ID.RA-05;GV.RM-06 | ID.RA-P3;ID.RA-P4;ID.RA-P5 | GOVERN-1.1;GOVERN-1.3;GOVERN-1.5;MAP-5.1;MAP-3.1;MAP-3.2;MANAGE-1.2 | PARTIAL |
 | CR-D-09.3-001 | ID.AM-01;ID.AM-02;ID.AM-07 | ID.IM-P1;ID.IM-P4;ID.IM-P6;ID.IM-P8 | — | PARTIAL |
 | CR-D-09.4-001 | ID.AM-07;GV.OC-03 | ID.IM-P1;ID.IM-P4;ID.IM-P6;ID.IM-P8;CM.PO-P1 | MEASURE-2.4;MEASURE-3.1;GOVERN-1.6;GOVERN-2.1;MEASURE-4.2 | PARTIAL |
 | CR-D-10.1-001 | DE.CM-01;DE.CM-09;DE.AE-02 | CM.AW-P7 | MANAGE-4.1;MEASURE-3.1;MEASURE-4.1;GOVERN-1.5;MEASURE-2.4 | PARTIAL |
 | CR-D-10.2-001 | PR.PS-04;DE.AE-03;RS.AN-06 | CT.DM-P9 | MEASURE-2.4;MEASURE-3.1;GOVERN-1.6;MEASURE-4.2;GOVERN-1.4;GOVERN-2.1 | PARTIAL |
-| CR-D-10.3-001 | UNMAPPED_PF (no PF 1.0 compliance-testing subcategory; CSF IDs corrected to CSF column per Doc19 §1) | UNMAPPED_PF | MEASURE-2.7;MEASURE-2.11;MANAGE-1.2;MEASURE-3.1 | PARTIAL |
+| CR-D-10.3-001 | ALT-ANCHOR (800-53r5 CA-2; CA-7) (no PF 1.0 compliance-testing subcategory; CSF IDs corrected to CSF column per Doc19 §1) | ALT-ANCHOR (800-53r5 CA-2; CA-7) | MEASURE-2.7;MEASURE-2.11;MANAGE-1.2;MEASURE-3.1 | PARTIAL |
 | BPR-D-01.1-001 | PR.DS-01;PR.DS-10 | PR.DS-P1;CT.DP-P2 | — | PARTIAL |
 | BPR-D-02.1-001 | ID.RA-01;DE.CM-01 | ID.RA-P3;ID.RA-P5 | — | PARTIAL |
 | BPR-D-03.1-001 | PR.AA-01;PR.AA-05 | CT.PO-P1 | — | PARTIAL |
@@ -115,7 +115,7 @@ Counting the **first** CSF id of each control's `csf` field (a control may cite 
 ## §4 Flags (unmapped / N-A anchors)
 
 - Controls whose `csf` field contains `N/A`: none.
-- Controls whose `pf` field carries `UNMAPPED_PF (…)` justification: ['CR-D-02.2-001', 'CR-D-03.2-001', 'CR-D-04.4-001', 'CR-D-06.4-001', 'CR-D-07.2-001', 'CR-D-08.3-001', 'CR-D-10.3-001'].
+- Controls whose `pf` field carries `ALT-ANCHOR (…)` anchors (retired-token era justifications renamed 2026-09-05): ['CR-D-02.2-001', 'CR-D-03.2-001', 'CR-D-04.4-001', 'CR-D-06.4-001', 'CR-D-07.2-001', 'CR-D-08.3-001', 'CR-D-10.3-001'].
 - Controls with no AI RMF anchors (`airmf` = `—`, `N/A (non-AI scope)` placeholder is the legal form): 29 of 63.
 - Note: `check_unmapped.py` (P2 gate) enforces the frozen PF/AI-RMF vocabularies over these values; it re-verified PASS on 2026-09-04 with this doc in scope.
 

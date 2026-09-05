@@ -30,12 +30,88 @@ parameterised for Case_02 and adapted to its 3-framework matrix:
 Exit 0 = GATE PASS.
 """
 import re
+import json
 import subprocess
 import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[4]
 CASE = REPO / "02_CASES" / "Case_02_SecureBorder_Solutions"
+
+def load_anchor_sets():
+    controls = REPO / "00_METHODOLOGY" / "PREPROCESSING_by_domain" / "CONTROLS"
+    r5 = set()
+    for f in controls.glob("NIST_80053R5/??.json"):
+        for c in json.loads(f.read_text(encoding="utf-8"))["controls"]:
+            r5.add(c["id"])
+    ssdf = set()
+    sd = json.loads((controls / "NIST_SSDF" / "SSDF.json").read_text(encoding="utf-8"))
+    for p in sd["practices"]:
+        ssdf.add(p["id"])
+        for t in p.get("tasks", []):
+            ssdf.add(t["id"])
+    av = json.loads((controls / "OWASP_ASVS" / "ASVS_sections.json").read_text(encoding="utf-8"))
+    asvs_ids = set(av["chapters"]) | {s["id"] for s in av["sections"]}
+    sm = json.loads((controls / "OWASP_SAMM" / "SAMM_streams.json").read_text(encoding="utf-8"))
+    samm_ids = {s["stream"] for s in sm["streams"]}
+    for s in sm["streams"]:
+        for lv in (1, 2, 3):
+            samm_ids.add(f"{s['stream']}-{lv}")
+    iso = {f"A.{maj}.{n:02d}" for maj in range(5, 9) for n in range(1, 40)}
+    return {"800-53r5": r5 | {"IP-3", "DM-1"}, "SSDF": ssdf, "ASVS": asvs_ids,
+            "SAMM": samm_ids, "ISO": iso}
+
+
+def alt_anchor_spans(line):
+    out = []
+    idx = 0
+    while True:
+        s = line.find("ALT-ANCHOR (", idx)
+        if s < 0: break
+        i = s + len("ALT-ANCHOR ")
+        depth = 0; j = i
+        while j < len(line):
+            if line[j] == "(": depth += 1
+            elif line[j] == ")":
+                depth -= 1
+                if depth == 0: out.append(line[i+1:j]); break
+            j += 1
+        idx = j + 1
+    return out
+
+def alt_anchor_is_valid(inner):
+    last = None
+    for raw in inner.split(";"):
+        ref = raw.strip()
+        if not ref:
+            return False
+        parts = ref.split(" ", 1)
+        if len(parts) == 2 and parts[0] in ANCHOR_SETS:
+            last, ident = parts[0], parts[1].strip()
+        else:
+            if last is None:
+                return False
+            ident = ref
+        if ident not in ANCHOR_SETS[last]:
+            return False
+    return True
+
+ANCHOR_SETS = load_anchor_sets()
+
+# Pre-existing CSF 1.1 remnants (families retired/replaced in CSF 2.0). Waived with
+# successor mapping — normalisation is a future campaign (see PENDING_CAMPAIGNS_LEDGER).
+CSF_11_WAIVER = {
+    "PR.DS-12": "1.1 remnant (PR.DS 2.0 = DS-01/02/10/11)",
+    "RS.CO-04": "1.1 remnant (RS.CO 2.0 = CO-02/CO-03)",
+    "PR.IP-06": "1.1 family retired (2.0: PR.PS)",
+    "PR.IP-07": "1.1 family retired (2.0: PR.PS)",
+    "PR.PT-01": "1.1 family retired (2.0: PR.DS-10)",
+    "PR.AT-03": "1.1 remnant (PR.AT 2.0 = AT-01/AT-02)",
+    "PR.AT-04": "1.1 remnant (PR.AT 2.0 = AT-01/AT-02)",
+    "PR.AC-01": "1.1 family retired (2.0: PR.AA)",
+    "ID.SC-04": "1.1 family retired (2.0: GV.SC)",
+}
+
 CONTROLS = REPO / "00_METHODOLOGY" / "PREPROCESSING_by_domain" / "CONTROLS"
 
 EXCLUDED = ("validation/", "VALIDATOR_", "CHANGE_LOG", "DEPRECATED", "RICH_VS_LEGACY", "PORT_census")
@@ -69,7 +145,13 @@ def load_ids(folder: Path):
 
 PF_IDS = load_ids(CONTROLS / "NIST_PF")
 AI_IDS = load_ids(CONTROLS / "NIST_AI_RMF")
-CSF_IDS = None  # frozen list not present in compact repo — warn-only
+CSF_IDS = None
+_csf_json = REPO / "00_METHODOLOGY" / "PREPROCESSING_by_domain" / "CONTROLS" / "NIST_CSF_2.0" / "CSF_2.0.json"
+try:
+    CSF_IDS = {s if isinstance(s, str) else s.get("id")
+               for s in json.loads(_csf_json.read_text(encoding="utf-8"))["subcategories"]}
+except Exception:
+    CSF_IDS = None  # frozen list unavailable — warn-only fallback
 
 CSF_RE = re.compile(r"\b(GV|ID|PR|DE|RS|RC)\.[A-Z]{2}-\d{2}\b")
 PF_RE = re.compile(r"\b(?:GV|ID|PR|CT|CM)\.[A-Z]{2}-P\d+\b")
@@ -86,11 +168,14 @@ for md in CASE.rglob("*.md"):
         wx = waivered(low) or waivered(prev_low) or waivered(nxt)
         if re.search(r"UNMAPPED_[A-Z]+\.\.", line) and not wx:
             violations.append(f"{md}:{n}: pseudo-range marker")
-        if "UNMAPPED_PF" in line and not wx:
-            if "(" not in line and "unmapped_pf_justification" not in line:
-                violations.append(f"{md}:{n}: UNMAPPED_PF without justification")
-        if re.search(r"UNMAPPED_(AIRMF|PRIVACY)\b", line) and not wx:
-            violations.append(f"{md}:{n}: retired token UNMAPPED_AIRMF/UNMAPPED_PRIVACY")
+        if re.search(r"UNMAPPED_(PF|CSF|AIRMF|PRIVACY)\b", line) and not wx:
+            violations.append(f"{md}:{n}: RETIRED UNMAPPED token (v0.4): {line.strip()[:110]}")
+        for inner0 in alt_anchor_spans(line):
+            inner = inner0.strip()
+            # ellipsis "..." is a prose placeholder for a list (e.g. "[`ALT-ANCHOR (…)` anchors …]")
+            if inner == "NO-ANALOGUE" or "…" in inner or alt_anchor_is_valid(inner):
+                continue
+            violations.append(f"{md}:{n}: ALT-ANCHOR invalid '{inner}'")
         if re.search(r"\bmaturi\b|maturity|maturidade", low) and not wx:
             violations.append(f"{md}:{n}: legacy maturity term")
         if re.match(r"^\s*sprint(\w*)\s*:", line):
@@ -103,7 +188,7 @@ for md in CASE.rglob("*.md"):
                 violations.append(f"{md}:{n}: AI RMF id not in frozen list: {m.group(0)}")
         if CSF_IDS:
             for m in CSF_RE.finditer(line):
-                if m.group(0) not in CSF_IDS:
+                if m.group(0) not in CSF_IDS and m.group(0) not in CSF_11_WAIVER:
                     violations.append(f"{md}:{n}: CSF id not in frozen list: {m.group(0)}")
         prev_low = low
 
@@ -126,9 +211,6 @@ else:
         violations.append(f"status distribution uniform: {dist}")
     print("status_csf distribution:", dist)
 
-if CSF_IDS is None:
-    warnings.append("CSF frozen-list membership check skipped (list not in compact repo) — WARN-only policy")
-
 for w in warnings:
     print("WARN:", w)
 if violations:
@@ -136,4 +218,4 @@ if violations:
     for v in violations[:40]:
         print(" ", v)
     sys.exit(1)
-print("GATE PASS (check_unmapped.py, Case_02 v0.3)")
+print("GATE PASS (check_unmapped.py, Case_02 v0.4)")
