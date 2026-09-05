@@ -2,14 +2,16 @@
 document_id: AEGIS-CAMPAIGN-UC-SEPARATION
 title: UC Separation Campaign — Use-Case Catalogs Hold Use Cases Only
 phase: 3
-version: 1.0
+version: 1.1
 created: 2026-09-05
 updated: 2026-09-05
 author: Orchestrator
-status: ACTIVE
+status: EXECUTED
 ---
 
 # UC SEPARATION Campaign — "use-case catalogs hold use cases only"
+
+> **STATUS: EXECUTED 2026-09-05** — F0 `c266074` · F1 `32f45f7` · F2 `47ad056` · F3 `d498347` · F4 bookkeeping. Phase reports: `UC_SEPARATION_2026-09-05_REPORT_F{1,2,3}.md`. 6 borderline UC titles escalated to the P7 queue (ledger §5).
 
 Human diagnosis 2026-09-05: Case_03 `Doc22_Use_Cases_Catalog.md` mixes packages,
 UC, CAP and PROC in the same sections; most remaining §6 "UC" cards are

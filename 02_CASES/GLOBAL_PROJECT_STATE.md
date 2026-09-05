@@ -1,7 +1,7 @@
 # GLOBAL PROJECT STATE — AEGIS Methodology Implementation
 
 **Last Updated:** 2026-09-05
-**Version:** 7.8 (UML diagrams — use case diagrams annex A + sequence annex B; Realization Class tag waves C2+C3 + objectives tagging + CAP maturity + F5 fixes + FR/NFR Phase B; ALT-ANCHOR — UNMAPPED_* retired across 3 cases; 5 frozen referential sources + 800-53r5 generator; 3 gates v0.4 PASS; REALIZATION-CLASS; PORT-PARITY-2 — cross-case content parity: C3 P1 v1.6 layer + corr-013, P2 waves C2+C3, P3 rich v0 C2+C3, 16/16 smoke, all gates PASS)
+**Version:** 7.9 (UC SEPARATION — lane-pure use-case catalogs across 3 cases, rubric v1.8: C3 Doc22 v3.0 33 UCs + PKG-DS, 15 re-lanes, PROC-39/40→UC-66/92; C1 Doc20 v3.2 23+17; C2 Doc21 v1.5 36; annex A UC-ovals-only 11/6/8, annex B 23/21/33; audit 100/100/100; 6 borderline → P7; UML diagrams — use case diagrams annex A + sequence annex B; Realization Class tag waves C2+C3 + objectives tagging + CAP maturity + F5 fixes + FR/NFR Phase B; ALT-ANCHOR — UNMAPPED_* retired across 3 cases; 5 frozen referential sources + 800-53r5 generator; 3 gates v0.4 PASS; REALIZATION-CLASS; PORT-PARITY-2 — cross-case content parity: C3 P1 v1.6 layer + corr-013, P2 waves C2+C3, P3 rich v0 C2+C3, 16/16 smoke, all gates PASS)
 **Scope:** All Cases
 
 ---
@@ -192,6 +192,21 @@ Methodology/
   (C1 23 · C2 26 · C3 31); cards keep 1-line pointers; `scripts/extract_sequence_diagrams.py` idempotent.
 
 ---
+
+## 4K. UC SEPARATION (2026-09-05)
+
+Lane-pure use-case catalogs (rubric v1.8 §5B rule 6 + §5C.5). Human diagnosis: Doc22 §6
+compliance cards were control-register entries wearing UC ids (e.g. UC-58 "Maintains
+Immutable Audit Logs"). **C3:** Doc22 v3.0 = 33 UCs (31 product + PKG-DS UC-33/34
+fully-dressed); 15 fake UCs re-laned PROC-41..52 / CAP-08..10; PROC-39/40 → UC-66/92;
+Doc32 = 50 PROC + 10 CAP (60 diagrams); §6 → Compliance Domain Index. **C1:** Doc20 v3.2
+= 23 product + 17 compliance UCs; 18 stubs → §3.0 index + Doc32. **C2:** Doc21 v1.5 = 36
+UCs; 5 PROC stubs + §9 cards → Doc31. Annex A = UC ovals only (C1 11 · C2 6 · C3 8);
+annex B = 23/21/33. Gates: only pre-existing FAILs remain (C2 CHK-4/6, C3 CHK-3/6 —
+proven via HEAD-archive baselines); audit 100/100/100; dashboards 16/16. **P7:** 6
+borderline UC titles (4 C1 lean PROC, 2 C2 lean CAP). Commits c266074 · 32f45f7 ·
+47ad056 · d498347. Plan + reports: `02_CASES/UC_SEPARATION_CAMPAIGN_2026-09-05.md`,
+`02_CASES/UC_SEPARATION_2026-09-05_REPORT_F{1,2,3}.md`.
 
 ## 4G. DERIVED-REFRESH (2026-09-05)
 

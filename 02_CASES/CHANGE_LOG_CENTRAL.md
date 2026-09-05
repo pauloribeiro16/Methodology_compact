@@ -1,10 +1,22 @@
 # Central Change Log — AEGIS Methodology Implementation
 
 **Last Updated:** 2026-09-05
-**Version:** 7.3 (LANE CARDS — PROC/CAP card schemas + 12-card pilot; LANE NAMING — UC reserved to TECHNOLOGY; 102 UCs re-laned PROC/CAP, ~1.855 refs; OWASP threat×flow + Volere FR pilot; ALT-ANCHOR — UNMAPPED_* retired in 3 cases; 5 frozen referentials + generator + 3 gates v0.4 PASS; REALIZATION-CLASS — Case_01 P2 realization_class tag wave documents-only; PORT-PARITY-2 — cross-case content parity: corr-013 C3 renumber, C3 P1 v1.6 layer 749n/2054l, P2 waves C2+C3, P3 rich v0 C2+C3, dashboards 16/16 smoke)
+**Version:** 7.4 (UC SEPARATION — lane-pure use-case catalogs in 3 cases (rubric v1.8 §5B rule 6): C3 Doc22 v3.0 33 UCs + PKG-DS + PROC-39/40→UC-66/92; C1 Doc20 v3.2 23+17 UCs; C2 Doc21 v1.5 36 UCs; annex A UC-ovals-only 11/6/8 + annex B 23/21/33; audit 100/100/100; 6 borderline → P7; LANE CARDS — PROC/CAP card schemas + 12-card pilot; LANE NAMING — UC reserved to TECHNOLOGY; 102 UCs re-laned PROC/CAP, ~1.855 refs; OWASP threat×flow + Volere FR pilot; ALT-ANCHOR — UNMAPPED_* retired in 3 cases; 5 frozen referentials + generator + 3 gates v0.4 PASS; REALIZATION-CLASS — Case_01 P2 realization_class tag wave documents-only; PORT-PARITY-2 — cross-case content parity: corr-013 C3 renumber, C3 P1 v1.6 layer 749n/2054l, P2 waves C2+C3, P3 rich v0 C2+C3, dashboards 16/16 smoke)
 **Scope:** All Cases
 
 ---
+
+## 1.6 2026-09-05 — UC SEPARATION (lane-pure use-case catalogs)
+
+| Item | Value |
+|------|-------|
+| Decision basis | Human diagnosis: catalogs mixed packages/UC/CAP/PROC — Doc22 §6 compliance cards were control-register entries wearing UC ids (e.g. UC-58 "Maintains Immutable Audit Logs"). 6 locked decisions: `02_CASES/UC_SEPARATION_CAMPAIGN_2026-09-05.md`; rubric v1.8 §5B rule 6 (lane-pure catalogs) + §5C.5 (annex A = UC ovals only) |
+| Case_03 | Doc22 v3.0 lane-pure: 33 fully-dressed UCs (31 product PKG-A..F + PKG-DS with UC-33/34 elevated fully-dressed, GDPR Art. 15(3)/17/20); 15 fake §6 UCs re-laned PROC-41..52 / CAP-08..10 (full cards in Doc32 → 50 PROC + 10 CAP, 60 diagrams); PROC-39/40 re-adjudicated UC-66/92; §6 → Compliance Domain Index; annex A 8, annex B 33 (id-ordered, +2 new sequences UC-33/34) |
+| Case_01 | Doc20 v3.2 lane-pure: 23 product UCs + 17 compliance UCs (§3 now UC-only); 18 PROC/CAP stubs removed → §3.0 Compliance Domain Index (stub-only fields preserved verbatim); Doc32 v1.1 `case:` field + re-anchored articulation; annex A 11 blocks (PKG-TRN note-only) |
+| Case_02 | Doc21 v1.5 lane-pure: 36 UCs (21 product + 15 compliance); 5 PROC stubs + §9 detailed PROC cards moved verbatim to Doc31 v1.1 (27 PROC + 10 CAP); annex A 6, annex B 21 (5 PROC sections removed per §5C.5) |
+| Verification | verify_rich: C1 PASS; C2 2 FAIL + C3 2 FAIL — all pre-existing baseline (proven via HEAD-archive runs); CHK-1 fixed in C2+C3; check_unmapped PASS ×3; posture PASS C3; traceability_audit 100/100/100 (C3 uc→obj 95→111, C2 86/86); dashboards 16/16 |
+| P7 flags | 6 borderline UC titles (ids valid; re-laning = future id rename if ratified): C1 U.C.2.4.2 / U.C.3.2.1 / U.C.3.3.1 / U.C.4.4.1 (lean PROC); C2 U.C.10.5.1 / U.C.11.5.1 (lean CAP) |
+| Commits | c266074 (F0) · 32f45f7 (F1) · 47ad056 (F2) · d498347 (F3) · F4 bookkeeping; phase reports `02_CASES/UC_SEPARATION_2026-09-05_REPORT_F{1,2,3}.md` |
 
 ## 0.7 2026-09-05 — Phase 3 product-first (OWASP threat×flow + Volere FR pilot)
 

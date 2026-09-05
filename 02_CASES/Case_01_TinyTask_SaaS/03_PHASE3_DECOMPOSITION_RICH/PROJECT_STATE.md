@@ -100,6 +100,8 @@ sibling_doc: ../03_PHASE3_DECOMPOSITION/
 > Case_01_TinyTask_SaaS — Phase 3 Rich Mode (corpus-enriched sibling of legacy `03_PHASE3_DECOMPOSITION/`).
 > **Purpose:** single-page snapshot of where Case_01 Phase 3 Rich stands across the 7 sprints. Used by the orchestrator to decide PR readiness, by reviewers to assess scope, and by future sprints to plan dependencies.
 
+> **⚠️ 2026-09-05 (UC SEPARATION).** The `freeze_*` counts and Sprint-5 card totals below are the historical Sprint-6 frozen baseline (legacy `13_Use_Cases_Catalog.md` naming). Current reality on disk after UC SEPARATION (commit 47ad056): `Doc20_Use_Cases_Catalog.md` v3.2 is lane-pure — 23 product UCs (§2) + 17 compliance UCs (§3, UC-only); the 18 PROC/CAP stubs live in `Doc32_Process_Capability_Cards.md` (referenced via Doc20 §3.0 Compliance Domain Index); annexes A (11 useCaseDiagrams, UC ovals only) and B (23 sequences) unchanged in count. Ids unchanged; the freeze numbers are not restated here.
+
 ---
 
 ## §1 Status

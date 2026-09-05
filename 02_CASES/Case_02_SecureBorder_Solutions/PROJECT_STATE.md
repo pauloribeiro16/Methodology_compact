@@ -1,10 +1,11 @@
 # Project State — Case 02: SecureBorder Solutions (High Complexity)
 
-**Last Updated:** 2026-09-04
+**Last Updated:** 2026-09-05
 **Status:** 🟢 Phase 1 ✅ COMPLETE (Rich, superseded Sprint 3 CONDITIONAL_PASS) | Phase 2 ✅ COMPLETE (corr-008 migrated) | Phase 3 ✅ COMPLETE | 🟢 PORT CAMPAIGN Case_01→Case_02 COMPLETE (Fases 0–7 — all gates PASS) | 🟢 MATURITY v1.6 INTEGRATED (Folio VIII + AI-RMF capability anchors)
 **Next Phase:** Maturity v1.6 migration / P3 follow-ups (parallel Case_01/03)
 **Complexity:** High (4 regulations: GDPR, CRA, NIS 2, AI Act)
 **Case Name:** SecureBorder Solutions B.V.
+**UC Separation:** ✅ 2026-09-05 — Doc21 v1.5 lane-pure: 36 UCs (21 product + 15 compliance); 5 PROC stubs + §9 PROC cards → Doc31 v1.1; annexes A 6 / B 21 UC-only; 2 borderline titles → P7 (report `02_CASES/UC_SEPARATION_2026-09-05_REPORT_F3.md`).
 
 > **⚠️ 2026-08-28 (port Fase 0).** The April sections below (§2–§5) are a historical baseline keyed to legacy doc names (`00_`…`25_`) and April volumes. Current reality on disk: Rich P1 = Doc01–Doc13, P2 = Doc14–Doc20 (corr-008 PO/SO, 63 rules = 38 CR + 25 BPR, 89 PSOs), P3 = Doc21–Doc30; AI_Act clauses 29 → 28 (D1: AI-C19 removed), total 111. Authoritative current narrative: `README.md` (2026-08-14 rewrite) + appended Sprint sections below.
 

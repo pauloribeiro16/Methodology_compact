@@ -1,10 +1,11 @@
 # Project State — Case 03: OmniBank Financial Systems (High Complexity)
 
-**Last Updated:** 2026-09-04
+**Last Updated:** 2026-09-05
 **Status:** 🟢 Phase 1 ✅ COMPLETE (Rich) | Phase 2 ✅ COMPLETE (Rich) | Phase 3 ✅ COMPLETE (Doc22–31) | ✅ PORT CAMPAIGN Case_01→Case_03 COMPLETE (Fases 0–7, all gates PASS — see commit b0cddb6)
 **Next Phase:** v1.6 evidence-model parity — Folio VIII + EvidenceItems (campaign PORT-PARITY-2) / P3 follow-ups (parallel Case_01/02)
 **Complexity:** Maximum (5/5 regulations, 38/38 sub-domains)
 **Restructured:** 2026-04-02 (v2.0)
+**UC Separation:** ✅ 2026-09-05 — Doc22 v3.0 lane-pure: 33 UCs (31 product + PKG-DS UC-33/34 fully-dressed); 15 fake UCs re-laned PROC-41..52/CAP-08..10; PROC-39/40 → UC-66/92; Doc32 50 PROC + 10 CAP; annexes A 8 / B 33 (report `02_CASES/UC_SEPARATION_2026-09-05_REPORT_F1.md`).
 
 > **⚠️ 2026-08-28 (port Fase 0).** The April sections below (§2–§5) are a historical baseline keyed to legacy doc names and April volumes. Current reality on disk: Rich P1 = Doc01–**Doc14** (Doc11_DORA inserted; Doc14_Adjusted_Goals, 76 AG goals), P2 = **Doc15–Doc20** (78 rules = 38 CR + 40 BPR; **5 tensions** T-001..T-005), P3 = Doc22–Doc31 (complete). Canonical narrative layers: the Aug-6/8 Rich campaign, the Aug-13/14 corr-010 wave (renames + AG- migration) and the port campaign started 2026-08-28.
 

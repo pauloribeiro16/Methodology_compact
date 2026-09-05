@@ -27,7 +27,7 @@ Audit Logs"). Plan: catalogs hold UC cards only; 15 fake C3 UCs re-laned to PROC
 / CAP-08..10; PROC-39/40 re-adjudicated back to UC-66/92; UC-33/34 → PKG-DS
 fully-dressed; all 3 cases; annex A diagrams = UC ovals only (rubric v1.8 §5B/§5C.5).
 **Decisions locked:** `02_CASES/UC_SEPARATION_CAMPAIGN_2026-09-05.md` (all FINAL).
-**Progress:** F0 done (rubric v1.8 + plan + this entry) — F1 (Case_03) next.
+**Status: EXECUTED 2026-09-05** — F0 c266074 · F1 32f45f7 · F2 47ad056 · F3 d498347 · F4 bookkeeping. End state: 3 catalogs lane-pure (C3 33 UCs / C1 23+17 / C2 36), lane cards in Doc32/Doc31 (C3 50 PROC + 10 CAP), annexes A UC-ovals-only (11/6/8) + B (23/21/33); gates: only pre-existing FAILs remain (proven via HEAD-archive baselines); audit 100/100/100; dashboards 16/16. Residuals: 6 borderline UC titles → §5 P7 queue; Doc23/24-style relationship/variability docs still narrate re-laned cards under UC framing (future wave if wanted); C1 `progress.json` immutable-by-rule (untouched).
 
 ## 2. DEFERRED BY HUMAN DECISION (2026-09-05, documents-only scope) — Realization Class follow-ups
 
@@ -62,6 +62,8 @@ Independent verdict CLEAN-WITH-FINDINGS (`02_CASES/PORT_PARITY2_VERIFICATION_REP
 - [ ] Case_02 handoff remainder (verify against post-PORT-PARITY-2 state before acting): Folio I title-case strings, stale re-inline Maturity.html, final screenshots
 
 ## 5. P7 human-review queue (accumulated)
+
+- [ ] UC-lane borderline titles (UC SEPARATION 2026-09-05; ids valid — re-laning = future id rename if ratified): C1 U.C.2.4.2 DoS Resilience, U.C.3.2.1 Authorisation/Least Privilege, U.C.3.3.1 Secure System Defaults, U.C.4.4.1 Fail-Safe Design (lean PROC); C2 U.C.10.5.1 Offline/Failover Mode, U.C.11.5.1 Watchlist Cache Sync (lean CAP)
 
 - [ ] Orphan obligations: C3 10 · C2 14 PO/40 SO — being resolved by ALT-ANCHOR Fase 4 (verdicts LEGIT/MITIGADO/GAP; real GAPs return here)
 - [x] verify_rich FAILs — **FULLY CLOSED 2026-09-05** (DERIVED-REFRESH + FR/NFR Phase B + F5 fixes 113ba05): F5-C2-01 (25 orphan FRs closed), F5-C2-03 (variants table suffix), F5-C2-02 (stale counts), F5-C3-01 (totals), F5-C3-02 (Doc31 56→12), F5-C3-03 (BPR-D-12.1-001), F5-C3-04 (UC-99→UC-25), F5-C3-06 (AI Act Art. 14→CR-D-08.2-001), F5-C2-04/C3-05 (`case:` frontmatter). All 10 known-pattern FAILs closed.
