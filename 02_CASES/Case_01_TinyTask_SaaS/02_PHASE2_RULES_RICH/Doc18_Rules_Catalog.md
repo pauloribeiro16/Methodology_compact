@@ -176,7 +176,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 24. **Framework Anchors:**
     - CSF: PR.DS-01, PR.DS-10, PR.PS-04
-    - PF: PR.DS-P1, UNMAPPED_PF (PR.DS-10 risk-strategy mgmt + PR.PS-04 log records — no PF 1.0 analogue)
+    - PF: PR.DS-P1, ALT-ANCHOR (800-53r5 AU-2; AU-3) (PR.DS-10 risk-strategy mgmt + PR.PS-04 log records — no PF 1.0 analogue)
     - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.24
     - SSDF: PO.5
@@ -782,7 +782,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 19. **CSF Subcategories:** ID.AM-01 (hardware inventories maintained), PR.AA-01 (identities/credentials managed for users/svcs/HW), PR.AA-02 (identities proofed + bound to credentials), PR.AA-03 (users/services/HW authenticated), PR.AA-05 (access permissions managed (least privilege)), PR.AA-06 (access to assets limited to authorised), PR.DS-10 (data managed per risk strategy (CIA))
 
-20. **Privacy FW Subcategories:** PR.AC-P1 (identities/credentials issued, managed, verified, revoked, audited — maps PR.AA-01/02), PR.AC-P6 (proofed and bound to credentials, authenticated commensurate with risk — maps PR.AA-03), PR.AC-P4 (access permissions, least privilege + SoD — maps PR.AA-05/06); UNMAPPED_PF (ID.AM-01 hardware inventories + PR.DS-10 risk-strategy data mgmt — no PF 1.0 analogue; unmapped_pf_justification: PF 1.0 inventories are data-ecosystem-scoped only)
+20. **Privacy FW Subcategories:** PR.AC-P1 (identities/credentials issued, managed, verified, revoked, audited — maps PR.AA-01/02), PR.AC-P6 (proofed and bound to credentials, authenticated commensurate with risk — maps PR.AA-03), PR.AC-P4 (access permissions, least privilege + SoD — maps PR.AA-05/06); ALT-ANCHOR (800-53r5 PM-9) (ID.AM-01 hardware inventories + PR.DS-10 risk-strategy data mgmt — no PF 1.0 analogue; unmapped_pf_justification: PF 1.0 inventories are data-ecosystem-scoped only)
 
 21. **Implementation Status (CSF):** IMPLEMENTED (Auth0 managed IAM - SYS-02)
 
@@ -796,7 +796,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 24. **Framework Anchors:**
     - CSF: ID.AM-01, PR.AA-01, PR.AA-02, PR.AA-03, PR.AA-05, PR.AA-06, PR.DS-10
-    - PF: PR.AC-P1, PR.AC-P6, PR.AC-P4, UNMAPPED_PF (asset inventory + risk-strategy data mgmt — no PF 1.0 analogue)
+    - PF: PR.AC-P1, PR.AC-P6, PR.AC-P4, ALT-ANCHOR (800-53r5 CM-8; SSDF PO.5.1) (asset inventory + risk-strategy data mgmt — no PF 1.0 analogue)
     - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.5.16
     - SSDF: -
@@ -881,7 +881,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=2 (SHOULD))
 
 19. **CSF Subcategories:** PR.AA-03 (users/services/HW authenticated), PR.AA-04 (identity assertions managed + protected), PR.AA-05 (access permissions managed (least privilege)), PR.AA-06 (access to assets limited to authorised), PR.AT-02 (workforce understands roles in cyber objectives)
 
-20. **Privacy FW Subcategories:** PR.AC-P6 (authentication commensurate with risk), PR.AC-P4 (least-privilege access), GV.AT-P1 (workforce informed/trained); UNMAPPED_PF (PR.AA-04 identity assertions — no PF 1.0 subcategory; concept exists only in non-final PF 1.1 draft)
+20. **Privacy FW Subcategories:** PR.AC-P6 (authentication commensurate with risk), PR.AC-P4 (least-privilege access), GV.AT-P1 (workforce informed/trained); ALT-ANCHOR (ASVS V3.5; 800-53r5 IA-4) (PR.AA-04 identity assertions — no PF 1.0 subcategory; concept exists only in non-final PF 1.1 draft)
 
 21. **Implementation Status (CSF):** IMPLEMENTED (Auth0 admin MFA enforced - Doc 04a §1.4)
 
@@ -895,7 +895,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=2 (SHOULD))
 
 24. **Framework Anchors:**
     - CSF: PR.AA-03, PR.AA-04, PR.AA-05, PR.AA-06, PR.AT-02
-    - PF: PR.AC-P6, PR.AC-P4, GV.AT-P1, UNMAPPED_PF (identity assertions — no PF 1.0 subcategory)
+    - PF: PR.AC-P6, PR.AC-P4, GV.AT-P1, ALT-ANCHOR (ASVS V3.5; 800-53r5 IA-4) (identity assertions — no PF 1.0 subcategory)
     - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.5
     - SSDF: -
@@ -991,7 +991,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 24. **Framework Anchors:**
     - CSF: ID.AM-01, ID.AM-02, PR.AA-01, PR.AA-03, PR.AA-05, PR.AA-06, PR.PS-04
-    - PF: CT.PO-P1, PR.AC-P1, PR.AC-P6, PR.AC-P4, UNMAPPED_PF (asset inventories + log records — no PF 1.0 analogue)
+    - PF: CT.PO-P1, PR.AC-P1, PR.AC-P6, PR.AC-P4, ALT-ANCHOR (800-53r5 CM-8; SSDF PO.5.1) (asset inventories + log records — no PF 1.0 analogue)
     - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.5.15
     - SSDF: -
@@ -1462,7 +1462,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 19. **CSF Subcategories:** PR.DS-01 (backups created + protected + tested), PR.DS-10 (data managed per risk strategy (CIA)), PR.IR-03 (resilience mechanisms in adverse situations), PR.IR-04 (adequate resource capacity for availability), RC.RP-01 (recovery plan executed + verified), RC.RP-03 (backup integrity verified), RC.RP-04 (restoration procedures verified)
 
-20. **Privacy FW Subcategories:** PR.DS-P1 (data-at-rest protected), PR.PO-P7 (response/recovery plans established — maps PR.IR-03), PR.DS-P4 (adequate resource capacity — maps PR.IR-04), PR.PT-P4 (resilience mechanisms); UNMAPPED_PF (RC.RP-* recovery execution + PR.DS-10 risk-strategy mgmt — PF 1.0 has no Respond/Recover axis; unmapped_pf_justification: no PF 1.0 subcategories match)
+20. **Privacy FW Subcategories:** PR.DS-P1 (data-at-rest protected), PR.PO-P7 (response/recovery plans established — maps PR.IR-03), PR.DS-P4 (adequate resource capacity — maps PR.IR-04), PR.PT-P4 (resilience mechanisms); ALT-ANCHOR (800-53r5 CP-10) (RC.RP-* recovery execution + PR.DS-10 risk-strategy mgmt — PF 1.0 has no Respond/Recover axis; unmapped_pf_justification: no PF 1.0 subcategories match)
 
 21. **Implementation Status (CSF):** PARTIAL (What's missing: backup restore drills evidence)
 
@@ -1476,7 +1476,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 24. **Framework Anchors:**
     - CSF: PR.DS-01, PR.DS-10, PR.IR-03, PR.IR-04, RC.RP-01, RC.RP-03, RC.RP-04
-    - PF: PR.DS-P1, PR.PO-P7, PR.DS-P4, PR.PT-P4, UNMAPPED_PF (recover-execution + risk-strategy mgmt — PF 1.0 has no Recover axis)
+    - PF: PR.DS-P1, PR.PO-P7, PR.DS-P4, PR.PT-P4, ALT-ANCHOR (800-53r5 CP-10) (recover-execution + risk-strategy mgmt — PF 1.0 has no Recover axis)
     - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.13
     - SSDF: -
@@ -2133,7 +2133,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 19. **CSF Subcategories:** GV.OC-03 (legal/regulatory reqs incl privacy managed), GV.SC-02 (suppliers prioritised + assessed via SCRM), GV.SC-03 (contracts implement cyber programme measures), GV.SC-04 (suppliers routinely assessed (audits/tests)), PR.DS-10 (data managed per risk strategy (CIA)), PR.PS-06 (secure SW dev integrated in SDLC), RS.MA-01 (coordination with stakeholders per criteria), RS.MI-01 (incidents contained + mitigated)
 
-20. **Privacy FW Subcategories:** ID.DE-P3 (contracts with ecosystem parties implement privacy-programme measures), ID.DE-P4 (interoperability frameworks for ecosystem privacy); UNMAPPED_PF (ecosystem risk integrated into enterprise risk — no dedicated PF 1.0 subcategory; covered indirectly by GV.PO-P6)
+20. **Privacy FW Subcategories:** ID.DE-P3 (contracts with ecosystem parties implement privacy-programme measures), ID.DE-P4 (interoperability frameworks for ecosystem privacy); ALT-ANCHOR (800-53r5 PM-30; SR-6) (ecosystem risk integrated into enterprise risk — no dedicated PF 1.0 subcategory; covered indirectly by GV.PO-P6)
 
 21. **Implementation Status (CSF):** PARTIAL (What's missing: B2B processor DPA template execution)
 
@@ -2147,7 +2147,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 24. **Framework Anchors:**
     - CSF: GV.OC-03, GV.SC-02, GV.SC-03, GV.SC-04, PR.DS-10, PR.PS-06, RS.MA-01, RS.MI-01
-    - PF: ID.DE-P3, ID.DE-P4, UNMAPPED_PF (ecosystem risk into enterprise risk — no PF 1.0 subcategory)
+    - PF: ID.DE-P3, ID.DE-P4, ALT-ANCHOR (800-53r5 PM-30; SR-6) (ecosystem risk into enterprise risk — no PF 1.0 subcategory)
     - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.5.20
     - SSDF: -
@@ -2536,7 +2536,7 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
 
 24. **Framework Anchors:**
     - CSF: GV.PO-01, GV.PO-02, GV.RM-04, GV.RR-02, GV.OV-01
-    - PF: GV.PO-P1, GV.PO-P5, GV.PO-P3, CM.PO-P1, UNMAPPED_PF (positive-risk GV.RM-04 — no PF 1.0 subcategory)
+    - PF: GV.PO-P1, GV.PO-P5, GV.PO-P3, CM.PO-P1, ALT-ANCHOR (NO-ANALOGUE) (positive-risk GV.RM-04 — no PF 1.0 subcategory)
     - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.5.1
     - SSDF: PO.4
@@ -3373,7 +3373,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 
 19. **CSF Subcategories:** PR.AA-01 (identities/credentials managed for users/svcs/HW), PR.AA-03 (users/services/HW authenticated), PR.AA-05 (access permissions managed (least privilege)), PR.AA-06 (access to assets limited to authorised), ID.AM-01 (hardware inventories maintained)
 
-20. **Privacy FW Subcategories:** PR.AC-P1 (identities/credentials for users/svcs/HW managed), PR.AC-P6 (authentication commensurate with risk), PR.AC-P4 (least-privilege access); UNMAPPED_PF (ID.AM-01 hardware inventories — no PF 1.0 analogue)
+20. **Privacy FW Subcategories:** PR.AC-P1 (identities/credentials for users/svcs/HW managed), PR.AC-P6 (authentication commensurate with risk), PR.AC-P4 (least-privilege access); ALT-ANCHOR (800-53r5 CM-8; SSDF PO.5.1) (ID.AM-01 hardware inventories — no PF 1.0 analogue)
 
 21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
@@ -3467,7 +3467,7 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 
 19. **CSF Subcategories:** PR.AA-03 (users/services/HW authenticated), PR.AA-04 (identity assertions managed + protected), PR.AA-05 (access permissions managed (least privilege)), PR.AA-06 (access to assets limited to authorised)
 
-20. **Privacy FW Subcategories:** PR.AC-P6 (authentication commensurate with risk), PR.AC-P4 (least-privilege access); UNMAPPED_PF (PR.AA-04 identity assertions protected + verified — no PF 1.0 subcategory; FIDO2 origin binding documented as §6.3 gap)
+20. **Privacy FW Subcategories:** PR.AC-P6 (authentication commensurate with risk), PR.AC-P4 (least-privilege access); ALT-ANCHOR (ASVS V3.5; 800-53r5 IA-4) (PR.AA-04 identity assertions protected + verified — no PF 1.0 subcategory; FIDO2 origin binding documented as §6.3 gap)
 
 21. **Implementation Status (CSF):** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 

@@ -28,8 +28,8 @@ control_set:
       - PR.PS-04
       pf:
       - PR.DS-P1
-      - UNMAPPED_PF (PR.DS-10 risk-strategy mgmt + PR.PS-04 log records — no PF 1.0
-        analogue)
+      - ALT-ANCHOR (800-53r5 AU-2; AU-3) (PR.DS-10 risk-strategy mgmt + PR.PS-04 log
+        records — no PF 1.0 analogue)
       pf_gaps: []
       airmf: N/A (non-AI scope)
       iso:
@@ -326,7 +326,8 @@ control_set:
       - PR.AC-P1
       - PR.AC-P6
       - PR.AC-P4
-      - UNMAPPED_PF (asset inventory + risk-strategy data mgmt — no PF 1.0 analogue)
+      - ALT-ANCHOR (800-53r5 CM-8; SSDF PO.5.1) (asset inventory + risk-strategy data
+        mgmt — no PF 1.0 analogue)
       pf_gaps: []
       airmf: N/A (non-AI scope)
       iso:
@@ -369,7 +370,7 @@ control_set:
       - PR.AC-P6
       - PR.AC-P4
       - GV.AT-P1
-      - UNMAPPED_PF (identity assertions — no PF 1.0 subcategory)
+      - ALT-ANCHOR (ASVS V3.5; 800-53r5 IA-4) (identity assertions — no PF 1.0 subcategory)
       pf_gaps: []
       airmf: N/A (non-AI scope)
       iso:
@@ -415,7 +416,8 @@ control_set:
       - PR.AC-P1
       - PR.AC-P6
       - PR.AC-P4
-      - UNMAPPED_PF (asset inventories + log records — no PF 1.0 analogue)
+      - ALT-ANCHOR (800-53r5 CM-8; SSDF PO.5.1) (asset inventories + log records —
+        no PF 1.0 analogue)
       pf_gaps: []
       airmf: N/A (non-AI scope)
       iso:
@@ -637,8 +639,8 @@ control_set:
       - PR.PO-P7
       - PR.DS-P4
       - PR.PT-P4
-      - UNMAPPED_PF (recover-execution + risk-strategy mgmt — PF 1.0 has no Recover
-        axis)
+      - ALT-ANCHOR (800-53r5 CP-10) (recover-execution + risk-strategy mgmt — PF 1.0
+        has no Recover axis)
       pf_gaps: []
       airmf: N/A (non-AI scope)
       iso:
@@ -933,7 +935,8 @@ control_set:
       pf:
       - ID.DE-P3
       - ID.DE-P4
-      - UNMAPPED_PF (ecosystem risk into enterprise risk — no PF 1.0 subcategory)
+      - ALT-ANCHOR (800-53r5 PM-30; SR-6) (ecosystem risk into enterprise risk — no
+        PF 1.0 subcategory)
       pf_gaps: []
       airmf: N/A (non-AI scope)
       iso:
@@ -1106,7 +1109,7 @@ control_set:
       - GV.PO-P5
       - GV.PO-P3
       - CM.PO-P1
-      - UNMAPPED_PF (positive-risk GV.RM-04 — no PF 1.0 subcategory)
+      - ALT-ANCHOR (NO-ANALOGUE) (positive-risk GV.RM-04 — no PF 1.0 subcategory)
       pf_gaps: []
       airmf: N/A (non-AI scope)
       iso:
