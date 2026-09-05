@@ -11,7 +11,7 @@ Case_02 P3 docs:
   CHK-3  NFR id census (Doc30: NFR-NN)
   CHK-4  rule-id census + dangling refs (CR/BPR-D-XX.X-NNN must exist in
          02_PHASE2_RULES_RICH/control_set.yaml, 63 controls)
-  CHK-5  UC id census (Doc21: U.C.X.Y.Z detailed cards + UC-* package ids)
+  CHK-5  UC id census (Doc21: flat UC-NN ids + UC-* package labels)
   CHK-6  corr-008 cross-refs: FR table "Source Rule" values resolve; gate rows'
          rule refs resolve; gate rows' FR refs resolve
   CHK-7  rule traceability coverage: every control_set rule referenced by >=1
@@ -38,7 +38,7 @@ P2 = CASE / "02_PHASE2_RULES_RICH"
 FR_RE = re.compile(r"\bFR-\d{2,3}\b")
 NFR_RE = re.compile(r"\bNFR-\d{2,3}\b")
 RULE_RE = re.compile(r"\b(?:CR|BPR)-D-\d{2}\.\d-\d{3}\b")
-UC_RE = re.compile(r"\bU\.C\.\d+\.\d+\.\d+\b")
+UC_RE = re.compile(r"\bUC-\d{2}\b")
 GATE_RE = re.compile(r"\bGATE-D-\d{2}\.\d-\d{3}\b")
 
 REQUIRED_FM = ["document_id", "title", "phase", "version", "created", "author", "status", "case"]
@@ -121,11 +121,12 @@ def main() -> int:
     uc_doc = text.get("Doc21_Use_Cases_Catalog.md", "")
     uc_detailed = sorted(set(UC_RE.findall(uc_doc)))
     uc_packages = sorted(set(re.findall(r"\bUC-(DP|SEC|IAM|DEV|GOV|AI|TRN)\b", uc_doc)))
-    uc_claimed = re.search(r"Initial release[^\n]*\((\d+) UCs:", uc_doc)
+    uc_claimed = re.search(r"totalUseCases\s*\|\s*(\d+)", uc_doc)
+    rel_claimed = re.search(r"Initial release[^\n]*\((\d+) UCs:", uc_doc)
     record("CHK-5 UC census", True,
-           f"detailed U.C.* ids={len(uc_detailed)}, packages={len(uc_packages)} {uc_packages}, "
-           f"catalog metadata claims {uc_claimed.group(1) if uc_claimed else '?'} UCs "
-           f"(informational — mixed U.C.*/UC-* id spaces)")
+           f"unique UC ids={len(uc_detailed)}, packages={len(uc_packages)} {uc_packages}, "
+           f"metadata totalUseCases={uc_claimed.group(1) if uc_claimed else '?'} "
+           f"(v1.0 release row claims {rel_claimed.group(1) if rel_claimed else '?'} — historical, informational)")
 
     # ---- CHK-6 corr-008 cross-refs ----
     bad_sr, gate_bad_rule, gate_bad_fr = [], [], []

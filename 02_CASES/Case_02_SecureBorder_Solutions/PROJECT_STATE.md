@@ -307,9 +307,9 @@ python lints/run_all_lints.py --case "SecureBorder Solutions"
 | Implement functional requirements | Lead Developer | 23_Functional_Requirements.md (complete) |
 | Deploy architectural nodes | Operations Lead | 14_Architectural_Nodes.md (complete) |
 | Conduct gate verification | Compliance Analyst | 16_Compliance_Gates_Report.md (complete) |
-| Execute DR test | Operations Lead | U.C.2.7.1, FR-43, FR-44 |
-| Execute AI bias assessment | AI Governance Lead | U.C.6.3.1, FR-74, FR-75 |
-| Execute penetration test | Security Engineer | U.C.2.8.1, FR-45 |
+| Execute DR test | Operations Lead | PROC-08, FR-43, FR-44 |
+| Execute AI bias assessment | AI Governance Lead | PROC-20, FR-74, FR-75 |
+| Execute penetration test | Security Engineer | PROC-09, FR-45 |
 | CRA notified body assessment | Compliance Lead | Phase 3 docs complete |
 | AI Act conformity assessment | AI Governance Lead | Phase 3 docs complete |
 

@@ -42,7 +42,7 @@ P2 = CASE / "02_PHASE2_RULES_RICH"
 
 FR_RE = re.compile(r"\bFR-\d{2,3}\b")
 NFR_RE = re.compile(r"\bNFR-\d{2,3}\b")
-UC_RE = re.compile(r"\bU\.C\.\d+\.\d+\.\d+\b")
+UC_RE = re.compile(r"\bUC-\d{2}\b")
 RULE_RE = re.compile(r"\b(?:CR|BPR)-D-\d{2}\.\d-\d{3}\b")
 NODE_RE = re.compile(r"\bNODE-(?:SYS|PROC|ROLE)-\d{3}\b")
 GATE_RE = re.compile(r"\bGATE-D-\d{2}\.\d-\d{3}\b")
@@ -135,9 +135,9 @@ def parse_uc_rule_coverage() -> Dict[str, List[str]]:
     uc_to_rules: Dict[str, List[str]] = {}
     section = ""
     for line in doc.splitlines():
-        hm = re.match(r"^#+ .*?U\.C\.(\d+\.\d+\.\d+)", line)
+        hm = re.match(r"^#+ .*?(UC-\d{2})", line)
         if hm:
-            section = "U.C." + hm.group(1)
+            section = hm.group(1)
         for rid in RULE_RE.findall(line):
             if section:
                 uc_to_rules.setdefault(section, [])
@@ -205,7 +205,7 @@ def build_cover(wb, stats: Dict[str, object]) -> None:
         ("Source — Rules", "../02_PHASE2_RULES_RICH/control_set.yaml (63 controls: 38 CR + 25 BPR)"),
         ("Source — FR", "requirements/Doc29_Functional_Requirements.md (84 FRs)"),
         ("Source — NFR", "requirements/Doc30_Non_Functional_Requirements.md (56 NFRs)"),
-        ("Source — UC", "Doc21_Use_Cases_Catalog.md (mixed U.C.*/UC-* id space)"),
+        ("Source — UC", "Doc21_Use_Cases_Catalog.md (flat UC-01..UC-36 id space, RENUMBER 2026-09-05)"),
         ("Source — Allocation", "Doc25_Requirements_Allocation.md"),
         ("Source — Gates", "Doc26_Compliance_Gates_Report.md"),
         ("Source — P2 graph", "../02_PHASE2_RULES_RICH/data/phase2_graph.json (278n/356l)"),

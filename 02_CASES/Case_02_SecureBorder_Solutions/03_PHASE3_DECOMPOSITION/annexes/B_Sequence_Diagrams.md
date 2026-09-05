@@ -2,7 +2,7 @@
 document_id: AEGIS-P3-ANNEX-B
 title: Sequence Diagrams Annex (Case_02)
 phase: 3
-version: 1.1
+version: 1.2
 created: 2026-09-05
 updated: 2026-09-05
 author: Executor
@@ -12,6 +12,11 @@ source: Doc21_Use_Cases_Catalog.md (§6 product UC cards)
 ---
 
 # Annex B — Sequence Diagrams
+> **v1.2 (RENUMBER, 2026-09-05, rubric v1.10 §5B rule 7):** section ids re-labelled to flat
+> `UC-16..UC-36` (was `U.C.8.x.y`..`U.C.12.x.y`); old→new mapping strictly monotonic, so the
+> §1..§21 order is unchanged and Doc21's 21 sequence-diagram pointers remain 1:1.
+> Registry: `00_METHODOLOGY/validation/RENUMBER_REGISTRY_2026-09-05.md`.
+
 
 > **v1.1 (UC SEPARATION, 2026-09-05).** One section per product UC card (§5C.5), ordered by
 > the catalogue's §6 card order — 21 sections, 1:1 with the 21 `**Sequence diagram:**`
@@ -23,7 +28,7 @@ source: Doc21_Use_Cases_Catalog.md (§6 product UC cards)
 
 ---
 
-## §1 — Use-Case — {U.C.8.1.1} Scan Travel Document (MRZ + NFC chip)
+## §1 — Use-Case — {UC-16} Scan Travel Document (MRZ + NFC chip)
 
 ```mermaid
 sequenceDiagram
@@ -35,7 +40,7 @@ sequenceDiagram
     KIOSK-->>TRV: Display extracted document data for confirmation
 ```
 
-## §2 — Use-Case — {U.C.8.2.1} Capture Facial Biometric Sample
+## §2 — Use-Case — {UC-17} Capture Facial Biometric Sample
 
 ```mermaid
 sequenceDiagram
@@ -47,7 +52,7 @@ sequenceDiagram
     KIOSK->>KIOSK: Compute template in-kiosk, purge raw frames (STORE-05)
 ```
 
-## §3 — Use-Case — {U.C.8.2.2} Liveness Detection (Presentation Attack Detection)
+## §3 — Use-Case — {UC-18} Liveness Detection (Presentation Attack Detection)
 
 ```mermaid
 sequenceDiagram
@@ -60,7 +65,7 @@ sequenceDiagram
     KIOSK-->>SOC: On failure: spoof security event (kiosk ID + timestamp)
 ```
 
-## §4 — Use-Case — {U.C.8.2.3} Face Match 1:1 Against Chip Portrait
+## §4 — Use-Case — {UC-19} Face Match 1:1 Against Chip Portrait
 
 ```mermaid
 sequenceDiagram
@@ -71,7 +76,7 @@ sequenceDiagram
     KIOSK-->>AUTH: Match decision shared with national border control
 ```
 
-## §5 — Use-Case — {U.C.8.3.1} Gate Decision & Release
+## §5 — Use-Case — {UC-20} Gate Decision & Release
 
 ```mermaid
 sequenceDiagram
@@ -83,7 +88,7 @@ sequenceDiagram
     KIOSK->>KIOSK: Decision record -> immutable log (no biometric payload)
 ```
 
-## §6 — Use-Case — {U.C.8.3.2} Referral to Operator Desk
+## §6 — Use-Case — {UC-21} Referral to Operator Desk
 
 ```mermaid
 sequenceDiagram
@@ -96,7 +101,7 @@ sequenceDiagram
     CON->>LOG: Append decision (officer ID, timestamps)
 ```
 
-## §7 — Use-Case — {U.C.8.4.1} Traveller Privacy Notice & Consent Capture
+## §7 — Use-Case — {UC-22} Traveller Privacy Notice & Consent Capture
 
 ```mermaid
 sequenceDiagram
@@ -107,7 +112,7 @@ sequenceDiagram
     KIOSK->>KIOSK: Link acknowledgement reference to the journey record
 ```
 
-## §8 — Use-Case — {U.C.9.1.1} Operator Console Session (SSO/FIDO2, Fail-Closed)
+## §8 — Use-Case — {UC-23} Operator Console Session (SSO/FIDO2, Fail-Closed)
 
 ```mermaid
 sequenceDiagram
@@ -120,7 +125,7 @@ sequenceDiagram
     CON-->>OFFR: Referral work surface (actions bound to officer ID)
 ```
 
-## §9 — Use-Case — {U.C.9.2.1} Referral Queue Handling & Triage
+## §9 — Use-Case — {UC-24} Referral Queue Handling & Triage
 
 ```mermaid
 sequenceDiagram
@@ -130,10 +135,10 @@ sequenceDiagram
     KIOSK->>CON: Referral + reason class + queue token
     CON-->>OFFR: Ordered queue, officer claims item
     OFFR->>CON: Triage reason class, open work item
-    CON->>CON: Record state + queue telemetry (U.C.12.3.1)
+    CON->>CON: Record state + queue telemetry (UC-36)
 ```
 
-## §10 — Use-Case — {U.C.9.3.1} Manual Identity Verification & Override (Reason Codes)
+## §10 — Use-Case — {UC-25} Manual Identity Verification & Override (Reason Codes)
 
 ```mermaid
 sequenceDiagram
@@ -146,7 +151,7 @@ sequenceDiagram
     CON-->>OFFR: Lane dispatch confirmed
 ```
 
-## §11 — Use-Case — {U.C.9.4.1} Incident Flag & Gate Lock
+## §11 — Use-Case — {UC-26} Incident Flag & Gate Lock
 
 ```mermaid
 sequenceDiagram
@@ -159,7 +164,7 @@ sequenceDiagram
     SOC-->>KIOSK: On clearance: release lock (logged)
 ```
 
-## §12 — Use-Case — {U.C.10.2.1} Fleet Health Monitoring
+## §12 — Use-Case — {UC-27} Fleet Health Monitoring
 
 ```mermaid
 sequenceDiagram
@@ -173,7 +178,7 @@ sequenceDiagram
     SIEM->>SIEM: Correlate per unit/lane (CAP-02)
 ```
 
-## §13 — Use-Case — {U.C.10.3.1} Signed OTA Firmware Update (Cosign, Staged)
+## §13 — Use-Case — {UC-28} Signed OTA Firmware Update (Cosign, Staged)
 
 ```mermaid
 sequenceDiagram
@@ -186,7 +191,7 @@ sequenceDiagram
     KIOSK-->>OPS: New version reported, ring gate on health
 ```
 
-## §14 — Use-Case — {U.C.10.4.1} Tamper Alert Response
+## §14 — Use-Case — {UC-29} Tamper Alert Response
 
 ```mermaid
 sequenceDiagram
@@ -194,12 +199,12 @@ sequenceDiagram
     participant SOC as "SH-INT-008 (SOC)"
     participant OPS as "SH-INT-007 (Ops Lead)"
     MON->>SOC: Tamper alert (unit ID + class)
-    SOC->>OPS: Contain: lock unit (U.C.9.4.1), revoke cert
+    SOC->>OPS: Contain: lock unit (UC-26), revoke cert
     OPS-->>SOC: Inspection result (false / confirmed)
     SOC->>SOC: Re-image from signed baseline or retire, log
 ```
 
-## §15 — Use-Case — {U.C.10.5.1} Offline/Failover Mode (Store-and-Forward Crossing Events)
+## §15 — Use-Case — {UC-30} Offline/Failover Mode (Store-and-Forward Crossing Events)
 
 ```mermaid
 sequenceDiagram
@@ -212,7 +217,7 @@ sequenceDiagram
     SINK-->>OPS: Completeness reconciled, offline window logged
 ```
 
-## §16 — Use-Case — {U.C.11.2.1} Signed Model Rollout to Fleet (Staged)
+## §16 — Use-Case — {UC-31} Signed Model Rollout to Fleet (Staged)
 
 ```mermaid
 sequenceDiagram
@@ -225,7 +230,7 @@ sequenceDiagram
     KIOSK-->>AIG: Canary metrics -> ring gate (vs governed bounds)
 ```
 
-## §17 — Use-Case — {U.C.11.3.1} Model Rollback
+## §17 — Use-Case — {UC-32} Model Rollback
 
 ```mermaid
 sequenceDiagram
@@ -238,7 +243,7 @@ sequenceDiagram
     AIG->>SOC: Link rollback to incident record
 ```
 
-## §18 — Use-Case — {U.C.11.5.1} Watchlist Cache Sync (SYS-03 sFTP, HSM-Bound)
+## §18 — Use-Case — {UC-33} Watchlist Cache Sync (SYS-03 sFTP, HSM-Bound)
 
 ```mermaid
 sequenceDiagram
@@ -251,7 +256,7 @@ sequenceDiagram
     CACHE-->>SYS3: Sync version logged, deletions propagated
 ```
 
-## §19 — Use-Case — {U.C.12.1.1} Kiosk Admin Configuration (TPM-Bound, Dual Control)
+## §19 — Use-Case — {UC-34} Kiosk Admin Configuration (TPM-Bound, Dual Control)
 
 ```mermaid
 sequenceDiagram
@@ -264,7 +269,7 @@ sequenceDiagram
     KIOSK-->>OPS: Applied, version recorded, drift watched
 ```
 
-## §20 — Use-Case — {U.C.12.2.1} Audit Export for Authorities (WORM STORE-04)
+## §20 — Use-Case — {UC-35} Audit Export for Authorities (WORM STORE-04)
 
 ```mermaid
 sequenceDiagram
@@ -277,7 +282,7 @@ sequenceDiagram
     COMP->>COMP: Export recorded in audit chain
 ```
 
-## §21 — Use-Case — {U.C.12.3.1} SLA & Fleet Status Dashboard
+## §21 — Use-Case — {UC-36} SLA & Fleet Status Dashboard
 
 ```mermaid
 sequenceDiagram

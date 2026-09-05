@@ -65,21 +65,21 @@ Anchors derived from `Doc31_Process_Capability_Cards.md` cards; no variant is in
 
 | Base UC | Variation Point | Variants | Binding |
 |---|---|---|---|
-| U.C.8.x journey | Crossing mode | V1: fully automated kiosk crossing (U.C.8.1.1→U.C.8.3.1 all-TRUE); V2: assisted referral (U.C.8.3.2 officer desk; on any failure/grey-band/watchlist path) | Doc21 U.C.8.3.2 preconditions |
-| U.C.8.4.1 (Privacy Notice & Consent) | Lawful basis | V1: consent-based (consent token captured); V2: non-consent basis (acknowledgement only); consent refusal → manual officer lane | Doc21 U.C.8.4.1 §4/§5.1 |
-| U.C.8.4.1 | Language availability | V1: selected language render; V2: pictogram flow + printed notice fallback | Doc21 U.C.8.4.1 §5.2 |
-| U.C.10.1.1/PROC-24 (Kiosk Provisioning) | Provisioning mode | V1: initial site enrolment (TPM-bound identity); V2: re-enrolment after tamper/replacement (U.C.10.4.1 path) | Doc31 PROC-24 card; Doc21 U.C.10.4.1 |
-| U.C.10.3.1 (Signed OTA) | Rollout staging | V1: staged rings (cosign-verified, progressive); V2: rollback re-deploy of previous version (U.C.11.3.1 path) | Doc21 U.C.10.3.1, U.C.11.2.1, U.C.11.3.1 |
-| U.C.10.5.1 (Offline/Failover) | Connectivity state | V1: online (direct crossing-event emission to SYS-02); V2: offline (signed store-and-forward queue, flush on reconnection) | Doc21 U.C.8.3.1 §5.3, U.C.10.5.1 |
-| U.C.12.2.1 (Audit Export) | Requester variant | V1: scheduled internal export; V2: on-request authority export (SH-EXT-003, WORM STORE-04) | Doc21 §6.0 actor table |
+| UC-16..UC-22 journey | Crossing mode | V1: fully automated kiosk crossing (UC-16→UC-20 all-TRUE); V2: assisted referral (UC-21 officer desk; on any failure/grey-band/watchlist path) | Doc21 UC-21 preconditions |
+| UC-22 (Privacy Notice & Consent) | Lawful basis | V1: consent-based (consent token captured); V2: non-consent basis (acknowledgement only); consent refusal → manual officer lane | Doc21 UC-22 §4/§5.1 |
+| UC-22 | Language availability | V1: selected language render; V2: pictogram flow + printed notice fallback | Doc21 UC-22 §5.2 |
+| UC-34/PROC-24 (Kiosk Provisioning) | Provisioning mode | V1: initial site enrolment (TPM-bound identity); V2: re-enrolment after tamper/replacement (UC-29 path) | Doc31 PROC-24 card; Doc21 UC-29 |
+| UC-28 (Signed OTA) | Rollout staging | V1: staged rings (cosign-verified, progressive); V2: rollback re-deploy of previous version (UC-32 path) | Doc21 UC-28, UC-31, UC-32 |
+| UC-30 (Offline/Failover) | Connectivity state | V1: online (direct crossing-event emission to SYS-02); V2: offline (signed store-and-forward queue, flush on reconnection) | Doc21 UC-20 §5.3, UC-30 |
+| UC-35 (Audit Export) | Requester variant | V1: scheduled internal export; V2: on-request authority export (SH-EXT-003, WORM STORE-04) | Doc21 §6.0 actor table |
 
 ### 4.3 AI model variants (PKG-11)
 
 | Base UC | Variation Point | Variants | Binding |
 |---|---|---|---|
-| U.C.11.x model lifecycle | Model version source | V1: fresh training/retraining (PROC-25 release packaging); V2: rollback to retained previous version (U.C.11.3.1) | Doc21 PROC-25 §1, U.C.11.2.1 §4 |
-| PROC-26 (Drift/Bias Review) | Disposition | V1: threshold tune (governed change); V2: retrain (PROC-25); V3: rollback (U.C.11.3.1) | Doc21 U.C.11.x §4 disposition flow |
-| U.C.8.2.2/U.C.8.2.3 thresholds | Governance-bound parameterisation | PAD/match/grey-band thresholds are governed artefacts under PROC-20 AI model change control | Doc21 U.C.8.2.2 §9/§10 annex |
+| UC-31..UC-33 model lifecycle | Model version source | V1: fresh training/retraining (PROC-25 release packaging); V2: rollback to retained previous version (UC-32) | Doc21 PROC-25 §1, UC-31 §4 |
+| PROC-26 (Drift/Bias Review) | Disposition | V1: threshold tune (governed change); V2: retrain (PROC-25); V3: rollback (UC-32) | Doc21 UC-31..UC-33 §4 disposition flow |
+| UC-18/UC-19 thresholds | Governance-bound parameterisation | PAD/match/grey-band thresholds are governed artefacts under PROC-20 AI model change control | Doc21 UC-18 §9/§10 annex |
 
 ---
 

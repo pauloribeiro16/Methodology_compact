@@ -131,7 +131,7 @@ Sort: ascending natural (dotted components compared numerically). Compliance lan
 | U.C.9.3.1 | UC-31 | Attach File to Task |
 | U.C.9.4.1 | UC-32 | Search & Filter Tasks |
 | U.C.9.5.1 | UC-33 | Activity Feed (recent events) |
-| U.C.10.1.1 | UC-34 | Mobile Sync (offline-first) |
+| U.C.10.1.1 | UC-34 | Kiosk Admin Configuration (TPM-Bound, Dual Control) |
 | U.C.10.2.1 | UC-35 | Stripe Checkout (Upgrade Plan) |
 | U.C.10.3.1 | UC-36 | Workspace Admin Console |
 | U.C.10.3.2 | UC-37 | Enterprise SSO |
@@ -168,8 +168,95 @@ frontmatter notes + §6.1/§6.2 migration tables (+ new RENUMBER supersede note)
 "Formerly" column, sprint6/reconciliation notes, freeze lines in PROJECT_STATEs,
 `validation/` sprint & lint reports (frozen records).
 
-## Case_02_* — F3 (PENDING)
+## Case_02_SecureBorder_Solutions — F3 (2026-09-05, DONE)
 
-| Old | New |
-|---|---|
-| *(to be filled by F3 census — 15 compliance → UC-01..15, U.C.8..12 product → UC-16..36)* | |
+Census: 36 live dotted ids (Doc21 `#### Use-Case: {U.C.x.y.z}` headings §6 + §7 tables +
+subtree grep, md+py+csv). Compliance per-UC ids use the same dotted grammar as product;
+`UC-DP..UC-TRN` are domain/package labels (not UC ids) and stay. Sort: ascending natural
+(dotted components compared numerically). Compliance lane first (§7, 15 UCs → UC-01..15),
+then product lane (§6, U.C.8..12, 21 UCs → UC-16..36).
+
+### UC lane (36): flat UC-01..UC-36
+
+| Old | New | Title (Doc21) |
+|---|---|---|
+| U.C.1.2.1 | UC-01 | Right to Erasure (Cryptographic Sharding) |
+| U.C.2.3.1 | UC-02 | Vulnerability Scanning & Management |
+| U.C.2.4.1 | UC-03 | Patch Deployment (Signed OTA) |
+| U.C.3.2.1 | UC-04 | Multi-Factor Authentication |
+| U.C.3.3.1 | UC-05 | Biometric Enrollment |
+| U.C.3.4.1 | UC-06 | Least Privilege Access Enforcement |
+| U.C.3.5.1 | UC-07 | Secure Default Configuration |
+| U.C.3.7.1 | UC-08 | Human-in-the-Loop Override |
+| U.C.4.2.1 | UC-09 | Dependency Scanning & SBOM |
+| U.C.4.3.1 | UC-10 | CI/CD Security Gate |
+| U.C.4.6.1 | UC-11 | AI Model Versioning & Rollback |
+| U.C.5.8.1 | UC-12 | Third-Party Boundary Management |
+| U.C.6.2.1 | UC-13 | AI Accuracy Monitoring & Drift Detection |
+| U.C.6.4.1 | UC-14 | AI Explainability Reporting |
+| U.C.6.7.1 | UC-15 | AI Training Data Management |
+| U.C.8.1.1 | UC-16 | Scan Travel Document (MRZ + NFC chip) |
+| U.C.8.2.1 | UC-17 | Capture Facial Biometric Sample |
+| U.C.8.2.2 | UC-18 | Liveness Detection (Presentation Attack Detection) |
+| U.C.8.2.3 | UC-19 | Face Match 1:1 Against Chip Portrait |
+| U.C.8.3.1 | UC-20 | Gate Decision & Release |
+| U.C.8.3.2 | UC-21 | Referral to Operator Desk |
+| U.C.8.4.1 | UC-22 | Traveller Privacy Notice & Consent Capture |
+| U.C.9.1.1 | UC-23 | Operator Console Session (SSO/FIDO2, Fail-Closed) |
+| U.C.9.2.1 | UC-24 | Referral Queue Handling & Triage |
+| U.C.9.3.1 | UC-25 | Manual Identity Verification & Override (Reason Codes) |
+| U.C.9.4.1 | UC-26 | Incident Flag & Gate Lock |
+| U.C.10.2.1 | UC-27 | Fleet Health Monitoring |
+| U.C.10.3.1 | UC-28 | Signed OTA Firmware Update (Cosign, Staged) |
+| U.C.10.4.1 | UC-29 | Tamper Alert Response |
+| U.C.10.5.1 | UC-30 | Offline/Failover Mode (Store-and-Forward Crossing Events) |
+| U.C.11.2.1 | UC-31 | Signed Model Rollout to Fleet (Staged) |
+| U.C.11.3.1 | UC-32 | Model Rollback |
+| U.C.11.5.1 | UC-33 | Watchlist Cache Sync (SYS-03 sFTP, HSM-Bound) |
+| U.C.12.1.1 | UC-34 | Kiosk Admin Configuration (TPM-Bound, Dual Control) |
+| U.C.12.2.1 | UC-35 | Audit Export for Authorities (WORM STORE-04) |
+| U.C.12.3.1 | UC-36 | SLA & Fleet Status Dashboard |
+
+Unchanged lanes: `PROC-01..27`, `CAP-01..10` (already contiguous). Domain/package labels
+`UC-DP..UC-TRN` (Doc21 §5.1/§7) and aliases `UC8..UC12`, `UC811`-style (Annex A) unchanged.
+
+### Group/parent grammars (live references) — deterministic remapping
+
+| Old grammar | New | Note |
+|---|---|---|
+| `U.C.1–U.C.7` / `U.C.1–7` | `UC-01..UC-15` | live compliance-lane range refs |
+| `U.C.8–U.C.12` / `U.C.8–12` / `U.C.8+` | `UC-16..UC-36` | live product-lane range refs |
+| `U.C.8.x–12.x` / `U.C.8.*–U.C.12.*` | `UC-16..UC-36` | product branch refs (Doc27 §3.1) |
+| `U.C.8.x` / `U.C.8.x.y` / `U.C.8.*` | `UC-16..UC-22` | PKG-8 member range |
+| `U.C.8.1.*` | `UC-16` | only member is 8.1.1 |
+| `U.C.8.2.*` | `UC-17..UC-19` | |
+| `U.C.8.1.1–8.3.1` / `U.C.8.1.1–U.C.8.3.1` | `UC-16..UC-20` | Annex A / Doc21 ranges |
+| `U.C.10.x` | `UC-27..UC-30` | PKG-10 member range (incl. Doc31 CAP-02 mermaid node) |
+| `U.C.11.x` | `UC-31..UC-33` | PKG-11 member range (Doc22, Doc24) |
+| `U.C.9.1.1–U.C.9.3.1` / `…–U.C.9.4.1` / `…–9.5.1` | `UC-23..UC-25` / `UC-23..UC-26` / `UC-23..UC-26` | range endpoints; 9.5.1 is a retired lane card (PROC-23), so `–9.5.1` resolves to UC-26 |
+| `U.C.10.2.1–U.C.10.5.1` | `UC-27..UC-30` | |
+| `U.C.12.1.1–12.4.1` | `UC-34..UC-36` | 12.4.1 retired (PROC-27); range resolves to UC-36 |
+| bare dotted tails (`…U.C.9.2.1/9.3.1/9.4.1`, `…U.C.10.2.1/10.3.1/10.5.1`, `U.C.8.1.1/8.4.1`, Annex A chain `8.4.1/8.1.1 → 8.2.1 …`) | `UC-24/UC-25/UC-26`, `UC-27/UC-28/UC-30`, `UC-16/UC-22`, `UC-22/UC-16 → UC-17 → UC-18 → UC-19 → UC-20` | continuation tokens after a full id, and Annex A prose chain |
+
+### Legacy dotted ids NOT renamed (historical provenance)
+
+The 32 §7 lane-card ids + 5 product PROC stub ids that left the UC lane in LANE NAMING /
+UC SEPARATION (rubric v1.3/v1.8 §5B rule 6) keep the ids they are named by: `U.C.1.1.1`,
+`U.C.1.3.1`(→PROC-02 Formerly), `U.C.1.4.1`, `U.C.1.5.1`, `U.C.1.6.1`, `U.C.2.1.1`,
+`U.C.2.2.1`, `U.C.2.5.1`, `U.C.2.6.1`, `U.C.2.7.1`, `U.C.2.8.1`, `U.C.3.1.1`, `U.C.3.6.1`,
+`U.C.4.1.1`, `U.C.4.4.1`, `U.C.4.5.1`, `U.C.5.1.1`, `U.C.5.2.1`, `U.C.5.3.1`, `U.C.5.4.1`,
+`U.C.5.5.1`, `U.C.5.6.1`, `U.C.5.7.1`, `U.C.6.1.1`, `U.C.6.3.1`, `U.C.6.5.1`, `U.C.6.6.1`,
+`U.C.7.1.1`, `U.C.7.2.1`, `U.C.7.3.1`, `U.C.7.4.1`, `U.C.7.5.1`, `U.C.9.5.1`, `U.C.10.1.1`,
+`U.C.11.1.1`, `U.C.11.4.1`, `U.C.12.4.1`. Protected historical lines: Doc31 "Formerly"
+column (37 rows), Doc27 "(formerly U.C.x.y.z)" tree annotations, Doc21 §6.6 "Formerly"
+blockquote + Lane Naming section, Doc21 §6 v1.3 nomenclature blockquote, version-history
+rows, Doc23 v1.1 row pairing "U.C.10.1.1/PROC-24", Doc21 v1.0 release row "(44 UCs: …)"
+(the row CHK-5 claim-parses — historical, informational), and frozen records under
+`**/validation/` + `02_PHASE2_RULES_RICH/TRACEABILITY_AUDIT.md`.
+
+### Stale live references re-anchored (not renumbered)
+
+- `PROJECT_STATE.md` §7.1 next-steps table: `U.C.2.7.1`→`PROC-08`, `U.C.6.3.1`→`PROC-20`,
+  `U.C.2.8.1`→`PROC-09` (ids retired by LANE NAMING; re-anchored to the owning lane cards).
+- `Doc21` MUC-07 row references `U.C.2.4.2` (id never existed in C2's live catalog —
+  Case_01-family reference); left verbatim, informational.

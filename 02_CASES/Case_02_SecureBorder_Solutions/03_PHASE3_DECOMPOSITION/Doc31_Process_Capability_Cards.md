@@ -2,7 +2,7 @@
 document_id: AEGIS-P3-31
 title: Process & Capability Cards — Lane Pilot (Case_02)
 phase: 3
-version: 1.1
+version: 1.2
 created: 2026-09-05
 updated: 2026-09-05
 author: Executor
@@ -226,7 +226,7 @@ flowchart TD
 | Field | Content |
 |---|---|
 | Owner | SH-INT-008 (SOC Manager). |
-| Span | Standing 24/7 unified SOC monitoring covering security + AI post-market metrics. Contributes: PROC-05 (triage), PROC-06 (containment), PROC-18 (authority reporting); U.C.10.x fleet telemetry; SOC competence curriculum (CAP-07). |
+| Span | Standing 24/7 unified SOC monitoring covering security + AI post-market metrics. Contributes: PROC-05 (triage), PROC-06 (containment), PROC-18 (authority reporting); UC-27..UC-30 fleet telemetry; SOC competence curriculum (CAP-07). |
 | Maturity | PLANNED (1) — Scale A posture model v1.6; current/target pending P1 Folio VIII refresh + EvidenceItem bind |
 | Realises | CR-D-10.1-001, BPR-D-10.4-001, BPR-D-10.5-001 / SO-D-10.1-001..003. |
 | Anchors | SAMM: O-EM-A (environment management, stream A) · ASVS: V7 (logging) — monitoring outcomes. |
@@ -238,7 +238,7 @@ graph LR
     P1["PROC-05 Detection & Triage"] --> CAP
     P2["PROC-06 Containment"] --> CAP
     P3["PROC-18 Authority Reporting"] --> CAP
-    T1["U.C.10.x fleet telemetry"] --> CAP
+    T1["UC-27..UC-30 fleet telemetry"] --> CAP
     C1["SOC competence — CAP-07"] --> CAP
 ```
 
@@ -493,7 +493,7 @@ flowchart TD
 | Field | Content |
 |---|---|
 | Trigger | Annual TLPT cycle; or major system change requiring adversarial validation. |
-| Activities | 1. Define threat intelligence-based scenarios for border control systems. 2. Engage qualified red team. 3. Execute TLPT incl. adversarial AI testing (spoofing, evasion). 4. Document findings and exploit paths. 5. Feed remediation (PROC-06 / U.C.2.3.1) and re-test. |
+| Activities | 1. Define threat intelligence-based scenarios for border control systems. 2. Engage qualified red team. 3. Execute TLPT incl. adversarial AI testing (spoofing, evasion). 4. Document findings and exploit paths. 5. Feed remediation (PROC-06 / UC-02) and re-test. |
 | Roles | SH-INT-009 (Sec Eng) owns; SH-INT-003 (CISO) approves scope. |
 | SLA / Timing | Annual. |
 | Realises | CR-D-02.4-001, BPR-D-02.4-002 / SO-D-02.4-001 (SO-D-02.4-002 downstream). |
@@ -697,7 +697,7 @@ flowchart TD
 | Field | Content |
 |---|---|
 | Trigger | Before initial market placement; upon significant model change (AI_Act Art. 43). |
-| Activities | 1. Compile Annex IV technical documentation (architecture, data, oversight, metrics). 2. Internal risk assessment integrated with PROC-14. 3. Engage Notified Body; support independent testing. 4. Remediate non-conformities within 90 days and re-assess. 5. Issue EU DoC; apply CE marking; activate post-market monitoring (U.C.6.2.1). |
+| Activities | 1. Compile Annex IV technical documentation (architecture, data, oversight, metrics). 2. Internal risk assessment integrated with PROC-14. 3. Engage Notified Body; support independent testing. 4. Remediate non-conformities within 90 days and re-assess. 5. Issue EU DoC; apply CE marking; activate post-market monitoring (UC-13). |
 | Roles | SH-INT-005 (AI Gov) owns; SH-INT-002 (CTO), SH-INT-003 (CISO), SH-EXT-007 (Notified Body) participate. |
 | SLA / Timing | Complete before eGate deployment at any border crossing. |
 | Realises | CR-D-09.1-001, CR-D-09.2-001 / PO-D-09.1-001, PO-D-09.2-001 (PO-D-09.2-002, SO-D-09.1-001 downstream). |
@@ -759,7 +759,7 @@ flowchart TD
 8. If non-conformities: remediate and re-assess
 9. Issue EU Declaration of Conformity
 10. Apply CE marking to eGate system
-11. Activate post-market monitoring plan (U.C.6.2.1)
+11. Activate post-market monitoring plan (UC-13)
 
 **Alternative Flows:**
 - 7a. Non-conformities identified → Remediate within 90 days; re-assess
@@ -874,7 +874,7 @@ flowchart TD
 | Field | Content |
 |---|---|
 | Trigger | AI-specific failure signal: false accept, false reject, model drift (15-min detection SLA). |
-| Activities | 1. Detect AI failure via monitoring (U.C.6.2.1 / CAP-02). 2. Classify AI incident vs security incident. 3. Contain: adjust thresholds, suspend model, fail over. 4. Investigate root cause (data, model, environment). 5. Notify via PROC-07 (Type D) and PROC-26 for drift follow-up. |
+| Activities | 1. Detect AI failure via monitoring (UC-13 / CAP-02). 2. Classify AI incident vs security incident. 3. Contain: adjust thresholds, suspend model, fail over. 4. Investigate root cause (data, model, environment). 5. Notify via PROC-07 (Type D) and PROC-26 for drift follow-up. |
 | Roles | SH-INT-008 (SOC Mgr) owns; SH-INT-005 (AI Gov) supports root-cause. |
 | SLA / Timing | 15 min detection. |
 | Realises | BPR-D-04.2-001, CR-D-04.2-001 / PO-D-04.2-001 (PO-D-04.2-002, SO-D-04.2-001 downstream). |
@@ -919,7 +919,7 @@ flowchart TD
 | Field | Content |
 |---|---|
 | Trigger | Shift end (or on demand) at the operator referral desk. |
-| Activities | 1. Outgoing officer opens handover view (open items, in-service items, flagged incidents). 2. Console generates per-shift referral report incl. overrides and reason codes. 3. Officer annotates open items. 4. Incoming officer authenticates (U.C.9.1.1) and accepts the queue. 5. Report archived to audit chain; outgoing session terminates. Unresolved critical items escalate to SOC (PROC-05) before handover completes. |
+| Activities | 1. Outgoing officer opens handover view (open items, in-service items, flagged incidents). 2. Console generates per-shift referral report incl. overrides and reason codes. 3. Officer annotates open items. 4. Incoming officer authenticates (UC-23) and accepts the queue. 5. Report archived to audit chain; outgoing session terminates. Unresolved critical items escalate to SOC (PROC-05) before handover completes. |
 | Roles | SH-EXT-001 (Border Officer, outgoing/incoming); SH-INT-010 (Compliance) and SH-INT-004 (DPO) consume reports for sampling. |
 | SLA / Timing | Per shift. |
 | Realises | CR-D-10.2-001, CR-D-10.3-001, BPR-D-10.2-001 (rules annex; no goal column for PKG-9 lane). |
@@ -942,7 +942,7 @@ flowchart TD
 | Field | Content |
 |---|---|
 | Trigger | New kiosk entering the fleet; kiosk replacement. |
-| Activities | 1. Bring up hardware (TPM 2.0 secure boot, signed firmware). 2. Enrol TPM-bound device identity via internal CA (mTLS cert, quarterly rotation, OCSP revocation). 3. Establish outbound-only channel. 4. Verify secure default configuration (U.C.3.5.1). 5. Register kiosk in fleet inventory; record provenance. |
+| Activities | 1. Bring up hardware (TPM 2.0 secure boot, signed firmware). 2. Enrol TPM-bound device identity via internal CA (mTLS cert, quarterly rotation, OCSP revocation). 3. Establish outbound-only channel. 4. Verify secure default configuration (UC-07). 5. Register kiosk in fleet inventory; record provenance. |
 | Roles | SH-INT-007 (Ops Lead) owns; constrained by PROC-10 (device identity), PROC-17 (supplier risk). |
 | SLA / Timing | Per deployment. |
 | Realises | CR-D-03.4-001, CR-D-03.1-001, CR-D-01.3-001 (rules annex; no goal column for PKG-10 lane). |
@@ -965,8 +965,8 @@ flowchart TD
 | Field | Content |
 |---|---|
 | Trigger | Retraining cycle; or drift/bias finding from PROC-26 / adversarial result from PROC-22. |
-| Activities | 1. Train/retrain face-match/PAD models in EU-only training platform (segregated account, deny-by-default egress). 2. Evaluate candidate against accuracy/bias gates (PROC-19/PROC-20 linkage). 3. Package release: versioned registry entry, signature, SBOM. 4. Hand off to staged rollout (U.C.11.2.1). No model reaches the fleet outside this path. |
-| Roles | SH-INT-005 (AI Gov) owns; ML engineering executes; constrained by U.C.6.7.1 (training data) and CAP-03. |
+| Activities | 1. Train/retrain face-match/PAD models in EU-only training platform (segregated account, deny-by-default egress). 2. Evaluate candidate against accuracy/bias gates (PROC-19/PROC-20 linkage). 3. Package release: versioned registry entry, signature, SBOM. 4. Hand off to staged rollout (UC-31). No model reaches the fleet outside this path. |
+| Roles | SH-INT-005 (AI Gov) owns; ML engineering executes; constrained by UC-15 (training data) and CAP-03. |
 | SLA / Timing | Per training cycle. |
 | Realises | CR-D-05.1-001, CR-D-07.1-001, CR-D-06.2-001 (rules annex; no goal column for PKG-11 lane). |
 | Anchors | SAMM: I-SB-A (secure build) · ASVS: V14.2 (dependency), V14.1 (build and deploy). |
@@ -979,7 +979,7 @@ flowchart TD
     D1 -->|"no"| R1["Rework: data/threshold changes"]
     D1 -->|"yes"| A3["3. Package: version + signature + SBOM"]
     R1 --> A1
-    A3 --> A4["4. Hand off to staged rollout (U.C.11.2.1)"]
+    A3 --> A4["4. Hand off to staged rollout (UC-31)"]
     A4 --> E["End: signed release candidate"]
 ```
 
@@ -988,7 +988,7 @@ flowchart TD
 | Field | Content |
 |---|---|
 | Trigger | Continuous/real-time drift and bias signals from the deployed fleet. |
-| Activities | 1. Collect accuracy and fairness telemetry from fleet decisions (metadata only, no biometric content). 2. Detect drift/bias against baseline (links U.C.6.2.1 detection). 3. Review findings with AI Governance. 4. Trigger retraining via PROC-25 or threshold review (U.C.8.2.2); escalate AI incidents via PROC-21. 5. Record review decisions. |
+| Activities | 1. Collect accuracy and fairness telemetry from fleet decisions (metadata only, no biometric content). 2. Detect drift/bias against baseline (links UC-13 detection). 3. Review findings with AI Governance. 4. Trigger retraining via PROC-25 or threshold review (UC-18); escalate AI incidents via PROC-21. 5. Record review decisions. |
 | Roles | SH-INT-005 (AI Gov) owns; SH-INT-008 (SOC Mgr) monitors signals. |
 | SLA / Timing | Real-time detection; periodic review cadence. |
 | Realises | BPR-D-10.5-001, CR-D-10.1-001, BPR-D-02.4-001 (rules annex; no goal column for PKG-11 lane). |
@@ -1010,8 +1010,8 @@ flowchart TD
 | Field | Content |
 |---|---|
 | Trigger | Access request, role change, or review outcome (PROC-11) for the administration console. |
-| Activities | 1. Receive request with role justification. 2. Approve per least-privilege role model. 3. Administer roles via IdP (SAML 2.0/OIDC; FIDO2 for privileged users). 4. Enforce RBAC session entitlements (U.C.9.1.1 linkage). 5. Log all administrative changes. |
-| Roles | SH-INT-007 (Ops Lead) owns; constrained by PROC-10 (identity lifecycle) and U.C.3.4.1 (least privilege). |
+| Activities | 1. Receive request with role justification. 2. Approve per least-privilege role model. 3. Administer roles via IdP (SAML 2.0/OIDC; FIDO2 for privileged users). 4. Enforce RBAC session entitlements (UC-23 linkage). 5. Log all administrative changes. |
+| Roles | SH-INT-007 (Ops Lead) owns; constrained by PROC-10 (identity lifecycle) and UC-06 (least privilege). |
 | SLA / Timing | Per request. |
 | Realises | CR-D-03.1-001, CR-D-03.2-001, CR-D-03.3-001 (rules annex; no goal column for PKG-12 lane). |
 | Anchors | SAMM: O-EM-A (environment management, stream A) · ASVS: V4.1 (access control design), V4.2 (operation level access control). |
@@ -1051,7 +1051,7 @@ graph LR
 | Field | Content |
 |---|---|
 | Owner | SH-INT-002 (CTO). |
-| Span | Integrate privacy-by-design and secure-by-default into product design at every design phase (GDPR/CRA). Contributes: PROC-25 (training platform design), PROC-24 (secure defaults), U.C.4.6.1 (model versioning). |
+| Span | Integrate privacy-by-design and secure-by-default into product design at every design phase (GDPR/CRA). Contributes: PROC-25 (training platform design), PROC-24 (secure defaults), UC-11 (model versioning). |
 | Maturity | PLANNED (1) — Scale A posture model v1.6; current/target pending P1 Folio VIII refresh + EvidenceItem bind |
 | Realises | CR-D-07.1-001, BPR-D-07.1-002 / PO-D-07.1-001 (PO-D-07.1-002, SO-D-07.1-001 downstream). |
 | Anchors | SAMM: D-SA-A (architecture design) · ASVS: V1.8 (data protection and privacy architecture), V1.14 (configuration architecture). |
@@ -1127,7 +1127,7 @@ graph LR
 | Field | Content |
 |---|---|
 | Owner | SH-INT-005 (AI Gov). |
-| Span | AI-specific training for human oversight personnel on border control AI operation (AI_Act Art. 14), on role assignment. Contributes: U.C.3.7.1 (override competence), PROC-26 (review capability), CAP-07 (curriculum). |
+| Span | AI-specific training for human oversight personnel on border control AI operation (AI_Act Art. 14), on role assignment. Contributes: UC-08 (override competence), PROC-26 (review capability), CAP-07 (curriculum). |
 | Maturity | PLANNED (1) — Scale A posture model v1.6; current/target pending P1 Folio VIII refresh + EvidenceItem bind |
 | Realises | CR-D-08.2-001 / PO-D-08.2-001 (PO-D-08.2-002, SO-D-08.2-001 downstream). |
 | Anchors | SAMM: G-EG-A (education & guidance, stream A) · ASVS: no direct ASVS mapping (AI competence training) — SAMM-only note per frozen catalogue. |
@@ -1136,7 +1136,7 @@ graph LR
 ```mermaid
 graph LR
     CAP["CAP-08 AI Competence Training (on role assignment)"] --> R1["CR-D-08.2-001 (AI_Act Art. 14)"]
-    P1["U.C.3.7.1 Override competence"] --> CAP
+    P1["UC-08 Override competence"] --> CAP
     P2["PROC-26 Review capability"] --> CAP
     P3["CAP-07 Curriculum"] --> CAP
 ```
@@ -1180,7 +1180,7 @@ graph LR
 
 ## Articulation with existing artefacts
 
-Per-card binding to the catalogue and the downstream documents. 'Formerly' preserves the pre-LANE-NAMING id (full registry: `00_METHODOLOGY/validation/LANE_NAMING_CENSUS_v0.md`). Ref counts are word-boundary occurrences of the lane id in the P3 tree (excluding this doc). **v1.1 (UC SEPARATION, 2026-09-05):** catalogue anchors re-pointed from the removed Doc21 stubs/rows to the new index sections (§7.0 Compliance Domain Index for PROC-01..22/CAP-01..10; §6.6 Lane Card Register for PROC-23..27), and all ref counts recomputed on the post-UC-SEPARATION tree.
+Per-card binding to the catalogue and the downstream documents. 'Formerly' preserves the pre-LANE-NAMING id (full registry: `00_METHODOLOGY/validation/LANE_NAMING_CENSUS_v0.md`). Ref counts are word-boundary occurrences of the lane id in the P3 tree (excluding this doc). **v1.1 (UC SEPARATION, 2026-09-05):** catalogue anchors re-pointed from the removed Doc21 stubs/rows to the new index sections (§7.0 Compliance Domain Index for PROC-01..22/CAP-01..10; §6.6 Lane Card Register for PROC-23..27), and all ref counts recomputed on the post-UC-SEPARATION tree. **v1.2 (RENUMBER, 2026-09-05, rubric v1.10 §5B rule 7):** live UC references in the P3 tree now use flat `UC-01..UC-36` (registry `00_METHODOLOGY/validation/RENUMBER_REGISTRY_2026-09-05.md`); the 'Formerly' column and this table's PROC/CAP ids are unchanged.
 
 | Card | Formerly | Catalogue anchor | Downstream refs (doc: count) |
 |---|---|---|---|

@@ -79,30 +79,30 @@ Each node follows this structure:
 | Node ID | Node Name | Description | Level | Track | Related Use Cases | Related Rules | PSO Coverage | NIST Anchors |
 | --------- | ----------- | ------------- | ------- | ------- | ------------------- | --------------- | -------------- | --- |
 | NODE-PROC-001 | Unified Incident Response | End-to-end incident detection, triage, response, and regulatory notification with unified 24h/72h workflow | L1 | PROCESS | PROC-05, PROC-06, PROC-07 | CR-D-04.1-001, CR-D-04.2-001, CR-D-04.3-001, BPR-D-04.5-001 | SO-D-04.1-001, SO-D-04.1-002, PO-D-04.2-001, PO-D-04.3-001 | — |
-| NODE-PROC-002 | Vulnerability Management | Continuous vulnerability scanning, SBOM analysis, and remediation tracking | L1 | PROCESS | U.C.2.3.1, PROC-09 | CR-D-02.1-001, CR-D-02.4-001, BPR-D-02.1-001, BPR-D-02.5-001 | SO-D-02.1-001, SO-D-02.1-002, SO-D-02.1-003, SO-D-02.3-001, SO-D-02.4-001 | — |
-| NODE-PROC-003 | Patch & Update Management | Signed OTA firmware and software patch deployment with rollback | L2 | PROCESS | U.C.2.4.1 | CR-D-02.2-001 | SO-D-02.2-001, SO-D-02.2-002 | CSF: PR.PS-02 |
+| NODE-PROC-002 | Vulnerability Management | Continuous vulnerability scanning, SBOM analysis, and remediation tracking | L1 | PROCESS | UC-02, PROC-09 | CR-D-02.1-001, CR-D-02.4-001, BPR-D-02.1-001, BPR-D-02.5-001 | SO-D-02.1-001, SO-D-02.1-002, SO-D-02.1-003, SO-D-02.3-001, SO-D-02.4-001 | — |
+| NODE-PROC-003 | Patch & Update Management | Signed OTA firmware and software patch deployment with rollback | L2 | PROCESS | UC-03 | CR-D-02.2-001 | SO-D-02.2-001, SO-D-02.2-002 | CSF: PR.PS-02 |
 | NODE-PROC-004 | Disaster Recovery & Business Continuity | DR activation, system restoration, and 99.99% uptime maintenance | L1 | PROCESS | PROC-08 | CR-D-04.4-001, BPR-D-04.2-001 | PO-D-04.4-001, PO-D-04.4-002, PO-D-04.2-001 | — |
 
 ### 4.2 Data Protection Processes
 
 | Node ID | Node Name | Description | Level | Track | Related Use Cases | Related Rules | PSO Coverage | NIST Anchors |
 | --------- | ----------- | ------------- | ------- | ------- | ------------------- | --------------- | -------------- | --- |
-| NODE-PROC-005 | Data Subject Rights Handling | DSAR, erasure (with cryptographic sharding), and portability processing | L1 | PROCESS | PROC-01, U.C.1.2.1, PROC-02 | CR-D-05.3-001, CR-D-05.4-001 | PO-D-05.3-001, PO-D-05.4-001, PO-D-01.1-001 | — |
+| NODE-PROC-005 | Data Subject Rights Handling | DSAR, erasure (with cryptographic sharding), and portability processing | L1 | PROCESS | PROC-01, UC-01, PROC-02 | CR-D-05.3-001, CR-D-05.4-001 | PO-D-05.3-001, PO-D-05.4-001, PO-D-01.1-001 | — |
 | NODE-PROC-006 | Data Minimization & Retention | Data collection review, retention enforcement, and purpose limitation | L2 | PROCESS | PROC-04, CAP-01 | CR-D-05.1-001, CR-D-05.2-001, CR-D-09.4-001, BPR-D-05.5-001 | PO-D-05.1-001, PO-D-05.2-001, PO-D-09.4-001 | — |
-| NODE-PROC-007 | Biometric Data Protection | Biometric template encryption, tokenization, and raw image destruction | L1 | PROCESS | U.C.3.3.1, U.C.1.2.1 | CR-D-01.1-001, CR-D-01.3-001, CR-D-01.4-001, BPR-D-01.1-001, BPR-D-01.2-001 | PO-D-01.1-001, PO-D-01.1-002, SO-D-01.3-001 | CSF: PR.DS-01 |
+| NODE-PROC-007 | Biometric Data Protection | Biometric template encryption, tokenization, and raw image destruction | L1 | PROCESS | UC-05, UC-01 | CR-D-01.1-001, CR-D-01.3-001, CR-D-01.4-001, BPR-D-01.1-001, BPR-D-01.2-001 | PO-D-01.1-001, PO-D-01.1-002, SO-D-01.3-001 | CSF: PR.DS-01 |
 
 ### 4.3 Identity & Access Management Processes
 
 | Node ID | Node Name | Description | Level | Track | Related Use Cases | Related Rules | PSO Coverage | NIST Anchors |
 | --------- | ----------- | ------------- | ------- | ------- | ------------------- | --------------- | -------------- | --- |
 | NODE-PROC-008 | Identity Lifecycle Management | Border officer provisioning/deprovisioning with government IdP integration | L1 | PROCESS | PROC-10, PROC-11 | CR-D-03.1-001 | SO-D-03.1-001, SO-D-03.1-002, SO-D-03.1-003 | — |
-| NODE-PROC-009 | Access Control Enforcement | Least privilege, role-based access, and periodic access reviews | L2 | PROCESS | U.C.3.4.1, PROC-11 | CR-D-03.3-001, BPR-D-03.1-001, BPR-D-03.5-001 | PO-D-03.3-001, PO-D-03.3-002, SO-D-03.1-001 | — |
+| NODE-PROC-009 | Access Control Enforcement | Least privilege, role-based access, and periodic access reviews | L2 | PROCESS | UC-06, PROC-11 | CR-D-03.3-001, BPR-D-03.1-001, BPR-D-03.5-001 | PO-D-03.3-001, PO-D-03.3-002, SO-D-03.1-001 | — |
 
 ### 4.4 Secure Development Processes
 
 | Node ID | Node Name | Description | Level | Track | Related Use Cases | Related Rules | PSO Coverage | NIST Anchors |
 | --------- | ----------- | ------------- | ------- | ------- | ------------------- | --------------- | -------------- | --- |
-| NODE-PROC-010 | Secure SDLC (Privacy + Secure) | Unified privacy-by-design and secure-by-default development lifecycle with CI/CD gates | L1 | PROCESS | PROC-12, U.C.4.2.1, U.C.4.3.1, PROC-13, CAP-03, U.C.4.6.1 | CR-D-07.1-001, CR-D-07.2-001, CR-D-07.3-001, CR-D-07.4-001, BPR-D-07.1-001, BPR-D-07.1-002, BPR-D-07.5-001 | PO-D-07.1-001, PO-D-07.1-002, SO-D-07.1-001, SO-D-07.2-001, SO-D-07.3-001 | CSF: ID.RA-07,PR.PS-06 | PF: ID.RA-P3,PR.PO-P4 |
+| NODE-PROC-010 | Secure SDLC (Privacy + Secure) | Unified privacy-by-design and secure-by-default development lifecycle with CI/CD gates | L1 | PROCESS | PROC-12, UC-09, UC-10, PROC-13, CAP-03, UC-11 | CR-D-07.1-001, CR-D-07.2-001, CR-D-07.3-001, CR-D-07.4-001, BPR-D-07.1-001, BPR-D-07.1-002, BPR-D-07.5-001 | PO-D-07.1-001, PO-D-07.1-002, SO-D-07.1-001, SO-D-07.2-001, SO-D-07.3-001 | CSF: ID.RA-07,PR.PS-06 | PF: ID.RA-P3,PR.PO-P4 |
 
 ### 4.5 Governance Processes
 
@@ -110,7 +110,7 @@ Each node follows this structure:
 | --------- | ----------- | ------------- | ------- | ------- | ------------------- | --------------- | -------------- | --- |
 | NODE-PROC-011 | Unified ISMS Management | ISMS maintenance with regulation-specific annexes (GDPR, CRA, NIS 2, AI_Act) | L1 | PROCESS | CAP-04, PROC-16 | CR-D-09.1-001, CR-D-10.3-001, BPR-D-09.1-001, BPR-D-09.5-001 | PO-D-09.1-001, PO-D-09.1-002, PO-D-10.3-001, SO-D-09.1-001 | — |
 | NODE-PROC-012 | Unified Impact Assessment | Combined DPIA+FRIA with dual outputs for biometric AI processing | L1 | PROCESS | PROC-14 | CR-D-09.2-001 | PO-D-09.2-001, PO-D-09.2-002, SO-D-09.2-001 | — |
-| NODE-PROC-013 | Vendor Risk Management | Unified supplier assessment, contract security, and third-party boundary enforcement | L2 | PROCESS | PROC-17, U.C.5.8.1 | CR-D-06.1-001, CR-D-06.3-001, CR-D-06.4-001, BPR-D-06.5-001 | PO-D-06.1-001, PO-D-06.1-002, PO-D-06.3-001, SO-D-06.4-001 | — |
+| NODE-PROC-013 | Vendor Risk Management | Unified supplier assessment, contract security, and third-party boundary enforcement | L2 | PROCESS | PROC-17, UC-12 | CR-D-06.1-001, CR-D-06.3-001, CR-D-06.4-001, BPR-D-06.5-001 | PO-D-06.1-001, PO-D-06.1-002, PO-D-06.3-001, SO-D-06.4-001 | — |
 
 ---
 
@@ -120,25 +120,25 @@ Each node follows this structure:
 
 | Node ID | Node Name | Description | Level | Track | Related Use Cases | Related Rules | PSO Coverage | NIST Anchors |
 | --------- | ----------- | ------------- | ------- | ------- | ------------------- | --------------- | -------------- | --- |
-| NODE-SYS-001 | Unified SOC Platform | Integrated security monitoring platform with anomaly detection covering security + AI post-market monitoring | L1 | TECHNOLOGY | PROC-05, CAP-02, U.C.6.2.1 | CR-D-10.1-001, CR-D-10.2-001, BPR-D-10.4-001, BPR-D-10.5-001 | SO-D-10.1-001, SO-D-10.1-002, SO-D-10.1-003, SO-D-10.2-001 | — |
-| NODE-SYS-002 | Vulnerability Scanning Suite | Automated vulnerability scanning with 24h critical SLA and SBOM integration | L2 | TECHNOLOGY | U.C.2.3.1, PROC-09 | CR-D-02.1-001, BPR-D-02.1-001, BPR-D-02.5-001 | SO-D-02.1-001, SO-D-02.1-002, SO-D-02.1-003 | — |
-| NODE-SYS-003 | Encryption & Key Management | Approved cryptographic modules for biometric template encryption and key lifecycle | L1 | TECHNOLOGY | U.C.3.3.1, U.C.1.2.1 | CR-D-01.1-001, CR-D-01.3-001, BPR-D-01.1-001, BPR-D-01.2-001 | PO-D-01.1-001, PO-D-01.1-002, SO-D-01.3-001, SO-D-01.3-002, PO-D-01.4-001 | CSF: PR.DS-01 |
+| NODE-SYS-001 | Unified SOC Platform | Integrated security monitoring platform with anomaly detection covering security + AI post-market monitoring | L1 | TECHNOLOGY | PROC-05, CAP-02, UC-13 | CR-D-10.1-001, CR-D-10.2-001, BPR-D-10.4-001, BPR-D-10.5-001 | SO-D-10.1-001, SO-D-10.1-002, SO-D-10.1-003, SO-D-10.2-001 | — |
+| NODE-SYS-002 | Vulnerability Scanning Suite | Automated vulnerability scanning with 24h critical SLA and SBOM integration | L2 | TECHNOLOGY | UC-02, PROC-09 | CR-D-02.1-001, BPR-D-02.1-001, BPR-D-02.5-001 | SO-D-02.1-001, SO-D-02.1-002, SO-D-02.1-003 | — |
+| NODE-SYS-003 | Encryption & Key Management | Approved cryptographic modules for biometric template encryption and key lifecycle | L1 | TECHNOLOGY | UC-05, UC-01 | CR-D-01.1-001, CR-D-01.3-001, BPR-D-01.1-001, BPR-D-01.2-001 | PO-D-01.1-001, PO-D-01.1-002, SO-D-01.3-001, SO-D-01.3-002, PO-D-01.4-001 | CSF: PR.DS-01 |
 
 ### 5.2 Identity & Access Systems
 
 | Node ID | Node Name | Description | Level | Track | Related Use Cases | Related Rules | PSO Coverage | NIST Anchors |
 | --------- | ----------- | ------------- | ------- | ------- | ------------------- | --------------- | -------------- | --- |
-| NODE-SYS-004 | Government IdP Integration | Integration with national identity systems for border officer authentication | L2 | TECHNOLOGY | PROC-10, U.C.3.2.1 | CR-D-03.1-001, CR-D-03.2-001 | SO-D-03.1-001, SO-D-03.1-002, SO-D-03.2-001 | CSF: PR.AA-03 |
-| NODE-SYS-005 | MFA Service | Multi-factor authentication for all system access points including eGate operator interfaces | L2 | TECHNOLOGY | U.C.3.2.1 | CR-D-03.2-001 | SO-D-03.2-001, SO-D-03.2-002, SO-D-03.2-003 | CSF: PR.AA-03 |
-| NODE-SYS-006 | eGate Kiosk System | Physical border control kiosk with Edge AI, biometric sensors, and secure default configuration | L1 | TECHNOLOGY | U.C.3.3.1, U.C.3.5.1, U.C.3.7.1 | CR-D-03.4-001, CR-D-01.2-001, BPR-D-03.1-002 | SO-D-03.4-001, SO-D-01.2-001, SO-D-03.1-001 | CSF: PR.DS-02,PR.PS-01 |
+| NODE-SYS-004 | Government IdP Integration | Integration with national identity systems for border officer authentication | L2 | TECHNOLOGY | PROC-10, UC-04 | CR-D-03.1-001, CR-D-03.2-001 | SO-D-03.1-001, SO-D-03.1-002, SO-D-03.2-001 | CSF: PR.AA-03 |
+| NODE-SYS-005 | MFA Service | Multi-factor authentication for all system access points including eGate operator interfaces | L2 | TECHNOLOGY | UC-04 | CR-D-03.2-001 | SO-D-03.2-001, SO-D-03.2-002, SO-D-03.2-003 | CSF: PR.AA-03 |
+| NODE-SYS-006 | eGate Kiosk System | Physical border control kiosk with Edge AI, biometric sensors, and secure default configuration | L1 | TECHNOLOGY | UC-05, UC-07, UC-08 | CR-D-03.4-001, CR-D-01.2-001, BPR-D-03.1-002 | SO-D-03.4-001, SO-D-01.2-001, SO-D-03.1-001 | CSF: PR.DS-02,PR.PS-01 |
 
 ### 5.3 AI Systems
 
 | Node ID | Node Name | Description | Level | Track | Related Use Cases | Related Rules | PSO Coverage | NIST Anchors |
 | --------- | ----------- | ------------- | ------- | ------- | ------------------- | --------------- | -------------- | --- |
-| NODE-SYS-007 | Border Control AI Engine | Edge AI model for facial recognition, liveness detection, and watchlist matching with confidence scoring | L1 | TECHNOLOGY | PROC-19, U.C.6.2.1, PROC-20, U.C.6.4.1, PROC-21, PROC-22 | CR-D-02.4-001, BPR-D-02.4-001, BPR-D-02.4-002, BPR-D-03.1-002, BPR-D-10.5-001, BPR-D-10.2-001 | SO-D-02.4-001, SO-D-02.4-002, SO-D-03.1-001, SO-D-10.1-001, SO-D-10.2-001 | — |
-| NODE-SYS-008 | AI Training Data Platform | Training data versioning, lineage tracking, and representativeness validation across demographic groups | L2 | TECHNOLOGY | U.C.6.7.1 | CR-D-05.1-001, BPR-D-05.1-001, BPR-D-05.5-001 | PO-D-05.1-001, SO-D-05.1-001, SO-D-05.1-002 | — |
-| NODE-SYS-009 | Cloud Update Infrastructure | Remote infrastructure for AI model distribution, signed firmware updates, and rollback management | L1 | TECHNOLOGY | U.C.2.4.1, U.C.4.6.1 | CR-D-02.2-001, BPR-D-07.1-002 | SO-D-02.2-001, SO-D-02.2-002, PO-D-07.1-001, PO-D-07.1-002 | CSF: PR.PS-02 |
+| NODE-SYS-007 | Border Control AI Engine | Edge AI model for facial recognition, liveness detection, and watchlist matching with confidence scoring | L1 | TECHNOLOGY | PROC-19, UC-13, PROC-20, UC-14, PROC-21, PROC-22 | CR-D-02.4-001, BPR-D-02.4-001, BPR-D-02.4-002, BPR-D-03.1-002, BPR-D-10.5-001, BPR-D-10.2-001 | SO-D-02.4-001, SO-D-02.4-002, SO-D-03.1-001, SO-D-10.1-001, SO-D-10.2-001 | — |
+| NODE-SYS-008 | AI Training Data Platform | Training data versioning, lineage tracking, and representativeness validation across demographic groups | L2 | TECHNOLOGY | UC-15 | CR-D-05.1-001, BPR-D-05.1-001, BPR-D-05.5-001 | PO-D-05.1-001, SO-D-05.1-001, SO-D-05.1-002 | — |
+| NODE-SYS-009 | Cloud Update Infrastructure | Remote infrastructure for AI model distribution, signed firmware updates, and rollback management | L1 | TECHNOLOGY | UC-03, UC-11 | CR-D-02.2-001, BPR-D-07.1-002 | SO-D-02.2-001, SO-D-02.2-002, PO-D-07.1-001, PO-D-07.1-002 | CSF: PR.PS-02 |
 
 ### 5.4 Governance Systems
 
@@ -155,22 +155,22 @@ Each node follows this structure:
 | Node ID | Node Name | Description | Level | Related Use Cases | Required Competencies | NIST Anchors |
 | --------- | ----------- | ------------- | ------- | ------------------- | ---------------------- | --- |
 | NODE-ROLE-001 | CISO | Chief Information Security Officer — ISMS owner, SOC oversight, incident response authority | L1 | PROC-05, PROC-06, PROC-07, CAP-04, PROC-15 | Security leadership, risk management, NIS 2/GDPR/CRA/AI_Act compliance | — |
-| NODE-ROLE-002 | SOC Manager | 24/7 SOC operations, incident detection/triage, AI monitoring integration | L2 | PROC-05, CAP-02, U.C.6.2.1, PROC-21 | Security monitoring operations, incident triage, AI anomaly detection | — |
+| NODE-ROLE-002 | SOC Manager | 24/7 SOC operations, incident detection/triage, AI monitoring integration | L2 | PROC-05, CAP-02, UC-13, PROC-21 | Security monitoring operations, incident triage, AI anomaly detection | — |
 
 ### 6.2 Privacy & AI Governance
 
 | Node ID | Node Name | Description | Level | Related Use Cases | Required Competencies | NIST Anchors |
 | --------- | ----------- | ------------- | ------- | ------------------- | ---------------------- | --- |
-| NODE-ROLE-003 | DPO | Data Protection Officer — GDPR compliance, DPIA execution, data subject rights, RoPA | L1 | PROC-01, U.C.1.2.1, PROC-04, CAP-01, PROC-14 | GDPR, privacy law, DPIA methodologies, biometric data protection | — |
-| NODE-ROLE-004 | AI Governance Lead | AI_Act conformity, FRIA execution, post-market monitoring, bias testing, explainability | L1 | PROC-19, U.C.6.2.1, PROC-20, U.C.6.4.1, U.C.6.7.1, PROC-14 | AI_Act compliance, AI risk management, bias testing, fundamental rights analysis | — |
+| NODE-ROLE-003 | DPO | Data Protection Officer — GDPR compliance, DPIA execution, data subject rights, RoPA | L1 | PROC-01, UC-01, PROC-04, CAP-01, PROC-14 | GDPR, privacy law, DPIA methodologies, biometric data protection | — |
+| NODE-ROLE-004 | AI Governance Lead | AI_Act conformity, FRIA execution, post-market monitoring, bias testing, explainability | L1 | PROC-19, UC-13, PROC-20, UC-14, UC-15, PROC-14 | AI_Act compliance, AI risk management, bias testing, fundamental rights analysis | — |
 
 ### 6.3 Engineering & Operations
 
 | Node ID | Node Name | Description | Level | Related Use Cases | Required Competencies | NIST Anchors |
 | --------- | ----------- | ------------- | ------- | ------------------- | ---------------------- | --- |
-| NODE-ROLE-005 | Lead Developer | Secure SDLC oversight, code review, CI/CD pipeline, SBOM, AI model versioning | L2 | PROC-12, U.C.4.2.1, U.C.4.3.1, PROC-13, CAP-03, U.C.4.6.1 | Secure coding, CI/CD security, SBOM management, AI model lifecycle | — |
-| NODE-ROLE-006 | Operations Lead | Infrastructure management, patch deployment, identity lifecycle, third-party boundaries | L2 | PROC-10, U.C.3.4.1, U.C.3.5.1, PROC-11, U.C.2.4.1, PROC-08, U.C.5.8.1 | System administration, patch management, identity management, physical isolation | — |
-| NODE-ROLE-007 | Security Engineer | Vulnerability management, penetration testing coordination, adversarial AI testing | L2 | U.C.2.3.1, PROC-09, PROC-22 | Vulnerability assessment, TLPT, adversarial ML, red teaming | — |
+| NODE-ROLE-005 | Lead Developer | Secure SDLC oversight, code review, CI/CD pipeline, SBOM, AI model versioning | L2 | PROC-12, UC-09, UC-10, PROC-13, CAP-03, UC-11 | Secure coding, CI/CD security, SBOM management, AI model lifecycle | — |
+| NODE-ROLE-006 | Operations Lead | Infrastructure management, patch deployment, identity lifecycle, third-party boundaries | L2 | PROC-10, UC-06, UC-07, PROC-11, UC-03, PROC-08, UC-12 | System administration, patch management, identity management, physical isolation | — |
+| NODE-ROLE-007 | Security Engineer | Vulnerability management, penetration testing coordination, adversarial AI testing | L2 | UC-02, PROC-09, PROC-22 | Vulnerability assessment, TLPT, adversarial ML, red teaming | — |
 
 ---
 
@@ -189,32 +189,32 @@ Each node follows this structure:
 | Use Case ID | Mapped Nodes | Coverage |
 |-------------|-------------|----------|
 | PROC-01 | NODE-PROC-005, NODE-ROLE-003 | ✅ |
-| U.C.1.2.1 | NODE-PROC-005, NODE-PROC-007, NODE-SYS-003, NODE-ROLE-003 | ✅ |
+| UC-01 | NODE-PROC-005, NODE-PROC-007, NODE-SYS-003, NODE-ROLE-003 | ✅ |
 | PROC-02 | NODE-PROC-005, NODE-ROLE-003 | ✅ |
 | PROC-03 | NODE-PROC-001, NODE-ROLE-003 | ✅ |
 | PROC-04 | NODE-PROC-006, NODE-ROLE-003 | ✅ |
 | CAP-01 | NODE-PROC-006, NODE-ROLE-003 | ✅ |
 | PROC-05 | NODE-PROC-001, NODE-SYS-001, NODE-ROLE-001, NODE-ROLE-002 | ✅ |
 | PROC-06 | NODE-PROC-001, NODE-ROLE-001 | ✅ |
-| U.C.2.3.1 | NODE-PROC-002, NODE-SYS-002, NODE-ROLE-007 | ✅ |
-| U.C.2.4.1 | NODE-PROC-003, NODE-SYS-009, NODE-ROLE-006 | ✅ |
+| UC-02 | NODE-PROC-002, NODE-SYS-002, NODE-ROLE-007 | ✅ |
+| UC-03 | NODE-PROC-003, NODE-SYS-009, NODE-ROLE-006 | ✅ |
 | PROC-07 | NODE-PROC-001, NODE-ROLE-001 | ✅ |
 | CAP-02 | NODE-SYS-001, NODE-ROLE-002 | ✅ |
 | PROC-08 | NODE-PROC-004, NODE-ROLE-006 | ✅ |
 | PROC-09 | NODE-PROC-002, NODE-ROLE-007 | ✅ |
 | PROC-10 | NODE-PROC-008, NODE-SYS-004, NODE-ROLE-006 | ✅ |
-| U.C.3.2.1 | NODE-SYS-004, NODE-SYS-005, NODE-ROLE-006 | ✅ |
-| U.C.3.3.1 | NODE-PROC-007, NODE-SYS-003, NODE-SYS-006, NODE-ROLE-006 | ✅ |
-| U.C.3.4.1 | NODE-PROC-009, NODE-ROLE-006 | ✅ |
-| U.C.3.5.1 | NODE-SYS-006, NODE-ROLE-006 | ✅ |
+| UC-04 | NODE-SYS-004, NODE-SYS-005, NODE-ROLE-006 | ✅ |
+| UC-05 | NODE-PROC-007, NODE-SYS-003, NODE-SYS-006, NODE-ROLE-006 | ✅ |
+| UC-06 | NODE-PROC-009, NODE-ROLE-006 | ✅ |
+| UC-07 | NODE-SYS-006, NODE-ROLE-006 | ✅ |
 | PROC-11 | NODE-PROC-008, NODE-PROC-009, NODE-ROLE-006 | ✅ |
-| U.C.3.7.1 | NODE-SYS-006, NODE-ROLE-004 | ✅ |
+| UC-08 | NODE-SYS-006, NODE-ROLE-004 | ✅ |
 | PROC-12 | NODE-PROC-010, NODE-ROLE-005 | ✅ |
-| U.C.4.2.1 | NODE-PROC-010, NODE-ROLE-005 | ✅ |
-| U.C.4.3.1 | NODE-PROC-010, NODE-ROLE-005 | ✅ |
+| UC-09 | NODE-PROC-010, NODE-ROLE-005 | ✅ |
+| UC-10 | NODE-PROC-010, NODE-ROLE-005 | ✅ |
 | PROC-13 | NODE-PROC-010, NODE-ROLE-005 | ✅ |
 | CAP-03 | NODE-PROC-010, NODE-ROLE-005 | ✅ |
-| U.C.4.6.1 | NODE-PROC-010, NODE-SYS-009, NODE-ROLE-005 | ✅ |
+| UC-11 | NODE-PROC-010, NODE-SYS-009, NODE-ROLE-005 | ✅ |
 | CAP-04 | NODE-PROC-011, NODE-SYS-010, NODE-ROLE-001 | ✅ |
 | PROC-14 | NODE-PROC-012, NODE-ROLE-003, NODE-ROLE-004 | ✅ |
 | PROC-15 | NODE-PROC-011, NODE-SYS-010, NODE-ROLE-001 | ✅ |
@@ -222,14 +222,14 @@ Each node follows this structure:
 | PROC-17 | NODE-PROC-013, NODE-SYS-010 | ✅ |
 | CAP-05 | NODE-SYS-010 | ✅ |
 | PROC-18 | NODE-PROC-011, NODE-ROLE-001 | ✅ |
-| U.C.5.8.1 | NODE-PROC-013, NODE-ROLE-006 | ✅ |
+| UC-12 | NODE-PROC-013, NODE-ROLE-006 | ✅ |
 | PROC-19 | NODE-SYS-007, NODE-ROLE-004 | ✅ |
-| U.C.6.2.1 | NODE-SYS-001, NODE-SYS-007, NODE-ROLE-004 | ✅ |
+| UC-13 | NODE-SYS-001, NODE-SYS-007, NODE-ROLE-004 | ✅ |
 | PROC-20 | NODE-SYS-007, NODE-ROLE-004, NODE-ROLE-007 | ✅ |
-| U.C.6.4.1 | NODE-SYS-007, NODE-ROLE-004 | ✅ |
+| UC-14 | NODE-SYS-007, NODE-ROLE-004 | ✅ |
 | PROC-21 | NODE-SYS-001, NODE-SYS-007, NODE-ROLE-002, NODE-ROLE-004 | ✅ |
 | PROC-22 | NODE-SYS-007, NODE-ROLE-007 | ✅ |
-| U.C.6.7.1 | NODE-SYS-008, NODE-ROLE-004, NODE-ROLE-005 | ✅ |
+| UC-15 | NODE-SYS-008, NODE-ROLE-004, NODE-ROLE-005 | ✅ |
 | CAP-06 | NODE-ROLE-001, NODE-ROLE-003 | ✅ |
 | CAP-07 | NODE-ROLE-001, NODE-ROLE-004, NODE-ROLE-005 | ✅ |
 | CAP-08 | NODE-ROLE-004 | ✅ |

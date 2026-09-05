@@ -30,10 +30,10 @@ SecureBorder Solutions system. Sources: `Doc21_Use_Cases_Catalog.md` v1.3 (catal
 No relationship below is invented; each is attested in one of those two documents.
 
 **Current ID space (post product-first restructure, see LANE_NAMING_CENSUS_v0.md):**
-- **Compliance lane (U.C.1–U.C.7):** 47 UCs — data-subject rights, security operations,
+- **Compliance lane (UC-01..UC-15):** 47 UCs — data-subject rights, security operations,
   identity/access, secure development, governance, AI compliance, training. Re-laned
   ids now use PROC-01..22 and CAP-01..10 (formerly U.C.x.y.1).
-- **Product lane (U.C.8–U.C.12, PKG-8..12):** 26 UCs — the GuardianGate eGate product
+- **Product lane (UC-16..UC-36, PKG-8..12):** 26 UCs — the GuardianGate eGate product
   modelled as actor-goal use cases (§6 of Doc21).
 - **TOTAL: 73 UCs** (T36/P27/C10 in the catalogue; 63 controls: 38 CR + 25 BPR).
 - **Lane cards:** PROC-01..27 (process lane) and CAP-01..10 (capability lane),
@@ -47,7 +47,7 @@ No relationship below is invented; each is attested in one of those two document
 
 | Package ID | Package Name | Purpose | UC Count | Related Lanes |
 |------------|--------------|---------|----------|----------------|
-| U.C.1–U.C.7 | Compliance use cases (lane-renamed) | Security & privacy obligations realisation (data subject rights, security ops, IAM, secure dev, governance, AI compliance, training) | 47 | PROC-01..22, CAP-01..10 |
+| UC-01..UC-15 | Compliance use cases (lane-renamed) | Security & privacy obligations realisation (data subject rights, security ops, IAM, secure dev, governance, AI compliance, training) | 47 | PROC-01..22, CAP-01..10 |
 | PKG-8 | Traveller eGate Journey | Document scan, biometric capture/liveness/match, gate decision, referral, privacy notice | 7 | PROC-05, PROC-01 |
 | PKG-9 | Operator Referral Desk | Console session, queue triage, manual verification/override, incident flag, shift handover | 5 | PROC-05, PROC-06, PROC-23 |
 | PKG-10 | Kiosk Fleet Operations | Provisioning, health monitoring, OTA, tamper response, offline failover | 5 | PROC-24, PROC-08, CAP-02 |
@@ -80,72 +80,72 @@ starts); optional paths are `«extend»`.
 
 | Relationship | Type | Source |
 |---|---|---|
-| U.C.8.1.1 (Scan Travel Document) «precede» U.C.8.2.1 (Capture Facial Biometric Sample) — chip portrait is the match reference | precede | Doc21 U.C.8.2.1 preconditions |
-| U.C.8.2.1 «precede» U.C.8.2.2 (Liveness/PAD) | precede | Doc21 U.C.8.2.2 preconditions |
-| U.C.8.2.2 «precede» U.C.8.2.3 (Face Match 1:1) | precede | Doc21 U.C.8.2.3 preconditions |
-| U.C.8.2.3 «precede» U.C.8.3.1 (Gate Decision & Release) | precede | Doc21 U.C.8.3.1 preconditions |
-| U.C.8.4.1 (Privacy Notice & Consent) «extend» U.C.8.1.1 — same trigger, first interaction screen; runs before biometric processing | extend | Doc21 U.C.8.4.1 |
-| U.C.8.1.1/U.C.8.2.1/U.C.8.2.2/U.C.8.2.3/U.C.8.3.1 «extend» U.C.8.3.2 (Referral to Operator Desk) on any failure/grey-band/watchlist path | extend | Doc21 U.C.8.3.2 preconditions |
-| U.C.8.3.1 «include» offline store-and-forward per PKG-10 failover when SYS-02 unreachable | include | Doc21 U.C.8.3.1 §5.3/§6.2 |
-| U.C.8.4.1 «extend» manual officer lane on consent refusal (travel right preserved) | extend | Doc21 U.C.8.4.1 §5.1 |
+| UC-16 (Scan Travel Document) «precede» UC-17 (Capture Facial Biometric Sample) — chip portrait is the match reference | precede | Doc21 UC-17 preconditions |
+| UC-17 «precede» UC-18 (Liveness/PAD) | precede | Doc21 UC-18 preconditions |
+| UC-18 «precede» UC-19 (Face Match 1:1) | precede | Doc21 UC-19 preconditions |
+| UC-19 «precede» UC-20 (Gate Decision & Release) | precede | Doc21 UC-20 preconditions |
+| UC-22 (Privacy Notice & Consent) «extend» UC-16 — same trigger, first interaction screen; runs before biometric processing | extend | Doc21 UC-22 |
+| UC-16/UC-17/UC-18/UC-19/UC-20 «extend» UC-21 (Referral to Operator Desk) on any failure/grey-band/watchlist path | extend | Doc21 UC-21 preconditions |
+| UC-20 «include» offline store-and-forward per PKG-10 failover when SYS-02 unreachable | include | Doc21 UC-20 §5.3/§6.2 |
+| UC-22 «extend» manual officer lane on consent refusal (travel right preserved) | extend | Doc21 UC-22 §5.1 |
 
 ### 3.2 Referral → security operations chain
 
 | Relationship | Type | Source |
 |---|---|---|
-| U.C.8.3.2 (Referral) → PROC-05 (Incident Detection & Triage) on confirmed impostor / suspected attack | include | Doc21 U.C.8.3.2 §5.2, §10 annex; Doc31 PROC-05 card |
+| UC-21 (Referral) → PROC-05 (Incident Detection & Triage) on confirmed impostor / suspected attack | include | Doc21 UC-21 §5.2, §10 annex; Doc31 PROC-05 card |
 | PROC-05 «precede» PROC-06 (Incident Response & Containment) on escalation | precede | Doc31 PROC-05 card (step 3b) |
-| U.C.8.1.1/U.C.8.2.2 failure paths «include» PROC-05 security event raise (event pipeline, CR-D-04.1-001) | include | Doc21 U.C.8.1.1 §6.2, U.C.8.2.2 §5.1 |
-| U.C.9.4.1 (Incident Flag & Gate Lock) «include» PROC-05 triage; SOC clearance releases the lock | include | Doc21 U.C.9.4.1 §4 |
+| UC-16/UC-18 failure paths «include» PROC-05 security event raise (event pipeline, CR-D-04.1-001) | include | Doc21 UC-16 §6.2, UC-18 §5.1 |
+| UC-26 (Incident Flag & Gate Lock) «include» PROC-05 triage; SOC clearance releases the lock | include | Doc21 UC-26 §4 |
 | PROC-06 containment «precede» PROC-07 (Regulatory Notification 24h/72h) when reportable | precede | Doc31 CAP-02 card (contributes chain) |
-| U.C.9.3.1 confirmed impostor «include» PROC-05 + PROC-07 (if reportable) | include | Doc21 U.C.9.3.1 §5.2 |
+| UC-25 confirmed impostor «include» PROC-05 + PROC-07 (if reportable) | include | Doc21 UC-25 §5.2 |
 
 ### 3.3 Operator flows (PKG-9)
 
 | Relationship | Type | Source |
 |---|---|---|
-| U.C.9.1.1 (Console Session, SSO/FIDO2 fail-closed) «precede» U.C.9.2.1 (Queue Handling & Triage) | precede | Doc21 U.C.9.2.1 preconditions |
-| U.C.9.2.1 «precede» U.C.9.3.1 (Manual Verification & Override) | precede | Doc21 U.C.9.3.1 preconditions |
-| U.C.8.3.2 «include» U.C.9.1.1–U.C.9.3.1 — the desk workflow realises the referral | include | Doc21 U.C.9.1.1 annex (constrained-by U.C.8.3.2) |
-| U.C.9.3.1 override «include» step-up re-authentication per U.C.9.1.1 §6.2 | include | Doc21 U.C.9.3.1 §5.1 |
-| U.C.9.4.1 (Flag & Lock) «extend» U.C.9.2.1 on attack-pattern work items | extend | Doc21 U.C.9.4.1 preconditions |
-| PROC-23 (Shift Handover & Referral Report) «extend» U.C.9.2.1 at shift end | extend | Doc21 PKG-9 table; Doc31 PROC-23 card |
+| UC-23 (Console Session, SSO/FIDO2 fail-closed) «precede» UC-24 (Queue Handling & Triage) | precede | Doc21 UC-24 preconditions |
+| UC-24 «precede» UC-25 (Manual Verification & Override) | precede | Doc21 UC-25 preconditions |
+| UC-21 «include» UC-23..UC-25 — the desk workflow realises the referral | include | Doc21 UC-23 annex (constrained-by UC-21) |
+| UC-25 override «include» step-up re-authentication per UC-23 §6.2 | include | Doc21 UC-25 §5.1 |
+| UC-26 (Flag & Lock) «extend» UC-24 on attack-pattern work items | extend | Doc21 UC-26 preconditions |
+| PROC-23 (Shift Handover & Referral Report) «extend» UC-24 at shift end | extend | Doc21 PKG-9 table; Doc31 PROC-23 card |
 
 ### 3.4 Fleet operations (PKG-10)
 
 | Relationship | Type | Source |
 |---|---|---|
-| PROC-24 (Kiosk Provisioning & Enrolment) «precede» U.C.10.2.1 (Fleet Health Monitoring) | precede | Doc21 U.C.10.3.1 §3 (units enrolled + healthy) |
-| U.C.10.2.1 «precede» U.C.10.3.1 (Signed OTA Firmware Update) — target units must be healthy | precede | Doc21 U.C.10.3.1 §3 |
-| U.C.10.2.1 tamper indicators «extend» U.C.10.4.1 (Tamper Alert Response) | extend | Doc21 U.C.10.2.1 §4 |
-| U.C.10.4.1 «include» PROC-05 (detection/triage) and PROC-06 (containment incl. firmware quarantine) | include | Doc21 U.C.10.4.1 §10 annex |
-| U.C.10.2.1 offline state «extend» U.C.10.5.1 (Offline/Failover store-and-forward) | extend | Doc21 U.C.10.5.1 §1 |
-| U.C.10.5.1 «include» PROC-08 (DR & business continuity) discipline | include | Doc21 U.C.10.5.1 §10 annex |
+| PROC-24 (Kiosk Provisioning & Enrolment) «precede» UC-27 (Fleet Health Monitoring) | precede | Doc21 UC-28 §3 (units enrolled + healthy) |
+| UC-27 «precede» UC-28 (Signed OTA Firmware Update) — target units must be healthy | precede | Doc21 UC-28 §3 |
+| UC-27 tamper indicators «extend» UC-29 (Tamper Alert Response) | extend | Doc21 UC-27 §4 |
+| UC-29 «include» PROC-05 (detection/triage) and PROC-06 (containment incl. firmware quarantine) | include | Doc21 UC-29 §10 annex |
+| UC-27 offline state «extend» UC-30 (Offline/Failover store-and-forward) | extend | Doc21 UC-30 §1 |
+| UC-30 «include» PROC-08 (DR & business continuity) discipline | include | Doc21 UC-30 §10 annex |
 
 ### 3.5 AI lifecycle (PKG-11)
 
 | Relationship | Type | Source |
 |---|---|---|
-| PROC-25 (Model Training & Release Packaging) «precede» U.C.11.2.1 (Signed Model Rollout) | precede | Doc21 PROC-25 §1 (candidate becomes eligible for rollout) |
-| U.C.11.2.1 «precede» U.C.11.3.1 (Model Rollback arming — previous version retained) | precede | Doc21 U.C.11.2.1 §4 |
-| PROC-26 (Drift/Bias Monitoring & Review, formerly U.C.11.4.1) «extend» U.C.10.2.1 — consumes fleet telemetry | extend | Doc21 U.C.11.x drift flow (fleet telemetry precondition) |
-| PROC-26 disposition «extend» PROC-25 (retrain) or U.C.11.3.1 (rollback) | extend | Doc21 U.C.11.x §4 (disposition: tune / retrain / rollback) |
+| PROC-25 (Model Training & Release Packaging) «precede» UC-31 (Signed Model Rollout) | precede | Doc21 PROC-25 §1 (candidate becomes eligible for rollout) |
+| UC-31 «precede» UC-32 (Model Rollback arming — previous version retained) | precede | Doc21 UC-31 §4 |
+| PROC-26 (Drift/Bias Monitoring & Review, formerly U.C.11.4.1) «extend» UC-27 — consumes fleet telemetry | extend | Doc21 UC-31..UC-33 drift flow (fleet telemetry precondition) |
+| PROC-26 disposition «extend» PROC-25 (retrain) or UC-32 (rollback) | extend | Doc21 UC-31..UC-33 §4 (disposition: tune / retrain / rollback) |
 | PROC-26 human bias review «include» PROC-20 (AI Bias Testing & Fairness) — fairness assessment basis | include | Doc31 PROC-26 card; Doc31 CAP-02 span |
-| U.C.11.5.1 (Watchlist Cache Sync) «include» U.C.8.3.1 — watchlist status is a gate decision input | include | Doc21 U.C.8.3.1 §4 (watchlist input) |
+| UC-33 (Watchlist Cache Sync) «include» UC-20 — watchlist status is a gate decision input | include | Doc21 UC-20 §4 (watchlist input) |
 
 ### 3.6 Administration & reporting (PKG-12)
 
 | Relationship | Type | Source |
 |---|---|---|
-| U.C.12.1.1 (Kiosk Admin Configuration, dual control) «precede» fleet serving — baseline config before enrolment | precede | Doc21 U.C.12.1.1 §1 |
-| U.C.12.1.1 drift alerts «extend» U.C.10.2.1 | extend | Doc21 U.C.12.1.1 §4 |
-| U.C.12.2.1 (Audit Export for Authorities) «extend» PROC-18 (Regulatory Notification & Cooperation) — evidence export on authority request | extend | Doc21 §6.0 (SH-EXT-003 requests audit evidence exports) |
-| U.C.12.3.1 (SLA & Fleet Status Dashboard) «include» U.C.9.2.1 queue telemetry, U.C.10.2.1 fleet telemetry, U.C.10.5.1 offline windows | include | Doc21 U.C.9.2.1 §6.2, U.C.10.2.1 §4, U.C.10.5.1 §4 |
-| PROC-27 (User/Role Administration for Console) «precede» U.C.9.1.1 — officer roles/entitlements before console session | precede | Doc21 U.C.9.1.1 §2.4 (Ops administers via PROC-27) |
+| UC-34 (Kiosk Admin Configuration, dual control) «precede» fleet serving — baseline config before enrolment | precede | Doc21 UC-34 §1 |
+| UC-34 drift alerts «extend» UC-27 | extend | Doc21 UC-34 §4 |
+| UC-35 (Audit Export for Authorities) «extend» PROC-18 (Regulatory Notification & Cooperation) — evidence export on authority request | extend | Doc21 §6.0 (SH-EXT-003 requests audit evidence exports) |
+| UC-36 (SLA & Fleet Status Dashboard) «include» UC-24 queue telemetry, UC-27 fleet telemetry, UC-30 offline windows | include | Doc21 UC-24 §6.2, UC-27 §4, UC-30 §4 |
+| PROC-27 (User/Role Administration for Console) «precede» UC-23 — officer roles/entitlements before console session | precede | Doc21 UC-23 §2.4 (Ops administers via PROC-27) |
 
 ### 3.7 Compliance-side relationships (lane ids post-rename)
 
-The pre-existing compliance relationships (U.C.1–U.C.7, now PROC-/CAP-renamed where
+The pre-existing compliance relationships (UC-01..UC-15, now PROC-/CAP-renamed where
 re-laned) remain as recorded in Doc21 §7/§9 and Doc31 cards:
 
 | Relationship | Type | Source |
