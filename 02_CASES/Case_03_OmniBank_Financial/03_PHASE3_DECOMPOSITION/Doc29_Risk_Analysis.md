@@ -363,6 +363,36 @@ The output includes: threats identified per UC scenario, risk scores (Likelihood
 
 ---
 
+### §X. Threat × Flow matrix (ALT-ANCHOR provenance: OWASP ASVS v4.0.3 + OWASP SAMM v2)
+
+> **Purpose.** Augments the threat modelling above by binding each threat to (a) the
+> data/control flow it traverses, (b) the trust boundary it crosses, and (c) the ASVS /
+> SAMM controls that mitigate it. Anchored via the ALT-ANCHOR criterion
+> (`00_METHODOLOGY/ALT_ANCHOR_CRITERION.md`) and the frozen referential sources under
+> `00_METHODOLOGY/PREPROCESSING_by_domain/CONTROLS/OWASP_ASVS/` and `OWASP_SAMM/`.
+
+> **Columns.** Threat ID × **Actor** | **Asset / Trust Boundary** | **Flow / Direction** | **STRIDE** | **ASVS / SAMM anchor** | **CR / BPR** | **Notes**
+
+| Threat ID × Actor | Asset / Trust Boundary | Flow / Direction | STRIDE | ASVS / SAMM anchor | CR / BPR | Notes |
+|---|---|---|---|---|---|---|
+| THR-DP-01 × External Traveller | AST-02 (Passport Data) | Traveller → DSAR Intake API → DataStore | S | ASVS V3.5 (assertion binding) · SAMM IR-A | CR-D-04.3-001 | Spoofed DSAR |
+| THR-DP-02 × External Traveller | AST-01 (Biometric Templates) | Erasure request → DataStore → Backup | T | ASVS V8 (data protection) · SAMM EG-B | CR-D-05.3-001 | Tampered erasure |
+| THR-SEC-01 × Operator | AST-09 (Operator Console) | Console → Referral API → Kiosk Fleet | E | ASVS V2.1 (auth) · SAMM EG-A | CR-D-03.1-001 | Operator impersonation |
+| THR-SEC-02 × Kiosk Agent | AST-04 (Kiosk Secure Element) | Kiosk → Border Control API | T | ASVS V6.2 (algorithms) · SAMM EG-A | CR-D-01.1-001 | Tampered kiosk crypto |
+| THR-IAM-01 × Insider | AST-03 (Privileged Account) | Admin Console → Audit Store | E | ASVS V4.1 (access control) · SAMM PC-B | CR-D-03.2-001 | Privilege escalation |
+| THR-DEV-01 × Supply-chain | Build Pipeline → Production | P | ASVS V14 (configuration) · SSDF PW.4 · SAMM SB-A | BPR-D-02.2-001 | Pipeline poisoning |
+| THR-GOV-01 × Auditor | Doc repo → Approval workflow | R | ASVS V1.1 (secure SDLC) · SAMM G-SM-A | CR-D-09.1-001 | Tampered governance doc |
+| THR-AI-01 × Adversarial input | Inference API → Output | T | ASVS V5 (input validation) · SAMM V-ST-B | CR-D-02.1-001 | Model tampering |
+| THR-TRN-01 × Operator | Training Records Store | T | SAMM EG-A · ASVS V1.1 | CR-D-08.1-001 | Training bypass |
+| THR-PROC-01 × Operator | ERM Workflow (manual) | T | SAMM PC-B · ASVS V4.2 | CR-D-09.2-001 | Risk acceptance bypass |
+
+> **Provenance.** This matrix is derived by lifting the existing STRIDE/LINDDUN rows
+> above and binding each to one or more frozen referential anchors (OWASP ASVS 4.0.3
+> + OWASP SAMM v2). It does NOT replace the risk-score columns (Likelihood / Impact /
+> Risk Score) — those remain authoritative in their respective section.
+> Empty `CR / BPR` cells are GAPs and feed the P7 orphan queue (see
+> `00_METHODOLOGY/validation/P7_BRIEFING_PACK_2026-09-05.md`).
+
 ## 4. RISK SUMMARY
 
 ### 4.1 Risks by Domain
