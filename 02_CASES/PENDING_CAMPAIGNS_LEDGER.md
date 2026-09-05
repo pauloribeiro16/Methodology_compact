@@ -19,6 +19,16 @@ full 800-53r5 column on the 3 framework matrices via idempotent generator; orpha
 **Progress:** Fase 0 in progress — C1 raw census extracted; C2/C3 census + element dedup pending.
 **Detail:** `00_METHODOLOGY/validation/ALT_ANCHOR_CAMPAIGN_PLAN.md`.
 
+## 1B. IN EXECUTION — UC SEPARATION (2026-09-05)
+
+Human diagnosis: case use-case catalogs mix packages/UC/CAP/PROC (Doc22 §6 compliance
+cards are control-register entries wearing UC ids, e.g. UC-58 "Maintains Immutable
+Audit Logs"). Plan: catalogs hold UC cards only; 15 fake C3 UCs re-laned to PROC-41..52
+/ CAP-08..10; PROC-39/40 re-adjudicated back to UC-66/92; UC-33/34 → PKG-DS
+fully-dressed; all 3 cases; annex A diagrams = UC ovals only (rubric v1.8 §5B/§5C.5).
+**Decisions locked:** `02_CASES/UC_SEPARATION_CAMPAIGN_2026-09-05.md` (all FINAL).
+**Progress:** F0 done (rubric v1.8 + plan + this entry) — F1 (Case_03) next.
+
 ## 2. DEFERRED BY HUMAN DECISION (2026-09-05, documents-only scope) — Realization Class follow-ups
 
 Committed as `2948fb8` (rubric v1.2 + C1 tag wave, T17/P23/C6, 9 secondaries). Deferred:

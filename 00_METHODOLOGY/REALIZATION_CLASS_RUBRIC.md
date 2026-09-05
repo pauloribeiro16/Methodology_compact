@@ -2,7 +2,7 @@
 document_id: AEGIS-METHODOLOGY-REALIZATION-CLASS-RUBRIC
 title: AEGIS Realization Class Rubric (Phase 2 Rule Attribute)
 phase: Cross-phase
-version: 1.6
+version: 1.8
 created: 2026-09-05
 updated: 2026-09-05
 author: Executor
@@ -133,6 +133,13 @@ Rules:
 5. The old→new mapping tables per case are the authoritative registry
    (`00_METHODOLOGY/validation/LANE_NAMING_CENSUS_v0.md`); renames are applied by
    `scripts/rename_lane_ids.py` (single pass, word-boundary exact, dry-run first).
+6. **Lane-pure catalogs (human decision 2026-09-05, UC SEPARATION campaign):**
+   a use-case catalog contains UC cards only; PROC/CAP cards live exclusively in the
+   per-case `DocNN_Process_Capability_Cards.md` (§5C.3). Lanes are never interleaved
+   inside the same package section — the ID prefix is not a licence to mix artefact
+   kinds in one catalog. Retired numbers are NOT reused: Case_03 `PROC-39`/`PROC-40`
+   are re-adjudicated back to `UC-66`/`UC-92` (genuine actor→system form); Case_03
+   PROC numbering continues from `PROC-41`; the 39/40 gaps remain documented here.
 
 
 ## §5C Lane Card Schemas (normative)
@@ -204,6 +211,10 @@ Bike4All sequenceDiagrams):
   Compliance PROC/CAP cards do NOT carry sequence diagrams at this stage; their
   diagrams are the §5C.4 flowcharts.
 - Both are **derived views** of the catalogue cards: the card is the source of truth.
+- **Use case diagrams carry UC ovals only** (human decision 2026-09-05, UC SEPARATION
+  campaign): `PROC-*`/`CAP-*` never appear as ovals or actors in annex A — their
+  diagrams are the §5C.4 flowcharts in the lane-cards doc. Annex A packages are the
+  catalog's UC packages (product packages plus any dedicated compliance-UC package).
 
 ### §5C.3 Placement & scope rule
 
@@ -299,3 +310,4 @@ three ratios per case (`obj→ctrl coverage`, `ctrl→obj back-link coverage`,
 
 | 1.6 | 2026-09-05 | Orchestrator | §6C Traceability Audit Shape added: OBJ↔CTRL↔UC chain normative; standard ratios (obj→ctrl / ctrl→obj / uc→obj); AG-D treated as PO/SO alias in Case_03 (id-space note); `scripts/traceability_audit.py` read-only instrument |
 | 1.7 | 2026-09-05 | Orchestrator | §5C.5 UML diagram conventions added: useCaseDiagram (Mermaid ≥ v11.6) system-wide + per package; sequence diagrams are annex-only (Annex B per case), catalogs keep a 1-line pointer |
+| 1.8 | 2026-09-05 | Orchestrator | §5B rule 6 + §5C.5: lane-pure catalogs (UC catalogs hold UC cards only; PROC/CAP live in DocNN_Process_Capability_Cards); annex A diagrams carry UC ovals only; Case_03 PROC-39/40 re-adjudicated to UC-66/92 (39/40 retired, numbering continues at 41) — UC SEPARATION campaign |
