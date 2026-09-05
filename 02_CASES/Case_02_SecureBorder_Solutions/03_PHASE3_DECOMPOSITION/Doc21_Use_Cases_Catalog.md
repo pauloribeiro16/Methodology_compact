@@ -136,65 +136,67 @@ This document defines the **security and privacy use cases** for SecureBorder So
 
 ### 5.1 Use Case Diagram (Level 0)
 
-```mermaid
-useCaseDiagram
-    actor "Border Control Officer" as BCO
-    actor "Traveler" as TRV
-    actor "CISO" as CISO
-    actor "DPO" as DPO
-    actor "AI Governance Lead" as AIG
-    actor "SOC Manager" as SOC
-    actor "Lead Developer" as DEV
-    actor "Operations Lead" as OPS
-    actor "Compliance Analyst" as COMP
-    actor "National Border Authority" as NBA
-    actor "ENISA/CSIRT" as ENISA
-    actor "Data Protection Authority" as DPA
-    actor "AI Market Surveillance" as AIMS
-
-    package "Data Protection" {
-        usecase "UC-DP\nData Subject Rights\n& Privacy" as UCDP
-    }
-    package "Security Operations" {
-        usecase "UC-SEC\nIncident Detection,\nResponse & Recovery" as UCSEC
-    }
-    package "Identity & Access Mgmt" {
-        usecase "UC-IAM\nAuthentication,\nAuthorization & Lifecycle" as UCIAM
-    }
-    package "Secure Development" {
-        usecase "UC-DEV\nSecure SDLC,\nCI/CD & SBOM" as UCDEV
-    }
-    package "Governance & Compliance" {
-        usecase "UC-GOV\nISMS, Audits,\nRisk Assessments" as UCGOV
-    }
-    package "AI Systems" {
-        usecase "UC-AI\nAI Conformity, Monitoring,\nBias & Human Oversight" as UCAI
-    }
-    package "Training & Awareness" {
-        usecase "UC-TRN\nSecurity & AI\nTraining" as UCTRN
-    }
-
-    BCO --> UCIAM
-    BCO --> UCAI
-    TRV --> UCDP
-    TRV --> UCIAM
-    CISO --> UCSEC
-    CISO --> UCGOV
-    DPO --> UCDP
-    DPO --> UCGOV
-    AIG --> UCAI
-    AIG --> UCGOV
-    SOC --> UCSEC
-    SOC --> UCAI
-    DEV --> UCDEV
-    OPS --> UCIAM
-    OPS --> UCSEC
-    COMP --> UCGOV
-    NBA --> UCGOV
-    ENISA --> UCSEC
-    DPA --> UCDP
-    AIMS --> UCAI
+```plantuml
+@startuml
+left to right direction
+actor "Border Control Officer" as BCO
+actor "Traveler" as TRV
+actor "CISO" as CISO
+actor "DPO" as DPO
+actor "AI Governance Lead" as AIG
+actor "SOC Manager" as SOC
+actor "Lead Developer" as DEV
+actor "Operations Lead" as OPS
+actor "Compliance Analyst" as COMP
+actor "National Border Authority" as NBA
+actor "ENISA/CSIRT" as ENISA
+actor "Data Protection Authority" as DPA
+actor "AI Market Surveillance" as AIMS
+rectangle "Data Protection" {
+usecase "UC-DP\nData Subject Rights\n& Privacy" as UCDP
+}
+rectangle "Security Operations" {
+usecase "UC-SEC\nIncident Detection,\nResponse & Recovery" as UCSEC
+}
+rectangle "Identity & Access Mgmt" {
+usecase "UC-IAM\nAuthentication,\nAuthorization & Lifecycle" as UCIAM
+}
+rectangle "Secure Development" {
+usecase "UC-DEV\nSecure SDLC,\nCI/CD & SBOM" as UCDEV
+}
+rectangle "Governance & Compliance" {
+usecase "UC-GOV\nISMS, Audits,\nRisk Assessments" as UCGOV
+}
+rectangle "AI Systems" {
+usecase "UC-AI\nAI Conformity, Monitoring,\nBias & Human Oversight" as UCAI
+}
+rectangle "Training & Awareness" {
+usecase "UC-TRN\nSecurity & AI\nTraining" as UCTRN
+}
+BCO -- UCIAM
+BCO -- UCAI
+TRV -- UCDP
+TRV -- UCIAM
+CISO -- UCSEC
+CISO -- UCGOV
+DPO -- UCDP
+DPO -- UCGOV
+AIG -- UCAI
+AIG -- UCGOV
+SOC -- UCSEC
+SOC -- UCAI
+DEV -- UCDEV
+OPS -- UCIAM
+OPS -- UCSEC
+COMP -- UCGOV
+NBA -- UCGOV
+ENISA -- UCSEC
+DPA -- UCDP
+AIMS -- UCAI
+@enduml
 ```
+
+![Data Protection use case diagram](annexes/svg/Doc21_s5_1_level0.svg)
 
 ### 5.2 Level 0 Use Case Descriptions
 

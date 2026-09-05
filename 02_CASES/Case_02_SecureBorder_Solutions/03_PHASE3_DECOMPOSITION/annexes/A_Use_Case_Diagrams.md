@@ -20,8 +20,12 @@ reconciliation_note: v1.1 (UC SEPARATION, 2026-09-05) — PROC ovals/edges remov
 > §5C.4 flowcharts in `Doc31_Process_Capability_Cards.md`. Prose may still reference lane
 > ids where a sequencing/dependency note needs them.
 
-> **Render note:** Mermaid `useCaseDiagram` — requires Mermaid ≥ v11.6 (GitHub
-> renders; older VS Code may not; source is readable as fallback).
+> **Render note:** use-case diagrams are native **PlantUML** — each diagram is a
+> `plantuml` source block (source of truth, editable) plus a committed SVG
+> (`svg/*.svg`, rendered via the PlantUML server) embedded as a markdown image, so it
+> renders in GitHub / VS Code / `file://`. Reason: Mermaid has no `useCaseDiagram`
+> type (mermaid-js/mermaid#4628; rubric v1.9 §5C.5). Mermaid remains in use for
+> sequence diagrams.
 
 ## 0. Scope and conventions
 
@@ -48,43 +52,45 @@ See Doc21 §5.1 — system-wide diagram (Level 0: 7 packages, 13 actors). The co
 below keeps the 5 product packages (PKG-8..12) and their top actors (Doc21 §6.0), with no
 per-UC detail.
 
-```mermaid
-useCaseDiagram
-    actor "Traveler" as TRV
-    actor "Border Control Officer" as BCO
-    actor "Operations Lead" as OPS
-    actor "AI Governance Lead" as AIG
-    actor "SOC Manager" as SOC
-    actor "National Border Authority" as NBA
-
-    package "PKG-8 Traveller eGate Journey" {
-        usecase "Traveller eGate Journey\n(7 use cases)" as UC8
-    }
-    package "PKG-9 Operator Referral Desk" {
-        usecase "Operator Referral Desk\n(4 use cases)" as UC9
-    }
-    package "PKG-10 Kiosk Fleet Operations" {
-        usecase "Kiosk Fleet Operations\n(4 use cases)" as UC10
-    }
-    package "PKG-11 AI Model Lifecycle" {
-        usecase "AI Model Lifecycle\n(3 use cases)" as UC11
-    }
-    package "PKG-12 Administration & Reporting" {
-        usecase "Administration & Reporting\n(3 use cases)" as UC12
-    }
-
-    TRV --> UC8
-    BCO --> UC8
-    BCO --> UC9
-    OPS --> UC10
-    OPS --> UC11
-    OPS --> UC12
-    AIG --> UC11
-    SOC --> UC9
-    SOC --> UC10
-    SOC --> UC12
-    NBA --> UC12
+```plantuml
+@startuml
+left to right direction
+actor "Traveler" as TRV
+actor "Border Control Officer" as BCO
+actor "Operations Lead" as OPS
+actor "AI Governance Lead" as AIG
+actor "SOC Manager" as SOC
+actor "National Border Authority" as NBA
+rectangle "PKG-8 Traveller eGate Journey" {
+usecase "Traveller eGate Journey\n(7 use cases)" as UC8
+}
+rectangle "PKG-9 Operator Referral Desk" {
+usecase "Operator Referral Desk\n(4 use cases)" as UC9
+}
+rectangle "PKG-10 Kiosk Fleet Operations" {
+usecase "Kiosk Fleet Operations\n(4 use cases)" as UC10
+}
+rectangle "PKG-11 AI Model Lifecycle" {
+usecase "AI Model Lifecycle\n(3 use cases)" as UC11
+}
+rectangle "PKG-12 Administration & Reporting" {
+usecase "Administration & Reporting\n(3 use cases)" as UC12
+}
+TRV -- UC8
+BCO -- UC8
+BCO -- UC9
+OPS -- UC10
+OPS -- UC11
+OPS -- UC12
+AIG -- UC11
+SOC -- UC9
+SOC -- UC10
+SOC -- UC12
+NBA -- UC12
+@enduml
 ```
+
+![PKG-8 Traveller eGate Journey use case diagram](svg/A_s1_system_wide.svg)
 
 ---
 
@@ -97,42 +103,43 @@ events, U.C.8.2.2), DPO (notice content owner, U.C.8.4.1), National Border Autho
 referral use case (Alternative Flows of U.C.8.1.1 §5.1–5.3, U.C.8.2.1 §5.1, U.C.8.2.2
 §5.1, U.C.8.2.3 §5.1, U.C.8.3.1 §5.1).
 
-```mermaid
-useCaseDiagram
-    actor "Traveler" as TRV
-    actor "Border Control Officer" as BCO
-    actor "SOC Manager" as SOC
-    actor "DPO" as DPO
-    actor "National Border Authority" as NBA
-
-    package "PKG-8 Traveller eGate Journey" {
-        usecase "U.C.8.1.1\nScan Travel Document (MRZ + NFC)" as UC811
-        usecase "U.C.8.2.1\nCapture Facial Biometric Sample" as UC821
-        usecase "U.C.8.2.2\nLiveness Detection (PAD)" as UC822
-        usecase "U.C.8.2.3\nFace Match 1:1 vs Chip Portrait" as UC823
-        usecase "U.C.8.3.1\nGate Decision & Release" as UC831
-        usecase "U.C.8.3.2\nReferral to Operator Desk" as UC832
-        usecase "U.C.8.4.1\nPrivacy Notice & Consent Capture" as UC841
-    }
-
-    TRV --> UC811
-    TRV --> UC821
-    TRV --> UC822
-    TRV --> UC823
-    TRV --> UC831
-    TRV --> UC841
-    BCO --> UC832
-    SOC --> UC822
-    DPO --> UC841
-    NBA --> UC811
-    NBA --> UC841
-
-    UC832 ..> UC811 : extend
-    UC832 ..> UC821 : extend
-    UC832 ..> UC822 : extend
-    UC832 ..> UC823 : extend
-    UC832 ..> UC831 : extend
+```plantuml
+@startuml
+left to right direction
+actor "Traveler" as TRV
+actor "Border Control Officer" as BCO
+actor "SOC Manager" as SOC
+actor "DPO" as DPO
+actor "National Border Authority" as NBA
+rectangle "PKG-8 Traveller eGate Journey" {
+usecase "U.C.8.1.1\nScan Travel Document (MRZ + NFC)" as UC811
+usecase "U.C.8.2.1\nCapture Facial Biometric Sample" as UC821
+usecase "U.C.8.2.2\nLiveness Detection (PAD)" as UC822
+usecase "U.C.8.2.3\nFace Match 1:1 vs Chip Portrait" as UC823
+usecase "U.C.8.3.1\nGate Decision & Release" as UC831
+usecase "U.C.8.3.2\nReferral to Operator Desk" as UC832
+usecase "U.C.8.4.1\nPrivacy Notice & Consent Capture" as UC841
+}
+TRV -- UC811
+TRV -- UC821
+TRV -- UC822
+TRV -- UC823
+TRV -- UC831
+TRV -- UC841
+BCO -- UC832
+SOC -- UC822
+DPO -- UC841
+NBA -- UC811
+NBA -- UC841
+UC832 .> UC811 : <<extend>>
+UC832 .> UC821 : <<extend>>
+UC832 .> UC822 : <<extend>>
+UC832 .> UC823 : <<extend>>
+UC832 .> UC831 : <<extend>>
+@enduml
 ```
+
+![PKG-8 Traveller eGate Journey use case diagram](svg/A_s2_pkg_8_traveller_egate_journey_7_use_case.svg)
 
 Journey sequencing (preconditions, not drawn): 8.4.1/8.1.1 → 8.2.1 → 8.2.2 → 8.2.3 → 8.3.1.
 
@@ -167,31 +174,32 @@ cards: Traveler (presents at desk, U.C.9.3.1), SOC Manager (escalation/clearance
 re-authentication (U.C.9.1.1 §6.2) on override actions (U.C.9.3.1 §5.1). (The shift-handover
 lane card PROC-23 — Doc31 — is no longer drawn here: §5C.5 UC ovals only.)
 
-```mermaid
-useCaseDiagram
-    actor "Border Control Officer" as BCO
-    actor "Traveler" as TRV
-    actor "SOC Manager" as SOC
-    actor "DPO" as DPO
-
-    package "PKG-9 Operator Referral Desk" {
-        usecase "U.C.9.1.1\nOperator Console Session (SSO/FIDO2)" as UC911
-        usecase "U.C.9.2.1\nReferral Queue Handling & Triage" as UC921
-        usecase "U.C.9.3.1\nManual Verification & Override (Reason Codes)" as UC931
-        usecase "U.C.9.4.1\nIncident Flag & Gate Lock" as UC941
-    }
-
-    BCO --> UC911
-    BCO --> UC921
-    BCO --> UC931
-    BCO --> UC941
-    TRV --> UC931
-    SOC --> UC921
-    SOC --> UC941
-    DPO --> UC931
-
-    UC911 ..> UC931 : extend
+```plantuml
+@startuml
+left to right direction
+actor "Border Control Officer" as BCO
+actor "Traveler" as TRV
+actor "SOC Manager" as SOC
+actor "DPO" as DPO
+rectangle "PKG-9 Operator Referral Desk" {
+usecase "U.C.9.1.1\nOperator Console Session (SSO/FIDO2)" as UC911
+usecase "U.C.9.2.1\nReferral Queue Handling & Triage" as UC921
+usecase "U.C.9.3.1\nManual Verification & Override (Reason Codes)" as UC931
+usecase "U.C.9.4.1\nIncident Flag & Gate Lock" as UC941
+}
+BCO -- UC911
+BCO -- UC921
+BCO -- UC931
+BCO -- UC941
+TRV -- UC931
+SOC -- UC921
+SOC -- UC941
+DPO -- UC931
+UC911 .> UC931 : <<extend>>
+@enduml
 ```
+
+![PKG-9 Operator Referral Desk use case diagram](svg/A_s3_pkg_9_operator_referral_desk_4_use_cases.svg)
 
 Session chain (preconditions, not drawn): U.C.9.1.1 → U.C.9.2.1 (claimed item) → U.C.9.3.1.
 
@@ -218,30 +226,31 @@ extension: heartbeat loss → offline/failover assessment (U.C.10.2.1 §5.1). (T
 provisioning lane card PROC-24 — Doc31 — is no longer drawn here: §5C.5 UC ovals only; its
 boot-chain-failure extension into U.C.10.4.1 is recorded in Doc31 §PROC-24.)
 
-```mermaid
-useCaseDiagram
-    actor "Operations Lead" as OPS
-    actor "SOC Manager" as SOC
-    actor "Lead Developer" as DEV
-    actor "Airport Operator" as APT
-
-    package "PKG-10 Kiosk Fleet Operations" {
-        usecase "U.C.10.2.1\nFleet Health Monitoring" as UC1021
-        usecase "U.C.10.3.1\nSigned OTA Firmware Update (Cosign, Staged)" as UC1031
-        usecase "U.C.10.4.1\nTamper Alert Response" as UC1041
-        usecase "U.C.10.5.1\nOffline/Failover Mode (Store-and-Forward)" as UC1051
-    }
-
-    OPS --> UC1021
-    OPS --> UC1031
-    OPS --> UC1051
-    SOC --> UC1021
-    SOC --> UC1041
-    DEV --> UC1031
-    APT --> UC1041
-
-    UC1051 ..> UC1021 : extend
+```plantuml
+@startuml
+left to right direction
+actor "Operations Lead" as OPS
+actor "SOC Manager" as SOC
+actor "Lead Developer" as DEV
+actor "Airport Operator" as APT
+rectangle "PKG-10 Kiosk Fleet Operations" {
+usecase "U.C.10.2.1\nFleet Health Monitoring" as UC1021
+usecase "U.C.10.3.1\nSigned OTA Firmware Update (Cosign, Staged)" as UC1031
+usecase "U.C.10.4.1\nTamper Alert Response" as UC1041
+usecase "U.C.10.5.1\nOffline/Failover Mode (Store-and-Forward)" as UC1051
+}
+OPS -- UC1021
+OPS -- UC1031
+OPS -- UC1051
+SOC -- UC1021
+SOC -- UC1041
+DEV -- UC1031
+APT -- UC1041
+UC1051 .> UC1021 : <<extend>>
+@enduml
 ```
+
+![PKG-10 Kiosk Fleet Operations use case diagram](svg/A_s4_pkg_10_kiosk_fleet_operations_4_use_case.svg)
 
 #### U.C.10.2.1 — Fleet Health Monitoring
 Primary: Ops Lead. Stakeholders: SOC Manager (security-class anomalies). Extension: heartbeat loss → U.C.10.5.1 assessment (drawn); tamper indicators → U.C.10.4.1 appears in basic flow step 4, not an extension (not drawn).
@@ -268,25 +277,27 @@ drift/bias review lane card PROC-26 — Doc31 — are no longer drawn here: §5C
 only; their stakeholder sets (Dev Lead, DPO, AI Market Surveillance Authority) belong to
 those cards.)
 
-```mermaid
-useCaseDiagram
-    actor "AI Governance Lead" as AIG
-    actor "Operations Lead" as OPS
-    actor "SOC Manager" as SOC
-    actor "National Border Authority" as NBA
-
-    package "PKG-11 AI Model Lifecycle" {
-        usecase "U.C.11.2.1\nSigned Model Rollout to Fleet (Staged)" as UC1121
-        usecase "U.C.11.3.1\nModel Rollback" as UC1131
-        usecase "U.C.11.5.1\nWatchlist Cache Sync (SYS-03 sFTP, HSM-Bound)" as UC1151
-    }
-
-    AIG --> UC1121
-    AIG --> UC1131
-    OPS --> UC1151
-    SOC --> UC1131
-    NBA --> UC1151
+```plantuml
+@startuml
+left to right direction
+actor "AI Governance Lead" as AIG
+actor "Operations Lead" as OPS
+actor "SOC Manager" as SOC
+actor "National Border Authority" as NBA
+rectangle "PKG-11 AI Model Lifecycle" {
+usecase "U.C.11.2.1\nSigned Model Rollout to Fleet (Staged)" as UC1121
+usecase "U.C.11.3.1\nModel Rollback" as UC1131
+usecase "U.C.11.5.1\nWatchlist Cache Sync (SYS-03 sFTP, HSM-Bound)" as UC1151
+}
+AIG -- UC1121
+AIG -- UC1131
+OPS -- UC1151
+SOC -- UC1131
+NBA -- UC1151
+@enduml
 ```
+
+![PKG-11 AI Model Lifecycle use case diagram](svg/A_s5_pkg_11_ai_model_lifecycle_3_use_cases.svg)
 
 Lifecycle sequencing (preconditions/basic flow, not drawn): training/release packaging gate (PROC-25, Doc31) → U.C.11.2.1 (rollout eligibility) → U.C.11.3.1 (rollback arming); drift/bias review dispositions (PROC-26, Doc31) → retrain (PROC-25) or rollback (U.C.11.3.1).
 
@@ -311,34 +322,36 @@ export), CISO and Airport Operator (dashboard). (The role-administration lane ca
 PROC-27 — Doc31 — is no longer drawn here: §5C.5 UC ovals only.)
 **No Alternative Flows block in PKG-12 cross-references another U.C.** — no dotted arrows.
 
-```mermaid
-useCaseDiagram
-    actor "Operations Lead" as OPS
-    actor "Second Approver (CISO del. / Sec. Eng.)" as APPR
-    actor "National Border Authority" as NBA
-    actor "Compliance Analyst" as COMP
-    actor "DPO" as DPO
-    actor "SOC Manager" as SOC
-    actor "CISO" as CISO
-    actor "Airport Operator" as APT
-
-    package "PKG-12 Administration & Reporting" {
-        usecase "U.C.12.1.1\nKiosk Admin Configuration (Dual Control)" as UC1211
-        usecase "U.C.12.2.1\nAudit Export for Authorities (WORM STORE-04)" as UC1221
-        usecase "U.C.12.3.1\nSLA & Fleet Status Dashboard" as UC1231
-    }
-
-    OPS --> UC1211
-    OPS --> UC1231
-    APPR --> UC1211
-    NBA --> UC1221
-    COMP --> UC1221
-    DPO --> UC1221
-    SOC --> UC1211
-    SOC --> UC1221
-    CISO --> UC1231
-    APT --> UC1231
+```plantuml
+@startuml
+left to right direction
+actor "Operations Lead" as OPS
+actor "Second Approver (CISO del. / Sec. Eng.)" as APPR
+actor "National Border Authority" as NBA
+actor "Compliance Analyst" as COMP
+actor "DPO" as DPO
+actor "SOC Manager" as SOC
+actor "CISO" as CISO
+actor "Airport Operator" as APT
+rectangle "PKG-12 Administration & Reporting" {
+usecase "U.C.12.1.1\nKiosk Admin Configuration (Dual Control)" as UC1211
+usecase "U.C.12.2.1\nAudit Export for Authorities (WORM STORE-04)" as UC1221
+usecase "U.C.12.3.1\nSLA & Fleet Status Dashboard" as UC1231
+}
+OPS -- UC1211
+OPS -- UC1231
+APPR -- UC1211
+NBA -- UC1221
+COMP -- UC1221
+DPO -- UC1221
+SOC -- UC1211
+SOC -- UC1221
+CISO -- UC1231
+APT -- UC1231
+@enduml
 ```
+
+![PKG-12 Administration & Reporting use case diagram](svg/A_s6_pkg_12_administration_reporting_3_use_ca.svg)
 
 #### U.C.12.1.1 — Kiosk Admin Configuration (TPM-Bound, Dual Control)
 Primary: Ops Lead. Stakeholders: Second Approver, SOC Manager. No cross-UC references in Alternative Flows.

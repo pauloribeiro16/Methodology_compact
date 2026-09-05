@@ -2,7 +2,7 @@
 document_id: AEGIS-P3-RICH-ANNEX-A
 title: Annex A — Use Case Diagrams (Phase 3 RICH)
 phase: 3
-version: 0.6
+version: 0.7
 created: 2026-08-24
 updated: 2026-09-05
 author: Fase de Especificação 4 Executor (paulo@methodology.pt)
@@ -16,14 +16,19 @@ inputs: [../Doc20_Use_Cases_Catalog.md]
 outputs: []
 related_documents: [../Doc20_Use_Cases_Catalog.md, ../Doc32_Process_Capability_Cards.md, ../RULE_FREEZE.md, ../KG_CHAINS.md]
 expected_documents: annex-a
-reconciliation_note: "v0.5 rewrite (2026-09-05): legacy `graph`-style package/actor diagrams replaced by 12 Mermaid `useCaseDiagram` (beta) diagrams — 1 system-wide + 11 per package. Source of truth is Doc20_Use_Cases_Catalog.md (§1 actors, §2 functional U.C.7-11, §3 security/compliance U.C.1-6). Post LANE NAMING, compliance cards are PROC-01..17 / CAP-01 (legacy U.C.x.y.z ids preserved where cards kept them). Include/extend edges drawn ONLY where a card explicitly invokes/extends another UC in the same package; cross-package relationships are listed as notes. Legacy Level 0/Level 1 diagrams preserved in git history." # v0.6 (2026-09-05, UC SEPARATION): UC-ovals-only cleanup per rubric v1.8 §5C.5 — PROC-*/CAP-* ovals removed from §7-§12 (lane diagrams are the §5C.4 flowcharts in Doc32), §1 security package ovals relabelled to UC ids only, PKG-TRN (0 UCs) becomes note-only (§12), system-wide omits it. 11 useCaseDiagram blocks remain.
+reconciliation_note: "v0.5 rewrite (2026-09-05): legacy `graph`-style package/actor diagrams replaced by 12 Mermaid `useCaseDiagram` (beta) diagrams — 1 system-wide + 11 per package. Source of truth is Doc20_Use_Cases_Catalog.md (§1 actors, §2 functional U.C.7-11, §3 security/compliance U.C.1-6). Post LANE NAMING, compliance cards are PROC-01..17 / CAP-01 (legacy U.C.x.y.z ids preserved where cards kept them). Include/extend edges drawn ONLY where a card explicitly invokes/extends another UC in the same package; cross-package relationships are listed as notes. Legacy Level 0/Level 1 diagrams preserved in git history." # v0.6 (2026-09-05, UC SEPARATION): UC-ovals-only cleanup per rubric v1.8 §5C.5 — PROC-*/CAP-* ovals removed from §7-§12 (lane diagrams are the §5C.4 flowcharts in Doc32), §1 security package ovals relabelled to UC ids only, PKG-TRN (0 UCs) becomes note-only (§12), system-wide omits it. 11 useCaseDiagram blocks remain." # v0.7 (2026-09-05, MERMAID RENDER FIX): the 11 use-case diagrams converted from Mermaid `useCaseDiagram` to native PlantUML source blocks + committed SVGs in svg/ (embedded as markdown images) — Mermaid has no useCaseDiagram type (mermaid-js/mermaid#4628; rubric v1.9 §5C.5).
 ---
 
 # Annex A — Use Case Diagrams (Phase 3 RICH)
 
-> **Render note:** Mermaid `useCaseDiagram` — requires Mermaid ≥ v11.6 (GitHub renders; older VS Code may not; the source is readable as fallback).
+> **Render note:** use-case diagrams are native **PlantUML** — each diagram is a
+> `plantuml` source block (source of truth, editable) plus a committed SVG
+> (`svg/*.svg`, rendered via the PlantUML server) embedded as a markdown image, so it
+> renders in GitHub / VS Code / `file://`. Reason: Mermaid has no `useCaseDiagram`
+> type (mermaid-js/mermaid#4628; rubric v1.9 §5C.5). Mermaid remains in use for
+> sequence diagrams and lane-card flowcharts.
 >
-> **Source of truth:** `../Doc20_Use_Cases_Catalog.md` — §1 actors, §2 functional packages (PKG-7…PKG-11, U.C.7–11), §3 security & compliance packages (PKG-DP/SEC/IAM/DEV/GOV, U.C.1–6 UCs; lane cards PROC-01..17 / CAP-01 live in `../Doc32_Process_Capability_Cards.md` and are NOT drawn here — UC ovals only, rubric v1.8 §5C.5). Ovals carry the card ID + title; actors are the real actor names from Doc20 §1. Syntax mimics the known-good `useCaseDiagram` in `Case_02_SecureBorder_Solutions/03_PHASE3_DECOMPOSITION/Doc21_Use_Cases_Catalog.md` §5.1.
+> **Source of truth:** `../Doc20_Use_Cases_Catalog.md` — §1 actors, §2 functional packages (PKG-7…PKG-11, U.C.7–11), §3 security & compliance packages (PKG-DP/SEC/IAM/DEV/GOV, U.C.1–6 UCs; lane cards PROC-01..17 / CAP-01 live in `../Doc32_Process_Capability_Cards.md` and are NOT drawn here — UC ovals only, rubric v1.8 §5C.5). Ovals carry the card ID + title; actors are the real actor names from Doc20 §1. Diagrams are native PlantUML (see render note above); the former `useCaseDiagram` reference was `Case_02_SecureBorder_Solutions/03_PHASE3_DECOMPOSITION/Doc21_Use_Cases_Catalog.md` §5.1.
 >
 > **Edge convention:** solid `-->` = actor association (Primary Actor / Stakeholders). Dashed `..>` = include/extend, drawn **only** where the card text explicitly invokes or extends another use case.
 
@@ -33,59 +38,61 @@ reconciliation_note: "v0.5 rewrite (2026-09-05): legacy `graph`-style package/ac
 
 One oval per package; actors per Doc20 §1. Packages with UC-lane content only (PKG-7…11, PKG-DP/SEC/IAM/DEV/GOV). PKG-TRN Training & Awareness holds no UC cards (its three cards are PROC lane cards in Doc32) — omitted per the UC-ovals-only rule (§5C.5).
 
-```mermaid
-useCaseDiagram
-    actor "User (Free-tier)" as USER
-    actor "Workspace Admin/Owner" as ADM
-    actor "DPO / Compliance Manager" as DPO
-    actor "CTO / CISO" as CTO
-    actor "Lead Developer" as DEV
-    actor "Operations Lead" as OPS
-    actor "Risk Owner" as RO
-
-    package "PKG-7 Account & Access" {
-        usecase "U.C.7\nAccount & Access" as P7
-    }
-    package "PKG-8 Team & Task Core" {
-        usecase "U.C.8\nTeam & Task Core" as P8
-    }
-    package "PKG-9 Collaboration" {
-        usecase "U.C.9\nCollaboration" as P9
-    }
-    package "PKG-10 Platform" {
-        usecase "U.C.10\nPlatform" as P10
-    }
-    package "PKG-11 Self-Service" {
-        usecase "U.C.11\nSelf-Service" as P11
-    }
-    package "PKG-DP Data Protection" {
-        usecase "U.C.1.*\nData Protection" as PDP
-    }
-    package "PKG-SEC Security Operations" {
-        usecase "U.C.2.*\nSecurity Operations" as PSEC
-    }
-    package "PKG-IAM Identity & Access" {
-        usecase "U.C.3.*\nIdentity & Access" as PIAM
-    }
-    package "PKG-DEV Secure Development" {
-        usecase "U.C.4.*\nSecure Development" as PDEV
-    }
-    package "PKG-GOV Governance & Compliance" {
-        usecase "U.C.5.6.1\nGovernance & Compliance" as PGOV
-    }
-
-    USER --> P7
-    USER --> P8
-    USER --> P9
-    USER --> P11
-    ADM --> P10
-    DPO --> PDP
-    CTO --> PIAM
-    CTO --> PGOV
-    DEV --> PDEV
-    OPS --> PSEC
-    RO --> PGOV
+```plantuml
+@startuml
+left to right direction
+actor "User (Free-tier)" as USER
+actor "Workspace Admin/Owner" as ADM
+actor "DPO / Compliance Manager" as DPO
+actor "CTO / CISO" as CTO
+actor "Lead Developer" as DEV
+actor "Operations Lead" as OPS
+actor "Risk Owner" as RO
+rectangle "PKG-7 Account & Access" {
+usecase "U.C.7\nAccount & Access" as P7
+}
+rectangle "PKG-8 Team & Task Core" {
+usecase "U.C.8\nTeam & Task Core" as P8
+}
+rectangle "PKG-9 Collaboration" {
+usecase "U.C.9\nCollaboration" as P9
+}
+rectangle "PKG-10 Platform" {
+usecase "U.C.10\nPlatform" as P10
+}
+rectangle "PKG-11 Self-Service" {
+usecase "U.C.11\nSelf-Service" as P11
+}
+rectangle "PKG-DP Data Protection" {
+usecase "U.C.1.*\nData Protection" as PDP
+}
+rectangle "PKG-SEC Security Operations" {
+usecase "U.C.2.*\nSecurity Operations" as PSEC
+}
+rectangle "PKG-IAM Identity & Access" {
+usecase "U.C.3.*\nIdentity & Access" as PIAM
+}
+rectangle "PKG-DEV Secure Development" {
+usecase "U.C.4.*\nSecure Development" as PDEV
+}
+rectangle "PKG-GOV Governance & Compliance" {
+usecase "U.C.5.6.1\nGovernance & Compliance" as PGOV
+}
+USER -- P7
+USER -- P8
+USER -- P9
+USER -- P11
+ADM -- P10
+DPO -- PDP
+CTO -- PIAM
+CTO -- PGOV
+DEV -- PDEV
+OPS -- PSEC
+RO -- PGOV
+@enduml
 ```
+
+![PKG-7 Account & Access use case diagram](svg/A_s1_system_wide.svg)
 
 ---
 
@@ -93,27 +100,29 @@ useCaseDiagram
 
 Doc20 §2.1. Cross-package: quota/upgrade flows route to U.C.10.2.1 (PKG-10).
 
-```mermaid
-useCaseDiagram
-    actor "Free-tier User" as FU
-    actor "Member" as MEM
-    actor "Workspace Admin/Owner" as ADM
-
-    package "PKG-7 Account & Access" {
-        usecase "U.C.7.1.1\nSign Up & Account Creation" as UC711
-        usecase "U.C.7.1.2\nLogin (email/password + optional SSO)" as UC712
-        usecase "U.C.7.1.3\nPassword Reset & Recovery" as UC713
-        usecase "U.C.7.2.1\nSession Management (timeout, logout-everywhere)" as UC721
-        usecase "U.C.7.5.1\nInvite Member & Assign Role" as UC751
-    }
-
-    FU --> UC711
-    MEM --> UC712
-    MEM --> UC713
-    MEM --> UC721
-    ADM --> UC751
-    UC751 ..> UC711
+```plantuml
+@startuml
+left to right direction
+actor "Free-tier User" as FU
+actor "Member" as MEM
+actor "Workspace Admin/Owner" as ADM
+rectangle "PKG-7 Account & Access" {
+usecase "U.C.7.1.1\nSign Up & Account Creation" as UC711
+usecase "U.C.7.1.2\nLogin (email/password + optional SSO)" as UC712
+usecase "U.C.7.1.3\nPassword Reset & Recovery" as UC713
+usecase "U.C.7.2.1\nSession Management (timeout, logout-everywhere)" as UC721
+usecase "U.C.7.5.1\nInvite Member & Assign Role" as UC751
+}
+FU -- UC711
+MEM -- UC712
+MEM -- UC713
+MEM -- UC721
+ADM -- UC751
+UC751 .> UC711 : <<include>>
+@enduml
 ```
+
+![PKG-7 Account & Access use case diagram](svg/A_s2_pkg_7_account_access_u_c_7.svg)
 
 > U.C.7.1.2/7.1.3/7.2.1 Primary Actor is "Member **or** Free-tier User" (Doc20 cards §2 Actor Brief Descriptions). `UC751 ..> UC711` = invite invokes sign-up for account-less invitees (card flow step 4 / subflow 6.1).
 
@@ -123,29 +132,31 @@ useCaseDiagram
 
 Doc20 §2.2. Cross-package: assignee notification via U.C.9.2.1 (PKG-9); free-tier quota routes to U.C.10.2.1 (PKG-10).
 
-```mermaid
-useCaseDiagram
-    actor "Free-tier User" as FU
-    actor "Workspace Admin/Owner" as ADM
-    actor "Member" as MEM
-
-    package "PKG-8 Team & Task Core" {
-        usecase "U.C.8.1.1\nCreate Workspace" as UC811
-        usecase "U.C.8.1.2\nCreate Project" as UC812
-        usecase "U.C.8.2.1\nCreate Task" as UC821
-        usecase "U.C.8.2.2\nAssign Task" as UC822
-        usecase "U.C.8.2.3\nChange Task Status & Due Date" as UC823
-        usecase "U.C.8.3.1\nView Project Board (Kanban)" as UC831
-    }
-
-    ADM --> UC811
-    FU --> UC811
-    MEM --> UC812
-    MEM --> UC821
-    MEM --> UC822
-    MEM --> UC823
-    MEM --> UC831
+```plantuml
+@startuml
+left to right direction
+actor "Free-tier User" as FU
+actor "Workspace Admin/Owner" as ADM
+actor "Member" as MEM
+rectangle "PKG-8 Team & Task Core" {
+usecase "U.C.8.1.1\nCreate Workspace" as UC811
+usecase "U.C.8.1.2\nCreate Project" as UC812
+usecase "U.C.8.2.1\nCreate Task" as UC821
+usecase "U.C.8.2.2\nAssign Task" as UC822
+usecase "U.C.8.2.3\nChange Task Status & Due Date" as UC823
+usecase "U.C.8.3.1\nView Project Board (Kanban)" as UC831
+}
+ADM -- UC811
+FU -- UC811
+MEM -- UC812
+MEM -- UC821
+MEM -- UC822
+MEM -- UC823
+MEM -- UC831
+@enduml
 ```
+
+![PKG-8 Team & Task Core use case diagram](svg/A_s3_pkg_8_team_task_core_u_c_8.svg)
 
 > U.C.8.1.1 Primary Actor is "Free-tier User **or** Workspace Admin/Owner" (workspace creation on sign-up).
 
@@ -155,25 +166,27 @@ useCaseDiagram
 
 Doc20 §2.3. Cross-package: malicious-attachment handling at U.C.9.3.1 anchors MUC-08 fail-safe (U.C.2.4.1, PKG-SEC).
 
-```mermaid
-useCaseDiagram
-    actor "Member" as MEM
-
-    package "PKG-9 Collaboration" {
-        usecase "U.C.9.1.1\nComment on Task" as UC911
-        usecase "U.C.9.2.1\n@Mention & In-App Notification" as UC921
-        usecase "U.C.9.3.1\nAttach File to Task" as UC931
-        usecase "U.C.9.4.1\nSearch & Filter Tasks" as UC941
-        usecase "U.C.9.5.1\nActivity Feed (recent events)" as UC951
-    }
-
-    MEM --> UC911
-    MEM --> UC921
-    MEM --> UC931
-    MEM --> UC941
-    MEM --> UC951
-    UC911 ..> UC921
+```plantuml
+@startuml
+left to right direction
+actor "Member" as MEM
+rectangle "PKG-9 Collaboration" {
+usecase "U.C.9.1.1\nComment on Task" as UC911
+usecase "U.C.9.2.1\n@Mention & In-App Notification" as UC921
+usecase "U.C.9.3.1\nAttach File to Task" as UC931
+usecase "U.C.9.4.1\nSearch & Filter Tasks" as UC941
+usecase "U.C.9.5.1\nActivity Feed (recent events)" as UC951
+}
+MEM -- UC911
+MEM -- UC921
+MEM -- UC931
+MEM -- UC941
+MEM -- UC951
+UC911 .> UC921 : <<include>>
+@enduml
 ```
+
+![PKG-9 Collaboration use case diagram](svg/A_s4_pkg_9_collaboration_u_c_9.svg)
 
 > `UC911 ..> UC921` = comment posts notify watchers via U.C.9.2.1 (card flow step 4).
 
@@ -183,26 +196,28 @@ useCaseDiagram
 
 Doc20 §2.4. Cross-package: U.C.10.3.2 Enterprise SSO is a "U.C.7.1.2 extension" (PKG-7); U.C.10.3.1 console invites via U.C.7.5.1 (PKG-7).
 
-```mermaid
-useCaseDiagram
-    actor "Mobile Client" as MOB
-    actor "Free-tier User" as FU
-    actor "Workspace Admin/Owner" as ADM
-    actor "Enterprise Administrator" as ENT
-
-    package "PKG-10 Platform" {
-        usecase "U.C.10.1.1\nMobile Sync (offline-first)" as UC1011
-        usecase "U.C.10.2.1\nStripe Checkout (Upgrade Plan)" as UC1021
-        usecase "U.C.10.3.1\nWorkspace Admin Console" as UC1031
-        usecase "U.C.10.3.2\nEnterprise SSO" as UC1032
-    }
-
-    MOB --> UC1011
-    FU --> UC1021
-    ADM --> UC1021
-    ADM --> UC1031
-    ENT --> UC1032
+```plantuml
+@startuml
+left to right direction
+actor "Mobile Client" as MOB
+actor "Free-tier User" as FU
+actor "Workspace Admin/Owner" as ADM
+actor "Enterprise Administrator" as ENT
+rectangle "PKG-10 Platform" {
+usecase "U.C.10.1.1\nMobile Sync (offline-first)" as UC1011
+usecase "U.C.10.2.1\nStripe Checkout (Upgrade Plan)" as UC1021
+usecase "U.C.10.3.1\nWorkspace Admin Console" as UC1031
+usecase "U.C.10.3.2\nEnterprise SSO" as UC1032
+}
+MOB -- UC1011
+FU -- UC1021
+ADM -- UC1021
+ADM -- UC1031
+ENT -- UC1032
+@enduml
 ```
+
+![PKG-10 Platform use case diagram](svg/A_s5_pkg_10_platform_u_c_10.svg)
 
 > U.C.10.2.1 Primary Actor is "Free-tier User **or** Workspace Admin/Owner". A-EXT-01 (Stripe Checkout) is the external system actor inside U.C.10.2.1's flow.
 
@@ -212,23 +227,25 @@ useCaseDiagram
 
 Doc20 §2.5. Cross-package: U.C.11.3.1 erasure cascades to U.C.1.2.1 (PKG-DP); exports constrained by U.C.1.3.1 / U.C.3.5.1.
 
-```mermaid
-useCaseDiagram
-    actor "Member" as MEM
-    actor "Free-tier User" as FU
-    actor "Workspace Owner" as OWN
-
-    package "PKG-11 Self-Service" {
-        usecase "U.C.11.1.1\nView My Account (data held)" as UC1111
-        usecase "U.C.11.2.1\nExport My Data (GDPR portability)" as UC1121
-        usecase "U.C.11.3.1\nDelete My Account / Workspace" as UC1131
-    }
-
-    MEM --> UC1111
-    MEM --> UC1121
-    FU --> UC1131
-    OWN --> UC1131
+```plantuml
+@startuml
+left to right direction
+actor "Member" as MEM
+actor "Free-tier User" as FU
+actor "Workspace Owner" as OWN
+rectangle "PKG-11 Self-Service" {
+usecase "U.C.11.1.1\nView My Account (data held)" as UC1111
+usecase "U.C.11.2.1\nExport My Data (GDPR portability)" as UC1121
+usecase "U.C.11.3.1\nDelete My Account / Workspace" as UC1131
+}
+MEM -- UC1111
+MEM -- UC1121
+FU -- UC1131
+OWN -- UC1131
+@enduml
 ```
+
+![PKG-11 Self-Service use case diagram](svg/A_s6_pkg_11_self_service_u_c_11.svg)
 
 > U.C.11.3.1 Primary Actor is "Free-tier User **or** Workspace Owner (for workspace deletion)".
 
@@ -238,25 +255,27 @@ useCaseDiagram
 
 Doc20 §3.1 (4 UC cards; the package's PROC-01..02 lane cards live in Doc32 and are not drawn — §5C.5). No explicit include/extend declared in card bodies.
 
-```mermaid
-useCaseDiagram
-    actor "DPO / Compliance Manager" as DPO
-    actor "Member" as MEM
-    actor "Free-tier User" as FU
-
-    package "PKG-DP Data Protection" {
-        usecase "U.C.1.2.1\nData Subject Erasure" as UC121
-        usecase "U.C.1.3.1\nData Subject Data Export (portability)" as UC131
-        usecase "U.C.1.4.1\nConsent Management" as UC141
-        usecase "U.C.1.5.1\nStructured Data Portability" as UC151
-    }
-
-    DPO --> UC121
-    DPO --> UC131
-    DPO --> UC151
-    MEM --> UC141
-    FU --> UC141
+```plantuml
+@startuml
+left to right direction
+actor "DPO / Compliance Manager" as DPO
+actor "Member" as MEM
+actor "Free-tier User" as FU
+rectangle "PKG-DP Data Protection" {
+usecase "U.C.1.2.1\nData Subject Erasure" as UC121
+usecase "U.C.1.3.1\nData Subject Data Export (portability)" as UC131
+usecase "U.C.1.4.1\nConsent Management" as UC141
+usecase "U.C.1.5.1\nStructured Data Portability" as UC151
+}
+DPO -- UC121
+DPO -- UC131
+DPO -- UC151
+MEM -- UC141
+FU -- UC141
+@enduml
 ```
+
+![PKG-DP Data Protection use case diagram](svg/A_s7_pkg_dp_data_protection_u_c_1.svg)
 
 ---
 
@@ -264,23 +283,25 @@ useCaseDiagram
 
 Doc20 §3.2 (4 UC cards; PROC-03..05 lane cards in Doc32, not drawn — §5C.5). No explicit include/extend declared in card bodies.
 
-```mermaid
-useCaseDiagram
-    actor "Lead Developer" as DEV
-    actor "Operations Lead" as OPS
-
-    package "PKG-SEC Security Operations" {
-        usecase "U.C.2.2.1\nAutomated Patch Deployment" as UC221
-        usecase "U.C.2.4.1\nExploit Severity Limitation" as UC241
-        usecase "U.C.2.4.2\nDoS Resilience" as UC242
-        usecase "U.C.2.6.1\nData Restoration & Recovery" as UC261
-    }
-
-    DEV --> UC221
-    OPS --> UC241
-    OPS --> UC242
-    OPS --> UC261
+```plantuml
+@startuml
+left to right direction
+actor "Lead Developer" as DEV
+actor "Operations Lead" as OPS
+rectangle "PKG-SEC Security Operations" {
+usecase "U.C.2.2.1\nAutomated Patch Deployment" as UC221
+usecase "U.C.2.4.1\nExploit Severity Limitation" as UC241
+usecase "U.C.2.4.2\nDoS Resilience" as UC242
+usecase "U.C.2.6.1\nData Restoration & Recovery" as UC261
+}
+DEV -- UC221
+OPS -- UC241
+OPS -- UC242
+OPS -- UC261
+@enduml
 ```
+
+![PKG-SEC Security Operations use case diagram](svg/A_s8_pkg_sec_security_operations_u_c_2.svg)
 
 ---
 
@@ -288,27 +309,29 @@ useCaseDiagram
 
 Doc20 §3.3 (5 UC cards; PROC-06..07 lane cards in Doc32, not drawn — §5C.5). No explicit include/extend declared in card bodies.
 
-```mermaid
-useCaseDiagram
-    actor "CTO / CISO" as CTO
-    actor "Operations Lead" as OPS
-    actor "Member" as MEM
-
-    package "PKG-IAM Identity & Access" {
-        usecase "U.C.3.1.1\nUser Authentication" as UC311
-        usecase "U.C.3.1.2\nMFA for Privileged Accounts" as UC312
-        usecase "U.C.3.2.1\nAuthorisation / Least Privilege" as UC321
-        usecase "U.C.3.3.1\nSecure System Defaults" as UC331
-        usecase "U.C.3.5.1\nAudit Logging" as UC351
-    }
-
-    MEM --> UC311
-    CTO --> UC311
-    CTO --> UC312
-    CTO --> UC321
-    CTO --> UC351
-    OPS --> UC331
+```plantuml
+@startuml
+left to right direction
+actor "CTO / CISO" as CTO
+actor "Operations Lead" as OPS
+actor "Member" as MEM
+rectangle "PKG-IAM Identity & Access" {
+usecase "U.C.3.1.1\nUser Authentication" as UC311
+usecase "U.C.3.1.2\nMFA for Privileged Accounts" as UC312
+usecase "U.C.3.2.1\nAuthorisation / Least Privilege" as UC321
+usecase "U.C.3.3.1\nSecure System Defaults" as UC331
+usecase "U.C.3.5.1\nAudit Logging" as UC351
+}
+MEM -- UC311
+CTO -- UC311
+CTO -- UC312
+CTO -- UC321
+CTO -- UC351
+OPS -- UC331
+@enduml
 ```
+
+![PKG-IAM Identity & Access use case diagram](svg/A_s9_pkg_iam_identity_access_u_c_3.svg)
 
 ---
 
@@ -316,21 +339,23 @@ useCaseDiagram
 
 Doc20 §3.4 (3 UC cards; PROC-08..09 lane cards in Doc32, not drawn — §5C.5). No explicit include/extend declared in card bodies.
 
-```mermaid
-useCaseDiagram
-    actor "Lead Developer" as DEV
-    actor "CTO / CISO" as CTO
-
-    package "PKG-DEV Secure Development" {
-        usecase "U.C.4.2.1\nSAST/DAST in CI/CD" as UC421
-        usecase "U.C.4.3.1\nSecurity Patch Deployment" as UC431
-        usecase "U.C.4.4.1\nFail-Safe Design" as UC441
-    }
-
-    DEV --> UC421
-    DEV --> UC431
-    CTO --> UC441
+```plantuml
+@startuml
+left to right direction
+actor "Lead Developer" as DEV
+actor "CTO / CISO" as CTO
+rectangle "PKG-DEV Secure Development" {
+usecase "U.C.4.2.1\nSAST/DAST in CI/CD" as UC421
+usecase "U.C.4.3.1\nSecurity Patch Deployment" as UC431
+usecase "U.C.4.4.1\nFail-Safe Design" as UC441
+}
+DEV -- UC421
+DEV -- UC431
+CTO -- UC441
+@enduml
 ```
+
+![PKG-DEV Secure Development use case diagram](svg/A_s10_pkg_dev_secure_development_u_c_4.svg)
 
 ---
 
@@ -338,16 +363,18 @@ useCaseDiagram
 
 Doc20 §3.5 (1 UC card; PROC-10..14 / CAP-01 lane cards in Doc32, not drawn — §5C.5). Substance note: the package's governance/compliance lane (policies, DPIA, RoPA, processor due diligence, DPAs) has no UC ovals here — see Doc32 flowcharts/graph. No explicit include/extend declared in card bodies.
 
-```mermaid
-useCaseDiagram
-    actor "Lead Developer" as DEV
-
-    package "PKG-GOV Governance & Compliance" {
-        usecase "U.C.5.6.1\nSBOM Publication" as UC561
-    }
-
-    DEV --> UC561
+```plantuml
+@startuml
+left to right direction
+actor "Lead Developer" as DEV
+rectangle "PKG-GOV Governance & Compliance" {
+usecase "U.C.5.6.1\nSBOM Publication" as UC561
+}
+DEV -- UC561
+@enduml
 ```
+
+![PKG-GOV Governance & Compliance use case diagram](svg/A_s11_pkg_gov_governance_compliance_u_c_5_6_1.svg)
 
 ---
 

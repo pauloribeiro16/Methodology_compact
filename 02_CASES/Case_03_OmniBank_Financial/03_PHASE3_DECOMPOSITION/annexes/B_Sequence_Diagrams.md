@@ -29,12 +29,12 @@ sequenceDiagram
     participant PLAT as OmniBank platform (sharding erasure)
     participant ITO as IT Operations (backups)
     participant TP as Third parties (processors / AI providers)
-    DS->>DPO: Erasure request (GDPR Art. 17(1)); identity verified
+    DS->>DPO: Erasure request (GDPR Art. 17(1)), identity verified
     DPO->>PLAT: Determine scope: PII, AI training data, inference records (CR-D-05.3-001)
     DPO->>DPO: Legal-hold / retention conflict screen (PROC-21 schedule)
     PLAT->>PLAT: Per-subject key destruction — ciphertext unrecoverable (BPR-D-05.3-001)
     PLAT->>ITO: Propagate erasure to copies / backups (GDPR Art. 17(2))
-    PLAT->>TP: Notification ≤ 72h (GDPR Art. 17(2)); verification ≤ 60d (PROC-23)
+    PLAT->>TP: Notification ≤ 72h (GDPR Art. 17(2)), verification ≤ 60d (PROC-23)
     PLAT-->>DPO: Completion record on sanitization audit trail
     DPO-->>DS: Erasure confirmation (≤ 30 days)
 ```
@@ -46,9 +46,9 @@ sequenceDiagram
     participant DS as Data Subject
     participant DPO as DPO (scope approval)
     participant PLAT as OmniBank platform (export assembly)
-    DS->>DPO: Export request (GDPR Art. 15(3) / Art. 20); identity verified
+    DS->>DPO: Export request (GDPR Art. 15(3) / Art. 20), identity verified
     DPO->>PLAT: Scope: personal data, AI decisions, training-data lineage, scoring factors (CR-D-05.4-001)
-    PLAT->>PLAT: Assemble standardized JSON/CSV; exclude third-party personal data
+    PLAT->>PLAT: Assemble standardized JSON/CSV, exclude third-party personal data
     PLAT-->>DS: Machine-readable export ≤ 30 days (GDPR Art. 20)
     PLAT->>PLAT: Request/dispatch logged against data-subject record
 ```
@@ -62,7 +62,7 @@ sequenceDiagram
     participant APP as SYS-02 (App, SCA)
     participant LO as SYS-14 (Loan Origination)
     participant F as SYS-11 (Fraud/AML)
-    C->>APP: Select product/amount/term; SECCI; consent + declarations
+    C->>APP: Select product/amount/term, SECCI, consent + declarations
     APP->>LO: Submit application record
     LO->>F: Fraud screening
     LO->>LO: Invoke OmniScore decisioning (UC-64)
@@ -77,8 +77,8 @@ sequenceDiagram
     participant AI as SYS-03 (OmniScore)
     participant UW as Underwriter (UC-66)
     LO->>AI: Decisioning request (application features)
-    AI->>AI: Run approved model version; score + confidence band
-    AI->>AI: Generate reason codes; write decision-context record
+    AI->>AI: Run approved model version, score + confidence band
+    AI->>AI: Generate reason codes, write decision-context record
     AI-->>LO: Score + reasons + model version id
     LO->>UW: Borderline band -> queue human review
 ```
@@ -94,7 +94,7 @@ sequenceDiagram
     C->>APP: Open decision screen
     APP->>AI: Request outcome view / explanation package
     AI-->>APP: Principal reason codes / package (CR-D-05.4-001 format)
-    APP-->>C: Plain-language outcome; dispatch logged
+    APP-->>C: Plain-language outcome, dispatch logged
 ```
 
 ## §6 — Use-Case — {UC-66} Underwriter Reviews Borderline Application
@@ -106,7 +106,7 @@ sequenceDiagram
     participant LO as SYS-14 (Work item)
     participant GOV as Head of AI Governance
     LO->>UW: Work item (application, score, reasons, model version)
-    UW->>UW: Independent review; overrides only with justification
+    UW->>UW: Independent review, overrides only with justification
     UW->>LO: Decision (approve/decline) + reason code
     LO-->>GOV: Override-vs-score delta for metrics
 ```
@@ -120,7 +120,7 @@ sequenceDiagram
     participant LO as SYS-14 (Origination)
     participant KV as SYS-16 (KYC vault)
     participant AML as SYS-11 (AML)
-    C->>LO: Accept offer; sign (PSD2 SCA, hardware-backed)
+    C->>LO: Accept offer, sign (PSD2 SCA, hardware-backed)
     LO->>KV: File contract (10-year retention)
     LO->>AML: New credit exposure tagged
     LO-->>C: Disbursement initiated
@@ -149,11 +149,11 @@ sequenceDiagram
     participant APP as SYS-02 (App, SCA)
     participant CRM as SYS-17 (Customer 360)
     participant F as SYS-11 (KYC/AML)
-    C->>APP: Start onboarding; data + product selection
+    C->>APP: Start onboarding, data + product selection
     APP->>CRM: Create onboarding/customer record
     APP->>F: Identity + document + screening steps (UC-70..72)
     F-->>CRM: Screening result anchored to record
-    CRM-->>C: Account activated; SCA credentials issued
+    CRM-->>C: Account activated, SCA credentials issued
 ```
 
 ## §10 — Use-Case — {UC-70} eIDAS Identity Verification
@@ -227,7 +227,7 @@ sequenceDiagram
     participant DMS as SYS-16 (Vault)
     participant CO as Head of Compliance Ops
     APP->>C: Self-certification form
-    C->>APP: Declare residency + TINs; sign
+    C->>APP: Declare residency + TINs, sign
     APP->>DMS: File certification with KYC record
     CO->>DMS: Re-certification tasks on change events
 ```
@@ -243,7 +243,7 @@ sequenceDiagram
     participant F as SYS-11 (Behavioural signals)
     C->>APP: Credentials + SCA factor
     APP->>ID: Session validation
-    ID-->>APP: Valid; risk-based step-up decision
+    ID-->>APP: Valid, risk-based step-up decision
     APP->>F: Behavioural signal check
     APP-->>C: SCA session established (device-bound)
 ```
@@ -320,7 +320,7 @@ sequenceDiagram
     C->>APP: Statement/export request
     APP->>CDW: Generate (FLOW-13 history / live core)
     CDW-->>APP: Document + CR-D-05.4-001 export format
-    APP->>DMS: Periodic statement archived; download logged
+    APP->>DMS: Periodic statement archived, download logged
 ```
 
 ## §21 — Use-Case — {UC-81} PSD2 Consent Grant/Revoke
@@ -335,7 +335,7 @@ sequenceDiagram
     TPP->>GW: Consent request (scope, duration)
     GW->>APP: SCA ceremony + consent screen
     C->>APP: Grant (possibly narrowed scope)
-    APP->>GW: Consent recorded; token to TPP
+    APP->>GW: Consent recorded, token to TPP
     C->>GW: Revoke anytime → access cut
 ```
 
