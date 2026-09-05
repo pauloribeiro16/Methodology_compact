@@ -2,7 +2,7 @@
 document_id: AEGIS-P3-RICH-ANNEX-A
 title: Annex A — Use Case Diagrams (Phase 3 RICH)
 phase: 3
-version: 0.5
+version: 0.6
 created: 2026-08-24
 updated: 2026-09-05
 author: Fase de Especificação 4 Executor (paulo@methodology.pt)
@@ -14,16 +14,16 @@ branch: feature/aegis-p3-case01-rich
 sibling_doc: ../03_PHASE3_DECOMPOSITION/annexes/A_Use_Case_Diagrams.md
 inputs: [../Doc20_Use_Cases_Catalog.md]
 outputs: []
-related_documents: [../Doc20_Use_Cases_Catalog.md, ../RULE_FREEZE.md, ../KG_CHAINS.md]
+related_documents: [../Doc20_Use_Cases_Catalog.md, ../Doc32_Process_Capability_Cards.md, ../RULE_FREEZE.md, ../KG_CHAINS.md]
 expected_documents: annex-a
-reconciliation_note: "v0.5 rewrite (2026-09-05): legacy `graph`-style package/actor diagrams replaced by 12 Mermaid `useCaseDiagram` (beta) diagrams — 1 system-wide + 11 per package. Source of truth is Doc20_Use_Cases_Catalog.md (§1 actors, §2 functional U.C.7-11, §3 security/compliance U.C.1-6). Post LANE NAMING, compliance cards are PROC-01..17 / CAP-01 (legacy U.C.x.y.z ids preserved where cards kept them). Include/extend edges drawn ONLY where a card explicitly invokes/extends another UC in the same package; cross-package relationships are listed as notes. Legacy Level 0/Level 1 diagrams preserved in git history."
+reconciliation_note: "v0.5 rewrite (2026-09-05): legacy `graph`-style package/actor diagrams replaced by 12 Mermaid `useCaseDiagram` (beta) diagrams — 1 system-wide + 11 per package. Source of truth is Doc20_Use_Cases_Catalog.md (§1 actors, §2 functional U.C.7-11, §3 security/compliance U.C.1-6). Post LANE NAMING, compliance cards are PROC-01..17 / CAP-01 (legacy U.C.x.y.z ids preserved where cards kept them). Include/extend edges drawn ONLY where a card explicitly invokes/extends another UC in the same package; cross-package relationships are listed as notes. Legacy Level 0/Level 1 diagrams preserved in git history." # v0.6 (2026-09-05, UC SEPARATION): UC-ovals-only cleanup per rubric v1.8 §5C.5 — PROC-*/CAP-* ovals removed from §7-§12 (lane diagrams are the §5C.4 flowcharts in Doc32), §1 security package ovals relabelled to UC ids only, PKG-TRN (0 UCs) becomes note-only (§12), system-wide omits it. 11 useCaseDiagram blocks remain.
 ---
 
 # Annex A — Use Case Diagrams (Phase 3 RICH)
 
 > **Render note:** Mermaid `useCaseDiagram` — requires Mermaid ≥ v11.6 (GitHub renders; older VS Code may not; the source is readable as fallback).
 >
-> **Source of truth:** `../Doc20_Use_Cases_Catalog.md` — §1 actors, §2 functional packages (PKG-7…PKG-11, U.C.7–11), §3 security & compliance packages (PKG-DP/SEC/IAM/DEV/GOV/TRN, PROC-01..17 / CAP-01 / legacy U.C.x.y.z). Ovals carry the card ID + title; actors are the real actor names from Doc20 §1. Syntax mimics the known-good `useCaseDiagram` in `Case_02_SecureBorder_Solutions/03_PHASE3_DECOMPOSITION/Doc21_Use_Cases_Catalog.md` §5.1.
+> **Source of truth:** `../Doc20_Use_Cases_Catalog.md` — §1 actors, §2 functional packages (PKG-7…PKG-11, U.C.7–11), §3 security & compliance packages (PKG-DP/SEC/IAM/DEV/GOV, U.C.1–6 UCs; lane cards PROC-01..17 / CAP-01 live in `../Doc32_Process_Capability_Cards.md` and are NOT drawn here — UC ovals only, rubric v1.8 §5C.5). Ovals carry the card ID + title; actors are the real actor names from Doc20 §1. Syntax mimics the known-good `useCaseDiagram` in `Case_02_SecureBorder_Solutions/03_PHASE3_DECOMPOSITION/Doc21_Use_Cases_Catalog.md` §5.1.
 >
 > **Edge convention:** solid `-->` = actor association (Primary Actor / Stakeholders). Dashed `..>` = include/extend, drawn **only** where the card text explicitly invokes or extends another use case.
 
@@ -31,7 +31,7 @@ reconciliation_note: "v0.5 rewrite (2026-09-05): legacy `graph`-style package/ac
 
 ## §1 — System-wide
 
-One oval per package (11 packages), actors per Doc20 §1.
+One oval per package; actors per Doc20 §1. Packages with UC-lane content only (PKG-7…11, PKG-DP/SEC/IAM/DEV/GOV). PKG-TRN Training & Awareness holds no UC cards (its three cards are PROC lane cards in Doc32) — omitted per the UC-ovals-only rule (§5C.5).
 
 ```mermaid
 useCaseDiagram
@@ -59,22 +59,19 @@ useCaseDiagram
         usecase "U.C.11\nSelf-Service" as P11
     }
     package "PKG-DP Data Protection" {
-        usecase "PROC-01..02, U.C.1.*\nData Protection" as PDP
+        usecase "U.C.1.*\nData Protection" as PDP
     }
     package "PKG-SEC Security Operations" {
-        usecase "PROC-03..05, U.C.2.*\nSecurity Operations" as PSEC
+        usecase "U.C.2.*\nSecurity Operations" as PSEC
     }
     package "PKG-IAM Identity & Access" {
-        usecase "U.C.3.*, PROC-06..07\nIdentity & Access" as PIAM
+        usecase "U.C.3.*\nIdentity & Access" as PIAM
     }
     package "PKG-DEV Secure Development" {
-        usecase "PROC-08..09, U.C.4.*\nSecure Development" as PDEV
+        usecase "U.C.4.*\nSecure Development" as PDEV
     }
     package "PKG-GOV Governance & Compliance" {
-        usecase "PROC-10..14, CAP-01, U.C.5.6.1\nGovernance & Compliance" as PGOV
-    }
-    package "PKG-TRN Training & Awareness" {
-        usecase "PROC-15..17\nTraining & Awareness" as PTRN
+        usecase "U.C.5.6.1\nGovernance & Compliance" as PGOV
     }
 
     USER --> P7
@@ -83,7 +80,6 @@ useCaseDiagram
     USER --> P11
     ADM --> P10
     DPO --> PDP
-    DPO --> PTRN
     CTO --> PIAM
     CTO --> PGOV
     DEV --> PDEV
@@ -238,9 +234,9 @@ useCaseDiagram
 
 ---
 
-## §7 — PKG-DP Data Protection (PROC-01..02, U.C.1.*)
+## §7 — PKG-DP Data Protection (U.C.1.*)
 
-Doc20 §3.1 (6 cards). No explicit include/extend declared in card bodies.
+Doc20 §3.1 (4 UC cards; the package's PROC-01..02 lane cards live in Doc32 and are not drawn — §5C.5). No explicit include/extend declared in card bodies.
 
 ```mermaid
 useCaseDiagram
@@ -249,16 +245,12 @@ useCaseDiagram
     actor "Free-tier User" as FU
 
     package "PKG-DP Data Protection" {
-        usecase "PROC-01\nData Subject Access Request (DSAR)" as PROC01
-        usecase "PROC-02\nData Subject Rectification" as PROC02
         usecase "U.C.1.2.1\nData Subject Erasure" as UC121
         usecase "U.C.1.3.1\nData Subject Data Export (portability)" as UC131
         usecase "U.C.1.4.1\nConsent Management" as UC141
         usecase "U.C.1.5.1\nStructured Data Portability" as UC151
     }
 
-    DPO --> PROC01
-    DPO --> PROC02
     DPO --> UC121
     DPO --> UC131
     DPO --> UC151
@@ -268,47 +260,38 @@ useCaseDiagram
 
 ---
 
-## §8 — PKG-SEC Security Operations (PROC-03..05, U.C.2.*)
+## §8 — PKG-SEC Security Operations (U.C.2.*)
 
-Doc20 §3.2 (7 cards). No explicit include/extend declared in card bodies.
+Doc20 §3.2 (4 UC cards; PROC-03..05 lane cards in Doc32, not drawn — §5C.5). No explicit include/extend declared in card bodies.
 
 ```mermaid
 useCaseDiagram
     actor "Lead Developer" as DEV
     actor "Operations Lead" as OPS
-    actor "DPO / Compliance Manager" as DPO
 
     package "PKG-SEC Security Operations" {
-        usecase "PROC-03\nVulnerability-Free Release" as PROC03
         usecase "U.C.2.2.1\nAutomated Patch Deployment" as UC221
-        usecase "PROC-04\nCoordinated Vulnerability Disclosure" as PROC04
         usecase "U.C.2.4.1\nExploit Severity Limitation" as UC241
         usecase "U.C.2.4.2\nDoS Resilience" as UC242
-        usecase "PROC-05\nIncident Notification (24h ENISA, 72h GDPR)" as PROC05
         usecase "U.C.2.6.1\nData Restoration & Recovery" as UC261
     }
 
-    DEV --> PROC03
     DEV --> UC221
-    DEV --> PROC04
     OPS --> UC241
     OPS --> UC242
-    OPS --> PROC05
     OPS --> UC261
-    DPO --> PROC05
 ```
 
 ---
 
-## §9 — PKG-IAM Identity & Access (U.C.3.*, PROC-06..07)
+## §9 — PKG-IAM Identity & Access (U.C.3.*)
 
-Doc20 §3.3 (7 cards). No explicit include/extend declared in card bodies.
+Doc20 §3.3 (5 UC cards; PROC-06..07 lane cards in Doc32, not drawn — §5C.5). No explicit include/extend declared in card bodies.
 
 ```mermaid
 useCaseDiagram
     actor "CTO / CISO" as CTO
     actor "Operations Lead" as OPS
-    actor "DPO / Compliance Manager" as DPO
     actor "Member" as MEM
 
     package "PKG-IAM Identity & Access" {
@@ -316,9 +299,7 @@ useCaseDiagram
         usecase "U.C.3.1.2\nMFA for Privileged Accounts" as UC312
         usecase "U.C.3.2.1\nAuthorisation / Least Privilege" as UC321
         usecase "U.C.3.3.1\nSecure System Defaults" as UC331
-        usecase "PROC-06\nProcessing & Breach Records" as PROC06
         usecase "U.C.3.5.1\nAudit Logging" as UC351
-        usecase "PROC-07\nControl Effectiveness Testing" as PROC07
     }
 
     MEM --> UC311
@@ -327,93 +308,52 @@ useCaseDiagram
     CTO --> UC321
     CTO --> UC351
     OPS --> UC331
-    OPS --> PROC07
-    DPO --> PROC06
 ```
 
 ---
 
-## §10 — PKG-DEV Secure Development (PROC-08..09, U.C.4.*)
+## §10 — PKG-DEV Secure Development (U.C.4.*)
 
-Doc20 §3.4 (5 cards). No explicit include/extend declared in card bodies.
+Doc20 §3.4 (3 UC cards; PROC-08..09 lane cards in Doc32, not drawn — §5C.5). No explicit include/extend declared in card bodies.
 
 ```mermaid
 useCaseDiagram
     actor "Lead Developer" as DEV
     actor "CTO / CISO" as CTO
-    actor "Risk Owner" as RO
 
     package "PKG-DEV Secure Development" {
-        usecase "PROC-08\nSecurity by Design (SSDLC)" as PROC08
         usecase "U.C.4.2.1\nSAST/DAST in CI/CD" as UC421
         usecase "U.C.4.3.1\nSecurity Patch Deployment" as UC431
         usecase "U.C.4.4.1\nFail-Safe Design" as UC441
-        usecase "PROC-09\nPre-Launch Risk Assessment" as PROC09
     }
 
-    DEV --> PROC08
     DEV --> UC421
     DEV --> UC431
     CTO --> UC441
-    RO --> PROC09
 ```
 
 ---
 
-## §11 — PKG-GOV Governance & Compliance (PROC-10..14, CAP-01, U.C.5.6.1)
+## §11 — PKG-GOV Governance & Compliance (U.C.5.6.1)
 
-Doc20 §3.5 (7 cards). No explicit include/extend declared in card bodies.
+Doc20 §3.5 (1 UC card; PROC-10..14 / CAP-01 lane cards in Doc32, not drawn — §5C.5). Substance note: the package's governance/compliance lane (policies, DPIA, RoPA, processor due diligence, DPAs) has no UC ovals here — see Doc32 flowcharts/graph. No explicit include/extend declared in card bodies.
 
 ```mermaid
 useCaseDiagram
-    actor "DPO / Compliance Manager" as DPO
-    actor "CTO / CISO" as CTO
-    actor "Risk Owner" as RO
     actor "Lead Developer" as DEV
 
     package "PKG-GOV Governance & Compliance" {
-        usecase "PROC-10\nAnnual Policy Review" as PROC10
-        usecase "PROC-11\nTechnical Documentation Maintenance" as PROC11
-        usecase "PROC-12\nDPIA Pre-Launch" as PROC12
-        usecase "PROC-13\nRoPA Maintenance" as PROC13
-        usecase "PROC-14\nProcessor Due Diligence" as PROC14
-        usecase "CAP-01\nDPAs Binding Processors" as CAP01
         usecase "U.C.5.6.1\nSBOM Publication" as UC561
     }
 
-    DPO --> PROC10
-    DPO --> PROC12
-    DPO --> PROC13
-    DPO --> PROC14
-    DPO --> CAP01
-    CTO --> PROC11
-    CTO --> PROC14
-    RO --> PROC12
     DEV --> UC561
 ```
 
 ---
 
-## §12 — PKG-TRN Training & Awareness (PROC-15..17)
+## §12 — PKG-TRN Training & Awareness (no UC cards)
 
-Doc20 §3.6 (3 cards). No explicit include/extend declared in card bodies.
-
-```mermaid
-useCaseDiagram
-    actor "DPO / Compliance Manager" as DPO
-    actor "CTO / CISO" as CTO
-
-    package "PKG-TRN Training & Awareness" {
-        usecase "PROC-15\nAnnual Awareness Training" as PROC15
-        usecase "PROC-16\nRole-Specific Training" as PROC16
-        usecase "PROC-17\nPhishing Simulation" as PROC17
-    }
-
-    DPO --> PROC15
-    DPO --> PROC16
-    DPO --> PROC17
-    CTO --> PROC16
-```
+PKG-TRN holds no UC-lane cards: its three cards (Annual Awareness Training, Role-Specific Training, Phishing Simulation) are PROCESS lane cards **PROC-15..17**, living in `../Doc32_Process_Capability_Cards.md` with their §5C.4 flowcharts. A use-case diagram would carry UC ovals only (rubric v1.8 §5C.5) — with zero UCs there is nothing to draw, so the former diagram is removed and this note stands in its place (the Doc20 §3.6 section was likewise folded into the §3.0 Compliance Domain Index).
 
 ---
 
@@ -421,11 +361,11 @@ useCaseDiagram
 
 - `../Doc20_Use_Cases_Catalog.md` §1 — actor catalogue (A-FREE-01, A-MEMBER-01, A-WSADM-01, A-ENTADM-01, A-MOB-01, A-CEO-01, A-CTO-01, A-DEV-01, A-OPS-01, A-DPO-01, A-RO-01)
 - `../Doc20_Use_Cases_Catalog.md` §2 — functional packages PKG-7..11 (23 U.C.7–11 cards, Cockburn fully-dressed)
-- `../Doc20_Use_Cases_Catalog.md` §3 — security & compliance packages PKG-DP/SEC/IAM/DEV/GOV/TRN (35 cards: PROC-01..17, CAP-01, legacy U.C.x.y.z)
+- `../Doc20_Use_Cases_Catalog.md` §3 — security & compliance UC packages PKG-DP/SEC/IAM/DEV/GOV (17 U.C.1–6 cards) + §3.0 Compliance Domain Index → the 18 PROC/CAP lane cards in `../Doc32_Process_Capability_Cards.md`
 - `../RULE_FREEZE.md` §5 — UC enumeration; `../KG_CHAINS.md` §1 — CH-09 (FR-29 → UC-25 → CR-D-04.3)
 - Legacy Level 0/Level 1 `graph` diagrams (v0.4 of this annex) — preserved in git history
 - Known-good syntax reference: `Case_02_SecureBorder_Solutions/03_PHASE3_DECOMPOSITION/Doc21_Use_Cases_Catalog.md` §5.1
 
 ---
 
-**End of Annex A — Use Case Diagrams (Phase 3 RICH, v0.5, LANE NAMING-aligned)**
+**End of Annex A — Use Case Diagrams (Phase 3 RICH, v0.6, UC-ovals-only per rubric v1.8 §5C.5)**

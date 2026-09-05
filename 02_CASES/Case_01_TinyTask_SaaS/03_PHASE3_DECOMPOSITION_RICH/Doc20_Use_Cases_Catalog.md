@@ -2,7 +2,7 @@
 document_id: AEGIS-P3-RICH-13
 title: Use Cases Catalog — TinyTask Team Organizer (Phase 3 RICH)
 phase: 3
-version: 3.1
+version: 3.2
 created: 2026-08-24
 updated: 2026-09-05
 author: Executor (paulo@methodology.pt)
@@ -14,8 +14,8 @@ sibling_of: ../02_PHASE2_RULES_RICH/
 branch: feature/aegis-p3-case01-rich
 sibling_doc: ../03_PHASE3_DECOMPOSITION/
 inputs: [11_Rules_Catalog.md, ../02_PHASE2_RULES_RICH/11_Rules_Catalog.md, ../02_PHASE2_RULES_RICH/10_Privacy_Security_Objectives.md, RULE_FREEZE.md, NIST_ANCHORS.md, ../00_COMMON/01_Company_Context.md, ../01_PHASE1_CONTEXT_RICH/Doc04_Architecture_DataInventory.md, ../01_PHASE1_CONTEXT_RICH/Doc05_Security_Posture.md]
-outputs: [14_Architectural_Nodes.md, 15_Requirements_Allocation.md, 23_Functional_Requirements.md, 24_Non_Functional_Requirements.md, 25_Risk_Analysis.md, Phase_3_Functional_Decomposition_Synthesis.md]
-related_documents: [13a_Use_Case_Relationships.md, 13b_Use_Case_Variability.md, annexes/A_Use_Case_Diagrams.md, RULE_FREEZE.md, CORPUS_LINKAGE.md, NIST_ANCHORS.md]
+outputs: [14_Architectural_Nodes.md, 15_Requirements_Allocation.md, 23_Functional_Requirements.md, 24_Non_Functional_Requirements.md, 25_Risk_Analysis.md, Phase_3_Functional_Decomposition_Synthesis.md, Doc32_Process_Capability_Cards.md]
+related_documents: [13a_Use_Case_Relationships.md, 13b_Use_Case_Variability.md, annexes/A_Use_Case_Diagrams.md, annexes/B_Sequence_Diagrams.md, RULE_FREEZE.md, CORPUS_LINKAGE.md, NIST_ANCHORS.md]
 expected_documents: 13
 schema_columns: 6
 schema_columns_list: [Primary Actor, Stakeholders, Preconditions, Trigger, Main Success Scenario, Extensions]
@@ -41,10 +41,12 @@ rewrite_protocol:
 # Use Cases Catalog — TinyTask Team Organizer (Phase 3 RICH)
 
 > **Status:** REWRITTEN_PRODUCT_BASELINE.
-> Catalog reorganised so the **product** comes first: 23 functional use cases (U.C.7–11) and 8 misuse cases describe how TinyTask Team Organizer works and is attacked; 35 security/compliance use cases (U.C.1–6) describe how the company secures that product and proves compliance.
+> Catalog reorganised so the **product** comes first: 23 functional use cases (U.C.7–11) and 8 misuse cases describe how TinyTask Team Organizer works and is attacked; 17 security/compliance use cases (U.C.1–6) describe how the company secures that product and proves compliance. The 18 non-UC compliance cards (PROC-01..17, CAP-01) are lane cards living exclusively in `Doc32_Process_Capability_Cards.md` (rubric v1.8 §5B rule 6 — UC SEPARATION, 2026-09-05); see the §3.0 Compliance Domain Index.
 > Cards follow Cockburn's fully dressed template (Primary Actor · Stakeholders · Preconditions · Trigger · Main Success Scenario · Extensions · Postconditions) with a Security & Compliance Annex folding in the prior property-sheet fields.
 >
 **LANE NAMING (P7 human decision, 2026-09-05).** The v2.0 freeze on U.C.1.1.1…U.C.6.3.1 ids is **superseded**: UC nomenclature is reserved for the TECHNOLOGY lane; the process/capability compliance UCs were re-laned to PROC-01..17 / CAP-01 (registry: `00_METHODOLOGY/validation/LANE_NAMING_CENSUS_v0.md`; rubric: REALIZATION_CLASS_RUBRIC v1.3 §5B). All ~509 downstream references were renamed in the same pass (Doc21/22/23/24/26/27, Doc29/31, 22_Traceability_Matrix.xlsx via build script, NIST_ANCHORS, CORPUS_LINKAGE, annexes). The former ids remain visible in git history.
+>
+> **Diagrams:** use-case diagrams in `annexes/A_Use_Case_Diagrams.md` (UC ovals only, rubric v1.8 §5C.5); sequence diagrams in `annexes/B_Sequence_Diagrams.md` (one section per §2 product UC; each card keeps a single pointer line).
 
 ---
 
@@ -2333,67 +2335,234 @@ Receipt issued.
 
 ---
 
-## §3 Security & Compliance Use Cases (U.C.1–6) — preserved verbatim
+## §3 Security & Compliance Use Cases (U.C.1–6) — lane-pure (UC cards only)
 
-> The 35 L1 security/compliance use cases from the v2.0 freeze are retained with the same `U.C.X.Y.Z` identifiers (so every downstream reference stays valid) and rewritten in Cockburn form. Every card carries a **Security & Compliance Annex** that consolidates the prior property-sheet fields (verification criteria, dependencies, NIST anchors, reporting, posture) so no information is lost.
+> Of the 35 L1 security/compliance cards from the v2.0 freeze, the **17 genuine use cases** are retained below with the same `U.C.X.Y.Z` identifiers (so every downstream reference stays valid), in Cockburn form with a **Security & Compliance Annex** consolidating the prior property-sheet fields. The 18 non-UC cards (PROC-01..17, CAP-01) left the catalog per rubric `REALIZATION_CLASS_RUBRIC.md` v1.8 §5B rule 6 (UC SEPARATION campaign, 2026-09-05) — full lane cards live in `Doc32_Process_Capability_Cards.md`; their catalogue-only fields are preserved in the §3.0 Compliance Domain Index so no information is lost.
 
-### §3.1 PKG-DP (Data Protection) — 6
+### §3.0 Compliance Domain Index (lane cards → Doc32)
+
+> The 18 non-UC compliance cards that populated these packages (PROC-01..17, CAP-01) left the catalog per rubric `REALIZATION_CLASS_RUBRIC.md` v1.8 §5B rule 6 (UC SEPARATION, 2026-09-05): the catalog holds UC cards only. Full lane cards (§5C.1 process / §5C.2 capability form + Mermaid diagrams) live in **`Doc32_Process_Capability_Cards.md`** — same IDs. The register below preserves, verbatim, the catalogue-only fields (stakeholders, preconditions, extensions, postconditions, compliance annex) so no information is lost; trigger/activities/roles/SLA/anchors/evidence are carried by the Doc32 cards; per-card NIST CSF/PF anchors are in `NIST_ANCHORS.md` §3.1.
+
+| Package | Domain focus | UCs in this catalog (§3.x) | Lane cards (Doc32) | Rules covered |
+|---|---|---|---|---|
+| PKG-DP (Data Protection) | Data Protection | U.C.1.2.1, U.C.1.3.1, U.C.1.4.1, U.C.1.5.1 | PROC-01, PROC-02 | CR-D-01.1-001 / PO-D-01.1-001 · CR-D-01.4-001 / PO-D-01.4-001 |
+| PKG-SEC (Security Operations) | Security Operations | U.C.2.2.1, U.C.2.4.1, U.C.2.4.2, U.C.2.6.1 | PROC-03, PROC-04, PROC-05 | CR-D-02.1-001 / SO-D-02.1-001 · CR-D-02.3-001 / SO-D-02.3-001 · CR-D-04.3-001 / SO-D-04.3-001 |
+| PKG-IAM (Identity & Access) | Identity & Access | U.C.3.1.1, U.C.3.1.2, U.C.3.2.1, U.C.3.3.1, U.C.3.5.1 | PROC-06, PROC-07 | CR-D-09.4-001 / PO-D-09.4-001 · CR-D-10.3-001 / SO-D-10.3-001 |
+| PKG-DEV (Secure Development) | Secure Development | U.C.4.2.1, U.C.4.3.1, U.C.4.4.1 | PROC-08, PROC-09 | CR-D-07.1-001 / PO-D-07.1-001 · CR-D-09.2-001 / PO-D-09.2-001 |
+| PKG-GOV (Governance & Compliance) | Governance & Compliance | U.C.5.6.1 | CAP-01, PROC-10, PROC-11, PROC-12, PROC-13, PROC-14 | CR-D-06.3-001 / SO-D-06.3-001 · CR-D-09.1-001 / PO-D-09.1-001 · CR-D-09.1-001 / SO-D-09.1-001 · CR-D-09.2-001 / PO-D-09.2-001 · CR-D-09.4-001 / PO-D-09.4-001 · CR-D-06.1-001 / SO-D-06.1-001 |
+| PKG-TRN (Training & Awareness) | Training & Awareness | — (0 UCs) | PROC-15, PROC-16, PROC-17 | CR-D-08.1-001 / SO-D-08.1-001 · CR-D-08.2-001 / SO-D-08.2-001 · CR-D-08.1-001 / SO-D-08.1-001 |
+
+**Lane-card compliance register (catalogue-only fields, verbatim):**
+
+- **PROC-01 — Data Subject Access Request (DSAR)** · D-01.1 · CRITICAL · Realises CR-D-01.1-001 / PO-D-01.1-001 · Operational card: Doc32 §PROC-01.
+  - Stakeholders: Customer (data subject), Auditor
+  - Preconditions: Valid DSAR received (web form or email) with verifiable identity.
+  - Extensions:
+    - 2a. Identity unverifiable → request additional verification (clock stops).
+    - 5a. Manifestation delay (complex request) → +60 days with notice to subject.
+  - Postconditions: Subject receives data; audit log entry (PR.DS-10); RoPA updated if new category surfaces.
+  - Security & Compliance Annex:
+    - **Owner:** DPO · **Status:** TODO · **Verification Method:** TEST
+    - **Verification Criteria:** Sample of 10 DSARs completed ≤30d; output fields match RoPA §3; audit log entry present.
+    - **Dependencies:** FR-07, NFR-21, NFR-22, NFR-26, NODE-SYS-014, NODE-PROC-006
+    - **Risk if not met:** H — non-response ≤30d → CNPD enforcement, GDPR Art. 83 fine up to 4% revenue.
+    - **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+    - **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33).
+    - **External Auditor:** AWS SOC 2 / ISO 27001 · **Supervisory Body:** CNPD.
+    - **Functional UCs this constrains:** U.C.11.1.1, U.C.11.2.1, U.C.11.3.1.
+    - **Misuse cases this addresses:** MUC-04 (bulk scraping limited by verified DSAR process + rate limits).
+- **PROC-02 — Data Subject Rectification** · D-01.4 · HIGH · Realises CR-D-01.4-001 / PO-D-01.4-001 · Operational card: Doc32 §PROC-02.
+  - Stakeholders: Customer, Auditor
+  - Preconditions: Verified identity; specific data fields contested.
+  - Extensions: 2a. Correction conflicts with audit trail → preserve original + record correction (do not overwrite audit log).
+  - Postconditions: Data corrected; integrity preserved; processors notified.
+  - Security & Compliance Annex:
+    - **Owner:** DPO · **Status:** TODO · **Verification Method:** TEST
+    - **Verification Criteria:** All linked stores updated ≤30d; HMAC integrity preserved; processors notified ≤7d.
+    - **Dependencies:** FR-11, NFR-06, NFR-28, NODE-SYS-016
+    - **Risk if not met:** H — inaccurate data = GDPR Art. 5(1)(d) breach.
+    - **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+    - **Functional UCs this constrains:** U.C.11.1.1.
+- **PROC-03 — Vulnerability-Free Release** · D-02.1 · CRITICAL · Realises CR-D-02.1-001 / SO-D-02.1-001 · Operational card: Doc32 §PROC-03.
+  - Stakeholders: A-CTO-01, Auditor
+  - Preconditions: Release candidate built; SAST/SCA/container scans configured.
+  - Extensions: 3a. Critical CVE → emergency patch path (U.C.2.2.1).
+  - Postconditions: Release published or blocked; SBOM generated (U.C.5.6.1).
+  - Security & Compliance Annex:
+    - **Owner:** Lead Developer · **Verification Method:** TEST
+    - **Verification Criteria:** 0 critical findings at release; SCA prioritised by CVSS + EPSS; release audit log.
+    - **Dependencies:** FR-17, FR-20, NFR-46, NODE-PROC-017, NODE-SYS-009
+    - **Risk if not met:** H — unremediated critical = CRA Art. 14 actively-exploited obligation.
+    - **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+    - **Regulatory Reporting:** ENISA ≤24h if actively-exploited (CRA Art. 14).
+    - **Functional UCs this constrains:** U.C.8.2.1, U.C.9.3.1 (release gating affects task/attachment publishes).
+- **PROC-04 — Coordinated Vulnerability Disclosure** · D-02.3 · HIGH · Realises CR-D-02.3-001 / SO-D-02.3-001 · Operational card: Doc32 §PROC-04.
+  - Stakeholders: External researcher, CTO, Auditor
+  - Preconditions: security.txt published at `/.well-known/security.txt`; dedicated mailbox configured.
+  - Extensions: 1a. Report out of scope → redirect politely.
+  - Postconditions: CVE assigned; patch released; disclosure published.
+  - Security & Compliance Annex:
+    - **Owner:** Lead Developer · **Verification Method:** INSPECT
+    - **Verification Criteria:** security.txt present; median first response ≤72h; disclosure policy published; CVE assigned.
+    - **Dependencies:** NODE-PROC-016, FR-13
+    - **Risk if not met:** M — slow disclosure damages researcher trust + CRA reputation.
+- **PROC-05 — Incident Notification (24h ENISA, 72h GDPR)** · D-04.3 · CRITICAL · Realises CR-D-04.3-001 / SO-D-04.3-001 · Operational card: Doc32 §PROC-05.
+  - Stakeholders: Customer, CTO, Lead Developer, Auditor
+  - Preconditions: Incident confirmed via severity matrix.
+  - Extensions: 1a. Suspected-only → handled in triage, no notification.
+  - Postconditions: Notifications submitted; breach register updated.
+  - Security & Compliance Annex:
+    - **Owner:** Operations Lead · **Verification Method:** DEMONSTRATE
+    - **Verification Criteria:** ENISA median ≤24h; CNPD ≤72h; tabletop quarterly; breach register ≤24h.
+    - **Dependencies:** FR-16, NFR-29, NFR-44, NODE-SYS-004, NODE-PROC-001, NODE-ROLE-008
+    - **Risk if not met:** H — late notification = GDPR Art. 83 fine + CRA sanctions.
+    - **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+    - **Regulatory Reporting:** CNPD ≤72h + ENISA ≤24h.
+- **PROC-06 — Processing & Breach Records** · D-09.4 · HIGH · Realises CR-D-09.4-001 / PO-D-09.4-001 · Operational card: Doc32 §PROC-06.
+  - Stakeholders: Customer, Auditor
+  - Preconditions: Processing activity exists.
+  - Extensions: 3a. Anonymised processing → no RoPA needed.
+  - Postconditions: RoPA current; breach register maintained.
+  - Security & Compliance Annex:
+    - **Owner:** DPO · **Verification Method:** INSPECT
+    - **Verification Criteria:** RoPA ≤7d; breach register ≤24h; accessible to supervisory body.
+    - **Dependencies:** FR-27, NFR-33, NFR-35, NODE-SYS-014, NODE-SYS-017
+    - **Risk if not met:** M — outdated RoPA = GDPR Art. 30 violation.
+- **PROC-07 — Control Effectiveness Testing** · D-10.3 · MEDIUM · Realises CR-D-10.3-001 / SO-D-10.3-001 · Operational card: Doc32 §PROC-07.
+  - Stakeholders: Lead Developer, Auditor
+  - Preconditions: Controls catalog current; pentest vendor contracted.
+  - Extensions: 3a. Bug bounty — separate programme.
+  - Postconditions: Controls effectiveness validated.
+  - Security & Compliance Annex:
+    - **Owner:** Operations Lead · **Verification Method:** INSPECT
+    - **Verification Criteria:** Annual pentest report published; 100% critical findings remediated; controls catalog updated.
+    - **Dependencies:** FR-28, NFR-46, NODE-SYS-009, NODE-PROC-020
+    - **Risk if not met:** M — untested controls = undetected drift.
+- **PROC-08 — Security by Design (SSDLC)** · D-07.1 · HIGH · Realises CR-D-07.1-001 / PO-D-07.1-001 · Operational card: Doc32 §PROC-08.
+  - Stakeholders: CTO, Auditor
+  - Preconditions: Feature RFC initiated.
+  - Extensions: 3a. Internal tooling → relaxed SSDLC.
+  - Postconditions: Feature shipped under SSDLC discipline.
+  - Security & Compliance Annex:
+    - **Owner:** Lead Developer · **Verification Method:** DEMONSTRATE
+    - **Verification Criteria:** Threat model per RFC; secure code review signed off; quarterly SSDLC metrics.
+    - **Dependencies:** FR-20, FR-21, NODE-PROC-007, NODE-PROC-009, NODE-PROC-010
+    - **Risk if not met:** M — late-discovered design flaws = costly remediation.
+- **PROC-09 — Pre-Launch Risk Assessment** · D-09.2 · CRITICAL · Realises CR-D-09.2-001 / PO-D-09.2-001 · Operational card: Doc32 §PROC-09.
+  - Stakeholders: CEO, Compliance Manager, Auditor
+  - Preconditions: High-risk processing identified.
+  - Extensions: 3a. Bug fix with no new risk surface → out of scope.
+  - Postconditions: Launch approved; risks tracked.
+  - Security & Compliance Annex:
+    - **Owner:** Risk Owner · **Verification Method:** DEMONSTRATE
+    - **Verification Criteria:** DPIA completed pre-launch; risk register entry per high-risk finding; DPO + RO sign-off.
+    - **Dependencies:** FR-25, NFR-31, NFR-41, NODE-PROC-005, NODE-ROLE-006
+    - **Risk if not met:** H — unassessed launch = GDPR Art. 35 violation.
+    - **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+    - **Regulatory Reporting:** CNPD ≤72h if breach.
+- **CAP-01 — DPAs Binding Processors** · D-06.3 · HIGH · Realises CR-D-06.3-001 / SO-D-06.3-001 · Operational card: Doc32 §CAP-01.
+  - Stakeholders: Compliance Manager, CEO, Auditor
+  - Preconditions: Processor engaged.
+  - Extensions: 3a. Non-data vendors — out of scope.
+  - Postconditions: DPA on file.
+  - Security & Compliance Annex:
+    - **Owner:** Compliance Manager · **Verification Method:** INSPECT
+    - **Verification Criteria:** 100% active processors with signed DPAs; annual review; Art. 28 clauses present.
+    - **Dependencies:** NODE-PROC-012, NODE-ROLE-011
+    - **Risk if not met:** H — missing DPA = GDPR Art. 28 violation.
+    - **Functional UCs this constrains:** U.C.10.2.1, U.C.7.1.2.
+- **PROC-10 — Annual Policy Review** · D-09.1 · HIGH · Realises CR-D-09.1-001 / PO-D-09.1-001 · Operational card: Doc32 §PROC-10.
+  - Stakeholders: CEO, Auditor
+  - Preconditions: Policies exist.
+  - Extensions: 3a. Customer-facing terms — separate legal cycle.
+  - Postconditions: Policies current; staff informed.
+  - Security & Compliance Annex:
+    - **Owner:** Compliance Manager · **Verification Method:** INSPECT
+    - **Verification Criteria:** All policies reviewed annually; minutes stored immutably; changes communicated ≤7d.
+    - **Dependencies:** FR-25, NFR-38, NODE-PROC-004, NODE-ROLE-001
+    - **Risk if not met:** M — stale policy = governance gap.
+- **PROC-11 — Technical Documentation Maintenance** · D-09.1 · HIGH · Realises CR-D-09.1-001 / SO-D-09.1-001 · Operational card: Doc32 §PROC-11.
+  - Stakeholders: Compliance Manager, CEO, Auditor
+  - Preconditions: Documentation baseline exists.
+  - Extensions: 3a. Code-level inline docs — separate.
+  - Postconditions: Documentation current.
+  - Security & Compliance Annex:
+    - **Owner:** CTO · **Verification Method:** INSPECT
+    - **Verification Criteria:** Docs updated ≤30d; CRA Annex I current; CTO annual review.
+    - **Dependencies:** NODE-ROLE-002, FR-25
+    - **Risk if not met:** M — outdated docs = CRA Art. 31 gap.
+- **PROC-12 — DPIA Pre-Launch** · D-09.2 · CRITICAL · Realises CR-D-09.2-001 / PO-D-09.2-001 · Operational card: Doc32 §PROC-12.
+  - Stakeholders: CEO, Auditor
+  - Preconditions: High-risk processing identified.
+  - Extensions: 3a. Low-risk routine processing — out of scope.
+  - Postconditions: DPIA on file; sign-offs recorded.
+  - Security & Compliance Annex:
+    - **Owner:** Risk Owner · **Verification Method:** DEMONSTRATE
+    - **Verification Criteria:** DPIA pre-launch; sign-off recorded; residual risk CEO-accepted where applicable.
+    - **Dependencies:** FR-25, NFR-31, NODE-PROC-005, NODE-ROLE-006
+    - **Risk if not met:** H — missing DPIA = GDPR Art. 35 + Art. 83.
+    - **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
+- **PROC-13 — RoPA Maintenance** · D-09.4 · HIGH · Realises CR-D-09.4-001 / PO-D-09.4-001 · Operational card: Doc32 §PROC-13.
+  - Stakeholders: Customer, Auditor
+  - Preconditions: Processing activities ongoing.
+  - Extensions: 3a. One-off ad-hoc processing — out of scope.
+  - Postconditions: RoPA current.
+  - Security & Compliance Annex:
+    - **Owner:** DPO · **Verification Method:** INSPECT
+    - **Verification Criteria:** RoPA ≤7d; annual review; accessible.
+    - **Dependencies:** FR-27, NFR-33, NFR-35, NODE-SYS-014, NODE-PROC-006
+    - **Risk if not met:** M — outdated RoPA = GDPR Art. 30 violation.
+- **PROC-14 — Processor Due Diligence** · D-06.1 · HIGH · Realises CR-D-06.1-001 / SO-D-06.1-001 · Operational card: Doc32 §PROC-14.
+  - Stakeholders: Compliance Manager, CEO, Auditor
+  - Preconditions: Prospective processor identified.
+  - Extensions: 3a. Non-data processors (cleaning, etc.) — out of scope.
+  - Postconditions: Processor risk known.
+  - Security & Compliance Annex:
+    - **Owner:** Procurement Lead · **Verification Method:** INSPECT
+    - **Verification Criteria:** Security questionnaire pre-engagement; annual vendor assessment; findings remediated.
+    - **Dependencies:** FR-28, NFR-40, NODE-PROC-011, NODE-ROLE-009
+    - **Risk if not met:** H — substandard processor = GDPR Art. 28 violation.
+    - **Functional UCs this constrains:** U.C.10.2.1 (Stripe), U.C.7.1.2 (Auth0).
+- **PROC-15 — Annual Awareness Training** · D-08.1 · MEDIUM · Realises CR-D-08.1-001 / SO-D-08.1-001 · Operational card: Doc32 §PROC-15.
+  - Stakeholders: All staff, Auditor
+  - Preconditions: LMS available.
+  - Extensions: 3a. Long-term contractors — same requirement.
+  - Postconditions: 100% completion rate.
+  - Security & Compliance Annex:
+    - **Owner:** Compliance Manager · **Verification Method:** INSPECT
+    - **Verification Criteria:** 100% completion (NFR-36); refreshed annually; quiz pass required.
+    - **Dependencies:** FR-29, NFR-36, NODE-PROC-018
+    - **Risk if not met:** M — untrained staff = phishing risk + GDPR Art. 39 gap.
+- **PROC-16 — Role-Specific Training** · D-08.2 · MEDIUM · Realises CR-D-08.2-001 / SO-D-08.2-001 · Operational card: Doc32 §PROC-16.
+  - Stakeholders: Engineers, ops, DPO, IAM admin
+  - Preconditions: Role taxonomy documented.
+  - Extensions: 2a. General awareness — covered in PROC-15.
+  - Postconditions: Role-specific competencies maintained.
+  - Security & Compliance Annex:
+    - **Owner:** Compliance Manager · **Verification Method:** INSPECT
+    - **Verification Criteria:** Role curricula per role; tracked; updated annually.
+    - **Dependencies:** FR-29, NFR-36, NODE-PROC-019, NODE-ROLE-002, NODE-ROLE-003
+    - **Risk if not met:** M — role gaps = competency risk.
+- **PROC-17 — Phishing Simulation** · D-08.1 · LOW · Realises CR-D-08.1-001 / SO-D-08.1-001 · Operational card: Doc32 §PROC-17.
+  - Stakeholders: All staff with email
+  - Preconditions: Phishing simulation vendor.
+  - Extensions: 3a. External addresses — out of scope.
+  - Postconditions: Click-rate trend reported.
+  - Security & Compliance Annex:
+    - **Owner:** Compliance Manager · **Verification Method:** TEST
+    - **Verification Criteria:** Quarterly execution; click rate trend; re-education for repeat clickers.
+    - **Dependencies:** FR-30, NFR-01
+    - **Risk if not met:** L — phishing is a leading breach vector.
+
+
+### §3.1 PKG-DP (Data Protection) — 4 UCs · lane cards: PROC-01, PROC-02 → Doc32
 
 | UC ID | D | Title | Primary rule | CSF | PF | Prio |
 |-------|---|-------|--------------|-----|----|----|
-| PROC-01 | D-01.1 | Data Subject Access Request (DSAR) | CR-D-01.1-001 / PO-D-01.1-001 | PR.DS-01, PR.DS-10, PR.PS-04 | PR.DS-P1 | CRITICAL |
-| PROC-02 | D-01.4 | Data Subject Rectification | CR-D-01.4-001 / PO-D-01.4-001 | PR.DS-01, PR.DS-02, PR.DS-10 | CT.DM-P1, CT.DM-P3 | HIGH |
 | U.C.1.2.1 | D-05.3 | Data Subject Erasure | CR-D-05.3-001 / PO-D-05.3-001 | GV.SC-04, PR.DS-10, PR.DS-02 | CT.DM-P4, CT.DM-P5 | CRITICAL |
 | U.C.1.3.1 | D-05.1 | Data Subject Data Export (portability) | CR-D-05.4-001 / PO-D-05.4-001 | PR.DS-10, PR.AA-03, PR.DS-02 | CT.DM-P1, CT.DM-P6 | HIGH |
 | U.C.1.4.1 | D-05.2 | Consent Management | CR-D-05.1-001 / PO-D-05.1-001 | GV.OC-03, GV.PO-01, ID.AM-03 | CT.DP-P4, CT.PO-P4, ID.RA-P3 | HIGH |
 | U.C.1.5.1 | D-05.4 | Structured Data Portability | CR-D-05.4-001 / PO-D-05.4-001 | PR.DS-10, PR.AA-03, PR.DS-02 | CT.DM-P1, CT.DM-P6 | MEDIUM |
-
-#### PROC-01 — Data Subject Access Request (DSAR)
-
-**Primary Actor:** A-DPO-01 (DPO/Compliance Manager)
-**Stakeholders:** Customer (data subject), Auditor
-**Preconditions:** Valid DSAR received (web form or email) with verifiable identity.
-**Trigger:** Customer submits a verifiable DSAR via web form or email.
-**Main Success Scenario:**
-1. DPO logs the DSAR ticket with subject identifier.
-2. System retrieves all personal data linked to the subject identifier (profile, workspaces, tasks, comments, attachments metadata).
-3. System assembles JSON + CSV + PDF export.
-4. DPO reviews the package for third-party data minimisation.
-5. System delivers the export to the data subject within 30 days.
-**Extensions:**
-- 2a. Identity unverifiable → request additional verification (clock stops).
-- 5a. Manifestation delay (complex request) → +60 days with notice to subject.
-**Postconditions:** Subject receives data; audit log entry (PR.DS-10); RoPA updated if new category surfaces.
-**Security & Compliance Annex:**
-- **Owner:** DPO · **Status:** TODO · **Verification Method:** TEST
-- **Verification Criteria:** Sample of 10 DSARs completed ≤30d; output fields match RoPA §3; audit log entry present.
-- **Dependencies:** FR-07, NFR-21, NFR-22, NFR-26, NODE-SYS-014, NODE-PROC-006
-- **Risk if not met:** H — non-response ≤30d → CNPD enforcement, GDPR Art. 83 fine up to 4% revenue.
-**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
-- **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33).
-- **External Auditor:** AWS SOC 2 / ISO 27001 · **Supervisory Body:** CNPD.
-- **Functional UCs this constrains:** U.C.11.1.1, U.C.11.2.1, U.C.11.3.1.
-- **Misuse cases this addresses:** MUC-04 (bulk scraping limited by verified DSAR process + rate limits).
-
-#### PROC-02 — Data Subject Rectification
-
-**Primary Actor:** A-DPO-01 · **Stakeholders:** Customer, Auditor
-**Preconditions:** Verified identity; specific data fields contested.
-**Trigger:** Customer requests correction of inaccurate personal data.
-**Main Success Scenario:**
-1. DPO validates the request.
-2. System applies the correction to primary store and propagates to backup (HMAC integrity re-computed) and analytics stores.
-3. DPO notifies processors (AWS, Datadog) via DPA channel within 7d.
-4. System logs the change.
-**Extensions:** 2a. Correction conflicts with audit trail → preserve original + record correction (do not overwrite audit log).
-**Postconditions:** Data corrected; integrity preserved; processors notified.
-**Security & Compliance Annex:**
-- **Owner:** DPO · **Status:** TODO · **Verification Method:** TEST
-- **Verification Criteria:** All linked stores updated ≤30d; HMAC integrity preserved; processors notified ≤7d.
-- **Dependencies:** FR-11, NFR-06, NFR-28, NODE-SYS-016
-- **Risk if not met:** H — inaccurate data = GDPR Art. 5(1)(d) breach.
-**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
-- **Functional UCs this constrains:** U.C.11.1.1.
 
 #### U.C.1.2.1 — Data Subject Erasure
 
@@ -2472,39 +2641,14 @@ Receipt issued.
 - **Risk if not met:** M — minor GDPR Art. 20 risk if endpoint unavailable.
 - **Functional UCs this constrains:** U.C.11.2.1.
 
-### §3.2 PKG-SEC (Security Operations) — 7
+### §3.2 PKG-SEC (Security Operations) — 4 UCs · lane cards: PROC-03, PROC-04, PROC-05 → Doc32
 
 | UC ID | D | Title | Primary rule | CSF | PF | Prio |
 |-------|---|-------|--------------|-----|----|----|
-| PROC-03 | D-02.1 | Vulnerability-Free Release | CR-D-02.1-001 / SO-D-02.1-001 | GV.OV-02, ID.AM-02, ID.RA-01 | ID.RA-P3, ID.RA-P5 | CRITICAL |
 | U.C.2.2.1 | D-02.2 | Automated Patch Deployment | CR-D-02.2-001 / SO-D-02.2-001 | GV.OV-02, ID.RA-01, PR.IR-03 | — | CRITICAL |
-| PROC-04 | D-02.3 | Coordinated Vulnerability Disclosure | CR-D-02.3-001 / SO-D-02.3-001 | GV.PO-01, GV.SC-04, RS.CO-03 | — | HIGH |
 | U.C.2.4.1 | D-04.1 | Exploit Severity Limitation | CR-D-04.1-001 / SO-D-04.1-001 | DE.AE-02, DE.CM-01, DE.CM-09 | CM.AW-P7 | CRITICAL |
 | U.C.2.4.2 | D-04.2 | DoS Resilience | CR-D-04.2-001 / SO-D-04.2-001 | DE.CM-09, PR.DS-10, PR.IR-03 | CT.DM-P10, PR.PO-P7 | HIGH |
-| PROC-05 | D-04.3 | Incident Notification (24h ENISA, 72h GDPR) | CR-D-04.3-001 / SO-D-04.3-001 | RS.CO-02, RS.MA-01, RS.MA-02 | CM.AW-P7, CM.AW-P8, CM.PO-P1 | CRITICAL |
 | U.C.2.6.1 | D-04.4 | Data Restoration & Recovery | CR-D-04.4-001 / SO-D-04.4-001 | PR.DS-01, PR.DS-10, PR.IR-03 | — | HIGH |
-
-#### PROC-03 — Vulnerability-Free Release
-
-**Primary Actor:** A-DEV-01 (Lead Developer)
-**Stakeholders:** A-CTO-01, Auditor
-**Preconditions:** Release candidate built; SAST/SCA/container scans configured.
-**Trigger:** PR merged to release branch.
-**Main Success Scenario:**
-1. CI runs SAST + SCA + container scan.
-2. Findings prioritised by CVSS + EPSS.
-3. Release blocked on critical findings; release proceeds if all clear.
-4. Audit log entry per build (PR.DS-01).
-**Extensions:** 3a. Critical CVE → emergency patch path (U.C.2.2.1).
-**Postconditions:** Release published or blocked; SBOM generated (U.C.5.6.1).
-**Security & Compliance Annex:**
-- **Owner:** Lead Developer · **Verification Method:** TEST
-- **Verification Criteria:** 0 critical findings at release; SCA prioritised by CVSS + EPSS; release audit log.
-- **Dependencies:** FR-17, FR-20, NFR-46, NODE-PROC-017, NODE-SYS-009
-- **Risk if not met:** H — unremediated critical = CRA Art. 14 actively-exploited obligation.
-**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
-- **Regulatory Reporting:** ENISA ≤24h if actively-exploited (CRA Art. 14).
-- **Functional UCs this constrains:** U.C.8.2.1, U.C.9.3.1 (release gating affects task/attachment publishes).
 
 #### U.C.2.2.1 — Automated Patch Deployment
 
@@ -2528,24 +2672,6 @@ Receipt issued.
 **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 - **Regulatory Reporting:** ENISA ≤24h if actively-exploited.
 - **Functional UCs this constrains:** All U.C.7-11 (availability).
-
-#### PROC-04 — Coordinated Vulnerability Disclosure
-
-**Primary Actor:** A-DEV-01 · **Stakeholders:** External researcher, CTO, Auditor
-**Preconditions:** security.txt published at `/.well-known/security.txt`; dedicated mailbox configured.
-**Trigger:** External researcher submits a vulnerability report.
-**Main Success Scenario:**
-1. Triage: Lead Dev acknowledges ≤72h.
-2. Reproduce: dev team validates and assigns severity.
-3. Fix: develop + test patch.
-4. Coordinate: agree disclosure timeline with researcher; publish CVE; release patch.
-**Extensions:** 1a. Report out of scope → redirect politely.
-**Postconditions:** CVE assigned; patch released; disclosure published.
-**Security & Compliance Annex:**
-- **Owner:** Lead Developer · **Verification Method:** INSPECT
-- **Verification Criteria:** security.txt present; median first response ≤72h; disclosure policy published; CVE assigned.
-- **Dependencies:** NODE-PROC-016, FR-13
-- **Risk if not met:** M — slow disclosure damages researcher trust + CRA reputation.
 
 #### U.C.2.4.1 — Exploit Severity Limitation
 
@@ -2588,28 +2714,6 @@ Receipt issued.
 - **Functional UCs this constrains:** All U.C.7-11.
 - **Misuse cases this addresses:** MUC-07 (board DoS).
 
-#### PROC-05 — Incident Notification (24h ENISA, 72h GDPR)
-
-**Primary Actor:** A-OPS-01 / A-DPO-01
-**Stakeholders:** Customer, CTO, Lead Developer, Auditor
-**Preconditions:** Incident confirmed via severity matrix.
-**Trigger:** Confirmed security incident (active exploit, data breach, or critical CVE with exploit).
-**Main Success Scenario:**
-1. Severity matrix applied; incident classified.
-2. ENISA notification prepared; submitted ≤24h if CRA-relevant (active-exploit CVE).
-3. CNPD notification prepared; submitted ≤72h if personal-data breach.
-4. Breach register entry ≤24h post-detection (NFR-43).
-5. Tabletop exercise quarterly (NFR-17).
-**Extensions:** 1a. Suspected-only → handled in triage, no notification.
-**Postconditions:** Notifications submitted; breach register updated.
-**Security & Compliance Annex:**
-- **Owner:** Operations Lead · **Verification Method:** DEMONSTRATE
-- **Verification Criteria:** ENISA median ≤24h; CNPD ≤72h; tabletop quarterly; breach register ≤24h.
-- **Dependencies:** FR-16, NFR-29, NFR-44, NODE-SYS-004, NODE-PROC-001, NODE-ROLE-008
-- **Risk if not met:** H — late notification = GDPR Art. 83 fine + CRA sanctions.
-**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
-- **Regulatory Reporting:** CNPD ≤72h + ENISA ≤24h.
-
 #### U.C.2.6.1 — Data Restoration & Recovery
 
 **Primary Actor:** A-OPS-01 · **Stakeholders:** Lead Developer, Auditor
@@ -2629,7 +2733,7 @@ Receipt issued.
 - **Risk if not met:** H — failed restore = data loss + GDPR availability breach.
 - **Functional UCs this constrains:** All U.C.7-11.
 
-### §3.3 PKG-IAM (Identity & Access) — 7
+### §3.3 PKG-IAM (Identity & Access) — 5 UCs · lane cards: PROC-06, PROC-07 → Doc32
 
 | UC ID | D | Title | Primary rule | CSF | PF | Prio |
 |-------|---|-------|--------------|-----|----|----|
@@ -2637,9 +2741,7 @@ Receipt issued.
 | U.C.3.1.2 | D-03.2 | MFA for Privileged Accounts | CR-D-03.2-001 / SO-D-03.1-001 | PR.AA-03, PR.AA-04, PR.AA-05 | — | CRITICAL |
 | U.C.3.2.1 | D-03.3 | Authorisation / Least Privilege | CR-D-03.3-001 / SO-D-03.3-001 | ID.AM-01, PR.AA-01, PR.AA-03 | CT.PO-P1 | HIGH |
 | U.C.3.3.1 | D-03.4 | Secure System Defaults | CR-D-03.4-001 / SO-D-03.4-001 | GV.PO-01, GV.SC-03, PR.DS-10 | CT.DP-P4, CT.PO-P4 | HIGH |
-| PROC-06 | D-09.4 | Processing & Breach Records | CR-D-09.4-001 / PO-D-09.4-001 | GV.PO-02, ID.AM-08, PR.DS-10 | ID.IM-P1, ID.IM-P8 | HIGH |
 | U.C.3.5.1 | D-10.2 | Audit Logging | CR-D-10.2-001 / SO-D-10.2-001 | DE.CM-01, GV.PO-02, PR.DS-01 | CT.DM-P4, CT.DM-P9 | HIGH |
-| PROC-07 | D-10.3 | Control Effectiveness Testing | CR-D-10.3-001 / SO-D-10.3-001 | DE.AE-02, GV.OV-03, ID.RA-05 | ID.RA-P3, ID.RA-P5 | MEDIUM |
 
 #### U.C.3.1.1 — User Authentication
 
@@ -2719,23 +2821,6 @@ Receipt issued.
 - **Dependencies:** FR-06, NODE-SYS-008
 - **Risk if not met:** M — misconfiguration = most common breach vector.
 
-#### PROC-06 — Processing & Breach Records
-
-**Primary Actor:** A-DPO-01 · **Stakeholders:** Customer, Auditor
-**Preconditions:** Processing activity exists.
-**Trigger:** Processing change OR breach detection.
-**Main Success Scenario:**
-1. RoPA updated ≤7d of processing change.
-2. Breach register entry ≤24h of detection.
-3. RoPA accessible to DPO + supervisory body on request.
-**Extensions:** 3a. Anonymised processing → no RoPA needed.
-**Postconditions:** RoPA current; breach register maintained.
-**Security & Compliance Annex:**
-- **Owner:** DPO · **Verification Method:** INSPECT
-- **Verification Criteria:** RoPA ≤7d; breach register ≤24h; accessible to supervisory body.
-- **Dependencies:** FR-27, NFR-33, NFR-35, NODE-SYS-014, NODE-SYS-017
-- **Risk if not met:** M — outdated RoPA = GDPR Art. 30 violation.
-
 #### U.C.3.5.1 — Audit Logging
 
 **Primary Actor:** A-CTO-01 (logging platform owner) + A-OPS-01
@@ -2755,49 +2840,13 @@ Receipt issued.
 - **Risk if not met:** H — incomplete logs = GDPR accountability gap.
 - **Functional UCs this constrains:** All U.C.7-11.
 
-#### PROC-07 — Control Effectiveness Testing
-
-**Primary Actor:** A-OPS-01 · **Stakeholders:** Lead Developer, Auditor
-**Preconditions:** Controls catalog current; pentest vendor contracted.
-**Trigger:** Annual pentest OR post-incident review.
-**Main Success Scenario:**
-1. Annual pentest executed; report published.
-2. Critical findings remediated within SLA.
-3. Controls catalog updated with test outcomes.
-**Extensions:** 3a. Bug bounty — separate programme.
-**Postconditions:** Controls effectiveness validated.
-**Security & Compliance Annex:**
-- **Owner:** Operations Lead · **Verification Method:** INSPECT
-- **Verification Criteria:** Annual pentest report published; 100% critical findings remediated; controls catalog updated.
-- **Dependencies:** FR-28, NFR-46, NODE-SYS-009, NODE-PROC-020
-- **Risk if not met:** M — untested controls = undetected drift.
-
-### §3.4 PKG-DEV (Secure Development) — 5
+### §3.4 PKG-DEV (Secure Development) — 3 UCs · lane cards: PROC-08, PROC-09 → Doc32
 
 | UC ID | D | Title | Primary rule | CSF | PF | Prio |
 |-------|---|-------|--------------|-----|----|----|
-| PROC-08 | D-07.1 | Security by Design (SSDLC) | CR-D-07.1-001 / PO-D-07.1-001 | GV.PO-02, ID.RA-01, PR.DS-10 | CT.DP-P2, CT.DP-P4, GV.PO-P2 | HIGH |
 | U.C.4.2.1 | D-07.2 | SAST/DAST in CI/CD | BPR-D-07.2-001 | ID.RA-04, ID.RA-05, PR.PS-01 | — | HIGH |
 | U.C.4.3.1 | D-02.2 | Security Patch Deployment | CR-D-02.2-001 / SO-D-02.2-001 | GV.OV-02, ID.RA-01, PR.IR-03 | — | CRITICAL |
 | U.C.4.4.1 | D-04.1 | Fail-Safe Design | CR-D-04.1-001 / SO-D-04.1-001 | DE.AE-02, DE.CM-01, DE.CM-09 | CM.AW-P7 | HIGH |
-| PROC-09 | D-09.2 | Pre-Launch Risk Assessment | CR-D-09.2-001 / PO-D-09.2-001 | ID.RA-01, ID.RA-04, ID.RA-05 | ID.RA-P3, ID.RA-P4, ID.RA-P5 | CRITICAL |
-
-#### PROC-08 — Security by Design (SSDLC)
-
-**Primary Actor:** A-DEV-01 · **Stakeholders:** CTO, Auditor
-**Preconditions:** Feature RFC initiated.
-**Trigger:** New feature RFC created.
-**Main Success Scenario:**
-1. Threat model attached to RFC.
-2. Secure coding review checklist signed off pre-merge.
-3. SSDLC metrics dashboard reviewed quarterly.
-**Extensions:** 3a. Internal tooling → relaxed SSDLC.
-**Postconditions:** Feature shipped under SSDLC discipline.
-**Security & Compliance Annex:**
-- **Owner:** Lead Developer · **Verification Method:** DEMONSTRATE
-- **Verification Criteria:** Threat model per RFC; secure code review signed off; quarterly SSDLC metrics.
-- **Dependencies:** FR-20, FR-21, NODE-PROC-007, NODE-PROC-009, NODE-PROC-010
-- **Risk if not met:** M — late-discovered design flaws = costly remediation.
 
 #### U.C.4.2.1 — SAST/DAST in CI/CD
 
@@ -2853,144 +2902,11 @@ Receipt issued.
 - **Risk if not met:** M — fail-open = exploit amplification.
 - **Misuse cases this addresses:** MUC-07 (fail-open in board).
 
-#### PROC-09 — Pre-Launch Risk Assessment
-
-**Primary Actor:** A-RO-01 (Risk Owner) + A-DPO-01
-**Stakeholders:** CEO, Compliance Manager, Auditor
-**Preconditions:** High-risk processing identified.
-**Trigger:** Feature with personal data or new attack surface enters release train.
-**Main Success Scenario:**
-1. DPIA + cybersecurity risk assessment completed.
-2. Risk register entry per high-risk finding.
-3. DPO + Risk Owner sign-off before deploy.
-**Extensions:** 3a. Bug fix with no new risk surface → out of scope.
-**Postconditions:** Launch approved; risks tracked.
-**Security & Compliance Annex:**
-- **Owner:** Risk Owner · **Verification Method:** DEMONSTRATE
-- **Verification Criteria:** DPIA completed pre-launch; risk register entry per high-risk finding; DPO + RO sign-off.
-- **Dependencies:** FR-25, NFR-31, NFR-41, NODE-PROC-005, NODE-ROLE-006
-- **Risk if not met:** H — unassessed launch = GDPR Art. 35 violation.
-**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
-- **Regulatory Reporting:** CNPD ≤72h if breach.
-
-### §3.5 PKG-GOV (Governance & Compliance) — 7
+### §3.5 PKG-GOV (Governance & Compliance) — 1 UCs · lane cards: CAP-01, PROC-10, PROC-11, PROC-12, PROC-13, PROC-14 → Doc32
 
 | UC ID | D | Title | Primary rule | CSF | PF | Prio |
 |-------|---|-------|--------------|-----|----|----|
-| PROC-10 | D-09.1 | Annual Policy Review | CR-D-09.1-001 / PO-D-09.1-001 | GV.PO-01, GV.PO-02, GV.RM-04 | CM.PO-P1, GV.PO-P1, GV.PO-P5 | HIGH |
-| PROC-11 | D-09.1 | Technical Documentation Maintenance | CR-D-09.1-001 / SO-D-09.1-001 | GV.PO-01, GV.PO-02, GV.OV-01 | CM.PO-P1, GV.PO-P1 | HIGH |
-| PROC-12 | D-09.2 | DPIA Pre-Launch | CR-D-09.2-001 / PO-D-09.2-001 | ID.RA-01, ID.RA-04, ID.RA-05 | ID.RA-P3, ID.RA-P4, ID.RA-P5 | CRITICAL |
-| PROC-13 | D-09.4 | RoPA Maintenance | CR-D-09.4-001 / PO-D-09.4-001 | GV.PO-02, ID.AM-08, PR.DS-10 | ID.IM-P1, ID.IM-P4, ID.IM-P6 | HIGH |
-| PROC-14 | D-06.1 | Processor Due Diligence | CR-D-06.1-001 / SO-D-06.1-001 | GV.SC-01, GV.SC-02, GV.SC-03 | ID.IM-P2 | HIGH |
-| CAP-01 | D-06.3 | DPAs Binding Processors | CR-D-06.3-001 / SO-D-06.3-001 | GV.OC-03, GV.SC-02, GV.SC-03 | — | HIGH |
 | U.C.5.6.1 | D-06.2 | SBOM Publication | CR-D-06.2-001 / SO-D-06.2-001 | GV.SC-02, GV.SC-03, ID.AM-02 | — | HIGH |
-
-#### PROC-10 — Annual Policy Review
-
-**Primary Actor:** A-DPO-01 / A-CTO-01 (Compliance)
-**Stakeholders:** CEO, Auditor
-**Preconditions:** Policies exist.
-**Trigger:** Annual review cycle.
-**Main Success Scenario:**
-1. All policies reviewed.
-2. Review minutes stored immutably.
-3. Changes communicated to staff ≤7d.
-**Extensions:** 3a. Customer-facing terms — separate legal cycle.
-**Postconditions:** Policies current; staff informed.
-**Security & Compliance Annex:**
-- **Owner:** Compliance Manager · **Verification Method:** INSPECT
-- **Verification Criteria:** All policies reviewed annually; minutes stored immutably; changes communicated ≤7d.
-- **Dependencies:** FR-25, NFR-38, NODE-PROC-004, NODE-ROLE-001
-- **Risk if not met:** M — stale policy = governance gap.
-
-#### PROC-11 — Technical Documentation Maintenance
-
-**Primary Actor:** A-CTO-01 · **Stakeholders:** Compliance Manager, CEO, Auditor
-**Preconditions:** Documentation baseline exists.
-**Trigger:** Architecture change OR annual review.
-**Main Success Scenario:**
-1. Documentation updated ≤30d of change.
-2. CRA Annex I technical file current.
-3. CTO annual review.
-**Extensions:** 3a. Code-level inline docs — separate.
-**Postconditions:** Documentation current.
-**Security & Compliance Annex:**
-- **Owner:** CTO · **Verification Method:** INSPECT
-- **Verification Criteria:** Docs updated ≤30d; CRA Annex I current; CTO annual review.
-- **Dependencies:** NODE-ROLE-002, FR-25
-- **Risk if not met:** M — outdated docs = CRA Art. 31 gap.
-
-#### PROC-12 — DPIA Pre-Launch
-
-**Primary Actor:** A-RO-01 + A-DPO-01 · **Stakeholders:** CEO, Auditor
-**Preconditions:** High-risk processing identified.
-**Trigger:** Feature triggering GDPR Art. 35 list.
-**Main Success Scenario:**
-1. DPIA completed pre-launch.
-2. Risk Owner + DPO sign-off recorded.
-3. Residual risk accepted by CEO where applicable.
-**Extensions:** 3a. Low-risk routine processing — out of scope.
-**Postconditions:** DPIA on file; sign-offs recorded.
-**Security & Compliance Annex:**
-- **Owner:** Risk Owner · **Verification Method:** DEMONSTRATE
-- **Verification Criteria:** DPIA pre-launch; sign-off recorded; residual risk CEO-accepted where applicable.
-- **Dependencies:** FR-25, NFR-31, NODE-PROC-005, NODE-ROLE-006
-- **Risk if not met:** H — missing DPIA = GDPR Art. 35 + Art. 83.
-**Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
-
-#### PROC-13 — RoPA Maintenance
-
-**Primary Actor:** A-DPO-01 · **Stakeholders:** Customer, Auditor
-**Preconditions:** Processing activities ongoing.
-**Trigger:** Processing change.
-**Main Success Scenario:**
-1. RoPA update ≤7d.
-2. Annual full review.
-3. Accessible to supervisory body on request.
-**Extensions:** 3a. One-off ad-hoc processing — out of scope.
-**Postconditions:** RoPA current.
-**Security & Compliance Annex:**
-- **Owner:** DPO · **Verification Method:** INSPECT
-- **Verification Criteria:** RoPA ≤7d; annual review; accessible.
-- **Dependencies:** FR-27, NFR-33, NFR-35, NODE-SYS-014, NODE-PROC-006
-- **Risk if not met:** M — outdated RoPA = GDPR Art. 30 violation.
-
-#### PROC-14 — Processor Due Diligence
-
-**Primary Actor:** A-CTO-01 / A-DPO-01 (Procurement)
-**Stakeholders:** Compliance Manager, CEO, Auditor
-**Preconditions:** Prospective processor identified.
-**Trigger:** Pre-engagement review OR annual reassessment.
-**Main Success Scenario:**
-1. Security questionnaire completed.
-2. Annual vendor security assessment.
-3. Findings tracked to remediation.
-**Extensions:** 3a. Non-data processors (cleaning, etc.) — out of scope.
-**Postconditions:** Processor risk known.
-**Security & Compliance Annex:**
-- **Owner:** Procurement Lead · **Verification Method:** INSPECT
-- **Verification Criteria:** Security questionnaire pre-engagement; annual vendor assessment; findings remediated.
-- **Dependencies:** FR-28, NFR-40, NODE-PROC-011, NODE-ROLE-009
-- **Risk if not met:** H — substandard processor = GDPR Art. 28 violation.
-- **Functional UCs this constrains:** U.C.10.2.1 (Stripe), U.C.7.1.2 (Auth0).
-
-#### CAP-01 — DPAs Binding Processors
-
-**Primary Actor:** A-DPO-01 / A-CTO-01 · **Stakeholders:** Compliance Manager, CEO, Auditor
-**Preconditions:** Processor engaged.
-**Trigger:** Pre-data-transfer.
-**Main Success Scenario:**
-1. DPA signed with all active processors.
-2. DPAs reviewed annually.
-3. GDPR Art. 28 mandatory clauses present.
-**Extensions:** 3a. Non-data vendors — out of scope.
-**Postconditions:** DPA on file.
-**Security & Compliance Annex:**
-- **Owner:** Compliance Manager · **Verification Method:** INSPECT
-- **Verification Criteria:** 100% active processors with signed DPAs; annual review; Art. 28 clauses present.
-- **Dependencies:** NODE-PROC-012, NODE-ROLE-011
-- **Risk if not met:** H — missing DPA = GDPR Art. 28 violation.
-- **Functional UCs this constrains:** U.C.10.2.1, U.C.7.1.2.
 
 #### U.C.5.6.1 — SBOM Publication
 
@@ -3007,68 +2923,6 @@ Receipt issued.
 - **Verification Criteria:** SBOM per release; CycloneDX/SPDX validated; portal accessible.
 - **Dependencies:** FR-23, NFR-45, NODE-SYS-013
 - **Risk if not met:** M — missing SBOM = CRA Art. 13 transparency gap.
-
-### §3.6 PKG-TRN (Training & Awareness) — 3
-
-| UC ID | D | Title | Primary rule | CSF | PF | Prio |
-|-------|---|-------|--------------|-----|----|----|
-| PROC-15 | D-08.1 | Annual Awareness Training | CR-D-08.1-001 / SO-D-08.1-001 | PR.AT-01, PR.AT-02, PR.PS-01 | GV.AT-P1, GV.AT-P2 | MEDIUM |
-| PROC-16 | D-08.2 | Role-Specific Training | CR-D-08.2-001 / SO-D-08.2-001 | GV.RR-02, GV.RR-04, PR.AT-02 | GV.AT-P1, GV.AT-P2 | MEDIUM |
-| PROC-17 | D-08.1 | Phishing Simulation | CR-D-08.1-001 / SO-D-08.1-001 | PR.AT-01, PR.AT-02, PR.PS-01 | GV.AT-P1, GV.AT-P2 | LOW |
-
-#### PROC-15 — Annual Awareness Training
-
-**Primary Actor:** A-DPO-01 / A-CTO-01 (training owner)
-**Stakeholders:** All staff, Auditor
-**Preconditions:** LMS available.
-**Trigger:** Annual cycle.
-**Main Success Scenario:**
-1. Staff enrolled in annual course.
-2. Completion tracked; 100% target.
-3. Quiz pass required.
-**Extensions:** 3a. Long-term contractors — same requirement.
-**Postconditions:** 100% completion rate.
-**Security & Compliance Annex:**
-- **Owner:** Compliance Manager · **Verification Method:** INSPECT
-- **Verification Criteria:** 100% completion (NFR-36); refreshed annually; quiz pass required.
-- **Dependencies:** FR-29, NFR-36, NODE-PROC-018
-- **Risk if not met:** M — untrained staff = phishing risk + GDPR Art. 39 gap.
-
-#### PROC-16 — Role-Specific Training
-
-**Primary Actor:** A-DPO-01 / A-CTO-01
-**Stakeholders:** Engineers, ops, DPO, IAM admin
-**Preconditions:** Role taxonomy documented.
-**Trigger:** New role or annual cycle.
-**Main Success Scenario:**
-1. Role curricula per role.
-2. Completion tracked per role.
-3. Updated annually.
-**Extensions:** 2a. General awareness — covered in PROC-15.
-**Postconditions:** Role-specific competencies maintained.
-**Security & Compliance Annex:**
-- **Owner:** Compliance Manager · **Verification Method:** INSPECT
-- **Verification Criteria:** Role curricula per role; tracked; updated annually.
-- **Dependencies:** FR-29, NFR-36, NODE-PROC-019, NODE-ROLE-002, NODE-ROLE-003
-- **Risk if not met:** M — role gaps = competency risk.
-
-#### PROC-17 — Phishing Simulation
-
-**Primary Actor:** A-DPO-01 / A-CTO-01
-**Stakeholders:** All staff with email
-**Preconditions:** Phishing simulation vendor.
-**Trigger:** Quarterly.
-**Main Success Scenario:**
-1. Simulation campaign launched.
-2. Click rate tracked + reported.
-3. Re-education for repeat clickers.
-**Extensions:** 3a. External addresses — out of scope.
-**Postconditions:** Click-rate trend reported.
-**Security & Compliance Annex:**
-- **Owner:** Compliance Manager · **Verification Method:** TEST
-- **Verification Criteria:** Quarterly execution; click rate trend; re-education for repeat clickers.
-- **Dependencies:** FR-30, NFR-01
-- **Risk if not met:** L — phishing is a leading breach vector.
 
 ---
 
@@ -3215,7 +3069,7 @@ Receipt issued.
 | PROC-10 … U.C.5.6.1 | PKG-GOV | §3.5 |
 | PROC-15 … PROC-17 | PKG-TRN | §3.6 |
 
-All 35 IDs preserved verbatim. No downstream document requires remapping.
+The 17 UC ids remain live in §3.1–§3.5. The 18 re-laned ids (PROC-01..17, CAP-01 — formerly U.C.1.1.1…U.C.6.3.1; registry `00_METHODOLOGY/validation/LANE_NAMING_CENSUS_v0.md`) are lane cards in `Doc32_Process_Capability_Cards.md`, indexed from §3.0. No downstream document requires remapping.
 
 ### §6.2 New IDs introduced
 
@@ -3236,7 +3090,9 @@ All 35 IDs preserved verbatim. No downstream document requires remapping.
 - `KG_CHAINS.md` §1 (CH-09: FR-29 → UC-25 → CR-D-04.3)
 - `13a_Use_Case_Relationships.md` — `«include»` / `«extend»` graph (security UCs) + new `constrains`/`threatens`/`mitigated_by` (MUCs)
 - `13b_Use_Case_Variability.md` — variant catalogue (security UCs) + functional variants (e.g., U.C.10.2.1 plan tiers)
-- `annexes/A_Use_Case_Diagrams.md` — Mermaid diagrams (Fase de Especificação 3 fill)
+- `annexes/A_Use_Case_Diagrams.md` — use-case diagrams (UC ovals only, rubric v1.8 §5C.5)
+- `annexes/B_Sequence_Diagrams.md` — sequence diagrams (one per §2 product UC; annex-only per §5C.5)
+- `Doc32_Process_Capability_Cards.md` — PROC/CAP lane cards (§3.0 Compliance Domain Index)
 
 ---
 
@@ -3258,15 +3114,17 @@ All 35 IDs preserved verbatim. No downstream document requires remapping.
 
 ---
 
-**End of Use Cases Catalog (Phase 3 RICH, REWRITTEN_PRODUCT_BASELINE, v3.0)**
+**End of Use Cases Catalog (Phase 3 RICH, REWRITTEN_PRODUCT_BASELINE, v3.2 — UC SEPARATION lane-pure)**
 ---
 
 ## Lane Naming (2026-09-05)
 
 v3.0 → v3.1: non-technology UCs re-laned to PROC-*/CAP-* per human decision 2026-09-05 (rubric REALIZATION_CLASS_RUBRIC v1.3 §5B; registry `00_METHODOLOGY/validation/LANE_NAMING_CENSUS_v0.md`). Applied via `scripts/rename_lane_ids.py`.
 
+v3.1 → v3.2 (UC SEPARATION campaign, 2026-09-05): catalog made **lane-pure** per rubric `REALIZATION_CLASS_RUBRIC.md` v1.8 §5B rule 6 — the 18 PROC/CAP stub cards removed from §3 (full cards already in Doc32; §3.0 Compliance Domain Index preserves their catalogue-only fields); annex A cleared to UC ovals only (§5C.5). Ids unchanged — no renames in this phase.
+
 ---
 
 ## Lane Cards cross-reference
 
-The PROCESS and CAPABILITY lane cards for the ids re-laned in this catalogue (PROC-*/CAP-*, per `REALIZATION_CLASS_RUBRIC.md` v1.5 §5B/§5C) live in `Doc32_Process_Capability_Cards.md` (same IDs, one card + one Mermaid diagram each, with an articulation table binding every card to this catalogue and to the downstream documents).
+The PROCESS and CAPABILITY lane cards for the ids re-laned in this catalogue (PROC-01..17 / CAP-01, per `REALIZATION_CLASS_RUBRIC.md` v1.8 §5B/§5C) live exclusively in `Doc32_Process_Capability_Cards.md` (same IDs, one card + one Mermaid diagram each, with an articulation table binding every card to this catalogue and to the downstream documents). Since v3.2 (UC SEPARATION, rubric v1.8 §5B rule 6) this catalogue holds UC cards only; the §3.0 Compliance Domain Index maps each compliance package to its lane cards and preserves the catalogue-only fields.
