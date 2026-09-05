@@ -2,19 +2,24 @@
 document_id: AEGIS-P3-13
 title: Use Cases Catalog
 phase: 3
-version: 1.3
+version: 1.5
 created: 2026-04-04
 updated: 2026-09-05
 author: System Architect
 status: DRAFT
 case: Case_02_SecureBorder_Solutions
 inputs: [Doc03_Company_Context_Assessment.md, Doc18_Rules_Catalog.md, Doc16_Privacy_Security_Goals.md, Doc15_Strategic_Tensions_Report.md]
-outputs: [14_Architectural_Nodes.md, 15_Requirements_Allocation.md, 23_Functional_Requirements.md]
+outputs: [Doc24_Architectural_Nodes.md, Doc25_Requirements_Allocation.md, requirements/Doc29_Functional_Requirements.md, Doc31_Process_Capability_Cards.md]
 traceability: AEGIS Class Model → UseCase, BusinessGoal, Stakeholder classes
-related_documents: 04_Company_Context_Assessment.md, 07_Structured_Compliance_Matrix.md
+related_documents: 04_Company_Context_Assessment.md, 07_Structured_Compliance_Matrix.md, annexes/A_Use_Case_Diagrams.md, annexes/B_Sequence_Diagrams.md
 ---
 
 # Use Cases Catalog — SecureBorder Solutions
+
+> **Diagrams:** use-case diagrams → `annexes/A_Use_Case_Diagrams.md` (UC ovals only, rubric
+> v1.8 §5C.5) · sequence diagrams → `annexes/B_Sequence_Diagrams.md` (one section per product
+> UC card). **Lane cards (PROC-\*/CAP-\*):** `Doc31_Process_Capability_Cards.md` — this
+> catalogue holds UC cards only (rubric v1.8 §5B rule 6, UC SEPARATION 2026-09-05).
 
 ## 1. DOCUMENT PURPOSE
 
@@ -51,7 +56,7 @@ This document defines the **security and privacy use cases** for SecureBorder So
 | completedBy | System Architect |
 | phase3Step | B1+B2+B3+B4 |
 | companyProfile | Medium-Large (450 employees), B2G/B2B, GDPR+CRA+NIS2+AI_Act |
-| totalUseCases | 44 |
+| totalUseCases | 36 (21 product §6, PKG-8..12 · 15 compliance §7, UC-DP..UC-TRN) |
 | categories | DP, SEC, IAM, DEV, GOV, AI, TRN |
 
 ---
@@ -226,9 +231,9 @@ useCaseDiagram
 | Actor (existing SH- ID) | Role in the product | Drives |
 |-------------------------|---------------------|--------|
 | SH-EXT-002 (Traveler) | Primary product user: crosses the border via the eGate. | U.C.8.1.*, U.C.8.2.*, U.C.8.3.1, U.C.8.4.1 |
-| SH-EXT-001 (Border Officer) | Human oversight: handles referrals, manual verification, overrides. | U.C.8.3.2, U.C.9.1.1–PROC-23 (PKG-9) |
-| SH-INT-007 (Ops Lead) | Kiosk fleet operations (provisioning, health, OTA supervision, administration). | PROC-24–U.C.10.5.1 (PKG-10), U.C.11.5.1, U.C.12.1.1, U.C.12.3.1, PROC-27 |
-| SH-INT-005 (AI Governance Lead) | AI model lifecycle oversight (training, rollout, rollback, drift/bias review). | PROC-25–PROC-26 (PKG-11) |
+| SH-EXT-001 (Border Officer) | Human oversight: handles referrals, manual verification, overrides. | U.C.8.3.2, U.C.9.1.1–U.C.9.4.1 (PKG-9) |
+| SH-INT-007 (Ops Lead) | Kiosk fleet operations (provisioning, health, OTA supervision, administration). | U.C.10.2.1–U.C.10.5.1 (PKG-10), U.C.11.5.1, U.C.12.1.1, U.C.12.3.1 |
+| SH-INT-005 (AI Governance Lead) | AI model lifecycle oversight (training, rollout, rollback, drift/bias review). | U.C.11.2.1, U.C.11.3.1 (PKG-11) |
 | SH-INT-008 (SOC Manager) | Consumes security events raised by the journey (tamper, spoofing, lockouts); owns incident response paths. | U.C.9.4.1, U.C.10.4.1, U.C.12.2.1 |
 | SH-EXT-003 (National Border Authority) | Data controller; requests and receives audit evidence exports. | U.C.12.2.1 |
 | SYS-04 / SYS-06 (kiosk) | The product itself: Edge AI firmware + kiosk hardware acting for the actors above. | All U.C.8.*–U.C.12.* |
@@ -1049,7 +1054,7 @@ accountability gaps prevented (MUC-04-analogue).
 - **Threats addressed:** MUC-04-analogue (notice-bypass / accountability gap).
 - **NIST anchors:** GV.PO-P1, PR.DS-01.
 
-### 6.2 PKG-9 — Operator Referral Desk (5)
+### 6.2 PKG-9 — Operator Referral Desk (4)
 
 | UC ID | Title | Primary Actor | Prio |
 |-------|-------|---------------|------|
@@ -1057,7 +1062,6 @@ accountability gaps prevented (MUC-04-analogue).
 | U.C.9.2.1 | Referral Queue Handling & Triage | SH-EXT-001 | HIGH |
 | U.C.9.3.1 | Manual Identity Verification & Override (Reason Codes) | SH-EXT-001 | CRITICAL |
 | U.C.9.4.1 | Incident Flag & Gate Lock | SH-EXT-001 | CRITICAL |
-| PROC-23 | Shift Handover & Referral Report | SH-EXT-001 | HIGH |
 
 #### Use-Case: {U.C.9.1.1} Operator Console Session (SSO/FIDO2, Fail-Closed)
 
@@ -1538,245 +1542,14 @@ PROC-05 SLA.
 - **Threats addressed:** MUC-07 (lane closure control), MUC-C2-01 (spoof containment), MUC-C2-04 (tamper containment).
 - **NIST anchors:** DE.AE-02, RS.MI-01, PR.IR-04.
 
-#### Use-Case: {PROC-23} Shift Handover & Referral Report
-
-##### 1 Brief Description
-
-At shift change the outgoing officer produces a referral report — open items, overrides,
-flagged incidents — and hands the queue to the incoming officer. It is triggered at shift
-end or on demand. The handover keeps the human-oversight record continuous: no work item
-is left without an accountable owner across a shift boundary.
-
-##### 2 Actor Brief Descriptions
-
-###### 2.1 SH-EXT-001 (Border Officer, outgoing) — Primary Actor:
-
-Produces the report and transfers queue ownership.
-
-###### 2.2 SH-EXT-001 (Border Officer, incoming):
-
-Authenticates and accepts the queue.
-
-###### 2.3 SYS-08 console client:
-
-Generates the per-shift referral report from queue and decision data.
-
-###### 2.4 SH-INT-010 (Compliance Analyst):
-
-Consumes archived reports for audit sampling.
-
-###### 2.5 SH-INT-004 (DPO):
-
-Uses the override sections for sampling (MUC-C2-05).
-
-##### 3 Preconditions
-
-- Outgoing officer session active (U.C.9.1.1).
-- Queue and decision data available for the shift window.
-
-##### 4 Basic Flow of Events
-
-1. Outgoing officer opens the handover view: open items, in-service items, flagged incidents.
-2. Console generates the referral report (per-shift summary including overrides and reason codes).
-3. Outgoing officer annotates open items with status notes.
-4. Incoming officer authenticates (U.C.9.1.1) and accepts the queue; in-service items return to waiting.
-5. Report archived to the audit chain; the outgoing session terminates.
-
-> **Sequence diagram:** → Annex B §12 (B_Sequence_Diagrams.md)
-
-##### 5 Alternative Flows
-
-###### 5.1 <Alternate flow: Unresolved critical item>
-
-Trigger: step 3, a flagged item is still open. It cannot be silently closed at handover;
-it must be escalated to SOC (PROC-05) before the handover completes.
-
-###### 5.2 <Alternate flow: Report export requested>
-
-Trigger: step 2, compliance pulls archived reports for audit sampling (PROC-16).
-
-##### 6 Subflows
-
-###### 6.1 <Subflow: Report generation>
-
-1. Aggregate queue telemetry, decisions and overrides for the shift window.
-2. Render the report and archive it (CR-D-10.2-001 traceability).
-
-###### 6.2 <Subflow: Session termination>
-
-1. The outgoing session ends per U.C.9.1.1; queue ownership cannot outlive a session.
-
-##### 7 Key Scenarios
-
-###### 7.1 <Scenario: Clean handover>
-
-1. The incoming officer owns the queue with the full history attached.
-
-###### 7.2 <Scenario: Override pattern review>
-
-1. Per-shift reports feed DPO/SOC sampling of overrides (MUC-C2-05).
-
-##### 8 Post-conditions
-
-###### 8.1
-
-Shift report archived; queue ownership transferred to the incoming officer.
-
-###### 8.2
-
-No orphaned in-service items; no queue without an active accountable session.
-
-##### 9 Special Requirements (FURPS+)
-
-**Functional (F):** Handover view, report generation, queue transfer with ownership.
-
-**Usability (U):** Checklist-style handover flow.
-
-**Reliability (R):** Report archived to the immutable chain; no data loss on session
-termination.
-
-**Performance (P):** N/A — no attested handover timing constraint.
-
-**Supportability (S):** Reports reusable for compliance audits (PROC-16) and access/
-performance reviews.
-
-##### 10 Security & Compliance Annex (AEGIS)
-
-- **Provenance:** [ATTESTED] Doc03 §3.3 (SH-EXT-001 operates per shift); Doc04 §1.1 SYS-09 (STORE-04, 10-year retention).
-- **Constrained by:** U.C.8.3.2 (referral desk baseline), U.C.9.1.1 (session lifecycle), PROC-16 (audit reporting), CAP-02 (monitoring).
-- **Rules / NFR:** CR-D-10.2-001, CR-D-10.3-001, BPR-D-10.2-001.
-- **Threats addressed:** MUC-C2-05 (sampling input), MUC-02 (no unowned queue across shifts).
-- **NIST anchors:** PR.DS-11, DE.AE-03.
-
-
-### 6.3 PKG-10 — Kiosk Fleet Operations (5)
+### 6.3 PKG-10 — Kiosk Fleet Operations (4)
 
 | UC ID | Title | Primary Actor | Prio |
 |-------|-------|---------------|------|
-| PROC-24 | Kiosk Provisioning & Enrolment (TPM-Bound Identity) | SH-INT-007 | CRITICAL |
 | U.C.10.2.1 | Fleet Health Monitoring | SH-INT-007 | HIGH |
 | U.C.10.3.1 | Signed OTA Firmware Update (Cosign, Staged) | SH-INT-007 | CRITICAL |
 | U.C.10.4.1 | Tamper Alert Response | SH-INT-008 | CRITICAL |
 | U.C.10.5.1 | Offline/Failover Mode (Store-and-Forward Crossing Events) | SH-INT-007 | HIGH |
-
-#### Use-Case: {PROC-24} Kiosk Provisioning & Enrolment (TPM-Bound Identity)
-
-##### 1 Brief Description
-
-Operations provisions a new kiosk into the fleet: hardware is brought up, the TPM-bound
-device identity is attested, an mTLS client certificate is enrolled from the internal CA
-and the signed firmware baseline is verified. It is triggered when a unit is installed at
-an airport or replaced in the field. Enrolment is the birth of the device identity: only
-TPM-bound, secure-boot units can ever join the fleet.
-
-##### 2 Actor Brief Descriptions
-
-###### 2.1 SH-INT-007 (Ops Lead) — Primary Actor:
-
-Runs provisioning, approves the enrolment request against the procurement manifest.
-
-###### 2.2 SYS-06 (Kiosk hardware):
-
-Industrial PC with TPM 2.0; provides the hardware root of trust and the secure-boot chain.
-
-###### 2.3 SYS-04 (Edge AI firmware):
-
-Signed firmware verified at boot; runs the attestation client.
-
-###### 2.4 SYS-01 (EU cloud enrolment endpoint):
-
-Terminates the outbound-only enrolment channel; internal CA issues the mTLS certificate.
-
-###### 2.5 SH-EXT-004 (Airport Operator):
-
-Provides the physical installation environment and site network handoff.
-
-##### 3 Preconditions
-
-- Hardware from an audited supplier with SBOM provided (Doc06 §3).
-- Unit at the installation site with backhaul available (private LTE/5G or fibre).
-
-##### 4 Basic Flow of Events
-
-1. Unit powers on; TPM 2.0 secure boot verifies the signed firmware chain (SYS-04).
-2. Device presents its TPM-bound key to the enrolment endpoint over the outbound-only channel.
-3. Ops approves the enrolment request (unit serial vs procurement manifest).
-4. Internal CA issues the mTLS client certificate bound to the TPM key; quarterly rotation and OCSP revocation scheduled.
-5. Unit registered in the fleet inventory with its SBOM reference; baseline configuration applied (secure defaults, U.C.3.5.1); unit becomes enrolled and healthy for PKG-8.
-
-> **Sequence diagram:** → Annex B §13 (B_Sequence_Diagrams.md)
-
-##### 5 Alternative Flows
-
-###### 5.1 <Alternate flow: Boot chain invalid>
-
-Trigger: step 1, secure boot verification fails. The unit refuses service; it is
-quarantined and handled per U.C.10.4.1.
-
-###### 5.2 <Alternate flow: Serial/manifest mismatch>
-
-Trigger: step 3. Enrolment denied; procurement/supplier review (PROC-17).
-
-###### 5.3 <Alternate flow: Backhaul unavailable>
-
-Trigger: step 2. Enrolment deferred; the unit stays out of production (no bypass or
-temporary enrolment exists).
-
-##### 6 Subflows
-
-###### 6.1 <Subflow: TPM key attestation>
-
-1. The TPM-bound key cannot be exported; certificate issuance happens only after
-attestation of the boot measurements.
-
-###### 6.2 <Subflow: Fleet inventory registration>
-
-1. Asset record created with unit serial, SBOM reference and certificate fingerprint
-(inventory discipline per ID.AM-01).
-
-##### 7 Key Scenarios
-
-###### 7.1 <Scenario: Unit enrolled>
-
-1. Production-ready kiosk with a hardware-bound identity and inventory record.
-
-###### 7.2 <Scenario: Implant resisted>
-
-1. A non-genuine unit or modified firmware cannot enrol or boot into service
-(MUC-C2-04).
-
-##### 8 Post-conditions
-
-###### 8.1
-
-Enrolled unit with a TPM-bound certificate and a fleet inventory record.
-
-###### 8.2
-
-No unit is in production without a verified boot chain and an approved enrolment record.
-
-##### 9 Special Requirements (FURPS+)
-
-**Functional (F):** Secure-boot verification, TPM attestation, certificate issuance,
-inventory registration.
-
-**Usability (U):** Guided provisioning runbook for field operations.
-
-**Reliability (R):** Fail-closed — enrolment denied on any verification failure;
-outbound-only channel only.
-
-**Performance (P):** N/A — no attested provisioning time.
-
-**Supportability (S):** Quarterly certificate rotation via the internal CA; per-unit
-CycloneDX SBOM from SYS-11.
-
-##### 10 Security & Compliance Annex (AEGIS)
-
-- **Provenance:** [ATTESTED] Doc04 §1.1 SYS-04 (TPM 2.0 secure boot, signed firmware), SYS-06 (industrial-grade PC); Doc04 §1.4 (SYS-04 row: FIDO device-bound credentials in TPM 2.0, mTLS certificates rotated quarterly via internal CA, OCSP revocation); Doc04 §1.2 (outbound-only channel); Doc06 §3 (Advantech IPC + TPM 2.0, secure-boot obligation).
-- **Constrained by:** U.C.3.5.1 (secure default configuration), PROC-10 (identity lifecycle — device identity), U.C.5.8.1 (per-airport boundary), PROC-17 (supplier risk).
-- **Rules / NFR:** CR-D-03.4-001, CR-D-03.1-001, CR-D-01.3-001.
-- **Threats addressed:** MUC-C2-04 (tamper/implant resisted at birth of trust), MUC-03 (no inbound channels created).
-- **NIST anchors:** ID.AM-01, PR.AA-05, PR.PS-01.
 
 #### Use-Case: {U.C.10.2.1} Fleet Health Monitoring
 
@@ -1820,7 +1593,7 @@ Receives security-class events (tamper indicators, lock anomalies).
 4. Maintenance-class anomalies become Ops work orders; security-class anomalies raise SOC events (PROC-05), including tamper indicators (U.C.10.4.1).
 5. Anomalies are correlated per unit/lane in the SIEM (CAP-02).
 
-> **Sequence diagram:** → Annex B §14 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §12 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -1931,7 +1704,7 @@ Informed/engaged on rollout anomalies or aborts.
 4. Package applied atomically; the unit self-tests and reports its new version.
 5. Ring progression is gated on canary health; abort/rollback remains armed until promotion is confirmed.
 
-> **Sequence diagram:** → Annex B §15 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §13 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2051,7 +1824,7 @@ Coordinates site security for physical inspection.
 4. Outcome: verified-false (sensors re-armed) or confirmed tamper (contain: certificate revoked via OCSP, firmware quarantined, unit re-imaged from the signed baseline or retired).
 5. Incident record closed on the audit chain; authority notification if reportable (PROC-07).
 
-> **Sequence diagram:** → Annex B §16 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §14 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2163,7 +1936,7 @@ Engaged on prolonged outages or queue-integrity anomalies.
 4. Queued events are encrypted (HSM-bound key class) and retained until the channel returns.
 5. On reconnection: store-and-forward flush to SYS-09 in strict order; completeness reconciled; the offline window is recorded for SLA (U.C.12.3.1).
 
-> **Sequence diagram:** → Annex B §17 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §15 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2232,126 +2005,13 @@ reported for SLA accounting.
 - **Threats addressed:** MUC-07 (graceful degradation instead of lane failure), MUC-C2-04 (queue tamper caught by integrity check).
 - **NIST anchors:** PR.DS-11, RC.RP-04, PR.DS-01.
 
-### 6.4 PKG-11 — AI Model Lifecycle (5)
+### 6.4 PKG-11 — AI Model Lifecycle (3)
 
 | UC ID | Title | Primary Actor | Prio |
 |-------|-------|---------------|------|
-| PROC-25 | Model Training & Release Packaging (EU-only, SYS-05) | SH-INT-005 | CRITICAL |
 | U.C.11.2.1 | Signed Model Rollout to Fleet (Staged) | SH-INT-005 | CRITICAL |
 | U.C.11.3.1 | Model Rollback | SH-INT-005 | HIGH |
-| PROC-26 | Drift/Bias Monitoring & Review | SH-INT-005 | HIGH |
 | U.C.11.5.1 | Watchlist Cache Sync (SYS-03 sFTP, HSM-Bound) | SH-INT-007 | HIGH |
-
-#### Use-Case: {PROC-25} Model Training & Release Packaging (EU-only, SYS-05)
-
-##### 1 Brief Description
-
-AI Governance and ML engineering train or retrain the face-match/PAD models in the
-EU-only training platform and package a release candidate: evaluated artefact, versioned
-registry entry, signature and SBOM. It is triggered by a retraining cycle or by a
-drift/bias finding (PROC-26). No model reaches the fleet without passing through this
-packaging gate.
-
-##### 2 Actor Brief Descriptions
-
-###### 2.1 SH-INT-005 (AI Governance Lead) — Primary Actor:
-
-Owns the release decision against conformity documentation and evaluation gates.
-
-###### 2.2 SH-INT-006 (Dev Lead):
-
-Operates the training/packaging pipeline.
-
-###### 2.3 SYS-05 (Cloud model training):
-
-EU-only training in a segregated account; signed model artefact registry.
-
-###### 2.4 SYS-11 (SBOM pipeline):
-
-Packages the artefact with cosign signature and CycloneDX SBOM.
-
-###### 2.5 SH-INT-004 (DPO):
-
-Reviews training-data minimisation inputs.
-
-##### 3 Preconditions
-
-- Training dataset lineage and representativeness documented (U.C.6.7.1).
-- Conformity posture current (PROC-19).
-
-##### 4 Basic Flow of Events
-
-1. Training run executes in SYS-05 (EU region, segregated account, deny-by-default egress).
-2. Candidate is evaluated: accuracy, bias across demographic groups (PROC-20), PAD threshold behaviour.
-3. Release candidate is packaged: versioned artefact in the signed registry + CycloneDX SBOM (SYS-11).
-4. AI Governance signs off against the Annex III technical documentation (PROC-19).
-5. The candidate becomes eligible for fleet rollout (U.C.11.2.1).
-
-> **Sequence diagram:** → Annex B §18 (B_Sequence_Diagrams.md)
-
-##### 5 Alternative Flows
-
-###### 5.1 <Alternate flow: Evaluation gate fails>
-
-Trigger: step 2, bias or accuracy gate fails. Candidate rejected; findings feed the
-PROC-20 review; no release is produced.
-
-###### 5.2 <Alternate flow: Training data gap>
-
-Trigger: step 1, lineage or representativeness check fails (U.C.6.7.1). Training is
-blocked until the dataset governance gap is closed.
-
-##### 6 Subflows
-
-###### 6.1 <Subflow: Evaluation gate>
-
-1. Metrics and the bias report are attached to the artefact record as conformity
-evidence.
-
-###### 6.2 <Subflow: Artefact signing>
-
-1. cosign signature produced in SYS-11; signature and hash recorded in the registry.
-
-##### 7 Key Scenarios
-
-###### 7.1 <Scenario: Candidate released for rollout>
-
-1. Fully traceable artefact (version, signature, SBOM, evaluation) enters U.C.11.2.1.
-
-###### 7.2 <Scenario: Non-compliant candidate blocked>
-
-1. Gate evidence prevents an uncontrolled model change at the origin (MUC-C2-06).
-
-##### 8 Post-conditions
-
-###### 8.1
-
-Release candidate versioned, signed and documented — or rejected with recorded reasons.
-
-###### 8.2
-
-Evaluation evidence retained as conformity documentation.
-
-##### 9 Special Requirements (FURPS+)
-
-**Functional (F):** EU-only training, evaluation gates, versioned signed packaging.
-
-**Usability (U):** N/A — engineering workflow.
-
-**Reliability (R):** Training runs in a segregated account with deny-by-default egress.
-
-**Performance (P):** N/A — no attested training-time constraint.
-
-**Supportability (S):** Registry retains artefacts for the lifetime of the model version
-(STORE-02).
-
-##### 10 Security & Compliance Annex (AEGIS)
-
-- **Provenance:** [ATTESTED] Doc04 §1.1 SYS-05 (EU-only training, signed model artefact registry); Doc04 §1.2 (separate AWS account segregated from production, deny-by-default egress); SYS-11 (SBOM emission per release).
-- **Constrained by:** PROC-19 (conformity assessment), PROC-20 (bias gates), U.C.6.7.1 (training data management), CAP-03 (privacy/secure by design).
-- **Rules / NFR:** CR-D-05.1-001, CR-D-07.1-001, CR-D-06.2-001.
-- **Threats addressed:** MUC-C2-06 (poisoned artefact blocked at origin), MUC-02 (unauthorised model change).
-- **NIST anchors:** PR.PS-06, GV.SC-04, ID.AM-08.
 
 #### Use-Case: {U.C.11.2.1} Signed Model Rollout to Fleet (Staged)
 
@@ -2397,7 +2057,7 @@ Engaged on rollout anomalies or aborts.
 4. Ring promotion on canary metrics within governed bounds (drift monitoring PROC-26); otherwise auto-halt.
 5. Fleet-wide completion recorded; the previous version is retained for rollback (U.C.11.3.1).
 
-> **Sequence diagram:** → Annex B §19 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §16 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2504,7 +2164,7 @@ Opens the root-cause fix track.
 4. Rollback verified via health and drift metrics (PROC-26).
 5. Root-cause ticket opened; any re-release requires fresh packaging (PROC-25).
 
-> **Sequence diagram:** → Annex B §20 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §17 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2570,113 +2230,6 @@ review.
 - **Threats addressed:** MUC-C2-06 (containment), MUC-07 (service restoration).
 - **NIST anchors:** RS.MI-02, RC.RP-04.
 
-#### Use-Case: {PROC-26} Drift/Bias Monitoring & Review
-
-##### 1 Brief Description
-
-AI Governance reviews continuous drift and bias telemetry for the deployed fleet:
-accuracy deltas, demographic bias indicators and threshold behaviour, per model version.
-It is triggered by the scheduled review cadence (quarterly bias testing, PROC-20) or by
-automated drift alerts (degradation beyond governed bounds, U.C.6.2.1). The review turns
-post-market telemetry into dispositions: tune, retrain or roll back.
-
-##### 2 Actor Brief Descriptions
-
-###### 2.1 SH-INT-005 (AI Governance Lead) — Primary Actor:
-
-Runs the review, records dispositions.
-
-###### 2.2 SYS-09 / SYS-12 (Telemetry aggregation):
-
-Provides decision metadata and anomaly views.
-
-###### 2.3 SH-INT-008 (SOC Manager):
-
-Receives drift alerts raised as anomaly events.
-
-###### 2.4 SH-EXT-011 (AI Market Surveillance Authority):
-
-Downstream consumer of post-market evidence via PROC-18.
-
-##### 3 Preconditions
-
-- Fleet telemetry flowing (U.C.10.2.1).
-- Model versions pinned and traceable (U.C.11.2.1).
-
-##### 4 Basic Flow of Events
-
-1. Drift metrics computed from decision/quality telemetry per model version.
-2. Automated alert on degradation beyond the governed bound (per U.C.6.2.1 threshold).
-3. AI Governance reviews: true degradation vs data/seasonality effects; bias view per demographic group.
-4. Disposition recorded: threshold tune (governed change), retrain (PROC-25) or rollback (U.C.11.3.1).
-5. Review record and metrics archived; reportable findings follow PROC-07 / PROC-18.
-
-> **Sequence diagram:** → Annex B §21 (B_Sequence_Diagrams.md)
-
-##### 5 Alternative Flows
-
-###### 5.1 <Alternate flow: Serious incident suspected>
-
-Trigger: step 3. Escalation to the AI incident path (PROC-21) and notification
-assessment (PROC-07).
-
-###### 5.2 <Alternate flow: Metric gap>
-
-Trigger: step 1, telemetry loss. Review runs on partial data flagged as incomplete;
-completeness restored via the U.C.10.5.1 flush.
-
-##### 6 Subflows
-
-###### 6.1 <Subflow: Drift alert rule>
-
-1. Accuracy-degradation threshold per U.C.6.2.1 (>1% degradation alerting, attested in
-§7).
-
-###### 6.2 <Subflow: Bias review cadence>
-
-1. Quarterly documented bias testing (PROC-20) consumes the same metrics.
-
-##### 7 Key Scenarios
-
-###### 7.1 <Scenario: Drift caught early>
-
-1. Threshold tune or retrain scheduled before service impact.
-
-###### 7.2 <Scenario: Bad version detected post-rollout>
-
-1. Review triggers rollback (U.C.11.3.1) — the detection net for MUC-C2-06.
-
-##### 8 Post-conditions
-
-###### 8.1
-
-Disposition on record with the supporting metrics.
-
-###### 8.2
-
-Metrics and reviews archived as post-market conformity evidence.
-
-##### 9 Special Requirements (FURPS+)
-
-**Functional (F):** Drift computation, alerting, bias review, disposition recording.
-
-**Usability (U):** Review dashboard per model version.
-
-**Reliability (R):** Real-time monitoring per the U.C.6.2.1 SLA.
-
-**Performance (P):** N/A — no attested review-latency constraint.
-
-**Supportability (S):** Metrics retained as post-market monitoring evidence (AI_Act
-post-market obligations via U.C.6.2.1).
-
-##### 10 Security & Compliance Annex (AEGIS)
-
-- **Provenance:** [ATTESTED] Doc04 §1.1 SYS-09 (decision audit metadata, no biometric content); Doc03 §4 (BG-008 note: AI false-match-rate target moved to Phase 3 as a technical requirement).
-- **Constrained by:** U.C.6.2.1 (drift detection), PROC-20 (bias testing), PROC-21 (AI incidents), U.C.8.2.2 (governed PAD thresholds).
-- **Rules / NFR:** BPR-D-10.5-001, CR-D-10.1-001, BPR-D-02.4-001.
-- **Threats addressed:** MUC-C2-06 (detection net for implanted/degraded models), MUC-02 (threshold tamper becomes visible).
-- **NIST anchors:** DE.CM-01, DE.AE-02, GV.OV-02.
-
 #### Use-Case: {U.C.11.5.1} Watchlist Cache Sync (SYS-03 sFTP, HSM-Bound)
 
 ##### 1 Brief Description
@@ -2723,7 +2276,7 @@ Controller of the watchlist data; defines policy and deletion.
 4. Kiosks read the cache through the read endpoints only; the FLOW-02 probe path is unchanged.
 5. Sync result and cache version logged; controller-side deletions propagate per policy.
 
-> **Sequence diagram:** → Annex B §22 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §18 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2791,14 +2344,13 @@ SYS-07 (quarterly ceremonies).
 - **Threats addressed:** MUC-05 (compromised integration), MUC-03 (injection / cross-tenant read).
 - **NIST anchors:** PR.DS-01, PR.DS-02, PR.AA-05.
 
-### 6.5 PKG-12 — Administration & Reporting (4)
+### 6.5 PKG-12 — Administration & Reporting (3)
 
 | UC ID | Title | Primary Actor | Prio |
 |-------|-------|---------------|------|
 | U.C.12.1.1 | Kiosk Admin Configuration (TPM-Bound, Dual Control) | SH-INT-007 | HIGH |
 | U.C.12.2.1 | Audit Export for Authorities (WORM STORE-04) | SH-EXT-003 | HIGH |
 | U.C.12.3.1 | SLA & Fleet Status Dashboard | SH-INT-007 | MEDIUM |
-| PROC-27 | User/Role Administration for Console | SH-INT-007 | HIGH |
 
 #### Use-Case: {U.C.12.1.1} Kiosk Admin Configuration (TPM-Bound, Dual Control)
 
@@ -2841,7 +2393,7 @@ Receives configuration-drift alerts (U.C.10.2.1).
 4. Configuration is dispatched over the mTLS management channel; the unit verifies and applies it, secure defaults preserved (U.C.3.5.1).
 5. The applied version is recorded per unit; drift against the baseline is alerted (U.C.10.2.1).
 
-> **Sequence diagram:** → Annex B §23 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §19 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2953,7 +2505,7 @@ Source of the signature-chained records.
 4. Signed evidence bundle generated (signature-chained entries + integrity proof).
 5. Bundle delivered via the agreed secure channel; the export itself is recorded in the audit chain.
 
-> **Sequence diagram:** → Annex B §24 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §20 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -3061,7 +2613,7 @@ Aggregates fleet and SLA counters.
 4. Threshold breaches alert Ops/SOC.
 5. Periodic SLA reports archived for the B2G/B2B contracts.
 
-> **Sequence diagram:** → Annex B §25 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §21 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -3126,165 +2678,91 @@ Periodic reports archived for contract and regulatory use.
 - **Threats addressed:** MUC-07 (availability impact evidenced and alerted).
 - **NIST anchors:** DE.CM-01, GV.OV-03.
 
-#### Use-Case: {PROC-27} User/Role Administration for Console
+### 6.6 Lane Card Register — product lane cards PROC-23..PROC-27 (→ Doc31)
 
-##### 1 Brief Description
+> **v1.5 (UC SEPARATION, 2026-09-05).** The five product-lane cards that shared §6.1–§6.5
+> left the catalogue per rubric `REALIZATION_CLASS_RUBRIC.md` v1.8 §5B rule 6 (a use-case
+> catalog holds UC cards only). Full lane cards (§5C.1 form + Mermaid flowcharts) live in
+> **`Doc31_Process_Capability_Cards.md`** — same IDs; trigger/activities/roles/SLA/realises/
+> anchors/evidence are carried there. The register below preserves, verbatim, the fields the
+> §5C.1 schema does not carry (brief description, preconditions, post-conditions, FURPS+,
+> security & compliance annex) so no information is lost. Formerly U.C.9.5.1, U.C.10.1.1,
+> U.C.11.1.1, U.C.11.4.1, U.C.12.4.1 (LANE NAMING re-lane; registry
+> `00_METHODOLOGY/validation/LANE_NAMING_CENSUS_v0.md`).
 
-Operations administers console users and roles — officers, supervisors, auditors,
-administrators — through joiner/mover/leaver flows tied to the enterprise IdP, with
-least-privilege profiles and periodic review. It is triggered by an HR/Ops request or the
-review cycle. Entitlements are the boundary of the human-oversight plane: whoever can
-work the queue or the override must have exactly the role that says so.
-
-##### 2 Actor Brief Descriptions
-
-###### 2.1 SH-INT-007 (Ops Lead) — Primary Actor:
-
-Executes joiner/mover/leaver flows and role assignments.
-
-###### 2.2 SYS-08 (SSO / IdP):
-
-Source of identity, groups and role assignments.
-
-###### 2.3 SH-EXT-001 (Border Officer):
-
-Affected user; receives/loses entitlements.
-
-###### 2.4 SH-INT-008 (SOC Manager):
-
-Sees privileged entitlement changes streamed from the IdP.
-
-##### 3 Preconditions
-
-- Identity exists in SYS-08 (officer lifecycle per PROC-10).
-- Role profile defined for the request (role taxonomy).
-
-##### 4 Basic Flow of Events
-
-1. Request raised (joiner/mover/leaver) with the target role profile.
-2. Admin assigns roles/groups in SYS-08; entitlements are picked up by the console at next login (U.C.9.1.1).
-3. Sensitive roles (override, export, admin) require step-up approval.
-4. The entitlement change is recorded; privileged changes stream to SOC.
-5. Quarterly review reconciles entitlements against actual use (PROC-11).
-
-> **Sequence diagram:** → Annex B §26 (B_Sequence_Diagrams.md)
-
-##### 5 Alternative Flows
-
-###### 5.1 <Alternate flow: Leaver not processed on time>
-
-Trigger: step 2, employment ended but entitlement active. Deprovisioning alert fires;
-sessions are force-revoked.
-
-###### 5.2 <Alternate flow: Separation-of-duties conflict>
-
-Trigger: step 3, requested role combination conflicts with existing duties. The
-assignment is rejected with the conflict recorded.
-
-##### 6 Subflows
-
-###### 6.1 <Subflow: Role taxonomy>
-
-1. Officer / supervisor / auditor / admin profiles map to console capabilities.
-
-###### 6.2 <Subflow: Privileged change alerting>
-
-1. Privileged entitlement changes stream to SOC (CAP-02 correlation).
-
-##### 7 Key Scenarios
-
-###### 7.1 <Scenario: Officer onboarded with least privilege>
-
-1. Entitlements exactly match the approved profile from day one.
-
-###### 7.2 <Scenario: Escalation resisted>
-
-1. SoD checks and quarterly review constrain privilege creep (MUC-02).
-
-##### 8 Post-conditions
-
-###### 8.1
-
-Entitlements match approved profiles; changes on the audit chain.
-
-###### 8.2
-
-Review state current for the next cycle.
-
-##### 9 Special Requirements (FURPS+)
-
-**Functional (F):** JML flows, role profiles, SoD checks, review support.
-
-**Usability (U):** Admin console integrated with SYS-08 groups.
-
-**Reliability (R):** Deprovisioning alerts; forced session revocation on leavers.
-
-**Performance (P):** N/A — no attested provisioning SLA (officer identity lifecycle runs
-on the PROC-10 24h SLA).
-
-**Supportability (S):** Quarterly review cadence per PROC-11.
-
-##### 10 Security & Compliance Annex (AEGIS)
-
-- **Provenance:** [ATTESTED] Doc04 §1.1 SYS-08 (RBAC via IdP); Doc04 §1.4 (SYS-08: FIDO2 for privileged users, SAML 2.0/OIDC across corporate apps).
-- **Constrained by:** PROC-10 (identity lifecycle), U.C.3.4.1 (least privilege), PROC-11 (access rights review), U.C.9.1.1 (session entitlements).
-- **Rules / NFR:** CR-D-03.1-001, CR-D-03.2-001, CR-D-03.3-001.
-- **Threats addressed:** MUC-02 (privilege escalation), MUC-01 (credential attack surface limited by role scope).
-- **NIST anchors:** PR.AA-05, PR.AA-06, DE.CM-09.
+- **PROC-23 — Shift Handover & Referral Report** (PKG-9 · HIGH · Realises CR-D-10.2-001, CR-D-10.3-001, BPR-D-10.2-001 · operational card: Doc31 §PROC-23)
+  - Brief Description: At shift change the outgoing officer produces a referral report — open items, overrides, flagged incidents — and hands the queue to the incoming officer. It is triggered at shift end or on demand. The handover keeps the human-oversight record continuous: no work item is left without an accountable owner across a shift boundary.
+  - Preconditions: Outgoing officer session active (U.C.9.1.1). Queue and decision data available for the shift window.
+  - Post-conditions: Shift report archived; queue ownership transferred to the incoming officer. No orphaned in-service items; no queue without an active accountable session.
+  - Special Requirements (FURPS+): Functional (F): Handover view, report generation, queue transfer with ownership. Usability (U): Checklist-style handover flow. Reliability (R): Report archived to the immutable chain; no data loss on session termination. Performance (P): N/A — no attested handover timing constraint. Supportability (S): Reports reusable for compliance audits (PROC-16) and access/performance reviews.
+  - Security & Compliance Annex (AEGIS): Provenance: [ATTESTED] Doc03 §3.3 (SH-EXT-001 operates per shift); Doc04 §1.1 SYS-09 (STORE-04, 10-year retention). Constrained by: U.C.8.3.2 (referral desk baseline), U.C.9.1.1 (session lifecycle), PROC-16 (audit reporting), CAP-02 (monitoring). Rules / NFR: CR-D-10.2-001, CR-D-10.3-001, BPR-D-10.2-001. Threats addressed: MUC-C2-05 (sampling input), MUC-02 (no unowned queue across shifts). NIST anchors: PR.DS-11, DE.AE-03.
+- **PROC-24 — Kiosk Provisioning & Enrolment (TPM-Bound Identity)** (PKG-10 · CRITICAL · Realises CR-D-03.4-001, CR-D-03.1-001, CR-D-01.3-001 · operational card: Doc31 §PROC-24)
+  - Brief Description: Operations provisions a new kiosk into the fleet: hardware is brought up, the TPM-bound device identity is attested, an mTLS client certificate is enrolled from the internal CA and the signed firmware baseline is verified. It is triggered when a unit is installed at an airport or replaced in the field. Enrolment is the birth of the device identity: only TPM-bound, secure-boot units can ever join the fleet.
+  - Preconditions: Hardware from an audited supplier with SBOM provided (Doc06 §3). Unit at the installation site with backhaul available (private LTE/5G or fibre).
+  - Post-conditions: Enrolled unit with a TPM-bound certificate and a fleet inventory record. No unit is in production without a verified boot chain and an approved enrolment record.
+  - Special Requirements (FURPS+): Functional (F): Secure-boot verification, TPM attestation, certificate issuance, inventory registration. Usability (U): Guided provisioning runbook for field operations. Reliability (R): Fail-closed — enrolment denied on any verification failure; outbound-only channel only. Performance (P): N/A — no attested provisioning time. Supportability (S): Quarterly certificate rotation via the internal CA; per-unit CycloneDX SBOM from SYS-11.
+  - Security & Compliance Annex (AEGIS): Provenance: [ATTESTED] Doc04 §1.1 SYS-04 (TPM 2.0 secure boot, signed firmware), SYS-06 (industrial-grade PC); Doc04 §1.4 (SYS-04 row: FIDO device-bound credentials in TPM 2.0, mTLS certificates rotated quarterly via internal CA, OCSP revocation); Doc04 §1.2 (outbound-only channel); Doc06 §3 (Advantech IPC + TPM 2.0, secure-boot obligation). Constrained by: U.C.3.5.1 (secure default configuration), PROC-10 (identity lifecycle — device identity), U.C.5.8.1 (per-airport boundary), PROC-17 (supplier risk). Rules / NFR: CR-D-03.4-001, CR-D-03.1-001, CR-D-01.3-001. Threats addressed: MUC-C2-04 (tamper/implant resisted at birth of trust), MUC-03 (no inbound channels created). NIST anchors: ID.AM-01, PR.AA-05, PR.PS-01.
+- **PROC-25 — Model Training & Release Packaging (EU-only, SYS-05)** (PKG-11 · CRITICAL · Realises CR-D-05.1-001, CR-D-07.1-001, CR-D-06.2-001 · operational card: Doc31 §PROC-25)
+  - Brief Description: AI Governance and ML engineering train or retrain the face-match/PAD models in the EU-only training platform and package a release candidate: evaluated artefact, versioned registry entry, signature and SBOM. It is triggered by a retraining cycle or by a drift/bias finding (PROC-26). No model reaches the fleet without passing through this packaging gate.
+  - Preconditions: Training dataset lineage and representativeness documented (U.C.6.7.1). Conformity posture current (PROC-19).
+  - Post-conditions: Release candidate versioned, signed and documented — or rejected with recorded reasons. Evaluation evidence retained as conformity documentation.
+  - Special Requirements (FURPS+): Functional (F): EU-only training, evaluation gates, versioned signed packaging. Usability (U): N/A — engineering workflow. Reliability (R): Training runs in a segregated account with deny-by-default egress. Performance (P): N/A — no attested training-time constraint. Supportability (S): Registry retains artefacts for the lifetime of the model version (STORE-02).
+  - Security & Compliance Annex (AEGIS): Provenance: [ATTESTED] Doc04 §1.1 SYS-05 (EU-only training, signed model artefact registry); Doc04 §1.2 (separate AWS account segregated from production, deny-by-default egress); SYS-11 (SBOM emission per release). Constrained by: PROC-19 (conformity assessment), PROC-20 (bias gates), U.C.6.7.1 (training data management), CAP-03 (privacy/secure by design). Rules / NFR: CR-D-05.1-001, CR-D-07.1-001, CR-D-06.2-001. Threats addressed: MUC-C2-06 (poisoned artefact blocked at origin), MUC-02 (unauthorised model change). NIST anchors: PR.PS-06, GV.SC-04, ID.AM-08.
+- **PROC-26 — Drift/Bias Monitoring & Review** (PKG-11 · HIGH · Realises BPR-D-10.5-001, CR-D-10.1-001, BPR-D-02.4-001 · operational card: Doc31 §PROC-26)
+  - Brief Description: AI Governance reviews continuous drift and bias telemetry for the deployed fleet: accuracy deltas, demographic bias indicators and threshold behaviour, per model version. It is triggered by the scheduled review cadence (quarterly bias testing, PROC-20) or by automated drift alerts (degradation beyond governed bounds, U.C.6.2.1). The review turns post-market telemetry into dispositions: tune, retrain or roll back.
+  - Preconditions: Fleet telemetry flowing (U.C.10.2.1). Model versions pinned and traceable (U.C.11.2.1).
+  - Post-conditions: Disposition on record with the supporting metrics. Metrics and reviews archived as post-market conformity evidence.
+  - Special Requirements (FURPS+): Functional (F): Drift computation, alerting, bias review, disposition recording. Usability (U): Review dashboard per model version. Reliability (R): Real-time monitoring per the U.C.6.2.1 SLA. Performance (P): N/A — no attested review-latency constraint. Supportability (S): Metrics retained as post-market monitoring evidence (AI_Act post-market obligations via U.C.6.2.1).
+  - Security & Compliance Annex (AEGIS): Provenance: [ATTESTED] Doc04 §1.1 SYS-09 (decision audit metadata, no biometric content); Doc03 §4 (BG-008 note: AI false-match-rate target moved to Phase 3 as a technical requirement). Constrained by: U.C.6.2.1 (drift detection), PROC-20 (bias testing), PROC-21 (AI incidents), U.C.8.2.2 (governed PAD thresholds). Rules / NFR: BPR-D-10.5-001, CR-D-10.1-001, BPR-D-02.4-001. Threats addressed: MUC-C2-06 (detection net for implanted/degraded models), MUC-02 (threshold tamper becomes visible). NIST anchors: DE.CM-01, DE.AE-02, GV.OV-02.
+- **PROC-27 — User/Role Administration for Console** (PKG-12 · HIGH · Realises CR-D-03.1-001, CR-D-03.2-001, CR-D-03.3-001 · operational card: Doc31 §PROC-27)
+  - Brief Description: Operations administers console users and roles — officers, supervisors, auditors, administrators — through joiner/mover/leaver flows tied to the enterprise IdP, with least-privilege profiles and periodic review. It is triggered by an HR/Ops request or the review cycle. Entitlements are the boundary of the human-oversight plane: whoever can work the queue or the override must have exactly the role that says so.
+  - Preconditions: Identity exists in SYS-08 (officer lifecycle per PROC-10). Role profile defined for the request (role taxonomy).
+  - Post-conditions: Entitlements match approved profiles; changes on the audit chain. Review state current for the next cycle.
+  - Special Requirements (FURPS+): Functional (F): JML flows, role profiles, SoD checks, review support. Usability (U): Admin console integrated with SYS-08 groups. Reliability (R): Deprovisioning alerts; forced session revocation on leavers. Performance (P): N/A — no attested provisioning SLA (officer identity lifecycle runs on the PROC-10 24h SLA). Supportability (S): Quarterly review cadence per PROC-11.
+  - Security & Compliance Annex (AEGIS): Provenance: [ATTESTED] Doc04 §1.1 SYS-08 (RBAC via IdP); Doc04 §1.4 (SYS-08: FIDO2 for privileged users, SAML 2.0/OIDC across corporate apps). Constrained by: PROC-10 (identity lifecycle), U.C.3.4.1 (least privilege), PROC-11 (access rights review), U.C.9.1.1 (session entitlements). Rules / NFR: CR-D-03.1-001, CR-D-03.2-001, CR-D-03.3-001. Threats addressed: MUC-02 (privilege escalation), MUC-01 (credential attack surface limited by role scope). NIST anchors: PR.AA-05, PR.AA-06, DE.CM-09.
 
 ## 7. DOMAIN DECOMPOSITION
 
-### 9.1 UC-DP: Data Protection
+> **v1.5 (UC SEPARATION, 2026-09-05).** The catalogue holds UC cards only (rubric
+> `REALIZATION_CLASS_RUBRIC.md` v1.8 §5B rule 6). The 32 PROC-\*/CAP-\* entries that shared
+> these domain tables left the catalogue — full lane cards (§5C.1/§5C.2 form + Mermaid
+> diagrams) live in **`Doc31_Process_Capability_Cards.md`** (same IDs). §7.0 indexes them per
+> domain and preserves, verbatim, the catalogue-only fields (description, primary actor,
+> related rules/goals/PSOs, priority, regulation, SLA). The product-side lane cards
+> PROC-23..PROC-27 are indexed in §6.6. Sub-section numbering corrected to §7.x (was 9.x).
 
-| UC ID | Use Case Name | Description | Primary Actor | Related Rules | Related Goals | Related PSOs | Priority | Regulation | SLA |
-|-------|---------------|-------------|---------------|---------------|---------------|--------------|----------|------------|-----|
+### 7.0 Compliance Domain Index (lane cards → Doc31)
+
+| Domain | Focus | UCs in this catalog | Lane cards (Doc31) | Rules covered |
+|---|---|---|---|---|
+| UC-DP (Data Protection) | Data Protection | U.C.1.2.1 (§7.1) | PROC-01, PROC-02, PROC-03, PROC-04, CAP-01 | CR-D-05.4-001 · CR-D-04.3-001 · CR-D-05.1-001 · CR-D-09.4-001 |
+| UC-SEC (Security Operations) | Security Operations | U.C.2.3.1, U.C.2.4.1 (§7.2) | PROC-05, PROC-06, PROC-07, CAP-02, PROC-08, PROC-09 | CR-D-04.1-001, BPR-D-04.5-001 · CR-D-04.2-001, BPR-D-04.2-001 · CR-D-04.3-001 · CR-D-10.1-001, BPR-D-10.4-001, BPR-D-10.5-001 · CR-D-04.4-001 · CR-D-02.4-001, BPR-D-02.4-002 |
+| UC-IAM (Identity & Access Management) | Identity & Access Management | U.C.3.2.1, U.C.3.3.1, U.C.3.4.1, U.C.3.5.1, U.C.3.7.1 (§7.3) | PROC-10, PROC-11 | CR-D-03.1-001 · CR-D-03.3-001 |
+| UC-DEV (Secure Development) | Secure Development | U.C.4.2.1, U.C.4.3.1, U.C.4.6.1 (§7.4) | PROC-12, PROC-13, CAP-03 | CR-D-07.2-001 · CR-D-07.4-001 · CR-D-07.1-001, BPR-D-07.1-002 |
+| UC-GOV (Governance & Compliance) | Governance & Compliance | U.C.5.8.1 (§7.5) | CAP-04, PROC-14, PROC-15, PROC-16, PROC-17, CAP-05, PROC-18 | CR-D-09.1-001, BPR-D-09.1-001, BPR-D-09.5-001 · CR-D-09.2-001 · CR-D-10.3-001 · CR-D-06.1-001, CR-D-06.3-001, BPR-D-06.5-001 · CR-D-09.3-001 · CR-D-04.3-001 |
+| UC-AI (AI Systems Management) | AI Systems Management | U.C.6.2.1, U.C.6.4.1, U.C.6.7.1 (§7.6) | PROC-19, PROC-20, PROC-21, PROC-22 | CR-D-09.1-001, CR-D-09.2-001 · BPR-D-02.4-001, CR-D-02.4-001 · BPR-D-04.2-001 · BPR-D-02.4-002 |
+| UC-TRN (Training & Awareness) | Training & Awareness | — (0 UCs; folded into this index) | CAP-06, CAP-07, CAP-08, CAP-09, CAP-10 | CR-D-08.1-001, BPR-D-08.4-001 · CR-D-08.2-001 · CR-D-08.3-001 · BPR-D-04.5-001 |
+
+**Lane-card compliance register (catalogue-only fields, verbatim):**
+
+| Lane ID | Use Case Name | Description | Primary Actor | Related Rules | Related Goals | Related PSOs | Priority | Regulation | SLA |
+|---------|---------------|-------------|---------------|---------------|---------------|--------------|----------|------------|-----|
 | PROC-01 | Data Subject Access Request | Traveler requests access to their biometric and personal data | SH-EXT-002 (Traveler) | CR-D-05.4-001 | PO-D-05.4-001 | PO-D-05.4-001, PO-D-09.4-001 | HIGH | GDPR Art. 15 | 30 days |
-| U.C.1.2.1 | Right to Erasure (Cryptographic Sharding) | Traveler requests erasure; token-to-identity mapping destroyed, anonymized logs retained | SH-EXT-002 (Traveler) | CR-D-05.3-001 | PO-D-05.3-001 | PO-D-05.3-001, PO-D-01.1-001, SO-D-10.2-001 | CRITICAL | GDPR Art. 17 | 30 days |
 | PROC-02 | Data Portability Export | Export personal data in machine-readable format for transfer to another controller | SH-EXT-002 (Traveler) | CR-D-05.4-001 | PO-D-05.4-001 | PO-D-05.4-001, PO-D-09.4-001 | MEDIUM | GDPR Art. 20 | 30 days |
 | PROC-03 | Biometric Data Breach Notification | Notify DPA and affected travelers of biometric data breach | SH-INT-004 (DPO) | CR-D-04.3-001 | PO-D-04.3-001 | PO-D-04.3-001, PO-D-09.4-001 | CRITICAL | GDPR Art. 33/34 | 72h to DPA |
 | PROC-04 | Data Minimization Review | Review and minimize data collection fields for AI training and operational processing | SH-INT-004 (DPO) | CR-D-05.1-001 | PO-D-05.1-001 | PO-D-05.1-001, PO-D-07.1-001, SO-D-05.1-001 | HIGH | GDPR Art. 5(1)(c) | Annual |
 | CAP-01 | RoPA Maintenance | Maintain records of processing activities for biometric and passport data processing | SH-INT-004 (DPO) | CR-D-09.4-001 | PO-D-09.4-001 | PO-D-09.4-001, PO-D-09.1-001 | HIGH | GDPR Art. 30 | Continuous |
-
-### 9.2 UC-SEC: Security Operations
-
-| UC ID | Use Case Name | Description | Primary Actor | Related Rules | Related Goals | Related PSOs | Priority | Regulation | SLA |
-|-------|---------------|-------------|---------------|---------------|---------------|--------------|----------|------------|-----|
 | PROC-05 | Incident Detection & Triage | SOC detects and triages security incidents with 24/7 monitoring | SH-INT-008 (SOC Mgr) | CR-D-04.1-001, BPR-D-04.5-001 | SO-D-04.1-001 | SO-D-04.1-001, SO-D-04.1-002, SO-D-04.1-003 | CRITICAL | NIS 2 Art. 21 | 15 min triage |
 | PROC-06 | Incident Response & Containment | Respond to and contain security incidents with DoS resilience | SH-INT-003 (CISO) | CR-D-04.2-001, BPR-D-04.2-001 | PO-D-04.2-001 | PO-D-04.2-001, PO-D-04.2-002, SO-D-04.2-001 | CRITICAL | NIS 2 Art. 21 | Containment: 1h |
-| U.C.2.3.1 | Vulnerability Scanning & Management | Continuous vulnerability scanning with 24h SLA for critical findings | SH-INT-009 (Sec Eng) | CR-D-02.1-001, BPR-D-02.1-001, BPR-D-02.5-001 | SO-D-02.1-001 | SO-D-02.1-001, SO-D-02.1-002, SO-D-02.1-003 | CRITICAL | CRA Art. 10 | 24h critical |
-| U.C.2.4.1 | Patch Deployment (Signed OTA) | Deploy signed firmware and software updates with rollback capability | SH-INT-007 (Ops Lead) | CR-D-02.2-001 | SO-D-02.2-001 | SO-D-02.2-001, SO-D-02.2-002 | CRITICAL | CRA Art. 10 | Critical: 24h |
 | PROC-07 | Regulatory Notification (Unified 24h/72h) | Unified incident notification workflow for GDPR/CRA/NIS 2/AI_Act | SH-INT-003 (CISO) | CR-D-04.3-001 | PO-D-04.3-001 | PO-D-04.3-001, PO-D-04.3-002 | CRITICAL | GDPR/CRA/NIS2 | 24h (compound event) / 72h (GDPR-only) |
 | CAP-02 | Continuous Security Monitoring | Unified SOC monitoring covering security + AI post-market metrics | SH-INT-008 (SOC Mgr) | CR-D-10.1-001, BPR-D-10.4-001, BPR-D-10.5-001 | SO-D-10.1-001 | SO-D-10.1-001, SO-D-10.1-002, SO-D-10.1-003 | HIGH | NIS 2 Art. 21 | 24/7 |
 | PROC-08 | Disaster Recovery & Business Continuity | Activate DR procedures and restore systems after incidents | SH-INT-007 (Ops Lead) | CR-D-04.4-001, BPR-D-04.2-001 | PO-D-04.4-001 | PO-D-04.4-001, PO-D-04.4-002 | HIGH | NIS 2 Art. 21 | RTO: 1h, RPO: 15min |
 | PROC-09 | Threat-Led Penetration Testing | Conduct TLPT and adversarial AI testing for border control systems | SH-INT-009 (Sec Eng) | CR-D-02.4-001, BPR-D-02.4-002 | SO-D-02.4-001 | SO-D-02.4-001, SO-D-02.4-002 | HIGH | NIS 2 Art. 21(2)(d) | Annual |
-
-### 9.3 UC-IAM: Identity & Access Management
-
-| UC ID | Use Case Name | Description | Primary Actor | Related Rules | Related Goals | Related PSOs | Priority | Regulation | SLA |
-|-------|---------------|-------------|---------------|---------------|---------------|--------------|----------|------------|-----|
 | PROC-10 | Border Officer Identity Lifecycle | Provision/deprovision border control officer identities with government IdP integration | SH-INT-007 (Ops Lead) | CR-D-03.1-001 | SO-D-03.1-001 | SO-D-03.1-001, SO-D-03.1-002, SO-D-03.1-003 | HIGH | NIS 2 Art. 21 | 24h |
-| U.C.3.2.1 | Multi-Factor Authentication | MFA for all system access points including eGate operator interfaces | SH-EXT-001 (Border Officer) | CR-D-03.2-001 | SO-D-03.2-001 | SO-D-03.2-001, SO-D-03.2-002, SO-D-03.2-003 | CRITICAL | CRA Annex I | Per session |
-| U.C.3.3.1 | Biometric Enrollment | Enroll traveler biometric templates using approved cryptographic modules | SH-EXT-002 (Traveler) | CR-D-01.1-001 | PO-D-01.1-001 | PO-D-01.1-001, PO-D-01.1-002, SO-D-01.3-001 | CRITICAL | GDPR Art. 9 | Per enrollment |
-| U.C.3.4.1 | Least Privilege Access Enforcement | Enforce role-based access for data processing, administration, and AI oversight | SH-INT-007 (Ops Lead) | CR-D-03.3-001, BPR-D-03.1-001, BPR-D-03.5-001 | PO-D-03.3-001 | PO-D-03.3-001, PO-D-03.3-002, SO-D-03.1-001 | HIGH | NIS 2 Art. 21 | Continuous |
-| U.C.3.5.1 | Secure Default Configuration | Ensure eGate ships with secure defaults: no default passwords, unused ports disabled | SH-INT-007 (Ops Lead) | CR-D-03.4-001 | SO-D-03.4-001 | SO-D-03.4-001, SO-D-03.1-001 | HIGH | CRA Annex I | Per deployment |
 | PROC-11 | Access Rights Review | Periodic review of access rights for all system users | SH-INT-007 (Ops Lead) | CR-D-03.3-001 | PO-D-03.3-001 | PO-D-03.3-001, PO-D-03.3-002 | MEDIUM | NIS 2 Art. 21 | Quarterly |
-| U.C.3.7.1 | Human-in-the-Loop Override | Border officer overrides AI border control decision with documented procedure | SH-EXT-001 (Border Officer) | BPR-D-03.1-002 | SO-D-03.1-001 | SO-D-03.1-001, SO-D-03.1-002, SO-D-03.1-003 | CRITICAL | AI_Act Art. 14 | Real-time |
-
-### 9.4 UC-DEV: Secure Development
-
-| UC ID | Use Case Name | Description | Primary Actor | Related Rules | Related Goals | Related PSOs | Priority | Regulation | SLA |
-|-------|---------------|-------------|---------------|---------------|---------------|--------------|----------|------------|-----|
 | PROC-12 | Secure Code Review | Static analysis and manual code review for all code changes | SH-INT-006 (Dev Lead) | CR-D-07.2-001 | SO-D-07.2-001 | SO-D-07.2-001, SO-D-07.2-002 | HIGH | CRA Annex I | Per commit |
-| U.C.4.2.1 | Dependency Scanning & SBOM | Scan dependencies for vulnerabilities; generate/update SBOM | SH-INT-006 (Dev Lead) | CR-D-02.1-001, CR-D-06.2-001 | SO-D-02.1-001, SO-D-06.2-001 | SO-D-02.1-001, SO-D-06.2-001 | HIGH | CRA Art. 10 | Per build |
-| U.C.4.3.1 | CI/CD Security Gate | Blocking security gates in pipeline for critical findings | SH-INT-006 (Dev Lead) | CR-D-07.3-001, BPR-D-07.1-001, BPR-D-07.5-001 | SO-D-07.3-001 | SO-D-07.3-001, PO-D-07.1-001 | CRITICAL | NIS 2 Art. 21 | Per PR |
 | PROC-13 | Change Management | Formal change management with documented approval and rollback | SH-INT-006 (Dev Lead) | CR-D-07.4-001 | NOT_ADDRESSED | NOT_ADDRESSED, SO-D-07.2-001 | HIGH | NIS 2 Art. 21 | Per change |
 | CAP-03 | Privacy-by-Design Integration | Integrate privacy-by-design and secure-by-default into product design | SH-INT-002 (CTO) | CR-D-07.1-001, BPR-D-07.1-002 | PO-D-07.1-001 | PO-D-07.1-001, PO-D-07.1-002, SO-D-07.1-001 | HIGH | GDPR/CRA | Per design phase |
-| U.C.4.6.1 | AI Model Versioning & Rollback | Version AI models with rollback capability for production border control models | SH-INT-006 (Dev Lead) | BPR-D-07.1-002 | PO-D-07.1-001 | PO-D-07.1-001, PO-D-07.1-002, SO-D-02.2-001 | HIGH | AI_Act | Per model update |
-
-### 9.5 UC-GOV: Governance & Compliance
-
-| UC ID | Use Case Name | Description | Primary Actor | Related Rules | Related Goals | Related PSOs | Priority | Regulation | SLA |
-|-------|---------------|-------------|---------------|---------------|---------------|--------------|----------|------------|-----|
 | CAP-04 | ISMS Maintenance | Maintain unified ISMS with regulation-specific annexes (GDPR, CRA, NIS 2, AI_Act) | SH-INT-003 (CISO) | CR-D-09.1-001, BPR-D-09.1-001, BPR-D-09.5-001 | PO-D-09.1-001 | PO-D-09.1-001, PO-D-09.1-002, SO-D-09.1-001 | CRITICAL | All 4 regs | Continuous |
 | PROC-14 | Unified Impact Assessment (DPIA+FRIA) | Conduct unified DPIA+FRIA with dual outputs for biometric AI processing | SH-INT-004 (DPO) | CR-D-09.2-001 | PO-D-09.2-001 | PO-D-09.2-001, PO-D-09.2-002, SO-D-09.2-001 | CRITICAL | GDPR/AI_Act | Prior to launch / Annual / On significant change |
 | PROC-15 | Risk Assessment & Management | Conduct security risk assessments with cybersecurity focus | SH-INT-003 (CISO) | CR-D-09.2-001 | PO-D-09.2-001 | PO-D-09.2-001, PO-D-09.2-002 | HIGH | NIS 2 Art. 21 | Annual |
@@ -3292,29 +2770,65 @@ on the PROC-10 24h SLA).
 | PROC-17 | Vendor Risk Assessment | Assess and monitor vendor security risks with unified questionnaire | SH-INT-010 (Compliance) | CR-D-06.1-001, CR-D-06.3-001, BPR-D-06.5-001 | PO-D-06.1-001 | PO-D-06.1-001, PO-D-06.1-002, PO-D-06.3-001 | HIGH | GDPR/NIS 2 | Annual |
 | CAP-05 | Asset Inventory Management | Maintain comprehensive inventory of hardware, software, data, AI components | SH-INT-010 (Compliance) | CR-D-09.3-001 | NOT_ADDRESSED | NOT_ADDRESSED, PO-D-09.1-001 | MEDIUM | NIS 2 Art. 21 | Continuous |
 | PROC-18 | Regulatory Notification & Cooperation | Cooperate with market surveillance, CSIRT, ENISA, and data protection authorities | SH-INT-010 (Compliance) | CR-D-04.3-001 | PO-D-04.3-001 | PO-D-04.3-001, PO-D-04.3-002 | CRITICAL | All 4 regs | Per regulation |
-| U.C.5.8.1 | Third-Party Boundary Management | Enforce physical isolation per airport/country instance | SH-INT-007 (Ops Lead) | CR-D-06.4-001 | SO-D-06.4-001 | SO-D-06.4-001, PO-D-06.1-001 | MEDIUM | NIS 2 | Per deployment |
-
-### 9.6 UC-AI: AI Systems Management (NEW Category for SecureBorder)
-
-| UC ID | Use Case Name | Description | Primary Actor | Related Rules | Related Goals | Related PSOs | Priority | Regulation | SLA |
-|-------|---------------|-------------|---------------|---------------|---------------|--------------|----------|------------|-----|
 | PROC-19 | AI Conformity Assessment | Prepare and execute AI_Act conformity assessment for high-risk border control AI | SH-INT-005 (AI Gov) | CR-D-09.1-001, CR-D-09.2-001 | PO-D-09.1-001, PO-D-09.2-001 | PO-D-09.1-001, PO-D-09.2-001, PO-D-09.2-002, SO-D-09.1-001 | CRITICAL | AI_Act Art. 9/43 | Before placement |
-| U.C.6.2.1 | AI Accuracy Monitoring & Drift Detection | Continuous AI accuracy monitoring with automated drift detection at >1% degradation | SH-INT-005 (AI Gov) | BPR-D-10.5-001, CR-D-10.1-001 | SO-D-10.1-001 | SO-D-10.1-001, SO-D-10.1-002, SO-D-10.1-003 | CRITICAL | AI_Act Art. 61 | Real-time |
 | PROC-20 | AI Bias Testing & Fairness Assessment | Quarterly bias testing across demographic groups with documented results | SH-INT-005 (AI Gov) | BPR-D-02.4-001, CR-D-02.4-001 | SO-D-02.4-001 | SO-D-02.4-001, SO-D-02.4-002, PO-D-05.1-001 | HIGH | AI_Act Art. 9 | Quarterly |
-| U.C.6.4.1 | AI Explainability Reporting | Generate explainability reports for each border control decision with confidence scores | SH-INT-005 (AI Gov) | BPR-D-10.2-001, CR-D-10.2-001 | SO-D-10.2-001 | SO-D-10.2-001, SO-D-10.2-002, SO-D-10.2-003 | HIGH | AI_Act Art. 13 | Per decision |
 | PROC-21 | AI Incident Response | Respond to AI-specific failures (false accept, false reject, model drift) | SH-INT-008 (SOC Mgr) | BPR-D-04.2-001, CR-D-04.2-001 | PO-D-04.2-001 | PO-D-04.2-001, PO-D-04.2-002, SO-D-04.2-001 | CRITICAL | AI_Act Art. 61 | 15 min detection |
 | PROC-22 | AI Adversarial Testing | Quarterly red-team exercises targeting biometric spoofing and adversarial attacks | SH-INT-009 (Sec Eng) | BPR-D-02.4-002, CR-D-02.4-001 | SO-D-02.4-001 | SO-D-02.4-001, SO-D-02.4-002 | HIGH | AI_Act Art. 9 | Quarterly |
-| U.C.6.7.1 | AI Training Data Management | Version and track lineage of all AI training datasets with representativeness checks | SH-INT-005 (AI Gov) | BPR-D-05.1-001, CR-D-05.1-001 | PO-D-05.1-001 | PO-D-05.1-001, SO-D-05.1-001, SO-D-05.1-002 | HIGH | AI_Act Art. 10 | Per training cycle |
-
-### 9.7 UC-TRN: Training & Awareness
-
-| UC ID | Use Case Name | Description | Primary Actor | Related Rules | Related Goals | Related PSOs | Priority | Regulation | SLA |
-|-------|---------------|-------------|---------------|---------------|---------------|--------------|----------|------------|-----|
 | CAP-06 | Security Awareness Training | Annual security awareness covering GDPR, CRA, NIS 2 topics | SH-INT-003 (CISO) | CR-D-08.1-001, BPR-D-08.4-001 | PO-D-08.1-001 | PO-D-08.1-001, PO-D-08.1-002 | MEDIUM | GDPR/NIS 2 | Annual |
 | CAP-07 | Role-Specific Security Training | Role-specific training for developers, operators, SOC, AI oversight personnel | SH-INT-003 (CISO) | CR-D-08.2-001 | PO-D-08.2-001 | PO-D-08.2-001, PO-D-08.2-002, SO-D-08.2-001 | HIGH | GDPR/NIS 2/AI_Act | On role assignment |
 | CAP-08 | AI Competence Training | AI-specific training for human oversight personnel on border control AI operation | SH-INT-005 (AI Gov) | CR-D-08.2-001 | PO-D-08.2-001 | PO-D-08.2-001, PO-D-08.2-002, SO-D-08.2-001 | HIGH | AI_Act Art. 14 | On role assignment |
 | CAP-09 | Management Board Cybersecurity Training | NIS 2 management liability training for board members | SH-INT-001 (CEO) | CR-D-08.3-001 | NOT_ADDRESSED | NOT_ADDRESSED, PO-D-08.1-001 | HIGH | NIS 2 Art. 20 | Annual |
 | CAP-10 | Phishing Simulation | Quarterly phishing simulation exercises for all staff | SH-INT-003 (CISO) | BPR-D-04.5-001, BPR-D-08.4-001 | SO-D-04.1-001 | SO-D-04.1-001, PO-D-08.1-001 | LOW | Best Practice | Quarterly |
+
+### 7.1 UC-DP: Data Protection
+
+| UC ID | Use Case Name | Description | Primary Actor | Related Rules | Related Goals | Related PSOs | Priority | Regulation | SLA |
+|-------|---------------|-------------|---------------|---------------|---------------|--------------|----------|------------|-----|
+| U.C.1.2.1 | Right to Erasure (Cryptographic Sharding) | Traveler requests erasure; token-to-identity mapping destroyed, anonymized logs retained | SH-EXT-002 (Traveler) | CR-D-05.3-001 | PO-D-05.3-001 | PO-D-05.3-001, PO-D-01.1-001, SO-D-10.2-001 | CRITICAL | GDPR Art. 17 | 30 days |
+
+### 7.2 UC-SEC: Security Operations
+
+| UC ID | Use Case Name | Description | Primary Actor | Related Rules | Related Goals | Related PSOs | Priority | Regulation | SLA |
+|-------|---------------|-------------|---------------|---------------|---------------|--------------|----------|------------|-----|
+| U.C.2.3.1 | Vulnerability Scanning & Management | Continuous vulnerability scanning with 24h SLA for critical findings | SH-INT-009 (Sec Eng) | CR-D-02.1-001, BPR-D-02.1-001, BPR-D-02.5-001 | SO-D-02.1-001 | SO-D-02.1-001, SO-D-02.1-002, SO-D-02.1-003 | CRITICAL | CRA Art. 10 | 24h critical |
+| U.C.2.4.1 | Patch Deployment (Signed OTA) | Deploy signed firmware and software updates with rollback capability | SH-INT-007 (Ops Lead) | CR-D-02.2-001 | SO-D-02.2-001 | SO-D-02.2-001, SO-D-02.2-002 | CRITICAL | CRA Art. 10 | Critical: 24h |
+
+### 7.3 UC-IAM: Identity & Access Management
+
+| UC ID | Use Case Name | Description | Primary Actor | Related Rules | Related Goals | Related PSOs | Priority | Regulation | SLA |
+|-------|---------------|-------------|---------------|---------------|---------------|--------------|----------|------------|-----|
+| U.C.3.2.1 | Multi-Factor Authentication | MFA for all system access points including eGate operator interfaces | SH-EXT-001 (Border Officer) | CR-D-03.2-001 | SO-D-03.2-001 | SO-D-03.2-001, SO-D-03.2-002, SO-D-03.2-003 | CRITICAL | CRA Annex I | Per session |
+| U.C.3.3.1 | Biometric Enrollment | Enroll traveler biometric templates using approved cryptographic modules | SH-EXT-002 (Traveler) | CR-D-01.1-001 | PO-D-01.1-001 | PO-D-01.1-001, PO-D-01.1-002, SO-D-01.3-001 | CRITICAL | GDPR Art. 9 | Per enrollment |
+| U.C.3.4.1 | Least Privilege Access Enforcement | Enforce role-based access for data processing, administration, and AI oversight | SH-INT-007 (Ops Lead) | CR-D-03.3-001, BPR-D-03.1-001, BPR-D-03.5-001 | PO-D-03.3-001 | PO-D-03.3-001, PO-D-03.3-002, SO-D-03.1-001 | HIGH | NIS 2 Art. 21 | Continuous |
+| U.C.3.5.1 | Secure Default Configuration | Ensure eGate ships with secure defaults: no default passwords, unused ports disabled | SH-INT-007 (Ops Lead) | CR-D-03.4-001 | SO-D-03.4-001 | SO-D-03.4-001, SO-D-03.1-001 | HIGH | CRA Annex I | Per deployment |
+| U.C.3.7.1 | Human-in-the-Loop Override | Border officer overrides AI border control decision with documented procedure | SH-EXT-001 (Border Officer) | BPR-D-03.1-002 | SO-D-03.1-001 | SO-D-03.1-001, SO-D-03.1-002, SO-D-03.1-003 | CRITICAL | AI_Act Art. 14 | Real-time |
+
+### 7.4 UC-DEV: Secure Development
+
+| UC ID | Use Case Name | Description | Primary Actor | Related Rules | Related Goals | Related PSOs | Priority | Regulation | SLA |
+|-------|---------------|-------------|---------------|---------------|---------------|--------------|----------|------------|-----|
+| U.C.4.2.1 | Dependency Scanning & SBOM | Scan dependencies for vulnerabilities; generate/update SBOM | SH-INT-006 (Dev Lead) | CR-D-02.1-001, CR-D-06.2-001 | SO-D-02.1-001, SO-D-06.2-001 | SO-D-02.1-001, SO-D-06.2-001 | HIGH | CRA Art. 10 | Per build |
+| U.C.4.3.1 | CI/CD Security Gate | Blocking security gates in pipeline for critical findings | SH-INT-006 (Dev Lead) | CR-D-07.3-001, BPR-D-07.1-001, BPR-D-07.5-001 | SO-D-07.3-001 | SO-D-07.3-001, PO-D-07.1-001 | CRITICAL | NIS 2 Art. 21 | Per PR |
+| U.C.4.6.1 | AI Model Versioning & Rollback | Version AI models with rollback capability for production border control models | SH-INT-006 (Dev Lead) | BPR-D-07.1-002 | PO-D-07.1-001 | PO-D-07.1-001, PO-D-07.1-002, SO-D-02.2-001 | HIGH | AI_Act | Per model update |
+
+### 7.5 UC-GOV: Governance & Compliance
+
+| UC ID | Use Case Name | Description | Primary Actor | Related Rules | Related Goals | Related PSOs | Priority | Regulation | SLA |
+|-------|---------------|-------------|---------------|---------------|---------------|--------------|----------|------------|-----|
+| U.C.5.8.1 | Third-Party Boundary Management | Enforce physical isolation per airport/country instance | SH-INT-007 (Ops Lead) | CR-D-06.4-001 | SO-D-06.4-001 | SO-D-06.4-001, PO-D-06.1-001 | MEDIUM | NIS 2 | Per deployment |
+
+### 7.6 UC-AI: AI Systems Management (NEW Category for SecureBorder)
+
+| UC ID | Use Case Name | Description | Primary Actor | Related Rules | Related Goals | Related PSOs | Priority | Regulation | SLA |
+|-------|---------------|-------------|---------------|---------------|---------------|--------------|----------|------------|-----|
+| U.C.6.2.1 | AI Accuracy Monitoring & Drift Detection | Continuous AI accuracy monitoring with automated drift detection at >1% degradation | SH-INT-005 (AI Gov) | BPR-D-10.5-001, CR-D-10.1-001 | SO-D-10.1-001 | SO-D-10.1-001, SO-D-10.1-002, SO-D-10.1-003 | CRITICAL | AI_Act Art. 61 | Real-time |
+| U.C.6.4.1 | AI Explainability Reporting | Generate explainability reports for each border control decision with confidence scores | SH-INT-005 (AI Gov) | BPR-D-10.2-001, CR-D-10.2-001 | SO-D-10.2-001 | SO-D-10.2-001, SO-D-10.2-002, SO-D-10.2-003 | HIGH | AI_Act Art. 13 | Per decision |
+| U.C.6.7.1 | AI Training Data Management | Version and track lineage of all AI training datasets with representativeness checks | SH-INT-005 (AI Gov) | BPR-D-05.1-001, CR-D-05.1-001 | PO-D-05.1-001 | PO-D-05.1-001, SO-D-05.1-001, SO-D-05.1-002 | HIGH | AI_Act Art. 10 | Per training cycle |
+
+### 7.7 UC-TRN: Training & Awareness
+
+> Folded into §7.0 (UC SEPARATION, 2026-09-05): UC-TRN holds 0 UCs — its 5 entries are all
+> CAP lane cards (CAP-06..CAP-10, see the §7.0 index and register; full cards in Doc31).
 
 ---
 
@@ -3471,6 +2985,12 @@ on the PROC-10 24h SLA).
 
 ## 9. DETAILED USE CASES
 
+> **v1.5 (UC SEPARATION, 2026-09-05).** The five PROC detailed cards that shared this
+> section (PROC-05, PROC-07, PROC-19, PROC-20, PROC-14) moved verbatim to
+> `Doc31_Process_Capability_Cards.md`, appended under their §5C.1 cards — lane cards live
+> exclusively in Doc31 per rubric v1.8 §5B rule 6. This section retains the detailed
+> compliance UCs only (sub-section numbering corrected).
+
 ### 9.1 U.C.1.2.1: Right to Erasure with Cryptographic Sharding (Detailed)
 
 **Use Case ID:** U.C.1.2.1
@@ -3537,147 +3057,7 @@ on the PROC-10 24h SLA).
 
 ---
 
-### 9.2 PROC-05: Incident Detection & Triage (Detailed)
-
-**Use Case ID:** PROC-05
-**Name:** Incident Detection & Triage
-**Description:** 24/7 SOC detects security incidents through unified monitoring platform covering traditional security and AI post-market metrics
-**Primary Actor:** SH-INT-008 (SOC Manager)
-**Supporting Actors:** SH-INT-003 (CISO), SH-INT-009 (Security Engineer), SH-INT-005 (AI Governance Lead), Security Monitoring Platform
-**Regulation:** NIS 2 Art. 21, CRA Art. 12, AI_Act Art. 61
-**Priority:** CRITICAL
-**Frequency:** Continuous (24/7)
-**SLA:** Detection within 15 minutes, triage within 1 hour
-
-**Activation Condition:** STRUCTURAL — always active. When compound event (EVT-001/EVT-002) detected, multi-path notification activated.
-
-**Preconditions:**
-- Security monitoring platform operational with anomaly detection
-- Alert thresholds configured for security and AI metrics
-- On-call SOC team scheduled
-- AI accuracy monitoring integrated into SOC dashboard
-
-**Postconditions:**
-- Incident logged with classification
-- Alert generated and acknowledged
-- Incident response process initiated (PROC-06)
-- Evidence preserved for forensics
-
-**Main Flow:**
-1. Security monitoring platform collects security events from all sources (eGate endpoints, remote infrastructure, network, AI system)
-2. Security monitoring platform correlates events in real-time with anomaly detection
-3. Security monitoring platform detects anomaly, known threat pattern, or AI drift alert (>1% accuracy degradation)
-4. Security monitoring platform generates alert with severity level (Critical/High/Medium/Low)
-5. Security monitoring platform notifies on-call SOC analyst (pager/SMS/email/dashboard)
-6. SOC analyst acknowledges alert (within 15 min)
-7. SOC analyst performs initial triage: classify incident type
-   - Type A: Actively exploited vulnerability → CRA 24h ENISA notification path
-   - Type B: Significant incident → NIS 2 24h CSIRT early warning path
-   - Type C: Personal data breach → GDPR 72h DPA notification path
-   - Type D: AI incident (false accept/drift) → AI_Act market surveillance path
-   - Type E: Multiple types → Apply shortest deadline (24h)
-8. If Type A/B/E → Trigger PROC-07 (Regulatory Notification, 24h path)
-9. If Type C → Trigger PROC-07 (Regulatory Notification, 72h path)
-10. If Type D → Trigger PROC-21 (AI Incident Response)
-11. SOC logs all actions and preserves evidence
-
-**Alternative Flows:**
-- 6a. No response within 15 min → Escalate to CISO
-- 7a. False Positive → Tune detection rules; log as FP
-- 7b. True Positive → Proceed to PROC-06 (Incident Response)
-
-**Exceptions:**
-- E1. Security monitoring platform failure → Manual monitoring until restored; escalate to CISO
-- E2. Alert fatigue (>50% false positive rate) → Review and tune thresholds within 24h
-- E3. SOC team unavailable → Activate backup SOC (MSSP contract)
-
-**Business Rules:**
-- BR-DET-01: All security events must be logged with timestamp
-- BR-DET-02: Critical alerts must be acknowledged within 15 min
-- BR-DET-03: Incident classification must be completed within 1 hour
-- BR-DET-04: All incidents must preserve evidence for forensics
-- BR-DET-05: AI drift alerts (>1% degradation) treated as Critical severity
-
-**Related Requirements:**
-- NFR: NFR-015 (Real-time event processing, <1s latency)
-- NFR: NFR-009 (Detection SLA: 15 min for critical incidents)
-- FR: FR-28 (System shall detect anomalies in security events)
-- FR: FR-29 (System shall generate alerts with severity classification)
-- FR: FR-72 (System shall detect AI accuracy drift >1%)
-
-**Tension Reference:** T-001 (Unified 24h/72h notification workflow), T-005 (Integrated monitoring platform)
-
----
-
-### 9.3 PROC-07: Regulatory Notification — Unified 24h/72h Workflow (Detailed)
-
-**Use Case ID:** PROC-07
-**Name:** Regulatory Notification (Unified 24h/72h Workflow)
-**Description:** Unified incident notification workflow satisfying GDPR (72h), CRA (24h), NIS 2 (24h early warning + 72h full + 1mo final), and AI_Act (market surveillance cooperation)
-**Primary Actor:** SH-INT-003 (CISO)
-**Supporting Actors:** SH-INT-004 (DPO), SH-INT-005 (AI Governance Lead), SH-INT-010 (Compliance Analyst)
-**Regulation:** GDPR Art. 33/34, CRA Art. 14, NIS 2 Art. 23, AI_Act Art. 73
-**Priority:** CRITICAL
-**Frequency:** Per significant incident
-**SLA:** 24h early warning (CRA/NIS 2), 72h detailed (GDPR/NIS 2), 1 month final report (NIS 2). 24h (compound event) / 72h (GDPR-only)
-
-**Activation Condition:** CONTEXTUAL — activated when compound event satisfies triggers from 2+ regulations. Max-SLA routing selects notification path based on incident classification. When only one trigger fires, use single-notification path. See T-001.
-
-**Preconditions:**
-- Incident classified per PROC-05 triage
-- Incident severity assessed
-- Notification templates pre-configured per regulation
-- Contact information for all authorities current
-
-**Postconditions:**
-- Appropriate authorities notified within regulatory deadlines
-- Notification evidence logged
-- Final report submitted within 1 month
-- Travelers notified if personal data breach affects them
-
-**Main Flow:**
-1. Incident classification received from PROC-05 (Type A/B/C/D/E)
-2. CISO activates unified notification workflow
-3. **Early Warning (≤24h):**
-   - Type A (exploited vuln): Notify ENISA via security.txt channel
-   - Type B (significant incident): Notify national CSIRT
-   - Type E (multiple): Notify both ENISA and CSIRT
-4. **Detailed Notification (≤72h):**
-   - Type C (personal data breach): Notify DPA with Art. 33(3) details
-   - Type B/E: Notify CSIRT with full incident details per NIS 2 Art. 23(2)
-5. **Traveler Notification (if applicable):**
-   - If personal data breach with high risk to travelers: Notify affected travelers (GDPR Art. 34)
-6. **AI_Act Cooperation:**
-   - Type D (AI incident): Cooperate with market surveillance authority
-7. **Final Report (≤1 month):**
-   - Submit comprehensive report per NIS 2 Art. 23(3) including root cause, impact, remediation
-8. Log all notifications with timestamps and evidence
-
-**Alternative Flows:**
-- 3a. Classification uncertain → Default to 24h early warning (conservative)
-- 5a. Notification to travelers would compromise investigation → Delay with DPA approval
-
-**Exceptions:**
-- E1. Authority contact information unavailable → Use backup channels; log as compliance gap
-- E2. 24h deadline missed → Immediate notification; document delay reason; escalate to CEO
-
-**Business Rules:**
-- BR-NOTIFY-01: All notifications must be logged with timestamp and recipient
-- BR-NOTIFY-02: 24h early warning for CRA/NIS 2 incidents (conservative default)
-- BR-NOTIFY-03: 72h detailed notification for GDPR personal data breaches
-- BR-NOTIFY-04: 1 month final report per NIS 2 Art. 23(3)
-- BR-NOTIFY-05: Traveler notification required for high-risk personal data breaches
-
-**Related Requirements:**
-- NFR: NFR-044 (Notification workflow activation within 4h of classification)
-- FR: FR-32 (System shall generate pre-filled notification templates per regulation)
-- FR: FR-33 (System shall track notification deadlines and escalate)
-
-**Tension Reference:** T-001 (24h vs 72h timing conflict — resolved via unified workflow with classification)
-
----
-
-### 9.4 U.C.3.3.1: Biometric Enrollment (Detailed)
+### 9.2 U.C.3.3.1: Biometric Enrollment (Detailed)
 
 **Use Case ID:** U.C.3.3.1
 **Name:** Biometric Enrollment
@@ -3741,221 +3121,9 @@ on the PROC-10 24h SLA).
 
 ---
 
-### 9.5 PROC-19: AI Conformity Assessment (Detailed)
-
-**Use Case ID:** PROC-19
-**Name:** AI Conformity Assessment
-**Description:** Prepare and execute AI_Act conformity assessment for high-risk border control AI system (Annex III)
-**Primary Actor:** SH-INT-005 (AI Governance Lead)
-**Supporting Actors:** SH-INT-002 (CTO), SH-INT-003 (CISO), SH-EXT-007 (Notified Body), SH-EXT-011 (AI Market Surveillance Authority)
-**AI_Act Article:** Art. 9, Art. 43 (Conformity Assessment)
-**Priority:** CRITICAL
-**Frequency:** Before initial market placement; upon significant model change
-**SLA:** Complete before eGate deployment at any border crossing
-
-**Activation Condition:** STRUCTURAL — always active before market placement.
-
-**Preconditions:**
-- AI system development complete
-- Technical documentation prepared (AI_Act Annex IV)
-- Quality management system operational
-- Risk management system established
-- Training data documented and validated
-
-**Postconditions:**
-- Conformity assessment completed
-- EU Declaration of Conformity issued
-- CE marking applied
-- Technical documentation submitted to notified body
-- Post-market monitoring plan activated
-
-**Main Flow:**
-1. AI Governance Lead initiates conformity assessment process
-2. Compile technical documentation per AI_Act Annex IV:
-   - System description and intended purpose
-   - AI system architecture and design specifications
-   - Training, validation, and testing data documentation
-   - Human oversight measures
-   - Accuracy, robustness, and cybersecurity metrics
-3. Conduct internal risk assessment (integrated with DPIA+FRIA per PROC-14)
-4. Engage Notified Body for third-party conformity assessment
-5. Notified Body reviews technical documentation
-6. Notified Body conducts independent testing of AI system
-7. Notified Body issues conformity certificate (or identifies non-conformities)
-8. If non-conformities: remediate and re-assess
-9. Issue EU Declaration of Conformity
-10. Apply CE marking to eGate system
-11. Activate post-market monitoring plan (U.C.6.2.1)
-
-**Alternative Flows:**
-- 7a. Non-conformities identified → Remediate within 90 days; re-assess
-- 8a. Critical non-conformity (safety/fundamental rights) → Halt deployment; redesign
-
-**Exceptions:**
-- E1. Notified Body unavailable → Engage alternative notified body; delay deployment
-- E2. Significant model change post-certification → Re-initiate conformity assessment
-
-**Business Rules:**
-- BR-AICONF-01: Conformity assessment mandatory before market placement (AI_Act Art. 43)
-- BR-AICONF-02: Technical documentation must be maintained for 10 years
-- BR-AICONF-03: Significant model changes require re-assessment
-- BR-AICONF-04: Post-market monitoring plan must be active before deployment
-- BR-AICONF-05: EU Declaration of Conformity must be updated per system version
-
-**Related Requirements:**
-- NFR: NFR-038 (Conformity assessment complete before deployment)
-- FR: FR-73 (System shall maintain technical documentation per Annex IV)
-- FR: FR-74 (System shall support post-market monitoring data collection)
-
----
-
-### 9.6 PROC-20: AI Bias Testing & Fairness Assessment (Detailed)
-
-**Use Case ID:** PROC-20
-**Name:** AI Bias Testing & Fairness Assessment
-**Description:** Quarterly bias testing of border control AI across demographic groups (age, gender, ethnicity) with documented results
-**Primary Actor:** SH-INT-005 (AI Governance Lead)
-**Supporting Actors:** SH-INT-009 (Security Engineer), SH-EXT-013 (Penetration Testing Firm)
-**AI_Act Article:** Art. 9 (Risk Management), Art. 10 (Data Quality)
-**Priority:** HIGH
-**Frequency:** Quarterly
-**SLA:** Complete assessment within 2 weeks; report within 1 week of completion
-
-**Preconditions:**
-- AI model deployed and processing live data
-- Representative test dataset available across demographic groups
-- Bias testing suite configured
-- Baseline accuracy metrics established
-
-**Postconditions:**
-- Bias assessment report generated
-- Disparate impact identified and documented
-- Remediation plan created (if bias detected)
-- Report submitted to AI Market Surveillance Authority (if required)
-
-**Main Flow:**
-1. AI Governance Lead initiates quarterly bias assessment
-2. Select representative test dataset covering demographic groups:
-   - Age groups: 0-18, 18-30, 30-50, 50-70, 70+
-   - Gender: Male, Female, Non-binary
-   - Ethnicity: All major ethnic groups represented in Schengen traffic
-3. Run bias testing suite against AI model:
-   - False accept rate by demographic group
-   - False reject rate by demographic group
-   - Confidence score distribution by demographic group
-4. Compare results against baseline and acceptable thresholds:
-   - Max 1% disparity in false accept rate between groups
-   - Max 2% disparity in false reject rate between groups
-5. Generate bias assessment report with findings
-6. If bias detected (>threshold):
-   - Identify root cause (training data, model architecture, threshold settings)
-   - Create remediation plan with timeline
-   - Notify AI Market Surveillance Authority if bias affects fundamental rights
-7. If no bias: document results and close assessment
-8. Store assessment report in technical documentation
-
-**Alternative Flows:**
-- 6a. Bias is minor (<2x threshold) → Remediate within next model update cycle
-- 6b. Bias is significant (>2x threshold) → Immediate remediation; consider temporary suspension
-
-**Exceptions:**
-- E1. Test dataset not representative → Delay assessment; acquire representative data
-- E2. Bias testing suite failure → Engage external testing firm
-
-**Business Rules:**
-- BR-BIAS-01: Bias assessment must be conducted quarterly
-- BR-BIAS-02: Max 1% false accept rate disparity between demographic groups
-- BR-BIAS-03: Significant bias must be reported to market surveillance authority
-- BR-BIAS-04: Remediation plan must be completed within 90 days of detection
-
-**Related Requirements:**
-- NFR: NFR-047 (Max 1% false accept rate disparity)
-- FR: FR-75 (System shall support bias testing across demographic groups)
-- FR: FR-76 (System shall generate bias assessment reports)
-
----
-
-### 9.7 PROC-14: Unified Impact Assessment — DPIA+FRIA (Detailed)
-
-**Use Case ID:** PROC-14
-**Name:** Unified Impact Assessment (DPIA + FRIA)
-**Description:** Conduct unified Data Protection Impact Assessment and Fundamental Rights Impact Assessment with dual outputs for biometric AI border control processing
-**Primary Actor:** SH-INT-004 (DPO)
-**Supporting Actors:** SH-INT-005 (AI Governance Lead), SH-INT-003 (CISO), SH-INT-002 (CTO)
-**Regulation:** GDPR Art. 35 (DPIA), AI_Act Art. 9 + Art. 28 (FRIA)
-**Priority:** CRITICAL
-**Frequency:** Before initial deployment; upon significant processing change; annual review
-**SLA:** Prior to launch / Annual / On significant change
-
-**Activation Condition:** STRUCTURAL — always active. Both GDPR DPIA and AI_Act FRIA triggers permanently satisfied by border control AI business model.
-
-**Preconditions:**
-- AI system design complete
-- Data processing activities defined
-- Risk management framework established
-- DPO and AI Governance Lead available
-
-**Postconditions:**
-- Unified Impact Assessment document completed
-- DPIA section satisfies GDPR Art. 35(7) requirements
-- FRIA section satisfies AI_Act fundamental rights analysis
-- Risks identified and mitigations documented
-- Assessment approved by DPO + AI Governance Lead
-
-**Main Flow:**
-1. DPO initiates Unified Impact Assessment
-2. **Section A — System Description (shared):**
-   - Describe eGate system architecture, AI model, data flows
-3. **Section B — Data Processing Description (shared):**
-   - Map all personal data processing: biometric templates, passport data, watchlist data
-4. **Section C — Necessity & Proportionality (shared):**
-   - Assess necessity of biometric processing for border control purpose
-   - Evaluate proportionality of processing scope
-5. **Section D — Risk Identification (shared):**
-   - Identify risks to data subjects (privacy, fundamental rights, discrimination)
-   - Identify risks to system security (cybersecurity, AI robustness)
-6. **Section E — Mitigation Measures (shared):**
-   - Document technical and organizational mitigations
-   - Map mitigations to rules catalog
-7. **Section F — DPIA-specific (GDPR Art. 35(7)):**
-   - Systematic description of processing operations and purposes
-   - Assessment of necessity and proportionality
-   - Risk assessment for rights and freedoms of data subjects
-   - Safeguards, security measures, and risk mitigation measures
-8. **Section G — FRIA-specific (AI_Act fundamental rights):**
-   - Identify affected fundamental Rights (privacy, non-discrimination, human dignity, free movement)
-   - Assess risk to rights holders (travelers, specific demographic groups)
-   - Vulnerable persons impact assessment
-   - Post-market monitoring plan for fundamental rights
-9. Joint review by DPO + AI Governance Lead
-10. Approval and publication (summary version for transparency)
-
-**Alternative Flows:**
-- 5a. New risk identified during assessment → Add to risk register; update mitigations
-- 9a. DPO or AI Lead disagrees → Escalate to CISO; resolve before deployment
-
-**Exceptions:**
-- E1. Assessment reveals unacceptable risk → Halt deployment; redesign system
-- E2. Significant processing change post-assessment → Re-initiate unified assessment
-
-**Business Rules:**
-- BR-UIA-01: Unified assessment mandatory before high-risk AI deployment
-- BR-UIA-02: Annual review required for both DPIA and FRIA sections
-- BR-UIA-03: Assessment must be approved by both DPO and AI Governance Lead
-- BR-UIA-04: Summary version must be published for transparency (AI_Act Art. 13)
-
-**Related Requirements:**
-- NFR: NFR-039 (Unified assessment complete before deployment)
-- FR: FR-59 (System shall support unified assessment with dual outputs)
-- FR: FR-60 (System shall maintain assessment version history)
-
-**Tension Reference:** T-003 (DPIA vs. FRIA trigger mismatch — resolved via unified assessment with dual outputs)
-
----
-
 ## 10. UC TO BUSINESS GOALS
 
-### 8.1 Use Case to Business Goal Matrix
+### 10.1 Use Case to Business Goal Matrix
 
 | UC ID | BG-001 CRA Cert | BG-002 AI Conformity | BG-003 NIS 2 | BG-004 GDPR Art.9 | BG-005 99.99% Uptime | BG-006 Schengen | BG-007 ISO 27001 |
 |-------|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -4011,7 +3179,7 @@ on the PROC-10 24h SLA).
 
 ## 11. UC TO STAKEHOLDERS
 
-### 9.1 Use Case to Stakeholder Matrix
+### 11.1 Use Case to Stakeholder Matrix
 
 | UC ID | CISO | DPO | AI Gov | SOC Mgr | Dev Lead | Ops Lead | Sec Eng | Compliance | Border Officer | Traveler | Border Authority |
 |-------|:----:|:----:|:------:|:--------:|:--------:|:--------:|:-------:|:----------:|:--------------:|:--------:|:----------------:|
@@ -4069,29 +3237,37 @@ on the PROC-10 24h SLA).
 
 ## 12. REQUIREMENTS PRIORITIZATION
 
-### 5.1 Priority Distribution
+### 12.1 Priority Distribution
+
+> Recomputed over the 15 compliance UCs (§7) — the original scope of this prioritization
+> (v1.5, UC SEPARATION): the PROC-\*/CAP-\* rows left the catalog (their priorities are
+> preserved verbatim in the §7.0 register); product UC priorities are in the §6 package
+> tables.
 
 | Priority | Count | Percentage | Use Cases |
 |----------|-------|------------|-----------|
-| **CRITICAL** | 14 | 32% | U.C.1.2.1, PROC-03, PROC-05, PROC-06, U.C.2.3.1, U.C.2.4.1, PROC-07, U.C.3.2.1, U.C.3.3.1, U.C.3.7.1, U.C.4.3.1, CAP-04, PROC-14, PROC-18, PROC-19, U.C.6.2.1, PROC-21 |
-| **HIGH** | 22 | 50% | PROC-01, PROC-04, CAP-01, CAP-02, PROC-08, PROC-09, PROC-10, U.C.3.4.1, U.C.3.5.1, PROC-11, PROC-12, U.C.4.2.1, PROC-13, CAP-03, U.C.4.6.1, PROC-15, PROC-16, PROC-17, PROC-20, U.C.6.4.1, PROC-22, U.C.6.7.1, CAP-07, CAP-08, CAP-09 |
-| **MEDIUM** | 6 | 14% | PROC-02, PROC-11, CAP-05, U.C.5.8.1, CAP-06 |
-| **LOW** | 2 | 4% | CAP-10 |
+| **CRITICAL** | 8 | 53% | U.C.1.2.1, U.C.2.3.1, U.C.2.4.1, U.C.3.2.1, U.C.3.3.1, U.C.3.7.1, U.C.4.3.1, U.C.6.2.1 |
+| **HIGH** | 6 | 40% | U.C.3.4.1, U.C.3.5.1, U.C.4.2.1, U.C.4.6.1, U.C.6.4.1, U.C.6.7.1 |
+| **MEDIUM** | 1 | 7% | U.C.5.8.1 |
+| **LOW** | 0 | 0% | — |
 
-### 10.2 Implementation Phasing
+### 12.2 Implementation Phasing
 
 | Phase | Use Cases | Rationale |
 |-------|-----------|-----------|
-| **Phase 1 (Immediate)** | All CRITICAL (14 UCs) | Market access requirements: CRA certification, AI_Act conformity, NIS 2 compliance, GDPR Art. 9 |
-| **Phase 2 (30 days)** | HIGH priority (22 UCs) | Operational hardening: monitoring, access control, secure development, governance |
-| **Phase 3 (60 days)** | MEDIUM priority (6 UCs) | Optimization: portability, asset inventory, third-party boundaries |
-| **Phase 4 (90 days)** | LOW priority (2 UCs) | Best practice: phishing simulation |
+| **Phase 1 (Immediate)** | All CRITICAL (8 UCs) | Market access requirements: CRA certification, AI_Act conformity, NIS 2 compliance, GDPR Art. 9 |
+| **Phase 2 (30 days)** | HIGH priority (6 UCs) | Operational hardening: monitoring, access control, secure development, governance |
+| **Phase 3 (60 days)** | MEDIUM priority (1 UC) | Optimization: portability, asset inventory, third-party boundaries |
+| **Phase 4 (90 days)** | LOW priority (0 UCs) | Best practice: phishing simulation (lane card CAP-10, Doc31) |
 
 ---
 
 ## 13. RULE COVERAGE ANALYSIS
 
-### 11.1 Compliance Rule Coverage
+> Coverage attributions citing PROC-\*/CAP-\* ids refer to the lane cards in
+> `Doc31_Process_Capability_Cards.md` (same IDs) — v1.5, UC SEPARATION.
+
+### 13.1 Compliance Rule Coverage
 
 | Rule ID | Covered By Use Cases | Status |
 |---------|---------------------|--------|
@@ -4136,7 +3312,7 @@ on the PROC-10 24h SLA).
 
 **Compliance Rule Coverage: 38/38 (100%)**
 
-### 11.2 Best Practice Rule Coverage
+### 13.2 Best Practice Rule Coverage
 
 | Rule ID | Covered By Use Cases | Status |
 |---------|---------------------|--------|
@@ -4168,7 +3344,7 @@ on the PROC-10 24h SLA).
 
 **Best Practice Rule Coverage: 25/25 (100%)**
 
-### 11.3 Strategic Tension Coverage
+### 13.3 Strategic Tension Coverage
 
 | Tension ID | Addressed By Use Cases | Resolution Verified |
 |------------|----------------------|---------------------|
@@ -4190,14 +3366,15 @@ on the PROC-10 24h SLA).
 
 | Metric | Value |
 |--------|-------|
-| **Total Use Cases** | **44** |
+| **Total Use Cases** | **36** (21 product §6, PKG-8..12 · 15 compliance §7, UC-DP..UC-TRN) |
 | **Level 0 Categories** | 7 (DP, SEC, IAM, DEV, GOV, AI, TRN) |
-| **Level 1 Use Cases** | 44 |
-| **Level 2 Detailed Use Cases** | 7 (U.C.1.2.1, PROC-05, PROC-07, U.C.3.3.1, PROC-19, PROC-20, PROC-14) |
-| **CRITICAL Priority** | 14 (32%) |
-| **HIGH Priority** | 22 (50%) |
-| **MEDIUM Priority** | 6 (14%) |
-| **LOW Priority** | 2 (4%) |
+| **Level 1 Use Cases** | 36 |
+| **Level 2 Detailed Use Cases** | 2 (U.C.1.2.1, U.C.3.3.1 — §9; the 5 former PROC detailed cards live in Doc31) |
+| **CRITICAL Priority** | 19 (53%) — 11 product + 8 compliance |
+| **HIGH Priority** | 15 (42%) — 9 product + 6 compliance |
+| **MEDIUM Priority** | 2 (5%) — 1 product + 1 compliance |
+| **LOW Priority** | 0 (0%) |
+| **Lane cards (PROC/CAP, Doc31)** | 37 (27 PROC + 10 CAP — indexed §6.6/§7.0, not counted as UCs) |
 | **Compliance Rules Covered** | 38/38 (100%) |
 | **Best Practice Rules Covered** | 25/25 (100%) |
 | **Strategic Tensions Addressed** | 9/9 (100%) |
@@ -4216,6 +3393,7 @@ on the PROC-10 24h SLA).
 | 1.2 | 2026-08-10 | Sprint 11 Executor (corr-008 Phase 3 ID harmonisation) | Added Related PSOs column to all UC tables (linking to PO/SO from Commit D); migrated BPR-AI-NN → BPR-D-XX.Y-NNN (15 BPR refs updated); tech-stripped SIEM/Cloud/FIPS 140-2/AES-256 mentions; added T-009 (D-10.1 monitoring opt-out) cross-ref; updated §11.2 BPR coverage (15→25) and §11.3 tension coverage (8→9) |
 | 1.3 | 2026-09-04 | PORT-PARITY-2 Executor (Phase 3 product-first pilot) | Added §6 Product Functional Use Cases (PKG-8 Traveller eGate Journey, 7 fully-dressed UCs U.C.8.x.y) + §8 Misuse Cases (base MUC-01..08 instantiated + GuardianGate-specific MUC-C2-01..06, 4 pilot cards); compliance UCs U.C.1–7 preserved verbatim (former §6→§7, §7→§9; detail cards unchanged in §9); frontmatter inputs legacy→DocNN |
 | 1.4 | 2026-09-04 | PORT-PARITY-2 Executor (Phase 3 massification, C2) | §6 massified: PKG-9 Operator Referral Desk (U.C.9.1.1–9.5.1), PKG-10 Kiosk Fleet Operations (PROC-24–10.5.1), PKG-11 AI Model Lifecycle (PROC-25–11.5.1), PKG-12 Administration & Reporting (U.C.12.1.1–12.4.1) — 19 fully-dressed UCs, same template as §6.1; §6.0 Drives column updated to real package ranges; §8.3 detail cards completed with MUC-01, MUC-02, MUC-07, MUC-C2-04, MUC-C2-06; repaired orphaned v1.3 row (was appended at EOF, outside this table) |
+| 1.5 | 2026-09-05 | UC SEPARATION Executor | Lane-pure catalog per rubric v1.8 §5B rule 6 (catalog holds UC cards only): removed 5 PROC product stubs §6 (PROC-23..27 — fields preserved in new §6.6 Lane Card Register; full cards already in Doc31); removed 32 §7 lane rows → new §7.0 Compliance Domain Index + verbatim lane register (UC-TRN folded — 0 UCs); moved 5 §9 PROC detailed cards verbatim to Doc31 (§9 keeps U.C.1.2.1, U.C.3.3.1); metrics corrected to 36 UCs (21 product + 15 compliance); §5.1/annex A UC-ovals-only; annex B 26→21 sections (B.1 placeholder removed); sub-section numbering corrected (§7.x, §10.1, §11.1, §12.x, §13.x) |
 
 ---
 
@@ -4242,8 +3420,10 @@ on the PROC-10 24h SLA).
 
 v1.2 → v1.3: non-technology UCs re-laned to PROC-*/CAP-* per human decision 2026-09-05 (rubric REALIZATION_CLASS_RUBRIC v1.3 §5B; registry `00_METHODOLOGY/validation/LANE_NAMING_CENSUS_v0.md`). Applied via `scripts/rename_lane_ids.py`.
 
+v1.4 → v1.5 (UC SEPARATION, 2026-09-05): lane-pure catalog per rubric v1.8 §5B rule 6 — no id renames (the PROC/CAP full cards already existed in Doc31). The 5 product PROC stubs (PROC-23..27, ex-U.C.9.5.1/10.1.1/11.1.1/11.4.1/12.4.1) and the 32 §7 lane rows left the catalog into the §6.6 register / §7.0 index; the 5 §9 PROC detailed narratives moved verbatim to Doc31. Remaining UC ids unchanged: 21 product (U.C.8+) + 15 compliance (U.C.1–U.C.7 family).
+
 ---
 
 ## Lane Cards cross-reference
 
-The PROCESS and CAPABILITY lane cards for the ids re-laned in this catalogue (PROC-*/CAP-*, per `REALIZATION_CLASS_RUBRIC.md` v1.5 §5B/§5C) live in `Doc31_Process_Capability_Cards.md` (same IDs, one card + one Mermaid diagram each, with an articulation table binding every card to this catalogue and to the downstream documents).
+The PROCESS and CAPABILITY lane cards (PROC-01..27, CAP-01..10, per `REALIZATION_CLASS_RUBRIC.md` v1.8 §5B/§5C) live **exclusively** in `Doc31_Process_Capability_Cards.md` (27 PROC + 10 CAP, one §5C.1/§5C.2 card + one Mermaid diagram each, plus the detailed narratives relocated from §9). This catalogue holds UC cards only; the lane ids are indexed from §6.6 (product PROCs) and §7.0 (compliance domains + verbatim register), with the articulation table in Doc31 binding every card to this catalogue and to the downstream documents.

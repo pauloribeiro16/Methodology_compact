@@ -2,25 +2,32 @@
 document_id: AEGIS-P3-31
 title: Process & Capability Cards — Lane Pilot (Case_02)
 phase: 3
-version: 1.0
+version: 1.1
 created: 2026-09-05
 updated: 2026-09-05
 author: Executor
 status: ACTIVE
+case: Case_02_SecureBorder_Solutions
 inputs: [Doc21_Use_Cases_Catalog.md, Doc18_Rules_Catalog.md, ../../00_METHODOLOGY/PREPROCESSING_by_domain/CONTROLS/OWASP_SAMM/, ../../00_METHODOLOGY/PREPROCESSING_by_domain/CONTROLS/OWASP_ASVS/]
 outputs: [22_Traceability_Matrix.xlsx]
-traceability: RULE → CAP → PROC → UC chain (REALIZATION_CLASS_RUBRIC.md v1.4 §5C)
+traceability: RULE → CAP → PROC → UC chain (REALIZATION_CLASS_RUBRIC.md v1.8 §5C)
 related_documents: [Doc21_Use_Cases_Catalog.md, Doc18_Rules_Catalog.md]
 ---
 
 # Process & Capability Cards — Lane Pilot (Case_02)
 
 > **Purpose.** Operational representation for the PROCESS and CAPABILITY lanes
-> (rubric `00_METHODOLOGY/REALIZATION_CLASS_RUBRIC.md` v1.4 §5C). Process cards follow
+> (rubric `00_METHODOLOGY/REALIZATION_CLASS_RUBRIC.md` v1.8 §5C). Process cards follow
 > the NIST SP 800-218 (SSDF) practice/task shape; capability cards follow the C2M2 /
 > ArchiMate capability semantics. Traceability chain: **RULE → CAP → PROC → UC**.
-> These cards are companions to the catalogue cards in `Doc21_Use_Cases_Catalog.md`
-> (same IDs). Piloted set: 4 of 37 re-laned ids (registry: `LANE_NAMING_CENSUS_v0.md`).
+> Piloted set: 4 of 37 re-laned ids (registry: `LANE_NAMING_CENSUS_v0.md`).
+>
+> **v1.1 (UC SEPARATION, 2026-09-05).** Lane cards live **exclusively** here per rubric
+> v1.8 §5B rule 6 — `Doc21_Use_Cases_Catalog.md` holds UC cards only (the former
+> companion model is superseded). The detailed narratives of PROC-05, PROC-07, PROC-14,
+> PROC-19, PROC-20 (formerly Doc21 §9) were relocated verbatim under their §5C.1 cards;
+> the PROC-23..27 stub-only fields are preserved in Doc21 §6.6, the PROC-01..22/CAP-01..10
+> catalogue rows in Doc21 §7.0.
 
 ## PROC-05 — Incident Detection & Triage
 
@@ -45,6 +52,76 @@ flowchart TD
     A4 --> E2["End: incident in containment flow"]
 ```
 
+### Detailed narrative (from Doc21 §9, verbatim — UC SEPARATION 2026-09-05)
+
+**Use Case ID:** PROC-05
+**Name:** Incident Detection & Triage
+**Description:** 24/7 SOC detects security incidents through unified monitoring platform covering traditional security and AI post-market metrics
+**Primary Actor:** SH-INT-008 (SOC Manager)
+**Supporting Actors:** SH-INT-003 (CISO), SH-INT-009 (Security Engineer), SH-INT-005 (AI Governance Lead), Security Monitoring Platform
+**Regulation:** NIS 2 Art. 21, CRA Art. 12, AI_Act Art. 61
+**Priority:** CRITICAL
+**Frequency:** Continuous (24/7)
+**SLA:** Detection within 15 minutes, triage within 1 hour
+
+**Activation Condition:** STRUCTURAL — always active. When compound event (EVT-001/EVT-002) detected, multi-path notification activated.
+
+**Preconditions:**
+- Security monitoring platform operational with anomaly detection
+- Alert thresholds configured for security and AI metrics
+- On-call SOC team scheduled
+- AI accuracy monitoring integrated into SOC dashboard
+
+**Postconditions:**
+- Incident logged with classification
+- Alert generated and acknowledged
+- Incident response process initiated (PROC-06)
+- Evidence preserved for forensics
+
+**Main Flow:**
+1. Security monitoring platform collects security events from all sources (eGate endpoints, remote infrastructure, network, AI system)
+2. Security monitoring platform correlates events in real-time with anomaly detection
+3. Security monitoring platform detects anomaly, known threat pattern, or AI drift alert (>1% accuracy degradation)
+4. Security monitoring platform generates alert with severity level (Critical/High/Medium/Low)
+5. Security monitoring platform notifies on-call SOC analyst (pager/SMS/email/dashboard)
+6. SOC analyst acknowledges alert (within 15 min)
+7. SOC analyst performs initial triage: classify incident type
+   - Type A: Actively exploited vulnerability → CRA 24h ENISA notification path
+   - Type B: Significant incident → NIS 2 24h CSIRT early warning path
+   - Type C: Personal data breach → GDPR 72h DPA notification path
+   - Type D: AI incident (false accept/drift) → AI_Act market surveillance path
+   - Type E: Multiple types → Apply shortest deadline (24h)
+8. If Type A/B/E → Trigger PROC-07 (Regulatory Notification, 24h path)
+9. If Type C → Trigger PROC-07 (Regulatory Notification, 72h path)
+10. If Type D → Trigger PROC-21 (AI Incident Response)
+11. SOC logs all actions and preserves evidence
+
+**Alternative Flows:**
+- 6a. No response within 15 min → Escalate to CISO
+- 7a. False Positive → Tune detection rules; log as FP
+- 7b. True Positive → Proceed to PROC-06 (Incident Response)
+
+**Exceptions:**
+- E1. Security monitoring platform failure → Manual monitoring until restored; escalate to CISO
+- E2. Alert fatigue (>50% false positive rate) → Review and tune thresholds within 24h
+- E3. SOC team unavailable → Activate backup SOC (MSSP contract)
+
+**Business Rules:**
+- BR-DET-01: All security events must be logged with timestamp
+- BR-DET-02: Critical alerts must be acknowledged within 15 min
+- BR-DET-03: Incident classification must be completed within 1 hour
+- BR-DET-04: All incidents must preserve evidence for forensics
+- BR-DET-05: AI drift alerts (>1% degradation) treated as Critical severity
+
+**Related Requirements:**
+- NFR: NFR-015 (Real-time event processing, <1s latency)
+- NFR: NFR-009 (Detection SLA: 15 min for critical incidents)
+- FR: FR-28 (System shall detect anomalies in security events)
+- FR: FR-29 (System shall generate alerts with severity classification)
+- FR: FR-72 (System shall detect AI accuracy drift >1%)
+
+**Tension Reference:** T-001 (Unified 24h/72h notification workflow), T-005 (Integrated monitoring platform)
+
 ## PROC-14 — Unified Impact Assessment (DPIA + FRIA)
 
 | Field | Content |
@@ -67,6 +144,82 @@ flowchart TD
     F1 --> E["End: dual-output dossier + sign-off"]
     F2 --> E
 ```
+
+### Detailed narrative (from Doc21 §9, verbatim — UC SEPARATION 2026-09-05)
+
+**Use Case ID:** PROC-14
+**Name:** Unified Impact Assessment (DPIA + FRIA)
+**Description:** Conduct unified Data Protection Impact Assessment and Fundamental Rights Impact Assessment with dual outputs for biometric AI border control processing
+**Primary Actor:** SH-INT-004 (DPO)
+**Supporting Actors:** SH-INT-005 (AI Governance Lead), SH-INT-003 (CISO), SH-INT-002 (CTO)
+**Regulation:** GDPR Art. 35 (DPIA), AI_Act Art. 9 + Art. 28 (FRIA)
+**Priority:** CRITICAL
+**Frequency:** Before initial deployment; upon significant processing change; annual review
+**SLA:** Prior to launch / Annual / On significant change
+
+**Activation Condition:** STRUCTURAL — always active. Both GDPR DPIA and AI_Act FRIA triggers permanently satisfied by border control AI business model.
+
+**Preconditions:**
+- AI system design complete
+- Data processing activities defined
+- Risk management framework established
+- DPO and AI Governance Lead available
+
+**Postconditions:**
+- Unified Impact Assessment document completed
+- DPIA section satisfies GDPR Art. 35(7) requirements
+- FRIA section satisfies AI_Act fundamental rights analysis
+- Risks identified and mitigations documented
+- Assessment approved by DPO + AI Governance Lead
+
+**Main Flow:**
+1. DPO initiates Unified Impact Assessment
+2. **Section A — System Description (shared):**
+   - Describe eGate system architecture, AI model, data flows
+3. **Section B — Data Processing Description (shared):**
+   - Map all personal data processing: biometric templates, passport data, watchlist data
+4. **Section C — Necessity & Proportionality (shared):**
+   - Assess necessity of biometric processing for border control purpose
+   - Evaluate proportionality of processing scope
+5. **Section D — Risk Identification (shared):**
+   - Identify risks to data subjects (privacy, fundamental rights, discrimination)
+   - Identify risks to system security (cybersecurity, AI robustness)
+6. **Section E — Mitigation Measures (shared):**
+   - Document technical and organizational mitigations
+   - Map mitigations to rules catalog
+7. **Section F — DPIA-specific (GDPR Art. 35(7)):**
+   - Systematic description of processing operations and purposes
+   - Assessment of necessity and proportionality
+   - Risk assessment for rights and freedoms of data subjects
+   - Safeguards, security measures, and risk mitigation measures
+8. **Section G — FRIA-specific (AI_Act fundamental rights):**
+   - Identify affected fundamental Rights (privacy, non-discrimination, human dignity, free movement)
+   - Assess risk to rights holders (travelers, specific demographic groups)
+   - Vulnerable persons impact assessment
+   - Post-market monitoring plan for fundamental rights
+9. Joint review by DPO + AI Governance Lead
+10. Approval and publication (summary version for transparency)
+
+**Alternative Flows:**
+- 5a. New risk identified during assessment → Add to risk register; update mitigations
+- 9a. DPO or AI Lead disagrees → Escalate to CISO; resolve before deployment
+
+**Exceptions:**
+- E1. Assessment reveals unacceptable risk → Halt deployment; redesign system
+- E2. Significant processing change post-assessment → Re-initiate unified assessment
+
+**Business Rules:**
+- BR-UIA-01: Unified assessment mandatory before high-risk AI deployment
+- BR-UIA-02: Annual review required for both DPIA and FRIA sections
+- BR-UIA-03: Assessment must be approved by both DPO and AI Governance Lead
+- BR-UIA-04: Summary version must be published for transparency (AI_Act Art. 13)
+
+**Related Requirements:**
+- NFR: NFR-039 (Unified assessment complete before deployment)
+- FR: FR-59 (System shall support unified assessment with dual outputs)
+- FR: FR-60 (System shall maintain assessment version history)
+
+**Tension Reference:** T-003 (DPIA vs. FRIA trigger mismatch — resolved via unified assessment with dual outputs)
 
 ## CAP-02 — Continuous Security Monitoring
 
@@ -245,6 +398,72 @@ flowchart TD
     CS --> F
     MS --> F
 ```
+
+### Detailed narrative (from Doc21 §9, verbatim — UC SEPARATION 2026-09-05)
+
+**Use Case ID:** PROC-07
+**Name:** Regulatory Notification (Unified 24h/72h Workflow)
+**Description:** Unified incident notification workflow satisfying GDPR (72h), CRA (24h), NIS 2 (24h early warning + 72h full + 1mo final), and AI_Act (market surveillance cooperation)
+**Primary Actor:** SH-INT-003 (CISO)
+**Supporting Actors:** SH-INT-004 (DPO), SH-INT-005 (AI Governance Lead), SH-INT-010 (Compliance Analyst)
+**Regulation:** GDPR Art. 33/34, CRA Art. 14, NIS 2 Art. 23, AI_Act Art. 73
+**Priority:** CRITICAL
+**Frequency:** Per significant incident
+**SLA:** 24h early warning (CRA/NIS 2), 72h detailed (GDPR/NIS 2), 1 month final report (NIS 2). 24h (compound event) / 72h (GDPR-only)
+
+**Activation Condition:** CONTEXTUAL — activated when compound event satisfies triggers from 2+ regulations. Max-SLA routing selects notification path based on incident classification. When only one trigger fires, use single-notification path. See T-001.
+
+**Preconditions:**
+- Incident classified per PROC-05 triage
+- Incident severity assessed
+- Notification templates pre-configured per regulation
+- Contact information for all authorities current
+
+**Postconditions:**
+- Appropriate authorities notified within regulatory deadlines
+- Notification evidence logged
+- Final report submitted within 1 month
+- Travelers notified if personal data breach affects them
+
+**Main Flow:**
+1. Incident classification received from PROC-05 (Type A/B/C/D/E)
+2. CISO activates unified notification workflow
+3. **Early Warning (≤24h):**
+   - Type A (exploited vuln): Notify ENISA via security.txt channel
+   - Type B (significant incident): Notify national CSIRT
+   - Type E (multiple): Notify both ENISA and CSIRT
+4. **Detailed Notification (≤72h):**
+   - Type C (personal data breach): Notify DPA with Art. 33(3) details
+   - Type B/E: Notify CSIRT with full incident details per NIS 2 Art. 23(2)
+5. **Traveler Notification (if applicable):**
+   - If personal data breach with high risk to travelers: Notify affected travelers (GDPR Art. 34)
+6. **AI_Act Cooperation:**
+   - Type D (AI incident): Cooperate with market surveillance authority
+7. **Final Report (≤1 month):**
+   - Submit comprehensive report per NIS 2 Art. 23(3) including root cause, impact, remediation
+8. Log all notifications with timestamps and evidence
+
+**Alternative Flows:**
+- 3a. Classification uncertain → Default to 24h early warning (conservative)
+- 5a. Notification to travelers would compromise investigation → Delay with DPA approval
+
+**Exceptions:**
+- E1. Authority contact information unavailable → Use backup channels; log as compliance gap
+- E2. 24h deadline missed → Immediate notification; document delay reason; escalate to CEO
+
+**Business Rules:**
+- BR-NOTIFY-01: All notifications must be logged with timestamp and recipient
+- BR-NOTIFY-02: 24h early warning for CRA/NIS 2 incidents (conservative default)
+- BR-NOTIFY-03: 72h detailed notification for GDPR personal data breaches
+- BR-NOTIFY-04: 1 month final report per NIS 2 Art. 23(3)
+- BR-NOTIFY-05: Traveler notification required for high-risk personal data breaches
+
+**Related Requirements:**
+- NFR: NFR-044 (Notification workflow activation within 4h of classification)
+- FR: FR-32 (System shall generate pre-filled notification templates per regulation)
+- FR: FR-33 (System shall track notification deadlines and escalate)
+
+**Tension Reference:** T-001 (24h vs 72h timing conflict — resolved via unified workflow with classification)
 
 ## PROC-08 — Disaster Recovery & Business Continuity
 
@@ -496,6 +715,72 @@ flowchart TD
     A5 --> E["End: conformity certificate issued"]
 ```
 
+### Detailed narrative (from Doc21 §9, verbatim — UC SEPARATION 2026-09-05)
+
+**Use Case ID:** PROC-19
+**Name:** AI Conformity Assessment
+**Description:** Prepare and execute AI_Act conformity assessment for high-risk border control AI system (Annex III)
+**Primary Actor:** SH-INT-005 (AI Governance Lead)
+**Supporting Actors:** SH-INT-002 (CTO), SH-INT-003 (CISO), SH-EXT-007 (Notified Body), SH-EXT-011 (AI Market Surveillance Authority)
+**AI_Act Article:** Art. 9, Art. 43 (Conformity Assessment)
+**Priority:** CRITICAL
+**Frequency:** Before initial market placement; upon significant model change
+**SLA:** Complete before eGate deployment at any border crossing
+
+**Activation Condition:** STRUCTURAL — always active before market placement.
+
+**Preconditions:**
+- AI system development complete
+- Technical documentation prepared (AI_Act Annex IV)
+- Quality management system operational
+- Risk management system established
+- Training data documented and validated
+
+**Postconditions:**
+- Conformity assessment completed
+- EU Declaration of Conformity issued
+- CE marking applied
+- Technical documentation submitted to notified body
+- Post-market monitoring plan activated
+
+**Main Flow:**
+1. AI Governance Lead initiates conformity assessment process
+2. Compile technical documentation per AI_Act Annex IV:
+   - System description and intended purpose
+   - AI system architecture and design specifications
+   - Training, validation, and testing data documentation
+   - Human oversight measures
+   - Accuracy, robustness, and cybersecurity metrics
+3. Conduct internal risk assessment (integrated with DPIA+FRIA per PROC-14)
+4. Engage Notified Body for third-party conformity assessment
+5. Notified Body reviews technical documentation
+6. Notified Body conducts independent testing of AI system
+7. Notified Body issues conformity certificate (or identifies non-conformities)
+8. If non-conformities: remediate and re-assess
+9. Issue EU Declaration of Conformity
+10. Apply CE marking to eGate system
+11. Activate post-market monitoring plan (U.C.6.2.1)
+
+**Alternative Flows:**
+- 7a. Non-conformities identified → Remediate within 90 days; re-assess
+- 8a. Critical non-conformity (safety/fundamental rights) → Halt deployment; redesign
+
+**Exceptions:**
+- E1. Notified Body unavailable → Engage alternative notified body; delay deployment
+- E2. Significant model change post-certification → Re-initiate conformity assessment
+
+**Business Rules:**
+- BR-AICONF-01: Conformity assessment mandatory before market placement (AI_Act Art. 43)
+- BR-AICONF-02: Technical documentation must be maintained for 10 years
+- BR-AICONF-03: Significant model changes require re-assessment
+- BR-AICONF-04: Post-market monitoring plan must be active before deployment
+- BR-AICONF-05: EU Declaration of Conformity must be updated per system version
+
+**Related Requirements:**
+- NFR: NFR-038 (Conformity assessment complete before deployment)
+- FR: FR-73 (System shall maintain technical documentation per Annex IV)
+- FR: FR-74 (System shall support post-market monitoring data collection)
+
 ## PROC-20 — AI Bias Testing & Fairness Assessment
 
 | Field | Content |
@@ -519,6 +804,70 @@ flowchart TD
     S1 --> A5
     D1 -->|"no"| A5 --> E["End: report in technical documentation"]
 ```
+
+### Detailed narrative (from Doc21 §9, verbatim — UC SEPARATION 2026-09-05)
+
+**Use Case ID:** PROC-20
+**Name:** AI Bias Testing & Fairness Assessment
+**Description:** Quarterly bias testing of border control AI across demographic groups (age, gender, ethnicity) with documented results
+**Primary Actor:** SH-INT-005 (AI Governance Lead)
+**Supporting Actors:** SH-INT-009 (Security Engineer), SH-EXT-013 (Penetration Testing Firm)
+**AI_Act Article:** Art. 9 (Risk Management), Art. 10 (Data Quality)
+**Priority:** HIGH
+**Frequency:** Quarterly
+**SLA:** Complete assessment within 2 weeks; report within 1 week of completion
+
+**Preconditions:**
+- AI model deployed and processing live data
+- Representative test dataset available across demographic groups
+- Bias testing suite configured
+- Baseline accuracy metrics established
+
+**Postconditions:**
+- Bias assessment report generated
+- Disparate impact identified and documented
+- Remediation plan created (if bias detected)
+- Report submitted to AI Market Surveillance Authority (if required)
+
+**Main Flow:**
+1. AI Governance Lead initiates quarterly bias assessment
+2. Select representative test dataset covering demographic groups:
+   - Age groups: 0-18, 18-30, 30-50, 50-70, 70+
+   - Gender: Male, Female, Non-binary
+   - Ethnicity: All major ethnic groups represented in Schengen traffic
+3. Run bias testing suite against AI model:
+   - False accept rate by demographic group
+   - False reject rate by demographic group
+   - Confidence score distribution by demographic group
+4. Compare results against baseline and acceptable thresholds:
+   - Max 1% disparity in false accept rate between groups
+   - Max 2% disparity in false reject rate between groups
+5. Generate bias assessment report with findings
+6. If bias detected (>threshold):
+   - Identify root cause (training data, model architecture, threshold settings)
+   - Create remediation plan with timeline
+   - Notify AI Market Surveillance Authority if bias affects fundamental rights
+7. If no bias: document results and close assessment
+8. Store assessment report in technical documentation
+
+**Alternative Flows:**
+- 6a. Bias is minor (<2x threshold) → Remediate within next model update cycle
+- 6b. Bias is significant (>2x threshold) → Immediate remediation; consider temporary suspension
+
+**Exceptions:**
+- E1. Test dataset not representative → Delay assessment; acquire representative data
+- E2. Bias testing suite failure → Engage external testing firm
+
+**Business Rules:**
+- BR-BIAS-01: Bias assessment must be conducted quarterly
+- BR-BIAS-02: Max 1% false accept rate disparity between demographic groups
+- BR-BIAS-03: Significant bias must be reported to market surveillance authority
+- BR-BIAS-04: Remediation plan must be completed within 90 days of detection
+
+**Related Requirements:**
+- NFR: NFR-047 (Max 1% false accept rate disparity)
+- FR: FR-75 (System shall support bias testing across demographic groups)
+- FR: FR-76 (System shall generate bias assessment reports)
 
 ## PROC-21 — AI Incident Response
 
@@ -831,47 +1180,47 @@ graph LR
 
 ## Articulation with existing artefacts
 
-Per-card binding to the catalogue and the downstream documents. 'Formerly' preserves the pre-LANE-NAMING id (full registry: `00_METHODOLOGY/validation/LANE_NAMING_CENSUS_v0.md`). Ref counts are occurrences of the lane id in the P3 tree (excluding this doc).
+Per-card binding to the catalogue and the downstream documents. 'Formerly' preserves the pre-LANE-NAMING id (full registry: `00_METHODOLOGY/validation/LANE_NAMING_CENSUS_v0.md`). Ref counts are word-boundary occurrences of the lane id in the P3 tree (excluding this doc). **v1.1 (UC SEPARATION, 2026-09-05):** catalogue anchors re-pointed from the removed Doc21 stubs/rows to the new index sections (§7.0 Compliance Domain Index for PROC-01..22/CAP-01..10; §6.6 Lane Card Register for PROC-23..27), and all ref counts recomputed on the post-UC-SEPARATION tree.
 
 | Card | Formerly | Catalogue anchor | Downstream refs (doc: count) |
 |---|---|---|---|
-| PROC-01 | U.C.1.1.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:11, Doc24_Architectural_Nodes.md:3, Doc29_Functional_Requirements.md:2, Doc30_Non_Functional_Requirements.md:2 |
-| CAP-01 | U.C.1.6.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:6, Doc24_Architectural_Nodes.md:3, Doc29_Functional_Requirements.md:2, Doc30_Non_Functional_Requirements.md:3 |
-| PROC-02 | U.C.1.3.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:8, Doc24_Architectural_Nodes.md:2, Doc29_Functional_Requirements.md:2, Doc30_Non_Functional_Requirements.md:2 |
-| CAP-02 | U.C.2.6.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:31, Doc24_Architectural_Nodes.md:3, Doc28_Risk_Analysis.md:1, Doc29_Functional_Requirements.md:3, Doc30_Non_Functional_Requirements.md:20 |
-| PROC-03 | U.C.1.4.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:8, Doc24_Architectural_Nodes.md:1, Doc29_Functional_Requirements.md:3, Doc30_Non_Functional_Requirements.md:2 |
-| CAP-03 | U.C.4.5.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:10, Doc24_Architectural_Nodes.md:3, Doc29_Functional_Requirements.md:2, Doc30_Non_Functional_Requirements.md:3 |
-| PROC-04 | U.C.1.5.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:7, Doc24_Architectural_Nodes.md:3, Doc29_Functional_Requirements.md:3, Doc30_Non_Functional_Requirements.md:5 |
-| CAP-04 | U.C.5.1.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:10, Doc24_Architectural_Nodes.md:4, Doc29_Functional_Requirements.md:2, Doc30_Non_Functional_Requirements.md:7 |
-| PROC-05 | U.C.2.1.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:41, Doc24_Architectural_Nodes.md:6, Doc29_Functional_Requirements.md:7, Doc30_Non_Functional_Requirements.md:6 |
-| CAP-05 | U.C.5.6.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:6, Doc24_Architectural_Nodes.md:2, Doc29_Functional_Requirements.md:2 |
-| PROC-06 | U.C.2.2.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:18, Doc24_Architectural_Nodes.md:4, Doc29_Functional_Requirements.md:3, Doc30_Non_Functional_Requirements.md:3 |
-| CAP-06 | U.C.7.1.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:7, Doc24_Architectural_Nodes.md:1, Doc29_Functional_Requirements.md:3 |
-| PROC-07 | U.C.2.5.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:25, Doc24_Architectural_Nodes.md:3, Doc28_Risk_Analysis.md:1, Doc29_Functional_Requirements.md:3, Doc30_Non_Functional_Requirements.md:6 |
-| CAP-07 | U.C.7.2.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:5, Doc24_Architectural_Nodes.md:1, Doc29_Functional_Requirements.md:3 |
-| PROC-08 | U.C.2.7.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:13, Doc24_Architectural_Nodes.md:3, Doc29_Functional_Requirements.md:3, Doc30_Non_Functional_Requirements.md:10 |
-| CAP-08 | U.C.7.3.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:6, Doc24_Architectural_Nodes.md:1, Doc29_Functional_Requirements.md:2 |
-| PROC-09 | U.C.2.8.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:6, Doc24_Architectural_Nodes.md:4, Doc29_Functional_Requirements.md:2, Doc30_Non_Functional_Requirements.md:1 |
-| CAP-09 | U.C.7.4.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:5, Doc24_Architectural_Nodes.md:1, Doc29_Functional_Requirements.md:2 |
-| PROC-10 | U.C.3.1.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:16, Doc24_Architectural_Nodes.md:4, Doc29_Functional_Requirements.md:3 |
-| CAP-10 | U.C.7.5.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:6, Doc24_Architectural_Nodes.md:1, Doc29_Functional_Requirements.md:2 |
-| PROC-11 | U.C.3.6.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:11, Doc24_Architectural_Nodes.md:4, Doc29_Functional_Requirements.md:3 |
-| PROC-12 | U.C.4.1.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:7, Doc24_Architectural_Nodes.md:3, Doc29_Functional_Requirements.md:3, Doc30_Non_Functional_Requirements.md:2 |
-| PROC-13 | U.C.4.4.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:8, Doc24_Architectural_Nodes.md:3, Doc29_Functional_Requirements.md:3 |
-| PROC-14 | U.C.5.2.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:12, Doc24_Architectural_Nodes.md:4, Doc28_Risk_Analysis.md:1, Doc29_Functional_Requirements.md:2, Doc30_Non_Functional_Requirements.md:3 |
-| PROC-15 | U.C.5.3.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:7, Doc24_Architectural_Nodes.md:3, Doc29_Functional_Requirements.md:2 |
-| PROC-16 | U.C.5.4.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:12, Doc24_Architectural_Nodes.md:3, Doc29_Functional_Requirements.md:4, Doc30_Non_Functional_Requirements.md:9 |
-| PROC-17 | U.C.5.5.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:15, Doc24_Architectural_Nodes.md:2, Doc29_Functional_Requirements.md:2 |
-| PROC-18 | U.C.5.7.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:12, Doc24_Architectural_Nodes.md:1, Doc29_Functional_Requirements.md:3, Doc30_Non_Functional_Requirements.md:4 |
-| PROC-19 | U.C.6.1.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:18, Doc24_Architectural_Nodes.md:3, Doc29_Functional_Requirements.md:3, Doc30_Non_Functional_Requirements.md:7 |
-| PROC-20 | U.C.6.3.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:22, Doc24_Architectural_Nodes.md:3, Doc29_Functional_Requirements.md:3, Doc30_Non_Functional_Requirements.md:4 |
-| PROC-21 | U.C.6.5.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:16, Doc24_Architectural_Nodes.md:3, Doc29_Functional_Requirements.md:3, Doc30_Non_Functional_Requirements.md:4 |
-| PROC-22 | U.C.6.6.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:7, Doc24_Architectural_Nodes.md:3, Doc29_Functional_Requirements.md:2, Doc30_Non_Functional_Requirements.md:4 |
-| PROC-23 | U.C.9.5.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:3 |
-| PROC-24 | U.C.10.1.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:13 |
-| PROC-25 | U.C.11.1.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:9 |
-| PROC-26 | U.C.11.4.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:9 |
-| PROC-27 | U.C.12.4.1 | Doc21_Use_Cases_Catalog.md:? | Doc21_Use_Cases_Catalog.md:8 |
+| PROC-01 | U.C.1.1.1 | Doc21 §7.0 Compliance Domain Index (register row) | Doc21_Use_Cases_Catalog.md:12, Doc24_Architectural_Nodes.md:3, Doc29_Functional_Requirements.md:2, Doc30_Non_Functional_Requirements.md:2 |
+| CAP-01 | U.C.1.6.1 | Doc21 §7.0 Compliance Domain Index (register row) | Doc21_Use_Cases_Catalog.md:7, Doc24_Architectural_Nodes.md:3, Doc29_Functional_Requirements.md:2, Doc30_Non_Functional_Requirements.md:3 |
+| PROC-02 | U.C.1.3.1 | Doc21 §7.0 Compliance Domain Index (register row) | Doc21_Use_Cases_Catalog.md:8, Doc24_Architectural_Nodes.md:2, Doc29_Functional_Requirements.md:2, Doc30_Non_Functional_Requirements.md:2 |
+| CAP-02 | U.C.2.6.1 | Doc21 §7.0 Compliance Domain Index (register row) | Doc21_Use_Cases_Catalog.md:29, Doc24_Architectural_Nodes.md:3, Doc28_Risk_Analysis.md:1, Doc29_Functional_Requirements.md:3, Doc30_Non_Functional_Requirements.md:20 |
+| PROC-03 | U.C.1.4.1 | Doc21 §7.0 Compliance Domain Index (register row) | Doc21_Use_Cases_Catalog.md:8, Doc24_Architectural_Nodes.md:1, Doc29_Functional_Requirements.md:3, Doc30_Non_Functional_Requirements.md:2 |
+| CAP-03 | U.C.4.5.1 | Doc21 §7.0 Compliance Domain Index (register row) | Doc21_Use_Cases_Catalog.md:10, Doc24_Architectural_Nodes.md:3, Doc29_Functional_Requirements.md:2, Doc30_Non_Functional_Requirements.md:3 |
+| PROC-04 | U.C.1.5.1 | Doc21 §7.0 Compliance Domain Index (register row) | Doc21_Use_Cases_Catalog.md:7, Doc24_Architectural_Nodes.md:3, Doc29_Functional_Requirements.md:3, Doc30_Non_Functional_Requirements.md:5 |
+| CAP-04 | U.C.5.1.1 | Doc21 §7.0 Compliance Domain Index (register row) | Doc21_Use_Cases_Catalog.md:10, Doc24_Architectural_Nodes.md:4, Doc29_Functional_Requirements.md:2, Doc30_Non_Functional_Requirements.md:7 |
+| PROC-05 | U.C.2.1.1 | Doc21 §7.0 Compliance Domain Index (register row) | Doc21_Use_Cases_Catalog.md:36, Doc24_Architectural_Nodes.md:6, Doc29_Functional_Requirements.md:7, Doc30_Non_Functional_Requirements.md:6 |
+| CAP-05 | U.C.5.6.1 | Doc21 §7.0 Compliance Domain Index (register row) | Doc21_Use_Cases_Catalog.md:6, Doc24_Architectural_Nodes.md:2, Doc29_Functional_Requirements.md:2 |
+| PROC-06 | U.C.2.2.1 | Doc21 §7.0 Compliance Domain Index (register row) | Doc21_Use_Cases_Catalog.md:16, Doc24_Architectural_Nodes.md:4, Doc29_Functional_Requirements.md:3, Doc30_Non_Functional_Requirements.md:3 |
+| CAP-06 | U.C.7.1.1 | Doc21 §7.0 Compliance Domain Index (register row) | Doc21_Use_Cases_Catalog.md:8, Doc24_Architectural_Nodes.md:1, Doc29_Functional_Requirements.md:3 |
+| PROC-07 | U.C.2.5.1 | Doc21 §7.0 Compliance Domain Index (register row) | Doc21_Use_Cases_Catalog.md:19, Doc24_Architectural_Nodes.md:3, Doc28_Risk_Analysis.md:1, Doc29_Functional_Requirements.md:3, Doc30_Non_Functional_Requirements.md:6 |
+| CAP-07 | U.C.7.2.1 | Doc21 §7.0 Compliance Domain Index (register row) | Doc21_Use_Cases_Catalog.md:5, Doc24_Architectural_Nodes.md:1, Doc29_Functional_Requirements.md:3 |
+| PROC-08 | U.C.2.7.1 | Doc21 §7.0 Compliance Domain Index (register row) | Doc21_Use_Cases_Catalog.md:13, Doc24_Architectural_Nodes.md:3, Doc29_Functional_Requirements.md:3, Doc30_Non_Functional_Requirements.md:10 |
+| CAP-08 | U.C.7.3.1 | Doc21 §7.0 Compliance Domain Index (register row) | Doc21_Use_Cases_Catalog.md:6, Doc24_Architectural_Nodes.md:1, Doc29_Functional_Requirements.md:2 |
+| PROC-09 | U.C.2.8.1 | Doc21 §7.0 Compliance Domain Index (register row) | Doc21_Use_Cases_Catalog.md:6, Doc24_Architectural_Nodes.md:4, Doc29_Functional_Requirements.md:2, Doc30_Non_Functional_Requirements.md:1 |
+| CAP-09 | U.C.7.4.1 | Doc21 §7.0 Compliance Domain Index (register row) | Doc21_Use_Cases_Catalog.md:5, Doc24_Architectural_Nodes.md:1, Doc29_Functional_Requirements.md:2 |
+| PROC-10 | U.C.3.1.1 | Doc21 §7.0 Compliance Domain Index (register row) | Doc21_Use_Cases_Catalog.md:16, Doc24_Architectural_Nodes.md:4, Doc29_Functional_Requirements.md:3 |
+| CAP-10 | U.C.7.5.1 | Doc21 §7.0 Compliance Domain Index (register row) | Doc21_Use_Cases_Catalog.md:7, Doc24_Architectural_Nodes.md:1, Doc29_Functional_Requirements.md:2 |
+| PROC-11 | U.C.3.6.1 | Doc21 §7.0 Compliance Domain Index (register row) | Doc21_Use_Cases_Catalog.md:9, Doc24_Architectural_Nodes.md:4, Doc29_Functional_Requirements.md:3 |
+| PROC-12 | U.C.4.1.1 | Doc21 §7.0 Compliance Domain Index (register row) | Doc21_Use_Cases_Catalog.md:7, Doc24_Architectural_Nodes.md:3, Doc29_Functional_Requirements.md:3, Doc30_Non_Functional_Requirements.md:2 |
+| PROC-13 | U.C.4.4.1 | Doc21 §7.0 Compliance Domain Index (register row) | Doc21_Use_Cases_Catalog.md:8, Doc24_Architectural_Nodes.md:3, Doc29_Functional_Requirements.md:3 |
+| PROC-14 | U.C.5.2.1 | Doc21 §7.0 Compliance Domain Index (register row) | Doc21_Use_Cases_Catalog.md:9, Doc24_Architectural_Nodes.md:4, Doc28_Risk_Analysis.md:1, Doc29_Functional_Requirements.md:2, Doc30_Non_Functional_Requirements.md:3 |
+| PROC-15 | U.C.5.3.1 | Doc21 §7.0 Compliance Domain Index (register row) | Doc21_Use_Cases_Catalog.md:7, Doc24_Architectural_Nodes.md:3, Doc29_Functional_Requirements.md:2 |
+| PROC-16 | U.C.5.4.1 | Doc21 §7.0 Compliance Domain Index (register row) | Doc21_Use_Cases_Catalog.md:11, Doc24_Architectural_Nodes.md:3, Doc29_Functional_Requirements.md:4, Doc30_Non_Functional_Requirements.md:9 |
+| PROC-17 | U.C.5.5.1 | Doc21 §7.0 Compliance Domain Index (register row) | Doc21_Use_Cases_Catalog.md:14, Doc24_Architectural_Nodes.md:2, Doc29_Functional_Requirements.md:2 |
+| PROC-18 | U.C.5.7.1 | Doc21 §7.0 Compliance Domain Index (register row) | Doc21_Use_Cases_Catalog.md:10, Doc24_Architectural_Nodes.md:1, Doc29_Functional_Requirements.md:3, Doc30_Non_Functional_Requirements.md:4 |
+| PROC-19 | U.C.6.1.1 | Doc21 §7.0 Compliance Domain Index (register row) | Doc21_Use_Cases_Catalog.md:14, Doc24_Architectural_Nodes.md:3, Doc29_Functional_Requirements.md:3, Doc30_Non_Functional_Requirements.md:7 |
+| PROC-20 | U.C.6.3.1 | Doc21 §7.0 Compliance Domain Index (register row) | Doc21_Use_Cases_Catalog.md:17, Doc24_Architectural_Nodes.md:3, Doc29_Functional_Requirements.md:3, Doc30_Non_Functional_Requirements.md:4 |
+| PROC-21 | U.C.6.5.1 | Doc21 §7.0 Compliance Domain Index (register row) | Doc21_Use_Cases_Catalog.md:14, Doc24_Architectural_Nodes.md:3, Doc29_Functional_Requirements.md:3, Doc30_Non_Functional_Requirements.md:4 |
+| PROC-22 | U.C.6.6.1 | Doc21 §7.0 Compliance Domain Index (register row) | Doc21_Use_Cases_Catalog.md:7, Doc24_Architectural_Nodes.md:3, Doc29_Functional_Requirements.md:2, Doc30_Non_Functional_Requirements.md:4 |
+| PROC-23 | U.C.9.5.1 | Doc21 §6.6 Lane Card Register (product PROCs) | Doc21_Use_Cases_Catalog.md:6 |
+| PROC-24 | U.C.10.1.1 | Doc21 §6.6 Lane Card Register (product PROCs) | Doc21_Use_Cases_Catalog.md:12 |
+| PROC-25 | U.C.11.1.1 | Doc21 §6.6 Lane Card Register (product PROCs) | Doc21_Use_Cases_Catalog.md:6 |
+| PROC-26 | U.C.11.4.1 | Doc21 §6.6 Lane Card Register (product PROCs) | Doc21_Use_Cases_Catalog.md:8 |
+| PROC-27 | U.C.12.4.1 | Doc21 §6.6 Lane Card Register (product PROCs) | Doc21_Use_Cases_Catalog.md:7 |
 
 ## Coverage
 

@@ -2,16 +2,23 @@
 document_id: AEGIS-P3-ANNEX-A
 title: Use Case Diagrams Annex (Case_02)
 phase: 3
-version: 1.0
+version: 1.1
 created: 2026-09-05
 updated: 2026-09-05
 author: Executor
 status: ACTIVE
 case: Case_02_SecureBorder_Solutions
 source: Doc21_Use_Cases_Catalog.md (§5.1, §6)
+reconciliation_note: v1.1 (UC SEPARATION, 2026-09-05) — PROC ovals/edges removed per rubric v1.8 §5C.5 (UC ovals only); package UC counts updated (PKG-9 4, PKG-10 4, PKG-11 3, PKG-12 3); orphan actors removed; lane diagrams are the Doc31 §5C.4 flowcharts.
 ---
 
 # Annex A — Use Case Diagrams
+
+> **v1.1 (UC SEPARATION, 2026-09-05).** Use case diagrams carry **UC ovals only** (rubric
+> `REALIZATION_CLASS_RUBRIC.md` v1.8 §5C.5): the PROC-23/24/25/26/27 ovals, their actor
+> edges and their per-oval notes were removed — those lane cards are diagrammed only as
+> §5C.4 flowcharts in `Doc31_Process_Capability_Cards.md`. Prose may still reference lane
+> ids where a sequencing/dependency note needs them.
 
 > **Render note:** Mermaid `useCaseDiagram` — requires Mermaid ≥ v11.6 (GitHub
 > renders; older VS Code may not; source is readable as fallback).
@@ -54,16 +61,16 @@ useCaseDiagram
         usecase "Traveller eGate Journey\n(7 use cases)" as UC8
     }
     package "PKG-9 Operator Referral Desk" {
-        usecase "Operator Referral Desk\n(5 use cases)" as UC9
+        usecase "Operator Referral Desk\n(4 use cases)" as UC9
     }
     package "PKG-10 Kiosk Fleet Operations" {
-        usecase "Kiosk Fleet Operations\n(5 use cases)" as UC10
+        usecase "Kiosk Fleet Operations\n(4 use cases)" as UC10
     }
     package "PKG-11 AI Model Lifecycle" {
-        usecase "AI Model Lifecycle\n(5 use cases)" as UC11
+        usecase "AI Model Lifecycle\n(3 use cases)" as UC11
     }
     package "PKG-12 Administration & Reporting" {
-        usecase "Administration & Reporting\n(4 use cases)" as UC12
+        usecase "Administration & Reporting\n(3 use cases)" as UC12
     }
 
     TRV --> UC8
@@ -152,13 +159,13 @@ Primary: Traveler. Stakeholders: DPO (notice owner), National Border Authority (
 
 ---
 
-## §3 — PKG-9: Operator Referral Desk (5 use cases)
+## §3 — PKG-9: Operator Referral Desk (4 use cases)
 
-Primary actor: **Border Control Officer** (SH-EXT-001) on all five. Stakeholders from the
+Primary actor: **Border Control Officer** (SH-EXT-001) on all four. Stakeholders from the
 cards: Traveler (presents at desk, U.C.9.3.1), SOC Manager (escalation/clearance, U.C.9.2.1/
-9.3.1/9.4.1), DPO (override audit, U.C.9.3.1/PROC-23), Compliance Analyst (shift-report
-sampling, PROC-23). One explicit extension: high-risk step-up re-authentication
-(U.C.9.1.1 §6.2) on override actions (U.C.9.3.1 §5.1).
+9.3.1/9.4.1), DPO (override audit, U.C.9.3.1). One explicit extension: high-risk step-up
+re-authentication (U.C.9.1.1 §6.2) on override actions (U.C.9.3.1 §5.1). (The shift-handover
+lane card PROC-23 — Doc31 — is no longer drawn here: §5C.5 UC ovals only.)
 
 ```mermaid
 useCaseDiagram
@@ -166,27 +173,22 @@ useCaseDiagram
     actor "Traveler" as TRV
     actor "SOC Manager" as SOC
     actor "DPO" as DPO
-    actor "Compliance Analyst" as COMP
 
     package "PKG-9 Operator Referral Desk" {
         usecase "U.C.9.1.1\nOperator Console Session (SSO/FIDO2)" as UC911
         usecase "U.C.9.2.1\nReferral Queue Handling & Triage" as UC921
         usecase "U.C.9.3.1\nManual Verification & Override (Reason Codes)" as UC931
         usecase "U.C.9.4.1\nIncident Flag & Gate Lock" as UC941
-        usecase "PROC-23\nShift Handover & Referral Report" as PROC23
     }
 
     BCO --> UC911
     BCO --> UC921
     BCO --> UC931
     BCO --> UC941
-    BCO --> PROC23
     TRV --> UC931
     SOC --> UC921
     SOC --> UC941
     DPO --> UC931
-    DPO --> PROC23
-    COMP --> PROC23
 
     UC911 ..> UC931 : extend
 ```
@@ -205,18 +207,16 @@ Primary: Border Officer. Stakeholders: Traveler, SOC Manager, DPO. Extension: st
 #### U.C.9.4.1 — Incident Flag & Gate Lock
 Primary: Border Officer. Stakeholders: SOC Manager (owns triage/clearance). No cross-UC references in Alternative Flows.
 
-#### PROC-23 — Shift Handover & Referral Report
-Primary: Border Officer (outgoing). Stakeholders: Compliance Analyst, DPO. Extensions: unresolved critical item → SOC escalation (PROC-05, outside PKG-9 — not drawn).
-
 ---
 
-## §4 — PKG-10: Kiosk Fleet Operations (5 use cases)
+## §4 — PKG-10: Kiosk Fleet Operations (4 use cases)
 
-Primary actor: **Operations Lead** (SH-INT-007) on PROC-24, U.C.10.2.1/10.3.1/10.5.1;
+Primary actor: **Operations Lead** (SH-INT-007) on U.C.10.2.1/10.3.1/10.5.1;
 **SOC Manager** (SH-INT-008) primaries U.C.10.4.1. Stakeholders from the cards: Dev Lead
 (SH-INT-006, OTA co-signing), Airport Operator (SH-EXT-004, physical access). Explicit
-extensions: enrolment boot-chain failure → tamper response (PROC-24 §5.1); heartbeat
-loss → offline/failover assessment (U.C.10.2.1 §5.1).
+extension: heartbeat loss → offline/failover assessment (U.C.10.2.1 §5.1). (The
+provisioning lane card PROC-24 — Doc31 — is no longer drawn here: §5C.5 UC ovals only; its
+boot-chain-failure extension into U.C.10.4.1 is recorded in Doc31 §PROC-24.)
 
 ```mermaid
 useCaseDiagram
@@ -226,29 +226,22 @@ useCaseDiagram
     actor "Airport Operator" as APT
 
     package "PKG-10 Kiosk Fleet Operations" {
-        usecase "PROC-24\nKiosk Provisioning & Enrolment (TPM-Bound)" as PROC24
         usecase "U.C.10.2.1\nFleet Health Monitoring" as UC1021
         usecase "U.C.10.3.1\nSigned OTA Firmware Update (Cosign, Staged)" as UC1031
         usecase "U.C.10.4.1\nTamper Alert Response" as UC1041
         usecase "U.C.10.5.1\nOffline/Failover Mode (Store-and-Forward)" as UC1051
     }
 
-    OPS --> PROC24
     OPS --> UC1021
     OPS --> UC1031
     OPS --> UC1051
     SOC --> UC1021
     SOC --> UC1041
     DEV --> UC1031
-    APT --> PROC24
     APT --> UC1041
 
-    UC1041 ..> PROC24 : extend
     UC1051 ..> UC1021 : extend
 ```
-
-#### PROC-24 — Kiosk Provisioning & Enrolment (TPM-Bound Identity)
-Primary: Ops Lead. Stakeholders: Airport Operator, SYS-01 (EU cloud enrolment endpoint). Extension: boot chain invalid → quarantine per U.C.10.4.1 (drawn).
 
 #### U.C.10.2.1 — Fleet Health Monitoring
 Primary: Ops Lead. Stakeholders: SOC Manager (security-class anomalies). Extension: heartbeat loss → U.C.10.5.1 assessment (drawn); tamper indicators → U.C.10.4.1 appears in basic flow step 4, not an extension (not drawn).
@@ -264,51 +257,38 @@ Primary: Ops Lead. Stakeholders: SOC Manager (backhaul-loss detection). No cross
 
 ---
 
-## §5 — PKG-11: AI Model Lifecycle (5 use cases)
+## §5 — PKG-11: AI Model Lifecycle (3 use cases)
 
-Primary actor: **AI Governance Lead** (SH-INT-005) on PROC-25, U.C.11.2.1/11.3.1,
-PROC-26; **Operations Lead** (SH-INT-007) primaries U.C.11.5.1. Stakeholders from the
-cards: Dev Lead (SH-INT-006), DPO (SH-INT-004), SOC Manager (SH-INT-008), AI Market
-Surveillance Authority (SH-EXT-011), National Border Authority (SH-EXT-003). **No
-Alternative Flows block in PKG-11 cross-references another U.C.** — no dotted arrows;
-the drift-review → rollback trigger (PROC-26 §7.2/§4 step 4 → U.C.11.3.1) is a
-disposition path noted here, not an extension arrow.
+Primary actor: **AI Governance Lead** (SH-INT-005) on U.C.11.2.1/11.3.1;
+**Operations Lead** (SH-INT-007) primaries U.C.11.5.1. Stakeholders from the cards: SOC
+Manager (rollback incident link, U.C.11.3.1), National Border Authority (SH-EXT-003,
+watchlist sync, U.C.11.5.1). **No Alternative Flows block in PKG-11 cross-references
+another U.C.** — no dotted arrows. (The training/release lane card PROC-25 and the
+drift/bias review lane card PROC-26 — Doc31 — are no longer drawn here: §5C.5 UC ovals
+only; their stakeholder sets (Dev Lead, DPO, AI Market Surveillance Authority) belong to
+those cards.)
 
 ```mermaid
 useCaseDiagram
     actor "AI Governance Lead" as AIG
-    actor "Lead Developer" as DEV
-    actor "DPO" as DPO
     actor "Operations Lead" as OPS
     actor "SOC Manager" as SOC
-    actor "AI Market Surveillance" as AMS
     actor "National Border Authority" as NBA
 
     package "PKG-11 AI Model Lifecycle" {
-        usecase "PROC-25\nModel Training & Release Packaging (EU-only)" as PROC25
         usecase "U.C.11.2.1\nSigned Model Rollout to Fleet (Staged)" as UC1121
         usecase "U.C.11.3.1\nModel Rollback" as UC1131
-        usecase "PROC-26\nDrift/Bias Monitoring & Review" as PROC26
         usecase "U.C.11.5.1\nWatchlist Cache Sync (SYS-03 sFTP, HSM-Bound)" as UC1151
     }
 
-    AIG --> PROC25
     AIG --> UC1121
     AIG --> UC1131
-    AIG --> PROC26
     OPS --> UC1151
-    DEV --> PROC25
-    DPO --> PROC25
     SOC --> UC1131
-    SOC --> PROC26
-    AMS --> PROC26
     NBA --> UC1151
 ```
 
-Lifecycle sequencing (preconditions/basic flow, not drawn): PROC-25 → U.C.11.2.1 (rollout eligibility) → U.C.11.3.1 (rollback arming); PROC-26 disposition → retrain (PROC-25) / rollback (U.C.11.3.1).
-
-#### PROC-25 — Model Training & Release Packaging (EU-only, SYS-05)
-Primary: AI Governance Lead. Stakeholders: Dev Lead, DPO. Extensions reference U.C.6.7.1 (legacy §7 — cross-package, not drawn).
+Lifecycle sequencing (preconditions/basic flow, not drawn): training/release packaging gate (PROC-25, Doc31) → U.C.11.2.1 (rollout eligibility) → U.C.11.3.1 (rollback arming); drift/bias review dispositions (PROC-26, Doc31) → retrain (PROC-25) or rollback (U.C.11.3.1).
 
 #### U.C.11.2.1 — Signed Model Rollout to Fleet (Staged)
 Primary: AI Governance Lead. Stakeholders: Ops Lead, SOC Manager. No cross-UC references in Alternative Flows.
@@ -316,21 +296,19 @@ Primary: AI Governance Lead. Stakeholders: Ops Lead, SOC Manager. No cross-UC re
 #### U.C.11.3.1 — Model Rollback
 Primary: AI Governance Lead. Stakeholders: SOC Manager, Dev Lead. Extensions reference U.C.10.4.1 path (cross-package, not drawn).
 
-#### PROC-26 — Drift/Bias Monitoring & Review
-Primary: AI Governance Lead. Stakeholders: SOC Manager, AI Market Surveillance Authority. Disposition → U.C.11.3.1 rollback (Key Scenarios §7.2 — prose note, not drawn).
-
 #### U.C.11.5.1 — Watchlist Cache Sync (SYS-03 sFTP, HSM-Bound)
 Primary: Ops Lead. Stakeholders: National Border Authority. No cross-UC references in Alternative Flows.
 
 ---
 
-## §6 — PKG-12: Administration & Reporting (4 use cases)
+## §6 — PKG-12: Administration & Reporting (3 use cases)
 
-Primary actor: **Operations Lead** (SH-INT-007) on U.C.12.1.1, U.C.12.3.1, PROC-27;
+Primary actor: **Operations Lead** (SH-INT-007) on U.C.12.1.1, U.C.12.3.1;
 **National Border Authority** (SH-EXT-003) primaries U.C.12.2.1. Stakeholders from the
 cards: second approver (CISO delegate or Security Engineer, U.C.12.1.1 dual control),
 SOC Manager (config-drift alerts, audit export), Compliance Analyst and DPO (audit
-export), CISO and Airport Operator (dashboard), Border Officer (role administration).
+export), CISO and Airport Operator (dashboard). (The role-administration lane card
+PROC-27 — Doc31 — is no longer drawn here: §5C.5 UC ovals only.)
 **No Alternative Flows block in PKG-12 cross-references another U.C.** — no dotted arrows.
 
 ```mermaid
@@ -343,18 +321,15 @@ useCaseDiagram
     actor "SOC Manager" as SOC
     actor "CISO" as CISO
     actor "Airport Operator" as APT
-    actor "Border Control Officer" as BCO
 
     package "PKG-12 Administration & Reporting" {
         usecase "U.C.12.1.1\nKiosk Admin Configuration (Dual Control)" as UC1211
         usecase "U.C.12.2.1\nAudit Export for Authorities (WORM STORE-04)" as UC1221
         usecase "U.C.12.3.1\nSLA & Fleet Status Dashboard" as UC1231
-        usecase "PROC-27\nUser/Role Administration for Console" as PROC27
     }
 
     OPS --> UC1211
     OPS --> UC1231
-    OPS --> PROC27
     APPR --> UC1211
     NBA --> UC1221
     COMP --> UC1221
@@ -363,7 +338,6 @@ useCaseDiagram
     SOC --> UC1221
     CISO --> UC1231
     APT --> UC1231
-    BCO --> PROC27
 ```
 
 #### U.C.12.1.1 — Kiosk Admin Configuration (TPM-Bound, Dual Control)
@@ -375,10 +349,9 @@ Primary: National Border Authority. Stakeholders: Compliance Analyst, SOC Manage
 #### U.C.12.3.1 — SLA & Fleet Status Dashboard
 Primary: Ops Lead. Stakeholders: CISO, Airport Operator. Fed by U.C.10.2.1/U.C.10.5.1 telemetry (basic-flow/trigger text, not drawn).
 
-#### PROC-27 — User/Role Administration for Console
-Primary: Ops Lead. Stakeholders: Border Officer (entitlement subject), SOC Manager. No cross-UC references in Alternative Flows.
-
 ---
 
 **Element budget check:** each diagram ≤ 20 elements (actors + ovals): §1 = 11, §2 = 12,
-§3 = 10, §4 = 9, §5 = 12, §6 = 13. All aliases defined within their diagram; braces balanced.
+§3 = 8, §4 = 8, §5 = 7, §6 = 11. All aliases defined within their diagram; braces balanced.
+Lane cards (PROC-23..27) are diagrammed only in Doc31 §5C.4 flowcharts (UC SEPARATION,
+2026-09-05); §3–§6 titles carry the true UC counts (4/4/3/3).

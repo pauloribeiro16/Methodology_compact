@@ -1,22 +1,27 @@
-# Annex B — Sequence Diagrams
-
-**Case:** [CASE_NAME]
-**Phase:** 3 — Decomposition
-**Status:** PLACEHOLDER
-
+---
+document_id: AEGIS-P3-ANNEX-B
+title: Sequence Diagrams Annex (Case_02)
+phase: 3
+version: 1.1
+created: 2026-09-05
+updated: 2026-09-05
+author: Executor
+status: ACTIVE
+case: Case_02_SecureBorder_Solutions
+source: Doc21_Use_Cases_Catalog.md (§6 product UC cards)
 ---
 
-## B.1 Critical Path Sequences
+# Annex B — Sequence Diagrams
 
-This annex contains sequence diagrams for critical system interactions.
+> **v1.1 (UC SEPARATION, 2026-09-05).** One section per product UC card (§5C.5), ordered by
+> the catalogue's §6 card order — 21 sections, 1:1 with the 21 `**Sequence diagram:**`
+> pointers in Doc21. The 5 former PROC sections (PROC-23, PROC-24, PROC-25, PROC-26,
+> PROC-27) were removed: lane cards do not carry sequence diagrams (§5C.5); their diagrams
+> are the §5C.4 flowcharts in `Doc31_Process_Capability_Cards.md`. The stale "B.1 Critical
+> Path Sequences" PLACEHOLDER block and the `[CASE_NAME]` header were replaced by proper
+> frontmatter (C3 F1 precedent).
 
-### Diagrams to be added:
-- Authentication flow
-- Data processing pipeline
-- AI decision workflow
-- Incident response sequence
-
-**Status:** Awaiting generation from use case specifications
+---
 
 ## §1 — Use-Case — {U.C.8.1.1} Scan Travel Document (MRZ + NFC chip)
 
@@ -154,34 +159,7 @@ sequenceDiagram
     SOC-->>KIOSK: On clearance: release lock (logged)
 ```
 
-## §12 — Use-Case — {PROC-23} Shift Handover & Referral Report
-
-```mermaid
-sequenceDiagram
-    participant OUT as SH-EXT-001 (outgoing)
-    participant CON as Console (SYS-08)
-    participant IN as SH-EXT-001 (incoming)
-    OUT->>CON: Open handover view
-    CON-->>OUT: Referral report (items, overrides, incidents)
-    OUT->>CON: Annotate + transfer queue
-    IN->>CON: Authenticate (U.C.9.1.1); accept queue
-    CON->>CON: Archive report to audit chain
-```
-
-## §13 — Use-Case — {PROC-24} Kiosk Provisioning & Enrolment (TPM-Bound Identity)
-
-```mermaid
-sequenceDiagram
-    participant KIOSK as SYS-06/SYS-04 (Kiosk)
-    participant ENR as SYS-01 (Enrolment + internal CA)
-    participant OPS as SH-INT-007 (Ops Lead)
-    KIOSK->>ENR: Secure boot OK; present TPM-bound key (outbound)
-    ENR->>OPS: Enrolment request (serial, attestation)
-    OPS->>ENR: Approve (manifest match)
-    ENR-->>KIOSK: mTLS certificate (TPM-bound); baseline config
-```
-
-## §14 — Use-Case — {U.C.10.2.1} Fleet Health Monitoring
+## §12 — Use-Case — {U.C.10.2.1} Fleet Health Monitoring
 
 ```mermaid
 sequenceDiagram
@@ -195,7 +173,7 @@ sequenceDiagram
     SIEM->>SIEM: Correlate per unit/lane (CAP-02)
 ```
 
-## §15 — Use-Case — {U.C.10.3.1} Signed OTA Firmware Update (Cosign, Staged)
+## §13 — Use-Case — {U.C.10.3.1} Signed OTA Firmware Update (Cosign, Staged)
 
 ```mermaid
 sequenceDiagram
@@ -208,7 +186,7 @@ sequenceDiagram
     KIOSK-->>OPS: New version reported; ring gate on health
 ```
 
-## §16 — Use-Case — {U.C.10.4.1} Tamper Alert Response
+## §14 — Use-Case — {U.C.10.4.1} Tamper Alert Response
 
 ```mermaid
 sequenceDiagram
@@ -221,7 +199,7 @@ sequenceDiagram
     SOC->>SOC: Re-image from signed baseline or retire; log
 ```
 
-## §17 — Use-Case — {U.C.10.5.1} Offline/Failover Mode (Store-and-Forward Crossing Events)
+## §15 — Use-Case — {U.C.10.5.1} Offline/Failover Mode (Store-and-Forward Crossing Events)
 
 ```mermaid
 sequenceDiagram
@@ -234,20 +212,7 @@ sequenceDiagram
     SINK-->>OPS: Completeness reconciled; offline window logged
 ```
 
-## §18 — Use-Case — {PROC-25} Model Training & Release Packaging (EU-only, SYS-05)
-
-```mermaid
-sequenceDiagram
-    participant ML as SH-INT-006 (ML pipeline)
-    participant SYS5 as SYS-05 (EU-only training)
-    participant AIG as SH-INT-005 (AI Governance)
-    ML->>SYS5: Training run (segregated account)
-    SYS5-->>AIG: Candidate + evaluation metrics (accuracy, bias)
-    AIG->>SYS5: Sign-off vs conformity docs (PROC-19)
-    SYS5-->>ML: Versioned artefact + cosign + SBOM (SYS-11)
-```
-
-## §19 — Use-Case — {U.C.11.2.1} Signed Model Rollout to Fleet (Staged)
+## §16 — Use-Case — {U.C.11.2.1} Signed Model Rollout to Fleet (Staged)
 
 ```mermaid
 sequenceDiagram
@@ -260,7 +225,7 @@ sequenceDiagram
     KIOSK-->>AIG: Canary metrics -> ring gate (vs governed bounds)
 ```
 
-## §20 — Use-Case — {U.C.11.3.1} Model Rollback
+## §17 — Use-Case — {U.C.11.3.1} Model Rollback
 
 ```mermaid
 sequenceDiagram
@@ -273,20 +238,7 @@ sequenceDiagram
     AIG->>SOC: Link rollback to incident record
 ```
 
-## §21 — Use-Case — {PROC-26} Drift/Bias Monitoring & Review
-
-```mermaid
-sequenceDiagram
-    participant TEL as SYS-09/SYS-12 (Telemetry)
-    participant AIG as SH-INT-005 (AI Governance)
-    participant ACT as PROC-25 / U.C.11.3.1
-    TEL->>AIG: Drift/bias metrics per model version
-    TEL-->>AIG: Alert on governed-bound breach (U.C.6.2.1)
-    AIG->>AIG: Review; record disposition
-    AIG->>ACT: Retrain or rollback per disposition
-```
-
-## §22 — Use-Case — {U.C.11.5.1} Watchlist Cache Sync (SYS-03 sFTP, HSM-Bound)
+## §18 — Use-Case — {U.C.11.5.1} Watchlist Cache Sync (SYS-03 sFTP, HSM-Bound)
 
 ```mermaid
 sequenceDiagram
@@ -299,7 +251,7 @@ sequenceDiagram
     CACHE-->>SYS3: Sync version logged; deletions propagated
 ```
 
-## §23 — Use-Case — {U.C.12.1.1} Kiosk Admin Configuration (TPM-Bound, Dual Control)
+## §19 — Use-Case — {U.C.12.1.1} Kiosk Admin Configuration (TPM-Bound, Dual Control)
 
 ```mermaid
 sequenceDiagram
@@ -312,7 +264,7 @@ sequenceDiagram
     KIOSK-->>OPS: Applied; version recorded; drift watched
 ```
 
-## §24 — Use-Case — {U.C.12.2.1} Audit Export for Authorities (WORM STORE-04)
+## §20 — Use-Case — {U.C.12.2.1} Audit Export for Authorities (WORM STORE-04)
 
 ```mermaid
 sequenceDiagram
@@ -325,7 +277,7 @@ sequenceDiagram
     COMP->>COMP: Export recorded in audit chain
 ```
 
-## §25 — Use-Case — {U.C.12.3.1} SLA & Fleet Status Dashboard
+## §21 — Use-Case — {U.C.12.3.1} SLA & Fleet Status Dashboard
 
 ```mermaid
 sequenceDiagram
@@ -336,18 +288,5 @@ sequenceDiagram
     DASH->>DASH: Uptime vs 99.99%; breach windows annotated
     DASH-->>OPS: Live view + threshold alerts
     DASH->>DASH: Periodic SLA report archived
-```
-
-## §26 — Use-Case — {PROC-27} User/Role Administration for Console
-
-```mermaid
-sequenceDiagram
-    participant OPS as SH-INT-007 (Ops Lead)
-    participant SSO as SYS-08 (IdP)
-    participant SOC as SH-INT-008 (SOC)
-    OPS->>SSO: Role assignment per approved profile
-    SSO->>SSO: Step-up approval for sensitive roles
-    SSO-->>SOC: Privileged change event
-    SSO-->>OPS: Entitlements effective at next console login
 ```
 
