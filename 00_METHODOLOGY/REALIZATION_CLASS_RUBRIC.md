@@ -2,7 +2,7 @@
 document_id: AEGIS-METHODOLOGY-REALIZATION-CLASS-RUBRIC
 title: AEGIS Realization Class Rubric (Phase 2 Rule Attribute)
 phase: Cross-phase
-version: 1.2
+version: 1.3
 created: 2026-09-05
 updated: 2026-09-05
 author: Executor
@@ -108,6 +108,32 @@ Multi-class rules run in multiple lanes (primary lane from the primary class, se
 
 **Forward pointer:** the lanes and their Phase 3 artefacts (lane views of the allocation in Doc23/25) are **FUTURE campaigns — they do not exist yet in any case**. This section fixes the mapping contract only; no Phase 3 document is modified by this rubric. Existing Phase 3 track vocabulary (Case_01 per-node `track=` field; Case_02/03 section categories + Track Distribution tables) is reconciled to this enum by the lane campaign.
 
+
+## §5B Phase 3 Lane Nomenclature (normative, human decision 2026-09-05)
+
+Phase 3 artefacts use **lane-specific ID prefixes**; the `UC-*` nomenclature is reserved
+for the TECHNOLOGY lane:
+
+| Lane | ID prefix | Form | Examples |
+|---|---|---|---|
+| TECHNOLOGY | `UC-*` | unchanged per case (dotted `U.C.X.Y.Z` or flat `UC-NN`) | product/system use cases |
+| PROCESS | `PROC-` | `PROC-NN`, sequential per case | `PROC-01` (DSAR intake workflow) |
+| CAPABILITY | `CAP-` | `CAP-NN`, sequential per case | `CAP-01` (ISMS maintenance) |
+| Misuse (laneless) | `MUC-*` | unchanged | threat scenarios |
+
+Rules:
+1. **Numbering** is sequential per lane per case, assigned in ascending order of the
+   superseded UC id (deterministic; mapping table is the registry).
+2. **MIXED use cases** are adjudicated to their primary lane (the lane that dominates
+   the realization); the adjudication table records a one-line justification each.
+3. **Phantom/supporting UCs** that are system behaviours keep `UC-*` (documented).
+4. This section **supersedes** the Case_01 Doc20 §6.1 ID-continuity freeze (human
+   decision 2026-09-05): the freeze protected pre-product-first compliance UC ids;
+   those are exactly the ids being re-laned.
+5. The old→new mapping tables per case are the authoritative registry
+   (`00_METHODOLOGY/validation/LANE_NAMING_CENSUS_v0.md`); renames are applied by
+   `scripts/rename_lane_ids.py` (single pass, word-boundary exact, dry-run first).
+
 ---
 
 ## §6 CAPABILITY Anchor to Maturity Model
@@ -170,3 +196,4 @@ Divergence example: a rule ISO-anchored to A.8.10 (technological theme) can legi
 | 1.0 | 2026-09-05 | Executor | Initial release — attribute definition locked with the human, 2026-09-05. |
 | 1.1 | 2026-09-05 | Executor | Applied Validator amendments A1–A7 (constitutive test, P/C indicators, storage spec correction, xlsx banner rule, preamble per-case facts) |
 | 1.2 | 2026-09-05 | Orchestrator | Ontology application DEFERRED per human decision (documents-only scope): §4 storage table + Sync rule updated; Case_01 pilot touches Doc18, control_set.yaml, 12_Rules_Catalog.xlsx only |
+| 1.3 | 2026-09-05 | Orchestrator | §5B Lane Nomenclature added: UC-* reserved for TECHNOLOGY; PROC-NN / CAP-NN for PROCESS / CAPABILITY (human decision 2026-09-05; supersedes Case_01 Doc20 §6.1 ID-continuity freeze) |
