@@ -2,9 +2,9 @@
 document_id: AEGIS-P3-23
 title: Functional Requirements Catalog
 phase: 3
-version: 1.0
+version: 1.1
 created: 2026-04-04
-updated: 2026-04-04
+updated: 2026-09-05
 author: Security Architect
 case: Case_02_SecureBorder_Solutions
 status: DRAFT
@@ -102,16 +102,16 @@ This document specifies **technology-agnostic functional requirements** for Secu
 | FR-33 | The system shall classify incidents by regulatory type (CRA/NIS 2/GDPR/AI_Act) within 1 hour | PROC-05, PROC-07 | NN/A, NN/A | CR-D-01.1-001 | TEST | CRITICAL | CSF: PR.DS-01 |
 | FR-34 | The system shall enable incident response team to contain incidents within 1 hour | PROC-06 | NN/A, NN/A | CR-D-04.1-001 | DEMONSTRATE | CRITICAL | — |
 | FR-35 | The system shall generate regulatory notifications: 24h early warning (CRA/NIS 2), 72h detailed (GDPR), cooperation (AI_Act) | PROC-07 | NN/A, NN/A | CR-D-01.1-001 | TEST | CRITICAL | CSF: PR.DS-01 |
-| FR-36 | The system shall preserve evidence for forensic analysis with chain of custody | PROC-06 | NN/A | — | INSPECT | HIGH | — |
+| FR-36 | The system shall preserve evidence for forensic analysis with chain of custody | PROC-06 | NN/A | CR-D-04.1-001 | INSPECT | 100% of evidence chain-of-custody records hashes match across N preservation events; 0 chain breaks in 90-day audit | HIGH |
 | FR-37 | The system shall perform automated vulnerability scanning with 24-hour critical SLA | U.C.2.3.1 | NN/A, NN/A | CR-D-02.1-001 | TEST | CRITICAL | — |
 | FR-38 | The system shall prioritize vulnerabilities by risk level and exploitability | U.C.2.3.1 | NN/A | CR-D-02.1-001 | ANALYZE | HIGH | — |
 | FR-39 | The system shall deploy critical security patches within 24 hours of availability | U.C.2.4.1 | NN/A, NN/A | CR-D-02.1-001 | INSPECT | CRITICAL | — |
 | FR-40 | The system shall deploy high-priority security patches within 7 days | U.C.2.4.1 | NN/A | CR-D-02.1-001 | INSPECT | HIGH | — |
-| FR-41 | The system shall verify firmware update integrity via cryptographic signatures before installation | U.C.2.4.1 | NN/A | — | TEST | CRITICAL | — |
-| FR-42 | The system shall support rollback of failed firmware updates | U.C.2.4.1 | NN/A | — | DEMONSTRATE | HIGH | — |
+| FR-41 | The system shall verify firmware update integrity via cryptographic signatures before installation | U.C.2.4.1 | NN/A | CR-D-02.2-001 | TEST | 0 unsigned firmware installed in 1,000 OTA attempts; failed-signature installs blocked in ≤1s | CRITICAL |
+| FR-42 | The system shall support rollback of failed firmware updates | U.C.2.4.1 | NN/A | CR-D-02.2-001 | DEMONSTRATE | Rollback completes within defined RTO on 100% of failed-update drills | HIGH |
 | FR-43 | The system shall activate disaster recovery procedures within 1 hour RTO | PROC-08 | NN/A, NN/A, NN/A | CR-D-04.1-001 | DEMONSTRATE | CRITICAL | — |
 | FR-44 | The system shall restore data from backups with RPO < 15 minutes | PROC-08 | NN/A, NN/A | CR-D-04.1-001 | DEMONSTRATE | CRITICAL | — |
-| FR-45 | The system shall conduct threat-led penetration testing annually | PROC-09 | NN/A | — | DEMONSTRATE | HIGH | — |
+| FR-45 | The system shall conduct threat-led penetration testing annually | PROC-09 | NN/A | CR-D-02.4-001 | DEMONSTRATE | ≥1 pentest report per year; 0 critical findings open >30 days | HIGH |
 | FR-46 | The system shall publish and maintain coordinated vulnerability disclosure policy (security.txt) | U.C.2.3.1 | NN/A | CR-D-02.1-001 | INSPECT | HIGH | — |
 
 ### 3.4 Secure Development (DEV)
@@ -119,15 +119,15 @@ This document specifies **technology-agnostic functional requirements** for Secu
 | FR ID | Requirement | Source UC | Source NFR | Source Rule | Verification Method | Fit Criterion | Priority | NIST Anchors |
 | ------- | ------------- | ----------- | ------------ | ------------- | --------------------- | ---------- | --- |
 | FR-48 | The system shall perform static analysis security testing (SAST) on every code commit | PROC-12 | NN/A | CR-D-07.1-001 | TEST | HIGH | — |
-| FR-49 | The system shall scan dependencies for known vulnerabilities on every build | U.C.4.2.1 | NN/A | — | TEST | HIGH | — |
+| FR-49 | The system shall scan dependencies for known vulnerabilities on every build | U.C.4.2.1 | NN/A | CR-D-02.1-001 | TEST | 100% of builds scan SCA DBs; critical CVEs block release; 0 unblocked releases in 90d | HIGH |
 | FR-50 | The system shall enforce security gates before code merge or deployment | U.C.4.3.1 | NN/A, NN/A | CR-D-02.1-001 | TEST | CRITICAL | — |
-| FR-51 | The system shall block deployment on critical vulnerabilities without CTO approval | U.C.4.3.1 | NN/A | — | TEST | CRITICAL | — |
+| FR-51 | The system shall block deployment on critical vulnerabilities without CTO approval | U.C.4.3.1 | NN/A | BPR-D-07.5-001 | TEST | 100% of critical deployments carry CTO approval payload in audit log; 0 self-approved releases | CRITICAL |
 | FR-52 | The system shall require manual security review for critical changes | PROC-13 | NN/A | CR-D-02.1-001 | INSPECT | HIGH | — |
-| FR-53 | The system shall enable submission and approval of change requests with rollback capability | PROC-13 | NN/A | — | TEST | HIGH | — |
+| FR-53 | The system shall enable submission and approval of change requests with rollback capability | PROC-13 | NN/A | CR-D-07.4-001 | TEST | 100% of CRs have rollback plan + approver; 0 CR merges without both artefacts | HIGH |
 | FR-54 | The system shall generate Software Bill of Materials (SBOM) per release | U.C.4.2.1 | NN/A, NN/A | CR-D-02.1-001 | TEST | HIGH | — |
 | FR-55 | The system shall run secret detection scans on every code commit | PROC-12 | NN/A | CR-D-07.1-001 | TEST | HIGH | — |
 | FR-56 | The system shall integrate privacy-by-design and secure-by-default principles into product design reviews | CAP-03 | NN/A | CR-D-01.1-001 | INSPECT | HIGH | CSF: PR.DS-01 |
-| FR-57 | The system shall version AI models with rollback capability for all production border control models | U.C.4.6.1 | NN/A | — | TEST | HIGH | — |
+| FR-57 | The system shall version AI models with rollback capability for all production border control models | U.C.4.6.1 | NN/A | BPR-D-07.1-002 | TEST | 100% of production models have version tag + rollback drill artefact; rollback restores prior accuracy within RTO | HIGH |
 | FR-58 | The system shall sign all builds cryptographically to ensure supply chain integrity | U.C.4.3.1 | NN/A | CR-D-09.1-001 | TEST | HIGH | — |
 
 ### 3.5 Governance & Compliance (GOV)
@@ -140,10 +140,10 @@ This document specifies **technology-agnostic functional requirements** for Secu
 | FR-62 | The system shall generate compliance reports on demand for any applicable regulation within 7 business days | PROC-16 | NN/A, NN/A, NN/A | CR-D-06.1-001 | TEST | HIGH | — |
 | FR-63 | The system shall enable review of audit logs for anomalies on monthly basis | PROC-16 | NN/A, NN/A, NN/A | CR-D-06.1-001 | INSPECT | HIGH | — |
 | FR-64 | The system shall enable annual vendor security assessments with unified questionnaire | PROC-17 | NN/A | CR-D-02.1-001 | INSPECT | HIGH | — |
-| FR-65 | The system shall maintain comprehensive asset inventories covering hardware, software, data, and AI components | CAP-05 | NN/A | — | INSPECT | HIGH | — |
-| FR-66 | The system shall support regulatory notification workflow for all 4 regulations with deadline tracking | PROC-18 | NN/A, NN/A | — | TEST | CRITICAL | — |
-| FR-67 | The system shall log all regulatory communications with timestamps and evidence | PROC-18 | NN/A, NN/A | — | INSPECT | HIGH | — |
-| FR-68 | The system shall enforce third-party boundary management with physical isolation per airport/country instance | U.C.5.8.1 | NN/A | — | INSPECT | HIGH | — |
+| FR-65 | The system shall maintain comprehensive asset inventories covering hardware, software, data, and AI components | CAP-05 | NN/A | CR-D-09.3-001 | INSPECT | Asset inventory reconciles 100% to deployed hosts/components via nightly diff; unreconciled assets open ticket in ≤24h | HIGH |
+| FR-66 | The system shall support regulatory notification workflow for all 4 regulations with deadline tracking | PROC-18 | NN/A, NN/A | CR-D-04.3-001 | TEST | 100% of triggered notifications entered unified workflow; 0 missed deadlines across CRA/NIS2/GDPR/AI_Act rehearsals // HARD: provisional threshold pending multi-reg drill data | CRITICAL |
+| FR-67 | The system shall log all regulatory communications with timestamps and evidence | PROC-18 | NN/A, NN/A | CR-D-10.2-001 | INSPECT | 100% of regulatory comms carry timestamp + evidence hash; 0 missing-evidence rows in 12-month report | HIGH |
+| FR-68 | The system shall enforce third-party boundary management with physical isolation per airport/country instance | U.C.5.8.1 | NN/A | CR-D-06.4-001 | INSPECT | 100% of cross-airport/country connections traverse isolated boundary; 0 lateral paths on purple-team test | HIGH |
 | FR-69 | The system shall retain audit logs for minimum 6 months with cryptographic sharding for personal data | PROC-16 | NN/A, NN/A, NN/A | CR-D-01.1-001 | INSPECT | CRITICAL | CSF: PR.DS-01 |
 
 ### 3.6 AI Systems (AI)
@@ -153,15 +153,15 @@ This document specifies **technology-agnostic functional requirements** for Secu
 | FR-71 | The system shall prepare and execute AI_Act conformity assessment for high-risk border control AI before market placement | PROC-19 | NN/A, NN/A | CR-D-06.1-001 | TEST | CRITICAL | — |
 | FR-72 | The system shall maintain AI technical documentation per Annex IV for 10 years post-market placement | PROC-19 | NN/A | — | INSPECT | 100% of FR-71 (AI conformity assessment) artifacts are generated end-to-end; conformity dossier passes automated schema validation; review SLA ≤ 10 working days. | HIGH | — |
 | FR-73 | The system shall monitor AI accuracy continuously and alert at >1% degradation from baseline | U.C.6.2.1 | NN/A, NN/A | CR-D-10.1-001 | TEST | CRITICAL | — |
-| FR-74 | The system shall conduct quarterly bias testing across demographic groups (age, gender, ethnicity) | PROC-20 | NN/A, NN/A | — | TEST | CRITICAL | — |
+| FR-74 | The system shall conduct quarterly bias testing across demographic groups (age, gender, ethnicity) | PROC-20 | NN/A, NN/A | BPR-D-02.4-002 | TEST | Quarterly bias test covers age/gender/ethnicity; ≥95% confidence interval per group; report delivered within 30d | CRITICAL |
 | FR-75 | The system shall generate bias assessment reports with disparity metrics per demographic group | PROC-20 | NN/A, NN/A | CR-D-06.1-001 | INSPECT | HIGH | — |
-| FR-76 | The system shall provide explainability for each border control AI decision with confidence scores and contributing factors | U.C.6.4.1 | NN/A | — | TEST | HIGH | — |
-| FR-77 | The system shall detect and respond to AI-specific failures (false accept, false reject, model drift) within 15 minutes | PROC-21 | NN/A | — | TEST | CRITICAL | — |
+| FR-76 | The system shall provide explainability for each border control AI decision with confidence scores and contributing factors | U.C.6.4.1 | NN/A | BPR-D-10.2-002 | TEST | 100% of border-control decisions ship explanation payload (factors + confidence); consumer UI renders within 2s p95 | HIGH |
+| FR-77 | The system shall detect and respond to AI-specific failures (false accept, false reject, model drift) within 15 minutes | PROC-21 | NN/A | BPR-D-04.5-001 | TEST | ≤15 min mean detection-to-response across 50 drill runs; 0 missed critical FA/FR/drift events in 90d window // HARD: provisional threshold pending drill expansion | CRITICAL |
 | FR-78 | The system shall execute AI incident response playbook for AI failures with documented procedures | PROC-21 | NN/A | CR-D-04.1-001 | DEMONSTRATE | CRITICAL | — |
-| FR-79 | The system shall conduct adversarial testing quarterly targeting biometric spoofing and adversarial attacks | PROC-22 | NN/A | — | TEST | HIGH | — |
+| FR-79 | The system shall conduct adversarial testing quarterly targeting biometric spoofing and adversarial attacks | PROC-22 | NN/A | BPR-D-02.4-001 | TEST | 1 red-team/quarter; spoof-rejection rate ≥99.5% on biometric probes; report delivered within 21d | HIGH |
 | FR-80 | The system shall version AI training datasets with lineage tracking and demographic representativeness metrics | U.C.6.7.1 | NN/A, NN/A | CR-D-08.1-001 | INSPECT | HIGH | CSF: PR.AT-01 |
 | FR-81 | The system shall validate AI training data representativeness across Schengen demographic groups before model training | U.C.6.7.1 | NN/A | CR-D-08.1-001 | ANALYZE | HIGH | CSF: PR.AT-01 |
-| FR-82 | The system shall generate AI explainability reports for each border control decision | U.C.6.4.1 | NN/A | — | INSPECT | HIGH | — |
+| FR-82 | The system shall generate AI explainability reports for each border control decision | U.C.6.4.1 | NN/A | BPR-D-10.2-002 | INSPECT | 100% of FR-76 decisions have a persisted report; reports pass schema-validation; retention ≥10y | HIGH |
 
 ### 3.7 Training & Awareness (TRN)
 
@@ -171,7 +171,7 @@ This document specifies **technology-agnostic functional requirements** for Secu
 | FR-86 | The system shall enable role-specific security training for developers, operators, SOC, and AI oversight personnel upon role assignment | CAP-07 | NN/A | CR-D-08.1-001 | TEST | HIGH | CSF: PR.AT-01 |
 | FR-87 | The system shall enable AI competence training for border control officers on human-in-the-loop override procedures | CAP-08 | NN/A | CR-D-08.1-001 | TEST | HIGH | CSF: PR.AT-01 |
 | FR-88 | The system shall enable NIS 2 management liability training for board members annually | CAP-09 | NN/A | CR-D-08.1-001 | TEST | HIGH | CSF: PR.AT-01 |
-| FR-89 | The system shall enable quarterly phishing simulation exercises for all staff | CAP-10 | NN/A | — | TEST | LOW | — |
+| FR-89 | The system shall enable quarterly phishing simulation exercises for all staff | CAP-10 | NN/A | BPR-D-08.4-001 | TEST | ≥1 quarterly simulation; click-rate trend over 4 quarters reported; high-risk users remediated ≤14d | LOW |
 | FR-90 | The system shall track training completion for all users with role-based requirements | CAP-06, CAP-07 | NN/A | CR-D-03.1-001 | INSPECT | MEDIUM | — |
 
 ---
