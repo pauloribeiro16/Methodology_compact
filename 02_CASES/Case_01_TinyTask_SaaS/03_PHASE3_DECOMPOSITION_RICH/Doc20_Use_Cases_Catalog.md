@@ -147,17 +147,7 @@ Stakeholder — owns account provisioning and the password policy (NFR-01).
 4. System records consent state per U.C.1.4.1.
 5. System sends verification email; user confirms; account status flips to active.
 
-```mermaid
-sequenceDiagram
-    participant U as A-FREE-01 (Free-tier User)
-    participant SYS as A-SYS-01 (TinyTask API)
-    participant IdP as A-EXT-02 (Auth0 IdP)
-    U->>SYS: Submit sign-up form (email + password, or OAuth)
-    SYS->>SYS: Validate email format + password strength (NFR-01)
-    SYS->>SYS: Create account record, record consent state (U.C.1.4.1)
-    SYS-->>U: Send verification email
-    U->>SYS: Confirm — account status flips to active
-```
+> **Sequence diagram:** → Annex B §1 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -266,17 +256,7 @@ Stakeholder and system actor — validates passwords and OIDC tokens and hosts t
 3. System issues a session token with 30-minute idle timeout.
 4. System logs the authentication event.
 
-```mermaid
-sequenceDiagram
-    participant U as A-MEMBER-01 / A-FREE-01
-    participant SYS as A-SYS-01 (TinyTask API)
-    participant IdP as A-EXT-02 (Auth0 IdP)
-    U->>SYS: Submit credentials at /login, or click "Login with SSO"
-    SYS->>IdP: Validate password, or validate OIDC token
-    IdP-->>SYS: Validation result
-    SYS->>SYS: Issue session token (30-min idle timeout), log auth event
-    SYS-->>U: Session established
-```
+> **Sequence diagram:** → Annex B §2 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -381,16 +361,7 @@ Stakeholder — owns the identity-verification audit trail.
 4. System validates strength, hashes, replaces; invalidates all existing sessions.
 5. System logs the reset event.
 
-```mermaid
-sequenceDiagram
-    participant U as A-MEMBER-01 / A-FREE-01
-    participant SYS as A-SYS-01 (TinyTask API)
-    U->>SYS: Submit email via "Forgot password"
-    SYS->>SYS: Generate single-use reset token (1-hour expiry), send link
-    U->>SYS: Open link, submit new password
-    SYS->>SYS: Validate strength, hash, replace — invalidate all sessions
-    SYS-->>U: Reset confirmed — user must log in again
-```
+> **Sequence diagram:** → Annex B §3 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -494,15 +465,7 @@ Stakeholder — owns token revocation.
 3. System redirects user to login screen (or for forced logout, displays confirmation).
 4. System logs the event.
 
-```mermaid
-sequenceDiagram
-    participant U as A-MEMBER-01 / A-FREE-01
-    participant SYS as A-SYS-01 (TinyTask API)
-    SYS->>SYS: Detect trigger (30-min idle / logout / forced)
-    SYS->>SYS: Invalidate session token server-side
-    SYS-->>U: Redirect to login (or forced-logout confirmation)
-    SYS->>SYS: Log the event
-```
+> **Sequence diagram:** → Annex B §4 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -594,17 +557,7 @@ Stakeholder — owns the consent records of invited members.
 4. Invitee accepts → if account exists, role is granted; else U.C.7.1.1 is invoked.
 5. System logs the membership grant event.
 
-```mermaid
-sequenceDiagram
-    participant ADM as A-WSADM-01 (Workspace Admin)
-    participant SYS as A-SYS-01 (TinyTask API)
-    participant INV as A-MEMBER-01 (Invitee)
-    ADM->>SYS: Enter email + role, click "Invite"
-    SYS->>SYS: Validate email + role, create pending membership
-    SYS-->>INV: Send invite email (single-use acceptance link)
-    INV->>SYS: Accept link (sign-up U.C.7.1.1 if no account)
-    SYS->>SYS: Grant role, log membership grant event
-```
+> **Sequence diagram:** → Annex B §5 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -711,15 +664,7 @@ Stakeholder — future invitee of the workspace.
 3. System grants Owner role to creator.
 4. System logs the event.
 
-```mermaid
-sequenceDiagram
-    participant U as A-FREE-01 / A-WSADM-01
-    participant SYS as A-SYS-01 (TinyTask API)
-    U->>SYS: Click "New Workspace", enter name + optional description
-    SYS->>SYS: Validate uniqueness within account, create workspace record
-    SYS->>SYS: Grant Owner role to creator, log event
-    SYS-->>U: Workspace active
-```
+> **Sequence diagram:** → Annex B §6 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -812,15 +757,7 @@ Validates name uniqueness, creates the workspace-scoped project record, and logs
 3. System creates project record (workspace_id scoped).
 4. System logs the event.
 
-```mermaid
-sequenceDiagram
-    participant M as A-MEMBER-01 (Member)
-    participant SYS as A-SYS-01 (TinyTask API)
-    M->>SYS: Click "New Project", enter name + optional description/template
-    SYS->>SYS: Validate name uniqueness within workspace
-    SYS->>SYS: Create project record (workspace_id scoped), log event
-    SYS-->>M: Project created
-```
+> **Sequence diagram:** → Annex B §7 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -909,15 +846,7 @@ Stakeholder — receives the in-app + email notification via U.C.9.2.1.
 4. System emits in-app + email notification to assignee (U.C.9.2.1).
 5. System logs the event.
 
-```mermaid
-sequenceDiagram
-    participant M as A-MEMBER-01 (Member)
-    participant SYS as A-SYS-01 (TinyTask API)
-    M->>SYS: Click "New Task", enter title/description/due date/assignee
-    SYS->>SYS: Validate title length + due-date format
-    SYS->>SYS: Persist task (project_id scoped, workspace_id tenant boundary)
-    SYS-->>M: Notify assignee in-app + email (U.C.9.2.1), log event
-```
+> **Sequence diagram:** → Annex B §8 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -1023,15 +952,7 @@ Validates project membership, updates the assignee, notifies, and logs.
 3. System notifies new assignee (U.C.9.2.1).
 4. System logs the event.
 
-```mermaid
-sequenceDiagram
-    participant M as A-MEMBER-01 (Member)
-    participant SYS as A-SYS-01 (TinyTask API)
-    M->>SYS: Select assignee from project-member picker, click "Assign"
-    SYS->>SYS: Validate assignee is member of the task's project
-    SYS->>SYS: Update task.assignee_id, notify assignee (U.C.9.2.1)
-    SYS-->>M: Assignment recorded, event logged
-```
+> **Sequence diagram:** → Annex B §9 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -1122,15 +1043,7 @@ Stakeholders — follow the task's state through the activity feed.
 3. System persists change; emits activity event.
 4. System logs the event.
 
-```mermaid
-sequenceDiagram
-    participant M as A-MEMBER-01 (Member)
-    participant SYS as A-SYS-01 (TinyTask API)
-    M->>SYS: Move card on board, or edit due date
-    SYS->>SYS: Validate transition + due-date rule
-    SYS->>SYS: Persist change, emit activity event, log
-    SYS-->>M: Task reflects new state
-```
+> **Sequence diagram:** → Annex B §10 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -1216,15 +1129,7 @@ Queries tasks within the workspace_id + project_id scope and renders the columns
 2. System renders columns by status.
 3. Member scrolls/views.
 
-```mermaid
-sequenceDiagram
-    participant M as A-MEMBER-01 (Member)
-    participant SYS as A-SYS-01 (TinyTask API)
-    M->>SYS: Open project
-    SYS->>SYS: Query tasks filtered by workspace_id + project_id
-    SYS-->>M: Render columns by status
-    M->>SYS: Optional real-time sync via websockets (Mobile + Web)
-```
+> **Sequence diagram:** → Annex B §11 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -1323,15 +1228,7 @@ Validates and sanitises the comment, persists it task-scoped, notifies watchers,
 4. System notifies watchers (U.C.9.2.1).
 5. System logs the event.
 
-```mermaid
-sequenceDiagram
-    participant M as A-MEMBER-01 (Member)
-    participant SYS as A-SYS-01 (TinyTask API)
-    M->>SYS: Submit comment (Markdown subset)
-    SYS->>SYS: Validate length (<= 10 000 chars), sanitise HTML
-    SYS->>SYS: Persist comment (task_id scoped)
-    SYS-->>M: Notify watchers (U.C.9.2.1), log event
-```
+> **Sequence diagram:** → Annex B §12 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -1423,16 +1320,7 @@ Parses mentions, validates project membership, creates notification rows, sends 
 3. System sends email digest (batched ≤ 5 min) per user notification preferences.
 4. System logs the event.
 
-```mermaid
-sequenceDiagram
-    participant M as A-MEMBER-01 (Author)
-    participant SYS as A-SYS-01 (TinyTask API)
-    participant T as Mentioned member
-    M->>SYS: Save comment/description containing @username
-    SYS->>SYS: Parse mentions, validate project membership
-    SYS->>T: Create in-app notification rows per mention
-    SYS->>T: Send email digest (batched <= 5 min) per preferences
-```
+> **Sequence diagram:** → Annex B §13 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -1524,15 +1412,7 @@ Validates size and MIME type, runs the AV scan, writes the encrypted object, cre
 3. System creates attachment record (task_id + storage key).
 4. System logs the event.
 
-```mermaid
-sequenceDiagram
-    participant M as A-MEMBER-01 (Member)
-    participant SYS as A-SYS-01 (TinyTask API)
-    M->>SYS: Drag file into task
-    SYS->>SYS: Validate size (<= 25 MB) + MIME allowlist, AV scan (ClamAV)
-    SYS->>SYS: Upload to object storage (workspace-scoped prefix, SSE via KMS)
-    SYS-->>M: Attachment record created (task_id + storage key), event logged
-```
+> **Sequence diagram:** → Annex B §14 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -1628,15 +1508,7 @@ Builds the membership-scoped query, returns paginated results, and logs the quer
 2. System returns paginated results ordered by relevance.
 3. System logs the query (metadata only, no body content).
 
-```mermaid
-sequenceDiagram
-    participant M as A-MEMBER-01 (Member)
-    participant SYS as A-SYS-01 (TinyTask API)
-    M->>SYS: Enter query / apply filter (assignee, status, due date, tag)
-    SYS->>SYS: Build query scoped to user's workspaces + projects, full-text match
-    SYS-->>M: Paginated results ordered by relevance
-    SYS->>SYS: Log query metadata only (no body content)
-```
+> **Sequence diagram:** → Annex B §15 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -1717,14 +1589,7 @@ Queries recent events scoped to the user's accessible projects and renders the f
 1. System queries recent events scoped to user's accessible projects.
 2. System renders last 50 events with timestamp + actor + action.
 
-```mermaid
-sequenceDiagram
-    participant M as A-MEMBER-01 (Member)
-    participant SYS as A-SYS-01 (TinyTask API)
-    M->>SYS: Open dashboard
-    SYS->>SYS: Query recent events scoped to accessible projects
-    SYS-->>M: Render last 50 events (timestamp + actor + action)
-```
+> **Sequence diagram:** → Annex B §16 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -1815,15 +1680,7 @@ Stakeholder — resolves conflicts when prompted.
 3. Mobile client reconciles local store and pulls newer server events via /sync.
 4. Server logs sync events (no payload content).
 
-```mermaid
-sequenceDiagram
-    participant M as A-MOB-01 (Mobile Client)
-    participant SYS as A-SYS-01 (TinyTask API)
-    M->>SYS: Upload queued mutations
-    SYS->>SYS: Validate workspace_id scope, persist
-    SYS-->>M: Return canonical state version
-    M->>SYS: Pull newer server events via /sync
-```
+> **Sequence diagram:** → Annex B §17 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -1926,17 +1783,7 @@ Stakeholder — billing data minimisation.
 5. System verifies signature, updates workspace.plan = paid.
 6. System logs the event.
 
-```mermaid
-sequenceDiagram
-    participant U as A-FREE-01 / A-WSADM-01
-    participant SYS as A-SYS-01 (TinyTask API)
-    participant STR as A-EXT-01 (Stripe Checkout)
-    U->>SYS: Click "Upgrade"
-    SYS->>STR: Create Checkout Session (workspace_id metadata)
-    STR-->>U: Hosted payment page (no PAN to TinyTask)
-    STR->>SYS: Signed webhook posts to /webhooks/stripe
-    SYS->>SYS: Verify signature, update workspace.plan = paid, log
-```
+> **Sequence diagram:** → Annex B §18 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2032,15 +1879,7 @@ Renders the console views, applies the selected action, and logs it.
 2. Admin performs action: invite (U.C.7.5.1), change role, remove member, view usage.
 3. System applies the action and logs it.
 
-```mermaid
-sequenceDiagram
-    participant ADM as A-WSADM-01 (Workspace Admin)
-    participant SYS as A-SYS-01 (TinyTask API)
-    ADM->>SYS: Open workspace settings
-    SYS-->>ADM: Render membership list, roles, billing summary, audit filter
-    ADM->>SYS: Perform action (invite U.C.7.5.1 / role / remove / usage)
-    SYS->>SYS: Apply action, log it
-```
+> **Sequence diagram:** → Annex B §19 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2136,16 +1975,7 @@ Validates and stores the IdP config per enterprise tenant, routes members to SSO
 3. Members from the enterprise domain land on SSO login by default (U.C.7.1.2 extension).
 4. Admin views SSO login audit trail.
 
-```mermaid
-sequenceDiagram
-    participant ENT as A-ENTADM-01 (Enterprise Admin)
-    participant SYS as A-SYS-01 (TinyTask API)
-    participant IdP as A-EXT-02 (Auth0 IdP)
-    ENT->>SYS: Upload SAML/OIDC metadata
-    SYS->>SYS: Validate signature, store IdP config per enterprise tenant
-    ENT->>IdP: Members land on SSO login by default (U.C.7.1.2 extension)
-    SYS-->>ENT: SSO login audit trail visible
-```
+> **Sequence diagram:** → Annex B §20 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2242,15 +2072,7 @@ Stakeholder — transparency obligation owner.
 1. System returns list of data categories held about the user (profile, account activity, workspace memberships).
 2. Member sees them read-only.
 
-```mermaid
-sequenceDiagram
-    participant M as A-MEMBER-01 (Member)
-    participant SYS as A-SYS-01 (TinyTask API)
-    M->>SYS: Open account page
-    SYS-->>M: List data categories (profile, account activity, workspace memberships)
-    M->>SYS: Read-only view
-    SYS->>SYS: Audit log entry
-```
+> **Sequence diagram:** → Annex B §21 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2335,15 +2157,7 @@ Stakeholder — portability obligation owner.
 3. System emails the user the link.
 4. System logs the event.
 
-```mermaid
-sequenceDiagram
-    participant M as A-MEMBER-01 (Member)
-    participant SYS as A-SYS-01 (TinyTask API)
-    M->>SYS: Click "Export my data"
-    SYS->>SYS: Generate JSON archive (profile, workspaces, tasks, comments, attachment metadata)
-    SYS->>SYS: Signed download URL (24h expiry), email link, log event
-    SYS-->>M: Download archive
-```
+> **Sequence diagram:** → Annex B §22 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2447,16 +2261,7 @@ Stakeholders — lose access when a workspace is deleted.
 4. After grace, system performs cryptographic erasure across primary + backup (U.C.1.2.1 cascade).
 5. System logs the event.
 
-```mermaid
-sequenceDiagram
-    participant U as A-FREE-01 / A-WSADM-01
-    participant SYS as A-SYS-01 (TinyTask API)
-    U->>SYS: Click delete, type confirmation phrase
-    SYS->>SYS: Schedule deletion (immediate account / 30-day grace workspace)
-    SYS-->>U: Confirmation email with cancel link (within grace)
-    SYS->>SYS: After grace — cryptographic erasure primary + backup (U.C.1.2.1)
-    SYS->>SYS: Log the event
-```
+> **Sequence diagram:** → Annex B §23 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
