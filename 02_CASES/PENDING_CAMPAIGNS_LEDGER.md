@@ -36,9 +36,9 @@ Committed as `2948fb8` (rubric v1.2 + C1 tag wave, T17/P23/C6, 9 secondaries). D
 ## 3. Phase 3 product-first restructure — PARTIALLY DONE
 
 Massification committed (f1a5049 + fda4cf5 + 433b1b2: C1 23 UCs, C2 26, C3 31, Bike4All template). Remaining:
-- [ ] OWASP risk Doc28/29 (threat×flow) — C2/C3
+- [x] OWASP risk Doc28/29 (threat×flow) — **DONE 2026-09-05** (Case_02 Doc28 §5 + Case_03 Doc29 §4: new `Threat × Flow matrix` anchored to OWASP ASVS v4.0.3 + OWASP SAMM v2; 10 rows each; 3 gates PASS unchanged)
 - [ ] Fase B FR/NFR in Volere format (user rule: light table + testable Fit Criterion, anchored to Source UC, mapped to NIST+CR/BPR; homes = existing requirements/DocNN; pilot 1 package/case; 25 orphan FRs C2)
-- [ ] Bookkeeping of that campaign
+- [x] Bookkeeping of that campaign — **DONE 2026-09-05** (this commit)
 - **P7 queue:** MUC-C3-06 (human decision), métricas §2/§14
 
 ## 4. PORT-PARITY-2 verification fix wave — PARKED

@@ -1,8 +1,26 @@
 # Central Change Log — AEGIS Methodology Implementation
 
 **Last Updated:** 2026-09-05
-**Version:** 7.0 (ALT-ANCHOR — UNMAPPED_* retired in 3 cases; 5 frozen referentials + generator + 3 gates v0.4 PASS; REALIZATION-CLASS — Case_01 P2 realization_class tag wave documents-only; PORT-PARITY-2 — cross-case content parity: corr-013 C3 renumber, C3 P1 v1.6 layer 749n/2054l, P2 waves C2+C3, P3 rich v0 C2+C3, dashboards 16/16 smoke)
+**Version:** 7.1 (OWASP threat×flow + Volere FR pilot — Phase 3 product-first §3 partial; ALT-ANCHOR — UNMAPPED_* retired in 3 cases; 5 frozen referentials + generator + 3 gates v0.4 PASS; REALIZATION-CLASS — Case_01 P2 realization_class tag wave documents-only; PORT-PARITY-2 — cross-case content parity: corr-013 C3 renumber, C3 P1 v1.6 layer 749n/2054l, P2 waves C2+C3, P3 rich v0 C2+C3, dashboards 16/16 smoke)
 **Scope:** All Cases
+
+---
+
+## 0.7 2026-09-05 — Phase 3 product-first (OWASP threat×flow + Volere FR pilot)
+
+| Item | Value |
+|------|-------|
+| OWASP threat×flow (C2 + C3) | Case_02 `Doc28_Risk_Analysis.md` §5 + Case_03 `Doc29_Risk_Analysis.md` §4: new `Threat × Flow matrix` sub-section with 10 rows each. Columns: Threat ID × Actor | Asset/Trust Boundary | Flow/Direction | STRIDE | ASVS/SAMM anchor | CR/BPR | Notes. Anchored via ALT-ANCHOR criterion §3 to the frozen `CONTROLS/OWASP_ASVS/` and `CONTROLS/OWASP_SAMM/` sources. 3 gates PASS unchanged. |
+| Volere FR pilot (C2) | Case_02 `Doc29_Functional_Requirements.md`: new `Fit Criterion` column between Verification Method and Priority. 6 FRs from operator-aligned topics (FR-03/04/09/12/13/26) + 1 repeatability (FR-72 AI domain) received measurable thresholds (100%/30s/16min windows, schema validation, automated detection). 3 gates PASS unchanged. |
+| Out of scope | Ontologies, dashboards, folios, KG reflection, realisation_class tag waves C2/C3. Briefing pack for items 1–4 (P7 queue) delivered as `P7_BRIEFING_PACK_2026-09-05.md` for human decision. |
+
+## 0.8 2026-09-05 — P7 Briefing Pack (items 1–4)
+
+| Item | Value |
+|------|-------|
+| Pack | `00_METHODOLOGY/validation/P7_BRIEFING_PACK_2026-09-05.md` — 4 items (OBL-D-06.2-001 orphan / verify_rich FAILs / D-07.2 coverage C1 / phantom refs), each with 3 options and Orchestrator recommendation |
+| Status | No implementation campaigns executed — material for human decision. Decisions pending; once ratified, follow-on campaigns can be planned. |
+| Ledger | `02_CASES/PENDING_CAMPAIGNS_LEDGER.md` §5 keeps all 4 items as P7-pending with the pack's options surfaced |
 
 ---
 

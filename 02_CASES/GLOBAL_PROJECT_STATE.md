@@ -180,6 +180,25 @@ Methodology/
 
 ---
 
+## 4D. PHASE 3 PRODUCT-FIRST — partial closure (2026-09-05)
+
+- **OWASP threat×flow (item 6)**: Case_02 `Doc28_Risk_Analysis.md` §5 and Case_03
+  `Doc29_Risk_Analysis.md` §4 gain a new `Threat × Flow matrix` sub-section. Columns:
+  Threat ID × Actor · Asset/Trust Boundary · Flow/Direction · STRIDE · ASVS/SAMM anchor ·
+  CR/BPR · Notes. Anchored via ALT-ANCHOR §3 to the frozen referentials under
+  `CONTROLS/OWASP_ASVS/` and `CONTROLS/OWASP_SAMM/`. 10 rows per case. 3 gates PASS.
+- **Volere FR/NFR pilot (item 7)**: Case_02 `Doc29_Functional_Requirements.md` gains a
+  `Fit Criterion` column with measurable thresholds. 6 FRs in operator-aligned topics
+  + 1 repeatability (FR-72, AI domain) received Fit Criteria. Schema proven on a
+  second domain. **25 orphan FRs still pending** (F5-C2-01 HIGH) → follow-on wave.
+- **P7 Briefing Pack (items 1–4)**: `00_METHODOLOGY/validation/P7_BRIEFING_PACK_2026-09-05.md`
+  — 4 items (OBL-D-06.2-001 / verify_rich FAILs / D-07.2 coverage / phantom refs) with
+  A/B/C options and recommendations. Human decisions pending.
+- **Out of scope (per user)**: ontologies, dashboards/folios, realisation_class tag waves C2/C3,
+  KG reflection.
+
+---
+
 ## 4C. ALT-ANCHOR CAMPAIGN (2026-09-05)
 
 - **What:** the `UNMAPPED_*` marker family is RETIRED; rule elements without a PF/CSF
