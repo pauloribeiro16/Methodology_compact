@@ -19,8 +19,10 @@ status: ACTIVE
 > UC-66 and UC-92 restored in place (re-adjudicated from PROC-39/40, rubric v1.8 §5B rule 6);
 > §1/§2 sequences added for the PKG-DS use cases (UC-33/UC-34, fully-dressed in Doc22 §4.8);
 > empty "B.1 Critical Path Sequences" placeholder removed.
+>
+> **v2.1 (RENUMBER, 2026-09-05, rubric v1.10 §5B rule 7):** ids renumbered UC-01..33; §N order preserved (old→new mapping is ascending), Doc22 pointers remain 1:1.
 
-## §1 — Use-Case — {UC-33} Data Protection Officer Executes Data Erasure Request
+## §1 — Use-Case — {UC-01} Data Protection Officer Executes Data Erasure Request
 
 ```mermaid
 sequenceDiagram
@@ -39,7 +41,7 @@ sequenceDiagram
     DPO-->>DS: Erasure confirmation (≤ 30 days)
 ```
 
-## §2 — Use-Case — {UC-34} Data Subject Requests Data Export
+## §2 — Use-Case — {UC-02} Data Subject Requests Data Export
 
 ```mermaid
 sequenceDiagram
@@ -53,7 +55,7 @@ sequenceDiagram
     PLAT->>PLAT: Request/dispatch logged against data-subject record
 ```
 
-## §3 — Use-Case — {UC-63} Apply for Consumer Credit
+## §3 — Use-Case — {UC-03} Apply for Consumer Credit
 
 
 ```mermaid
@@ -65,17 +67,17 @@ sequenceDiagram
     C->>APP: Select product/amount/term, SECCI, consent + declarations
     APP->>LO: Submit application record
     LO->>F: Fraud screening
-    LO->>LO: Invoke OmniScore decisioning (UC-64)
+    LO->>LO: Invoke OmniScore decisioning (UC-04)
 ```
 
-## §4 — Use-Case — {UC-64} OmniScore Computes Credit Score
+## §4 — Use-Case — {UC-04} OmniScore Computes Credit Score
 
 
 ```mermaid
 sequenceDiagram
     participant LO as SYS-14 (Loan Origination)
     participant AI as SYS-03 (OmniScore)
-    participant UW as Underwriter (UC-66)
+    participant UW as Underwriter (UC-06)
     LO->>AI: Decisioning request (application features)
     AI->>AI: Run approved model version, score + confidence band
     AI->>AI: Generate reason codes, write decision-context record
@@ -83,7 +85,7 @@ sequenceDiagram
     LO->>UW: Borderline band -> queue human review
 ```
 
-## §5 — Use-Case — {UC-65} Customer Receives Score Explanation
+## §5 — Use-Case — {UC-05} Customer Receives Score Explanation
 
 
 ```mermaid
@@ -97,7 +99,7 @@ sequenceDiagram
     APP-->>C: Plain-language outcome, dispatch logged
 ```
 
-## §6 — Use-Case — {UC-66} Underwriter Reviews Borderline Application
+## §6 — Use-Case — {UC-06} Underwriter Reviews Borderline Application
 
 
 ```mermaid
@@ -111,7 +113,7 @@ sequenceDiagram
     LO-->>GOV: Override-vs-score delta for metrics
 ```
 
-## §7 — Use-Case — {UC-67} Customer Accepts Offer & Contract Signed
+## §7 — Use-Case — {UC-07} Customer Accepts Offer & Contract Signed
 
 
 ```mermaid
@@ -126,7 +128,7 @@ sequenceDiagram
     LO-->>C: Disbursement initiated
 ```
 
-## §8 — Use-Case — {UC-68} Customer Manages Repayment & Arrears View
+## §8 — Use-Case — {UC-08} Customer Manages Repayment & Arrears View
 
 
 ```mermaid
@@ -140,7 +142,7 @@ sequenceDiagram
     C->>SVC: Early repayment / cure action (via app)
 ```
 
-## §9 — Use-Case — {UC-69} Open Account via Mobile App
+## §9 — Use-Case — {UC-09} Open Account via Mobile App
 
 
 ```mermaid
@@ -151,12 +153,12 @@ sequenceDiagram
     participant F as SYS-11 (KYC/AML)
     C->>APP: Start onboarding, data + product selection
     APP->>CRM: Create onboarding/customer record
-    APP->>F: Identity + document + screening steps (UC-70..72)
+    APP->>F: Identity + document + screening steps (UC-10..12)
     F-->>CRM: Screening result anchored to record
     CRM-->>C: Account activated, SCA credentials issued
 ```
 
-## §10 — Use-Case — {UC-70} eIDAS Identity Verification
+## §10 — Use-Case — {UC-10} eIDAS Identity Verification
 
 
 ```mermaid
@@ -171,7 +173,7 @@ sequenceDiagram
     APP->>F: Verification result (immutable KYC record)
 ```
 
-## §11 — Use-Case — {UC-71} KYC Document Upload & Vault Filing (SYS-16, 10y retention)
+## §11 — Use-Case — {UC-11} KYC Document Upload & Vault Filing (SYS-16, 10y retention)
 
 
 ```mermaid
@@ -186,12 +188,12 @@ sequenceDiagram
     DMS->>F: Document set for screening (FLOW-11)
 ```
 
-## §12 — Use-Case — {UC-72} Sanctions & PEP Screening
+## §12 — Use-Case — {UC-12} Sanctions & PEP Screening
 
 
 ```mermaid
 sequenceDiagram
-    participant OB as Onboarding (UC-69)
+    participant OB as Onboarding (UC-09)
     participant F as SYS-11 (Fraud/AML)
     participant P as Screening provider
     participant FC as Head of Financial Crime
@@ -202,7 +204,7 @@ sequenceDiagram
     FC->>F: Disposition (block + STR/CTR or release)
 ```
 
-## §13 — Use-Case — {UC-73} OmniScore Consent & Data-Use Acknowledgement
+## §13 — Use-Case — {UC-13} OmniScore Consent & Data-Use Acknowledgement
 
 
 ```mermaid
@@ -214,10 +216,10 @@ sequenceDiagram
     APP->>C: OmniScore data-use notice (versioned)
     C->>APP: Acknowledge / decline
     APP->>DPO: Consent record (timestamp + notice version)
-    LO->>DPO: Precondition check before UC-64
+    LO->>DPO: Precondition check before UC-04
 ```
 
-## §14 — Use-Case — {UC-74} Tax Residency Self-Certification (FATCA/CRS)
+## §14 — Use-Case — {UC-14} Tax Residency Self-Certification (FATCA/CRS)
 
 
 ```mermaid
@@ -232,7 +234,7 @@ sequenceDiagram
     CO->>DMS: Re-certification tasks on change events
 ```
 
-## §15 — Use-Case — {UC-75} Login with PSD2 SCA
+## §15 — Use-Case — {UC-15} Login with PSD2 SCA
 
 
 ```mermaid
@@ -248,7 +250,7 @@ sequenceDiagram
     APP-->>C: SCA session established (device-bound)
 ```
 
-## §16 — Use-Case — {UC-76} View Balances & Transactions
+## §16 — Use-Case — {UC-16} View Balances & Transactions
 
 
 ```mermaid
@@ -263,7 +265,7 @@ sequenceDiagram
     APP-->>C: View with freshness markers
 ```
 
-## §17 — Use-Case — {UC-77} SEPA Transfer (incl. Instant)
+## §17 — Use-Case — {UC-17} SEPA Transfer (incl. Instant)
 
 
 ```mermaid
@@ -278,7 +280,7 @@ sequenceDiagram
     CBS-->>C: Confirmation + history entry
 ```
 
-## §18 — Use-Case — {UC-78} Manage Cards (block/limits)
+## §18 — Use-Case — {UC-18} Manage Cards (block/limits)
 
 
 ```mermaid
@@ -293,7 +295,7 @@ sequenceDiagram
     APP->>F: State-change evidence for fraud cases
 ```
 
-## §19 — Use-Case — {UC-79} Standing Orders
+## §19 — Use-Case — {UC-19} Standing Orders
 
 
 ```mermaid
@@ -308,7 +310,7 @@ sequenceDiagram
     CBS-->>C: Execution confirmation / failure notice
 ```
 
-## §20 — Use-Case — {UC-80} Statements & Export
+## §20 — Use-Case — {UC-20} Statements & Export
 
 
 ```mermaid
@@ -323,7 +325,7 @@ sequenceDiagram
     APP->>DMS: Periodic statement archived, download logged
 ```
 
-## §21 — Use-Case — {UC-81} PSD2 Consent Grant/Revoke
+## §21 — Use-Case — {UC-21} PSD2 Consent Grant/Revoke
 
 
 ```mermaid
@@ -339,7 +341,7 @@ sequenceDiagram
     C->>GW: Revoke anytime → access cut
 ```
 
-## §22 — Use-Case — {UC-82} TPP Onboarding & AIS Access (SYS-18)
+## §22 — Use-Case — {UC-22} TPP Onboarding & AIS Access (SYS-18)
 
 
 ```mermaid
@@ -355,7 +357,7 @@ sequenceDiagram
     GW->>SOC: Access telemetry + anomalies
 ```
 
-## §23 — Use-Case — {UC-83} PIS Payment Initiation with SCA
+## §23 — Use-Case — {UC-23} PIS Payment Initiation with SCA
 
 
 ```mermaid
@@ -371,7 +373,7 @@ sequenceDiagram
     GW-->>TPP: Status callback
 ```
 
-## §24 — Use-Case — {UC-84} Payment Dispute & Chargeback
+## §24 — Use-Case — {UC-24} Payment Dispute & Chargeback
 
 
 ```mermaid
@@ -387,7 +389,7 @@ sequenceDiagram
     CRM-->>C: Outcome communicated
 ```
 
-## §25 — Use-Case — {UC-85} Payment Limits Management
+## §25 — Use-Case — {UC-25} Payment Limits Management
 
 
 ```mermaid
@@ -402,7 +404,7 @@ sequenceDiagram
     APP->>CBS: Effective change + immutable log
 ```
 
-## §26 — Use-Case — {UC-86} Corporate Onboarding with Delegated Users (SYS-21)
+## §26 — Use-Case — {UC-26} Corporate Onboarding with Delegated Users (SYS-21)
 
 
 ```mermaid
@@ -418,7 +420,7 @@ sequenceDiagram
     PORTAL->>CA: Delegated users + roles provisioned (SoD validated)
 ```
 
-## §27 — Use-Case — {UC-87} Cash Management Dashboard
+## §27 — Use-Case — {UC-27} Cash Management Dashboard
 
 
 ```mermaid
@@ -433,7 +435,7 @@ sequenceDiagram
     PORTAL-->>T: Aggregated view (freshness-marked, scope-filtered)
 ```
 
-## §28 — Use-Case — {UC-88} FX Deal Execution (SYS-08)
+## §28 — Use-Case — {UC-28} FX Deal Execution (SYS-08)
 
 
 ```mermaid
@@ -448,7 +450,7 @@ sequenceDiagram
     TMS->>TO: Booked deal + position update
 ```
 
-## §29 — Use-Case — {UC-89} Trade Finance Letter of Credit (SYS-07, UCP 600)
+## §29 — Use-Case — {UC-29} Trade Finance Letter of Credit (SYS-07, UCP 600)
 
 
 ```mermaid
@@ -464,7 +466,7 @@ sequenceDiagram
     TF->>AP: Examination outcome (pay / refuse per UCP 600)
 ```
 
-## §30 — Use-Case — {UC-90} In-App Fraud Alert Confirm/Deny (SYS-11)
+## §30 — Use-Case — {UC-30} In-App Fraud Alert Confirm/Deny (SYS-11)
 
 
 ```mermaid
@@ -480,7 +482,7 @@ sequenceDiagram
     F->>SOC: Escalation if unresolved
 ```
 
-## §31 — Use-Case — {UC-91} Card Block via Contact Centre (SYS-20)
+## §31 — Use-Case — {UC-31} Card Block via Contact Centre (SYS-20)
 
 
 ```mermaid
@@ -496,7 +498,7 @@ sequenceDiagram
     CC->>F: Case linkage if misuse suspected
 ```
 
-## §32 — Use-Case — {UC-92} Complaint Filing & Handling (SYS-17)
+## §32 — Use-Case — {UC-32} Complaint Filing & Handling (SYS-17)
 
 
 ```mermaid
@@ -513,7 +515,7 @@ sequenceDiagram
     CRM-->>C: Outcome + response
 ```
 
-## §33 — Use-Case — {UC-93} Secure Messaging
+## §33 — Use-Case — {UC-33} Secure Messaging
 
 
 ```mermaid

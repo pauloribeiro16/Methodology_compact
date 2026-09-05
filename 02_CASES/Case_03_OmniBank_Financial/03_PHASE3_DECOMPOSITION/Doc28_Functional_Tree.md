@@ -341,56 +341,56 @@ graph TB
 
 ---
 
-## 6A. PRODUCT FUNCTIONAL BRANCH (PKG-A..F — UC-63..93) — ADDITIVE
+## 6A. PRODUCT FUNCTIONAL BRANCH (PKG-A..F — UC-03..33) — ADDITIVE
 
 > Additive section (v1.1) — extends the functional tree with the OmniBank platform product
-> use cases from Doc22 §6B. Lane note per `LANE_NAMING_CENSUS_v0`: UC-66 (Underwriter
-> Review) and UC-92 (Complaint Handling) are process-lane members of product journeys.
+> use cases from Doc22 §6B. Lane note per `LANE_NAMING_CENSUS_v0`: UC-06 (Underwriter
+> Review) and UC-32 (Complaint Handling) are process-lane members of product journeys.
 > Existing tree structure (§2–§6) is unchanged.
 
 ```
 OmniBank Platform Product (PKG-A..F)
 ├── PKG-A — Onboarding & KYC (Doc22 §6B.2)
-│   ├── UC-69  Open Account via Mobile App
-│   ├── UC-70  eIDAS Identity Verification
-│   ├── UC-71  KYC Document Upload & Vault Filing (SYS-16, 10y retention)
-│   ├── UC-72  Sanctions & PEP Screening (SYS-11)
-│   ├── UC-73  OmniScore Consent & Data-Use Acknowledgement
-│   └── UC-74  Tax Residency Self-Certification (FATCA/CRS)
+│   ├── UC-09  Open Account via Mobile App
+│   ├── UC-10  eIDAS Identity Verification
+│   ├── UC-11  KYC Document Upload & Vault Filing (SYS-16, 10y retention)
+│   ├── UC-12  Sanctions & PEP Screening (SYS-11)
+│   ├── UC-13  OmniScore Consent & Data-Use Acknowledgement
+│   └── UC-14  Tax Residency Self-Certification (FATCA/CRS)
 ├── PKG-B — Digital Banking Core (Doc22 §6B.3)
-│   ├── UC-75  Login with PSD2 SCA
-│   ├── UC-76  View Balances & Transactions
-│   ├── UC-77  SEPA Transfer (incl. Instant)
-│   ├── UC-78  Manage Cards (block/limits)
-│   ├── UC-79  Standing Orders
-│   └── UC-80  Statements & Export
+│   ├── UC-15  Login with PSD2 SCA
+│   ├── UC-16  View Balances & Transactions
+│   ├── UC-17  SEPA Transfer (incl. Instant)
+│   ├── UC-18  Manage Cards (block/limits)
+│   ├── UC-19  Standing Orders
+│   └── UC-20  Statements & Export
 ├── PKG-C — Lending & OmniScore (Doc22 §6B.1)
-│   ├── UC-63  Apply for Consumer Credit
-│   ├── UC-64  OmniScore Computes Credit Score (SYS-03)
-│   ├── UC-65  Customer Receives Score Explanation
-│   ├── UC-66  Underwriter Review (manual/borderline decision path)
-│   ├── UC-67  Customer Accepts Offer & Contract Signed
-│   └── UC-68  Customer Manages Repayment & Arrears View
+│   ├── UC-03  Apply for Consumer Credit
+│   ├── UC-04  OmniScore Computes Credit Score (SYS-03)
+│   ├── UC-05  Customer Receives Score Explanation
+│   ├── UC-06  Underwriter Review (manual/borderline decision path)
+│   ├── UC-07  Customer Accepts Offer & Contract Signed
+│   └── UC-08  Customer Manages Repayment & Arrears View
 ├── PKG-D — Payments & Open Banking (Doc22 §6B.4)
-│   ├── UC-81  PSD2 Consent Grant/Revoke
-│   ├── UC-82  TPP Onboarding & AIS Access (SYS-18)
-│   ├── UC-83  PIS Payment Initiation with SCA
-│   ├── UC-84  Payment Dispute & Chargeback
-│   └── UC-85  Payment Limits Management
+│   ├── UC-21  PSD2 Consent Grant/Revoke
+│   ├── UC-22  TPP Onboarding & AIS Access (SYS-18)
+│   ├── UC-23  PIS Payment Initiation with SCA
+│   ├── UC-24  Payment Dispute & Chargeback
+│   └── UC-25  Payment Limits Management
 ├── PKG-E — Corporate & Treasury (Doc22 §6B.5)
-│   ├── UC-86  Corporate Onboarding with Delegated Users (SYS-21)
-│   ├── UC-87  Cash Management Dashboard
-│   ├── UC-88  FX Deal Execution (SYS-08)
-│   └── UC-89  Trade Finance Letter of Credit (SYS-07, UCP 600)
+│   ├── UC-26  Corporate Onboarding with Delegated Users (SYS-21)
+│   ├── UC-27  Cash Management Dashboard
+│   ├── UC-28  FX Deal Execution (SYS-08)
+│   └── UC-29  Trade Finance Letter of Credit (SYS-07, UCP 600)
 └── PKG-F — Fraud & Customer Service (Doc22 §6B.6)
-    ├── UC-90  In-App Fraud Alert Confirm/Deny (SYS-11)
-    ├── UC-91  Card Block via Contact Centre (SYS-20)
-    ├── UC-92  Complaint Handling (complaint SOP)
-    └── UC-93  Secure Messaging
+    ├── UC-30  In-App Fraud Alert Confirm/Deny (SYS-11)
+    ├── UC-31  Card Block via Contact Centre (SYS-20)
+    ├── UC-32  Complaint Handling (complaint SOP)
+    └── UC-33  Secure Messaging
 ```
 
 **Product branch traceability:** journey sequencing is defined in Doc23 §3.11 (onboarding
-UC-69..74 precede banking core UC-75..80; OmniScore UC-63/64 feed lending decisions).
+UC-09..14 precede banking core UC-15..20; OmniScore UC-03/04 feed lending decisions).
 
 ---
 
@@ -404,27 +404,27 @@ UC-69..74 precede banking core UC-75..80; OmniScore UC-63/64 feed lending decisi
 Lane Branches (compliance corpus, 62 ids)
 ├── D-01 Data Protection & Encryption (PKG-D-01)
 │   ├── PROC-01..PROC-04  (encryption status, HSM keys, AI model integrity, key rotation)
-│   └── PROC-41 / PROC-42 / PROC-43 / CAP-08  (technology lane)
+│   └── PROC-39 / PROC-40 / PROC-41 / CAP-08  (technology lane)
 ├── D-02 Vulnerability Management (PKG-D-02)
 │   ├── PROC-05..PROC-09  (scan, patch, disclosure, TLPT, AI vulnerabilities)
 │   ├── CAP-01  Vulnerability Analyst Maintains Vulnerability Register
-│   └── PROC-44  Generates SBOM for AI Model
+│   └── PROC-42  Generates SBOM for AI Model
 ├── D-03 Access Control (PKG-D-03)
 │   ├── PROC-10..PROC-13  (provision, access review, hardening, deprovision)
-│   └── PROC-45 / PROC-46 / PROC-47  (MFA, AI model access, FIDO2)
+│   └── PROC-43 / PROC-44 / PROC-45  (MFA, AI model access, FIDO2)
 ├── D-04 Incident Response (PKG-D-04)
 │   ├── PROC-14..PROC-19  (DR, notification, AI recovery, anomaly, tabletop, AI report)
 │   ├── CAP-02  SOC Analyst Monitors Security Events
 │   └── CAP-09  Maintains Redundant Backup Systems
 ├── D-05 Data Lifecycle (PKG-D-05)
 │   ├── PROC-20..PROC-23  (minimization, retention, AI training data, processor audit)
-│   └── UC-33 / UC-34  (erasure, export)
+│   └── UC-01 / UC-02  (erasure, export)
 ├── D-06 Supply Chain (PKG-D-06)
 │   ├── PROC-24..PROC-27  (provider assessment, contract terms, exit, AI provider monitoring)
 │   └── CAP-03  Security Architect Maintains SBOM for Product
 ├── D-07 Secure Development (PKG-D-07)
 │   ├── PROC-28..PROC-30  (secure-by-design, coding standards, change approval)
-│   └── PROC-48 / PROC-49 / PROC-50  (CI/CD, AI training pipeline, IaC scanning)
+│   └── PROC-46 / PROC-47 / PROC-48  (CI/CD, AI training pipeline, IaC scanning)
 ├── D-08 Human Factors (PKG-D-08)
 │   ├── PROC-31..PROC-33  (awareness training, board training, phishing simulation)
 │   └── CAP-04  HR Manager Maintains Security Competence Program
@@ -435,7 +435,7 @@ Lane Branches (compliance corpus, 62 ids)
 │   └── CAP-07  AI Governance Lead Maintains AI Traceability Documentation
 └── D-10 Monitoring & Audit (PKG-D-10)
     ├── PROC-36..PROC-38  (pentesting, AI adversarial robustness, audit trail report)
-    └── PROC-51 / CAP-10 / PROC-52  (AI threat detection, immutable logs, AI drift)
+    └── PROC-49 / CAP-10 / PROC-50  (AI threat detection, immutable logs, AI drift)
 ```
 
 **Counts:** 38 PROC + 7 CAP + 17 UC (technology lane, compliance corpus) = 62; plus
@@ -448,7 +448,7 @@ product-side UC-66/UC-92 and UC-63..93 (31) = 93 total use cases, matching Doc22
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
 | 1.0 | 2026-04-28 | Security Architect | Initial creation — 38 domain nodes, 72 sub-nodes, 89 leaf nodes |
-| 1.1 | 2026-09-05 | Security Architect | Lane census alignment (Case_03 T46/P40/C7): additive §6A Product Functional Branch (PKG-A..F, UC-63..93) and §6B Lane Branches (PROC-01..40, CAP-01..07 grouped by D-01..D-10); existing tree unchanged |
+| 1.1 | 2026-09-05 | Security Architect | Lane census alignment (Case_03 T46/P40/C7): additive §6A Product Functional Branch (PKG-A..F, UC-03..33) and §6B Lane Branches (PROC-01..40, CAP-01..07 grouped by D-01..D-10); existing tree unchanged |
 | 2.0 | 2026-05-05 | Security Architect | Added ROOT node, Mermaid diagram, and track tags [T/P/P→T] |
 
 ---

@@ -2,7 +2,7 @@
 document_id: AEGIS-P3-32
 title: Process & Capability Cards — Lane Pilot (Case_03)
 phase: 3
-version: 1.1
+version: 1.2
 created: 2026-09-05
 updated: 2026-09-05
 author: Executor
@@ -25,6 +25,9 @@ related_documents: [Doc22_Use_Cases_Catalog.md, Doc19_Rules_Catalog.md]
 > +15 from UC SEPARATION v1.1 — PROC-41..52 / CAP-08..10, derived faithfully from the former Doc22 §6
 > stubs). v1.1 removes the PROC-39/40 companion cards: per rubric v1.8 §5B rule 6 they were
 > re-adjudicated back to UC-66/UC-92 (fully-dressed use cases in Doc22 §4).
+> v1.2 (RENUMBER, rubric v1.10 §5B rule 7): PROC-41..52 renumbered PROC-39..50 (two-phase
+> rename; registry `00_METHODOLOGY/validation/RENUMBER_REGISTRY_2026-09-05.md`); PROC-01..38
+> and CAP-01..10 untouched; catalogue anchors below re-verified against Doc22 v3.1.
 
 ## PROC-10 — Identity and Access Manager Provisions User Identity
 
@@ -880,7 +883,7 @@ flowchart TD
     D1 -->|"no"| A4["3a. Annual comprehensive review — end"]
 ```
 
-## PROC-41 — Security Architect Configures Data Encryption at Rest
+## PROC-39 — Security Architect Configures Data Encryption at Rest
 
 > Formerly UC-02 — re-laned per rubric v1.8 §5B rule 6 (UC SEPARATION, 2026-09-05).
 
@@ -904,7 +907,7 @@ flowchart TD
     D1 -->|"yes"| E["End: implemented ≤ 30 days — evidence recorded"]
 ```
 
-## PROC-42 — Security Administrator Enforces TLS 1.3 for Data in Transit
+## PROC-40 — Security Administrator Enforces TLS 1.3 for Data in Transit
 
 > Formerly UC-03 — re-laned per rubric v1.8 §5B rule 6 (UC SEPARATION, 2026-09-05).
 
@@ -929,7 +932,7 @@ flowchart TD
     D1 -->|"yes"| E["End: full enforcement ≤ 60 days"]
 ```
 
-## PROC-43 — Security Architect Implements Field-Level Encryption
+## PROC-41 — Security Architect Implements Field-Level Encryption
 
 > Formerly UC-06 — re-laned per rubric v1.8 §5B rule 6 (UC SEPARATION, 2026-09-05).
 
@@ -954,7 +957,7 @@ flowchart TD
     D1 -->|"yes"| E["End: implemented ≤ 60 days"]
 ```
 
-## PROC-44 — Security Architect Generates SBOM for AI Model
+## PROC-42 — Security Architect Generates SBOM for AI Model
 
 > Formerly UC-15 — re-laned per rubric v1.8 §5B rule 6 (UC SEPARATION, 2026-09-05).
 
@@ -978,7 +981,7 @@ flowchart TD
     A2 --> E
 ```
 
-## PROC-45 — Security Administrator Enforces MFA for Privileged Access
+## PROC-43 — Security Administrator Enforces MFA for Privileged Access
 
 > Formerly UC-17 — re-laned per rubric v1.8 §5B rule 6 (UC SEPARATION, 2026-09-05).
 
@@ -1003,7 +1006,7 @@ flowchart TD
     A3 --> E
 ```
 
-## PROC-46 — AI Platform Administrator Manages AI Model Access
+## PROC-44 — AI Platform Administrator Manages AI Model Access
 
 > Formerly UC-21 — re-laned per rubric v1.8 §5B rule 6 (UC SEPARATION, 2026-09-05).
 
@@ -1028,7 +1031,7 @@ flowchart TD
     A3 --> A4
 ```
 
-## PROC-47 — Security Administrator Implements FIDO2 Authentication
+## PROC-45 — Security Administrator Implements FIDO2 Authentication
 
 > Formerly UC-22 — re-laned per rubric v1.8 §5B rule 6 (UC SEPARATION, 2026-09-05).
 
@@ -1053,7 +1056,7 @@ flowchart TD
     A3 --> E
 ```
 
-## PROC-48 — Release Manager Secures CI/CD Pipeline
+## PROC-46 — Release Manager Secures CI/CD Pipeline
 
 > Formerly UC-44 — re-laned per rubric v1.8 §5B rule 6 (UC SEPARATION, 2026-09-05).
 
@@ -1077,7 +1080,7 @@ flowchart TD
     D1 -->|"no"| E["End: pipeline proceeds"]
 ```
 
-## PROC-49 — AI ML Engineer Secures AI Training Pipeline
+## PROC-47 — AI ML Engineer Secures AI Training Pipeline
 
 > Formerly UC-46 — re-laned per rubric v1.8 §5B rule 6 (UC SEPARATION, 2026-09-05).
 
@@ -1102,7 +1105,7 @@ flowchart TD
     D1 -->|"no"| B["Blocked — no deployment"]
 ```
 
-## PROC-50 — Security Engineer Scans Infrastructure as Code
+## PROC-48 — Security Engineer Scans Infrastructure as Code
 
 > Formerly UC-47 — re-laned per rubric v1.8 §5B rule 6 (UC SEPARATION, 2026-09-05).
 
@@ -1127,7 +1130,7 @@ flowchart TD
     F --> A1
 ```
 
-## PROC-51 — SOC Manager Deploys AI-Powered Threat Detection
+## PROC-49 — SOC Manager Deploys AI-Powered Threat Detection
 
 > Formerly UC-57 — re-laned per rubric v1.8 §5B rule 6 (UC SEPARATION, 2026-09-05).
 
@@ -1152,7 +1155,7 @@ flowchart TD
     A3 --> A4["4. Monthly calibration — end"]
 ```
 
-## PROC-52 — SOC Analyst Monitors AI Model Performance Drift
+## PROC-50 — SOC Analyst Monitors AI Model Performance Drift
 
 > Formerly UC-61 — re-laned per rubric v1.8 §5B rule 6 (UC SEPARATION, 2026-09-05).
 
@@ -1260,7 +1263,7 @@ graph LR
 | Field | Content |
 |---|---|
 | Owner | AI Governance Lead (Primary); Data Protection Officer (Secondary). |
-| Span | AI traceability documentation: model cards, data sheets, AI decision logs and stakeholder transparency reports per IEEE 7000. Contributes: UC-66 (override metrics), UC-92 (bias-pattern escalation), CAP-05 (ISMS AI framework). |
+| Span | AI traceability documentation: model cards, data sheets, AI decision logs and stakeholder transparency reports per IEEE 7000. Contributes: UC-06 (override metrics), UC-32 (bias-pattern escalation), CAP-05 (ISMS AI framework). |
 | Maturity | PLANNED (1) — Scale A posture model v1.6; current/target pending P1 Folio VIII refresh + EvidenceItem bind |
 | Realises | CR-D-09.4-001, BPR-D-09.4-001 |
 | Anchors | SAMM: G-PC-A (policy and standards) · SAMM-only with note: ASVS does not map (AI traceability/documentation out of ASVS scope). |
@@ -1271,7 +1274,7 @@ graph LR
     CAP["CAP-07 AI Traceability Docs"] --> R1["CR-D-09.4-001 / BPR-D-09.4-001"]
     P1["Model cards + data sheets (IEEE 7000)"] --> CAP
     P2["AI decision logs + transparency reports"] --> CAP
-    CAP -->|"evidence for"| PROC39["UC-66 / UC-92"]
+    CAP -->|"evidence for"| PROC39["UC-06 / UC-32"]
 ```
 
 
@@ -1282,7 +1285,7 @@ graph LR
 | Field | Content |
 |---|---|
 | Owner | Security Administrator (accountable for the standing detection ability); executed by the AI System (automated detection). |
-| Span | Standing automated detection of model tampering, adversarial attacks and unauthorized parameter modifications. Contributes: PROC-03 (model integrity validation on every model load), PROC-37 (adversarial robustness testing), PROC-51 (monitoring operations); detection ≤ 15 min, alert ≤ 5 min. |
+| Span | Standing automated detection of model tampering, adversarial attacks and unauthorized parameter modifications. Contributes: PROC-03 (model integrity validation on every model load), PROC-37 (adversarial robustness testing), PROC-49 (monitoring operations); detection ≤ 15 min, alert ≤ 5 min. |
 | Maturity | PLANNED (1) — Scale A posture model v1.6; current/target pending P1 Folio VIII refresh + EvidenceItem bind |
 | Realises | CR-D-01.4-001, BPR-D-12.4-001 / AG-D-01.4-001, AG-D-10.1-002. |
 | Anchors | SAMM: O-IM-A (incident detection) · ASVS: V7 (error handling and logging) — tamper alerts. |
@@ -1294,7 +1297,7 @@ graph LR
     CAP["CAP-08 Model Tampering Detection"] -->|"realises"| R1["CR-D-01.4-001 / BPR-D-12.4-001"]
     P1["PROC-03 integrity validation"] --> CAP
     P2["PROC-37 adversarial testing"] --> CAP
-    P3["PROC-51 monitoring operations"] --> CAP
+    P3["PROC-49 monitoring operations"] --> CAP
     CAP -->|"alerts ≤ 5 min"| SEC["Security Administrator"]
 ```
 
@@ -1328,7 +1331,7 @@ graph LR
 | Field | Content |
 |---|---|
 | Owner | Audit Manager (Primary); Security Administrator (Secondary). |
-| Span | Standing immutable audit-log estate with PII data separation and AI system traceability; integrity via cryptographic sharding. Contributes: PROC-38 (audit trail reporting); T-002 interface: erasure executes via per-subject key destruction while the log structure stays verifiable (UC-33). |
+| Span | Standing immutable audit-log estate with PII data separation and AI system traceability; integrity via cryptographic sharding. Contributes: PROC-38 (audit trail reporting); T-002 interface: erasure executes via per-subject key destruction while the log structure stays verifiable (UC-01). |
 | Maturity | PLANNED (1) — Scale A posture model v1.6; current/target pending P1 Folio VIII refresh + EvidenceItem bind |
 | Realises | CR-D-10.2-001, BPR-D-10.2-001 / AG-D-10.2-002. |
 | Anchors | SAMM: O-OM-A (operational management — log integrity) · ASVS: V7 (error handling and logging). |
@@ -1341,12 +1344,12 @@ graph LR
     P1["Cryptographic sharding integrity"] --> CAP
     P2["PII separation + AI traceability"] --> CAP
     P3["Daily integrity verification"] --> CAP
-    CAP -->|"T-002: key destruction erases PII"| UC33["UC-33 data erasure"]
+    CAP -->|"T-002: key destruction erases PII"| UC33["UC-01 data erasure"]
 ```
 
 ## Articulation with existing artefacts
 
-Per-card binding to the catalogue and the downstream documents. 'Formerly' preserves the pre-rename id (full registry: `00_METHODOLOGY/validation/LANE_NAMING_CENSUS_v0.md`; UC SEPARATION v1.1 rows anchor to the Doc22 §3.2 Compliance Domain Index). Ref counts are occurrences of the lane id in the P3 tree (excluding this doc).
+Per-card binding to the catalogue and the downstream documents. 'Formerly' preserves the pre-rename id (full registry: `00_METHODOLOGY/validation/LANE_NAMING_CENSUS_v0.md`; UC SEPARATION v1.1 rows anchor to the Doc22 §3.2 Compliance Domain Index; RENUMBER registry: `00_METHODOLOGY/validation/RENUMBER_REGISTRY_2026-09-05.md`). Ref counts are occurrences of the lane id in the P3 tree (excluding this doc).
 
 | Card | Formerly | Catalogue anchor | Downstream refs (doc: count) |
 |---|---|---|---|
@@ -1364,18 +1367,18 @@ Per-card binding to the catalogue and the downstream documents. 'Formerly' prese
 | CAP-06 | UC-54 | Doc22_Use_Cases_Catalog.md:861 | Doc22_Use_Cases_Catalog.md:1, Doc25_Architectural_Nodes.md:1, Doc26_Requirements_Allocation.md:1, Doc27_Compliance_Gates_Report.md:1, Doc29_Risk_Analysis.md:1, Doc30_Functional_Requirements.md:2 |
 | PROC-07 | UC-11 | Doc22_Use_Cases_Catalog.md:226 | Doc22_Use_Cases_Catalog.md:1, Doc25_Architectural_Nodes.md:1, Doc26_Requirements_Allocation.md:1, Doc27_Compliance_Gates_Report.md:1, Doc29_Risk_Analysis.md:1, Doc30_Functional_Requirements.md:2 |
 | CAP-07 | UC-55 | Doc22_Use_Cases_Catalog.md:874 | Doc22_Use_Cases_Catalog.md:1, Doc23_Use_Case_Relationships.md:2, Doc25_Architectural_Nodes.md:3, Doc26_Requirements_Allocation.md:1, Doc27_Compliance_Gates_Report.md:2, Doc29_Risk_Analysis.md:2, Doc30_Functional_Requirements.md:4, Doc31_Non_Functional_Requirements.md:3 |
-| PROC-41 | UC-02 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-01) | Doc22_Use_Cases_Catalog.md:21 |
-| PROC-42 | UC-03 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-01) | Doc22_Use_Cases_Catalog.md:13 |
-| PROC-43 | UC-06 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-01) | Doc22_Use_Cases_Catalog.md:21 |
-| PROC-44 | UC-15 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-02) | Doc22_Use_Cases_Catalog.md:6 |
-| PROC-45 | UC-17 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-03) | Doc22_Use_Cases_Catalog.md:28 |
-| PROC-46 | UC-21 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-03) | Doc22_Use_Cases_Catalog.md:20 |
-| PROC-47 | UC-22 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-03) | Doc22_Use_Cases_Catalog.md:15 |
-| PROC-48 | UC-44 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-07) | Doc22_Use_Cases_Catalog.md:24 |
-| PROC-49 | UC-46 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-07) | Doc22_Use_Cases_Catalog.md:18 |
-| PROC-50 | UC-47 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-07) | Doc22_Use_Cases_Catalog.md:7 |
-| PROC-51 | UC-57 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-10) | Doc22_Use_Cases_Catalog.md:20 |
-| PROC-52 | UC-61 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-10) | Doc22_Use_Cases_Catalog.md:24 |
+| PROC-39 | UC-02 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-01) | Doc22_Use_Cases_Catalog.md:21 |
+| PROC-40 | UC-03 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-01) | Doc22_Use_Cases_Catalog.md:13 |
+| PROC-41 | UC-06 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-01) | Doc22_Use_Cases_Catalog.md:21 |
+| PROC-42 | UC-15 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-02) | Doc22_Use_Cases_Catalog.md:6 |
+| PROC-43 | UC-17 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-03) | Doc22_Use_Cases_Catalog.md:28 |
+| PROC-44 | UC-21 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-03) | Doc22_Use_Cases_Catalog.md:20 |
+| PROC-45 | UC-22 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-03) | Doc22_Use_Cases_Catalog.md:15 |
+| PROC-46 | UC-44 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-07) | Doc22_Use_Cases_Catalog.md:24 |
+| PROC-47 | UC-46 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-07) | Doc22_Use_Cases_Catalog.md:18 |
+| PROC-48 | UC-47 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-07) | Doc22_Use_Cases_Catalog.md:7 |
+| PROC-49 | UC-57 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-10) | Doc22_Use_Cases_Catalog.md:20 |
+| PROC-50 | UC-61 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-10) | Doc22_Use_Cases_Catalog.md:24 |
 | CAP-08 | UC-08 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-01) | Doc22_Use_Cases_Catalog.md:23 |
 | CAP-09 | UC-26 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-04) | Doc22_Use_Cases_Catalog.md:12 |
 | CAP-10 | UC-58 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-10) | Doc22_Use_Cases_Catalog.md:36 |
@@ -1453,18 +1456,18 @@ Per-card binding to the catalogue and the downstream documents. 'Formerly' prese
 - PROC-36 — Security Analyst Conducts Penetration Testing
 - PROC-37 — AI Security Analyst Tests AI Adversarial Robustness
 - PROC-38 — Audit Manager Generates Audit Trail Report
-- PROC-41 — Security Architect Configures Data Encryption at Rest
-- PROC-42 — Security Administrator Enforces TLS 1.3 for Data in Transit
-- PROC-43 — Security Architect Implements Field-Level Encryption
-- PROC-44 — Security Architect Generates SBOM for AI Model
-- PROC-45 — Security Administrator Enforces MFA for Privileged Access
-- PROC-46 — AI Platform Administrator Manages AI Model Access
-- PROC-47 — Security Administrator Implements FIDO2 Authentication
-- PROC-48 — Release Manager Secures CI/CD Pipeline
-- PROC-49 — AI ML Engineer Secures AI Training Pipeline
-- PROC-50 — Security Engineer Scans Infrastructure as Code
-- PROC-51 — SOC Manager Deploys AI-Powered Threat Detection
-- PROC-52 — SOC Analyst Monitors AI Model Performance Drift
+- PROC-39 — Security Architect Configures Data Encryption at Rest
+- PROC-40 — Security Administrator Enforces TLS 1.3 for Data in Transit
+- PROC-41 — Security Architect Implements Field-Level Encryption
+- PROC-42 — Security Architect Generates SBOM for AI Model
+- PROC-43 — Security Administrator Enforces MFA for Privileged Access
+- PROC-44 — AI Platform Administrator Manages AI Model Access
+- PROC-45 — Security Administrator Implements FIDO2 Authentication
+- PROC-46 — Release Manager Secures CI/CD Pipeline
+- PROC-47 — AI ML Engineer Secures AI Training Pipeline
+- PROC-48 — Security Engineer Scans Infrastructure as Code
+- PROC-49 — SOC Manager Deploys AI-Powered Threat Detection
+- PROC-50 — SOC Analyst Monitors AI Model Performance Drift
 - CAP-01 — Vulnerability Analyst Maintains Vulnerability Register
 - CAP-02 — SOC Analyst Monitors Security Events (pilot)
 - CAP-03 — Security Architect Maintains SBOM for Product

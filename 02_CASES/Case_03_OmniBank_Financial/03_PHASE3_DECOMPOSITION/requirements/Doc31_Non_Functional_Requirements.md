@@ -81,7 +81,7 @@ Every NFR includes:
 | **Metric** | Encryption coverage percentage |
 | **Target** | 100% of applicable data encrypted |
 | **Method** | TEST |
-| **Source UC** | PROC-41, PROC-43 |
+| **Source UC** | PROC-39, PROC-41 |
 | **Source Rule** | CR-D-01.1-001 |
 | **Priority** | CRITICAL |
 
@@ -97,7 +97,7 @@ Every NFR includes:
 | **Metric** | PII fields encrypted percentage |
 | **Target** | 100% of PII fields encrypted |
 | **Method** | TEST |
-| **Source UC** | PROC-43 |
+| **Source UC** | PROC-41 |
 | **Source Rule** | CR-D-01.1-001 |
 | **Priority** | CRITICAL |
 
@@ -113,7 +113,7 @@ Every NFR includes:
 | **Metric** | TLS 1.3 enforcement percentage |
 | **Target** | 100% of communications use TLS 1.3 |
 | **Method** | TEST |
-| **Source UC** | PROC-42 |
+| **Source UC** | PROC-40 |
 | **Source Rule** | CR-D-01.2-001 |
 | **Priority** | CRITICAL |
 
@@ -161,7 +161,7 @@ Every NFR includes:
 | **Metric** | Privileged access MFA coverage |
 | **Target** | 100% of privileged sessions authenticated |
 | **Method** | TEST |
-| **Source UC** | PROC-45, PROC-47 |
+| **Source UC** | PROC-43, PROC-45 |
 | **Source Rule** | CR-D-03.2-001 |
 | **Priority** | CRITICAL |
 
@@ -225,7 +225,7 @@ Every NFR includes:
 | **Metric** | Training data access control coverage |
 | **Target** | 100% of training data access controlled and logged |
 | **Method** | INSPECT |
-| **Source UC** | PROC-46, PROC-20 |
+| **Source UC** | PROC-44, PROC-20 |
 | **Source Rule** | CR-D-05.1-001 |
 | **Priority** | HIGH |
 
@@ -257,7 +257,7 @@ Every NFR includes:
 | **Metric** | Key segregation verification |
 | **Target** | 100% key segregation between PII and log integrity |
 | **Method** | INSPECT |
-| **Source UC** | UC-33, CAP-10 |
+| **Source UC** | UC-01, CAP-10 |
 | **Source Rule** | CR-D-05.3-001, CR-D-10.2-001 |
 | **Priority** | CRITICAL |
 
@@ -323,7 +323,7 @@ Every NFR includes:
 | **Metric** | File integrity monitoring coverage |
 | **Target** | 100% of critical system files and AI artifacts monitored |
 | **Method** | TEST |
-| **Source UC** | PROC-41, PROC-03 |
+| **Source UC** | PROC-39, PROC-03 |
 | **Source Rule** | BPR-D-01.4-001 |
 | **Priority** | HIGH |
 
@@ -597,7 +597,7 @@ Every NFR includes:
 | **Metric** | Drift detection time |
 | **Target** | ≤1 hour from drift occurrence to detection |
 | **Method** | ANALYZE |
-| **Source UC** | PROC-52 |
+| **Source UC** | PROC-50 |
 | **Source Rule** | BPR-D-12.2-001 |
 | **Priority** | HIGH |
 
@@ -613,7 +613,7 @@ Every NFR includes:
 | **Metric** | Retraining trigger time |
 | **Target** | ≤4 hours from threshold breach to retraining start |
 | **Method** | DEMONSTRATE |
-| **Source UC** | PROC-52 |
+| **Source UC** | PROC-50 |
 | **Source Rule** | BPR-D-12.2-001 |
 | **Priority** | MEDIUM |
 
@@ -631,7 +631,7 @@ Every NFR includes:
 | **Metric** | Erasure request completion time |
 | **Target** | ≤30 days from request to completion |
 | **Method** | TEST |
-| **Source UC** | UC-33, UC-33.1 |
+| **Source UC** | UC-01, UC-01.1 |
 | **Source Rule** | CR-D-05.3-001 |
 | **Priority** | CRITICAL |
 
@@ -679,7 +679,7 @@ Every NFR includes:
 | **Metric** | DSAR completion time |
 | **Target** | ≤30 days for all DSARs |
 | **Method** | TEST |
-| **Source UC** | UC-34 |
+| **Source UC** | UC-02 |
 | **Source Rule** | CR-D-05.4-001 |
 | **Priority** | HIGH |
 
@@ -695,7 +695,7 @@ Every NFR includes:
 | **Metric** | Third-party notification time |
 | **Target** | ≤72 hours from request to third-party notification |
 | **Method** | INSPECT |
-| **Source UC** | UC-33 |
+| **Source UC** | UC-01 |
 | **Source Rule** | CR-D-05.3-001 |
 | **Priority** | HIGH |
 

@@ -89,33 +89,33 @@ Specializations are regulation-specific versions of base use cases. Each special
 
 ---
 
-### 4.2 Access Control — MFA Enforcement (PROC-45)
+### 4.2 Access Control — MFA Enforcement (PROC-43)
 
-**Base UC:** PROC-45: Security Administrator Enforces MFA for Privileged Access
+**Base UC:** PROC-43: Security Administrator Enforces MFA for Privileged Access
 
 **Specializations:**
 
 | Specialization | Triggering Regulation | Specific Requirements |
 |----------------|----------------------|---------------------|
-| PROC-45-DORA | DORA RTS on ICT risk | Strong customer authentication for account access per PSD2 |
-| PROC-45-AI | AI Act Annex III | MFA for high-risk AI system access to ensure human oversight |
+| PROC-43-DORA | DORA RTS on ICT risk | Strong customer authentication for account access per PSD2 |
+| PROC-43-AI | AI Act Annex III | MFA for high-risk AI system access to ensure human oversight |
 
-**Activation Condition:** `regulation = 'DORA' AND access.type = 'financial_account'` → PROC-45-DORA
+**Activation Condition:** `regulation = 'DORA' AND access.type = 'financial_account'` → PROC-43-DORA
 
 ---
 
-### 4.3 Data Lifecycle — Data Erasure (UC-33)
+### 4.3 Data Lifecycle — Data Erasure (UC-01)
 
-**Base UC:** UC-33: Data Protection Officer Executes Data Erasure Request
+**Base UC:** UC-01: Data Protection Officer Executes Data Erasure Request
 
 **Specializations:**
 
 | Specialization | Triggering Regulation | Specific Requirements |
 |----------------|----------------------|---------------------|
-| UC-33-GDPR | GDPR Art. 17 | Right to erasure for personal data; exceptions for legal obligation |
-| UC-33-CRA | CRA Art. 16 | Secure deletion of product data on decommissioning |
+| UC-01-GDPR | GDPR Art. 17 | Right to erasure for personal data; exceptions for legal obligation |
+| UC-01-CRA | CRA Art. 16 | Secure deletion of product data on decommissioning |
 
-**Tension Resolution:** T-002 — UC-33 uses cryptographic sharding to satisfy GDPR erasure while preserving DORA immutable audit logs. PII encryption keys are destroyed; log structure remains.
+**Tension Resolution:** T-002 — UC-01 uses cryptographic sharding to satisfy GDPR erasure while preserving DORA immutable audit logs. PII encryption keys are destroyed; log structure remains.
 
 ---
 
@@ -186,7 +186,7 @@ Alternative scenarios are mutually exclusive variants of a base UC. Only one var
 | Option | When Selected | UC ID |
 |--------|--------------|-------|
 | Automated SBOM Generation | CI/CD pipeline available, no manual intervention required | CAP-01 |
-| Manual SBOM Generation | Automated tools unavailable, dependency newly discovered | PROC-44 |
+| Manual SBOM Generation | Automated tools unavailable, dependency newly discovered | PROC-42 |
 
 **Selection Criteria:** `automation.available = TRUE AND dependency.known = TRUE` → CAP-01 (Automated)
 
@@ -255,8 +255,8 @@ Optional UCs may or may not be present based on specific conditions. Unlike alte
 
 | Optional UC | «option» Condition | Rationale |
 |------------|-------------------|------------|
-| PROC-47: Implement FIDO2 Authentication | `user.role = 'privileged' AND hardware.available = TRUE` | FIDO2 hardware keys may not be available for all users; option for phishing-resistant auth |
-| PROC-46.1: Approve AI Model Parameters | `ai.model.change.risk = 'high'` | Dual approval only required for high-risk model changes |
+| PROC-45: Implement FIDO2 Authentication | `user.role = 'privileged' AND hardware.available = TRUE` | FIDO2 hardware keys may not be available for all users; option for phishing-resistant auth |
+| PROC-44.1: Approve AI Model Parameters | `ai.model.change.risk = 'high'` | Dual approval only required for high-risk model changes |
 
 ### 6.2 PKG-D-04: Incident Response
 
@@ -269,7 +269,7 @@ Optional UCs may or may not be present based on specific conditions. Unlike alte
 
 | Optional UC | «option» Condition | Rationale |
 |------------|-------------------|------------|
-| PROC-52: Monitor AI Model Drift | `ai.model.deployed = TRUE AND drift.detection.required = TRUE` | Only if AI models are in production |
+| PROC-50: Monitor AI Model Drift | `ai.model.deployed = TRUE AND drift.detection.required = TRUE` | Only if AI models are in production |
 
 ---
 
@@ -295,11 +295,11 @@ The following decision table determines which UC variant to execute based on con
 
 | Condition | UC Executed |
 |-----------|-------------|
-| Erasure request from data subject | UC-33-GDPR |
-| Product decommissioning | UC-33-CRA |
-| Retention expiry | UC-33 (automated) |
-| Audit log preservation required | UC-33 + Cryptographic Sharding |
-| Third-party processor involvement | UC-33 + UC-107 (Notify Third Parties) |
+| Erasure request from data subject | UC-01-GDPR |
+| Product decommissioning | UC-01-CRA |
+| Retention expiry | UC-01 (automated) |
+| Audit log preservation required | UC-01 + Cryptographic Sharding |
+| Third-party processor involvement | UC-01 + UC-107 (Notify Third Parties) |
 
 ---
 
@@ -336,10 +336,10 @@ The following decision table determines which UC variant to execute based on con
 
 | Variant pair | Difference | Selection Criteria |
 |--------------|------------|--------------------|
-| UC-70 (retail) vs UC-86 (corporate) onboarding | Retail: remote eIDAS identity verification in-app (UC-69 step 3, §4.3); Corporate: delegated-user model with SYS-21, joiner/mover/leaver for delegated users (§4.6) | Customer segment = retail vs corporate |
-| UC-77 regular vs UC-77 instant | Same SEPA use case; instant leg adds scheme deadline and immediate availability checks (§4.4) | Customer selects instant transfer option |
-| UC-78 (in-app) vs UC-91 (contact centre) card block | Alternative blocking channels: self-service in-app vs SYS-20 contact centre with recorded call (§4.4 / §4.7) | Channel availability and customer preference |
-| UC-90 (in-app) vs UC-91 (voice) fraud response | Fraud alert confirm/deny pushed in-app vs confirmed via contact-centre call (§4.7) | Alert channel reachable; SYS-11 routing |
+| UC-10 (retail) vs UC-26 (corporate) onboarding | Retail: remote eIDAS identity verification in-app (UC-09 step 3, §4.3); Corporate: delegated-user model with SYS-21, joiner/mover/leaver for delegated users (§4.6) | Customer segment = retail vs corporate |
+| UC-17 regular vs UC-17 instant | Same SEPA use case; instant leg adds scheme deadline and immediate availability checks (§4.4) | Customer selects instant transfer option |
+| UC-18 (in-app) vs UC-31 (contact centre) card block | Alternative blocking channels: self-service in-app vs SYS-20 contact centre with recorded call (§4.4 / §4.7) | Channel availability and customer preference |
+| UC-30 (in-app) vs UC-31 (voice) fraud response | Fraud alert confirm/deny pushed in-app vs confirmed via contact-centre call (§4.7) | Alert channel reachable; SYS-11 routing |
 
 ## 8. REGULATORY INTERACTION MATRIX
 
@@ -348,11 +348,11 @@ This matrix shows which regulations interact on which UCs:
 | UC | GDPR | CRA | NIS 2 | DORA | AI Act |
 |----|------|-----|-------|------|--------|
 | PROC-15 (Notification) | ✓ | ✓ | ✓ | ✓ | ✓ |
-| UC-33 (Erasure) | ✓ | ✓ | — | — | — |
+| UC-01 (Erasure) | ✓ | ✓ | — | — | — |
 | CAP-05 (ISMS) | ✓ | — | — | ✓ | ✓ |
 | PROC-28 (Secure-by-Design) | ✓ | ✓ | — | — | — |
 | PROC-24 (Vendor Assessment) | ✓ | — | ✓ | ✓ | — |
-| PROC-45 (MFA) | — | ✓ | ✓ | ✓ | ✓ |
+| PROC-43 (MFA) | — | ✓ | ✓ | ✓ | ✓ |
 | PROC-34 (IPSARA) | ✓ | ✓ | ✓ | ✓ | ✓ |
 | CAP-04 (Competence) | ✓ | — | ✓ | — | ✓ |
 

@@ -84,8 +84,8 @@ The output includes: threats identified per UC scenario, risk scores (Likelihood
 
 | UC | Threat | Category | Likelihood | Impact | Risk Score | Mitigation |
 |----|--------|----------|-----------|--------|------------|------------|
-| PROC-41: Configure Encryption | Attacker modifies encryption configuration | T (Tampering) | Medium | Critical | HIGH | Implement configuration validation and integrity checks |
-| PROC-42: TLS Enforcement | Attacker downgrades TLS to weaker version | T (Tampering) | Medium | High | HIGH | Enforce TLS 1.3 with HSTS preload |
+| PROC-39: Configure Encryption | Attacker modifies encryption configuration | T (Tampering) | Medium | Critical | HIGH | Implement configuration validation and integrity checks |
+| PROC-40: TLS Enforcement | Attacker downgrades TLS to weaker version | T (Tampering) | Medium | High | HIGH | Enforce TLS 1.3 with HSTS preload |
 | PROC-02: HSM Key Management | Attacker steals HSM signing key | S (Spoofing) | Low | Critical | MEDIUM | Implement HSM intrusion detection; key ceremony controls |
 | PROC-03: AI Model Integrity | Attacker poisons model training data | T (Tampering) | Medium | Critical | HIGH | Training data validation; model signing; provenance tracking |
 | CAP-08: Detect Model Tampering | Attacker evades detection via adversarial样本 | I (Information Disclosure) | Medium | High | HIGH | Adversarial training; detection model updates |
@@ -95,8 +95,8 @@ The output includes: threats identified per UC scenario, risk scores (Likelihood
 
 | UC | Threat | Category | Likelihood | Impact | Risk Score | Mitigation |
 |----|--------|----------|-----------|--------|------------|------------|
-| PROC-41: Configure Encryption | Linking encrypted data across systems | L (Linkability) | Low | Medium | LOW | Key segregation by domain |
-| PROC-43: Field-Level Encryption | AI training data re-identification | I (Identifiability) | Medium | High | HIGH | Differential privacy; data minimization |
+| PROC-39: Configure Encryption | Linking encrypted data across systems | L (Linkability) | Low | Medium | LOW | Key segregation by domain |
+| PROC-41: Field-Level Encryption | AI training data re-identification | I (Identifiability) | Medium | High | HIGH | Differential privacy; data minimization |
 
 **Summary:** 8 threats identified, 2 HIGH risks requiring immediate attention
 
@@ -143,20 +143,20 @@ The output includes: threats identified per UC scenario, risk scores (Likelihood
 | UC | Threat | Category | Likelihood | Impact | Risk Score | Mitigation |
 |----|--------|----------|-----------|--------|------------|------------|
 | PROC-10: Provision Identity | Attacker spoofs HR system to provision access | S (Spoofing) | Medium | Critical | HIGH | HR system authentication; dual channel verification |
-| PROC-45: Enforce MFA | Attacker bypasses MFA via real-time phishing | S (Spoofing) | High | High | CRITICAL | FIDO2 phishing-resistant auth; hardware keys for privileged |
+| PROC-43: Enforce MFA | Attacker bypasses MFA via real-time phishing | S (Spoofing) | High | High | CRITICAL | FIDO2 phishing-resistant auth; hardware keys for privileged |
 | PROC-11: Access Review | Reviewer misses excessive privileges | R (Repudiation) | Medium | High | HIGH | Automated access review with risk scoring; exception tracking |
 | PROC-12: Secure Configuration | Attacker exploits misconfiguration | E (Elevation) | Medium | High | HIGH | CIS benchmark automation; continuous compliance scanning |
 | PROC-13: Deprovisioning | Attacker maintains access after termination | E (Elevation) | Medium | High | HIGH | Automated deprovisioning; session termination on HR event |
-| PROC-46: AI Model Access | Attacker exploits AI parameter change | E (Elevation) | Medium | Critical | HIGH | Dual approval for AI parameters; audit trail |
-| PROC-47: FIDO2 Implementation | Attacker clones FIDO2 key | S (Spoofing) | Low | High | MEDIUM | Hardware key tamper resistance; key binding to device |
+| PROC-44: AI Model Access | Attacker exploits AI parameter change | E (Elevation) | Medium | Critical | HIGH | Dual approval for AI parameters; audit trail |
+| PROC-45: FIDO2 Implementation | Attacker clones FIDO2 key | S (Spoofing) | Low | High | MEDIUM | Hardware key tamper resistance; key binding to device |
 
 **LINDDUN Analysis:**
 
 | UC | Threat | Category | Likelihood | Impact | Risk Score | Mitigation |
 |----|--------|----------|-----------|--------|------------|------------|
-| PROC-45: Enforce MFA | User unaware of MFA bypass attempt | U (Unawareness) | Medium | High | HIGH | Real-time notification on MFA anomalies |
+| PROC-43: Enforce MFA | User unaware of MFA bypass attempt | U (Unawareness) | Medium | High | HIGH | Real-time notification on MFA anomalies |
 | PROC-11: Access Review | Access review reveals user personal activities | D (Detectability) | Low | Medium | LOW | Minimize logging of personal activities |
-| PROC-46: AI Model Access | AI access patterns reveal user behavior | D (Detectability) | Medium | Medium | MEDIUM | Aggregate AI access metrics; minimize per-user logging |
+| PROC-44: AI Model Access | AI access patterns reveal user behavior | D (Detectability) | Medium | Medium | MEDIUM | Aggregate AI access metrics; minimize per-user logging |
 
 **Summary:** 9 threats identified, 1 CRITICAL, 5 HIGH risks
 
@@ -205,8 +205,8 @@ The output includes: threats identified per UC scenario, risk scores (Likelihood
 |----|--------|----------|-----------|--------|------------|------------|
 | PROC-20: Data Minimization | Attacker reconstructs minimized data | I (Information Disclosure) | Low | High | MEDIUM | Data generalization; noise injection |
 | PROC-21: Retention | Attacker forces premature deletion | R (Repudiation) | Low | High | MEDIUM | Retention overrides; legal hold capability |
-| UC-33: Data Erasure | Erasure request falsified by attacker | R (Repudiation) | Low | High | MEDIUM | Multi-factor request verification; audit trail |
-| UC-34: Data Export | Export reveals AI decision logic | I (Information Disclosure) | Medium | High | HIGH | Differential privacy in exports; aggregation |
+| UC-01: Data Erasure | Erasure request falsified by attacker | R (Repudiation) | Low | High | MEDIUM | Multi-factor request verification; audit trail |
+| UC-02: Data Export | Export reveals AI decision logic | I (Information Disclosure) | Medium | High | HIGH | Differential privacy in exports; aggregation |
 | PROC-22: AI Training Data | AI training data used for unintended purposes | N (Non-compliance) | Medium | High | HIGH | Data usage controls; purpose limitation; access logging |
 
 **LINDDUN Analysis:**
@@ -214,8 +214,8 @@ The output includes: threats identified per UC scenario, risk scores (Likelihood
 | UC | Threat | Category | Likelihood | Impact | Risk Score | Mitigation |
 |----|--------|----------|-----------|--------|------------|------------|
 | PROC-20: Data Minimization | Minimized data still identifies individuals | I (Identifiability) | Medium | High | HIGH | k-anonymity; l-diversity; formal de-identification |
-| UC-33: Data Erasure | Erasure conflicts with DORA log retention (T-002) | N (Non-compliance) | Medium | Critical | HIGH | Cryptographic sharding (resolved T-002) |
-| UC-34: Data Export | Data subject learns about AI profiling | U (Unawareness) | Medium | Medium | MEDIUM | Transparency in AI decision explanations |
+| UC-01: Data Erasure | Erasure conflicts with DORA log retention (T-002) | N (Non-compliance) | Medium | Critical | HIGH | Cryptographic sharding (resolved T-002) |
+| UC-02: Data Export | Data subject learns about AI profiling | U (Unawareness) | Medium | Medium | MEDIUM | Transparency in AI decision explanations |
 | PROC-22: AI Training Data | Training data identifies individuals (model inversion) | I (Identifiability) | Medium | Critical | HIGH | Model inversion attack testing; membership inference protection |
 
 **Summary:** 9 threats identified, 4 HIGH risks
@@ -263,17 +263,17 @@ The output includes: threats identified per UC scenario, risk scores (Likelihood
 |----|--------|----------|-----------|--------|------------|------------|
 | PROC-28: Secure-by-Design | Threat modeling incomplete for AI | I (Information Disclosure) | Medium | High | HIGH | AI-specific threat modeling; adversarial scenarios |
 | PROC-29: Secure Coding | Attacker exploits unpatched vulnerability | I (Information Disclosure) | High | Critical | CRITICAL | SAST/DAST; rapid patching; vulnerability prioritization |
-| PROC-48: CI/CD Security | Attacker injects malicious code in pipeline | T (Tampering) | Medium | Critical | HIGH | Pipeline integrity; signed commits; isolated build environments |
+| PROC-46: CI/CD Security | Attacker injects malicious code in pipeline | T (Tampering) | Medium | Critical | HIGH | Pipeline integrity; signed commits; isolated build environments |
 | PROC-30: Change Management | Attacker bypasses dual control via insider | E (Elevation) | Medium | High | HIGH | Segregation of duties; independent oversight; anomaly detection |
-| PROC-49: AI Training Pipeline | Poisoned training data in CI/CD | T (Tampering) | Medium | Critical | HIGH | Training data validation; model signing; provenance |
-| PROC-50: IaC Scanning | Attacker exploits misconfiguration before scan | T (Tampering) | Medium | High | HIGH | Pre-scan configuration validation; real-time scanning |
+| PROC-47: AI Training Pipeline | Poisoned training data in CI/CD | T (Tampering) | Medium | Critical | HIGH | Training data validation; model signing; provenance |
+| PROC-48: IaC Scanning | Attacker exploits misconfiguration before scan | T (Tampering) | Medium | High | HIGH | Pre-scan configuration validation; real-time scanning |
 
 **LINDDUN Analysis:**
 
 | UC | Threat | Category | Likelihood | Impact | Risk Score | Mitigation |
 |----|--------|----------|-----------|--------|------------|------------|
 | PROC-29: Secure Coding | SAST/DAST reveals security posture to attackers | D (Detectability) | Low | Medium | LOW | Staged disclosure; internal-only findings |
-| PROC-49: AI Training Pipeline | Training data provenance reveals business logic | D (Detectability) | Medium | Medium | MEDIUM | Aggregate provenance; confidential training data |
+| PROC-47: AI Training Pipeline | Training data provenance reveals business logic | D (Detectability) | Medium | Medium | MEDIUM | Aggregate provenance; confidential training data |
 
 **Summary:** 7 threats identified, 1 CRITICAL, 5 HIGH risks
 
@@ -345,18 +345,18 @@ The output includes: threats identified per UC scenario, risk scores (Likelihood
 
 | UC | Threat | Category | Likelihood | Impact | Risk Score | Mitigation |
 |----|--------|----------|-----------|--------|------------|------------|
-| PROC-51: AI Threat Detection | Attacker crafts attacks evading AI detection | I (Information Disclosure) | Medium | High | HIGH | Multi-layer detection; human analysis; threat intelligence |
+| PROC-49: AI Threat Detection | Attacker crafts attacks evading AI detection | I (Information Disclosure) | Medium | High | HIGH | Multi-layer detection; human analysis; threat intelligence |
 | CAP-10: Immutable Audit Logs | Attacker attempts to modify immutable logs | T (Tampering) | Low | Critical | MEDIUM | Cryptographic immutability; independent verification |
 | PROC-36: Penetration Testing | Pentest reveals vulnerabilities to attackers | I (Information Disclosure) | Medium | High | HIGH | Clean environment; TLP protocols; staged disclosure |
 | PROC-37: AI Adversarial Testing | Adversarial testing reveals AI weaknesses | I (Information Disclosure) | Medium | High | HIGH | Controlled environment; aggregated findings |
-| PROC-52: AI Model Drift | Drift detection evasion by sophisticated attackers | I (Information Disclosure) | Low | High | MEDIUM | Multiple drift detection methods; threshold tuning |
+| PROC-50: AI Model Drift | Drift detection evasion by sophisticated attackers | I (Information Disclosure) | Low | High | MEDIUM | Multiple drift detection methods; threshold tuning |
 | PROC-38: Audit Trail Report | Report reveals audit strategy to attackers | I (Information Disclosure) | Low | Medium | LOW | Report classification; access controls |
 
 **LINDDUN Analysis:**
 
 | UC | Threat | Category | Likelihood | Impact | Risk Score | Mitigation |
 |----|--------|----------|-----------|--------|------------|------------|
-| PROC-51: AI Threat Detection | AI monitoring reveals business operations | D (Detectability) | Medium | Medium | MEDIUM | Aggregate monitoring data; minimize operational details |
+| PROC-49: AI Threat Detection | AI monitoring reveals business operations | D (Detectability) | Medium | Medium | MEDIUM | Aggregate monitoring data; minimize operational details |
 | CAP-10: Immutable Audit Logs | PII in logs enables linkage attacks | L (Linkability) | Medium | High | HIGH | PII separation; access controls; minimization |
 | PROC-37: AI Adversarial Testing | Testing reveals AI model architecture | D (Detectability) | Medium | High | HIGH | Classification; controlled disclosure |
 
@@ -437,12 +437,12 @@ The following new/refined UCs are required to address HIGH+ risks:
 
 | New UC ID | UC Name | Resolves Risk | Priority |
 |-----------|---------|---------------|----------|
-| PROC-45.1 | Enforce FIDO2 Hardware Keys for Privileged Access | R-01 | CRITICAL |
+| PROC-43.1 | Enforce FIDO2 Hardware Keys for Privileged Access | R-01 | CRITICAL |
 | PROC-29.1 | Integrate SAST/DAST with Real-Time Vulnerability Correlation | R-02 | CRITICAL |
 | PROC-03.1 | Validate AI Training Data Provenance Before Training | R-03 | HIGH |
 | PROC-06.1 | Verify Patch Authenticity via SBOM Comparison | R-04 | HIGH |
 | PROC-10.1 | Authenticate HR System for Identity Provisioning | R-05 | HIGH |
-| PROC-48.1 | Implement Pipeline Integrity with Signed Commits and Isolated Builds | R-06 | HIGH |
+| PROC-46.1 | Implement Pipeline Integrity with Signed Commits and Isolated Builds | R-06 | HIGH |
 | PROC-22.1 | Test Model Inversion Resistance Before Deployment | R-07 | HIGH |
 | PROC-20.1 | Apply K-Anonymity and L-Diversity to Minimized Data | R-08 | HIGH |
 | CAP-03.1 | Classify and Control SBOM Access | R-09 | HIGH |
@@ -452,12 +452,12 @@ The following new/refined UCs are required to address HIGH+ risks:
 
 | UC ID | Refinement | Resolves Risk |
 |-------|------------|---------------|
-| PROC-45 | Add step-up authentication for high-risk transactions | R-01 |
+| PROC-43 | Add step-up authentication for high-risk transactions | R-01 |
 | PROC-29 | Add real-time vulnerability correlation to SAST/DAST | R-02 |
 | PROC-03 | Add training data provenance validation before training | R-03 |
 | PROC-06 | Add patch authenticity verification via SBOM comparison | R-04 |
 | PROC-10 | Add HR system authentication before provisioning | R-05 |
-| PROC-48 | Add pipeline integrity controls with signed commits | R-06 |
+| PROC-46 | Add pipeline integrity controls with signed commits | R-06 |
 | PROC-22 | Add model inversion resistance testing | R-08 |
 
 ---
@@ -511,12 +511,12 @@ The following new/refined UCs are required to address HIGH+ risks:
 
 The following UCs will be added to Doc 13 (Use Cases Catalog) as a result of the Risk Cycle:
 
-1. **PROC-45.1**: Enforce FIDO2 Hardware Keys for Privileged Access
+1. **PROC-43.1**: Enforce FIDO2 Hardware Keys for Privileged Access
 2. **PROC-29.1**: Integrate SAST/DAST with Real-Time Vulnerability Correlation
 3. **PROC-03.1**: Validate AI Training Data Provenance Before Training
 4. **PROC-06.1**: Verify Patch Authenticity via SBOM Comparison
 5. **PROC-10.1**: Authenticate HR System for Identity Provisioning
-6. **PROC-48.1**: Implement Pipeline Integrity with Signed Commits
+6. **PROC-46.1**: Implement Pipeline Integrity with Signed Commits
 7. **PROC-22.1**: Test Model Inversion Resistance Before Deployment
 8. **PROC-20.1**: Apply K-Anonymity and L-Diversity to Minimized Data
 9. **CAP-03.1**: Classify and Control SBOM Access
@@ -525,7 +525,7 @@ The following UCs will be added to Doc 13 (Use Cases Catalog) as a result of the
 ### 8.2 Updated Relationships
 
 Relationships in Doc 13a (Use Case Relationships) will be updated:
-- PROC-45 «refine» PROC-45.1 (add FIDO2 hardware key detail)
+- PROC-43 «refine» PROC-43.1 (add FIDO2 hardware key detail)
 - PROC-29 «refine» PROC-29.1 (add real-time correlation detail)
 
 ---

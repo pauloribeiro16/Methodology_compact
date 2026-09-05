@@ -88,7 +88,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-02 |
 | **FR Description** | System SHALL enforce MFA for all privileged access, remote access, and AI system access with step-up authentication for high-risk financial transactions |
-| **Source UC** | PROC-45 |
+| **Source UC** | PROC-43 |
 | **Source Node** | D-03.2.1 |
 | **Source Rule** | CR-D-03.2-001 |
 | **Domain** | IAM |
@@ -103,7 +103,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-03 |
 | **FR Description** | System SHALL support FIDO2/WebAuthn for phishing-resistant MFA across all user-facing applications |
-| **Source UC** | PROC-47 |
+| **Source UC** | PROC-45 |
 | **Source Node** | D-03.2.2 |
 | **Source Rule** | BPR-D-03.2-001 |
 | **Domain** | IAM |
@@ -148,7 +148,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-06 |
 | **FR Description** | System SHALL manage access to AI model training data, inference endpoints, and parameter changes with MFA and least privilege |
-| **Source UC** | PROC-46 |
+| **Source UC** | PROC-44 |
 | **Source Node** | D-03.2.1 |
 | **Source Rule** | CR-D-03.1-001, CR-D-03.2-001 |
 | **Domain** | IAM |
@@ -163,7 +163,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-07 |
 | **FR Description** | System SHALL require dual approval for high-risk AI model parameter changes with independent oversight |
-| **Source UC** | PROC-46.1 |
+| **Source UC** | PROC-44.1 |
 | **Source Node** | D-03.3.1 |
 | **Source Rule** | CR-D-03.3-001 |
 | **Domain** | IAM |
@@ -223,7 +223,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-11 |
 | **FR Description** | System SHALL support hardware security keys for privileged accounts with phishing-resistant authentication |
-| **Source UC** | PROC-47 |
+| **Source UC** | PROC-45 |
 | **Source Node** | D-03.2.2 |
 | **Source Rule** | BPR-D-03.2-001 |
 | **Domain** | IAM |
@@ -255,7 +255,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-13 |
 | **FR Description** | System SHALL encrypt all personal, financial, and AI training data at rest using AES-256 or stronger |
-| **Source UC** | PROC-41, PROC-43 |
+| **Source UC** | PROC-39, PROC-41 |
 | **Source Node** | D-01.1.1, D-01.1.2 |
 | **Source Rule** | CR-D-01.1-001 |
 | **Domain** | DP |
@@ -270,7 +270,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-14 |
 | **FR Description** | System SHALL implement field-level encryption for PII fields and AI training datasets |
-| **Source UC** | PROC-43 |
+| **Source UC** | PROC-41 |
 | **Source Node** | D-01.1.2 |
 | **Source Rule** | CR-D-01.1-001 |
 | **Domain** | DP |
@@ -285,7 +285,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-15 |
 | **FR Description** | System SHALL encrypt all data in transit using TLS 1.3 with HSTS and certificate pinning |
-| **Source UC** | PROC-42 |
+| **Source UC** | PROC-40 |
 | **Source Node** | D-01.2.1, D-01.2.2, D-01.2.3 |
 | **Source Rule** | CR-D-01.2-001 |
 | **Domain** | DP |
@@ -360,7 +360,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-20 |
 | **FR Description** | System SHALL execute cryptographic sharding-based erasure within 30 days of request, destroying PII keys while preserving audit log structure |
-| **Source UC** | UC-33, UC-33.1 |
+| **Source UC** | UC-01, UC-01.1 |
 | **Source Node** | D-05.3.1 |
 | **Source Rule** | CR-D-05.3-001 |
 | **Domain** | DP |
@@ -375,7 +375,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-21 |
 | **FR Description** | System SHALL export data in machine-readable formats (JSON, CSV) including AI model decisions and credit scoring factors within 30 days |
-| **Source UC** | UC-34, UC-34.1 |
+| **Source UC** | UC-02, UC-02.1 |
 | **Source Node** | D-05.4.1 |
 | **Source Rule** | CR-D-05.4-001 |
 | **Domain** | DP |
@@ -405,7 +405,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-23 |
 | **FR Description** | System SHALL notify third-party data processors of erasure requests and verify compliance within 72 hours |
-| **Source UC** | UC-33 |
+| **Source UC** | UC-01 |
 | **Source Node** | D-05.3.1 |
 | **Source Rule** | CR-D-05.3-001 |
 | **Domain** | DP |
@@ -602,7 +602,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-36 |
 | **FR Description** | System SHALL detect AI model drift hourly with automated retraining triggered within 4 hours of threshold breach |
-| **Source UC** | PROC-52, PROC-52.1 |
+| **Source UC** | PROC-50, PROC-50.1 |
 | **Source Node** | D-10.1.2 |
 | **Source Rule** | BPR-D-12.2-001 |
 | **Domain** | SEC |
@@ -632,7 +632,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-38 |
 | **FR Description** | System SHALL deploy 24/7 continuous security monitoring with AI-powered threat detection across all systems and AI pipelines |
-| **Source UC** | PROC-51, PROC-51.1 |
+| **Source UC** | PROC-49, PROC-49.1 |
 | **Source Node** | D-10.1.1 |
 | **Source Rule** | CR-D-10.1-001 |
 | **Domain** | SEC |
@@ -739,7 +739,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-45 |
 | **FR Description** | System SHALL implement privacy and security by design per CRA secure-by-default standard with threat modeling and AI ethical design reviews |
-| **Source UC** | PROC-28, PROC-49 |
+| **Source UC** | PROC-28, PROC-47 |
 | **Source Node** | D-07.1.1, D-07.1.2 |
 | **Source Rule** | CR-D-07.1-001 |
 | **Domain** | DEV |
@@ -769,7 +769,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-47 |
 | **FR Description** | System SHALL enforce automated security gates (SAST, DAST, SCA, secrets detection, IaC scanning) blocking deployment on critical findings |
-| **Source UC** | PROC-48, PROC-48.1 |
+| **Source UC** | PROC-46, PROC-46.1 |
 | **Source Node** | D-07.3.1, D-07.3.2 |
 | **Source Rule** | CR-D-07.3-001 |
 | **Domain** | DEV |
@@ -784,7 +784,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-48 |
 | **FR Description** | System SHALL enforce AI-specific deployment gates including model signing, bias testing, and adversarial robustness validation before production |
-| **Source UC** | PROC-48.1, PROC-49 |
+| **Source UC** | PROC-46.1, PROC-47 |
 | **Source Node** | D-07.3.2 |
 | **Source Rule** | CR-D-07.3-001, CR-D-07.1-001 |
 | **Domain** | DEV |
@@ -814,7 +814,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-50 |
 | **FR Description** | System SHALL scan infrastructure-as-code (IaC) for vulnerabilities before deployment using Checkov or equivalent |
-| **Source UC** | PROC-50 |
+| **Source UC** | PROC-48 |
 | **Source Node** | D-07.3.1 |
 | **Source Rule** | BPR-D-07.3-001 |
 | **Domain** | DEV |
@@ -859,7 +859,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-53 |
 | **FR Description** | System SHALL detect secrets and credentials in code repositories and pipeline configurations before deployment |
-| **Source UC** | PROC-48 |
+| **Source UC** | PROC-46 |
 | **Source Node** | D-07.3.1 |
 | **Source Rule** | CR-D-07.3-001 |
 | **Domain** | DEV |
@@ -874,7 +874,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-54 |
 | **FR Description** | System SHALL secure AI training pipeline including data validation, model signing, artifact verification, and deployment approval |
-| **Source UC** | PROC-49 |
+| **Source UC** | PROC-47 |
 | **Source Node** | D-07.3.2 |
 | **Source Rule** | CR-D-07.1-001, CR-D-07.3-001 |
 | **Domain** | DEV |
@@ -1161,8 +1161,8 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 
 | Source | FRs Generated |
 |--------|----------------|
-| PROC-41, PROC-43 | FR-72, FR-02 |
-| PROC-42 | FR-72 |
+| PROC-39, PROC-41 | FR-72, FR-02 |
+| PROC-40 | FR-72 |
 | PROC-02, PROC-04 | FR-72, FR-14 |
 | PROC-03, CAP-08 | FR-72 |
 | PROC-05, CAP-01 | FR-72 |
@@ -1171,9 +1171,9 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 | PROC-08, PROC-08.1, PROC-08.2 | FR-72 |
 | PROC-09 | FR-72 |
 | PROC-10, PROC-13 | FR-72, FR-05, FR-08, FR-10 |
-| PROC-45, PROC-47 | FR-72, FR-03, FR-11 |
+| PROC-43, PROC-45 | FR-72, FR-03, FR-11 |
 | PROC-11, PROC-11.1 | FR-72, FR-09, FR-12 |
-| PROC-46, PROC-46.1 | FR-72, FR-07 |
+| PROC-44, PROC-44.1 | FR-72, FR-07 |
 | CAP-02, PROC-17 | FR-72, FR-14, FR-15 |
 | PROC-14, PROC-16 | FR-72, FR-18 |
 | PROC-15 (all specializations) | FR-72 |
@@ -1181,17 +1181,17 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 | PROC-18 | FR-72 |
 | PROC-20, PROC-22 | FR-72, FR-10, FR-12 |
 | PROC-21 | FR-72, FR-13 |
-| UC-33, UC-33.1 | FR-72, FR-11 |
-| UC-34, UC-34.1 | FR-72 |
+| UC-01, UC-01.1 | FR-72, FR-11 |
+| UC-02, UC-02.1 | FR-72 |
 | PROC-24, PROC-24.1, UC-37-DORA | FR-72 |
 | CAP-03 | FR-72 |
 | PROC-25, UC-39-DORA | FR-72 |
 | PROC-26 | FR-72 |
-| PROC-28, PROC-49 | FR-72, FR-08, FR-10 |
+| PROC-28, PROC-47 | FR-72, FR-08, FR-10 |
 | PROC-29, PROC-29.1 | FR-72 |
-| PROC-48, PROC-48.1 | FR-72, FR-04, FR-09 |
+| PROC-46, PROC-46.1 | FR-72, FR-04, FR-09 |
 | PROC-30 | FR-72 |
-| PROC-50 | FR-72 |
+| PROC-48 | FR-72 |
 | PROC-31, UC-48-Online, UC-48-Classroom | FR-72, FR-02 |
 | CAP-04, UC-49-AI | FR-72, FR-05 |
 | PROC-32 | FR-72, FR-12 |
@@ -1201,10 +1201,10 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 | CAP-06 | FR-72 |
 | CAP-07, CAP-07.1 | FR-72 |
 | PROC-35 | FR-72 |
-| PROC-51, PROC-51.1 | FR-72 |
+| PROC-49, PROC-49.1 | FR-72 |
 | CAP-10 | FR-72 |
 | PROC-36, PROC-37, PROC-37.1 | FR-72 |
-| PROC-52, PROC-52.1 | FR-72 |
+| PROC-50, PROC-50.1 | FR-72 |
 | PROC-38 | FR-72 |
 
 ---

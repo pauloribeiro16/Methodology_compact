@@ -44,7 +44,7 @@ Each node follows this structure:
 | Description | Brief description | |
 | Decomposition Level | L1, L2, L3 | L2 |
 | Track | Implementation approach | TECHNOLOGY, PROCESS, CAPABILITY_SUBREQ |
-| Related Use Cases | Linked use cases | PROC-41, PROC-42 |
+| Related Use Cases | Linked use cases | PROC-39, PROC-40 |
 | Related Rules | Compliance rules | CR-D-01.1-001 |
 | Parent Node | Hierarchical parent (if any) | |
 | Child Nodes | Hierarchical children (if any) | |
@@ -73,7 +73,7 @@ Each node follows this structure:
 
 | Node ID | Node Name | Description | Level | Track | Related Use Cases | Related Rules |
 |---------|-----------|-------------|-------|-------|-------------------|---------------|
-| NODE-TECH-001 | Encryption Management System | Centralized encryption management with AES-256 at rest and TLS 1.3 in transit | L1 | TECHNOLOGY | PROC-41, PROC-42, PROC-43 | CR-D-01.1-001, CR-D-01.2-001 |
+| NODE-TECH-001 | Encryption Management System | Centralized encryption management with AES-256 at rest and TLS 1.3 in transit | L1 | TECHNOLOGY | PROC-39, PROC-40, PROC-41 | CR-D-01.1-001, CR-D-01.2-001 |
 | NODE-TECH-002 | HSM Key Management Service | HSM-backed cryptographic key lifecycle management | L2 | TECHNOLOGY | PROC-02, PROC-04 | CR-D-01.3-001 |
 | NODE-TECH-003 | AI Model Integrity Service | AI model integrity validation with checksums and version control | L2 | TECHNOLOGY | PROC-03, CAP-08 | CR-D-01.4-001 |
 
@@ -90,8 +90,8 @@ Each node follows this structure:
 
 | Node ID | Node Name | Description | Level | Track | Related Use Cases | Related Rules |
 |---------|-----------|-------------|-------|-------|-------------------|---------------|
-| NODE-TECH-008 | Identity and Access Management Platform | Unified identity management with MFA across all systems | L1 | TECHNOLOGY | PROC-10, PROC-45, PROC-11, PROC-13 | CR-D-03.1-001, CR-D-03.2-001 |
-| NODE-TECH-009 | MFA Enforcement Service | MFA enforcement for privileged and AI system access | L2 | TECHNOLOGY | PROC-45, PROC-47 | CR-D-03.2-001 |
+| NODE-TECH-008 | Identity and Access Management Platform | Unified identity management with MFA across all systems | L1 | TECHNOLOGY | PROC-10, PROC-43, PROC-11, PROC-13 | CR-D-03.1-001, CR-D-03.2-001 |
+| NODE-TECH-009 | MFA Enforcement Service | MFA enforcement for privileged and AI system access | L2 | TECHNOLOGY | PROC-43, PROC-45 | CR-D-03.2-001 |
 | NODE-TECH-010 | Access Review Automation | Least privilege with quarterly access reviews | L2 | TECHNOLOGY | PROC-11 | CR-D-03.3-001 |
 | NODE-TECH-011 | Configuration Hardening Service | CIS Benchmarks L2 configuration enforcement | L1 | TECHNOLOGY | PROC-12 | CR-D-03.4-001 |
 
@@ -107,8 +107,8 @@ Each node follows this structure:
 
 | Node ID | Node Name | Description | Level | Track | Related Use Cases | Related Rules |
 |---------|-----------|-------------|-------|-------|-------------------|---------------|
-| NODE-TECH-015 | Data Lifecycle Management Platform | Centralized data lifecycle management | L1 | TECHNOLOGY | PROC-20, PROC-21, UC-33, UC-34, PROC-22 | CR-D-05.1-001, CR-D-05.2-001, CR-D-05.3-001, CR-D-05.4-001 |
-| NODE-TECH-016 | Cryptographic Erasure Service | Cryptographic sharding-based erasure | L2 | TECHNOLOGY | UC-33 | CR-D-05.3-001 |
+| NODE-TECH-015 | Data Lifecycle Management Platform | Centralized data lifecycle management | L1 | TECHNOLOGY | PROC-20, PROC-21, UC-01, UC-02, PROC-22 | CR-D-05.1-001, CR-D-05.2-001, CR-D-05.3-001, CR-D-05.4-001 |
+| NODE-TECH-016 | Cryptographic Erasure Service | Cryptographic sharding-based erasure | L2 | TECHNOLOGY | UC-01 | CR-D-05.3-001 |
 | NODE-TECH-017 | AI Training Data Management | AI training data lifecycle management | L2 | TECHNOLOGY | PROC-20, PROC-22 | CR-D-05.1-001, CR-D-05.2-001 |
 
 ### 4.6 Supply Chain
@@ -121,8 +121,8 @@ Each node follows this structure:
 
 | Node ID | Node Name | Description | Level | Track | Related Use Cases | Related Rules |
 |---------|-----------|-------------|-------|-------|-------------------|---------------|
-| NODE-TECH-019 | AI-Powered Security Monitoring Platform | 24/7 monitoring with AI-powered threat detection | L1 | TECHNOLOGY | PROC-51, PROC-52, PROC-38 | CR-D-10.1-001 |
-| NODE-TECH-020 | AI Model Drift Detection Module | AI model performance drift detection | L2 | TECHNOLOGY | PROC-52 | BPR-D-12.2-001 |
+| NODE-TECH-019 | AI-Powered Security Monitoring Platform | 24/7 monitoring with AI-powered threat detection | L1 | TECHNOLOGY | PROC-49, PROC-50, PROC-38 | CR-D-10.1-001 |
+| NODE-TECH-020 | AI Model Drift Detection Module | AI model performance drift detection | L2 | TECHNOLOGY | PROC-50 | BPR-D-12.2-001 |
 | NODE-TECH-021 | Immutable Audit Logging System | Immutable audit logs with cryptographic sharding | L1 | TECHNOLOGY | CAP-10, PROC-38 | CR-D-10.2-001 |
 
 ---
@@ -141,7 +141,7 @@ Each node follows this structure:
 | --------- | ----------- | ------------- | ------- | ------- | ------------------- | --------------- | --- |
 | NODE-PROC-002 | Vulnerability Disclosure Process | Coordinated vulnerability disclosure with ENISA/CSIRT | L1 | PROCESS | PROC-07 | CR-D-02.3-001 | PF: GV.PO-P5,ID.IM-P7 |
 | NODE-PROC-003 | Vulnerability Register Maintenance | Centralized vulnerability register maintenance | L2 | PROCESS | CAP-01 | BPR-D-02.1-001 | — |
-| NODE-PROC-004 | SBOM Generation Process | Software Bill of Materials generation process | L2 | PROCESS | PROC-44 | BPR-D-02.2-001 | — |
+| NODE-PROC-004 | SBOM Generation Process | Software Bill of Materials generation process | L2 | PROCESS | PROC-42 | BPR-D-02.2-001 | — |
 
 ### 5.3 Incident Response
 
@@ -166,7 +166,7 @@ Each node follows this structure:
 
 | Node ID | Node Name | Description | Level | Track | Related Use Cases | Related Rules | NIST Anchors |
 | --------- | ----------- | ------------- | ------- | ------- | ------------------- | --------------- | --- |
-| NODE-PROC-014 | Secure Development Lifecycle | Privacy and security by design implementation | L1 | PROCESS | PROC-28, PROC-29, PROC-48, PROC-30, PROC-49, PROC-50 | CR-D-07.1-001, CR-D-07.2-001, CR-D-07.3-001, CR-D-07.4-001 | CSF: ID.RA-01,PR.PS-02,PR.PS-06 | PF: CT.DP-P2,CT.DP-P5,CT.PO-P4,GV.PO-P2,ID.RA-P3 |
+| NODE-PROC-014 | Secure Development Lifecycle | Privacy and security by design implementation | L1 | PROCESS | PROC-28, PROC-29, PROC-46, PROC-30, PROC-47, PROC-48 | CR-D-07.1-001, CR-D-07.2-001, CR-D-07.3-001, CR-D-07.4-001 | CSF: ID.RA-01,PR.PS-02,PR.PS-06 | PF: CT.DP-P2,CT.DP-P5,CT.PO-P4,GV.PO-P2,ID.RA-P3 |
 
 ### 5.6 Human Factors
 
@@ -193,7 +193,7 @@ Each node follows this structure:
 | Node ID | Node Name | Description | Level | Track | Related Use Cases | Related Rules | NIST Anchors |
 | --------- | ----------- | ------------- | ------- | ------- | ------------------- | --------------- | --- |
 | NODE-SYS-001 | SIEM Platform | Security information and event management | L1 | IT_SYSTEM | CAP-02, PROC-17 | CR-D-10.1-001 | CSF: DE.AE-02,DE.CM-01,DE.CM-09 | PF: CM.AW-P7 | AI: GOVERN-1.5,MANAGE-4.1,MEASURE-2.4,MEASURE-3.1,MEASURE-4.1 |
-| NODE-SYS-002 | Identity Provider (IdP) | Central identity management system | L1 | IT_SYSTEM | PROC-10, PROC-45, PROC-13 | CR-D-03.1-001 | — |
+| NODE-SYS-002 | Identity Provider (IdP) | Central identity management system | L1 | IT_SYSTEM | PROC-10, PROC-43, PROC-13 | CR-D-03.1-001 | — |
 | NODE-SYS-003 | GRC Platform | Governance, risk, and compliance platform | L1 | IT_SYSTEM | CAP-05, PROC-34, PROC-35 | CR-D-09.1-001 | CSF: GV.PO-01,GV.PO-02 | PF: CM.PO-P1,GV.PO-P1,GV.PO-P5 | AI: GOVERN-1.1,GOVERN-1.3,GOVERN-1.4,GOVERN-1.6,GOVERN-2.1 |
 
 ---
@@ -203,7 +203,7 @@ Each node follows this structure:
 | Node ID | Node Name | Description | Level | Track | Related Use Cases | Required Competencies | NIST Anchors |
 | --------- | ----------- | ------------- | ------- | ------- | ------------------- | ---------------------- | --- |
 | NODE-ROLE-001 | CISO | Chief Information Security Officer | L1 | HUMAN_ROLE | CAP-05, PROC-34 | Security leadership, risk management | — |
-| NODE-ROLE-002 | Data Protection Officer | GDPR compliance and privacy oversight | L1 | HUMAN_ROLE | PROC-01, PROC-20, UC-33 | GDPR, privacy law | — |
+| NODE-ROLE-002 | Data Protection Officer | GDPR compliance and privacy oversight | L1 | HUMAN_ROLE | PROC-01, PROC-20, UC-01 | GDPR, privacy law | — |
 | NODE-ROLE-003 | AI Governance Lead | AI governance and oversight | L2 | HUMAN_ROLE | PROC-34, CAP-07 | AI Act, ML governance | — |
 
 ---
@@ -214,7 +214,7 @@ Each node follows this structure:
 |---------|-----------|-------------|-------|-------|-------------------|---------------|
 | NODE-CS-001 | Multi-Regulation Incident Correlation | Correlates incident data across all 5 regulations | L1 | CAPABILITY_SUBREQ | PROC-15 | CR-D-04.3-001 |
 | NODE-CS-002 | AI Decision Audit Trail | AI decision traceability across regulatory frameworks | L1 | CAPABILITY_SUBREQ | CAP-10, PROC-38 | AI-C09, AI-C10 |
-| NODE-CS-003 | Cryptographic Sharding Engine | Enables GDPR erasure and DORA log retention simultaneously | L1 | CAPABILITY_SUBREQ | UC-33, CAP-10 | CR-D-05.3-001, CR-D-10.2-001 |
+| NODE-CS-003 | Cryptographic Sharding Engine | Enables GDPR erasure and DORA log retention simultaneously | L1 | CAPABILITY_SUBREQ | UC-01, CAP-10 | CR-D-05.3-001, CR-D-10.2-001 |
 
 ---
 
