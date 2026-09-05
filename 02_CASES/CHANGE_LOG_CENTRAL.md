@@ -14,6 +14,17 @@
 | Volere FR pilot (C2) | Case_02 `Doc29_Functional_Requirements.md`: new `Fit Criterion` column between Verification Method and Priority. 6 FRs from operator-aligned topics (FR-03/04/09/12/13/26) + 1 repeatability (FR-72 AI domain) received measurable thresholds (100%/30s/16min windows, schema validation, automated detection). 3 gates PASS unchanged. |
 | Out of scope | Ontologies, dashboards, folios, KG reflection, realisation_class tag waves C2/C3. Briefing pack for items 1–4 (P7 queue) delivered as `P7_BRIEFING_PACK_2026-09-05.md` for human decision. |
 
+## 1.5 2026-09-05 — UML DIAGRAMS (use case diagrams + sequence annex)
+
+| Item | Value |
+|------|-------|
+| Convention | rubric v1.7 §5C.5 — useCaseDiagram (Mermaid ≥ v11.6) system-wide + per package, actors from card Primary Actor/Stakeholders, include/extend only from card Extensions; sequence diagrams annex-only (Annex B per case, 1-line pointer in card) |
+| Use case diagrams | 25 (C1 12 · C2 6 · C3 7) in `annexes/A_Use_Case_Diagrams.md`; C1 old graph-style diagrams converted; C2/C3 stubs populated |
+| Sequence extraction | 80 sequenceDiagrams extracted from catalogs → `annexes/B_Sequence_Diagrams.md` (C1 23 · C2 26 · C3 31); catalogs keep pointers; `scripts/extract_sequence_diagrams.py` idempotent |
+| Verification | 3 gates PASS; audit 100/100/100 maintained; 0 inline sequenceDiagram remaining |
+
+---
+
 ## 1.4 2026-09-05 — Realization Class tag waves + Objectives tagging + CAP maturity + F5 fixes
 
 | Item | Value |
