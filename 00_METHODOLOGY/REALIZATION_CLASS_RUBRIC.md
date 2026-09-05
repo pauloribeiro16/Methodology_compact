@@ -2,7 +2,7 @@
 document_id: AEGIS-METHODOLOGY-REALIZATION-CLASS-RUBRIC
 title: AEGIS Realization Class Rubric (Phase 2 Rule Attribute)
 phase: Cross-phase
-version: 1.5
+version: 1.6
 created: 2026-09-05
 updated: 2026-09-05
 author: Executor
@@ -261,3 +261,25 @@ Divergence example: a rule ISO-anchored to A.8.10 (technological theme) can legi
 | 1.3 | 2026-09-05 | Orchestrator | §5B Lane Nomenclature added: UC-* reserved for TECHNOLOGY; PROC-NN / CAP-NN for PROCESS / CAPABILITY (human decision 2026-09-05; supersedes Case_01 Doc20 §6.1 ID-continuity freeze) |
 | 1.4 | 2026-09-05 | Orchestrator | §5C Lane Card Schemas added: PROC card (SSDF-style) and CAP card (C2M2/ArchiMate-style); traceability chain RULE → CAP → PROC → UC |
 | 1.5 | 2026-09-05 | Orchestrator | §5C.4 Lane Card Diagrams added: PROC → Mermaid flowchart TD (activities + decision branches); CAP → Mermaid graph LR (span + realises); content sourced faithfully from catalogue scenarios/extensions |
+
+## §6C Traceability Audit Shape (normative)
+
+The trace chain `OBJECTIVE ↔ CONTROL ↔ USE-CASE` is normative for every AEGIS case.
+Any link in the chain that is missing is a finding.
+
+| Direction | Invariant | Where it lives |
+|---|---|---|
+| OBJECTIVE → CONTROL | every OBJECTIVE cites ≥1 CONTROL | Doc16/Doc17 objectives doc; back-link via Doc18/Doc19 trace strings |
+| CONTROL → OBJECTIVE | every CONTROL cites ≥1 OBJECTIVE back-link | Doc18/Doc19 cards (Dependencies / Traceability field); control_set.yaml `traceability` |
+| UC → OBJECTIVE+CONTROL | every UC (compliance lane + functional lane) references both | Doc20/21/22 catalog cards (Related Rules + Related Goals) and Doc31/32 lane cards (Realises) |
+
+**Id-space note (Case_03).** The objective layer in Case_03 (Doc17) uses the Phase-1
+`AG-D-XX.Y-NNN` namespace directly, aliased onto the PO/SO role. Treat `AG-D-*` as
+equivalent to PO/SO for all audit purposes. No rename is in scope (the downstream
+cascade is bounded by the AG-D boundary and the existing chains are intact).
+
+**Audit instrument.** `scripts/traceability_audit.py` reads the artefacts and emits
+three ratios per case (`obj→ctrl coverage`, `ctrl→obj back-link coverage`,
+`uc→obj coverage`) plus an ordered gap list. It does not write.
+
+| 1.6 | 2026-09-05 | Orchestrator | §6C Traceability Audit Shape added: OBJ↔CTRL↔UC chain normative; standard ratios (obj→ctrl / ctrl→obj / uc→obj); AG-D treated as PO/SO alias in Case_03 (id-space note); `scripts/traceability_audit.py` read-only instrument |

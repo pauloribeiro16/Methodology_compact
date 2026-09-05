@@ -62,15 +62,15 @@ Privacy objectives are derived from obligations related to data protection, data
 | AG-D-01.1-001 | Personal, financial, and AI model data in persistent storage protected by confidentiality mechanisms with segregated cryptographic material management across all storage systems | OBL-D-01.1-001 | MEDIUM | CRITICAL | PR.DS-01, PR.DS-02, PR.DS-10, PR.IR-01 | PR.DS-P1 | MANAGE-2.1, MAP-2.1 |
 | AG-D-01.2-001 | Data crossing network boundaries protected by confidentiality mechanisms appropriate to channel classification | OBL-D-01.2-001 | MEDIUM | HIGH | — | PR.DS-P2 | MAP-2.1 |
 | AG-D-01.3-001 | Cryptographic material custody with documented lifecycle controls | OBL-D-01.3-001 | MEDIUM | HIGH | — | PR.DS-P3 | — |
-| AG-D-01.4-001 | Ensure data integrity and resilience of AI systems against manipulation | OBL-D-01.4-001 | MEDIUM | HIGH | — | PR.DS-P3 | MEASURE-2.5 |
+| AG-D-01.4-001 | Ensure data integrity and resilience of AI systems against manipulation | OBL-D-01.4-001 | MEDIUM | HIGH | — | PR.DS-P3 | **[→ CR-D-01.4-001]** MEASURE-2.5 |
 
 ### 3.2 D-05: Data Lifecycle
 
 | Objective ID | Objective Description | Source Obligations | Risk Profile | Priority | CSF Anchors | PF Anchors | AI RMF Anchors |
 | --------- | ----------------- | ------------------- | -------------- | ---------- | --- | --- | --- |
-| AG-D-05.1-001 | Minimize data collection to essential fields; ensure AI training data relevance and representativeness | OBL-D-05.1-001 | MEDIUM | HIGH | — | CT.PO-P1, ID.IM-P1 | MAP-1.5, MAP-3.1 |
-| AG-D-05.2-001 | Enforce retention policies per regulatory requirements (5-10 years financial, 6 months AI logs) | OBL-D-05.2-001 | HIGH | CRITICAL | — | CT.DM-P2, GV.RM-P1 | MANAGE-2.4 |
-| AG-D-05.3-001 | Enable complete data erasure via cryptographic sharding within 30 days of request | OBL-D-05.3-001 | HIGH | CRITICAL | PR.DS-01, PR.PS-01 | CT.DM-P3 | — |
+| AG-D-05.1-001 | Minimize data collection to essential fields; ensure AI training data relevance and representativeness | OBL-D-05.1-001 | MEDIUM | HIGH | — | CT.PO-P1, ID.IM-P1 | **[→ CR-D-05.1-001]** MAP-1.5, MAP-3.1 |
+| AG-D-05.2-001 | Enforce retention policies per regulatory requirements (5-10 years financial, 6 months AI logs) | OBL-D-05.2-001 | HIGH | CRITICAL | — | CT.DM-P2, GV.RM-P1 | **[→ CR-D-05.2-001]** MANAGE-2.4 |
+| AG-D-05.3-001 | Enable complete data erasure via cryptographic sharding within 30 days of request | OBL-D-05.3-001 | HIGH | CRITICAL | PR.DS-01, PR.PS-01 | CT.DM-P3 | **[→ CR-D-05.3-001]** — |
 | AG-D-05.4-001 | Provide data export in machine-readable formats within regulatory SLAs | OBL-D-05.4-001 | LOW | MODERATE | — | CT.PO-P2 | MAP-1.6 |
 
 ### 3.3 D-07: Secure Development
