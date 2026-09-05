@@ -12,10 +12,10 @@ inputs:
   - ../../../03_REFERENCE_MATERIAL/Framework_Mappings/Framework_Crosswalk_ARM.md
   - ../../../00_METHODOLOGY/PREPROCESSING_by_domain/_global/NIST_PF_1.0_subcategories.md
   - ../../../00_METHODOLOGY/PREPROCESSING/NIST_AI_RMF_1.0_subcategories.md
-  - ../../../00_METHODOLOGY/PREPROCESSING/NIST_CSF_2.0_subcategories.md
-  - ../../../00_METHODOLOGY/PREPROCESSING/Regulation/GDPR/02b_SecurityRules_NISTPF.md
-  - ../../01_PHASE1_CONTEXT_RICH/07b_Proportionality_Profile.md
-  - ../../01_PHASE1_CONTEXT_RICH/04b_Security_Posture.md
+  - ../../../00_METHODOLOGY/PREPROCESSING_by_domain/CONTROLS/NIST_CSF_2.0/CSF_2.0.json (frozen canonical)
+  - ../../../00_METHODOLOGY/PREPROCESSING_by_domain/CONTROLS/NIST_PF/**/*.json (PF 1.0 frozen canonical, 100 subcats)
+  - ../../01_PHASE1_CONTEXT_RICH/Doc12_Proportionality_Profile.md
+  - ../../01_PHASE1_CONTEXT_RICH/Doc05_Security_Posture.md
 outputs: [Phase 3 inputs, 12_Rules_Catalog.xlsx]
 traceability: AEGIS Framework Mapping Layer (CSF 2.0 + Privacy FW 1.0)
 related_documents: 11_Rules_Catalog.md, 12_Rules_Catalog.xlsx, 04b_Security_Posture.md

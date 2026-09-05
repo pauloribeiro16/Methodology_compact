@@ -22,7 +22,11 @@ full 800-53r5 column on the 3 framework matrices via idempotent generator; orpha
 ## 2. DEFERRED BY HUMAN DECISION (2026-09-05, documents-only scope) — Realization Class follow-ups
 
 Committed as `2948fb8` (rubric v1.2 + C1 tag wave, T17/P23/C6, 9 secondaries). Deferred:
-- [ ] `phase2_ontology.yaml` application (enum RealizationClass + attrs) — ⚠ human reversed an agent re-restoration 2×; ontologies OFF-limits until reopened
+- [ ] **`phase2_ontology.yaml` application** (enum `RealizationClass` + attrs)
+  - **C1**: untouched since `2948fb8`; freeze respected.
+  - **C2**: `phase2_ontology.yaml` was **created** by `468c500` (PORT-PARITY-2 F4, 2026-09-04), BEFORE the Realization Class freeze. Unchanged since. Confirmed: **no `realization_class` / `RealizationClass` entry** in the file → freeze respected retroactively. See `PHASE2_ONTOLOGY_HISTORY.md` in C2 P2 root.
+  - **C3**: same as C2, file created by `491cf74` (PORT-PARITY-2 F4). No `realization_class` entry. See `PHASE2_ONTOLOGY_HISTORY.md` in C3 P2 root.
+  - Net: zero ontological regression. The freeze stands for all post-`2948fb8` work; reopening requires a new P7 decision.
 - [ ] Tag waves C2 (55 rules) and C3 (78 rules)
 - [ ] Phase 3 realization lanes + lane views of allocation (process models, capability cards anchored to maturity model v1.6)
 - [ ] Dashboards + `data/` mirrors regeneration (`phase2_graph.json`, `phase2_ontology.compact.json`)
@@ -52,8 +56,14 @@ Independent verdict CLEAN-WITH-FINDINGS (`02_CASES/PORT_PARITY2_VERIFICATION_REP
 - [ ] D-07.2 coverage decision (4 orphan obligations C1, mitigated by BPR-D-07.2-001 N/A marker)
 - [ ] Phantom refs left untouched (PORT-PARITY-2 deliberate)
 - [ ] P1 dashboard: 4 upstream drifts (KG-vs-view) + 2 cosmetic items
-- [ ] Folio IV MATURITY column "—" debt (gridMaturityClass deferred case)
-- [ ] Case_01 UNMAPPED leftovers (folded into ALT-ANCHOR where markers; still open): `NIST_ANCHORS.md` goals_anchored 27/31 under-count, Doc18:3104
+- [x] Folio IV MATURITY column "—" debt — **DONE in `2f29a7d`** (gridMaturityClass retired; evidence_ids badge in EV column)
+- [x] Case_01 `NIST_ANCHORS.md` goals_anchored — **DONE in ALT-ANCHOR C3 write-back** (now 28/31, residual 3 deferred)
+
+## 5B. PORT-PARITY-2 fix wave (residual from `02_CASES/PORT_PARITY2_VERIFICATION_REPORT.md`)
+
+- [x] **MAJOR-1** (Doc31 NFR false positive) — **closed by rebuttal**: validator `parse_cards` id-collision artifact, not a content defect (see verification report §74). No fix needed.
+- [x] **MAJOR-3** (C1 Doc19 stale references to `02b_Proportionality_Profile.md` / `04b_Security_Posture.md`) — **DONE 2026-09-05** (this commit): legacy names rewritten to point at `CONTROLS/NIST_PF/` and `Doc11 fields`; prose waiver added.
+- [x] **MAJOR-4** (C1 gate `/maturi/` false positive on Doc05/Doc12 metadata) — **DONE 2026-09-05** (this commit): gate waiver for `maturity_cur`/`maturity_tgt`/`MATURITY_MODEL_*` metadata identifiers (regex refined).
 
 ## 6. On-demand / dormant (no action unless asked)
 
