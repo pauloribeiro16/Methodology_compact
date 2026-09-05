@@ -12,6 +12,7 @@ outputs: [13_Use_Cases_Catalog.md (updated with new UCs), 16_Compliance_Gates_Re
 traceability: AEGIS Class Model → ThreatModel, RiskAnalysis, MitigationRequirement, RiskScore classes
 related_documents: 13_Use_Cases_Catalog.md, 23_Functional_Requirements.md, 24_Non_Functional_Requirements.md, 09_Strategic_Tensions_Report.md
 case_id: CASE-03-OMNIBANK
+case: Case_03_OmniBank_Financial
 complexity: Maximum (5 regulations, 38 sub-domains, 62 use cases, 48 threats, 20 risks)
 ---
 

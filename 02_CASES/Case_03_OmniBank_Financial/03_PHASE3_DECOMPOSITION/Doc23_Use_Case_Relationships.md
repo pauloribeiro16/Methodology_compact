@@ -2,9 +2,9 @@
 document_id: AEGIS-P3-13a
 title: Use Case Relationships
 phase: 3
-version: 1.0
+version: 1.1
 created: 2026-04-28
-updated: 2026-04-28
+updated: 2026-09-05
 author: Compliance Lead
 status: DRAFT
 inputs: [13_Use_Cases_Catalog.md, 11_Rules_Catalog.md]
@@ -12,7 +12,8 @@ outputs: [14_Architectural_Nodes.md, 15_Requirements_Allocation.md]
 traceability: AEGIS Class Model → UseCaseRelationship, RelationshipType, UseCase classes
 related_documents: 13_Use_Cases_Catalog.md, 13b_Use_Case_Variability.md
 case_id: CASE-03-OMNIBANK
-complexity: Maximum (5 regulations, 38 sub-domains, 62 use cases)
+case: Case_03_OmniBank_Financial
+complexity: Maximum (5 regulations, 38 sub-domains, 93 use cases)
 ---
 
 # Use Case Relationships
@@ -39,8 +40,10 @@ The relationships follow UML Use Case modeling conventions with stereotypes:
 
 | Metric | Value |
 |--------|-------|
-| **Total Use Cases** | 62 |
-| **Total Relationships** | 48 |
+| **Total Use Cases** | 93 (UC-01..93) |
+| **Lane distribution** | Technology (UC) 46 · Process (PROC-01..40) 40 · Capability (CAP-01..07) 7 — per `LANE_NAMING_CENSUS_v0` (Case_03) |
+| **Phantom supporting UCs** | 21 (UC-98..118 — relationships-only, technology lane) |
+| **Total Relationships** | 67 (48 compliance-lane + 19 product-journey §3.11) |
 | **«include» relationships** | 12 |
 | **«refine» relationships** | 14 |
 | **«extend» [`«alternative»`]`** | 8 |
@@ -51,6 +54,10 @@ The relationships follow UML Use Case modeling conventions with stereotypes:
 ---
 
 ## 3. RELATIONSHIP DEFINITIONS
+
+> **Phantom use cases (UC-98..118):** supporting system-behaviour UCs defined in relationships only
+> (no catalogue card in Doc22); documented per `LANE_NAMING_CENSUS_v0`. They keep UC- ids
+> (technology lane) and participate in «include» relationships throughout §3.
 
 ### 3.1 PKG-D-01: Data Protection & Encryption
 
@@ -123,7 +130,7 @@ The relationships follow UML Use Case modeling conventions with stereotypes:
 
 | Source UC | «specialization» For | Regulation | Purpose |
 |-----------|----------------------|------------|---------|
-| UC-16-DORA: Provision Identity (DORA) | PROC-10: Provision Identity | DORA | DORA-specific IAM controls for financial entities under ECB supervision |
+| PROC-10-DORA: Provision Identity (DORA) | PROC-10: Provision Identity | DORA | DORA-specific IAM controls for financial entities under ECB supervision |
 | UC-17-AI: Enforce MFA (AI Act) | UC-17: Enforce MFA | AI Act | AI Act-specific MFA for high-risk AI system access per Annex III |
 
 ---
@@ -150,9 +157,9 @@ The relationships follow UML Use Case modeling conventions with stereotypes:
 
 | Source UC | «specialization» For | Regulation | Purpose |
 |-----------|----------------------|------------|---------|
-| UC-25-NIS2: Notify NIS2 Authority | PROC-15: Universal Notification | NIS 2 | NIS 2-specific notification for essential entities to national CSIRT |
-| UC-25-CRA: Notify CRA Authority | PROC-15: Universal Notification | CRA | CRA-specific notification for product security incidents to ENISA |
-| UC-25-AI: Notify AI Act Authority | PROC-15: Universal Notification | AI Act | AI Act-specific notification for incidents involving high-risk AI systems |
+| PROC-15-NIS2: Notify NIS2 Authority | PROC-15: Universal Notification | NIS 2 | NIS 2-specific notification for essential entities to national CSIRT |
+| PROC-15-CRA: Notify CRA Authority | PROC-15: Universal Notification | CRA | CRA-specific notification for product security incidents to ENISA |
+| PROC-15-AI: Notify AI Act Authority | PROC-15: Universal Notification | AI Act | AI Act-specific notification for incidents involving high-risk AI systems |
 
 ---
 
@@ -176,8 +183,8 @@ The relationships follow UML Use Case modeling conventions with stereotypes:
 
 | Source UC | «alternative» With | Selection Criteria |
 |-----------|---------------------|-------------------|
-| UC-35-Auto: Automated Data Lifecycle | UC-35-Manual: Manual Data Lifecycle | When automation systems unavailable |
-| UC-32-Standard: Standard Retention | UC-32-Financial: Extended Financial Retention | When MiFID II 10-year retention applies |
+| PROC-22-Auto: Automated Data Lifecycle | PROC-22-Manual: Manual Data Lifecycle | When automation systems unavailable |
+| PROC-21-Standard: Standard Retention | PROC-21-Financial: Extended Financial Retention | When MiFID II 10-year retention applies |
 
 ---
 
@@ -200,8 +207,8 @@ The relationships follow UML Use Case modeling conventions with stereotypes:
 
 | Source UC | «specialization» For | Regulation | Purpose |
 |-----------|----------------------|------------|---------|
-| UC-37-DORA: Assess ICT Provider (DORA) | PROC-24: Assess ICT Provider | DORA | DORA-specific ICT risk assessment for financial entity third-party providers |
-| UC-39-DORA: Enforce Contract Terms (DORA) | PROC-25: Enforce Security Terms | DORA | DORA-specific contractual requirements for ICT third-party arrangements |
+| PROC-24-DORA: Assess ICT Provider (DORA) | PROC-24: Assess ICT Provider | DORA | DORA-specific ICT risk assessment for financial entity third-party providers |
+| PROC-25-DORA: Enforce Contract Terms (DORA) | PROC-25: Enforce Security Terms | DORA | DORA-specific contractual requirements for ICT third-party arrangements |
 
 ---
 
@@ -226,7 +233,7 @@ The relationships follow UML Use Case modeling conventions with stereotypes:
 
 | Source UC | «specialization» For | Regulation | Purpose |
 |-----------|----------------------|------------|---------|
-| UC-42-CRA: Secure-by-Design (CRA) | PROC-28: Implement Secure-by-Design | CRA | CRA secure-by-default standard (higher bar than GDPR) |
+| PROC-28-CRA: Secure-by-Design (CRA) | PROC-28: Implement Secure-by-Design | CRA | CRA secure-by-default standard (higher bar than GDPR) |
 | UC-44-NIS2: Secure CI/CD (NIS 2) | UC-44: Secure CI/CD | NIS 2 | NIS 2 secure development requirements for essential entities |
 
 ---
@@ -244,14 +251,14 @@ The relationships follow UML Use Case modeling conventions with stereotypes:
 
 | Source UC | «alternative» With | Selection Criteria |
 |-----------|---------------------|-------------------|
-| UC-48-Online: Online Training Delivery | UC-48-Classroom: Classroom Training | When employee location or schedule prevents classroom attendance |
-| UC-49-Standard: Standard Certification | UC-49-AI: AI-Specific Certification | When role involves AI system operation or oversight |
+| PROC-31-Online: Online Training Delivery | PROC-31-Classroom: Classroom Training | When employee location or schedule prevents classroom attendance |
+| CAP-04-Standard: Standard Certification | CAP-04-AI: AI-Specific Certification | When role involves AI system operation or oversight |
 
 **«specialization» Relationships:**
 
 | Source UC | «specialization» For | Regulation | Purpose |
 |-----------|----------------------|------------|---------|
-| UC-49-AI: AI Human Oversight | CAP-04: Security Competence | AI Act | AI Act-specific human oversight competence for high-risk AI decisions |
+| CAP-04-AI: AI Human Oversight | CAP-04: Security Competence | AI Act | AI Act-specific human oversight competence for high-risk AI decisions |
 
 ---
 
@@ -276,8 +283,8 @@ The relationships follow UML Use Case modeling conventions with stereotypes:
 
 | Source UC | «specialization» For | Regulation | Purpose |
 |-----------|----------------------|------------|---------|
-| UC-52-DORA: Maintain ISMS (DORA) | CAP-05: Maintain Unified ISMS | DORA | DORA-specific ISMS requirements for financial entities |
-| UC-53-GDPR: Execute DPIA | PROC-34: Execute IPSARA | GDPR | GDPR-specific DPIA for processing likely to result in high risk |
+| CAP-05-DORA: Maintain ISMS (DORA) | CAP-05: Maintain Unified ISMS | DORA | DORA-specific ISMS requirements for financial entities |
+| PROC-34-GDPR: Execute DPIA | PROC-34: Execute IPSARA | GDPR | GDPR-specific DPIA for processing likely to result in high risk |
 
 ---
 
@@ -303,7 +310,39 @@ The relationships follow UML Use Case modeling conventions with stereotypes:
 | Source UC | «alternative» With | Selection Criteria |
 |-----------|---------------------|-------------------|
 | UC-58-Cloud: Cloud Log Storage | UC-58-OnPrem: On-Premise Log Storage | When financial data sovereignty requires on-premise storage |
-| UC-59-Internal: Internal Pentest | UC-59-External: External Pentest | When independent verification required for regulatory examination |
+| PROC-36-Internal: Internal Pentest | PROC-36-External: External Pentest | When independent verification required for regulatory examination |
+
+### 3.11 Product Journey Relationships (PKG-A..F, UC-63..93)
+
+> Source: Doc22 §6B (Product Functional Use Cases). Journey relationships sequence the
+> OmniBank platform product chains (onboarding → banking core → lending → payments →
+> corporate → service). Lane note: PROC-39 (Underwriter Review) and PROC-40 (Complaint
+> Handling) are process-lane members of the product journeys per `LANE_NAMING_CENSUS_v0`.
+
+**Journey relationships:**
+
+| Source | Relationship | Target | Journey (Doc22 §6B) |
+|--------|--------------|--------|---------------------|
+| UC-69: Open Account via Mobile App | «include» | UC-70: eIDAS Identity Verification | PKG-A onboarding chain (UC-69 step 3) |
+| UC-69: Open Account via Mobile App | «include» | UC-71: KYC Document Upload & Vault Filing | PKG-A onboarding chain (UC-69 step 4) |
+| UC-69: Open Account via Mobile App | «include» | UC-72: Sanctions & PEP Screening | PKG-A onboarding chain (UC-69 step 5) |
+| UC-69: Open Account via Mobile App | «include» | UC-73: OmniScore Consent & Data-Use Acknowledgement | PKG-A onboarding chain (UC-69 step 5) |
+| UC-69: Open Account via Mobile App | «include» | UC-74: Tax Residency Self-Certification | PKG-A onboarding chain (UC-69 step 5) |
+| UC-70..UC-74: Onboarding chain | «precedes» | UC-75: Login with PSD2 SCA | Account activation + credential issuance before first SCA login (PKG-A → PKG-B) |
+| UC-75: Login with PSD2 SCA | «precedes» | UC-76..UC-80: Banking Core usage | Onboarded, SCA-bound access gates digital banking core (PKG-B) |
+| UC-69..UC-74: Onboarding chain | «precedes» | UC-63: Apply for Consumer Credit | Onboarded customer with verified identity is a UC-63 precondition (PKG-A → PKG-C) |
+| UC-73: OmniScore Consent Acknowledgement | «precedes» | UC-63: Apply for Consumer Credit | Consent record required before scoring (PKG-A → PKG-C) |
+| UC-63: Apply for Consumer Credit | «include» | UC-64: OmniScore Computes Credit Score | SYS-14 decisioning request triggers scoring (PKG-C) |
+| UC-64: OmniScore Computes Credit Score | «precedes» | UC-65: Customer Receives Score Explanation | Score bands route explanation (PKG-C) |
+| UC-63/UC-64: Credit application + OmniScore | «precedes» | UC-67: Customer Accepts Offer & Contract Signed | OmniScore feeds the lending decision (PKG-C) |
+| UC-67: Customer Accepts Offer & Contract Signed | «precedes» | UC-68: Customer Manages Repayment & Arrears View | Contract signed before repayment lifecycle (PKG-C) |
+| PROC-39: Underwriter Review | «extend» | UC-63: Apply for Consumer Credit | Manual/borderline path of the lending decision (PKG-C) |
+| UC-81: PSD2 Consent Grant/Revoke | «precedes» | UC-82: TPP Onboarding & AIS Access | Consent gates AIS access (PKG-D) |
+| UC-81: PSD2 Consent Grant/Revoke | «precedes» | UC-83: PIS Payment Initiation with SCA | Consent gates PIS initiation (PKG-D) |
+| UC-86: Corporate Onboarding with Delegated Users | «precedes» | UC-87/UC-88/UC-89: Treasury services | Corporate onboarding gates cash management, FX, trade finance (PKG-E) |
+| UC-78: Manage Cards (block/limits) | «extend» | UC-91: Card Block via Contact Centre | Contact centre is the alternative blocking channel (PKG-B → PKG-F) |
+| UC-90: In-App Fraud Alert Confirm/Deny | «precedes» | UC-78: Manage Cards (block/limits) | Confirmed fraud alert triggers card block (PKG-F → PKG-B) |
+
 
 ---
 
@@ -472,11 +511,11 @@ Length: 3 (longest)
 
 | Regulation | Specializations | Coverage |
 |------------|----------------|----------|
-| GDPR | UC-02-GDPR, UC-25-GDPR, UC-33-GDPR, UC-53-GDPR | 4 |
-| CRA | UC-25-CRA, UC-42-CRA, UC-44-CRA | 3 |
-| NIS 2 | UC-16-DORA, UC-25-NIS2, UC-37-DORA, UC-44-NIS2 | 4 |
-| DORA | UC-16-DORA, UC-25-DORA, UC-37-DORA, UC-39-DORA, UC-52-DORA | 5 |
-| AI Act | UC-17-AI, UC-25-AI, UC-49-AI | 3 |
+| GDPR | UC-02-GDPR, PROC-15-GDPR, UC-33-GDPR, PROC-34-GDPR | 4 |
+| CRA | PROC-15-CRA, PROC-28-CRA, UC-44-CRA | 3 |
+| NIS 2 | PROC-10-DORA, PROC-15-NIS2, PROC-24-DORA, UC-44-NIS2 | 4 |
+| DORA | PROC-10-DORA, PROC-15-DORA, PROC-24-DORA, PROC-25-DORA, CAP-05-DORA | 5 |
+| AI Act | UC-17-AI, PROC-15-AI, CAP-04-AI | 3 |
 
 ---
 
@@ -508,6 +547,7 @@ Length: 3 (longest)
 | 1.0 | 2026-04-28 | Compliance Lead | Initial creation — 48 relationships across 62 UCs |
 
 ---
+| 1.1 | 2026-09-05 | Compliance Lead | Lane census alignment (T46/P40/C7, UC-01..93): totals fixed; phantom UC-98..118 made explicit; stray pre-rename UC ids → PROC/CAP; §3.11 product-journey relationships (PKG-A..F) added |
 
 ## 12. DOCUMENT APPROVAL
 

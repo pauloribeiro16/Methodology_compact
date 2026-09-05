@@ -12,6 +12,7 @@ outputs: [22_Traceability_Matrix.xlsx]
 traceability: AEGIS Class Model → FunctionalRequirement, FRDomain, VerificationMethod classes
 related_documents: 17_Functional_Tree.md, 24_Non_Functional_Requirements.md, 15_Requirements_Allocation.md
 case_id: CASE-03-OMNIBANK
+case: Case_03_OmniBank_Financial
 complexity: Maximum (5 regulations, 38 sub-domains, 62 use cases, 72 FRs)
 ---
 

@@ -12,6 +12,7 @@ outputs: [16_Compliance_Gates_Report.md, 23_Functional_Requirements.md, 24_Non_F
 traceability: AEGIS Class Model → RequirementAllocation, RuleAllocation, NodeAllocation classes
 related_documents: 14_Architectural_Nodes.md, 13_Use_Cases_Catalog.md, 11_Rules_Catalog.md
 case_id: CASE-03-OMNIBANK
+case: Case_03_OmniBank_Financial
 complexity: Maximum (5 regulations, 38 sub-domains, 63 rules → 28 nodes)
 ---
 

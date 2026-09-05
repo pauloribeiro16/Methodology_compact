@@ -2,9 +2,9 @@
 document_id: AEGIS-P3-13b
 title: Use Case Variability
 phase: 3
-version: 1.0
+version: 1.1
 created: 2026-04-28
-updated: 2026-04-28
+updated: 2026-09-05
 author: Compliance Lead
 status: DRAFT
 inputs: [13_Use_Cases_Catalog.md, 13a_Use_Case_Relationships.md, 11_Rules_Catalog.md]
@@ -12,7 +12,8 @@ outputs: [14_Architectural_Nodes.md, 15_Requirements_Allocation.md]
 traceability: AEGIS Class Model → UseCase, VariabilityType, Regulation, Specialization classes
 related_documents: 13_Use_Cases_Catalog.md, 13a_Use_Case_Relationships.md
 case_id: CASE-03-OMNIBANK
-complexity: Maximum (5 regulations, 38 sub-domains, 62 use cases)
+case: Case_03_OmniBank_Financial
+complexity: Maximum (5 regulations, 38 sub-domains, 93 use cases)
 ---
 
 # Use Case Variability
@@ -35,7 +36,7 @@ OmniBank operates under maximum complexity with all 5 EU regulations applying si
 
 | Variability Type | Symbol | Description | Example |
 |------------------|--------|-------------|---------|
-| **Specialization** | `«specialization»` | Regulation-specific version of a base UC | UC-25-DORA vs UC-25-GDPR vs UC-25-NIS2 vs UC-25-CRA vs UC-25-AI Act |
+| **Specialization** | `«specialization»` | Regulation-specific version of a base UC | PROC-15-DORA vs PROC-15-GDPR vs PROC-15-NIS2 vs PROC-15-CRA vs PROC-15-AI Act |
 | **Alternative** | `«alternative»` | Mutually exclusive variants based on conditions | Automated vs Manual SBOM generation |
 | **Option** | `«option»` | UC may or may not be present based on conditions | FIDO2 hardware keys may be optional for standard users |
 
@@ -67,23 +68,23 @@ Specializations are regulation-specific versions of base use cases. Each special
 
 | Specialization | Triggering Regulation | Notification Target | Timeline | Specific Requirements |
 |----------------|----------------------|---------------------|----------|---------------------|
-| UC-25-GDPR | GDPR Art. 33/34 | Lead DPA (BfDI) | 72 hours | Supervisory authority notification for breaches likely to result in risk |
-| UC-25-CRA | CRA Art. 14 | ENISA + downstream users | 24 hours | Product security incident notification for products with digital components |
-| UC-25-NIS2 | NIS 2 Art. 23 | National CSIRT (BSI) | 24 hours | Significant incident notification for essential entities |
-| UC-25-DORA | DORA Art. 14 | Lead OCEsG/Competent Authority | 4h initial, 72h follow-up | ICT-related incident notification for financial entities |
-| UC-25-AI | AI Act Art. 73 | Market surveillance authority | 15 days | Incident involving high-risk AI systems Annex III |
+| PROC-15-GDPR | GDPR Art. 33/34 | Lead DPA (BfDI) | 72 hours | Supervisory authority notification for breaches likely to result in risk |
+| PROC-15-CRA | CRA Art. 14 | ENISA + downstream users | 24 hours | Product security incident notification for products with digital components |
+| PROC-15-NIS2 | NIS 2 Art. 23 | National CSIRT (BSI) | 24 hours | Significant incident notification for essential entities |
+| PROC-15-DORA | DORA Art. 14 | Lead OCEsG/Competent Authority | 4h initial, 72h follow-up | ICT-related incident notification for financial entities |
+| PROC-15-AI | AI Act Art. 73 | Market surveillance authority | 15 days | Incident involving high-risk AI systems Annex III |
 
-**Activation Condition:** `regulation.trigger = 'GDPR' AND incident.type = 'personal_data_breach'` → UC-25-GDPR
+**Activation Condition:** `regulation.trigger = 'GDPR' AND incident.type = 'personal_data_breach'` → PROC-15-GDPR
 
 **Selection Matrix:**
 
 | Condition | UC Selected |
 |-----------|-------------|
-| GDPR Art.33 breach + risk to rights | UC-25-GDPR |
-| CRA product incident + digital component | UC-25-CRA |
-| NIS 2 significant incident | UC-25-NIS2 |
-| DORA ICT incident + financial impact | UC-25-DORA |
-| AI Act high-risk AI system incident | UC-25-AI |
+| GDPR Art.33 breach + risk to rights | PROC-15-GDPR |
+| CRA product incident + digital component | PROC-15-CRA |
+| NIS 2 significant incident | PROC-15-NIS2 |
+| DORA ICT incident + financial impact | PROC-15-DORA |
+| AI Act high-risk AI system incident | PROC-15-AI |
 | Multiple regulations triggered simultaneously | All applicable specializations execute in parallel |
 
 ---
@@ -126,10 +127,10 @@ Specializations are regulation-specific versions of base use cases. Each special
 
 | Specialization | Triggering Regulation | Specific Requirements |
 |----------------|----------------------|---------------------|
-| UC-52-DORA | DORA Art. 6 | ICT risk management framework integrated with ISMS |
-| UC-52-ISO | ISO 27001:2022 | ISMS certification requirements |
+| CAP-05-DORA | DORA Art. 6 | ICT risk management framework integrated with ISMS |
+| CAP-05-ISO | ISO 27001:2022 | ISMS certification requirements |
 
-**Activation Condition:** `regulation = 'DORA' AND entity.type = 'financial_entity'` → UC-52-DORA
+**Activation Condition:** `regulation = 'DORA' AND entity.type = 'financial_entity'` → CAP-05-DORA
 
 ---
 
@@ -141,8 +142,8 @@ Specializations are regulation-specific versions of base use cases. Each special
 
 | Specialization | Triggering Regulation | Specific Requirements |
 |----------------|----------------------|---------------------|
-| UC-42-CRA | CRA Art. 13 | Security-by-default for products with digital components (higher bar) |
-| UC-42-GDPR | GDPR Art. 25 | Privacy by design and default (lower bar than CRA) |
+| PROC-28-CRA | CRA Art. 13 | Security-by-default for products with digital components (higher bar) |
+| PROC-28-GDPR | GDPR Art. 25 | Privacy by design and default (lower bar than CRA) |
 
 **Resolution:** T-004 — Follow CRA secure-by-default (higher bar) satisfies GDPR privacy by design (lower bar).
 
@@ -156,8 +157,8 @@ Specializations are regulation-specific versions of base use cases. Each special
 
 | Specialization | Triggering Regulation | Specific Requirements |
 |----------------|----------------------|---------------------|
-| UC-37-DORA | DORA RTS on TLPT | ICT third-party risk concentration assessment |
-| UC-37-NIS2 | NIS 2 Art. 21 | Security measures for supply chain relationships |
+| PROC-24-DORA | DORA RTS on TLPT | ICT third-party risk concentration assessment |
+| PROC-24-NIS2 | NIS 2 Art. 21 | Security measures for supply chain relationships |
 
 ---
 
@@ -169,8 +170,8 @@ Specializations are regulation-specific versions of base use cases. Each special
 
 | Specialization | Triggering Regulation | Specific Requirements |
 |----------------|----------------------|---------------------|
-| UC-49-AI | AI Act Art. 14 | Human oversight competence for high-risk AI decisions |
-| UC-49-NIS2 | NIS 2 Art. 20 | Security training for essential entity personnel |
+| CAP-04-AI | AI Act Art. 14 | Human oversight competence for high-risk AI decisions |
+| CAP-04-NIS2 | NIS 2 Art. 20 | Security training for essential entity personnel |
 
 ---
 
@@ -195,10 +196,10 @@ Alternative scenarios are mutually exclusive variants of a base UC. Only one var
 
 | Option | When Selected | UC ID |
 |--------|--------------|-------|
-| Standard Retention (5 years) | No regulatory extension required | UC-32-Standard |
-| Extended Financial Retention (10 years) | MiFID II financial instruments apply | UC-32-Financial |
+| Standard Retention (5 years) | No regulatory extension required | PROC-21-Standard |
+| Extended Financial Retention (10 years) | MiFID II financial instruments apply | PROC-21-Financial |
 
-**Selection Criteria:** `data.type = 'financial_instrument' AND regulation = 'MiFID II'` → UC-32-Financial
+**Selection Criteria:** `data.type = 'financial_instrument' AND regulation = 'MiFID II'` → PROC-21-Financial
 
 ### 5.3 Incident Response — AI Anomaly Investigation
 
@@ -206,10 +207,10 @@ Alternative scenarios are mutually exclusive variants of a base UC. Only one var
 
 | Option | When Selected | UC ID |
 |--------|--------------|-------|
-| Automated AI Anomaly Detection | AI monitoring systems operational | UC-28-Auto |
-| Manual AI Anomaly Investigation | Monitoring systems unavailable or anomaly unclear | UC-28-Manual |
+| Automated AI Anomaly Detection | AI monitoring systems operational | PROC-13-Auto |
+| Manual AI Anomaly Investigation | Monitoring systems unavailable or anomaly unclear | PROC-13-Manual |
 
-**Selection Criteria:** `monitoring.system.available = TRUE AND anomaly.confidence >= 0.8` → UC-28-Auto
+**Selection Criteria:** `monitoring.system.available = TRUE AND anomaly.confidence >= 0.8` → PROC-13-Auto
 
 ### 5.4 Monitoring — Audit Log Storage
 
@@ -228,10 +229,10 @@ Alternative scenarios are mutually exclusive variants of a base UC. Only one var
 
 | Option | When Selected | UC ID |
 |--------|--------------|-------|
-| Online Training Delivery | Employee location prevents classroom; scale requirement | UC-48-Online |
-| Classroom Training | Employee available for in-person; better engagement | UC-48-Classroom |
+| Online Training Delivery | Employee location prevents classroom; scale requirement | PROC-31-Online |
+| Classroom Training | Employee available for in-person; better engagement | PROC-31-Classroom |
 
-**Selection Criteria:** `employee.location.remote = TRUE OR employee.count > 1000` → UC-48-Online
+**Selection Criteria:** `employee.location.remote = TRUE OR employee.count > 1000` → PROC-31-Online
 
 ### 5.6 Penetration Testing — Tester Selection
 
@@ -239,10 +240,10 @@ Alternative scenarios are mutually exclusive variants of a base UC. Only one var
 
 | Option | When Selected | UC ID |
 |--------|--------------|-------|
-| Internal Pentest | Regular testing; resource available; no regulatory requirement | UC-59-Internal |
-| External Pentest | Independent verification required; regulatory examination | UC-59-External |
+| Internal Pentest | Regular testing; resource available; no regulatory requirement | PROC-36-Internal |
+| External Pentest | Independent verification required; regulatory examination | PROC-36-External |
 
-**Selection Criteria:** `verification.required = 'independent' OR regulatory.examination = TRUE` → UC-59-External
+**Selection Criteria:** `verification.required = 'independent' OR regulatory.examination = TRUE` → PROC-36-External
 
 ---
 
@@ -302,6 +303,44 @@ The following decision table determines which UC variant to execute based on con
 
 ---
 
+## 7A. LANE VARIANTS
+
+> Additive section (v1.1) — anchors channel and lifecycle variability to the re-laned ids
+> of `LANE_NAMING_CENSUS_v0` (Case_03: T46/P40/C7). Regulation specializations remain in §4;
+> this section covers operational variants within a single lane id.
+
+### 7A.1 Channel Variants — PROC-01 (Data Subject Requests Data Encryption Status)
+
+| Variant | Channel | Selection Criteria (per Doc22 §4.1 / Doc32 PROC-01 card) |
+|---------|---------|----------------------------------------------------------|
+| PROC-01-Branch | Branch desk, escalated to Security Administrator | Request filed in person; identity proven face-to-face |
+| PROC-01-App | Self-service in SYS-02 mobile app | Authenticated customer; SCA-bound session |
+| PROC-01-RM | Relationship manager via SYS-17 CRM | Affluent/corporate customer with assigned RM |
+
+### 7A.2 Lifecycle Variants — PROC-10 (Provision User Identity)
+
+| Variant | Lifecycle Event | Selection Criteria (per Doc32 PROC-10 card) |
+|---------|-----------------|---------------------------------------------|
+| PROC-10-Joiner | Joiner: full provisioning + baseline entitlements | New HR record with start date |
+| PROC-10-Mover | Mover: entitlement delta, revoke-then-grant | Department/role change event |
+| PROC-10-Leaver | Leaver: same-day deprovisioning (feeds PROC-13) | Termination event; audit evidence retained |
+
+### 7A.3 Enforcement Path Variants — PROC-21 (Enforce Tiered Data Retention)
+
+| Variant | Retention Path | Selection Criteria (per Doc22 §4.5) |
+|---------|----------------|-------------------------------------|
+| PROC-21-Standard | Standard retention path (5 years) | No regulatory extension required |
+| PROC-21-Financial | Extended financial retention path (10 years) | MiFID II financial instruments apply (see §5.2) |
+
+### 7A.4 Product Variants (PKG-A..F, per Doc22 §6B)
+
+| Variant pair | Difference | Selection Criteria |
+|--------------|------------|--------------------|
+| UC-70 (retail) vs UC-86 (corporate) onboarding | Retail: remote eIDAS identity verification in-app (UC-69 step 3, §6B.2); Corporate: delegated-user model with SYS-21, joiner/mover/leaver for delegated users (§6B.5) | Customer segment = retail vs corporate |
+| UC-77 regular vs UC-77 instant | Same SEPA use case; instant leg adds scheme deadline and immediate availability checks (§6B.3) | Customer selects instant transfer option |
+| UC-78 (in-app) vs UC-91 (contact centre) card block | Alternative blocking channels: self-service in-app vs SYS-20 contact centre with recorded call (§6B.3 / §6B.6) | Channel availability and customer preference |
+| UC-90 (in-app) vs UC-91 (voice) fraud response | Fraud alert confirm/deny pushed in-app vs confirmed via contact-centre call (§6B.6) | Alert channel reachable; SYS-11 routing |
+
 ## 8. REGULATORY INTERACTION MATRIX
 
 This matrix shows which regulations interact on which UCs:
@@ -346,6 +385,7 @@ This matrix shows which regulations interact on which UCs:
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
 | 1.0 | 2026-04-28 | Compliance Lead | Initial creation — 14 specializations, 8 alternatives, 6 options |
+| 1.1 | 2026-09-05 | Compliance Lead | Lane census alignment: stray pre-rename UC ids → PROC/CAP; §7A Lane Variants added (PROC-01, PROC-10, PROC-21, product variants per Doc22 §6B) |
 
 ---
 

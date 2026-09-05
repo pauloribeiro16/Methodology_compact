@@ -13,6 +13,7 @@ traceability: AEGIS Class Model → UseCase, UseCasePackage, Actor, UseCaseRelat
 related_documents: 00_COMMON/Taxonomy_Reference.md
 regulations: GDPR, CRA, NIS 2, DORA, AI Act (5/5)
 case_id: CASE-03-OMNIBANK
+case: Case_03_OmniBank_Financial
 complexity: Maximum (5 regulations, 38 sub-domains, 63 rules)
 ---
 

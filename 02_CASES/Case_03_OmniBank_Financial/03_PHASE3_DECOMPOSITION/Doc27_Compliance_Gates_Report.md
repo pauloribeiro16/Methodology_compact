@@ -12,6 +12,7 @@ outputs: [17_Functional_Tree.md, 22_Traceability_Matrix.xlsx]
 traceability: AEGIS Class Model → ComplianceGate, GateStatus, VerificationMethod classes
 related_documents: 15_Requirements_Allocation.md, 13_Use_Cases_Catalog.md, 00_COMMON/Taxonomy_Reference.md
 case_id: CASE-03-OMNIBANK
+case: Case_03_OmniBank_Financial
 complexity: Maximum (5 regulations, 38 sub-domains, 62 use cases, 28 nodes, 40 gates)
 ---
 

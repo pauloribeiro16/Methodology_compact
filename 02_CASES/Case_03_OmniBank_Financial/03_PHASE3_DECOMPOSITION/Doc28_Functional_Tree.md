@@ -2,9 +2,9 @@
 document_id: AEGIS-P3-17
 title: Functional Tree
 phase: 3
-version: 1.0
+version: 1.1
 created: 2026-04-28
-updated: 2026-04-28
+updated: 2026-09-05
 author: Security Architect
 status: DRAFT
 inputs: [13_Use_Cases_Catalog.md, 14_Architectural_Nodes.md, 15_Requirements_Allocation.md]
@@ -12,7 +12,8 @@ outputs: [23_Functional_Requirements.md, 24_Non_Functional_Requirements.md, 22_T
 traceability: AEGIS Class Model → FunctionalNode, NodeType, FunctionalTree classes
 related_documents: 14_Architectural_Nodes.md, 23_Functional_Requirements.md, 24_Non_Functional_Requirements.md
 case_id: CASE-03-OMNIBANK
-complexity: Maximum (5 regulations, 38 sub-domains, 62 use cases, 28 nodes, 40 gates)
+case: Case_03_OmniBank_Financial
+complexity: Maximum (5 regulations, 38 sub-domains, 93 use cases (UC-01..93), 28 nodes, 40 gates)
 ---
 
 # Functional Tree
@@ -340,11 +341,114 @@ graph TB
 
 ---
 
+## 6A. PRODUCT FUNCTIONAL BRANCH (PKG-A..F — UC-63..93) — ADDITIVE
+
+> Additive section (v1.1) — extends the functional tree with the OmniBank platform product
+> use cases from Doc22 §6B. Lane note per `LANE_NAMING_CENSUS_v0`: PROC-39 (Underwriter
+> Review) and PROC-40 (Complaint Handling) are process-lane members of product journeys.
+> Existing tree structure (§2–§6) is unchanged.
+
+```
+OmniBank Platform Product (PKG-A..F)
+├── PKG-A — Onboarding & KYC (Doc22 §6B.2)
+│   ├── UC-69  Open Account via Mobile App
+│   ├── UC-70  eIDAS Identity Verification
+│   ├── UC-71  KYC Document Upload & Vault Filing (SYS-16, 10y retention)
+│   ├── UC-72  Sanctions & PEP Screening (SYS-11)
+│   ├── UC-73  OmniScore Consent & Data-Use Acknowledgement
+│   └── UC-74  Tax Residency Self-Certification (FATCA/CRS)
+├── PKG-B — Digital Banking Core (Doc22 §6B.3)
+│   ├── UC-75  Login with PSD2 SCA
+│   ├── UC-76  View Balances & Transactions
+│   ├── UC-77  SEPA Transfer (incl. Instant)
+│   ├── UC-78  Manage Cards (block/limits)
+│   ├── UC-79  Standing Orders
+│   └── UC-80  Statements & Export
+├── PKG-C — Lending & OmniScore (Doc22 §6B.1)
+│   ├── UC-63  Apply for Consumer Credit
+│   ├── UC-64  OmniScore Computes Credit Score (SYS-03)
+│   ├── UC-65  Customer Receives Score Explanation
+│   ├── PROC-39  Underwriter Review (manual/borderline decision path)
+│   ├── UC-67  Customer Accepts Offer & Contract Signed
+│   └── UC-68  Customer Manages Repayment & Arrears View
+├── PKG-D — Payments & Open Banking (Doc22 §6B.4)
+│   ├── UC-81  PSD2 Consent Grant/Revoke
+│   ├── UC-82  TPP Onboarding & AIS Access (SYS-18)
+│   ├── UC-83  PIS Payment Initiation with SCA
+│   ├── UC-84  Payment Dispute & Chargeback
+│   └── UC-85  Payment Limits Management
+├── PKG-E — Corporate & Treasury (Doc22 §6B.5)
+│   ├── UC-86  Corporate Onboarding with Delegated Users (SYS-21)
+│   ├── UC-87  Cash Management Dashboard
+│   ├── UC-88  FX Deal Execution (SYS-08)
+│   └── UC-89  Trade Finance Letter of Credit (SYS-07, UCP 600)
+└── PKG-F — Fraud & Customer Service (Doc22 §6B.6)
+    ├── UC-90  In-App Fraud Alert Confirm/Deny (SYS-11)
+    ├── UC-91  Card Block via Contact Centre (SYS-20)
+    ├── PROC-40  Complaint Handling (complaint SOP)
+    └── UC-93  Secure Messaging
+```
+
+**Product branch traceability:** journey sequencing is defined in Doc23 §3.11 (onboarding
+UC-69..74 precede banking core UC-75..80; OmniScore UC-63/64 feed lending decisions).
+
+---
+
+## 6B. LANE BRANCHES (PROC-01..40, CAP-01..07) — ADDITIVE
+
+> Additive section (v1.1) — extends the functional tree with the process (PROC) and
+> capability (CAP) lane ids from the Case_03 lane rename (`LANE_NAMING_CENSUS_v0`,
+> T46/P40/C7). Grouping follows Doc22 §4.1–§4.10 (PKG-D-01..10 ↔ domain families D-01..D-10).
+
+```
+Lane Branches (compliance corpus, 62 ids)
+├── D-01 Data Protection & Encryption (PKG-D-01)
+│   ├── PROC-01..PROC-04  (encryption status, HSM keys, AI model integrity, key rotation)
+│   └── UC-02 / UC-03 / UC-06 / UC-08  (technology lane)
+├── D-02 Vulnerability Management (PKG-D-02)
+│   ├── PROC-05..PROC-09  (scan, patch, disclosure, TLPT, AI vulnerabilities)
+│   ├── CAP-01  Vulnerability Analyst Maintains Vulnerability Register
+│   └── UC-15  Generates SBOM for AI Model
+├── D-03 Access Control (PKG-D-03)
+│   ├── PROC-10..PROC-13  (provision, access review, hardening, deprovision)
+│   └── UC-17 / UC-21 / UC-22  (MFA, AI model access, FIDO2)
+├── D-04 Incident Response (PKG-D-04)
+│   ├── PROC-14..PROC-19  (DR, notification, AI recovery, anomaly, tabletop, AI report)
+│   ├── CAP-02  SOC Analyst Monitors Security Events
+│   └── UC-26  Maintains Redundant Backup Systems
+├── D-05 Data Lifecycle (PKG-D-05)
+│   ├── PROC-20..PROC-23  (minimization, retention, AI training data, processor audit)
+│   └── UC-33 / UC-34  (erasure, export)
+├── D-06 Supply Chain (PKG-D-06)
+│   ├── PROC-24..PROC-27  (provider assessment, contract terms, exit, AI provider monitoring)
+│   └── CAP-03  Security Architect Maintains SBOM for Product
+├── D-07 Secure Development (PKG-D-07)
+│   ├── PROC-28..PROC-30  (secure-by-design, coding standards, change approval)
+│   └── UC-44 / UC-46 / UC-47  (CI/CD, AI training pipeline, IaC scanning)
+├── D-08 Human Factors (PKG-D-08)
+│   ├── PROC-31..PROC-33  (awareness training, board training, phishing simulation)
+│   └── CAP-04  HR Manager Maintains Security Competence Program
+├── D-09 Governance & Documentation (PKG-D-09)
+│   ├── PROC-34 / PROC-35  (IPSARA, regulatory compliance report)
+│   ├── CAP-05  CISO Maintains Unified ISMS
+│   ├── CAP-06  IT Asset Manager Maintains Asset Inventory
+│   └── CAP-07  AI Governance Lead Maintains AI Traceability Documentation
+└── D-10 Monitoring & Audit (PKG-D-10)
+    ├── PROC-36..PROC-38  (pentesting, AI adversarial robustness, audit trail report)
+    └── UC-57 / UC-58 / UC-61  (AI threat detection, immutable logs, AI drift)
+```
+
+**Counts:** 38 PROC + 7 CAP + 17 UC (technology lane, compliance corpus) = 62; plus
+product-side PROC-39/PROC-40 and UC-63..93 (31) = 93 total use cases, matching Doc22 v2.3.
+
+---
+
 ## 7. VERSION HISTORY
 
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
 | 1.0 | 2026-04-28 | Security Architect | Initial creation — 38 domain nodes, 72 sub-nodes, 89 leaf nodes |
+| 1.1 | 2026-09-05 | Security Architect | Lane census alignment (Case_03 T46/P40/C7): additive §6A Product Functional Branch (PKG-A..F, UC-63..93) and §6B Lane Branches (PROC-01..40, CAP-01..07 grouped by D-01..D-10); existing tree unchanged |
 | 2.0 | 2026-05-05 | Security Architect | Added ROOT node, Mermaid diagram, and track tags [T/P/P→T] |
 
 ---
