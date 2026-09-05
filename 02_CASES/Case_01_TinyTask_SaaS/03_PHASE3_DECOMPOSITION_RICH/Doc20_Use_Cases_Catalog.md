@@ -2,7 +2,7 @@
 document_id: AEGIS-P3-RICH-13
 title: Use Cases Catalog — TinyTask Team Organizer (Phase 3 RICH)
 phase: 3
-version: 3.2
+version: 3.3
 created: 2026-08-24
 updated: 2026-09-05
 author: Executor (paulo@methodology.pt)
@@ -41,7 +41,7 @@ rewrite_protocol:
 # Use Cases Catalog — TinyTask Team Organizer (Phase 3 RICH)
 
 > **Status:** REWRITTEN_PRODUCT_BASELINE.
-> Catalog reorganised so the **product** comes first: 23 functional use cases (U.C.7–11) and 8 misuse cases describe how TinyTask Team Organizer works and is attacked; 17 security/compliance use cases (U.C.1–6) describe how the company secures that product and proves compliance. The 18 non-UC compliance cards (PROC-01..17, CAP-01) are lane cards living exclusively in `Doc32_Process_Capability_Cards.md` (rubric v1.8 §5B rule 6 — UC SEPARATION, 2026-09-05); see the §3.0 Compliance Domain Index.
+> Catalog reorganised so the **product** comes first: 23 functional use cases (UC-18..UC-40) and 8 misuse cases describe how TinyTask Team Organizer works and is attacked; 17 security/compliance use cases (UC-01..UC-17) describe how the company secures that product and proves compliance. The 18 non-UC compliance cards (PROC-01..17, CAP-01) are lane cards living exclusively in `Doc32_Process_Capability_Cards.md` (rubric v1.8 §5B rule 6 — UC SEPARATION, 2026-09-05); see the §3.0 Compliance Domain Index.
 > Cards follow Cockburn's fully dressed template (Primary Actor · Stakeholders · Preconditions · Trigger · Main Success Scenario · Extensions · Postconditions) with a Security & Compliance Annex folding in the prior property-sheet fields.
 >
 **LANE NAMING (P7 human decision, 2026-09-05).** The v2.0 freeze on U.C.1.1.1…U.C.6.3.1 ids is **superseded**: UC nomenclature is reserved for the TECHNOLOGY lane; the process/capability compliance UCs were re-laned to PROC-01..17 / CAP-01 (registry: `00_METHODOLOGY/validation/LANE_NAMING_CENSUS_v0.md`; rubric: REALIZATION_CLASS_RUBRIC v1.3 §5B). All ~509 downstream references were renamed in the same pass (Doc21/22/23/24/26/27, Doc29/31, 22_Traceability_Matrix.xlsx via build script, NIST_ANCHORS, CORPUS_LINKAGE, annexes). The former ids remain visible in git history.
@@ -52,28 +52,28 @@ rewrite_protocol:
 
 ## §1 Actors
 
-### §1.1 Product actors (drive functional U.C.7-11)
+### §1.1 Product actors (drive functional UC-18..UC-40)
 
 | ID | Actor | Type | Description | Drives U.C. |
 |----|-------|------|-------------|-------------|
-| A-FREE-01 | Free-tier User | External (person) | Anonymous or self-registered; uses the product on the free plan; can upgrade. | U.C.7.*, U.C.8.*, U.C.9.*, U.C.11.* |
-| A-MEMBER-01 | Member | External (person) | Authenticated user with member role in at least one workspace. | U.C.7.1.*, U.C.8.*, U.C.9.* |
-| A-WSADM-01 | Workspace Admin/Owner | External (person) | Workspace creator/owner; can invite, set roles, manage billing, delete workspace. | U.C.7.5.* (invite+roles), U.C.8.1.*, U.C.10.2.*, U.C.10.3.*, U.C.11.3.* |
-| A-ENTADM-01 | Enterprise Administrator [ASSUMED] | External (person) | Manages multiple workspaces under one enterprise tenant; SSO + audit view. | U.C.10.3.2, U.C.10.3.1 |
-| A-MOB-01 | Mobile Client | External (system) | Native mobile app acting on behalf of A-MEMBER-01 or A-FREE-01. | U.C.10.1.1 |
-| A-SYS-01 | System (TinyTask API) | Internal | The product itself (Node.js API + React web). | All U.C.7-11 |
-| A-EXT-01 | Stripe Checkout | External (system) | Hosted payment processor (no PAN stored). | U.C.10.2.1 |
-| A-EXT-02 | Auth0 IdP | External (system) | OAuth 2.0/OIDC identity provider (auth service). | U.C.7.1.* |
+| A-FREE-01 | Free-tier User | External (person) | Anonymous or self-registered; uses the product on the free plan; can upgrade. | UC-18, UC-19, UC-20, UC-21, UC-22, UC-23, UC-24, UC-25, UC-26, UC-27, UC-28, UC-29, UC-30, UC-31, UC-32, UC-33, UC-38, UC-39, UC-40 |
+| A-MEMBER-01 | Member | External (person) | Authenticated user with member role in at least one workspace. | UC-18, UC-19, UC-20, UC-23, UC-24, UC-25, UC-26, UC-27, UC-28, UC-29, UC-30, UC-31, UC-32, UC-33 |
+| A-WSADM-01 | Workspace Admin/Owner | External (person) | Workspace creator/owner; can invite, set roles, manage billing, delete workspace. | UC-22 (invite+roles), UC-23..UC-24, UC-35, UC-36..UC-37, UC-40 |
+| A-ENTADM-01 | Enterprise Administrator [ASSUMED] | External (person) | Manages multiple workspaces under one enterprise tenant; SSO + audit view. | UC-37, UC-36 |
+| A-MOB-01 | Mobile Client | External (system) | Native mobile app acting on behalf of A-MEMBER-01 or A-FREE-01. | UC-34 |
+| A-SYS-01 | System (TinyTask API) | Internal | The product itself (Node.js API + React web). | All UC-18..UC-40 |
+| A-EXT-01 | Stripe Checkout | External (system) | Hosted payment processor (no PAN stored). | UC-35 |
+| A-EXT-02 | Auth0 IdP | External (system) | OAuth 2.0/OIDC identity provider (auth service). | UC-18, UC-19, UC-20 |
 
-### §1.2 Internal actors (drive security/compliance U.C.1-6)
+### §1.2 Internal actors (drive security/compliance UC-01..UC-17)
 
 | ID | Actor | FTE | Drives U.C. |
 |----|-------|-----|-------------|
-| A-CEO-01 | CEO | 0.05 | U.C.5.1.*, PROC-12, CAP-01 |
-| A-CTO-01 | CTO / CISO | 0.2 | U.C.3.*, U.C.4.4.1, PROC-11, PROC-07 |
-| A-DEV-01 | Lead Developer | 0.3 | PROC-03, U.C.2.2.1, PROC-04, U.C.4.*, U.C.3.1.2, U.C.5.6.1 |
-| A-OPS-01 | Operations Lead | 0.2 | U.C.2.4.*, PROC-05, U.C.2.6.1, U.C.3.3.1, PROC-07 |
-| A-DPO-01 | DPO / Compliance Manager | 0.1 | U.C.1.*, PROC-06, PROC-13, PROC-14, U.C.6.* |
+| A-CEO-01 | CEO | 0.05 | PROC-10, PROC-12, CAP-01 |
+| A-CTO-01 | CTO / CISO | 0.2 | UC-09, UC-10, UC-11, UC-12, UC-13, UC-16, PROC-11, PROC-07 |
+| A-DEV-01 | Lead Developer | 0.3 | PROC-03, UC-05, PROC-04, UC-14, UC-15, UC-16, UC-10, UC-17 |
+| A-OPS-01 | Operations Lead | 0.2 | UC-06..UC-07, PROC-05, UC-08, UC-12, PROC-07 |
+| A-DPO-01 | DPO / Compliance Manager | 0.1 | UC-01, UC-02, UC-03, UC-04, PROC-06, PROC-13, PROC-14, PROC-15..PROC-17 |
 | A-RO-01 | Risk Owner | (role) | PROC-09, PROC-12 |
 
 > Resolves F-S5-02: actors now defined in structured form; prior lint "0 actors defined" satisfied.
@@ -89,13 +89,13 @@ rewrite_protocol:
 
 ---
 
-## §2 Functional Use Cases (U.C.7–11) — TinyTask Team Organizer product
+## §2 Functional Use Cases (UC-18..UC-40) — TinyTask Team Organizer product
 
 > **Tagging convention.** Each card carries a `[ATTESTED]` or `[ASSUMED]` flag and a `Source:` line for traceability:
 > - `[ATTESTED] Source: <DocNN §N>` — feature attested in Phase 1 / 00_COMMON.
 > - `[ASSUMED]` — feature plausibly required for a B2B SaaS task-management product of this scope; no upstream source; rationale noted inline.
 >
-> These 23 UCs are the **product surface**. Security and compliance U.C.1-6 attach as Security & Compliance Annex; MUCs §4 attach as threat model.
+> These 23 UCs are the **product surface**. Security and compliance UC-01..UC-17 attach as Security & Compliance Annex; MUCs §4 attach as threat model.
 >
 > **Template.** Each functional UC is specified in a fully-dressed RUP-style 10-section template (per `03_REFERENCE_MATERIAL/P3_E2_Requirement_Analysis_Bike4All_Maintenance_platform_v1r2.md`), with AEGIS adjustments: §10 Security & Compliance Annex, `[ATTESTED]`/`[ASSUMED]` provenance, and MUC linkage.
 
@@ -103,17 +103,17 @@ rewrite_protocol:
 
 | UC ID | D | Title | Primary Owner | Prio |
 |-------|---|-------|---------------|------|
-| U.C.7.1.1 | n/a | Sign Up & Account Creation | A-CTO-01 | HIGH |
-| U.C.7.1.2 | n/a | Login (email/password + optional SSO) | A-CTO-01 | CRITICAL |
-| U.C.7.1.3 | n/a | Password Reset & Recovery | A-CTO-01 | HIGH |
-| U.C.7.2.1 | n/a | Session Management (timeout, logout-everywhere) | A-CTO-01 | HIGH |
-| U.C.7.5.1 | n/a | Invite Member & Assign Role | A-WSADM-01 | CRITICAL |
+| UC-18 | n/a | Sign Up & Account Creation | A-CTO-01 | HIGH |
+| UC-19 | n/a | Login (email/password + optional SSO) | A-CTO-01 | CRITICAL |
+| UC-20 | n/a | Password Reset & Recovery | A-CTO-01 | HIGH |
+| UC-21 | n/a | Session Management (timeout, logout-everywhere) | A-CTO-01 | HIGH |
+| UC-22 | n/a | Invite Member & Assign Role | A-WSADM-01 | CRITICAL |
 
-#### Use-Case: {U.C.7.1.1} Sign Up & Account Creation
+#### Use-Case: {UC-18} Sign Up & Account Creation
 
 ##### 1 Brief Description
 
-A visitor creates a TinyTask account with email + password, or federates the sign-up through OAuth at the identity provider. It is triggered when the visitor submits the sign-up form with email + password. On success the account record is provisioned in the customer data store, consent state is recorded, and a verification email activates the account; a workspace may be auto-provisioned (U.C.8.1.1).
+A visitor creates a TinyTask account with email + password, or federates the sign-up through OAuth at the identity provider. It is triggered when the visitor submits the sign-up form with email + password. On success the account record is provisioned in the customer data store, consent state is recorded, and a verification email activates the account; a workspace may be auto-provisioned (UC-23).
 
 ##### 2 Actor Brief Descriptions
 
@@ -131,7 +131,7 @@ Handles the OAuth variant of the sign-up (identity federation).
 
 ###### 2.4 A-DPO-01 (DPO / Compliance Manager):
 
-Stakeholder — owns the consent records captured at sign-up (U.C.1.4.1).
+Stakeholder — owns the consent records captured at sign-up (UC-03).
 
 ###### 2.5 A-CTO-01 (CTO / CISO):
 
@@ -145,8 +145,8 @@ Stakeholder — owns account provisioning and the password policy (NFR-01).
 
 1. User enters email + password (or OAuth via A-EXT-02).
 2. System validates email format and password strength (NFR-01).
-3. System creates account record in customer data store (U.C.8.1.1 workspace may be auto-provisioned).
-4. System records consent state per U.C.1.4.1.
+3. System creates account record in customer data store (UC-23 workspace may be auto-provisioned).
+4. System records consent state per UC-03.
 5. System sends verification email; user confirms; account status flips to active.
 
 > **Sequence diagram:** → Annex B §1 (B_Sequence_Diagrams.md)
@@ -171,12 +171,12 @@ Trigger: step 5. The verification email is not confirmed in 7d, so the unverifie
 
 1. Validate email format and password strength (NFR-01).
 2. Create the account record in the customer data store.
-3. Auto-provision the workspace via U.C.8.1.1 (optional path of step 3).
+3. Auto-provision the workspace via UC-23 (optional path of step 3).
 
 ###### 6.2 <Subflow: Consent capture>
 
-1. Record consent state per U.C.1.4.1.
-2. Emit the audit event (U.C.3.5.1).
+1. Record consent state per UC-03.
+2. Emit the audit event (UC-13).
 
 ##### 7 Key Scenarios
 
@@ -204,11 +204,11 @@ Consent logged.
 
 ###### 8.4
 
-Audit event emitted (U.C.3.5.1).
+Audit event emitted (UC-13).
 
 ##### 9 Special Requirements (FURPS+)
 
-**Functional (F):** Email + password and OAuth sign-up; email-format and password-strength validation (NFR-01); consent state recorded per U.C.1.4.1.
+**Functional (F):** Email + password and OAuth sign-up; email-format and password-strength validation (NFR-01); consent state recorded per UC-03.
 
 **Usability (U):** N/A — no attested usability constraint for the sign-up form.
 
@@ -221,12 +221,12 @@ Audit event emitted (U.C.3.5.1).
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Source: `00_COMMON/01_Company_Context.md §3.5` ("Rule-based task management SaaS, web+mobile"); RBAC owner/member/admin model attested in `01_PHASE1_CONTEXT_RICH/Doc05_Security_Posture.md §4`.
-- **Constrained by:** U.C.3.1.1 (authn), U.C.3.2.1 (authz), U.C.1.4.1 (consent), U.C.3.5.1 (audit logging).
+- **Constrained by:** UC-09 (authn), UC-11 (authz), UC-03 (consent), UC-13 (audit logging).
 - **Rules / NFR:** CR-D-03.1-001, CR-D-05.1-001 · FR-01, FR-02, NFR-01, NFR-02, NFR-26.
 - **Threats addressed:** MUC-01 (account takeover mitigated by strong password policy + verification step).
 - **NIST anchors:** PR.AA-01, PR.DS-10.
 
-#### Use-Case: {U.C.7.1.2} Login (email/password + optional SSO)
+#### Use-Case: {UC-19} Login (email/password + optional SSO)
 
 ##### 1 Brief Description
 
@@ -248,7 +248,7 @@ Stakeholder and system actor — validates passwords and OIDC tokens and hosts t
 
 ##### 3 Preconditions
 
-- Active account (U.C.7.1.1).
+- Active account (UC-18).
 - Not locked out.
 
 ##### 4 Basic Flow of Events
@@ -326,12 +326,12 @@ User redirected to last visited workspace.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Source: `01_PHASE1_CONTEXT_RICH/Doc04_Architecture_DataInventory.md §1` ("SYS-02 Auth Service (Auth0, OAuth 2.0/OIDC)"); `Doc05_Security_Posture.md §6` mentions SSO as optional for customers.
-- **Constrained by:** U.C.3.1.1, U.C.3.1.2 (MFA for admins), U.C.3.5.1.
+- **Constrained by:** UC-09, UC-10 (MFA for admins), UC-13.
 - **Rules / NFR:** CR-D-03.1-001, CR-D-03.2-001 · FR-02, NFR-01, NFR-02, NFR-09.
 - **Threats addressed:** MUC-01 (account takeover via credential stuffing).
 - **NIST anchors:** PR.AA-01, PR.AA-03.
 
-#### Use-Case: {U.C.7.1.3} Password Reset & Recovery
+#### Use-Case: {UC-20} Password Reset & Recovery
 
 ##### 1 Brief Description
 
@@ -427,12 +427,12 @@ All sessions invalidated; user must log in again.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Source: `Doc05_Security_Posture.md §6` (account self-service).
-- **Constrained by:** U.C.3.1.1, U.C.3.5.1.
+- **Constrained by:** UC-09, UC-13.
 - **Rules / NFR:** CR-D-03.1-001 · FR-02, NFR-01, NFR-02.
 - **Threats addressed:** MUC-01.
 - **NIST anchors:** PR.AA-01.
 
-#### Use-Case: {U.C.7.2.1} Session Management (timeout, logout-everywhere)
+#### Use-Case: {UC-21} Session Management (timeout, logout-everywhere)
 
 ##### 1 Brief Description
 
@@ -458,7 +458,7 @@ Stakeholder — owns token revocation.
 
 ##### 3 Preconditions
 
-- Active session from U.C.7.1.2.
+- Active session from UC-19.
 
 ##### 4 Basic Flow of Events
 
@@ -518,15 +518,15 @@ No further authenticated requests accepted without re-login.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Source: `Doc04_Architecture_DataInventory.md §1` (central IdP); `Doc05_Security_Posture.md §6`.
-- **Constrained by:** U.C.3.1.1, U.C.3.5.1.
+- **Constrained by:** UC-09, UC-13.
 - **Rules / NFR:** CR-D-03.1-001 · FR-02, NFR-01.
 - **NIST anchors:** PR.AA-03.
 
-#### Use-Case: {U.C.7.5.1} Invite Member & Assign Role
+#### Use-Case: {UC-22} Invite Member & Assign Role
 
 ##### 1 Brief Description
 
-A workspace admin invites a member by email and assigns the initial role (member/admin). It is triggered when the admin enters the email + role and clicks "Invite". The invitee accepts through a single-use link; if no account exists, sign-up (U.C.7.1.1) is invoked.
+A workspace admin invites a member by email and assigns the initial role (member/admin). It is triggered when the admin enters the email + role and clicks "Invite". The invitee accepts through a single-use link; if no account exists, sign-up (UC-18) is invoked.
 
 ##### 2 Actor Brief Descriptions
 
@@ -556,7 +556,7 @@ Stakeholder — owns the consent records of invited members.
 1. System validates the email and the role.
 2. System creates pending membership record (workspace_id, email, role, status=pending).
 3. System sends invite email with single-use acceptance link.
-4. Invitee accepts → if account exists, role is granted; else U.C.7.1.1 is invoked.
+4. Invitee accepts → if account exists, role is granted; else UC-18 is invoked.
 5. System logs the membership grant event.
 
 > **Sequence diagram:** → Annex B §5 (B_Sequence_Diagrams.md)
@@ -581,7 +581,7 @@ Trigger: step 4, no acceptance within 7d. The pending membership is auto-revoked
 
 1. Create the pending membership record (workspace_id, email, role, status=pending).
 2. Deliver the single-use acceptance link.
-3. On acceptance: grant the role for existing accounts, else invoke U.C.7.1.1.
+3. On acceptance: grant the role for existing accounts, else invoke UC-18.
 4. Auto-revoke the pending membership after 7 days without acceptance.
 
 ##### 7 Key Scenarios
@@ -606,7 +606,7 @@ Or pending membership with audit trail.
 
 ##### 9 Special Requirements (FURPS+)
 
-**Functional (F):** Email invite with member/admin roles; pending membership with single-use acceptance link; sign-up invoked for account-less invitees (U.C.7.1.1).
+**Functional (F):** Email invite with member/admin roles; pending membership with single-use acceptance link; sign-up invoked for account-less invitees (UC-18).
 
 **Usability (U):** N/A — no attested usability constraint.
 
@@ -614,12 +614,12 @@ Or pending membership with audit trail.
 
 **Performance (P):** N/A — no attested timing constraint.
 
-**Supportability (S):** Least-privilege default roles (U.C.3.3.1); CEO confirmation required for Owner-level escalation; grant events audited.
+**Supportability (S):** Least-privilege default roles (UC-12); CEO confirmation required for Owner-level escalation; grant events audited.
 
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Source: `Doc05_Security_Posture.md §4` ("Basic owner/member/admin model"); `Doc04_Architecture_DataInventory.md §3` (workspace as data object).
-- **Constrained by:** U.C.3.2.1 (authz), U.C.3.3.1 (secure defaults: least-privilege), U.C.3.5.1 (audit).
+- **Constrained by:** UC-11 (authz), UC-12 (secure defaults: least-privilege), UC-13 (audit).
 - **Rules / NFR:** CR-D-03.3-001 · FR-05, NFR-25.
 - **Threats addressed:** MUC-02 (privilege escalation).
 - **NIST anchors:** PR.AA-01, PR.AA-05.
@@ -628,14 +628,14 @@ Or pending membership with audit trail.
 
 | UC ID | D | Title | Primary Owner | Prio |
 |-------|---|-------|---------------|------|
-| U.C.8.1.1 | n/a | Create Workspace | A-FREE-01 | CRITICAL |
-| U.C.8.1.2 | n/a | Create Project | A-MEMBER-01 | HIGH |
-| U.C.8.2.1 | n/a | Create Task | A-MEMBER-01 | CRITICAL |
-| U.C.8.2.2 | n/a | Assign Task | A-MEMBER-01 | HIGH |
-| U.C.8.2.3 | n/a | Change Task Status & Due Date | A-MEMBER-01 | HIGH |
-| U.C.8.3.1 | n/a | View Project Board (Kanban) | A-MEMBER-01 | MEDIUM |
+| UC-23 | n/a | Create Workspace | A-FREE-01 | CRITICAL |
+| UC-24 | n/a | Create Project | A-MEMBER-01 | HIGH |
+| UC-25 | n/a | Create Task | A-MEMBER-01 | CRITICAL |
+| UC-26 | n/a | Assign Task | A-MEMBER-01 | HIGH |
+| UC-27 | n/a | Change Task Status & Due Date | A-MEMBER-01 | HIGH |
+| UC-28 | n/a | View Project Board (Kanban) | A-MEMBER-01 | MEDIUM |
 
-#### Use-Case: {U.C.8.1.1} Create Workspace
+#### Use-Case: {UC-23} Create Workspace
 
 ##### 1 Brief Description
 
@@ -672,7 +672,7 @@ Stakeholder — future invitee of the workspace.
 
 ###### 5.1 <Alternate flow: Free-tier limit reached>
 
-Trigger: step 2 (e.g., 1 workspace allowed on the free plan). The system routes to the U.C.10.2.1 upgrade flow.
+Trigger: step 2 (e.g., 1 workspace allowed on the free plan). The system routes to the UC-35 upgrade flow.
 
 ###### 5.2 <Alternate flow: Name conflict>
 
@@ -695,7 +695,7 @@ Trigger: step 2. The system prompts the user to choose another name.
 
 ###### 7.2 <Scenario: Free-tier limit>
 
-1. The upgrade prompt (U.C.10.2.1) is shown instead of creating an over-quota workspace.
+1. The upgrade prompt (UC-35) is shown instead of creating an over-quota workspace.
 
 ##### 8 Post-conditions
 
@@ -722,12 +722,12 @@ Creator is Owner.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Source: `Doc04_Architecture_DataInventory.md §3` ("Account or workspace lifetime"); `Doc05_Security_Posture.md §4`.
-- **Constrained by:** U.C.3.2.1, U.C.3.5.1.
+- **Constrained by:** UC-11, UC-13.
 - **Rules / NFR:** CR-D-03.3-001 · FR-01.
 - **Threats addressed:** MUC-03 (cross-tenant injection — workspace_id scoped in every subsequent query).
 - **NIST anchors:** PR.AA-01, PR.DS-01.
 
-#### Use-Case: {U.C.8.1.2} Create Project
+#### Use-Case: {UC-24} Create Project
 
 ##### 1 Brief Description
 
@@ -750,7 +750,7 @@ Validates name uniqueness, creates the workspace-scoped project record, and logs
 ##### 3 Preconditions
 
 - Authenticated.
-- Member of workspace U.C.8.1.1.
+- Member of workspace UC-23.
 
 ##### 4 Basic Flow of Events
 
@@ -769,7 +769,7 @@ Trigger: step 1. The system returns 403 with reason.
 
 ###### 5.2 <Alternate flow: Workspace storage quota exceeded>
 
-Trigger: step 3. The system prompts via U.C.10.2.1.
+Trigger: step 3. The system prompts via UC-35.
 
 ##### 6 Subflows
 
@@ -805,21 +805,21 @@ Project exists within workspace.
 
 **Performance (P):** N/A — no attested timing constraint.
 
-**Supportability (S):** Quota exhaustion routes to the U.C.10.2.1 upgrade prompt.
+**Supportability (S):** Quota exhaustion routes to the UC-35 upgrade prompt.
 
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ASSUMED] — projects as a workspace-scoped container are the standard data model for a B2B task SaaS; not directly attested but consistent with `Doc04` workspace-as-data-object.
-- **Constrained by:** U.C.3.2.1, U.C.3.5.1.
+- **Constrained by:** UC-11, UC-13.
 - **Rules / NFR:** CR-D-03.3-001 · FR-05.
 - **Threats addressed:** MUC-03.
 - **NIST anchors:** PR.AA-01.
 
-#### Use-Case: {U.C.8.2.1} Create Task
+#### Use-Case: {UC-25} Create Task
 
 ##### 1 Brief Description
 
-A member creates a task on a board with title, description, due date and optional assignee. It is triggered when the member clicks "New Task" on a board. Tasks are persisted project-scoped and always carry the workspace_id tenant boundary; the assignee is notified (U.C.9.2.1).
+A member creates a task on a board with title, description, due date and optional assignee. It is triggered when the member clicks "New Task" on a board. Tasks are persisted project-scoped and always carry the workspace_id tenant boundary; the assignee is notified (UC-30).
 
 ##### 2 Actor Brief Descriptions
 
@@ -833,19 +833,19 @@ Validates the fields, persists the task with tenant scope, notifies the assignee
 
 ###### 2.3 A-MEMBER-01 (assignee):
 
-Stakeholder — receives the in-app + email notification via U.C.9.2.1.
+Stakeholder — receives the in-app + email notification via UC-30.
 
 ##### 3 Preconditions
 
 - Authenticated.
-- Member of project U.C.8.1.2 with create permission.
+- Member of project UC-24 with create permission.
 
 ##### 4 Basic Flow of Events
 
 1. Member enters title, description, due date, assignee (optional).
 2. System validates title length and due-date format.
 3. System persists task (project_id scoped, with workspace_id for tenant boundary).
-4. System emits in-app + email notification to assignee (U.C.9.2.1).
+4. System emits in-app + email notification to assignee (UC-30).
 5. System logs the event.
 
 > **Sequence diagram:** → Annex B §8 (B_Sequence_Diagrams.md)
@@ -862,7 +862,7 @@ Trigger: step 1. The system rejects the assignment.
 
 ###### 5.3 <Alternate flow: Storage quota exceeded>
 
-Trigger: step 3. The system prompts via U.C.10.2.1.
+Trigger: step 3. The system prompts via UC-35.
 
 ##### 6 Subflows
 
@@ -875,7 +875,7 @@ Trigger: step 3. The system prompts via U.C.10.2.1.
 ###### 6.2 <Subflow: Tenant-scoped persistence and notification>
 
 1. Persist the task (project_id scoped, workspace_id present for the tenant boundary).
-2. Emit in-app + email notification to the assignee (U.C.9.2.1).
+2. Emit in-app + email notification to the assignee (UC-30).
 3. Log the event.
 
 ##### 7 Key Scenarios
@@ -904,7 +904,7 @@ Assignee notified.
 
 ##### 9 Special Requirements (FURPS+)
 
-**Functional (F):** Task fields (title, description, due date, optional assignee); title ≤ 200 chars and due-date format validated; assignee notification (U.C.9.2.1).
+**Functional (F):** Task fields (title, description, due date, optional assignee); title ≤ 200 chars and due-date format validated; assignee notification (UC-30).
 
 **Usability (U):** Validation failure retains the form state.
 
@@ -912,21 +912,21 @@ Assignee notified.
 
 **Performance (P):** N/A — no attested timing constraint.
 
-**Supportability (S):** workspace_id mandatory in every write — the tenant boundary against MUC-03 (secure defaults, U.C.3.3.1).
+**Supportability (S):** workspace_id mandatory in every write — the tenant boundary against MUC-03 (secure defaults, UC-12).
 
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ASSUMED] — "rule-based task management" attested; task CRUD is the central capability. Field schema plausible defaults.
-- **Constrained by:** U.C.3.2.1 (authz tenant), U.C.3.5.1 (audit), U.C.3.3.1 (secure defaults: workspace_id always in WHERE).
+- **Constrained by:** UC-11 (authz tenant), UC-13 (audit), UC-12 (secure defaults: workspace_id always in WHERE).
 - **Rules / NFR:** CR-D-03.3-001 · FR-09, NFR-14.
 - **Threats addressed:** MUC-03 (cross-tenant injection — workspace_id must be present in every write).
 - **NIST anchors:** PR.AA-01, PR.DS-01.
 
-#### Use-Case: {U.C.8.2.2} Assign Task
+#### Use-Case: {UC-26} Assign Task
 
 ##### 1 Brief Description
 
-A member assigns an existing task to a project member. It is triggered when the member selects the assignee from the project-member picker and clicks "Assign". The new assignee is notified (U.C.9.2.1) and the change is logged.
+A member assigns an existing task to a project member. It is triggered when the member selects the assignee from the project-member picker and clicks "Assign". The new assignee is notified (UC-30) and the change is logged.
 
 ##### 2 Actor Brief Descriptions
 
@@ -944,14 +944,14 @@ Validates project membership, updates the assignee, notifies, and logs.
 
 ##### 3 Preconditions
 
-- Task exists (U.C.8.2.1).
+- Task exists (UC-25).
 - Actor is author or has assignment permission.
 
 ##### 4 Basic Flow of Events
 
 1. System validates assignee is member of the task's project.
 2. System updates task.assignee_id.
-3. System notifies new assignee (U.C.9.2.1).
+3. System notifies new assignee (UC-30).
 4. System logs the event.
 
 > **Sequence diagram:** → Annex B §9 (B_Sequence_Diagrams.md)
@@ -972,7 +972,7 @@ Trigger: step 3. The notification is queued for retry — no task loss.
 
 1. Validate the assignee is a member of the task's project.
 2. Update task.assignee_id.
-3. Notify the new assignee (U.C.9.2.1) and log the event.
+3. Notify the new assignee (UC-30) and log the event.
 
 ##### 7 Key Scenarios
 
@@ -996,7 +996,7 @@ Assignee aware.
 
 ##### 9 Special Requirements (FURPS+)
 
-**Functional (F):** Assignee pick limited to project members; task.assignee_id update; assignee notification (U.C.9.2.1).
+**Functional (F):** Assignee pick limited to project members; task.assignee_id update; assignee notification (UC-30).
 
 **Usability (U):** N/A — no attested usability constraint.
 
@@ -1009,16 +1009,16 @@ Assignee aware.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ASSUMED] — standard task-SaaS capability.
-- **Constrained by:** U.C.3.2.1, U.C.3.5.1.
+- **Constrained by:** UC-11, UC-13.
 - **Rules / NFR:** CR-D-03.3-001 · FR-09.
 - **Threats addressed:** MUC-02.
 - **NIST anchors:** PR.AA-01.
 
-#### Use-Case: {U.C.8.2.3} Change Task Status & Due Date
+#### Use-Case: {UC-27} Change Task Status & Due Date
 
 ##### 1 Brief Description
 
-A member advances a task through its workflow (todo / in_progress / done) or edits its due date. It is triggered when the member moves a card on the board or edits the due date. Changes persist immediately and propagate to watchers via the activity feed (U.C.9.5.1).
+A member advances a task through its workflow (todo / in_progress / done) or edits its due date. It is triggered when the member moves a card on the board or edits the due date. Changes persist immediately and propagate to watchers via the activity feed (UC-33).
 
 ##### 2 Actor Brief Descriptions
 
@@ -1030,7 +1030,7 @@ Moves the card to a new status or edits the due date.
 
 Validates the transition, persists the change, emits the activity event, and logs.
 
-###### 2.3 Watchers (other members via activity feed U.C.9.5.1):
+###### 2.3 Watchers (other members via activity feed UC-33):
 
 Stakeholders — follow the task's state through the activity feed.
 
@@ -1095,20 +1095,20 @@ Activity feed updated.
 
 **Performance (P):** N/A — no attested timing constraint.
 
-**Supportability (S):** Activity events feed U.C.9.5.1.
+**Supportability (S):** Activity events feed UC-33.
 
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ASSUMED] — kanban board attested indirectly; status/due as primitives are standard.
-- **Constrained by:** U.C.3.5.1.
+- **Constrained by:** UC-13.
 - **Rules / NFR:** FR-09, NFR-14.
 - **NIST anchors:** PR.DS-01.
 
-#### Use-Case: {U.C.8.3.1} View Project Board (Kanban)
+#### Use-Case: {UC-28} View Project Board (Kanban)
 
 ##### 1 Brief Description
 
-A member views a project's kanban board with tasks arranged in status columns. It is triggered when the member opens the project. The view is read-only — changes happen through the task use cases (U.C.8.2.x).
+A member views a project's kanban board with tasks arranged in status columns. It is triggered when the member opens the project. The view is read-only — changes happen through the task use cases (UC-25, UC-26, UC-27).
 
 ##### 2 Actor Brief Descriptions
 
@@ -1123,7 +1123,7 @@ Queries tasks within the workspace_id + project_id scope and renders the columns
 ##### 3 Preconditions
 
 - Authenticated.
-- Member of project U.C.8.1.2.
+- Member of project UC-24.
 
 ##### 4 Basic Flow of Events
 
@@ -1182,7 +1182,7 @@ Read-only view rendered.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ASSUMED] — kanban-style board implied by "task management" and Rule-based designation in `01_Company_Context.md §3.5`.
-- **Constrained by:** U.C.3.2.1 (read scope).
+- **Constrained by:** UC-11 (read scope).
 - **Rules / NFR:** CR-D-03.3-001 · NFR-14.
 - **Threats addressed:** MUC-03.
 - **NIST anchors:** PR.AA-01.
@@ -1191,13 +1191,13 @@ Read-only view rendered.
 
 | UC ID | D | Title | Primary Owner | Prio |
 |-------|---|-------|---------------|------|
-| U.C.9.1.1 | n/a | Comment on Task | A-MEMBER-01 | MEDIUM |
-| U.C.9.2.1 | n/a | @Mention & In-App Notification | A-MEMBER-01 | HIGH |
-| U.C.9.3.1 | n/a | Attach File to Task | A-MEMBER-01 | MEDIUM |
-| U.C.9.4.1 | n/a | Search & Filter Tasks | A-MEMBER-01 | MEDIUM |
-| U.C.9.5.1 | n/a | Activity Feed (recent events) | A-MEMBER-01 | LOW |
+| UC-29 | n/a | Comment on Task | A-MEMBER-01 | MEDIUM |
+| UC-30 | n/a | @Mention & In-App Notification | A-MEMBER-01 | HIGH |
+| UC-31 | n/a | Attach File to Task | A-MEMBER-01 | MEDIUM |
+| UC-32 | n/a | Search & Filter Tasks | A-MEMBER-01 | MEDIUM |
+| UC-33 | n/a | Activity Feed (recent events) | A-MEMBER-01 | LOW |
 
-#### Use-Case: {U.C.9.1.1} Comment on Task
+#### Use-Case: {UC-29} Comment on Task
 
 ##### 1 Brief Description
 
@@ -1211,7 +1211,7 @@ Writes and submits the comment.
 
 ###### 2.2 Watchers (members subscribed to the task):
 
-Stakeholders — notified of new comments via U.C.9.2.1.
+Stakeholders — notified of new comments via UC-30.
 
 ###### 2.3 A-SYS-01 (System — TinyTask API):
 
@@ -1227,7 +1227,7 @@ Validates and sanitises the comment, persists it task-scoped, notifies watchers,
 1. Member types comment text (Markdown subset allowed).
 2. System validates length (≤ 10 000 chars) and sanitises HTML.
 3. System persists comment (task_id scoped).
-4. System notifies watchers (U.C.9.2.1).
+4. System notifies watchers (UC-30).
 5. System logs the event.
 
 > **Sequence diagram:** → Annex B §12 (B_Sequence_Diagrams.md)
@@ -1238,7 +1238,7 @@ Validates and sanitises the comment, persists it task-scoped, notifies watchers,
 
 Trigger: step 2. The comment is flagged for moderator review.
 
-###### 5.2 <Alternate flow: Attachment placeholder without U.C.9.3.1>
+###### 5.2 <Alternate flow: Attachment placeholder without UC-31>
 
 Trigger: step 2. The comment is rejected.
 
@@ -1272,7 +1272,7 @@ Watchers notified.
 
 ##### 9 Special Requirements (FURPS+)
 
-**Functional (F):** Comments with a Markdown subset; length ≤ 10 000 chars; HTML sanitisation; watcher notification (U.C.9.2.1).
+**Functional (F):** Comments with a Markdown subset; length ≤ 10 000 chars; HTML sanitisation; watcher notification (UC-30).
 
 **Usability (U):** Markdown subset supported for formatting.
 
@@ -1280,17 +1280,17 @@ Watchers notified.
 
 **Performance (P):** N/A — no attested timing constraint.
 
-**Supportability (S):** Sanitisation counters injected-content threats; malicious files are handled at U.C.9.3.1 (MUC-08).
+**Supportability (S):** Sanitisation counters injected-content threats; malicious files are handled at UC-31 (MUC-08).
 
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ASSUMED] — comments are standard for task SaaS; not explicitly attested.
-- **Constrained by:** U.C.3.2.1, U.C.3.5.1.
+- **Constrained by:** UC-11, UC-13.
 - **Rules / NFR:** CR-D-03.3-001 · NFR-14.
-- **Threats addressed:** MUC-08 (malicious attachment handled at U.C.9.3.1).
+- **Threats addressed:** MUC-08 (malicious attachment handled at UC-31).
 - **NIST anchors:** PR.DS-01.
 
-#### Use-Case: {U.C.9.2.1} @Mention & In-App Notification
+#### Use-Case: {UC-30} @Mention & In-App Notification
 
 ##### 1 Brief Description
 
@@ -1378,11 +1378,11 @@ Mentioned users have visible + email notifications.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED — partial] Source: `Doc04_Architecture_DataInventory.md §2` (in-app account view); email notifications via processor attested in `Doc06_ThirdParty_Landscape.md`.
-- **Constrained by:** U.C.3.2.1 (membership check), U.C.3.5.1.
+- **Constrained by:** UC-11 (membership check), UC-13.
 - **Rules / NFR:** CR-D-03.3-001 · NFR-26.
 - **NIST anchors:** PR.AA-01.
 
-#### Use-Case: {U.C.9.3.1} Attach File to Task
+#### Use-Case: {UC-31} Attach File to Task
 
 ##### 1 Brief Description
 
@@ -1448,7 +1448,7 @@ Trigger: step 2, ClamAV flag. The file is quarantined and A-OPS-01 is alerted �
 
 ###### 7.2 <Scenario: Malicious attachment (MUC-08)>
 
-1. Polyglot/malware file is quarantined by the AV scan; A-OPS-01 alerted; on AV failure the fail-safe posture (U.C.2.4.1) keeps it unserved.
+1. Polyglot/malware file is quarantined by the AV scan; A-OPS-01 alerted; on AV failure the fail-safe posture (UC-06) keeps it unserved.
 
 ##### 8 Post-conditions
 
@@ -1470,7 +1470,7 @@ Encrypted at rest.
 
 **Usability (U):** Rejections carry a reason.
 
-**Reliability (R):** AV-flagged files quarantined, never served; fail-safe on AV failure (U.C.2.4.1).
+**Reliability (R):** AV-flagged files quarantined, never served; fail-safe on AV failure (UC-06).
 
 **Performance (P):** N/A — no attested upload-throughput constraint.
 
@@ -1479,12 +1479,12 @@ Encrypted at rest.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ASSUMED] — attachments are standard; storage bucket attested in `Doc04` (SYS-05 Backup Store) and `Doc06` (S3-compatible).
-- **Constrained by:** U.C.3.2.1, U.C.3.5.1, U.C.2.4.1 (fail-safe on AV failure).
+- **Constrained by:** UC-11, UC-13, UC-06 (fail-safe on AV failure).
 - **Rules / NFR:** CR-D-03.3-001, CR-D-04.1-001, CR-D-01.1-001 (encryption at rest) · FR-09, NFR-14.
 - **Threats addressed:** MUC-08 (malicious attachment).
 - **NIST anchors:** PR.DS-01, DE.CM-01.
 
-#### Use-Case: {U.C.9.4.1} Search & Filter Tasks
+#### Use-Case: {UC-32} Search & Filter Tasks
 
 ##### 1 Brief Description
 
@@ -1561,12 +1561,12 @@ Search results displayed.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ASSUMED] — standard feature; no attestation.
-- **Constrained by:** U.C.3.2.1 (scope by membership).
+- **Constrained by:** UC-11 (scope by membership).
 - **Rules / NFR:** CR-D-03.3-001 · NFR-14.
 - **Threats addressed:** MUC-04 (prevented: every query is workspace-scoped server-side).
 - **NIST anchors:** PR.AA-01.
 
-#### Use-Case: {U.C.9.5.1} Activity Feed (recent events)
+#### Use-Case: {UC-33} Activity Feed (recent events)
 
 ##### 1 Brief Description
 
@@ -1633,12 +1633,12 @@ Activity feed displayed.
 
 **Performance (P):** N/A — no attested timing constraint.
 
-**Supportability (S):** Scope bounded by accessible projects (annex anchor U.C.3.2.1).
+**Supportability (S):** Scope bounded by accessible projects (annex anchor UC-11).
 
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ASSUMED] — standard.
-- **Constrained by:** U.C.3.2.1.
+- **Constrained by:** UC-11.
 - **Rules / NFR:** CR-D-03.3-001.
 - **NIST anchors:** PR.AA-01.
 
@@ -1646,12 +1646,12 @@ Activity feed displayed.
 
 | UC ID | D | Title | Primary Owner | Prio |
 |-------|---|-------|---------------|------|
-| U.C.10.1.1 | n/a | Mobile Sync (offline-first) | A-MOB-01 | MEDIUM |
-| U.C.10.2.1 | n/a | Stripe Checkout (Upgrade Plan) | A-FREE-01 | MEDIUM |
-| U.C.10.3.1 | n/a | Workspace Admin Console | A-WSADM-01 | HIGH |
-| U.C.10.3.2 | n/a | Enterprise SSO [ASSUMED] | A-ENTADM-01 | MEDIUM |
+| UC-34 | n/a | Mobile Sync (offline-first) | A-MOB-01 | MEDIUM |
+| UC-35 | n/a | Stripe Checkout (Upgrade Plan) | A-FREE-01 | MEDIUM |
+| UC-36 | n/a | Workspace Admin Console | A-WSADM-01 | HIGH |
+| UC-37 | n/a | Enterprise SSO [ASSUMED] | A-ENTADM-01 | MEDIUM |
 
-#### Use-Case: {U.C.10.1.1} Mobile Sync (offline-first)
+#### Use-Case: {UC-34} Mobile Sync (offline-first)
 
 ##### 1 Brief Description
 
@@ -1673,7 +1673,7 @@ Stakeholder — resolves conflicts when prompted.
 
 ##### 3 Preconditions
 
-- Mobile app authenticated against U.C.7.1.2.
+- Mobile app authenticated against UC-19.
 
 ##### 4 Basic Flow of Events
 
@@ -1743,12 +1743,12 @@ Conflicts surfaced.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Source: `01_Company_Context.md §3.2` (Mobile App channel).
-- **Constrained by:** U.C.7.1.2, U.C.3.2.1, U.C.3.5.1.
+- **Constrained by:** UC-19, UC-11, UC-13.
 - **Rules / NFR:** CR-D-03.1-001, CR-D-03.3-001 · FR-02.
 - **Threats addressed:** MUC-03.
 - **NIST anchors:** PR.AA-01, PR.DS-01.
 
-#### Use-Case: {U.C.10.2.1} Stripe Checkout (Upgrade Plan)
+#### Use-Case: {UC-35} Stripe Checkout (Upgrade Plan)
 
 ##### 1 Brief Description
 
@@ -1845,12 +1845,12 @@ Webhook audited.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Source: `Doc06_ThirdParty_Landscape.md §2` (Stripe hosted checkout; "no PAN stored").
-- **Constrained by:** U.C.3.2.1, U.C.3.5.1.
+- **Constrained by:** UC-11, UC-13.
 - **Rules / NFR:** CR-D-06.1-001, CR-D-06.3-001 (DPA), CR-D-05.1-001 (minimisation) · NFR-40.
 - **Threats addressed:** MUC-05 (abusive integration / webhook spoofing).
 - **NIST anchors:** PR.AA-01, GV.SC-02.
 
-#### Use-Case: {U.C.10.3.1} Workspace Admin Console
+#### Use-Case: {UC-36} Workspace Admin Console
 
 ##### 1 Brief Description
 
@@ -1878,7 +1878,7 @@ Renders the console views, applies the selected action, and logs it.
 ##### 4 Basic Flow of Events
 
 1. System renders membership list, roles, billing summary, audit log filter.
-2. Admin performs action: invite (U.C.7.5.1), change role, remove member, view usage.
+2. Admin performs action: invite (UC-22), change role, remove member, view usage.
 3. System applies the action and logs it.
 
 > **Sequence diagram:** → Annex B §19 (B_Sequence_Diagrams.md)
@@ -1897,7 +1897,7 @@ Trigger: step 2. The action is blocked.
 
 ###### 6.1 <Subflow: Admin action application>
 
-1. Admin selects the action (invite U.C.7.5.1, change role, remove member, view usage).
+1. Admin selects the action (invite UC-22, change role, remove member, view usage).
 2. System applies the action.
 3. System logs it to the audit trail.
 
@@ -1923,7 +1923,7 @@ Audit recorded.
 
 ##### 9 Special Requirements (FURPS+)
 
-**Functional (F):** Membership list, roles, billing summary and audit log filter; invite (U.C.7.5.1), role change, member removal, usage view.
+**Functional (F):** Membership list, roles, billing summary and audit log filter; invite (UC-22), role change, member removal, usage view.
 
 **Usability (U):** N/A — no attested usability constraint.
 
@@ -1931,17 +1931,17 @@ Audit recorded.
 
 **Performance (P):** Member list paginated for large workspaces.
 
-**Supportability (S):** Every console action is logged (audit anchor U.C.3.5.1 in the annex).
+**Supportability (S):** Every console action is logged (audit anchor UC-13 in the annex).
 
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Source: `Doc04_Architecture_DataInventory.md §3` (admin actions attested).
-- **Constrained by:** U.C.3.2.1, U.C.3.5.1, CAP-01 (DPA display).
+- **Constrained by:** UC-11, UC-13, CAP-01 (DPA display).
 - **Rules / NFR:** CR-D-03.3-001, CR-D-06.3-001.
 - **Threats addressed:** MUC-02.
 - **NIST anchors:** PR.AA-01, PR.AA-05.
 
-#### Use-Case: {U.C.10.3.2} Enterprise SSO
+#### Use-Case: {UC-37} Enterprise SSO
 
 ##### 1 Brief Description
 
@@ -1974,7 +1974,7 @@ Validates and stores the IdP config per enterprise tenant, routes members to SSO
 
 1. Admin uploads SAML/OIDC metadata.
 2. System validates signature and stores IdP config per enterprise tenant.
-3. Members from the enterprise domain land on SSO login by default (U.C.7.1.2 extension).
+3. Members from the enterprise domain land on SSO login by default (UC-19 extension).
 4. Admin views SSO login audit trail.
 
 > **Sequence diagram:** → Annex B §20 (B_Sequence_Diagrams.md)
@@ -2027,12 +2027,12 @@ Users routed to IdP.
 
 **Performance (P):** N/A — no attested timing constraint.
 
-**Supportability (S):** Centralised IdP (A-EXT-02) mitigates SSO bypass (MUC-01); admin MFA per U.C.3.1.2.
+**Supportability (S):** Centralised IdP (A-EXT-02) mitigates SSO bypass (MUC-01); admin MFA per UC-10.
 
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ASSUMED] — SSO for customers attested as optional in `Doc05_Security_Posture.md §6`; enterprise SSO variant is standard but enterprise tier scope is [ASSUMED].
-- **Constrained by:** U.C.7.1.2, U.C.3.1.1, U.C.3.1.2, U.C.3.5.1.
+- **Constrained by:** UC-19, UC-09, UC-10, UC-13.
 - **Rules / NFR:** CR-D-03.1-001 · FR-02.
 - **Threats addressed:** MUC-01 (SSO bypass mitigated by centralised IdP).
 - **NIST anchors:** PR.AA-01.
@@ -2041,11 +2041,11 @@ Users routed to IdP.
 
 | UC ID | D | Title | Primary Owner | Prio |
 |-------|---|-------|---------------|------|
-| U.C.11.1.1 | n/a | View My Account (data held) | A-MEMBER-01 | HIGH |
-| U.C.11.2.1 | n/a | Export My Data (GDPR portability) | A-MEMBER-01 | CRITICAL |
-| U.C.11.3.1 | n/a | Delete My Account / Workspace | A-FREE-01 / A-WSADM-01 | CRITICAL |
+| UC-38 | n/a | View My Account (data held) | A-MEMBER-01 | HIGH |
+| UC-39 | n/a | Export My Data (GDPR portability) | A-MEMBER-01 | CRITICAL |
+| UC-40 | n/a | Delete My Account / Workspace | A-FREE-01 / A-WSADM-01 | CRITICAL |
 
-#### Use-Case: {U.C.11.1.1} View My Account (data held)
+#### Use-Case: {UC-38} View My Account (data held)
 
 ##### 1 Brief Description
 
@@ -2119,16 +2119,16 @@ Audit logged.
 
 **Performance (P):** Pagination for long activity history.
 
-**Supportability (S):** Read event audited (annex anchor U.C.3.5.1); transparency per CR-D-05.4-001 (annex).
+**Supportability (S):** Read event audited (annex anchor UC-13); transparency per CR-D-05.4-001 (annex).
 
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Source: `Doc04_Architecture_DataInventory.md §3` ("In-app account view and support request").
-- **Constrained by:** U.C.1.3.1, U.C.3.5.1.
+- **Constrained by:** UC-02, UC-13.
 - **Rules / NFR:** CR-D-05.4-001 (transparency) · FR-07.
 - **NIST anchors:** PR.DS-10, CT.DM-P1.
 
-#### Use-Case: {U.C.11.2.1} Export My Data (GDPR portability)
+#### Use-Case: {UC-39} Export My Data (GDPR portability)
 
 ##### 1 Brief Description
 
@@ -2220,16 +2220,16 @@ URL consumed or expired.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Source: `Doc03_Company_Context_Assessment.md §3` (BG-03: "JSON export endpoint live within 90 days").
-- **Constrained by:** U.C.1.3.1, U.C.3.5.1, U.C.3.1.1.
+- **Constrained by:** UC-02, UC-13, UC-09.
 - **Rules / NFR:** CR-D-05.4-001 · FR-09, NFR-24.
 - **Threats addressed:** MUC-04 (bulk scraping — rate-limited + 24h URL + auth required).
 - **NIST anchors:** PR.DS-10, CT.DM-P1.
 
-#### Use-Case: {U.C.11.3.1} Delete My Account / Workspace
+#### Use-Case: {UC-40} Delete My Account / Workspace
 
 ##### 1 Brief Description
 
-A user deletes their account, or a workspace owner deletes the workspace. It is triggered when the user clicks "Delete account" / "Delete workspace" and types the confirmation phrase. Deletion is immediate for accounts; workspaces get a 30-day grace period with a cancel link before cryptographic erasure runs across primary + backup (U.C.1.2.1 cascade).
+A user deletes their account, or a workspace owner deletes the workspace. It is triggered when the user clicks "Delete account" / "Delete workspace" and types the confirmation phrase. Deletion is immediate for accounts; workspaces get a 30-day grace period with a cancel link before cryptographic erasure runs across primary + backup (UC-01 cascade).
 
 ##### 2 Actor Brief Descriptions
 
@@ -2260,7 +2260,7 @@ Stakeholders — lose access when a workspace is deleted.
 1. System requires typing the confirmation phrase.
 2. System schedules deletion (immediate for account; 30-day grace for workspace).
 3. System sends confirmation email with cancel link (within grace period).
-4. After grace, system performs cryptographic erasure across primary + backup (U.C.1.2.1 cascade).
+4. After grace, system performs cryptographic erasure across primary + backup (UC-01 cascade).
 5. System logs the event.
 
 > **Sequence diagram:** → Annex B §23 (B_Sequence_Diagrams.md)
@@ -2285,7 +2285,7 @@ Trigger: step 4. Erasure is suspended until the hold is released.
 
 ###### 6.2 <Subflow: Cryptographic erasure>
 
-1. After the grace period, perform cryptographic erasure across primary + backup (U.C.1.2.1 cascade).
+1. After the grace period, perform cryptographic erasure across primary + backup (UC-01 cascade).
 2. Issue the erasure receipt.
 3. Log the event.
 
@@ -2323,19 +2323,19 @@ Receipt issued.
 
 **Performance (P):** N/A — no attested timing constraint beyond the 30-day grace.
 
-**Supportability (S):** Erasure cascades to U.C.1.2.1; event logged for audit.
+**Supportability (S):** Erasure cascades to UC-01; event logged for audit.
 
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Source: `Doc04_Architecture_DataInventory.md §3` ("Workspace deletion removes active records").
-- **Constrained by:** U.C.1.2.1, U.C.3.5.1.
+- **Constrained by:** UC-01, UC-13.
 - **Rules / NFR:** CR-D-05.3-001, CR-D-05.2-001 · FR-08, NFR-23.
 - **Threats addressed:** MUC-04.
 - **NIST anchors:** PR.DS-01, CT.DM-P4.
 
 ---
 
-## §3 Security & Compliance Use Cases (U.C.1–6) — lane-pure (UC cards only)
+## §3 Security & Compliance Use Cases (UC-01..UC-17) — lane-pure (UC cards only)
 
 > Of the 35 L1 security/compliance cards from the v2.0 freeze, the **17 genuine use cases** are retained below with the same `U.C.X.Y.Z` identifiers (so every downstream reference stays valid), in Cockburn form with a **Security & Compliance Annex** consolidating the prior property-sheet fields. The 18 non-UC cards (PROC-01..17, CAP-01) left the catalog per rubric `REALIZATION_CLASS_RUBRIC.md` v1.8 §5B rule 6 (UC SEPARATION campaign, 2026-09-05) — full lane cards live in `Doc32_Process_Capability_Cards.md`; their catalogue-only fields are preserved in the §3.0 Compliance Domain Index so no information is lost.
 
@@ -2345,11 +2345,11 @@ Receipt issued.
 
 | Package | Domain focus | UCs in this catalog (§3.x) | Lane cards (Doc32) | Rules covered |
 |---|---|---|---|---|
-| PKG-DP (Data Protection) | Data Protection | U.C.1.2.1, U.C.1.3.1, U.C.1.4.1, U.C.1.5.1 | PROC-01, PROC-02 | CR-D-01.1-001 / PO-D-01.1-001 · CR-D-01.4-001 / PO-D-01.4-001 |
-| PKG-SEC (Security Operations) | Security Operations | U.C.2.2.1, U.C.2.4.1, U.C.2.4.2, U.C.2.6.1 | PROC-03, PROC-04, PROC-05 | CR-D-02.1-001 / SO-D-02.1-001 · CR-D-02.3-001 / SO-D-02.3-001 · CR-D-04.3-001 / SO-D-04.3-001 |
-| PKG-IAM (Identity & Access) | Identity & Access | U.C.3.1.1, U.C.3.1.2, U.C.3.2.1, U.C.3.3.1, U.C.3.5.1 | PROC-06, PROC-07 | CR-D-09.4-001 / PO-D-09.4-001 · CR-D-10.3-001 / SO-D-10.3-001 |
-| PKG-DEV (Secure Development) | Secure Development | U.C.4.2.1, U.C.4.3.1, U.C.4.4.1 | PROC-08, PROC-09 | CR-D-07.1-001 / PO-D-07.1-001 · CR-D-09.2-001 / PO-D-09.2-001 |
-| PKG-GOV (Governance & Compliance) | Governance & Compliance | U.C.5.6.1 | CAP-01, PROC-10, PROC-11, PROC-12, PROC-13, PROC-14 | CR-D-06.3-001 / SO-D-06.3-001 · CR-D-09.1-001 / PO-D-09.1-001 · CR-D-09.1-001 / SO-D-09.1-001 · CR-D-09.2-001 / PO-D-09.2-001 · CR-D-09.4-001 / PO-D-09.4-001 · CR-D-06.1-001 / SO-D-06.1-001 |
+| PKG-DP (Data Protection) | Data Protection | UC-01, UC-02, UC-03, UC-04 | PROC-01, PROC-02 | CR-D-01.1-001 / PO-D-01.1-001 · CR-D-01.4-001 / PO-D-01.4-001 |
+| PKG-SEC (Security Operations) | Security Operations | UC-05, UC-06, UC-07, UC-08 | PROC-03, PROC-04, PROC-05 | CR-D-02.1-001 / SO-D-02.1-001 · CR-D-02.3-001 / SO-D-02.3-001 · CR-D-04.3-001 / SO-D-04.3-001 |
+| PKG-IAM (Identity & Access) | Identity & Access | UC-09, UC-10, UC-11, UC-12, UC-13 | PROC-06, PROC-07 | CR-D-09.4-001 / PO-D-09.4-001 · CR-D-10.3-001 / SO-D-10.3-001 |
+| PKG-DEV (Secure Development) | Secure Development | UC-14, UC-15, UC-16 | PROC-08, PROC-09 | CR-D-07.1-001 / PO-D-07.1-001 · CR-D-09.2-001 / PO-D-09.2-001 |
+| PKG-GOV (Governance & Compliance) | Governance & Compliance | UC-17 | CAP-01, PROC-10, PROC-11, PROC-12, PROC-13, PROC-14 | CR-D-06.3-001 / SO-D-06.3-001 · CR-D-09.1-001 / PO-D-09.1-001 · CR-D-09.1-001 / SO-D-09.1-001 · CR-D-09.2-001 / PO-D-09.2-001 · CR-D-09.4-001 / PO-D-09.4-001 · CR-D-06.1-001 / SO-D-06.1-001 |
 | PKG-TRN (Training & Awareness) | Training & Awareness | — (0 UCs) | PROC-15, PROC-16, PROC-17 | CR-D-08.1-001 / SO-D-08.1-001 · CR-D-08.2-001 / SO-D-08.2-001 · CR-D-08.1-001 / SO-D-08.1-001 |
 
 **Lane-card compliance register (catalogue-only fields, verbatim):**
@@ -2369,7 +2369,7 @@ Receipt issued.
     - **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
     - **Regulatory Reporting:** CNPD ≤72h if breach of personal data (GDPR Art. 33).
     - **External Auditor:** AWS SOC 2 / ISO 27001 · **Supervisory Body:** CNPD.
-    - **Functional UCs this constrains:** U.C.11.1.1, U.C.11.2.1, U.C.11.3.1.
+    - **Functional UCs this constrains:** UC-38, UC-39, UC-40.
     - **Misuse cases this addresses:** MUC-04 (bulk scraping limited by verified DSAR process + rate limits).
 - **PROC-02 — Data Subject Rectification** · D-01.4 · HIGH · Realises CR-D-01.4-001 / PO-D-01.4-001 · Operational card: Doc32 §PROC-02.
   - Stakeholders: Customer, Auditor
@@ -2382,12 +2382,12 @@ Receipt issued.
     - **Dependencies:** FR-11, NFR-06, NFR-28, NODE-SYS-016
     - **Risk if not met:** H — inaccurate data = GDPR Art. 5(1)(d) breach.
     - **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
-    - **Functional UCs this constrains:** U.C.11.1.1.
+    - **Functional UCs this constrains:** UC-38.
 - **PROC-03 — Vulnerability-Free Release** · D-02.1 · CRITICAL · Realises CR-D-02.1-001 / SO-D-02.1-001 · Operational card: Doc32 §PROC-03.
   - Stakeholders: A-CTO-01, Auditor
   - Preconditions: Release candidate built; SAST/SCA/container scans configured.
-  - Extensions: 3a. Critical CVE → emergency patch path (U.C.2.2.1).
-  - Postconditions: Release published or blocked; SBOM generated (U.C.5.6.1).
+  - Extensions: 3a. Critical CVE → emergency patch path (UC-05).
+  - Postconditions: Release published or blocked; SBOM generated (UC-17).
   - Security & Compliance Annex:
     - **Owner:** Lead Developer · **Verification Method:** TEST
     - **Verification Criteria:** 0 critical findings at release; SCA prioritised by CVSS + EPSS; release audit log.
@@ -2395,7 +2395,7 @@ Receipt issued.
     - **Risk if not met:** H — unremediated critical = CRA Art. 14 actively-exploited obligation.
     - **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
     - **Regulatory Reporting:** ENISA ≤24h if actively-exploited (CRA Art. 14).
-    - **Functional UCs this constrains:** U.C.8.2.1, U.C.9.3.1 (release gating affects task/attachment publishes).
+    - **Functional UCs this constrains:** UC-25, UC-31 (release gating affects task/attachment publishes).
 - **PROC-04 — Coordinated Vulnerability Disclosure** · D-02.3 · HIGH · Realises CR-D-02.3-001 / SO-D-02.3-001 · Operational card: Doc32 §PROC-04.
   - Stakeholders: External researcher, CTO, Auditor
   - Preconditions: security.txt published at `/.well-known/security.txt`; dedicated mailbox configured.
@@ -2470,7 +2470,7 @@ Receipt issued.
     - **Verification Criteria:** 100% active processors with signed DPAs; annual review; Art. 28 clauses present.
     - **Dependencies:** NODE-PROC-012, NODE-ROLE-011
     - **Risk if not met:** H — missing DPA = GDPR Art. 28 violation.
-    - **Functional UCs this constrains:** U.C.10.2.1, U.C.7.1.2.
+    - **Functional UCs this constrains:** UC-35, UC-19.
 - **PROC-10 — Annual Policy Review** · D-09.1 · HIGH · Realises CR-D-09.1-001 / PO-D-09.1-001 · Operational card: Doc32 §PROC-10.
   - Stakeholders: CEO, Auditor
   - Preconditions: Policies exist.
@@ -2522,7 +2522,7 @@ Receipt issued.
     - **Verification Criteria:** Security questionnaire pre-engagement; annual vendor assessment; findings remediated.
     - **Dependencies:** FR-28, NFR-40, NODE-PROC-011, NODE-ROLE-009
     - **Risk if not met:** H — substandard processor = GDPR Art. 28 violation.
-    - **Functional UCs this constrains:** U.C.10.2.1 (Stripe), U.C.7.1.2 (Auth0).
+    - **Functional UCs this constrains:** UC-35 (Stripe), UC-19 (Auth0).
 - **PROC-15 — Annual Awareness Training** · D-08.1 · MEDIUM · Realises CR-D-08.1-001 / SO-D-08.1-001 · Operational card: Doc32 §PROC-15.
   - Stakeholders: All staff, Auditor
   - Preconditions: LMS available.
@@ -2559,12 +2559,12 @@ Receipt issued.
 
 | UC ID | D | Title | Primary rule | CSF | PF | Prio |
 |-------|---|-------|--------------|-----|----|----|
-| U.C.1.2.1 | D-05.3 | Data Subject Erasure | CR-D-05.3-001 / PO-D-05.3-001 | GV.SC-04, PR.DS-10, PR.DS-02 | CT.DM-P4, CT.DM-P5 | CRITICAL |
-| U.C.1.3.1 | D-05.1 | Data Subject Data Export (portability) | CR-D-05.4-001 / PO-D-05.4-001 | PR.DS-10, PR.AA-03, PR.DS-02 | CT.DM-P1, CT.DM-P6 | HIGH |
-| U.C.1.4.1 | D-05.2 | Consent Management | CR-D-05.1-001 / PO-D-05.1-001 | GV.OC-03, GV.PO-01, ID.AM-03 | CT.DP-P4, CT.PO-P4, ID.RA-P3 | HIGH |
-| U.C.1.5.1 | D-05.4 | Structured Data Portability | CR-D-05.4-001 / PO-D-05.4-001 | PR.DS-10, PR.AA-03, PR.DS-02 | CT.DM-P1, CT.DM-P6 | MEDIUM |
+| UC-01 | D-05.3 | Data Subject Erasure | CR-D-05.3-001 / PO-D-05.3-001 | GV.SC-04, PR.DS-10, PR.DS-02 | CT.DM-P4, CT.DM-P5 | CRITICAL |
+| UC-02 | D-05.1 | Data Subject Data Export (portability) | CR-D-05.4-001 / PO-D-05.4-001 | PR.DS-10, PR.AA-03, PR.DS-02 | CT.DM-P1, CT.DM-P6 | HIGH |
+| UC-03 | D-05.2 | Consent Management | CR-D-05.1-001 / PO-D-05.1-001 | GV.OC-03, GV.PO-01, ID.AM-03 | CT.DP-P4, CT.PO-P4, ID.RA-P3 | HIGH |
+| UC-04 | D-05.4 | Structured Data Portability | CR-D-05.4-001 / PO-D-05.4-001 | PR.DS-10, PR.AA-03, PR.DS-02 | CT.DM-P1, CT.DM-P6 | MEDIUM |
 
-#### U.C.1.2.1 — Data Subject Erasure
+#### UC-01 — Data Subject Erasure
 
 **Primary Actor:** A-DPO-01 · **Stakeholders:** Customer, Auditor
 **Preconditions:** Verified identity; no legal-hold on subject data.
@@ -2583,9 +2583,9 @@ Receipt issued.
 - **Risk if not met:** H — incomplete erasure = GDPR Art. 17 violation + reputational damage.
 **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 - **Regulatory Reporting:** CNPD ≤72h if breach of personal data.
-- **Functional UCs this constrains:** U.C.11.3.1.
+- **Functional UCs this constrains:** UC-40.
 
-#### U.C.1.3.1 — Data Subject Data Export (portability)
+#### UC-02 — Data Subject Data Export (portability)
 
 **Primary Actor:** A-DPO-01 · **Stakeholders:** Customer, Auditor
 **Preconditions:** Verified identity.
@@ -2601,9 +2601,9 @@ Receipt issued.
 - **Verification Criteria:** Export ≤30d with all declared fields; all formats generated; customer authenticated.
 - **Dependencies:** FR-09, NFR-24, NODE-SYS-014
 - **Risk if not met:** H — GDPR Art. 20 violation.
-- **Functional UCs this constrains:** U.C.11.2.1.
+- **Functional UCs this constrains:** UC-39.
 
-#### U.C.1.4.1 — Consent Management
+#### UC-03 — Consent Management
 
 **Primary Actor:** A-FREE-01 / A-MEMBER-01 (data subject)
 **Stakeholders:** A-DPO-01, Auditor
@@ -2621,9 +2621,9 @@ Receipt issued.
 - **Verification Criteria:** 100% capture rate for new users; withdrawal propagation ≤7d; immutable audit.
 - **Dependencies:** FR-10, NFR-26, NFR-27, NODE-PROC-007
 - **Risk if not met:** H — non-propagated withdrawal = GDPR Art. 7(3) violation.
-- **Functional UCs this constrains:** U.C.7.1.1, U.C.11.1.1.
+- **Functional UCs this constrains:** UC-18, UC-38.
 
-#### U.C.1.5.1 — Structured Data Portability
+#### UC-04 — Structured Data Portability
 
 **Primary Actor:** A-DPO-01 · **Stakeholders:** Customer, Auditor
 **Preconditions:** Export endpoint operational.
@@ -2639,18 +2639,18 @@ Receipt issued.
 - **Verification Criteria:** Schema documented + version-pinned; endpoint authenticated; rate limit enforced; passes JSON Schema validator.
 - **Dependencies:** FR-09, NFR-24, NODE-SYS-014
 - **Risk if not met:** M — minor GDPR Art. 20 risk if endpoint unavailable.
-- **Functional UCs this constrains:** U.C.11.2.1.
+- **Functional UCs this constrains:** UC-39.
 
 ### §3.2 PKG-SEC (Security Operations) — 4 UCs · lane cards: PROC-03, PROC-04, PROC-05 → Doc32
 
 | UC ID | D | Title | Primary rule | CSF | PF | Prio |
 |-------|---|-------|--------------|-----|----|----|
-| U.C.2.2.1 | D-02.2 | Automated Patch Deployment | CR-D-02.2-001 / SO-D-02.2-001 | GV.OV-02, ID.RA-01, PR.IR-03 | — | CRITICAL |
-| U.C.2.4.1 | D-04.1 | Exploit Severity Limitation | CR-D-04.1-001 / SO-D-04.1-001 | DE.AE-02, DE.CM-01, DE.CM-09 | CM.AW-P7 | CRITICAL |
-| U.C.2.4.2 | D-04.2 | DoS Resilience | CR-D-04.2-001 / SO-D-04.2-001 | DE.CM-09, PR.DS-10, PR.IR-03 | CT.DM-P10, PR.PO-P7 | HIGH |
-| U.C.2.6.1 | D-04.4 | Data Restoration & Recovery | CR-D-04.4-001 / SO-D-04.4-001 | PR.DS-01, PR.DS-10, PR.IR-03 | — | HIGH |
+| UC-05 | D-02.2 | Automated Patch Deployment | CR-D-02.2-001 / SO-D-02.2-001 | GV.OV-02, ID.RA-01, PR.IR-03 | — | CRITICAL |
+| UC-06 | D-04.1 | Exploit Severity Limitation | CR-D-04.1-001 / SO-D-04.1-001 | DE.AE-02, DE.CM-01, DE.CM-09 | CM.AW-P7 | CRITICAL |
+| UC-07 | D-04.2 | DoS Resilience | CR-D-04.2-001 / SO-D-04.2-001 | DE.CM-09, PR.DS-10, PR.IR-03 | CT.DM-P10, PR.PO-P7 | HIGH |
+| UC-08 | D-04.4 | Data Restoration & Recovery | CR-D-04.4-001 / SO-D-04.4-001 | PR.DS-01, PR.DS-10, PR.IR-03 | — | HIGH |
 
-#### U.C.2.2.1 — Automated Patch Deployment
+#### UC-05 — Automated Patch Deployment
 
 **Primary Actor:** A-DEV-01 / A-OPS-01
 **Stakeholders:** Operations Lead, Auditor
@@ -2671,9 +2671,9 @@ Receipt issued.
 - **Risk if not met:** H — extended exposure = CRA Art. 14 trigger.
 **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 - **Regulatory Reporting:** ENISA ≤24h if actively-exploited.
-- **Functional UCs this constrains:** All U.C.7-11 (availability).
+- **Functional UCs this constrains:** All UC-18..UC-40 (availability).
 
-#### U.C.2.4.1 — Exploit Severity Limitation
+#### UC-06 — Exploit Severity Limitation
 
 **Primary Actor:** A-OPS-01 · **Stakeholders:** Lead Developer, CTO, Auditor
 **Preconditions:** Detection signal from SIEM or external report.
@@ -2693,9 +2693,9 @@ Receipt issued.
 - **Risk if not met:** H — uncontrolled exploit = GDPR breach + CRA Art. 14(4).
 **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 - **Regulatory Reporting:** CNPD ≤72h + ENISA ≤24h.
-- **Functional UCs this constrains:** U.C.8.2.1, U.C.9.3.1 (attachment quarantine).
+- **Functional UCs this constrains:** UC-25, UC-31 (attachment quarantine).
 
-#### U.C.2.4.2 — DoS Resilience
+#### UC-07 — DoS Resilience
 
 **Primary Actor:** A-OPS-01 · **Stakeholders:** Lead Developer, Auditor
 **Preconditions:** L7 traffic monitoring; rate limiter configured.
@@ -2711,10 +2711,10 @@ Receipt issued.
 - **Verification Criteria:** Chaos DoS test quarterly; recovery <24h; availability ≥99.9% monthly; runbook published.
 - **Dependencies:** FR-19, NFR-10, NFR-16, NODE-SYS-005
 - **Risk if not met:** M — sustained outage = GDPR availability principle + revenue loss.
-- **Functional UCs this constrains:** All U.C.7-11.
+- **Functional UCs this constrains:** All UC-18, UC-19, UC-20, UC-21, UC-22-11.
 - **Misuse cases this addresses:** MUC-07 (board DoS).
 
-#### U.C.2.6.1 — Data Restoration & Recovery
+#### UC-08 — Data Restoration & Recovery
 
 **Primary Actor:** A-OPS-01 · **Stakeholders:** Lead Developer, Auditor
 **Preconditions:** Backup verified; recovery runbook signed off.
@@ -2731,19 +2731,19 @@ Receipt issued.
 - **Verification Criteria:** Quarterly restore test passes RTO/RPO; backup integrity weekly; runbook signed.
 - **Dependencies:** FR-19, NFR-14, NFR-15, NFR-16, NODE-SYS-015, NODE-PROC-003
 - **Risk if not met:** H — failed restore = data loss + GDPR availability breach.
-- **Functional UCs this constrains:** All U.C.7-11.
+- **Functional UCs this constrains:** All UC-18, UC-19, UC-20, UC-21, UC-22-11.
 
 ### §3.3 PKG-IAM (Identity & Access) — 5 UCs · lane cards: PROC-06, PROC-07 → Doc32
 
 | UC ID | D | Title | Primary rule | CSF | PF | Prio |
 |-------|---|-------|--------------|-----|----|----|
-| U.C.3.1.1 | D-03.1 | User Authentication | CR-D-03.1-001 / SO-D-03.1-001 | ID.AM-01, PR.AA-01, PR.AA-03 | — | CRITICAL |
-| U.C.3.1.2 | D-03.2 | MFA for Privileged Accounts | CR-D-03.2-001 / SO-D-03.1-001 | PR.AA-03, PR.AA-04, PR.AA-05 | — | CRITICAL |
-| U.C.3.2.1 | D-03.3 | Authorisation / Least Privilege | CR-D-03.3-001 / SO-D-03.3-001 | ID.AM-01, PR.AA-01, PR.AA-03 | CT.PO-P1 | HIGH |
-| U.C.3.3.1 | D-03.4 | Secure System Defaults | CR-D-03.4-001 / SO-D-03.4-001 | GV.PO-01, GV.SC-03, PR.DS-10 | CT.DP-P4, CT.PO-P4 | HIGH |
-| U.C.3.5.1 | D-10.2 | Audit Logging | CR-D-10.2-001 / SO-D-10.2-001 | DE.CM-01, GV.PO-02, PR.DS-01 | CT.DM-P4, CT.DM-P9 | HIGH |
+| UC-09 | D-03.1 | User Authentication | CR-D-03.1-001 / SO-D-03.1-001 | ID.AM-01, PR.AA-01, PR.AA-03 | — | CRITICAL |
+| UC-10 | D-03.2 | MFA for Privileged Accounts | CR-D-03.2-001 / SO-D-03.1-001 | PR.AA-03, PR.AA-04, PR.AA-05 | — | CRITICAL |
+| UC-11 | D-03.3 | Authorisation / Least Privilege | CR-D-03.3-001 / SO-D-03.3-001 | ID.AM-01, PR.AA-01, PR.AA-03 | CT.PO-P1 | HIGH |
+| UC-12 | D-03.4 | Secure System Defaults | CR-D-03.4-001 / SO-D-03.4-001 | GV.PO-01, GV.SC-03, PR.DS-10 | CT.DP-P4, CT.PO-P4 | HIGH |
+| UC-13 | D-10.2 | Audit Logging | CR-D-10.2-001 / SO-D-10.2-001 | DE.CM-01, GV.PO-02, PR.DS-01 | CT.DM-P4, CT.DM-P9 | HIGH |
 
-#### U.C.3.1.1 — User Authentication
+#### UC-09 — User Authentication
 
 **Primary Actor:** A-MEMBER-01 / A-FREE-01 (any authenticated user) and A-CTO-01 (policy owner)
 **Stakeholders:** Customer, CTO, DPO, Lead Developer, Auditor
@@ -2762,10 +2762,10 @@ Receipt issued.
 - **Dependencies:** FR-02, FR-06, NFR-01, NFR-02, NODE-SYS-006, NODE-SYS-011
 - **Risk if not met:** H — auth bypass = GDPR + CRA critical control failure.
 **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
-- **Functional UCs this constrains:** U.C.7.1.1, U.C.7.1.2, U.C.7.1.3, U.C.7.2.1.
+- **Functional UCs this constrains:** UC-18, UC-19, UC-20, UC-21.
 - **Misuse cases this addresses:** MUC-01.
 
-#### U.C.3.1.2 — MFA for Privileged Accounts
+#### UC-10 — MFA for Privileged Accounts
 
 **Primary Actor:** A-CTO-01 / A-DEV-01 / A-OPS-01 (privileged staff)
 **Stakeholders:** Lead Developer, CTO, Auditor
@@ -2784,7 +2784,7 @@ Receipt issued.
 - **Risk if not met:** H — privileged compromise = total system takeover.
 **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-#### U.C.3.2.1 — Authorisation / Least Privilege
+#### UC-11 — Authorisation / Least Privilege
 
 **Primary Actor:** A-CTO-01 (role taxonomy owner)
 **Stakeholders:** All staff, Auditor
@@ -2794,17 +2794,17 @@ Receipt issued.
 1. RBAC matrix documented.
 2. Privileges diff'd against last quarter.
 3. Deprovisioning within 24h of termination.
-**Extensions:** 3a. Customer self-service roles (U.C.7.5.1, U.C.8.x) — separate taxonomy.
+**Extensions:** 3a. Customer self-service roles (UC-22, UC-23, UC-24, UC-25, UC-26, UC-27, UC-28) — separate taxonomy.
 **Postconditions:** Roles aligned with least privilege.
 **Security & Compliance Annex:**
 - **Owner:** CTO · **Verification Method:** INSPECT
 - **Verification Criteria:** RBAC documented and reviewed quarterly; privilege creep detected; deprovisioning ≤24h.
 - **Dependencies:** FR-05, NFR-25, NODE-ROLE-004
 - **Risk if not met:** M — privilege creep = insider risk + GDPR Art. 32 violation.
-- **Functional UCs this constrains:** U.C.7.5.1, U.C.8.*, U.C.10.3.1.
+- **Functional UCs this constrains:** UC-22, UC-23, UC-24, UC-25, UC-26, UC-27, UC-28, UC-36.
 - **Misuse cases this addresses:** MUC-02.
 
-#### U.C.3.3.1 — Secure System Defaults
+#### UC-12 — Secure System Defaults
 
 **Primary Actor:** A-OPS-01 · **Stakeholders:** Lead Developer, Auditor
 **Preconditions:** CIS benchmark available; production system inventory.
@@ -2821,7 +2821,7 @@ Receipt issued.
 - **Dependencies:** FR-06, NODE-SYS-008
 - **Risk if not met:** M — misconfiguration = most common breach vector.
 
-#### U.C.3.5.1 — Audit Logging
+#### UC-13 — Audit Logging
 
 **Primary Actor:** A-CTO-01 (logging platform owner) + A-OPS-01
 **Stakeholders:** Lead Developer, DPO, Auditor
@@ -2838,17 +2838,17 @@ Receipt issued.
 - **Verification Criteria:** 100% auth + admin events logged; retention ≥12 months; WORM prevents tampering.
 - **Dependencies:** FR-26, NFR-32, NFR-37, NODE-SYS-001/002/003
 - **Risk if not met:** H — incomplete logs = GDPR accountability gap.
-- **Functional UCs this constrains:** All U.C.7-11.
+- **Functional UCs this constrains:** All UC-18, UC-19, UC-20, UC-21, UC-22-11.
 
 ### §3.4 PKG-DEV (Secure Development) — 3 UCs · lane cards: PROC-08, PROC-09 → Doc32
 
 | UC ID | D | Title | Primary rule | CSF | PF | Prio |
 |-------|---|-------|--------------|-----|----|----|
-| U.C.4.2.1 | D-07.2 | SAST/DAST in CI/CD | BPR-D-07.2-001 | ID.RA-04, ID.RA-05, PR.PS-01 | — | HIGH |
-| U.C.4.3.1 | D-02.2 | Security Patch Deployment | CR-D-02.2-001 / SO-D-02.2-001 | GV.OV-02, ID.RA-01, PR.IR-03 | — | CRITICAL |
-| U.C.4.4.1 | D-04.1 | Fail-Safe Design | CR-D-04.1-001 / SO-D-04.1-001 | DE.AE-02, DE.CM-01, DE.CM-09 | CM.AW-P7 | HIGH |
+| UC-14 | D-07.2 | SAST/DAST in CI/CD | BPR-D-07.2-001 | ID.RA-04, ID.RA-05, PR.PS-01 | — | HIGH |
+| UC-15 | D-02.2 | Security Patch Deployment | CR-D-02.2-001 / SO-D-02.2-001 | GV.OV-02, ID.RA-01, PR.IR-03 | — | CRITICAL |
+| UC-16 | D-04.1 | Fail-Safe Design | CR-D-04.1-001 / SO-D-04.1-001 | DE.AE-02, DE.CM-01, DE.CM-09 | CM.AW-P7 | HIGH |
 
-#### U.C.4.2.1 — SAST/DAST in CI/CD
+#### UC-14 — SAST/DAST in CI/CD
 
 **Primary Actor:** A-DEV-01 · **Stakeholders:** CTO, Auditor
 **Preconditions:** CI/CD configured with scan stage.
@@ -2865,7 +2865,7 @@ Receipt issued.
 - **Dependencies:** FR-20, FR-21, NODE-SYS-012, NODE-PROC-008, NODE-PROC-013
 - **Risk if not met:** H — unscanned code = CRA + GDPR design defect.
 
-#### U.C.4.3.1 — Security Patch Deployment
+#### UC-15 — Security Patch Deployment
 
 **Primary Actor:** A-DEV-01 · **Stakeholders:** Operations Lead, Auditor
 **Preconditions:** Patch candidate built and tested.
@@ -2884,7 +2884,7 @@ Receipt issued.
 **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 - **Regulatory Reporting:** ENISA ≤24h if actively-exploited.
 
-#### U.C.4.4.1 — Fail-Safe Design
+#### UC-16 — Fail-Safe Design
 
 **Primary Actor:** A-CTO-01 (architecture owner) · **Stakeholders:** Lead Developer, Auditor
 **Preconditions:** Component in design or refactor.
@@ -2906,9 +2906,9 @@ Receipt issued.
 
 | UC ID | D | Title | Primary rule | CSF | PF | Prio |
 |-------|---|-------|--------------|-----|----|----|
-| U.C.5.6.1 | D-06.2 | SBOM Publication | CR-D-06.2-001 / SO-D-06.2-001 | GV.SC-02, GV.SC-03, ID.AM-02 | — | HIGH |
+| UC-17 | D-06.2 | SBOM Publication | CR-D-06.2-001 / SO-D-06.2-001 | GV.SC-02, GV.SC-03, ID.AM-02 | — | HIGH |
 
-#### U.C.5.6.1 — SBOM Publication
+#### UC-17 — SBOM Publication
 
 **Primary Actor:** A-DEV-01 · **Stakeholders:** CTO, Auditor
 **Preconditions:** Release published.
@@ -2928,119 +2928,119 @@ Receipt issued.
 
 ## §4 Misuse Cases (MUC-01..08) — Sindre & Opdahl threat model
 
-> Each misuse case (MUC) describes an **attack** by a **misactor** against a **functional UC**. Mitigations cite the U.C.1-6 security/compliance UC(s) that address the threat.
+> Each misuse case (MUC) describes an **attack** by a **misactor** against a **functional UC**. Mitigations cite the UC-01..UC-17 security/compliance UC(s) that address the threat.
 
 ### §4.1 MUC inventory
 
 | MUC | Misactor | Target functional UC(s) | Mitigated by U.C. |
 |----|----------|-------------------------|-------------------|
-| MUC-01 | A-MIS-01 (external attacker) | U.C.7.1.2 (Login), U.C.7.1.3 (Password reset) | U.C.3.1.1, U.C.3.1.2, U.C.2.4.1 |
-| MUC-02 | A-MIS-03 (abusive tenant) | U.C.7.5.1 (Invite+roles), U.C.10.3.1 (Admin console) | U.C.3.2.1, U.C.3.5.1, PROC-11 |
-| MUC-03 | A-MIS-01 / A-MIS-03 | U.C.8.2.1 (Create Task), U.C.8.1.2 (Create Project), U.C.8.3.1 (View Board) | U.C.3.2.1, U.C.3.3.1, PROC-03 |
-| MUC-04 | A-MIS-03 | U.C.11.2.1 (Export), U.C.9.4.1 (Search) | U.C.1.3.1, U.C.1.5.1, U.C.2.4.2, U.C.3.5.1 |
-| MUC-05 | A-MIS-04 (compromised integration) | U.C.10.2.1 (Stripe webhook), U.C.7.1.2 (SSO callback) | PROC-14, CAP-01, U.C.3.1.1 |
-| MUC-06 | A-MIS-02 (malicious insider) | All U.C.7-11 (data access) | U.C.3.1.2, U.C.3.2.1, U.C.3.5.1, U.C.2.4.1 |
-| MUC-07 | A-MIS-01 | U.C.8.3.1 (Board), all U.C.7-11 (availability) | U.C.2.4.2, U.C.4.4.1 |
-| MUC-08 | A-MIS-01 | U.C.9.3.1 (Attachment upload) | U.C.2.4.1, U.C.3.5.1, U.C.4.2.1 |
+| MUC-01 | A-MIS-01 (external attacker) | UC-19 (Login), UC-20 (Password reset) | UC-09, UC-10, UC-06 |
+| MUC-02 | A-MIS-03 (abusive tenant) | UC-22 (Invite+roles), UC-36 (Admin console) | UC-11, UC-13, PROC-11 |
+| MUC-03 | A-MIS-01 / A-MIS-03 | UC-25 (Create Task), UC-24 (Create Project), UC-28 (View Board) | UC-11, UC-12, PROC-03 |
+| MUC-04 | A-MIS-03 | UC-39 (Export), UC-32 (Search) | UC-02, UC-04, UC-07, UC-13 |
+| MUC-05 | A-MIS-04 (compromised integration) | UC-35 (Stripe webhook), UC-19 (SSO callback) | PROC-14, CAP-01, UC-09 |
+| MUC-06 | A-MIS-02 (malicious insider) | All UC-18..UC-40 (data access) | UC-10, UC-11, UC-13, UC-06 |
+| MUC-07 | A-MIS-01 | UC-28 (Board), all UC-18..UC-40 (availability) | UC-07, UC-16 |
+| MUC-08 | A-MIS-01 | UC-31 (Attachment upload) | UC-06, UC-13, UC-14 |
 
 ### §4.2 MUC detail cards
 
 #### MUC-01 — Credential Stuffing Against Login
 
 **Misactor:** A-MIS-01 (External Attacker)
-**Threatens:** U.C.7.1.2 (Login), U.C.7.1.3 (Password reset)
+**Threatens:** UC-19 (Login), UC-20 (Password reset)
 **Preconditions:** Attacker holds a credential dump from a third-party breach.
 **Attack Flow:**
 1. Attacker submits batches of email/password pairs against /login.
 2. Defeated accounts used for further attacks (e.g., workspace exfiltration).
 **Impact:** Account takeover; reputational damage; GDPR Art. 32 violation if no notification within 72h (PROC-05).
-**Mitigated by:** U.C.3.1.1 (authn with lockout), U.C.3.1.2 (MFA for privileged), U.C.2.4.1 (rate limiting + WAF), U.C.3.5.1 (auth event logging enables detection).
+**Mitigated by:** UC-09 (authn with lockout), UC-10 (MFA for privileged), UC-06 (rate limiting + WAF), UC-13 (auth event logging enables detection).
 **NIST anchors:** PR.AA-01, PR.AA-03, DE.CM-01.
 
 #### MUC-02 — Privilege Escalation via Invite/Roles
 
 **Misactor:** A-MIS-03 (Abusive Tenant) or compromised lower-privileged account.
-**Threatens:** U.C.7.5.1, U.C.10.3.1.
+**Threatens:** UC-22, UC-36.
 **Preconditions:** Actor has member role in a workspace.
 **Attack Flow:**
 1. Actor exploits IDOR or unvalidated role-change API to escalate to Admin/Owner.
 2. Actor exfiltrates workspace data or plants backdoors.
 **Impact:** Full workspace compromise; other tenants unaffected if scope enforcement is correct.
-**Mitigated by:** U.C.3.2.1 (authz + quarterly reviews), U.C.3.5.1 (audit of role changes), PROC-11 (documentation of role taxonomy).
+**Mitigated by:** UC-11 (authz + quarterly reviews), UC-13 (audit of role changes), PROC-11 (documentation of role taxonomy).
 **NIST anchors:** PR.AA-01, PR.AA-05.
 
 #### MUC-03 — Cross-Tenant Data Injection/Read
 
 **Misactor:** A-MIS-01 / A-MIS-03
-**Threatens:** U.C.8.2.1, U.C.8.1.2, U.C.8.3.1, U.C.8.1.1, U.C.10.1.1 (mobile sync).
+**Threatens:** UC-25, UC-24, UC-28, UC-23, UC-34 (mobile sync).
 **Preconditions:** Attacker finds a query missing workspace_id scope.
 **Attack Flow:**
-1. Attacker probes API endpoints (especially mobile sync U.C.10.1.1).
+1. Attacker probes API endpoints (especially mobile sync UC-34).
 2. Sends crafted request without workspace_id or with manipulated IDs.
 3. Reads or writes cross-tenant data.
 **Impact:** Catastrophic — full data leakage across tenants; GDPR Art. 5(1)(f) breach; CNPD fine up to 4% revenue.
-**Mitigated by:** U.C.3.3.1 (secure defaults: workspace_id always in WHERE), U.C.3.2.1 (RBAC scoped to workspace), PROC-03 (SAST/DAST catches missing scope), U.C.4.2.1 (CI scan gates).
+**Mitigated by:** UC-12 (secure defaults: workspace_id always in WHERE), UC-11 (RBAC scoped to workspace), PROC-03 (SAST/DAST catches missing scope), UC-14 (CI scan gates).
 **NIST anchors:** PR.AA-01, PR.DS-01.
 
 #### MUC-04 — Bulk Data Extraction via Export Endpoint
 
 **Misactor:** A-MIS-03 (Abusive Tenant)
-**Threatens:** U.C.11.2.1 (Export), U.C.9.4.1 (Search/filter).
+**Threatens:** UC-39 (Export), UC-32 (Search/filter).
 **Preconditions:** Attacker has authenticated account.
 **Attack Flow:**
 1. Attacker iterates through DSAR export or search API with crafted parameters.
 2. Exfiltrates large volumes of data.
 **Impact:** Competitive intelligence theft; potential GDPR breach if data includes other subjects.
-**Mitigated by:** U.C.1.3.1 (rate-limited export), U.C.1.5.1 (versioned schema with rate limit), U.C.2.4.2 (rate-limit), U.C.3.5.1 (audit trail enables detection).
+**Mitigated by:** UC-02 (rate-limited export), UC-04 (versioned schema with rate limit), UC-07 (rate-limit), UC-13 (audit trail enables detection).
 **NIST anchors:** PR.AA-03, PR.DS-10, DE.CM-01.
 
 #### MUC-05 — Compromised Third-Party Integration
 
 **Misactor:** A-MIS-04 (Compromised Integration)
-**Threatens:** U.C.10.2.1 (Stripe webhook), U.C.7.1.2 (SSO callback).
+**Threatens:** UC-35 (Stripe webhook), UC-19 (SSO callback).
 **Preconditions:** Attacker's OAuth client or webhook secret compromised.
 **Attack Flow:**
 1. Attacker forges Stripe webhook to upgrade arbitrary workspace.
 2. Or attacker uses leaked OIDC client secret to mint tokens.
 **Impact:** Billing fraud; account takeover via SSO bypass.
-**Mitigated by:** PROC-14 (processor due diligence), CAP-01 (binding DPA with security commitments), U.C.3.1.1 (centralised authn validates token signature).
+**Mitigated by:** PROC-14 (processor due diligence), CAP-01 (binding DPA with security commitments), UC-09 (centralised authn validates token signature).
 **NIST anchors:** GV.SC-02, PR.AA-01.
 
 #### MUC-06 — Malicious Insider Exfiltration
 
 **Misactor:** A-MIS-02 (Malicious Insider — privileged staff)
-**Threatens:** All U.C.7-11 data planes.
+**Threatens:** All UC-18..UC-40 data planes.
 **Preconditions:** Insider has privileged role + database/backup access.
 **Attack Flow:**
 1. Insider copies data from production DB or backup.
 2. Exfiltrates via personal device or personal cloud storage.
 **Impact:** Mass data breach; insider cannot be excluded by tenant boundary.
-**Mitigated by:** U.C.3.1.2 (MFA + PAM session recording), U.C.3.2.1 (least privilege + quarterly reviews), U.C.3.5.1 (admin action audit), U.C.2.4.1 (DLP-style anomaly detection on bulk admin reads).
+**Mitigated by:** UC-10 (MFA + PAM session recording), UC-11 (least privilege + quarterly reviews), UC-13 (admin action audit), UC-06 (DLP-style anomaly detection on bulk admin reads).
 **NIST anchors:** PR.AA-03, PR.AA-04, DE.CM-01.
 
 #### MUC-07 — Board / Service DoS
 
 **Misactor:** A-MIS-01 (External Attacker)
-**Threatens:** U.C.8.3.1 (Board), all U.C.7-11 (availability).
+**Threatens:** UC-28 (Board), all UC-18..UC-40 (availability).
 **Preconditions:** Attacker identifies expensive endpoint (search, board render, sync).
 **Attack Flow:**
 1. Attacker hammers endpoint from botnet.
 2. Service degrades; legitimate users blocked.
 **Impact:** Availability breach; revenue loss; customer churn.
-**Mitigated by:** U.C.2.4.2 (rate limit + challenge + scrubbing), U.C.4.4.1 (fail-safe degradation of non-critical features), U.C.2.6.1 (restore RTO ≤24h).
+**Mitigated by:** UC-07 (rate limit + challenge + scrubbing), UC-16 (fail-safe degradation of non-critical features), UC-08 (restore RTO ≤24h).
 **NIST anchors:** PR.IR-03, PR.DS-10.
 
 #### MUC-08 — Malicious Attachment Upload
 
 **Misactor:** A-MIS-01 (External Attacker) with member-level access.
-**Threatens:** U.C.9.3.1 (Attachment upload).
+**Threatens:** UC-31 (Attachment upload).
 **Preconditions:** Attacker has member access to any workspace.
 **Attack Flow:**
 1. Attacker uploads polyglot file (e.g., PDF/JS or SVG/HTML) containing malware.
 2. File is served to other members; AV in browsers may not catch.
 3. Pivot to admin or to other tenants via shared tooling.
 **Impact:** Supply-chain compromise within tenant; potentially cross-tenant if shared component used.
-**Mitigated by:** U.C.2.4.1 (fail-safe on AV failure: quarantine, don't serve), U.C.3.5.1 (audit), U.C.4.2.1 (SAST/DAST on file-serving code).
+**Mitigated by:** UC-06 (fail-safe on AV failure: quarantine, don't serve), UC-13 (audit), UC-14 (SAST/DAST on file-serving code).
 **NIST anchors:** PR.DS-01, DE.CM-01.
 
 ---
@@ -3059,6 +3059,8 @@ Receipt issued.
 ## §6 Migration & Backwards Compatibility
 
 ### §6.1 ID continuity table (security/compliance UCs)
+
+> **RENUMBER note (2026-09-05):** the RENUMBER campaign (rubric `REALIZATION_CLASS_RUBRIC.md` v1.10 §5B rule 7) supersedes this section for **live** references — all 40 live UC ids are now flat `UC-01..UC-40` (registry: `00_METHODOLOGY/validation/RENUMBER_REGISTRY_2026-09-05.md`). The table below is a historical record of the v2.0→v3.0 continuity and is kept verbatim.
 
 | v2.0 ID (preserved) | v3.0 package | Section |
 |---------------------|--------------|---------|
@@ -3089,7 +3091,7 @@ The 17 UC ids remain live in §3.1–§3.5. The 18 re-laned ids (PROC-01..17, CA
 - `NIST_ANCHORS.md` §3.1 (per-UC NIST anchors)
 - `KG_CHAINS.md` §1 (CH-09: FR-29 → UC-25 → CR-D-04.3)
 - `13a_Use_Case_Relationships.md` — `«include»` / `«extend»` graph (security UCs) + new `constrains`/`threatens`/`mitigated_by` (MUCs)
-- `13b_Use_Case_Variability.md` — variant catalogue (security UCs) + functional variants (e.g., U.C.10.2.1 plan tiers)
+- `13b_Use_Case_Variability.md` — variant catalogue (security UCs) + functional variants (e.g., UC-35 plan tiers)
 - `annexes/A_Use_Case_Diagrams.md` — use-case diagrams (UC ovals only, rubric v1.8 §5C.5)
 - `annexes/B_Sequence_Diagrams.md` — sequence diagrams (one per §2 product UC; annex-only per §5C.5)
 - `Doc32_Process_Capability_Cards.md` — PROC/CAP lane cards (§3.0 Compliance Domain Index)
@@ -3108,9 +3110,9 @@ The 17 UC ids remain live in §3.1–§3.5. The 18 re-laned ids (PROC-01..17, CA
 
 ## §8 Open work (logged, not in this rewrite)
 
-- KG E4 incremental rebuild on Deucalion (~14h cluster) to surface new U.C.7-11 + MUC nodes — see `kg/GRAPHIFY.md` Rebuild procedure. **Logged as follow-up; human approval required (P7).**
+- KG E4 incremental rebuild on Deucalion (~14h cluster) to surface new UC-18..UC-40 + MUC nodes — see `kg/GRAPHIFY.md` Rebuild procedure. **Logged as follow-up; human approval required (P7).**
 - Doc23 (Architectural Nodes) re-anchoring on new functional UCs — out of Phase 3 RICH scope.
-- Functional requirements (Doc29 FR-01..30) mapping to U.C.7-11 — partly exists (FR-01..05 align with U.C.7.*, U.C.8.*); new FRs for U.C.10.2.1, U.C.11.x may be needed in a future sprint.
+- Functional requirements (Doc29 FR-01..30) mapping to UC-18..UC-40 — partly exists (FR-01..05 align with UC-18, UC-19, UC-20, UC-21, UC-22, UC-23, UC-24, UC-25, UC-26, UC-27, UC-28); new FRs for UC-35, UC-38, UC-39, UC-40 may be needed in a future sprint.
 
 ---
 
@@ -3120,6 +3122,8 @@ The 17 UC ids remain live in §3.1–§3.5. The 18 re-laned ids (PROC-01..17, CA
 ## Lane Naming (2026-09-05)
 
 v3.0 → v3.1: non-technology UCs re-laned to PROC-*/CAP-* per human decision 2026-09-05 (rubric REALIZATION_CLASS_RUBRIC v1.3 §5B; registry `00_METHODOLOGY/validation/LANE_NAMING_CENSUS_v0.md`). Applied via `scripts/rename_lane_ids.py`.
+
+v3.2 → v3.3 (RENUMBER campaign, 2026-09-05): the legacy dotted `U.C.x.y.z` ids flattened to **UC-01..UC-40** per rubric `REALIZATION_CLASS_RUBRIC.md` v1.10 §5B rule 7 — 17 compliance UCs → UC-01..UC-17, 23 product UCs → UC-18..UC-40 (ascending natural order; registry `00_METHODOLOGY/validation/RENUMBER_REGISTRY_2026-09-05.md`). Historical provenance keeps the ids it named. `PROC-01..17` / `CAP-01` unchanged.
 
 v3.1 → v3.2 (UC SEPARATION campaign, 2026-09-05): catalog made **lane-pure** per rubric `REALIZATION_CLASS_RUBRIC.md` v1.8 §5B rule 6 — the 18 PROC/CAP stub cards removed from §3 (full cards already in Doc32; §3.0 Compliance Domain Index preserves their catalogue-only fields); annex A cleared to UC ovals only (§5C.5). Ids unchanged — no renames in this phase.
 

@@ -261,11 +261,11 @@ Cross-case contamination where Case_02 artefacts (Border Control AI / AI Act / B
 | **Total L1+Functional+MUCs** | | **66** | |
 
 **Composition of new 23 functional U.C.s** (5 + 6 + 5 + 4 + 3):
-- PKG-7 Account & Access (5): U.C.7.1.1 signup · U.C.7.1.2 login · U.C.7.1.3 password reset · U.C.7.2.1 session mgmt · U.C.7.5.1 invite+roles.
-- PKG-8 Team & Task Core (6): U.C.8.1.1 workspace · U.C.8.1.2 project · U.C.8.2.1 create task · U.C.8.2.2 assign task · U.C.8.2.3 status/due · U.C.8.3.1 board view.
-- PKG-9 Collaboration (5): U.C.9.1.1 comment · U.C.9.2.1 mention+notify · U.C.9.3.1 attachment · U.C.9.4.1 search · U.C.9.5.1 activity feed.
-- PKG-10 Platform (4): U.C.10.1.1 mobile sync · U.C.10.2.1 Stripe checkout · U.C.10.3.1 admin console · U.C.10.3.2 enterprise SSO.
-- PKG-11 Self-Service (3): U.C.11.1.1 view account · U.C.11.2.1 export data · U.C.11.3.1 delete account/workspace.
+- PKG-7 Account & Access (5): UC-18 signup · UC-19 login · UC-20 password reset · UC-21 session mgmt · UC-22 invite+roles.
+- PKG-8 Team & Task Core (6): UC-23 workspace · UC-24 project · UC-25 create task · UC-26 assign task · UC-27 status/due · UC-28 board view.
+- PKG-9 Collaboration (5): UC-29 comment · UC-30 mention+notify · UC-31 attachment · UC-32 search · UC-33 activity feed.
+- PKG-10 Platform (4): UC-34 mobile sync · UC-35 Stripe checkout · UC-36 admin console · UC-37 enterprise SSO.
+- PKG-11 Self-Service (3): UC-38 view account · UC-39 export data · UC-40 delete account/workspace.
 
 **Composition of 8 MUCs** (Sindre & Opdahl):
 - MUC-01 credential stuffing · MUC-02 privilege escalation · MUC-03 cross-tenant injection · MUC-04 bulk extraction · MUC-05 compromised integration · MUC-06 insider exfiltration · MUC-07 board DoS · MUC-08 malicious attachment.

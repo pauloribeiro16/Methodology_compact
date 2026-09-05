@@ -146,10 +146,10 @@ sprint4_note: "Fase de Especificação 4: review-report status bumped RECONCILED
 | Use Case | Related FRs | Coverage |
 |----------|-------------|----------|
 | PROC-01 (DSAR) | FR-02, FR-02 | ✅ Complete |
-| U.C.1.2.1 (Erasure) | FR-02, FR-02, FR-02, FR-06 | ✅ Complete |
-| U.C.3.1.1 (Authentication) | FR-06, FR-01, FR-06, FR-01 | ✅ Complete |
+| UC-01 (Erasure) | FR-02, FR-02, FR-02, FR-06 | ✅ Complete |
+| UC-09 (Authentication) | FR-06, FR-01, FR-06, FR-01 | ✅ Complete |
 | PROC-03 (Detection) | FR-02, FR-02, FR-02, FR-02, FR-02 | ✅ Complete |
-| U.C.4.3.1 (Security Gate) | FR-01, FR-01, FR-01, FR-01, FR-01, FR-02 | ✅ Complete |
+| UC-15 (Security Gate) | FR-01, FR-01, FR-01, FR-01, FR-01, FR-02 | ✅ Complete |
 
 **Use Case Traceability:** ✅ Complete
 

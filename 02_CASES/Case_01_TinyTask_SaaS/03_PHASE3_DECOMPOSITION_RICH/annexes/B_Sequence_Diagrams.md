@@ -2,7 +2,7 @@
 document_id: AEGIS-P3-ANNEX-B
 title: Sequence Diagrams Annex
 phase: 3
-version: 1.0
+version: 1.1
 created: 2026-09-05
 updated: 2026-09-05
 author: Executor
@@ -13,8 +13,9 @@ status: ACTIVE
 
 > Extracted from the catalogue cards per rubric v1.7 §5C.5 (sequence diagrams are annex-only). One section per product UC card.
 > **Render note:** Mermaid ≥ v11 recommended.
+> **RENUMBER note (2026-09-05):** section ids flattened to `UC-01..UC-40` (rubric v1.10 §5B rule 7); the 23 product sections map monotonically to UC-18..UC-40, so §1..§23 ordering and the Doc20 pointers are unchanged (registry `00_METHODOLOGY/validation/RENUMBER_REGISTRY_2026-09-05.md`).
 
-## §1 — Use-Case — {U.C.7.1.1} Sign Up & Account Creation
+## §1 — Use-Case — {UC-18} Sign Up & Account Creation
 
 ```mermaid
 sequenceDiagram
@@ -23,12 +24,12 @@ sequenceDiagram
     participant IdP as A-EXT-02 (Auth0 IdP)
     U->>SYS: Submit sign-up form (email + password, or OAuth)
     SYS->>SYS: Validate email format + password strength (NFR-01)
-    SYS->>SYS: Create account record, record consent state (U.C.1.4.1)
+    SYS->>SYS: Create account record, record consent state (UC-03)
     SYS-->>U: Send verification email
     U->>SYS: Confirm — account status flips to active
 ```
 
-## §2 — Use-Case — {U.C.7.1.2} Login (email/password + optional SSO)
+## §2 — Use-Case — {UC-19} Login (email/password + optional SSO)
 
 ```mermaid
 sequenceDiagram
@@ -42,7 +43,7 @@ sequenceDiagram
     SYS-->>U: Session established
 ```
 
-## §3 — Use-Case — {U.C.7.1.3} Password Reset & Recovery
+## §3 — Use-Case — {UC-20} Password Reset & Recovery
 
 ```mermaid
 sequenceDiagram
@@ -55,7 +56,7 @@ sequenceDiagram
     SYS-->>U: Reset confirmed — user must log in again
 ```
 
-## §4 — Use-Case — {U.C.7.2.1} Session Management (timeout, logout-everywhere)
+## §4 — Use-Case — {UC-21} Session Management (timeout, logout-everywhere)
 
 ```mermaid
 sequenceDiagram
@@ -67,7 +68,7 @@ sequenceDiagram
     SYS->>SYS: Log the event
 ```
 
-## §5 — Use-Case — {U.C.7.5.1} Invite Member & Assign Role
+## §5 — Use-Case — {UC-22} Invite Member & Assign Role
 
 ```mermaid
 sequenceDiagram
@@ -77,11 +78,11 @@ sequenceDiagram
     ADM->>SYS: Enter email + role, click "Invite"
     SYS->>SYS: Validate email + role, create pending membership
     SYS-->>INV: Send invite email (single-use acceptance link)
-    INV->>SYS: Accept link (sign-up U.C.7.1.1 if no account)
+    INV->>SYS: Accept link (sign-up UC-18 if no account)
     SYS->>SYS: Grant role, log membership grant event
 ```
 
-## §6 — Use-Case — {U.C.8.1.1} Create Workspace
+## §6 — Use-Case — {UC-23} Create Workspace
 
 ```mermaid
 sequenceDiagram
@@ -93,7 +94,7 @@ sequenceDiagram
     SYS-->>U: Workspace active
 ```
 
-## §7 — Use-Case — {U.C.8.1.2} Create Project
+## §7 — Use-Case — {UC-24} Create Project
 
 ```mermaid
 sequenceDiagram
@@ -105,7 +106,7 @@ sequenceDiagram
     SYS-->>M: Project created
 ```
 
-## §8 — Use-Case — {U.C.8.2.1} Create Task
+## §8 — Use-Case — {UC-25} Create Task
 
 ```mermaid
 sequenceDiagram
@@ -114,10 +115,10 @@ sequenceDiagram
     M->>SYS: Click "New Task", enter title/description/due date/assignee
     SYS->>SYS: Validate title length + due-date format
     SYS->>SYS: Persist task (project_id scoped, workspace_id tenant boundary)
-    SYS-->>M: Notify assignee in-app + email (U.C.9.2.1), log event
+    SYS-->>M: Notify assignee in-app + email (UC-30), log event
 ```
 
-## §9 — Use-Case — {U.C.8.2.2} Assign Task
+## §9 — Use-Case — {UC-26} Assign Task
 
 ```mermaid
 sequenceDiagram
@@ -125,11 +126,11 @@ sequenceDiagram
     participant SYS as A-SYS-01 (TinyTask API)
     M->>SYS: Select assignee from project-member picker, click "Assign"
     SYS->>SYS: Validate assignee is member of the task's project
-    SYS->>SYS: Update task.assignee_id, notify assignee (U.C.9.2.1)
+    SYS->>SYS: Update task.assignee_id, notify assignee (UC-30)
     SYS-->>M: Assignment recorded, event logged
 ```
 
-## §10 — Use-Case — {U.C.8.2.3} Change Task Status & Due Date
+## §10 — Use-Case — {UC-27} Change Task Status & Due Date
 
 ```mermaid
 sequenceDiagram
@@ -141,7 +142,7 @@ sequenceDiagram
     SYS-->>M: Task reflects new state
 ```
 
-## §11 — Use-Case — {U.C.8.3.1} View Project Board (Kanban)
+## §11 — Use-Case — {UC-28} View Project Board (Kanban)
 
 ```mermaid
 sequenceDiagram
@@ -153,7 +154,7 @@ sequenceDiagram
     M->>SYS: Optional real-time sync via websockets (Mobile + Web)
 ```
 
-## §12 — Use-Case — {U.C.9.1.1} Comment on Task
+## §12 — Use-Case — {UC-29} Comment on Task
 
 ```mermaid
 sequenceDiagram
@@ -162,10 +163,10 @@ sequenceDiagram
     M->>SYS: Submit comment (Markdown subset)
     SYS->>SYS: Validate length (<= 10 000 chars), sanitise HTML
     SYS->>SYS: Persist comment (task_id scoped)
-    SYS-->>M: Notify watchers (U.C.9.2.1), log event
+    SYS-->>M: Notify watchers (UC-30), log event
 ```
 
-## §13 — Use-Case — {U.C.9.2.1} @Mention & In-App Notification
+## §13 — Use-Case — {UC-30} @Mention & In-App Notification
 
 ```mermaid
 sequenceDiagram
@@ -178,7 +179,7 @@ sequenceDiagram
     SYS->>T: Send email digest (batched <= 5 min) per preferences
 ```
 
-## §14 — Use-Case — {U.C.9.3.1} Attach File to Task
+## §14 — Use-Case — {UC-31} Attach File to Task
 
 ```mermaid
 sequenceDiagram
@@ -190,7 +191,7 @@ sequenceDiagram
     SYS-->>M: Attachment record created (task_id + storage key), event logged
 ```
 
-## §15 — Use-Case — {U.C.9.4.1} Search & Filter Tasks
+## §15 — Use-Case — {UC-32} Search & Filter Tasks
 
 ```mermaid
 sequenceDiagram
@@ -202,7 +203,7 @@ sequenceDiagram
     SYS->>SYS: Log query metadata only (no body content)
 ```
 
-## §16 — Use-Case — {U.C.9.5.1} Activity Feed (recent events)
+## §16 — Use-Case — {UC-33} Activity Feed (recent events)
 
 ```mermaid
 sequenceDiagram
@@ -213,7 +214,7 @@ sequenceDiagram
     SYS-->>M: Render last 50 events (timestamp + actor + action)
 ```
 
-## §17 — Use-Case — {U.C.10.1.1} Mobile Sync (offline-first)
+## §17 — Use-Case — {UC-34} Mobile Sync (offline-first)
 
 ```mermaid
 sequenceDiagram
@@ -225,7 +226,7 @@ sequenceDiagram
     M->>SYS: Pull newer server events via /sync
 ```
 
-## §18 — Use-Case — {U.C.10.2.1} Stripe Checkout (Upgrade Plan)
+## §18 — Use-Case — {UC-35} Stripe Checkout (Upgrade Plan)
 
 ```mermaid
 sequenceDiagram
@@ -239,7 +240,7 @@ sequenceDiagram
     SYS->>SYS: Verify signature, update workspace.plan = paid, log
 ```
 
-## §19 — Use-Case — {U.C.10.3.1} Workspace Admin Console
+## §19 — Use-Case — {UC-36} Workspace Admin Console
 
 ```mermaid
 sequenceDiagram
@@ -247,11 +248,11 @@ sequenceDiagram
     participant SYS as A-SYS-01 (TinyTask API)
     ADM->>SYS: Open workspace settings
     SYS-->>ADM: Render membership list, roles, billing summary, audit filter
-    ADM->>SYS: Perform action (invite U.C.7.5.1 / role / remove / usage)
+    ADM->>SYS: Perform action (invite UC-22 / role / remove / usage)
     SYS->>SYS: Apply action, log it
 ```
 
-## §20 — Use-Case — {U.C.10.3.2} Enterprise SSO
+## §20 — Use-Case — {UC-37} Enterprise SSO
 
 ```mermaid
 sequenceDiagram
@@ -260,11 +261,11 @@ sequenceDiagram
     participant IdP as A-EXT-02 (Auth0 IdP)
     ENT->>SYS: Upload SAML/OIDC metadata
     SYS->>SYS: Validate signature, store IdP config per enterprise tenant
-    ENT->>IdP: Members land on SSO login by default (U.C.7.1.2 extension)
+    ENT->>IdP: Members land on SSO login by default (UC-19 extension)
     SYS-->>ENT: SSO login audit trail visible
 ```
 
-## §21 — Use-Case — {U.C.11.1.1} View My Account (data held)
+## §21 — Use-Case — {UC-38} View My Account (data held)
 
 ```mermaid
 sequenceDiagram
@@ -276,7 +277,7 @@ sequenceDiagram
     SYS->>SYS: Audit log entry
 ```
 
-## §22 — Use-Case — {U.C.11.2.1} Export My Data (GDPR portability)
+## §22 — Use-Case — {UC-39} Export My Data (GDPR portability)
 
 ```mermaid
 sequenceDiagram
@@ -288,7 +289,7 @@ sequenceDiagram
     SYS-->>M: Download archive
 ```
 
-## §23 — Use-Case — {U.C.11.3.1} Delete My Account / Workspace
+## §23 — Use-Case — {UC-40} Delete My Account / Workspace
 
 ```mermaid
 sequenceDiagram
@@ -297,7 +298,7 @@ sequenceDiagram
     U->>SYS: Click delete, type confirmation phrase
     SYS->>SYS: Schedule deletion (immediate account / 30-day grace workspace)
     SYS-->>U: Confirmation email with cancel link (within grace)
-    SYS->>SYS: After grace — cryptographic erasure primary + backup (U.C.1.2.1)
+    SYS->>SYS: After grace — cryptographic erasure primary + backup (UC-01)
     SYS->>SYS: Log the event
 ```
 

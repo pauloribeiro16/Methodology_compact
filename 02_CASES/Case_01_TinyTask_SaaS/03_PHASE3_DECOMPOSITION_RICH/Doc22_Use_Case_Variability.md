@@ -32,7 +32,7 @@ sprint6_note: "Fase de Especificação 6: EXTENDED. Functional variants anchor V
 Variability points are conditions under which a U.C.'s behaviour branches. They support risk-based prioritisation (P2 proportionality).
 
 **Authoritative sources:**
-- `Doc20_Use_Cases_Catalog.md` §2 (functional U.C.7-11), §3 (security U.C.1-6), §4 (MUCs).
+- `Doc20_Use_Cases_Catalog.md` §2 (functional UC-18..UC-40), §3 (security UC-01..UC-17), §4 (MUCs).
 - `RULE_FREEZE.md` §5 (security U.C. enumeration).
 - `CORPUS_LINKAGE.md` §3.
 
@@ -44,39 +44,39 @@ Variability points are conditions under which a U.C.'s behaviour branches. They 
 |---|---------|---------|---------|--------|
 | V-01 | PROC-01 | **V.Self-service** | Data subject authenticated | Auto-generated DSAR report (JSON, CSV, PDF) within 30 days |
 | V-02 | PROC-01 | **V.Manual** | Identity not verified | Manual review by DPO + paper trail |
-| V-03 | U.C.1.2.1 | **V.Backup-locations** | Erasure request | Erasure extends to backups (RPO ≤ 30 days) |
-| V-04 | U.C.1.2.1 | **V.Log-retention** | Erasure request | Anonymisation in logs (no PII retention) |
+| V-03 | UC-01 | **V.Backup-locations** | Erasure request | Erasure extends to backups (RPO ≤ 30 days) |
+| V-04 | UC-01 | **V.Log-retention** | Erasure request | Anonymisation in logs (no PII retention) |
 | V-05 | PROC-03 | **V.Sev.Critical** | CVE ≥ 9.0 | Patch within 24h |
 | V-06 | PROC-03 | **V.Sev.High** | CVE 7.0-8.9 | Patch within 7 days |
 | V-07 | PROC-05 | **V.ENISA-24h** | CRA-reportable incident | ENISA notification within 24h |
 | V-08 | PROC-05 | **V.GDPR-72h** | Personal-data breach | CNPD notification within 72h |
-| V-09 | U.C.3.1.1 | **V.SSO** (re-anchored to **U.C.10.3.2**) | Customer requests SAML/OIDC | Federated auth supported |
-| V-10 | U.C.3.1.2 | **V.FIDO2** | Privileged user | Hardware key required (BPR-D-03.2-001) |
-| V-11 | U.C.3.1.2 | **V.TOTP** | Non-privileged user | TOTP fallback acceptable |
+| V-09 | UC-09 | **V.SSO** (re-anchored to **UC-37**) | Customer requests SAML/OIDC | Federated auth supported |
+| V-10 | UC-10 | **V.FIDO2** | Privileged user | Hardware key required (BPR-D-03.2-001) |
+| V-11 | UC-10 | **V.TOTP** | Non-privileged user | TOTP fallback acceptable |
 | V-12 | PROC-09 | **V.DPIA** | High-risk processing identified | Full DPIA + DPO consultation |
 | V-13 | PROC-09 | **V.FRIA-light** | Low-risk processing | Lightweight risk checklist |
 | V-14 | PROC-14 | **V.Annual-audit** | Processor DPA anniversary | Re-attest controls |
-| V-15 | U.C.5.6.1 | **V.CycloneDX** | Default SBOM format | Machine-readable per CRA |
-| V-16 | U.C.5.6.1 | **V.SPDX** | Customer request | SPDX format alternative |
+| V-15 | UC-17 | **V.CycloneDX** | Default SBOM format | Machine-readable per CRA |
+| V-16 | UC-17 | **V.SPDX** | Customer request | SPDX format alternative |
 | V-17 | PROC-15 | **V.New-hire** | Onboarding | Training within 30 days of start |
 | V-18 | PROC-17 | **V.External-tool** | Phishing provider | Third-party simulation acceptable (per DPA) |
 
-> **Fase de Especificação 6 note:** V-09 (SSO) re-anchored from the generic `U.C.3.1.1` to the **Enterprise SSO functional U.C. `U.C.10.3.2`** for clearer product anchoring. The security U.C.3.1.1 variant V-09 still stands (the customer-level SSO path).
+> **Fase de Especificação 6 note:** V-09 (SSO) re-anchored from the generic `UC-09` to the **Enterprise SSO functional U.C. `UC-37`** for clearer product anchoring. The security UC-09 variant V-09 still stands (the customer-level SSO path).
 
 ---
 
-## §3 Functional Variability Catalogue (8 variants × 6 base U.C.7-11 new)
+## §3 Functional Variability Catalogue (8 variants × 6 base UC-18..UC-40 new)
 
 | # | Base UC | Variant | Trigger | Effect |
 |---|---------|---------|---------|--------|
-| V-19 | U.C.7.1.2 | **V.MFA-optional** | Free-tier user | Password-only acceptable |
-| V-20 | U.C.7.1.2 | **V.MFA-enforced** | Paid-tier / Enterprise | MFA required on every login (U.C.3.1.2) |
-| V-21 | U.C.8.1.1 | **V.Free-quota** | Workspace count = 1 | Block creation of additional workspace; redirect to U.C.10.2.1 upgrade |
-| V-22 | U.C.8.1.1 | **V.Paid-unlimited** | Workspace on paid plan | No quota limit |
-| V-23 | U.C.9.2.1 | **V.Notification-immediate** | Enterprise user | Real-time email per mention |
-| V-24 | U.C.9.2.1 | **V.Notification-batched** | Free-tier / default | Digest batched ≤ 5 min |
-| V-25 | U.C.10.1.1 | **V.Mobile-offline** | No network | Local mutations queued; sync on reconnect |
-| V-26 | U.C.11.2.1 | **V.Export-large** | Archive > 100 MB | Async job; email when ready |
+| V-19 | UC-19 | **V.MFA-optional** | Free-tier user | Password-only acceptable |
+| V-20 | UC-19 | **V.MFA-enforced** | Paid-tier / Enterprise | MFA required on every login (UC-10) |
+| V-21 | UC-23 | **V.Free-quota** | Workspace count = 1 | Block creation of additional workspace; redirect to UC-35 upgrade |
+| V-22 | UC-23 | **V.Paid-unlimited** | Workspace on paid plan | No quota limit |
+| V-23 | UC-30 | **V.Notification-immediate** | Enterprise user | Real-time email per mention |
+| V-24 | UC-30 | **V.Notification-batched** | Free-tier / default | Digest batched ≤ 5 min |
+| V-25 | UC-34 | **V.Mobile-offline** | No network | Local mutations queued; sync on reconnect |
+| V-26 | UC-39 | **V.Export-large** | Archive > 100 MB | Async job; email when ready |
 
 ---
 
@@ -96,7 +96,7 @@ All variants trace back to a base U.C. that exists in `Doc20_Use_Cases_Catalog.m
 
 ## §5 Cross-references
 
-- `Doc20_Use_Cases_Catalog.md` §2 (functional U.C.7-11), §3 (security U.C.1-6).
+- `Doc20_Use_Cases_Catalog.md` §2 (functional UC-18..UC-40), §3 (security UC-01..UC-17).
 - `Doc21_Use_Case_Relationships.md` §2-§7.
 - `RULE_FREEZE.md` §5 (security U.C. enumeration).
 - `CORPUS_LINKAGE.md` §3.

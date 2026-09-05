@@ -2,7 +2,7 @@
 document_id: AEGIS-P3-32
 title: Process & Capability Cards — Lane Pilot (Case_01)
 phase: 3
-version: 1.1
+version: 1.2
 created: 2026-09-05
 updated: 2026-09-05
 author: Executor
@@ -147,19 +147,19 @@ flowchart TD
 | Field | Content |
 |---|---|
 | Trigger | PR merged to release branch (release candidate built; SAST/SCA/container scans configured). |
-| Activities | 1. CI runs SAST + SCA + container scan. 2. Findings prioritised by CVSS + EPSS. 3. Release blocked on critical findings; release proceeds if all clear. 4. Audit log entry per build. Extension: 3a critical CVE → emergency patch path (U.C.2.2.1). |
+| Activities | 1. CI runs SAST + SCA + container scan. 2. Findings prioritised by CVSS + EPSS. 3. Release blocked on critical findings; release proceeds if all clear. 4. Audit log entry per build. Extension: 3a critical CVE → emergency patch path (UC-05). |
 | Roles | A-DEV-01 (Lead Developer) owns scan triage and release gating; A-CTO-01 informed; Auditor consumes evidence. |
 | SLA / Timing | Per release: 0 critical findings at release; audit log per build. |
 | Realises | CR-D-02.1-001 / SO-D-02.1-001. |
 | Anchors | SAMM: I-SB-B (software dependencies, secure build) · ASVS: V14.2 (dependency). |
-| Evidence | Scan reports; CVSS+EPSS prioritisation records; SBOM (U.C.5.6.1); build audit log (PR.DS-01). |
+| Evidence | Scan reports; CVSS+EPSS prioritisation records; SBOM (UC-17); build audit log (PR.DS-01). |
 
 ```mermaid
 flowchart TD
     T["Trigger: PR merged to release branch"] --> A1["1. CI runs SAST + SCA + container scan"]
     A1 --> A2["2. Findings prioritised by CVSS + EPSS"]
     A2 --> D1{"3. Critical findings?"}
-    D1 -->|"yes"| A3a["3a. Release blocked — emergency patch path (U.C.2.2.1)"]
+    D1 -->|"yes"| A3a["3a. Release blocked — emergency patch path (UC-05)"]
     D1 -->|"no"| A3b["3. Release proceeds"]
     A3a --> A1
     A3b --> A4["4. Audit log entry per build (PR.DS-01)"]
@@ -429,7 +429,7 @@ flowchart TD
 
 ## Articulation with existing artefacts
 
-Per-card binding to the catalogue and the downstream documents. 'Formerly' preserves the pre-LANE-NAMING id (full registry: `00_METHODOLOGY/validation/LANE_NAMING_CENSUS_v0.md`). Ref counts are occurrences of the lane id in the P3 tree (excluding this doc).
+Per-card binding to the catalogue and the downstream documents. 'Formerly' preserves the pre-LANE-NAMING id (full registry: `00_METHODOLOGY/validation/LANE_NAMING_CENSUS_v0.md`). Ref counts are occurrences of the lane id in the P3 tree (excluding this doc). RENUMBER (2026-09-05, rubric v1.10 §5B rule 7): live UC references in the P3 tree now use flat `UC-01..UC-40` (registry `00_METHODOLOGY/validation/RENUMBER_REGISTRY_2026-09-05.md`); the 'Formerly' column and this table's PROC/CAP ids are unchanged.
 
 | Card | Formerly | Catalogue anchor | Downstream refs (doc: count) |
 |---|---|---|---|

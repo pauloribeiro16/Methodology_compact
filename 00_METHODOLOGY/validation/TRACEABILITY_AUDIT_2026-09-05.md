@@ -4,12 +4,12 @@ _Instrument: `scripts/traceability_audit.py` (read-only). Case_03 treats `AG-D-*
 
 | Case | obj→ctrl | ctrl→obj | uc→obj_or_ctrl |
 |---|---|---|---|
-| Case_03 | 42/42 = 100.0% | 78/78 = 100.0% | 107/107 = 100.0% |
+| Case_01 | 104/104 = 100.0% | 46/46 = 100.0% | 100/100 = 100.0% |
 
 ## Gap lists (full)
 
-### Case_03
-- artefacts: `Doc17_Privacy_Security_Objectives.md` · `Doc19_Rules_Catalog.md` · `Doc22_Use_Cases_Catalog.md` · `Doc32_Process_Capability_Cards.md`
+### Case_01
+- artefacts: `Doc16_Privacy_Security_Objectives.md` · `Doc18_Rules_Catalog.md` · `Doc20_Use_Cases_Catalog.md` · `Doc32_Process_Capability_Cards.md`
 - OBJECTIVE without CONTROL (0): none
 - CONTROL without OBJECTIVE back-link (0): none
 - UC without OBJECTIVE/CONTROL link (0): none

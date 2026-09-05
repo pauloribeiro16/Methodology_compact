@@ -25,7 +25,7 @@ sprint6_note: "Fase de Especificação 6: EXTENDED. New edge types introduced fo
 > **Status:** EXTENDED_PRODUCT_BASELINE.
 > Three edge families:
 > 1. **Functional** — `«include»` / `«extend»` between U.C.1-6 (security/compliance) preserved verbatim from v2.0 (24 edges).
-> 2. **Security constraints** — `«constrains»` from each security U.C.1-6 to the functional U.C.7-11 it restricts (35 edges; 1-to-1 mapping for primary constraints; some functional UCs are constrained by multiple security UCs).
+> 2. **Security constraints** — `«constrains»` from each security UC-01..UC-17 to the functional UC-18..UC-40 it restricts (35 edges; 1-to-1 mapping for primary constraints; some functional UCs are constrained by multiple security UCs).
 > 3. **Threat model** — `«threatens»` from each MUC to its target functional U.C., and `«mitigated by»` from each MUC to the security U.C. that addresses it (8 + 24 edges respectively).
 
 ---
@@ -33,14 +33,14 @@ sprint6_note: "Fase de Especificação 6: EXTENDED. New edge types introduced fo
 ## §1 Reconciliation Notes
 
 **Authoritative sources:**
-- `Doc20_Use_Cases_Catalog.md` §2 (functional U.C.7-11), §3 (security U.C.1-6), §4 (MUCs).
+- `Doc20_Use_Cases_Catalog.md` §2 (functional UC-18..UC-40), §3 (security UC-01..UC-17), §4 (MUCs).
 - `RULE_FREEZE.md` §5 (UC enumeration v2 — security U.C.s preserved).
 - `CORPUS_LINKAGE.md` §3 (UC-to-D-XX.Y mapping).
 
 **Gate criteria:**
 - All `«include»` / `«extend»` targets exist (validated by §2/§3 below — same set as v2.0).
-- All `«constrains»` targets exist as functional U.C.7-11.
-- All `«threatens»` / `«mitigated by»` endpoints exist as functional U.C.7-11 / security U.C.1-6.
+- All `«constrains»` targets exist as functional UC-18, UC-19, UC-20, UC-21, UC-22-11.
+- All `«threatens»` / `«mitigated by»` endpoints exist as functional UC-18..UC-40 / security UC-01, UC-02, UC-03, UC-04-6.
 - No orphan U.C.s (every U.C. has ≥1 relationship or is documented standalone — §4).
 
 ---
@@ -49,22 +49,22 @@ sprint6_note: "Fase de Especificação 6: EXTENDED. New edge types introduced fo
 
 | Including UC | Included UC | Rationale |
 |--------------|-------------|-----------|
-| PROC-01 | U.C.3.1.1 | DSAR requires authenticated subject |
-| U.C.1.2.1 | U.C.3.1.1 | Erasure requires authenticated subject |
-| U.C.1.3.1 | U.C.3.1.1 | Data export requires authenticated subject |
-| U.C.1.5.1 | U.C.3.1.1 | Rectification requires authenticated subject |
-| PROC-03 | U.C.3.5.1 | Vulnerability detection requires audit logging |
-| U.C.2.2.1 | U.C.3.5.1 | Patch deployment logs to audit trail |
-| PROC-05 | U.C.3.5.1 | Incident notification logs to audit trail |
-| U.C.2.6.1 | U.C.3.5.1 | Data restoration logs to audit trail |
-| U.C.3.1.1 | U.C.3.5.1 | Authentication events logged |
-| U.C.3.1.2 | U.C.3.1.1 | MFA requires base authentication |
-| PROC-07 | U.C.3.1.1 | Account deprovisioning requires auth context |
+| PROC-01 | UC-09 | DSAR requires authenticated subject |
+| UC-01 | UC-09 | Erasure requires authenticated subject |
+| UC-02 | UC-09 | Data export requires authenticated subject |
+| UC-04 | UC-09 | Rectification requires authenticated subject |
+| PROC-03 | UC-13 | Vulnerability detection requires audit logging |
+| UC-05 | UC-13 | Patch deployment logs to audit trail |
+| PROC-05 | UC-13 | Incident notification logs to audit trail |
+| UC-08 | UC-13 | Data restoration logs to audit trail |
+| UC-09 | UC-13 | Authentication events logged |
+| UC-10 | UC-09 | MFA requires base authentication |
+| PROC-07 | UC-09 | Account deprovisioning requires auth context |
 | PROC-08 | PROC-04 | SSDLC triggers coordinated disclosure |
-| U.C.4.2.1 | PROC-04 | SAST/DAST findings feed disclosure process |
+| UC-14 | PROC-04 | SAST/DAST findings feed disclosure process |
 | PROC-09 | PROC-12 | Pre-launch risk assessment = DPIA |
-| PROC-13 | U.C.3.5.1 | RoPA updates logged |
-| U.C.5.6.1 | PROC-14 | SBOM publication requires processor due diligence |
+| PROC-13 | UC-13 | RoPA updates logged |
+| UC-17 | PROC-14 | SBOM publication requires processor due diligence |
 
 ---
 
@@ -72,14 +72,14 @@ sprint6_note: "Fase de Especificação 6: EXTENDED. New edge types introduced fo
 
 | Base UC | Extending UC | Extension point | Rationale |
 |---------|--------------|-----------------|-----------|
-| PROC-05 | U.C.2.4.2 | Incident-→-DoS scenario | DoS triggers 24h ENISA notification path |
+| PROC-05 | UC-07 | Incident-→-DoS scenario | DoS triggers 24h ENISA notification path |
 | PROC-09 | PROC-12 | DPIA extends risk assessment | High-risk processing extends DPIA |
-| U.C.3.5.1 | PROC-03 | Audit log feeds SIEM detection | SIEM extends audit logging |
+| UC-13 | PROC-03 | Audit log feeds SIEM detection | SIEM extends audit logging |
 | PROC-10 | PROC-11 | Policy review extends documentation | Documentation is artefact of policy |
 | PROC-15 | PROC-17 | Phishing extends annual training | Practical exercise for awareness |
 | PROC-04 | PROC-05 | CVD triggers incident notification | Disclosed vuln may become incident |
-| U.C.3.3.1 | U.C.3.1.1 | Secure defaults constrain auth | Hardened baseline applied to auth |
-| U.C.4.3.1 | U.C.2.2.1 | Patch deployment is operationalised by automation | DEV-side patch → SEC-side deployment |
+| UC-12 | UC-09 | Secure defaults constrain auth | Hardened baseline applied to auth |
+| UC-15 | UC-05 | Patch deployment is operationalised by automation | DEV-side patch → SEC-side deployment |
 
 ---
 
@@ -89,41 +89,41 @@ sprint6_note: "Fase de Especificação 6: EXTENDED. New edge types introduced fo
 
 | Security UC | Constrains Functional UC | Constraint type |
 |-------------|--------------------------|-----------------|
-| PROC-01 (DSAR) | U.C.11.1.1, U.C.11.2.1, U.C.11.3.1 | Rights enforcement |
-| PROC-02 (Rectification) | U.C.11.1.1 | Data integrity |
-| U.C.1.2.1 (Erasure) | U.C.11.3.1 | Data lifecycle |
-| U.C.1.3.1 (Export) | U.C.11.2.1 | Portability + rate limit |
-| U.C.1.4.1 (Consent) | U.C.7.1.1, U.C.11.1.1 | Consent capture at signup + at view |
-| U.C.1.5.1 (Structured portability) | U.C.11.2.1 | Schema + endpoint |
-| PROC-03 (Vuln-free release) | U.C.8.2.1, U.C.9.3.1 | Release gating |
-| U.C.2.2.1 (Patch deployment) | All U.C.7-11 | Availability |
-| PROC-04 (CVD) | All U.C.7-11 | Vulnerability intake |
-| U.C.2.4.1 (Exploit severity limit) | U.C.8.2.1, U.C.9.3.1 | Containment + attachment quarantine |
-| U.C.2.4.2 (DoS resilience) | All U.C.7-11 | Availability |
-| PROC-05 (Incident notification) | All U.C.7-11 | Notification clock |
-| U.C.2.6.1 (Data restoration) | All U.C.7-11 | Recovery |
-| U.C.3.1.1 (Authentication) | U.C.7.1.1, U.C.7.1.2, U.C.7.1.3, U.C.7.2.1, U.C.10.1.1 | Authn |
-| U.C.3.1.2 (MFA privileged) | U.C.10.3.2 (Enterprise SSO), U.C.10.3.1 | Privileged access |
-| U.C.3.2.1 (Authorisation) | U.C.7.5.1, U.C.8.*, U.C.10.3.1 | Authz + role scoping |
-| U.C.3.3.1 (Secure defaults) | All U.C.7-11 | Hardened baseline |
-| PROC-06 (Processing & breach records) | All U.C.7-11 | Record-keeping |
-| U.C.3.5.1 (Audit logging) | All U.C.7-11 | Observability |
-| PROC-07 (Control testing) | All U.C.7-11 | Periodic validation |
-| PROC-08 (SSDLC) | U.C.8.*, U.C.10.* | Secure development |
-| U.C.4.2.1 (SAST/DAST) | U.C.8.*, U.C.9.3.1 | Build-time gating |
-| U.C.4.3.1 (Security patch) | All U.C.7-11 | Patch cadence |
-| U.C.4.4.1 (Fail-safe) | U.C.8.3.1, U.C.9.4.1, U.C.10.1.1 | Fail-closed behaviour |
-| PROC-09 (Pre-launch risk assessment) | U.C.10.2.1, U.C.10.3.2, U.C.11.x | Launch gating |
-| PROC-10 (Annual policy review) | All U.C.7-11 | Governance |
-| PROC-11 (Tech docs maintenance) | All U.C.7-11 | Documentation currency |
-| PROC-12 (DPIA) | U.C.10.2.1, U.C.10.3.2, U.C.11.x | DPIA gating |
-| PROC-13 (RoPA) | All U.C.7-11 | Record of processing |
-| PROC-14 (Processor due diligence) | U.C.10.2.1, U.C.7.1.2 | Vendor risk |
-| CAP-01 (DPAs) | U.C.10.2.1, U.C.7.1.2 | Contractual |
-| U.C.5.6.1 (SBOM) | U.C.8.*, U.C.10.* | Transparency |
-| PROC-15 (Annual awareness) | All U.C.7-11 (human-driven) | Awareness |
-| PROC-16 (Role-specific training) | U.C.7.5.1, U.C.10.3.1 | Role competence |
-| PROC-17 (Phishing sim) | U.C.7.1.1, U.C.7.1.2 | Awareness reinforcement |
+| PROC-01 (DSAR) | UC-38, UC-39, UC-40 | Rights enforcement |
+| PROC-02 (Rectification) | UC-38 | Data integrity |
+| UC-01 (Erasure) | UC-40 | Data lifecycle |
+| UC-02 (Export) | UC-39 | Portability + rate limit |
+| UC-03 (Consent) | UC-18, UC-38 | Consent capture at signup + at view |
+| UC-04 (Structured portability) | UC-39 | Schema + endpoint |
+| PROC-03 (Vuln-free release) | UC-25, UC-31 | Release gating |
+| UC-05 (Patch deployment) | All UC-18..UC-40 | Availability |
+| PROC-04 (CVD) | All UC-18..UC-40 | Vulnerability intake |
+| UC-06 (Exploit severity limit) | UC-25, UC-31 | Containment + attachment quarantine |
+| UC-07 (DoS resilience) | All UC-18..UC-40 | Availability |
+| PROC-05 (Incident notification) | All UC-18..UC-40 | Notification clock |
+| UC-08 (Data restoration) | All UC-18..UC-40 | Recovery |
+| UC-09 (Authentication) | UC-18, UC-19, UC-20, UC-21, UC-34 | Authn |
+| UC-10 (MFA privileged) | UC-37 (Enterprise SSO), UC-36 | Privileged access |
+| UC-11 (Authorisation) | UC-22, UC-23, UC-24, UC-25, UC-26, UC-27, UC-28, UC-36 | Authz + role scoping |
+| UC-12 (Secure defaults) | All UC-18..UC-40 | Hardened baseline |
+| PROC-06 (Processing & breach records) | All UC-18..UC-40 | Record-keeping |
+| UC-13 (Audit logging) | All UC-18..UC-40 | Observability |
+| PROC-07 (Control testing) | All UC-18..UC-40 | Periodic validation |
+| PROC-08 (SSDLC) | UC-23, UC-24, UC-25, UC-26, UC-27, UC-28, UC-34, UC-35, UC-36, UC-37 | Secure development |
+| UC-14 (SAST/DAST) | UC-23, UC-24, UC-25, UC-26, UC-27, UC-28, UC-31 | Build-time gating |
+| UC-15 (Security patch) | All UC-18..UC-40 | Patch cadence |
+| UC-16 (Fail-safe) | UC-28, UC-32, UC-34 | Fail-closed behaviour |
+| PROC-09 (Pre-launch risk assessment) | UC-35, UC-37, UC-38, UC-39, UC-40 | Launch gating |
+| PROC-10 (Annual policy review) | All UC-18..UC-40 | Governance |
+| PROC-11 (Tech docs maintenance) | All UC-18..UC-40 | Documentation currency |
+| PROC-12 (DPIA) | UC-35, UC-37, UC-38, UC-39, UC-40 | DPIA gating |
+| PROC-13 (RoPA) | All UC-18..UC-40 | Record of processing |
+| PROC-14 (Processor due diligence) | UC-35, UC-19 | Vendor risk |
+| CAP-01 (DPAs) | UC-35, UC-19 | Contractual |
+| UC-17 (SBOM) | UC-23, UC-24, UC-25, UC-26, UC-27, UC-28, UC-34, UC-35, UC-36, UC-37 | Transparency |
+| PROC-15 (Annual awareness) | All UC-18..UC-40 (human-driven) | Awareness |
+| PROC-16 (Role-specific training) | UC-22, UC-36 | Role competence |
+| PROC-17 (Phishing sim) | UC-18, UC-19 | Awareness reinforcement |
 
 ---
 
@@ -131,14 +131,14 @@ sprint6_note: "Fase de Especificação 6: EXTENDED. New edge types introduced fo
 
 | MUC | Threatens | Attack vector |
 |-----|-----------|---------------|
-| MUC-01 (Credential stuffing) | U.C.7.1.2, U.C.7.1.3 | Brute force at login |
-| MUC-02 (Privilege escalation) | U.C.7.5.1, U.C.10.3.1 | Role manipulation |
-| MUC-03 (Cross-tenant injection) | U.C.8.1.2, U.C.8.2.1, U.C.8.3.1, U.C.8.1.1, U.C.10.1.1 | Missing workspace_id scope |
-| MUC-04 (Bulk extraction) | U.C.11.2.1, U.C.9.4.1 | Export endpoint + search |
-| MUC-05 (Compromised integration) | U.C.10.2.1, U.C.7.1.2 | Webhook spoofing + OAuth client |
-| MUC-06 (Insider exfiltration) | All U.C.7-11 (data plane) | Privileged DB/backup access |
-| MUC-07 (Board DoS) | U.C.8.3.1, All U.C.7-11 (availability) | L7 DDoS on expensive endpoints |
-| MUC-08 (Malicious attachment) | U.C.9.3.1 | Polyglot file serving |
+| MUC-01 (Credential stuffing) | UC-19, UC-20 | Brute force at login |
+| MUC-02 (Privilege escalation) | UC-22, UC-36 | Role manipulation |
+| MUC-03 (Cross-tenant injection) | UC-24, UC-25, UC-28, UC-23, UC-34 | Missing workspace_id scope |
+| MUC-04 (Bulk extraction) | UC-39, UC-32 | Export endpoint + search |
+| MUC-05 (Compromised integration) | UC-35, UC-19 | Webhook spoofing + OAuth client |
+| MUC-06 (Insider exfiltration) | All UC-18..UC-40 (data plane) | Privileged DB/backup access |
+| MUC-07 (Board DoS) | UC-28, All UC-18..UC-40 (availability) | L7 DDoS on expensive endpoints |
+| MUC-08 (Malicious attachment) | UC-31 | Polyglot file serving |
 
 ---
 
@@ -146,47 +146,47 @@ sprint6_note: "Fase de Especificação 6: EXTENDED. New edge types introduced fo
 
 | MUC | Mitigated by (security U.C.) |
 |-----|------------------------------|
-| MUC-01 | U.C.3.1.1, U.C.3.1.2, U.C.2.4.1, U.C.3.5.1 |
-| MUC-02 | U.C.3.2.1, U.C.3.5.1, PROC-11 |
-| MUC-03 | U.C.3.3.1, U.C.3.2.1, PROC-03, U.C.4.2.1 |
-| MUC-04 | U.C.1.3.1, U.C.1.5.1, U.C.2.4.2, U.C.3.5.1 |
-| MUC-05 | PROC-14, CAP-01, U.C.3.1.1 |
-| MUC-06 | U.C.3.1.2, U.C.3.2.1, U.C.3.5.1, U.C.2.4.1 |
-| MUC-07 | U.C.2.4.2, U.C.4.4.1, U.C.2.6.1 |
-| MUC-08 | U.C.2.4.1, U.C.3.5.1, U.C.4.2.1 |
+| MUC-01 | UC-09, UC-10, UC-06, UC-13 |
+| MUC-02 | UC-11, UC-13, PROC-11 |
+| MUC-03 | UC-12, UC-11, PROC-03, UC-14 |
+| MUC-04 | UC-02, UC-04, UC-07, UC-13 |
+| MUC-05 | PROC-14, CAP-01, UC-09 |
+| MUC-06 | UC-10, UC-11, UC-13, UC-06 |
+| MUC-07 | UC-07, UC-16, UC-08 |
+| MUC-08 | UC-06, UC-13, UC-14 |
 
 ---
 
 ## §7 Functional `«include»` / `«extend»` Edges (new — derived from §2 catalogue)
 
-> These edges describe reuse within the product U.C.7-11. They were not in v2.0 because there were no functional UCs.
+> These edges describe reuse within the product UC-18, UC-19, UC-20, UC-21, UC-22-11. They were not in v2.0 because there were no functional UCs.
 
 | Including UC | Included UC | Rationale |
 |--------------|-------------|-----------|
-| U.C.8.2.1 (Create Task) | U.C.7.1.2 (Login) | Task creation requires authn |
-| U.C.8.2.1 (Create Task) | U.C.8.1.2 (Create Project) | Task belongs to project |
-| U.C.8.2.2 (Assign Task) | U.C.7.5.1 (Invite+roles) | Assignee must be project member |
-| U.C.9.1.1 (Comment) | U.C.8.2.1 (Create Task) | Comment attached to task |
-| U.C.9.2.1 (Mention+notify) | U.C.7.5.1 (Invite+roles) | Mentioned user must be project member |
-| U.C.9.3.1 (Attachment) | U.C.8.2.1 (Create Task) | Attachment belongs to task |
-| U.C.9.4.1 (Search) | U.C.7.1.2 (Login) | Search requires authn |
-| U.C.9.5.1 (Activity feed) | U.C.7.1.2 (Login) | Feed requires authn |
-| U.C.10.1.1 (Mobile sync) | U.C.7.1.2 (Login) | Sync requires authn |
-| U.C.10.3.2 (Enterprise SSO) | U.C.7.1.2 (Login) | SSO extends login |
-| U.C.11.2.1 (Export) | U.C.7.1.2 (Login) | Export requires authn |
-| U.C.11.3.1 (Delete) | U.C.7.1.2 (Login) | Deletion requires authn |
-| U.C.11.3.1 (Delete workspace) | U.C.7.5.1 (Invite+roles) | Owner-only operation |
+| UC-25 (Create Task) | UC-19 (Login) | Task creation requires authn |
+| UC-25 (Create Task) | UC-24 (Create Project) | Task belongs to project |
+| UC-26 (Assign Task) | UC-22 (Invite+roles) | Assignee must be project member |
+| UC-29 (Comment) | UC-25 (Create Task) | Comment attached to task |
+| UC-30 (Mention+notify) | UC-22 (Invite+roles) | Mentioned user must be project member |
+| UC-31 (Attachment) | UC-25 (Create Task) | Attachment belongs to task |
+| UC-32 (Search) | UC-19 (Login) | Search requires authn |
+| UC-33 (Activity feed) | UC-19 (Login) | Feed requires authn |
+| UC-34 (Mobile sync) | UC-19 (Login) | Sync requires authn |
+| UC-37 (Enterprise SSO) | UC-19 (Login) | SSO extends login |
+| UC-39 (Export) | UC-19 (Login) | Export requires authn |
+| UC-40 (Delete) | UC-19 (Login) | Deletion requires authn |
+| UC-40 (Delete workspace) | UC-22 (Invite+roles) | Owner-only operation |
 
 ---
 
 ## §8 Orphan check
 
-> Functional U.C.7-11 are no longer orphan: each has ≥1 security U.C. constraining it, ≥1 functional `«include»`/`«extend»` (except where standalone is intentional, e.g., U.C.7.1.1 Sign-Up which is the root of all auth flow).
+> Functional UC-18..UC-40 are no longer orphan: each has ≥1 security U.C. constraining it, ≥1 functional `«include»`/`«extend»` (except where standalone is intentional, e.g., UC-18 Sign-Up which is the root of all auth flow).
 
 | Standalone (intentional) | Rationale |
 |--------------------------|-----------|
-| U.C.7.1.1 (Sign-Up) | Root of authn flow; no upstream include. |
-| U.C.10.2.1 (Stripe Checkout) | Leaf of billing flow; no downstream include. |
+| UC-18 (Sign-Up) | Root of authn flow; no upstream include. |
+| UC-35 (Stripe Checkout) | Leaf of billing flow; no downstream include. |
 
 No orphan U.C.s overall.
 
@@ -200,7 +200,7 @@ Package membership matches `Doc20_Use_Cases_Catalog.md` §2/§3. No U.C. spans m
 
 ## §10 Cross-references
 
-- `Doc20_Use_Cases_Catalog.md` §2 (functional U.C.7-11), §3 (security U.C.1-6), §4 (MUCs).
+- `Doc20_Use_Cases_Catalog.md` §2 (functional UC-18..UC-40), §3 (security UC-01..UC-17), §4 (MUCs).
 - `Doc22_Use_Case_Variability.md` — variants.
 - `Doc24_Requirements_Allocation.md` — requirements mapped to U.C.
 - `22_Traceability_Matrix.xlsx` — sheets FUNCUC_TO_SECUC + MUC_TO_MITIGATION.

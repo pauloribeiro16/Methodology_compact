@@ -143,7 +143,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Description:** 100% of privileged sessions successfully use MFA.
 **Scope:** Privileged staff sessions.
 **Out of Scope:** Standard user sessions.
-**Source UC:** U.C.3.1.2
+**Source UC:** UC-10
 **Source FR:** FR-03
 **Source Rule:** CR-D-03.1-001
 **NIST CSF Anchors:** CSF: PR.AA-03, PR.AA-04 | PF: —
@@ -171,7 +171,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Description:** Account locked after 5 failed authentication attempts.
 **Scope:** All human authentication.
 **Out of Scope:** Service accounts.
-**Source UC:** U.C.3.1.1, U.C.3.2.1, U.C.3.5.1
+**Source UC:** UC-09, UC-11, UC-13
 **Source FR:** FR-02, FR-04, FR-05
 **Source Rule:** CR-D-03.1-001
 **NIST CSF Anchors:** CSF: PR.AA-01, PR.AA-03 | PF: —
@@ -199,7 +199,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Description:** 100% of personal-data records encrypted at rest with AES-256 or higher.
 **Scope:** Production data stores.
 **Out of Scope:** Ephemeral dev databases.
-**Source UC:** PROC-01, U.C.2.6.1
+**Source UC:** PROC-01, UC-08
 **Source FR:** FR-08, FR-18
 **Source Rule:** CR-D-01.1-001
 **NIST CSF Anchors:** CSF: PR.DS-01 | PF: PR.DS-P1
@@ -227,7 +227,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Description:** 100% of data-in-transit endpoints use TLS 1.2+.
 **Scope:** All public endpoints.
 **Out of Scope:** Internal mTLS.
-**Source UC:** U.C.3.1.1, U.C.1.3.1
+**Source UC:** UC-09, UC-02
 **Source FR:** FR-02, FR-09
 **Source Rule:** CR-D-01.2-001
 **NIST CSF Anchors:** CSF: PR.DS-02 | PF: CT.DM-P1
@@ -255,7 +255,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Description:** 100% of internal service-to-service traffic uses TLS.
 **Scope:** Internal microservices.
 **Out of Scope:** Dev traffic.
-**Source UC:** PROC-08, U.C.4.2.1, U.C.4.3.1, CAP-01
+**Source UC:** PROC-08, UC-14, UC-15, CAP-01
 **Source FR:** FR-20, FR-21, FR-28
 **Source Rule:** CR-D-01.2-001
 **NIST CSF Anchors:** CSF: PR.DS-02 | PF: —
@@ -307,7 +307,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Description:** 100% of backups verified for integrity weekly.
 **Scope:** Production backups.
 **Out of Scope:** Dev backups.
-**Source UC:** PROC-08, U.C.4.2.1, U.C.4.3.1
+**Source UC:** PROC-08, UC-14, UC-15
 **Source FR:** FR-06, FR-20, FR-21
 **Source Rule:** CR-D-01.4-001
 **NIST CSF Anchors:** CSF: PR.DS-01, PR.DS-02 | PF: —
@@ -359,7 +359,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Description:** 100% of user sessions logged to SIEM.
 **Scope:** All production sessions.
 **Out of Scope:** Dev sessions.
-**Source UC:** U.C.3.1.1, U.C.3.2.1, U.C.3.5.1
+**Source UC:** UC-09, UC-11, UC-13
 **Source FR:** FR-02, FR-05, FR-15
 **Source Rule:** CR-D-03.1-001
 **NIST CSF Anchors:** CSF: DE.CM-01, PR.DS-01 | PF: CT.DM-P4
@@ -383,7 +383,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Description:** SIEM platform uptime ≥99.9%.
 **Scope:** Production SIEM.
 **Out of Scope:** Dev SIEM.
-**Source UC:** PROC-03, U.C.2.6.1
+**Source UC:** PROC-03, UC-08
 **Source FR:** FR-13, FR-17
 **Source Rule:** CR-D-02.1-001
 **NIST CSF Anchors:** CSF: DE.CM-01 | PF: CT.DM-P4
@@ -411,7 +411,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Description:** CI/CD build pipeline availability ≥99.5%.
 **Scope:** Production CI/CD.
 **Out of Scope:** Dev CI/CD.
-**Source UC:** U.C.4.3.1
+**Source UC:** UC-15
 **Source FR:** FR-21
 **Source Rule:** CR-D-02.1-001
 **NIST CSF Anchors:** CSF: PR.PS-01, PR.PS-02 | PF: —
@@ -435,7 +435,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Description:** Critical security patches deployed within 24 hours.
 **Scope:** Production services.
 **Out of Scope:** Third-party managed.
-**Source UC:** U.C.4.3.1, PROC-08, U.C.4.2.1
+**Source UC:** UC-15, PROC-08, UC-14
 **Source FR:** FR-18, FR-20, FR-21
 **Source Rule:** CR-D-02.2-001
 **NIST CSF Anchors:** CSF: GV.OV-02, PR.IR-03 | PF: —
@@ -487,7 +487,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Description:** Backup restoration completes within 24h (RTO).
 **Scope:** Production data stores.
 **Out of Scope:** Long-term archival.
-**Source UC:** PROC-05, U.C.2.6.1
+**Source UC:** PROC-05, UC-08
 **Source FR:** FR-19
 **Source Rule:** CR-D-04.4-001
 **NIST CSF Anchors:** CSF: PR.IR-03 | PF: —
@@ -515,7 +515,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Description:** Maximum data loss tolerance is 1 hour (RPO).
 **Scope:** Production data stores.
 **Out of Scope:** Long-term archival.
-**Source UC:** PROC-05, U.C.2.6.1
+**Source UC:** PROC-05, UC-08
 **Source FR:** FR-19
 **Source Rule:** CR-D-04.4-001
 **NIST CSF Anchors:** CSF: PR.DS-10, PR.IR-03 | PF: —
@@ -543,7 +543,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Description:** BCP activation completes within 24h.
 **Scope:** BCP scope.
 **Out of Scope:** DR-only incidents.
-**Source UC:** PROC-05, U.C.2.6.1
+**Source UC:** PROC-05, UC-08
 **Source FR:** FR-19
 **Source Rule:** CR-D-04.4-001
 **NIST CSF Anchors:** CSF: PR.IR-01, PR.IR-03 | PF: —
@@ -567,7 +567,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Description:** On-call alert response within 15 minutes.
 **Scope:** All security incidents.
 **Out of Scope:** Customer support.
-**Source UC:** PROC-03, U.C.2.2.1, PROC-05, U.C.2.6.1
+**Source UC:** PROC-03, UC-05, PROC-05, UC-08
 **Source FR:** FR-14, FR-15, FR-16, FR-19
 **Source Rule:** CR-D-04.1-001
 **NIST CSF Anchors:** CSF: RS.CO-02, RS.MA-01 | PF: CM.AW-P7
@@ -595,7 +595,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Description:** Forensic evidence retained for ≥1 year.
 **Scope:** All confirmed security incidents.
 **Out of Scope:** Suspected-only.
-**Source UC:** PROC-05, U.C.2.6.1
+**Source UC:** PROC-05, UC-08
 **Source FR:** FR-19
 **Source Rule:** CR-D-04.4-001
 **NIST CSF Anchors:** CSF: PR.DS-10, PR.IR-04 | PF: —
@@ -623,7 +623,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Description:** Backup data retained for ≥90 days.
 **Scope:** Production data stores.
 **Out of Scope:** Dev backups.
-**Source UC:** PROC-05, U.C.2.6.1
+**Source UC:** PROC-05, UC-08
 **Source FR:** FR-19
 **Source Rule:** CR-D-04.4-001
 **NIST CSF Anchors:** CSF: PR.DS-10 | PF: —
@@ -647,7 +647,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Description:** 100% of database transactions satisfy ACID properties.
 **Scope:** Production data stores.
 **Out of Scope:** Dev databases.
-**Source UC:** U.C.3.1.1
+**Source UC:** UC-09
 **Source FR:** FR-02
 **Source Rule:** CR-D-01.4-001
 **NIST CSF Anchors:** CSF: PR.DS-01, PR.DS-02 | PF: CT.DM-P1
@@ -731,7 +731,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Description:** 100% of erasure operations audited.
 **Scope:** All erasure flows.
 **Out of Scope:** Logical-only deletes.
-**Source UC:** U.C.1.2.1
+**Source UC:** UC-01
 **Source FR:** FR-08
 **Source Rule:** CR-D-05.3-001
 **NIST CSF Anchors:** CSF: GV.SC-04 | PF: CT.DM-P4, CT.DM-P5
@@ -759,7 +759,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Description:** Data exports support JSON + CSV + PDF formats.
 **Scope:** All DSAR exports.
 **Out of Scope:** Proprietary formats.
-**Source UC:** U.C.1.3.1
+**Source UC:** UC-02
 **Source FR:** FR-09
 **Source Rule:** CR-D-05.4-001
 **NIST CSF Anchors:** CSF: PR.DS-10 | PF: CT.DM-P1, CT.DM-P6
@@ -783,7 +783,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Description:** RBAC role reviews conducted quarterly.
 **Scope:** All internal staff.
 **Out of Scope:** Customer self-service.
-**Source UC:** U.C.3.2.1
+**Source UC:** UC-11
 **Source FR:** FR-05
 **Source Rule:** CR-D-03.3-001
 **NIST CSF Anchors:** CSF: PR.AA-01, PR.AA-03 | PF: CT.PO-P1
@@ -811,7 +811,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Description:** 100% of new users have consent captured at signup.
 **Scope:** All new user signups.
 **Out of Scope:** Legacy users (separate migration).
-**Source UC:** U.C.1.4.1
+**Source UC:** UC-03
 **Source FR:** FR-10
 **Source Rule:** CR-D-05.1-001
 **NIST CSF Anchors:** CSF: GV.PO-01 | PF: CT.DP-P4
@@ -839,7 +839,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Description:** Consent withdrawal propagated to processors within 7 days.
 **Scope:** All processors.
 **Out of Scope:** Aggregated anonymised.
-**Source UC:** U.C.1.4.1
+**Source UC:** UC-03
 **Source FR:** FR-12
 **Source Rule:** CR-D-05.2-001
 **NIST CSF Anchors:** CSF: GV.PO-02 | PF: CT.DM-P5
@@ -867,7 +867,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Description:** Customer rectification requests applied within 30 days.
 **Scope:** All customer data stores.
 **Out of Scope:** Third-party data.
-**Source UC:** U.C.1.5.1
+**Source UC:** UC-04
 **Source FR:** FR-11
 **Source Rule:** CR-D-05.4-001
 **NIST CSF Anchors:** CSF: PR.DS-01, PR.DS-02 | PF: CT.DM-P1, CT.DM-P3
@@ -923,7 +923,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Description:** Customer object-to-processing requests handled within 30 days.
 **Scope:** All customer object requests.
 **Out of Scope:** Suspected-only.
-**Source UC:** U.C.1.4.1
+**Source UC:** UC-03
 **Source FR:** FR-12
 **Source Rule:** CR-D-05.1-001
 **NIST CSF Anchors:** CSF: GV.PO-02 | PF: CT.DM-P5
@@ -979,7 +979,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Description:** Audit logs stored in WORM (Write-Once-Read-Many) storage.
 **Scope:** Production audit logs.
 **Out of Scope:** Dev logs.
-**Source UC:** U.C.3.1.1, U.C.2.2.1, PROC-13
+**Source UC:** UC-09, UC-05, PROC-13
 **Source FR:** FR-02, FR-15, FR-26
 **Source Rule:** CR-D-10.2-001
 **NIST CSF Anchors:** CSF: PR.DS-01 | PF: CT.DM-P4, CT.DM-P9
@@ -1027,7 +1027,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Description:** System uses TLS 1.3 / AES-256 strong ciphers.
 **Scope:** All data flows.
 **Out of Scope:** Legacy weak ciphers.
-**Source UC:** U.C.3.1.1
+**Source UC:** UC-09
 **Source FR:** FR-02
 **Source Rule:** CR-D-01.2-001
 **NIST CSF Anchors:** CSF: PR.DS-02 | PF: CT.DM-P1
@@ -1179,7 +1179,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Description:** Annual security assessment of all data vendors.
 **Scope:** All data vendors.
 **Out of Scope:** Non-data vendors.
-**Source UC:** U.C.5.6.1, PROC-14
+**Source UC:** UC-17, PROC-14
 **Source FR:** FR-23, FR-27
 **Source Rule:** CR-D-09.1-001
 **NIST CSF Anchors:** CSF: GV.SC-01, GV.SC-02 | PF: ID.IM-P2
@@ -1307,7 +1307,7 @@ Non-Functional Requirements (NFR-01..NFR-46) specify measurable quality attribut
 **Description:** SBOM published per release.
 **Scope:** All production releases.
 **Out of Scope:** Internal tooling.
-**Source UC:** PROC-09, U.C.5.6.1
+**Source UC:** PROC-09, UC-17
 **Source FR:** FR-23
 **Source Rule:** CR-D-06.2-001
 **NIST CSF Anchors:** CSF: GV.SC-02, GV.SC-03 | PF: —

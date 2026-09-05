@@ -58,43 +58,43 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 
 | FR ID | Requirement (abbreviated) | UCs | NFRs | CR | Verif | Prio | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |-------|---------------------------|-----|------|----|----|----|-------|-----------------------|----------|----------|--------------|-----------|
-| FR-01 | Register + provision new users | U.C.3.2.1, U.C.3.5.1 | NFR-02 | CR-D-03.1-001 | TEST | HIGH | | | | | | |
-| FR-02 | Authenticate + lock after 5 fails + log all attempts | U.C.3.1.1 | NFR-01..07/20/32/34 | CR-D-03.1-001 | TEST | CRITICAL | | | | | | |
-| FR-03 | MFA for privileged accounts | U.C.3.3.1 | NFR-01 | CR-D-03.1-001 | DEMONSTRATE | HIGH | | | | | | |
+| FR-01 | Register + provision new users | UC-11, UC-13 | NFR-02 | CR-D-03.1-001 | TEST | HIGH | | | | | | |
+| FR-02 | Authenticate + lock after 5 fails + log all attempts | UC-09 | NFR-01..07/20/32/34 | CR-D-03.1-001 | TEST | CRITICAL | | | | | | |
+| FR-03 | MFA for privileged accounts | UC-12 | NFR-01 | CR-D-03.1-001 | DEMONSTRATE | HIGH | | | | | | |
 | FR-04 | Deprovision accounts within 24h of termination | PROC-07 | NFR-02 | CR-D-03.1-001 | INSPECT | HIGH | | | | | | |
-| FR-05 | Assign roles based on job function | U.C.3.5.1 | NFR-02, NFR-09 | CR-D-03.1-001 | TEST | HIGH | | | | | | |
-| FR-06 | Password reset + 30-min session timeout | U.C.3.1.1, PROC-06 | NFR-06, NFR-07 | — | TEST | MEDIUM | | | | | | |
+| FR-05 | Assign roles based on job function | UC-13 | NFR-02, NFR-09 | CR-D-03.1-001 | TEST | HIGH | | | | | | |
+| FR-06 | Password reset + 30-min session timeout | UC-09, PROC-06 | NFR-06, NFR-07 | — | TEST | MEDIUM | | | | | | |
 
 ### §2.2 DP domain (FR-07..FR-12)
 
 | FR ID | Requirement | UCs | NFRs | CR | Verif | Prio | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |-------|-------------|-----|------|----|----|----|-------|-----------------------|----------|----------|--------------|-----------|
 | FR-07 | DSAR via web/email; report in JSON/CSV/PDF ≤30d | PROC-01 | NFR-21, NFR-22 | CR-D-01.1-001 | TEST | HIGH | | | | | | |
-| FR-08 | Erasure request; delete primary+backup+logs ≤30d | U.C.1.2.1 | NFR-03, NFR-23 | CR-D-01.1-001 | TEST | CRITICAL | | | | | | |
-| FR-09 | Data export in portable format | U.C.1.3.1 | NFR-04, NFR-24 | CR-D-01.1-001 | TEST | HIGH | | | | | | |
-| FR-10 | Consent preferences + records | U.C.1.4.1 | NFR-26 | — | TEST | CRITICAL | | | | | | |
-| FR-11 | Rectification of inaccurate data | U.C.1.5.1 | NFR-08, NFR-28 | CR-D-01.1-001 | TEST | HIGH | | | | | | |
-| FR-12 | Object to processing + restriction request | U.C.1.4.1 | NFR-27, NFR-30 | CR-D-01.1-001 | TEST | MEDIUM | | | | | | |
+| FR-08 | Erasure request; delete primary+backup+logs ≤30d | UC-01 | NFR-03, NFR-23 | CR-D-01.1-001 | TEST | CRITICAL | | | | | | |
+| FR-09 | Data export in portable format | UC-02 | NFR-04, NFR-24 | CR-D-01.1-001 | TEST | HIGH | | | | | | |
+| FR-10 | Consent preferences + records | UC-03 | NFR-26 | — | TEST | CRITICAL | | | | | | |
+| FR-11 | Rectification of inaccurate data | UC-04 | NFR-08, NFR-28 | CR-D-01.1-001 | TEST | HIGH | | | | | | |
+| FR-12 | Object to processing + restriction request | UC-03 | NFR-27, NFR-30 | CR-D-01.1-001 | TEST | MEDIUM | | | | | | |
 
 ### §2.3 SEC domain (FR-13..FR-19)
 
 | FR ID | Requirement | UCs | NFRs | CR | Verif | Prio | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |-------|-------------|-----|------|----|----|----|-------|-----------------------|----------|----------|--------------|-----------|
-| FR-13 | Collect + correlate security events + alerts | PROC-03, U.C.2.6.1 | NFR-10, NFR-32 | CR-D-02.1-001 | INSPECT | CRITICAL | | | | | | |
+| FR-13 | Collect + correlate security events + alerts | PROC-03, UC-08 | NFR-10, NFR-32 | CR-D-02.1-001 | INSPECT | CRITICAL | | | | | | |
 | FR-14 | Notify on-call ≤15min; escalate ≤15min | PROC-03 | NFR-17 | CR-D-04.1-001 | TEST | CRITICAL | | | | | | |
-| FR-15 | Contain incident ≤4h; preserve evidence | U.C.2.2.1 | NFR-09/17/32 | CR-D-04.1-001 | DEMONSTRATE | CRITICAL | | | | | | |
-| FR-16 | Regulatory notification 24h CRA / 72h GDPR | U.C.1.6.1 (legacy), U.C.2.2.1 | NFR-17/29/41/44 | CR-D-04.3-001 (F-S2-02) | TEST | CRITICAL | | | | | | |
+| FR-15 | Contain incident ≤4h; preserve evidence | UC-05 | NFR-09/17/32 | CR-D-04.1-001 | DEMONSTRATE | CRITICAL | | | | | | |
+| FR-16 | Regulatory notification 24h CRA / 72h GDPR | U.C.1.6.1 (legacy), UC-05 | NFR-17/29/41/44 | CR-D-04.3-001 (F-S2-02) | TEST | CRITICAL | | | | | | |
 | FR-17 | Weekly vulnerability scans; prioritise by risk | PROC-04 | NFR-10, NFR-46 | CR-D-02.1-001 | TEST | HIGH | | | | | | |
-| FR-18 | Critical patches ≤24h; high ≤7d | U.C.2.4.1 | NFR-03, NFR-12 | CR-D-02.1-001 | INSPECT | CRITICAL | | | | | | |
-| FR-19 | Quarterly access review + BCP activation (RTO 24h) | PROC-05, U.C.2.6.1 | NFR-02/14..19 | CR-D-03.1-001 | INSPECT | CRITICAL | | | | | | |
+| FR-18 | Critical patches ≤24h; high ≤7d | UC-06 | NFR-03, NFR-12 | CR-D-02.1-001 | INSPECT | CRITICAL | | | | | | |
+| FR-19 | Quarterly access review + BCP activation (RTO 24h) | PROC-05, UC-08 | NFR-02/14..19 | CR-D-03.1-001 | INSPECT | CRITICAL | | | | | | |
 
 ### §2.4 DEV domain (FR-20..FR-23)
 
 | FR ID | Requirement | UCs | NFRs | CR | Verif | Prio | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |-------|-------------|-----|------|----|----|----|-------|-----------------------|----------|----------|--------------|-----------|
-| FR-20 | SAST + dep vuln scan + secret detection per commit | PROC-08, U.C.4.2.1, U.C.4.3.1 | NFR-05, NFR-07, NFR-12 | CR-D-07.1-001 | TEST | HIGH | | | | | | |
-| FR-21 | Security gates before merge; block on critical | U.C.4.3.1 | NFR-05/07/11/12 | CR-D-02.1-001 | TEST | CRITICAL | | | | | | |
-| FR-22 | Change request submission + approval | U.C.4.4.1 | — (process) | — | TEST | MEDIUM | | | | | | |
+| FR-20 | SAST + dep vuln scan + secret detection per commit | PROC-08, UC-14, UC-15 | NFR-05, NFR-07, NFR-12 | CR-D-07.1-001 | TEST | HIGH | | | | | | |
+| FR-21 | Security gates before merge; block on critical | UC-15 | NFR-05/07/11/12 | CR-D-02.1-001 | TEST | CRITICAL | | | | | | |
+| FR-22 | Change request submission + approval | UC-16 | — (process) | — | TEST | MEDIUM | | | | | | |
 | FR-23 | Generate SBOM per release | PROC-09 | NFR-40, NFR-45 | CR-D-06.2-001 (F-S2-03) | TEST | HIGH | | | | | | |
 
 ### §2.5 GOV domain (FR-24..FR-28)
@@ -102,7 +102,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 | FR ID | Requirement | UCs | NFRs | CR | Verif | Prio | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |-------|-------------|-----|------|----|----|----|-------|-----------------------|----------|----------|--------------|-----------|
 | FR-24 | Regulatory notifications + log timestamps | U.C.5.7.1 (legacy) | NFR-33, NFR-41, NFR-44 | — | TEST | CRITICAL | | | | | | |
-| FR-25 | Annual policy review + periodic RA + DPIA | PROC-10, PROC-12, U.C.5.6.1 | NFR-31, NFR-36 | CR-D-06.1-001 | INSPECT | HIGH | | | | | | |
+| FR-25 | Annual policy review + periodic RA + DPIA | PROC-10, PROC-12, UC-17 | NFR-31, NFR-36 | CR-D-06.1-001 | INSPECT | HIGH | | | | | | |
 | FR-26 | Monthly audit log review; retention (1y + 3y archive) | PROC-13 | NFR-13/32/33/37 | CR-D-06.1-001 | INSPECT | HIGH | | | | | | |
 | FR-27 | Compliance reports on demand ≤7d; RoPA update ≤7d | PROC-14 | NFR-35/38/39/40/42/43 | CR-D-06.1-001 | TEST | HIGH | | | | | | |
 | FR-28 | Annual vendor security assessments | CAP-01 | NFR-05 | CR-D-02.1-001 | INSPECT | MEDIUM | | | | | | |
@@ -121,7 +121,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Description:** System shall register new users and provision them with the appropriate role and access scope.
 **Scope:** All internal staff and customer accounts.
 **Out of Scope:** Service-account registration (separate mTLS flow).
-**Source UC:** U.C.3.2.1, U.C.3.5.1
+**Source UC:** UC-11, UC-13
 **Source NFR:** NFR-02
 **Source Rule:** CR-D-03.1-001
 **NIST CSF Anchors:** CSF: PR.AA-01 | PF: —
@@ -148,7 +148,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Description:** System authenticates users via central IdP, locks accounts after 5 failed attempts, logs all attempts.
 **Scope:** All human authentication flows.
 **Out of Scope:** Service-account auth.
-**Source UC:** U.C.3.1.1
+**Source UC:** UC-09
 **Source NFR:** NFR-01..07/20/32/34
 **Source Rule:** CR-D-03.1-001
 **NIST CSF Anchors:** CSF: PR.AA-01, PR.AA-03 | PF: —
@@ -175,7 +175,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Description:** Privileged accounts shall use FIDO2-based MFA on every session.
 **Scope:** Privileged staff; admins.
 **Out of Scope:** Standard users.
-**Source UC:** U.C.3.3.1
+**Source UC:** UC-12
 **Source NFR:** NFR-01
 **Source Rule:** CR-D-03.1-001
 **NIST CSF Anchors:** CSF: PR.AA-03, PR.AA-04, PR.AA-05 | PF: —
@@ -229,7 +229,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Description:** System shall assign roles based on documented job functions with least-privilege.
 **Scope:** All internal roles.
 **Out of Scope:** Customer self-service roles.
-**Source UC:** U.C.3.5.1
+**Source UC:** UC-13
 **Source NFR:** NFR-02, NFR-09
 **Source Rule:** CR-D-03.1-001
 **NIST CSF Anchors:** CSF: PR.AA-01, PR.AA-03 | PF: CT.PO-P1
@@ -256,7 +256,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Description:** Users may reset passwords via secure flow; sessions timeout after 30 min idle.
 **Scope:** All internal staff.
 **Out of Scope:** Service accounts.
-**Source UC:** U.C.3.1.1, PROC-06
+**Source UC:** UC-09, PROC-06
 **Source NFR:** NFR-06, NFR-07
 **Source Rule:** (best practice; no CR)
 **NIST CSF Anchors:** CSF: PR.AA-01 | PF: —
@@ -306,7 +306,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Description:** Customer erasure requests shall delete data across primary, backup, and log stores within 30 days.
 **Scope:** All personal data stores.
 **Out of Scope:** Legal-hold data.
-**Source UC:** U.C.1.2.1
+**Source UC:** UC-01
 **Source NFR:** NFR-03, NFR-23
 **Source Rule:** CR-D-05.3-001
 **NIST CSF Anchors:** CSF: PR.DS-10, GV.SC-04 | PF: CT.DM-P4, CT.DM-P5
@@ -333,7 +333,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Description:** Customer data shall be exportable in JSON + CSV + PDF portable formats.
 **Scope:** Customer data.
 **Out of Scope:** Derived/inferred data.
-**Source UC:** U.C.1.3.1
+**Source UC:** UC-02
 **Source NFR:** NFR-04, NFR-24
 **Source Rule:** CR-D-05.4-001
 **NIST CSF Anchors:** CSF: PR.DS-10, PR.AA-03 | PF: CT.DM-P1, CT.DM-P6
@@ -360,7 +360,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Description:** Customers shall be able to grant, modify, or withdraw consent per purpose; consent records immutable.
 **Scope:** All processing purposes.
 **Out of Scope:** Service-essential processing.
-**Source UC:** U.C.1.4.1
+**Source UC:** UC-03
 **Source NFR:** NFR-26
 **Source Rule:** (consent — best practice; no CR)
 **NIST CSF Anchors:** CSF: GV.PO-01 | PF: CT.DP-P4
@@ -387,7 +387,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Description:** Customer-initiated corrections shall be applied across all linked stores.
 **Scope:** Customer data across stores.
 **Out of Scope:** Third-party data.
-**Source UC:** U.C.1.5.1
+**Source UC:** UC-04
 **Source NFR:** NFR-08, NFR-28
 **Source Rule:** CR-D-01.4-001
 **NIST CSF Anchors:** CSF: PR.DS-01, PR.DS-02 | PF: CT.DM-P1, CT.DM-P3
@@ -414,7 +414,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Description:** Customers shall be able to object to processing or request restriction within 30 days.
 **Scope:** All processing purposes.
 **Out of Scope:** Service-essential processing.
-**Source UC:** U.C.1.4.1
+**Source UC:** UC-03
 **Source NFR:** NFR-27, NFR-30
 **Source Rule:** CR-D-05.1-001
 **NIST CSF Anchors:** CSF: GV.PO-01 | PF: CT.DM-P5
@@ -437,7 +437,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Description:** SIEM shall collect and correlate security events; alert on suspicious patterns.
 **Scope:** All production events.
 **Out of Scope:** Dev events.
-**Source UC:** PROC-03, U.C.2.6.1
+**Source UC:** PROC-03, UC-08
 **Source NFR:** NFR-10, NFR-32
 **Source Rule:** CR-D-02.1-001
 **NIST CSF Anchors:** CSF: DE.CM-01, DE.AE-02 | PF: CT.DM-P4
@@ -491,7 +491,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Description:** Incident containment within 4 hours with evidence preservation.
 **Scope:** All confirmed incidents.
 **Out of Scope:** Suspected-only.
-**Source UC:** U.C.2.2.1
+**Source UC:** UC-05
 **Source NFR:** NFR-09/17/32
 **Source Rule:** CR-D-04.1-001
 **NIST CSF Anchors:** CSF: DE.CM-09, RS.MA-01 | PF: CM.AW-P7
@@ -518,7 +518,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Description:** System shall notify ENISA within 24h and CNPD within 72h of qualifying incidents.
 **Scope:** All confirmed security incidents.
 **Out of Scope:** Suspected-only.
-**Source UC:** U.C.2.2.1
+**Source UC:** UC-05
 **Source NFR:** NFR-17/29/41/44
 **Source Rule:** CR-D-04.3-001 (F-S2-02 RESOLVED)
 **NIST CSF Anchors:** CSF: RS.CO-02, RS.MA-02 | PF: CM.AW-P7, CM.AW-P8
@@ -572,7 +572,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Description:** Critical security patches deployed within 24h; high within 7 days.
 **Scope:** Production services.
 **Out of Scope:** Third-party managed.
-**Source UC:** U.C.2.4.1
+**Source UC:** UC-06
 **Source NFR:** NFR-03, NFR-12
 **Source Rule:** CR-D-02.2-001
 **NIST CSF Anchors:** CSF: GV.OV-02, PR.IR-03 | PF: —
@@ -599,7 +599,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Description:** Quarterly access review + Business Continuity Plan activation within RTO 24h.
 **Scope:** All internal access; BCP scope.
 **Out of Scope:** Customer self-service.
-**Source UC:** PROC-05, U.C.2.6.1
+**Source UC:** PROC-05, UC-08
 **Source NFR:** NFR-02/14..19
 **Source Rule:** CR-D-03.1-001
 **NIST CSF Anchors:** CSF: PR.AA-01, PR.IR-03 | PF: —
@@ -626,7 +626,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Description:** Every commit shall trigger SAST, dependency vulnerability scan, and secret detection.
 **Scope:** All production repositories.
 **Out of Scope:** Legacy repos without CI.
-**Source UC:** PROC-08, U.C.4.2.1, U.C.4.3.1
+**Source UC:** PROC-08, UC-14, UC-15
 **Source NFR:** NFR-05, NFR-07, NFR-12
 **Source Rule:** CR-D-07.1-001
 **NIST CSF Anchors:** CSF: ID.RA-04, ID.RA-05 | PF: —
@@ -653,7 +653,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Description:** Security gates block merge on critical findings; documented override path.
 **Scope:** All production repos.
 **Out of Scope:** Throwaway experiments.
-**Source UC:** U.C.4.3.1
+**Source UC:** UC-15
 **Source NFR:** NFR-05/07/11/12
 **Source Rule:** CR-D-02.1-001
 **NIST CSF Anchors:** CSF: PR.PS-01, PR.PS-02 | PF: —
@@ -680,7 +680,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Description:** Production changes shall be submitted via change request with documented approval.
 **Scope:** All production changes.
 **Out of Scope:** Dev-only changes.
-**Source UC:** U.C.4.4.1
+**Source UC:** UC-16
 **Source NFR:** (process — no NFR)
 **Source Rule:** (process; no CR)
 **NIST CSF Anchors:** CSF: GV.PO-02 | PF: —
@@ -757,7 +757,7 @@ This document specifies technology-agnostic functional requirements (FR-01..FR-3
 **Description:** Annual policy review, periodic risk assessment, DPIA before high-risk launch.
 **Scope:** All policies, risks, DPIAs.
 **Out of Scope:** Bug fixes.
-**Source UC:** PROC-10, PROC-12, U.C.5.6.1
+**Source UC:** PROC-10, PROC-12, UC-17
 **Source NFR:** NFR-31, NFR-36
 **Source Rule:** CR-D-06.1-001
 **NIST CSF Anchors:** CSF: GV.PO-01, GV.PO-02 | PF: CM.PO-P1

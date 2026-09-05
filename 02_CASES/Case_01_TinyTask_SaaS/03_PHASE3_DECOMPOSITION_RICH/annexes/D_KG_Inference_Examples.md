@@ -118,7 +118,7 @@ RETURN cr.id, fr.id, uc.id, uc.title
 ```
 
 **Expected result (TinyTask freeze):**
-- CR-D-03.1-001 → FR-01..05 → U.C.3.1.1 / U.C.3.2.1 / U.C.3.5.1
+- CR-D-03.1-001 → FR-01..05 → UC-09 / UC-11 / UC-13
 
 ---
 
