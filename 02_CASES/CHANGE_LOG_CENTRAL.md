@@ -14,6 +14,18 @@
 | Volere FR pilot (C2) | Case_02 `Doc29_Functional_Requirements.md`: new `Fit Criterion` column between Verification Method and Priority. 6 FRs from operator-aligned topics (FR-03/04/09/12/13/26) + 1 repeatability (FR-72 AI domain) received measurable thresholds (100%/30s/16min windows, schema validation, automated detection). 3 gates PASS unchanged. |
 | Out of scope | Ontologies, dashboards, folios, KG reflection, realisation_class tag waves C2/C3. Briefing pack for items 1–4 (P7 queue) delivered as `P7_BRIEFING_PACK_2026-09-05.md` for human decision. |
 
+## 1.4 2026-09-05 — Realization Class tag waves + Objectives tagging + CAP maturity + F5 fixes
+
+| Item | Value |
+|------|-------|
+| Tag waves C2+C3 | `scripts/apply_realization_class.py` (heuristic from airmf/csf/pf/verification; derived not invented). C2 63 → 11T/31P/21C; C3 78 → 35T/25P/18C |
+| Objectives/obligations | `scripts/tag_objectives_obligations.py` (state-machine block parser + majority-vote of realizing controls). C2 Doc16: 70/124 classed; C3 Doc15+17: 28/135 classed; 138 no-rule annotations recorded |
+| CAP maturity | `scripts/refresh_cap_maturity.py`. 18 CAP cards (C1 1, C2 10, C3 7): all filled with `PLANNED (1) — Scale A posture model v1.6; current/target pending P1 Folio VIII refresh + EvidenceItem bind` (P1 has 0 EvidenceItems with scale=capability across all 3 cases) |
+| F5 fixes | C2-03 (Doc29 variants table suffix); C3-02 (Doc31 summary 56→12); C3-03 (BPR-D-12.1-001 appended to Doc26); C3-04 (UC-99→UC-25 in Doc23); C3-06 (AI Act Art. 14→CR-D-08.2-001 in Doc26). All 10 known-pattern FAILs closed |
+| Verification | 3 gates v0.4 PASS; traceability_audit 100/100/100 maintained |
+
+---
+
 ## 1.2 2026-09-05 — TRACEABILITY AUDIT
 
 | Item | Value |
