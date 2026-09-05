@@ -1,7 +1,7 @@
 # GLOBAL PROJECT STATE — AEGIS Methodology Implementation
 
 **Last Updated:** 2026-09-05
-**Version:** 7.0 (ALT-ANCHOR — UNMAPPED_* retired across 3 cases; 5 frozen referential sources + 800-53r5 generator; 3 gates v0.4 PASS; REALIZATION-CLASS; PORT-PARITY-2 — cross-case content parity: C3 P1 v1.6 layer + corr-013, P2 waves C2+C3, P3 rich v0 C2+C3, 16/16 smoke, all gates PASS)
+**Version:** 7.8 (UML diagrams — use case diagrams annex A + sequence annex B; Realization Class tag waves C2+C3 + objectives tagging + CAP maturity + F5 fixes + FR/NFR Phase B; ALT-ANCHOR — UNMAPPED_* retired across 3 cases; 5 frozen referential sources + 800-53r5 generator; 3 gates v0.4 PASS; REALIZATION-CLASS; PORT-PARITY-2 — cross-case content parity: C3 P1 v1.6 layer + corr-013, P2 waves C2+C3, P3 rich v0 C2+C3, 16/16 smoke, all gates PASS)
 **Scope:** All Cases
 
 ---
@@ -177,6 +177,19 @@ Methodology/
 | 2026-04-01 | PHASE 1 | Case_01 | Phase 1 completed for TinyTask | High |
 | 2026-04-01 | TOOLS | All | Excel generation scripts created | Medium |
 | 2026-04-01 | DOCS | Case_01 | Initial Phase 1 documents | High |
+
+---
+
+## 4H. FR/NFR PHASE B (2026-09-05) — closed 25 orphan FRs C2 (commit 0a0122b)
+## 4I. REALIZATION CLASS TAG WAVES + OBJECTIVES TAGGING + CAP MATURITY + F5 FIXES (2026-09-05)
+- Tag waves C2+C3 (762c095): 141 rules realization_class. Objectives/obligations (599a8ba): 98 objs classed. CAP maturity (113ba05): 18 PLANNED (1). F5 fixes (113ba05): 5 closed. All 10 known-pattern FAILs closed.
+## 4J. UML DIAGRAMS (2026-09-05)
+
+- **Use case diagrams (rubric v1.7 §5C.5)**: 25 Mermaid useCaseDiagrams in annexes A
+  (C1 12 · C2 6 · C3 7) — system-wide + per package, stick-figure actors from card
+  Primary Actor/Stakeholders, include/extend from card Extensions. Requires Mermaid ≥ v11.6.
+- **Sequence diagrams annex-only**: 80 extracted from catalogs → annexes B
+  (C1 23 · C2 26 · C3 31); cards keep 1-line pointers; `scripts/extract_sequence_diagrams.py` idempotent.
 
 ---
 
