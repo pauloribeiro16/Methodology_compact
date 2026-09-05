@@ -2,9 +2,9 @@
 document_id: AEGIS-P3-13
 title: Use Cases Catalog
 phase: 3
-version: 2.2
+version: 2.3
 created: 2026-04-28
-updated: 2026-09-04
+updated: 2026-09-05
 author: Compliance Lead
 status: DRAFT
 inputs: [11_Rules_Catalog.md, 10_Privacy_Security_Objectives.md, 09_Strategic_Tensions_Report.md, 04_Company_Context_Assessment.md]
@@ -84,7 +84,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-01: Data Subject Requests Data Encryption Status
+## PROC-01: Data Subject Requests Data Encryption Status
 
 **Package:** PKG-D-01
 **Actors:** Data Subject (Primary), Data Protection Officer (Secondary)
@@ -123,7 +123,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-04: Cryptographic Officer Manages HSM Key Lifecycle
+## PROC-02: Cryptographic Officer Manages HSM Key Lifecycle
 
 **Package:** PKG-D-01
 **Actors:** Cryptographic Officer (Primary), Security Auditor (Secondary)
@@ -136,7 +136,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-05: AI System Administrator Validates AI Model Integrity
+## PROC-03: AI System Administrator Validates AI Model Integrity
 
 **Package:** PKG-D-01
 **Actors:** AI System Administrator (Primary), Security Architect (Secondary)
@@ -162,7 +162,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-07: Security Officer Rotates Cryptographic Keys
+## PROC-04: Security Officer Rotates Cryptographic Keys
 
 **Package:** PKG-D-01
 **Actors:** Security Officer (Primary), Cryptographic Officer (Secondary)
@@ -197,7 +197,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-09: Security Operations Manager Scans for Vulnerabilities
+## PROC-05: Security Operations Manager Scans for Vulnerabilities
 
 **Package:** PKG-D-02
 **Actors:** Security Operations Manager (Primary), System Administrator (Secondary)
@@ -210,7 +210,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-10: Security Operations Manager Deploys Critical Patches
+## PROC-06: Security Operations Manager Deploys Critical Patches
 
 **Package:** PKG-D-02
 **Actors:** Security Operations Manager (Primary), System Administrator (Secondary)
@@ -223,7 +223,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-11: Security Analyst Coordinates Vulnerability Disclosure
+## PROC-07: Security Analyst Coordinates Vulnerability Disclosure
 
 **Package:** PKG-D-02
 **Actors:** Security Analyst (Primary), ENISA/CSIRT (Secondary)
@@ -236,7 +236,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-12: Penetration Tester Executes Threat-Led Penetration Testing
+## PROC-08: Penetration Tester Executes Threat-Led Penetration Testing
 
 **Package:** PKG-D-02
 **Actors:** Penetration Tester (Primary), CISO (Secondary), AI Security Analyst (Secondary)
@@ -249,7 +249,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-13: AI Security Analyst Assesses AI Model Vulnerabilities
+## PROC-09: AI Security Analyst Assesses AI Model Vulnerabilities
 
 **Package:** PKG-D-02
 **Actors:** AI Security Analyst (Primary), Security Architect (Secondary)
@@ -262,7 +262,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-14: Vulnerability Analyst Maintains Vulnerability Register
+## CAP-01: Vulnerability Analyst Maintains Vulnerability Register
 
 **Package:** PKG-D-02
 **Actors:** Vulnerability Analyst (Primary), Security Operations Manager (Secondary)
@@ -298,7 +298,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-16: Identity and Access Manager Provisions User Identity
+## PROC-10: Identity and Access Manager Provisions User Identity
 
 **Package:** PKG-D-03
 **Actors:** Identity and Access Manager (Primary), HR Manager (Secondary)
@@ -324,7 +324,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-18: Identity and Access Manager Conducts Quarterly Access Review
+## PROC-11: Identity and Access Manager Conducts Quarterly Access Review
 
 **Package:** PKG-D-03
 **Actors:** Identity and Access Manager (Primary), Security Administrator (Secondary)
@@ -337,7 +337,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-19: Security Administrator Hardens System Configuration
+## PROC-12: Security Administrator Hardens System Configuration
 
 **Package:** PKG-D-03
 **Actors:** Security Administrator (Primary), System Administrator (Secondary)
@@ -350,7 +350,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-20: Identity and Access Manager Deprovisions User Access
+## PROC-13: Identity and Access Manager Deprovisions User Access
 
 **Package:** PKG-D-03
 **Actors:** Identity and Access Manager (Primary), HR Manager (Secondary)
@@ -399,7 +399,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-23: SOC Analyst Monitors Security Events
+## CAP-02: SOC Analyst Monitors Security Events
 
 **Package:** PKG-D-04
 **Actors:** SOC Analyst (Primary), AI Operations Manager (Secondary)
@@ -412,7 +412,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-24: Business Continuity Manager Triggers Disaster Recovery
+## PROC-14: Business Continuity Manager Triggers Disaster Recovery
 
 **Package:** PKG-D-04
 **Actors:** Business Continuity Manager (Primary), IT Operations Manager (Secondary)
@@ -425,7 +425,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-25: Compliance Officer Executes Universal Incident Notification
+## PROC-15: Compliance Officer Executes Universal Incident Notification
 
 **Package:** PKG-D-04
 **Actors:** Compliance Officer (Primary), Legal Counsel (Secondary), DPO (Secondary)
@@ -453,7 +453,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-27: AI Operations Manager Recovers AI System after Failure
+## PROC-16: AI Operations Manager Recovers AI System after Failure
 
 **Package:** PKG-D-04
 **Actors:** AI Operations Manager (Primary), Business Continuity Manager (Secondary)
@@ -466,7 +466,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-28: SOC Analyst Investigates AI Model Anomaly
+## PROC-17: SOC Analyst Investigates AI Model Anomaly
 
 **Package:** PKG-D-04
 **Actors:** SOC Analyst (Primary), AI Security Analyst (Secondary)
@@ -479,7 +479,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-29: Incident Response Team Conducts Tabletop Exercise
+## PROC-18: Incident Response Team Conducts Tabletop Exercise
 
 **Package:** PKG-D-04
 **Actors:** Incident Response Team Lead (Primary), CISO (Secondary)
@@ -492,7 +492,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-30: Compliance Officer Reports AI Incident to Regulator
+## PROC-19: Compliance Officer Reports AI Incident to Regulator
 
 **Package:** PKG-D-04
 **Actors:** Compliance Officer (Primary), AI Governance Lead (Secondary), DPO (Secondary)
@@ -515,7 +515,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-31: Data Protection Officer Reviews Data Collection Minimization
+## PROC-20: Data Protection Officer Reviews Data Collection Minimization
 
 **Package:** PKG-D-05
 **Actors:** Data Protection Officer (Primary), AI Data Engineer (Secondary)
@@ -528,7 +528,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-32: Compliance Officer Enforces Tiered Data Retention
+## PROC-21: Compliance Officer Enforces Tiered Data Retention
 
 **Package:** PKG-D-05
 **Actors:** Compliance Officer (Primary), Data Protection Officer (Secondary)
@@ -569,7 +569,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-35: AI Data Engineer Manages AI Training Data Lifecycle
+## PROC-22: AI Data Engineer Manages AI Training Data Lifecycle
 
 **Package:** PKG-D-05
 **Actors:** AI Data Engineer (Primary), Data Protection Officer (Secondary)
@@ -582,7 +582,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-36: Compliance Officer Audits Third-Party Data Processors
+## PROC-23: Compliance Officer Audits Third-Party Data Processors
 
 **Package:** PKG-D-05
 **Actors:** Compliance Officer (Primary), Data Protection Officer (Secondary)
@@ -605,7 +605,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-37: Vendor Risk Manager Assesses ICT Third-Party Provider
+## PROC-24: Vendor Risk Manager Assesses ICT Third-Party Provider
 
 **Package:** PKG-D-06
 **Actors:** Vendor Risk Manager (Primary), Security Architect (Secondary)
@@ -618,7 +618,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-38: Security Architect Maintains SBOM for Product
+## CAP-03: Security Architect Maintains SBOM for Product
 
 **Package:** PKG-D-06
 **Actors:** Security Architect (Primary), AI Platform Administrator (Secondary)
@@ -631,7 +631,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-39: Procurement Manager Enforces Security Contract Terms
+## PROC-25: Procurement Manager Enforces Security Contract Terms
 
 **Package:** PKG-D-06
 **Actors:** Procurement Manager (Primary), Legal Counsel (Secondary)
@@ -644,7 +644,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-40: Vendor Risk Manager Manages Vendor Exit
+## PROC-26: Vendor Risk Manager Manages Vendor Exit
 
 **Package:** PKG-D-06
 **Actors:** Vendor Risk Manager (Primary), IT Operations Manager (Secondary)
@@ -657,7 +657,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-41: Vendor Risk Manager Monitors AI Model Provider Performance
+## PROC-27: Vendor Risk Manager Monitors AI Model Provider Performance
 
 **Package:** PKG-D-06
 **Actors:** Vendor Risk Manager (Primary), AI Operations Manager (Secondary)
@@ -680,7 +680,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-42: Software Development Manager Implements Secure-by-Design
+## PROC-28: Software Development Manager Implements Secure-by-Design
 
 **Package:** PKG-D-07
 **Actors:** Software Development Manager (Primary), AI ML Engineer (Secondary)
@@ -693,7 +693,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-43: Security Engineer Enforces Secure Coding Standards
+## PROC-29: Security Engineer Enforces Secure Coding Standards
 
 **Package:** PKG-D-07
 **Actors:** Security Engineer (Primary), Software Development Manager (Secondary)
@@ -719,7 +719,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-45: Change Advisory Board Approves Production Change
+## PROC-30: Change Advisory Board Approves Production Change
 
 **Package:** PKG-D-07
 **Actors:** Change Advisory Board (Primary), Release Manager (Secondary)
@@ -768,7 +768,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-48: Training Manager Delivers Security Awareness Training
+## PROC-31: Training Manager Delivers Security Awareness Training
 
 **Package:** PKG-D-08
 **Actors:** Training Manager (Primary), Security Awareness Officer (Secondary)
@@ -781,7 +781,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-49: HR Manager Maintains Security Competence Program
+## CAP-04: HR Manager Maintains Security Competence Program
 
 **Package:** PKG-D-08
 **Actors:** HR Manager (Primary), Training Manager (Secondary)
@@ -794,7 +794,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-50: Board Secretary Coordinates Board Security Training
+## PROC-32: Board Secretary Coordinates Board Security Training
 
 **Package:** PKG-D-08
 **Actors:** Board Secretary (Primary), CISO (Secondary)
@@ -807,7 +807,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-51: Security Awareness Officer Conducts Phishing Simulation
+## PROC-33: Security Awareness Officer Conducts Phishing Simulation
 
 **Package:** PKG-D-08
 **Actors:** Security Awareness Officer (Primary), Training Manager (Secondary)
@@ -830,7 +830,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-52: CISO Maintains Unified ISMS
+## CAP-05: CISO Maintains Unified ISMS
 
 **Package:** PKG-D-09
 **Actors:** CISO (Primary), Compliance Manager (Secondary), AI Governance Lead (Secondary)
@@ -843,7 +843,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-53: Compliance Manager Executes IPSARA Risk Assessment
+## PROC-34: Compliance Manager Executes IPSARA Risk Assessment
 
 **Package:** PKG-D-09
 **Actors:** Compliance Manager (Primary), CISO (Secondary), AI Governance Lead (Secondary)
@@ -858,7 +858,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-54: IT Asset Manager Maintains Comprehensive Asset Inventory
+## CAP-06: IT Asset Manager Maintains Comprehensive Asset Inventory
 
 **Package:** PKG-D-09
 **Actors:** IT Asset Manager (Primary), CISO (Secondary)
@@ -871,7 +871,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-55: AI Governance Lead Maintains AI Traceability Documentation
+## CAP-07: AI Governance Lead Maintains AI Traceability Documentation
 
 **Package:** PKG-D-09
 **Actors:** AI Governance Lead (Primary), Data Protection Officer (Secondary)
@@ -884,7 +884,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-56: Compliance Manager Generates Regulatory Compliance Report
+## PROC-35: Compliance Manager Generates Regulatory Compliance Report
 
 **Package:** PKG-D-09
 **Actors:** Compliance Manager (Primary), CISO (Secondary)
@@ -935,7 +935,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-59: Security Analyst Conducts Penetration Testing
+## PROC-36: Security Analyst Conducts Penetration Testing
 
 **Package:** PKG-D-10
 **Actors:** Security Analyst (Primary), CISO (Secondary)
@@ -948,7 +948,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-60: AI Security Analyst Tests AI Adversarial Robustness
+## PROC-37: AI Security Analyst Tests AI Adversarial Robustness
 
 **Package:** PKG-D-10
 **Actors:** AI Security Analyst (Primary), SOC Manager (Secondary)
@@ -974,7 +974,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 
 ---
 
-## UC-62: Audit Manager Generates Audit Trail Report
+## PROC-38: Audit Manager Generates Audit Trail Report
 
 **Package:** PKG-D-10
 **Actors:** Audit Manager (Primary), Compliance Manager (Secondary)
@@ -993,7 +993,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 > **OmniBank product itself** (digital channels, OmniScore, lending) as a normal software
 > product: actor-goal use cases in fully-dressed form (Cockburn), with security/compliance
 > layered on as a per-UC annex. **Nomenclature unchanged**: the pre-existing compliance use
-> cases UC-01..UC-62 (§6) keep IDs and content verbatim; new product use cases continue the
+> cases PROC-01..UC-62 (§6) keep IDs and content verbatim; new product use cases continue the
 > flat numbering at **UC-63+** and never reuse existing IDs. This pilot delivers PKG-C
 > (Lending & OmniScore, §6B.1); the massification pass (v2.2) delivered PKG-A/B/D/E/F (§6B.2–§6B.6).
 >
@@ -1009,7 +1009,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 |-------|---------------------|--------|
 | Customer (Retail) | Primary product user: onboards, banks, borrows via SYS-02 app. | UC-63, UC-65, UC-67–81, UC-84–85, UC-90–93 |
 | OmniScore AI Platform (SYS-03) | The scoring system itself — acts, never decides alone. | UC-64 |
-| Underwriter (Consumer Lending) | Human oversight on borderline/high-risk credit decisions. | UC-66 |
+| Underwriter (Consumer Lending) | Human oversight on borderline/high-risk credit decisions. | PROC-39 |
 | Head of AI Governance (stakeholder) | Owns bias/drift monitoring and model governance. | Annex targets |
 | Fraud & AML Platform (SYS-11) | Consumes journey telemetry; sanctions/fraud/AML screening. | UC-72, UC-90, Annex targets |
 | Customer (Corporate) | Corporate self-service (SME + large corporate) via SYS-21. | UC-86–89 |
@@ -1023,7 +1023,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 | UC-63 | Apply for Consumer Credit | Customer (Retail) | CRITICAL |
 | UC-64 | OmniScore Computes Credit Score | SYS-03 (AI Platform) | CRITICAL |
 | UC-65 | Customer Receives Score Explanation | Customer (Retail) | HIGH |
-| UC-66 | Underwriter Reviews Borderline Application | Underwriter | CRITICAL |
+| PROC-39 | Underwriter Reviews Borderline Application | Underwriter | CRITICAL |
 | UC-67 | Customer Accepts Offer & Contract Signed | Customer (Retail) | CRITICAL |
 | UC-68 | Customer Manages Repayment & Arrears View | Customer (Retail) | HIGH |
 
@@ -1035,7 +1035,7 @@ The customer applies for consumer credit through the mobile app: product selecti
 pre-contractual information (SECCI), credit-bureau consent and income/expense
 declarations. It is triggered when the customer opens the credit product and submits the
 application form. The submitted application then enters the OmniScore decisioning flow
-(UC-64) or — without consent — the manual path (UC-66).
+(UC-64) or — without consent — the manual path (PROC-39).
 
 ##### 2 Actor Brief Descriptions
 
@@ -1090,7 +1090,7 @@ sequenceDiagram
 ###### 5.1 <Alternate flow: Consent declined>
 
 Trigger: step 2. The application cannot proceed under automated scoring; the customer is
-offered the manual-review path (UC-66 without score, Art. 22(3) right not to be subject
+offered the manual-review path (PROC-39 without score, Art. 22(3) right not to be subject
 to solely automated decisions).
 
 ###### 5.2 <Alternate flow: Fraud screening hit>
@@ -1153,7 +1153,7 @@ application data model stable for audit and data-subject requests.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-14 (consumer credit origination + decision engine, integrates OmniScore), SYS-02 (SCA app channel); Doc19 CR-D-05.4-001 (credit scoring factors exportable).
-- **Constrained by:** UC-16/UC-17 (identity, MFA), UC-06 (field-level encryption of declarations), UC-21 (AI platform access).
+- **Constrained by:** PROC-10/UC-17 (identity, MFA), UC-06 (field-level encryption of declarations), UC-21 (AI platform access).
 - **Rules / NFR:** CR-D-05.4-001 (data export incl. scoring factors), CR-D-10.1-001 (journey monitoring).
 - **Threats addressed:** MUC-C3-05 (application data crafted to game scoring), MUC-01-analogue (session takeover).
 - **NIST anchors:** PR.AA-01, PR.DS-01.
@@ -1166,7 +1166,7 @@ The OmniScore AI platform (SYS-03) computes the credit score for a submitted app
 using the approved model version, with reason codes generated inside the model runtime. It
 is triggered when the SYS-14 decisioning request arrives (UC-63 step 5). Score bands route
 the application — auto-approve, auto-decline or borderline — and borderline cases always
-reach a human (UC-66): never a silent auto-decline without a human path.
+reach a human (PROC-39): never a silent auto-decline without a human path.
 
 ##### 2 Actor Brief Descriptions
 
@@ -1185,7 +1185,7 @@ Model governance: approved versions, bias/drift monitoring.
 
 ###### 2.4 Underwriter:
 
-Consumer of the score at UC-66.
+Consumer of the score at PROC-39.
 
 ###### 2.5 DPO:
 
@@ -1202,13 +1202,13 @@ Owner of the automated-decision records.
 2. SYS-03 runs the approved model version; computes the score + confidence band.
 3. SYS-03 generates the reason-code set (top contributing factors, GDPR-compliant granularity).
 4. SYS-03 returns score + reasons + model version id to SYS-14; decision-context record written (who/what/when/version).
-5. Score band routes the application: auto-approve / auto-decline / **borderline → UC-66** (never silent auto-decline without a human path).
+5. Score band routes the application: auto-approve / auto-decline / **borderline → PROC-39** (never silent auto-decline without a human path).
 
 ```mermaid
 sequenceDiagram
     participant LO as SYS-14 (Loan Origination)
     participant AI as SYS-03 (OmniScore)
-    participant UW as Underwriter (UC-66)
+    participant UW as Underwriter (PROC-39)
     LO->>AI: Decisioning request (application features)
     AI->>AI: Run approved model version; score + confidence band
     AI->>AI: Generate reason codes; write decision-context record
@@ -1231,7 +1231,7 @@ nice-to-have.
 ###### 5.3 <Alternate flow: Input features out of expected distribution>
 
 Trigger: step 1. Flag possible data-quality/manipulation issue (MUC-C3-01) + route to
-UC-66.
+PROC-39.
 
 ##### 6 Subflows
 
@@ -1253,7 +1253,7 @@ UC-66.
 
 ###### 7.2 <Scenario: Unexplainable or manipulated input>
 
-1. Borderline/blocked outcome queued to a human (UC-66) — no silent auto-decline.
+1. Borderline/blocked outcome queued to a human (PROC-39) — no silent auto-decline.
 
 ##### 8 Post-conditions
 
@@ -1285,7 +1285,7 @@ documentation (CR-D-09.1-001).
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-03 (managed ML runtime + explainability layer + bias monitoring pipeline); Doc19 BPR-D-12.3-001 (AI Act Art. 14 human oversight thresholds/overrides for credit scoring).
-- **Constrained by:** UC-05 (model integrity validation), UC-08 (model tampering detection), UC-61 (AI model performance drift monitoring), UC-21 (AI model access control).
+- **Constrained by:** PROC-03 (model integrity validation), UC-08 (model tampering detection), UC-61 (AI model performance drift monitoring), UC-21 (AI model access control).
 - **Rules / NFR:** BPR-D-12.3-001 (Art. 14 human oversight), CR-D-05.4-001 (scoring-factor transparency feeds UC-65), CR-D-09.1-001 (governance documentation).
 - **Threats addressed:** MUC-C3-01 (input manipulation), MUC-C3-02 (training-data poisoning — detected via drift/bias pipeline), MUC-C3-04 (discriminatory outcomes — bias monitoring pipeline).
 - **NIST anchors:** GV.MT-01, MEASURE-2.7.
@@ -1296,7 +1296,7 @@ documentation (CR-D-09.1-001).
 
 The customer receives the credit decision with plain-language reason codes and can request
 the machine-readable explanation package. It is triggered when the customer opens the
-decision screen in the app, after a UC-64 or UC-66 outcome. Explanations are generated,
+decision screen in the app, after a UC-64 or PROC-39 outcome. Explanations are generated,
 log-anchored evidence — never hand-written — so they cannot drift from actual model
 behaviour.
 
@@ -1325,7 +1325,7 @@ Owns XAI quality.
 
 ##### 3 Preconditions
 
-- A decision (or borderline outcome) exists from UC-64/UC-66.
+- A decision (or borderline outcome) exists from UC-64/PROC-39.
 
 ##### 4 Basic Flow of Events
 
@@ -1396,17 +1396,17 @@ SLA); reason codes log-anchored and generated in the model runtime (anti MUC-C3-
 **Performance (P):** N/A — no attested timing constraint.
 
 **Supportability (S):** The explanation format stays stable for audits and data-subject
-requests (UC-01 linkage).
+requests (PROC-01 linkage).
 
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc19 CR-D-05.4-001 verbatim ("Include AI model decisions, training data lineage, and credit scoring factors"); Doc04 §1.1 SYS-03 explainability layer.
-- **Constrained by:** UC-01 (data subject requests), UC-63 consent record.
+- **Constrained by:** PROC-01 (data subject requests), UC-63 consent record.
 - **Rules / NFR:** CR-D-05.4-001, CR-D-09.2-001 (governance reporting).
 - **Threats addressed:** MUC-C3-05 (explainability spoofing — reason codes are generated, not hand-written, and log-anchored).
 - **NIST anchors:** GV.PO-P1.
 
-#### Use-Case: {UC-66} Underwriter Reviews Borderline Application
+#### Use-Case: {PROC-39} Underwriter Reviews Borderline Application
 
 ##### 1 Brief Description
 
@@ -1518,7 +1518,7 @@ metrics feed to governance.
 version, confidence band).
 
 **Reliability (R):** Fail-closed on incomplete context; quarterly access review of
-underwriter permissions (UC-18); audit sampling discipline against rubber-stamping.
+underwriter permissions (PROC-11); audit sampling discipline against rubber-stamping.
 
 **Performance (P):** N/A — no attested SLA for review turnaround.
 
@@ -1528,7 +1528,7 @@ thresholds and escalation paths maintained per BPR-D-12.3-001.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc19 BPR-D-12.3-001 (human intervention thresholds, override mechanisms, escalation paths); Doc04 §1.1 SYS-14 (business-rules engine + underwriter flow).
-- **Constrained by:** UC-17 (MFA privileged), UC-18 (quarterly access review), UC-66-audit chain.
+- **Constrained by:** UC-17 (MFA privileged), PROC-11 (quarterly access review), UC-66-audit chain.
 - **Rules / NFR:** BPR-D-12.3-001, CR-D-08.2-001 (competence training), CR-D-10.1-001.
 - **Threats addressed:** MUC-C3-05, insider rubber-stamping (audit sampling discipline).
 - **NIST anchors:** PR.AA-05, DE.CM-09.
@@ -1539,7 +1539,7 @@ thresholds and escalation paths maintained per BPR-D-12.3-001.
 
 The customer reviews the final offer and signs the credit contract with PSD2 SCA-grade,
 hardware-backed signing. It is triggered when the customer reviews the offer in the app
-after approval (UC-64 auto-band or UC-66). SYS-14 issues the contract, SYS-16 archives it
+after approval (UC-64 auto-band or PROC-39). SYS-14 issues the contract, SYS-16 archives it
 in the KYC vault (10-year retention), and disbursement starts under AML monitoring.
 
 ##### 2 Actor Brief Descriptions
@@ -1566,7 +1566,7 @@ Tags the new credit exposure; post-acceptance monitoring.
 
 ##### 3 Preconditions
 
-- Approved decision (UC-64 auto-band or UC-66).
+- Approved decision (UC-64 auto-band or PROC-39).
 
 ##### 4 Basic Flow of Events
 
@@ -1649,7 +1649,7 @@ hardware (UC-22).
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-14, SYS-16 (10-year retention per BaFin/GoBD), SYS-11.
-- **Constrained by:** UC-22 (FIDO2), UC-01 (records).
+- **Constrained by:** UC-22 (FIDO2), PROC-01 (records).
 - **Rules / NFR:** CR-D-04.3-001 (reportable events), CR-D-10.2-001 (audit trail).
 - **Threats addressed:** MUC-01-analogue (account takeover at signing step — SCA required).
 - **NIST anchors:** PR.AA-01, AU.A-06.
@@ -1786,7 +1786,7 @@ annex) — the servicing surface is designed to extend.
 1. Applicant inflates/stabilises declared income features or times account movements to maximise score.
 2. Organised variant: many applications probing decision boundaries.
 **Impact:** Bad debt booked on manipulated inputs; model drift masked as market change.
-**Mitigated by:** UC-64 ext. 1a (out-of-distribution flags → human path), SYS-11 fraud screening (UC-63 step 4), bias/drift monitoring pipeline (SYS-03), bureau cross-checks at UC-66.
+**Mitigated by:** UC-64 ext. 1a (out-of-distribution flags → human path), SYS-11 fraud screening (UC-63 step 4), bias/drift monitoring pipeline (SYS-03), bureau cross-checks at PROC-39.
 **NIST anchors:** DE.AE-02, GV.MT-01.
 
 #### MUC-C3-04 — Discriminatory Bias Exploitation / Harm
@@ -1810,7 +1810,7 @@ annex) — the servicing surface is designed to extend.
 1. Reason codes decoupled from actual model behaviour (cosmetic explanations hiding discriminatory factors).
 2. Audit trail shows plausible explanations inconsistent with model versions.
 **Impact:** Systemic compliance fraud — explanations exist but are false; worst-case discovery by a regulator.
-**Mitigated by:** UC-64 (reason codes generated in the model runtime, log-anchored to model version), UC-66 ext. 1a (fail-closed on incomplete context), UC-08 (model tampering detection), immutable decision records (CR-D-10.2-001), quarterly access reviews (UC-18).
+**Mitigated by:** UC-64 (reason codes generated in the model runtime, log-anchored to model version), PROC-39 ext. 1a (fail-closed on incomplete context), UC-08 (model tampering detection), immutable decision records (CR-D-10.2-001), quarterly access reviews (PROC-11).
 **NIST anchors:** PR.DS-01, AU.A-06, DE.CM-09.
 
 ### 6B.2 PKG-A — Onboarding & KYC (6)
@@ -1957,7 +1957,7 @@ orchestration (UC-70..UC-74), activation and credential issuance.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-02 (mobile channel; PSD2 SCA via open-standard identity delegation; hardware-backed signing), SYS-16 (KYC document vault; 10-year retention per BaFin/GoBD), SYS-11 (fraud detection & AML/KYC), SYS-17 (customer 360); FLOW-11 (onboarding SYS-14 + SYS-17 → KYC/AML SYS-11: identity documents + screening); Doc19 CR-D-05.2-001 (10-year financial record retention).
-- **Constrained by:** UC-16 (identity provisioning), UC-02 (encryption at rest), UC-31 (data minimization review), UC-32 (tiered retention).
+- **Constrained by:** PROC-10 (identity provisioning), UC-02 (encryption at rest), PROC-20 (data minimization review), PROC-21 (tiered retention).
 - **Rules / NFR:** CR-D-05.2-001 (retention), CR-D-05.1-001 (minimization), CR-D-03.1-001 (unified identity + MFA), CR-D-01.1-001 (encryption at rest).
 - **Threats addressed:** MUC-01-analogue (session takeover during onboarding), MUC-C3-01 (manipulated declared data — the same data feeds OmniScore downstream, UC-64).
 - **NIST anchors:** PR.AA-01, PR.DS-01.
@@ -2087,7 +2087,7 @@ wallet integration (open-standard identity delegation attested for SYS-02).
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-02 (PSD2 SCA via open-standard identity delegation; hardware-backed signing); Doc04 §2.2 (SYS-18 open banking APIs terminate in a DMZ with PSD2-compliant eIDAS-qualified certificates); FLOW-11 (identity documents into KYC/AML).
-- **Constrained by:** UC-16 (identity provisioning), UC-22 (FIDO2 authentication), UC-03 (transport security).
+- **Constrained by:** PROC-10 (identity provisioning), UC-22 (FIDO2 authentication), UC-03 (transport security).
 - **Rules / NFR:** CR-D-01.2-001 (transport + certificate validation), CR-D-03.1-001 (unified identity), CR-D-10.2-001 (immutable records).
 - **Threats addressed:** MUC-01-analogue (proofing-session hijack — SCA-bound, certificate-validated channel); synthetic identity is backstopped by screening (UC-72).
 - **NIST anchors:** PR.AA-01, PR.DS-02.
@@ -2219,7 +2219,7 @@ change.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-16 (KYC document vault; 10-year retention per BaFin/GoBD); Doc04 §2 STORE-08 (encryption with HSM-bound CMK; integrity hashing; account lifetime + 10 years); FLOW-11 (documents into KYC/AML screening).
-- **Constrained by:** UC-02 (encryption at rest), UC-04 (HSM key lifecycle), UC-32 (tiered retention), UC-33 (erasure interplay).
+- **Constrained by:** UC-02 (encryption at rest), PROC-02 (HSM key lifecycle), PROC-21 (tiered retention), UC-33 (erasure interplay).
 - **Rules / NFR:** CR-D-05.2-001 (retention), CR-D-01.1-001 (encryption at rest), CR-D-01.3-001 (key custody), CR-D-05.3-001 (erasure discipline).
 - **Threats addressed:** MUC-01-analogue (hijacked session uploading malicious content — class validation at ingest + integrity hashing).
 - **NIST anchors:** PR.DS-01, PR.DS-P1.
@@ -2350,7 +2350,7 @@ without flow change (CR-D-06.4-001 exit-strategy discipline).
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-11 (fraud detection & AML/KYC; sanctions screening; STR/CTR generation); FLOW-11 (Sanctions screening provider as subprocessor); Doc04 §1.1 SYS-16 (evidence vault).
-- **Constrained by:** UC-36 (third-party processor audits), UC-37 (vendor risk assessment), UC-23 (SOC monitoring), UC-58 (immutable logs).
+- **Constrained by:** PROC-23 (third-party processor audits), PROC-24 (vendor risk assessment), CAP-02 (SOC monitoring), UC-58 (immutable logs).
 - **Rules / NFR:** CR-D-06.1-001 (third-party risk incl. TPPs/providers), CR-D-06.3-001 (contractual security obligations), CR-D-06.4-001 (concentration + exit), CR-D-10.2-001 (immutable records).
 - **Threats addressed:** MUC-01-analogue (screening-result tampering — immutable anchoring), MUC-C3-01 (manipulated identity data degrading screening quality — document/bureau cross-checks at UC-70).
 - **NIST anchors:** DE.AE-02, AU.A-06.
@@ -2421,7 +2421,7 @@ Trigger: step 2. Application proceeds on the manual path without automated scori
 ###### 5.2 <Alternate flow: Withdrawal mid-application>
 
 Trigger: post-acknowledgement withdrawal. Application rerouted to manual underwriting
-(UC-66); no further automated scoring.
+(PROC-39); no further automated scoring.
 
 ###### 5.3 <Alternate flow: Notice version update>
 
@@ -2476,7 +2476,7 @@ break; historical acknowledgements remain retrievable.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §2 credit-scores line (Art. 22 automated decision; "Right to human review (Art. 22)"); Doc04 §1.1 SYS-03 (credit scoring), SYS-02 (app channel); Doc19 CR-D-05.4-001 (transparency incl. scoring factors).
-- **Constrained by:** UC-63 (application consent record), UC-01 (data subject rights), UC-66 (human path).
+- **Constrained by:** UC-63 (application consent record), PROC-01 (data subject rights), PROC-39 (human path).
 - **Rules / NFR:** CR-D-05.1-001 (minimization), CR-D-05.4-001 (scoring-factor transparency), CR-D-09.1-001 (governance documentation).
 - **Threats addressed:** MUC-C3-04 (bias harm — informed data subjects plus the human path are first-line mitigation), MUC-C3-05 (spoofed transparency — the notice version is log-anchored).
 - **NIST anchors:** GV.PO-P1, CT.DP-P2.
@@ -2596,7 +2596,7 @@ Activation blocked while certification is missing or stale.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-16 (KYC document vault; 10-year retention per BaFin/GoBD); Doc04 §2 government-identifiers line (Tax ID — Art. 6(1)(c) legal obligation; account lifetime + 10 years, BaFin/GoBD exemption; pseudonymisation after closure).
-- **Constrained by:** UC-71 (vault filing), UC-32 (tiered retention), UC-33 (erasure — documented exemption interplay).
+- **Constrained by:** UC-71 (vault filing), PROC-21 (tiered retention), UC-33 (erasure — documented exemption interplay).
 - **Rules / NFR:** CR-D-05.2-001 (retention), CR-D-01.1-001 (encryption at rest), CR-D-05.1-001 (minimal fields).
 - **Threats addressed:** MUC-01-analogue (hijacked session altering certifications — SCA session + change logging, CR-D-10.2-001).
 - **NIST anchors:** PR.DS-01, AU.A-06.
@@ -2670,7 +2670,7 @@ sequenceDiagram
 
 ###### 5.1 <Alternate flow: Step-up fails repeatedly>
 
-Trigger: step 4. Session denied; security event logged to the monitoring plane (UC-23 feed,
+Trigger: step 4. Session denied; security event logged to the monitoring plane (CAP-02 feed,
 CR-D-10.1-001).
 
 ###### 5.2 <Alternate flow: Credential recovery>
@@ -2732,7 +2732,7 @@ delegation on SYS-02.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-02 (PSD2 SCA mandatory: strong cryptographic key + biometrics; transaction signing; customer-set; risk-based step-up); §2 SYS-24 (managed identity service for digital channels); behavioural biometrics into SYS-11 (EU region, explicit consent, withdrawal deletes).
-- **Constrained by:** UC-70 (identity anchor for recovery), UC-17 (MFA discipline), UC-23 (security event monitoring).
+- **Constrained by:** UC-70 (identity anchor for recovery), UC-17 (MFA discipline), CAP-02 (security event monitoring).
 - **Rules / NFR:** CR-D-03.1-001 (unified identity + MFA), CR-D-03.2-001 (step-up for high-risk transactions), CR-D-01.2-001 (transport security), CR-D-10.1-001 (monitoring).
 - **Threats addressed:** MUC-01-analogue (credential theft / session takeover — SCA + risk-based step-up are the control).
 - **NIST anchors:** PR.AA-01, DE.AE-02.
@@ -3098,7 +3098,7 @@ segmentation attested).
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §2.2 SYS-05 (card management sits in card-scheme security-attestation scope, isolated via firewall segmentation); Doc04 §1.1 SYS-02 (SCA app channel; risk-based step-up), SYS-11 (fraud platform).
-- **Constrained by:** UC-75 (SCA session), UC-77 (payment path), UC-84 (disputes), UC-19 (hardened configuration baseline).
+- **Constrained by:** UC-75 (SCA session), UC-77 (payment path), UC-84 (disputes), PROC-12 (hardened configuration baseline).
 - **Rules / NFR:** CR-D-03.2-001 (step-up), CR-D-10.2-001 (immutable records), CR-D-01.2-001 (transport).
 - **Threats addressed:** MUC-01-analogue (attacker blocking cards or raising limits post-takeover — step-up on increases; blocks are protective and reversible).
 - **NIST anchors:** PR.AA-01, AU.A-06.
@@ -3218,7 +3218,7 @@ break.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-02 (transaction signing), SYS-01 (CBS mainframe; payments core on-prem), SYS-11 (transaction monitoring; FLOW-10).
-- **Constrained by:** UC-77 (signing/screening pattern), UC-85 (limits at execution time), UC-32 (retention).
+- **Constrained by:** UC-77 (signing/screening pattern), UC-85 (limits at execution time), PROC-21 (retention).
 - **Rules / NFR:** CR-D-05.2-001 (retention), CR-D-03.2-001 (step-up on signing), CR-D-10.2-001 (records).
 - **Threats addressed:** MUC-01-analogue (attacker creating standing orders post-takeover — signing + step-up on creation/edits).
 - **NIST anchors:** PR.AA-01, AU.A-06.
@@ -3293,7 +3293,7 @@ Trigger: step 4. Re-authentication (step-up) before the download completes.
 ###### 6.1 <Subflow: Portability format export>
 
 1. Export follows the CR-D-05.4-001 standardized format (stable for audits and DSARs,
-   UC-34/UC-01).
+   UC-34/PROC-01).
 2. Scoring-factor inclusion keeps the AI transparency clause satisfied.
 
 ###### 6.2 <Subflow: Dispatch logging>
@@ -3470,7 +3470,7 @@ listing.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-18 (PSD2 SCA-compliant APIs; TPP onboarding + consent management), SYS-02 (SCA); FLOW-03 (customer consent + account information; TPPs third parties — both inbound and outbound); Doc04 §2.2 (SYS-18 DMZ, PSD2-compliant eIDAS-qualified certificates).
-- **Constrained by:** UC-82 (TPP onboarding), UC-75 (SCA), UC-36 (third-party audits).
+- **Constrained by:** UC-82 (TPP onboarding), UC-75 (SCA), PROC-23 (third-party audits).
 - **Rules / NFR:** CR-D-05.1-001 (minimization), CR-D-06.3-001 (third-party obligations), CR-D-10.2-001 (immutable records).
 - **Threats addressed:** MUC-01-analogue (consent phishing — customers tricked into granting access; mitigations: plain-language scopes, active-TPP list, one-tap revocation).
 - **NIST anchors:** PR.AA-01, AU.A-06.
@@ -3500,7 +3500,7 @@ Owns SYS-18 (attested ownership); approves TPP registrations.
 
 ###### 2.4 Vendor Risk Manager:
 
-Third-party risk assessment for the TPP relationship (UC-37 discipline).
+Third-party risk assessment for the TPP relationship (PROC-24 discipline).
 
 ###### 2.5 SOC (SYS-25):
 
@@ -3596,7 +3596,7 @@ semantics.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-18 (TPP onboarding + consent management; PSD2 SCA-compliant APIs; Head of Digital Channels ownership), SYS-25 (SOC tooling); Doc04 §2.2 (SYS-18 terminates in a DMZ with PSD2-compliant eIDAS-qualified certificates); FLOW-03 (TPPs third parties — inbound and outbound).
-- **Constrained by:** UC-81 (consent source), UC-37 (vendor risk assessment), UC-57 (threat detection).
+- **Constrained by:** UC-81 (consent source), PROC-24 (vendor risk assessment), UC-57 (threat detection).
 - **Rules / NFR:** CR-D-06.1-001 (third-party risk incl. TPPs), CR-D-06.3-001 (contractual obligations), CR-D-06.4-001 (concentration + exit), CR-D-10.1-001 (monitoring).
 - **Threats addressed:** MUC-01-analogue (stolen TPP credentials — certificate binding + anomaly monitoring).
 - **NIST anchors:** DE.CM-09, AU.A-06.
@@ -3843,7 +3843,7 @@ linkage.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-17 (CRM; complaint handling; customer 360), SYS-05 (card management; scheme-scope), SYS-20 (contact centre; call recording), SYS-11 (fraud platform).
-- **Constrained by:** UC-76 (transaction context), UC-78 (card state), UC-92 (complaint interplay), UC-58 (log evidence).
+- **Constrained by:** UC-76 (transaction context), UC-78 (card state), PROC-40 (complaint interplay), UC-58 (log evidence).
 - **Rules / NFR:** CR-D-05.2-001 (retention), CR-D-10.2-001 (immutable records).
 - **Threats addressed:** MUC-01-analogue (fraudulent disputes from a hijacked session — SCA session + history checks), first-party misuse (evidence discipline + second reviewer).
 - **NIST anchors:** AU.A-06, DE.AE-02.
@@ -4042,7 +4042,7 @@ invariant at entity level).
 
 ###### 5.2 <Alternate flow: Delegated user leaves the company>
 
-Trigger: post-activation lifecycle. Immediate deprovisioning (UC-20 pattern) + session
+Trigger: post-activation lifecycle. Immediate deprovisioning (PROC-13 pattern) + session
 revocation.
 
 ###### 5.3 <Alternate flow: Role request violates separation of duties>
@@ -4055,7 +4055,7 @@ and is logged.
 ###### 6.1 <Subflow: Delegation model>
 
 1. Role templates + separation-of-duties constraints (RBAC per BPR-D-03.1-001).
-2. Delegation graph wired to quarterly access reviews (UC-18, CR-D-03.3-001).
+2. Delegation graph wired to quarterly access reviews (PROC-11, CR-D-03.3-001).
 
 ###### 6.2 <Subflow: Delegated-user lifecycle>
 
@@ -4098,7 +4098,7 @@ No delegated user shares credentials; SoD validated at provisioning time.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-21 (Corporate Banking Portal; corporate customers SME + large corporate; cash management, FX deals; Head of Corporate Banking ownership), SYS-11 (sanctions screening), SYS-16 (KYC document vault).
-- **Constrained by:** UC-16 (identity provisioning), UC-20 (deprovisioning), UC-72 (screening), UC-18 (quarterly access review).
+- **Constrained by:** PROC-10 (identity provisioning), PROC-13 (deprovisioning), UC-72 (screening), PROC-11 (quarterly access review).
 - **Rules / NFR:** BPR-D-03.1-001 (RBAC + separation of duties), CR-D-03.3-001 (least privilege + quarterly reviews), CR-D-05.2-001 (retention).
 - **Threats addressed:** MUC-01-analogue (dormant delegated credentials — lifecycle + reviews are the control).
 - **NIST anchors:** PR.AA-01, AU.A-06.
@@ -4476,7 +4476,7 @@ attested SYS-07 scope).
 |-------|-------|---------------|------|
 | UC-90 | In-App Fraud Alert Confirm/Deny (SYS-11) | Customer (Retail) | CRITICAL |
 | UC-91 | Card Block via Contact Centre (SYS-20) | Customer (Retail) | CRITICAL |
-| UC-92 | Complaint Filing & Handling (SYS-17) | Customer (Retail) | MEDIUM |
+| PROC-40 | Complaint Filing & Handling (SYS-17) | Customer (Retail) | MEDIUM |
 | UC-93 | Secure Messaging | Customer (Retail) | MEDIUM |
 
 #### Use-Case: {UC-90} In-App Fraud Alert Confirm/Deny (SYS-11)
@@ -4713,12 +4713,12 @@ Unblocking requires strict verification (asymmetric assurance).
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-20 (contact centre; call recording; documented third-party security attestation scope for cardholder data; Head of Customer Service ownership), SYS-05 (card management), SYS-11 (fraud platform).
-- **Constrained by:** UC-78 (block path), UC-90 (alert-loop fallback), UC-36 (third-party attestation-scope audits).
+- **Constrained by:** UC-78 (block path), UC-90 (alert-loop fallback), PROC-23 (third-party attestation-scope audits).
 - **Rules / NFR:** CR-D-01.1-001 (encrypted/tokenised recordings), CR-D-05.2-001 (retention), CR-D-06.3-001 (processor obligations).
 - **Threats addressed:** MUC-01-analogue (social engineering of the phone channel — verification protocol + recording + asymmetric block/unblock).
 - **NIST anchors:** PR.AA-01, AU.A-06.
 
-#### Use-Case: {UC-92} Complaint Filing & Handling (SYS-17)
+#### Use-Case: {PROC-40} Complaint Filing & Handling (SYS-17)
 
 ##### 1 Brief Description
 
@@ -4743,7 +4743,7 @@ Phone-channel intake with recorded calls (attested).
 
 ###### 2.4 Compliance Officer:
 
-Owns the regulatory-escalation path (UC-25/UC-30 discipline).
+Owns the regulatory-escalation path (PROC-15/PROC-19 discipline).
 
 ##### 3 Preconditions
 
@@ -4775,7 +4775,7 @@ sequenceDiagram
 
 ###### 5.1 <Alternate flow: Complaint contests an automated decision>
 
-Trigger: step 3 (Art. 22 contest). Linkage to UC-65/UC-66 evidence + human re-review path.
+Trigger: step 3 (Art. 22 contest). Linkage to UC-65/PROC-39 evidence + human re-review path.
 
 ###### 5.2 <Alternate flow: Complaint reveals a bias pattern>
 
@@ -4784,7 +4784,7 @@ detection value of the channel).
 
 ###### 5.3 <Alternate flow: Regulator escalation>
 
-Trigger: step 5. Case handed to Compliance with the full evidence bundle (UC-30 reporting
+Trigger: step 5. Case handed to Compliance with the full evidence bundle (PROC-19 reporting
 discipline).
 
 ##### 6 Subflows
@@ -4837,7 +4837,7 @@ CR-D-05.2-001.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-17 (managed CRM EU instance; customer 360 view; complaint handling), SYS-20 (contact centre channel; call recording).
-- **Constrained by:** UC-65 (explanation evidence), UC-66 (human-decision records), UC-84 (dispute linkage), UC-30 (regulator reporting path).
+- **Constrained by:** UC-65 (explanation evidence), PROC-39 (human-decision records), UC-84 (dispute linkage), PROC-19 (regulator reporting path).
 - **Rules / NFR:** CR-D-05.2-001 (retention), CR-D-10.2-001 (immutable records), BPR-D-12.3-001 (human oversight/escalation interplay for AI-related complaints).
 - **Threats addressed:** MUC-C3-04 (discriminatory patterns surface first through complaints — the channel is wired to AI governance), MUC-C3-05 (complaint evidence is log-anchored and hard to spoof).
 - **NIST anchors:** GV.PO-P1, DE.AE-02.
@@ -4950,7 +4950,7 @@ No credentials or SCA factors ever exchanged in-thread (channel rule).
 
 **Performance (P):** N/A — no attested timing constraint.
 
-**Supportability (S):** Message schema versioned; export feeds DSARs (UC-34/UC-01).
+**Supportability (S):** Message schema versioned; export feeds DSARs (UC-34/PROC-01).
 
 ##### 10 Security & Compliance Annex (AEGIS)
 
@@ -4999,7 +4999,7 @@ integration), or read access to training artefacts.
 exposure (GDPR Art. 5/32, AI Act).
 **Mitigated by:** UC-21 access control (inference API + training data), UC-06 field-level
 encryption of training datasets, GDPR-compliant granularity of reason codes (UC-64/UC-65 —
-minimum-necessary explanation surface), UC-60 adversarial robustness testing, UC-18
+minimum-necessary explanation surface), PROC-37 adversarial robustness testing, PROC-11
 quarterly access reviews.
 **NIST anchors:** PR.DS-01, DE.CM-09.
 
@@ -5007,12 +5007,12 @@ quarterly access reviews.
 
 | MUC ID | Threat | Target UCs | Mitigations |
 |--------|--------|------------|-------------|
-| MUC-C3-01 | Application data crafted to game OmniScore | UC-63, UC-64, UC-66 | Out-of-distribution flags → human path (UC-64 ext. 5.3); SYS-11 fraud screening (UC-63 step 4); bureau cross-checks (UC-66); bias/drift pipeline |
+| MUC-C3-01 | Application data crafted to game OmniScore | UC-63, UC-64, PROC-39 | Out-of-distribution flags → human path (UC-64 ext. 5.3); SYS-11 fraud screening (UC-63 step 4); bureau cross-checks (PROC-39); bias/drift pipeline |
 | MUC-C3-02 | Training-data poisoning of OmniScore | UC-64, UC-46 | SYS-03 bias+drift pipeline (UC-61); UC-46 secure training pipeline; UC-08 tampering detection; UC-21 access control; STORE-03 WORM |
-| MUC-C3-03 | Model inversion / membership inference | UC-64, UC-65 | UC-21 access control; UC-06 field-level encryption; reason-code granularity (UC-64/65); UC-60 adversarial testing; UC-18 access reviews |
-| MUC-C3-04 | Discriminatory bias exploitation / harm | UC-64, UC-65, UC-92 | SYS-03 bias monitoring; UC-61 drift monitoring; BPR-D-12.1-001 bias testing; human path (UC-66); complaint channel wired to governance (UC-92) |
-| MUC-C3-05 | Explainability gaming (spoofed reason codes) | UC-64, UC-65, UC-66 | In-runtime reason codes log-anchored to model version; UC-08; UC-66 fail-closed on incomplete context; CR-D-10.2-001 immutable records; UC-18 |
-| MUC-C3-06 | Model & training-data exfiltration (IP/customer-data theft) | UC-64, UC-46, UC-35 | UC-21 access control + UC-18 reviews; UC-06 encryption (STORE-03/STORE-10 HSM-bound CMK — attested); export-anomaly monitoring (UC-57); egress minimisation (CR-D-05.1-001) |
+| MUC-C3-03 | Model inversion / membership inference | UC-64, UC-65 | UC-21 access control; UC-06 field-level encryption; reason-code granularity (UC-64/65); PROC-37 adversarial testing; PROC-11 access reviews |
+| MUC-C3-04 | Discriminatory bias exploitation / harm | UC-64, UC-65, PROC-40 | SYS-03 bias monitoring; UC-61 drift monitoring; BPR-D-12.1-001 bias testing; human path (PROC-39); complaint channel wired to governance (PROC-40) |
+| MUC-C3-05 | Explainability gaming (spoofed reason codes) | UC-64, UC-65, PROC-39 | In-runtime reason codes log-anchored to model version; UC-08; PROC-39 fail-closed on incomplete context; CR-D-10.2-001 immutable records; PROC-11 |
+| MUC-C3-06 | Model & training-data exfiltration (IP/customer-data theft) | UC-64, UC-46, PROC-22 | UC-21 access control + PROC-11 reviews; UC-06 encryption (STORE-03/STORE-10 HSM-bound CMK — attested); export-anomaly monitoring (UC-57); egress minimisation (CR-D-05.1-001) |
 
 > **Note (MUC-C3-06):** no canonical definition of MUC-C3-06 exists elsewhere in the corpus
 > (the MUC-C3 family was introduced in this document's §6B pilot); the row above records the
@@ -5026,10 +5026,10 @@ quarterly access reviews.
 
 | Priority | Count | Percentage | Example UCs |
 |----------|-------|------------|-------------|
-| CRITICAL | 32 | 51.6% | UC-01 to UC-30 |
-| HIGH | 19 | 30.6% | UC-31 to UC-51 |
-| MEDIUM | 4 | 6.5% | UC-22, UC-29, UC-36, UC-47 |
-| LOW | 1 | 1.6% | UC-62 |
+| CRITICAL | 32 | 51.6% | PROC-01 to PROC-19 |
+| HIGH | 19 | 30.6% | PROC-20 to PROC-33 |
+| MEDIUM | 4 | 6.5% | UC-22, PROC-18, PROC-23, UC-47 |
+| LOW | 1 | 1.6% | PROC-38 |
 | **TOTAL** | **62** | **100%** | — |
 
 ### 5.2 Distribution by Domain
@@ -5082,10 +5082,10 @@ quarterly access reviews.
 
 | Tension ID | Type | Resolved By | UCs |
 |------------|------|-------------|-----|
-| T-001 | Temporal Conflict (24h notification) | UC-25: Universal Incident Notification | UC-25 |
+| T-001 | Temporal Conflict (24h notification) | PROC-15: Universal Incident Notification | PROC-15 |
 | T-002 | Requirement Conflict (Erasure vs Logs) | UC-33, UC-58: Cryptographic Sharding | UC-33, UC-58 |
-| T-003 | Frequency Mismatch (Assessment overlap) | UC-53: IPSARA Unified Assessment | UC-53 |
-| T-004 | Intensity Gap (Secure-by-default) | UC-42: Secure-by-Design | UC-42 |
+| T-003 | Frequency Mismatch (Assessment overlap) | PROC-34: IPSARA Unified Assessment | PROC-34 |
+| T-004 | Intensity Gap (Secure-by-default) | PROC-28: Secure-by-Design | PROC-28 |
 
 ---
 
@@ -5103,8 +5103,8 @@ quarterly access reviews.
 
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
-| 2.1 | 2026-09-04 | PORT-PARITY-2 Executor (Phase 3 product-first pilot) | Added §6B Product Functional Use Cases (PKG-C Lending & OmniScore, 6 fully-dressed UCs UC-63..68) + MUC-C3-01/04/05 cards; compliance UCs UC-01..62 (§6) preserved verbatim | High |
-| 2.2 | 2026-09-04 | PORT-PARITY-2 Executor (Phase 3 massification C3) | Added §6B.2–§6B.6 product packages PKG-A/B/D/E/F (25 fully-dressed UCs UC-69..93) + MUC-C3-02/03 detail cards + §6B.7 MUC-C3 inventory table; §6B.0 actor Drives updated; compliance UCs UC-01..62 (§6) preserved verbatim | High |
+| 2.1 | 2026-09-04 | PORT-PARITY-2 Executor (Phase 3 product-first pilot) | Added §6B Product Functional Use Cases (PKG-C Lending & OmniScore, 6 fully-dressed UCs UC-63..68) + MUC-C3-01/04/05 cards; compliance UCs PROC-01..62 (§6) preserved verbatim | High |
+| 2.2 | 2026-09-04 | PORT-PARITY-2 Executor (Phase 3 massification C3) | Added §6B.2–§6B.6 product packages PKG-A/B/D/E/F (25 fully-dressed UCs UC-69..93) + MUC-C3-02/03 detail cards + §6B.7 MUC-C3 inventory table; §6B.0 actor Drives updated; compliance UCs PROC-01..62 (§6) preserved verbatim | High |
 | 1.0 | 2026-04-28 | Compliance Lead | Initial creation — 62 UCs across 10 packages derived from 63 rules |
 
 ---
@@ -5122,3 +5122,8 @@ quarterly access reviews.
 ---
 
 **Next Step:** Proceed to 13a_Use_Case_Relationships.md to define UC relationships.
+---
+
+## Lane Naming (2026-09-05)
+
+v2.2 → v2.3: non-technology UCs re-laned to PROC-*/CAP-* per human decision 2026-09-05 (rubric REALIZATION_CLASS_RUBRIC v1.3 §5B; registry `00_METHODOLOGY/validation/LANE_NAMING_CENSUS_v0.md`). Applied via `scripts/rename_lane_ids.py`.

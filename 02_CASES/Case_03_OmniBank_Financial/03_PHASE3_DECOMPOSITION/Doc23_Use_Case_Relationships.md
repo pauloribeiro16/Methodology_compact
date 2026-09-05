@@ -82,23 +82,23 @@ The relationships follow UML Use Case modeling conventions with stereotypes:
 
 | Source UC | «include» Target | Purpose |
 |-----------|------------------|---------|
-| UC-09: Scan Vulnerabilities | UC-100: Authenticate Scanner | Ensures vulnerability scanner is authenticated |
-| UC-10: Deploy Patches | UC-101: Validate Patch Authenticity | Ensures patches are validated before deployment |
-| UC-12: Execute TLPT | UC-102: Prepare Test Environment | Ensures test environment is properly prepared |
+| PROC-05: Scan Vulnerabilities | UC-100: Authenticate Scanner | Ensures vulnerability scanner is authenticated |
+| PROC-06: Deploy Patches | UC-101: Validate Patch Authenticity | Ensures patches are validated before deployment |
+| PROC-08: Execute TLPT | UC-102: Prepare Test Environment | Ensures test environment is properly prepared |
 
 **«refine» Relationships:**
 
 | Source UC | «refine» Target | Purpose |
 |-----------|-----------------|---------|
-| UC-12.1: Execute TLPT (Financial Systems) | UC-12: Execute Threat-Led Penetration Testing | Detailed flow for financial sector-specific TLPT per DORA RTS |
-| UC-12.2: Execute AI Model Testing | UC-12: Execute Threat-Led Penetration Testing | Adds adversarial robustness and bias testing per AI Act |
+| PROC-08.1: Execute TLPT (Financial Systems) | PROC-08: Execute Threat-Led Penetration Testing | Detailed flow for financial sector-specific TLPT per DORA RTS |
+| PROC-08.2: Execute AI Model Testing | PROC-08: Execute Threat-Led Penetration Testing | Adds adversarial robustness and bias testing per AI Act |
 
 **«alternative» Relationships:**
 
 | Source UC | «alternative» With | Selection Criteria |
 |-----------|---------------------|-------------------|
-| UC-14: Automated SBOM Generation | UC-15: Manual SBOM Generation | When automated tools unavailable or new dependency discovered |
-| UC-13: Automated AI Vuln Scan | UC-14: Manual AI Vuln Assessment | When AI model complexity exceeds automated tool capability |
+| CAP-01: Automated SBOM Generation | UC-15: Manual SBOM Generation | When automated tools unavailable or new dependency discovered |
+| PROC-09: Automated AI Vuln Scan | CAP-01: Manual AI Vuln Assessment | When AI model complexity exceeds automated tool capability |
 
 ---
 
@@ -108,22 +108,22 @@ The relationships follow UML Use Case modeling conventions with stereotypes:
 
 | Source UC | «include» Target | Purpose |
 |-----------|------------------|---------|
-| UC-16: Provision Identity | UC-99: Authenticate HR Manager | Ensures HR manager is authenticated before provisioning |
+| PROC-10: Provision Identity | UC-99: Authenticate HR Manager | Ensures HR manager is authenticated before provisioning |
 | UC-17: Enforce MFA | UC-99: Authenticate Administrator | Ensures admin authentication before MFA enforcement |
-| UC-18: Quarterly Access Review | UC-103: Generate Access Report | Generates standardized access report for review |
+| PROC-11: Quarterly Access Review | UC-103: Generate Access Report | Generates standardized access report for review |
 
 **«refine» Relationships:**
 
 | Source UC | «refine» Target | Purpose |
 |-----------|-----------------|---------|
-| UC-18.1: Review AI Platform Access | UC-18: Quarterly Access Review | Adds AI-specific access review for model training and inference access |
+| PROC-11.1: Review AI Platform Access | PROC-11: Quarterly Access Review | Adds AI-specific access review for model training and inference access |
 | UC-21.1: Approve AI Model Parameters | UC-21: Manage AI Model Access | Adds dual-approval workflow for parameter changes |
 
 **«specialization» Relationships:**
 
 | Source UC | «specialization» For | Regulation | Purpose |
 |-----------|----------------------|------------|---------|
-| UC-16-DORA: Provision Identity (DORA) | UC-16: Provision Identity | DORA | DORA-specific IAM controls for financial entities under ECB supervision |
+| UC-16-DORA: Provision Identity (DORA) | PROC-10: Provision Identity | DORA | DORA-specific IAM controls for financial entities under ECB supervision |
 | UC-17-AI: Enforce MFA (AI Act) | UC-17: Enforce MFA | AI Act | AI Act-specific MFA for high-risk AI system access per Annex III |
 
 ---
@@ -134,25 +134,25 @@ The relationships follow UML Use Case modeling conventions with stereotypes:
 
 | Source UC | «include» Target | Purpose |
 |-----------|------------------|---------|
-| UC-23: Monitor Security Events | UC-104: Correlate Security Alerts | Correlates alerts across multiple sources |
-| UC-25: Universal Notification | UC-105: Classify Incident Severity | Classifies incident before notification routing |
-| UC-30: Report AI Incident | UC-105: Classify Incident Severity | Ensures AI incidents are properly classified |
+| CAP-02: Monitor Security Events | UC-104: Correlate Security Alerts | Correlates alerts across multiple sources |
+| PROC-15: Universal Notification | UC-105: Classify Incident Severity | Classifies incident before notification routing |
+| PROC-19: Report AI Incident | UC-105: Classify Incident Severity | Ensures AI incidents are properly classified |
 
 **«refine» Relationships:**
 
 | Source UC | «refine» Target | Purpose |
 |-----------|-----------------|---------|
-| UC-25.1: Notify GDPR Authority | UC-25: Universal Notification | Detailed GDPR-specific notification flow for 72-hour DPA notification |
-| UC-25.2: Notify DORA Authority | UC-25: Universal Notification | Detailed DORA-specific notification for 4-hour initial, 72-hour follow-up to competent authority |
-| UC-28.1: Investigate AI Model Anomaly | UC-28: Investigate AI Anomaly | Adds detailed AI-specific investigation including model versioning and data provenance |
+| PROC-15.1: Notify GDPR Authority | PROC-15: Universal Notification | Detailed GDPR-specific notification flow for 72-hour DPA notification |
+| PROC-15.2: Notify DORA Authority | PROC-15: Universal Notification | Detailed DORA-specific notification for 4-hour initial, 72-hour follow-up to competent authority |
+| PROC-17.1: Investigate AI Model Anomaly | PROC-17: Investigate AI Anomaly | Adds detailed AI-specific investigation including model versioning and data provenance |
 
 **«specialization» Relationships:**
 
 | Source UC | «specialization» For | Regulation | Purpose |
 |-----------|----------------------|------------|---------|
-| UC-25-NIS2: Notify NIS2 Authority | UC-25: Universal Notification | NIS 2 | NIS 2-specific notification for essential entities to national CSIRT |
-| UC-25-CRA: Notify CRA Authority | UC-25: Universal Notification | CRA | CRA-specific notification for product security incidents to ENISA |
-| UC-25-AI: Notify AI Act Authority | UC-25: Universal Notification | AI Act | AI Act-specific notification for incidents involving high-risk AI systems |
+| UC-25-NIS2: Notify NIS2 Authority | PROC-15: Universal Notification | NIS 2 | NIS 2-specific notification for essential entities to national CSIRT |
+| UC-25-CRA: Notify CRA Authority | PROC-15: Universal Notification | CRA | CRA-specific notification for product security incidents to ENISA |
+| UC-25-AI: Notify AI Act Authority | PROC-15: Universal Notification | AI Act | AI Act-specific notification for incidents involving high-risk AI systems |
 
 ---
 
@@ -187,21 +187,21 @@ The relationships follow UML Use Case modeling conventions with stereotypes:
 
 | Source UC | «include» Target | Purpose |
 |-----------|------------------|---------|
-| UC-37: Assess ICT Provider | UC-108: Validate Provider Credentials | Validates provider certifications and attestations |
-| UC-40: Manage Vendor Exit | UC-109: Transfer Data | Ensures data is properly transferred before exit |
+| PROC-24: Assess ICT Provider | UC-108: Validate Provider Credentials | Validates provider certifications and attestations |
+| PROC-26: Manage Vendor Exit | UC-109: Transfer Data | Ensures data is properly transferred before exit |
 
 **«refine» Relationships:**
 
 | Source UC | «refine» Target | Purpose |
 |-----------|-----------------|---------|
-| UC-37.1: Assess AI Model Provider | UC-37: Assess ICT Provider | Adds AI-specific assessment for model providers including bias testing and adversarial robustness |
+| PROC-24.1: Assess AI Model Provider | PROC-24: Assess ICT Provider | Adds AI-specific assessment for model providers including bias testing and adversarial robustness |
 
 **«specialization» Relationships:**
 
 | Source UC | «specialization» For | Regulation | Purpose |
 |-----------|----------------------|------------|---------|
-| UC-37-DORA: Assess ICT Provider (DORA) | UC-37: Assess ICT Provider | DORA | DORA-specific ICT risk assessment for financial entity third-party providers |
-| UC-39-DORA: Enforce Contract Terms (DORA) | UC-39: Enforce Security Terms | DORA | DORA-specific contractual requirements for ICT third-party arrangements |
+| UC-37-DORA: Assess ICT Provider (DORA) | PROC-24: Assess ICT Provider | DORA | DORA-specific ICT risk assessment for financial entity third-party providers |
+| UC-39-DORA: Enforce Contract Terms (DORA) | PROC-25: Enforce Security Terms | DORA | DORA-specific contractual requirements for ICT third-party arrangements |
 
 ---
 
@@ -211,7 +211,7 @@ The relationships follow UML Use Case modeling conventions with stereotypes:
 
 | Source UC | «include» Target | Purpose |
 |-----------|------------------|---------|
-| UC-42: Implement Secure-by-Design | UC-110: Conduct Threat Modeling | Ensures threat modeling is performed during design |
+| PROC-28: Implement Secure-by-Design | UC-110: Conduct Threat Modeling | Ensures threat modeling is performed during design |
 | UC-44: Secure CI/CD Pipeline | UC-111: Scan Dependencies | Scans dependencies for known vulnerabilities |
 | UC-46: Secure AI Training Pipeline | UC-112: Validate Training Data | Validates training data quality and provenance |
 
@@ -219,14 +219,14 @@ The relationships follow UML Use Case modeling conventions with stereotypes:
 
 | Source UC | «refine» Target | Purpose |
 |-----------|-----------------|---------|
-| UC-43.1: SAST Integration | UC-43: Enforce Secure Coding | Adds detailed SAST configuration and triage workflow |
+| PROC-29.1: SAST Integration | PROC-29: Enforce Secure Coding | Adds detailed SAST configuration and triage workflow |
 | UC-44.1: AI Deployment Gate | UC-44: Secure CI/CD | Adds AI-specific deployment gates including model signing and bias testing |
 
 **«specialization» Relationships:**
 
 | Source UC | «specialization» For | Regulation | Purpose |
 |-----------|----------------------|------------|---------|
-| UC-42-CRA: Secure-by-Design (CRA) | UC-42: Implement Secure-by-Design | CRA | CRA secure-by-default standard (higher bar than GDPR) |
+| UC-42-CRA: Secure-by-Design (CRA) | PROC-28: Implement Secure-by-Design | CRA | CRA secure-by-default standard (higher bar than GDPR) |
 | UC-44-NIS2: Secure CI/CD (NIS 2) | UC-44: Secure CI/CD | NIS 2 | NIS 2 secure development requirements for essential entities |
 
 ---
@@ -237,8 +237,8 @@ The relationships follow UML Use Case modeling conventions with stereotypes:
 
 | Source UC | «include» Target | Purpose |
 |-----------|------------------|---------|
-| UC-48: Security Awareness Training | UC-113: Validate Training Completion | Validates training completion and effectiveness |
-| UC-49: Security Competence Program | UC-114: Assess Competence | Assesses role-specific security competence |
+| PROC-31: Security Awareness Training | UC-113: Validate Training Completion | Validates training completion and effectiveness |
+| CAP-04: Security Competence Program | UC-114: Assess Competence | Assesses role-specific security competence |
 
 **«alternative» Relationships:**
 
@@ -251,7 +251,7 @@ The relationships follow UML Use Case modeling conventions with stereotypes:
 
 | Source UC | «specialization» For | Regulation | Purpose |
 |-----------|----------------------|------------|---------|
-| UC-49-AI: AI Human Oversight | UC-49: Security Competence | AI Act | AI Act-specific human oversight competence for high-risk AI decisions |
+| UC-49-AI: AI Human Oversight | CAP-04: Security Competence | AI Act | AI Act-specific human oversight competence for high-risk AI decisions |
 
 ---
 
@@ -261,23 +261,23 @@ The relationships follow UML Use Case modeling conventions with stereotypes:
 
 | Source UC | «include» Target | Purpose |
 |-----------|------------------|---------|
-| UC-52: Maintain Unified ISMS | UC-115: Conduct Internal Audit | Ensures regular internal audits of ISMS effectiveness |
-| UC-53: Execute IPSARA | UC-116: Document Risk Treatment | Documents risk treatment plan from assessment |
+| CAP-05: Maintain Unified ISMS | UC-115: Conduct Internal Audit | Ensures regular internal audits of ISMS effectiveness |
+| PROC-34: Execute IPSARA | UC-116: Document Risk Treatment | Documents risk treatment plan from assessment |
 
 **«refine» Relationships:**
 
 | Source UC | «refine» Target | Purpose |
 |-----------|-----------------|---------|
-| UC-53.1: Execute DPIA | UC-53: Execute IPSARA | Adds GDPR-specific Data Protection Impact Assessment detail |
-| UC-53.2: Execute FRIA | UC-53: Execute IPSARA | Adds AI Act-specific Fundamental Rights Impact Assessment detail |
-| UC-55.1: Maintain AI Model Card | UC-55: AI Traceability Documentation | Adds model card detail per AI Act Annex IV requirements |
+| PROC-34.1: Execute DPIA | PROC-34: Execute IPSARA | Adds GDPR-specific Data Protection Impact Assessment detail |
+| PROC-34.2: Execute FRIA | PROC-34: Execute IPSARA | Adds AI Act-specific Fundamental Rights Impact Assessment detail |
+| CAP-07.1: Maintain AI Model Card | CAP-07: AI Traceability Documentation | Adds model card detail per AI Act Annex IV requirements |
 
 **«specialization» Relationships:**
 
 | Source UC | «specialization» For | Regulation | Purpose |
 |-----------|----------------------|------------|---------|
-| UC-52-DORA: Maintain ISMS (DORA) | UC-52: Maintain Unified ISMS | DORA | DORA-specific ISMS requirements for financial entities |
-| UC-53-GDPR: Execute DPIA | UC-53: Execute IPSARA | GDPR | GDPR-specific DPIA for processing likely to result in high risk |
+| UC-52-DORA: Maintain ISMS (DORA) | CAP-05: Maintain Unified ISMS | DORA | DORA-specific ISMS requirements for financial entities |
+| UC-53-GDPR: Execute DPIA | PROC-34: Execute IPSARA | GDPR | GDPR-specific DPIA for processing likely to result in high risk |
 
 ---
 
@@ -288,7 +288,7 @@ The relationships follow UML Use Case modeling conventions with stereotypes:
 | Source UC | «include» Target | Purpose |
 |-----------|------------------|---------|
 | UC-57: AI-Powered Threat Detection | UC-104: Correlate Security Alerts | Integrates AI detection with SIEM correlation |
-| UC-59: Penetration Testing | UC-117: Document Test Results | Documents penetration test results for remediation |
+| PROC-36: Penetration Testing | UC-117: Document Test Results | Documents penetration test results for remediation |
 | UC-61: Monitor AI Model Drift | UC-118: Trigger Automated Response | Triggers automated response to detected drift |
 
 **«refine» Relationships:**
@@ -296,7 +296,7 @@ The relationships follow UML Use Case modeling conventions with stereotypes:
 | Source UC | «refine» Target | Purpose |
 |-----------|-----------------|---------|
 | UC-57.1: Configure AI Detection Rules | UC-57: AI-Powered Threat Detection | Adds AI-specific detection rule configuration and tuning |
-| UC-60.1: Red Team AI Attack | UC-60: AI Adversarial Robustness Testing | Adds red team exercise for AI-specific attack scenarios |
+| PROC-37.1: Red Team AI Attack | PROC-37: AI Adversarial Robustness Testing | Adds red team exercise for AI-specific attack scenarios |
 
 **«alternative» Relationships:**
 
@@ -407,13 +407,13 @@ graph TD
     end
 
     subgraph PKG-D-02["PKG-D-02: Vulnerability"]
-        UC09["UC-09: Scan Vulnerabilities"]
-        UC12["UC-12: Execute TLPT"]
+        UC09["PROC-05: Scan Vulnerabilities"]
+        UC12["PROC-08: Execute TLPT"]
         UC100["UC-100: Authenticate Scanner"]
     end
 
     subgraph PKG-D-04["PKG-D-04: Incident Response"]
-        UC25["UC-25: Universal Notification"]
+        UC25["PROC-15: Universal Notification"]
         UC105["UC-105: Classify Severity"]
     end
 
@@ -443,23 +443,23 @@ graph TD
 
 | UC ID | UC Name | Relationships | Type |
 |-------|---------|---------------|------|
-| UC-25 | Universal Notification | 6 | CRITICAL |
-| UC-53 | IPSARA Assessment | 5 | CRITICAL |
-| UC-52 | Maintain Unified ISMS | 4 | CRITICAL |
+| PROC-15 | Universal Notification | 6 | CRITICAL |
+| PROC-34 | IPSARA Assessment | 5 | CRITICAL |
+| CAP-05 | Maintain Unified ISMS | 4 | CRITICAL |
 | UC-33 | Data Erasure | 4 | CRITICAL |
 | UC-57 | AI-Powered Threat Detection | 4 | CRITICAL |
 | UC-44 | Secure CI/CD | 4 | CRITICAL |
-| UC-49 | Security Competence | 4 | CRITICAL |
+| CAP-04 | Security Competence | 4 | CRITICAL |
 
 ### 7.2 Critical Path Length
 
 Longest dependency chains (Decomposition Cycle):
 
 ```
-UC-25 → UC-105 → [Regulatory Specializations]
+PROC-15 → UC-105 → [Regulatory Specializations]
 Length: 2
 
-UC-53 → UC-116 → UC-53.1 (DPIA) / UC-53.2 (FRIA)
+PROC-34 → UC-116 → PROC-34.1 (DPIA) / PROC-34.2 (FRIA)
 Length: 2
 
 UC-44 → UC-111 → UC-44.1 (AI Deployment Gate)

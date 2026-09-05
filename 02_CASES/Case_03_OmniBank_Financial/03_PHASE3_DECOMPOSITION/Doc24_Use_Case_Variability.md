@@ -57,9 +57,9 @@ OmniBank operates under maximum complexity with all 5 EU regulations applying si
 
 Specializations are regulation-specific versions of base use cases. Each specialization inherits from the base UC but adds regulation-specific constraints, actors, or flows.
 
-### 4.1 Incident Response — Universal Notification (UC-25)
+### 4.1 Incident Response — Universal Notification (PROC-15)
 
-**Base UC:** UC-25: Compliance Officer Executes Universal Incident Notification
+**Base UC:** PROC-15: Compliance Officer Executes Universal Incident Notification
 
 **Problem:** Five regulations (GDPR, CRA, NIS 2, DORA, AI Act) each require notification to different authorities within different timelines. The base UC cannot specify which authority to notify and when without knowing the triggering regulation.
 
@@ -118,9 +118,9 @@ Specializations are regulation-specific versions of base use cases. Each special
 
 ---
 
-### 4.4 Governance — Unified ISMS (UC-52)
+### 4.4 Governance — Unified ISMS (CAP-05)
 
-**Base UC:** UC-52: CISO Maintains Unified ISMS
+**Base UC:** CAP-05: CISO Maintains Unified ISMS
 
 **Specializations:**
 
@@ -133,9 +133,9 @@ Specializations are regulation-specific versions of base use cases. Each special
 
 ---
 
-### 4.5 Secure Development — Secure-by-Design (UC-42)
+### 4.5 Secure Development — Secure-by-Design (PROC-28)
 
-**Base UC:** UC-42: Software Development Manager Implements Secure-by-Design
+**Base UC:** PROC-28: Software Development Manager Implements Secure-by-Design
 
 **Specializations:**
 
@@ -148,9 +148,9 @@ Specializations are regulation-specific versions of base use cases. Each special
 
 ---
 
-### 4.6 Supply Chain — ICT Provider Assessment (UC-37)
+### 4.6 Supply Chain — ICT Provider Assessment (PROC-24)
 
-**Base UC:** UC-37: Vendor Risk Manager Assesses ICT Third-Party Provider
+**Base UC:** PROC-24: Vendor Risk Manager Assesses ICT Third-Party Provider
 
 **Specializations:**
 
@@ -161,9 +161,9 @@ Specializations are regulation-specific versions of base use cases. Each special
 
 ---
 
-### 4.7 Human Factors — Security Competence (UC-49)
+### 4.7 Human Factors — Security Competence (CAP-04)
 
-**Base UC:** UC-49: HR Manager Maintains Security Competence Program
+**Base UC:** CAP-04: HR Manager Maintains Security Competence Program
 
 **Specializations:**
 
@@ -184,10 +184,10 @@ Alternative scenarios are mutually exclusive variants of a base UC. Only one var
 
 | Option | When Selected | UC ID |
 |--------|--------------|-------|
-| Automated SBOM Generation | CI/CD pipeline available, no manual intervention required | UC-14 |
+| Automated SBOM Generation | CI/CD pipeline available, no manual intervention required | CAP-01 |
 | Manual SBOM Generation | Automated tools unavailable, dependency newly discovered | UC-15 |
 
-**Selection Criteria:** `automation.available = TRUE AND dependency.known = TRUE` → UC-14 (Automated)
+**Selection Criteria:** `automation.available = TRUE AND dependency.known = TRUE` → CAP-01 (Automated)
 
 ### 5.2 Data Lifecycle — Data Retention Enforcement
 
@@ -261,8 +261,8 @@ Optional UCs may or may not be present based on specific conditions. Unlike alte
 
 | Optional UC | «option» Condition | Rationale |
 |------------|-------------------|------------|
-| UC-27: Recover AI System after Failure | `ai.system.deployed = TRUE` | Only applies if AI systems are deployed |
-| UC-29: Tabletop Exercise | `team.exercise.schedule = 'quarterly'` | Only if quarterly exercises scheduled |
+| PROC-16: Recover AI System after Failure | `ai.system.deployed = TRUE` | Only applies if AI systems are deployed |
+| PROC-18: Tabletop Exercise | `team.exercise.schedule = 'quarterly'` | Only if quarterly exercises scheduled |
 
 ### 6.3 PKG-D-10: Monitoring & Audit
 
@@ -308,14 +308,14 @@ This matrix shows which regulations interact on which UCs:
 
 | UC | GDPR | CRA | NIS 2 | DORA | AI Act |
 |----|------|-----|-------|------|--------|
-| UC-25 (Notification) | ✓ | ✓ | ✓ | ✓ | ✓ |
+| PROC-15 (Notification) | ✓ | ✓ | ✓ | ✓ | ✓ |
 | UC-33 (Erasure) | ✓ | ✓ | — | — | — |
-| UC-52 (ISMS) | ✓ | — | — | ✓ | ✓ |
-| UC-42 (Secure-by-Design) | ✓ | ✓ | — | — | — |
-| UC-37 (Vendor Assessment) | ✓ | — | ✓ | ✓ | — |
+| CAP-05 (ISMS) | ✓ | — | — | ✓ | ✓ |
+| PROC-28 (Secure-by-Design) | ✓ | ✓ | — | — | — |
+| PROC-24 (Vendor Assessment) | ✓ | — | ✓ | ✓ | — |
 | UC-17 (MFA) | — | ✓ | ✓ | ✓ | ✓ |
-| UC-53 (IPSARA) | ✓ | ✓ | ✓ | ✓ | ✓ |
-| UC-49 (Competence) | ✓ | — | ✓ | — | ✓ |
+| PROC-34 (IPSARA) | ✓ | ✓ | ✓ | ✓ | ✓ |
+| CAP-04 (Competence) | ✓ | — | ✓ | — | ✓ |
 
 ---
 

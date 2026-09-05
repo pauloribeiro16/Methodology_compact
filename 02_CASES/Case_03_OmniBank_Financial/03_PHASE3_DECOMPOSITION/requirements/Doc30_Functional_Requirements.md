@@ -72,7 +72,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-01 |
 | **FR Description** | System SHALL support unified identity provisioning across all internal systems, cloud services, and AI platforms with automated HR-driven lifecycle management |
-| **Source UC** | UC-16 |
+| **Source UC** | PROC-10 |
 | **Source Node** | D-03.1.1 |
 | **Source Rule** | CR-D-03.1-001 |
 | **Domain** | IAM |
@@ -117,7 +117,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-04 |
 | **FR Description** | System SHALL enforce least privilege with quarterly access reviews for all systems including AI model access and training data access |
-| **Source UC** | UC-18 |
+| **Source UC** | PROC-11 |
 | **Source Node** | D-03.3.1 |
 | **Source Rule** | CR-D-03.3-001 |
 | **Domain** | IAM |
@@ -132,7 +132,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-05 |
 | **FR Description** | System SHALL support automated deprovisioning of user access within 24 hours of HR notification |
-| **Source UC** | UC-20 |
+| **Source UC** | PROC-13 |
 | **Source Node** | D-03.1.2 |
 | **Source Rule** | CR-D-03.1-001 |
 | **Domain** | IAM |
@@ -177,7 +177,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-08 |
 | **FR Description** | System SHALL implement Role-Based Access Control (RBAC) with defined roles, permissions, and separation of duties |
-| **Source UC** | UC-16 |
+| **Source UC** | PROC-10 |
 | **Source Node** | D-03.1.1 |
 | **Source Rule** | BPR-D-03.1-001 |
 | **Domain** | IAM |
@@ -192,7 +192,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-09 |
 | **FR Description** | System SHALL implement Privileged Access Management (PAM) with just-in-time access, session recording, and credential vaulting |
-| **Source UC** | UC-18 |
+| **Source UC** | PROC-11 |
 | **Source Node** | D-03.3.1 |
 | **Source Rule** | BPR-D-03.3-001 |
 | **Domain** | IAM |
@@ -207,7 +207,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-10 |
 | **FR Description** | System SHALL integrate with enterprise SSO for unified authentication across all platforms |
-| **Source UC** | UC-16 |
+| **Source UC** | PROC-10 |
 | **Source Node** | D-03.1.1 |
 | **Source Rule** | CR-D-03.1-001 |
 | **Domain** | IAM |
@@ -237,7 +237,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-12 |
 | **FR Description** | System SHALL automate access review workflow with remediation tracking and escalation for non-compliance |
-| **Source UC** | UC-18.1 |
+| **Source UC** | PROC-11.1 |
 | **Source Node** | D-03.3.1 |
 | **Source Rule** | CR-D-03.3-001 |
 | **Domain** | IAM |
@@ -299,7 +299,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-16 |
 | **FR Description** | System SHALL manage cryptographic keys with HSM-backed lifecycle controls including generation, rotation, revocation, and destruction |
-| **Source UC** | UC-04, UC-07 |
+| **Source UC** | PROC-02, PROC-04 |
 | **Source Node** | D-01.3.1 |
 | **Source Rule** | CR-D-01.3-001 |
 | **Domain** | DP |
@@ -314,7 +314,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-17 |
 | **FR Description** | System SHALL validate AI model integrity using cryptographic checksums and version control on every model load |
-| **Source UC** | UC-05, UC-08 |
+| **Source UC** | PROC-03, UC-08 |
 | **Source Node** | D-01.4.1, D-01.4.2 |
 | **Source Rule** | CR-D-01.4-001 |
 | **Domain** | DP |
@@ -329,7 +329,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-18 |
 | **FR Description** | System SHALL enforce data minimization by validating AI training data relevance, representativeness, and bias proxy freedom |
-| **Source UC** | UC-31, UC-35 |
+| **Source UC** | PROC-20, PROC-22 |
 | **Source Node** | D-05.1.1, D-05.1.2 |
 | **Source Rule** | CR-D-05.1-001 |
 | **Domain** | DP |
@@ -344,7 +344,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-19 |
 | **FR Description** | System SHALL enforce tiered retention: 10-year financial records (MiFID II), 5-year operational records, 6-month AI inference logs |
-| **Source UC** | UC-32 |
+| **Source UC** | PROC-21 |
 | **Source Node** | D-05.2.1, D-05.2.2 |
 | **Source Rule** | CR-D-05.2-001 |
 | **Domain** | DP |
@@ -389,7 +389,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-22 |
 | **FR Description** | System SHALL document AI training data lineage on every training run including collection, preprocessing, and validation |
-| **Source UC** | UC-35 |
+| **Source UC** | PROC-22 |
 | **Source Node** | D-05.1.1 |
 | **Source Rule** | CR-D-05.1-001 |
 | **Domain** | DP |
@@ -419,7 +419,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-24 |
 | **FR Description** | System SHALL implement data classification schema with automated discovery and classification-based handling rules |
-| **Source UC** | UC-31 |
+| **Source UC** | PROC-20 |
 | **Source Node** | D-05.1.1 |
 | **Source Rule** | BPR-D-05.1-001 |
 | **Domain** | DP |
@@ -434,7 +434,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-25 |
 | **FR Description** | System SHALL automatically delete data upon retention expiry with audit trail of deletion |
-| **Source UC** | UC-32 |
+| **Source UC** | PROC-21 |
 | **Source Node** | D-05.2.1 |
 | **Source Rule** | CR-D-05.2-001 |
 | **Domain** | DP |
@@ -449,7 +449,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-26 |
 | **FR Description** | System SHALL segregate cryptographic keys by data classification and regulatory domain |
-| **Source UC** | UC-04 |
+| **Source UC** | PROC-02 |
 | **Source Node** | D-01.3.2 |
 | **Source Rule** | CR-D-01.3-001 |
 | **Domain** | DP |
@@ -466,7 +466,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-27 |
 | **FR Description** | System SHALL operate 24/7 SOC with automated incident detection and triage including AI anomaly detection |
-| **Source UC** | UC-23, UC-28 |
+| **Source UC** | CAP-02, PROC-17 |
 | **Source Node** | D-04.1.1, D-04.1.2 |
 | **Source Rule** | CR-D-04.1-001 |
 | **Domain** | SEC |
@@ -481,7 +481,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-28 |
 | **FR Description** | System SHALL maintain 99.99% uptime SLA with disaster recovery RTO <= 4h and RPO <= 1h |
-| **Source UC** | UC-24, UC-27 |
+| **Source UC** | PROC-14, PROC-16 |
 | **Source Node** | D-04.2.1, D-04.2.2 |
 | **Source Rule** | CR-D-04.2-001 |
 | **Domain** | SEC |
@@ -496,7 +496,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-29 |
 | **FR Description** | System SHALL execute 24-hour universal incident notification workflow across GDPR (72h), CRA (24h), NIS 2 (24h), DORA (4h initial + 72h follow-up), AI Act (15d) |
-| **Source UC** | UC-25, UC-25.1, UC-25.2, UC-25-NIS2, UC-25-CRA, UC-25-AI |
+| **Source UC** | PROC-15, PROC-15.1, PROC-15.2, UC-25-NIS2, UC-25-CRA, UC-25-AI |
 | **Source Node** | D-04.3.1, D-04.3.2, D-04.3.3, D-04.3.4, D-04.3.5 |
 | **Source Rule** | CR-D-04.3-001 |
 | **Domain** | SEC |
@@ -526,7 +526,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-31 |
 | **FR Description** | System SHALL execute continuous automated vulnerability scanning with Critical findings remediated within 72 hours |
-| **Source UC** | UC-09, UC-14 |
+| **Source UC** | PROC-05, CAP-01 |
 | **Source Node** | D-02.1.1 |
 | **Source Rule** | CR-D-02.1-001 |
 | **Domain** | SEC |
@@ -541,7 +541,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-32 |
 | **FR Description** | System SHALL assess AI model vulnerabilities including data poisoning, model evasion, and adversarial attacks per MITRE ATLAS |
-| **Source UC** | UC-13 |
+| **Source UC** | PROC-09 |
 | **Source Node** | D-02.1.2 |
 | **Source Rule** | CR-D-02.1-001, BPR-D-12.4-001 |
 | **Domain** | SEC |
@@ -556,7 +556,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-33 |
 | **FR Description** | System SHALL deploy automated patch management with 72-hour SLA for critical vulnerabilities |
-| **Source UC** | UC-10 |
+| **Source UC** | PROC-06 |
 | **Source Node** | D-02.2.1 |
 | **Source Rule** | CR-D-02.2-001 |
 | **Domain** | SEC |
@@ -571,7 +571,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-34 |
 | **FR Description** | System SHALL report critical incidents to ENISA/CSIRT within 24 hours per coordinated vulnerability disclosure policy |
-| **Source UC** | UC-11 |
+| **Source UC** | PROC-07 |
 | **Source Node** | D-02.3.1 |
 | **Source Rule** | CR-D-02.3-001 |
 | **Domain** | SEC |
@@ -586,7 +586,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-35 |
 | **FR Description** | System SHALL execute annual Threat-Led Penetration Testing (TLPT) per DORA RTS including AI bias testing and adversarial robustness |
-| **Source UC** | UC-12, UC-12.1, UC-12.2 |
+| **Source UC** | PROC-08, PROC-08.1, PROC-08.2 |
 | **Source Node** | D-02.4.1, D-02.4.2 |
 | **Source Rule** | CR-D-02.4-001 |
 | **Domain** | SEC |
@@ -646,7 +646,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-39 |
 | **FR Description** | System SHALL conduct red team operations for AI systems including adversarial robustness testing per MITRE ATLAS |
-| **Source UC** | UC-59, UC-60, UC-60.1 |
+| **Source UC** | PROC-36, PROC-37, PROC-37.1 |
 | **Source Node** | D-10.3.1 |
 | **Source Rule** | BPR-D-12.4-001 |
 | **Domain** | SEC |
@@ -661,7 +661,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-40 |
 | **FR Description** | System SHALL maintain incident response playbooks covering all incident types including AI model compromise and supply chain attacks |
-| **Source UC** | UC-23 |
+| **Source UC** | CAP-02 |
 | **Source Node** | D-04.1.1 |
 | **Source Rule** | BPR-D-04.1-001 |
 | **Domain** | SEC |
@@ -676,7 +676,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-41 |
 | **FR Description** | System SHALL investigate AI model anomalies including model drift, adversarial manipulation, and data quality with root cause within 4 hours |
-| **Source UC** | UC-28, UC-28.1 |
+| **Source UC** | PROC-17, PROC-17.1 |
 | **Source Node** | D-04.1.2 |
 | **Source Rule** | CR-D-04.1-001, CR-D-10.1-001 |
 | **Domain** | SEC |
@@ -691,7 +691,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-42 |
 | **FR Description** | System SHALL conduct quarterly tabletop exercises with cross-functional participants and documented lessons learned |
-| **Source UC** | UC-29 |
+| **Source UC** | PROC-18 |
 | **Source Node** | D-04.1.1 |
 | **Source Rule** | BPR-D-04.3-001 |
 | **Domain** | SEC |
@@ -721,7 +721,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-44 |
 | **FR Description** | System SHALL recover AI systems within 2 hours including model restoration from immutable backup and inference service resumption |
-| **Source UC** | UC-27 |
+| **Source UC** | PROC-16 |
 | **Source Node** | D-04.2.2 |
 | **Source Rule** | CR-D-04.2-001 |
 | **Domain** | SEC |
@@ -738,7 +738,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-45 |
 | **FR Description** | System SHALL implement privacy and security by design per CRA secure-by-default standard with threat modeling and AI ethical design reviews |
-| **Source UC** | UC-42, UC-46 |
+| **Source UC** | PROC-28, UC-46 |
 | **Source Node** | D-07.1.1, D-07.1.2 |
 | **Source Rule** | CR-D-07.1-001 |
 | **Domain** | DEV |
@@ -753,7 +753,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-46 |
 | **FR Description** | System SHALL integrate SAST/DAST per OWASP ASVS Level 2 in all CI/CD pipelines including AI code repositories |
-| **Source UC** | UC-43, UC-43.1 |
+| **Source UC** | PROC-29, PROC-29.1 |
 | **Source Node** | D-07.2.1 |
 | **Source Rule** | CR-D-07.2-001 |
 | **Domain** | DEV |
@@ -798,7 +798,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-49 |
 | **FR Description** | System SHALL implement formal change management with dual control approval and independent oversight for all production changes |
-| **Source UC** | UC-45 |
+| **Source UC** | PROC-30 |
 | **Source Node** | D-07.4.1 |
 | **Source Rule** | CR-D-07.4-001 |
 | **Domain** | DEV |
@@ -828,7 +828,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-51 |
 | **FR Description** | System SHALL generate Software Bill of Materials (SBOM) in SPDX and CycloneDX formats on every release with AI model dependencies |
-| **Source UC** | UC-38 |
+| **Source UC** | CAP-03 |
 | **Source Node** | D-06.2.1 |
 | **Source Rule** | CR-D-06.2-001 |
 | **Domain** | DEV |
@@ -843,7 +843,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-52 |
 | **FR Description** | System SHALL implement NIST Secure Software Development Framework (SSDF) practices across all development teams |
-| **Source UC** | UC-42 |
+| **Source UC** | PROC-28 |
 | **Source Node** | D-07.1.1 |
 | **Source Rule** | BPR-D-07.1-001 |
 | **Domain** | DEV |
@@ -890,7 +890,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-55 |
 | **FR Description** | System SHALL maintain unified Information Security Management System (ISMS) covering all 5 regulatory frameworks with 10+ year documentation retention |
-| **Source UC** | UC-52, UC-52-DORA |
+| **Source UC** | CAP-05, UC-52-DORA |
 | **Source Node** | D-09.1.1 |
 | **Source Rule** | CR-D-09.1-001 |
 | **Domain** | GOV |
@@ -905,7 +905,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-56 |
 | **FR Description** | System SHALL execute IPSARA unified risk assessments combining DPIA, FRIA, cybersecurity risk, and ICT risk per AI Act requirements |
-| **Source UC** | UC-53, UC-53.1, UC-53.2 |
+| **Source UC** | PROC-34, PROC-34.1, PROC-34.2 |
 | **Source Node** | D-09.2.1 |
 | **Source Rule** | CR-D-09.2-001 |
 | **Domain** | GOV |
@@ -920,7 +920,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-57 |
 | **FR Description** | System SHALL maintain comprehensive asset and ICT inventory with automated discovery including AI models and training data |
-| **Source UC** | UC-54 |
+| **Source UC** | CAP-06 |
 | **Source Node** | D-09.3.1 |
 | **Source Rule** | CR-D-09.3-001 |
 | **Domain** | GOV |
@@ -935,7 +935,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-58 |
 | **FR Description** | System SHALL maintain AI model cards updated on every release including performance metrics, bias test results, and intended use |
-| **Source UC** | UC-55, UC-55.1 |
+| **Source UC** | CAP-07, CAP-07.1 |
 | **Source Node** | D-09.4.1 |
 | **Source Rule** | CR-D-09.4-001 |
 | **Domain** | GOV |
@@ -950,7 +950,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-59 |
 | **FR Description** | System SHALL log AI decisions with full traceability including inputs, outputs, model version, and decision factors for regulatory examination |
-| **Source UC** | UC-58, UC-62 |
+| **Source UC** | UC-58, PROC-38 |
 | **Source Node** | D-09.4.2, D-10.2.1 |
 | **Source Rule** | CR-D-09.4-001, AI-C09, AI-C10 |
 | **Domain** | GOV |
@@ -965,7 +965,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-60 |
 | **FR Description** | System SHALL assess all ICT third-party providers pre-engagement and annually including AI model providers using SIG or CAIQ |
-| **Source UC** | UC-37, UC-37.1, UC-37-DORA |
+| **Source UC** | PROC-24, PROC-24.1, UC-37-DORA |
 | **Source Node** | D-06.1.1 |
 | **Source Rule** | CR-D-06.1-001 |
 | **Domain** | GOV |
@@ -980,7 +980,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-61 |
 | **FR Description** | System SHALL manage third-party concentration risk with documented exit strategies for critical vendors including data migration |
-| **Source UC** | UC-40 |
+| **Source UC** | PROC-26 |
 | **Source Node** | D-06.4.1 |
 | **Source Rule** | CR-D-06.4-001 |
 | **Domain** | GOV |
@@ -995,7 +995,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-62 |
 | **FR Description** | System SHALL generate regulatory compliance reports for ECB/BaFin, ENISA, and other authorities including AI governance indicators |
-| **Source UC** | UC-56 |
+| **Source UC** | PROC-35 |
 | **Source Node** | D-09.1.1 |
 | **Source Rule** | CR-D-09.1-001, DORA-C38 |
 | **Domain** | GOV |
@@ -1010,7 +1010,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-63 |
 | **FR Description** | System SHALL document GDPR Data Protection Impact Assessments for processing likely to result in high risk |
-| **Source UC** | UC-53.1 (DPIA) |
+| **Source UC** | PROC-34.1 (DPIA) |
 | **Source Node** | D-09.2.1 |
 | **Source Rule** | GDPR Art. 35 |
 | **Domain** | GOV |
@@ -1025,7 +1025,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-64 |
 | **FR Description** | System SHALL document AI Act Fundamental Rights Impact Assessments for high-risk AI systems |
-| **Source UC** | UC-53.2 (FRIA) |
+| **Source UC** | PROC-34.2 (FRIA) |
 | **Source Node** | D-09.2.1 |
 | **Source Rule** | AI Act Art. 28 |
 | **Domain** | GOV |
@@ -1040,7 +1040,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-65 |
 | **FR Description** | System SHALL enforce minimum security requirements in all vendor contracts including audit rights and breach notification SLAs |
-| **Source UC** | UC-39, UC-39-DORA |
+| **Source UC** | PROC-25, UC-39-DORA |
 | **Source Node** | D-06.3.1 |
 | **Source Rule** | CR-D-06.3-001 |
 | **Domain** | GOV |
@@ -1055,7 +1055,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-66 |
 | **FR Description** | System SHALL provide board-level ICT risk dashboards with regulatory compliance status, risk metrics, and incident trends |
-| **Source UC** | UC-50 |
+| **Source UC** | PROC-32 |
 | **Source Node** | D-08.3.1 |
 | **Source Rule** | CR-D-08.3-001 |
 | **Domain** | GOV |
@@ -1072,7 +1072,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-67 |
 | **FR Description** | System SHALL deliver annual security awareness training to all 5000+ employees with role-specific modules for developers, operations, and management |
-| **Source UC** | UC-48, UC-48-Online, UC-48-Classroom |
+| **Source UC** | PROC-31, UC-48-Online, UC-48-Classroom |
 | **Source Node** | D-08.1.1 |
 | **Source Rule** | CR-D-08.1-001 |
 | **Domain** | TRN |
@@ -1087,7 +1087,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-68 |
 | **FR Description** | System SHALL include AI ethics training for data science and ML teams covering bias detection, fairness metrics, and human oversight |
-| **Source UC** | UC-48 (AI ethics component) |
+| **Source UC** | PROC-31 (AI ethics component) |
 | **Source Node** | D-08.1.1 |
 | **Source Rule** | AI Act Art. 14 |
 | **Domain** | TRN |
@@ -1102,7 +1102,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-69 |
 | **FR Description** | System SHALL conduct quarterly phishing simulations with click rate < 5% and remedial training for failures |
-| **Source UC** | UC-51 |
+| **Source UC** | PROC-33 |
 | **Source Node** | D-08.1.2 |
 | **Source Rule** | BPR-D-08.1-001 |
 | **Domain** | TRN |
@@ -1117,7 +1117,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-70 |
 | **FR Description** | System SHALL track mandatory security certifications for privileged roles with annual competence assessment |
-| **Source UC** | UC-49, UC-49-AI |
+| **Source UC** | CAP-04, UC-49-AI |
 | **Source Node** | D-08.2.1 |
 | **Source Rule** | CR-D-08.2-001 |
 | **Domain** | TRN |
@@ -1147,7 +1147,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |-------|-------|
 | **FR ID** | FR-72 |
 | **FR Description** | System SHALL provide management board DORA/NIS 2 training within 60 days of appointment with quarterly ICT risk oversight |
-| **Source UC** | UC-50 |
+| **Source UC** | PROC-32 |
 | **Source Node** | D-08.3.1 |
 | **Source Rule** | CR-D-08.3-001 |
 | **Domain** | TRN |
@@ -1162,49 +1162,49 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 |--------|----------------|
 | UC-02, UC-06 | FR-72, FR-02 |
 | UC-03 | FR-72 |
-| UC-04, UC-07 | FR-72, FR-14 |
-| UC-05, UC-08 | FR-72 |
-| UC-09, UC-14 | FR-72 |
-| UC-10 | FR-72 |
-| UC-11 | FR-72 |
-| UC-12, UC-12.1, UC-12.2 | FR-72 |
-| UC-13 | FR-72 |
-| UC-16, UC-20 | FR-72, FR-05, FR-08, FR-10 |
+| PROC-02, PROC-04 | FR-72, FR-14 |
+| PROC-03, UC-08 | FR-72 |
+| PROC-05, CAP-01 | FR-72 |
+| PROC-06 | FR-72 |
+| PROC-07 | FR-72 |
+| PROC-08, PROC-08.1, PROC-08.2 | FR-72 |
+| PROC-09 | FR-72 |
+| PROC-10, PROC-13 | FR-72, FR-05, FR-08, FR-10 |
 | UC-17, UC-22 | FR-72, FR-03, FR-11 |
-| UC-18, UC-18.1 | FR-72, FR-09, FR-12 |
+| PROC-11, PROC-11.1 | FR-72, FR-09, FR-12 |
 | UC-21, UC-21.1 | FR-72, FR-07 |
-| UC-23, UC-28 | FR-72, FR-14, FR-15 |
-| UC-24, UC-27 | FR-72, FR-18 |
-| UC-25 (all specializations) | FR-72 |
+| CAP-02, PROC-17 | FR-72, FR-14, FR-15 |
+| PROC-14, PROC-16 | FR-72, FR-18 |
+| PROC-15 (all specializations) | FR-72 |
 | UC-26 | FR-72, FR-17 |
-| UC-29 | FR-72 |
-| UC-31, UC-35 | FR-72, FR-10, FR-12 |
-| UC-32 | FR-72, FR-13 |
+| PROC-18 | FR-72 |
+| PROC-20, PROC-22 | FR-72, FR-10, FR-12 |
+| PROC-21 | FR-72, FR-13 |
 | UC-33, UC-33.1 | FR-72, FR-11 |
 | UC-34, UC-34.1 | FR-72 |
-| UC-37, UC-37.1, UC-37-DORA | FR-72 |
-| UC-38 | FR-72 |
-| UC-39, UC-39-DORA | FR-72 |
-| UC-40 | FR-72 |
-| UC-42, UC-46 | FR-72, FR-08, FR-10 |
-| UC-43, UC-43.1 | FR-72 |
+| PROC-24, PROC-24.1, UC-37-DORA | FR-72 |
+| CAP-03 | FR-72 |
+| PROC-25, UC-39-DORA | FR-72 |
+| PROC-26 | FR-72 |
+| PROC-28, UC-46 | FR-72, FR-08, FR-10 |
+| PROC-29, PROC-29.1 | FR-72 |
 | UC-44, UC-44.1 | FR-72, FR-04, FR-09 |
-| UC-45 | FR-72 |
+| PROC-30 | FR-72 |
 | UC-47 | FR-72 |
-| UC-48, UC-48-Online, UC-48-Classroom | FR-72, FR-02 |
-| UC-49, UC-49-AI | FR-72, FR-05 |
-| UC-50 | FR-72, FR-12 |
-| UC-51 | FR-72 |
-| UC-52, UC-52-DORA | FR-72, FR-08 |
-| UC-53, UC-53.1, UC-53.2 | FR-72, FR-09, FR-10 |
-| UC-54 | FR-72 |
-| UC-55, UC-55.1 | FR-72 |
-| UC-56 | FR-72 |
+| PROC-31, UC-48-Online, UC-48-Classroom | FR-72, FR-02 |
+| CAP-04, UC-49-AI | FR-72, FR-05 |
+| PROC-32 | FR-72, FR-12 |
+| PROC-33 | FR-72 |
+| CAP-05, UC-52-DORA | FR-72, FR-08 |
+| PROC-34, PROC-34.1, PROC-34.2 | FR-72, FR-09, FR-10 |
+| CAP-06 | FR-72 |
+| CAP-07, CAP-07.1 | FR-72 |
+| PROC-35 | FR-72 |
 | UC-57, UC-57.1 | FR-72 |
 | UC-58 | FR-72 |
-| UC-59, UC-60, UC-60.1 | FR-72 |
+| PROC-36, PROC-37, PROC-37.1 | FR-72 |
 | UC-61, UC-61.1 | FR-72 |
-| UC-62 | FR-72 |
+| PROC-38 | FR-72 |
 
 ---
 

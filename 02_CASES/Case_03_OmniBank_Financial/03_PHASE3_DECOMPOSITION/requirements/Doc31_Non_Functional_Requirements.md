@@ -128,7 +128,7 @@ Every NFR includes:
 | **Metric** | HSM validation status |
 | **Target** | FIPS 140-3 Level 3 validation current |
 | **Method** | INSPECT |
-| **Source UC** | UC-04, UC-07 |
+| **Source UC** | PROC-02, PROC-04 |
 | **Source Rule** | CR-D-01.3-001, BPR-D-01.3-001 |
 | **Priority** | CRITICAL |
 
@@ -144,7 +144,7 @@ Every NFR includes:
 | **Metric** | Model integrity validation rate |
 | **Target** | 100% of model loads validated |
 | **Method** | TEST |
-| **Source UC** | UC-05, UC-08 |
+| **Source UC** | PROC-03, UC-08 |
 | **Source Rule** | CR-D-01.4-001 |
 | **Priority** | HIGH |
 
@@ -176,7 +176,7 @@ Every NFR includes:
 | **Metric** | Quarterly access review completion rate |
 | **Target** | 100% of roles reviewed quarterly |
 | **Method** | INSPECT |
-| **Source UC** | UC-18, UC-18.1 |
+| **Source UC** | PROC-11, PROC-11.1 |
 | **Source Rule** | CR-D-03.3-001 |
 | **Priority** | HIGH |
 
@@ -224,7 +224,7 @@ Every NFR includes:
 | **Metric** | Training data access control coverage |
 | **Target** | 100% of training data access controlled and logged |
 | **Method** | INSPECT |
-| **Source UC** | UC-21, UC-31 |
+| **Source UC** | UC-21, PROC-20 |
 | **Source Rule** | CR-D-05.1-001 |
 | **Priority** | HIGH |
 
@@ -240,7 +240,7 @@ Every NFR includes:
 | **Metric** | Vendor DPA coverage percentage |
 | **Target** | 100% of third-party processors with DPAs |
 | **Method** | INSPECT |
-| **Source UC** | UC-39, UC-40 |
+| **Source UC** | PROC-25, PROC-26 |
 | **Source Rule** | CR-D-06.3-001 |
 | **Priority** | HIGH |
 
@@ -274,7 +274,7 @@ Every NFR includes:
 | **Metric** | Critical vulnerability remediation time |
 | **Target** | ≤72 hours from identification to remediation |
 | **Method** | ANALYZE |
-| **Source UC** | UC-09, UC-10 |
+| **Source UC** | PROC-05, PROC-06 |
 | **Source Rule** | CR-D-02.1-001, CR-D-02.2-001 |
 | **Priority** | CRITICAL |
 
@@ -290,7 +290,7 @@ Every NFR includes:
 | **Metric** | Patch validation coverage |
 | **Target** | 100% of patches validated before deployment |
 | **Method** | TEST |
-| **Source UC** | UC-10 |
+| **Source UC** | PROC-06 |
 | **Source Rule** | CR-D-02.2-001 |
 | **Priority** | HIGH |
 
@@ -306,7 +306,7 @@ Every NFR includes:
 | **Metric** | Model checksum validation rate |
 | **Target** | 100% of model loads validated |
 | **Method** | TEST |
-| **Source UC** | UC-05, UC-08 |
+| **Source UC** | PROC-03, UC-08 |
 | **Source Rule** | CR-D-01.4-001 |
 | **Priority** | HIGH |
 
@@ -322,7 +322,7 @@ Every NFR includes:
 | **Metric** | File integrity monitoring coverage |
 | **Target** | 100% of critical system files and AI artifacts monitored |
 | **Method** | TEST |
-| **Source UC** | UC-02, UC-05 |
+| **Source UC** | UC-02, PROC-03 |
 | **Source Rule** | BPR-D-01.4-001 |
 | **Priority** | HIGH |
 
@@ -354,7 +354,7 @@ Every NFR includes:
 | **Metric** | SBOM generation and verification rate |
 | **Target** | 100% of releases have verified SBOM |
 | **Method** | INSPECT |
-| **Source UC** | UC-38 |
+| **Source UC** | CAP-03 |
 | **Source Rule** | CR-D-06.2-001 |
 | **Priority** | HIGH |
 
@@ -370,7 +370,7 @@ Every NFR includes:
 | **Metric** | Configuration compliance percentage |
 | **Target** | ≥95% CIS Benchmark compliance maintained |
 | **Method** | TEST |
-| **Source UC** | UC-19 |
+| **Source UC** | PROC-12 |
 | **Source Rule** | CR-D-03.4-001, BPR-D-03.4-001 |
 | **Priority** | HIGH |
 
@@ -386,7 +386,7 @@ Every NFR includes:
 | **Metric** | Dual approval rate for production changes |
 | **Target** | 100% of production changes dual-approved |
 | **Method** | INSPECT |
-| **Source UC** | UC-45 |
+| **Source UC** | PROC-30 |
 | **Source Rule** | CR-D-07.4-001 |
 | **Priority** | CRITICAL |
 
@@ -402,7 +402,7 @@ Every NFR includes:
 | **Metric** | Training data validation rate |
 | **Target** | 100% of training datasets validated |
 | **Method** | INSPECT |
-| **Source UC** | UC-31, UC-35 |
+| **Source UC** | PROC-20, PROC-22 |
 | **Source Rule** | CR-D-05.1-001 |
 | **Priority** | HIGH |
 
@@ -418,7 +418,7 @@ Every NFR includes:
 | **Metric** | AI decision log completeness |
 | **Target** | 100% of AI decisions logged with full traceability |
 | **Method** | INSPECT |
-| **Source UC** | UC-58, UC-62 |
+| **Source UC** | UC-58, PROC-38 |
 | **Source Rule** | AI-C09, AI-C10, DORA-C38 |
 | **Priority** | CRITICAL |
 
@@ -436,7 +436,7 @@ Every NFR includes:
 | **Metric** | System uptime percentage |
 | **Target** | ≥99.99% uptime (≤52.6 min downtime/year) |
 | **Method** | ANALYZE |
-| **Source UC** | UC-24 |
+| **Source UC** | PROC-14 |
 | **Source Rule** | CR-D-04.2-001 |
 | **Priority** | CRITICAL |
 
@@ -452,7 +452,7 @@ Every NFR includes:
 | **Metric** | Recovery Time Objective achievement |
 | **Target** | ≤4 hours for critical systems |
 | **Method** | DEMONSTRATE |
-| **Source UC** | UC-24, UC-27 |
+| **Source UC** | PROC-14, PROC-16 |
 | **Source Rule** | CR-D-04.2-001 |
 | **Priority** | CRITICAL |
 
@@ -468,7 +468,7 @@ Every NFR includes:
 | **Metric** | Recovery Point Objective achievement |
 | **Target** | ≤1 hour data loss for critical systems |
 | **Method** | DEMONSTRATE |
-| **Source UC** | UC-24 |
+| **Source UC** | PROC-14 |
 | **Source Rule** | CR-D-04.2-001 |
 | **Priority** | CRITICAL |
 
@@ -484,7 +484,7 @@ Every NFR includes:
 | **Metric** | SOC coverage hours |
 | **Target** | 24/7/365 coverage |
 | **Method** | DEMONSTRATE |
-| **Source UC** | UC-23 |
+| **Source UC** | CAP-02 |
 | **Source Rule** | CR-D-04.1-001 |
 | **Priority** | CRITICAL |
 
@@ -500,7 +500,7 @@ Every NFR includes:
 | **Metric** | AI system failover time |
 | **Target** | AI service recovery within 2 hours |
 | **Method** | DEMONSTRATE |
-| **Source UC** | UC-27 |
+| **Source UC** | PROC-16 |
 | **Source Rule** | CR-D-04.2-001 |
 | **Priority** | HIGH |
 
@@ -516,7 +516,7 @@ Every NFR includes:
 | **Metric** | Model restoration time |
 | **Target** | ≤30 minutes from checkpoint restore |
 | **Method** | DEMONSTRATE |
-| **Source UC** | UC-27 |
+| **Source UC** | PROC-16 |
 | **Source Rule** | CR-D-04.2-001 |
 | **Priority** | HIGH |
 
@@ -532,7 +532,7 @@ Every NFR includes:
 | **Metric** | Mean time to detect (MTTD) |
 | **Target** | ≤5 minutes for critical incidents |
 | **Method** | ANALYZE |
-| **Source UC** | UC-23, UC-28 |
+| **Source UC** | CAP-02, PROC-17 |
 | **Source Rule** | CR-D-04.1-001 |
 | **Priority** | CRITICAL |
 
@@ -548,7 +548,7 @@ Every NFR includes:
 | **Metric** | Patch deployment success rate |
 | **Target** | ≥99% of patches deployed without service interruption |
 | **Method** | TEST |
-| **Source UC** | UC-10 |
+| **Source UC** | PROC-06 |
 | **Source Rule** | CR-D-02.2-001 |
 | **Priority** | HIGH |
 
@@ -646,7 +646,7 @@ Every NFR includes:
 | **Metric** | Training data validation rate |
 | **Target** | 100% of training datasets validated |
 | **Method** | INSPECT |
-| **Source UC** | UC-31, UC-35 |
+| **Source UC** | PROC-20, PROC-22 |
 | **Source Rule** | CR-D-05.1-001 |
 | **Priority** | HIGH |
 
@@ -662,7 +662,7 @@ Every NFR includes:
 | **Metric** | Retention policy compliance |
 | **Target** | 100% of data subject to automated retention enforcement |
 | **Method** | ANALYZE |
-| **Source UC** | UC-32 |
+| **Source UC** | PROC-21 |
 | **Source Rule** | CR-D-05.2-001 |
 | **Priority** | HIGH |
 
@@ -710,7 +710,7 @@ Every NFR includes:
 | **Metric** | Privacy by design review completion |
 | **Target** | 100% of new processing activities have PbD review |
 | **Method** | INSPECT |
-| **Source UC** | UC-42 |
+| **Source UC** | PROC-28 |
 | **Source Rule** | CR-D-07.1-001 |
 | **Priority** | HIGH |
 
@@ -726,7 +726,7 @@ Every NFR includes:
 | **Metric** | DPIA completion rate |
 | **Target** | 100% of high-risk processing with completed DPIA |
 | **Method** | INSPECT |
-| **Source UC** | UC-53.1 (DPIA) |
+| **Source UC** | PROC-34.1 (DPIA) |
 | **Source Rule** | GDPR Art. 35 |
 | **Priority** | CRITICAL |
 
@@ -742,7 +742,7 @@ Every NFR includes:
 | **Metric** | Bias test coverage |
 | **Target** | 100% of AI systems tested for bias before deployment |
 | **Method** | DEMONSTRATE |
-| **Source UC** | UC-12.2, UC-60 |
+| **Source UC** | PROC-08.2, PROC-37 |
 | **Source Rule** | BPR-D-12.1-001 |
 | **Priority** | HIGH |
 
@@ -774,7 +774,7 @@ Every NFR includes:
 | **Metric** | AI transparency documentation completeness |
 | **Target** | 100% of AI systems have complete transparency docs |
 | **Method** | INSPECT |
-| **Source UC** | UC-55, UC-55.1 |
+| **Source UC** | CAP-07, CAP-07.1 |
 | **Source Rule** | CR-D-09.4-001, BPR-D-09.4-001 |
 | **Priority** | HIGH |
 
@@ -792,7 +792,7 @@ Every NFR includes:
 | **Metric** | Log retention compliance |
 | **Target** | 100% of logs retained per regulation |
 | **Method** | ANALYZE |
-| **Source UC** | UC-58, UC-62 |
+| **Source UC** | UC-58, PROC-38 |
 | **Source Rule** | CR-D-10.2-001 |
 | **Priority** | CRITICAL |
 
@@ -808,7 +808,7 @@ Every NFR includes:
 | **Metric** | ROPA completeness |
 | **Target** | 100% of processing activities documented |
 | **Method** | INSPECT |
-| **Source UC** | UC-52 |
+| **Source UC** | CAP-05 |
 | **Source Rule** | CR-D-09.4-001 |
 | **Priority** | HIGH |
 
@@ -840,7 +840,7 @@ Every NFR includes:
 | **Metric** | Regulatory reporting timely completion |
 | **Target** | 100% of required reports submitted on time |
 | **Method** | INSPECT |
-| **Source UC** | UC-56 |
+| **Source UC** | PROC-35 |
 | **Source Rule** | CR-D-09.1-001 |
 | **Priority** | HIGH |
 
@@ -856,7 +856,7 @@ Every NFR includes:
 | **Metric** | AI decision log completeness |
 | **Target** | 100% of AI decisions logged with required attributes |
 | **Method** | INSPECT |
-| **Source UC** | UC-58, UC-62 |
+| **Source UC** | UC-58, PROC-38 |
 | **Source Rule** | AI-C09, AI-C10, DORA-C38 |
 | **Priority** | CRITICAL |
 
@@ -872,7 +872,7 @@ Every NFR includes:
 | **Metric** | Training completion rate |
 | **Target** | ≥95% annual training completion |
 | **Method** | INSPECT |
-| **Source UC** | UC-48 |
+| **Source UC** | PROC-31 |
 | **Source Rule** | CR-D-08.1-001 |
 | **Priority** | MEDIUM |
 
@@ -890,7 +890,7 @@ Every NFR includes:
 | **Metric** | Notification timeline compliance |
 | **Target** | 100% of notifications within regulatory SLAs |
 | **Method** | TEST |
-| **Source UC** | UC-25 (all specializations) |
+| **Source UC** | PROC-15 (all specializations) |
 | **Source Rule** | CR-D-04.3-001 |
 | **Priority** | CRITICAL |
 
@@ -906,7 +906,7 @@ Every NFR includes:
 | **Metric** | Regulatory coverage in ISMS |
 | **Target** | 100% of applicable regulations in ISMS scope |
 | **Method** | INSPECT |
-| **Source UC** | UC-52, UC-52-DORA |
+| **Source UC** | CAP-05, UC-52-DORA |
 | **Source Rule** | CR-D-09.1-001 |
 | **Priority** | CRITICAL |
 
@@ -922,7 +922,7 @@ Every NFR includes:
 | **Metric** | IPSARA assessment completion |
 | **Target** | 100% of trigger events assessed via IPSARA |
 | **Method** | INSPECT |
-| **Source UC** | UC-53, UC-53.1, UC-53.2 |
+| **Source UC** | PROC-34, PROC-34.1, PROC-34.2 |
 | **Source Rule** | CR-D-09.2-001 |
 | **Priority** | CRITICAL |
 
@@ -938,7 +938,7 @@ Every NFR includes:
 | **Metric** | TLPT completion |
 | **Target** | Annual TLPT executed with all scope elements |
 | **Method** | DEMONSTRATE |
-| **Source UC** | UC-12, UC-12.1, UC-12.2 |
+| **Source UC** | PROC-08, PROC-08.1, PROC-08.2 |
 | **Source Rule** | CR-D-02.4-001 |
 | **Priority** | CRITICAL |
 
@@ -954,7 +954,7 @@ Every NFR includes:
 | **Metric** | Vendor assessment completion |
 | **Target** | 100% of critical vendors assessed pre-engagement and annually |
 | **Method** | INSPECT |
-| **Source UC** | UC-37, UC-37-DORA |
+| **Source UC** | PROC-24, UC-37-DORA |
 | **Source Rule** | CR-D-06.1-001 |
 | **Priority** | HIGH |
 
@@ -970,7 +970,7 @@ Every NFR includes:
 | **Metric** | AI Act conformity status |
 | **Target** | 100% of high-risk AI systems conformant |
 | **Method** | DEMONSTRATE |
-| **Source UC** | UC-30, UC-53.2, UC-55 |
+| **Source UC** | PROC-19, PROC-34.2, CAP-07 |
 | **Source Rule** | AI Act Art. 14, Art. 28, Art. 73 |
 | **Priority** | CRITICAL |
 

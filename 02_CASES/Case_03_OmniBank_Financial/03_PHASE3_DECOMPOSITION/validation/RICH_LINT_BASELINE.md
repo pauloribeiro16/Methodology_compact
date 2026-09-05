@@ -41,7 +41,7 @@ sibling_doc: ../ (Case_01: 03_PHASE3_DECOMPOSITION_RICH/validation/RICH_LINT_BAS
 | CHK-2 FR census | PASS | 72 FR cards match Doc30 summary "Total FRs = 72" |
 | CHK-3 NFR census | **FAIL** | 12 NFR cards defined (NFR-01…NFR-12) vs Doc31 summary claiming **"Total NFRs 56"** — real internal inconsistency (F5-C3-02) |
 | CHK-4 rule refs / dangling | PASS | 78 distinct rule refs across P3 docs; 0 dangling (all resolve against control_set 78) |
-| CHK-5 UC census | PASS (info) | 62 `## UC-NN:` cards in Doc22 (UC-01…UC-62) |
+| CHK-5 UC census | PASS (info) | 62 `## UC-NN:` cards in Doc22 (PROC-01…PROC-38) |
 | CHK-6 corr-008 cross-refs | **FAIL** | 5 FR cards cite raw article citations instead of catalog rule ids in `Source Rule` (FR-59 → AI-C09/AI-C10, FR-62 → DORA-C38, FR-63 → "GDPR Art. 35", FR-64 → "AI Act Art. 28"; also AI Act Art. 14). Gate cards all resolve. |
 | CHK-7 rule traceability coverage | PASS | 78/78 rules referenced by ≥1 P3 doc; FR-level Source Rule covers 49 rules |
 
@@ -51,7 +51,7 @@ sibling_doc: ../ (Case_01: 03_PHASE3_DECOMPOSITION_RICH/validation/RICH_LINT_BAS
 
 | Grep | Result | Verdict |
 |---|---|---|
-| UC-NN refs in Doc23–Doc31 + requirements resolving to Doc22 cards | **Doc23_Use_Case_Relationships.md references UC-99 — no such card exists (Doc22 ends at UC-62)** | **FAIL** (F5-C3-04) |
+| UC-NN refs in Doc23–Doc31 + requirements resolving to Doc22 cards | **Doc23_Use_Case_Relationships.md references UC-99 — no such card exists (Doc22 ends at PROC-38)** | **FAIL** (F5-C3-04) |
 | AG-D-XX.X-NNN refs across P3 docs vs P1 graph AdjustedGoal nodes (76 ids) | 0 dangling | PASS |
 | Doc26 allocation rule rows | 77 of 78 rules allocated — **BPR-D-12.1-001 (AI adversarial robustness testing) absent** from §3 tables (it appears only in Doc27 gates) | FINDING (F5-C3-03) |
 | Doc27 gate cards' Rules Verified vs control_set | 78/78 rules verified by ≥1 gate; 0 dangling | PASS |
@@ -68,7 +68,7 @@ sibling_doc: ../ (Case_01: 03_PHASE3_DECOMPOSITION_RICH/validation/RICH_LINT_BAS
 | F5-C3-01 | MEDIUM | Stale rule counts pre-dating the P2 renumbering (Doc26 "63 rules (38 CR + 25 BPR)"; complexity frontmatter lines across Doc22/Doc26 claim "63 rules" vs frozen 78; Rules Catalog renumbered Doc18→Doc19, Framework Mapping →Doc20). | Census in RULE_FREEZE.md §3; content edits outside F5 touch-scope. |
 | F5-C3-02 | HIGH | Doc31 internal inconsistency: summary claims 56 NFRs (per-category rows 12+10+12+10+6+6) but the body defines only 12 NFR cards (NFR-01…NFR-12, all CONF-category headers present). Suspected truncation of the NFR body in an earlier edit. | Content edit — outside F5 touch-scope. Needs human decision: restore 44 missing cards or correct the summary. |
 | F5-C3-03 | LOW | BPR-D-12.1-001 not allocated to any node in Doc26 §3 (present in Doc27 gates and control_set). | Content edit — outside F5 touch-scope. |
-| F5-C3-04 | LOW | Doc23 references UC-99 (dangling — Doc22 defines UC-01…UC-62). | Content edit — outside F5 touch-scope. |
+| F5-C3-04 | LOW | Doc23 references UC-99 (dangling — Doc22 defines PROC-01…PROC-38). | Content edit — outside F5 touch-scope. |
 | F5-C3-05 | LOW | Doc22–Doc29 frontmatter missing the `case:` field (corr-008 8-field completeness: 7/8 present). | Content edit — outside F5 touch-scope. |
 | F5-C3-06 | MEDIUM | 5 FR cards trace via raw article citations (AI-C09, AI-C10, DORA-C38, "GDPR Art. 35", "AI Act Art. 28", "AI Act Art. 14") instead of catalog rule ids — corr-008 requires REQ-layer trace to point at the rule layer. | Content edit — outside F5 touch-scope. |
 | F5-C3-07 | INFO | CR-D-05.4-001 carries the single deliberate CSF gap ("N/A — não mapeado a CSF 2.0", verbatim from control_set); 34 controls carry the legal `N/A (non-AI scope)` AI-RMF placeholder; 6 controls have `status_csf: —`. | Documented in NIST_ANCHORS.md §4; no action. |

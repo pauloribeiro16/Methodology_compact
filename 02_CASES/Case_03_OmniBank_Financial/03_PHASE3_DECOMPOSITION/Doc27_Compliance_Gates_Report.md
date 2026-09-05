@@ -117,7 +117,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-01 |
 | **Rules Verified** | CR-D-01.3-001, BPR-D-01.3-001 |
 | **Node Verified** | NODE-D-01-01.1 |
-| **UC Verified** | UC-04, UC-07 |
+| **UC Verified** | PROC-02, PROC-04 |
 | **Verification Method** | INSPECT |
 | **Pass Criteria** | HSM-backed key lifecycle confirmed; FIPS 140-3 Level 3 validation; separate keys by classification |
 | **Fail Criteria** | Keys not HSM-backed; FIPS validation expired; keys not separated by classification |
@@ -135,7 +135,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-01 |
 | **Rules Verified** | CR-D-01.4-001, BPR-D-01.4-001 |
 | **Node Verified** | NODE-D-01-01.2 |
-| **UC Verified** | UC-05, UC-08 |
+| **UC Verified** | PROC-03, UC-08 |
 | **Verification Method** | TEST |
 | **Pass Criteria** | Integrity checksums validated on every model load; versioning in place; unauthorized modifications detected |
 | **Fail Criteria** | Models loaded without integrity check; version control missing; tampering not detected |
@@ -155,7 +155,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-02 |
 | **Rules Verified** | CR-D-02.1-001, BPR-D-02.1-001, BPR-D-02.3-001 |
 | **Node Verified** | NODE-D-02-01 |
-| **UC Verified** | UC-09, UC-14 |
+| **UC Verified** | PROC-05, CAP-01 |
 | **Verification Method** | DEMONSTRATE |
 | **Pass Criteria** | Weekly vulnerability scans executed; Critical/High findings remediated within 72h SLA |
 | **Fail Criteria** | Scans not executed weekly; critical vulnerabilities exceed 72h remediation SLA |
@@ -173,7 +173,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-02 |
 | **Rules Verified** | CR-D-02.2-001 |
 | **Node Verified** | NODE-D-02-01.2 |
-| **UC Verified** | UC-10 |
+| **UC Verified** | PROC-06 |
 | **Verification Method** | TEST |
 | **Pass Criteria** | Automated patch management operational; 72h SLA for critical vulnerabilities met |
 | **Fail Criteria** | Patches not automated; critical patches exceed 72h |
@@ -191,7 +191,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-02 |
 | **Rules Verified** | CR-D-02.3-001 |
 | **Node Verified** | NODE-D-02-01 |
-| **UC Verified** | UC-11 |
+| **UC Verified** | PROC-07 |
 | **Verification Method** | INSPECT |
 | **Pass Criteria** | Coordinated vulnerability disclosure policy public; ENISA/CSIRT reporting within 24h confirmed |
 | **Fail Criteria** | Policy not public; incident reporting exceeds 24h |
@@ -209,7 +209,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-02 |
 | **Rules Verified** | CR-D-02.4-001, BPR-D-02.4-001, BPR-D-12.1-001 |
 | **Node Verified** | NODE-D-02-02 |
-| **UC Verified** | UC-12 |
+| **UC Verified** | PROC-08 |
 | **Verification Method** | DEMONSTRATE |
 | **Pass Criteria** | Annual TLPT per DORA RTS executed; AI bias testing completed; adversarial robustness validated |
 | **Fail Criteria** | TLPT not executed annually; AI bias testing not performed; adversarial testing incomplete |
@@ -229,7 +229,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-03 |
 | **Rules Verified** | CR-D-03.1-001, BPR-D-03.1-001 |
 | **Node Verified** | NODE-D-03-01 |
-| **UC Verified** | UC-16, UC-20 |
+| **UC Verified** | PROC-10, PROC-13 |
 | **Verification Method** | INSPECT |
 | **Pass Criteria** | Unified identity management operational; MFA enrolled for all users; HR integration for provisioning/deprovisioning |
 | **Fail Criteria** | Identity management fragmented; users without MFA; HR integration not operational |
@@ -265,7 +265,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-03 |
 | **Rules Verified** | CR-D-03.3-001, BPR-D-03.3-001 |
 | **Node Verified** | NODE-D-03-01.2 |
-| **UC Verified** | UC-18, UC-18.1 |
+| **UC Verified** | PROC-11, PROC-11.1 |
 | **Verification Method** | INSPECT |
 | **Pass Criteria** | Quarterly access reviews executed; least privilege applied; AI platform access reviewed |
 | **Fail Criteria** | Access reviews not quarterly; excessive privileges granted; AI access not reviewed |
@@ -283,7 +283,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-03 |
 | **Rules Verified** | CR-D-03.4-001, BPR-D-03.4-001 |
 | **Node Verified** | NODE-D-03-02 |
-| **UC Verified** | UC-19 |
+| **UC Verified** | PROC-12 |
 | **Verification Method** | TEST |
 | **Pass Criteria** | CIS Benchmarks Level 2 applied; unused services/ports disabled; AI inference endpoints hardened |
 | **Fail Criteria** | CIS compliance not verified; unused services enabled; AI endpoints not hardened |
@@ -303,7 +303,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-04 |
 | **Rules Verified** | CR-D-04.1-001, BPR-D-04.1-001, BPR-D-04.3-001 |
 | **Node Verified** | NODE-D-04-01 |
-| **UC Verified** | UC-23, UC-29 |
+| **UC Verified** | CAP-02, PROC-18 |
 | **Verification Method** | DEMONSTRATE |
 | **Pass Criteria** | 24/7 SOC coverage confirmed; AI anomaly detection operational; quarterly exercises executed |
 | **Fail Criteria** | SOC not 24/7; AI anomaly detection not working; exercises not quarterly |
@@ -321,7 +321,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-04 |
 | **Rules Verified** | CR-D-04.2-001, BPR-D-04.2-001, BPR-D-04.4-001 |
 | **Node Verified** | NODE-D-04-02 |
-| **UC Verified** | UC-24, UC-27 |
+| **UC Verified** | PROC-14, PROC-16 |
 | **Verification Method** | DEMONSTRATE |
 | **Pass Criteria** | 99.99% uptime SLA; RTO <= 4h; RPO <= 1h; AI system failover tested; backup verification quarterly |
 | **Fail Criteria** | Uptime SLA not met; RTO/RPO exceeded; AI failover not tested; backup verification skipped |
@@ -339,7 +339,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-04 |
 | **Rules Verified** | CR-D-04.3-001, BPR-D-04.3-001 |
 | **Node Verified** | NODE-D-04-03, NODE-CS-01 |
-| **UC Verified** | UC-25 (all specializations) |
+| **UC Verified** | PROC-15 (all specializations) |
 | **Verification Method** | TEST |
 | **Pass Criteria** | 24h universal notification workflow operational; DORA 4h initial met; GDPR 72h met; NIS 2/CRA 24h met; AI Act 15d met |
 | **Fail Criteria** | Notification workflow not universal; regulatory SLAs missed |
@@ -377,7 +377,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-05 |
 | **Rules Verified** | CR-D-05.1-001, BPR-D-05.1-001 |
 | **Node Verified** | NODE-D-05-01, NODE-D-05-01.2 |
-| **UC Verified** | UC-31, UC-35 |
+| **UC Verified** | PROC-20, PROC-22 |
 | **Verification Method** | INSPECT |
 | **Pass Criteria** | Data minimization review annual; AI training data relevance/representativeness confirmed; bias proxies not present |
 | **Fail Criteria** | Minimization review not annual; AI training data not relevant; bias proxies detected |
@@ -395,7 +395,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-05 |
 | **Rules Verified** | CR-D-05.2-001 |
 | **Node Verified** | NODE-D-05-01 |
-| **UC Verified** | UC-32 |
+| **UC Verified** | PROC-21 |
 | **Verification Method** | ANALYZE |
 | **Pass Criteria** | 10-year retention for financial records (MiFID II); 5-year for operational; 6-month for AI logs; automated deletion on expiry |
 | **Fail Criteria** | Retention periods not enforced; automated deletion not working |
@@ -451,7 +451,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-06 |
 | **Rules Verified** | CR-D-06.1-001, BPR-D-06.1-001 |
 | **Node Verified** | NODE-D-06-01 |
-| **UC Verified** | UC-37, UC-41 |
+| **UC Verified** | PROC-24, PROC-27 |
 | **Verification Method** | INSPECT |
 | **Pass Criteria** | Pre-engagement assessments completed; annual reassessments done; AI model providers assessed |
 | **Fail Criteria** | Pre-engagement not done; annual reassessment missed; AI providers not assessed |
@@ -469,7 +469,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-06 |
 | **Rules Verified** | CR-D-06.2-001, BPR-D-02.2-001 |
 | **Node Verified** | NODE-D-06-02 |
-| **UC Verified** | UC-38 |
+| **UC Verified** | CAP-03 |
 | **Verification Method** | INSPECT |
 | **Pass Criteria** | SBOM generated on every release; SPDX and CycloneDX formats; AI model dependencies included |
 | **Fail Criteria** | SBOM not generated; formats not standard; AI dependencies missing |
@@ -487,7 +487,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-06 |
 | **Rules Verified** | CR-D-06.3-001, BPR-D-06.3-001 |
 | **Node Verified** | NODE-D-06-01 |
-| **UC Verified** | UC-39 |
+| **UC Verified** | PROC-25 |
 | **Verification Method** | INSPECT |
 | **Pass Criteria** | Security requirements in all contracts; audit rights included; 24h breach notification required; DPA clauses present |
 | **Fail Criteria** | Security requirements missing; audit rights missing; breach notification SLA not in contract |
@@ -505,7 +505,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-06 |
 | **Rules Verified** | CR-D-06.4-001, BPR-D-06.4-001 |
 | **Node Verified** | NODE-D-06-01 |
-| **UC Verified** | UC-40 |
+| **UC Verified** | PROC-26 |
 | **Verification Method** | ANALYZE |
 | **Pass Criteria** | Exit strategies documented for critical vendors; alternative providers identified; data migration plans in place |
 | **Fail Criteria** | Exit strategies not documented; no alternative providers; migration plans missing |
@@ -525,7 +525,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-07 |
 | **Rules Verified** | CR-D-07.1-001, BPR-D-07.1-001 |
 | **Node Verified** | NODE-D-07-01 |
-| **UC Verified** | UC-42, UC-46 |
+| **UC Verified** | PROC-28, UC-46 |
 | **Verification Method** | INSPECT |
 | **Pass Criteria** | CRA secure-by-default standard applied; threat modeling in design; AI ethical design reviews conducted |
 | **Fail Criteria** | Secure-by-default not followed; threat modeling skipped; AI ethics not reviewed |
@@ -543,7 +543,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-07 |
 | **Rules Verified** | CR-D-07.2-001, BPR-D-07.2-001 |
 | **Node Verified** | NODE-D-07-01.1 |
-| **UC Verified** | UC-43, UC-43.1 |
+| **UC Verified** | PROC-29, PROC-29.1 |
 | **Verification Method** | DEMONSTRATE |
 | **Pass Criteria** | SAST/DAST on every commit; OWASP ASVS compliance; High/Critical findings block deployment |
 | **Fail Criteria** | SAST/DAST not on every commit; ASVS compliance not verified; critical findings not blocking |
@@ -579,7 +579,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-07 |
 | **Rules Verified** | CR-D-07.4-001, BPR-D-07.4-001 |
 | **Node Verified** | NODE-D-07-01 |
-| **UC Verified** | UC-45 |
+| **UC Verified** | PROC-30 |
 | **Verification Method** | INSPECT |
 | **Pass Criteria** | Dual control approval; independent oversight; CAB involvement; AI model changes included |
 | **Fail Criteria** | Single-person approvals; no oversight; AI changes bypass CAB |
@@ -599,7 +599,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-08 |
 | **Rules Verified** | CR-D-08.1-001, BPR-D-08.1-001 |
 | **Node Verified** | NODE-D-08-01 |
-| **UC Verified** | UC-48, UC-51 |
+| **UC Verified** | PROC-31, PROC-33 |
 | **Verification Method** | INSPECT |
 | **Pass Criteria** | 95% annual training completion; role-specific modules; phishing simulations quarterly; AI ethics included |
 | **Fail Criteria** | Completion below 95%; no role-specific content; phishing simulations not quarterly; AI ethics missing |
@@ -617,7 +617,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-08 |
 | **Rules Verified** | CR-D-08.2-001, BPR-D-08.2-001, BPR-D-12.3-001 |
 | **Node Verified** | NODE-D-08-02 |
-| **UC Verified** | UC-49, UC-49-AI |
+| **UC Verified** | CAP-04, UC-49-AI |
 | **Verification Method** | INSPECT |
 | **Pass Criteria** | Mandatory certifications for privileged roles; AI human oversight procedures defined; competence tracked annually |
 | **Fail Criteria** | Certifications not mandatory; AI oversight not defined; tracking not annual |
@@ -635,7 +635,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-08 |
 | **Rules Verified** | CR-D-08.3-001, BPR-D-08.3-001 |
 | **Node Verified** | NODE-D-08-03 |
-| **UC Verified** | UC-50 |
+| **UC Verified** | PROC-32 |
 | **Verification Method** | INSPECT |
 | **Pass Criteria** | DORA/NIS 2 training completed within 60 days of appointment; quarterly ICT risk reporting established |
 | **Fail Criteria** | Training not completed; reporting not quarterly |
@@ -655,7 +655,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-09 |
 | **Rules Verified** | CR-D-09.1-001, BPR-D-09.1-001 |
 | **Node Verified** | NODE-D-09-01 |
-| **UC Verified** | UC-52 |
+| **UC Verified** | CAP-05 |
 | **Verification Method** | INSPECT |
 | **Pass Criteria** | ISMS covers all 5 regulatory frameworks; AI governance included; documentation retained 10+ years |
 | **Fail Criteria** | ISMS not unified; frameworks missing; AI governance not included; retention too short |
@@ -673,7 +673,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-09 |
 | **Rules Verified** | CR-D-09.2-001, BPR-D-09.2-001, BPR-D-09.3-001 |
 | **Node Verified** | NODE-D-09-01.1 |
-| **UC Verified** | UC-53, UC-53.1, UC-53.2 |
+| **UC Verified** | PROC-34, PROC-34.1, PROC-34.2 |
 | **Verification Method** | INSPECT |
 | **Pass Criteria** | IPSARA combines DPIA/FRIA/cybersecurity/ICT risk; new systems assessed before go-live; AI-specific risks quarterly |
 | **Fail Criteria** | Assessments not unified; new systems go live without assessment; AI risks not quarterly |
@@ -691,7 +691,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-09 |
 | **Rules Verified** | CR-D-09.3-001 |
 | **Node Verified** | NODE-D-09-01 |
-| **UC Verified** | UC-54 |
+| **UC Verified** | CAP-06 |
 | **Verification Method** | INSPECT |
 | **Pass Criteria** | Automated discovery operational; AI models/training data/endpoints/inference in inventory; monthly reconciliation |
 | **Fail Criteria** | Discovery not automated; AI assets missing; reconciliation not monthly |
@@ -709,7 +709,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-09 |
 | **Rules Verified** | CR-D-09.4-001, BPR-D-09.4-001 |
 | **Node Verified** | NODE-D-09-01.2 |
-| **UC Verified** | UC-55, UC-55.1 |
+| **UC Verified** | CAP-07, CAP-07.1 |
 | **Verification Method** | INSPECT |
 | **Pass Criteria** | Model cards updated on every release; AI decision logs retained; IEEE 7000 transparency reports published |
 | **Fail Criteria** | Model cards not updated; decision logs missing; transparency reports not published |
@@ -783,7 +783,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-10 |
 | **Rules Verified** | CR-D-10.3-001, BPR-D-10.3-001 |
 | **Node Verified** | NODE-D-02-02 |
-| **UC Verified** | UC-59 |
+| **UC Verified** | PROC-36 |
 | **Verification Method** | DEMONSTRATE |
 | **Pass Criteria** | Annual pentest executed; red team for AI systems; adversarial robustness testing; findings remediated within 30 days |
 | **Fail Criteria** | Pentest not annual; red team not for AI; adversarial testing missing; remediation too slow |
@@ -801,7 +801,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-10 |
 | **Rules Verified** | BPR-D-12.4-001, CR-D-02.4-001 |
 | **Node Verified** | NODE-D-02-01.1 |
-| **UC Verified** | UC-60 |
+| **UC Verified** | PROC-37 |
 | **Verification Method** | DEMONSTRATE |
 | **Pass Criteria** | Quarterly adversarial testing per MITRE ATLAS; data poisoning/model evasion/model inversion tested; critical vulnerabilities remediated within 30 days |
 | **Fail Criteria** | Testing not quarterly; attack types missing; remediation too slow |
