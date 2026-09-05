@@ -293,15 +293,7 @@ Data controller of the crossing records; downstream consumer of the journey outc
 4. Kiosk reads the chip (portrait + MRZ data) and validates Passive Authentication against the CSCA chain.
 5. Kiosk displays the extracted document data for the traveller to confirm.
 
-```mermaid
-sequenceDiagram
-    participant TRV as SH-EXT-002 (Traveler)
-    participant KIOSK as SYS-06 + SYS-04 (Kiosk)
-    TRV->>KIOSK: Confirm start; place passport on reader
-    KIOSK->>KIOSK: Read MRZ, derive BAC/PACE, open NFC chip channel
-    KIOSK->>KIOSK: Read chip (portrait + MRZ), validate PA vs CSCA
-    KIOSK-->>TRV: Display extracted document data for confirmation
-```
+> **Sequence diagram:** → Annex B §1 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -422,15 +414,7 @@ Owns the quality thresholds applied at the frame checks.
 4. Kiosk computes the biometric template in-kiosk from the best frame.
 5. Kiosk purges raw frames immediately after template creation (STORE-05 policy).
 
-```mermaid
-sequenceDiagram
-    participant TRV as SH-EXT-002 (Traveler)
-    participant KIOSK as SYS-06 + SYS-04 (Kiosk)
-    KIOSK->>TRV: Prompt to look at camera
-    TRV->>KIOSK: Align with positioning guide
-    KIOSK->>KIOSK: Capture burst (3D depth + RGB), run quality checks
-    KIOSK->>KIOSK: Compute template in-kiosk; purge raw frames (STORE-05)
-```
+> **Sequence diagram:** → Annex B §2 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -544,16 +528,7 @@ Receives the traveller after a failed challenge.
 2. Edge CNN computes the liveness score in-kiosk.
 3. Score ≥ configured threshold → sample certified as live; continue to U.C.8.2.3.
 
-```mermaid
-sequenceDiagram
-    participant TRV as SH-EXT-002 (Traveler)
-    participant KIOSK as SYS-04 (Edge AI PAD)
-    participant SOC as SH-INT-008 (SOC)
-    TRV->>KIOSK: Present to sensor
-    KIOSK->>KIOSK: Passive+active challenge; CNN liveness score in-kiosk
-    KIOSK->>KIOSK: Score >= threshold -> sample certified live
-    KIOSK-->>SOC: On failure: spoof security event (kiosk ID + timestamp)
-```
+> **Sequence diagram:** → Annex B §3 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -665,14 +640,7 @@ Match decisions are shared with the national border control system.
 3. Score ≥ match threshold → decision input TRUE; continue to U.C.8.3.1.
 4. Template and frames are purged; only the decision record persists.
 
-```mermaid
-sequenceDiagram
-    participant KIOSK as SYS-04 (Edge AI)
-    participant AUTH as SYS-02 (Border authority)
-    KIOSK->>KIOSK: 1:1 live template vs chip portrait; similarity score (<= 2 s)
-    KIOSK->>KIOSK: Threshold decision; purge template + frames, keep decision record
-    KIOSK-->>AUTH: Match decision shared with national border control
-```
+> **Sequence diagram:** → Annex B §4 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -783,15 +751,7 @@ Receives watchlist-hit and door-failure referrals.
 3. Kiosk emits the crossing event to SYS-02 (national border control integration).
 4. Decision record written to the immutable decision log (U.C. audit chain) — no biometric payload.
 
-```mermaid
-sequenceDiagram
-    participant KIOSK as SYS-06 + SYS-04 (Kiosk)
-    participant AUTH as SYS-02 (Border authority)
-    KIOSK->>KIOSK: Combine inputs (PA, liveness, match, watchlist)
-    KIOSK->>KIOSK: RELEASE -> door opens
-    KIOSK->>AUTH: Crossing event (outbound-only mTLS/QUIC channel)
-    KIOSK->>KIOSK: Decision record -> immutable log (no biometric payload)
-```
+> **Sequence diagram:** → Annex B §5 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -911,16 +871,7 @@ Audits overrides.
 4. Officer records the decision (approve / deny) + mandatory reason code.
 5. Gate or manual lane proceeds accordingly; decision logged to the immutable audit chain.
 
-```mermaid
-sequenceDiagram
-    participant OFF as SH-EXT-001 (Border Officer)
-    participant CON as SYS-08 (Console, SSO+FIDO2)
-    participant LOG as Immutable audit chain
-    OFF->>CON: Authenticate (FIDO2); open work item
-    CON-->>OFF: Reason class, chip data, live camera view
-    OFF->>CON: Record decision (approve/deny) + reason code
-    CON->>LOG: Append decision (officer ID, timestamps)
-```
+> **Sequence diagram:** → Annex B §6 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -1032,14 +983,7 @@ Controller for the processing described in the notice.
 2. Traveller acknowledges; where consent is the basis, kiosk records the consent token.
 3. Journey continues; acknowledgement reference stored with the decision log.
 
-```mermaid
-sequenceDiagram
-    participant TRV as SH-EXT-002 (Traveler)
-    participant KIOSK as SYS-06 (Kiosk)
-    KIOSK->>TRV: Privacy notice (purposes, biometrics, retention, rights)
-    TRV->>KIOSK: Acknowledge; consent token where consent-based
-    KIOSK->>KIOSK: Link acknowledgement reference to the journey record
-```
+> **Sequence diagram:** → Annex B §7 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -1163,16 +1107,7 @@ Receives console authentication anomalies from continuous monitoring (CAP-02).
 4. Console opens the referral work surface; the session binds the officer identity to every subsequent action.
 5. Idle timeout or shift end terminates the session and requires re-authentication.
 
-```mermaid
-sequenceDiagram
-    participant OFF as SH-EXT-001 (Border Officer)
-    participant SSO as SYS-08 (Okta + ADFS)
-    participant CON as Console client
-    OFF->>SSO: Open console; present FIDO2 assertion
-    SSO->>SSO: Verify FIDO2 (mandatory) + risk check
-    SSO-->>CON: Role-scoped session token
-    CON-->>OFF: Referral work surface (actions bound to officer ID)
-```
+> **Sequence diagram:** → Annex B §8 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -1291,16 +1226,7 @@ watchlist or quality).
 4. Officer triages the reason class and proceeds to manual verification (U.C.9.3.1) or dispatches the case to the manual lane.
 5. Queue telemetry (depth, wait time, state) is recorded for the SLA dashboard (U.C.12.3.1).
 
-```mermaid
-sequenceDiagram
-    participant KIOSK as SYS-04/SYS-06 (Kiosk)
-    participant CON as Console queue (SYS-08)
-    participant OFF as SH-EXT-001 (Border Officer)
-    KIOSK->>CON: Referral + reason class + queue token
-    CON-->>OFF: Ordered queue; officer claims item
-    OFF->>CON: Triage reason class; open work item
-    CON->>CON: Record state + queue telemetry (U.C.12.3.1)
-```
+> **Sequence diagram:** → Annex B §9 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -1425,16 +1351,7 @@ Audits overrides via sampling.
 4. Console enforces a mandatory reason code (free-text annotation optional).
 5. Decision + officer ID + timestamps append to the immutable audit chain; gate or manual lane proceeds accordingly.
 
-```mermaid
-sequenceDiagram
-    participant OFF as SH-EXT-001 (Border Officer)
-    participant CON as Console (SYS-08)
-    participant LOG as Immutable audit chain (STORE-04)
-    CON-->>OFF: Evidence bundle (reason class, chip data, live view)
-    OFF->>CON: Outcome (approve/deny/override) + mandatory reason code
-    CON->>LOG: Append decision (officer ID, timestamps)
-    CON-->>OFF: Lane dispatch confirmed
-```
+> **Sequence diagram:** → Annex B §10 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -1551,16 +1468,7 @@ Runs the incident playbook and containment tooling.
 4. SOC triages (PROC-05) and decides clearance or escalation to containment (PROC-06).
 5. Clearance releases the lock; all state transitions are logged to the audit chain.
 
-```mermaid
-sequenceDiagram
-    participant OFF as SH-EXT-001 (Border Officer)
-    participant SOC as SH-INT-008 (SOC, SYS-12)
-    participant KIOSK as SYS-06/SYS-04 (Kiosk)
-    OFF->>SOC: Flag case (incident class + evidence refs)
-    SOC->>KIOSK: Lock gate; halt intake
-    KIOSK-->>SOC: Lock state confirmed
-    SOC-->>KIOSK: On clearance: release lock (logged)
-```
+> **Sequence diagram:** → Annex B §11 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -1674,17 +1582,7 @@ Uses the override sections for sampling (MUC-C2-05).
 4. Incoming officer authenticates (U.C.9.1.1) and accepts the queue; in-service items return to waiting.
 5. Report archived to the audit chain; the outgoing session terminates.
 
-```mermaid
-sequenceDiagram
-    participant OUT as SH-EXT-001 (outgoing)
-    participant CON as Console (SYS-08)
-    participant IN as SH-EXT-001 (incoming)
-    OUT->>CON: Open handover view
-    CON-->>OUT: Referral report (items, overrides, incidents)
-    OUT->>CON: Annotate + transfer queue
-    IN->>CON: Authenticate (U.C.9.1.1); accept queue
-    CON->>CON: Archive report to audit chain
-```
+> **Sequence diagram:** → Annex B §12 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -1806,16 +1704,7 @@ Provides the physical installation environment and site network handoff.
 4. Internal CA issues the mTLS client certificate bound to the TPM key; quarterly rotation and OCSP revocation scheduled.
 5. Unit registered in the fleet inventory with its SBOM reference; baseline configuration applied (secure defaults, U.C.3.5.1); unit becomes enrolled and healthy for PKG-8.
 
-```mermaid
-sequenceDiagram
-    participant KIOSK as SYS-06/SYS-04 (Kiosk)
-    participant ENR as SYS-01 (Enrolment + internal CA)
-    participant OPS as SH-INT-007 (Ops Lead)
-    KIOSK->>ENR: Secure boot OK; present TPM-bound key (outbound)
-    ENR->>OPS: Enrolment request (serial, attestation)
-    OPS->>ENR: Approve (manifest match)
-    ENR-->>KIOSK: mTLS certificate (TPM-bound); baseline config
-```
+> **Sequence diagram:** → Annex B §13 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -1931,17 +1820,7 @@ Receives security-class events (tamper indicators, lock anomalies).
 4. Maintenance-class anomalies become Ops work orders; security-class anomalies raise SOC events (PROC-05), including tamper indicators (U.C.10.4.1).
 5. Anomalies are correlated per unit/lane in the SIEM (CAP-02).
 
-```mermaid
-sequenceDiagram
-    participant KIOSK as SYS-06 (Kiosk fleet)
-    participant SIEM as SYS-09/SYS-12 (Aggregation)
-    participant OPS as SH-INT-007 (Ops Lead)
-    participant SOC as SH-INT-008 (SOC)
-    KIOSK->>SIEM: Heartbeat + sensor state + versions
-    SIEM->>OPS: Maintenance-class anomaly -> work order
-    SIEM->>SOC: Security-class anomaly (e.g. tamper)
-    SIEM->>SIEM: Correlate per unit/lane (CAP-02)
-```
+> **Sequence diagram:** → Annex B §14 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2052,16 +1931,7 @@ Informed/engaged on rollout anomalies or aborts.
 4. Package applied atomically; the unit self-tests and reports its new version.
 5. Ring progression is gated on canary health; abort/rollback remains armed until promotion is confirmed.
 
-```mermaid
-sequenceDiagram
-    participant OPS as SH-INT-007 (Ops Lead)
-    participant PIPE as SYS-11 (OTA pipeline)
-    participant KIOSK as SYS-06/SYS-04 (Kiosk)
-    OPS->>PIPE: Schedule staged rollout (canary -> rings)
-    PIPE->>KIOSK: Signed package + CycloneDX SBOM (mTLS)
-    KIOSK->>KIOSK: Verify cosign signature in TPM; atomic apply
-    KIOSK-->>OPS: New version reported; ring gate on health
-```
+> **Sequence diagram:** → Annex B §15 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2181,16 +2051,7 @@ Coordinates site security for physical inspection.
 4. Outcome: verified-false (sensors re-armed) or confirmed tamper (contain: certificate revoked via OCSP, firmware quarantined, unit re-imaged from the signed baseline or retired).
 5. Incident record closed on the audit chain; authority notification if reportable (PROC-07).
 
-```mermaid
-sequenceDiagram
-    participant MON as SYS-09/SYS-12 (Telemetry)
-    participant SOC as SH-INT-008 (SOC)
-    participant OPS as SH-INT-007 (Ops Lead)
-    MON->>SOC: Tamper alert (unit ID + class)
-    SOC->>OPS: Contain: lock unit (U.C.9.4.1); revoke cert
-    OPS-->>SOC: Inspection result (false / confirmed)
-    SOC->>SOC: Re-image from signed baseline or retire; log
-```
+> **Sequence diagram:** → Annex B §16 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2302,16 +2163,7 @@ Engaged on prolonged outages or queue-integrity anomalies.
 4. Queued events are encrypted (HSM-bound key class) and retained until the channel returns.
 5. On reconnection: store-and-forward flush to SYS-09 in strict order; completeness reconciled; the offline window is recorded for SLA (U.C.12.3.1).
 
-```mermaid
-sequenceDiagram
-    participant KIOSK as SYS-06/SYS-04 (Kiosk)
-    participant SINK as SYS-09 (Audit sink)
-    participant OPS as SH-INT-007 (Ops Lead)
-    KIOSK->>KIOSK: Heartbeat loss -> failover -> restricted mode
-    KIOSK->>KIOSK: Queue events (encrypted, sequenced)
-    KIOSK->>SINK: On reconnect: ordered store-and-forward flush
-    SINK-->>OPS: Completeness reconciled; offline window logged
-```
+> **Sequence diagram:** → Annex B §17 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2435,16 +2287,7 @@ Reviews training-data minimisation inputs.
 4. AI Governance signs off against the Annex III technical documentation (PROC-19).
 5. The candidate becomes eligible for fleet rollout (U.C.11.2.1).
 
-```mermaid
-sequenceDiagram
-    participant ML as SH-INT-006 (ML pipeline)
-    participant SYS5 as SYS-05 (EU-only training)
-    participant AIG as SH-INT-005 (AI Governance)
-    ML->>SYS5: Training run (segregated account)
-    SYS5-->>AIG: Candidate + evaluation metrics (accuracy, bias)
-    AIG->>SYS5: Sign-off vs conformity docs (PROC-19)
-    SYS5-->>ML: Versioned artefact + cosign + SBOM (SYS-11)
-```
+> **Sequence diagram:** → Annex B §18 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2554,16 +2397,7 @@ Engaged on rollout anomalies or aborts.
 4. Ring promotion on canary metrics within governed bounds (drift monitoring PROC-26); otherwise auto-halt.
 5. Fleet-wide completion recorded; the previous version is retained for rollback (U.C.11.3.1).
 
-```mermaid
-sequenceDiagram
-    participant AIG as SH-INT-005 (AI Governance)
-    participant PIPE as SYS-11 (Distribution)
-    participant KIOSK as SYS-04 (Edge AI runtime)
-    AIG->>PIPE: Approve staged rollout (canary -> rings)
-    PIPE->>KIOSK: Signed model artefact (cosign + SBOM)
-    KIOSK->>KIOSK: Verify signature in TPM; pin version
-    KIOSK-->>AIG: Canary metrics -> ring gate (vs governed bounds)
-```
+> **Sequence diagram:** → Annex B §19 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2670,16 +2504,7 @@ Opens the root-cause fix track.
 4. Rollback verified via health and drift metrics (PROC-26).
 5. Root-cause ticket opened; any re-release requires fresh packaging (PROC-25).
 
-```mermaid
-sequenceDiagram
-    participant AIG as SH-INT-005 (AI Governance)
-    participant KIOSK as SYS-04 (Edge AI runtime)
-    participant SOC as SH-INT-008 (SOC)
-    AIG->>KIOSK: Rollback to previous signed version (scope)
-    KIOSK->>KIOSK: Revert; update version pins
-    KIOSK-->>AIG: Health + drift metrics confirm revert
-    AIG->>SOC: Link rollback to incident record
-```
+> **Sequence diagram:** → Annex B §20 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2786,16 +2611,7 @@ Downstream consumer of post-market evidence via PROC-18.
 4. Disposition recorded: threshold tune (governed change), retrain (PROC-25) or rollback (U.C.11.3.1).
 5. Review record and metrics archived; reportable findings follow PROC-07 / PROC-18.
 
-```mermaid
-sequenceDiagram
-    participant TEL as SYS-09/SYS-12 (Telemetry)
-    participant AIG as SH-INT-005 (AI Governance)
-    participant ACT as PROC-25 / U.C.11.3.1
-    TEL->>AIG: Drift/bias metrics per model version
-    TEL-->>AIG: Alert on governed-bound breach (U.C.6.2.1)
-    AIG->>AIG: Review; record disposition
-    AIG->>ACT: Retrain or rollback per disposition
-```
+> **Sequence diagram:** → Annex B §21 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2907,16 +2723,7 @@ Controller of the watchlist data; defines policy and deletion.
 4. Kiosks read the cache through the read endpoints only; the FLOW-02 probe path is unchanged.
 5. Sync result and cache version logged; controller-side deletions propagate per policy.
 
-```mermaid
-sequenceDiagram
-    participant SYS3 as SYS-03 (Gov feed)
-    participant CACHE as STORE-03 (Isolated cache)
-    participant KIOSK as SYS-04 (Read endpoints)
-    SYS3->>CACHE: sFTP batch to DMZ; HSM-bound decryption
-    CACHE->>CACHE: 1:1 mirror update (encrypted, HSM CMK)
-    KIOSK->>CACHE: Read via subservice endpoints only
-    CACHE-->>SYS3: Sync version logged; deletions propagated
-```
+> **Sequence diagram:** → Annex B §22 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -3034,16 +2841,7 @@ Receives configuration-drift alerts (U.C.10.2.1).
 4. Configuration is dispatched over the mTLS management channel; the unit verifies and applies it, secure defaults preserved (U.C.3.5.1).
 5. The applied version is recorded per unit; drift against the baseline is alerted (U.C.10.2.1).
 
-```mermaid
-sequenceDiagram
-    participant OPS as SH-INT-007 (Ops Lead)
-    participant APP as Second approver (dual control)
-    participant KIOSK as SYS-06/SYS-04 (Unit)
-    OPS->>APP: Config version (diff vs baseline)
-    APP->>OPS: Approve (sensitive classes)
-    OPS->>KIOSK: Dispatch over mTLS management channel
-    KIOSK-->>OPS: Applied; version recorded; drift watched
-```
+> **Sequence diagram:** → Annex B §23 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -3155,16 +2953,7 @@ Source of the signature-chained records.
 4. Signed evidence bundle generated (signature-chained entries + integrity proof).
 5. Bundle delivered via the agreed secure channel; the export itself is recorded in the audit chain.
 
-```mermaid
-sequenceDiagram
-    participant AUTH as SH-EXT-003 (Authority)
-    participant COMP as SH-INT-010 + DPO (Scope check)
-    participant WORM as SYS-09 STORE-04 (WORM)
-    AUTH->>COMP: Evidence request (case/period scope)
-    COMP->>WORM: Approved scoped extraction
-    WORM-->>AUTH: Signed bundle (signature chain + integrity proof)
-    COMP->>COMP: Export recorded in audit chain
-```
+> **Sequence diagram:** → Annex B §24 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -3272,16 +3061,7 @@ Aggregates fleet and SLA counters.
 4. Threshold breaches alert Ops/SOC.
 5. Periodic SLA reports archived for the B2G/B2B contracts.
 
-```mermaid
-sequenceDiagram
-    participant TEL as SYS-09 (Telemetry)
-    participant DASH as SLA & Fleet dashboard
-    participant OPS as SH-INT-007 (Ops Lead)
-    TEL->>DASH: Unit status + SLA counters
-    DASH->>DASH: Uptime vs 99.99%; breach windows annotated
-    DASH-->>OPS: Live view + threshold alerts
-    DASH->>DASH: Periodic SLA report archived
-```
+> **Sequence diagram:** → Annex B §25 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -3387,16 +3167,7 @@ Sees privileged entitlement changes streamed from the IdP.
 4. The entitlement change is recorded; privileged changes stream to SOC.
 5. Quarterly review reconciles entitlements against actual use (PROC-11).
 
-```mermaid
-sequenceDiagram
-    participant OPS as SH-INT-007 (Ops Lead)
-    participant SSO as SYS-08 (IdP)
-    participant SOC as SH-INT-008 (SOC)
-    OPS->>SSO: Role assignment per approved profile
-    SSO->>SSO: Step-up approval for sensitive roles
-    SSO-->>SOC: Privileged change event
-    SSO-->>OPS: Entitlements effective at next console login
-```
+> **Sequence diagram:** → Annex B §26 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
