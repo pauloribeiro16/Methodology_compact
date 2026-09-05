@@ -14,6 +14,17 @@
 | Volere FR pilot (C2) | Case_02 `Doc29_Functional_Requirements.md`: new `Fit Criterion` column between Verification Method and Priority. 6 FRs from operator-aligned topics (FR-03/04/09/12/13/26) + 1 repeatability (FR-72 AI domain) received measurable thresholds (100%/30s/16min windows, schema validation, automated detection). 3 gates PASS unchanged. |
 | Out of scope | Ontologies, dashboards, folios, KG reflection, realisation_class tag waves C2/C3. Briefing pack for items 1–4 (P7 queue) delivered as `P7_BRIEFING_PACK_2026-09-05.md` for human decision. |
 
+## 1.2 2026-09-05 — TRACEABILITY AUDIT
+
+| Item | Value |
+|------|-------|
+| Instrument | `scripts/traceability_audit.py` v0.1 (read-only, std-lib) — co-occurrence model: an OBJECTIVE counts as linked to a CONTROL when it appears in the SAME artefact that also contains the CONTROL id |
+| Standard | `REALIZATION_CLASS_RUBRIC.md` v1.6 §6C (OBJ↔CTRL↔UC chain normative; AG-D treated as PO/SO alias in Case_03 per id-space note) |
+| Ratios | C1 100/100/100 · C2 —/100/100 (Doc16 has no CR forward links, only OBL→control) · C3 100/100/100 (4 orphans closed via OBL→CR annotations in Doc17) |
+| Verification | 3 gates v0.4 PASS unchanged |
+
+---
+
 ## 1.1 2026-09-05 — DERIVED-REFRESH (Phase 3 derived docs brought to the current id space)
 
 | Item | Value |
