@@ -461,3 +461,208 @@ Conflicts between privacy and security objectives are identified through analysi
 ---
 
 **Next Step:** Use these objectives to derive the Rules Catalog (Doc19_Rules_Catalog.md / 12_Rules_Catalog.xlsx) via Phase 2, Step E — Rules Elaboration.
+
+
+## realisation_class_derived (auto, majority-vote of realizing controls)
+
+| Objective / Obligation | Realising CR/BPR | Majority |
+|---|---|---|
+| AG-D-01.1-001 | BPR-D-01.1-001, CR-D-01.1-001, CR-D-01.2-001, CR-D-01.3-001, CR-D-05.1-001 | no-rule |
+| AG-D-01.2-001 | BPR-D-01.2-001, CR-D-01.2-001 | no-rule |
+| AG-D-01.3-001 | BPR-D-01.3-001, CR-D-01.3-001, CR-D-07.1-001 | no-rule |
+| AG-D-01.4 | — | no-rule |
+| AG-D-01.4-001 | BPR-D-01.4-001, CR-D-01.1-001, CR-D-01.4-001 | no-rule |
+| AG-D-02.1-002 | CR-D-02.1-001, CR-D-02.2-001, CR-D-02.3-001, CR-D-02.4-001 | no-rule |
+| AG-D-02.2-002 | — | no-rule |
+| AG-D-02.3-002 | — | no-rule |
+| AG-D-02.4-002 | CR-D-01.4-001, CR-D-02.1-001, CR-D-02.4-001, CR-D-05.1-001, CR-D-08.2-001 | no-rule |
+| AG-D-03.1-002 | CR-D-03.1-001, CR-D-03.2-001, CR-D-03.3-001 | no-rule |
+| AG-D-03.2-002 | — | no-rule |
+| AG-D-03.3-002 | CR-D-03.3-001 | no-rule |
+| AG-D-03.4-002 | CR-D-03.1-001, CR-D-03.2-001, CR-D-03.3-001, CR-D-03.4-001, CR-D-07.1-001 | no-rule |
+| AG-D-04.1-002 | CR-D-02.1-001, CR-D-02.3-001, CR-D-02.4-001, CR-D-04.1-001, CR-D-04.2-001 … | no-rule |
+| AG-D-04.2-002 | CR-D-02.2-001, CR-D-04.2-001, CR-D-04.4-001 | no-rule |
+| AG-D-04.3-002 | — | no-rule |
+| AG-D-04.4-002 | CR-D-04.2-001, CR-D-04.4-001 | no-rule |
+| AG-D-05.1 | — | no-rule |
+| AG-D-05.1-001 | BPR-D-05.1-001, CR-D-05.1-001, CR-D-05.2-001, CR-D-05.3-001, CR-D-05.4-001 | no-rule |
+| AG-D-05.2 | — | no-rule |
+| AG-D-05.2-001 | CR-D-01.1-001, CR-D-01.4-001, CR-D-05.2-001, CR-D-05.3-001 | no-rule |
+| AG-D-05.3 | — | no-rule |
+| AG-D-05.3-001 | BPR-D-05.3-001, CR-D-05.3-001 | no-rule |
+| AG-D-05.4-001 | BPR-D-05.4-001, CR-D-01.2-001, CR-D-05.4-001 | no-rule |
+| AG-D-06.1-002 | CR-D-06.1-001, CR-D-06.2-001, CR-D-06.3-001, CR-D-06.4-001 | no-rule |
+| AG-D-06.2-002 | — | no-rule |
+| AG-D-06.3-002 | — | no-rule |
+| AG-D-06.4-002 | CR-D-06.4-001 | no-rule |
+| AG-D-07.1-001 | BPR-D-07.1-001, CR-D-07.1-001 | no-rule |
+| AG-D-07.2-002 | CR-D-07.1-001, CR-D-07.2-001, CR-D-07.3-001, CR-D-07.4-001 | no-rule |
+| AG-D-07.3-002 | CR-D-07.2-001, CR-D-07.3-001, CR-D-07.4-001 | no-rule |
+| AG-D-07.4-002 | — | no-rule |
+| AG-D-08.1-002 | CR-D-08.1-001, CR-D-08.2-001 | no-rule |
+| AG-D-08.2-002 | CR-D-08.1-001, CR-D-08.2-001, CR-D-08.3-001 | no-rule |
+| AG-D-08.3-002 | — | no-rule |
+| AG-D-09.1-001 | BPR-D-09.1-001, BPR-D-09.4-001, CR-D-08.3-001, CR-D-09.1-001, CR-D-09.2-001 | no-rule |
+| AG-D-09.2-001 | BPR-D-09.2-001, BPR-D-09.3-001, CR-D-09.2-001 | no-rule |
+| AG-D-09.3-002 | CR-D-09.1-001, CR-D-09.2-001, CR-D-09.3-001, CR-D-09.4-001 | no-rule |
+| AG-D-09.4-001 | CR-D-09.1-001, CR-D-09.2-001, CR-D-09.3-001, CR-D-09.4-001 | no-rule |
+| AG-D-10.1-002 | CR-D-04.1-001, CR-D-04.3-001, CR-D-10.1-001, CR-D-10.2-001, CR-D-10.3-001 | no-rule |
+| AG-D-10.2-002 | — | no-rule |
+| AG-D-10.3-002 | — | no-rule |
+| OBL-D-01.1 | — | no-rule |
+| OBL-D-01.1-001 | — | no-rule |
+| OBL-D-01.2 | — | no-rule |
+| OBL-D-01.2-001 | — | no-rule |
+| OBL-D-01.3 | — | no-rule |
+| OBL-D-01.3-001 | — | no-rule |
+| OBL-D-01.4-001 | — | no-rule |
+| OBL-D-02.1 | — | no-rule |
+| OBL-D-02.1-001 | — | no-rule |
+| OBL-D-02.2-001 | — | no-rule |
+| OBL-D-02.3-001 | — | no-rule |
+| OBL-D-02.4 | — | no-rule |
+| OBL-D-02.4-001 | — | no-rule |
+| OBL-D-03.1 | — | no-rule |
+| OBL-D-03.1-001 | — | no-rule |
+| OBL-D-03.2-001 | — | no-rule |
+| OBL-D-03.3-001 | — | no-rule |
+| OBL-D-03.4 | — | no-rule |
+| OBL-D-03.4-001 | — | no-rule |
+| OBL-D-04.1 | — | no-rule |
+| OBL-D-04.1-001 | — | no-rule |
+| OBL-D-04.2-001 | — | no-rule |
+| OBL-D-04.3-001 | — | no-rule |
+| OBL-D-04.4 | — | no-rule |
+| OBL-D-04.4-001 | — | no-rule |
+| OBL-D-05.1 | — | no-rule |
+| OBL-D-05.1-001 | — | no-rule |
+| OBL-D-05.2-001 | — | no-rule |
+| OBL-D-05.3-001 | — | no-rule |
+| OBL-D-05.4 | — | no-rule |
+| OBL-D-05.4-001 | — | no-rule |
+| OBL-D-06.1 | — | no-rule |
+| OBL-D-06.1-001 | — | no-rule |
+| OBL-D-06.2-001 | — | no-rule |
+| OBL-D-06.3-001 | — | no-rule |
+| OBL-D-06.4 | — | no-rule |
+| OBL-D-06.4-001 | — | no-rule |
+| OBL-D-07.1-001 | — | no-rule |
+| OBL-D-07.2-001 | — | no-rule |
+| OBL-D-07.3-001 | — | no-rule |
+| OBL-D-07.4-001 | — | no-rule |
+| OBL-D-08.1-001 | — | no-rule |
+| OBL-D-08.2-001 | — | no-rule |
+| OBL-D-08.3-001 | — | no-rule |
+| OBL-D-09.1 | — | no-rule |
+| OBL-D-09.1-001 | — | no-rule |
+| OBL-D-09.2 | — | no-rule |
+| OBL-D-09.2-001 | — | no-rule |
+| OBL-D-09.3 | — | no-rule |
+| OBL-D-09.3-001 | — | no-rule |
+| OBL-D-09.4 | — | no-rule |
+| OBL-D-09.4-001 | — | no-rule |
+| OBL-D-10.1-001 | — | no-rule |
+| OBL-D-10.2-001 | — | no-rule |
+| OBL-D-10.3-001 | — | no-rule |
+
+## realisation_class_derived (auto, majority-vote of realizing controls)
+
+| Objective / Obligation | Realising CR/BPR | Majority |
+|---|---|---|
+| AG-D-01.1-001 | BPR-D-01.1-001, CR-D-01.1-001, CR-D-01.2-001, CR-D-01.3-001, CR-D-05.1-001 | CAPABILITY |
+| AG-D-01.2-001 | BPR-D-01.2-001, CR-D-01.2-001 | TECHNOLOGY |
+| AG-D-01.3-001 | BPR-D-01.3-001, CR-D-01.3-001, CR-D-07.1-001 | CAPABILITY |
+| AG-D-01.4 | — | no-rule |
+| AG-D-01.4-001 | BPR-D-01.4-001, CR-D-01.1-001, CR-D-01.4-001 | TECHNOLOGY |
+| AG-D-02.1-002 | CR-D-02.1-001, CR-D-02.2-001, CR-D-02.3-001, CR-D-02.4-001 | PROCESS |
+| AG-D-02.2-002 | — | no-rule |
+| AG-D-02.3-002 | — | no-rule |
+| AG-D-02.4-002 | CR-D-01.4-001, CR-D-02.1-001, CR-D-02.4-001, CR-D-05.1-001, CR-D-08.2-001 | PROCESS |
+| AG-D-03.1-002 | CR-D-03.1-001, CR-D-03.2-001, CR-D-03.3-001 | PROCESS |
+| AG-D-03.2-002 | — | no-rule |
+| AG-D-03.3-002 | CR-D-03.3-001 | PROCESS |
+| AG-D-03.4-002 | CR-D-03.1-001, CR-D-03.2-001, CR-D-03.3-001, CR-D-03.4-001, CR-D-07.1-001 | TECHNOLOGY |
+| AG-D-04.1-002 | CR-D-02.1-001, CR-D-02.3-001, CR-D-02.4-001, CR-D-04.1-001, CR-D-04.2-001 … | PROCESS |
+| AG-D-04.2-002 | CR-D-02.2-001, CR-D-04.2-001, CR-D-04.4-001 | PROCESS |
+| AG-D-04.3-002 | — | no-rule |
+| AG-D-04.4-002 | CR-D-04.2-001, CR-D-04.4-001 | PROCESS |
+| AG-D-05.1 | — | no-rule |
+| AG-D-05.1-001 | BPR-D-05.1-001, CR-D-05.1-001, CR-D-05.2-001, CR-D-05.3-001, CR-D-05.4-001 | PROCESS |
+| AG-D-05.2 | — | no-rule |
+| AG-D-05.2-001 | CR-D-01.1-001, CR-D-01.4-001, CR-D-05.2-001, CR-D-05.3-001 | TECHNOLOGY |
+| AG-D-05.3 | — | no-rule |
+| AG-D-05.3-001 | BPR-D-05.3-001, CR-D-05.3-001 | TECHNOLOGY |
+| AG-D-05.4-001 | BPR-D-05.4-001, CR-D-01.2-001, CR-D-05.4-001 | TECHNOLOGY |
+| AG-D-06.1-002 | CR-D-06.1-001, CR-D-06.2-001, CR-D-06.3-001, CR-D-06.4-001 | PROCESS |
+| AG-D-06.2-002 | — | no-rule |
+| AG-D-06.3-002 | — | no-rule |
+| AG-D-06.4-002 | CR-D-06.4-001 | PROCESS |
+| AG-D-07.1-001 | BPR-D-07.1-001, CR-D-07.1-001 | CAPABILITY |
+| AG-D-07.2-002 | CR-D-07.1-001, CR-D-07.2-001, CR-D-07.3-001, CR-D-07.4-001 | PROCESS |
+| AG-D-07.3-002 | CR-D-07.2-001, CR-D-07.3-001, CR-D-07.4-001 | PROCESS |
+| AG-D-07.4-002 | — | no-rule |
+| AG-D-08.1-002 | CR-D-08.1-001, CR-D-08.2-001 | CAPABILITY |
+| AG-D-08.2-002 | CR-D-08.1-001, CR-D-08.2-001, CR-D-08.3-001 | CAPABILITY |
+| AG-D-08.3-002 | — | no-rule |
+| AG-D-09.1-001 | BPR-D-09.1-001, BPR-D-09.4-001, CR-D-08.3-001, CR-D-09.1-001, CR-D-09.2-001 | CAPABILITY |
+| AG-D-09.2-001 | BPR-D-09.2-001, BPR-D-09.3-001, CR-D-09.2-001 | CAPABILITY |
+| AG-D-09.3-002 | CR-D-09.1-001, CR-D-09.2-001, CR-D-09.3-001, CR-D-09.4-001 | CAPABILITY |
+| AG-D-09.4-001 | CR-D-09.1-001, CR-D-09.2-001, CR-D-09.3-001, CR-D-09.4-001 | CAPABILITY |
+| AG-D-10.1-002 | CR-D-04.1-001, CR-D-04.3-001, CR-D-10.1-001, CR-D-10.2-001, CR-D-10.3-001 | CAPABILITY |
+| AG-D-10.2-002 | — | no-rule |
+| AG-D-10.3-002 | — | no-rule |
+| OBL-D-01.1 | — | no-rule |
+| OBL-D-01.1-001 | — | no-rule |
+| OBL-D-01.2 | — | no-rule |
+| OBL-D-01.2-001 | — | no-rule |
+| OBL-D-01.3 | — | no-rule |
+| OBL-D-01.3-001 | — | no-rule |
+| OBL-D-01.4-001 | — | no-rule |
+| OBL-D-02.1 | — | no-rule |
+| OBL-D-02.1-001 | — | no-rule |
+| OBL-D-02.2-001 | — | no-rule |
+| OBL-D-02.3-001 | — | no-rule |
+| OBL-D-02.4 | — | no-rule |
+| OBL-D-02.4-001 | — | no-rule |
+| OBL-D-03.1 | — | no-rule |
+| OBL-D-03.1-001 | — | no-rule |
+| OBL-D-03.2-001 | — | no-rule |
+| OBL-D-03.3-001 | — | no-rule |
+| OBL-D-03.4 | — | no-rule |
+| OBL-D-03.4-001 | — | no-rule |
+| OBL-D-04.1 | — | no-rule |
+| OBL-D-04.1-001 | — | no-rule |
+| OBL-D-04.2-001 | — | no-rule |
+| OBL-D-04.3-001 | — | no-rule |
+| OBL-D-04.4 | — | no-rule |
+| OBL-D-04.4-001 | — | no-rule |
+| OBL-D-05.1 | — | no-rule |
+| OBL-D-05.1-001 | — | no-rule |
+| OBL-D-05.2-001 | — | no-rule |
+| OBL-D-05.3-001 | — | no-rule |
+| OBL-D-05.4 | — | no-rule |
+| OBL-D-05.4-001 | — | no-rule |
+| OBL-D-06.1 | — | no-rule |
+| OBL-D-06.1-001 | — | no-rule |
+| OBL-D-06.2-001 | — | no-rule |
+| OBL-D-06.3-001 | — | no-rule |
+| OBL-D-06.4 | — | no-rule |
+| OBL-D-06.4-001 | — | no-rule |
+| OBL-D-07.1-001 | — | no-rule |
+| OBL-D-07.2-001 | — | no-rule |
+| OBL-D-07.3-001 | — | no-rule |
+| OBL-D-07.4-001 | — | no-rule |
+| OBL-D-08.1-001 | — | no-rule |
+| OBL-D-08.2-001 | — | no-rule |
+| OBL-D-08.3-001 | — | no-rule |
+| OBL-D-09.1 | — | no-rule |
+| OBL-D-09.1-001 | — | no-rule |
+| OBL-D-09.2 | — | no-rule |
+| OBL-D-09.2-001 | — | no-rule |
+| OBL-D-09.3 | — | no-rule |
+| OBL-D-09.3-001 | — | no-rule |
+| OBL-D-09.4 | — | no-rule |
+| OBL-D-09.4-001 | — | no-rule |
+| OBL-D-10.1-001 | — | no-rule |
+| OBL-D-10.2-001 | — | no-rule |
+| OBL-D-10.3-001 | — | no-rule |

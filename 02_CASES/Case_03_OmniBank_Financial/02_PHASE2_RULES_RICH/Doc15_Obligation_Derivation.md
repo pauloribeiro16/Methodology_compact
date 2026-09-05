@@ -472,3 +472,90 @@ Example: OBL-D-01.1-001
 
 **Next Document:** Doc16_Strategic_Tensions_Report.md
 **Phase 2 Step:** B ✅ COMPLETE
+
+
+## realisation_class_derived (auto, majority-vote of realizing controls)
+
+| Objective / Obligation | Realising CR/BPR | Majority |
+|---|---|---|
+| OBL-D-01.1-001 | — | no-rule |
+| OBL-D-01.2-001 | — | no-rule |
+| OBL-D-01.3-001 | — | no-rule |
+| OBL-D-01.4-001 | — | no-rule |
+| OBL-D-02.1-001 | — | no-rule |
+| OBL-D-02.2-001 | — | no-rule |
+| OBL-D-02.3-001 | — | no-rule |
+| OBL-D-02.4-001 | — | no-rule |
+| OBL-D-03.1-001 | — | no-rule |
+| OBL-D-03.2-001 | — | no-rule |
+| OBL-D-03.3-001 | — | no-rule |
+| OBL-D-03.4-001 | — | no-rule |
+| OBL-D-04.1-001 | — | no-rule |
+| OBL-D-04.2-001 | — | no-rule |
+| OBL-D-04.3-001 | — | no-rule |
+| OBL-D-04.4-001 | — | no-rule |
+| OBL-D-05.1-001 | — | no-rule |
+| OBL-D-05.2-001 | — | no-rule |
+| OBL-D-05.3-001 | — | no-rule |
+| OBL-D-05.4-001 | — | no-rule |
+| OBL-D-06.1-001 | — | no-rule |
+| OBL-D-06.2-001 | — | no-rule |
+| OBL-D-06.3-001 | — | no-rule |
+| OBL-D-06.4-001 | — | no-rule |
+| OBL-D-07.1-001 | — | no-rule |
+| OBL-D-07.2-001 | — | no-rule |
+| OBL-D-07.3-001 | — | no-rule |
+| OBL-D-07.4-001 | — | no-rule |
+| OBL-D-08.1-001 | — | no-rule |
+| OBL-D-08.2-001 | — | no-rule |
+| OBL-D-08.3-001 | — | no-rule |
+| OBL-D-09.1-001 | — | no-rule |
+| OBL-D-09.2-001 | — | no-rule |
+| OBL-D-09.3-001 | — | no-rule |
+| OBL-D-09.4-001 | — | no-rule |
+| OBL-D-10.1-001 | — | no-rule |
+| OBL-D-10.2-001 | — | no-rule |
+| OBL-D-10.3-001 | — | no-rule |
+
+## realisation_class_derived (auto, majority-vote of realizing controls)
+
+| Objective / Obligation | Realising CR/BPR | Majority |
+|---|---|---|
+| OBL-D-01.1-001 | — | no-rule |
+| OBL-D-01.2-001 | — | no-rule |
+| OBL-D-01.3-001 | — | no-rule |
+| OBL-D-01.4-001 | — | no-rule |
+| OBL-D-02.1-001 | — | no-rule |
+| OBL-D-02.2-001 | — | no-rule |
+| OBL-D-02.3-001 | — | no-rule |
+| OBL-D-02.4-001 | — | no-rule |
+| OBL-D-03.1-001 | — | no-rule |
+| OBL-D-03.2-001 | — | no-rule |
+| OBL-D-03.3-001 | — | no-rule |
+| OBL-D-03.4-001 | — | no-rule |
+| OBL-D-04.1-001 | — | no-rule |
+| OBL-D-04.2-001 | — | no-rule |
+| OBL-D-04.3-001 | — | no-rule |
+| OBL-D-04.4-001 | — | no-rule |
+| OBL-D-05.1-001 | — | no-rule |
+| OBL-D-05.2-001 | — | no-rule |
+| OBL-D-05.3-001 | — | no-rule |
+| OBL-D-05.4-001 | — | no-rule |
+| OBL-D-06.1-001 | — | no-rule |
+| OBL-D-06.2-001 | — | no-rule |
+| OBL-D-06.3-001 | — | no-rule |
+| OBL-D-06.4-001 | — | no-rule |
+| OBL-D-07.1-001 | — | no-rule |
+| OBL-D-07.2-001 | — | no-rule |
+| OBL-D-07.3-001 | — | no-rule |
+| OBL-D-07.4-001 | — | no-rule |
+| OBL-D-08.1-001 | — | no-rule |
+| OBL-D-08.2-001 | — | no-rule |
+| OBL-D-08.3-001 | — | no-rule |
+| OBL-D-09.1-001 | — | no-rule |
+| OBL-D-09.2-001 | — | no-rule |
+| OBL-D-09.3-001 | — | no-rule |
+| OBL-D-09.4-001 | — | no-rule |
+| OBL-D-10.1-001 | — | no-rule |
+| OBL-D-10.2-001 | — | no-rule |
+| OBL-D-10.3-001 | — | no-rule |
