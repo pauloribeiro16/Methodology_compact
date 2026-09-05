@@ -7,6 +7,7 @@
 **Restructured:** 2026-04-02 (v2.0)
 **Use Cases Review:** ✅ Complete (v2.1 - all issues addressed)
 **UC Separation:** ✅ 2026-09-05 — Doc20 v3.2 lane-pure: 23 product UCs (§2) + 17 compliance UCs (§3, UC-only); 18 PROC/CAP stubs → §3.0 Compliance Domain Index + Doc32; annex A 11 useCaseDiagrams (UC ovals only); 4 borderline §3 titles → P7 (report `02_CASES/UC_SEPARATION_2026-09-05_REPORT_F2.md`).
+**Renumber:** ✅ 2026-09-05 — legacy dotted `U.C.x.y.z` flattened → **UC-01..40** (compliance 01..17, product 18..40); registry `00_METHODOLOGY/validation/RENUMBER_REGISTRY_2026-09-05.md`; report `02_CASES/RENUMBER_2026-09-05_REPORT_F2.md`.
 **Phase 3 Complete:** 2026-04-02 (v1.0 - Traceability Matrix + Annexes)
 **Phase 3 RICH Sprint Validation:** 2026-08-24 v2 — **PASS_WITH_FINDINGS** verdict on `feature/aegis-p3-case01-rich` (worktree contains all Sprint 0-5 deliverables as untracked files; orchestrator owns commits). Re-verification by Validator sub-agent after v1 incorrectly concluded FAIL by checking `git log` only. See `02_CASES/Case_01_TinyTask_SaaS/03_PHASE3_DECOMPOSITION_RICH/validation/VALIDATOR_SPRINT5.md` v2.0.
 

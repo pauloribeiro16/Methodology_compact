@@ -1,10 +1,21 @@
 # Central Change Log — AEGIS Methodology Implementation
 
 **Last Updated:** 2026-09-05
-**Version:** 7.5 (MERMAID RENDER FIX — all diagrams render-validated: 26 UC diagrams → PlantUML+SVG hybrid, rubric v1.9, mermaid check 192/192; UC SEPARATION — lane-pure use-case catalogs in 3 cases (rubric v1.8 §5B rule 6): C3 Doc22 v3.0 33 UCs + PKG-DS + PROC-39/40→UC-66/92; C1 Doc20 v3.2 23+17 UCs; C2 Doc21 v1.5 36 UCs; annex A UC-ovals-only 11/6/8 + annex B 23/21/33; audit 100/100/100; 6 borderline → P7; LANE CARDS — PROC/CAP card schemas + 12-card pilot; LANE NAMING — UC reserved to TECHNOLOGY; 102 UCs re-laned PROC/CAP, ~1.855 refs; OWASP threat×flow + Volere FR pilot; ALT-ANCHOR — UNMAPPED_* retired in 3 cases; 5 frozen referentials + generator + 3 gates v0.4 PASS; REALIZATION-CLASS — Case_01 P2 realization_class tag wave documents-only; PORT-PARITY-2 — cross-case content parity: corr-013 C3 renumber, C3 P1 v1.6 layer 749n/2054l, P2 waves C2+C3, P3 rich v0 C2+C3, dashboards 16/16 smoke)
+**Version:** 7.6 (RENUMBER — flat 1..N lane ids, zero legacy: C3 UC 33→01..93→33 + PROC-41..52→39..50; C1 U.C.x.y.z flattened → UC-01..40; C2 → UC-01..36; rubric v1.10 §5B rule 7; registry RENUMBER_REGISTRY_2026-09-05; MERMAID RENDER FIX — all diagrams render-validated: 26 UC diagrams → PlantUML+SVG hybrid, rubric v1.9, mermaid check 192/192; UC SEPARATION — lane-pure use-case catalogs in 3 cases (rubric v1.8 §5B rule 6): C3 Doc22 v3.0 33 UCs + PKG-DS + PROC-39/40→UC-66/92; C1 Doc20 v3.2 23+17 UCs; C2 Doc21 v1.5 36 UCs; annex A UC-ovals-only 11/6/8 + annex B 23/21/33; audit 100/100/100; 6 borderline → P7; LANE CARDS — PROC/CAP card schemas + 12-card pilot; LANE NAMING — UC reserved to TECHNOLOGY; 102 UCs re-laned PROC/CAP, ~1.855 refs; OWASP threat×flow + Volere FR pilot; ALT-ANCHOR — UNMAPPED_* retired in 3 cases; 5 frozen referentials + generator + 3 gates v0.4 PASS; REALIZATION-CLASS — Case_01 P2 realization_class tag wave documents-only; PORT-PARITY-2 — cross-case content parity: corr-013 C3 renumber, C3 P1 v1.6 layer 749n/2054l, P2 waves C2+C3, P3 rich v0 C2+C3, dashboards 16/16 smoke)
 **Scope:** All Cases
 
 ---
+
+## 1.8 2026-09-05 — RENUMBER (flat 1..N lane ids, zero legacy)
+
+| Item | Value |
+|------|-------|
+| Decision basis | Human: after the re-lanes the ids grew large/gapped (C3 UC jump 34→63, PROC 39/40 retired, C1/C2 legacy dotted `U.C.x.y.z`) — "não quero nada legacy". Rubric v1.10 §5B rule 7 supersedes the non-reuse clause; two-phase rename mandatory; registry `00_METHODOLOGY/validation/RENUMBER_REGISTRY_2026-09-05.md` |
+| Case_03 | UC-33→UC-01, UC-34→UC-02, UC-63→UC-03 … UC-93→UC-33 (33 ids); PROC-41→39 … PROC-52→50 (12); PROC-01..38/CAP-01..10 untouched. Doc22 v3.1, Doc32 v1.2, 8 SVGs re-rendered, annex B re-anchored |
+| Case_01 | 17 compliance U.C.1..6 → UC-01..17; 23 product U.C.7..11 → UC-18..40. Doc20 v3.3, Doc32 v1.2, xlsx+builder regenerated, 11 SVGs |
+| Case_02 | 15 compliance → UC-01..15; 21 product U.C.8..12 → UC-16..36. Doc21 v1.6, Doc31 v1.2, xlsx regenerated, 6 SVGs; 1 missed live ref (Doc23 variability anchor) re-anchored to UC-34 |
+| Verification | verify_rich: C1 PASS, C2/C3 only pre-existing FAILs (CHK-3/4/6); traceability_audit 100/100/100 (uc populations count compound tokens: C3 107, C1 100, C2 88 — 0 gaps); mermaid render 192/192; dashboards 16/16; residual dotted/old ids = provenance/history only (Formerly columns, version rows, frozen sprint baselines) |
+| Commits | bbe7a02 (F0) · 18f326c (F1) · 3545c19 (F2) · 13945cf (F3) · F4 bookkeeping; reports `02_CASES/RENUMBER_2026-09-05_REPORT_F{1,2,3}.md` |
 
 ## 1.7 2026-09-05 — MERMAID RENDER FIX (all diagrams render-validated)
 

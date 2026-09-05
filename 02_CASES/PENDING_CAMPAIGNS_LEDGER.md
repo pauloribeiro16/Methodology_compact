@@ -41,7 +41,12 @@ case** — no gaps, no retired numbers, dotted flattened to UC-NN (C3: UC 33→0
 PROC-41..52→39..50; C1 → UC-01..40; C2 → UC-01..36). Registry:
 `00_METHODOLOGY/validation/RENUMBER_REGISTRY_2026-09-05.md`. Rubric v1.10 §5B rule 7.
 **Decisions locked:** `02_CASES/RENUMBER_CAMPAIGN_2026-09-05.md` (all FINAL).
-**Progress:** F0 done — F1 (Case_03) next.
+**Status: EXECUTED 2026-09-05** — F0 bbe7a02 · F1 18f326c · F2 3545c19 · F3 13945cf ·
+F4 bookkeeping. End state: flat ids everywhere (C3 UC-01..33 / PROC-01..50 / CAP-01..10;
+C1 UC-01..40; C2 UC-01..36); registry filled for all 3 cases; SVGs re-rendered; audit
+100/100/100; mermaid 192/192; smoke 16/16; residual old ids = provenance/history only.
+Known residual: 6 borderline UC titles (§5) unchanged — their ids are now the renumbered
+ones (C1 UC-07/UC-12 etc.); re-adjudication would be a NEW renumber if ever ratified.
 
 ## 2. DEFERRED BY HUMAN DECISION (2026-09-05, documents-only scope) — Realization Class follow-ups
 

@@ -2,14 +2,18 @@
 document_id: AEGIS-CAMPAIGN-RENUMBER
 title: Renumber Campaign — Flat 1..N Lane Ids, Zero Legacy (3 Cases)
 phase: 3
-version: 1.0
+version: 1.1
 created: 2026-09-05
 updated: 2026-09-05
 author: Orchestrator
-status: ACTIVE
+status: EXECUTED
 ---
 
 # RENUMBER Campaign — "flat 1..N per lane, zero legacy"
+
+> **STATUS: EXECUTED 2026-09-05** — F0 `bbe7a02` · F1 `18f326c` · F2 `3545c19` ·
+> F3 `13945cf` · F4 bookkeeping. Reports: `RENUMBER_2026-09-05_REPORT_F{1,2,3}.md`.
+> Registry: `00_METHODOLOGY/validation/RENUMBER_REGISTRY_2026-09-05.md`.
 
 Human request 2026-09-05: after the UC→PROC/CAP re-lanes the ids grew large and
 gapped (C3 UCs jump 34→63, PROC 39/40 retired, C1/C2 still use the legacy dotted

@@ -6,6 +6,7 @@
 **Complexity:** Maximum (5/5 regulations, 38/38 sub-domains)
 **Restructured:** 2026-04-02 (v2.0)
 **UC Separation:** ✅ 2026-09-05 — Doc22 v3.0 lane-pure: 33 UCs (31 product + PKG-DS UC-33/34 fully-dressed); 15 fake UCs re-laned PROC-41..52/CAP-08..10; PROC-39/40 → UC-66/92; Doc32 50 PROC + 10 CAP; annexes A 8 / B 33 (report `02_CASES/UC_SEPARATION_2026-09-05_REPORT_F1.md`).
+**Renumber:** ✅ 2026-09-05 — **UC-01..33** (ex UC-33/34, 63..93), **PROC-01..50** (gaps 39/40 fechados), CAP-01..10; Doc22 v3.1; registry `00_METHODOLOGY/validation/RENUMBER_REGISTRY_2026-09-05.md`; report `02_CASES/RENUMBER_2026-09-05_REPORT_F1.md`.
 
 > **⚠️ 2026-08-28 (port Fase 0).** The April sections below (§2–§5) are a historical baseline keyed to legacy doc names and April volumes. Current reality on disk: Rich P1 = Doc01–**Doc14** (Doc11_DORA inserted; Doc14_Adjusted_Goals, 76 AG goals), P2 = **Doc15–Doc20** (78 rules = 38 CR + 40 BPR; **5 tensions** T-001..T-005), P3 = Doc22–Doc31 (complete). Canonical narrative layers: the Aug-6/8 Rich campaign, the Aug-13/14 corr-010 wave (renames + AG- migration) and the port campaign started 2026-08-28.
 
