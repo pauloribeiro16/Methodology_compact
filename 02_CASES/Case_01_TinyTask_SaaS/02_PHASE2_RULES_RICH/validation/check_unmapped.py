@@ -109,7 +109,7 @@ def check_deprecated_terms():
                     # "maturi..." (e.g. `maturity_cur`, `maturity_tgt`, `MATURITY_MODEL_*`,
                     # `DEPRECATED_FOR_MATURITY`). Refine: only flag when NOT inside such an
                     # identifier context.
-                    if not re.search(r"maturi(?=y_cur|y_tgt|y_score|MODEL_|_FOR_|ity_)|MATURIDADE DUPLA|\bmaturidade\b", line):
+                    if not re.search(r"maturi(?=y_cur|y_tgt|y_score|MODEL_|_FOR_|ity_)|MATURIDADE DUPLA|\bmaturidade\b|\|\s*Maturity\s*\|", line):
                         failures.append(f"{md_file.name}:{line_no}: Found deprecated maturity term: {line.strip()}")
 
 def check_sprint_frontmatter():

@@ -1,7 +1,7 @@
 # Central Change Log — AEGIS Methodology Implementation
 
 **Last Updated:** 2026-09-05
-**Version:** 7.2 (LANE NAMING — UC reserved to TECHNOLOGY; 102 UCs re-laned PROC/CAP, ~1.855 refs; OWASP threat×flow + Volere FR pilot; ALT-ANCHOR — UNMAPPED_* retired in 3 cases; 5 frozen referentials + generator + 3 gates v0.4 PASS; REALIZATION-CLASS — Case_01 P2 realization_class tag wave documents-only; PORT-PARITY-2 — cross-case content parity: corr-013 C3 renumber, C3 P1 v1.6 layer 749n/2054l, P2 waves C2+C3, P3 rich v0 C2+C3, dashboards 16/16 smoke)
+**Version:** 7.3 (LANE CARDS — PROC/CAP card schemas + 12-card pilot; LANE NAMING — UC reserved to TECHNOLOGY; 102 UCs re-laned PROC/CAP, ~1.855 refs; OWASP threat×flow + Volere FR pilot; ALT-ANCHOR — UNMAPPED_* retired in 3 cases; 5 frozen referentials + generator + 3 gates v0.4 PASS; REALIZATION-CLASS — Case_01 P2 realization_class tag wave documents-only; PORT-PARITY-2 — cross-case content parity: corr-013 C3 renumber, C3 P1 v1.6 layer 749n/2054l, P2 waves C2+C3, P3 rich v0 C2+C3, dashboards 16/16 smoke)
 **Scope:** All Cases
 
 ---
@@ -13,6 +13,16 @@
 | OWASP threat×flow (C2 + C3) | Case_02 `Doc28_Risk_Analysis.md` §5 + Case_03 `Doc29_Risk_Analysis.md` §4: new `Threat × Flow matrix` sub-section with 10 rows each. Columns: Threat ID × Actor | Asset/Trust Boundary | Flow/Direction | STRIDE | ASVS/SAMM anchor | CR/BPR | Notes. Anchored via ALT-ANCHOR criterion §3 to the frozen `CONTROLS/OWASP_ASVS/` and `CONTROLS/OWASP_SAMM/` sources. 3 gates PASS unchanged. |
 | Volere FR pilot (C2) | Case_02 `Doc29_Functional_Requirements.md`: new `Fit Criterion` column between Verification Method and Priority. 6 FRs from operator-aligned topics (FR-03/04/09/12/13/26) + 1 repeatability (FR-72 AI domain) received measurable thresholds (100%/30s/16min windows, schema validation, automated detection). 3 gates PASS unchanged. |
 | Out of scope | Ontologies, dashboards, folios, KG reflection, realisation_class tag waves C2/C3. Briefing pack for items 1–4 (P7 queue) delivered as `P7_BRIEFING_PACK_2026-09-05.md` for human decision. |
+
+## 1.0 2026-09-05 — LANE CARDS (schemas §5C + 12-card pilot)
+
+| Item | Value |
+|------|-------|
+| Schemas | `REALIZATION_CLASS_RUBRIC.md` v1.4 §5C — Process card (SSDF-style: Trigger/Activities/Roles/SLA/Realises/Anchors/Evidence) + Capability card (C2M2/ArchiMate-style: Owner/Span/Maturity Scale A/Realises/Anchors/Evidence). Chain: RULE → CAP → PROC → UC |
+| Pilot | C1 `Doc32_Process_Capability_Cards.md` (PROC-01/05/09 + CAP-01) · C2 `Doc31_...` (PROC-05/14 + CAP-02/06) · C3 `Doc32_...` (PROC-10/28 + CAP-02/04). Content sourced faithfully from catalogue cards (rules/SLA/actors) + frozen SAMM/ASVS anchors; CAP maturity fields present, values to bind to EvidenceItems in next maturity refresh |
+| Verification | all card IDs resolve in the lane mappings; 3 gates v0.4 PASS (C1 gate gained `\| Maturity \|` schema-field waiver, same class as MAJOR-4) |
+
+---
 
 ## 0.9 2026-09-05 — LANE NAMING (UC-* reserved for TECHNOLOGY)
 

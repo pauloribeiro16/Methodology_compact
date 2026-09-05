@@ -2,7 +2,7 @@
 document_id: AEGIS-METHODOLOGY-REALIZATION-CLASS-RUBRIC
 title: AEGIS Realization Class Rubric (Phase 2 Rule Attribute)
 phase: Cross-phase
-version: 1.3
+version: 1.4
 created: 2026-09-05
 updated: 2026-09-05
 author: Executor
@@ -134,6 +134,50 @@ Rules:
    (`00_METHODOLOGY/validation/LANE_NAMING_CENSUS_v0.md`); renames are applied by
    `scripts/rename_lane_ids.py` (single pass, word-boundary exact, dry-run first).
 
+
+## §5C Lane Card Schemas (normative)
+
+Literature basis: process cards follow the NIST SP 800-218 (SSDF) practice/task shape;
+capability cards follow the C2M2 / ISO/IEC 21827 (SSE-CMM) capability-vs-process split
+and the ArchiMate Strategy-layer semantics (capability realised by processes, processes
+realised by technology). Normative traceability chain: **RULE → CAP → PROC → UC**
+(requirements bind; processes flow; capabilities mature).
+
+### §5C.1 Process Card (`PROC-*`) — SSDF-style
+
+| Field | Content |
+|---|---|
+| ID + Title | `PROC-NN` — title (from the catalogue card it lanes) |
+| Trigger | event that starts the process |
+| Activities | numbered sequence of steps (human and/or system) |
+| Roles | role per step or overall owner |
+| SLA / Timing | clock obligations (e.g. 30 days, 24h/72h) where applicable |
+| Realises | the RULE/CR/BPR ids this process carries out (from the catalogue card) |
+| Anchors | frozen referentials (SAMM stream, ASVS section) per ALT-ANCHOR §2 |
+| Evidence | artefacts/metrics that prove execution (logs, registers, reports) |
+
+Companion to the catalogue card (same ID): the catalogue keeps the narrative form; the
+process card adds the operational fields the UC format lacks. Never duplicate the
+catalogue text.
+
+### §5C.2 Capability Card (`CAP-*`) — C2M2 / ArchiMate-style
+
+| Field | Content |
+|---|---|
+| ID + Title | `CAP-NN` — title |
+| Owner | designated role accountable for the standing ability |
+| Span | contributing `PROC-*` + `UC-*` + competence/curriculum elements |
+| Maturity | Scale A of the posture model (phase1_ontology v1.6 `capability` scale); current/target bound to EvidenceItems (P1 Folio VIII) in the next maturity refresh — do not invent values |
+| Realises | RULE/CR/BPR ids the capability sustains |
+| Anchors | frozen referentials (SAMM practice first for CAPABILITY-class) |
+| Evidence | standing artefacts (registers, rosters, review records) — not one-pass tests |
+
+### §5C.3 Placement & scope rule
+
+Lane cards live in a per-case `DocNN_Process_Capability_Cards.md` at the Phase 3 root.
+Populating them is a campaign; the pilot set is 3–4 cards per case. Cards are additive —
+they never modify catalogue cards, rule cards, or gates.
+
 ---
 
 ## §6 CAPABILITY Anchor to Maturity Model
@@ -197,3 +241,4 @@ Divergence example: a rule ISO-anchored to A.8.10 (technological theme) can legi
 | 1.1 | 2026-09-05 | Executor | Applied Validator amendments A1–A7 (constitutive test, P/C indicators, storage spec correction, xlsx banner rule, preamble per-case facts) |
 | 1.2 | 2026-09-05 | Orchestrator | Ontology application DEFERRED per human decision (documents-only scope): §4 storage table + Sync rule updated; Case_01 pilot touches Doc18, control_set.yaml, 12_Rules_Catalog.xlsx only |
 | 1.3 | 2026-09-05 | Orchestrator | §5B Lane Nomenclature added: UC-* reserved for TECHNOLOGY; PROC-NN / CAP-NN for PROCESS / CAPABILITY (human decision 2026-09-05; supersedes Case_01 Doc20 §6.1 ID-continuity freeze) |
+| 1.4 | 2026-09-05 | Orchestrator | §5C Lane Card Schemas added: PROC card (SSDF-style) and CAP card (C2M2/ArchiMate-style); traceability chain RULE → CAP → PROC → UC |

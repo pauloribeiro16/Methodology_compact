@@ -29,7 +29,7 @@ Committed as `2948fb8` (rubric v1.2 + C1 tag wave, T17/P23/C6, 9 secondaries). D
   - Net: zero ontological regression. The freeze stands for all post-`2948fb8` work; reopening requires a new P7 decision.
 - [ ] Tag waves C2 (55 rules) and C3 (78 rules)
 - [x] **Phase 3 LANE NAMING** — **DONE 2026-09-05**: `UC-*` reserved for TECHNOLOGY; 102 non-technology UCs re-laned to `PROC-NN` (82) / `CAP-NN` (18) across the 3 cases (C1 18 / C2 37 / C3 47); ~1.855 downstream references renamed single-pass (`scripts/rename_lane_ids.py` + registry `00_METHODOLOGY/validation/LANE_NAMING_CENSUS_v0.md`); 3 gates PASS; C1 xlsx regenerated; C1 Doc20 §6.1 freeze superseded (P7).
-- [ ] Phase 3 realization lanes + lane views of allocation (process models, capability cards anchored to maturity model v1.6) — nomenclature done (see above); the lane ARTEFACTS (process models, capability cards) remain open
+- [~] Phase 3 realization lanes + lane views of allocation — **PILOT DONE 2026-09-05**: card schemas published (rubric v1.4 §5C) + 4 lane cards per case (C1 Doc32: PROC-01/05/09 + CAP-01; C2 Doc31: PROC-05/14 + CAP-02/06; C3 Doc32: PROC-10/28 + CAP-02/04). Remaining: populate the other ~80 PROC/CAP ids + bind CAP maturity to EvidenceItems.
 - [ ] Dashboards + `data/` mirrors regeneration (`phase2_graph.json`, `phase2_ontology.compact.json`)
 - [ ] KG reflection of `realization_class` (next KG rebuild)
 - [ ] Objectives (PO/SO) + obligations tagging (pilot was RULEs-only)

@@ -180,6 +180,17 @@ Methodology/
 
 ---
 
+## 4F. LANE CARDS (2026-09-05)
+
+- **Schemas:** rubric v1.4 §5C — PROC card (SSDF-style) + CAP card (C2M2/ArchiMate-style);
+  chain RULE → CAP → PROC → UC normative.
+- **Pilot:** 4 cards per case (C1 Doc32 · C2 Doc31 · C3 Doc32), content faithful to the
+  catalogue cards + frozen SAMM/ASVS anchors; CAP maturity bound to Scale A, values
+  deferred to next EvidenceItem refresh.
+- **Remaining:** populate the other ~80 lane ids; bind maturity; KG reflection.
+
+---
+
 ## 4E. LANE NAMING CAMPAIGN (2026-09-05)
 
 - **Decision (P7):** `UC-*` reserved for TECHNOLOGY; `PROC-NN` / `CAP-NN` for PROCESS /
