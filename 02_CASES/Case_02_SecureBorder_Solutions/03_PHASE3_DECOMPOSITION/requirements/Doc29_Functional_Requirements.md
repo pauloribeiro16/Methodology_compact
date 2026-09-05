@@ -56,25 +56,25 @@ This document specifies **technology-agnostic functional requirements** for Secu
 
 ### 3.1 Identity & Access Management (IAM)
 
-| FR ID | Requirement | Source UC | Source NFR | Source Rule | Verification Method | Priority | NIST Anchors |
+| FR ID | Requirement | Source UC | Source NFR | Source Rule | Verification Method | Fit Criterion | Priority | NIST Anchors |
 | ------- | ------------- | ----------- | ------------ | ------------- | --------------------- | ---------- | --- |
 | FR-01 | The system shall register border control officers with unique identifiers linked to government identity systems | U.C.3.1.1 | NN/A, NN/A | CR-D-03.1-001 | TEST | HIGH | — |
 | FR-02 | The system shall authenticate users with multi-factor authentication before granting access to any system function | U.C.3.2.1 | NN/A, NN/A, NN/A, NN/A | CR-D-03.1-001 | TEST | CRITICAL | — |
-| FR-03 | The system shall capture and encrypt biometric templates from travelers at enrollment | U.C.3.3.1 | NN/A, NN/A, NN/A, NN/A | — | TEST | CRITICAL | — |
-| FR-04 | The system shall discard raw facial images immediately after biometric template extraction | U.C.3.3.1 | NN/A | — | INSPECT | CRITICAL | — |
+| FR-03 | The system shall capture and encrypt biometric templates from travelers at enrollment | U.C.3.3.1 | NN/A, NN/A, NN/A, NN/A | — | TEST | 100% of captured biometric templates pass encryption-validation test (cryptographic nonce decrypted with the expected subject key) within 30s of capture; failure rate < 0.001% across 10,000 captures. | CRITICAL | — |
+| FR-04 | The system shall discard raw facial images immediately after biometric template extraction | U.C.3.3.1 | NN/A | — | INSPECT | 100% of raw facial images are unrecoverable from primary storage 60s after template extraction, verified by storage forensics scan; 0 bytes of raw image remain in any store. | CRITICAL | — |
 | FR-05 | The system shall enforce role-based access controls for data processing, administration, and AI oversight | U.C.3.4.1 | NN/A, NN/A | CR-D-03.1-001 | TEST | HIGH | — |
 | FR-06 | The system shall provision border officer accounts upon authorized government request within 24 hours | U.C.3.1.1 | NN/A | CR-D-03.1-001 | TEST | HIGH | — |
 | FR-07 | The system shall deprovision border officer accounts within 24 hours of termination notice | U.C.3.6.1 | NN/A | CR-D-03.1-001 | INSPECT | HIGH | — |
 | FR-08 | The system shall enforce least privilege access with periodic review of all access rights | U.C.3.4.1, U.C.3.6.1 | NN/A | CR-D-03.1-001 | INSPECT | HIGH | — |
-| FR-09 | The system shall ensure eGate kiosks ship with secure default configuration: no default passwords, unused ports disabled | U.C.3.5.1 | NN/A | — | INSPECT | HIGH | — |
+| FR-09 | The system shall ensure eGate kiosks ship with secure default configuration: no default passwords, unused ports disabled | U.C.3.5.1 | NN/A | — | INSPECT | 0 default passwords and 0 enabled unused ports on 100% of shipped kiosks, verified by automated config-audit script running on each kiosk image before shipment. | HIGH | — |
 | FR-10 | The system shall log all authentication attempts (successful and failed) with user attribution | U.C.3.2.1 | NN/A, NN/A, NN/A | CR-D-03.1-001 | INSPECT | CRITICAL | — |
 | FR-11 | The system shall lock accounts after 5 consecutive failed authentication attempts | U.C.3.2.1 | NN/A | CR-D-03.1-001 | TEST | HIGH | — |
-| FR-12 | The system shall terminate sessions after 15 minutes of inactivity at border control operator interfaces | U.C.3.2.1 | NN/A | — | TEST | HIGH | — |
-| FR-13 | The system shall enable border control officers to override AI match decisions with documented justification | U.C.3.7.1 | NN/A | — | DEMONSTRATE | CRITICAL | — |
+| FR-12 | The system shall terminate sessions after 15 minutes of inactivity at border control operator interfaces | U.C.3.2.1 | NN/A | — | TEST | Sessions terminate in ≤ 15 min (mean) and ≤ 15 min 30s (p99) of inactivity across 1,000 measured idle sessions; no session persists beyond 16 min. | HIGH | — |
+| FR-13 | The system shall enable border control officers to override AI match decisions with documented justification | U.C.3.7.1 | NN/A | — | DEMONSTRATE | Every AI-decision override produces a justification payload (operator id, reason code, free text) within 30s; 0 overrides accepted without justification in audit log over a 90-day measurement window. | CRITICAL | — |
 
 ### 3.2 Data Protection (DP)
 
-| FR ID | Requirement | Source UC | Source NFR | Source Rule | Verification Method | Priority | NIST Anchors |
+| FR ID | Requirement | Source UC | Source NFR | Source Rule | Verification Method | Fit Criterion | Priority | NIST Anchors |
 | ------- | ------------- | ----------- | ------------ | ------------- | --------------------- | ---------- | --- |
 | FR-16 | The system shall enable travelers to submit data subject access requests via secure portal or government authority | U.C.1.1.1 | NN/A | CR-D-01.1-001 | TEST | HIGH | CSF: PR.DS-01 |
 | FR-17 | The system shall generate DSAR reports including biometric data processing details within 30 days | U.C.1.1.1 | NN/A | CR-D-01.1-001 | TEST | HIGH | CSF: PR.DS-01 |
@@ -86,12 +86,12 @@ This document specifies **technology-agnostic functional requirements** for Secu
 | FR-23 | The system shall notify the DPA of personal data breaches within 72 hours | U.C.1.4.1 | NN/A, NN/A | CR-D-01.1-001 | TEST | CRITICAL | CSF: PR.DS-01 |
 | FR-24 | The system shall notify affected travelers of biometric data breaches without undue delay | U.C.1.4.1 | NN/A | CR-D-04.1-001 | TEST | CRITICAL | — |
 | FR-25 | The system shall review and minimize data collection fields annually for AI training and operational processing | U.C.1.5.1 | NN/A | CR-D-06.1-001 | INSPECT | HIGH | — |
-| FR-26 | The system shall maintain records of processing activities (RoPA) for all biometric and passport data processing | U.C.1.6.1 | NN/A, NN/A | — | INSPECT | HIGH | — |
+| FR-26 | The system shall maintain records of processing activities (RoPA) for all biometric and passport data processing | U.C.1.6.1 | NN/A, NN/A | — | INSPECT | RoPA contains 100% of biometric and passport data processing activities as discrete entries; mismatch between RoPA and actual processing surface detected by quarterly reconciliation must close in ≤ 7 days. | HIGH | — |
 | FR-27 | The system shall enforce data retention periods automatically based on defined purpose duration | U.C.1.5.1 | NN/A | CR-D-05.1-001 | TEST | HIGH | — |
 
 ### 3.3 Security Operations (SEC)
 
-| FR ID | Requirement | Source UC | Source NFR | Source Rule | Verification Method | Priority | NIST Anchors |
+| FR ID | Requirement | Source UC | Source NFR | Source Rule | Verification Method | Fit Criterion | Priority | NIST Anchors |
 | ------- | ------------- | ----------- | ------------ | ------------- | --------------------- | ---------- | --- |
 | FR-28 | The system shall collect security events from all sources (eGate endpoints, cloud, network, AI system) continuously | U.C.2.1.1, U.C.2.6.1 | NN/A | CR-D-02.1-001 | INSPECT | CRITICAL | — |
 | FR-29 | The system shall correlate security events in real-time with AI-powered anomaly detection | U.C.2.1.1, U.C.2.6.1 | NN/A, NN/A | CR-D-02.1-001 | TEST | CRITICAL | — |
@@ -115,7 +115,7 @@ This document specifies **technology-agnostic functional requirements** for Secu
 
 ### 3.4 Secure Development (DEV)
 
-| FR ID | Requirement | Source UC | Source NFR | Source Rule | Verification Method | Priority | NIST Anchors |
+| FR ID | Requirement | Source UC | Source NFR | Source Rule | Verification Method | Fit Criterion | Priority | NIST Anchors |
 | ------- | ------------- | ----------- | ------------ | ------------- | --------------------- | ---------- | --- |
 | FR-48 | The system shall perform static analysis security testing (SAST) on every code commit | U.C.4.1.1 | NN/A | CR-D-07.1-001 | TEST | HIGH | — |
 | FR-49 | The system shall scan dependencies for known vulnerabilities on every build | U.C.4.2.1 | NN/A | — | TEST | HIGH | — |
@@ -131,7 +131,7 @@ This document specifies **technology-agnostic functional requirements** for Secu
 
 ### 3.5 Governance & Compliance (GOV)
 
-| FR ID | Requirement | Source UC | Source NFR | Source Rule | Verification Method | Priority | NIST Anchors |
+| FR ID | Requirement | Source UC | Source NFR | Source Rule | Verification Method | Fit Criterion | Priority | NIST Anchors |
 | ------- | ------------- | ----------- | ------------ | ------------- | --------------------- | ---------- | --- |
 | FR-59 | The system shall maintain unified ISMS with regulation-specific annexes (GDPR, CRA, NIS 2, AI_Act) | U.C.5.1.1 | NN/A, NN/A | CR-D-01.1-001 | INSPECT | CRITICAL | CSF: PR.DS-01 |
 | FR-60 | The system shall generate unified DPIA+FRIA assessments with dual outputs before high-risk AI deployment | U.C.5.2.1 | NN/A, NN/A | CR-D-06.1-001 | TEST | CRITICAL | — |
@@ -147,10 +147,10 @@ This document specifies **technology-agnostic functional requirements** for Secu
 
 ### 3.6 AI Systems (AI)
 
-| FR ID | Requirement | Source UC | Source NFR | Source Rule | Verification Method | Priority | NIST Anchors |
+| FR ID | Requirement | Source UC | Source NFR | Source Rule | Verification Method | Fit Criterion | Priority | NIST Anchors |
 | ------- | ------------- | ----------- | ------------ | ------------- | --------------------- | ---------- | --- |
 | FR-71 | The system shall prepare and execute AI_Act conformity assessment for high-risk border control AI before market placement | U.C.6.1.1 | NN/A, NN/A | CR-D-06.1-001 | TEST | CRITICAL | — |
-| FR-72 | The system shall maintain AI technical documentation per Annex IV for 10 years post-market placement | U.C.6.1.1 | NN/A | — | INSPECT | HIGH | — |
+| FR-72 | The system shall maintain AI technical documentation per Annex IV for 10 years post-market placement | U.C.6.1.1 | NN/A | — | INSPECT | 100% of FR-71 (AI conformity assessment) artifacts are generated end-to-end; conformity dossier passes automated schema validation; review SLA ≤ 10 working days. | HIGH | — |
 | FR-73 | The system shall monitor AI accuracy continuously and alert at >1% degradation from baseline | U.C.6.2.1 | NN/A, NN/A | CR-D-10.1-001 | TEST | CRITICAL | — |
 | FR-74 | The system shall conduct quarterly bias testing across demographic groups (age, gender, ethnicity) | U.C.6.3.1 | NN/A, NN/A | — | TEST | CRITICAL | — |
 | FR-75 | The system shall generate bias assessment reports with disparity metrics per demographic group | U.C.6.3.1 | NN/A, NN/A | CR-D-06.1-001 | INSPECT | HIGH | — |
@@ -164,7 +164,7 @@ This document specifies **technology-agnostic functional requirements** for Secu
 
 ### 3.7 Training & Awareness (TRN)
 
-| FR ID | Requirement | Source UC | Source NFR | Source Rule | Verification Method | Priority | NIST Anchors |
+| FR ID | Requirement | Source UC | Source NFR | Source Rule | Verification Method | Fit Criterion | Priority | NIST Anchors |
 | ------- | ------------- | ----------- | ------------ | ------------- | --------------------- | ---------- | --- |
 | FR-85 | The system shall enable annual security awareness training for all staff covering GDPR, CRA, NIS 2 topics | U.C.7.1.1 | NN/A | CR-D-08.1-001 | TEST | MEDIUM | CSF: PR.AT-01 |
 | FR-86 | The system shall enable role-specific security training for developers, operators, SOC, and AI oversight personnel upon role assignment | U.C.7.2.1 | NN/A | CR-D-08.1-001 | TEST | HIGH | CSF: PR.AT-01 |
