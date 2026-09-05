@@ -39,7 +39,7 @@ Committed as `2948fb8` (rubric v1.2 + C1 tag wave, T17/P23/C6, 9 secondaries). D
 
 Massification committed (f1a5049 + fda4cf5 + 433b1b2: C1 23 UCs, C2 26, C3 31, Bike4All template). Remaining:
 - [x] OWASP risk Doc28/29 (threat×flow) — **DONE 2026-09-05** (Case_02 Doc28 §5 + Case_03 Doc29 §4: new `Threat × Flow matrix` anchored to OWASP ASVS v4.0.3 + OWASP SAMM v2; 10 rows each; 3 gates PASS unchanged)
-- [ ] Fase B FR/NFR in Volere format (user rule: light table + testable Fit Criterion, anchored to Source UC, mapped to NIST+CR/BPR; homes = existing requirements/DocNN; pilot 1 package/case; 25 orphan FRs C2)
+- [x] Fase B FR/NFR in Volere format — **DONE 2026-09-05 (commit `0a0122b`)**: closed all 25 orphan FRs in Doc29 C2 (F5-C2-01 HIGH); 2 HARD cards (FR-66 multi-reg notification, FR-77 AI IR with ≤15 min) carry `// HARD: provisional threshold pending drill data` note (no invented numbers). Doc29 v1.1; gates PASS.
 - [x] Bookkeeping of that campaign — **DONE 2026-09-05** (this commit)
 - **P7 queue:** MUC-C3-06 (human decision), métricas §2/§14
 
