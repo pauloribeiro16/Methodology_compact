@@ -79,7 +79,7 @@ flowchart TD
 |---|---|
 | Owner | AI Operations Manager (accountable) with SOC Analyst team (operational). |
 | Span | Standing 24/7 automated incident detection and triage including AI anomaly detection for model drift and adversarial attacks. Contributes: PROC-14/15/16 (incident lifecycle PROCs), U.C. monitoring stack (SYS), SOC competence curriculum (CAP-04). |
-| Maturity | Scale A (posture model v1.6, `capability` scale); current/target to be bound to EvidenceItems (P1 Folio VIII) in the next maturity refresh. |
+| Maturity | PLANNED (1) — Scale A posture model v1.6; current/target pending P1 Folio VIII refresh + EvidenceItem bind |
 | Realises | CR-D-04.1-001, BPR-D-04.1-001. |
 | Anchors | SAMM: O-EM-A (environment management, stream A) · ASVS: V7 (logging) — monitoring outcomes. |
 | Evidence | Coverage rosters; detection/triage dashboards; drift and adversarial-alert reports. |
@@ -98,7 +98,7 @@ graph LR
 |---|---|
 | Owner | HR Manager (Primary); Training Manager (Secondary). |
 | Span | Role-specific security competence programmes with mandatory certification for privileged roles and AI human-oversight procedures. Contributes: CAP-06 (asset inventory competence linkage), role certification chain; feeds PROC-10 (provisioning requires certification). |
-| Maturity | Scale A (posture model v1.6, `capability` scale); current/target to be bound to EvidenceItems (P1 Folio VIII) in the next maturity refresh. |
+| Maturity | PLANNED (1) — Scale A posture model v1.6; current/target pending P1 Folio VIII refresh + EvidenceItem bind |
 | Realises | CR-D-08.2-001, BPR-D-08.2-001, BPR-D-12.3-001. |
 | Anchors | SAMM: G-EG-A/B (education & guidance) · ISO 27002:2022 A.6.3. |
 | Evidence | Certification registry (annual tracking); AI-oversight training completion before deployment; programme curricula. |
@@ -928,7 +928,7 @@ flowchart TD
 |---|---|
 | Owner | Vulnerability Analyst (Primary); Security Operations Manager (Secondary). |
 | Span | Centralized vulnerability register with CVSS scoring, exploitability assessment and remediation tracking. Contributes: PROC-05 (scan findings land in register), PROC-06 (patch tracking), PROC-08/09 (test findings); feeds quarterly CISO reporting. |
-| Maturity | Scale A (posture model v1.6, `capability` scale); current/target to be bound to EvidenceItems (P1 Folio VIII) in the next maturity refresh. |
+| Maturity | PLANNED (1) — Scale A posture model v1.6; current/target pending P1 Folio VIII refresh + EvidenceItem bind |
 | Realises | BPR-D-02.1-001, BPR-D-02.3-001 |
 | Anchors | SAMM: I-DM-A (defect tracking) · SAMM-only with note: ASVS does not map (vulnerability register governance out of ASVS scope). |
 | Evidence | Register with CVSS entries; monthly reconciliation records; quarterly CISO reports. |
@@ -948,7 +948,7 @@ graph LR
 |---|---|
 | Owner | Security Architect (Primary); AI Platform Administrator (Secondary). |
 | Span | SBOM for all products, services and AI model dependencies in SPDX and CycloneDX formats. Contributes: PROC-24 (vendor assessment input), PROC-29 (dependency scanning); CRA compliance evidence. |
-| Maturity | Scale A (posture model v1.6, `capability` scale); current/target to be bound to EvidenceItems (P1 Folio VIII) in the next maturity refresh. |
+| Maturity | PLANNED (1) — Scale A posture model v1.6; current/target pending P1 Folio VIII refresh + EvidenceItem bind |
 | Realises | CR-D-06.2-001, BPR-D-02.2-001 |
 | Anchors | SAMM: I-SB-B (software dependencies) · SAMM-only with note: ASVS does not map (SBOM generation out of ASVS scope). |
 | Evidence | SBOM artefacts per release (SPDX/CycloneDX); publication records within 24h of release. |
@@ -967,7 +967,7 @@ graph LR
 |---|---|
 | Owner | CISO (Primary); Compliance Manager (Secondary); AI Governance Lead (Secondary). |
 | Span | Unified ISMS covering all 5 regulatory frameworks with AI governance framework; documentation retained 10+ years. Contributes: PROC-34 (IPSARA), PROC-35 (regulatory reporting), CAP-07 (AI traceability). |
-| Maturity | Scale A (posture model v1.6, `capability` scale); current/target to be bound to EvidenceItems (P1 Folio VIII) in the next maturity refresh. |
+| Maturity | PLANNED (1) — Scale A posture model v1.6; current/target pending P1 Folio VIII refresh + EvidenceItem bind |
 | Realises | CR-D-09.1-001, BPR-D-09.1-001, BPR-D-09.4-001 |
 | Anchors | SAMM: G-SM-A (create and promote), G-PC-A (policy and standards) · SAMM-only with note: ASVS does not map (ISMS governance out of ASVS scope). |
 | Evidence | ISMS documentation with annual review records; quarterly compliance reports; 10-year retention proof. |
@@ -986,7 +986,7 @@ graph LR
 |---|---|
 | Owner | IT Asset Manager (Primary); CISO (Secondary). |
 | Span | Comprehensive asset and ICT inventory with automated discovery including AI models, training datasets, inference endpoints and model registry entries. Contributes: PROC-12 (hardening scope), PROC-05 (scan scope); discovery within 24h. |
-| Maturity | Scale A (posture model v1.6, `capability` scale); current/target to be bound to EvidenceItems (P1 Folio VIII) in the next maturity refresh. |
+| Maturity | PLANNED (1) — Scale A posture model v1.6; current/target pending P1 Folio VIII refresh + EvidenceItem bind |
 | Realises | CR-D-09.3-001 |
 | Anchors | SAMM: O-EM-A (configuration hardening — inventory as hardening prerequisite) · SAMM-only with note: ASVS does not map (asset inventory governance out of ASVS scope). |
 | Evidence | Monthly reconciliation records; discovery logs (new assets ≤ 24h); decommissioning records (≤ 7 days). |
@@ -1005,7 +1005,7 @@ graph LR
 |---|---|
 | Owner | AI Governance Lead (Primary); Data Protection Officer (Secondary). |
 | Span | AI traceability documentation: model cards, data sheets, AI decision logs and stakeholder transparency reports per IEEE 7000. Contributes: PROC-39 (override metrics), PROC-40 (bias-pattern escalation), CAP-05 (ISMS AI framework). |
-| Maturity | Scale A (posture model v1.6, `capability` scale); current/target to be bound to EvidenceItems (P1 Folio VIII) in the next maturity refresh. |
+| Maturity | PLANNED (1) — Scale A posture model v1.6; current/target pending P1 Folio VIII refresh + EvidenceItem bind |
 | Realises | CR-D-09.4-001, BPR-D-09.4-001 |
 | Anchors | SAMM: G-PC-A (policy and standards) · SAMM-only with note: ASVS does not map (AI traceability/documentation out of ASVS scope). |
 | Evidence | Model cards updated per release; decision logs per regulatory retention; transparency reports. |

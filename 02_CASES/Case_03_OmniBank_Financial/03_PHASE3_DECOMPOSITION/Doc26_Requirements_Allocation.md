@@ -171,6 +171,7 @@ The allocation follows the derivation formula: **Rule → Node → UC → FR/NFR
 | BPR-D-10.1-001 | SIEM/SOAR with automated threat correlation | NODE-D-10-01 | Implementation of CR-D-10.1 | TECHNOLOGY | — |
 | BPR-D-10.2-001 | Centralized log management per NIST SP 800-92 | NODE-D-10-02 | Implementation of CR-D-10.2 | TECHNOLOGY | — |
 | BPR-D-10.3-001 | Penetration testing per OWASP Testing Guide v4 | NODE-D-02-02 | Implementation of CR-D-10.3 | PROCESS | — |
+| BPR-D-12.1-001 | AI lifecycle management per CRA-C20 (AI Act Art. 9) | NODE-D-08-01.1 | AI lifecycle control module | CAPABILITY | — |
 | BPR-D-12.2-001 | AI model monitoring for drift detection | NODE-D-10-01.1 | AI drift detection module | TECHNOLOGY | — |
 
 ---
@@ -235,7 +236,7 @@ Capability sub-requirements (CS) represent cross-track dependencies where PROCES
 | NODE-D-07-01.1 | 2 | CR-D-07.2, BPR-D-07.2 | MEDIUM |
 | NODE-D-07-01.2 | 2 | CR-D-07.3, BPR-D-07.3 | MEDIUM |
 | NODE-D-08-01 | 2 | CR-D-08.1, BPR-D-08.1 | MEDIUM |
-| NODE-D-08-01.1 | 1 | AI Act Art. 14 | LOW |
+| NODE-D-08-01.1 | 1 | CR-D-08.2-001 (CR-D-08.2-001 (AI Act Art. 14 — human oversight) — human oversight) | LOW |
 | NODE-D-08-02 | 2 | CR-D-08.2, BPR-D-08.2 | MEDIUM |
 | NODE-D-08-03 | 2 | CR-D-08.3, BPR-D-08.3 | MEDIUM |
 | NODE-D-09-01 | 4 | CR-D-09.1, CR-D-09.3, BPR-D-09.1 | HIGH |
@@ -245,7 +246,7 @@ Capability sub-requirements (CS) represent cross-track dependencies where PROCES
 | NODE-D-10-01.1 | 1 | BPR-D-12.2 | LOW |
 | NODE-D-10-02 | 3 | CR-D-10.2, BPR-D-10.2 | HIGH |
 | NODE-CS-01 | 1 | CR-D-04.3 | LOW |
-| NODE-CS-02 | 1 | AI-C09, AI-C10, DORA-C38 | LOW |
+| NODE-CS-02 | 1 | CR-D-02.1-001 (AI-C09, AI-C10), CR-D-09.1-001 (DORA-C38) | LOW |
 | NODE-CS-03 | 2 | CR-D-05.3, CR-D-10.2 | MEDIUM |
 
 ---

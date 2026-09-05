@@ -74,7 +74,7 @@ flowchart TD
 |---|---|
 | Owner | SH-INT-008 (SOC Manager). |
 | Span | Standing 24/7 unified SOC monitoring covering security + AI post-market metrics. Contributes: PROC-05 (triage), PROC-06 (containment), PROC-18 (authority reporting); U.C.10.x fleet telemetry; SOC competence curriculum (CAP-07). |
-| Maturity | Scale A (posture model v1.6, `capability` scale); current/target to be bound to EvidenceItems (P1 Folio VIII) in the next maturity refresh. |
+| Maturity | PLANNED (1) — Scale A posture model v1.6; current/target pending P1 Folio VIII refresh + EvidenceItem bind |
 | Realises | CR-D-10.1-001, BPR-D-10.4-001, BPR-D-10.5-001 / SO-D-10.1-001..003. |
 | Anchors | SAMM: O-EM-A (environment management, stream A) · ASVS: V7 (logging) — monitoring outcomes. |
 | Evidence | 24/7 coverage rosters; monitoring dashboards; post-market AI metric reports. |
@@ -95,7 +95,7 @@ graph LR
 |---|---|
 | Owner | SH-INT-003 (CISO). |
 | Span | Annual security awareness programme covering GDPR, CRA, NIS 2 topics. Contributes: CAP-07 (role-specific training), CAP-10 (phishing simulation); HR delivery chain. |
-| Maturity | Scale A (posture model v1.6, `capability` scale); current/target to be bound to EvidenceItems (P1 Folio VIII) in the next maturity refresh. |
+| Maturity | PLANNED (1) — Scale A posture model v1.6; current/target pending P1 Folio VIII refresh + EvidenceItem bind |
 | Realises | CR-D-08.1-001, BPR-D-08.4-001 / PO-D-08.1-001..002. |
 | Anchors | SAMM: G-EG-A (education & guidance, stream A) · ISO 27002:2022 A.6.3. |
 | Evidence | Completion records; curriculum versions; annual review sign-off. |
@@ -684,7 +684,7 @@ flowchart TD
 |---|---|
 | Owner | SH-INT-004 (DPO). |
 | Span | Continuous maintenance of records of processing activities for biometric and passport data processing (GDPR Art. 30). Contributes: PROC-04 (minimization), PROC-14 (DPIA), PROC-01/02 (DSAR fulfilment). |
-| Maturity | Scale A (posture model v1.6, `capability` scale); current/target to be bound to EvidenceItems (P1 Folio VIII) in the next maturity refresh. |
+| Maturity | PLANNED (1) — Scale A posture model v1.6; current/target pending P1 Folio VIII refresh + EvidenceItem bind |
 | Realises | CR-D-09.4-001 / PO-D-09.4-001 (PO-D-09.1-001 downstream). |
 | Anchors | SAMM: G-PC-A (policy & compliance) · ASVS: no direct ASVS mapping (record-keeping governance) — SAMM-only note per frozen catalogue. |
 | Evidence | RoPA entries; review timestamps; change-trigger records. |
@@ -703,7 +703,7 @@ graph LR
 |---|---|
 | Owner | SH-INT-002 (CTO). |
 | Span | Integrate privacy-by-design and secure-by-default into product design at every design phase (GDPR/CRA). Contributes: PROC-25 (training platform design), PROC-24 (secure defaults), U.C.4.6.1 (model versioning). |
-| Maturity | Scale A (posture model v1.6, `capability` scale); current/target to be bound to EvidenceItems (P1 Folio VIII) in the next maturity refresh. |
+| Maturity | PLANNED (1) — Scale A posture model v1.6; current/target pending P1 Folio VIII refresh + EvidenceItem bind |
 | Realises | CR-D-07.1-001, BPR-D-07.1-002 / PO-D-07.1-001 (PO-D-07.1-002, SO-D-07.1-001 downstream). |
 | Anchors | SAMM: D-SA-A (architecture design) · ASVS: V1.8 (data protection and privacy architecture), V1.14 (configuration architecture). |
 | Evidence | Design review records; privacy requirements traceability; secure-default configuration baselines. |
@@ -722,7 +722,7 @@ graph LR
 |---|---|
 | Owner | SH-INT-003 (CISO). |
 | Span | Maintain the unified ISMS with regulation-specific annexes (GDPR, CRA, NIS 2, AI_Act). Contributes: PROC-15 (risk), PROC-16 (audit), PROC-18 (authority cooperation), CAP-05 (asset inventory). |
-| Maturity | Scale A (posture model v1.6, `capability` scale); current/target to be bound to EvidenceItems (P1 Folio VIII) in the next maturity refresh. |
+| Maturity | PLANNED (1) — Scale A posture model v1.6; current/target pending P1 Folio VIII refresh + EvidenceItem bind |
 | Realises | CR-D-09.1-001, BPR-D-09.1-001, BPR-D-09.5-001 / PO-D-09.1-001 (PO-D-09.1-002, SO-D-09.1-001 downstream). |
 | Anchors | SAMM: G-SM-A (strategy & metrics) · ASVS: no direct ASVS mapping (management-system governance) — SAMM-only note per frozen catalogue. |
 | Evidence | ISMS documentation set; annex updates per regulation; management review minutes. |
@@ -741,7 +741,7 @@ graph LR
 |---|---|
 | Owner | SH-INT-010 (Compliance). |
 | Span | Maintain comprehensive inventory of hardware, software, data, and AI components. Contributes: PROC-15 (risk scope), PROC-24 (kiosk fleet registration), PROC-17 (vendor-linked assets). |
-| Maturity | Scale A (posture model v1.6, `capability` scale); current/target to be bound to EvidenceItems (P1 Folio VIII) in the next maturity refresh. |
+| Maturity | PLANNED (1) — Scale A posture model v1.6; current/target pending P1 Folio VIII refresh + EvidenceItem bind |
 | Realises | CR-D-09.3-001 / NOT_ADDRESSED (PO-D-09.1-001 downstream). |
 | Anchors | SAMM: O-EM-A (environment management, stream A) · ASVS: no direct ASVS mapping (inventory discipline; V1.14 configuration adjacent) — noted per frozen catalogue. |
 | Evidence | Inventory records (HW/SW/data/AI); reconciliation reports; owner assignments. |
@@ -760,7 +760,7 @@ graph LR
 |---|---|
 | Owner | SH-INT-003 (CISO). |
 | Span | Role-specific training for developers, operators, SOC, and AI oversight personnel, delivered on role assignment (GDPR/NIS 2/AI_Act). Contributes: CAP-06 (awareness baseline), CAP-08 (AI competence). |
-| Maturity | Scale A (posture model v1.6, `capability` scale); current/target to be bound to EvidenceItems (P1 Folio VIII) in the next maturity refresh. |
+| Maturity | PLANNED (1) — Scale A posture model v1.6; current/target pending P1 Folio VIII refresh + EvidenceItem bind |
 | Realises | CR-D-08.2-001 / PO-D-08.2-001 (PO-D-08.2-002, SO-D-08.2-001 downstream). |
 | Anchors | SAMM: G-EG-A (education & guidance, stream A) · ASVS: no direct ASVS mapping (training capability) — SAMM-only note per frozen catalogue. |
 | Evidence | Role-based curricula; assignment-triggered completion records; competence assessments. |
@@ -779,7 +779,7 @@ graph LR
 |---|---|
 | Owner | SH-INT-005 (AI Gov). |
 | Span | AI-specific training for human oversight personnel on border control AI operation (AI_Act Art. 14), on role assignment. Contributes: U.C.3.7.1 (override competence), PROC-26 (review capability), CAP-07 (curriculum). |
-| Maturity | Scale A (posture model v1.6, `capability` scale); current/target to be bound to EvidenceItems (P1 Folio VIII) in the next maturity refresh. |
+| Maturity | PLANNED (1) — Scale A posture model v1.6; current/target pending P1 Folio VIII refresh + EvidenceItem bind |
 | Realises | CR-D-08.2-001 / PO-D-08.2-001 (PO-D-08.2-002, SO-D-08.2-001 downstream). |
 | Anchors | SAMM: G-EG-A (education & guidance, stream A) · ASVS: no direct ASVS mapping (AI competence training) — SAMM-only note per frozen catalogue. |
 | Evidence | AI oversight curriculum; completion records; override-competence assessment. |
@@ -798,7 +798,7 @@ graph LR
 |---|---|
 | Owner | SH-INT-001 (CEO). |
 | Span | NIS 2 Art. 20 management liability training for board members, annually. Contributes: governance approval chain (risk appetite, PROC-07 escalation path). |
-| Maturity | Scale A (posture model v1.6, `capability` scale); current/target to be bound to EvidenceItems (P1 Folio VIII) in the next maturity refresh. |
+| Maturity | PLANNED (1) — Scale A posture model v1.6; current/target pending P1 Folio VIII refresh + EvidenceItem bind |
 | Realises | CR-D-08.3-001 / NOT_ADDRESSED (PO-D-08.1-001 downstream). |
 | Anchors | SAMM: G-EG-B (education & guidance, stream B) · ASVS: no direct ASVS mapping (executive governance training) — SAMM-only note per frozen catalogue. |
 | Evidence | Annual board session records; attendance; liability-awareness materials. |
@@ -816,7 +816,7 @@ graph LR
 |---|---|
 | Owner | SH-INT-003 (CISO). |
 | Span | Quarterly phishing simulation exercises for all staff (Best Practice). Contributes: CAP-06 (awareness programme), SOC detection tuning (BPR-D-04.5-001 reporting loop). |
-| Maturity | Scale A (posture model v1.6, `capability` scale); current/target to be bound to EvidenceItems (P1 Folio VIII) in the next maturity refresh. |
+| Maturity | PLANNED (1) — Scale A posture model v1.6; current/target pending P1 Folio VIII refresh + EvidenceItem bind |
 | Realises | BPR-D-04.5-001, BPR-D-08.4-001 / SO-D-04.1-001 (PO-D-08.1-001 downstream). |
 | Anchors | SAMM: G-EG-A (education & guidance, stream A) · ASVS: no direct ASVS mapping (staff simulation capability) — SAMM-only note per frozen catalogue. |
 | Evidence | Campaign reports (click/report rates); repeat-clicker follow-up records; trend tracking. |

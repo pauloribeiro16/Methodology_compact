@@ -371,8 +371,8 @@ Each requirement can be implemented with various technologies:
 
 | FR ID | Requirement | Possible Implementations (examples, not prescriptive) | NIST Anchors |
 | ------- | ------------- | ------------------------------------------------------ | --- |
-| FR-71 | Authenticate with MFA | Password + hardware token, biometric + smart card, FIDO2 | — |
-| FR-72 | Capture and encrypt biometric templates | Facial recognition, iris scan, fingerprint with various crypto modules | — |
+| FR-71-V1 | Authenticate with MFA (variant) | Password + hardware token, biometric + smart card, FIDO2 | — |
+| FR-72-V1 | Capture and encrypt biometric templates (variant) | Facial recognition, iris scan, fingerprint with various crypto modules | — |
 | N/A | Collect security events | SIEM, log aggregator, cloud monitoring, custom pipeline |
 | N/A | Monitor AI accuracy continuously | Custom monitoring, ML ops platform, integrated SOC dashboard |
 | N/A | Maintain unified ISMS | GRC platform, document management system, custom portal |

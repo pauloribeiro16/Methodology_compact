@@ -103,7 +103,7 @@ flowchart TD
 |---|---|
 | Owner | A-DPO-01 (DPO) with A-CTO-01 for technical processor assessment. |
 | Span | Standing contract-management ability: DPA execution and annual review across all active processors; annual review cycle; GDPR Art. 28 clause library maintained. Contributes PROCs: none in the pilot set (processor due-diligence workflow = PROC-14 in Doc20, full card campaign future). |
-| Maturity | Scale A (posture model v1.6, `capability` scale); current/target to be bound to EvidenceItems (P1 Folio VIII) in the next maturity refresh. |
+| Maturity | PLANNED (1) — Scale A posture model v1.6; current/target pending P1 Folio VIII refresh + EvidenceItem bind |
 | Realises | CR-D-06.3-001 / SO-D-06.3-001. |
 | Anchors | SAMM: G-SM-B (supplier security stream) · ISO 27002:2022 A.5.20 (last-resort reference). |
 | Evidence | Signed DPAs on file; annual review records; Art. 28 clause checklist per processor. |

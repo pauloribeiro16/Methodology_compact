@@ -953,7 +953,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 | **FR Description** | System SHALL log AI decisions with full traceability including inputs, outputs, model version, and decision factors for regulatory examination |
 | **Source UC** | UC-58, PROC-38 |
 | **Source Node** | D-09.4.2, D-10.2.1 |
-| **Source Rule** | CR-D-09.4-001, AI-C09, AI-C10 |
+| **Source Rule** | CR-D-09.4-001, CR-D-02.1-001, CR-D-02.1-001 |
 | **Domain** | GOV |
 | **Verification** | INSPECT |
 | **Priority** | CRITICAL |
@@ -998,7 +998,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 | **FR Description** | System SHALL generate regulatory compliance reports for ECB/BaFin, ENISA, and other authorities including AI governance indicators |
 | **Source UC** | PROC-35 |
 | **Source Node** | D-09.1.1 |
-| **Source Rule** | CR-D-09.1-001, DORA-C38 |
+| **Source Rule** | CR-D-09.1-001, CR-D-09.1-001 |
 | **Domain** | GOV |
 | **Verification** | INSPECT |
 | **Priority** | HIGH |
@@ -1013,7 +1013,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 | **FR Description** | System SHALL document GDPR Data Protection Impact Assessments for processing likely to result in high risk |
 | **Source UC** | PROC-34.1 (DPIA) |
 | **Source Node** | D-09.2.1 |
-| **Source Rule** | GDPR Art. 35 |
+| **Source Rule** | CR-D-09.2-001 |
 | **Domain** | GOV |
 | **Verification** | INSPECT |
 | **Priority** | CRITICAL |
@@ -1028,7 +1028,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 | **FR Description** | System SHALL document AI Act Fundamental Rights Impact Assessments for high-risk AI systems |
 | **Source UC** | PROC-34.2 (FRIA) |
 | **Source Node** | D-09.2.1 |
-| **Source Rule** | AI Act Art. 28 |
+| **Source Rule** | CR-D-06.1-001 |
 | **Domain** | GOV |
 | **Verification** | INSPECT |
 | **Priority** | CRITICAL |
@@ -1090,7 +1090,7 @@ Each FR follows the derivation formula: **Actor → Behavior → Constraint → 
 | **FR Description** | System SHALL include AI ethics training for data science and ML teams covering bias detection, fairness metrics, and human oversight |
 | **Source UC** | PROC-31 (AI ethics component) |
 | **Source Node** | D-08.1.1 |
-| **Source Rule** | AI Act Art. 14 |
+| **Source Rule** | CR-D-08.2-001 |
 | **Domain** | TRN |
 | **Verification** | INSPECT |
 | **Priority** | HIGH |
