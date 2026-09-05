@@ -180,6 +180,20 @@ Methodology/
 
 ---
 
+## 4E. LANE NAMING CAMPAIGN (2026-09-05)
+
+- **Decision (P7):** `UC-*` reserved for TECHNOLOGY; `PROC-NN` / `CAP-NN` for PROCESS /
+  CAPABILITY (rubric v1.3 §5B). Registry: `LANE_NAMING_CENSUS_v0.md` (incl. 31 MIXED
+  adjudications with justifications).
+- **Applied:** 102 renames (C1 18 · C2 37 · C3 47), ~1.855 downstream references via
+  single-pass `scripts/rename_lane_ids.py`; zero leftovers; 3 gates PASS; C1 xlsx
+  regenerated; catalogs bumped.
+- **Lane counts:** C1 T40/P17/C1 · C2 T36/P27/C10 · C3 T46/P40/C7.
+- **Next (deferred):** lane artefacts (process models, capability cards) remain open —
+  see ledger §2/§3.
+
+---
+
 ## 4D. PHASE 3 PRODUCT-FIRST — partial closure (2026-09-05)
 
 - **OWASP threat×flow (item 6)**: Case_02 `Doc28_Risk_Analysis.md` §5 and Case_03
