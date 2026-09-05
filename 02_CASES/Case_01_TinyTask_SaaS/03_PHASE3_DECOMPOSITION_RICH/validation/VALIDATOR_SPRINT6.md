@@ -53,7 +53,7 @@ ID namespaces (packages 1-6 occupied; 7-11 new): no collisions with existing IDs
 
 ### §2.2 Backwards compatibility (P5)
 
-The 35 security U.C. IDs (U.C.1.1.1 … U.C.6.3.1) appear unchanged in all downstream documents. The validator grepped the Phase 3 tree and confirmed:
+The 35 security U.C. IDs (PROC-01 … PROC-17) appear unchanged in all downstream documents. The validator grepped the Phase 3 tree and confirmed:
 
 | Metric | Value |
 |--------|------:|
@@ -99,7 +99,7 @@ P6 PASS — every non-attested feature is flagged.
 | MUC | Misactor | Targets | Mitigations |
 |-----|----------|---------|-------------|
 | MUC-01 | A-MIS-01 | U.C.7.1.2, U.C.7.1.3 | U.C.3.1.1, U.C.3.1.2, U.C.2.4.1, U.C.3.5.1 |
-| MUC-02 | A-MIS-03 | U.C.7.5.1, U.C.10.3.1 | U.C.3.2.1, U.C.3.5.1, U.C.5.1.2 |
+| MUC-02 | A-MIS-03 | U.C.7.5.1, U.C.10.3.1 | U.C.3.2.1, U.C.3.5.1, PROC-11 |
 | MUC-03 | A-MIS-01/A-MIS-03 | 5 functional U.C.s | 4 security U.C.s |
 | MUC-04 | A-MIS-03 | U.C.11.2.1, U.C.9.4.1 | 4 security U.C.s |
 | MUC-05 | A-MIS-04 | U.C.10.2.1, U.C.7.1.2 | 3 security U.C.s |

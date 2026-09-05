@@ -56,65 +56,65 @@ This document consolidates all architectural nodes: Process (PROC), IT-System (T
 
 | Node ID | Type | D-subdomain | Purpose | Primary UC | Orphan ref? | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |---------|------|-------------|---------|-----------|-------------|-------|-----------------------|----------|----------|--------------|-----------|
-| NODE-SYS-001 | TECH | D-10.2 | SIEM platform (log aggregation, correlation) | U.C.3.5.1, U.C.2.1.1 | CR-D-10.1-001 (F-S1-03) → CR-D-10.2-001 | | | | | | |
+| NODE-SYS-001 | TECH | D-10.2 | SIEM platform (log aggregation, correlation) | U.C.3.5.1, PROC-03 | CR-D-10.1-001 (F-S1-03) → CR-D-10.2-001 | | | | | | |
 | NODE-SYS-002 | TECH | D-10.2 | Audit log store (immutable, ≥12 months) | U.C.3.5.1 | — | | | | | | |
 | NODE-SYS-003 | TECH | D-10.2 | Log forwarder (TLS-protected transport) | U.C.3.5.1 | — | | | | | | |
-| NODE-SYS-004 | TECH | D-04.3 | Incident management platform | U.C.2.5.1 | — | | | | | | |
+| NODE-SYS-004 | TECH | D-04.3 | Incident management platform | PROC-05 | — | | | | | | |
 | NODE-SYS-005 | TECH | D-04.1 | WAF / fail-safe gateway | U.C.2.4.1, U.C.4.4.1 | — | | | | | | |
 | NODE-SYS-006 | TECH | D-03.1 | Identity Provider (IdP) | U.C.3.1.1 | — | | | | | | |
 | NODE-SYS-007 | TECH | D-03.1 | Privileged Access Management (PAM) | U.C.3.1.2 | — | | | | | | |
 | NODE-SYS-008 | TECH | D-03.4 | Configuration baseline (hardened-default) | U.C.3.3.1 | — | | | | | | |
-| NODE-SYS-009 | TECH | D-10.3 | Penetration testing platform | U.C.3.6.1 | — | | | | | | |
-| NODE-SYS-010 | TECH | D-01.1 | Encryption-at-rest (data store) | U.C.1.1.1 | — | | | | | | |
+| NODE-SYS-009 | TECH | D-10.3 | Penetration testing platform | PROC-07 | — | | | | | | |
+| NODE-SYS-010 | TECH | D-01.1 | Encryption-at-rest (data store) | PROC-01 | — | | | | | | |
 | NODE-SYS-011 | TECH | D-01.2 | TLS terminator (data in transit) | U.C.3.1.1 | — | | | | | | |
 | NODE-SYS-012 | TECH | D-07.2 | CI/CD pipeline (SAST/DAST integration) | U.C.4.2.1 | CR-D-07.3-001 (F-S1-01) → BPR-D-07.2-001 | | | | | | |
 | NODE-SYS-013 | TECH | D-06.2 | SBOM generator (CycloneDX/SPDX) | U.C.5.6.1 | — | | | | | | |
-| NODE-SYS-014 | TECH | D-09.4 | Records-of-Processing store | U.C.5.3.1 | — | | | | | | |
+| NODE-SYS-014 | TECH | D-09.4 | Records-of-Processing store | PROC-13 | — | | | | | | |
 | NODE-SYS-015 | TECH | D-04.4 | Backup & restore service | U.C.2.6.1 | — | | | | | | |
-| NODE-SYS-016 | TECH | D-01.4 | Integrity verification (HMAC, checksums) | U.C.1.1.2 | — | | | | | | |
-| NODE-SYS-017 | TECH | D-09.4 | Breach register | U.C.2.5.1, U.C.5.3.1 | — | | | | | | |
+| NODE-SYS-016 | TECH | D-01.4 | Integrity verification (HMAC, checksums) | PROC-02 | — | | | | | | |
+| NODE-SYS-017 | TECH | D-09.4 | Breach register | PROC-05, PROC-13 | — | | | | | | |
 
 ## §3 NODE-PROC (PROC) — 20
 
 | Node ID | Type | D-subdomain | Purpose | Primary UC | Orphan ref? | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |---------|------|-------------|---------|-----------|-------------|-------|-----------------------|----------|----------|--------------|-----------|
-| NODE-PROC-001 | PROC | D-04.3 | Unified Incident Response process | U.C.2.5.1 | — (CH-12 INFERRED link) | | | | | | |
+| NODE-PROC-001 | PROC | D-04.3 | Unified Incident Response process | PROC-05 | — (CH-12 INFERRED link) | | | | | | |
 | NODE-PROC-002 | PROC | D-04.1 | Exploit mitigation process | U.C.2.4.1 | — | | | | | | |
 | NODE-PROC-003 | PROC | D-04.4 | Data restoration process | U.C.2.6.1 | — | | | | | | |
-| NODE-PROC-004 | PROC | D-09.1 | Annual policy review process | U.C.5.1.1 | — | | | | | | |
-| NODE-PROC-005 | PROC | D-09.2 | Risk assessment process | U.C.4.5.1, U.C.5.2.1 | — | | | | | | |
-| NODE-PROC-006 | PROC | D-09.4 | RoPA maintenance process | U.C.5.3.1 | — | | | | | | |
-| NODE-PROC-007 | PROC | D-07.1 | Secure SDLC process | U.C.4.1.1 | — | | | | | | |
+| NODE-PROC-004 | PROC | D-09.1 | Annual policy review process | PROC-10 | — | | | | | | |
+| NODE-PROC-005 | PROC | D-09.2 | Risk assessment process | PROC-09, PROC-12 | — | | | | | | |
+| NODE-PROC-006 | PROC | D-09.4 | RoPA maintenance process | PROC-13 | — | | | | | | |
+| NODE-PROC-007 | PROC | D-07.1 | Secure SDLC process | PROC-08 | — | | | | | | |
 | NODE-PROC-008 | PROC | D-07.2 | SAST/DAST execution process | U.C.4.2.1 | CR-D-07.3-001 (F-S1-01) → BPR-D-07.2-001 | | | | | | |
-| NODE-PROC-009 | PROC | D-07.1 | Code review process | U.C.4.1.1 | — | | | | | | |
-| NODE-PROC-010 | PROC | D-07.1 | Secret management process | U.C.4.1.1 | — | | | | | | |
-| NODE-PROC-011 | PROC | D-06.1 | Processor due-diligence process | U.C.5.4.1 | — | | | | | | |
-| NODE-PROC-012 | PROC | D-06.3 | DPA lifecycle process | U.C.5.5.1 | — | | | | | | |
+| NODE-PROC-009 | PROC | D-07.1 | Code review process | PROC-08 | — | | | | | | |
+| NODE-PROC-010 | PROC | D-07.1 | Secret management process | PROC-08 | — | | | | | | |
+| NODE-PROC-011 | PROC | D-06.1 | Processor due-diligence process | PROC-14 | — | | | | | | |
+| NODE-PROC-012 | PROC | D-06.3 | DPA lifecycle process | CAP-01 | — | | | | | | |
 | NODE-PROC-013 | PROC | D-07.2 | CI/CD security gate process | U.C.4.2.1 | CR-D-07.3-001 (F-S1-01) → BPR-D-07.2-001 | | | | | | |
 | NODE-PROC-014 | PROC | D-07.2 | Change management process | U.C.4.3.1 | CR-D-07.4-001 (F-S1-02) → BPR-D-07.2-001 | | | | | | |
 | NODE-PROC-015 | PROC | D-02.2 | Patch deployment process | U.C.4.3.1 | — | | | | | | |
-| NODE-PROC-016 | PROC | D-02.3 | Coordinated Vulnerability Disclosure process | U.C.2.3.1 | — | | | | | | |
-| NODE-PROC-017 | PROC | D-02.1 | Vulnerability scan process | U.C.2.1.1 | — | | | | | | |
-| NODE-PROC-018 | PROC | D-08.1 | Annual awareness training process | U.C.6.1.1 | — | | | | | | |
-| NODE-PROC-019 | PROC | D-08.2 | Role-specific training process | U.C.6.2.1 | — | | | | | | |
-| NODE-PROC-020 | PROC | D-10.3 | Annual penetration testing process | U.C.3.6.1 | — | | | | | | |
+| NODE-PROC-016 | PROC | D-02.3 | Coordinated Vulnerability Disclosure process | PROC-04 | — | | | | | | |
+| NODE-PROC-017 | PROC | D-02.1 | Vulnerability scan process | PROC-03 | — | | | | | | |
+| NODE-PROC-018 | PROC | D-08.1 | Annual awareness training process | PROC-15 | — | | | | | | |
+| NODE-PROC-019 | PROC | D-08.2 | Role-specific training process | PROC-16 | — | | | | | | |
+| NODE-PROC-020 | PROC | D-10.3 | Annual penetration testing process | PROC-07 | — | | | | | | |
 
 ## §4 NODE-ROLE (ROLE) — 12
 
 | Node ID | Type | D-subdomain | Role | Responsibilities | Primary UC | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |---------|------|-------------|------|-----------------|-----------|-------|-----------------------|----------|----------|--------------|-----------|
-| NODE-ROLE-001 | ROLE | D-09.1 | CEO | Business decisions, risk acceptance | U.C.5.1.1 | | | | | | |
-| NODE-ROLE-002 | ROLE | D-08.2 | CTO | Technical architecture, security oversight | U.C.5.1.2 | | | | | | |
-| NODE-ROLE-003 | ROLE | D-08.2 | Lead Developer | Secure development, code review | U.C.4.1.1, U.C.4.2.1 | | | | | | |
+| NODE-ROLE-001 | ROLE | D-09.1 | CEO | Business decisions, risk acceptance | PROC-10 | | | | | | |
+| NODE-ROLE-002 | ROLE | D-08.2 | CTO | Technical architecture, security oversight | PROC-11 | | | | | | |
+| NODE-ROLE-003 | ROLE | D-08.2 | Lead Developer | Secure development, code review | PROC-08, U.C.4.2.1 | | | | | | |
 | NODE-ROLE-004 | ROLE | D-03.3 | IAM Admin | RBAC management, access reviews | U.C.3.2.1 | | | | | | |
-| NODE-ROLE-005 | ROLE | D-08.1 | Operations Lead | Infrastructure, incident response | U.C.2.5.1 | | | | | | |
-| NODE-ROLE-006 | ROLE | D-09.2 | Risk Owner | DPIA, risk assessment | U.C.4.5.1, U.C.5.2.1 | | | | | | |
-| NODE-ROLE-007 | ROLE | D-09.4 | DPO | RoPA, breach records, supervisory liaison | U.C.5.3.1, U.C.2.5.1 | | | | | | |
-| NODE-ROLE-008 | ROLE | D-04.3 | Incident Commander | 24h ENISA, 72h GDPR notification | U.C.2.5.1 | | | | | | |
-| NODE-ROLE-009 | ROLE | D-06.1 | Procurement Lead | Processor due diligence | U.C.5.4.1 | | | | | | |
+| NODE-ROLE-005 | ROLE | D-08.1 | Operations Lead | Infrastructure, incident response | PROC-05 | | | | | | |
+| NODE-ROLE-006 | ROLE | D-09.2 | Risk Owner | DPIA, risk assessment | PROC-09, PROC-12 | | | | | | |
+| NODE-ROLE-007 | ROLE | D-09.4 | DPO | RoPA, breach records, supervisory liaison | PROC-13, PROC-05 | | | | | | |
+| NODE-ROLE-008 | ROLE | D-04.3 | Incident Commander | 24h ENISA, 72h GDPR notification | PROC-05 | | | | | | |
+| NODE-ROLE-009 | ROLE | D-06.1 | Procurement Lead | Processor due diligence | PROC-14 | | | | | | |
 | NODE-ROLE-010 | ROLE | D-04.1 | Security Engineer | Exploit severity mitigation | U.C.2.4.1 | | | | | | |
-| NODE-ROLE-011 | ROLE | D-06.3 | Legal Counsel | DPA lifecycle | U.C.5.5.1 | | | | | | |
-| NODE-ROLE-012 | ROLE | D-09.1 | Compliance Manager | Annual policy review, audits | U.C.5.1.1 | | | | | | |
+| NODE-ROLE-011 | ROLE | D-06.3 | Legal Counsel | DPA lifecycle | CAP-01 | | | | | | |
+| NODE-ROLE-012 | ROLE | D-09.1 | Compliance Manager | Annual policy review, audits | PROC-10 | | | | | | |
 
 ---
 
@@ -154,7 +154,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Verification Method:** INSPECT
 **Owner:** CEO
 **Status:** TODO
-**Dependencies:** U.C.5.1.1, NODE-PROC-004
+**Dependencies:** PROC-10, NODE-PROC-004
 **Risk if not met:** M — uninformed CEO = mis-prioritisation.
 **Affected Stakeholders:** CEO, Board, Compliance Manager
 **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
@@ -179,7 +179,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Verification Method:** INSPECT
 **Owner:** CTO
 **Status:** TODO
-**Dependencies:** U.C.5.1.2, NODE-SYS-006
+**Dependencies:** PROC-11, NODE-SYS-006
 **Risk if not met:** M — uninformed CTO = tech drift.
 **Affected Stakeholders:** CTO, Lead Developer, Compliance Manager
 **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
@@ -204,7 +204,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Verification Method:** TEST
 **Owner:** Lead Developer
 **Status:** TODO
-**Dependencies:** U.C.4.1.1, U.C.4.2.1, NODE-PROC-007/009
+**Dependencies:** PROC-08, U.C.4.2.1, NODE-PROC-007/009
 **Risk if not met:** M — weak gate = defects ship.
 **Affected Stakeholders:** Lead Developer, CTO, Auditor
 
@@ -244,7 +244,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Verification Method:** DEMONSTRATE
 **Owner:** Operations Lead
 **Status:** TODO
-**Dependencies:** U.C.2.5.1, NODE-SYS-004
+**Dependencies:** PROC-05, NODE-SYS-004
 **Risk if not met:** H — slow response = regulator fine.
 **Affected Stakeholders:** Operations Lead, Incident Commander
 
@@ -264,7 +264,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Verification Method:** DEMONSTRATE
 **Owner:** Risk Owner
 **Status:** TODO
-**Dependencies:** U.C.4.5.1, U.C.5.2.1, NODE-PROC-005
+**Dependencies:** PROC-09, PROC-12, NODE-PROC-005
 **Risk if not met:** H — missing DPIA = Art. 35 violation.
 **Affected Stakeholders:** Risk Owner, DPO, Compliance Manager
 
@@ -284,7 +284,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Verification Method:** INSPECT
 **Owner:** DPO
 **Status:** TODO
-**Dependencies:** U.C.5.3.1, U.C.2.5.1, NODE-SYS-014, NODE-SYS-017
+**Dependencies:** PROC-13, PROC-05, NODE-SYS-014, NODE-SYS-017
 **Risk if not met:** H — DPO gap = Art. 37 violation.
 **Affected Stakeholders:** DPO, Compliance Manager, CEO
 
@@ -304,7 +304,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Verification Method:** DEMONSTRATE
 **Owner:** Incident Commander
 **Status:** TODO
-**Dependencies:** U.C.2.5.1, NODE-SYS-004, NODE-PROC-001
+**Dependencies:** PROC-05, NODE-SYS-004, NODE-PROC-001
 **Risk if not met:** H — late notification = regulator fine.
 **Affected Stakeholders:** Incident Commander, DPO, Operations Lead
 **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
@@ -329,7 +329,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Verification Method:** INSPECT
 **Owner:** Procurement Lead
 **Status:** TODO
-**Dependencies:** U.C.5.4.1, NODE-PROC-011
+**Dependencies:** PROC-14, NODE-PROC-011
 **Risk if not met:** H — substandard processor = Art. 28 violation.
 **Affected Stakeholders:** Procurement Lead, DPO, Legal Counsel
 
@@ -369,7 +369,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Verification Method:** INSPECT
 **Owner:** Legal Counsel
 **Status:** TODO
-**Dependencies:** U.C.5.5.1, NODE-PROC-012
+**Dependencies:** CAP-01, NODE-PROC-012
 **Risk if not met:** M — DPA gap = Art. 28 violation.
 **Affected Stakeholders:** Legal Counsel, DPO, Procurement Lead
 
@@ -389,7 +389,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Verification Method:** INSPECT
 **Owner:** Compliance Manager
 **Status:** TODO
-**Dependencies:** U.C.5.1.1, NODE-PROC-004, NODE-PROC-018
+**Dependencies:** PROC-10, NODE-PROC-004, NODE-PROC-018
 **Risk if not met:** M — governance gap = audit finding.
 **Affected Stakeholders:** Compliance Manager, CEO, Auditor
 
@@ -411,7 +411,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Verification Method:** DEMONSTRATE
 **Owner:** Operations Lead
 **Status:** TODO
-**Dependencies:** U.C.2.5.1, NODE-SYS-004, NODE-ROLE-008
+**Dependencies:** PROC-05, NODE-SYS-004, NODE-ROLE-008
 **Risk if not met:** H — slow incident = dual-regulator fine.
 **Affected Stakeholders:** Customer, CTO, DPO, Lead Developer, Auditor
 **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
@@ -476,7 +476,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Verification Method:** INSPECT
 **Owner:** Compliance Manager
 **Status:** TODO
-**Dependencies:** U.C.5.1.1, NODE-ROLE-001, NODE-ROLE-012
+**Dependencies:** PROC-10, NODE-ROLE-001, NODE-ROLE-012
 **Risk if not met:** M — stale policy = governance gap.
 **Affected Stakeholders:** Compliance Manager, CEO, Auditor
 
@@ -496,7 +496,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Verification Method:** DEMONSTRATE
 **Owner:** Risk Owner
 **Status:** TODO
-**Dependencies:** U.C.4.5.1, U.C.5.2.1, NODE-ROLE-006
+**Dependencies:** PROC-09, PROC-12, NODE-ROLE-006
 **Risk if not met:** H — missed assessment = GDPR Art. 35.
 **Affected Stakeholders:** Compliance Manager, CEO, Auditor
 
@@ -516,7 +516,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Verification Method:** INSPECT
 **Owner:** DPO
 **Status:** TODO
-**Dependencies:** U.C.5.3.1, NODE-SYS-014
+**Dependencies:** PROC-13, NODE-SYS-014
 **Risk if not met:** M — outdated RoPA = Art. 30 violation.
 **Affected Stakeholders:** Customer, DPO, Auditor
 
@@ -536,7 +536,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Verification Method:** DEMONSTRATE
 **Owner:** Lead Developer
 **Status:** TODO
-**Dependencies:** U.C.4.1.1, NODE-PROC-009, NODE-PROC-010, NODE-ROLE-003
+**Dependencies:** PROC-08, NODE-PROC-009, NODE-PROC-010, NODE-ROLE-003
 **Risk if not met:** M — design flaws discovered late = costly.
 **Affected Stakeholders:** Lead Developer, CTO, Auditor
 **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
@@ -581,7 +581,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Verification Method:** TEST
 **Owner:** Lead Developer
 **Status:** TODO
-**Dependencies:** U.C.4.1.1, NODE-ROLE-003
+**Dependencies:** PROC-08, NODE-ROLE-003
 **Risk if not met:** M — unreviewed code = defect risk.
 **Affected Stakeholders:** Lead Developer, CTO, Auditor
 
@@ -601,7 +601,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Verification Method:** TEST
 **Owner:** Lead Developer
 **Status:** TODO
-**Dependencies:** U.C.4.1.1, NODE-PROC-009
+**Dependencies:** PROC-08, NODE-PROC-009
 **Risk if not met:** H — leaked secret = credential compromise.
 **Affected Stakeholders:** Lead Developer, CTO, Auditor
 
@@ -621,7 +621,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Verification Method:** INSPECT
 **Owner:** Procurement Lead
 **Status:** TODO
-**Dependencies:** U.C.5.4.1, NODE-ROLE-009
+**Dependencies:** PROC-14, NODE-ROLE-009
 **Risk if not met:** H — substandard processor = Art. 28 violation.
 **Affected Stakeholders:** Compliance Manager, CEO, Auditor
 
@@ -641,7 +641,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Verification Method:** INSPECT
 **Owner:** Compliance Manager
 **Status:** TODO
-**Dependencies:** U.C.5.5.1, NODE-ROLE-011
+**Dependencies:** CAP-01, NODE-ROLE-011
 **Risk if not met:** H — missing DPA = Art. 28 violation.
 **Affected Stakeholders:** Compliance Manager, CEO, Auditor
 
@@ -726,7 +726,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Verification Method:** INSPECT
 **Owner:** Lead Developer
 **Status:** TODO
-**Dependencies:** U.C.2.3.1
+**Dependencies:** PROC-04
 **Risk if not met:** M — slow disclosure damages trust.
 **Affected Stakeholders:** Lead Developer, CTO, Auditor
 
@@ -746,7 +746,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Verification Method:** TEST
 **Owner:** Lead Developer
 **Status:** TODO
-**Dependencies:** U.C.2.1.1, NODE-SYS-009
+**Dependencies:** PROC-03, NODE-SYS-009
 **Risk if not met:** H — missed vuln = CRA trigger.
 **Affected Stakeholders:** Lead Developer, CTO, Auditor
 
@@ -766,7 +766,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Verification Method:** INSPECT
 **Owner:** Compliance Manager
 **Status:** TODO
-**Dependencies:** U.C.6.1.1, NODE-ROLE-005
+**Dependencies:** PROC-15, NODE-ROLE-005
 **Risk if not met:** M — untrained staff = phishing risk.
 **Affected Stakeholders:** All staff, Compliance Manager, Auditor
 
@@ -786,7 +786,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Verification Method:** INSPECT
 **Owner:** Compliance Manager
 **Status:** TODO
-**Dependencies:** U.C.6.2.1, NODE-ROLE-002, NODE-ROLE-003
+**Dependencies:** PROC-16, NODE-ROLE-002, NODE-ROLE-003
 **Risk if not met:** M — role gaps = competency risk.
 **Affected Stakeholders:** All staff, Compliance Manager, Auditor
 
@@ -806,7 +806,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Verification Method:** INSPECT
 **Owner:** Operations Lead
 **Status:** TODO
-**Dependencies:** U.C.3.6.1, NODE-SYS-009
+**Dependencies:** PROC-07, NODE-SYS-009
 **Risk if not met:** M — untested controls = drift.
 **Affected Stakeholders:** Operations Lead, Lead Developer, Auditor
 
@@ -828,7 +828,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Verification Method:** TEST
 **Owner:** CTO
 **Status:** TODO
-**Dependencies:** U.C.3.5.1, U.C.2.1.1, NODE-SYS-002/003
+**Dependencies:** U.C.3.5.1, PROC-03, NODE-SYS-002/003
 **Risk if not met:** H — log loss = GDPR accountability gap.
 **Affected Stakeholders:** Lead Developer, CTO, Auditor
 **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
@@ -893,7 +893,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Verification Method:** DEMONSTRATE
 **Owner:** Operations Lead
 **Status:** TODO
-**Dependencies:** U.C.2.5.1, NODE-PROC-001, NODE-ROLE-008
+**Dependencies:** PROC-05, NODE-PROC-001, NODE-ROLE-008
 **Risk if not met:** H — slow incident handling = CRA Art. 14 + GDPR Art. 33 fines.
 **Affected Stakeholders:** Customer, CTO, DPO, Lead Developer, Auditor
 **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
@@ -1003,7 +1003,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Verification Method:** INSPECT
 **Owner:** Operations Lead
 **Status:** TODO
-**Dependencies:** U.C.3.6.1, U.C.2.1.1
+**Dependencies:** PROC-07, PROC-03
 **Risk if not met:** M — untested controls = undetected drift.
 **Affected Stakeholders:** Operations Lead, Lead Developer, Auditor
 
@@ -1023,7 +1023,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Verification Method:** TEST
 **Owner:** CTO
 **Status:** TODO
-**Dependencies:** U.C.1.1.1, NODE-SYS-016
+**Dependencies:** PROC-01, NODE-SYS-016
 **Risk if not met:** H — unencrypted store = GDPR Art. 32 breach.
 **Affected Stakeholders:** Customer, CTO, DPO, Lead Developer, Auditor
 **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
@@ -1113,7 +1113,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Verification Method:** INSPECT
 **Owner:** DPO
 **Status:** TODO
-**Dependencies:** U.C.5.3.1, U.C.1.5.1, NODE-PROC-006
+**Dependencies:** PROC-13, U.C.1.5.1, NODE-PROC-006
 **Risk if not met:** M — outdated RoPA = GDPR Art. 30 violation.
 **Affected Stakeholders:** Customer, DPO, Auditor
 
@@ -1153,7 +1153,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Verification Method:** TEST
 **Owner:** CTO
 **Status:** TODO
-**Dependencies:** U.C.1.1.2, NODE-SYS-001
+**Dependencies:** PROC-02, NODE-SYS-001
 **Risk if not met:** H — undetected tampering = integrity breach.
 **Affected Stakeholders:** Customer, CTO, DPO, Lead Developer, Auditor
 **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
@@ -1178,7 +1178,7 @@ See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
 **Verification Method:** INSPECT
 **Owner:** DPO
 **Status:** TODO
-**Dependencies:** U.C.2.5.1, U.C.5.3.1, NODE-SYS-014
+**Dependencies:** PROC-05, PROC-13, NODE-SYS-014
 **Risk if not met:** M — missed entry = GDPR accountability gap.
 **Affected Stakeholders:** Customer, DPO, Auditor
 

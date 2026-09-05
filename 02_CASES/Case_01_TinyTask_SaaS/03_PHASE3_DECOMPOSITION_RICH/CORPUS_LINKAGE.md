@@ -134,41 +134,41 @@ related_deliverables:
 
 | UC ID | Pkg | D-subdomain |
 |-------|-----|-------------|
-| U.C.1.1.1 | DP | D-01.1 |
-| U.C.1.1.2 | DP | D-01.4 |
+| PROC-01 | DP | D-01.1 |
+| PROC-02 | DP | D-01.4 |
 | U.C.1.2.1 | DP | D-05.3 |
 | U.C.1.3.1 | DP | D-05.1 |
 | U.C.1.4.1 | DP | D-05.2 |
 | U.C.1.5.1 | DP | D-05.4 |
-| U.C.2.1.1 | SEC | D-02.1 |
+| PROC-03 | SEC | D-02.1 |
 | U.C.2.2.1 | SEC | D-02.2 |
-| U.C.2.3.1 | SEC | D-02.3 |
+| PROC-04 | SEC | D-02.3 |
 | U.C.2.4.1 | SEC | D-04.1 |
 | U.C.2.4.2 | SEC | D-04.2 |
-| U.C.2.5.1 | SEC | D-04.3 |
+| PROC-05 | SEC | D-04.3 |
 | U.C.2.6.1 | SEC | D-04.4 |
 | U.C.3.1.1 | IAM | D-03.1 |
 | U.C.3.1.2 | IAM | D-03.2 |
 | U.C.3.2.1 | IAM | D-03.3 |
 | U.C.3.3.1 | IAM | D-03.4 |
-| U.C.3.4.1 | IAM | D-09.4 |
+| PROC-06 | IAM | D-09.4 |
 | U.C.3.5.1 | IAM | D-10.2 |
-| U.C.3.6.1 | IAM | D-10.3 |
-| U.C.4.1.1 | DEV | D-07.1 |
+| PROC-07 | IAM | D-10.3 |
+| PROC-08 | DEV | D-07.1 |
 | U.C.4.2.1 | DEV | D-07.2 |
 | U.C.4.3.1 | DEV | D-02.2 |
 | U.C.4.4.1 | DEV | D-04.1 |
-| U.C.4.5.1 | DEV | D-09.2 |
-| U.C.5.1.1 | GOV | D-09.1 |
-| U.C.5.1.2 | GOV | D-09.1 |
-| U.C.5.2.1 | GOV | D-09.2 |
-| U.C.5.3.1 | GOV | D-09.4 |
-| U.C.5.4.1 | GOV | D-06.1 |
-| U.C.5.5.1 | GOV | D-06.3 |
+| PROC-09 | DEV | D-09.2 |
+| PROC-10 | GOV | D-09.1 |
+| PROC-11 | GOV | D-09.1 |
+| PROC-12 | GOV | D-09.2 |
+| PROC-13 | GOV | D-09.4 |
+| PROC-14 | GOV | D-06.1 |
+| CAP-01 | GOV | D-06.3 |
 | U.C.5.6.1 | GOV | D-06.2 |
-| U.C.6.1.1 | TRN | D-08.1 |
-| U.C.6.2.1 | TRN | D-08.2 |
-| U.C.6.3.1 | TRN | D-08.1 |
+| PROC-15 | TRN | D-08.1 |
+| PROC-16 | TRN | D-08.2 |
+| PROC-17 | TRN | D-08.1 |
 
 ## §4 Functional Requirements (30: FR-01..FR-30)
 

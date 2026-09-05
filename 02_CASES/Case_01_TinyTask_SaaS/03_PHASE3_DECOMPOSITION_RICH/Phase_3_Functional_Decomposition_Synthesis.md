@@ -257,7 +257,7 @@ Every CR maps to its corresponding PO (privacy) or SO (security) goal in Doc 10 
 
 ### §4.3 Goal → UC (35 UCs)
 
-Per `CORPUS_LINKAGE.md` §3, every goal drives at least one UC. Some goals drive multiple UCs (e.g. SO-D-09.2 drives U.C.4.5.1 and U.C.5.2.1).
+Per `CORPUS_LINKAGE.md` §3, every goal drives at least one UC. Some goals drive multiple UCs (e.g. SO-D-09.2 drives PROC-09 and PROC-12).
 
 ---
 

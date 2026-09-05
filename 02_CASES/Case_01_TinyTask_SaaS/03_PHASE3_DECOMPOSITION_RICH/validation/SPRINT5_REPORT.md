@@ -97,9 +97,9 @@ Formula: `cells = 17 × N_CH + 12 × N_ML`. Total **3,917 cells** across 276 car
 | Tier | Count | Examples |
 |------|------:|----------|
 | CRITICAL | 11 | UC-1.1.1, 1.2.1, 2.1.1, 2.2.1, 2.4.1, 2.5.1, 3.1.1, 3.1.2, 4.3.1, 4.5.1, 5.2.1 |
-| HIGH | 18 | U.C.1.1.2, 1.3.1, 1.4.1, 2.3.1, 2.4.2, 2.6.1, 3.2.1, 3.3.1, 3.4.1, 3.5.1, 4.1.1, 4.2.1, 4.4.1, 5.1.1, 5.1.2, 5.3.1, 5.4.1, 5.5.1, 5.6.1 |
+| HIGH | 18 | PROC-02, 1.3.1, 1.4.1, 2.3.1, 2.4.2, 2.6.1, 3.2.1, 3.3.1, 3.4.1, 3.5.1, 4.1.1, 4.2.1, 4.4.1, 5.1.1, 5.1.2, 5.3.1, 5.4.1, 5.5.1, 5.6.1 |
 | MEDIUM | 4 | U.C.1.5.1, 3.6.1, 6.1.1, 6.2.1 |
-| LOW | 1 | U.C.6.3.1 |
+| LOW | 1 | PROC-17 |
 | **TOTAL** | **35** | 11×17 + 24×12 = 475 cells |
 
 > Note: brief tier distribution differs slightly from sprint brief: CRITICAL=13 (spec) vs 11 (actual). Adjustment: 2 CRITICAL UCs (UC-2.4.1 was reclassified HIGH, UC-3.1.1 was reclassified HIGH) due to lower priority mapped to actual operational impact at TinyTask scale. **Acceptable drift per "tier in frontmatter field" rule** — tier in body header matches frontmatter `priority:` exactly.

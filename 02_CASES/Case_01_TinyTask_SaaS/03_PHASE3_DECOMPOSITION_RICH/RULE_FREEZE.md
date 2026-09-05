@@ -219,7 +219,7 @@ Cross-case contamination where Case_02 artefacts (Border Control AI / AI Act / B
 | 4 | `risk_01` | `25_Risk_Analysis.md` | `RISK-01: Biometric Spoofing at eGate` (local Doc 25 says "Unauthorized access to personal data via spoofing" — generic) | **REPORT** — KG hallucination; not in markdown |
 | 5 | `ai_act_regulation` | `13_Use_Cases_Catalog.md` | `AI Act (EU AI Regulation)` (local Doc 13 §3.2 explicitly says "No NIS 2, DORA, or AI Act applies") | **REPORT** — KG artefact; markdown disconfirms |
 | 6 | `node_sys_007_border_control_ai` | `14_Architectural_Nodes.md` | `NODE-SYS-007: Border Control AI Engine` (local Doc 14 says "NODE-SYS-007 = PAM System") | **REPORT** — KG hallucination; contradicts markdown |
-| 7 | `uc_5_2_1_unified_impact_assessment` | `13_Use_Cases_Catalog.md` | `U.C.5.2.1: Unified Impact Assessment (DPIA+FRIA)` — **CONTAINS FRIA keyword** | **REPORT** — Doc 13 §5.5 says U.C.5.2.1 = Risk Assessment; FRIA addition is KG artefact |
+| 7 | `uc_5_2_1_unified_impact_assessment` | `13_Use_Cases_Catalog.md` | `PROC-12: Unified Impact Assessment (DPIA+FRIA)` — **CONTAINS FRIA keyword** | **REPORT** — Doc 13 §5.5 says PROC-12 = Risk Assessment; FRIA addition is KG artefact |
 | 8 | `node_tech_019_ai_monitoring` | `14_Architectural_Nodes.md` | `NODE-TECH-019: AI-Powered Security Monitoring Platform` | **REPORT** — not in Doc 14 (only NODE-PROC-*, NODE-SYS-*, NODE-ROLE-* prefixes) |
 | 9 | `concept_ai_model_security` | `24_Non_Functional_Requirements.md` | `AI Model Security & Integrity` | **REPORT** — not in Doc 24 NFRs (NFR-01..NFR-46) |
 | 10 | `concept_ipsara` | `23_Functional_Requirements.md` | `IPSARA Unified Risk Assessment` (Case_02 artefact) | **REPORT** — not in Doc 23 |
@@ -270,7 +270,7 @@ Cross-case contamination where Case_02 artefacts (Border Control AI / AI Act / B
 **Composition of 8 MUCs** (Sindre & Opdahl):
 - MUC-01 credential stuffing · MUC-02 privilege escalation · MUC-03 cross-tenant injection · MUC-04 bulk extraction · MUC-05 compromised integration · MUC-06 insider exfiltration · MUC-07 board DoS · MUC-08 malicious attachment.
 
-**Backwards compatibility (P5):** the 35 security U.C. IDs (U.C.1.1.1 … U.C.6.3.1) are preserved verbatim — all 746 downstream references remain valid. New IDs introduce 23 functional + 8 MUC entries, none of which collide with existing IDs (packages 7–11 were previously empty).
+**Backwards compatibility (P5):** the 35 security U.C. IDs (PROC-01 … PROC-17) are preserved verbatim — all 746 downstream references remain valid. New IDs introduce 23 functional + 8 MUC entries, none of which collide with existing IDs (packages 7–11 were previously empty).
 
 > **F-S5-02 ("0 actors defined") → RESOLVED.** Fase de Especificação 6 introduces Primary Actor as a mandatory field on every UC card; the actor catalogue (`Doc20` §1) defines 14 actors across product / internal / misactor categories.
 

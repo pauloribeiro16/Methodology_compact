@@ -181,7 +181,7 @@ All sprint reports live in `validation/`:
 
 **Discovered via:** Graphify KG (`/home/epmq-cyber/Área de Trabalho/projects/Deucalion/results/graphify/E3_2026-08-23/graphify-out/graph.json`) cross-referenced against Case_01 Phase 3 source-file paths.
 
-**Suspected Case_02 origin keywords:** `NODE-SYS-007`, `GATE-AI-01`, `UC-53`, `IPSARA`, `RISK-01`, `Biometric`, `eGate`, `border`, `AIScanner`, `FRIA`, `U.C.5.2.1` (when labelled with DPIA+FRIA), `U.C.2.5.1` (when labelled with Biometric Encryption).
+**Suspected Case_02 origin keywords:** `NODE-SYS-007`, `GATE-AI-01`, `UC-53`, `IPSARA`, `RISK-01`, `Biometric`, `eGate`, `border`, `AIScanner`, `FRIA`, `PROC-12` (when labelled with DPIA+FRIA), `PROC-05` (when labelled with Biometric Encryption).
 
 **Suspected artefacts:**
 

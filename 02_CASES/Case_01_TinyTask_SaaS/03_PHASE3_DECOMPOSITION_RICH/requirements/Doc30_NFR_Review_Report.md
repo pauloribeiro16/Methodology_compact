@@ -158,7 +158,7 @@ sprint4_note: "Fase de Especificação 4: review-report status bumped RECONCILED
 
 | Use Case | Related NFRs | Coverage |
 |----------|--------------|----------|
-| U.C.1.1.1 (DSAR) | NFR-PRIV-01, NFR-AVAIL-07 | ✅ Complete |
+| PROC-01 (DSAR) | NFR-PRIV-01, NFR-AVAIL-07 | ✅ Complete |
 | U.C.1.2.1 (Erasure) | NFR-PRIV-02 | ✅ Complete |
 | U.C.3.1.1 (Authentication) | 7 NFRs (CONF, INT, AVAIL, ACC) | ✅ Complete |
 | U.C.2.7.1 (BC/DR) | 6 NFRs (AVAIL, INT) | ✅ Complete |
@@ -299,7 +299,7 @@ sprint4_note: "Fase de Especificação 4: review-report status bumped RECONCILED
 
 5. **Add NFR-COMP-09 (Vendor Management):**
    - GDPR Art. 28 (processor agreements)
-   - Currently covered by U.C.5.5.1
+   - Currently covered by CAP-01
    - Optional enhancement
 
 ---

@@ -49,22 +49,22 @@ sprint6_note: "Fase de Especificação 6: EXTENDED. New edge types introduced fo
 
 | Including UC | Included UC | Rationale |
 |--------------|-------------|-----------|
-| U.C.1.1.1 | U.C.3.1.1 | DSAR requires authenticated subject |
+| PROC-01 | U.C.3.1.1 | DSAR requires authenticated subject |
 | U.C.1.2.1 | U.C.3.1.1 | Erasure requires authenticated subject |
 | U.C.1.3.1 | U.C.3.1.1 | Data export requires authenticated subject |
 | U.C.1.5.1 | U.C.3.1.1 | Rectification requires authenticated subject |
-| U.C.2.1.1 | U.C.3.5.1 | Vulnerability detection requires audit logging |
+| PROC-03 | U.C.3.5.1 | Vulnerability detection requires audit logging |
 | U.C.2.2.1 | U.C.3.5.1 | Patch deployment logs to audit trail |
-| U.C.2.5.1 | U.C.3.5.1 | Incident notification logs to audit trail |
+| PROC-05 | U.C.3.5.1 | Incident notification logs to audit trail |
 | U.C.2.6.1 | U.C.3.5.1 | Data restoration logs to audit trail |
 | U.C.3.1.1 | U.C.3.5.1 | Authentication events logged |
 | U.C.3.1.2 | U.C.3.1.1 | MFA requires base authentication |
-| U.C.3.6.1 | U.C.3.1.1 | Account deprovisioning requires auth context |
-| U.C.4.1.1 | U.C.2.3.1 | SSDLC triggers coordinated disclosure |
-| U.C.4.2.1 | U.C.2.3.1 | SAST/DAST findings feed disclosure process |
-| U.C.4.5.1 | U.C.5.2.1 | Pre-launch risk assessment = DPIA |
-| U.C.5.3.1 | U.C.3.5.1 | RoPA updates logged |
-| U.C.5.6.1 | U.C.5.4.1 | SBOM publication requires processor due diligence |
+| PROC-07 | U.C.3.1.1 | Account deprovisioning requires auth context |
+| PROC-08 | PROC-04 | SSDLC triggers coordinated disclosure |
+| U.C.4.2.1 | PROC-04 | SAST/DAST findings feed disclosure process |
+| PROC-09 | PROC-12 | Pre-launch risk assessment = DPIA |
+| PROC-13 | U.C.3.5.1 | RoPA updates logged |
+| U.C.5.6.1 | PROC-14 | SBOM publication requires processor due diligence |
 
 ---
 
@@ -72,12 +72,12 @@ sprint6_note: "Fase de Especificação 6: EXTENDED. New edge types introduced fo
 
 | Base UC | Extending UC | Extension point | Rationale |
 |---------|--------------|-----------------|-----------|
-| U.C.2.5.1 | U.C.2.4.2 | Incident-→-DoS scenario | DoS triggers 24h ENISA notification path |
-| U.C.4.5.1 | U.C.5.2.1 | DPIA extends risk assessment | High-risk processing extends DPIA |
-| U.C.3.5.1 | U.C.2.1.1 | Audit log feeds SIEM detection | SIEM extends audit logging |
-| U.C.5.1.1 | U.C.5.1.2 | Policy review extends documentation | Documentation is artefact of policy |
-| U.C.6.1.1 | U.C.6.3.1 | Phishing extends annual training | Practical exercise for awareness |
-| U.C.2.3.1 | U.C.2.5.1 | CVD triggers incident notification | Disclosed vuln may become incident |
+| PROC-05 | U.C.2.4.2 | Incident-→-DoS scenario | DoS triggers 24h ENISA notification path |
+| PROC-09 | PROC-12 | DPIA extends risk assessment | High-risk processing extends DPIA |
+| U.C.3.5.1 | PROC-03 | Audit log feeds SIEM detection | SIEM extends audit logging |
+| PROC-10 | PROC-11 | Policy review extends documentation | Documentation is artefact of policy |
+| PROC-15 | PROC-17 | Phishing extends annual training | Practical exercise for awareness |
+| PROC-04 | PROC-05 | CVD triggers incident notification | Disclosed vuln may become incident |
 | U.C.3.3.1 | U.C.3.1.1 | Secure defaults constrain auth | Hardened baseline applied to auth |
 | U.C.4.3.1 | U.C.2.2.1 | Patch deployment is operationalised by automation | DEV-side patch → SEC-side deployment |
 
@@ -89,41 +89,41 @@ sprint6_note: "Fase de Especificação 6: EXTENDED. New edge types introduced fo
 
 | Security UC | Constrains Functional UC | Constraint type |
 |-------------|--------------------------|-----------------|
-| U.C.1.1.1 (DSAR) | U.C.11.1.1, U.C.11.2.1, U.C.11.3.1 | Rights enforcement |
-| U.C.1.1.2 (Rectification) | U.C.11.1.1 | Data integrity |
+| PROC-01 (DSAR) | U.C.11.1.1, U.C.11.2.1, U.C.11.3.1 | Rights enforcement |
+| PROC-02 (Rectification) | U.C.11.1.1 | Data integrity |
 | U.C.1.2.1 (Erasure) | U.C.11.3.1 | Data lifecycle |
 | U.C.1.3.1 (Export) | U.C.11.2.1 | Portability + rate limit |
 | U.C.1.4.1 (Consent) | U.C.7.1.1, U.C.11.1.1 | Consent capture at signup + at view |
 | U.C.1.5.1 (Structured portability) | U.C.11.2.1 | Schema + endpoint |
-| U.C.2.1.1 (Vuln-free release) | U.C.8.2.1, U.C.9.3.1 | Release gating |
+| PROC-03 (Vuln-free release) | U.C.8.2.1, U.C.9.3.1 | Release gating |
 | U.C.2.2.1 (Patch deployment) | All U.C.7-11 | Availability |
-| U.C.2.3.1 (CVD) | All U.C.7-11 | Vulnerability intake |
+| PROC-04 (CVD) | All U.C.7-11 | Vulnerability intake |
 | U.C.2.4.1 (Exploit severity limit) | U.C.8.2.1, U.C.9.3.1 | Containment + attachment quarantine |
 | U.C.2.4.2 (DoS resilience) | All U.C.7-11 | Availability |
-| U.C.2.5.1 (Incident notification) | All U.C.7-11 | Notification clock |
+| PROC-05 (Incident notification) | All U.C.7-11 | Notification clock |
 | U.C.2.6.1 (Data restoration) | All U.C.7-11 | Recovery |
 | U.C.3.1.1 (Authentication) | U.C.7.1.1, U.C.7.1.2, U.C.7.1.3, U.C.7.2.1, U.C.10.1.1 | Authn |
 | U.C.3.1.2 (MFA privileged) | U.C.10.3.2 (Enterprise SSO), U.C.10.3.1 | Privileged access |
 | U.C.3.2.1 (Authorisation) | U.C.7.5.1, U.C.8.*, U.C.10.3.1 | Authz + role scoping |
 | U.C.3.3.1 (Secure defaults) | All U.C.7-11 | Hardened baseline |
-| U.C.3.4.1 (Processing & breach records) | All U.C.7-11 | Record-keeping |
+| PROC-06 (Processing & breach records) | All U.C.7-11 | Record-keeping |
 | U.C.3.5.1 (Audit logging) | All U.C.7-11 | Observability |
-| U.C.3.6.1 (Control testing) | All U.C.7-11 | Periodic validation |
-| U.C.4.1.1 (SSDLC) | U.C.8.*, U.C.10.* | Secure development |
+| PROC-07 (Control testing) | All U.C.7-11 | Periodic validation |
+| PROC-08 (SSDLC) | U.C.8.*, U.C.10.* | Secure development |
 | U.C.4.2.1 (SAST/DAST) | U.C.8.*, U.C.9.3.1 | Build-time gating |
 | U.C.4.3.1 (Security patch) | All U.C.7-11 | Patch cadence |
 | U.C.4.4.1 (Fail-safe) | U.C.8.3.1, U.C.9.4.1, U.C.10.1.1 | Fail-closed behaviour |
-| U.C.4.5.1 (Pre-launch risk assessment) | U.C.10.2.1, U.C.10.3.2, U.C.11.x | Launch gating |
-| U.C.5.1.1 (Annual policy review) | All U.C.7-11 | Governance |
-| U.C.5.1.2 (Tech docs maintenance) | All U.C.7-11 | Documentation currency |
-| U.C.5.2.1 (DPIA) | U.C.10.2.1, U.C.10.3.2, U.C.11.x | DPIA gating |
-| U.C.5.3.1 (RoPA) | All U.C.7-11 | Record of processing |
-| U.C.5.4.1 (Processor due diligence) | U.C.10.2.1, U.C.7.1.2 | Vendor risk |
-| U.C.5.5.1 (DPAs) | U.C.10.2.1, U.C.7.1.2 | Contractual |
+| PROC-09 (Pre-launch risk assessment) | U.C.10.2.1, U.C.10.3.2, U.C.11.x | Launch gating |
+| PROC-10 (Annual policy review) | All U.C.7-11 | Governance |
+| PROC-11 (Tech docs maintenance) | All U.C.7-11 | Documentation currency |
+| PROC-12 (DPIA) | U.C.10.2.1, U.C.10.3.2, U.C.11.x | DPIA gating |
+| PROC-13 (RoPA) | All U.C.7-11 | Record of processing |
+| PROC-14 (Processor due diligence) | U.C.10.2.1, U.C.7.1.2 | Vendor risk |
+| CAP-01 (DPAs) | U.C.10.2.1, U.C.7.1.2 | Contractual |
 | U.C.5.6.1 (SBOM) | U.C.8.*, U.C.10.* | Transparency |
-| U.C.6.1.1 (Annual awareness) | All U.C.7-11 (human-driven) | Awareness |
-| U.C.6.2.1 (Role-specific training) | U.C.7.5.1, U.C.10.3.1 | Role competence |
-| U.C.6.3.1 (Phishing sim) | U.C.7.1.1, U.C.7.1.2 | Awareness reinforcement |
+| PROC-15 (Annual awareness) | All U.C.7-11 (human-driven) | Awareness |
+| PROC-16 (Role-specific training) | U.C.7.5.1, U.C.10.3.1 | Role competence |
+| PROC-17 (Phishing sim) | U.C.7.1.1, U.C.7.1.2 | Awareness reinforcement |
 
 ---
 
@@ -147,10 +147,10 @@ sprint6_note: "Fase de Especificação 6: EXTENDED. New edge types introduced fo
 | MUC | Mitigated by (security U.C.) |
 |-----|------------------------------|
 | MUC-01 | U.C.3.1.1, U.C.3.1.2, U.C.2.4.1, U.C.3.5.1 |
-| MUC-02 | U.C.3.2.1, U.C.3.5.1, U.C.5.1.2 |
-| MUC-03 | U.C.3.3.1, U.C.3.2.1, U.C.2.1.1, U.C.4.2.1 |
+| MUC-02 | U.C.3.2.1, U.C.3.5.1, PROC-11 |
+| MUC-03 | U.C.3.3.1, U.C.3.2.1, PROC-03, U.C.4.2.1 |
 | MUC-04 | U.C.1.3.1, U.C.1.5.1, U.C.2.4.2, U.C.3.5.1 |
-| MUC-05 | U.C.5.4.1, U.C.5.5.1, U.C.3.1.1 |
+| MUC-05 | PROC-14, CAP-01, U.C.3.1.1 |
 | MUC-06 | U.C.3.1.2, U.C.3.2.1, U.C.3.5.1, U.C.2.4.1 |
 | MUC-07 | U.C.2.4.2, U.C.4.4.1, U.C.2.6.1 |
 | MUC-08 | U.C.2.4.1, U.C.3.5.1, U.C.4.2.1 |

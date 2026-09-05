@@ -2,9 +2,9 @@
 document_id: AEGIS-P3-RICH-13
 title: Use Cases Catalog — TinyTask Team Organizer (Phase 3 RICH)
 phase: 3
-version: 3.0
+version: 3.1
 created: 2026-08-24
-updated: 2026-08-26
+updated: 2026-09-05
 author: Executor (paulo@methodology.pt)
 status: REWRITTEN_PRODUCT_BASELINE
 deep_enrichment_date: 2026-08-24
@@ -44,7 +44,7 @@ rewrite_protocol:
 > Catalog reorganised so the **product** comes first: 23 functional use cases (U.C.7–11) and 8 misuse cases describe how TinyTask Team Organizer works and is attacked; 35 security/compliance use cases (U.C.1–6) describe how the company secures that product and proves compliance.
 > Cards follow Cockburn's fully dressed template (Primary Actor · Stakeholders · Preconditions · Trigger · Main Success Scenario · Extensions · Postconditions) with a Security & Compliance Annex folding in the prior property-sheet fields.
 >
-> **Backwards compatibility (P5).** Every U.C.1.1.1 … U.C.6.3.1 ID from the v2.0 freeze is preserved verbatim — the ~746 downstream references in Doc21/22/23/24/26/27, Doc29/31, `22_Traceability_Matrix.xlsx`, NIST_ANCHORS, CORPUS_LINKAGE, and KG_CHAINS remain valid. The new functional U.C.7-11 and the MUCs sit alongside, not on top of, the existing IDs.
+**LANE NAMING (P7 human decision, 2026-09-05).** The v2.0 freeze on U.C.1.1.1…U.C.6.3.1 ids is **superseded**: UC nomenclature is reserved for the TECHNOLOGY lane; the process/capability compliance UCs were re-laned to PROC-01..17 / CAP-01 (registry: `00_METHODOLOGY/validation/LANE_NAMING_CENSUS_v0.md`; rubric: REALIZATION_CLASS_RUBRIC v1.3 §5B). All ~509 downstream references were renamed in the same pass (Doc21/22/23/24/26/27, Doc29/31, 22_Traceability_Matrix.xlsx via build script, NIST_ANCHORS, CORPUS_LINKAGE, annexes). The former ids remain visible in git history.
 
 ---
 
@@ -67,12 +67,12 @@ rewrite_protocol:
 
 | ID | Actor | FTE | Drives U.C. |
 |----|-------|-----|-------------|
-| A-CEO-01 | CEO | 0.05 | U.C.5.1.*, U.C.5.2.1, U.C.5.5.1 |
-| A-CTO-01 | CTO / CISO | 0.2 | U.C.3.*, U.C.4.4.1, U.C.5.1.2, U.C.3.6.1 |
-| A-DEV-01 | Lead Developer | 0.3 | U.C.2.1.1, U.C.2.2.1, U.C.2.3.1, U.C.4.*, U.C.3.1.2, U.C.5.6.1 |
-| A-OPS-01 | Operations Lead | 0.2 | U.C.2.4.*, U.C.2.5.1, U.C.2.6.1, U.C.3.3.1, U.C.3.6.1 |
-| A-DPO-01 | DPO / Compliance Manager | 0.1 | U.C.1.*, U.C.3.4.1, U.C.5.3.1, U.C.5.4.1, U.C.6.* |
-| A-RO-01 | Risk Owner | (role) | U.C.4.5.1, U.C.5.2.1 |
+| A-CEO-01 | CEO | 0.05 | U.C.5.1.*, PROC-12, CAP-01 |
+| A-CTO-01 | CTO / CISO | 0.2 | U.C.3.*, U.C.4.4.1, PROC-11, PROC-07 |
+| A-DEV-01 | Lead Developer | 0.3 | PROC-03, U.C.2.2.1, PROC-04, U.C.4.*, U.C.3.1.2, U.C.5.6.1 |
+| A-OPS-01 | Operations Lead | 0.2 | U.C.2.4.*, PROC-05, U.C.2.6.1, U.C.3.3.1, PROC-07 |
+| A-DPO-01 | DPO / Compliance Manager | 0.1 | U.C.1.*, PROC-06, PROC-13, PROC-14, U.C.6.* |
+| A-RO-01 | Risk Owner | (role) | PROC-09, PROC-12 |
 
 > Resolves F-S5-02: actors now defined in structured form; prior lint "0 actors defined" satisfied.
 
@@ -2095,7 +2095,7 @@ Audit recorded.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Source: `Doc04_Architecture_DataInventory.md §3` (admin actions attested).
-- **Constrained by:** U.C.3.2.1, U.C.3.5.1, U.C.5.5.1 (DPA display).
+- **Constrained by:** U.C.3.2.1, U.C.3.5.1, CAP-01 (DPA display).
 - **Rules / NFR:** CR-D-03.3-001, CR-D-06.3-001.
 - **Threats addressed:** MUC-02.
 - **NIST anchors:** PR.AA-01, PR.AA-05.
@@ -2536,14 +2536,14 @@ Receipt issued.
 
 | UC ID | D | Title | Primary rule | CSF | PF | Prio |
 |-------|---|-------|--------------|-----|----|----|
-| U.C.1.1.1 | D-01.1 | Data Subject Access Request (DSAR) | CR-D-01.1-001 / PO-D-01.1-001 | PR.DS-01, PR.DS-10, PR.PS-04 | PR.DS-P1 | CRITICAL |
-| U.C.1.1.2 | D-01.4 | Data Subject Rectification | CR-D-01.4-001 / PO-D-01.4-001 | PR.DS-01, PR.DS-02, PR.DS-10 | CT.DM-P1, CT.DM-P3 | HIGH |
+| PROC-01 | D-01.1 | Data Subject Access Request (DSAR) | CR-D-01.1-001 / PO-D-01.1-001 | PR.DS-01, PR.DS-10, PR.PS-04 | PR.DS-P1 | CRITICAL |
+| PROC-02 | D-01.4 | Data Subject Rectification | CR-D-01.4-001 / PO-D-01.4-001 | PR.DS-01, PR.DS-02, PR.DS-10 | CT.DM-P1, CT.DM-P3 | HIGH |
 | U.C.1.2.1 | D-05.3 | Data Subject Erasure | CR-D-05.3-001 / PO-D-05.3-001 | GV.SC-04, PR.DS-10, PR.DS-02 | CT.DM-P4, CT.DM-P5 | CRITICAL |
 | U.C.1.3.1 | D-05.1 | Data Subject Data Export (portability) | CR-D-05.4-001 / PO-D-05.4-001 | PR.DS-10, PR.AA-03, PR.DS-02 | CT.DM-P1, CT.DM-P6 | HIGH |
 | U.C.1.4.1 | D-05.2 | Consent Management | CR-D-05.1-001 / PO-D-05.1-001 | GV.OC-03, GV.PO-01, ID.AM-03 | CT.DP-P4, CT.PO-P4, ID.RA-P3 | HIGH |
 | U.C.1.5.1 | D-05.4 | Structured Data Portability | CR-D-05.4-001 / PO-D-05.4-001 | PR.DS-10, PR.AA-03, PR.DS-02 | CT.DM-P1, CT.DM-P6 | MEDIUM |
 
-#### U.C.1.1.1 — Data Subject Access Request (DSAR)
+#### PROC-01 — Data Subject Access Request (DSAR)
 
 **Primary Actor:** A-DPO-01 (DPO/Compliance Manager)
 **Stakeholders:** Customer (data subject), Auditor
@@ -2570,7 +2570,7 @@ Receipt issued.
 - **Functional UCs this constrains:** U.C.11.1.1, U.C.11.2.1, U.C.11.3.1.
 - **Misuse cases this addresses:** MUC-04 (bulk scraping limited by verified DSAR process + rate limits).
 
-#### U.C.1.1.2 — Data Subject Rectification
+#### PROC-02 — Data Subject Rectification
 
 **Primary Actor:** A-DPO-01 · **Stakeholders:** Customer, Auditor
 **Preconditions:** Verified identity; specific data fields contested.
@@ -2671,15 +2671,15 @@ Receipt issued.
 
 | UC ID | D | Title | Primary rule | CSF | PF | Prio |
 |-------|---|-------|--------------|-----|----|----|
-| U.C.2.1.1 | D-02.1 | Vulnerability-Free Release | CR-D-02.1-001 / SO-D-02.1-001 | GV.OV-02, ID.AM-02, ID.RA-01 | ID.RA-P3, ID.RA-P5 | CRITICAL |
+| PROC-03 | D-02.1 | Vulnerability-Free Release | CR-D-02.1-001 / SO-D-02.1-001 | GV.OV-02, ID.AM-02, ID.RA-01 | ID.RA-P3, ID.RA-P5 | CRITICAL |
 | U.C.2.2.1 | D-02.2 | Automated Patch Deployment | CR-D-02.2-001 / SO-D-02.2-001 | GV.OV-02, ID.RA-01, PR.IR-03 | — | CRITICAL |
-| U.C.2.3.1 | D-02.3 | Coordinated Vulnerability Disclosure | CR-D-02.3-001 / SO-D-02.3-001 | GV.PO-01, GV.SC-04, RS.CO-03 | — | HIGH |
+| PROC-04 | D-02.3 | Coordinated Vulnerability Disclosure | CR-D-02.3-001 / SO-D-02.3-001 | GV.PO-01, GV.SC-04, RS.CO-03 | — | HIGH |
 | U.C.2.4.1 | D-04.1 | Exploit Severity Limitation | CR-D-04.1-001 / SO-D-04.1-001 | DE.AE-02, DE.CM-01, DE.CM-09 | CM.AW-P7 | CRITICAL |
 | U.C.2.4.2 | D-04.2 | DoS Resilience | CR-D-04.2-001 / SO-D-04.2-001 | DE.CM-09, PR.DS-10, PR.IR-03 | CT.DM-P10, PR.PO-P7 | HIGH |
-| U.C.2.5.1 | D-04.3 | Incident Notification (24h ENISA, 72h GDPR) | CR-D-04.3-001 / SO-D-04.3-001 | RS.CO-02, RS.MA-01, RS.MA-02 | CM.AW-P7, CM.AW-P8, CM.PO-P1 | CRITICAL |
+| PROC-05 | D-04.3 | Incident Notification (24h ENISA, 72h GDPR) | CR-D-04.3-001 / SO-D-04.3-001 | RS.CO-02, RS.MA-01, RS.MA-02 | CM.AW-P7, CM.AW-P8, CM.PO-P1 | CRITICAL |
 | U.C.2.6.1 | D-04.4 | Data Restoration & Recovery | CR-D-04.4-001 / SO-D-04.4-001 | PR.DS-01, PR.DS-10, PR.IR-03 | — | HIGH |
 
-#### U.C.2.1.1 — Vulnerability-Free Release
+#### PROC-03 — Vulnerability-Free Release
 
 **Primary Actor:** A-DEV-01 (Lead Developer)
 **Stakeholders:** A-CTO-01, Auditor
@@ -2724,7 +2724,7 @@ Receipt issued.
 - **Regulatory Reporting:** ENISA ≤24h if actively-exploited.
 - **Functional UCs this constrains:** All U.C.7-11 (availability).
 
-#### U.C.2.3.1 — Coordinated Vulnerability Disclosure
+#### PROC-04 — Coordinated Vulnerability Disclosure
 
 **Primary Actor:** A-DEV-01 · **Stakeholders:** External researcher, CTO, Auditor
 **Preconditions:** security.txt published at `/.well-known/security.txt`; dedicated mailbox configured.
@@ -2753,7 +2753,7 @@ Receipt issued.
 3. Rate limits applied; circuit breakers engaged.
 4. Rollback if exploit vector was a known release.
 5. Containment target ≤30 min from detection.
-**Extensions:** 1a. Zero-day → invoke U.C.2.5.1 incident notification.
+**Extensions:** 1a. Zero-day → invoke PROC-05 incident notification.
 **Postconditions:** Exploit contained; root cause investigation initiated.
 **Security & Compliance Annex:**
 - **Owner:** Operations Lead · **Verification Method:** TEST
@@ -2783,7 +2783,7 @@ Receipt issued.
 - **Functional UCs this constrains:** All U.C.7-11.
 - **Misuse cases this addresses:** MUC-07 (board DoS).
 
-#### U.C.2.5.1 — Incident Notification (24h ENISA, 72h GDPR)
+#### PROC-05 — Incident Notification (24h ENISA, 72h GDPR)
 
 **Primary Actor:** A-OPS-01 / A-DPO-01
 **Stakeholders:** Customer, CTO, Lead Developer, Auditor
@@ -2832,9 +2832,9 @@ Receipt issued.
 | U.C.3.1.2 | D-03.2 | MFA for Privileged Accounts | CR-D-03.2-001 / SO-D-03.1-001 | PR.AA-03, PR.AA-04, PR.AA-05 | — | CRITICAL |
 | U.C.3.2.1 | D-03.3 | Authorisation / Least Privilege | CR-D-03.3-001 / SO-D-03.3-001 | ID.AM-01, PR.AA-01, PR.AA-03 | CT.PO-P1 | HIGH |
 | U.C.3.3.1 | D-03.4 | Secure System Defaults | CR-D-03.4-001 / SO-D-03.4-001 | GV.PO-01, GV.SC-03, PR.DS-10 | CT.DP-P4, CT.PO-P4 | HIGH |
-| U.C.3.4.1 | D-09.4 | Processing & Breach Records | CR-D-09.4-001 / PO-D-09.4-001 | GV.PO-02, ID.AM-08, PR.DS-10 | ID.IM-P1, ID.IM-P8 | HIGH |
+| PROC-06 | D-09.4 | Processing & Breach Records | CR-D-09.4-001 / PO-D-09.4-001 | GV.PO-02, ID.AM-08, PR.DS-10 | ID.IM-P1, ID.IM-P8 | HIGH |
 | U.C.3.5.1 | D-10.2 | Audit Logging | CR-D-10.2-001 / SO-D-10.2-001 | DE.CM-01, GV.PO-02, PR.DS-01 | CT.DM-P4, CT.DM-P9 | HIGH |
-| U.C.3.6.1 | D-10.3 | Control Effectiveness Testing | CR-D-10.3-001 / SO-D-10.3-001 | DE.AE-02, GV.OV-03, ID.RA-05 | ID.RA-P3, ID.RA-P5 | MEDIUM |
+| PROC-07 | D-10.3 | Control Effectiveness Testing | CR-D-10.3-001 / SO-D-10.3-001 | DE.AE-02, GV.OV-03, ID.RA-05 | ID.RA-P3, ID.RA-P5 | MEDIUM |
 
 #### U.C.3.1.1 — User Authentication
 
@@ -2914,7 +2914,7 @@ Receipt issued.
 - **Dependencies:** FR-06, NODE-SYS-008
 - **Risk if not met:** M — misconfiguration = most common breach vector.
 
-#### U.C.3.4.1 — Processing & Breach Records
+#### PROC-06 — Processing & Breach Records
 
 **Primary Actor:** A-DPO-01 · **Stakeholders:** Customer, Auditor
 **Preconditions:** Processing activity exists.
@@ -2950,7 +2950,7 @@ Receipt issued.
 - **Risk if not met:** H — incomplete logs = GDPR accountability gap.
 - **Functional UCs this constrains:** All U.C.7-11.
 
-#### U.C.3.6.1 — Control Effectiveness Testing
+#### PROC-07 — Control Effectiveness Testing
 
 **Primary Actor:** A-OPS-01 · **Stakeholders:** Lead Developer, Auditor
 **Preconditions:** Controls catalog current; pentest vendor contracted.
@@ -2971,13 +2971,13 @@ Receipt issued.
 
 | UC ID | D | Title | Primary rule | CSF | PF | Prio |
 |-------|---|-------|--------------|-----|----|----|
-| U.C.4.1.1 | D-07.1 | Security by Design (SSDLC) | CR-D-07.1-001 / PO-D-07.1-001 | GV.PO-02, ID.RA-01, PR.DS-10 | CT.DP-P2, CT.DP-P4, GV.PO-P2 | HIGH |
+| PROC-08 | D-07.1 | Security by Design (SSDLC) | CR-D-07.1-001 / PO-D-07.1-001 | GV.PO-02, ID.RA-01, PR.DS-10 | CT.DP-P2, CT.DP-P4, GV.PO-P2 | HIGH |
 | U.C.4.2.1 | D-07.2 | SAST/DAST in CI/CD | BPR-D-07.2-001 | ID.RA-04, ID.RA-05, PR.PS-01 | — | HIGH |
 | U.C.4.3.1 | D-02.2 | Security Patch Deployment | CR-D-02.2-001 / SO-D-02.2-001 | GV.OV-02, ID.RA-01, PR.IR-03 | — | CRITICAL |
 | U.C.4.4.1 | D-04.1 | Fail-Safe Design | CR-D-04.1-001 / SO-D-04.1-001 | DE.AE-02, DE.CM-01, DE.CM-09 | CM.AW-P7 | HIGH |
-| U.C.4.5.1 | D-09.2 | Pre-Launch Risk Assessment | CR-D-09.2-001 / PO-D-09.2-001 | ID.RA-01, ID.RA-04, ID.RA-05 | ID.RA-P3, ID.RA-P4, ID.RA-P5 | CRITICAL |
+| PROC-09 | D-09.2 | Pre-Launch Risk Assessment | CR-D-09.2-001 / PO-D-09.2-001 | ID.RA-01, ID.RA-04, ID.RA-05 | ID.RA-P3, ID.RA-P4, ID.RA-P5 | CRITICAL |
 
-#### U.C.4.1.1 — Security by Design (SSDLC)
+#### PROC-08 — Security by Design (SSDLC)
 
 **Primary Actor:** A-DEV-01 · **Stakeholders:** CTO, Auditor
 **Preconditions:** Feature RFC initiated.
@@ -3048,7 +3048,7 @@ Receipt issued.
 - **Risk if not met:** M — fail-open = exploit amplification.
 - **Misuse cases this addresses:** MUC-07 (fail-open in board).
 
-#### U.C.4.5.1 — Pre-Launch Risk Assessment
+#### PROC-09 — Pre-Launch Risk Assessment
 
 **Primary Actor:** A-RO-01 (Risk Owner) + A-DPO-01
 **Stakeholders:** CEO, Compliance Manager, Auditor
@@ -3072,15 +3072,15 @@ Receipt issued.
 
 | UC ID | D | Title | Primary rule | CSF | PF | Prio |
 |-------|---|-------|--------------|-----|----|----|
-| U.C.5.1.1 | D-09.1 | Annual Policy Review | CR-D-09.1-001 / PO-D-09.1-001 | GV.PO-01, GV.PO-02, GV.RM-04 | CM.PO-P1, GV.PO-P1, GV.PO-P5 | HIGH |
-| U.C.5.1.2 | D-09.1 | Technical Documentation Maintenance | CR-D-09.1-001 / SO-D-09.1-001 | GV.PO-01, GV.PO-02, GV.OV-01 | CM.PO-P1, GV.PO-P1 | HIGH |
-| U.C.5.2.1 | D-09.2 | DPIA Pre-Launch | CR-D-09.2-001 / PO-D-09.2-001 | ID.RA-01, ID.RA-04, ID.RA-05 | ID.RA-P3, ID.RA-P4, ID.RA-P5 | CRITICAL |
-| U.C.5.3.1 | D-09.4 | RoPA Maintenance | CR-D-09.4-001 / PO-D-09.4-001 | GV.PO-02, ID.AM-08, PR.DS-10 | ID.IM-P1, ID.IM-P4, ID.IM-P6 | HIGH |
-| U.C.5.4.1 | D-06.1 | Processor Due Diligence | CR-D-06.1-001 / SO-D-06.1-001 | GV.SC-01, GV.SC-02, GV.SC-03 | ID.IM-P2 | HIGH |
-| U.C.5.5.1 | D-06.3 | DPAs Binding Processors | CR-D-06.3-001 / SO-D-06.3-001 | GV.OC-03, GV.SC-02, GV.SC-03 | — | HIGH |
+| PROC-10 | D-09.1 | Annual Policy Review | CR-D-09.1-001 / PO-D-09.1-001 | GV.PO-01, GV.PO-02, GV.RM-04 | CM.PO-P1, GV.PO-P1, GV.PO-P5 | HIGH |
+| PROC-11 | D-09.1 | Technical Documentation Maintenance | CR-D-09.1-001 / SO-D-09.1-001 | GV.PO-01, GV.PO-02, GV.OV-01 | CM.PO-P1, GV.PO-P1 | HIGH |
+| PROC-12 | D-09.2 | DPIA Pre-Launch | CR-D-09.2-001 / PO-D-09.2-001 | ID.RA-01, ID.RA-04, ID.RA-05 | ID.RA-P3, ID.RA-P4, ID.RA-P5 | CRITICAL |
+| PROC-13 | D-09.4 | RoPA Maintenance | CR-D-09.4-001 / PO-D-09.4-001 | GV.PO-02, ID.AM-08, PR.DS-10 | ID.IM-P1, ID.IM-P4, ID.IM-P6 | HIGH |
+| PROC-14 | D-06.1 | Processor Due Diligence | CR-D-06.1-001 / SO-D-06.1-001 | GV.SC-01, GV.SC-02, GV.SC-03 | ID.IM-P2 | HIGH |
+| CAP-01 | D-06.3 | DPAs Binding Processors | CR-D-06.3-001 / SO-D-06.3-001 | GV.OC-03, GV.SC-02, GV.SC-03 | — | HIGH |
 | U.C.5.6.1 | D-06.2 | SBOM Publication | CR-D-06.2-001 / SO-D-06.2-001 | GV.SC-02, GV.SC-03, ID.AM-02 | — | HIGH |
 
-#### U.C.5.1.1 — Annual Policy Review
+#### PROC-10 — Annual Policy Review
 
 **Primary Actor:** A-DPO-01 / A-CTO-01 (Compliance)
 **Stakeholders:** CEO, Auditor
@@ -3098,7 +3098,7 @@ Receipt issued.
 - **Dependencies:** FR-25, NFR-38, NODE-PROC-004, NODE-ROLE-001
 - **Risk if not met:** M — stale policy = governance gap.
 
-#### U.C.5.1.2 — Technical Documentation Maintenance
+#### PROC-11 — Technical Documentation Maintenance
 
 **Primary Actor:** A-CTO-01 · **Stakeholders:** Compliance Manager, CEO, Auditor
 **Preconditions:** Documentation baseline exists.
@@ -3115,7 +3115,7 @@ Receipt issued.
 - **Dependencies:** NODE-ROLE-002, FR-25
 - **Risk if not met:** M — outdated docs = CRA Art. 31 gap.
 
-#### U.C.5.2.1 — DPIA Pre-Launch
+#### PROC-12 — DPIA Pre-Launch
 
 **Primary Actor:** A-RO-01 + A-DPO-01 · **Stakeholders:** CEO, Auditor
 **Preconditions:** High-risk processing identified.
@@ -3133,7 +3133,7 @@ Receipt issued.
 - **Risk if not met:** H — missing DPIA = GDPR Art. 35 + Art. 83.
 **Implementation Status:** PARTIAL (What's missing: operational evidence verification & automated review cadence)
 
-#### U.C.5.3.1 — RoPA Maintenance
+#### PROC-13 — RoPA Maintenance
 
 **Primary Actor:** A-DPO-01 · **Stakeholders:** Customer, Auditor
 **Preconditions:** Processing activities ongoing.
@@ -3150,7 +3150,7 @@ Receipt issued.
 - **Dependencies:** FR-27, NFR-33, NFR-35, NODE-SYS-014, NODE-PROC-006
 - **Risk if not met:** M — outdated RoPA = GDPR Art. 30 violation.
 
-#### U.C.5.4.1 — Processor Due Diligence
+#### PROC-14 — Processor Due Diligence
 
 **Primary Actor:** A-CTO-01 / A-DPO-01 (Procurement)
 **Stakeholders:** Compliance Manager, CEO, Auditor
@@ -3169,7 +3169,7 @@ Receipt issued.
 - **Risk if not met:** H — substandard processor = GDPR Art. 28 violation.
 - **Functional UCs this constrains:** U.C.10.2.1 (Stripe), U.C.7.1.2 (Auth0).
 
-#### U.C.5.5.1 — DPAs Binding Processors
+#### CAP-01 — DPAs Binding Processors
 
 **Primary Actor:** A-DPO-01 / A-CTO-01 · **Stakeholders:** Compliance Manager, CEO, Auditor
 **Preconditions:** Processor engaged.
@@ -3207,11 +3207,11 @@ Receipt issued.
 
 | UC ID | D | Title | Primary rule | CSF | PF | Prio |
 |-------|---|-------|--------------|-----|----|----|
-| U.C.6.1.1 | D-08.1 | Annual Awareness Training | CR-D-08.1-001 / SO-D-08.1-001 | PR.AT-01, PR.AT-02, PR.PS-01 | GV.AT-P1, GV.AT-P2 | MEDIUM |
-| U.C.6.2.1 | D-08.2 | Role-Specific Training | CR-D-08.2-001 / SO-D-08.2-001 | GV.RR-02, GV.RR-04, PR.AT-02 | GV.AT-P1, GV.AT-P2 | MEDIUM |
-| U.C.6.3.1 | D-08.1 | Phishing Simulation | CR-D-08.1-001 / SO-D-08.1-001 | PR.AT-01, PR.AT-02, PR.PS-01 | GV.AT-P1, GV.AT-P2 | LOW |
+| PROC-15 | D-08.1 | Annual Awareness Training | CR-D-08.1-001 / SO-D-08.1-001 | PR.AT-01, PR.AT-02, PR.PS-01 | GV.AT-P1, GV.AT-P2 | MEDIUM |
+| PROC-16 | D-08.2 | Role-Specific Training | CR-D-08.2-001 / SO-D-08.2-001 | GV.RR-02, GV.RR-04, PR.AT-02 | GV.AT-P1, GV.AT-P2 | MEDIUM |
+| PROC-17 | D-08.1 | Phishing Simulation | CR-D-08.1-001 / SO-D-08.1-001 | PR.AT-01, PR.AT-02, PR.PS-01 | GV.AT-P1, GV.AT-P2 | LOW |
 
-#### U.C.6.1.1 — Annual Awareness Training
+#### PROC-15 — Annual Awareness Training
 
 **Primary Actor:** A-DPO-01 / A-CTO-01 (training owner)
 **Stakeholders:** All staff, Auditor
@@ -3229,7 +3229,7 @@ Receipt issued.
 - **Dependencies:** FR-29, NFR-36, NODE-PROC-018
 - **Risk if not met:** M — untrained staff = phishing risk + GDPR Art. 39 gap.
 
-#### U.C.6.2.1 — Role-Specific Training
+#### PROC-16 — Role-Specific Training
 
 **Primary Actor:** A-DPO-01 / A-CTO-01
 **Stakeholders:** Engineers, ops, DPO, IAM admin
@@ -3239,7 +3239,7 @@ Receipt issued.
 1. Role curricula per role.
 2. Completion tracked per role.
 3. Updated annually.
-**Extensions:** 2a. General awareness — covered in U.C.6.1.1.
+**Extensions:** 2a. General awareness — covered in PROC-15.
 **Postconditions:** Role-specific competencies maintained.
 **Security & Compliance Annex:**
 - **Owner:** Compliance Manager · **Verification Method:** INSPECT
@@ -3247,7 +3247,7 @@ Receipt issued.
 - **Dependencies:** FR-29, NFR-36, NODE-PROC-019, NODE-ROLE-002, NODE-ROLE-003
 - **Risk if not met:** M — role gaps = competency risk.
 
-#### U.C.6.3.1 — Phishing Simulation
+#### PROC-17 — Phishing Simulation
 
 **Primary Actor:** A-DPO-01 / A-CTO-01
 **Stakeholders:** All staff with email
@@ -3276,10 +3276,10 @@ Receipt issued.
 | MUC | Misactor | Target functional UC(s) | Mitigated by U.C. |
 |----|----------|-------------------------|-------------------|
 | MUC-01 | A-MIS-01 (external attacker) | U.C.7.1.2 (Login), U.C.7.1.3 (Password reset) | U.C.3.1.1, U.C.3.1.2, U.C.2.4.1 |
-| MUC-02 | A-MIS-03 (abusive tenant) | U.C.7.5.1 (Invite+roles), U.C.10.3.1 (Admin console) | U.C.3.2.1, U.C.3.5.1, U.C.5.1.2 |
-| MUC-03 | A-MIS-01 / A-MIS-03 | U.C.8.2.1 (Create Task), U.C.8.1.2 (Create Project), U.C.8.3.1 (View Board) | U.C.3.2.1, U.C.3.3.1, U.C.2.1.1 |
+| MUC-02 | A-MIS-03 (abusive tenant) | U.C.7.5.1 (Invite+roles), U.C.10.3.1 (Admin console) | U.C.3.2.1, U.C.3.5.1, PROC-11 |
+| MUC-03 | A-MIS-01 / A-MIS-03 | U.C.8.2.1 (Create Task), U.C.8.1.2 (Create Project), U.C.8.3.1 (View Board) | U.C.3.2.1, U.C.3.3.1, PROC-03 |
 | MUC-04 | A-MIS-03 | U.C.11.2.1 (Export), U.C.9.4.1 (Search) | U.C.1.3.1, U.C.1.5.1, U.C.2.4.2, U.C.3.5.1 |
-| MUC-05 | A-MIS-04 (compromised integration) | U.C.10.2.1 (Stripe webhook), U.C.7.1.2 (SSO callback) | U.C.5.4.1, U.C.5.5.1, U.C.3.1.1 |
+| MUC-05 | A-MIS-04 (compromised integration) | U.C.10.2.1 (Stripe webhook), U.C.7.1.2 (SSO callback) | PROC-14, CAP-01, U.C.3.1.1 |
 | MUC-06 | A-MIS-02 (malicious insider) | All U.C.7-11 (data access) | U.C.3.1.2, U.C.3.2.1, U.C.3.5.1, U.C.2.4.1 |
 | MUC-07 | A-MIS-01 | U.C.8.3.1 (Board), all U.C.7-11 (availability) | U.C.2.4.2, U.C.4.4.1 |
 | MUC-08 | A-MIS-01 | U.C.9.3.1 (Attachment upload) | U.C.2.4.1, U.C.3.5.1, U.C.4.2.1 |
@@ -3294,7 +3294,7 @@ Receipt issued.
 **Attack Flow:**
 1. Attacker submits batches of email/password pairs against /login.
 2. Defeated accounts used for further attacks (e.g., workspace exfiltration).
-**Impact:** Account takeover; reputational damage; GDPR Art. 32 violation if no notification within 72h (U.C.2.5.1).
+**Impact:** Account takeover; reputational damage; GDPR Art. 32 violation if no notification within 72h (PROC-05).
 **Mitigated by:** U.C.3.1.1 (authn with lockout), U.C.3.1.2 (MFA for privileged), U.C.2.4.1 (rate limiting + WAF), U.C.3.5.1 (auth event logging enables detection).
 **NIST anchors:** PR.AA-01, PR.AA-03, DE.CM-01.
 
@@ -3307,7 +3307,7 @@ Receipt issued.
 1. Actor exploits IDOR or unvalidated role-change API to escalate to Admin/Owner.
 2. Actor exfiltrates workspace data or plants backdoors.
 **Impact:** Full workspace compromise; other tenants unaffected if scope enforcement is correct.
-**Mitigated by:** U.C.3.2.1 (authz + quarterly reviews), U.C.3.5.1 (audit of role changes), U.C.5.1.2 (documentation of role taxonomy).
+**Mitigated by:** U.C.3.2.1 (authz + quarterly reviews), U.C.3.5.1 (audit of role changes), PROC-11 (documentation of role taxonomy).
 **NIST anchors:** PR.AA-01, PR.AA-05.
 
 #### MUC-03 — Cross-Tenant Data Injection/Read
@@ -3320,7 +3320,7 @@ Receipt issued.
 2. Sends crafted request without workspace_id or with manipulated IDs.
 3. Reads or writes cross-tenant data.
 **Impact:** Catastrophic — full data leakage across tenants; GDPR Art. 5(1)(f) breach; CNPD fine up to 4% revenue.
-**Mitigated by:** U.C.3.3.1 (secure defaults: workspace_id always in WHERE), U.C.3.2.1 (RBAC scoped to workspace), U.C.2.1.1 (SAST/DAST catches missing scope), U.C.4.2.1 (CI scan gates).
+**Mitigated by:** U.C.3.3.1 (secure defaults: workspace_id always in WHERE), U.C.3.2.1 (RBAC scoped to workspace), PROC-03 (SAST/DAST catches missing scope), U.C.4.2.1 (CI scan gates).
 **NIST anchors:** PR.AA-01, PR.DS-01.
 
 #### MUC-04 — Bulk Data Extraction via Export Endpoint
@@ -3344,7 +3344,7 @@ Receipt issued.
 1. Attacker forges Stripe webhook to upgrade arbitrary workspace.
 2. Or attacker uses leaked OIDC client secret to mint tokens.
 **Impact:** Billing fraud; account takeover via SSO bypass.
-**Mitigated by:** U.C.5.4.1 (processor due diligence), U.C.5.5.1 (binding DPA with security commitments), U.C.3.1.1 (centralised authn validates token signature).
+**Mitigated by:** PROC-14 (processor due diligence), CAP-01 (binding DPA with security commitments), U.C.3.1.1 (centralised authn validates token signature).
 **NIST anchors:** GV.SC-02, PR.AA-01.
 
 #### MUC-06 — Malicious Insider Exfiltration
@@ -3403,12 +3403,12 @@ Receipt issued.
 
 | v2.0 ID (preserved) | v3.0 package | Section |
 |---------------------|--------------|---------|
-| U.C.1.1.1 … U.C.1.5.1 | PKG-DP | §3.1 |
-| U.C.2.1.1 … U.C.2.7.1 | PKG-SEC | §3.2 |
-| U.C.3.1.1 … U.C.3.6.1 | PKG-IAM | §3.3 |
-| U.C.4.1.1 … U.C.4.5.1 | PKG-DEV | §3.4 |
-| U.C.5.1.1 … U.C.5.6.1 | PKG-GOV | §3.5 |
-| U.C.6.1.1 … U.C.6.3.1 | PKG-TRN | §3.6 |
+| PROC-01 … U.C.1.5.1 | PKG-DP | §3.1 |
+| PROC-03 … U.C.2.7.1 | PKG-SEC | §3.2 |
+| U.C.3.1.1 … PROC-07 | PKG-IAM | §3.3 |
+| PROC-08 … PROC-09 | PKG-DEV | §3.4 |
+| PROC-10 … U.C.5.6.1 | PKG-GOV | §3.5 |
+| PROC-15 … PROC-17 | PKG-TRN | §3.6 |
 
 All 35 IDs preserved verbatim. No downstream document requires remapping.
 
@@ -3454,3 +3454,8 @@ All 35 IDs preserved verbatim. No downstream document requires remapping.
 ---
 
 **End of Use Cases Catalog (Phase 3 RICH, REWRITTEN_PRODUCT_BASELINE, v3.0)**
+---
+
+## Lane Naming (2026-09-05)
+
+v3.0 → v3.1: non-technology UCs re-laned to PROC-*/CAP-* per human decision 2026-09-05 (rubric REALIZATION_CLASS_RUBRIC v1.3 §5B; registry `00_METHODOLOGY/validation/LANE_NAMING_CENSUS_v0.md`). Applied via `scripts/rename_lane_ids.py`.

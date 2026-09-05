@@ -54,36 +54,36 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 
 | DN | Rule | D-sub | Title | Target nodes | Primary UC | Verification | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |----|------|-------|-------|--------------|-----------|--------------|-------|-----------------------|----------|----------|--------------|-----------|
-| DN-01 | CR-D-01.1-001 | D-01.1 | Data at Rest Encryption | NODE-SYS-010 | U.C.1.1.1 | TEST | | | | | | |
+| DN-01 | CR-D-01.1-001 | D-01.1 | Data at Rest Encryption | NODE-SYS-010 | PROC-01 | TEST | | | | | | |
 | DN-02 | CR-D-01.2-001 | D-01.2 | Data in Transit Encryption | NODE-SYS-011 | U.C.3.1.1 | TEST | | | | | | |
-| DN-03 | CR-D-01.3-001 | D-01.3 | Cryptographic Key Management | NODE-SYS-010, NODE-SYS-011 | U.C.1.1.1 | TEST | | | | | | |
-| DN-04 | CR-D-01.4-001 | D-01.4 | Data Integrity Mechanisms | NODE-SYS-016 | U.C.1.1.2 | TEST | | | | | | |
-| DN-05 | CR-D-02.1-001 | D-02.1 | Vulnerability-Free Release | NODE-PROC-017, NODE-SYS-009 | U.C.2.1.1 | TEST | | | | | | |
+| DN-03 | CR-D-01.3-001 | D-01.3 | Cryptographic Key Management | NODE-SYS-010, NODE-SYS-011 | PROC-01 | TEST | | | | | | |
+| DN-04 | CR-D-01.4-001 | D-01.4 | Data Integrity Mechanisms | NODE-SYS-016 | PROC-02 | TEST | | | | | | |
+| DN-05 | CR-D-02.1-001 | D-02.1 | Vulnerability-Free Release | NODE-PROC-017, NODE-SYS-009 | PROC-03 | TEST | | | | | | |
 | DN-06 | CR-D-02.2-001 | D-02.2 | Automated Patch Deployment | NODE-PROC-015 | U.C.4.3.1 | INSPECT | | | | | | |
-| DN-07 | CR-D-02.3-001 | D-02.3 | Coordinated Vulnerability Disclosure | NODE-PROC-016 | U.C.2.3.1 | INSPECT | | | | | | |
+| DN-07 | CR-D-02.3-001 | D-02.3 | Coordinated Vulnerability Disclosure | NODE-PROC-016 | PROC-04 | INSPECT | | | | | | |
 | DN-08 | CR-D-03.1-001 | D-03.1 | Authentication & Access Control | NODE-SYS-006, NODE-SYS-007 | U.C.3.1.1 | TEST | | | | | | |
 | DN-09 | CR-D-03.2-001 | D-03.2 | Administrative MFA | NODE-SYS-007 | U.C.3.1.2 | TEST | | | | | | |
 | DN-10 | CR-D-03.3-001 | D-03.3 | Authorisation & Least Privilege | NODE-ROLE-004 | U.C.3.2.1 | INSPECT | | | | | | |
 | DN-11 | CR-D-03.4-001 | D-03.4 | Secure System Defaults | NODE-SYS-008 | U.C.3.3.1 | TEST | | | | | | |
 | DN-12 | CR-D-04.1-001 | D-04.1 | Exploit Severity Limitation | NODE-SYS-005, NODE-PROC-002, NODE-ROLE-010 | U.C.2.4.1 | TEST | | | | | | |
 | DN-13 | CR-D-04.2-001 | D-04.2 | Availability Restoration & DoS Resilience | NODE-SYS-005 | U.C.2.4.2 | TEST | | | | | | |
-| DN-14 | CR-D-04.3-001 | D-04.3 | Dual Regulatory Incident Notification | NODE-SYS-004, NODE-PROC-001, NODE-ROLE-008 | U.C.2.5.1 | DEMONSTRATE | | | | | | |
+| DN-14 | CR-D-04.3-001 | D-04.3 | Dual Regulatory Incident Notification | NODE-SYS-004, NODE-PROC-001, NODE-ROLE-008 | PROC-05 | DEMONSTRATE | | | | | | |
 | DN-15 | CR-D-04.4-001 | D-04.4 | Data Restoration and Recovery | NODE-SYS-015, NODE-PROC-003 | U.C.2.6.1 | TEST | | | | | | |
 | DN-16 | CR-D-05.1-001 | D-05.1 | Data Minimisation | NODE-PROC-007 | U.C.1.4.1 | INSPECT | | | | | | |
 | DN-17 | CR-D-05.2-001 | D-05.2 | Storage Limitation & Retention | NODE-PROC-007 | U.C.1.4.1 | INSPECT | | | | | | |
 | DN-18 | CR-D-05.3-001 | D-05.3 | Complete and Secure Data Erasure | NODE-SYS-015, NODE-PROC-003 | U.C.1.2.1 | TEST | | | | | | |
 | DN-19 | CR-D-05.4-001 | D-05.4 | Structured Data Portability | NODE-SYS-014 | U.C.1.5.1 | TEST | | | | | | |
-| DN-20 | CR-D-06.1-001 | D-06.1 | Processor Due Diligence | NODE-PROC-011, NODE-ROLE-009 | U.C.5.4.1 | INSPECT | | | | | | |
+| DN-20 | CR-D-06.1-001 | D-06.1 | Processor Due Diligence | NODE-PROC-011, NODE-ROLE-009 | PROC-14 | INSPECT | | | | | | |
 | DN-21 | CR-D-06.2-001 | D-06.2 | Software Bill of Materials | NODE-SYS-013 | U.C.5.6.1 | TEST | | | | | | |
-| DN-22 | CR-D-06.3-001 | D-06.3 | Contractual Processor Security | NODE-PROC-012, NODE-ROLE-011 | U.C.5.5.1 | INSPECT | | | | | | |
-| DN-23 | CR-D-07.1-001 | D-07.1 | Security and Privacy by Design | NODE-PROC-007, NODE-PROC-009, NODE-PROC-010, NODE-ROLE-003 | U.C.4.1.1 | DEMONSTRATE | | | | | | |
-| DN-24 | CR-D-08.1-001 | D-08.1 | Annual Security Awareness | NODE-PROC-018, NODE-ROLE-005 | U.C.6.1.1 | INSPECT | | | | | | |
-| DN-25 | CR-D-08.2-001 | D-08.2 | Role-Specific Security Competence | NODE-PROC-019, NODE-ROLE-002, NODE-ROLE-003 | U.C.6.2.1 | INSPECT | | | | | | |
-| DN-26 | CR-D-09.1-001 | D-09.1 | Security Governance & Technical Documentation | NODE-PROC-004, NODE-ROLE-001, NODE-ROLE-012 | U.C.5.1.1, U.C.5.1.2 | INSPECT | | | | | | |
-| DN-27 | CR-D-09.2-001 | D-09.2 | Unified Risk Assessment | NODE-PROC-005, NODE-ROLE-006 | U.C.4.5.1, U.C.5.2.1 | DEMONSTRATE | | | | | | |
-| DN-28 | CR-D-09.4-001 | D-09.4 | Processing & Breach Records | NODE-SYS-014, NODE-SYS-017, NODE-PROC-006, NODE-ROLE-007 | U.C.5.3.1, U.C.2.5.1 | INSPECT | | | | | | |
+| DN-22 | CR-D-06.3-001 | D-06.3 | Contractual Processor Security | NODE-PROC-012, NODE-ROLE-011 | CAP-01 | INSPECT | | | | | | |
+| DN-23 | CR-D-07.1-001 | D-07.1 | Security and Privacy by Design | NODE-PROC-007, NODE-PROC-009, NODE-PROC-010, NODE-ROLE-003 | PROC-08 | DEMONSTRATE | | | | | | |
+| DN-24 | CR-D-08.1-001 | D-08.1 | Annual Security Awareness | NODE-PROC-018, NODE-ROLE-005 | PROC-15 | INSPECT | | | | | | |
+| DN-25 | CR-D-08.2-001 | D-08.2 | Role-Specific Security Competence | NODE-PROC-019, NODE-ROLE-002, NODE-ROLE-003 | PROC-16 | INSPECT | | | | | | |
+| DN-26 | CR-D-09.1-001 | D-09.1 | Security Governance & Technical Documentation | NODE-PROC-004, NODE-ROLE-001, NODE-ROLE-012 | PROC-10, PROC-11 | INSPECT | | | | | | |
+| DN-27 | CR-D-09.2-001 | D-09.2 | Unified Risk Assessment | NODE-PROC-005, NODE-ROLE-006 | PROC-09, PROC-12 | DEMONSTRATE | | | | | | |
+| DN-28 | CR-D-09.4-001 | D-09.4 | Processing & Breach Records | NODE-SYS-014, NODE-SYS-017, NODE-PROC-006, NODE-ROLE-007 | PROC-13, PROC-05 | INSPECT | | | | | | |
 | DN-29 | CR-D-10.2-001 | D-10.2 | Audit Logging & Traceability | NODE-SYS-001, NODE-SYS-002, NODE-SYS-003 | U.C.3.5.1 | TEST | | | | | | |
-| DN-30 | CR-D-10.3-001 | D-10.3 | Control Effectiveness Testing | NODE-SYS-009, NODE-PROC-020 | U.C.3.6.1 | INSPECT | | | | | | |
+| DN-30 | CR-D-10.3-001 | D-10.3 | Control Effectiveness Testing | NODE-SYS-009, NODE-PROC-020 | PROC-07 | INSPECT | | | | | | |
 
 ---
 
@@ -92,7 +92,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Description:** Allocation of CR-D-01.1-001 to NODE-SYS-010: enforces AES-256 at-rest encryption for all production personal-data stores.
 **Scope:** Production primary + analytics stores.
 **Out of Scope:** Ephemeral dev databases.
-**Source:** CR-D-01.1-001 + U.C.1.1.1 + BPR-D-01.1-001
+**Source:** CR-D-01.1-001 + PROC-01 + BPR-D-01.1-001
 **NIST CSF Anchors:** CSF: PR.DS-01, PR.DS-10, PR.PS-04 | PF: PR.DS-P1
 **Verification Criteria:**
 - Encryption verified on every store.
@@ -142,7 +142,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Description:** Allocation of CR-D-01.3-001 to NODE-SYS-010/011 (INHERITED): key management follows AWS KMS policy.
 **Scope:** All KMS-managed keys.
 **Out of Scope:** Customer-managed keys (separate).
-**Source:** CR-D-01.3-001 + U.C.1.1.1 (INHERITED)
+**Source:** CR-D-01.3-001 + PROC-01 (INHERITED)
 **NIST CSF Anchors:** CSF: PR.DS-01, PR.DS-10 | PF: PR.DS-P1
 **Verification Criteria:**
 - Keys managed via KMS.
@@ -163,7 +163,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Description:** Allocation of CR-D-01.4-001 to NODE-SYS-016: HMAC-SHA-256 integrity on critical records.
 **Scope:** Production critical records.
 **Out of Scope:** Derived / cache.
-**Source:** CR-D-01.4-001 + U.C.1.1.2
+**Source:** CR-D-01.4-001 + PROC-02
 **NIST CSF Anchors:** CSF: PR.DS-01, PR.DS-02, PR.DS-10 | PF: CT.DM-P1, CT.DM-P3
 **Verification Criteria:**
 - 100% critical records covered.
@@ -188,7 +188,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Description:** Allocation of CR-D-02.1-001 to NODE-PROC-017 / NODE-SYS-009: scans + pentest before release.
 **Scope:** All production releases.
 **Out of Scope:** Pre-alpha.
-**Source:** CR-D-02.1-001 + U.C.2.1.1 + BPR-D-02.1-001
+**Source:** CR-D-02.1-001 + PROC-03 + BPR-D-02.1-001
 **NIST CSF Anchors:** CSF: GV.OV-02, ID.AM-02, ID.RA-01 | PF: ID.RA-P3, ID.RA-P5
 **Verification Criteria:**
 - 0 critical at release.
@@ -238,7 +238,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Description:** Allocation of CR-D-02.3-001 to NODE-PROC-016: receive + triage + respond to external reports.
 **Scope:** External researchers.
 **Out of Scope:** Customer support.
-**Source:** CR-D-02.3-001 + U.C.2.3.1
+**Source:** CR-D-02.3-001 + PROC-04
 **NIST CSF Anchors:** CSF: GV.PO-01, GV.SC-04, RS.CO-03 | PF: —
 **Verification Criteria:**
 - security.txt present.
@@ -405,7 +405,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Description:** Allocation of CR-D-04.3-001 to NODE-SYS-004 + NODE-PROC-001 + NODE-ROLE-008: ENISA 24h + CNPD 72h.
 **Scope:** All confirmed incidents.
 **Out of Scope:** Suspected-only.
-**Source:** CR-D-04.3-001 + U.C.2.5.1 + BPR-D-04.3-001/002
+**Source:** CR-D-04.3-001 + PROC-05 + BPR-D-04.3-001/002
 **NIST CSF Anchors:** CSF: RS.CO-02, RS.MA-01, RS.MA-02 | PF: CM.AW-P7, CM.AW-P8, CM.PO-P1
 **Verification Criteria:**
 - ENISA ≤24h.
@@ -547,7 +547,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Description:** Allocation of CR-D-06.1-001 to NODE-PROC-011 + NODE-ROLE-009: pre-engagement questionnaire + annual review.
 **Scope:** All data processors.
 **Out of Scope:** Non-data vendors.
-**Source:** CR-D-06.1-001 + U.C.5.4.1
+**Source:** CR-D-06.1-001 + PROC-14
 **NIST CSF Anchors:** CSF: GV.SC-01, GV.SC-02, GV.SC-03 | PF: ID.IM-P2
 **Verification Criteria:**
 - Questionnaire pre-engagement.
@@ -589,7 +589,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Description:** Allocation of CR-D-06.3-001 to NODE-PROC-012 + NODE-ROLE-011: DPA lifecycle.
 **Scope:** All data processors.
 **Out of Scope:** Non-data vendors.
-**Source:** CR-D-06.3-001 + U.C.5.5.1
+**Source:** CR-D-06.3-001 + CAP-01
 **NIST CSF Anchors:** CSF: GV.OC-03, GV.SC-02, GV.SC-03 | PF: —
 **Verification Criteria:**
 - 100% active processors DPA.
@@ -610,7 +610,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Description:** Allocation of CR-D-07.1-001 to NODE-PROC-007/009/010 + NODE-ROLE-003: SSDLC + threat model.
 **Scope:** All production code.
 **Out of Scope:** Internal tooling.
-**Source:** CR-D-07.1-001 + U.C.4.1.1 + BPR-D-07.1-001
+**Source:** CR-D-07.1-001 + PROC-08 + BPR-D-07.1-001
 **NIST CSF Anchors:** CSF: GV.PO-02, ID.RA-01, PR.DS-10 | PF: CT.DP-P2, CT.DP-P4, GV.PO-P2
 **Verification Criteria:**
 - Threat model per feature.
@@ -635,7 +635,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Description:** Allocation of CR-D-08.1-001 to NODE-PROC-018 + NODE-ROLE-005: training delivery.
 **Scope:** All staff.
 **Out of Scope:** External.
-**Source:** CR-D-08.1-001 + U.C.6.1.1
+**Source:** CR-D-08.1-001 + PROC-15
 **NIST CSF Anchors:** CSF: PR.AT-01, PR.AT-02, PR.PS-01 | PF: GV.AT-P1, GV.AT-P2
 **Verification Criteria:**
 - 100% completion (NFR-36).
@@ -656,7 +656,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Description:** Allocation of CR-D-08.2-001 to NODE-PROC-019 + NODE-ROLE-002/003: role curricula.
 **Scope:** Engineers, ops, DPO.
 **Out of Scope:** General awareness.
-**Source:** CR-D-08.2-001 + U.C.6.2.1
+**Source:** CR-D-08.2-001 + PROC-16
 **NIST CSF Anchors:** CSF: GV.RR-02, GV.RR-04, PR.AT-02 | PF: GV.AT-P1, GV.AT-P2
 **Verification Criteria:**
 - Role curricula defined.
@@ -677,7 +677,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Description:** Allocation of CR-D-09.1-001 to NODE-PROC-004 + NODE-ROLE-001/012: ISMS + governance.
 **Scope:** All internal policies.
 **Out of Scope:** Customer terms.
-**Source:** CR-D-09.1-001 + U.C.5.1.1/U.C.5.1.2 + BPR-D-09.1-001
+**Source:** CR-D-09.1-001 + PROC-10/PROC-11 + BPR-D-09.1-001
 **NIST CSF Anchors:** CSF: GV.PO-01, GV.PO-02, GV.OV-01 | PF: CM.PO-P1, GV.PO-P1
 **Verification Criteria:**
 - Annual policy review.
@@ -702,7 +702,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Description:** Allocation of CR-D-09.2-001 to NODE-PROC-005 + NODE-ROLE-006: DPIA + risk register.
 **Scope:** All high-risk processing.
 **Out of Scope:** Low-risk routine.
-**Source:** CR-D-09.2-001 + U.C.4.5.1/U.C.5.2.1
+**Source:** CR-D-09.2-001 + PROC-09/PROC-12
 **NIST CSF Anchors:** CSF: ID.RA-01, ID.RA-04, ID.RA-05 | PF: ID.RA-P3, ID.RA-P4, ID.RA-P5
 **Verification Criteria:**
 - Pre-launch DPIA.
@@ -727,7 +727,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Description:** Allocation of CR-D-09.4-001 to NODE-SYS-014/017 + NODE-PROC-006 + NODE-ROLE-007: RoPA + breach register.
 **Scope:** All processing + breaches.
 **Out of Scope:** Anonymised.
-**Source:** CR-D-09.4-001 + U.C.5.3.1/U.C.2.5.1
+**Source:** CR-D-09.4-001 + PROC-13/PROC-05
 **NIST CSF Anchors:** CSF: GV.PO-02, ID.AM-08, PR.DS-10 | PF: ID.IM-P1, ID.IM-P8
 **Verification Criteria:**
 - RoPA ≤7d update.
@@ -773,7 +773,7 @@ The Requirements Allocation document maps each Compliance Rule (CR) to a Derivat
 **Description:** Allocation of CR-D-10.3-001 to NODE-SYS-009 + NODE-PROC-020: pentest + control review.
 **Scope:** All production controls.
 **Out of Scope:** Dev.
-**Source:** CR-D-10.3-001 + U.C.3.6.1 + BPR-D-10.3-001/002
+**Source:** CR-D-10.3-001 + PROC-07 + BPR-D-10.3-001/002
 **NIST CSF Anchors:** CSF: DE.AE-02, GV.OV-03, ID.RA-05 | PF: ID.RA-P3, ID.RA-P5
 **Verification Criteria:**
 - Annual pentest.

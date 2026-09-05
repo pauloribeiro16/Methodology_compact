@@ -42,24 +42,24 @@ Variability points are conditions under which a U.C.'s behaviour branches. They 
 
 | # | Base UC | Variant | Trigger | Effect |
 |---|---------|---------|---------|--------|
-| V-01 | U.C.1.1.1 | **V.Self-service** | Data subject authenticated | Auto-generated DSAR report (JSON, CSV, PDF) within 30 days |
-| V-02 | U.C.1.1.1 | **V.Manual** | Identity not verified | Manual review by DPO + paper trail |
+| V-01 | PROC-01 | **V.Self-service** | Data subject authenticated | Auto-generated DSAR report (JSON, CSV, PDF) within 30 days |
+| V-02 | PROC-01 | **V.Manual** | Identity not verified | Manual review by DPO + paper trail |
 | V-03 | U.C.1.2.1 | **V.Backup-locations** | Erasure request | Erasure extends to backups (RPO ≤ 30 days) |
 | V-04 | U.C.1.2.1 | **V.Log-retention** | Erasure request | Anonymisation in logs (no PII retention) |
-| V-05 | U.C.2.1.1 | **V.Sev.Critical** | CVE ≥ 9.0 | Patch within 24h |
-| V-06 | U.C.2.1.1 | **V.Sev.High** | CVE 7.0-8.9 | Patch within 7 days |
-| V-07 | U.C.2.5.1 | **V.ENISA-24h** | CRA-reportable incident | ENISA notification within 24h |
-| V-08 | U.C.2.5.1 | **V.GDPR-72h** | Personal-data breach | CNPD notification within 72h |
+| V-05 | PROC-03 | **V.Sev.Critical** | CVE ≥ 9.0 | Patch within 24h |
+| V-06 | PROC-03 | **V.Sev.High** | CVE 7.0-8.9 | Patch within 7 days |
+| V-07 | PROC-05 | **V.ENISA-24h** | CRA-reportable incident | ENISA notification within 24h |
+| V-08 | PROC-05 | **V.GDPR-72h** | Personal-data breach | CNPD notification within 72h |
 | V-09 | U.C.3.1.1 | **V.SSO** (re-anchored to **U.C.10.3.2**) | Customer requests SAML/OIDC | Federated auth supported |
 | V-10 | U.C.3.1.2 | **V.FIDO2** | Privileged user | Hardware key required (BPR-D-03.2-001) |
 | V-11 | U.C.3.1.2 | **V.TOTP** | Non-privileged user | TOTP fallback acceptable |
-| V-12 | U.C.4.5.1 | **V.DPIA** | High-risk processing identified | Full DPIA + DPO consultation |
-| V-13 | U.C.4.5.1 | **V.FRIA-light** | Low-risk processing | Lightweight risk checklist |
-| V-14 | U.C.5.4.1 | **V.Annual-audit** | Processor DPA anniversary | Re-attest controls |
+| V-12 | PROC-09 | **V.DPIA** | High-risk processing identified | Full DPIA + DPO consultation |
+| V-13 | PROC-09 | **V.FRIA-light** | Low-risk processing | Lightweight risk checklist |
+| V-14 | PROC-14 | **V.Annual-audit** | Processor DPA anniversary | Re-attest controls |
 | V-15 | U.C.5.6.1 | **V.CycloneDX** | Default SBOM format | Machine-readable per CRA |
 | V-16 | U.C.5.6.1 | **V.SPDX** | Customer request | SPDX format alternative |
-| V-17 | U.C.6.1.1 | **V.New-hire** | Onboarding | Training within 30 days of start |
-| V-18 | U.C.6.3.1 | **V.External-tool** | Phishing provider | Third-party simulation acceptable (per DPA) |
+| V-17 | PROC-15 | **V.New-hire** | Onboarding | Training within 30 days of start |
+| V-18 | PROC-17 | **V.External-tool** | Phishing provider | Third-party simulation acceptable (per DPA) |
 
 > **Fase de Especificação 6 note:** V-09 (SSO) re-anchored from the generic `U.C.3.1.1` to the **Enterprise SSO functional U.C. `U.C.10.3.2`** for clearer product anchoring. The security U.C.3.1.1 variant V-09 still stands (the customer-level SSO path).
 
