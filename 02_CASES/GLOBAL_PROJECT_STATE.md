@@ -1,7 +1,7 @@
 # GLOBAL PROJECT STATE — AEGIS Methodology Implementation
 
-**Last Updated:** 2026-09-04
-**Version:** 6.8 (PORT-PARITY-2 — cross-case content parity: C3 P1 v1.6 layer + corr-013, P2 waves C2+C3, P3 rich v0 C2+C3, 16/16 smoke, all gates PASS)
+**Last Updated:** 2026-09-05
+**Version:** 6.9 (REALIZATION-CLASS — Case_01 P2 realization_class rubric + documents-only tag wave; PORT-PARITY-2 — cross-case content parity: C3 P1 v1.6 layer + corr-013, P2 waves C2+C3, P3 rich v0 C2+C3, 16/16 smoke, all gates PASS)
 **Scope:** All Cases
 
 ---
@@ -177,6 +177,14 @@ Methodology/
 | 2026-04-01 | PHASE 1 | Case_01 | Phase 1 completed for TinyTask | High |
 | 2026-04-01 | TOOLS | All | Excel generation scripts created | Medium |
 | 2026-04-01 | DOCS | Case_01 | Initial Phase 1 documents | High |
+
+---
+
+## 4B. REALIZATION-CLASS CAMPAIGN (2026-09-05)
+
+- **What:** new mandatory Phase 2 rule attribute `realization_class` {TECHNOLOGY, PROCESS, CAPABILITY} (+ optional secondary) — methodology rubric `00_METHODOLOGY/REALIZATION_CLASS_RUBRIC.md` v1.2, corr-008 registered (`00_METHODOLOGY/AGENTS.md` v2.2). Bridges Phase 2 rules to the Phase 3 node-track triad and the maturity model (CAPABILITY ↔ Scale A / EvidenceItem).
+- **Applied:** Case_01 only — 46 rules tagged in Doc18 (fields 25/26, Anexo A, Anexo D) + `control_set.yaml` + `12_Rules_Catalog.xlsx`; generator v1.1 regeneration-stable. Final distribution: T17 / P23 / C6, 9 secondaries. Validator blind audit 41/46 → 2 adjudicated fixes. Gates PASS unchanged.
+- **Deferred (documents-only scope, human decision 2026-09-05):** `phase2_ontology.yaml` application; dashboards + `data/` mirrors regeneration; KG reflection; C2/C3 waves; Phase 3 realization lanes.
 
 ---
 

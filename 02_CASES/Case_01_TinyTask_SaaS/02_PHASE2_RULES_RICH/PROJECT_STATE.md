@@ -2,9 +2,9 @@
 document_id: AEGIS-P2-RICH-STATE
 title: Project State — Phase 2 Rich Mode (Case_01)
 phase: 2
-version: 1.3
+version: 1.4
 created: 2026-08-07
-updated: 2026-08-31
+updated: 2026-09-05
 author: Sprint 0 Orchestrator / Sprint 3 Executor (final-docs-builder) / Sprint 5 Executor + Validator (deep-enrichment) / v1.3 Phase 2 Dashboard Executor
 status: ACTIVE
 case: Case_01_TinyTask_SaaS
@@ -109,6 +109,7 @@ phase2_dashboard_parity:
 | **Sprint 3+4** | 2026-08-07 | Catalog port + 6 new cols | 642 cells added; F-04a/b/F-10 resolved; Doc 08/10/11 v1.2 | ✅ COMPLETE |
 | **Sprint 5** | 2026-08-07 | **DEEP enrichment** | 17 fields × 107 cards = **1,819 cells**; Doc 08/10/11 v2.0 / DEEP_ENRICHED | ✅ PASS_WITH_FINDINGS |
 | **Validator** | 2026-08-07 | Sprint 5 self-verification | 12/12 acceptance criteria PASS; F-11/F-12 (new); F-01/F-02/F-03 (carried) | ✅ PASS_WITH_FINDINGS |
+| **RC campaign** | 2026-09-05 | Realization Class rubric + tag wave | 46 rules tagged `realization_class` (T17/P23/C6, 9 secondaries) per `00_METHODOLOGY/REALIZATION_CLASS_RUBRIC.md` v1.2; fields 25/26 on all cards; Anexo A column + Anexo D derived view; audit 41/46 → 2 adjudicated fixes applied; documents-only (ontology/dashboards/mirrors deferred) | ✅ PASS |
 
 **Sprint verdicts to date:**
 
@@ -121,6 +122,7 @@ phase2_dashboard_parity:
 | Sprint 3+4 | PASS | 4/4 deliverables (3 updated + 1 created); 642 cells added; 3 findings resolved (F-04a/b/F-10) |
 | Sprint 5 | PASS_WITH_FINDINGS | 12/12 acceptance criteria met; 1,819 cells delivered (uniform 17-field schema); 1 new finding F-11 (frontmatter scalar stale on Doc 10/11) |
 | Validator | PASS_WITH_FINDINGS | All functional + lint + invariant + consistency checks PASS; F-12 (re-raise of F-11) for orchestrator |
+| RC campaign | PASS | Rubric v1.2 (Validator APPROVED_WITH_AMENDMENTS, A1–A7 applied); tag wave 46/46 + blind audit + 2 fixes; check_unmapped GATE PASS unchanged; ID census identical; ontology/dashboards/data mirrors untouched (deferred) |
 
 **Aggregate metrics (final + Validator):**
 
@@ -248,4 +250,8 @@ phase2_dashboard_parity:
 
 ---
 
-**End of Sprint 5 + Validator Project State (v1.2) — Phase 2 Rich Mode DEEP_ENRICHED**
+## §10 Realization Class Campaign (2026-09-05)
+
+Methodology rubric `00_METHODOLOGY/REALIZATION_CLASS_RUBRIC.md` v1.2 (Validator: APPROVED_WITH_AMENDMENTS; A1–A7 applied). Attribute applied to all 46 rules in Doc18 (card fields 25/26, Anexo A `Realization Class` column, Anexo D per-class derived view), mirrored in `control_set.yaml` (46 keys) and `12_Rules_Catalog.xlsx` (cols R/S). Final adjudicated distribution: **TECHNOLOGY 17 / PROCESS 23 / CAPABILITY 6**; secondaries 9. Blind Validator audit: 41/46 primary agreement → 2 adjudicated fixes (BPR-D-03.4-001 T→P+secT; BPR-D-04.3-001 P→C). `validation/build_control_set.py` v1.1 now emits fields 25/26 (regeneration-stable). **Deferred (human decision, documents-only scope):** `phase2_ontology.yaml`, dashboards, `data/` mirrors, KG reflection. Reports: `00_METHODOLOGY/validation/REALIZATION_CLASS_*`.
+
+**End of Project State (v1.4) — Phase 2 Rich Mode DEEP_ENRICHED + Realization Class tagged**

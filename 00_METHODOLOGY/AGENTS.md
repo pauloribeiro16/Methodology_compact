@@ -2,9 +2,9 @@
 document_id: AEGIS-METHODOLOGY-AGENTS
 title: AGENTS.md — Scoped Instructions for 00_METHODOLOGY
 phase: Cross-phase
-version: 2.0
+version: 2.2
 created: 2026-06-15
-updated: 2026-08-26
+updated: 2026-09-05
 status: ACTIVE
 ---
 
@@ -57,6 +57,8 @@ Authoritative schema for all AEGIS IDs.
 | `REQ-D-XX.X-NNN` | Phase 3 — Requirements | Doc 23/24 |
 
 **DEPRECATED legacy IDs (corr-007).** `PG-D-`, `SG-D-`, `CR-D-`, `BPR-D-` — see legacy alias tables in Doc 10 §7.5 and Doc 11 §11.5. **New content MUST use corr-008.**
+
+**Phase 2 realization classes.** Phase 2 rules — canonical `RULE-*` (legacy `CR-`/`BPR-` in Case_01) — carry a mandatory `realization_class` attribute {`TECHNOLOGY`, `PROCESS`, `CAPABILITY`} plus an optional `realization_class_secondary` (same enum, ≠ primary). Classes describe how a rule is realized and sustained (technical control / coordinated activity sequence / standing organizational ability); rule IDs, the D-XX.Y spine and catalog structure are unchanged. Normative definitions, decision tree, storage locations and the Phase 3 lane mapping: `00_METHODOLOGY/REALIZATION_CLASS_RUBRIC.md`.
 
 > ⚠️ The cross-document ID validator (`01_IMPLEMENTATION_TOOLS/scripts/validate_aegis_ids.py`) lives in the main repo. In this compact repo, manually verify: ID prefix matches the doc that hosts it, no orphans in `grep -r`, no duplicates, and the affected subgraph looks consistent via `scripts/kg.sh impact <ID>`.
 
@@ -138,5 +140,5 @@ See `diagrams/README.md` for the full guide. Highlights:
 
 ---
 
-**Version:** 2.1 (added KG cheat sheet, 2026-08-26)
+**Version:** 2.2 (registered Phase 2 `realization_class` attribute, 2026-09-05)
 **See also:** [`../AGENTS.md`](../AGENTS.md) (root), [`kg/GRAPHIFY.md`](../kg/GRAPHIFY.md) (KG protocol), [`diagrams/README.md`](diagrams/README.md) (diagram decisions)

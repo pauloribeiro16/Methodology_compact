@@ -1,8 +1,21 @@
 # Central Change Log — AEGIS Methodology Implementation
 
-**Last Updated:** 2026-09-04
-**Version:** 6.8 (PORT-PARITY-2 — cross-case content parity: corr-013 C3 renumber, C3 P1 v1.6 layer 749n/2054l, P2 waves C2+C3, P3 rich v0 C2+C3, dashboards 16/16 smoke)
+**Last Updated:** 2026-09-05
+**Version:** 6.9 (REALIZATION-CLASS — Case_01 P2 realization_class tag wave documents-only; PORT-PARITY-2 — cross-case content parity: corr-013 C3 renumber, C3 P1 v1.6 layer 749n/2054l, P2 waves C2+C3, P3 rich v0 C2+C3, dashboards 16/16 smoke)
 **Scope:** All Cases
+
+---
+
+## 0.5 2026-09-05 — REALIZATION-CLASS (Case_01 Phase 2 tag wave, documents-only)
+
+| Item | Value |
+|------|-------|
+| Methodology | `00_METHODOLOGY/REALIZATION_CLASS_RUBRIC.md` v1.2 — new mandatory Phase 2 rule attribute `realization_class` {TECHNOLOGY, PROCESS, CAPABILITY} (+ optional secondary); normative decision tree (constitutive-step test, P/C structural indicators); ISO 27002:2022 indicative crosswalk; CAPABILITY anchored to maturity model v1.6 (Scale A / EvidenceItem); corr-008 registered in `00_METHODOLOGY/AGENTS.md` v2.2 |
+| Validator | Rubric APPROVED_WITH_AMENDMENTS (A1–A7 applied, A8 deferred); blind 46-rule classification baseline; tag-wave audit 41/46 primary agreement → 2 adjudicated fixes |
+| Case_01 P2 | Doc18: card fields 25/26 ×46, Anexo A column, Anexo D derived view, counters 24→26, v4.1; `control_set.yaml` 46 keys; `12_Rules_Catalog.xlsx` cols R/S; `validation/build_control_set.py` v1.1 emits fields (regeneration-stable) |
+| Distribution | TECHNOLOGY 17 / PROCESS 23 / CAPABILITY 6; secondaries 9 (8→TECHNOLOGY, CR-D-09.2-001→PROCESS) |
+| Gates | check_unmapped GATE PASS unchanged (52 UNMAPPED_PF); ID census 46/46 identical in all three locations; 3-way class agreement 46/46 |
+| Deferred (P7 human decisions) | `phase2_ontology.yaml` application, dashboards/data mirrors regeneration, KG reflection, C2 (55) / C3 (78) waves, Phase 3 lanes |
 
 ---
 

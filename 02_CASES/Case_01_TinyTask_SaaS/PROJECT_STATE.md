@@ -1,6 +1,6 @@
 # Project State — Case 01: TinyTask SaaS (Low Complexity)
 
-**Last Updated:** 2026-08-27
+**Last Updated:** 2026-09-05
 **Status:** ✅ PHASE 1 COMPLETE | ✅ PHASE 2 COMPLETE | ✅ PHASE 3 COMPLETE | ✅ IMPLEMENTATION POSTURE TRANSITION COMPLETE (v2.0 Model)
 **Next Phase:** Implementation / Gate Execution
 **Complexity:** Low
@@ -345,6 +345,7 @@ python lints/run_all_lints.py --case "TinyTask SaaS"
 | Date | Document | Change Type | Description | Impact |
 |------|----------|-------------|-------------|--------|
 | 2026-08-27 | Case_01 Markdown Docs | MODEL TRANSITION | Replaced legacy 0-4 posture scales & Tiers with Implementation Posture Model v2.0 (IMPLEMENTED/PARTIAL/NOT IMPLEMENTED + evidence & gap requirements); Gate v0.2 PASS | High |
+| 2026-09-05 | Phase 2 Rich | REALIZATION CLASS | Rubric v1.2 (methodology) + 46 rules tagged realization_class (T17/P23/C6, 9 sec.) in Doc18/control_set/xlsx; blind audit 41/46 + 2 adjudicated fixes; build_control_set v1.1 emits fields 25/26; documents-only (ontology/dashboards/KG deferred) | High |
 | 2026-04-06 | lint_11_rules_catalog.py | TOOL FIX | Rewritten from dead code to proper Rules Catalog validation (11 checks) | High |
 | 2026-04-06 | 11_Rules_Catalog.md | DATA FIX | Dashboard 38→46 (30 CR + 16 BPR) across 9 sections | High |
 | 2026-04-06 | 15_Requirements_Allocation.md | DATA FIX | 10 phantom rule derivation nodes removed | High |

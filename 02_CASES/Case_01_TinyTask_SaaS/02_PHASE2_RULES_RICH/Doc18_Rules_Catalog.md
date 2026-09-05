@@ -2,9 +2,9 @@
 document_id: AEGIS-P2-RICH-11
 title: AEGIS Control Set — Rich Mode (Case_01)
 phase: 2
-version: 4.0
+version: 4.1
 created: 2026-08-07
-updated: 2026-08-27
+updated: 2026-09-05
 author: Orchestrator (Case_01 Control Set v1.0)
 status: ACTIVE
 inputs: [08_Obligation_Derivation.md, 09_Strategic_Tensions_Report.md, 10_Privacy_Security_Objectives.md, 13_Framework_Mapping_Matrix.md]
@@ -18,9 +18,9 @@ implementation_posture_decision: Implementation Posture Model v2.0 (qualitative 
 expected_obligation_controls: 30
 expected_best_practice_controls: 16
 expected_total_controls: 46
-expected_fields_per_card: 24
+expected_fields_per_card: 26
 detail_cards_count: 46
-fields_per_card: 24
+fields_per_card: 26
 ---
 
 # AEGIS Control Set — Rich Mode (Case_01)
@@ -32,7 +32,7 @@ fields_per_card: 24
 
 ## 1. DOCUMENT PURPOSE & TAXONOMY
 
-This document evolves the legacy Rules Catalog into an implementation-ready **AEGIS Control Set**. It consolidates 46 controls (30 Obligation Controls + 16 Best-Practice Controls) covering 28 out of 38 AEGIS sub-domains. Each control is specified as a 24-field detail card with inline traceability (Legal → Phase 1 → Obligation → Objective), qualitative implementation posture, and framework anchors across NIST CSF 2.0, NIST Privacy FW 1.0, AI RMF 1.0, ISO 27001:2022, and NIST SSDF SP 800-218.
+This document evolves the legacy Rules Catalog into an implementation-ready **AEGIS Control Set**. It consolidates 46 controls (30 Obligation Controls + 16 Best-Practice Controls) covering 28 out of 38 AEGIS sub-domains. Each control is specified as a 26-field detail card with inline traceability (Legal → Phase 1 → Obligation → Objective), qualitative implementation posture, and framework anchors across NIST CSF 2.0, NIST Privacy FW 1.0, AI RMF 1.0, ISO 27001:2022, and NIST SSDF SP 800-218.
 
 ---
 
@@ -72,7 +72,7 @@ This document evolves the legacy Rules Catalog into an implementation-ready **AE
 
 ---
 
-## 3. CONTROL DEFINITION SCHEMA (24 Fields)
+## 3. CONTROL DEFINITION SCHEMA (26 Fields)
 
 | # | Field | Description | Example |
 |--:|-------|-------------|---------|
@@ -100,6 +100,8 @@ This document evolves the legacy Rules Catalog into an implementation-ready **AE
 | 22 | Implementation Status (CSF) | Qualitative posture state | IMPLEMENTED (AWS KMS active) |
 | 23 | Implementation Status (Privacy) | Qualitative posture state | PARTIAL (missing: review cadence) |
 | **24** | **Traceability & Framework Anchors** | **Inline 5-framework anchors & 4-tier trace** | **Legal → Phase 1 → Obligation → Objective** |
+| 25 | Realization Class | TECHNOLOGY / PROCESS / CAPABILITY (mandatory; REALIZATION_CLASS_RUBRIC v1.1 §3) | PROCESS |
+| 26 | Realization Class (Secondary) | Same enum, optional 0..1, ≠ field 25; `—` when unused | TECHNOLOGY |
 
 ---
 
@@ -179,6 +181,9 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
     - ISO 27001: A.8.24
     - SSDF: PO.5
 
+25. **Realization Class:** TECHNOLOGY
+26. **Realization Class (Secondary):** —
+
 ---
 
 ### CR-D-01.2-001 — Data in Transit Encryption
@@ -254,6 +259,9 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
     - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.24
     - SSDF: -
+
+25. **Realization Class:** TECHNOLOGY
+26. **Realization Class (Secondary):** —
 
 ---
 
@@ -332,6 +340,9 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
     - ISO 27001: A.8.24
     - SSDF: -
 
+25. **Realization Class:** TECHNOLOGY
+26. **Realization Class (Secondary):** —
+
 ---
 
 ### CR-D-01.4-001 — Data Integrity Mechanisms
@@ -408,6 +419,9 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
     - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.24
     - SSDF: -
+
+25. **Realization Class:** TECHNOLOGY
+26. **Realization Class (Secondary):** —
 
 ---
 
@@ -501,6 +515,9 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
     - ISO 27001: A.8.8
     - SSDF: RV.1
 
+25. **Realization Class:** PROCESS
+26. **Realization Class (Secondary):** TECHNOLOGY
+
 ---
 
 ### CR-D-02.2-001 — Automated Security Updates and Patch Remediation
@@ -592,6 +609,9 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
     - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.8
     - SSDF: RV.2
+
+25. **Realization Class:** PROCESS
+26. **Realization Class (Secondary):** TECHNOLOGY
 
 ---
 
@@ -685,6 +705,9 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
     - ISO 27001: A.5.5
     - SSDF: RV.1
 
+25. **Realization Class:** PROCESS
+26. **Realization Class (Secondary):** —
+
 ---
 
 ### CR-D-03.1-001 — Authentication and Access Control
@@ -777,6 +800,9 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
     - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.5.16
     - SSDF: -
+
+25. **Realization Class:** TECHNOLOGY
+26. **Realization Class (Secondary):** —
 
 ---
 
@@ -874,6 +900,9 @@ Type: CONTROL — OBLIGATION (MUST, NI=2 (SHOULD))
     - ISO 27001: A.8.5
     - SSDF: -
 
+25. **Realization Class:** TECHNOLOGY
+26. **Realization Class (Secondary):** —
+
 ---
 
 ### CR-D-03.3-001 — Authorisation and Least Privilege
@@ -966,6 +995,9 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
     - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.5.15
     - SSDF: -
+
+25. **Realization Class:** TECHNOLOGY
+26. **Realization Class (Secondary):** —
 
 ---
 
@@ -1060,6 +1092,9 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
     - ISO 27001: A.8.9
     - SSDF: PW.9
 
+25. **Realization Class:** TECHNOLOGY
+26. **Realization Class (Secondary):** —
+
 ---
 
 ### CR-D-04.1-001 — Exploit Severity Limitation and Fail-Safe Design
@@ -1152,6 +1187,9 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
     - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.5.25
     - SSDF: RV.1
+
+25. **Realization Class:** PROCESS
+26. **Realization Class (Secondary):** TECHNOLOGY
 
 ---
 
@@ -1246,6 +1284,9 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
     - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.5.26
     - SSDF: -
+
+25. **Realization Class:** PROCESS
+26. **Realization Class (Secondary):** TECHNOLOGY
 
 ---
 
@@ -1342,6 +1383,9 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
     - ISO 27001: A.5.24
     - SSDF: -
 
+25. **Realization Class:** PROCESS
+26. **Realization Class (Secondary):** —
+
 ---
 
 ### CR-D-04.4-001 — Data Restoration and Recovery
@@ -1437,6 +1481,9 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
     - ISO 27001: A.8.13
     - SSDF: -
 
+25. **Realization Class:** PROCESS
+26. **Realization Class (Secondary):** TECHNOLOGY
+
 ---
 
 ### CR-D-05.1-001 — Data Minimisation
@@ -1529,6 +1576,9 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
     - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.10
     - SSDF: -
+
+25. **Realization Class:** TECHNOLOGY
+26. **Realization Class (Secondary):** —
 
 ---
 
@@ -1623,6 +1673,9 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
     - ISO 27001: A.5.33
     - SSDF: PS.3
 
+25. **Realization Class:** TECHNOLOGY
+26. **Realization Class (Secondary):** —
+
 ---
 
 ### CR-D-05.3-001 — Complete and Secure Data Erasure
@@ -1715,6 +1768,9 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
     - ISO 27001: A.8.10
     - SSDF: -
 
+25. **Realization Class:** PROCESS
+26. **Realization Class (Secondary):** —
+
 ---
 
 ### CR-D-05.4-001 — Structured Data Portability
@@ -1805,6 +1861,9 @@ Type: CONTROL — OBLIGATION (MUST, NI=2 (SHOULD))
     - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.5.14
     - SSDF: -
+
+25. **Realization Class:** TECHNOLOGY
+26. **Realization Class (Secondary):** —
 
 ---
 
@@ -1900,6 +1959,9 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
     - ISO 27001: A.5.19
     - SSDF: PW.4
 
+25. **Realization Class:** PROCESS
+26. **Realization Class (Secondary):** —
+
 ---
 
 ### CR-D-06.2-001 — Software Bill of Materials
@@ -1991,6 +2053,9 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
     - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.5.21
     - SSDF: PS.3
+
+25. **Realization Class:** TECHNOLOGY
+26. **Realization Class (Secondary):** —
 
 ---
 
@@ -2087,6 +2152,9 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
     - ISO 27001: A.5.20
     - SSDF: -
 
+25. **Realization Class:** PROCESS
+26. **Realization Class (Secondary):** —
+
 ---
 
 ### CR-D-07.1-001 — Security and Privacy by Design
@@ -2182,6 +2250,9 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
     - ISO 27001: A.8.25
     - SSDF: PO.1
 
+25. **Realization Class:** PROCESS
+26. **Realization Class (Secondary):** —
+
 ---
 
 ### CR-D-08.1-001 — Annual Security Awareness
@@ -2274,6 +2345,9 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
     - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.6.3
     - SSDF: PO.2
+
+25. **Realization Class:** CAPABILITY
+26. **Realization Class (Secondary):** —
 
 ---
 
@@ -2370,6 +2444,9 @@ Type: CONTROL — OBLIGATION (MUST, NI=2 (SHOULD))
     - ISO 27001: A.6.3
     - SSDF: PO.2
 
+25. **Realization Class:** CAPABILITY
+26. **Realization Class (Secondary):** —
+
 ---
 
 ### CR-D-09.1-001 — Security Governance and Technical Documentation
@@ -2463,6 +2540,9 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
     - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.5.1
     - SSDF: PO.4
+
+25. **Realization Class:** CAPABILITY
+26. **Realization Class (Secondary):** —
 
 ---
 
@@ -2558,6 +2638,9 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
     - ISO 27001: A.5.7
     - SSDF: PW.1
 
+25. **Realization Class:** CAPABILITY
+26. **Realization Class (Secondary):** PROCESS
+
 ---
 
 ### CR-D-09.4-001 — Processing and Breach Records
@@ -2652,6 +2735,9 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
     - ISO 27001: A.5.33
     - SSDF: PO.3
 
+25. **Realization Class:** PROCESS
+26. **Realization Class (Secondary):** —
+
 ---
 
 ### CR-D-10.2-001 — Audit Logging and Traceability
@@ -2744,6 +2830,9 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
     - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.15
     - SSDF: PO.3
+
+25. **Realization Class:** TECHNOLOGY
+26. **Realization Class (Secondary):** —
 
 ---
 
@@ -2838,6 +2927,9 @@ Type: CONTROL — OBLIGATION (MUST, NI=3 (MUST))
     - ISO 27001: A.5.35
     - SSDF: PW.7
 
+25. **Realization Class:** PROCESS
+26. **Realization Class (Secondary):** —
+
 ---
 
 ## PARTE II — BEST-PRACTICE CONTROLS (16 BPR)
@@ -2929,6 +3021,9 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
     - ISO 27001: A.8.24
     - SSDF: -
 
+25. **Realization Class:** TECHNOLOGY
+26. **Realization Class (Secondary):** —
+
 ---
 
 ### BPR-D-01.2-001 — Implement current transport cryptographic standard for All Networks
@@ -3016,6 +3111,9 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
     - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.24
     - SSDF: -
+
+25. **Realization Class:** PROCESS
+26. **Realization Class (Secondary):** TECHNOLOGY
 
 ---
 
@@ -3106,6 +3204,9 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
     - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.24
     - SSDF: -
+
+25. **Realization Class:** PROCESS
+26. **Realization Class (Secondary):** —
 
 ---
 
@@ -3198,6 +3299,9 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
     - ISO 27001: A.8.24
     - SSDF: -
 
+25. **Realization Class:** PROCESS
+26. **Realization Class (Secondary):** —
+
 ---
 
 ### BPR-D-03.1-001 — Implement Role-Based Access Control
@@ -3287,6 +3391,9 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
     - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.24
     - SSDF: -
+
+25. **Realization Class:** TECHNOLOGY
+26. **Realization Class (Secondary):** —
 
 ---
 
@@ -3379,6 +3486,9 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
     - ISO 27001: A.8.24
     - SSDF: -
 
+25. **Realization Class:** TECHNOLOGY
+26. **Realization Class (Secondary):** —
+
 ---
 
 ### BPR-D-03.4-001 — Harden Systems Using hardened-default baseline references
@@ -3469,6 +3579,9 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
     - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.24
     - SSDF: -
+
+25. **Realization Class:** PROCESS
+26. **Realization Class (Secondary):** TECHNOLOGY
 
 ---
 
@@ -3561,6 +3674,9 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
     - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.24
     - SSDF: -
+
+25. **Realization Class:** CAPABILITY
+26. **Realization Class (Secondary):** —
 
 ---
 
@@ -3655,6 +3771,9 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
     - ISO 27001: A.8.24
     - SSDF: -
 
+25. **Realization Class:** PROCESS
+26. **Realization Class (Secondary):** —
+
 ---
 
 ### BPR-D-05.3-001 — Use documented media sanitization standard for Media Sanitisation
@@ -3745,6 +3864,9 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
     - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.24
     - SSDF: -
+
+25. **Realization Class:** PROCESS
+26. **Realization Class (Secondary):** —
 
 ---
 
@@ -3838,6 +3960,9 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
     - ISO 27001: A.8.24
     - SSDF: -
 
+25. **Realization Class:** PROCESS
+26. **Realization Class (Secondary):** —
+
 ---
 
 ### BPR-D-07.2-001 — Conduct SAST and DAST in CI/CD
@@ -3929,6 +4054,9 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
     - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.24
     - SSDF: -
+
+25. **Realization Class:** PROCESS
+26. **Realization Class (Secondary):** TECHNOLOGY
 
 ---
 
@@ -4022,6 +4150,9 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
     - ISO 27001: A.8.24
     - SSDF: -
 
+25. **Realization Class:** CAPABILITY
+26. **Realization Class (Secondary):** —
+
 ---
 
 ### BPR-D-10.2-001 — Retain Logs for a Minimum of 12 Months
@@ -4112,6 +4243,9 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
     - AI RMF: N/A (non-AI scope)
     - ISO 27001: A.8.24
     - SSDF: -
+
+25. **Realization Class:** TECHNOLOGY
+26. **Realization Class (Secondary):** —
 
 ---
 
@@ -4204,6 +4338,9 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
     - ISO 27001: A.8.24
     - SSDF: -
 
+25. **Realization Class:** PROCESS
+26. **Realization Class (Secondary):** —
+
 ---
 
 ### BPR-D-10.3-002 — Use the OWASP Testing Guide for Assessments
@@ -4295,257 +4432,260 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
     - ISO 27001: A.8.24
     - SSDF: -
 
+25. **Realization Class:** PROCESS
+26. **Realization Class (Secondary):** —
+
 ---
 
 ## ANEXO A — CONTROL INDEX BY NIST CSF 2.0 FUNCTION
 
-| CSF Function | Subcategory | Control ID | Type | Implementation Status |
-|--------------|-------------|------------|------|-----------------------|
-| GV | GV.OV-01 | CR-D-01.3-001 | OBLIGATION | ** |
-| GV | GV.RM-04 | CR-D-01.3-001 | OBLIGATION | ** |
-| GV | GV.OV-02 | CR-D-02.1-001 | OBLIGATION | ** |
-| GV | GV.OV-02 | CR-D-02.2-001 | OBLIGATION | ** |
-| GV | GV.PO-01 | CR-D-02.3-001 | OBLIGATION | ** |
-| GV | GV.SC-04 | CR-D-02.3-001 | OBLIGATION | ** |
-| GV | GV.PO-01 | CR-D-03.4-001 | OBLIGATION | ** |
-| GV | GV.SC-03 | CR-D-03.4-001 | OBLIGATION | ** |
-| GV | GV.OC-03 | CR-D-05.1-001 | OBLIGATION | ** |
-| GV | GV.PO-01 | CR-D-05.1-001 | OBLIGATION | ** |
-| GV | GV.OC-04 | CR-D-05.2-001 | OBLIGATION | ** |
-| GV | GV.OV-02 | CR-D-05.2-001 | OBLIGATION | ** |
-| GV | GV.PO-02 | CR-D-05.2-001 | OBLIGATION | ** |
-| GV | GV.SC-04 | CR-D-05.3-001 | OBLIGATION | ** |
-| GV | GV.SC-01 | CR-D-06.1-001 | OBLIGATION | ** |
-| GV | GV.SC-02 | CR-D-06.1-001 | OBLIGATION | ** |
-| GV | GV.SC-03 | CR-D-06.1-001 | OBLIGATION | ** |
-| GV | GV.SC-04 | CR-D-06.1-001 | OBLIGATION | ** |
-| GV | GV.SC-02 | CR-D-06.2-001 | OBLIGATION | ** |
-| GV | GV.SC-03 | CR-D-06.2-001 | OBLIGATION | ** |
-| GV | GV.OC-03 | CR-D-06.3-001 | OBLIGATION | ** |
-| GV | GV.SC-02 | CR-D-06.3-001 | OBLIGATION | ** |
-| GV | GV.SC-03 | CR-D-06.3-001 | OBLIGATION | ** |
-| GV | GV.SC-04 | CR-D-06.3-001 | OBLIGATION | ** |
-| GV | GV.PO-02 | CR-D-07.1-001 | OBLIGATION | ** |
-| GV | GV.RR-02 | CR-D-08.2-001 | OBLIGATION | ** |
-| GV | GV.RR-04 | CR-D-08.2-001 | OBLIGATION | ** |
-| GV | GV.SC-03 | CR-D-08.2-001 | OBLIGATION | ** |
-| GV | GV.PO-01 | CR-D-09.1-001 | OBLIGATION | ** |
-| GV | GV.PO-02 | CR-D-09.1-001 | OBLIGATION | ** |
-| GV | GV.RM-04 | CR-D-09.1-001 | OBLIGATION | ** |
-| GV | GV.RR-02 | CR-D-09.1-001 | OBLIGATION | ** |
-| GV | GV.OV-01 | CR-D-09.1-001 | OBLIGATION | ** |
-| GV | GV.RM-06 | CR-D-09.2-001 | OBLIGATION | ** |
-| GV | GV.OV-02 | CR-D-09.2-001 | OBLIGATION | ** |
-| GV | GV.PO-02 | CR-D-09.4-001 | OBLIGATION | ** |
-| GV | GV.PO-02 | CR-D-10.2-001 | OBLIGATION | ** |
-| GV | GV.OV-03 | CR-D-10.3-001 | OBLIGATION | ** |
-| GV | GV.PO-01 | BPR-D-03.4-001 | BEST-PRACTICE | ** |
-| GV | GV.SC-04 | BPR-D-05.3-001 | BEST-PRACTICE | ** |
-| GV | GV.PO-02 | BPR-D-07.1-001 | BEST-PRACTICE | ** |
-| GV | GV.RR-02 | BPR-D-07.1-001 | BEST-PRACTICE | ** |
-| GV | GV.PO-01 | BPR-D-09.1-001 | BEST-PRACTICE | ** |
-| GV | GV.PO-02 | BPR-D-09.1-001 | BEST-PRACTICE | ** |
-| GV | GV.RM-01 | BPR-D-09.1-001 | BEST-PRACTICE | ** |
-| GV | GV.OV-01 | BPR-D-09.1-001 | BEST-PRACTICE | ** |
-| GV | GV.OV-03 | BPR-D-09.1-001 | BEST-PRACTICE | ** |
-| GV | GV.PO-02 | BPR-D-10.2-001 | BEST-PRACTICE | ** |
-| GV | GV.OV-03 | BPR-D-10.3-001 | BEST-PRACTICE | ** |
-| GV | GV.OV-03 | BPR-D-10.3-002 | BEST-PRACTICE | ** |
-| ID | ID.AM-02 | CR-D-02.1-001 | OBLIGATION | ** |
-| ID | ID.IM-02 | CR-D-02.1-001 | OBLIGATION | ** |
-| ID | ID.RA-01 | CR-D-02.1-001 | OBLIGATION | ** |
-| ID | ID.RA-03 | CR-D-02.1-001 | OBLIGATION | ** |
-| ID | ID.RA-05 | CR-D-02.1-001 | OBLIGATION | ** |
-| ID | ID.RA-01 | CR-D-02.2-001 | OBLIGATION | ** |
-| ID | ID.RA-01 | CR-D-02.3-001 | OBLIGATION | ** |
-| ID | ID.AM-01 | CR-D-03.1-001 | OBLIGATION | ** |
-| ID | ID.AM-01 | CR-D-03.3-001 | OBLIGATION | ** |
-| ID | ID.AM-02 | CR-D-03.3-001 | OBLIGATION | ** |
-| ID | ID.RA-04 | CR-D-04.1-001 | OBLIGATION | ** |
-| ID | ID.AM-03 | CR-D-05.1-001 | OBLIGATION | ** |
-| ID | ID.AM-03 | CR-D-05.2-001 | OBLIGATION | ** |
-| ID | ID.AM-04 | CR-D-06.1-001 | OBLIGATION | ** |
-| ID | ID.RA-02 | CR-D-06.1-001 | OBLIGATION | ** |
-| ID | ID.AM-02 | CR-D-06.2-001 | OBLIGATION | ** |
-| ID | ID.RA-01 | CR-D-06.2-001 | OBLIGATION | ** |
-| ID | ID.RA-01 | CR-D-07.1-001 | OBLIGATION | ** |
-| ID | ID.RA-01 | CR-D-09.2-001 | OBLIGATION | ** |
-| ID | ID.RA-04 | CR-D-09.2-001 | OBLIGATION | ** |
-| ID | ID.RA-05 | CR-D-09.2-001 | OBLIGATION | ** |
-| ID | ID.AM-08 | CR-D-09.4-001 | OBLIGATION | ** |
-| ID | ID.RA-05 | CR-D-09.4-001 | OBLIGATION | ** |
-| ID | ID.RA-04 | CR-D-10.2-001 | OBLIGATION | ** |
-| ID | ID.RA-05 | CR-D-10.3-001 | OBLIGATION | ** |
-| ID | ID.IM-02 | CR-D-10.3-001 | OBLIGATION | ** |
-| ID | ID.RA-01 | BPR-D-02.1-001 | BEST-PRACTICE | ** |
-| ID | ID.RA-03 | BPR-D-02.1-001 | BEST-PRACTICE | ** |
-| ID | ID.RA-05 | BPR-D-02.1-001 | BEST-PRACTICE | ** |
-| ID | ID.IM-02 | BPR-D-02.1-001 | BEST-PRACTICE | ** |
-| ID | ID.RA-01 | BPR-D-02.2-001 | BEST-PRACTICE | ** |
-| ID | ID.AM-01 | BPR-D-03.1-001 | BEST-PRACTICE | ** |
-| ID | ID.IM-02 | BPR-D-03.4-001 | BEST-PRACTICE | ** |
-| ID | ID.AM-08 | BPR-D-05.3-001 | BEST-PRACTICE | ** |
-| ID | ID.RA-01 | BPR-D-07.1-001 | BEST-PRACTICE | ** |
-| ID | ID.RA-04 | BPR-D-07.2-001 | BEST-PRACTICE | ** |
-| ID | ID.RA-05 | BPR-D-07.2-001 | BEST-PRACTICE | ** |
-| ID | ID.RA-01 | BPR-D-10.3-001 | BEST-PRACTICE | ** |
-| ID | ID.RA-04 | BPR-D-10.3-001 | BEST-PRACTICE | ** |
-| ID | ID.RA-05 | BPR-D-10.3-001 | BEST-PRACTICE | ** |
-| ID | ID.IM-02 | BPR-D-10.3-001 | BEST-PRACTICE | ** |
-| ID | ID.RA-01 | BPR-D-10.3-002 | BEST-PRACTICE | ** |
-| ID | ID.RA-04 | BPR-D-10.3-002 | BEST-PRACTICE | ** |
-| ID | ID.RA-05 | BPR-D-10.3-002 | BEST-PRACTICE | ** |
-| PR | PR.DS-01 | CR-D-01.1-001 | OBLIGATION | ** |
-| PR | PR.DS-10 | CR-D-01.1-001 | OBLIGATION | ** |
-| PR | PR.PS-04 | CR-D-01.1-001 | OBLIGATION | ** |
-| PR | PR.DS-02 | CR-D-01.2-001 | OBLIGATION | ** |
-| PR | PR.IR-01 | CR-D-01.2-001 | OBLIGATION | ** |
-| PR | PR.PS-04 | CR-D-01.2-001 | OBLIGATION | ** |
-| PR | PR.AA-03 | CR-D-01.3-001 | OBLIGATION | ** |
-| PR | PR.AA-04 | CR-D-01.3-001 | OBLIGATION | ** |
-| PR | PR.DS-01 | CR-D-01.3-001 | OBLIGATION | ** |
-| PR | PR.IR-03 | CR-D-01.3-001 | OBLIGATION | ** |
-| PR | PR.DS-01 | CR-D-01.4-001 | OBLIGATION | ** |
-| PR | PR.DS-02 | CR-D-01.4-001 | OBLIGATION | ** |
-| PR | PR.DS-10 | CR-D-01.4-001 | OBLIGATION | ** |
-| PR | PR.DS-01 | CR-D-01.4-001 | OBLIGATION | ** |
-| PR | PR.DS-10 | CR-D-01.4-001 | OBLIGATION | ** |
-| PR | PR.IR-03 | CR-D-01.4-001 | OBLIGATION | ** |
-| PR | PR.IR-04 | CR-D-01.4-001 | OBLIGATION | ** |
-| PR | PR.PS-04 | CR-D-01.4-001 | OBLIGATION | ** |
-| PR | PR.PS-02 | CR-D-02.1-001 | OBLIGATION | ** |
-| PR | PR.IR-03 | CR-D-02.2-001 | OBLIGATION | ** |
-| PR | PR.PS-01 | CR-D-02.2-001 | OBLIGATION | ** |
-| PR | PR.PS-02 | CR-D-02.2-001 | OBLIGATION | ** |
-| PR | PR.AA-01 | CR-D-03.1-001 | OBLIGATION | ** |
-| PR | PR.AA-02 | CR-D-03.1-001 | OBLIGATION | ** |
-| PR | PR.AA-03 | CR-D-03.1-001 | OBLIGATION | ** |
-| PR | PR.AA-05 | CR-D-03.1-001 | OBLIGATION | ** |
-| PR | PR.AA-06 | CR-D-03.1-001 | OBLIGATION | ** |
-| PR | PR.DS-10 | CR-D-03.1-001 | OBLIGATION | ** |
-| PR | PR.AA-03 | CR-D-03.2-001 | OBLIGATION | ** |
-| PR | PR.AA-04 | CR-D-03.2-001 | OBLIGATION | ** |
-| PR | PR.AA-05 | CR-D-03.2-001 | OBLIGATION | ** |
-| PR | PR.AA-06 | CR-D-03.2-001 | OBLIGATION | ** |
-| PR | PR.AT-02 | CR-D-03.2-001 | OBLIGATION | ** |
-| PR | PR.AA-01 | CR-D-03.3-001 | OBLIGATION | ** |
-| PR | PR.AA-03 | CR-D-03.3-001 | OBLIGATION | ** |
-| PR | PR.AA-05 | CR-D-03.3-001 | OBLIGATION | ** |
-| PR | PR.AA-06 | CR-D-03.3-001 | OBLIGATION | ** |
-| PR | PR.PS-04 | CR-D-03.3-001 | OBLIGATION | ** |
-| PR | PR.DS-10 | CR-D-03.4-001 | OBLIGATION | ** |
-| PR | PR.PS-01 | CR-D-03.4-001 | OBLIGATION | ** |
-| PR | PR.PS-04 | CR-D-03.4-001 | OBLIGATION | ** |
-| PR | PR.PS-04 | CR-D-04.1-001 | OBLIGATION | ** |
-| PR | PR.DS-10 | CR-D-04.2-001 | OBLIGATION | ** |
-| PR | PR.IR-03 | CR-D-04.2-001 | OBLIGATION | ** |
-| PR | PR.IR-04 | CR-D-04.2-001 | OBLIGATION | ** |
-| PR | PR.DS-01 | CR-D-04.4-001 | OBLIGATION | ** |
-| PR | PR.DS-10 | CR-D-04.4-001 | OBLIGATION | ** |
-| PR | PR.IR-03 | CR-D-04.4-001 | OBLIGATION | ** |
-| PR | PR.IR-04 | CR-D-04.4-001 | OBLIGATION | ** |
-| PR | PR.DS-01 | CR-D-05.1-001 | OBLIGATION | ** |
-| PR | PR.DS-10 | CR-D-05.1-001 | OBLIGATION | ** |
-| PR | PR.PS-06 | CR-D-05.1-001 | OBLIGATION | ** |
-| PR | PR.DS-10 | CR-D-05.2-001 | OBLIGATION | ** |
-| PR | PR.PS-02 | CR-D-05.2-001 | OBLIGATION | ** |
-| PR | PR.PS-04 | CR-D-05.2-001 | OBLIGATION | ** |
-| PR | PR.DS-10 | CR-D-05.3-001 | OBLIGATION | ** |
-| PR | PR.DS-10 | CR-D-05.3-001 | OBLIGATION | ** |
-| PR | PR.DS-02 | CR-D-05.3-001 | OBLIGATION | ** |
-| PR | PR.DS-10 | CR-D-05.4-001 | OBLIGATION | ** |
-| PR | PR.DS-10 | CR-D-05.4-001 | OBLIGATION | ** |
-| PR | PR.AA-03 | CR-D-05.4-001 | OBLIGATION | ** |
-| PR | PR.DS-02 | CR-D-05.4-001 | OBLIGATION | ** |
-| PR | PR.PS-02 | CR-D-06.2-001 | OBLIGATION | ** |
-| PR | PR.DS-10 | CR-D-06.3-001 | OBLIGATION | ** |
-| PR | PR.PS-06 | CR-D-06.3-001 | OBLIGATION | ** |
-| PR | PR.DS-10 | CR-D-07.1-001 | OBLIGATION | ** |
-| PR | PR.PS-01 | CR-D-07.1-001 | OBLIGATION | ** |
-| PR | PR.PS-02 | CR-D-07.1-001 | OBLIGATION | ** |
-| PR | PR.PS-06 | CR-D-07.1-001 | OBLIGATION | ** |
-| PR | PR.AT-01 | CR-D-08.1-001 | OBLIGATION | ** |
-| PR | PR.AT-02 | CR-D-08.1-001 | OBLIGATION | ** |
-| PR | PR.PS-01 | CR-D-08.1-001 | OBLIGATION | ** |
-| PR | PR.AT-01 | CR-D-08.2-001 | OBLIGATION | ** |
-| PR | PR.AT-02 | CR-D-08.2-001 | OBLIGATION | ** |
-| PR | PR.AT-02 | CR-D-08.2-001 | OBLIGATION | ** |
-| PR | PR.DS-10 | CR-D-09.4-001 | OBLIGATION | ** |
-| PR | PR.DS-01 | CR-D-10.2-001 | OBLIGATION | ** |
-| PR | PR.PS-04 | CR-D-10.2-001 | OBLIGATION | ** |
-| PR | PR.PS-06 | CR-D-10.3-001 | OBLIGATION | ** |
-| PR | PR.DS-01 | BPR-D-01.1-001 | BEST-PRACTICE | ** |
-| PR | PR.DS-10 | BPR-D-01.1-001 | BEST-PRACTICE | ** |
-| PR | PR.PS-04 | BPR-D-01.1-001 | BEST-PRACTICE | ** |
-| PR | PR.DS-02 | BPR-D-01.2-001 | BEST-PRACTICE | ** |
-| PR | PR.IR-01 | BPR-D-01.2-001 | BEST-PRACTICE | ** |
-| PR | PR.PS-04 | BPR-D-01.2-001 | BEST-PRACTICE | ** |
-| PR | PR.PS-02 | BPR-D-02.1-001 | BEST-PRACTICE | ** |
-| PR | PR.IR-03 | BPR-D-02.2-001 | BEST-PRACTICE | ** |
-| PR | PR.PS-01 | BPR-D-02.2-001 | BEST-PRACTICE | ** |
-| PR | PR.PS-02 | BPR-D-02.2-001 | BEST-PRACTICE | ** |
-| PR | PR.AA-01 | BPR-D-03.1-001 | BEST-PRACTICE | ** |
-| PR | PR.AA-03 | BPR-D-03.1-001 | BEST-PRACTICE | ** |
-| PR | PR.AA-05 | BPR-D-03.1-001 | BEST-PRACTICE | ** |
-| PR | PR.AA-06 | BPR-D-03.1-001 | BEST-PRACTICE | ** |
-| PR | PR.AA-03 | BPR-D-03.2-001 | BEST-PRACTICE | ** |
-| PR | PR.AA-04 | BPR-D-03.2-001 | BEST-PRACTICE | ** |
-| PR | PR.AA-05 | BPR-D-03.2-001 | BEST-PRACTICE | ** |
-| PR | PR.AA-06 | BPR-D-03.2-001 | BEST-PRACTICE | ** |
-| PR | PR.PS-01 | BPR-D-03.4-001 | BEST-PRACTICE | ** |
-| PR | PR.PS-04 | BPR-D-03.4-001 | BEST-PRACTICE | ** |
-| PR | PR.DS-10 | BPR-D-05.3-001 | BEST-PRACTICE | ** |
-| PR | PR.DS-10 | BPR-D-05.3-001 | BEST-PRACTICE | ** |
-| PR | PR.PS-01 | BPR-D-07.1-001 | BEST-PRACTICE | ** |
-| PR | PR.PS-02 | BPR-D-07.1-001 | BEST-PRACTICE | ** |
-| PR | PR.PS-06 | BPR-D-07.1-001 | BEST-PRACTICE | ** |
-| PR | PR.PS-01 | BPR-D-07.2-001 | BEST-PRACTICE | ** |
-| PR | PR.PS-02 | BPR-D-07.2-001 | BEST-PRACTICE | ** |
-| PR | PR.PS-06 | BPR-D-07.2-001 | BEST-PRACTICE | ** |
-| PR | PR.DS-01 | BPR-D-10.2-001 | BEST-PRACTICE | ** |
-| PR | PR.PS-04 | BPR-D-10.2-001 | BEST-PRACTICE | ** |
-| PR | PR.PS-06 | BPR-D-10.3-002 | BEST-PRACTICE | ** |
-| DE | DE.AE-02 | CR-D-04.1-001 | OBLIGATION | ** |
-| DE | DE.CM-01 | CR-D-04.1-001 | OBLIGATION | ** |
-| DE | DE.CM-09 | CR-D-04.1-001 | OBLIGATION | ** |
-| DE | DE.CM-09 | CR-D-04.2-001 | OBLIGATION | ** |
-| DE | DE.CM-01 | CR-D-10.2-001 | OBLIGATION | ** |
-| DE | DE.AE-02 | CR-D-10.3-001 | OBLIGATION | ** |
-| DE | DE.CM-01 | BPR-D-10.2-001 | BEST-PRACTICE | ** |
-| DE | DE.AE-02 | BPR-D-10.2-001 | BEST-PRACTICE | ** |
-| RS | RS.CO-03 | CR-D-02.3-001 | OBLIGATION | ** |
-| RS | RS.MA-01 | CR-D-02.3-001 | OBLIGATION | ** |
-| RS | RS.MA-01 | CR-D-04.1-001 | OBLIGATION | ** |
-| RS | RS.MA-02 | CR-D-04.1-001 | OBLIGATION | ** |
-| RS | RS.MA-03 | CR-D-04.1-001 | OBLIGATION | ** |
-| RS | RS.MI-01 | CR-D-04.2-001 | OBLIGATION | ** |
-| RS | RS.MI-02 | CR-D-04.2-001 | OBLIGATION | ** |
-| RS | RS.CO-02 | CR-D-04.3-001 | OBLIGATION | ** |
-| RS | RS.MA-01 | CR-D-04.3-001 | OBLIGATION | ** |
-| RS | RS.MA-01 | CR-D-04.3-001 | OBLIGATION | ** |
-| RS | RS.MA-02 | CR-D-04.3-001 | OBLIGATION | ** |
-| RS | RS.MA-03 | CR-D-04.3-001 | OBLIGATION | ** |
-| RS | RS.MA-01 | CR-D-04.3-001 | OBLIGATION | ** |
-| RS | RS.MA-01 | CR-D-06.3-001 | OBLIGATION | ** |
-| RS | RS.MI-01 | CR-D-06.3-001 | OBLIGATION | ** |
-| RS | RS.MA-03 | CR-D-09.4-001 | OBLIGATION | ** |
-| RS | RS.MA-01 | BPR-D-04.3-001 | BEST-PRACTICE | ** |
-| RS | RS.MA-02 | BPR-D-04.3-001 | BEST-PRACTICE | ** |
-| RS | RS.MA-03 | BPR-D-04.3-001 | BEST-PRACTICE | ** |
-| RS | RS.MA-01 | BPR-D-04.3-001 | BEST-PRACTICE | ** |
-| RS | RS.CO-02 | BPR-D-04.3-001 | BEST-PRACTICE | ** |
-| RS | RS.MA-01 | BPR-D-04.3-002 | BEST-PRACTICE | ** |
-| RS | RS.MA-01 | BPR-D-04.3-002 | BEST-PRACTICE | ** |
-| RS | RS.MA-02 | BPR-D-04.3-002 | BEST-PRACTICE | ** |
-| RS | RS.CO-02 | BPR-D-04.3-002 | BEST-PRACTICE | ** |
-| RS | RS.MA-01 | BPR-D-04.3-002 | BEST-PRACTICE | ** |
-| RC | RC.RP-01 | CR-D-04.2-001 | OBLIGATION | ** |
-| RC | RC.RP-04 | CR-D-04.2-001 | OBLIGATION | ** |
-| RC | RC.RP-01 | CR-D-04.4-001 | OBLIGATION | ** |
-| RC | RC.RP-03 | CR-D-04.4-001 | OBLIGATION | ** |
-| RC | RC.RP-04 | CR-D-04.4-001 | OBLIGATION | ** |
-| RC | RC.RP-01 | BPR-D-04.3-001 | BEST-PRACTICE | ** |
-| RC | RC.RP-01 | BPR-D-04.3-002 | BEST-PRACTICE | ** |
+| CSF Function | Subcategory | Control ID | Type | Realization Class | Implementation Status |
+|--------------|-------------|------------|------|-------------------|-----------------------|
+| GV | GV.OV-01 | CR-D-01.3-001 | OBLIGATION | TECHNOLOGY | ** |
+| GV | GV.RM-04 | CR-D-01.3-001 | OBLIGATION | TECHNOLOGY | ** |
+| GV | GV.OV-02 | CR-D-02.1-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| GV | GV.OV-02 | CR-D-02.2-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| GV | GV.PO-01 | CR-D-02.3-001 | OBLIGATION | PROCESS | ** |
+| GV | GV.SC-04 | CR-D-02.3-001 | OBLIGATION | PROCESS | ** |
+| GV | GV.PO-01 | CR-D-03.4-001 | OBLIGATION | TECHNOLOGY | ** |
+| GV | GV.SC-03 | CR-D-03.4-001 | OBLIGATION | TECHNOLOGY | ** |
+| GV | GV.OC-03 | CR-D-05.1-001 | OBLIGATION | TECHNOLOGY | ** |
+| GV | GV.PO-01 | CR-D-05.1-001 | OBLIGATION | TECHNOLOGY | ** |
+| GV | GV.OC-04 | CR-D-05.2-001 | OBLIGATION | TECHNOLOGY | ** |
+| GV | GV.OV-02 | CR-D-05.2-001 | OBLIGATION | TECHNOLOGY | ** |
+| GV | GV.PO-02 | CR-D-05.2-001 | OBLIGATION | TECHNOLOGY | ** |
+| GV | GV.SC-04 | CR-D-05.3-001 | OBLIGATION | PROCESS | ** |
+| GV | GV.SC-01 | CR-D-06.1-001 | OBLIGATION | PROCESS | ** |
+| GV | GV.SC-02 | CR-D-06.1-001 | OBLIGATION | PROCESS | ** |
+| GV | GV.SC-03 | CR-D-06.1-001 | OBLIGATION | PROCESS | ** |
+| GV | GV.SC-04 | CR-D-06.1-001 | OBLIGATION | PROCESS | ** |
+| GV | GV.SC-02 | CR-D-06.2-001 | OBLIGATION | TECHNOLOGY | ** |
+| GV | GV.SC-03 | CR-D-06.2-001 | OBLIGATION | TECHNOLOGY | ** |
+| GV | GV.OC-03 | CR-D-06.3-001 | OBLIGATION | PROCESS | ** |
+| GV | GV.SC-02 | CR-D-06.3-001 | OBLIGATION | PROCESS | ** |
+| GV | GV.SC-03 | CR-D-06.3-001 | OBLIGATION | PROCESS | ** |
+| GV | GV.SC-04 | CR-D-06.3-001 | OBLIGATION | PROCESS | ** |
+| GV | GV.PO-02 | CR-D-07.1-001 | OBLIGATION | PROCESS | ** |
+| GV | GV.RR-02 | CR-D-08.2-001 | OBLIGATION | CAPABILITY | ** |
+| GV | GV.RR-04 | CR-D-08.2-001 | OBLIGATION | CAPABILITY | ** |
+| GV | GV.SC-03 | CR-D-08.2-001 | OBLIGATION | CAPABILITY | ** |
+| GV | GV.PO-01 | CR-D-09.1-001 | OBLIGATION | CAPABILITY | ** |
+| GV | GV.PO-02 | CR-D-09.1-001 | OBLIGATION | CAPABILITY | ** |
+| GV | GV.RM-04 | CR-D-09.1-001 | OBLIGATION | CAPABILITY | ** |
+| GV | GV.RR-02 | CR-D-09.1-001 | OBLIGATION | CAPABILITY | ** |
+| GV | GV.OV-01 | CR-D-09.1-001 | OBLIGATION | CAPABILITY | ** |
+| GV | GV.RM-06 | CR-D-09.2-001 | OBLIGATION | CAPABILITY (+PROCESS) | ** |
+| GV | GV.OV-02 | CR-D-09.2-001 | OBLIGATION | CAPABILITY (+PROCESS) | ** |
+| GV | GV.PO-02 | CR-D-09.4-001 | OBLIGATION | PROCESS | ** |
+| GV | GV.PO-02 | CR-D-10.2-001 | OBLIGATION | TECHNOLOGY | ** |
+| GV | GV.OV-03 | CR-D-10.3-001 | OBLIGATION | PROCESS | ** |
+| GV | GV.PO-01 | BPR-D-03.4-001 | BEST-PRACTICE | PROCESS (+TECHNOLOGY) | ** |
+| GV | GV.SC-04 | BPR-D-05.3-001 | BEST-PRACTICE | PROCESS | ** |
+| GV | GV.PO-02 | BPR-D-07.1-001 | BEST-PRACTICE | PROCESS | ** |
+| GV | GV.RR-02 | BPR-D-07.1-001 | BEST-PRACTICE | PROCESS | ** |
+| GV | GV.PO-01 | BPR-D-09.1-001 | BEST-PRACTICE | CAPABILITY | ** |
+| GV | GV.PO-02 | BPR-D-09.1-001 | BEST-PRACTICE | CAPABILITY | ** |
+| GV | GV.RM-01 | BPR-D-09.1-001 | BEST-PRACTICE | CAPABILITY | ** |
+| GV | GV.OV-01 | BPR-D-09.1-001 | BEST-PRACTICE | CAPABILITY | ** |
+| GV | GV.OV-03 | BPR-D-09.1-001 | BEST-PRACTICE | CAPABILITY | ** |
+| GV | GV.PO-02 | BPR-D-10.2-001 | BEST-PRACTICE | TECHNOLOGY | ** |
+| GV | GV.OV-03 | BPR-D-10.3-001 | BEST-PRACTICE | PROCESS | ** |
+| GV | GV.OV-03 | BPR-D-10.3-002 | BEST-PRACTICE | PROCESS | ** |
+| ID | ID.AM-02 | CR-D-02.1-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| ID | ID.IM-02 | CR-D-02.1-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| ID | ID.RA-01 | CR-D-02.1-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| ID | ID.RA-03 | CR-D-02.1-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| ID | ID.RA-05 | CR-D-02.1-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| ID | ID.RA-01 | CR-D-02.2-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| ID | ID.RA-01 | CR-D-02.3-001 | OBLIGATION | PROCESS | ** |
+| ID | ID.AM-01 | CR-D-03.1-001 | OBLIGATION | TECHNOLOGY | ** |
+| ID | ID.AM-01 | CR-D-03.3-001 | OBLIGATION | TECHNOLOGY | ** |
+| ID | ID.AM-02 | CR-D-03.3-001 | OBLIGATION | TECHNOLOGY | ** |
+| ID | ID.RA-04 | CR-D-04.1-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| ID | ID.AM-03 | CR-D-05.1-001 | OBLIGATION | TECHNOLOGY | ** |
+| ID | ID.AM-03 | CR-D-05.2-001 | OBLIGATION | TECHNOLOGY | ** |
+| ID | ID.AM-04 | CR-D-06.1-001 | OBLIGATION | PROCESS | ** |
+| ID | ID.RA-02 | CR-D-06.1-001 | OBLIGATION | PROCESS | ** |
+| ID | ID.AM-02 | CR-D-06.2-001 | OBLIGATION | TECHNOLOGY | ** |
+| ID | ID.RA-01 | CR-D-06.2-001 | OBLIGATION | TECHNOLOGY | ** |
+| ID | ID.RA-01 | CR-D-07.1-001 | OBLIGATION | PROCESS | ** |
+| ID | ID.RA-01 | CR-D-09.2-001 | OBLIGATION | CAPABILITY (+PROCESS) | ** |
+| ID | ID.RA-04 | CR-D-09.2-001 | OBLIGATION | CAPABILITY (+PROCESS) | ** |
+| ID | ID.RA-05 | CR-D-09.2-001 | OBLIGATION | CAPABILITY (+PROCESS) | ** |
+| ID | ID.AM-08 | CR-D-09.4-001 | OBLIGATION | PROCESS | ** |
+| ID | ID.RA-05 | CR-D-09.4-001 | OBLIGATION | PROCESS | ** |
+| ID | ID.RA-04 | CR-D-10.2-001 | OBLIGATION | TECHNOLOGY | ** |
+| ID | ID.RA-05 | CR-D-10.3-001 | OBLIGATION | PROCESS | ** |
+| ID | ID.IM-02 | CR-D-10.3-001 | OBLIGATION | PROCESS | ** |
+| ID | ID.RA-01 | BPR-D-02.1-001 | BEST-PRACTICE | PROCESS | ** |
+| ID | ID.RA-03 | BPR-D-02.1-001 | BEST-PRACTICE | PROCESS | ** |
+| ID | ID.RA-05 | BPR-D-02.1-001 | BEST-PRACTICE | PROCESS | ** |
+| ID | ID.IM-02 | BPR-D-02.1-001 | BEST-PRACTICE | PROCESS | ** |
+| ID | ID.RA-01 | BPR-D-02.2-001 | BEST-PRACTICE | PROCESS | ** |
+| ID | ID.AM-01 | BPR-D-03.1-001 | BEST-PRACTICE | TECHNOLOGY | ** |
+| ID | ID.IM-02 | BPR-D-03.4-001 | BEST-PRACTICE | PROCESS (+TECHNOLOGY) | ** |
+| ID | ID.AM-08 | BPR-D-05.3-001 | BEST-PRACTICE | PROCESS | ** |
+| ID | ID.RA-01 | BPR-D-07.1-001 | BEST-PRACTICE | PROCESS | ** |
+| ID | ID.RA-04 | BPR-D-07.2-001 | BEST-PRACTICE | PROCESS (+TECHNOLOGY) | ** |
+| ID | ID.RA-05 | BPR-D-07.2-001 | BEST-PRACTICE | PROCESS (+TECHNOLOGY) | ** |
+| ID | ID.RA-01 | BPR-D-10.3-001 | BEST-PRACTICE | PROCESS | ** |
+| ID | ID.RA-04 | BPR-D-10.3-001 | BEST-PRACTICE | PROCESS | ** |
+| ID | ID.RA-05 | BPR-D-10.3-001 | BEST-PRACTICE | PROCESS | ** |
+| ID | ID.IM-02 | BPR-D-10.3-001 | BEST-PRACTICE | PROCESS | ** |
+| ID | ID.RA-01 | BPR-D-10.3-002 | BEST-PRACTICE | PROCESS | ** |
+| ID | ID.RA-04 | BPR-D-10.3-002 | BEST-PRACTICE | PROCESS | ** |
+| ID | ID.RA-05 | BPR-D-10.3-002 | BEST-PRACTICE | PROCESS | ** |
+| PR | PR.DS-01 | CR-D-01.1-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.DS-10 | CR-D-01.1-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.PS-04 | CR-D-01.1-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.DS-02 | CR-D-01.2-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.IR-01 | CR-D-01.2-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.PS-04 | CR-D-01.2-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.AA-03 | CR-D-01.3-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.AA-04 | CR-D-01.3-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.DS-01 | CR-D-01.3-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.IR-03 | CR-D-01.3-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.DS-01 | CR-D-01.4-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.DS-02 | CR-D-01.4-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.DS-10 | CR-D-01.4-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.DS-01 | CR-D-01.4-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.DS-10 | CR-D-01.4-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.IR-03 | CR-D-01.4-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.IR-04 | CR-D-01.4-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.PS-04 | CR-D-01.4-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.PS-02 | CR-D-02.1-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| PR | PR.IR-03 | CR-D-02.2-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| PR | PR.PS-01 | CR-D-02.2-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| PR | PR.PS-02 | CR-D-02.2-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| PR | PR.AA-01 | CR-D-03.1-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.AA-02 | CR-D-03.1-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.AA-03 | CR-D-03.1-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.AA-05 | CR-D-03.1-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.AA-06 | CR-D-03.1-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.DS-10 | CR-D-03.1-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.AA-03 | CR-D-03.2-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.AA-04 | CR-D-03.2-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.AA-05 | CR-D-03.2-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.AA-06 | CR-D-03.2-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.AT-02 | CR-D-03.2-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.AA-01 | CR-D-03.3-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.AA-03 | CR-D-03.3-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.AA-05 | CR-D-03.3-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.AA-06 | CR-D-03.3-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.PS-04 | CR-D-03.3-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.DS-10 | CR-D-03.4-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.PS-01 | CR-D-03.4-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.PS-04 | CR-D-03.4-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.PS-04 | CR-D-04.1-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| PR | PR.DS-10 | CR-D-04.2-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| PR | PR.IR-03 | CR-D-04.2-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| PR | PR.IR-04 | CR-D-04.2-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| PR | PR.DS-01 | CR-D-04.4-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| PR | PR.DS-10 | CR-D-04.4-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| PR | PR.IR-03 | CR-D-04.4-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| PR | PR.IR-04 | CR-D-04.4-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| PR | PR.DS-01 | CR-D-05.1-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.DS-10 | CR-D-05.1-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.PS-06 | CR-D-05.1-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.DS-10 | CR-D-05.2-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.PS-02 | CR-D-05.2-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.PS-04 | CR-D-05.2-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.DS-10 | CR-D-05.3-001 | OBLIGATION | PROCESS | ** |
+| PR | PR.DS-10 | CR-D-05.3-001 | OBLIGATION | PROCESS | ** |
+| PR | PR.DS-02 | CR-D-05.3-001 | OBLIGATION | PROCESS | ** |
+| PR | PR.DS-10 | CR-D-05.4-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.DS-10 | CR-D-05.4-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.AA-03 | CR-D-05.4-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.DS-02 | CR-D-05.4-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.PS-02 | CR-D-06.2-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.DS-10 | CR-D-06.3-001 | OBLIGATION | PROCESS | ** |
+| PR | PR.PS-06 | CR-D-06.3-001 | OBLIGATION | PROCESS | ** |
+| PR | PR.DS-10 | CR-D-07.1-001 | OBLIGATION | PROCESS | ** |
+| PR | PR.PS-01 | CR-D-07.1-001 | OBLIGATION | PROCESS | ** |
+| PR | PR.PS-02 | CR-D-07.1-001 | OBLIGATION | PROCESS | ** |
+| PR | PR.PS-06 | CR-D-07.1-001 | OBLIGATION | PROCESS | ** |
+| PR | PR.AT-01 | CR-D-08.1-001 | OBLIGATION | CAPABILITY | ** |
+| PR | PR.AT-02 | CR-D-08.1-001 | OBLIGATION | CAPABILITY | ** |
+| PR | PR.PS-01 | CR-D-08.1-001 | OBLIGATION | CAPABILITY | ** |
+| PR | PR.AT-01 | CR-D-08.2-001 | OBLIGATION | CAPABILITY | ** |
+| PR | PR.AT-02 | CR-D-08.2-001 | OBLIGATION | CAPABILITY | ** |
+| PR | PR.AT-02 | CR-D-08.2-001 | OBLIGATION | CAPABILITY | ** |
+| PR | PR.DS-10 | CR-D-09.4-001 | OBLIGATION | PROCESS | ** |
+| PR | PR.DS-01 | CR-D-10.2-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.PS-04 | CR-D-10.2-001 | OBLIGATION | TECHNOLOGY | ** |
+| PR | PR.PS-06 | CR-D-10.3-001 | OBLIGATION | PROCESS | ** |
+| PR | PR.DS-01 | BPR-D-01.1-001 | BEST-PRACTICE | TECHNOLOGY | ** |
+| PR | PR.DS-10 | BPR-D-01.1-001 | BEST-PRACTICE | TECHNOLOGY | ** |
+| PR | PR.PS-04 | BPR-D-01.1-001 | BEST-PRACTICE | TECHNOLOGY | ** |
+| PR | PR.DS-02 | BPR-D-01.2-001 | BEST-PRACTICE | PROCESS (+TECHNOLOGY) | ** |
+| PR | PR.IR-01 | BPR-D-01.2-001 | BEST-PRACTICE | PROCESS (+TECHNOLOGY) | ** |
+| PR | PR.PS-04 | BPR-D-01.2-001 | BEST-PRACTICE | PROCESS (+TECHNOLOGY) | ** |
+| PR | PR.PS-02 | BPR-D-02.1-001 | BEST-PRACTICE | PROCESS | ** |
+| PR | PR.IR-03 | BPR-D-02.2-001 | BEST-PRACTICE | PROCESS | ** |
+| PR | PR.PS-01 | BPR-D-02.2-001 | BEST-PRACTICE | PROCESS | ** |
+| PR | PR.PS-02 | BPR-D-02.2-001 | BEST-PRACTICE | PROCESS | ** |
+| PR | PR.AA-01 | BPR-D-03.1-001 | BEST-PRACTICE | TECHNOLOGY | ** |
+| PR | PR.AA-03 | BPR-D-03.1-001 | BEST-PRACTICE | TECHNOLOGY | ** |
+| PR | PR.AA-05 | BPR-D-03.1-001 | BEST-PRACTICE | TECHNOLOGY | ** |
+| PR | PR.AA-06 | BPR-D-03.1-001 | BEST-PRACTICE | TECHNOLOGY | ** |
+| PR | PR.AA-03 | BPR-D-03.2-001 | BEST-PRACTICE | TECHNOLOGY | ** |
+| PR | PR.AA-04 | BPR-D-03.2-001 | BEST-PRACTICE | TECHNOLOGY | ** |
+| PR | PR.AA-05 | BPR-D-03.2-001 | BEST-PRACTICE | TECHNOLOGY | ** |
+| PR | PR.AA-06 | BPR-D-03.2-001 | BEST-PRACTICE | TECHNOLOGY | ** |
+| PR | PR.PS-01 | BPR-D-03.4-001 | BEST-PRACTICE | PROCESS (+TECHNOLOGY) | ** |
+| PR | PR.PS-04 | BPR-D-03.4-001 | BEST-PRACTICE | PROCESS (+TECHNOLOGY) | ** |
+| PR | PR.DS-10 | BPR-D-05.3-001 | BEST-PRACTICE | PROCESS | ** |
+| PR | PR.DS-10 | BPR-D-05.3-001 | BEST-PRACTICE | PROCESS | ** |
+| PR | PR.PS-01 | BPR-D-07.1-001 | BEST-PRACTICE | PROCESS | ** |
+| PR | PR.PS-02 | BPR-D-07.1-001 | BEST-PRACTICE | PROCESS | ** |
+| PR | PR.PS-06 | BPR-D-07.1-001 | BEST-PRACTICE | PROCESS | ** |
+| PR | PR.PS-01 | BPR-D-07.2-001 | BEST-PRACTICE | PROCESS (+TECHNOLOGY) | ** |
+| PR | PR.PS-02 | BPR-D-07.2-001 | BEST-PRACTICE | PROCESS (+TECHNOLOGY) | ** |
+| PR | PR.PS-06 | BPR-D-07.2-001 | BEST-PRACTICE | PROCESS (+TECHNOLOGY) | ** |
+| PR | PR.DS-01 | BPR-D-10.2-001 | BEST-PRACTICE | TECHNOLOGY | ** |
+| PR | PR.PS-04 | BPR-D-10.2-001 | BEST-PRACTICE | TECHNOLOGY | ** |
+| PR | PR.PS-06 | BPR-D-10.3-002 | BEST-PRACTICE | PROCESS | ** |
+| DE | DE.AE-02 | CR-D-04.1-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| DE | DE.CM-01 | CR-D-04.1-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| DE | DE.CM-09 | CR-D-04.1-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| DE | DE.CM-09 | CR-D-04.2-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| DE | DE.CM-01 | CR-D-10.2-001 | OBLIGATION | TECHNOLOGY | ** |
+| DE | DE.AE-02 | CR-D-10.3-001 | OBLIGATION | PROCESS | ** |
+| DE | DE.CM-01 | BPR-D-10.2-001 | BEST-PRACTICE | TECHNOLOGY | ** |
+| DE | DE.AE-02 | BPR-D-10.2-001 | BEST-PRACTICE | TECHNOLOGY | ** |
+| RS | RS.CO-03 | CR-D-02.3-001 | OBLIGATION | PROCESS | ** |
+| RS | RS.MA-01 | CR-D-02.3-001 | OBLIGATION | PROCESS | ** |
+| RS | RS.MA-01 | CR-D-04.1-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| RS | RS.MA-02 | CR-D-04.1-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| RS | RS.MA-03 | CR-D-04.1-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| RS | RS.MI-01 | CR-D-04.2-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| RS | RS.MI-02 | CR-D-04.2-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| RS | RS.CO-02 | CR-D-04.3-001 | OBLIGATION | PROCESS | ** |
+| RS | RS.MA-01 | CR-D-04.3-001 | OBLIGATION | PROCESS | ** |
+| RS | RS.MA-01 | CR-D-04.3-001 | OBLIGATION | PROCESS | ** |
+| RS | RS.MA-02 | CR-D-04.3-001 | OBLIGATION | PROCESS | ** |
+| RS | RS.MA-03 | CR-D-04.3-001 | OBLIGATION | PROCESS | ** |
+| RS | RS.MA-01 | CR-D-04.3-001 | OBLIGATION | PROCESS | ** |
+| RS | RS.MA-01 | CR-D-06.3-001 | OBLIGATION | PROCESS | ** |
+| RS | RS.MI-01 | CR-D-06.3-001 | OBLIGATION | PROCESS | ** |
+| RS | RS.MA-03 | CR-D-09.4-001 | OBLIGATION | PROCESS | ** |
+| RS | RS.MA-01 | BPR-D-04.3-001 | BEST-PRACTICE | CAPABILITY | ** |
+| RS | RS.MA-02 | BPR-D-04.3-001 | BEST-PRACTICE | CAPABILITY | ** |
+| RS | RS.MA-03 | BPR-D-04.3-001 | BEST-PRACTICE | CAPABILITY | ** |
+| RS | RS.MA-01 | BPR-D-04.3-001 | BEST-PRACTICE | CAPABILITY | ** |
+| RS | RS.CO-02 | BPR-D-04.3-001 | BEST-PRACTICE | CAPABILITY | ** |
+| RS | RS.MA-01 | BPR-D-04.3-002 | BEST-PRACTICE | PROCESS | ** |
+| RS | RS.MA-01 | BPR-D-04.3-002 | BEST-PRACTICE | PROCESS | ** |
+| RS | RS.MA-02 | BPR-D-04.3-002 | BEST-PRACTICE | PROCESS | ** |
+| RS | RS.CO-02 | BPR-D-04.3-002 | BEST-PRACTICE | PROCESS | ** |
+| RS | RS.MA-01 | BPR-D-04.3-002 | BEST-PRACTICE | PROCESS | ** |
+| RC | RC.RP-01 | CR-D-04.2-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| RC | RC.RP-04 | CR-D-04.2-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| RC | RC.RP-01 | CR-D-04.4-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| RC | RC.RP-03 | CR-D-04.4-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| RC | RC.RP-04 | CR-D-04.4-001 | OBLIGATION | PROCESS (+TECHNOLOGY) | ** |
+| RC | RC.RP-01 | BPR-D-04.3-001 | BEST-PRACTICE | CAPABILITY | ** |
+| RC | RC.RP-01 | BPR-D-04.3-002 | BEST-PRACTICE | PROCESS | ** |
 
 ---
 
@@ -4636,3 +4776,23 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 | ** GDPR Art. 30 + Art. 33(5) | CR-D-09.4-001 | OBLIGATION | ** |
 | ** CRA Art. 22 (source clause CRA-C14); related GDPR accountability: | CR-D-10.2-001 | OBLIGATION | ** |
 | ** GDPR Art. 32(1)(d) + Art. 28(3)(h); CRA Art. 14 + Art. 21 | CR-D-10.3-001 | OBLIGATION | ** |
+
+---
+
+## ANEXO D — REALIZATION CLASS DISTRIBUTION (DERIVED VIEW)
+
+> Generated on tag (2026-09-05, Tag wave v1) from the per-card fields 25/26 per `REALIZATION_CLASS_RUBRIC.md` v1.1. **Regenerate this section if any rule's class changes.** Counts agree with `control_set.yaml` and the `Rules_Catalog` sheet of `12_Rules_Catalog.xlsx`.
+
+| **TECHNOLOGY** | **17** | CR-D-01.1-001, CR-D-01.2-001, CR-D-01.3-001, CR-D-01.4-001, CR-D-03.1-001, CR-D-03.2-001, CR-D-03.3-001, CR-D-03.4-001, CR-D-05.1-001, CR-D-05.2-001, CR-D-05.4-001, CR-D-06.2-001, CR-D-10.2-001, BPR-D-01.1-001, BPR-D-03.1-001, BPR-D-03.2-001, BPR-D-10.2-001 |
+| **PROCESS** | **23** | CR-D-02.1-001, CR-D-02.2-001, CR-D-02.3-001, CR-D-04.1-001, CR-D-04.2-001, CR-D-04.3-001, CR-D-04.4-001, CR-D-05.3-001, CR-D-06.1-001, CR-D-06.3-001, CR-D-07.1-001, CR-D-09.4-001, CR-D-10.3-001, BPR-D-01.2-001, BPR-D-02.1-001, BPR-D-02.2-001, BPR-D-03.4-001, BPR-D-04.3-002, BPR-D-05.3-001, BPR-D-07.1-001, BPR-D-07.2-001, BPR-D-10.3-001, BPR-D-10.3-002 |
+| **CAPABILITY** | **6** | CR-D-08.1-001, CR-D-08.2-001, CR-D-09.1-001, CR-D-09.2-001, BPR-D-04.3-001, BPR-D-09.1-001 |
+
+**Secondary classes (9 rules):** `CR-D-02.1-001` → secondary TECHNOLOGY; `CR-D-02.2-001` → secondary TECHNOLOGY; `CR-D-04.1-001` → secondary TECHNOLOGY; `CR-D-04.2-001` → secondary TECHNOLOGY; `CR-D-04.4-001` → secondary TECHNOLOGY; `CR-D-09.2-001` → secondary PROCESS; `BPR-D-03.4-001` → secondary TECHNOLOGY; `BPR-D-01.2-001` → secondary TECHNOLOGY; `BPR-D-07.2-001` → secondary TECHNOLOGY.
+
+---
+
+## DOCUMENT HISTORY
+
+| Version | Date | Author | Change |
+|---|---|---|---|
+| 4.1 | 2026-09-05 | Executor | realization_class attribute applied to 46 rules per RUBRIC v1.1 |
