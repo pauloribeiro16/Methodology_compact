@@ -6,6 +6,7 @@
 **Complexity:** High (4 regulations: GDPR, CRA, NIS 2, AI Act)
 **Case Name:** SecureBorder Solutions B.V.
 **UC Separation:** ✅ 2026-09-05 — Doc21 v1.5 lane-pure: 36 UCs (21 product + 15 compliance); 5 PROC stubs + §9 PROC cards → Doc31 v1.1; annexes A 6 / B 21 UC-only; 2 borderline titles → P7 (report `02_CASES/UC_SEPARATION_2026-09-05_REPORT_F3.md`).
+**Renumber:** ✅ 2026-09-05 — dotted ids flattened → **UC-01..36** (compliance 01..15, product 16..36); Doc21 v1.6; registry `00_METHODOLOGY/validation/RENUMBER_REGISTRY_2026-09-05.md`; report `02_CASES/RENUMBER_2026-09-05_REPORT_F3.md`.
 
 > **⚠️ 2026-08-28 (port Fase 0).** The April sections below (§2–§5) are a historical baseline keyed to legacy doc names (`00_`…`25_`) and April volumes. Current reality on disk: Rich P1 = Doc01–Doc13, P2 = Doc14–Doc20 (corr-008 PO/SO, 63 rules = 38 CR + 25 BPR, 89 PSOs), P3 = Doc21–Doc30; AI_Act clauses 29 → 28 (D1: AI-C19 removed), total 111. Authoritative current narrative: `README.md` (2026-08-14 rewrite) + appended Sprint sections below.
 
