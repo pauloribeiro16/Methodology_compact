@@ -28,6 +28,10 @@ Audit Logs"). Plan: catalogs hold UC cards only; 15 fake C3 UCs re-laned to PROC
 fully-dressed; all 3 cases; annex A diagrams = UC ovals only (rubric v1.8 §5B/§5C.5).
 **Decisions locked:** `02_CASES/UC_SEPARATION_CAMPAIGN_2026-09-05.md` (all FINAL).
 **Status: EXECUTED 2026-09-05** — F0 c266074 · F1 32f45f7 · F2 47ad056 · F3 d498347 · F4 bookkeeping. End state: 3 catalogs lane-pure (C3 33 UCs / C1 23+17 / C2 36), lane cards in Doc32/Doc31 (C3 50 PROC + 10 CAP), annexes A UC-ovals-only (11/6/8) + B (23/21/33); gates: only pre-existing FAILs remain (proven via HEAD-archive baselines); audit 100/100/100; dashboards 16/16. Residuals: 6 borderline UC titles → §5 P7 queue; Doc23/24-style relationship/variability docs still narrate re-laned cards under UC framing (future wave if wanted); C1 `progress.json` immutable-by-rule (untouched).
+**Render fix 2026-09-05 (`f3c62b9`):** all diagram blocks render-validated — Mermaid has
+no `useCaseDiagram` (#4628), so the 26 UC diagrams became **PlantUML + SVG hybrid**
+(human decision; rubric v1.9 §5C.5) and sequence syntax was repaired (`;` separators,
+`OFF` keyword). Mermaid check 192/192 OK · smoke 16/16 · audit 100/100/100.
 
 ## 2. DEFERRED BY HUMAN DECISION (2026-09-05, documents-only scope) — Realization Class follow-ups
 

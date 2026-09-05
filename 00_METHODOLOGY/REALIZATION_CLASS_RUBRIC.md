@@ -2,7 +2,7 @@
 document_id: AEGIS-METHODOLOGY-REALIZATION-CLASS-RUBRIC
 title: AEGIS Realization Class Rubric (Phase 2 Rule Attribute)
 phase: Cross-phase
-version: 1.8
+version: 1.9
 created: 2026-09-05
 updated: 2026-09-05
 author: Executor
@@ -200,17 +200,28 @@ Bike4All sequenceDiagrams):
 
 ### §5C.5 UML Diagram Conventions (human decision 2026-09-05)
 
-- **Use case diagrams** (`Mermaid useCaseDiagram` — requires Mermaid ≥ v11.6; on older
-  renderers the source itself is readable): one **system-wide** diagram per case plus
-  one diagram **per package**. Actors come from the catalogue card's Primary Actor and
-  Stakeholders; UC titles are the ovals inside the package/system boundary; critical
-  Extensions become `include`/`extend` edges. Placement: `annexes/A_Use_Case_Diagrams.md`.
+- **Use case diagrams** (notation revised 2026-09-05, render fix — human decision):
+  authored as **native PlantUML** (`@startuml` source block, kept for editability)
+  plus a committed rendered **SVG** under `annexes/svg/`, embedded as a markdown image
+  so the diagram renders everywhere (GitHub/VS Code/`file://`). Rationale: Mermaid has
+  **no** `useCaseDiagram` diagram type in any stable release (mermaid-js/mermaid#4628;
+  the earlier "requires Mermaid ≥ v11.6" premise was never render-validated and is
+  false). One **system-wide** diagram per case plus one diagram **per package**; actors
+  come from the catalogue card's Primary Actor and Stakeholders; UC cards are the ovals;
+  critical Extensions become `<<include>>`/`<<extend>>`. Placement:
+  `annexes/A_Use_Case_Diagrams.md`.
 - **Sequence diagrams are annex-only.** Every sequence diagram lives in
   `annexes/B_Sequence_Diagrams.md` (one section per product UC card, ordered by id).
   Catalogue cards keep a single pointer line — `**Sequence diagram:** → Annex B §N`.
   Compliance PROC/CAP cards do NOT carry sequence diagrams at this stage; their
   diagrams are the §5C.4 flowcharts.
 - Both are **derived views** of the catalogue cards: the card is the source of truth.
+- **Sequence diagrams — authoring rules (render-validated 2026-09-05):** `;` inside
+  message/note text is a statement separator — use `,` instead; never name a
+  participant token `OFF` (collides with the `autonumber off` keyword — use `OFFR`);
+  participant aliases may be quoted or parenthesised. Every Mermaid block must pass a
+  **real-render check** (`mermaid.render` via headless browser), not just structural
+  validation — structural checks do not catch unsupported diagram types.
 - **Use case diagrams carry UC ovals only** (human decision 2026-09-05, UC SEPARATION
   campaign): `PROC-*`/`CAP-*` never appear as ovals or actors in annex A — their
   diagrams are the §5C.4 flowcharts in the lane-cards doc. Annex A packages are the
@@ -311,3 +322,4 @@ three ratios per case (`obj→ctrl coverage`, `ctrl→obj back-link coverage`,
 | 1.6 | 2026-09-05 | Orchestrator | §6C Traceability Audit Shape added: OBJ↔CTRL↔UC chain normative; standard ratios (obj→ctrl / ctrl→obj / uc→obj); AG-D treated as PO/SO alias in Case_03 (id-space note); `scripts/traceability_audit.py` read-only instrument |
 | 1.7 | 2026-09-05 | Orchestrator | §5C.5 UML diagram conventions added: useCaseDiagram (Mermaid ≥ v11.6) system-wide + per package; sequence diagrams are annex-only (Annex B per case), catalogs keep a 1-line pointer |
 | 1.8 | 2026-09-05 | Orchestrator | §5B rule 6 + §5C.5: lane-pure catalogs (UC catalogs hold UC cards only; PROC/CAP live in DocNN_Process_Capability_Cards); annex A diagrams carry UC ovals only; Case_03 PROC-39/40 re-adjudicated to UC-66/92 (39/40 retired, numbering continues at 41) — UC SEPARATION campaign |
+| 1.9 | 2026-09-05 | Orchestrator | §5C.5 notation fix (render-validated): Mermaid has no `useCaseDiagram` (#4628) — use-case diagrams are native PlantUML source + committed SVG in `annexes/svg/` embedded as image; sequence authoring rules added (`;` separator, `OFF` keyword); real-render validation now required for all diagram blocks — MERMAID RENDER FIX campaign |
