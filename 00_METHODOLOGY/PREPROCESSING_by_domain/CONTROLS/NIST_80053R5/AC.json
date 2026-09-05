@@ -1,0 +1,514 @@
+{
+  "family": "AC",
+  "framework": "NIST SP 800-53 Rev. 5",
+  "controls": [
+    {
+      "id": "AC-1",
+      "name": "POLICY AND PROCEDURES"
+    },
+    {
+      "id": "AC-10",
+      "name": "CONCURRENT SESSION CONTROL"
+    },
+    {
+      "id": "AC-11",
+      "name": "DEVICE LOCK"
+    },
+    {
+      "id": "AC-11(1)",
+      "name": "PATTERN-HIDING DISPLAYS"
+    },
+    {
+      "id": "AC-12",
+      "name": "SESSION TERMINATION"
+    },
+    {
+      "id": "AC-12(1)",
+      "name": "USER-INITIATED LOGOUTS O /S"
+    },
+    {
+      "id": "AC-12(2)",
+      "name": "TERMINATION MESSAGE"
+    },
+    {
+      "id": "AC-12(3)",
+      "name": "TIMEOUT WARNING MESSAGE"
+    },
+    {
+      "id": "AC-14",
+      "name": "PERMITTED ACTIONS WITHOUT IDENTIFICATION OR AUTHENTICATION"
+    },
+    {
+      "id": "AC-15",
+      "name": "AUTOMATED MARKING"
+    },
+    {
+      "id": "AC-16",
+      "name": "SECURITY AND PRIVACY ATTRIBUTES"
+    },
+    {
+      "id": "AC-16(1)",
+      "name": "DYNAMIC ATTRIBUTE ASSOCIATION"
+    },
+    {
+      "id": "AC-16(10)",
+      "name": "ATTRIBUTE CONFIGURATION BY AUTHORIZED INDIVIDUALS"
+    },
+    {
+      "id": "AC-16(2)",
+      "name": "ATTRIBUTE VALUE CHANGES BY AUTHORIZED INDIVIDUALS"
+    },
+    {
+      "id": "AC-16(3)",
+      "name": "MAINTENANCE OF ATTRIBUTE ASSOCIATIONS BY SYSTEM"
+    },
+    {
+      "id": "AC-16(4)",
+      "name": "ASSOCIATION OF ATTRIBUTES BY AUTHORIZED INDIVIDUALS"
+    },
+    {
+      "id": "AC-16(5)",
+      "name": "ATTRIBUTE DISPLAYS ON OBJECTS TO BE OUTPUT"
+    },
+    {
+      "id": "AC-16(6)",
+      "name": "MAINTENANCE OF ATTRIBUTE ASSOCIATION"
+    },
+    {
+      "id": "AC-16(7)",
+      "name": "CONSISTENT ATTRIBUTE INTERPRETATION"
+    },
+    {
+      "id": "AC-16(8)",
+      "name": "ASSOCIATION TECHNIQUES AND TECHNOLOGIES"
+    },
+    {
+      "id": "AC-17",
+      "name": "REMOTE ACCESS"
+    },
+    {
+      "id": "AC-17(1)",
+      "name": "MONITORING AND CONTROL O /S"
+    },
+    {
+      "id": "AC-17(10)",
+      "name": "AUTHENTICATE REMOTE COMMANDS"
+    },
+    {
+      "id": "AC-17(2)",
+      "name": "PROTECTION OF CONFIDENTIALITY AND INTEGRITY USING ENCRYPTION"
+    },
+    {
+      "id": "AC-17(3)",
+      "name": "MANAGED ACCESS CONTROL POINTS"
+    },
+    {
+      "id": "AC-17(4)",
+      "name": "PRIVILEGED COMMANDS AND ACCESS"
+    },
+    {
+      "id": "AC-17(6)",
+      "name": "PROTECTION OF MECHANISM INFORMATION"
+    },
+    {
+      "id": "AC-17(9)",
+      "name": "DISCONNECT OR DISABLE ACCESS"
+    },
+    {
+      "id": "AC-18",
+      "name": "WIRELESS ACCESS"
+    },
+    {
+      "id": "AC-18(1)",
+      "name": "AUTHENTICATION AND ENCRYPTION"
+    },
+    {
+      "id": "AC-18(3)",
+      "name": "DISABLE WIRELESS NETWORKING O /S"
+    },
+    {
+      "id": "AC-18(4)",
+      "name": "RESTRICT CONFIGURATIONS BY USERS"
+    },
+    {
+      "id": "AC-18(5)",
+      "name": "ANTENNAS AND TRANSMISSION POWER LEVELS"
+    },
+    {
+      "id": "AC-19",
+      "name": "ACCESS CONTROL FOR MOBILE DEVICES"
+    },
+    {
+      "id": "AC-19(4)",
+      "name": "RESTRICTIONS FOR CLASSIFIED INFORMATION"
+    },
+    {
+      "id": "AC-19(5)",
+      "name": "FULL DEVICE OR CONTAINER-BASED ENCRYPTION"
+    },
+    {
+      "id": "AC-2",
+      "name": "ACCOUNT MANAGEMENT"
+    },
+    {
+      "id": "AC-2(1)",
+      "name": "AUTOMATED SYSTEM ACCOUNT MANAGEMENT"
+    },
+    {
+      "id": "AC-2(11)",
+      "name": "USAGE CONDITIONS"
+    },
+    {
+      "id": "AC-2(12)",
+      "name": "ACCOUNT MONITORING FOR ATYPICAL USAGE O /S"
+    },
+    {
+      "id": "AC-2(13)",
+      "name": "DISABLE ACCOUNTS FOR HIGH-RISK INDIVIDUALS"
+    },
+    {
+      "id": "AC-2(2)",
+      "name": "AUTOMATED TEMPORARY AND EMERGENCY ACCOUNT MANAGEMENT"
+    },
+    {
+      "id": "AC-2(3)",
+      "name": "DISABLE ACCOUNTS"
+    },
+    {
+      "id": "AC-2(4)",
+      "name": "AUTOMATED AUDIT ACTIONS"
+    },
+    {
+      "id": "AC-2(5)",
+      "name": "INACTIVITY LOGOUT O /S"
+    },
+    {
+      "id": "AC-2(6)",
+      "name": "DYNAMIC PRIVILEGE MANAGEMENT"
+    },
+    {
+      "id": "AC-2(7)",
+      "name": "PRIVILEGED USER ACCOUNTS"
+    },
+    {
+      "id": "AC-2(8)",
+      "name": "DYNAMIC ACCOUNT MANAGEMENT"
+    },
+    {
+      "id": "AC-2(9)",
+      "name": "RESTRICTIONS ON USE OF SHARED AND GROUP ACCOUNTS"
+    },
+    {
+      "id": "AC-20",
+      "name": "USE OF EXTERNAL SYSTEMS"
+    },
+    {
+      "id": "AC-20(1)",
+      "name": "LIMITS ON AUTHORIZED USE"
+    },
+    {
+      "id": "AC-21",
+      "name": "INFORMATION SHARING"
+    },
+    {
+      "id": "AC-21(1)",
+      "name": "AUTOMATED DECISION SUPPORT"
+    },
+    {
+      "id": "AC-21(2)",
+      "name": "INFORMATION SEARCH AND RETRIEVAL"
+    },
+    {
+      "id": "AC-22",
+      "name": "PUBLICLY ACCESSIBLE CONTENT"
+    },
+    {
+      "id": "AC-23",
+      "name": "DATA MINING PROTECTION"
+    },
+    {
+      "id": "AC-24",
+      "name": "ACCESS CONTROL DECISIONS"
+    },
+    {
+      "id": "AC-24(1)",
+      "name": "TRANSMIT ACCESS AUTHORIZATION INFORMATION"
+    },
+    {
+      "id": "AC-24(2)",
+      "name": "NO USER OR PROCESS IDENTITY"
+    },
+    {
+      "id": "AC-25",
+      "name": "REFERENCE MONITOR"
+    },
+    {
+      "id": "AC-3",
+      "name": "ACCESS ENFORCEMENT"
+    },
+    {
+      "id": "AC-3(10)",
+      "name": "AUDITED OVERRIDE OF ACCESS CONTROL MECHANISMS"
+    },
+    {
+      "id": "AC-3(11)",
+      "name": "RESTRICT ACCESS TO SPECIFIC INFORMATION TYPES"
+    },
+    {
+      "id": "AC-3(12)",
+      "name": "ASSERT AND ENFORCE APPLICATION ACCESS"
+    },
+    {
+      "id": "AC-3(13)",
+      "name": "ATTRIBUTE-BASED ACCESS CONTROL"
+    },
+    {
+      "id": "AC-3(14)",
+      "name": "INDIVIDUAL ACCESS"
+    },
+    {
+      "id": "AC-3(15)",
+      "name": "DISCRETIONARY AND MANDATORY ACCESS CONTROL"
+    },
+    {
+      "id": "AC-3(2)",
+      "name": "DUAL AUTHORIZATION"
+    },
+    {
+      "id": "AC-3(3)",
+      "name": "MANDATORY ACCESS CONTROL"
+    },
+    {
+      "id": "AC-3(4)",
+      "name": "DISCRETIONARY ACCESS CONTROL"
+    },
+    {
+      "id": "AC-3(5)",
+      "name": "SECURITY-RELEVANT INFORMATION"
+    },
+    {
+      "id": "AC-3(7)",
+      "name": "ROLE-BASED ACCESS CONTROL O /S"
+    },
+    {
+      "id": "AC-3(8)",
+      "name": "REVOCATION OF ACCESS AUTHORIZATIONS O /S"
+    },
+    {
+      "id": "AC-3(9)",
+      "name": "CONTROLLED RELEASE O /S"
+    },
+    {
+      "id": "AC-4",
+      "name": "INFORMATION FLOW ENFORCEMENT"
+    },
+    {
+      "id": "AC-4(1)",
+      "name": "OBJECT SECURITY AND PRIVACY ATTRIBUTES"
+    },
+    {
+      "id": "AC-4(10)",
+      "name": "ENABLE AND DISABLE SECURITY OR PRIVACY POLICY FILTERS"
+    },
+    {
+      "id": "AC-4(11)",
+      "name": "CONFIGURATION OF SECURITY OR PRIVACY POLICY FILTERS"
+    },
+    {
+      "id": "AC-4(12)",
+      "name": "DATA TYPE IDENTIFIERS"
+    },
+    {
+      "id": "AC-4(13)",
+      "name": "DECOMPOSITION INTO POLICY-RELEVANT SUBCOMPONENTS"
+    },
+    {
+      "id": "AC-4(14)",
+      "name": "SECURITY OR PRIVACY POLICY FILTER CONSTRAINTS"
+    },
+    {
+      "id": "AC-4(15)",
+      "name": "DETECTION OF UNSANCTIONED INFORMATION"
+    },
+    {
+      "id": "AC-4(17)",
+      "name": "DOMAIN AUTHENTICATION"
+    },
+    {
+      "id": "AC-4(19)",
+      "name": "VALIDATION OF METADATA"
+    },
+    {
+      "id": "AC-4(2)",
+      "name": "PROCESSING DOMAINS"
+    },
+    {
+      "id": "AC-4(20)",
+      "name": "APPROVED SOLUTIONS"
+    },
+    {
+      "id": "AC-4(21)",
+      "name": "PHYSICAL OR LOGICAL SEPARATION OF INFORMATION FLOWS O /S"
+    },
+    {
+      "id": "AC-4(22)",
+      "name": "ACCESS ONLY"
+    },
+    {
+      "id": "AC-4(23)",
+      "name": "MODIFY NON-RELEASABLE INFORMATION O /S"
+    },
+    {
+      "id": "AC-4(24)",
+      "name": "INTERNAL NORMALIZED FORMAT"
+    },
+    {
+      "id": "AC-4(25)",
+      "name": "DATA SANITIZATION"
+    },
+    {
+      "id": "AC-4(26)",
+      "name": "AUDIT FILTERING ACTIONS O /S"
+    },
+    {
+      "id": "AC-4(27)",
+      "name": "REDUNDANT/INDEPENDENT FILTERING MECHANISMS"
+    },
+    {
+      "id": "AC-4(28)",
+      "name": "LINEAR FILTER PIPELINES"
+    },
+    {
+      "id": "AC-4(29)",
+      "name": "FILTER ORCHESTRATION ENGINES O /S"
+    },
+    {
+      "id": "AC-4(3)",
+      "name": "DYNAMIC INFORMATION FLOW CONTROL"
+    },
+    {
+      "id": "AC-4(30)",
+      "name": "FILTER MECHANISMS USING MULTIPLE PROCESSES"
+    },
+    {
+      "id": "AC-4(31)",
+      "name": "FAILED CONTENT TRANSFER PREVENTION"
+    },
+    {
+      "id": "AC-4(32)",
+      "name": "PROCESS REQUIREMENTS FOR INFORMATION TRANSFER"
+    },
+    {
+      "id": "AC-4(4)",
+      "name": "FLOW CONTROL OF ENCRYPTED INFORMATION"
+    },
+    {
+      "id": "AC-4(5)",
+      "name": "EMBEDDED DATA TYPES"
+    },
+    {
+      "id": "AC-4(6)",
+      "name": "METADATA"
+    },
+    {
+      "id": "AC-4(7)",
+      "name": "ONE-WAY FLOW MECHANISMS"
+    },
+    {
+      "id": "AC-4(8)",
+      "name": "SECURITY AND PRIVACY POLICY FILTERS"
+    },
+    {
+      "id": "AC-4(9)",
+      "name": "HUMAN REVIEWS O /S"
+    },
+    {
+      "id": "AC-5",
+      "name": "SEPARATION OF DUTIES"
+    },
+    {
+      "id": "AC-6",
+      "name": "LEAST PRIVILEGE"
+    },
+    {
+      "id": "AC-6(1)",
+      "name": "AUTHORIZE ACCESS TO SECURITY FUNCTIONS"
+    },
+    {
+      "id": "AC-6(10)",
+      "name": "PROHIBIT NON-PRIVILEGED USERS FROM EXECUTING PRIVILEGED"
+    },
+    {
+      "id": "AC-6(2)",
+      "name": "NON-PRIVILEGED ACCESS FOR NONSECURITY FUNCTIONS"
+    },
+    {
+      "id": "AC-6(3)",
+      "name": "NETWORK ACCESS TO PRIVILEGED COMMANDS"
+    },
+    {
+      "id": "AC-6(4)",
+      "name": "SEPARATE PROCESSING DOMAINS O /S"
+    },
+    {
+      "id": "AC-6(5)",
+      "name": "PRIVILEGED ACCOUNTS"
+    },
+    {
+      "id": "AC-6(6)",
+      "name": "PRIVILEGED ACCESS BY NON-ORGANIZATIONAL USERS"
+    },
+    {
+      "id": "AC-6(7)",
+      "name": "REVIEW OF USER PRIVILEGES"
+    },
+    {
+      "id": "AC-6(8)",
+      "name": "PRIVILEGE LEVELS FOR CODE EXECUTION"
+    },
+    {
+      "id": "AC-6(9)",
+      "name": "LOG USE OF PRIVILEGED FUNCTIONS"
+    },
+    {
+      "id": "AC-7",
+      "name": "UNSUCCESSFUL LOGON ATTEMPTS"
+    },
+    {
+      "id": "AC-7(2)",
+      "name": "PURGE OR WIPE MOBILE DEVICE"
+    },
+    {
+      "id": "AC-7(3)",
+      "name": "BIOMETRIC ATTEMPT LIMITING"
+    },
+    {
+      "id": "AC-7(4)",
+      "name": "USE OF ALTERNATE AUTHENTICATION FACTOR O /S"
+    },
+    {
+      "id": "AC-8",
+      "name": "SYSTEM USE NOTIFICATION"
+    },
+    {
+      "id": "AC-9",
+      "name": "PREVIOUS LOGON NOTIFICATION"
+    },
+    {
+      "id": "AC-9(1)",
+      "name": "UNSUCCESSFUL LOGONS"
+    },
+    {
+      "id": "AC-9(2)",
+      "name": "SUCCESSFUL AND UNSUCCESSFUL LOGONS"
+    },
+    {
+      "id": "AC-9(3)",
+      "name": "NOTIFICATION OF ACCOUNT CHANGES"
+    },
+    {
+      "id": "AC-9(4)",
+      "name": "ADDITIONAL LOGON INFORMATION"
+    }
+  ]
+}

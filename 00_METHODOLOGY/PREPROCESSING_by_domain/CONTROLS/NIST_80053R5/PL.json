@@ -1,0 +1,50 @@
+{
+  "family": "PL",
+  "framework": "NIST SP 800-53 Rev. 5",
+  "controls": [
+    {
+      "id": "PL-1",
+      "name": "POLICY AND PROCEDURES"
+    },
+    {
+      "id": "PL-10",
+      "name": "BASELINE SELECTION"
+    },
+    {
+      "id": "PL-11",
+      "name": "BASELINE TAILORING"
+    },
+    {
+      "id": "PL-2",
+      "name": "SYSTEM SECURITY AND PRIVACY PLANS"
+    },
+    {
+      "id": "PL-3",
+      "name": "SYSTEM SECURITY PLAN UPDATE"
+    },
+    {
+      "id": "PL-4",
+      "name": "RULES OF BEHAVIOR"
+    },
+    {
+      "id": "PL-5",
+      "name": "PRIVACY IMPACT ASSESSMENT"
+    },
+    {
+      "id": "PL-6",
+      "name": "SECURITY-RELATED ACTIVITY PLANNING"
+    },
+    {
+      "id": "PL-7",
+      "name": "CONCEPT OF OPERATIONS"
+    },
+    {
+      "id": "PL-8",
+      "name": "SECURITY AND PRIVACY ARCHITECTURES"
+    },
+    {
+      "id": "PL-9",
+      "name": "CENTRAL MANAGEMENT"
+    }
+  ]
+}

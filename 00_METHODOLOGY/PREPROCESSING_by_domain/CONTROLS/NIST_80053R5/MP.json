@@ -1,0 +1,86 @@
+{
+  "family": "MP",
+  "framework": "NIST SP 800-53 Rev. 5",
+  "controls": [
+    {
+      "id": "MP-1",
+      "name": "POLICY AND PROCEDURES"
+    },
+    {
+      "id": "MP-2",
+      "name": "MEDIA ACCESS"
+    },
+    {
+      "id": "MP-3",
+      "name": "MEDIA MARKING"
+    },
+    {
+      "id": "MP-4",
+      "name": "MEDIA STORAGE"
+    },
+    {
+      "id": "MP-4(2)",
+      "name": "AUTOMATED RESTRICTED ACCESS"
+    },
+    {
+      "id": "MP-5",
+      "name": "MEDIA TRANSPORT"
+    },
+    {
+      "id": "MP-5(3)",
+      "name": "CUSTODIANS"
+    },
+    {
+      "id": "MP-6",
+      "name": "MEDIA SANITIZATION"
+    },
+    {
+      "id": "MP-6(1)",
+      "name": "REVIEW, APPROVE, TRACK, DOCUMENT, AND VERIFY"
+    },
+    {
+      "id": "MP-6(2)",
+      "name": "EQUIPMENT TESTING"
+    },
+    {
+      "id": "MP-6(3)",
+      "name": "NONDESTRUCTIVE TECHNIQUES"
+    },
+    {
+      "id": "MP-6(7)",
+      "name": "DUAL AUTHORIZATION"
+    },
+    {
+      "id": "MP-6(8)",
+      "name": "REMOTE PURGING OR WIPING OF INFORMATION"
+    },
+    {
+      "id": "MP-7",
+      "name": "MEDIA USE"
+    },
+    {
+      "id": "MP-7(2)",
+      "name": "PROHIBIT USE OF SANITIZATION-RESISTANT MEDIA"
+    },
+    {
+      "id": "MP-8",
+      "name": "MEDIA DOWNGRADING"
+    },
+    {
+      "id": "MP-8(1)",
+      "name": "DOCUMENTATION OF PROCESS"
+    },
+    {
+      "id": "MP-8(2)",
+      "name": "EQUIPMENT TESTING"
+    },
+    {
+      "id": "MP-8(3)",
+      "name": "CONTROLLED UNCLASSIFIED INFORMATION"
+    },
+    {
+      "id": "MP-8(4)",
+      "name": "CLASSIFIED INFORMATION"
+    }
+  ]
+}

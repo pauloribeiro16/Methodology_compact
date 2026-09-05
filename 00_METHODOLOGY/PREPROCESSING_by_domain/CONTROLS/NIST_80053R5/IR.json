@@ -1,0 +1,138 @@
+{
+  "family": "IR",
+  "framework": "NIST SP 800-53 Rev. 5",
+  "controls": [
+    {
+      "id": "IR-1",
+      "name": "POLICY AND PROCEDURES"
+    },
+    {
+      "id": "IR-10",
+      "name": "INTEGRATED INFORMATION SECURITY ANALYSIS TEAM"
+    },
+    {
+      "id": "IR-2",
+      "name": "INCIDENT RESPONSE TRAINING"
+    },
+    {
+      "id": "IR-3",
+      "name": "INCIDENT RESPONSE TESTING"
+    },
+    {
+      "id": "IR-4",
+      "name": "INCIDENT HANDLING"
+    },
+    {
+      "id": "IR-4(1)",
+      "name": "AUTOMATED INCIDENT HANDLING PROCESSES"
+    },
+    {
+      "id": "IR-4(10)",
+      "name": "SUPPLY CHAIN COORDINATION"
+    },
+    {
+      "id": "IR-4(11)",
+      "name": "INTEGRATED INCIDENT RESPONSE TEAM"
+    },
+    {
+      "id": "IR-4(12)",
+      "name": "MALICIOUS CODE AND FORENSIC ANALYSIS"
+    },
+    {
+      "id": "IR-4(13)",
+      "name": "BEHAVIOR ANALYSIS"
+    },
+    {
+      "id": "IR-4(14)",
+      "name": "SECURITY OPERATIONS CENTER O /S"
+    },
+    {
+      "id": "IR-4(15)",
+      "name": "PUBLIC RELATIONS AND REPUTATION REPAIR"
+    },
+    {
+      "id": "IR-4(2)",
+      "name": "DYNAMIC RECONFIGURATION"
+    },
+    {
+      "id": "IR-4(3)",
+      "name": "CONTINUITY OF OPERATIONS"
+    },
+    {
+      "id": "IR-4(4)",
+      "name": "INFORMATION CORRELATION"
+    },
+    {
+      "id": "IR-4(5)",
+      "name": "AUTOMATIC DISABLING OF SYSTEM O /S"
+    },
+    {
+      "id": "IR-4(6)",
+      "name": "INSIDER THREATS"
+    },
+    {
+      "id": "IR-4(8)",
+      "name": "CORRELATION WITH EXTERNAL ORGANIZATIONS"
+    },
+    {
+      "id": "IR-4(9)",
+      "name": "DYNAMIC RESPONSE CAPABILITY"
+    },
+    {
+      "id": "IR-5",
+      "name": "INCIDENT MONITORING"
+    },
+    {
+      "id": "IR-6",
+      "name": "INCIDENT REPORTING"
+    },
+    {
+      "id": "IR-6(1)",
+      "name": "AUTOMATED REPORTING"
+    },
+    {
+      "id": "IR-6(2)",
+      "name": "VULNERABILITIES RELATED TO INCIDENTS"
+    },
+    {
+      "id": "IR-6(3)",
+      "name": "SUPPLY CHAIN COORDINATION"
+    },
+    {
+      "id": "IR-7",
+      "name": "INCIDENT RESPONSE ASSISTANCE"
+    },
+    {
+      "id": "IR-7(1)",
+      "name": "AUTOMATION SUPPORT FOR AVAILABILITY OF INFORMATION AND SUPPORT"
+    },
+    {
+      "id": "IR-7(2)",
+      "name": "COORDINATION WITH EXTERNAL PROVIDERS"
+    },
+    {
+      "id": "IR-8",
+      "name": "INCIDENT RESPONSE PLAN"
+    },
+    {
+      "id": "IR-8(1)",
+      "name": "BREACHES"
+    },
+    {
+      "id": "IR-9",
+      "name": "INFORMATION SPILLAGE RESPONSE"
+    },
+    {
+      "id": "IR-9(2)",
+      "name": "TRAINING"
+    },
+    {
+      "id": "IR-9(3)",
+      "name": "POST-SPILL OPERATIONS"
+    },
+    {
+      "id": "IR-9(4)",
+      "name": "EXPOSURE TO UNAUTHORIZED PERSONNEL"
+    }
+  ]
+}

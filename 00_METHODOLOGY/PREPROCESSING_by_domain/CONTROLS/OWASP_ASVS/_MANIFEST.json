@@ -1,0 +1,12 @@
+{
+  "referential": "OWASP ASVS",
+  "version": "4.0.3",
+  "source_urls": [
+    "https://github.com/OWASP/ASVS/tree/v4.0.3/4.0/en (14 official chapter markdowns)"
+  ],
+  "fetched_date": "2026-09-05",
+  "chapters": 14,
+  "sections": 71,
+  "granularity": "section level V*.x (anchors use section granularity; requirement level V*.x.y deferred)",
+  "unverified_entries": []
+}

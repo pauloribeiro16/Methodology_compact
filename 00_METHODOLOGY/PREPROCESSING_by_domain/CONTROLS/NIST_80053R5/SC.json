@@ -1,0 +1,462 @@
+{
+  "family": "SC",
+  "framework": "NIST SP 800-53 Rev. 5",
+  "controls": [
+    {
+      "id": "SC-1",
+      "name": "POLICY AND PROCEDURES"
+    },
+    {
+      "id": "SC-10",
+      "name": "NETWORK DISCONNECT"
+    },
+    {
+      "id": "SC-11",
+      "name": "TRUSTED PATH"
+    },
+    {
+      "id": "SC-12",
+      "name": "CRYPTOGRAPHIC KEY ESTABLISHMENT AND MANAGEMENT"
+    },
+    {
+      "id": "SC-12(1)",
+      "name": "AVAILABILITY O /S"
+    },
+    {
+      "id": "SC-12(2)",
+      "name": "SYMMETRIC KEYS O /S"
+    },
+    {
+      "id": "SC-12(3)",
+      "name": "ASYMMETRIC KEYS O /S"
+    },
+    {
+      "id": "SC-12(6)",
+      "name": "PHYSICAL CONTROL OF KEYS O /S"
+    },
+    {
+      "id": "SC-13",
+      "name": "CRYPTOGRAPHIC PROTECTION"
+    },
+    {
+      "id": "SC-14",
+      "name": "PUBLIC ACCESS PROTECTIONS"
+    },
+    {
+      "id": "SC-15",
+      "name": "COLLABORATIVE COMPUTING DEVICES AND APPLICATIONS"
+    },
+    {
+      "id": "SC-15(1)",
+      "name": "PHYSICAL OR LOGICAL DISCONNECT"
+    },
+    {
+      "id": "SC-15(3)",
+      "name": "DISABLING AND REMOVAL IN SECURE WORK AREAS"
+    },
+    {
+      "id": "SC-15(4)",
+      "name": "EXPLICITLY INDICATE CURRENT PARTICIPANTS"
+    },
+    {
+      "id": "SC-16",
+      "name": "TRANSMISSION OF SECURITY AND PRIVACY ATTRIBUTES"
+    },
+    {
+      "id": "SC-16(1)",
+      "name": "INTEGRITY VERIFICATION"
+    },
+    {
+      "id": "SC-16(2)",
+      "name": "ANTI-SPOOFING MECHANISMS"
+    },
+    {
+      "id": "SC-16(3)",
+      "name": "CRYPTOGRAPHIC BINDING"
+    },
+    {
+      "id": "SC-17",
+      "name": "PUBLIC KEY INFRASTRUCTURE CERTIFICATES"
+    },
+    {
+      "id": "SC-18",
+      "name": "MOBILE CODE"
+    },
+    {
+      "id": "SC-18(1)",
+      "name": "IDENTIFY UNACCEPTABLE CODE AND TAKE CORRECTIVE ACTIONS"
+    },
+    {
+      "id": "SC-18(2)",
+      "name": "ACQUISITION, DEVELOPMENT, AND USE"
+    },
+    {
+      "id": "SC-18(3)",
+      "name": "PREVENT DOWNLOADING AND EXECUTION"
+    },
+    {
+      "id": "SC-18(4)",
+      "name": "PREVENT AUTOMATIC EXECUTION"
+    },
+    {
+      "id": "SC-18(5)",
+      "name": "ALLOW EXECUTION ONLY IN CONFINED ENVIRONMENTS"
+    },
+    {
+      "id": "SC-19",
+      "name": "VOICE OVER INTERNET PROTOCOL"
+    },
+    {
+      "id": "SC-2",
+      "name": "SEPARATION OF SYSTEM AND USER FUNCTIONALITY"
+    },
+    {
+      "id": "SC-20",
+      "name": "SECURE NAME/ADDRESS RESOLUTION SERVICE (AUTHORITATIVE SOURCE)"
+    },
+    {
+      "id": "SC-20(2)",
+      "name": "DATA ORIGIN AND INTEGRITY"
+    },
+    {
+      "id": "SC-21",
+      "name": "SECURE NAME/ADDRESS RESOLUTION SERVICE (RECURSIVE OR CACHING RESOLVER)"
+    },
+    {
+      "id": "SC-22",
+      "name": "ARCHITECTURE AND PROVISIONING FOR NAME/ADDRESS RESOLUTION SERVICE"
+    },
+    {
+      "id": "SC-23",
+      "name": "SESSION AUTHENTICITY"
+    },
+    {
+      "id": "SC-23(1)",
+      "name": "INVALIDATE SESSION IDENTIFIERS AT LOGOUT"
+    },
+    {
+      "id": "SC-23(3)",
+      "name": "UNIQUE SYSTEM-GENERATED SESSION IDENTIFIERS"
+    },
+    {
+      "id": "SC-23(5)",
+      "name": "ALLOWED CERTIFICATE AUTHORITIES"
+    },
+    {
+      "id": "SC-24",
+      "name": "FAIL IN KNOWN STATE"
+    },
+    {
+      "id": "SC-25",
+      "name": "THIN NODES"
+    },
+    {
+      "id": "SC-27",
+      "name": "PLATFORM-INDEPENDENT APPLICATIONS"
+    },
+    {
+      "id": "SC-28",
+      "name": "PROTECTION OF INFORMATION AT REST"
+    },
+    {
+      "id": "SC-28(1)",
+      "name": "CRYPTOGRAPHIC PROTECTION"
+    },
+    {
+      "id": "SC-28(2)",
+      "name": "OFFLINE STORAGE"
+    },
+    {
+      "id": "SC-28(3)",
+      "name": "CRYPTOGRAPHIC KEYS O /S"
+    },
+    {
+      "id": "SC-29",
+      "name": "HETEROGENEITY"
+    },
+    {
+      "id": "SC-3",
+      "name": "SECURITY FUNCTION ISOLATION"
+    },
+    {
+      "id": "SC-30",
+      "name": "CONCEALMENT AND MISDIRECTION"
+    },
+    {
+      "id": "SC-31",
+      "name": "COVERT CHANNEL ANALYSIS"
+    },
+    {
+      "id": "SC-32",
+      "name": "SYSTEM PARTITIONING"
+    },
+    {
+      "id": "SC-33",
+      "name": "TRANSMISSION PREPARATION INTEGRITY"
+    },
+    {
+      "id": "SC-34",
+      "name": "NON-MODIFIABLE EXECUTABLE PROGRAMS"
+    },
+    {
+      "id": "SC-35",
+      "name": "EXTERNAL MALICIOUS CODE IDENTIFICATION"
+    },
+    {
+      "id": "SC-36",
+      "name": "DISTRIBUTED PROCESSING AND STORAGE"
+    },
+    {
+      "id": "SC-37",
+      "name": "OUT-OF-BAND CHANNELS"
+    },
+    {
+      "id": "SC-38",
+      "name": "OPERATIONS SECURITY"
+    },
+    {
+      "id": "SC-39",
+      "name": "PROCESS ISOLATION"
+    },
+    {
+      "id": "SC-4",
+      "name": "INFORMATION IN SHARED SYSTEM RESOURCES"
+    },
+    {
+      "id": "SC-4(2)",
+      "name": "MULTILEVEL OR PERIODS PROCESSING"
+    },
+    {
+      "id": "SC-40",
+      "name": "WIRELESS LINK PROTECTION"
+    },
+    {
+      "id": "SC-40(1)",
+      "name": "ELECTROMAGNETIC INTERFERENCE"
+    },
+    {
+      "id": "SC-40(2)",
+      "name": "REDUCE DETECTION POTENTIAL"
+    },
+    {
+      "id": "SC-40(3)",
+      "name": "IMITATIVE OR MANIPULATIVE COMMUNICATIONS DECEPTION"
+    },
+    {
+      "id": "SC-40(4)",
+      "name": "SIGNAL PARAMETER IDENTIFICATION"
+    },
+    {
+      "id": "SC-41",
+      "name": "PORT AND I/O DEVICE ACCESS"
+    },
+    {
+      "id": "SC-42",
+      "name": "SENSOR CAPABILITY AND DATA"
+    },
+    {
+      "id": "SC-42(1)",
+      "name": "REPORTING TO AUTHORIZED INDIVIDUALS OR ROLES"
+    },
+    {
+      "id": "SC-42(2)",
+      "name": "AUTHORIZED USE"
+    },
+    {
+      "id": "SC-42(4)",
+      "name": "NOTICE OF COLLECTION"
+    },
+    {
+      "id": "SC-42(5)",
+      "name": "COLLECTION MINIMIZATION"
+    },
+    {
+      "id": "SC-43",
+      "name": "USAGE RESTRICTIONS"
+    },
+    {
+      "id": "SC-44",
+      "name": "DETONATION CHAMBERS"
+    },
+    {
+      "id": "SC-45",
+      "name": "SYSTEM TIME SYNCHRONIZATION"
+    },
+    {
+      "id": "SC-45(1)",
+      "name": "SYNCHRONIZATION WITH AUTHORITATIVE TIME SOURCE"
+    },
+    {
+      "id": "SC-45(2)",
+      "name": "SECONDARY AUTHORITATIVE TIME SOURCE"
+    },
+    {
+      "id": "SC-46",
+      "name": "CROSS DOMAIN POLICY ENFORCEMENT"
+    },
+    {
+      "id": "SC-47",
+      "name": "ALTERNATE COMMUNICATIONS PATHS"
+    },
+    {
+      "id": "SC-48",
+      "name": "SENSOR RELOCATION"
+    },
+    {
+      "id": "SC-48(1)",
+      "name": "DYNAMIC RELOCATION OF SENSORS OR MONITORING CAPABILITIES O /S"
+    },
+    {
+      "id": "SC-49",
+      "name": "HARDWARE-ENFORCED SEPARATION AND POLICY ENFORCEMENT"
+    },
+    {
+      "id": "SC-5",
+      "name": "DENIAL-OF-SERVICE PROTECTION"
+    },
+    {
+      "id": "SC-5(1)",
+      "name": "RESTRICT ABILITY TO ATTACK OTHER SYSTEMS"
+    },
+    {
+      "id": "SC-5(2)",
+      "name": "CAPACITY, BANDWIDTH, AND REDUNDANCY"
+    },
+    {
+      "id": "SC-5(3)",
+      "name": "DETECTION AND MONITORING"
+    },
+    {
+      "id": "SC-50",
+      "name": "SOFTWARE-ENFORCED SEPARATION AND POLICY ENFORCEMENT"
+    },
+    {
+      "id": "SC-51",
+      "name": "HARDWARE-BASED PROTECTION"
+    },
+    {
+      "id": "SC-6",
+      "name": "RESOURCE AVAILABILITY"
+    },
+    {
+      "id": "SC-7",
+      "name": "BOUNDARY PROTECTION"
+    },
+    {
+      "id": "SC-7(10)",
+      "name": "PREVENT EXFILTRATION"
+    },
+    {
+      "id": "SC-7(11)",
+      "name": "RESTRICT INCOMING COMMUNICATIONS TRAFFIC"
+    },
+    {
+      "id": "SC-7(12)",
+      "name": "HOST-BASED PROTECTION"
+    },
+    {
+      "id": "SC-7(13)",
+      "name": "ISOLATION OF SECURITY TOOLS, MECHANISMS, AND SUPPORT"
+    },
+    {
+      "id": "SC-7(14)",
+      "name": "PROTECT AGAINST UNAUTHORIZED PHYSICAL CONNECTIONS"
+    },
+    {
+      "id": "SC-7(15)",
+      "name": "NETWORKED PRIVILEGED ACCESSES"
+    },
+    {
+      "id": "SC-7(16)",
+      "name": "PREVENT DISCOVERY OF SYSTEM COMPONENTS"
+    },
+    {
+      "id": "SC-7(17)",
+      "name": "AUTOMATED ENFORCEMENT OF PROTOCOL FORMATS"
+    },
+    {
+      "id": "SC-7(19)",
+      "name": "BLOCK COMMUNICATION FROM NON-ORGANIZATIONALLY CONFIGURED"
+    },
+    {
+      "id": "SC-7(20)",
+      "name": "DYNAMIC ISOLATION AND SEGREGATION"
+    },
+    {
+      "id": "SC-7(23)",
+      "name": "DISABLE SENDER FEEDBACK ON PROTOCOL VALIDATION FAILURE"
+    },
+    {
+      "id": "SC-7(24)",
+      "name": "PERSONALLY IDENTIFIABLE INFORMATION O /S"
+    },
+    {
+      "id": "SC-7(25)",
+      "name": "UNCLASSIFIED NATIONAL SECURITY SYSTEM CONNECTIONS"
+    },
+    {
+      "id": "SC-7(26)",
+      "name": "CLASSIFIED NATIONAL SECURITY SYSTEM CONNECTIONS"
+    },
+    {
+      "id": "SC-7(27)",
+      "name": "UNCLASSIFIED NON-NATIONAL SECURITY SYSTEM CONNECTIONS"
+    },
+    {
+      "id": "SC-7(28)",
+      "name": "CONNECTIONS TO PUBLIC NETWORKS"
+    },
+    {
+      "id": "SC-7(29)",
+      "name": "SEPARATE SUBNETS TO ISOLATE FUNCTIONS"
+    },
+    {
+      "id": "SC-7(3)",
+      "name": "ACCESS POINTS"
+    },
+    {
+      "id": "SC-7(4)",
+      "name": "EXTERNAL TELECOMMUNICATIONS SERVICES"
+    },
+    {
+      "id": "SC-7(7)",
+      "name": "SPLIT TUNNELING FOR REMOTE DEVICES"
+    },
+    {
+      "id": "SC-7(8)",
+      "name": "ROUTE TRAFFIC TO AUTHENTICATED PROXY SERVERS"
+    },
+    {
+      "id": "SC-7(9)",
+      "name": "RESTRICT THREATENING OUTGOING COMMUNICATIONS TRAFFIC"
+    },
+    {
+      "id": "SC-8",
+      "name": "TRANSMISSION CONFIDENTIALITY AND INTEGRITY"
+    },
+    {
+      "id": "SC-8(1)",
+      "name": "CRYPTOGRAPHIC PROTECTION"
+    },
+    {
+      "id": "SC-8(2)",
+      "name": "PRE- AND POST-TRANSMISSION HANDLING"
+    },
+    {
+      "id": "SC-8(3)",
+      "name": "CRYPTOGRAPHIC PROTECTION FOR MESSAGE EXTERNALS"
+    },
+    {
+      "id": "SC-8(4)",
+      "name": "CONCEAL OR RANDOMIZE COMMUNICATIONS"
+    },
+    {
+      "id": "SC-8(5)",
+      "name": "PROTECTED DISTRIBUTION SYSTEM"
+    },
+    {
+      "id": "SC-9",
+      "name": "TRANSMISSION CONFIDENTIALITY"
+    }
+  ]
+}

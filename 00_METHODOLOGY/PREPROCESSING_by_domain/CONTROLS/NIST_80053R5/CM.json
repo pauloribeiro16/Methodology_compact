@@ -1,0 +1,134 @@
+{
+  "family": "CM",
+  "framework": "NIST SP 800-53 Rev. 5",
+  "controls": [
+    {
+      "id": "CM-1",
+      "name": "POLICY AND PROCEDURES"
+    },
+    {
+      "id": "CM-10",
+      "name": "SOFTWARE USAGE RESTRICTIONS"
+    },
+    {
+      "id": "CM-10(1)",
+      "name": "OPEN-SOURCE SOFTWARE"
+    },
+    {
+      "id": "CM-11",
+      "name": "USER-INSTALLED SOFTWARE"
+    },
+    {
+      "id": "CM-11(2)",
+      "name": "SOFTWARE INSTALLATION WITH PRIVILEGED STATUS"
+    },
+    {
+      "id": "CM-12",
+      "name": "INFORMATION LOCATION"
+    },
+    {
+      "id": "CM-13",
+      "name": "DATA ACTION MAPPING"
+    },
+    {
+      "id": "CM-14",
+      "name": "SIGNED COMPONENTS"
+    },
+    {
+      "id": "CM-2",
+      "name": "BASELINE CONFIGURATION"
+    },
+    {
+      "id": "CM-3",
+      "name": "CONFIGURATION CHANGE CONTROL"
+    },
+    {
+      "id": "CM-3(3)",
+      "name": "AUTOMATED CHANGE IMPLEMENTATION"
+    },
+    {
+      "id": "CM-3(4)",
+      "name": "SECURITY AND PRIVACY REPRESENTATIVES"
+    },
+    {
+      "id": "CM-3(5)",
+      "name": "AUTOMATED SECURITY RESPONSE"
+    },
+    {
+      "id": "CM-3(6)",
+      "name": "CRYPTOGRAPHY MANAGEMENT"
+    },
+    {
+      "id": "CM-3(7)",
+      "name": "REVIEW SYSTEM CHANGES"
+    },
+    {
+      "id": "CM-3(8)",
+      "name": "PREVENT OR RESTRICT CONFIGURATION CHANGES"
+    },
+    {
+      "id": "CM-4",
+      "name": "IMPACT ANALYSES"
+    },
+    {
+      "id": "CM-5",
+      "name": "ACCESS RESTRICTIONS FOR CHANGE"
+    },
+    {
+      "id": "CM-5(1)",
+      "name": "AUTOMATED ACCESS ENFORCEMENT AND AUDIT RECORDS"
+    },
+    {
+      "id": "CM-5(4)",
+      "name": "DUAL AUTHORIZATION O /S"
+    },
+    {
+      "id": "CM-5(5)",
+      "name": "PRIVILEGE LIMITATION FOR PRODUCTION AND OPERATION"
+    },
+    {
+      "id": "CM-5(6)",
+      "name": "LIMIT LIBRARY PRIVILEGES O /S"
+    },
+    {
+      "id": "CM-6",
+      "name": "CONFIGURATION SETTINGS"
+    },
+    {
+      "id": "CM-6(1)",
+      "name": "AUTOMATED MANAGEMENT, APPLICATION, AND VERIFICATION"
+    },
+    {
+      "id": "CM-6(2)",
+      "name": "RESPOND TO UNAUTHORIZED CHANGES"
+    },
+    {
+      "id": "CM-7",
+      "name": "LEAST FUNCTIONALITY"
+    },
+    {
+      "id": "CM-7(1)",
+      "name": "PERIODIC REVIEW O /S"
+    },
+    {
+      "id": "CM-7(2)",
+      "name": "PREVENT PROGRAM EXECUTION"
+    },
+    {
+      "id": "CM-7(3)",
+      "name": "REGISTRATION COMPLIANCE"
+    },
+    {
+      "id": "CM-8",
+      "name": "SYSTEM COMPONENT INVENTORY"
+    },
+    {
+      "id": "CM-9",
+      "name": "CONFIGURATION MANAGEMENT PLAN"
+    },
+    {
+      "id": "CM-9(1)",
+      "name": "ASSIGNMENT OF RESPONSIBILITY"
+    }
+  ]
+}

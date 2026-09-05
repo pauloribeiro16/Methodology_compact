@@ -1,0 +1,98 @@
+{
+  "family": "SA",
+  "framework": "NIST SP 800-53 Rev. 5",
+  "controls": [
+    {
+      "id": "SA-1",
+      "name": "POLICY AND PROCEDURES"
+    },
+    {
+      "id": "SA-10",
+      "name": "DEVELOPER CONFIGURATION MANAGEMENT"
+    },
+    {
+      "id": "SA-11",
+      "name": "DEVELOPER TESTING AND EVALUATION"
+    },
+    {
+      "id": "SA-12",
+      "name": "SUPPLY CHAIN PROTECTION"
+    },
+    {
+      "id": "SA-13",
+      "name": "TRUSTWORTHINESS"
+    },
+    {
+      "id": "SA-14",
+      "name": "CRITICALITY ANALYSIS"
+    },
+    {
+      "id": "SA-15",
+      "name": "DEVELOPMENT PROCESS, STANDARDS, AND TOOLS"
+    },
+    {
+      "id": "SA-16",
+      "name": "DEVELOPER-PROVIDED TRAINING"
+    },
+    {
+      "id": "SA-17",
+      "name": "DEVELOPER SECURITY AND PRIVACY ARCHITECTURE AND DESIGN"
+    },
+    {
+      "id": "SA-18",
+      "name": "TAMPER RESISTANCE AND DETECTION"
+    },
+    {
+      "id": "SA-19",
+      "name": "COMPONENT AUTHENTICITY"
+    },
+    {
+      "id": "SA-2",
+      "name": "ALLOCATION OF RESOURCES"
+    },
+    {
+      "id": "SA-20",
+      "name": "CUSTOMIZED DEVELOPMENT OF CRITICAL COMPONENTS"
+    },
+    {
+      "id": "SA-21",
+      "name": "DEVELOPER SCREENING"
+    },
+    {
+      "id": "SA-22",
+      "name": "UNSUPPORTED SYSTEM COMPONENTS"
+    },
+    {
+      "id": "SA-23",
+      "name": "SPECIALIZATION"
+    },
+    {
+      "id": "SA-3",
+      "name": "SYSTEM DEVELOPMENT LIFE CYCLE"
+    },
+    {
+      "id": "SA-4",
+      "name": "ACQUISITION PROCESS"
+    },
+    {
+      "id": "SA-5",
+      "name": "SYSTEM DOCUMENTATION"
+    },
+    {
+      "id": "SA-6",
+      "name": "SOFTWARE USAGE RESTRICTIONS"
+    },
+    {
+      "id": "SA-7",
+      "name": "USER-INSTALLED SOFTWARE"
+    },
+    {
+      "id": "SA-8",
+      "name": "SECURITY AND PRIVACY ENGINEERING PRINCIPLES"
+    },
+    {
+      "id": "SA-9",
+      "name": "EXTERNAL SYSTEM SERVICES"
+    }
+  ]
+}

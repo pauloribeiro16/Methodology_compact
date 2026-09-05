@@ -1,0 +1,70 @@
+{
+  "family": "PT",
+  "framework": "NIST SP 800-53 Rev. 5",
+  "controls": [
+    {
+      "id": "PT-1",
+      "name": "POLICY AND PROCEDURES"
+    },
+    {
+      "id": "PT-2",
+      "name": "AUTHORITY TO PROCESS PERSONALLY IDENTIFIABLE INFORMATION"
+    },
+    {
+      "id": "PT-3",
+      "name": "PERSONALLY IDENTIFIABLE INFORMATION PROCESSING PURPOSES"
+    },
+    {
+      "id": "PT-4(1)",
+      "name": "TAILORED CONSENT"
+    },
+    {
+      "id": "PT-4(2)",
+      "name": "JUST-IN-TIME CONSENT"
+    },
+    {
+      "id": "PT-4(3)",
+      "name": "REVOCATION"
+    },
+    {
+      "id": "PT-5",
+      "name": "PRIVACY NOTICE"
+    },
+    {
+      "id": "PT-5(1)",
+      "name": "JUST-IN-TIME NOTICE"
+    },
+    {
+      "id": "PT-5(2)",
+      "name": "PRIVACY ACT STATEMENTS"
+    },
+    {
+      "id": "PT-6",
+      "name": "SYSTEM OF RECORDS NOTICE"
+    },
+    {
+      "id": "PT-6(1)",
+      "name": "ROUTINE USES"
+    },
+    {
+      "id": "PT-6(2)",
+      "name": "EXEMPTION RULES"
+    },
+    {
+      "id": "PT-7",
+      "name": "SPECIFIC CATEGORIES OF PERSONALLY IDENTIFIABLE INFORMATION"
+    },
+    {
+      "id": "PT-7(1)",
+      "name": "SOCIAL SECURITY NUMBERS"
+    },
+    {
+      "id": "PT-7(2)",
+      "name": "FIRST AMENDMENT INFORMATION"
+    },
+    {
+      "id": "PT-8",
+      "name": "COMPUTER MATCHING REQUIREMENTS"
+    }
+  ]
+}

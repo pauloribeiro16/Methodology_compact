@@ -1,0 +1,158 @@
+{
+  "family": "AU",
+  "framework": "NIST SP 800-53 Rev. 5",
+  "controls": [
+    {
+      "id": "AU-1",
+      "name": "POLICY AND PROCEDURES"
+    },
+    {
+      "id": "AU-10",
+      "name": "NON-REPUDIATION"
+    },
+    {
+      "id": "AU-11",
+      "name": "AUDIT RECORD RETENTION"
+    },
+    {
+      "id": "AU-12",
+      "name": "AUDIT RECORD GENERATION"
+    },
+    {
+      "id": "AU-12(1)",
+      "name": "SYSTEM-WIDE AND TIME-CORRELATED AUDIT TRAIL"
+    },
+    {
+      "id": "AU-12(2)",
+      "name": "STANDARDIZED FORMATS"
+    },
+    {
+      "id": "AU-12(3)",
+      "name": "CHANGES BY AUTHORIZED INDIVIDUALS"
+    },
+    {
+      "id": "AU-12(4)",
+      "name": "QUERY PARAMETER AUDITS OF PERSONALLY IDENTIFIABLE INFORMATION"
+    },
+    {
+      "id": "AU-13",
+      "name": "MONITORING FOR INFORMATION DISCLOSURE"
+    },
+    {
+      "id": "AU-14",
+      "name": "SESSION AUDIT"
+    },
+    {
+      "id": "AU-15",
+      "name": "ALTERNATE AUDIT LOGGING CAPABILITY"
+    },
+    {
+      "id": "AU-16",
+      "name": "CROSS-ORGANIZATIONAL AUDIT LOGGING"
+    },
+    {
+      "id": "AU-16(1)",
+      "name": "IDENTITY PRESERVATION"
+    },
+    {
+      "id": "AU-16(2)",
+      "name": "SHARING OF AUDIT INFORMATION"
+    },
+    {
+      "id": "AU-16(3)",
+      "name": "DISASSOCIABILITY"
+    },
+    {
+      "id": "AU-2",
+      "name": "EVENT LOGGING"
+    },
+    {
+      "id": "AU-3",
+      "name": "CONTENT OF AUDIT RECORDS"
+    },
+    {
+      "id": "AU-3(1)",
+      "name": "ADDITIONAL AUDIT INFORMATION"
+    },
+    {
+      "id": "AU-3(3)",
+      "name": "LIMIT PERSONALLY IDENTIFIABLE INFORMATION ELEMENTS"
+    },
+    {
+      "id": "AU-4",
+      "name": "AUDIT STORAGE CAPACITY"
+    },
+    {
+      "id": "AU-4(1)",
+      "name": "TRANSFER TO ALTERNATE STORAGE O /S"
+    },
+    {
+      "id": "AU-5",
+      "name": "RESPONSE TO AUDIT LOGGING PROCESS FAILURES"
+    },
+    {
+      "id": "AU-5(1)",
+      "name": "STORAGE CAPACITY WARNING"
+    },
+    {
+      "id": "AU-5(2)",
+      "name": "REAL-TIME ALERTS"
+    },
+    {
+      "id": "AU-5(3)",
+      "name": "CONFIGURABLE TRAFFIC VOLUME THRESHOLDS"
+    },
+    {
+      "id": "AU-5(4)",
+      "name": "SHUTDOWN ON FAILURE"
+    },
+    {
+      "id": "AU-5(5)",
+      "name": "ALTERNATE AUDIT LOGGING CAPABILITY"
+    },
+    {
+      "id": "AU-6",
+      "name": "AUDIT RECORD REVIEW, ANALYSIS, AND REPORTING"
+    },
+    {
+      "id": "AU-7",
+      "name": "AUDIT RECORD REDUCTION AND REPORT GENERATION"
+    },
+    {
+      "id": "AU-8",
+      "name": "TIME STAMPS"
+    },
+    {
+      "id": "AU-9",
+      "name": "PROTECTION OF AUDIT INFORMATION"
+    },
+    {
+      "id": "AU-9(1)",
+      "name": "HARDWARE WRITE-ONCE MEDIA"
+    },
+    {
+      "id": "AU-9(2)",
+      "name": "STORE ON SEPARATE PHYSICAL SYSTEMS OR COMPONENTS"
+    },
+    {
+      "id": "AU-9(3)",
+      "name": "CRYPTOGRAPHIC PROTECTION"
+    },
+    {
+      "id": "AU-9(4)",
+      "name": "ACCESS BY SUBSET OF PRIVILEGED USERS"
+    },
+    {
+      "id": "AU-9(5)",
+      "name": "DUAL AUTHORIZATION O /S"
+    },
+    {
+      "id": "AU-9(6)",
+      "name": "READ-ONLY ACCESS O /S"
+    },
+    {
+      "id": "AU-9(7)",
+      "name": "STORE ON COMPONENT WITH DIFFERENT OPERATING SYSTEM"
+    }
+  ]
+}

@@ -1,0 +1,206 @@
+{
+  "family": "SI",
+  "framework": "NIST SP 800-53 Rev. 5",
+  "controls": [
+    {
+      "id": "SI-1",
+      "name": "POLICY AND PROCEDURES"
+    },
+    {
+      "id": "SI-10",
+      "name": "INFORMATION INPUT VALIDATION"
+    },
+    {
+      "id": "SI-11",
+      "name": "ERROR HANDLING"
+    },
+    {
+      "id": "SI-12",
+      "name": "INFORMATION MANAGEMENT AND RETENTION"
+    },
+    {
+      "id": "SI-12(1)",
+      "name": "LIMIT PERSONALLY IDENTIFIABLE INFORMATION ELEMENTS"
+    },
+    {
+      "id": "SI-12(2)",
+      "name": "MINIMIZE PERSONALLY IDENTIFIABLE INFORMATION IN TESTING,"
+    },
+    {
+      "id": "SI-12(3)",
+      "name": "INFORMATION DISPOSAL"
+    },
+    {
+      "id": "SI-13",
+      "name": "PREDICTABLE FAILURE PREVENTION"
+    },
+    {
+      "id": "SI-14",
+      "name": "NON-PERSISTENCE"
+    },
+    {
+      "id": "SI-15",
+      "name": "INFORMATION OUTPUT FILTERING"
+    },
+    {
+      "id": "SI-16",
+      "name": "MEMORY PROTECTION"
+    },
+    {
+      "id": "SI-17",
+      "name": "FAIL-SAFE PROCEDURES"
+    },
+    {
+      "id": "SI-18",
+      "name": "PERSONALLY IDENTIFIABLE INFORMATION QUALITY OPERATIONS"
+    },
+    {
+      "id": "SI-18(1)",
+      "name": "AUTOMATION SUPPORT O /S"
+    },
+    {
+      "id": "SI-18(2)",
+      "name": "DATA TAGS O /S"
+    },
+    {
+      "id": "SI-18(3)",
+      "name": "COLLECTION O /S"
+    },
+    {
+      "id": "SI-18(4)",
+      "name": "INDIVIDUAL REQUESTS O /S"
+    },
+    {
+      "id": "SI-18(5)",
+      "name": "NOTICE OF CORRECTION OR DELETION O /S"
+    },
+    {
+      "id": "SI-19",
+      "name": "DE-IDENTIFICATION"
+    },
+    {
+      "id": "SI-19(1)",
+      "name": "COLLECTION O /S"
+    },
+    {
+      "id": "SI-19(2)",
+      "name": "ARCHIVING O /S"
+    },
+    {
+      "id": "SI-19(3)",
+      "name": "RELEASE O /S"
+    },
+    {
+      "id": "SI-19(4)",
+      "name": "REMOVAL, MASKING, ENCRYPTION, HASHING, OR REPLACEMENT OF"
+    },
+    {
+      "id": "SI-19(5)",
+      "name": "STATISTICAL DISCLOSURE CONTROL O /S"
+    },
+    {
+      "id": "SI-19(6)",
+      "name": "DIFFERENTIAL PRIVACY O /S"
+    },
+    {
+      "id": "SI-19(7)",
+      "name": "VALIDATED ALGORITHMS AND SOFTWARE"
+    },
+    {
+      "id": "SI-19(8)",
+      "name": "MOTIVATED INTRUDER O /S"
+    },
+    {
+      "id": "SI-2",
+      "name": "FLAW REMEDIATION"
+    },
+    {
+      "id": "SI-2(2)",
+      "name": "AUTOMATED FLAW REMEDIATION STATUS"
+    },
+    {
+      "id": "SI-2(3)",
+      "name": "TIME TO REMEDIATE FLAWS AND BENCHMARKS FOR CORRECTIVE"
+    },
+    {
+      "id": "SI-2(5)",
+      "name": "AUTOMATIC SOFTWARE AND FIRMWARE UPDATES O /S"
+    },
+    {
+      "id": "SI-2(6)",
+      "name": "REMOVAL OF PREVIOUS VERSIONS OF SOFTWARE AND FIRMWARE O /S"
+    },
+    {
+      "id": "SI-21",
+      "name": "INFORMATION REFRESH"
+    },
+    {
+      "id": "SI-22",
+      "name": "INFORMATION DIVERSITY"
+    },
+    {
+      "id": "SI-23",
+      "name": "INFORMATION FRAGMENTATION"
+    },
+    {
+      "id": "SI-3",
+      "name": "MALICIOUS CODE PROTECTION"
+    },
+    {
+      "id": "SI-3(10)",
+      "name": "MALICIOUS CODE ANALYSIS"
+    },
+    {
+      "id": "SI-3(4)",
+      "name": "UPDATES ONLY BY PRIVILEGED USERS O /S"
+    },
+    {
+      "id": "SI-3(6)",
+      "name": "TESTING AND VERIFICATION"
+    },
+    {
+      "id": "SI-3(8)",
+      "name": "DETECT UNAUTHORIZED COMMANDS"
+    },
+    {
+      "id": "SI-4",
+      "name": "SYSTEM MONITORING"
+    },
+    {
+      "id": "SI-5",
+      "name": "SECURITY ALERTS, ADVISORIES, AND DIRECTIVES"
+    },
+    {
+      "id": "SI-6",
+      "name": "SECURITY AND PRIVACY FUNCTION VERIFICATION"
+    },
+    {
+      "id": "SI-6(2)",
+      "name": "AUTOMATION SUPPORT FOR DISTRIBUTED TESTING"
+    },
+    {
+      "id": "SI-6(3)",
+      "name": "REPORT VERIFICATION RESULTS"
+    },
+    {
+      "id": "SI-7",
+      "name": "SOFTWARE, FIRMWARE, AND INFORMATION INTEGRITY"
+    },
+    {
+      "id": "SI-8",
+      "name": "SPAM PROTECTION"
+    },
+    {
+      "id": "SI-8(2)",
+      "name": "AUTOMATIC UPDATES"
+    },
+    {
+      "id": "SI-8(3)",
+      "name": "CONTINUOUS LEARNING CAPABILITY"
+    },
+    {
+      "id": "SI-9",
+      "name": "INFORMATION INPUT RESTRICTIONS"
+    }
+  ]
+}

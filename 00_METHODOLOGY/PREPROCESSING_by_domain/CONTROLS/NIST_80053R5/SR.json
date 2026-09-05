@@ -1,0 +1,54 @@
+{
+  "family": "SR",
+  "framework": "NIST SP 800-53 Rev. 5",
+  "controls": [
+    {
+      "id": "SR-1",
+      "name": "POLICY AND PROCEDURES"
+    },
+    {
+      "id": "SR-10",
+      "name": "INSPECTION OF SYSTEMS OR COMPONENTS"
+    },
+    {
+      "id": "SR-11",
+      "name": "COMPONENT AUTHENTICITY"
+    },
+    {
+      "id": "SR-12",
+      "name": "COMPONENT DISPOSAL"
+    },
+    {
+      "id": "SR-2",
+      "name": "SUPPLY CHAIN RISK MANAGEMENT PLAN"
+    },
+    {
+      "id": "SR-3",
+      "name": "SUPPLY CHAIN CONTROLS AND PROCESSES"
+    },
+    {
+      "id": "SR-4",
+      "name": "PROVENANCE"
+    },
+    {
+      "id": "SR-5",
+      "name": "ACQUISITION STRATEGIES, TOOLS, AND METHODS"
+    },
+    {
+      "id": "SR-6",
+      "name": "SUPPLIER ASSESSMENTS AND REVIEWS"
+    },
+    {
+      "id": "SR-7",
+      "name": "SUPPLY CHAIN OPERATIONS SECURITY"
+    },
+    {
+      "id": "SR-8",
+      "name": "NOTIFICATION AGREEMENTS"
+    },
+    {
+      "id": "SR-9",
+      "name": "TAMPER RESISTANCE AND DETECTION"
+    }
+  ]
+}

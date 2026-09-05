@@ -1,8 +1,22 @@
 # Central Change Log — AEGIS Methodology Implementation
 
 **Last Updated:** 2026-09-05
-**Version:** 6.9 (REALIZATION-CLASS — Case_01 P2 realization_class tag wave documents-only; PORT-PARITY-2 — cross-case content parity: corr-013 C3 renumber, C3 P1 v1.6 layer 749n/2054l, P2 waves C2+C3, P3 rich v0 C2+C3, dashboards 16/16 smoke)
+**Version:** 7.0 (ALT-ANCHOR — UNMAPPED_* retired in 3 cases; 5 frozen referentials + generator + 3 gates v0.4 PASS; REALIZATION-CLASS — Case_01 P2 realization_class tag wave documents-only; PORT-PARITY-2 — cross-case content parity: corr-013 C3 renumber, C3 P1 v1.6 layer 749n/2054l, P2 waves C2+C3, P3 rich v0 C2+C3, dashboards 16/16 smoke)
 **Scope:** All Cases
+
+---
+
+## 0.6 2026-09-05 — ALT-ANCHOR (death of UNMAPPED + multi-referential anchoring)
+
+| Item | Value |
+|------|-------|
+| Methodology | `00_METHODOLOGY/ALT_ANCHOR_CRITERION.md` v1.0 — `realization_class` extension: `ALT-ANCHOR (ref1; …)` / `ALT-ANCHOR (NO-ANALOGUE)` replaces the retired `UNMAPPED_*` marker family; frozen referentials 800-53r5/SSDF/ASVS/SAMM/ISO27002; class hierarchy anchoring (TECHNOLOGY/PROCESS/CAPABILITY) registered |
+| Frozen sources | `00_METHODOLOGY/PREPROCESSING_by_domain/CONTROLS/{NIST_80053R5(719+2legacy)/NIST_SSDF(21p/47t)/OWASP_ASVS(14ch/71sec)/OWASP_SAMM(5/15/30)/NIST_CSF_2.0(106)}` + manifests citing official NIST/OWASP sources |
+| Generator | `scripts/build_alt_anchor_columns.py` — injects `800-53r5` column from PF JSON crosswalks into the three matrices; idempotent (re-run = zero diff); single-writer anti-drift |
+| Case write-back | C1 48, C2 62, C3 107 UNMAPPED occurrences → ALT-ANCHOR (all 3 cases P2 + C2/C3 NIST_ANCHORS P3) |
+| Gates | `check_unmapped.py` v0.4 in all three cases — RETIRED-token hard check + ALT-ANCHOR anchor validation + CSF 2.0 hard check (was WARN-only in C2/C3). All three PASS. CSF 1.1 remnant waivers documented for the families retired in 2.0 (PR.IP, PR.PT, PR.AC, ID.SC, PR.AT-03/04, RS.CO-04, PR.DS-12) |
+| Orphans inventory | C3 10 OBL orphans → 9 MITIGADO (BPR sibling) + 1 GAP (`OBL-D-06.2-001`) → P7 queue. C2 14 PO/40 SO → LEGIT (audit dedup improvement deferred) |
+| Deferred | CSF 1.1→2.0 normalisation, C2 audit dedup, ontologies, dashboards, data mirrors, KG reflection |
 
 ---
 

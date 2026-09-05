@@ -1,0 +1,66 @@
+{
+  "family": "PS",
+  "framework": "NIST SP 800-53 Rev. 5",
+  "controls": [
+    {
+      "id": "PS-1",
+      "name": "POLICY AND PROCEDURES"
+    },
+    {
+      "id": "PS-2",
+      "name": "POSITION RISK DESIGNATION"
+    },
+    {
+      "id": "PS-3",
+      "name": "PERSONNEL SCREENING"
+    },
+    {
+      "id": "PS-3(1)",
+      "name": "CLASSIFIED INFORMATION"
+    },
+    {
+      "id": "PS-3(2)",
+      "name": "FORMAL INDOCTRINATION"
+    },
+    {
+      "id": "PS-3(3)",
+      "name": "INFORMATION REQUIRING SPECIAL PROTECTION MEASURES"
+    },
+    {
+      "id": "PS-3(4)",
+      "name": "CITIZENSHIP REQUIREMENTS"
+    },
+    {
+      "id": "PS-4",
+      "name": "PERSONNEL TERMINATION"
+    },
+    {
+      "id": "PS-4(1)",
+      "name": "POST-EMPLOYMENT REQUIREMENTS"
+    },
+    {
+      "id": "PS-4(2)",
+      "name": "AUTOMATED ACTIONS"
+    },
+    {
+      "id": "PS-5",
+      "name": "PERSONNEL TRANSFER"
+    },
+    {
+      "id": "PS-6",
+      "name": "ACCESS AGREEMENTS"
+    },
+    {
+      "id": "PS-7",
+      "name": "EXTERNAL PERSONNEL SECURITY"
+    },
+    {
+      "id": "PS-8",
+      "name": "PERSONNEL SANCTIONS"
+    },
+    {
+      "id": "PS-9",
+      "name": "POSITION DESCRIPTIONS"
+    }
+  ]
+}

@@ -1,0 +1,178 @@
+{
+  "family": "CP",
+  "framework": "NIST SP 800-53 Rev. 5",
+  "controls": [
+    {
+      "id": "CP-1",
+      "name": "POLICY AND PROCEDURES"
+    },
+    {
+      "id": "CP-10",
+      "name": "SYSTEM RECOVERY AND RECONSTITUTION"
+    },
+    {
+      "id": "CP-10(2)",
+      "name": "TRANSACTION RECOVERY"
+    },
+    {
+      "id": "CP-10(4)",
+      "name": "RESTORE WITHIN TIME PERIOD"
+    },
+    {
+      "id": "CP-10(6)",
+      "name": "COMPONENT PROTECTION"
+    },
+    {
+      "id": "CP-11",
+      "name": "ALTERNATE COMMUNICATIONS PROTOCOLS"
+    },
+    {
+      "id": "CP-12",
+      "name": "SAFE MODE"
+    },
+    {
+      "id": "CP-13",
+      "name": "ALTERNATIVE SECURITY MECHANISMS"
+    },
+    {
+      "id": "CP-2",
+      "name": "CONTINGENCY PLAN"
+    },
+    {
+      "id": "CP-2(1)",
+      "name": "COORDINATE WITH RELATED PLANS"
+    },
+    {
+      "id": "CP-2(2)",
+      "name": "CAPACITY PLANNING"
+    },
+    {
+      "id": "CP-2(3)",
+      "name": "RESUME MISSION AND BUSINESS FUNCTIONS"
+    },
+    {
+      "id": "CP-2(5)",
+      "name": "CONTINUE MISSION AND BUSINESS FUNCTIONS"
+    },
+    {
+      "id": "CP-2(6)",
+      "name": "ALTERNATE PROCESSING AND STORAGE SITES"
+    },
+    {
+      "id": "CP-2(7)",
+      "name": "COORDINATE WITH EXTERNAL SERVICE PROVIDERS"
+    },
+    {
+      "id": "CP-2(8)",
+      "name": "IDENTIFY CRITICAL ASSETS"
+    },
+    {
+      "id": "CP-3",
+      "name": "CONTINGENCY TRAINING"
+    },
+    {
+      "id": "CP-4",
+      "name": "CONTINGENCY PLAN TESTING"
+    },
+    {
+      "id": "CP-5",
+      "name": "CONTINGENCY PLAN UPDATE"
+    },
+    {
+      "id": "CP-6",
+      "name": "ALTERNATE STORAGE SITE"
+    },
+    {
+      "id": "CP-6(1)",
+      "name": "SEPARATION FROM PRIMARY SITE"
+    },
+    {
+      "id": "CP-6(2)",
+      "name": "RECOVERY TIME AND RECOVERY POINT OBJECTIVES"
+    },
+    {
+      "id": "CP-6(3)",
+      "name": "ACCESSIBILITY"
+    },
+    {
+      "id": "CP-7",
+      "name": "ALTERNATE PROCESSING SITE"
+    },
+    {
+      "id": "CP-7(1)",
+      "name": "SEPARATION FROM PRIMARY SITE"
+    },
+    {
+      "id": "CP-7(2)",
+      "name": "ACCESSIBILITY"
+    },
+    {
+      "id": "CP-7(3)",
+      "name": "PRIORITY OF SERVICE"
+    },
+    {
+      "id": "CP-7(4)",
+      "name": "PREPARATION FOR USE"
+    },
+    {
+      "id": "CP-7(6)",
+      "name": "INABILITY TO RETURN TO PRIMARY SITE"
+    },
+    {
+      "id": "CP-8",
+      "name": "TELECOMMUNICATIONS SERVICES"
+    },
+    {
+      "id": "CP-8(1)",
+      "name": "PRIORITY OF SERVICE PROVISIONS"
+    },
+    {
+      "id": "CP-8(2)",
+      "name": "SINGLE POINTS OF FAILURE"
+    },
+    {
+      "id": "CP-8(3)",
+      "name": "SEPARATION OF PRIMARY AND ALTERNATE PROVIDERS"
+    },
+    {
+      "id": "CP-8(4)",
+      "name": "PROVIDER CONTINGENCY PLAN"
+    },
+    {
+      "id": "CP-8(5)",
+      "name": "ALTERNATE TELECOMMUNICATION SERVICE TESTING"
+    },
+    {
+      "id": "CP-9",
+      "name": "SYSTEM BACKUP"
+    },
+    {
+      "id": "CP-9(1)",
+      "name": "TESTING FOR RELIABILITY AND INTEGRITY"
+    },
+    {
+      "id": "CP-9(2)",
+      "name": "TEST RESTORATION USING SAMPLING"
+    },
+    {
+      "id": "CP-9(3)",
+      "name": "SEPARATE STORAGE FOR CRITICAL INFORMATION"
+    },
+    {
+      "id": "CP-9(5)",
+      "name": "TRANSFER TO ALTERNATE STORAGE SITE"
+    },
+    {
+      "id": "CP-9(6)",
+      "name": "REDUNDANT SECONDARY SYSTEM"
+    },
+    {
+      "id": "CP-9(7)",
+      "name": "DUAL AUTHORIZATION FOR DELETION OR DESTRUCTION"
+    },
+    {
+      "id": "CP-9(8)",
+      "name": "CRYPTOGRAPHIC PROTECTION"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "family": "RA",
+  "framework": "NIST SP 800-53 Rev. 5",
+  "controls": [
+    {
+      "id": "RA-1",
+      "name": "POLICY AND PROCEDURES"
+    },
+    {
+      "id": "RA-10",
+      "name": "THREAT HUNTING"
+    },
+    {
+      "id": "RA-2",
+      "name": "SECURITY CATEGORIZATION"
+    },
+    {
+      "id": "RA-2(1)",
+      "name": "IMPACT-LEVEL PRIORITIZATION"
+    },
+    {
+      "id": "RA-3",
+      "name": "RISK ASSESSMENT"
+    },
+    {
+      "id": "RA-4",
+      "name": "RISK ASSESSMENT UPDATE"
+    },
+    {
+      "id": "RA-5",
+      "name": "VULNERABILITY MONITORING AND SCANNING"
+    },
+    {
+      "id": "RA-6",
+      "name": "TECHNICAL SURVEILLANCE COUNTERMEASURES SURVEY"
+    },
+    {
+      "id": "RA-7",
+      "name": "RISK RESPONSE"
+    },
+    {
+      "id": "RA-8",
+      "name": "PRIVACY IMPACT ASSESSMENTS"
+    },
+    {
+      "id": "RA-9",
+      "name": "CRITICALITY ANALYSIS"
+    }
+  ]
+}

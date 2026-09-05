@@ -1,0 +1,42 @@
+{
+  "family": "CA",
+  "framework": "NIST SP 800-53 Rev. 5",
+  "controls": [
+    {
+      "id": "CA-1",
+      "name": "POLICY AND PROCEDURES"
+    },
+    {
+      "id": "CA-2",
+      "name": "CONTROL ASSESSMENTS"
+    },
+    {
+      "id": "CA-3",
+      "name": "INFORMATION EXCHANGE"
+    },
+    {
+      "id": "CA-4",
+      "name": "SECURITY CERTIFICATION"
+    },
+    {
+      "id": "CA-5",
+      "name": "PLAN OF ACTION AND MILESTONES"
+    },
+    {
+      "id": "CA-6",
+      "name": "AUTHORIZATION"
+    },
+    {
+      "id": "CA-7",
+      "name": "CONTINUOUS MONITORING"
+    },
+    {
+      "id": "CA-8",
+      "name": "PENETRATION TESTING"
+    },
+    {
+      "id": "CA-9",
+      "name": "INTERNAL SYSTEM CONNECTIONS"
+    }
+  ]
+}

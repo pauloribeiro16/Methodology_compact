@@ -1,7 +1,7 @@
 # GLOBAL PROJECT STATE — AEGIS Methodology Implementation
 
 **Last Updated:** 2026-09-05
-**Version:** 6.9 (REALIZATION-CLASS — Case_01 P2 realization_class rubric + documents-only tag wave; PORT-PARITY-2 — cross-case content parity: C3 P1 v1.6 layer + corr-013, P2 waves C2+C3, P3 rich v0 C2+C3, 16/16 smoke, all gates PASS)
+**Version:** 7.0 (ALT-ANCHOR — UNMAPPED_* retired across 3 cases; 5 frozen referential sources + 800-53r5 generator; 3 gates v0.4 PASS; REALIZATION-CLASS; PORT-PARITY-2 — cross-case content parity: C3 P1 v1.6 layer + corr-013, P2 waves C2+C3, P3 rich v0 C2+C3, 16/16 smoke, all gates PASS)
 **Scope:** All Cases
 
 ---
@@ -177,6 +177,29 @@ Methodology/
 | 2026-04-01 | PHASE 1 | Case_01 | Phase 1 completed for TinyTask | High |
 | 2026-04-01 | TOOLS | All | Excel generation scripts created | Medium |
 | 2026-04-01 | DOCS | Case_01 | Initial Phase 1 documents | High |
+
+---
+
+## 4C. ALT-ANCHOR CAMPAIGN (2026-09-05)
+
+- **What:** the `UNMAPPED_*` marker family is RETIRED; rule elements without a PF/CSF
+  subcategory are now anchored to sibling referentials via `ALT-ANCHOR (ref1; ref2; …)`
+  (terminal `NO-ANALOGUE` when none cover). Frozen referential set: NIST SP 800-53r5 ·
+  NIST SSDF (SP 800-218) · OWASP ASVS 4.0.3 · OWASP SAMM v2 · ISO 27002:2022 (last
+  resort). Spec: `00_METHODOLOGY/ALT_ANCHOR_CRITERION.md` v1.0; sources:
+  `00_METHODOLOGY/PREPROCESSING_by_domain/CONTROLS/{NIST_80053R5,NIST_SSDF,OWASP_ASVS,OWASP_SAMM,NIST_CSF_2.0}/`.
+- **Applied:** Case_01/02/03 P2 (and C2/C3 P3 NIST_ANCHORS.md) — UNMAPPED_PF/CSF
+  occurrences all replaced by ALT-ANCHOR (C1 48 → 0, C2 62 → 0, C3 107 → 0).
+  Generator `scripts/build_alt_anchor_columns.py` injects the 800-53r5 column in the
+  three matrices from the PF JSON crosswalks (30 + 38 + 38 rows; idempotent).
+- **Gates:** all three `check_unmapped.py` upgraded to v0.4 — RETIRED-token hard check
+  + ALT-ANCHOR anchor-set validation against frozen sources + CSF 2.0 hard check (was
+  WARN-only in C2/C3). All three PASS. CSF 1.1 remnants in C2/C3 waivers documented.
+- **Orphans inventory:** C3 10 OBL orphans — 9 MITIGADO (BPR sibling), 1 GAP
+  (`OBL-D-06.2-001`) → P7. C2 14 PO + 40 SO orphans LEGIT (informational duplicates;
+  audit dedup improvement deferred).
+- **Deferred (per P7 documents-only + scope decisions):** ontologies, dashboards,
+  data mirrors, KG reflection, CSF 1.1 → 2.0 normalisation, C2 audit dedup.
 
 ---
 

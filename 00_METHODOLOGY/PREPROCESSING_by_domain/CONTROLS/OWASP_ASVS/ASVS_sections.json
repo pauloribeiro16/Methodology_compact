@@ -1,0 +1,448 @@
+{
+  "framework": "OWASP ASVS",
+  "version": "4.0.3",
+  "chapters": {
+    "V1": "Architecture, Design and Threat Modeling",
+    "V2": "Authentication",
+    "V3": "Session Management",
+    "V4": "Access Control",
+    "V5": "Validation, Sanitization and Encoding",
+    "V6": "Stored Cryptography",
+    "V7": "Error Handling and Logging",
+    "V8": "Data Protection",
+    "V9": "Communication",
+    "V10": "Malicious Code",
+    "V11": "Business Logic",
+    "V12": "Files and Resources",
+    "V13": "API and Web Service",
+    "V14": "Configuration"
+  },
+  "sections": [
+    {
+      "id": "V1.1",
+      "name": "Secure Software Development Lifecycle",
+      "chapter": "V1",
+      "chapter_name": "Architecture, Design and Threat Modeling"
+    },
+    {
+      "id": "V1.2",
+      "name": "Authentication Architecture",
+      "chapter": "V1",
+      "chapter_name": "Architecture, Design and Threat Modeling"
+    },
+    {
+      "id": "V1.3",
+      "name": "Session Management Architecture",
+      "chapter": "V1",
+      "chapter_name": "Architecture, Design and Threat Modeling"
+    },
+    {
+      "id": "V1.4",
+      "name": "Access Control Architecture",
+      "chapter": "V1",
+      "chapter_name": "Architecture, Design and Threat Modeling"
+    },
+    {
+      "id": "V1.5",
+      "name": "Input and Output Architecture",
+      "chapter": "V1",
+      "chapter_name": "Architecture, Design and Threat Modeling"
+    },
+    {
+      "id": "V1.6",
+      "name": "Cryptographic Architecture",
+      "chapter": "V1",
+      "chapter_name": "Architecture, Design and Threat Modeling"
+    },
+    {
+      "id": "V1.7",
+      "name": "Errors, Logging and Auditing Architecture",
+      "chapter": "V1",
+      "chapter_name": "Architecture, Design and Threat Modeling"
+    },
+    {
+      "id": "V1.8",
+      "name": "Data Protection and Privacy Architecture",
+      "chapter": "V1",
+      "chapter_name": "Architecture, Design and Threat Modeling"
+    },
+    {
+      "id": "V1.9",
+      "name": "Communications Architecture",
+      "chapter": "V1",
+      "chapter_name": "Architecture, Design and Threat Modeling"
+    },
+    {
+      "id": "V1.10",
+      "name": "Malicious Software Architecture",
+      "chapter": "V1",
+      "chapter_name": "Architecture, Design and Threat Modeling"
+    },
+    {
+      "id": "V1.11",
+      "name": "Business Logic Architecture",
+      "chapter": "V1",
+      "chapter_name": "Architecture, Design and Threat Modeling"
+    },
+    {
+      "id": "V1.12",
+      "name": "Secure File Upload Architecture",
+      "chapter": "V1",
+      "chapter_name": "Architecture, Design and Threat Modeling"
+    },
+    {
+      "id": "V1.13",
+      "name": "API Architecture",
+      "chapter": "V1",
+      "chapter_name": "Architecture, Design and Threat Modeling"
+    },
+    {
+      "id": "V1.14",
+      "name": "Configuration Architecture",
+      "chapter": "V1",
+      "chapter_name": "Architecture, Design and Threat Modeling"
+    },
+    {
+      "id": "V2.1",
+      "name": "Password Security",
+      "chapter": "V2",
+      "chapter_name": "Authentication"
+    },
+    {
+      "id": "V2.2",
+      "name": "General Authenticator Security",
+      "chapter": "V2",
+      "chapter_name": "Authentication"
+    },
+    {
+      "id": "V2.3",
+      "name": "Authenticator Lifecycle",
+      "chapter": "V2",
+      "chapter_name": "Authentication"
+    },
+    {
+      "id": "V2.4",
+      "name": "Credential Storage",
+      "chapter": "V2",
+      "chapter_name": "Authentication"
+    },
+    {
+      "id": "V2.5",
+      "name": "Credential Recovery",
+      "chapter": "V2",
+      "chapter_name": "Authentication"
+    },
+    {
+      "id": "V2.6",
+      "name": "Look-up Secret Verifier",
+      "chapter": "V2",
+      "chapter_name": "Authentication"
+    },
+    {
+      "id": "V2.7",
+      "name": "Out of Band Verifier",
+      "chapter": "V2",
+      "chapter_name": "Authentication"
+    },
+    {
+      "id": "V2.8",
+      "name": "One Time Verifier",
+      "chapter": "V2",
+      "chapter_name": "Authentication"
+    },
+    {
+      "id": "V2.9",
+      "name": "Cryptographic Verifier",
+      "chapter": "V2",
+      "chapter_name": "Authentication"
+    },
+    {
+      "id": "V2.10",
+      "name": "Service Authentication",
+      "chapter": "V2",
+      "chapter_name": "Authentication"
+    },
+    {
+      "id": "V3.1",
+      "name": "Fundamental Session Management Security",
+      "chapter": "V3",
+      "chapter_name": "Session Management"
+    },
+    {
+      "id": "V3.2",
+      "name": "Session Binding",
+      "chapter": "V3",
+      "chapter_name": "Session Management"
+    },
+    {
+      "id": "V3.3",
+      "name": "Session Termination",
+      "chapter": "V3",
+      "chapter_name": "Session Management"
+    },
+    {
+      "id": "V3.4",
+      "name": "Cookie-based Session Management",
+      "chapter": "V3",
+      "chapter_name": "Session Management"
+    },
+    {
+      "id": "V3.5",
+      "name": "Token-based Session Management",
+      "chapter": "V3",
+      "chapter_name": "Session Management"
+    },
+    {
+      "id": "V3.6",
+      "name": "Federated Re-authentication",
+      "chapter": "V3",
+      "chapter_name": "Session Management"
+    },
+    {
+      "id": "V3.7",
+      "name": "Defenses Against Session Management Exploits",
+      "chapter": "V3",
+      "chapter_name": "Session Management"
+    },
+    {
+      "id": "V4.1",
+      "name": "General Access Control Design",
+      "chapter": "V4",
+      "chapter_name": "Access Control"
+    },
+    {
+      "id": "V4.2",
+      "name": "Operation Level Access Control",
+      "chapter": "V4",
+      "chapter_name": "Access Control"
+    },
+    {
+      "id": "V4.3",
+      "name": "Other Access Control Considerations",
+      "chapter": "V4",
+      "chapter_name": "Access Control"
+    },
+    {
+      "id": "V5.1",
+      "name": "Input Validation",
+      "chapter": "V5",
+      "chapter_name": "Validation, Sanitization and Encoding"
+    },
+    {
+      "id": "V5.2",
+      "name": "Sanitization and Sandboxing",
+      "chapter": "V5",
+      "chapter_name": "Validation, Sanitization and Encoding"
+    },
+    {
+      "id": "V5.3",
+      "name": "Output Encoding and Injection Prevention",
+      "chapter": "V5",
+      "chapter_name": "Validation, Sanitization and Encoding"
+    },
+    {
+      "id": "V5.4",
+      "name": "Memory, String, and Unmanaged Code",
+      "chapter": "V5",
+      "chapter_name": "Validation, Sanitization and Encoding"
+    },
+    {
+      "id": "V5.5",
+      "name": "Deserialization Prevention",
+      "chapter": "V5",
+      "chapter_name": "Validation, Sanitization and Encoding"
+    },
+    {
+      "id": "V6.1",
+      "name": "Data Classification",
+      "chapter": "V6",
+      "chapter_name": "Stored Cryptography"
+    },
+    {
+      "id": "V6.2",
+      "name": "Algorithms",
+      "chapter": "V6",
+      "chapter_name": "Stored Cryptography"
+    },
+    {
+      "id": "V6.3",
+      "name": "Random Values",
+      "chapter": "V6",
+      "chapter_name": "Stored Cryptography"
+    },
+    {
+      "id": "V6.4",
+      "name": "Secret Management",
+      "chapter": "V6",
+      "chapter_name": "Stored Cryptography"
+    },
+    {
+      "id": "V7.1",
+      "name": "Log Content",
+      "chapter": "V7",
+      "chapter_name": "Error Handling and Logging"
+    },
+    {
+      "id": "V7.2",
+      "name": "Log Processing",
+      "chapter": "V7",
+      "chapter_name": "Error Handling and Logging"
+    },
+    {
+      "id": "V7.3",
+      "name": "Log Protection",
+      "chapter": "V7",
+      "chapter_name": "Error Handling and Logging"
+    },
+    {
+      "id": "V7.4",
+      "name": "Error Handling",
+      "chapter": "V7",
+      "chapter_name": "Error Handling and Logging"
+    },
+    {
+      "id": "V8.1",
+      "name": "General Data Protection",
+      "chapter": "V8",
+      "chapter_name": "Data Protection"
+    },
+    {
+      "id": "V8.2",
+      "name": "Client-side Data Protection",
+      "chapter": "V8",
+      "chapter_name": "Data Protection"
+    },
+    {
+      "id": "V8.3",
+      "name": "Sensitive Private Data",
+      "chapter": "V8",
+      "chapter_name": "Data Protection"
+    },
+    {
+      "id": "V9.1",
+      "name": "Client Communication Security",
+      "chapter": "V9",
+      "chapter_name": "Communication"
+    },
+    {
+      "id": "V9.2",
+      "name": "Server Communication Security",
+      "chapter": "V9",
+      "chapter_name": "Communication"
+    },
+    {
+      "id": "V10.1",
+      "name": "Code Integrity",
+      "chapter": "V10",
+      "chapter_name": "Malicious Code"
+    },
+    {
+      "id": "V10.2",
+      "name": "Malicious Code Search",
+      "chapter": "V10",
+      "chapter_name": "Malicious Code"
+    },
+    {
+      "id": "V10.3",
+      "name": "Application Integrity",
+      "chapter": "V10",
+      "chapter_name": "Malicious Code"
+    },
+    {
+      "id": "V11.1",
+      "name": "Business Logic Security",
+      "chapter": "V11",
+      "chapter_name": "Business Logic"
+    },
+    {
+      "id": "V12.1",
+      "name": "File Upload",
+      "chapter": "V12",
+      "chapter_name": "Files and Resources"
+    },
+    {
+      "id": "V12.2",
+      "name": "File Integrity",
+      "chapter": "V12",
+      "chapter_name": "Files and Resources"
+    },
+    {
+      "id": "V12.3",
+      "name": "File Execution",
+      "chapter": "V12",
+      "chapter_name": "Files and Resources"
+    },
+    {
+      "id": "V12.4",
+      "name": "File Storage",
+      "chapter": "V12",
+      "chapter_name": "Files and Resources"
+    },
+    {
+      "id": "V12.5",
+      "name": "File Download",
+      "chapter": "V12",
+      "chapter_name": "Files and Resources"
+    },
+    {
+      "id": "V12.6",
+      "name": "SSRF Protection",
+      "chapter": "V12",
+      "chapter_name": "Files and Resources"
+    },
+    {
+      "id": "V13.1",
+      "name": "Generic Web Service Security",
+      "chapter": "V13",
+      "chapter_name": "API and Web Service"
+    },
+    {
+      "id": "V13.2",
+      "name": "RESTful Web Service",
+      "chapter": "V13",
+      "chapter_name": "API and Web Service"
+    },
+    {
+      "id": "V13.3",
+      "name": "SOAP Web Service",
+      "chapter": "V13",
+      "chapter_name": "API and Web Service"
+    },
+    {
+      "id": "V13.4",
+      "name": "GraphQL",
+      "chapter": "V13",
+      "chapter_name": "API and Web Service"
+    },
+    {
+      "id": "V14.1",
+      "name": "Build and Deploy",
+      "chapter": "V14",
+      "chapter_name": "Configuration"
+    },
+    {
+      "id": "V14.2",
+      "name": "Dependency",
+      "chapter": "V14",
+      "chapter_name": "Configuration"
+    },
+    {
+      "id": "V14.3",
+      "name": "Unintended Security Disclosure",
+      "chapter": "V14",
+      "chapter_name": "Configuration"
+    },
+    {
+      "id": "V14.4",
+      "name": "HTTP Security Headers",
+      "chapter": "V14",
+      "chapter_name": "Configuration"
+    },
+    {
+      "id": "V14.5",
+      "name": "HTTP Request Header Validation",
+      "chapter": "V14",
+      "chapter_name": "Configuration"
+    }
+  ]
+}

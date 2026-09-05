@@ -1,0 +1,12 @@
+{
+  "referential": "NIST SSDF",
+  "version": "SP 800-218 v1.1",
+  "source_urls": [
+    "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-218.pdf"
+  ],
+  "fetched_date": "2026-09-05",
+  "practices": 21,
+  "tasks": 47,
+  "note": "All 47 task ids extracted from the official SP 800-218 PDF (pdftotext). Task names informational (may be truncated by the 3-column layout); ids authoritative. The commonly cited '42 tasks' count is incorrect \u2014 the official document defines 47.",
+  "unverified_entries": []
+}

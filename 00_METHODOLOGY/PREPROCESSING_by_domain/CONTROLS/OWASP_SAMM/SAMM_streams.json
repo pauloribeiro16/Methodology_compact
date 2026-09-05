@@ -1,0 +1,373 @@
+{
+  "framework": "OWASP SAMM",
+  "version": "v2.0",
+  "business_functions": {
+    "G": "Governance",
+    "D": "Design",
+    "I": "Implementation",
+    "V": "Verification",
+    "O": "Operations"
+  },
+  "streams": [
+    {
+      "stream": "D-SA-A",
+      "stream_name": "Architecture Design",
+      "practice": "D-Secure-Architecture",
+      "practice_name": "Secure Architecture",
+      "function": "D",
+      "levels": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "stream": "D-SA-B",
+      "stream_name": "Technology Management",
+      "practice": "D-Secure-Architecture",
+      "practice_name": "Secure Architecture",
+      "function": "D",
+      "levels": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "stream": "D-SR-A",
+      "stream_name": "Software Requirements",
+      "practice": "D-Security-Requirements",
+      "practice_name": "Security Requirements",
+      "function": "D",
+      "levels": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "stream": "D-SR-B",
+      "stream_name": "Supplier Security",
+      "practice": "D-Security-Requirements",
+      "practice_name": "Security Requirements",
+      "function": "D",
+      "levels": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "stream": "D-TA-A",
+      "stream_name": "Application Risk Profile",
+      "practice": "D-Threat-Assessment",
+      "practice_name": "Threat Assessment",
+      "function": "D",
+      "levels": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "stream": "D-TA-B",
+      "stream_name": "Threat Modeling",
+      "practice": "D-Threat-Assessment",
+      "practice_name": "Threat Assessment",
+      "function": "D",
+      "levels": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "stream": "G-EG-A",
+      "stream_name": "Training and Awareness",
+      "practice": "G-Education-Guidance",
+      "practice_name": "Education and Guidance",
+      "function": "G",
+      "levels": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "stream": "G-EG-B",
+      "stream_name": "Organization and Culture",
+      "practice": "G-Education-Guidance",
+      "practice_name": "Education and Guidance",
+      "function": "G",
+      "levels": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "stream": "G-PC-A",
+      "stream_name": "Policy and Standards",
+      "practice": "G-Policy-Compliance",
+      "practice_name": "Policy and Compliance",
+      "function": "G",
+      "levels": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "stream": "G-PC-B",
+      "stream_name": "Compliance Management",
+      "practice": "G-Policy-Compliance",
+      "practice_name": "Policy and Compliance",
+      "function": "G",
+      "levels": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "stream": "G-SM-A",
+      "stream_name": "Create and Promote",
+      "practice": "G-Strategy-Metrics",
+      "practice_name": "Strategy and Metrics",
+      "function": "G",
+      "levels": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "stream": "G-SM-B",
+      "stream_name": "Measure and Improve",
+      "practice": "G-Strategy-Metrics",
+      "practice_name": "Strategy and Metrics",
+      "function": "G",
+      "levels": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "stream": "I-DM-A",
+      "stream_name": "Defect Tracking",
+      "practice": "I-Defect-Management",
+      "practice_name": "Defect Management",
+      "function": "I",
+      "levels": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "stream": "I-DM-B",
+      "stream_name": "Metrics and Feedback",
+      "practice": "I-Defect-Management",
+      "practice_name": "Defect Management",
+      "function": "I",
+      "levels": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "stream": "I-SB-A",
+      "stream_name": "Build Process",
+      "practice": "I-Secure-Build",
+      "practice_name": "Secure Build",
+      "function": "I",
+      "levels": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "stream": "I-SB-B",
+      "stream_name": "Software Dependencies",
+      "practice": "I-Secure-Build",
+      "practice_name": "Secure Build",
+      "function": "I",
+      "levels": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "stream": "I-SD-A",
+      "stream_name": "Deployment Process",
+      "practice": "I-Secure-Deployment",
+      "practice_name": "Secure Deployment",
+      "function": "I",
+      "levels": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "stream": "I-SD-B",
+      "stream_name": "Secret Management",
+      "practice": "I-Secure-Deployment",
+      "practice_name": "Secure Deployment",
+      "function": "I",
+      "levels": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "stream": "O-EM-A",
+      "stream_name": "Configuration Hardening",
+      "practice": "O-Environment-Management",
+      "practice_name": "Environment Management",
+      "function": "O",
+      "levels": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "stream": "O-EM-B",
+      "stream_name": "Patching and Updating",
+      "practice": "O-Environment-Management",
+      "practice_name": "Environment Management",
+      "function": "O",
+      "levels": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "stream": "O-IM-A",
+      "stream_name": "Incident Detection",
+      "practice": "O-Incident-Management",
+      "practice_name": "Incident Management",
+      "function": "O",
+      "levels": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "stream": "O-IM-B",
+      "stream_name": "Incident Response",
+      "practice": "O-Incident-Management",
+      "practice_name": "Incident Management",
+      "function": "O",
+      "levels": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "stream": "O-OM-A",
+      "stream_name": "Data Protection",
+      "practice": "O-Operational-Management",
+      "practice_name": "Operational Management",
+      "function": "O",
+      "levels": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "stream": "O-OM-B",
+      "stream_name": "System Decommissioning / Legacy Management",
+      "practice": "O-Operational-Management",
+      "practice_name": "Operational Management",
+      "function": "O",
+      "levels": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "stream": "V-AA-A",
+      "stream_name": "Architecture Validation",
+      "practice": "V-Architecture-Assessment",
+      "practice_name": "Architecture Assessment",
+      "function": "V",
+      "levels": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "stream": "V-AA-B",
+      "stream_name": "Architecture Mitigation",
+      "practice": "V-Architecture-Assessment",
+      "practice_name": "Architecture Assessment",
+      "function": "V",
+      "levels": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "stream": "V-RT-A",
+      "stream_name": "Control Verification",
+      "practice": "V-Requirements-Testing",
+      "practice_name": "Requirements-driven Testing",
+      "function": "V",
+      "levels": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "stream": "V-RT-B",
+      "stream_name": "Misuse/Abuse Testing",
+      "practice": "V-Requirements-Testing",
+      "practice_name": "Requirements-driven Testing",
+      "function": "V",
+      "levels": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "stream": "V-ST-A",
+      "stream_name": "Scalable Baseline",
+      "practice": "V-Security-Testing",
+      "practice_name": "Security Testing",
+      "function": "V",
+      "levels": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "stream": "V-ST-B",
+      "stream_name": "Deep Understanding",
+      "practice": "V-Security-Testing",
+      "practice_name": "Security Testing",
+      "function": "V",
+      "levels": [
+        1,
+        2,
+        3
+      ]
+    }
+  ]
+}

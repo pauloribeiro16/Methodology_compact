@@ -1,0 +1,340 @@
+{
+  "framework": "NIST SSDF (SP 800-218)",
+  "version": "v1.1 (2022-02)",
+  "practices": [
+    {
+      "id": "PO.1",
+      "name": "Define Security Requirements for Software Development",
+      "type": "practice",
+      "tasks": [
+        {
+          "id": "PO.1.1",
+          "name": "Identify and document all security"
+        },
+        {
+          "id": "PO.1.2",
+          "name": "Identify and document all security"
+        },
+        {
+          "id": "PO.1.3",
+          "name": "Communicate requirements to all third parties"
+        }
+      ]
+    },
+    {
+      "id": "PO.2",
+      "name": "Implement Roles and Responsibilities",
+      "type": "practice",
+      "tasks": [
+        {
+          "id": "PO.2.1",
+          "name": "Create new roles and alter responsibilities for"
+        },
+        {
+          "id": "PO.2.2",
+          "name": "Provide role-based training for all personnel"
+        },
+        {
+          "id": "PO.2.3",
+          "name": "Obtain upper management or authorizing"
+        }
+      ]
+    },
+    {
+      "id": "PO.3",
+      "name": "Implement Supporting Toolchains",
+      "type": "practice",
+      "tasks": [
+        {
+          "id": "PO.3.1",
+          "name": "Specify which tools or tool types must or"
+        },
+        {
+          "id": "PO.3.2",
+          "name": "Follow recommended security practices to"
+        },
+        {
+          "id": "PO.3.3",
+          "name": "Configure tools to generate artifacts 6 of their"
+        }
+      ]
+    },
+    {
+      "id": "PO.4",
+      "name": "Define and Use Criteria for Software Security Checks",
+      "type": "practice",
+      "tasks": [
+        {
+          "id": "PO.4.1",
+          "name": "Define criteria for software security checks"
+        },
+        {
+          "id": "PO.4.2",
+          "name": "Implement processes, mechanisms, etc. to"
+        }
+      ]
+    },
+    {
+      "id": "PO.5",
+      "name": "Implement and Maintain Secure Environments for Software Development",
+      "type": "practice",
+      "tasks": [
+        {
+          "id": "PO.5.1",
+          "name": "Separate and protect each environment"
+        },
+        {
+          "id": "PO.5.2",
+          "name": "Secure and harden development endpoints"
+        }
+      ]
+    },
+    {
+      "id": "PS.1",
+      "name": "Protect All Forms of Code from Unauthorized Access and Tampering",
+      "type": "practice",
+      "tasks": [
+        {
+          "id": "PS.1.1",
+          "name": "Store all forms of code \u2013 including source"
+        }
+      ]
+    },
+    {
+      "id": "PS.2",
+      "name": "Provide a Mechanism for Verifying Software Release Integrity",
+      "type": "practice",
+      "tasks": [
+        {
+          "id": "PS.2.1",
+          "name": "Make software integrity verification information"
+        }
+      ]
+    },
+    {
+      "id": "PS.3",
+      "name": "Archive and Protect Each Software Release",
+      "type": "practice",
+      "tasks": [
+        {
+          "id": "PS.3.1",
+          "name": "Securely archive the necessary files and"
+        },
+        {
+          "id": "PS.3.2",
+          "name": "Collect, safeguard, maintain, and share"
+        }
+      ]
+    },
+    {
+      "id": "PW.1",
+      "name": "Design Software with Security in Mind",
+      "type": "practice",
+      "tasks": [
+        {
+          "id": "PW.1.1",
+          "name": "Use forms of risk modeling \u2013 such as threat"
+        },
+        {
+          "id": "PW.1.2",
+          "name": "Track and maintain the software\u2019s security"
+        },
+        {
+          "id": "PW.1.3",
+          "name": "Where appropriate, build in support for using"
+        }
+      ]
+    },
+    {
+      "id": "PW.2",
+      "name": "Review the Software Design to Verify Security Requirements Have Been Met",
+      "type": "practice",
+      "tasks": [
+        {
+          "id": "PW.2.1",
+          "name": "Have 1) a qualified person (or people) who"
+        }
+      ]
+    },
+    {
+      "id": "PW.3",
+      "name": "Verify Security-Relevant Software Requirements",
+      "type": "practice",
+      "tasks": [
+        {
+          "id": "PW.3.1",
+          "name": null
+        },
+        {
+          "id": "PW.3.2",
+          "name": null
+        }
+      ]
+    },
+    {
+      "id": "PW.4",
+      "name": "Reuse Existing, Well-Secured Software When Applicable",
+      "type": "practice",
+      "tasks": [
+        {
+          "id": "PW.4.1",
+          "name": "Acquire and maintain well-secured software"
+        },
+        {
+          "id": "PW.4.2",
+          "name": "Create and maintain well-secured software"
+        },
+        {
+          "id": "PW.4.3",
+          "name": "Moved to PW.1.3"
+        },
+        {
+          "id": "PW.4.4",
+          "name": "Verify that acquired commercial, open-source,"
+        },
+        {
+          "id": "PW.4.5",
+          "name": null
+        }
+      ]
+    },
+    {
+      "id": "PW.5",
+      "name": "Create Source Code by Adhering to Secure Coding Practices",
+      "type": "practice",
+      "tasks": [
+        {
+          "id": "PW.5.1",
+          "name": "Follow all secure coding practices that are"
+        },
+        {
+          "id": "PW.5.2",
+          "name": "Moved to PW.5.1 as example"
+        }
+      ]
+    },
+    {
+      "id": "PW.6",
+      "name": "Configure the Compilation, Interpreter, and Build Processes to Improve Executable Security",
+      "type": "practice",
+      "tasks": [
+        {
+          "id": "PW.6.1",
+          "name": "Use compiler, interpreter, and build tools that"
+        },
+        {
+          "id": "PW.6.2",
+          "name": "Determine which compiler, interpreter, and"
+        }
+      ]
+    },
+    {
+      "id": "PW.7",
+      "name": "Inspect and Analyze Code",
+      "type": "practice",
+      "tasks": [
+        {
+          "id": "PW.7.1",
+          "name": "Determine whether code review (a person"
+        },
+        {
+          "id": "PW.7.2",
+          "name": "Perform the code review and/or code analysis"
+        }
+      ]
+    },
+    {
+      "id": "PW.8",
+      "name": "Test Executable Code to Identify Vulnerabilities and Verify Compliance with Security Requirements",
+      "type": "practice",
+      "tasks": [
+        {
+          "id": "PW.8.1",
+          "name": "Determine whether executable code testing"
+        },
+        {
+          "id": "PW.8.2",
+          "name": "Scope the testing, design the tests, perform"
+        }
+      ]
+    },
+    {
+      "id": "PW.9",
+      "name": "Configure Software to Have Secure Settings by Default",
+      "type": "practice",
+      "tasks": [
+        {
+          "id": "PW.9.1",
+          "name": "Define a secure baseline by determining how"
+        },
+        {
+          "id": "PW.9.2",
+          "name": "Implement the default settings (or groups of"
+        }
+      ]
+    },
+    {
+      "id": "RV.1",
+      "name": "Identify Vulnerabilities on an Ongoing Basis",
+      "type": "practice",
+      "tasks": [
+        {
+          "id": "RV.1.1",
+          "name": "Gather information from software acquirers,"
+        },
+        {
+          "id": "RV.1.2",
+          "name": "Review, analyze, and/or test the software\u2019s"
+        },
+        {
+          "id": "RV.1.3",
+          "name": "Have a policy that addresses vulnerability"
+        }
+      ]
+    },
+    {
+      "id": "RV.2",
+      "name": "Assess, Remediate, and Analyze Vulnerabilities",
+      "type": "practice",
+      "tasks": [
+        {
+          "id": "RV.2.1",
+          "name": "Analyze each vulnerability to gather sufficient"
+        },
+        {
+          "id": "RV.2.2",
+          "name": "Plan and implement risk responses for"
+        }
+      ]
+    },
+    {
+      "id": "RV.3",
+      "name": "Analyze Vulnerabilities to Identify Root Causes",
+      "type": "practice",
+      "tasks": [
+        {
+          "id": "RV.3.1",
+          "name": "Analyze identified vulnerabilities to determine"
+        },
+        {
+          "id": "RV.3.2",
+          "name": "Analyze the root causes over time to identify"
+        },
+        {
+          "id": "RV.3.3",
+          "name": "Review the software for similar vulnerabilities"
+        },
+        {
+          "id": "RV.3.4",
+          "name": "Review the SDLC process, and update it if"
+        }
+      ]
+    },
+    {
+      "id": "RV.4",
+      "name": "Take Continuous Improvement Action",
+      "type": "practice",
+      "tasks": []
+    }
+  ]
+}

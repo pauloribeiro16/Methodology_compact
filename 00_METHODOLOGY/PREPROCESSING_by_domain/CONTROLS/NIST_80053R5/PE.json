@@ -1,0 +1,182 @@
+{
+  "family": "PE",
+  "framework": "NIST SP 800-53 Rev. 5",
+  "controls": [
+    {
+      "id": "PE-1",
+      "name": "POLICY AND PROCEDURES"
+    },
+    {
+      "id": "PE-10",
+      "name": "EMERGENCY SHUTOFF"
+    },
+    {
+      "id": "PE-11",
+      "name": "EMERGENCY POWER"
+    },
+    {
+      "id": "PE-12",
+      "name": "EMERGENCY LIGHTING"
+    },
+    {
+      "id": "PE-12(1)",
+      "name": "ESSENTIAL MISSION AND BUSINESS FUNCTIONS"
+    },
+    {
+      "id": "PE-13",
+      "name": "FIRE PROTECTION"
+    },
+    {
+      "id": "PE-13(4)",
+      "name": "INSPECTIONS"
+    },
+    {
+      "id": "PE-14",
+      "name": "ENVIRONMENTAL CONTROLS"
+    },
+    {
+      "id": "PE-14(1)",
+      "name": "AUTOMATIC CONTROLS"
+    },
+    {
+      "id": "PE-14(2)",
+      "name": "MONITORING WITH ALARMS AND NOTIFICATIONS"
+    },
+    {
+      "id": "PE-15",
+      "name": "WATER DAMAGE PROTECTION"
+    },
+    {
+      "id": "PE-15(1)",
+      "name": "AUTOMATION SUPPORT"
+    },
+    {
+      "id": "PE-16",
+      "name": "DELIVERY AND REMOVAL"
+    },
+    {
+      "id": "PE-17",
+      "name": "ALTERNATE WORK SITE"
+    },
+    {
+      "id": "PE-18",
+      "name": "LOCATION OF SYSTEM COMPONENTS"
+    },
+    {
+      "id": "PE-19",
+      "name": "INFORMATION LEAKAGE"
+    },
+    {
+      "id": "PE-19(1)",
+      "name": "NATIONAL EMISSIONS POLICIES AND PROCEDURES"
+    },
+    {
+      "id": "PE-2",
+      "name": "PHYSICAL ACCESS AUTHORIZATIONS"
+    },
+    {
+      "id": "PE-2(1)",
+      "name": "ACCESS BY POSITION AND ROLE"
+    },
+    {
+      "id": "PE-2(2)",
+      "name": "TWO FORMS OF IDENTIFICATION"
+    },
+    {
+      "id": "PE-2(3)",
+      "name": "RESTRICT UNESCORTED ACCESS"
+    },
+    {
+      "id": "PE-20",
+      "name": "ASSET MONITORING AND TRACKING"
+    },
+    {
+      "id": "PE-21",
+      "name": "ELECTROMAGNETIC PULSE PROTECTION"
+    },
+    {
+      "id": "PE-22",
+      "name": "COMPONENT MARKING"
+    },
+    {
+      "id": "PE-23",
+      "name": "FACILITY LOCATION"
+    },
+    {
+      "id": "PE-3",
+      "name": "PHYSICAL ACCESS CONTROL"
+    },
+    {
+      "id": "PE-3(1)",
+      "name": "SYSTEM ACCESS"
+    },
+    {
+      "id": "PE-3(2)",
+      "name": "FACILITY AND SYSTEMS"
+    },
+    {
+      "id": "PE-3(3)",
+      "name": "CONTINUOUS GUARDS"
+    },
+    {
+      "id": "PE-3(4)",
+      "name": "LOCKABLE CASINGS"
+    },
+    {
+      "id": "PE-3(5)",
+      "name": "TAMPER PROTECTION"
+    },
+    {
+      "id": "PE-3(7)",
+      "name": "PHYSICAL BARRIERS"
+    },
+    {
+      "id": "PE-3(8)",
+      "name": "ACCESS CONTROL VESTIBULES"
+    },
+    {
+      "id": "PE-4",
+      "name": "ACCESS CONTROL FOR TRANSMISSION"
+    },
+    {
+      "id": "PE-5",
+      "name": "ACCESS CONTROL FOR OUTPUT DEVICES"
+    },
+    {
+      "id": "PE-5(2)",
+      "name": "LINK TO INDIVIDUAL IDENTITY"
+    },
+    {
+      "id": "PE-6",
+      "name": "MONITORING PHYSICAL ACCESS"
+    },
+    {
+      "id": "PE-7",
+      "name": "VISITOR CONTROL"
+    },
+    {
+      "id": "PE-8",
+      "name": "VISITOR ACCESS RECORDS"
+    },
+    {
+      "id": "PE-8(1)",
+      "name": "AUTOMATED RECORDS MAINTENANCE AND REVIEW"
+    },
+    {
+      "id": "PE-8(3)",
+      "name": "LIMIT PERSONALLY IDENTIFIABLE INFORMATION ELEMENTS"
+    },
+    {
+      "id": "PE-9",
+      "name": "POWER EQUIPMENT AND CABLING"
+    },
+    {
+      "id": "PE-9(1)",
+      "name": "REDUNDANT CABLING"
+    },
+    {
+      "id": "PE-9(2)",
+      "name": "AUTOMATIC VOLTAGE CONTROLS"
+    }
+  ]
+}

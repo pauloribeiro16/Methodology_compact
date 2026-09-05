@@ -1,0 +1,118 @@
+{
+  "family": "MA",
+  "framework": "NIST SP 800-53 Rev. 5",
+  "controls": [
+    {
+      "id": "MA-1",
+      "name": "POLICY AND PROCEDURES"
+    },
+    {
+      "id": "MA-2",
+      "name": "CONTROLLED MAINTENANCE"
+    },
+    {
+      "id": "MA-2(2)",
+      "name": "AUTOMATED MAINTENANCE ACTIVITIES"
+    },
+    {
+      "id": "MA-3",
+      "name": "MAINTENANCE TOOLS"
+    },
+    {
+      "id": "MA-3(1)",
+      "name": "INSPECT TOOLS"
+    },
+    {
+      "id": "MA-3(2)",
+      "name": "INSPECT MEDIA"
+    },
+    {
+      "id": "MA-3(3)",
+      "name": "PREVENT UNAUTHORIZED REMOVAL"
+    },
+    {
+      "id": "MA-3(4)",
+      "name": "RESTRICTED TOOL USE O /S"
+    },
+    {
+      "id": "MA-3(5)",
+      "name": "EXECUTION WITH PRIVILEGE O /S"
+    },
+    {
+      "id": "MA-3(6)",
+      "name": "SOFTWARE UPDATES AND PATCHES O /S"
+    },
+    {
+      "id": "MA-4",
+      "name": "NONLOCAL MAINTENANCE"
+    },
+    {
+      "id": "MA-4(1)",
+      "name": "LOGGING AND REVIEW"
+    },
+    {
+      "id": "MA-4(3)",
+      "name": "COMPARABLE SECURITY AND SANITIZATION"
+    },
+    {
+      "id": "MA-4(4)",
+      "name": "AUTHENTICATION AND SEPARATION OF MAINTENANCE SESSIONS"
+    },
+    {
+      "id": "MA-4(5)",
+      "name": "APPROVALS AND NOTIFICATIONS"
+    },
+    {
+      "id": "MA-4(6)",
+      "name": "CRYPTOGRAPHIC PROTECTION O /S"
+    },
+    {
+      "id": "MA-4(7)",
+      "name": "DISCONNECT VERIFICATION"
+    },
+    {
+      "id": "MA-5",
+      "name": "MAINTENANCE PERSONNEL"
+    },
+    {
+      "id": "MA-5(1)",
+      "name": "INDIVIDUALS WITHOUT APPROPRIATE ACCESS"
+    },
+    {
+      "id": "MA-5(2)",
+      "name": "SECURITY CLEARANCES FOR CLASSIFIED SYSTEMS"
+    },
+    {
+      "id": "MA-5(3)",
+      "name": "CITIZENSHIP REQUIREMENTS FOR CLASSIFIED SYSTEMS"
+    },
+    {
+      "id": "MA-5(4)",
+      "name": "FOREIGN NATIONALS"
+    },
+    {
+      "id": "MA-5(5)",
+      "name": "NON-SYSTEM MAINTENANCE"
+    },
+    {
+      "id": "MA-6",
+      "name": "TIMELY MAINTENANCE"
+    },
+    {
+      "id": "MA-6(1)",
+      "name": "PREVENTIVE MAINTENANCE"
+    },
+    {
+      "id": "MA-6(2)",
+      "name": "PREDICTIVE MAINTENANCE"
+    },
+    {
+      "id": "MA-6(3)",
+      "name": "AUTOMATED SUPPORT FOR PREDICTIVE MAINTENANCE"
+    },
+    {
+      "id": "MA-7",
+      "name": "FIELD MAINTENANCE"
+    }
+  ]
+}

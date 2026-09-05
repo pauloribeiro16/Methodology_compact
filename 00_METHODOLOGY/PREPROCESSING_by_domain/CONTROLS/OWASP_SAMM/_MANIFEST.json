@@ -1,0 +1,14 @@
+{
+  "referential": "OWASP SAMM",
+  "version": "v2.0",
+  "source_urls": [
+    "https://github.com/owaspsamm/core (model/business_functions, security_practices, streams, maturity_levels YMLs, develop branch)"
+  ],
+  "fetched_date": "2026-09-05",
+  "business_functions": 5,
+  "practices": 15,
+  "streams": 30,
+  "levels": "1-3 per stream (maturity_levels.yml)",
+  "maturity_link": "SAMM level anchors tie to maturity model v1.6 Scale A (EvidenceItem scale=capability)",
+  "unverified_entries": []
+}

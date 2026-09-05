@@ -1,0 +1,30 @@
+{
+  "family": "AT",
+  "framework": "NIST SP 800-53 Rev. 5",
+  "controls": [
+    {
+      "id": "AT-1",
+      "name": "POLICY AND PROCEDURES"
+    },
+    {
+      "id": "AT-2",
+      "name": "LITERACY TRAINING AND AWARENESS"
+    },
+    {
+      "id": "AT-3",
+      "name": "ROLE-BASED TRAINING"
+    },
+    {
+      "id": "AT-4",
+      "name": "TRAINING RECORDS"
+    },
+    {
+      "id": "AT-5",
+      "name": "CONTACTS WITH SECURITY GROUPS AND ASSOCIATIONS"
+    },
+    {
+      "id": "AT-6",
+      "name": "TRAINING FEEDBACK"
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "family": "PM",
+  "framework": "NIST SP 800-53 Rev. 5",
+  "controls": [
+    {
+      "id": "PM-1",
+      "name": "INFORMATION SECURITY PROGRAM PLAN"
+    },
+    {
+      "id": "PM-10",
+      "name": "AUTHORIZATION PROCESS"
+    },
+    {
+      "id": "PM-11",
+      "name": "MISSION AND BUSINESS PROCESS DEFINITION"
+    },
+    {
+      "id": "PM-12",
+      "name": "INSIDER THREAT PROGRAM"
+    },
+    {
+      "id": "PM-13",
+      "name": "SECURITY AND PRIVACY WORKFORCE"
+    },
+    {
+      "id": "PM-14",
+      "name": "TESTING, TRAINING, AND MONITORING"
+    },
+    {
+      "id": "PM-15",
+      "name": "SECURITY AND PRIVACY GROUPS AND ASSOCIATIONS"
+    },
+    {
+      "id": "PM-16",
+      "name": "THREAT AWARENESS PROGRAM"
+    },
+    {
+      "id": "PM-17",
+      "name": "PROTECTING CONTROLLED UNCLASSIFIED INFORMATION ON EXTERNAL SYSTEMS"
+    },
+    {
+      "id": "PM-18",
+      "name": "PRIVACY PROGRAM PLAN"
+    },
+    {
+      "id": "PM-19",
+      "name": "PRIVACY PROGRAM LEADERSHIP ROLE"
+    },
+    {
+      "id": "PM-2",
+      "name": "INFORMATION SECURITY PROGRAM LEADERSHIP ROLE"
+    },
+    {
+      "id": "PM-20",
+      "name": "DISSEMINATION OF PRIVACY PROGRAM INFORMATION"
+    },
+    {
+      "id": "PM-21",
+      "name": "ACCOUNTING OF DISCLOSURES"
+    },
+    {
+      "id": "PM-22",
+      "name": "PERSONALLY IDENTIFIABLE INFORMATION QUALITY MANAGEMENT"
+    },
+    {
+      "id": "PM-23",
+      "name": "DATA GOVERNANCE BODY"
+    },
+    {
+      "id": "PM-24",
+      "name": "DATA INTEGRITY BOARD"
+    },
+    {
+      "id": "PM-25",
+      "name": "MINIMIZATION OF PERSONALLY IDENTIFIABLE INFORMATION USED IN TESTING,"
+    },
+    {
+      "id": "PM-26",
+      "name": "COMPLAINT MANAGEMENT"
+    },
+    {
+      "id": "PM-27",
+      "name": "PRIVACY REPORTING"
+    },
+    {
+      "id": "PM-28",
+      "name": "RISK FRAMING"
+    },
+    {
+      "id": "PM-29",
+      "name": "RISK MANAGEMENT PROGRAM LEADERSHIP ROLES"
+    },
+    {
+      "id": "PM-3",
+      "name": "INFORMATION SECURITY AND PRIVACY RESOURCES"
+    },
+    {
+      "id": "PM-30",
+      "name": "SUPPLY CHAIN RISK MANAGEMENT STRATEGY"
+    },
+    {
+      "id": "PM-31",
+      "name": "CONTINUOUS MONITORING STRATEGY"
+    },
+    {
+      "id": "PM-32",
+      "name": "PURPOSING"
+    },
+    {
+      "id": "PM-4",
+      "name": "PLAN OF ACTION AND MILESTONES PROCESS"
+    },
+    {
+      "id": "PM-5",
+      "name": "SYSTEM INVENTORY"
+    },
+    {
+      "id": "PM-5(1)",
+      "name": "INVENTORY OF PERSONALLY IDENTIFIABLE INFORMATION"
+    },
+    {
+      "id": "PM-6",
+      "name": "MEASURES OF PERFORMANCE"
+    },
+    {
+      "id": "PM-7",
+      "name": "ENTERPRISE ARCHITECTURE"
+    },
+    {
+      "id": "PM-7(1)",
+      "name": "OFFLOADING"
+    },
+    {
+      "id": "PM-8",
+      "name": "CRITICAL INFRASTRUCTURE PLAN"
+    },
+    {
+      "id": "PM-9",
+      "name": "RISK MANAGEMENT STRATEGY"
+    }
+  ]
+}

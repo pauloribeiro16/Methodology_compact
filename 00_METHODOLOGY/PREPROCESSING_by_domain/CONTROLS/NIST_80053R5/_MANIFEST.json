@@ -1,0 +1,41 @@
+{
+  "referential": "NIST SP 800-53 Rev. 5",
+  "version": "r5 (2020-12-10)",
+  "source_urls": [
+    "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf"
+  ],
+  "fetched_date": "2026-09-05",
+  "total_entries": 719,
+  "granularity": "control + enhancement ids (name informational; ids authoritative)",
+  "extraction": "pdftotext -layout of official PDF; baseline-column letters stripped",
+  "counts_per_family": {
+    "AC": 127,
+    "AT": 6,
+    "AU": 38,
+    "CA": 9,
+    "CM": 32,
+    "CP": 43,
+    "IA": 53,
+    "IR": 33,
+    "MA": 28,
+    "MP": 20,
+    "PE": 44,
+    "PL": 11,
+    "PM": 34,
+    "PS": 15,
+    "PT": 16,
+    "RA": 11,
+    "SA": 23,
+    "SC": 114,
+    "SI": 50,
+    "SR": 12
+  },
+  "legacy_aliases": {
+    "IP-3": "r4 family IP (Individual Participation) retired in r5; PF crosswalks cite it for the privacy analogue \u2014 r5 successor content lives in PT family (PT-1..PT-2) and PM-22; treat IP-3 as a legacy citation id",
+    "DM-1": "r4 family DM (Disclosure) retired in r5; r5 successor content lives in PT family; treat DM-1 as a legacy citation id"
+  },
+  "legacy_alias_ids": [
+    "IP-3",
+    "DM-1"
+  ]
+}

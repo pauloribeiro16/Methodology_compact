@@ -1,0 +1,218 @@
+{
+  "family": "IA",
+  "framework": "NIST SP 800-53 Rev. 5",
+  "controls": [
+    {
+      "id": "IA-1",
+      "name": "POLICY AND PROCEDURES"
+    },
+    {
+      "id": "IA-10",
+      "name": "ADAPTIVE AUTHENTICATION"
+    },
+    {
+      "id": "IA-11",
+      "name": "RE-AUTHENTICATION"
+    },
+    {
+      "id": "IA-12",
+      "name": "IDENTITY PROOFING"
+    },
+    {
+      "id": "IA-12(1)",
+      "name": "SUPERVISOR AUTHORIZATION"
+    },
+    {
+      "id": "IA-12(2)",
+      "name": "IDENTITY EVIDENCE"
+    },
+    {
+      "id": "IA-12(3)",
+      "name": "IDENTITY EVIDENCE VALIDATION AND VERIFICATION"
+    },
+    {
+      "id": "IA-12(4)",
+      "name": "IN-PERSON VALIDATION AND VERIFICATION"
+    },
+    {
+      "id": "IA-12(5)",
+      "name": "ADDRESS CONFIRMATION"
+    },
+    {
+      "id": "IA-12(6)",
+      "name": "ACCEPT EXTERNALLY-PROOFED IDENTITIES"
+    },
+    {
+      "id": "IA-2",
+      "name": "IDENTIFICATION AND AUTHENTICATION (ORGANIZATIONAL USERS)"
+    },
+    {
+      "id": "IA-2(1)",
+      "name": "MULTI-FACTOR AUTHENTICATION TO PRIVILEGED ACCOUNTS"
+    },
+    {
+      "id": "IA-2(10)",
+      "name": "SINGLE SIGN-ON"
+    },
+    {
+      "id": "IA-2(12)",
+      "name": "ACCEPTANCE OF PIV CREDENTIALS"
+    },
+    {
+      "id": "IA-2(13)",
+      "name": "OUT-OF-BAND AUTHENTICATION"
+    },
+    {
+      "id": "IA-2(2)",
+      "name": "MULTI-FACTOR AUTHENTICATION TO NON-PRIVILEGED ACCOUNTS"
+    },
+    {
+      "id": "IA-2(5)",
+      "name": "INDIVIDUAL AUTHENTICATION WITH GROUP AUTHENTICATION O /S"
+    },
+    {
+      "id": "IA-3",
+      "name": "DEVICE IDENTIFICATION AND AUTHENTICATION"
+    },
+    {
+      "id": "IA-3(1)",
+      "name": "CRYPTOGRAPHIC BIDIRECTIONAL AUTHENTICATION"
+    },
+    {
+      "id": "IA-3(3)",
+      "name": "DYNAMIC ADDRESS ALLOCATION"
+    },
+    {
+      "id": "IA-3(4)",
+      "name": "DEVICE ATTESTATION"
+    },
+    {
+      "id": "IA-4",
+      "name": "IDENTIFIER MANAGEMENT"
+    },
+    {
+      "id": "IA-4(1)",
+      "name": "PROHIBIT ACCOUNT IDENTIFIERS AS PUBLIC IDENTIFIERS"
+    },
+    {
+      "id": "IA-4(4)",
+      "name": "IDENTIFY USER STATUS"
+    },
+    {
+      "id": "IA-4(5)",
+      "name": "DYNAMIC MANAGEMENT"
+    },
+    {
+      "id": "IA-4(6)",
+      "name": "CROSS-ORGANIZATION MANAGEMENT"
+    },
+    {
+      "id": "IA-4(8)",
+      "name": "PAIRWISE PSEUDONYMOUS IDENTIFIERS"
+    },
+    {
+      "id": "IA-4(9)",
+      "name": "ATTRIBUTE MAINTENANCE AND PROTECTION O /S"
+    },
+    {
+      "id": "IA-5",
+      "name": "AUTHENTICATOR MANAGEMENT"
+    },
+    {
+      "id": "IA-5(1)",
+      "name": "PASSWORD-BASED AUTHENTICATION O /S"
+    },
+    {
+      "id": "IA-5(10)",
+      "name": "DYNAMIC CREDENTIAL BINDING"
+    },
+    {
+      "id": "IA-5(12)",
+      "name": "BIOMETRIC AUTHENTICATION PERFORMANCE"
+    },
+    {
+      "id": "IA-5(13)",
+      "name": "EXPIRATION OF CACHED AUTHENTICATORS"
+    },
+    {
+      "id": "IA-5(14)",
+      "name": "MANAGING CONTENT OF PKI TRUST STORES"
+    },
+    {
+      "id": "IA-5(15)",
+      "name": "GSA-APPROVED PRODUCTS AND SERVICES"
+    },
+    {
+      "id": "IA-5(16)",
+      "name": "IN-PERSON OR TRUSTED EXTERNAL PARTY AUTHENTICATOR ISSUANCE"
+    },
+    {
+      "id": "IA-5(17)",
+      "name": "PRESENTATION ATTACK DETECTION FOR BIOMETRIC AUTHENTICATORS"
+    },
+    {
+      "id": "IA-5(18)",
+      "name": "PASSWORD MANAGERS"
+    },
+    {
+      "id": "IA-5(2)",
+      "name": "PUBLIC KEY-BASED AUTHENTICATION"
+    },
+    {
+      "id": "IA-5(5)",
+      "name": "CHANGE AUTHENTICATORS PRIOR TO DELIVERY"
+    },
+    {
+      "id": "IA-5(6)",
+      "name": "PROTECTION OF AUTHENTICATORS"
+    },
+    {
+      "id": "IA-5(7)",
+      "name": "NO EMBEDDED UNENCRYPTED STATIC AUTHENTICATORS"
+    },
+    {
+      "id": "IA-5(8)",
+      "name": "MULTIPLE SYSTEM ACCOUNTS"
+    },
+    {
+      "id": "IA-5(9)",
+      "name": "FEDERATED CREDENTIAL MANAGEMENT"
+    },
+    {
+      "id": "IA-6",
+      "name": "AUTHENTICATION FEEDBACK"
+    },
+    {
+      "id": "IA-7",
+      "name": "CRYPTOGRAPHIC MODULE AUTHENTICATION"
+    },
+    {
+      "id": "IA-8",
+      "name": "IDENTIFICATION AND AUTHENTICATION (NON-ORGANIZATIONAL USERS)"
+    },
+    {
+      "id": "IA-8(1)",
+      "name": "ACCEPTANCE OF PIV CREDENTIALS FROM OTHER AGENCIES"
+    },
+    {
+      "id": "IA-8(2)",
+      "name": "ACCEPTANCE OF EXTERNAL AUTHENTICATORS"
+    },
+    {
+      "id": "IA-8(4)",
+      "name": "USE OF DEFINED PROFILES"
+    },
+    {
+      "id": "IA-8(5)",
+      "name": "ACCEPTANCE OF PIV-I CREDENTIALS"
+    },
+    {
+      "id": "IA-8(6)",
+      "name": "DISASSOCIABILITY"
+    },
+    {
+      "id": "IA-9",
+      "name": "SERVICE IDENTIFICATION AND AUTHENTICATION"
+    }
+  ]
+}
