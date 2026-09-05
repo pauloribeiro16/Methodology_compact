@@ -428,7 +428,7 @@ DORA Art. 26(1) mandates Threat-Led Penetration Testing (TLPT) "at least every 3
 | D-07.2 | Secure Coding Practices | CRA, DORA, AI_Act | ID.RA-01, PR.PS-02, PR.PS-06 | ID.RA-P1, ID.RA-P3, PR.PO-P1, PR.PO-P3 | MANAGE-2.1, MANAGE-2.3, MEASURE-2.1, GOVERN-1.1 |
 | D-07.3 | CI/CD Pipeline Security | CRA | ID.RA-01, PR.PS-02, PR.PS-06 | ID.RA-P1, ID.RA-P3, PR.PO-P1, PR.PO-P3 | MANAGE-2.1, MANAGE-2.3, MEASURE-2.1, GOVERN-1.1 |
 | D-07.4 | Change Management | CRA, DORA | GV.OV-01, GV.OV-02, GV.PO-02, GV.SC-04, ID.IM-04, PR.PS-01, PR.PS-02, PR.PS-06 | CT.DP-P4, GV.MT-P1, GV.MT-P2, GV.PO-P3, GV.PO-P4, ID.IM-P1, ID.IM-P2, PR.PO-P1, PR.PO-P3 | — |
-| D-08.1 | General Security Awareness | GDPR, CRA, DORA | PR.AT-01, PR.AT-01 (with UNMAPPED_CSF on the user-side), PR.AT-02, PR.PS-01 | GV.AT-P1, PR.PO-P1, PR.PO-P3 | — |
+| D-08.1 | General Security Awareness | GDPR, CRA, DORA | PR.AT-01, PR.AT-01 (with ALT-ANCHOR (ISO A.5.34) on the user-side), PR.AT-02, PR.PS-01 | GV.AT-P1, PR.PO-P1, PR.PO-P3 | — |
 | D-08.2 | Role-Specific Competence | GDPR, CRA, DORA, AI_Act | GV.RR-01, GV.RR-02, GV.RR-04, GV.SC-03, PR.AT-01, PR.AT-02, PR.AT-03, PR.AT-04 | CT.DP-P4, GV.AT-P1, GV.PO-P5 | — |
 | D-08.3 | Management Board Training | DORA | GV.RR-01, PR.AT-03 | GV.AT-P1, GV.PO-P5 | — |
 | D-09.1 | Information Security Policies | GDPR, CRA, DORA, AI_Act | GV.OC-03, GV.OC-04, GV.OV-01, GV.OV-03, GV.PO-01, GV.PO-01 (primary), GV.PO-02, GV.RM-01, GV.RM-04, GV.RM-05, GV.RR-01, GV.RR-02, GV.RR-03, GV.SC-01, GV.SC-04 | CT.DP-P4, GV.MT-P1, GV.MT-P2, GV.PO-P1, GV.PO-P2, GV.PO-P3, GV.PO-P4, GV.PO-P5, GV.RM-P1, ID.RA-P2 | — |

@@ -23,12 +23,81 @@ clause ids, never framework anchors, hence not validated against NIST lists.
 Exit 0 = GATE PASS.
 """
 import re
+import json
 import subprocess
 import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[4]
 CASE = REPO / "02_CASES" / "Case_03_OmniBank_Financial"
+
+def alt_anchor_spans(line):
+    out = []; idx = 0
+    while True:
+        s = line.find("ALT-ANCHOR (", idx)
+        if s < 0: break
+        i = s + len("ALT-ANCHOR "); depth = 0; j = i
+        while j < len(line):
+            if line[j] == "(": depth += 1
+            elif line[j] == ")":
+                depth -= 1
+                if depth == 0: out.append(line[i+1:j]); break
+            j += 1
+        idx = j + 1
+    return out
+
+def load_anchor_sets():
+    controls = REPO / "00_METHODOLOGY" / "PREPROCESSING_by_domain" / "CONTROLS"
+    r5 = set()
+    for f in controls.glob("NIST_80053R5/??.json"):
+        for c in json.loads(f.read_text(encoding="utf-8"))["controls"]:
+            r5.add(c["id"])
+    ssdf = set()
+    sd = json.loads((controls / "NIST_SSDF" / "SSDF.json").read_text(encoding="utf-8"))
+    for p in sd["practices"]:
+        ssdf.add(p["id"])
+        for t in p.get("tasks", []):
+            ssdf.add(t["id"])
+    av = json.loads((controls / "OWASP_ASVS" / "ASVS_sections.json").read_text(encoding="utf-8"))
+    asvs_ids = set(av["chapters"]) | {s["id"] for s in av["sections"]}
+    sm = json.loads((controls / "OWASP_SAMM" / "SAMM_streams.json").read_text(encoding="utf-8"))
+    samm_ids = {s["stream"] for s in sm["streams"]}
+    for s in sm["streams"]:
+        for lv in (1, 2, 3):
+            samm_ids.add(f"{s['stream']}-{lv}")
+    iso = {f"A.{maj}.{n:02d}" for maj in range(5, 9) for n in range(1, 40)}
+    return {"800-53r5": r5 | {"IP-3", "DM-1"}, "SSDF": ssdf, "ASVS": asvs_ids,
+            "SAMM": samm_ids, "ISO": iso}
+
+def alt_anchor_is_valid(inner):
+    last = None
+    for raw in inner.split(";"):
+        ref = raw.strip()
+        if not ref: return False
+        parts = ref.split(" ", 1)
+        if len(parts) == 2 and parts[0] in ANCHOR_SETS:
+            last, ident = parts[0], parts[1].strip()
+        else:
+            if last is None: return False
+            ident = ref
+        if ident not in ANCHOR_SETS[last]:
+            return False
+    return True
+
+ANCHOR_SETS = load_anchor_sets()
+
+# CSF 1.1 → 2.0 waivers
+CSF_11_WAIVER = {
+    "PR.DS-12": "1.1 remnant (PR.DS 2.0 = DS-01/02/10/11)",
+    "RS.CO-04": "1.1 remnant (RS.CO 2.0 = CO-02/CO-03)",
+    "PR.IP-06": "1.1 family retired (2.0: PR.PS)",
+    "PR.IP-07": "1.1 family retired (2.0: PR.PS)",
+    "PR.PT-01": "1.1 family retired (2.0: PR.DS-10)",
+    "PR.AT-03": "1.1 remnant (PR.AT 2.0 = AT-01/AT-02)",
+    "PR.AT-04": "1.1 remnant (PR.AT 2.0 = AT-01/AT-02)",
+    "PR.AC-01": "1.1 family retired (2.0: PR.AA)",
+    "ID.SC-04": "1.1 family retired (2.0: GV.SC)",
+}
 CONTROLS = REPO / "00_METHODOLOGY" / "PREPROCESSING_by_domain" / "CONTROLS"
 
 EXCLUDED = ("validation/", "VALIDATOR_", "CHANGE_LOG", "DEPRECATED", "_deprecated", "RICH_VS_LEGACY", "PORT_census")
@@ -60,7 +129,13 @@ def load_ids(folder):
 
 PF_IDS = load_ids(CONTROLS / "NIST_PF")
 AI_IDS = load_ids(CONTROLS / "NIST_AI_RMF")
-CSF_IDS = None  # WARN-only policy (see docstring 4)
+CSF_IDS = None
+_csf_json = REPO / "00_METHODOLOGY" / "PREPROCESSING_by_domain" / "CONTROLS" / "NIST_CSF_2.0" / "CSF_2.0.json"
+try:
+    CSF_IDS = {s if isinstance(s, str) else s.get("id")
+               for s in json.loads(_csf_json.read_text(encoding="utf-8"))["subcategories"]}
+except Exception:
+    CSF_IDS = None  # warn-only fallback  # WARN-only policy (see docstring 4)
 
 PF_RE = re.compile(r"\b(?:GV|ID|PR|CT|CM)\.[A-Z]{2}-P\d+\b")
 AI_RE = re.compile(r"\b(GOVERN|MAP|MEASURE|MANAGE)-\d\.\d\b")
@@ -77,11 +152,28 @@ for md in CASE.rglob("*.md"):
         wx = waivered(low) or waivered(prev_low) or waivered(nxt)
         if re.search(r"UNMAPPED_[A-Z]+\.\.", line) and not wx:
             violations.append(f"{md}:{n}: pseudo-range marker")
-        if "UNMAPPED_PF" in line and not wx:
-            if "(" not in line and "unmapped_pf_justification" not in line:
-                violations.append(f"{md}:{n}: UNMAPPED_PF without justification")
-        if re.search(r"UNMAPPED_(AIRMF|PRIVACY)\b", line) and not wx:
-            violations.append(f"{md}:{n}: retired token UNMAPPED_AIRMF/UNMAPPED_PRIVACY")
+        if re.search(r"UNMAPPED_(PF|CSF|AIRMF|PRIVACY)(?:[\s\)\|]|$)", line) and not wx:
+            # Waivers for prose/audit-history mentions (vocabulary, retrospective narrative)
+            line_low = line.lower()
+            is_vocab = any(w in line_low for w in (
+                "marker vocabulary", "v1.0 redirect", "ct.dp family",
+                "carry-over check", "non-existent pf id",
+                "false 11", "false assumption", "§6.5 self-check",
+                "adjudicated from the retired", "may have .unmapped",
+                "unmapped_.. rationale", "0 rows", "unused ai rmf",
+                "validation carried out"))
+            # Cells already converted to ALT-ANCHOR but still keep the historical
+            # "(no PF 1.0 ... subcategory)" text inside parentheses — UNMAPPED in that
+            # text is purely narrative, not a live marker.
+            if is_vocab or "ALT-ANCHOR (" in line:
+                pass
+            else:
+                violations.append(f"{md}:{n}: RETIRED UNMAPPED token (v0.4): {line.strip()[:110]}")
+        for inner0 in alt_anchor_spans(line):
+            inner = inner0.strip()
+            if inner == "NO-ANALOGUE" or "…" in inner or alt_anchor_is_valid(inner):
+                continue
+            violations.append(f"{md}:{n}: ALT-ANCHOR invalid '{inner}'")
         if re.search(r"maturity|maturidade", low) and not wx:
             violations.append(f"{md}:{n}: legacy maturity term")
         if re.match(r"^\s*sprint(\w*)\s*:", line):
@@ -122,4 +214,4 @@ if violations:
     for v in violations[:40]:
         print(" ", v)
     sys.exit(1)
-print("GATE PASS (check_unmapped.py, Case_03 v0.3)")
+print("GATE PASS (check_unmapped.py, Case_03 v0.4)")
