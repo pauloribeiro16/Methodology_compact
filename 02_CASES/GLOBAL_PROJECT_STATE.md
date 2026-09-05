@@ -188,7 +188,8 @@ Methodology/
   catalogue cards + frozen SAMM/ASVS anchors; CAP maturity bound to Scale A, values
   deferred to next EvidenceItem refresh.
 - **Diagrams (v1.5 §5C.4):** one Mermaid diagram per lane card — PROC flowchart TD, CAP graph LR — 12/12 in the pilot docs; derived from catalogue scenarios/extensions.
-- **Remaining:** populate the other ~80 lane ids; bind maturity; KG reflection.
+- **Full population (2026-09-05):** 102/102 cards (C1 18 · C2 37 · C3 47) with diagrams + articulation tables + catalogue cross-refs.
+- **Remaining:** bind CAP maturity to EvidenceItems; KG reflection.
 
 ---
 
