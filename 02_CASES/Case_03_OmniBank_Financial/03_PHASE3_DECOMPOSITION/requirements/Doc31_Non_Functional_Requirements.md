@@ -81,7 +81,7 @@ Every NFR includes:
 | **Metric** | Encryption coverage percentage |
 | **Target** | 100% of applicable data encrypted |
 | **Method** | TEST |
-| **Source UC** | UC-02, UC-06 |
+| **Source UC** | PROC-41, PROC-43 |
 | **Source Rule** | CR-D-01.1-001 |
 | **Priority** | CRITICAL |
 
@@ -97,7 +97,7 @@ Every NFR includes:
 | **Metric** | PII fields encrypted percentage |
 | **Target** | 100% of PII fields encrypted |
 | **Method** | TEST |
-| **Source UC** | UC-06 |
+| **Source UC** | PROC-43 |
 | **Source Rule** | CR-D-01.1-001 |
 | **Priority** | CRITICAL |
 
@@ -113,7 +113,7 @@ Every NFR includes:
 | **Metric** | TLS 1.3 enforcement percentage |
 | **Target** | 100% of communications use TLS 1.3 |
 | **Method** | TEST |
-| **Source UC** | UC-03 |
+| **Source UC** | PROC-42 |
 | **Source Rule** | CR-D-01.2-001 |
 | **Priority** | CRITICAL |
 
@@ -145,7 +145,7 @@ Every NFR includes:
 | **Metric** | Model integrity validation rate |
 | **Target** | 100% of model loads validated |
 | **Method** | TEST |
-| **Source UC** | PROC-03, UC-08 |
+| **Source UC** | PROC-03, CAP-08 |
 | **Source Rule** | CR-D-01.4-001 |
 | **Priority** | HIGH |
 
@@ -161,7 +161,7 @@ Every NFR includes:
 | **Metric** | Privileged access MFA coverage |
 | **Target** | 100% of privileged sessions authenticated |
 | **Method** | TEST |
-| **Source UC** | UC-17, UC-22 |
+| **Source UC** | PROC-45, PROC-47 |
 | **Source Rule** | CR-D-03.2-001 |
 | **Priority** | CRITICAL |
 
@@ -193,7 +193,7 @@ Every NFR includes:
 | **Metric** | Log immutability verification |
 | **Target** | 100% of logs cryptographically protected |
 | **Method** | ANALYZE |
-| **Source UC** | UC-58 |
+| **Source UC** | CAP-10 |
 | **Source Rule** | CR-D-10.2-001 |
 | **Priority** | CRITICAL |
 
@@ -209,7 +209,7 @@ Every NFR includes:
 | **Metric** | PII separation and access control coverage |
 | **Target** | 100% of PII logs separated and access-controlled |
 | **Method** | INSPECT |
-| **Source UC** | UC-58 |
+| **Source UC** | CAP-10 |
 | **Source Rule** | CR-D-10.2-001 |
 | **Priority** | CRITICAL |
 
@@ -225,7 +225,7 @@ Every NFR includes:
 | **Metric** | Training data access control coverage |
 | **Target** | 100% of training data access controlled and logged |
 | **Method** | INSPECT |
-| **Source UC** | UC-21, PROC-20 |
+| **Source UC** | PROC-46, PROC-20 |
 | **Source Rule** | CR-D-05.1-001 |
 | **Priority** | HIGH |
 
@@ -257,7 +257,7 @@ Every NFR includes:
 | **Metric** | Key segregation verification |
 | **Target** | 100% key segregation between PII and log integrity |
 | **Method** | INSPECT |
-| **Source UC** | UC-33, UC-58 |
+| **Source UC** | UC-33, CAP-10 |
 | **Source Rule** | CR-D-05.3-001, CR-D-10.2-001 |
 | **Priority** | CRITICAL |
 
@@ -307,7 +307,7 @@ Every NFR includes:
 | **Metric** | Model checksum validation rate |
 | **Target** | 100% of model loads validated |
 | **Method** | TEST |
-| **Source UC** | PROC-03, UC-08 |
+| **Source UC** | PROC-03, CAP-08 |
 | **Source Rule** | CR-D-01.4-001 |
 | **Priority** | HIGH |
 
@@ -323,7 +323,7 @@ Every NFR includes:
 | **Metric** | File integrity monitoring coverage |
 | **Target** | 100% of critical system files and AI artifacts monitored |
 | **Method** | TEST |
-| **Source UC** | UC-02, PROC-03 |
+| **Source UC** | PROC-41, PROC-03 |
 | **Source Rule** | BPR-D-01.4-001 |
 | **Priority** | HIGH |
 
@@ -339,7 +339,7 @@ Every NFR includes:
 | **Metric** | Backup verification quarterly completion |
 | **Target** | 100% of backup types verified quarterly |
 | **Method** | DEMONSTRATE |
-| **Source UC** | UC-26 |
+| **Source UC** | CAP-09 |
 | **Source Rule** | BPR-D-04.4-001 |
 | **Priority** | MEDIUM |
 
@@ -419,7 +419,7 @@ Every NFR includes:
 | **Metric** | AI decision log completeness |
 | **Target** | 100% of AI decisions logged with full traceability |
 | **Method** | INSPECT |
-| **Source UC** | UC-58, PROC-38 |
+| **Source UC** | CAP-10, PROC-38 |
 | **Source Rule** | AI-C09, AI-C10, DORA-C38 |
 | **Priority** | CRITICAL |
 
@@ -565,7 +565,7 @@ Every NFR includes:
 | **Metric** | Data center redundancy |
 | **Target** | ≥2 EU data centers for critical systems |
 | **Method** | INSPECT |
-| **Source UC** | UC-26 |
+| **Source UC** | CAP-09 |
 | **Source Rule** | CR-D-04.4-001 |
 | **Priority** | HIGH |
 
@@ -581,7 +581,7 @@ Every NFR includes:
 | **Metric** | EU data residency compliance |
 | **Target** | 100% of financial data within EU |
 | **Method** | INSPECT |
-| **Source UC** | UC-26 |
+| **Source UC** | CAP-09 |
 | **Source Rule** | CR-D-04.4-001 |
 | **Priority** | HIGH |
 
@@ -597,7 +597,7 @@ Every NFR includes:
 | **Metric** | Drift detection time |
 | **Target** | ≤1 hour from drift occurrence to detection |
 | **Method** | ANALYZE |
-| **Source UC** | UC-61 |
+| **Source UC** | PROC-52 |
 | **Source Rule** | BPR-D-12.2-001 |
 | **Priority** | HIGH |
 
@@ -613,7 +613,7 @@ Every NFR includes:
 | **Metric** | Retraining trigger time |
 | **Target** | ≤4 hours from threshold breach to retraining start |
 | **Method** | DEMONSTRATE |
-| **Source UC** | UC-61 |
+| **Source UC** | PROC-52 |
 | **Source Rule** | BPR-D-12.2-001 |
 | **Priority** | MEDIUM |
 
@@ -793,7 +793,7 @@ Every NFR includes:
 | **Metric** | Log retention compliance |
 | **Target** | 100% of logs retained per regulation |
 | **Method** | ANALYZE |
-| **Source UC** | UC-58, PROC-38 |
+| **Source UC** | CAP-10, PROC-38 |
 | **Source Rule** | CR-D-10.2-001 |
 | **Priority** | CRITICAL |
 
@@ -825,7 +825,7 @@ Every NFR includes:
 | **Metric** | Non-repudiation coverage |
 | **Target** | 100% of significant actions with authenticated attribution |
 | **Method** | INSPECT |
-| **Source UC** | UC-58 |
+| **Source UC** | CAP-10 |
 | **Source Rule** | CR-D-10.2-001 |
 | **Priority** | HIGH |
 
@@ -857,7 +857,7 @@ Every NFR includes:
 | **Metric** | AI decision log completeness |
 | **Target** | 100% of AI decisions logged with required attributes |
 | **Method** | INSPECT |
-| **Source UC** | UC-58, PROC-38 |
+| **Source UC** | CAP-10, PROC-38 |
 | **Source Rule** | AI-C09, AI-C10, DORA-C38 |
 | **Priority** | CRITICAL |
 

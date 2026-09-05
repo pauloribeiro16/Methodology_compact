@@ -65,21 +65,21 @@ The relationships follow UML Use Case modeling conventions with stereotypes:
 
 | Source UC | «include» Target | Purpose |
 |-----------|------------------|---------|
-| UC-02: Configure Data Encryption | UC-25 (real-time risk scoring): Authenticate Administrator | Ensures only authenticated admins configure encryption |
-| UC-06: Field-Level Encryption | UC-25 (real-time risk scoring): Authenticate Administrator | Ensures only authorized personnel access encryption configuration |
-| UC-08: Detect Model Tampering | UC-25 (real-time risk scoring): Authenticate Administrator | Ensures anomaly alerts are authenticated |
+| PROC-41: Configure Data Encryption | UC-25 (real-time risk scoring): Authenticate Administrator | Ensures only authenticated admins configure encryption |
+| PROC-43: Field-Level Encryption | UC-25 (real-time risk scoring): Authenticate Administrator | Ensures only authorized personnel access encryption configuration |
+| CAP-08: Detect Model Tampering | UC-25 (real-time risk scoring): Authenticate Administrator | Ensures anomaly alerts are authenticated |
 
 **«refine» Relationships:**
 
 | Source UC | «refine» Target | Purpose |
 |-----------|-----------------|---------|
-| UC-08.1: Investigate Model Tampering | UC-08: Detect Model Tampering | Adds detailed flow for investigation procedure |
+| CAP-08.1: Investigate Model Tampering | CAP-08: Detect Model Tampering | Adds detailed flow for investigation procedure |
 
 **«specialization» Relationships:**
 
 | Source UC | «specialization» For | Regulation | Purpose |
 |-----------|----------------------|------------|---------|
-| UC-02-GDPR: Configure Encryption (GDPR) | UC-02: Configure Data Encryption | GDPR | GDPR-specific encryption configuration with field-level controls per Art. 5(1)(f) |
+| PROC-41-GDPR: Configure Encryption (GDPR) | PROC-41: Configure Data Encryption | GDPR | GDPR-specific encryption configuration with field-level controls per Art. 5(1)(f) |
 
 ---
 
@@ -104,7 +104,7 @@ The relationships follow UML Use Case modeling conventions with stereotypes:
 
 | Source UC | «alternative» With | Selection Criteria |
 |-----------|---------------------|-------------------|
-| CAP-01: Automated SBOM Generation | UC-15: Manual SBOM Generation | When automated tools unavailable or new dependency discovered |
+| CAP-01: Automated SBOM Generation | PROC-44: Manual SBOM Generation | When automated tools unavailable or new dependency discovered |
 | PROC-09: Automated AI Vuln Scan | CAP-01: Manual AI Vuln Assessment | When AI model complexity exceeds automated tool capability |
 
 ---
@@ -116,7 +116,7 @@ The relationships follow UML Use Case modeling conventions with stereotypes:
 | Source UC | «include» Target | Purpose |
 |-----------|------------------|---------|
 | PROC-10: Provision Identity | UC-25 (real-time risk scoring): Authenticate HR Manager | Ensures HR manager is authenticated before provisioning |
-| UC-17: Enforce MFA | UC-25 (real-time risk scoring): Authenticate Administrator | Ensures admin authentication before MFA enforcement |
+| PROC-45: Enforce MFA | UC-25 (real-time risk scoring): Authenticate Administrator | Ensures admin authentication before MFA enforcement |
 | PROC-11: Quarterly Access Review | UC-103: Generate Access Report | Generates standardized access report for review |
 
 **«refine» Relationships:**
@@ -124,14 +124,14 @@ The relationships follow UML Use Case modeling conventions with stereotypes:
 | Source UC | «refine» Target | Purpose |
 |-----------|-----------------|---------|
 | PROC-11.1: Review AI Platform Access | PROC-11: Quarterly Access Review | Adds AI-specific access review for model training and inference access |
-| UC-21.1: Approve AI Model Parameters | UC-21: Manage AI Model Access | Adds dual-approval workflow for parameter changes |
+| PROC-46.1: Approve AI Model Parameters | PROC-46: Manage AI Model Access | Adds dual-approval workflow for parameter changes |
 
 **«specialization» Relationships:**
 
 | Source UC | «specialization» For | Regulation | Purpose |
 |-----------|----------------------|------------|---------|
 | PROC-10-DORA: Provision Identity (DORA) | PROC-10: Provision Identity | DORA | DORA-specific IAM controls for financial entities under ECB supervision |
-| UC-17-AI: Enforce MFA (AI Act) | UC-17: Enforce MFA | AI Act | AI Act-specific MFA for high-risk AI system access per Annex III |
+| PROC-45-AI: Enforce MFA (AI Act) | PROC-45: Enforce MFA | AI Act | AI Act-specific MFA for high-risk AI system access per Annex III |
 
 ---
 
@@ -219,22 +219,22 @@ The relationships follow UML Use Case modeling conventions with stereotypes:
 | Source UC | «include» Target | Purpose |
 |-----------|------------------|---------|
 | PROC-28: Implement Secure-by-Design | UC-110: Conduct Threat Modeling | Ensures threat modeling is performed during design |
-| UC-44: Secure CI/CD Pipeline | UC-111: Scan Dependencies | Scans dependencies for known vulnerabilities |
-| UC-46: Secure AI Training Pipeline | UC-112: Validate Training Data | Validates training data quality and provenance |
+| PROC-48: Secure CI/CD Pipeline | UC-111: Scan Dependencies | Scans dependencies for known vulnerabilities |
+| PROC-49: Secure AI Training Pipeline | UC-112: Validate Training Data | Validates training data quality and provenance |
 
 **«refine» Relationships:**
 
 | Source UC | «refine» Target | Purpose |
 |-----------|-----------------|---------|
 | PROC-29.1: SAST Integration | PROC-29: Enforce Secure Coding | Adds detailed SAST configuration and triage workflow |
-| UC-44.1: AI Deployment Gate | UC-44: Secure CI/CD | Adds AI-specific deployment gates including model signing and bias testing |
+| PROC-48.1: AI Deployment Gate | PROC-48: Secure CI/CD | Adds AI-specific deployment gates including model signing and bias testing |
 
 **«specialization» Relationships:**
 
 | Source UC | «specialization» For | Regulation | Purpose |
 |-----------|----------------------|------------|---------|
 | PROC-28-CRA: Secure-by-Design (CRA) | PROC-28: Implement Secure-by-Design | CRA | CRA secure-by-default standard (higher bar than GDPR) |
-| UC-44-NIS2: Secure CI/CD (NIS 2) | UC-44: Secure CI/CD | NIS 2 | NIS 2 secure development requirements for essential entities |
+| PROC-48-NIS2: Secure CI/CD (NIS 2) | PROC-48: Secure CI/CD | NIS 2 | NIS 2 secure development requirements for essential entities |
 
 ---
 
@@ -294,34 +294,34 @@ The relationships follow UML Use Case modeling conventions with stereotypes:
 
 | Source UC | «include» Target | Purpose |
 |-----------|------------------|---------|
-| UC-57: AI-Powered Threat Detection | UC-104: Correlate Security Alerts | Integrates AI detection with SIEM correlation |
+| PROC-51: AI-Powered Threat Detection | UC-104: Correlate Security Alerts | Integrates AI detection with SIEM correlation |
 | PROC-36: Penetration Testing | UC-117: Document Test Results | Documents penetration test results for remediation |
-| UC-61: Monitor AI Model Drift | UC-118: Trigger Automated Response | Triggers automated response to detected drift |
+| PROC-52: Monitor AI Model Drift | UC-118: Trigger Automated Response | Triggers automated response to detected drift |
 
 **«refine» Relationships:**
 
 | Source UC | «refine» Target | Purpose |
 |-----------|-----------------|---------|
-| UC-57.1: Configure AI Detection Rules | UC-57: AI-Powered Threat Detection | Adds AI-specific detection rule configuration and tuning |
+| PROC-51.1: Configure AI Detection Rules | PROC-51: AI-Powered Threat Detection | Adds AI-specific detection rule configuration and tuning |
 | PROC-37.1: Red Team AI Attack | PROC-37: AI Adversarial Robustness Testing | Adds red team exercise for AI-specific attack scenarios |
 
 **«alternative» Relationships:**
 
 | Source UC | «alternative» With | Selection Criteria |
 |-----------|---------------------|-------------------|
-| UC-58-Cloud: Cloud Log Storage | UC-58-OnPrem: On-Premise Log Storage | When financial data sovereignty requires on-premise storage |
+| CAP-10-Cloud: Cloud Log Storage | CAP-10-OnPrem: On-Premise Log Storage | When financial data sovereignty requires on-premise storage |
 | PROC-36-Internal: Internal Pentest | PROC-36-External: External Pentest | When independent verification required for regulatory examination |
 
 ### 3.11 Product Journey Relationships (PKG-A..F, UC-63..93)
 
-> Source: Doc22 §6B (Product Functional Use Cases). Journey relationships sequence the
+> Source: Doc22 §4 (Product Functional Use Cases, formerly §6B). Journey relationships sequence the
 > OmniBank platform product chains (onboarding → banking core → lending → payments →
-> corporate → service). Lane note: PROC-39 (Underwriter Review) and PROC-40 (Complaint
+> corporate → service). Lane note: UC-66 (Underwriter Review) and UC-92 (Complaint
 > Handling) are process-lane members of the product journeys per `LANE_NAMING_CENSUS_v0`.
 
 **Journey relationships:**
 
-| Source | Relationship | Target | Journey (Doc22 §6B) |
+| Source | Relationship | Target | Journey (Doc22 §4) |
 |--------|--------------|--------|---------------------|
 | UC-69: Open Account via Mobile App | «include» | UC-70: eIDAS Identity Verification | PKG-A onboarding chain (UC-69 step 3) |
 | UC-69: Open Account via Mobile App | «include» | UC-71: KYC Document Upload & Vault Filing | PKG-A onboarding chain (UC-69 step 4) |
@@ -336,7 +336,7 @@ The relationships follow UML Use Case modeling conventions with stereotypes:
 | UC-64: OmniScore Computes Credit Score | «precedes» | UC-65: Customer Receives Score Explanation | Score bands route explanation (PKG-C) |
 | UC-63/UC-64: Credit application + OmniScore | «precedes» | UC-67: Customer Accepts Offer & Contract Signed | OmniScore feeds the lending decision (PKG-C) |
 | UC-67: Customer Accepts Offer & Contract Signed | «precedes» | UC-68: Customer Manages Repayment & Arrears View | Contract signed before repayment lifecycle (PKG-C) |
-| PROC-39: Underwriter Review | «extend» | UC-63: Apply for Consumer Credit | Manual/borderline path of the lending decision (PKG-C) |
+| UC-66: Underwriter Review | «extend» | UC-63: Apply for Consumer Credit | Manual/borderline path of the lending decision (PKG-C) |
 | UC-81: PSD2 Consent Grant/Revoke | «precedes» | UC-82: TPP Onboarding & AIS Access | Consent gates AIS access (PKG-D) |
 | UC-81: PSD2 Consent Grant/Revoke | «precedes» | UC-83: PIS Payment Initiation with SCA | Consent gates PIS initiation (PKG-D) |
 | UC-86: Corporate Onboarding with Delegated Users | «precedes» | UC-87/UC-88/UC-89: Treasury services | Corporate onboarding gates cash management, FX, trade finance (PKG-E) |
@@ -440,8 +440,8 @@ inv: self.applicableRegulations->forAll(reg |
 ```mermaid
 graph TD
     subgraph PKG-D-01["PKG-D-01: Data Protection"]
-        UC02["UC-02: Configure Encryption"]
-        UC08["UC-08: Detect Model Tampering"]
+        UC02["PROC-41: Configure Encryption"]
+        UC08["CAP-08: Detect Model Tampering"]
         UC99["UC-25 (real-time risk scoring): Authenticate Admin"]
     end
 
@@ -486,8 +486,8 @@ graph TD
 | PROC-34 | IPSARA Assessment | 5 | CRITICAL |
 | CAP-05 | Maintain Unified ISMS | 4 | CRITICAL |
 | UC-33 | Data Erasure | 4 | CRITICAL |
-| UC-57 | AI-Powered Threat Detection | 4 | CRITICAL |
-| UC-44 | Secure CI/CD | 4 | CRITICAL |
+| PROC-51 | AI-Powered Threat Detection | 4 | CRITICAL |
+| PROC-48 | Secure CI/CD | 4 | CRITICAL |
 | CAP-04 | Security Competence | 4 | CRITICAL |
 
 ### 7.2 Critical Path Length
@@ -501,7 +501,7 @@ Length: 2
 PROC-34 → UC-116 → PROC-34.1 (DPIA) / PROC-34.2 (FRIA)
 Length: 2
 
-UC-44 → UC-111 → UC-44.1 (AI Deployment Gate)
+PROC-48 → UC-111 → PROC-48.1 (AI Deployment Gate)
 Length: 3 (longest)
 ```
 
@@ -511,11 +511,11 @@ Length: 3 (longest)
 
 | Regulation | Specializations | Coverage |
 |------------|----------------|----------|
-| GDPR | UC-02-GDPR, PROC-15-GDPR, UC-33-GDPR, PROC-34-GDPR | 4 |
-| CRA | PROC-15-CRA, PROC-28-CRA, UC-44-CRA | 3 |
-| NIS 2 | PROC-10-DORA, PROC-15-NIS2, PROC-24-DORA, UC-44-NIS2 | 4 |
+| GDPR | PROC-41-GDPR, PROC-15-GDPR, UC-33-GDPR, PROC-34-GDPR | 4 |
+| CRA | PROC-15-CRA, PROC-28-CRA, PROC-48-CRA | 3 |
+| NIS 2 | PROC-10-DORA, PROC-15-NIS2, PROC-24-DORA, PROC-48-NIS2 | 4 |
 | DORA | PROC-10-DORA, PROC-15-DORA, PROC-24-DORA, PROC-25-DORA, CAP-05-DORA | 5 |
-| AI Act | UC-17-AI, PROC-15-AI, CAP-04-AI | 3 |
+| AI Act | PROC-45-AI, PROC-15-AI, CAP-04-AI | 3 |
 
 ---
 

@@ -2,7 +2,7 @@
 document_id: AEGIS-P3-ANNEX-A
 title: Use Case Diagrams Annex (Case_03)
 phase: 3
-version: 1.0
+version: 1.1
 created: 2026-09-05
 updated: 2026-09-05
 author: Executor
@@ -14,13 +14,13 @@ status: ACTIVE
 > **Render note:** diagrams use `useCaseDiagram` — requires Mermaid ≥ v11.6.
 > Syntax follows the known-good reference: Case_02 `Doc21_Use_Cases_Catalog.md` §5.1.
 
-**Source of truth:** `03_PHASE3_DECOMPOSITION/Doc22_Use_Cases_Catalog.md` §6B (product functional use cases UC-63+, PKG-A..F). Actors are taken from each fully-dressed card (primary actor per §6B.x table; supporting actors from "Actor Brief Descriptions" §2.x). Include (`..>`) / extend (`.>`) edges are drawn **only** where a card's `**Constrained by:**` field or extensions explicitly indicate a dependency between two use cases **of the same package**; cross-package constraints (e.g. UC-73 → UC-63, UC-90 → UC-77/78/83) are intentionally omitted here and remain traceable in Doc22/Doc23. Note: PROC-39 and PROC-40 are pre-existing compliance use cases (§6) reused inside the PKG-C/PKG-F flows per Doc22 §6B.1 and §6B.6 tables; they are shown as package members.
+**Source of truth:** `03_PHASE3_DECOMPOSITION/Doc22_Use_Cases_Catalog.md` §4 (product functional use cases, formerly §6B; UC-63+ plus PKG-DS). Actors are taken from each fully-dressed card (primary actor per §4.x table; supporting actors from "Actor Brief Descriptions" §2.x). Include (`..>`) / extend (`.>`) edges are drawn **only** where a card's `**Constrained by:**` field or extensions explicitly indicate a dependency between two use cases **of the same package**; cross-package constraints are intentionally omitted here and remain traceable in Doc22/Doc23. Note: UC-66 and UC-92 were re-adjudicated from PROC-39/40 to the UC lane per rubric v1.8 §5B rule 6 (human decision 2026-09-05); they are genuine actor→system use cases shown as PKG-C/PKG-F members per Doc22 §4.2 and §4.7 tables. Diagrams carry UC ovals only (§5C.5): PROC-*/CAP-* live in the Doc32 lane cards.
 
 ---
 
 ## §1 — System-wide
 
-Six product packages and the top actors from Doc22 §6B.0.
+Seven product packages (PKG-A..F + PKG-DS) and the top actors from Doc22 §4.1 (formerly §6B.0).
 
 ```mermaid
 useCaseDiagram
@@ -30,6 +30,8 @@ useCaseDiagram
     actor "Underwriter" as UND
     actor "SYS-03 (OmniScore AI Platform)" as SYS03
     actor "SYS-11 (Fraud & AML Platform)" as SYS11
+    actor "Data Protection Officer" as DPO
+    actor "Data Subject" as DSUB
 
     package "PKG-A — Onboarding & KYC" {
         usecase "PKG-A\nOnboarding & KYC" as PKGA
@@ -49,6 +51,10 @@ useCaseDiagram
     package "PKG-F — Fraud & Customer Service" {
         usecase "PKG-F\nFraud & Customer Service" as PKGF
     }
+    package "PKG-DS — Privacy & Data-subject UCs" {
+        usecase "UC-33\nDPO Executes\nData Erasure Request" as UC33
+        usecase "UC-34\nData Subject Requests\nData Export" as UC34
+    }
 
     CUST --> PKGA
     CUST --> PKGB
@@ -62,6 +68,9 @@ useCaseDiagram
     SYS11 --> PKGA
     SYS11 --> PKGD
     SYS11 --> PKGF
+    DSUB --> UC34
+    DSUB --> UC33
+    DPO --> UC33
 ```
 
 ---
@@ -153,9 +162,9 @@ useCaseDiagram
 
 ---
 
-## §4 — PKG-C: Lending & OmniScore (UC-63..68, PROC-39)
+## §4 — PKG-C: Lending & OmniScore (UC-63..68)
 
-Actors from cards UC-63/64/65/67/68/PROC-39. Edges: UC-65 `**Constrained by:**` UC-63 (consent record) → include; PROC-39 is the manual/borderline path of UC-63 per UC-63 brief description → extend.
+Actors from cards UC-63/64/65/66/67/68. Edges: UC-65 `**Constrained by:**` UC-63 (consent record) → include; UC-66 (re-adjudicated from PROC-39) is the manual/borderline path of UC-63 per UC-63 brief description → extend.
 
 ```mermaid
 useCaseDiagram
@@ -169,7 +178,7 @@ useCaseDiagram
         usecase "UC-63\nApply for Consumer Credit" as UC63
         usecase "UC-64\nOmniScore Computes\nCredit Score" as UC64
         usecase "UC-65\nCustomer Receives\nScore Explanation" as UC65
-        usecase "PROC-39\nUnderwriter Reviews\nBorderline Application" as PROC39
+        usecase "UC-66\nUnderwriter Reviews\nBorderline Application" as UC66
         usecase "UC-67\nCustomer Accepts Offer\n& Contract Signed" as UC67
         usecase "UC-68\nCustomer Manages Repayment\n& Arrears View" as UC68
     }
@@ -181,17 +190,17 @@ useCaseDiagram
     SYS03 --> UC64
     SYS14 --> UC64
     SYS02 --> UC63
-    UND --> PROC39
+    UND --> UC66
 
     UC65 ..> UC63 : include
-    PROC39 .> UC63 : extend
+    UC66 .> UC63 : extend
 ```
 
 ---
 
 ## §5 — PKG-D: Payments & Open Banking (UC-81..85)
 
-Actors from cards UC-81..85. Includes per `**Constrained by:**`: UC-81↔UC-82 (mutual constraint recorded on both cards), UC-83→UC-81/UC-82, UC-85→UC-83 (cross-package UC-75/UC-77/UC-58 omitted).
+Actors from cards UC-81..85. Includes per `**Constrained by:**`: UC-81↔UC-82 (mutual constraint recorded on both cards), UC-83→UC-81/UC-82, UC-85→UC-83 (cross-package UC-75/UC-77/CAP-10 omitted).
 
 ```mermaid
 useCaseDiagram
@@ -266,9 +275,9 @@ useCaseDiagram
 
 ---
 
-## §7 — PKG-F: Fraud & Customer Service (UC-90, UC-91, PROC-40, UC-93)
+## §7 — PKG-F: Fraud & Customer Service (UC-90, UC-91, UC-92, UC-93)
 
-Actors from cards UC-90/91/PROC-40/UC-93. Extend: UC-91 `**Constrained by:**` UC-90 (alert-loop fallback) — contact-centre block as fallback of the in-app alert loop. No same-package includes (all other constraints are cross-package).
+Actors from cards UC-90/91/92/93 (UC-92 re-adjudicated from PROC-40 per rubric v1.8 §5B rule 6). Extend: UC-91 `**Constrained by:**` UC-90 (alert-loop fallback) — contact-centre block as fallback of the in-app alert loop. No same-package includes (all other constraints are cross-package).
 
 ```mermaid
 useCaseDiagram
@@ -281,24 +290,48 @@ useCaseDiagram
     package "PKG-F — Fraud & Customer Service" {
         usecase "UC-90\nIn-App Fraud Alert\nConfirm/Deny (SYS-11)" as UC90
         usecase "UC-91\nCard Block via\nContact Centre (SYS-20)" as UC91
-        usecase "PROC-40\nComplaint Filing &\nHandling (SYS-17)" as PROC40
+        usecase "UC-92\nComplaint Filing &\nHandling (SYS-17)" as UC92
         usecase "UC-93\nSecure Messaging" as UC93
     }
 
     CUST --> UC90
     CUST --> UC91
-    CUST --> PROC40
+    CUST --> UC92
     CUST --> UC93
     SYS11 --> UC90
     SYS20 --> UC91
-    SYS20 --> PROC40
-    SYS17 --> PROC40
+    SYS20 --> UC92
+    SYS17 --> UC92
     SYS17 --> UC93
     SOC25 --> UC90
 
     UC91 .> UC90 : extend
 ```
+---
+
+## §8 — PKG-DS: Privacy & Data-subject UCs (UC-33, UC-34)
+
+New package in Doc22 v3.0 (UC SEPARATION): UC-33/UC-34 elevated to fully-dressed form (§4.8).
+Actors from the cards: Data Protection Officer (primary on UC-33, secondary on UC-34), Data
+Subject (requester; primary on UC-34). No same-package includes/extends (the erasure/export
+constraints — PROC-21/PROC-23/CAP-10 and UC-63/UC-65/PROC-22 — are compliance-plane or
+cross-package and stay traceable in Doc22 §4.8 §10 / §3.2).
+
+```mermaid
+useCaseDiagram
+    actor "Data Protection Officer" as DPO
+    actor "Data Subject" as DSUB
+
+    package "PKG-DS — Privacy & Data-subject UCs" {
+        usecase "UC-33\nDPO Executes\nData Erasure Request" as UC33
+        usecase "UC-34\nData Subject Requests\nData Export" as UC34
+    }
+
+    DPO --> UC33
+    DSUB --> UC33
+    DSUB --> UC34
+```
 
 ---
 
-**Traceability:** UC IDs ↔ Doc22 §6B fully-dressed cards; actor names ↔ §6B.0 product actor table and per-card §2 "Actor Brief Descriptions"; include/extend edges ↔ per-card §10 `**Constrained by:**` fields (same-package subset only). Cross-package and compliance-plane dependencies (UC-17, UC-22, UC-33, UC-34, UC-57, UC-58, UC-61, UC-06, UC-08, UC-02/03, PROC-01..24, CAP-02) are documented in Doc22 §6B §10 and Doc23_Use_Case_Relationships.md.
+**Traceability:** UC IDs ↔ Doc22 §4 fully-dressed cards; actor names ↔ §4.1 product actor table and per-card §2 "Actor Brief Descriptions"; include/extend edges ↔ per-card §10 `**Constrained by:**` fields (same-package subset only). Cross-package and compliance-plane dependencies (PROC-45, PROC-47, PROC-51, CAP-10, PROC-52, PROC-43, CAP-08, PROC-41/42, PROC-01..24, CAP-02) are documented in Doc22 §3.2/§4 §10 and Doc23_Use_Case_Relationships.md. UC-33/UC-34 are catalog UCs (PKG-DS, §8 above).

@@ -2,13 +2,13 @@
 document_id: AEGIS-P3-13
 title: Use Cases Catalog
 phase: 3
-version: 2.3
+version: 3.0
 created: 2026-04-28
 updated: 2026-09-05
 author: Compliance Lead
 status: DRAFT
 inputs: [11_Rules_Catalog.md, 10_Privacy_Security_Objectives.md, 09_Strategic_Tensions_Report.md, 04_Company_Context_Assessment.md]
-outputs: [13a_Use_Case_Relationships.md, 13b_Use_Case_Variability.md, 14_Architectural_Nodes.md, 15_Requirements_Allocation.md]
+outputs: [Doc23_Use_Case_Relationships.md, Doc24_Use_Case_Variability.md, Doc25_Architectural_Nodes.md, Doc26_Requirements_Allocation.md, Doc32_Process_Capability_Cards.md]
 traceability: AEGIS Class Model → UseCase, UseCasePackage, Actor, UseCaseRelationship classes
 related_documents: 00_COMMON/Taxonomy_Reference.md
 regulations: GDPR, CRA, NIS 2, DORA, AI Act (5/5)
@@ -23,15 +23,18 @@ complexity: Maximum (5 regulations, 38 sub-domains, 63 rules)
 **Phase:** 3 — Decomposition & Risk Integration
 **Step:** 1 — Define Packages + Use Cases
 
+> **UML diagrams:** `annexes/A_Use_Case_Diagrams.md` (use case diagrams) ·
+> `annexes/B_Sequence_Diagrams.md` (sequence diagrams, one per use case).
+
 ---
 
 ## 1. DOCUMENT PURPOSE
 
-This document is the primary output of Phase 3 Step 1 for Case 03 — OmniBank Financial Systems (Maximum Complexity). It defines the complete set of Use Cases derived from the 63 rules in the Rules Catalog, organized by the 10 security domains from the canonical taxonomy.
+This document is the primary output of Phase 3 Step 1 for Case 03 — OmniBank Financial Systems (Maximum Complexity). It defines the use cases of the UC (technology) lane. Since v3.0 (UC SEPARATION, rubric `REALIZATION_CLASS_RUBRIC.md` v1.8 §5B rule 6) the catalog is **lane-pure**: it holds use-case cards only; the 10 compliance domains (PKG-D-01..D-10) are indexed in §3 and realised by process/capability lane cards in `Doc32_Process_Capability_Cards.md`.
 
-Each Use Case follows the Actor + Verb + Object pattern and maps to one or more compliance rules. UCs are organized into Packages (one per domain) for clarity. Relationships and Variability are defined in separate documents (13a, 13b).
+Each Use Case follows the Actor + Verb + Object pattern and maps to one or more compliance rules. UCs are organized into product packages (PKG-A..F, §4) plus a dedicated privacy & data-subject package (PKG-DS, §4.8). Relationships and Variability are defined in Doc23_Use_Case_Relationships.md and Doc24_Use_Case_Variability.md.
 
-**Scope:** 10 packages, 60+ Use Cases derived from 38 compliance rules and 25 best practice rules across all 5 applicable regulations.
+**Scope:** 7 use-case packages (PKG-A..F product + PKG-DS privacy), 33 use cases; 10 compliance domains indexed in §3 with realisation in `Doc32_Process_Capability_Cards.md`, across all 5 applicable regulations.
 
 ---
 
@@ -43,952 +46,63 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 | **caseName** | OmniBank Financial Systems S.A. |
 | **complexity** | Maximum |
 | **regulationsCovered** | GDPR, CRA, NIS 2, DORA, AI Act (5/5) |
-| **totalPackages** | 10 |
-| **totalUseCases** | 62 |
+| **totalPackages** | 7 (PKG-A..F product + PKG-DS) |
+| **totalUseCases** | 33 (31 product + 2 PKG-DS) |
 | **totalComplianceRulesMapped** | 38/38 (100%) |
 | **totalBestPracticeRulesMapped** | 25/25 (100%) |
-| **phase3Status** | Iteration 1 — Initial UC Definition |
-| **relationshipsDefined** | Pending (Doc 13a) |
-| **variabilityDefined** | Pending (Doc 13b) |
-
----
-
-## 5. PACKAGES
-
-### 3.1 Package Overview
-
-| Package ID | Domain | Use Cases | Primary Regulations | Priority Distribution |
-|------------|--------|-----------|---------------------|----------------------|
-| PKG-D-01 | Data Protection & Encryption | 8 | All 5 | CRITICAL: 4, HIGH: 3, MEDIUM: 1 |
-| PKG-D-02 | Vulnerability Management | 7 | CRA, NIS 2, DORA, AI Act | CRITICAL: 4, HIGH: 2, MEDIUM: 1 |
-| PKG-D-03 | Access Control | 7 | CRA, NIS 2, DORA, AI Act | CRITICAL: 4, HIGH: 3, MEDIUM: 0 |
-| PKG-D-04 | Incident Response | 8 | All 5 | CRITICAL: 5, HIGH: 2, MEDIUM: 1 |
-| PKG-D-05 | Data Lifecycle | 6 | GDPR, CRA, AI Act | CRITICAL: 4, HIGH: 1, MEDIUM: 1 |
-| PKG-D-06 | Supply Chain | 5 | GDPR, NIS 2, DORA | CRITICAL: 3, HIGH: 2, MEDIUM: 0 |
-| PKG-D-07 | Secure Development | 6 | NIS 2, DORA | CRITICAL: 3, HIGH: 3, MEDIUM: 0 |
-| PKG-D-08 | Human Factors | 4 | GDPR, NIS 2, AI Act | CRITICAL: 2, HIGH: 1, MEDIUM: 1 |
-| PKG-D-09 | Governance & Documentation | 5 | All 5 | CRITICAL: 3, HIGH: 2, MEDIUM: 0 |
-| PKG-D-10 | Monitoring & Audit | 6 | CRA, NIS 2, DORA, AI Act | CRITICAL: 4, HIGH: 2, MEDIUM: 0 |
-| **TOTAL** | **10 Domains** | **62 UCs** | **5/5 Regulations** | **CRITICAL: 32, HIGH: 19, MEDIUM: 4** |
-
----
-
-## 6. USE CASES
-
-### 4.1 PKG-D-01: Data Protection & Encryption
-
-**Purpose:** Encrypt data at rest and in transit; manage cryptographic keys; ensure data integrity and AI system resilience.
-
-**Primary Actors:** Data Protection Officer, Security Architect, AI System Administrator, Data Subject
-
-**Business Goals:** AG-D-01.1-001, AG-D-01.2-001, AG-D-01.3-001, AG-D-01.4-001
-
----
-
-## PROC-01: Data Subject Requests Data Encryption Status
-
-**Package:** PKG-D-01
-**Actors:** Data Subject (Primary), Data Protection Officer (Secondary)
-**Description:** A data subject queries the encryption status of their stored personal and financial data.
-**Rules:** CR-D-01.1-001
-**Priority:** CRITICAL
-**SLA:** Response within 72 hours per GDPR Art. 12
-
-**Related Goals:** AG-D-01.1-001
-
----
-
-## UC-02: Security Architect Configures Data Encryption at Rest
-
-**Package:** PKG-D-01
-**Actors:** Security Architect (Primary), AI System Administrator (Secondary)
-**Description:** Security architect configures AES-256 encryption for personal data, financial records, and AI training datasets at rest.
-**Rules:** CR-D-01.1-001
-**Priority:** CRITICAL
-**SLA:** Implementation within 30 days of rule activation
-
-**Related Goals:** AG-D-01.1-001, AG-D-05.2-001
-
----
-
-## UC-03: Security Administrator Enforces TLS 1.3 for Data in Transit
-
-**Package:** PKG-D-01
-**Actors:** Security Administrator (Primary), Network Engineer (Secondary)
-**Description:** Security administrator enforces TLS 1.3 for all internal, external, and API communications with HSTS and certificate pinning.
-**Rules:** CR-D-01.2-001
-**Priority:** CRITICAL
-**SLA:** Full enforcement within 60 days
-
-**Related Goals:** AG-D-01.2-001, AG-D-05.4-001
-
----
-
-## PROC-02: Cryptographic Officer Manages HSM Key Lifecycle
-
-**Package:** PKG-D-01
-**Actors:** Cryptographic Officer (Primary), Security Auditor (Secondary)
-**Description:** Cryptographic officer manages HSM-backed key lifecycle: generation, rotation, revocation, and destruction with full audit trail.
-**Rules:** CR-D-01.3-001
-**Priority:** CRITICAL
-**SLA:** Key rotation every 90 days; revocation within 4 hours of compromise
-
-**Related Goals:** AG-D-01.3-001
-
----
-
-## PROC-03: AI System Administrator Validates AI Model Integrity
-
-**Package:** PKG-D-01
-**Actors:** AI System Administrator (Primary), Security Architect (Secondary)
-**Description:** AI system administrator validates AI model integrity using checksums and version control to detect manipulation or unauthorized changes.
-**Rules:** CR-D-01.4-001
-**Priority:** HIGH
-**SLA:** Integrity check on every model load; anomalies reported within 1 hour
-
-**Related Goals:** AG-D-01.4-001, AG-D-02.4-002
-
----
-
-## UC-06: Security Architect Implements Field-Level Encryption
-
-**Package:** PKG-D-01
-**Actors:** Security Architect (Primary), Database Administrator (Secondary)
-**Description:** Security architect implements field-level encryption for PII fields and AI training datasets as per GDPR-C04 and CRA-C07.
-**Rules:** CR-D-01.1-001
-**Priority:** HIGH
-**SLA:** Implementation within 60 days
-
-**Related Goals:** AG-D-01.1-001
-
----
-
-## PROC-04: Security Officer Rotates Cryptographic Keys
-
-**Package:** PKG-D-01
-**Actors:** Security Officer (Primary), Cryptographic Officer (Secondary)
-**Description:** Security officer executes automated key rotation per defined schedule with HSM validation and audit logging.
-**Rules:** CR-D-01.3-001
-**SLA:** Automated rotation every 90 days; manual rotation on compromise
-
-**Related Goals:** AG-D-01.3-001
-
----
-
-## UC-08: AI System Detects Model Tampering
-
-**Package:** PKG-D-01
-**Actors:** AI System (Primary), Security Administrator (Secondary)
-**Description:** AI system automatically detects model tampering, adversarial attacks, or unauthorized parameter modifications.
-**Rules:** CR-D-01.4-001, BPR-D-12.4-001
-**Priority:** HIGH
-**SLA:** Detection within 15 minutes; alert within 5 minutes
-
-**Related Goals:** AG-D-01.4-001, AG-D-10.1-002
-
----
-
-### 4.2 PKG-D-02: Vulnerability Management
-
-**Purpose:** Maintain zero known exploitable vulnerabilities; operate automated patch management; coordinate vulnerability disclosure; execute TLPT.
-
-**Primary Actors:** Security Operations Manager, Vulnerability Assessment Team, Penetration Tester, AI Security Analyst
-
-**Business Goals:** AG-D-02.1-002, AG-D-02.2-002, AG-D-02.3-002, AG-D-02.4-002
-
----
-
-## PROC-05: Security Operations Manager Scans for Vulnerabilities
-
-**Package:** PKG-D-02
-**Actors:** Security Operations Manager (Primary), System Administrator (Secondary)
-**Description:** Security operations manager executes continuous automated vulnerability scanning across all production systems and AI platforms.
-**Rules:** CR-D-02.1-001
-**Priority:** CRITICAL
-**SLA:** Weekly scans; Critical findings remediated within 72 hours
-
-**Related Goals:** AG-D-02.1-002
-
----
-
-## PROC-06: Security Operations Manager Deploys Critical Patches
-
-**Package:** PKG-D-02
-**Actors:** Security Operations Manager (Primary), System Administrator (Secondary)
-**Description:** Security operations manager deploys automated patch management with 72-hour SLA for critical vulnerabilities across systems, AI models, and firmware.
-**Rules:** CR-D-02.2-001
-**Priority:** CRITICAL
-**SLA:** Critical patches deployed within 72 hours of release
-
-**Related Goals:** AG-D-02.2-002
-
----
-
-## PROC-07: Security Analyst Coordinates Vulnerability Disclosure
-
-**Package:** PKG-D-02
-**Actors:** Security Analyst (Primary), ENISA/CSIRT (Secondary)
-**Description:** Security analyst operates coordinated vulnerability disclosure policy with public-facing intake and reports critical incidents to ENISA/CSIRT within 24 hours.
-**Rules:** CR-D-02.3-001
-**Priority:** CRITICAL
-**SLA:** Critical disclosure within 24 hours; public advisory within 90 days
-
-**Related Goals:** AG-D-02.3-002
-
----
-
-## PROC-08: Penetration Tester Executes Threat-Led Penetration Testing
-
-**Package:** PKG-D-02
-**Actors:** Penetration Tester (Primary), CISO (Secondary), AI Security Analyst (Secondary)
-**Description:** Penetration tester executes annual TLPT per DORA RTS including AI bias testing, adversarial robustness testing, and model inversion resistance.
-**Rules:** CR-D-02.4-001, BPR-D-02.4-001, BPR-D-12.1-001
-**Priority:** CRITICAL
-**SLA:** Annual execution; findings remediated within 30 days
-
-**Related Goals:** AG-D-02.4-002
-
----
-
-## PROC-09: AI Security Analyst Assesses AI Model Vulnerabilities
-
-**Package:** PKG-D-02
-**Actors:** AI Security Analyst (Primary), Security Architect (Secondary)
-**Description:** AI security analyst assesses AI model vulnerabilities including data poisoning, model evasion, and adversarial attacks per MITRE ATLAS.
-**Rules:** CR-D-02.1-001, BPR-D-12.4-001
-**Priority:** HIGH
-**SLA:** Quarterly assessment; critical findings within 30 days
-
-**Related Goals:** AG-D-02.1-002
-
----
-
-## CAP-01: Vulnerability Analyst Maintains Vulnerability Register
-
-**Package:** PKG-D-02
-**Actors:** Vulnerability Analyst (Primary), Security Operations Manager (Secondary)
-**Description:** Vulnerability analyst maintains centralized vulnerability register with CVSS scoring, exploitability assessment, and remediation tracking.
-**Rules:** BPR-D-02.1-001, BPR-D-02.3-001
-**Priority:** MEDIUM
-**SLA:** Monthly reconciliation; quarterly report to CISO
-
-**Related Goals:** AG-D-02.1-002
-
----
-
-## UC-15: Security Architect Generates SBOM for AI Model
-
-**Package:** PKG-D-02
-**Actors:** Security Architect (Primary), AI System Administrator (Secondary)
-**Description:** Security architect generates and maintains Software Bill of Materials (SBOM) for AI models including dependencies, open-source components, and model artifacts.
-**Rules:** BPR-D-02.2-001, CR-D-06.2-001
-**Priority:** HIGH
-**SLA:** SBOM generated on every model release; updated on dependency change
-
-**Related Goals:** AG-D-06.2-002
-
----
-
-### 4.3 PKG-D-03: Access Control
-
-**Purpose:** Implement unified identity management with MFA; enforce least privilege; maintain secure default configurations.
-
-**Primary Actors:** Identity and Access Manager, Security Administrator, AI Platform Administrator, Human Resources Manager
-
-**Business Goals:** AG-D-03.1-002, AG-D-03.2-002, AG-D-03.3-002, AG-D-03.4-002
-
----
-
-## PROC-10: Identity and Access Manager Provisions User Identity
-
-**Package:** PKG-D-03
-**Actors:** Identity and Access Manager (Primary), HR Manager (Secondary)
-**Description:** Identity and access manager provisions unified identity with MFA across all systems, cloud services, and AI platforms integrated with enterprise SSO.
-**Rules:** CR-D-03.1-001, BPR-D-03.1-001
-**Priority:** CRITICAL
-**SLA:** Identity provisioned within 4 hours of HR notification; MFA enrolled within 24 hours
-
-**Related Goals:** AG-D-03.1-002
-
----
-
-## UC-17: Security Administrator Enforces MFA for Privileged Access
-
-**Package:** PKG-D-03
-**Actors:** Security Administrator (Primary), AI Platform Administrator (Secondary)
-**Description:** Security administrator enforces MFA for all privileged access, remote access, and AI system access with step-up authentication for high-risk transactions.
-**Rules:** CR-D-03.2-001, BPR-D-03.2-001
-**Priority:** CRITICAL
-**SLA:** MFA enforced within 30 days; step-up for high-risk actions immediate
-
-**Related Goals:** AG-D-03.2-002
-
----
-
-## PROC-11: Identity and Access Manager Conducts Quarterly Access Review
-
-**Package:** PKG-D-03
-**Actors:** Identity and Access Manager (Primary), Security Administrator (Secondary)
-**Description:** Identity and access manager enforces least privilege with quarterly access reviews for all systems including AI model access and training data access.
-**Rules:** CR-D-03.3-001, BPR-D-03.3-001
-**Priority:** CRITICAL
-**SLA:** Quarterly review completed within 5 business days; access revoked within 24 hours of finding
-
-**Related Goals:** AG-D-03.3-002
-
----
-
-## PROC-12: Security Administrator Hardens System Configuration
-
-**Package:** PKG-D-03
-**Actors:** Security Administrator (Primary), System Administrator (Secondary)
-**Description:** Security administrator maintains secure default configuration per CIS Benchmarks, disabling unused services, ports, and protocols; hardens AI inference endpoints.
-**Rules:** CR-D-03.4-001, BPR-D-03.4-001
-**Priority:** CRITICAL
-**SLA:** Configuration baseline applied within 60 days; monthly compliance verification
-
-**Related Goals:** AG-D-03.4-002
-
----
-
-## PROC-13: Identity and Access Manager Deprovisions User Access
-
-**Package:** PKG-D-03
-**Actors:** Identity and Access Manager (Primary), HR Manager (Secondary)
-**Description:** Identity and access manager deprovisions user access within 24 hours of HR notification using automated HR system integration.
-**Rules:** CR-D-03.1-001, BPR-D-03.1-001
-**Priority:** HIGH
-**SLA:** Deprovisioning completed within 24 hours; all access removed within 48 hours
-
-**Related Goals:** AG-D-03.1-002
-
----
-
-## UC-21: AI Platform Administrator Manages AI Model Access
-
-**Package:** PKG-D-03
-**Actors:** AI Platform Administrator (Primary), Security Administrator (Secondary)
-**Description:** AI platform administrator manages access to AI model training data, inference endpoints, and parameter changes with MFA and least privilege.
-**Rules:** CR-D-03.1-001, CR-D-03.2-001
-**Priority:** HIGH
-**SLA:** Access reviewed monthly; parameter changes require dual approval
-
-**Related Goals:** AG-D-03.2-002
-
----
-
-## UC-22: Security Administrator Implements FIDO2 Authentication
-
-**Package:** PKG-D-03
-**Actors:** Security Administrator (Primary), Identity and Access Manager (Secondary)
-**Description:** Security administrator deploys FIDO2/WebAuthn MFA for all user-facing applications with hardware security keys for privileged accounts.
-**Rules:** BPR-D-03.2-001
-**Priority:** MEDIUM
-**SLA:** Phased rollout over 90 days; phishing-resistant authentication for privileged within 60 days
-
-**Related Goals:** AG-D-03.2-002
-
----
-
-### 4.4 PKG-D-04: Incident Response
-
-**Purpose:** Operate 24/7 SOC; maintain business continuity; execute universal incident notification; maintain redundant backups.
-
-**Primary Actors:** Security Operations Center Analyst, Business Continuity Manager, Compliance Officer, AI Operations Manager
-
-**Business Goals:** AG-D-04.1-002, AG-D-04.2-002, AG-D-04.3-002, AG-D-04.4-002
-
----
-
-## CAP-02: SOC Analyst Monitors Security Events
-
-**Package:** PKG-D-04
-**Actors:** SOC Analyst (Primary), AI Operations Manager (Secondary)
-**Description:** SOC analyst operates 24/7 automated incident detection and triage including AI anomaly detection for model drift and adversarial attacks.
-**Rules:** CR-D-04.1-001, BPR-D-04.1-001
-**Priority:** CRITICAL
-**SLA:** 24/7 coverage; critical incidents escalated within 5 minutes
-
-**Related Goals:** AG-D-04.1-002, AG-D-10.1-002
-
----
-
-## PROC-14: Business Continuity Manager Triggers Disaster Recovery
-
-**Package:** PKG-D-04
-**Actors:** Business Continuity Manager (Primary), IT Operations Manager (Secondary)
-**Description:** Business continuity manager triggers tested disaster recovery with RTO <= 4h and RPO <= 1h for critical financial systems including AI system failover.
-**Rules:** CR-D-04.2-001, BPR-D-04.2-001
-**Priority:** CRITICAL
-**SLA:** RTO <= 4 hours; RPO <= 1 hour; failover tested semi-annually
-
-**Related Goals:** AG-D-04.2-002
-
----
-
-## PROC-15: Compliance Officer Executes Universal Incident Notification
-
-**Package:** PKG-D-04
-**Actors:** Compliance Officer (Primary), Legal Counsel (Secondary), DPO (Secondary)
-**Description:** Compliance officer executes 24-hour universal incident notification workflow across GDPR (72h), CRA (24h), NIS 2 (24h), DORA (4h initial + 72h follow-up), AI Act (15d). Resolves T-001.
-**Rules:** CR-D-04.3-001, BPR-D-04.3-001
-**Priority:** CRITICAL
-**SLA:** DORA 4h initial report; GDPR 72h follow-up; all regulatory bodies notified within respective SLAs
-
-**Related Goals:** AG-D-04.3-002
-
-**Tension Resolution:** T-001 — Unified 24h workflow with regulation-specific annexes. DORA 4h initial satisfies shortest deadline.
-
----
-
-## UC-26: IT Operations Manager Maintains Redundant Backup Systems
-
-**Package:** PKG-D-04
-**Actors:** IT Operations Manager (Primary), Security Administrator (Secondary)
-**Description:** IT operations manager maintains redundant backup systems with automated failover across EU data centers with sovereignty controls.
-**Rules:** CR-D-04.4-001, BPR-D-04.4-001
-**Priority:** CRITICAL
-**SLA:** Backup verification quarterly; restore testing semi-annually; failover tested annually
-
-**Related Goals:** AG-D-04.4-002
-
----
-
-## PROC-16: AI Operations Manager Recovers AI System after Failure
-
-**Package:** PKG-D-04
-**Actors:** AI Operations Manager (Primary), Business Continuity Manager (Secondary)
-**Description:** AI operations manager recovers AI system after failure including model restoration from immutable backup, data pipeline recovery, and inference service resumption.
-**Rules:** CR-D-04.2-001, CR-D-04.4-001
-**Priority:** HIGH
-**SLA:** AI service recovery within 2 hours; model restoration within 30 minutes from checkpoint
-
-**Related Goals:** AG-D-04.2-002
-
----
-
-## PROC-17: SOC Analyst Investigates AI Model Anomaly
-
-**Package:** PKG-D-04
-**Actors:** SOC Analyst (Primary), AI Security Analyst (Secondary)
-**Description:** SOC analyst investigates AI model anomaly detected by monitoring including model drift, adversarial manipulation, or data quality issues.
-**Rules:** CR-D-04.1-001, CR-D-10.1-001, BPR-D-12.2-001
-**Priority:** HIGH
-**SLA:** Investigation started within 15 minutes; root cause identified within 4 hours
-
-**Related Goals:** AG-D-04.1-002
-
----
-
-## PROC-18: Incident Response Team Conducts Tabletop Exercise
-
-**Package:** PKG-D-04
-**Actors:** Incident Response Team Lead (Primary), CISO (Secondary)
-**Description:** Incident response team conducts quarterly tabletop exercises with cross-functional participants including security, legal, compliance, communications, and AI governance.
-**Rules:** BPR-D-04.1-001, BPR-D-04.3-001
-**Priority:** MEDIUM
-**SLA:** Quarterly exercises; lessons learned documented within 5 business days
-
-**Related Goals:** AG-D-04.1-002
-
----
-
-## PROC-19: Compliance Officer Reports AI Incident to Regulator
-
-**Package:** PKG-D-04
-**Actors:** Compliance Officer (Primary), AI Governance Lead (Secondary), DPO (Secondary)
-**Description:** Compliance officer reports AI-specific incidents (model failure, bias detection, decision errors) to relevant regulators under AI Act and DORA.
-**Rules:** CR-D-04.3-001, AI-C26, AI-C29
-**Priority:** CRITICAL
-**SLA:** AI Act: 15 days; DORA: 4h initial + 72h follow-up
-
-**Related Goals:** AG-D-04.3-002
-
----
-
-### 4.5 PKG-D-05: Data Lifecycle
-
-**Purpose:** Enforce data minimization; implement tiered retention; execute cryptographic erasure; enable data portability.
-
-**Primary Actors:** Data Protection Officer, AI Data Engineer, Data Subject, Compliance Officer
-
-**Business Goals:** AG-D-05.1-001, AG-D-05.2-001, AG-D-05.3-001, AG-D-05.4-001
-
----
-
-## PROC-20: Data Protection Officer Reviews Data Collection Minimization
-
-**Package:** PKG-D-05
-**Actors:** Data Protection Officer (Primary), AI Data Engineer (Secondary)
-**Description:** Data protection officer reviews data collection for minimization, ensuring AI training data relevance, representativeness, and freedom from prohibited bias proxies.
-**Rules:** CR-D-05.1-001, BPR-D-05.1-001
-**Priority:** CRITICAL
-**SLA:** Annual review; new processing assessed within 30 days
-
-**Related Goals:** AG-D-05.1-001
-
----
-
-## PROC-21: Compliance Officer Enforces Tiered Data Retention
-
-**Package:** PKG-D-05
-**Actors:** Compliance Officer (Primary), Data Protection Officer (Secondary)
-**Description:** Compliance officer enforces tiered retention policy: 10-year financial records (MiFID II), 5-year operational records, 6-month AI training logs with automated deletion.
-**Rules:** CR-D-05.2-001
-**Priority:** CRITICAL
-**SLA:** Automated deletion on expiry; retention violations reported within 24 hours
-
-**Related Goals:** AG-D-05.2-001
-
----
-
-## UC-33: Data Protection Officer Executes Data Erasure Request
-
-**Package:** PKG-D-05
-**Actors:** Data Protection Officer (Primary), IT Operations Manager (Secondary)
-**Description:** Data protection officer executes cryptographic sharding-based erasure within 30 days of GDPR erasure request or retention expiry for PII, AI training data, and model inference records. Resolves T-002.
-**Rules:** CR-D-05.3-001, BPR-D-05.3-001
-**Priority:** CRITICAL
-**SLA:** Erasure completed within 30 days; third-party notified within 72 hours
-
-**Related Goals:** AG-D-05.3-001
-
-**Tension Resolution:** T-002 — Cryptographic sharding enables DORA immutable log retention while satisfying GDPR erasure. PII keys destroyed; log structure preserved.
-
----
-
-## UC-34: Data Subject Requests Data Export
-
-**Package:** PKG-D-05
-**Actors:** Data Subject (Primary), Data Protection Officer (Secondary)
-**Description:** Data subject requests export of their personal data, AI model decisions, training data lineage, and credit scoring factors in machine-readable format.
-**Rules:** CR-D-05.4-001, BPR-D-05.4-001
-**Priority:** HIGH
-**SLA:** Export completed within 30 days per GDPR Art. 20
-
-**Related Goals:** AG-D-05.4-001
-
----
-
-## PROC-22: AI Data Engineer Manages AI Training Data Lifecycle
-
-**Package:** PKG-D-05
-**Actors:** AI Data Engineer (Primary), Data Protection Officer (Secondary)
-**Description:** AI data engineer manages AI training data lifecycle including collection, storage, training, inference logging, and deletion with documentation of data lineage.
-**Rules:** CR-D-05.1-001, CR-D-05.2-001
-**Priority:** HIGH
-**SLA:** Data lineage documented on every training run; inference logs retained 6 months
-
-**Related Goals:** AG-D-05.1-001, AG-D-05.2-001
-
----
-
-## PROC-23: Compliance Officer Audits Third-Party Data Processors
-
-**Package:** PKG-D-05
-**Actors:** Compliance Officer (Primary), Data Protection Officer (Secondary)
-**Description:** Compliance officer audits third-party data processors for compliance with erasure requests and retention policies including AI model providers.
-**Rules:** CR-D-05.3-001, GDPR-C12
-**Priority:** MEDIUM
-**SLA:** Annual audit; erasure compliance verified within 60 days of request
-
-**Related Goals:** AG-D-05.3-001
-
----
-
-### 4.6 PKG-D-06: Supply Chain
-
-**Purpose:** Operate vendor risk management; maintain SBOM; enforce contractual security; manage concentration risk.
-
-**Primary Actors:** Vendor Risk Manager, Procurement Manager, Security Architect, Legal Counsel
-
-**Business Goals:** AG-D-06.1-002, AG-D-06.2-002, AG-D-06.3-002, AG-D-06.4-002
-
----
-
-## PROC-24: Vendor Risk Manager Assesses ICT Third-Party Provider
-
-**Package:** PKG-D-06
-**Actors:** Vendor Risk Manager (Primary), Security Architect (Secondary)
-**Description:** Vendor risk manager assesses all ICT third-party providers pre-engagement and annually including AI model providers and data suppliers using SIG or CAIQ.
-**Rules:** CR-D-06.1-001, BPR-D-06.1-001
-**Priority:** CRITICAL
-**SLA:** Pre-engagement assessment before contract; annual reassessment; critical vendors quarterly
-
-**Related Goals:** AG-D-06.1-002
-
----
-
-## CAP-03: Security Architect Maintains SBOM for Product
-
-**Package:** PKG-D-06
-**Actors:** Security Architect (Primary), AI Platform Administrator (Secondary)
-**Description:** Security architect maintains Software Bill of Materials (SBOM) for all products, services, and AI model dependencies in SPDX and CycloneDX formats.
-**Rules:** CR-D-06.2-001, BPR-D-02.2-001
-**Priority:** CRITICAL
-**SLA:** SBOM generated on every release; updated on dependency change; published within 24h of release
-
-**Related Goals:** AG-D-06.2-002
-
----
-
-## PROC-25: Procurement Manager Enforces Security Contract Terms
-
-**Package:** PKG-D-06
-**Actors:** Procurement Manager (Primary), Legal Counsel (Secondary)
-**Description:** Procurement manager enforces contractual security obligations including audit rights, breach notification within 24h, data processing agreements, and regulatory cooperation clauses.
-**Rules:** CR-D-06.3-001, BPR-D-06.3-001
-**Priority:** CRITICAL
-**SLA:** Contract review annually; breach notification SLA tracked; audit rights exercised triennially
-
-**Related Goals:** AG-D-06.3-002
-
----
-
-## PROC-26: Vendor Risk Manager Manages Vendor Exit
-
-**Package:** PKG-D-06
-**Actors:** Vendor Risk Manager (Primary), IT Operations Manager (Secondary)
-**Description:** Vendor risk manager manages third-party concentration risk with documented exit strategies for critical vendors including AI model provider alternatives and data migration.
-**Rules:** CR-D-06.4-001, BPR-D-06.4-001
-**Priority:** HIGH
-**SLA:** Exit strategies documented annually; tested annually; alternative provider identified for all critical services
-
-**Related Goals:** AG-D-06.4-002
-
----
-
-## PROC-27: Vendor Risk Manager Monitors AI Model Provider Performance
-
-**Package:** PKG-D-06
-**Actors:** Vendor Risk Manager (Primary), AI Operations Manager (Secondary)
-**Description:** Vendor risk manager monitors AI model provider performance, bias metrics, and service levels with quarterly reporting to CISO.
-**Rules:** CR-D-06.1-001, BPR-D-12.3-001
-**Priority:** HIGH
-**SLA:** Quarterly performance review; bias metrics reported monthly; SLA violations escalated within 48 hours
-
-**Related Goals:** AG-D-06.1-002
-
----
-
-### 4.7 PKG-D-07: Secure Development
-
-**Purpose:** Implement privacy/security by design; enforce secure coding; secure CI/CD pipeline; operate formal change management.
-
-**Primary Actors:** Software Development Manager, Security Engineer, Release Manager, AI ML Engineer
-
-**Business Goals:** AG-D-07.1-001, AG-D-07.2-002, AG-D-07.3-002, AG-D-07.4-002
-
----
-
-## PROC-28: Software Development Manager Implements Secure-by-Design
-
-**Package:** PKG-D-07
-**Actors:** Software Development Manager (Primary), AI ML Engineer (Secondary)
-**Description:** Software development manager implements privacy by design and security by design per CRA secure-by-default standard including AI model governance and ethical design reviews.
-**Rules:** CR-D-07.1-001, BPR-D-07.1-001
-**Priority:** CRITICAL
-**SLA:** Secure design review on every sprint; ethical design review for AI features
-
-**Related Goals:** AG-D-07.1-001, AG-D-03.4-002
-
----
-
-## PROC-29: Security Engineer Enforces Secure Coding Standards
-
-**Package:** PKG-D-07
-**Actors:** Security Engineer (Primary), Software Development Manager (Secondary)
-**Description:** Security engineer enforces secure coding standards per OWASP ASVS with mandatory SAST/DAST in all development pipelines including AI code repositories and data pipeline code.
-**Rules:** CR-D-07.2-001, BPR-D-07.2-001
-**Priority:** CRITICAL
-**SLA:** SAST/DAST on every commit; High/Critical findings block deployment
-
-**Related Goals:** AG-D-07.2-002
-
----
-
-## UC-44: Release Manager Secures CI/CD Pipeline
-
-**Package:** PKG-D-07
-**Actors:** Release Manager (Primary), Security Engineer (Secondary)
-**Description:** Release manager operates CI/CD pipeline with automated security gates (SAST, DAST, SCA, secrets detection, IaC scanning) including ML pipeline security gates.
-**Rules:** CR-D-07.3-001, BPR-D-07.3-001
-**Priority:** CRITICAL
-**SLA:** Security gates on every pipeline run; critical findings block deployment within 1 hour
-
-**Related Goals:** AG-D-07.3-002
-
----
-
-## PROC-30: Change Advisory Board Approves Production Change
-
-**Package:** PKG-D-07
-**Actors:** Change Advisory Board (Primary), Release Manager (Secondary)
-**Description:** Change advisory board operates formal change management with dual control approval and independent oversight for all production changes including AI model changes.
-**Rules:** CR-D-07.4-001, BPR-D-07.4-001
-**Priority:** HIGH
-**SLA:** Emergency changes approved within 2 hours; standard changes reviewed within 5 business days
-
-**Related Goals:** AG-D-07.4-002
-
----
-
-## UC-46: AI ML Engineer Secures AI Training Pipeline
-
-**Package:** PKG-D-07
-**Actors:** AI ML Engineer (Primary), Security Engineer (Secondary)
-**Description:** AI ML engineer secures AI training pipeline including data validation, model signing, artifact verification, and deployment approval workflow.
-**Rules:** CR-D-07.1-001, CR-D-07.3-001
-**Priority:** HIGH
-**SLA:** Pipeline security gates on every training run; model artifacts signed and verified
-
-**Related Goals:** AG-D-07.2-002, AG-D-07.3-002
-
----
-
-## UC-47: Security Engineer Scans Infrastructure as Code
-
-**Package:** PKG-D-07
-**Actors:** Security Engineer (Primary), Cloud Engineer (Secondary)
-**Description:** Security engineer scans infrastructure-as-code (IaC) for vulnerabilities and misconfigurations using Checkov or equivalent before deployment.
-**Rules:** BPR-D-07.3-001
-**Priority:** MEDIUM
-**SLA:** IaC scanned on every pull request; High findings block merge
-
-**Related Goals:** AG-D-07.3-002
-
----
-
-### 4.8 PKG-D-08: Human Factors
-
-**Purpose:** Deliver security awareness training; maintain role-specific competence; ensure board-level oversight.
-
-**Primary Actors:** Training Manager, Security Awareness Officer, HR Manager, Board Secretary
-
-**Business Goals:** AG-D-08.1-002, AG-D-08.2-002, AG-D-08.3-002
-
----
-
-## PROC-31: Training Manager Delivers Security Awareness Training
-
-**Package:** PKG-D-08
-**Actors:** Training Manager (Primary), Security Awareness Officer (Secondary)
-**Description:** Training manager delivers annual security awareness training to all 5000+ employees with role-specific modules for developers, operations, and management including AI ethics.
-**Rules:** CR-D-08.1-001, BPR-D-08.1-001
-**Priority:** CRITICAL
-**SLA:** 95% completion within 90 days; effectiveness metrics reported quarterly
-
-**Related Goals:** AG-D-08.1-002
-
----
-
-## CAP-04: HR Manager Maintains Security Competence Program
-
-**Package:** PKG-D-08
-**Actors:** HR Manager (Primary), Training Manager (Secondary)
-**Description:** HR manager maintains role-specific security competence programs with mandatory certification for privileged roles and AI human oversight procedures.
-**Rules:** CR-D-08.2-001, BPR-D-08.2-001, BPR-D-12.3-001
-**Priority:** CRITICAL
-**SLA:** Certification tracked annually; AI oversight training completed before system deployment
-
-**Related Goals:** AG-D-08.2-002
-
----
-
-## PROC-32: Board Secretary Coordinates Board Security Training
-
-**Package:** PKG-D-08
-**Actors:** Board Secretary (Primary), CISO (Secondary)
-**Description:** Board secretary coordinates DORA and NIS 2 requirements training for management board with ICT risk oversight and quarterly compliance reporting.
-**Rules:** CR-D-08.3-001, BPR-D-08.3-001
-**Priority:** HIGH
-**SLA:** Board training completed within 60 days of appointment; quarterly reporting established
-
-**Related Goals:** AG-D-08.3-002
-
----
-
-## PROC-33: Security Awareness Officer Conducts Phishing Simulation
-
-**Package:** PKG-D-08
-**Actors:** Security Awareness Officer (Primary), Training Manager (Secondary)
-**Description:** Security awareness officer conducts phishing simulations quarterly to test employee awareness and measure training effectiveness.
-**Rules:** BPR-D-08.1-001
-**Priority:** MEDIUM
-**SLA:** Quarterly simulations; click rate < 5%; remedial training for failures
-
-**Related Goals:** AG-D-08.1-002
-
----
-
-### 4.9 PKG-D-09: Governance & Documentation
-
-**Purpose:** Maintain unified ISMS; conduct IPSARA assessments; manage asset inventory; maintain compliance documentation.
-
-**Primary Actors:** Chief Information Security Officer, Compliance Manager, Data Protection Officer, AI Governance Lead
-
-**Business Goals:** AG-D-09.1-001, AG-D-09.2-001, AG-D-09.4-001, AG-D-09.3-002
-
----
-
-## CAP-05: CISO Maintains Unified ISMS
-
-**Package:** PKG-D-09
-**Actors:** CISO (Primary), Compliance Manager (Secondary), AI Governance Lead (Secondary)
-**Description:** CISO maintains unified Information Security Management System (ISMS) covering all 5 regulatory frameworks with AI governance framework and documentation retained 10+ years.
-**Rules:** CR-D-09.1-001, BPR-D-09.1-001, BPR-D-09.4-001
-**Priority:** CRITICAL
-**SLA:** Annual ISMS review; quarterly compliance reporting; documentation retained minimum 10 years
-
-**Related Goals:** AG-D-09.1-001
-
----
-
-## PROC-34: Compliance Manager Executes IPSARA Risk Assessment
-
-**Package:** PKG-D-09
-**Actors:** Compliance Manager (Primary), CISO (Secondary), AI Governance Lead (Secondary)
-**Description:** Compliance manager executes unified Integrated Privacy and Security Risk Assessments (IPSARA) combining DPIA, FRIA, cybersecurity risk, and ICT risk per AI Act requirements. Resolves T-003.
-**Rules:** CR-D-09.2-001, BPR-D-09.2-001, BPR-D-09.3-001
-**Priority:** CRITICAL
-**SLA:** New systems assessed before go-live; annual reassessment; AI-specific risks quarterly
-
-**Related Goals:** AG-D-09.2-001
-
-**Tension Resolution:** T-003 — IPSARA framework unifies 5 assessment triggers (GDPR DPIA, CRA risk assessment, NIS 2 risk analysis, DORA ICT risk, AI Act FRIA).
-
----
-
-## CAP-06: IT Asset Manager Maintains Comprehensive Asset Inventory
-
-**Package:** PKG-D-09
-**Actors:** IT Asset Manager (Primary), CISO (Secondary)
-**Description:** IT asset manager maintains comprehensive asset and ICT inventory with automated discovery including AI models, training datasets, inference endpoints, and model registry entries.
-**Rules:** CR-D-09.3-001
-**Priority:** CRITICAL
-**SLA:** Inventory reconciled monthly; new assets discovered within 24 hours; decommissioned assets removed within 7 days
-
-**Related Goals:** AG-D-09.3-002
-
----
-
-## CAP-07: AI Governance Lead Maintains AI Traceability Documentation
-
-**Package:** PKG-D-09
-**Actors:** AI Governance Lead (Primary), Data Protection Officer (Secondary)
-**Description:** AI governance lead maintains AI traceability documentation including model cards, data sheets, AI decision logs, and stakeholder transparency reports per IEEE 7000.
-**Rules:** CR-D-09.4-001, BPR-D-09.4-001
-**Priority:** HIGH
-**SLA:** Model card updated on every release; decision logs retained per regulatory requirement
-
-**Related Goals:** AG-D-09.4-001
-
----
-
-## PROC-35: Compliance Manager Generates Regulatory Compliance Report
-
-**Package:** PKG-D-09
-**Actors:** Compliance Manager (Primary), CISO (Secondary)
-**Description:** Compliance manager generates regulatory compliance reports for ECB/BaFin, ENISA, and other competent authorities including AI governance indicators.
-**Rules:** CR-D-09.1-001, DORA-C38
-**Priority:** HIGH
-**SLA:** Quarterly regulatory reports; ad-hoc reports within 48 hours of request
-
-**Related Goals:** AG-D-09.1-001
-
----
-
-### 4.10 PKG-D-10: Monitoring & Audit
-
-**Purpose:** Deploy 24/7 monitoring with AI threat detection; maintain immutable audit logs; execute penetration testing and AI evaluation.
-
-**Primary Actors:** SOC Manager, Security Analyst, Audit Manager, AI Security Analyst
-
-**Business Goals:** AG-D-10.1-002, AG-D-10.2-002, AG-D-10.3-002
-
----
-
-## UC-57: SOC Manager Deploys AI-Powered Threat Detection
-
-**Package:** PKG-D-10
-**Actors:** SOC Manager (Primary), AI Security Analyst (Secondary)
-**Description:** SOC manager deploys 24/7 continuous security monitoring with AI-powered threat detection across all systems, networks, and AI pipelines including real-time model drift detection.
-**Rules:** CR-D-10.1-001, BPR-D-10.1-001, BPR-D-12.2-001
-**Priority:** CRITICAL
-**SLA:** 24/7 monitoring; AI detection calibrated monthly; anomalies escalated within 5 minutes
-
-**Related Goals:** AG-D-10.1-002
-
----
-
-## UC-58: Audit Manager Maintains Immutable Audit Logs
-
-**Package:** PKG-D-10
-**Actors:** Audit Manager (Primary), Security Administrator (Secondary)
-**Description:** Audit manager maintains immutable audit logs with PII data separation and AI system traceability using cryptographic sharding for log integrity. Resolves T-002.
-**Rules:** CR-D-10.2-001, BPR-D-10.2-001
-**Priority:** CRITICAL
-**SLA:** Logs retained minimum 5 years (financial) and 6 months (AI inference); integrity verified daily
-
-**Related Goals:** AG-D-10.2-002
-
-**Tension Resolution:** T-002 — Cryptographic sharding enables GDPR erasure (PII keys destroyed) while preserving DORA immutable log structure.
-
----
-
-## PROC-36: Security Analyst Conducts Penetration Testing
-
-**Package:** PKG-D-10
-**Actors:** Security Analyst (Primary), CISO (Secondary)
-**Description:** Security analyst executes annual penetration testing, TLPT, resilience testing, and periodic AI model evaluation including red team exercises for AI systems.
-**Rules:** CR-D-10.3-001, BPR-D-10.3-001, BPR-D-12.4-001
-**Priority:** CRITICAL
-**SLA:** Annual pentest; AI evaluation quarterly; findings remediated within 30 days
-
-**Related Goals:** AG-D-10.3-002
-
----
-
-## PROC-37: AI Security Analyst Tests AI Adversarial Robustness
-
-**Package:** PKG-D-10
-**Actors:** AI Security Analyst (Primary), SOC Manager (Secondary)
-**Description:** AI security analyst tests AI adversarial robustness per MITRE ATLAS including data poisoning, model evasion, model inversion, and prompt injection attacks.
-**Rules:** BPR-D-12.4-001, CR-D-02.4-001
-**Priority:** HIGH
-**SLA:** Quarterly adversarial testing; critical vulnerabilities remediated within 30 days
-
-**Related Goals:** AG-D-10.3-002
-
----
-
-## UC-61: SOC Analyst Monitors AI Model Performance Drift
-
-**Package:** PKG-D-10
-**Actors:** SOC Analyst (Primary), AI Operations Manager (Secondary)
-**Description:** SOC analyst monitors AI model performance drift, data quality degradation, and automated retraining triggers with rollback procedures.
-**Rules:** BPR-D-12.2-001, CR-D-10.1-001
-**Priority:** HIGH
-**SLA:** Drift detection hourly; automated retraining triggered within 4 hours of threshold breach
-
-**Related Goals:** AG-D-10.1-002
-
----
-
-## PROC-38: Audit Manager Generates Audit Trail Report
-
-**Package:** PKG-D-10
-**Actors:** Audit Manager (Primary), Compliance Manager (Secondary)
-**Description:** Audit manager generates audit trail reports for regulatory examination including AI decision traceability and PII access logs.
-**Rules:** CR-D-10.2-001, AI-C09, AI-C10
-**Priority:** MEDIUM
-**SLA:** Ad-hoc reports within 48 hours; annual comprehensive audit trail review
-
-**Related Goals:** AG-D-10.2-002
-
----
-
-## 6B. PRODUCT FUNCTIONAL USE CASES (UC-63+, PKG-A..F) — OmniBank platform product
+| **complianceDomains** | 10 (PKG-D-01..D-10) — indexed in §3, **not** use-case packages |
+| **phase3Status** | v3.0 — lane-pure use-case catalog (UC SEPARATION) |
+| **relationshipsDefined** | Doc23_Use_Case_Relationships.md |
+| **variabilityDefined** | Doc24_Use_Case_Variability.md |
+
+---
+
+## 3. COMPLIANCE DOMAIN INDEX (PKG-D-01..D-10)
+
+> **v3.0 (UC SEPARATION, rubric v1.8 §5B rule 6 — human decision 2026-09-05):** this catalog is
+> lane-pure — it holds use-case cards only. The former §6 summary compliance cards were removed:
+> the 38 PROC-01..38 and 7 CAP-01..07 full cards already live in `Doc32_Process_Capability_Cards.md`;
+> the 15 non-genuine `UC-*` cards were re-laned to PROC-41..52 / CAP-08..10 (full cards authored in Doc32);
+> UC-33/UC-34 stayed in the UC lane and moved to PKG-DS (§4.8). This index preserves the
+> domain → realisation → rules traceability without card duplication.
+> **Full process/capability cards: `Doc32_Process_Capability_Cards.md`.**
+
+### 3.1 Domain overview (scope, actors, goals — from the former package sections)
+
+| Domain | Name | Scope (Purpose) | Primary Actors | Business Goals | Primary Regulations | Lane cards (Doc32) | Priority distribution |
+|---|---|---|---|---|---|---|---|
+| PKG-D-01 | Data Protection & Encryption | Encrypt data at rest and in transit; manage cryptographic keys; ensure data integrity and AI system resilience. | Data Protection Officer, Security Architect, AI System Administrator, Data Subject | AG-D-01.1-001, AG-D-01.2-001, AG-D-01.3-001, AG-D-01.4-001 | All 5 | 8 | CRITICAL: 4, HIGH: 3, MEDIUM: 1 |
+| PKG-D-02 | Vulnerability Management | Maintain zero known exploitable vulnerabilities; operate automated patch management; coordinate vulnerability disclosure; execute TLPT. | Security Operations Manager, Vulnerability Assessment Team, Penetration Tester, AI Security Analyst | AG-D-02.1-002, AG-D-02.2-002, AG-D-02.3-002, AG-D-02.4-002 | CRA, NIS 2, DORA, AI Act | 7 | CRITICAL: 4, HIGH: 2, MEDIUM: 1 |
+| PKG-D-03 | Access Control | Implement unified identity management with MFA; enforce least privilege; maintain secure default configurations. | Identity and Access Manager, Security Administrator, AI Platform Administrator, Human Resources Manager | AG-D-03.1-002, AG-D-03.2-002, AG-D-03.3-002, AG-D-03.4-002 | CRA, NIS 2, DORA, AI Act | 7 | CRITICAL: 4, HIGH: 3, MEDIUM: 0 |
+| PKG-D-04 | Incident Response | Operate 24/7 SOC; maintain business continuity; execute universal incident notification; maintain redundant backups. | Security Operations Center Analyst, Business Continuity Manager, Compliance Officer, AI Operations Manager | AG-D-04.1-002, AG-D-04.2-002, AG-D-04.3-002, AG-D-04.4-002 | All 5 | 8 | CRITICAL: 5, HIGH: 2, MEDIUM: 1 |
+| PKG-D-05 | Data Lifecycle | Enforce data minimization; implement tiered retention; execute cryptographic erasure; enable data portability. | Data Protection Officer, AI Data Engineer, Data Subject, Compliance Officer | AG-D-05.1-001, AG-D-05.2-001, AG-D-05.3-001, AG-D-05.4-001 | GDPR, CRA, AI Act | 4 (+2 UCs in PKG-DS) | CRITICAL: 4, HIGH: 1, MEDIUM: 1 |
+| PKG-D-06 | Supply Chain | Operate vendor risk management; maintain SBOM; enforce contractual security; manage concentration risk. | Vendor Risk Manager, Procurement Manager, Security Architect, Legal Counsel | AG-D-06.1-002, AG-D-06.2-002, AG-D-06.3-002, AG-D-06.4-002 | GDPR, NIS 2, DORA | 5 | CRITICAL: 3, HIGH: 2, MEDIUM: 0 |
+| PKG-D-07 | Secure Development | Implement privacy/security by design; enforce secure coding; secure CI/CD pipeline; operate formal change management. | Software Development Manager, Security Engineer, Release Manager, AI ML Engineer | AG-D-07.1-001, AG-D-07.2-002, AG-D-07.3-002, AG-D-07.4-002 | NIS 2, DORA | 6 | CRITICAL: 3, HIGH: 3, MEDIUM: 0 |
+| PKG-D-08 | Human Factors | Deliver security awareness training; maintain role-specific competence; ensure board-level oversight. | Training Manager, Security Awareness Officer, HR Manager, Board Secretary | AG-D-08.1-002, AG-D-08.2-002, AG-D-08.3-002 | GDPR, NIS 2, AI Act | 4 | CRITICAL: 2, HIGH: 1, MEDIUM: 1 |
+| PKG-D-09 | Governance & Documentation | Maintain unified ISMS; conduct IPSARA assessments; manage asset inventory; maintain compliance documentation. | Chief Information Security Officer, Compliance Manager, Data Protection Officer, AI Governance Lead | AG-D-09.1-001, AG-D-09.2-001, AG-D-09.4-001, AG-D-09.3-002 | All 5 | 5 | CRITICAL: 3, HIGH: 2, MEDIUM: 0 |
+| PKG-D-10 | Monitoring & Audit | Deploy 24/7 monitoring with AI threat detection; maintain immutable audit logs; execute penetration testing and AI evaluation. | SOC Manager, Security Analyst, Audit Manager, AI Security Analyst | AG-D-10.1-002, AG-D-10.2-002, AG-D-10.3-002 | CRA, NIS 2, DORA, AI Act | 6 | CRITICAL: 4, HIGH: 2, MEDIUM: 0 |
+
+### 3.2 Realisation index
+
+| Domain | Realised by (lane cards in Doc32) | UCs in this catalog | Rules covered (the ids the former package cards held) |
+|---|---|---|---|
+| PKG-D-01 Data Protection & Encryption | PROC-01, PROC-41, PROC-42, PROC-02, PROC-03, PROC-43, PROC-04, CAP-08 | — | CR-D-01.1-001, CR-D-01.2-001, CR-D-01.3-001, CR-D-01.4-001, BPR-D-12.4-001 |
+| PKG-D-02 Vulnerability Management | PROC-05, PROC-06, PROC-07, PROC-08, PROC-09, CAP-01, PROC-44 | — | CR-D-02.1-001, CR-D-02.2-001, CR-D-02.3-001, CR-D-02.4-001, BPR-D-02.4-001, BPR-D-12.1-001, BPR-D-12.4-001, BPR-D-02.1-001, BPR-D-02.3-001, BPR-D-02.2-001, CR-D-06.2-001 |
+| PKG-D-03 Access Control | PROC-10, PROC-45, PROC-11, PROC-12, PROC-13, PROC-46, PROC-47 | — | CR-D-03.1-001, BPR-D-03.1-001, CR-D-03.2-001, BPR-D-03.2-001, CR-D-03.3-001, BPR-D-03.3-001, CR-D-03.4-001, BPR-D-03.4-001 |
+| PKG-D-04 Incident Response | CAP-02, PROC-14, PROC-15, CAP-09, PROC-16, PROC-17, PROC-18, PROC-19 | — | CR-D-04.1-001, BPR-D-04.1-001, CR-D-04.2-001, BPR-D-04.2-001, CR-D-04.3-001, BPR-D-04.3-001, CR-D-04.4-001, BPR-D-04.4-001, CR-D-10.1-001, BPR-D-12.2-001, AI-C26, AI-C29 |
+| PKG-D-05 Data Lifecycle | PROC-20, PROC-21, UC-33, UC-34, PROC-22, PROC-23 | UC-33, UC-34 (PKG-DS, §4.8) | CR-D-05.1-001, BPR-D-05.1-001, CR-D-05.2-001, CR-D-05.3-001, BPR-D-05.3-001, CR-D-05.4-001, BPR-D-05.4-001, GDPR-C12 |
+| PKG-D-06 Supply Chain | PROC-24, CAP-03, PROC-25, PROC-26, PROC-27 | — | CR-D-06.1-001, BPR-D-06.1-001, CR-D-06.2-001, BPR-D-02.2-001, CR-D-06.3-001, BPR-D-06.3-001, CR-D-06.4-001, BPR-D-06.4-001, BPR-D-12.3-001 |
+| PKG-D-07 Secure Development | PROC-28, PROC-29, PROC-48, PROC-30, PROC-49, PROC-50 | — | CR-D-07.1-001, BPR-D-07.1-001, CR-D-07.2-001, BPR-D-07.2-001, CR-D-07.3-001, BPR-D-07.3-001, CR-D-07.4-001, BPR-D-07.4-001 |
+| PKG-D-08 Human Factors | PROC-31, CAP-04, PROC-32, PROC-33 | — | CR-D-08.1-001, BPR-D-08.1-001, CR-D-08.2-001, BPR-D-08.2-001, BPR-D-12.3-001, CR-D-08.3-001, BPR-D-08.3-001 |
+| PKG-D-09 Governance & Documentation | CAP-05, PROC-34, CAP-06, CAP-07, PROC-35 | — | CR-D-09.1-001, BPR-D-09.1-001, BPR-D-09.4-001, CR-D-09.2-001, BPR-D-09.2-001, BPR-D-09.3-001, CR-D-09.3-001, CR-D-09.4-001, DORA-C38 |
+| PKG-D-10 Monitoring & Audit | PROC-51, CAP-10, PROC-36, PROC-37, PROC-52, PROC-38 | — | CR-D-10.1-001, BPR-D-10.1-001, BPR-D-12.2-001, CR-D-10.2-001, BPR-D-10.2-001, CR-D-10.3-001, BPR-D-10.3-001, BPR-D-12.4-001, CR-D-02.4-001, AI-C09, AI-C10 |
+
+> Rule ids above are carried verbatim from the former §6 package cards (v2.3); the full cards in
+> `Doc32_Process_Capability_Cards.md` carry them in their **Realises** field. Traceability chain:
+> RULE → CAP → PROC → UC (rubric v1.8 §5C).
+
+---
+## 4. PRODUCT FUNCTIONAL USE CASES (UC-63+, PKG-A..F, PKG-DS) — OmniBank platform product (formerly §6B)
 
 > **v2.1 (PORT-PARITY-2 Phase 3 restructure pilot, 2026-09-04).** This section models the
 > **OmniBank product itself** (digital channels, OmniScore, lending) as a normal software
@@ -996,7 +110,7 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 > layered on as a per-UC annex. **Nomenclature unchanged**: the pre-existing compliance use
 > cases PROC-01..UC-62 (§6) keep IDs and content verbatim; new product use cases continue the
 > flat numbering at **UC-63+** and never reuse existing IDs. This pilot delivers PKG-C
-> (Lending & OmniScore, §6B.1); the massification pass (v2.2) delivered PKG-A/B/D/E/F (§6B.2–§6B.6).
+> (Lending & OmniScore, §4.2, formerly §6B.1); the massification pass (v2.2) delivered PKG-A/B/D/E/F (§4.3–§4.7, formerly §6B.2–§6B.6).
 >
 > **Template (2026-09-04):** the PKG-C and PKG-A/B/D/E/F use cases are written fully-dressed in the RUP-style
 > per-UC template of `03_REFERENCE_MATERIAL/P3_E2_Requirement_Analysis_Bike4All_Maintenance_platform_v1r2.md`
@@ -1004,27 +118,27 @@ Each Use Case follows the Actor + Verb + Object pattern and maps to one or more 
 > **Security & Compliance Annex (AEGIS)** carrying provenance, constrained-by, rules, threats
 > and NIST anchors; MUC linkage is preserved.
 
-### 6B.0 Product actors (reuse of existing stakeholder/system IDs)
+### 4.1 Product actors (reuse of existing stakeholder/system IDs)
 
 | Actor | Role in the product | Drives |
 |-------|---------------------|--------|
 | Customer (Retail) | Primary product user: onboards, banks, borrows via SYS-02 app. | UC-63, UC-65, UC-67–81, UC-84–85, UC-90–93 |
 | OmniScore AI Platform (SYS-03) | The scoring system itself — acts, never decides alone. | UC-64 |
-| Underwriter (Consumer Lending) | Human oversight on borderline/high-risk credit decisions. | PROC-39 |
+| Underwriter (Consumer Lending) | Human oversight on borderline/high-risk credit decisions. | UC-66 |
 | Head of AI Governance (stakeholder) | Owns bias/drift monitoring and model governance. | Annex targets |
 | Fraud & AML Platform (SYS-11) | Consumes journey telemetry; sanctions/fraud/AML screening. | UC-72, UC-90, Annex targets |
 | Customer (Corporate) | Corporate self-service (SME + large corporate) via SYS-21. | UC-86–89 |
 | TPP (Third-Party Provider) | PSD2 third party consuming AIS/PIS via SYS-18. | UC-82, UC-83 (counterparty of UC-81) |
 | Document vault (SYS-16) | KYC/KYB document filing with 10-year retention. | UC-71, UC-74 (supporting: UC-86, UC-93) |
 
-### 6B.1 PKG-C — Lending & OmniScore (6)
+### 4.2 PKG-C — Lending & OmniScore (6)
 
 | UC ID | Title | Primary Actor | Prio |
 |-------|-------|---------------|------|
 | UC-63 | Apply for Consumer Credit | Customer (Retail) | CRITICAL |
 | UC-64 | OmniScore Computes Credit Score | SYS-03 (AI Platform) | CRITICAL |
 | UC-65 | Customer Receives Score Explanation | Customer (Retail) | HIGH |
-| PROC-39 | Underwriter Reviews Borderline Application | Underwriter | CRITICAL |
+| UC-66 | Underwriter Reviews Borderline Application | Underwriter | CRITICAL |
 | UC-67 | Customer Accepts Offer & Contract Signed | Customer (Retail) | CRITICAL |
 | UC-68 | Customer Manages Repayment & Arrears View | Customer (Retail) | HIGH |
 
@@ -1036,7 +150,7 @@ The customer applies for consumer credit through the mobile app: product selecti
 pre-contractual information (SECCI), credit-bureau consent and income/expense
 declarations. It is triggered when the customer opens the credit product and submits the
 application form. The submitted application then enters the OmniScore decisioning flow
-(UC-64) or — without consent — the manual path (PROC-39).
+(UC-64) or — without consent — the manual path (UC-66).
 
 ##### 2 Actor Brief Descriptions
 
@@ -1074,14 +188,14 @@ Owner of the consent records.
 4. SYS-14 creates the application record; SYS-11 screens for fraud patterns (no hit → continue).
 5. SYS-14 invokes the OmniScore decisioning flow (UC-64) and awaits the outcome.
 
-> **Sequence diagram:** → Annex B §1 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §3 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
 ###### 5.1 <Alternate flow: Consent declined>
 
 Trigger: step 2. The application cannot proceed under automated scoring; the customer is
-offered the manual-review path (PROC-39 without score, Art. 22(3) right not to be subject
+offered the manual-review path (UC-66 without score, Art. 22(3) right not to be subject
 to solely automated decisions).
 
 ###### 5.2 <Alternate flow: Fraud screening hit>
@@ -1144,7 +258,7 @@ application data model stable for audit and data-subject requests.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-14 (consumer credit origination + decision engine, integrates OmniScore), SYS-02 (SCA app channel); Doc19 CR-D-05.4-001 (credit scoring factors exportable).
-- **Constrained by:** PROC-10/UC-17 (identity, MFA), UC-06 (field-level encryption of declarations), UC-21 (AI platform access).
+- **Constrained by:** PROC-10/PROC-45 (identity, MFA), PROC-43 (field-level encryption of declarations), PROC-46 (AI platform access).
 - **Rules / NFR:** CR-D-05.4-001 (data export incl. scoring factors), CR-D-10.1-001 (journey monitoring).
 - **Threats addressed:** MUC-C3-05 (application data crafted to game scoring), MUC-01-analogue (session takeover).
 - **NIST anchors:** PR.AA-01, PR.DS-01.
@@ -1157,7 +271,7 @@ The OmniScore AI platform (SYS-03) computes the credit score for a submitted app
 using the approved model version, with reason codes generated inside the model runtime. It
 is triggered when the SYS-14 decisioning request arrives (UC-63 step 5). Score bands route
 the application — auto-approve, auto-decline or borderline — and borderline cases always
-reach a human (PROC-39): never a silent auto-decline without a human path.
+reach a human (UC-66): never a silent auto-decline without a human path.
 
 ##### 2 Actor Brief Descriptions
 
@@ -1176,7 +290,7 @@ Model governance: approved versions, bias/drift monitoring.
 
 ###### 2.4 Underwriter:
 
-Consumer of the score at PROC-39.
+Consumer of the score at UC-66.
 
 ###### 2.5 DPO:
 
@@ -1193,9 +307,9 @@ Owner of the automated-decision records.
 2. SYS-03 runs the approved model version; computes the score + confidence band.
 3. SYS-03 generates the reason-code set (top contributing factors, GDPR-compliant granularity).
 4. SYS-03 returns score + reasons + model version id to SYS-14; decision-context record written (who/what/when/version).
-5. Score band routes the application: auto-approve / auto-decline / **borderline → PROC-39** (never silent auto-decline without a human path).
+5. Score band routes the application: auto-approve / auto-decline / **borderline → UC-66** (never silent auto-decline without a human path).
 
-> **Sequence diagram:** → Annex B §2 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §4 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -1212,7 +326,7 @@ nice-to-have.
 ###### 5.3 <Alternate flow: Input features out of expected distribution>
 
 Trigger: step 1. Flag possible data-quality/manipulation issue (MUC-C3-01) + route to
-PROC-39.
+UC-66.
 
 ##### 6 Subflows
 
@@ -1234,7 +348,7 @@ PROC-39.
 
 ###### 7.2 <Scenario: Unexplainable or manipulated input>
 
-1. Borderline/blocked outcome queued to a human (PROC-39) — no silent auto-decline.
+1. Borderline/blocked outcome queued to a human (UC-66) — no silent auto-decline.
 
 ##### 8 Post-conditions
 
@@ -1260,13 +374,13 @@ cannot be generated (fail-closed on explainability).
 **Performance (P):** N/A — no attested latency target for scoring.
 
 **Supportability (S):** Approved-model-version pinning plus the bias/drift monitoring
-pipeline (UC-61, SYS-03) keep the service maintainable under AI Act governance
+pipeline (PROC-52, SYS-03) keep the service maintainable under AI Act governance
 documentation (CR-D-09.1-001).
 
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-03 (managed ML runtime + explainability layer + bias monitoring pipeline); Doc19 BPR-D-12.3-001 (AI Act Art. 14 human oversight thresholds/overrides for credit scoring).
-- **Constrained by:** PROC-03 (model integrity validation), UC-08 (model tampering detection), UC-61 (AI model performance drift monitoring), UC-21 (AI model access control).
+- **Constrained by:** PROC-03 (model integrity validation), CAP-08 (model tampering detection), PROC-52 (AI model performance drift monitoring), PROC-46 (AI model access control).
 - **Rules / NFR:** BPR-D-12.3-001 (Art. 14 human oversight), CR-D-05.4-001 (scoring-factor transparency feeds UC-65), CR-D-09.1-001 (governance documentation).
 - **Threats addressed:** MUC-C3-01 (input manipulation), MUC-C3-02 (training-data poisoning — detected via drift/bias pipeline), MUC-C3-04 (discriminatory outcomes — bias monitoring pipeline).
 - **NIST anchors:** GV.MT-01, MEASURE-2.7.
@@ -1277,7 +391,7 @@ documentation (CR-D-09.1-001).
 
 The customer receives the credit decision with plain-language reason codes and can request
 the machine-readable explanation package. It is triggered when the customer opens the
-decision screen in the app, after a UC-64 or PROC-39 outcome. Explanations are generated,
+decision screen in the app, after a UC-64 or UC-66 outcome. Explanations are generated,
 log-anchored evidence — never hand-written — so they cannot drift from actual model
 behaviour.
 
@@ -1306,7 +420,7 @@ Owns XAI quality.
 
 ##### 3 Preconditions
 
-- A decision (or borderline outcome) exists from UC-64/PROC-39.
+- A decision (or borderline outcome) exists from UC-64/UC-66.
 
 ##### 4 Basic Flow of Events
 
@@ -1314,7 +428,7 @@ Owns XAI quality.
 2. Customer can request the machine-readable explanation package (CR-D-05.4-001 format).
 3. Request/dispatch is logged against the decision record.
 
-> **Sequence diagram:** → Annex B §3 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §5 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -1378,7 +492,9 @@ requests (PROC-01 linkage).
 - **Threats addressed:** MUC-C3-05 (explainability spoofing — reason codes are generated, not hand-written, and log-anchored).
 - **NIST anchors:** GV.PO-P1.
 
-#### Use-Case: {PROC-39} Underwriter Reviews Borderline Application
+#### Use-Case: {UC-66} Underwriter Reviews Borderline Application
+
+> Re-adjudicated from PROC-39 to the UC lane per rubric v1.8 §5B rule 6 (human decision 2026-09-05).
 
 ##### 1 Brief Description
 
@@ -1421,7 +537,7 @@ Subject of the decision.
 3. Underwriter records the decision (approve/decline + mandatory reason code) — the human, not the model, is the decision-maker here (Art. 14).
 4. Decision flows to UC-67; the override-vs-score delta is logged for AI-governance metrics.
 
-> **Sequence diagram:** → Annex B §4 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §6 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -1491,7 +607,7 @@ thresholds and escalation paths maintained per BPR-D-12.3-001.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc19 BPR-D-12.3-001 (human intervention thresholds, override mechanisms, escalation paths); Doc04 §1.1 SYS-14 (business-rules engine + underwriter flow).
-- **Constrained by:** UC-17 (MFA privileged), PROC-11 (quarterly access review), UC-66-audit chain.
+- **Constrained by:** PROC-45 (MFA privileged), PROC-11 (quarterly access review), UC-66-audit chain.
 - **Rules / NFR:** BPR-D-12.3-001, CR-D-08.2-001 (competence training), CR-D-10.1-001.
 - **Threats addressed:** MUC-C3-05, insider rubber-stamping (audit sampling discipline).
 - **NIST anchors:** PR.AA-05, DE.CM-09.
@@ -1502,7 +618,7 @@ thresholds and escalation paths maintained per BPR-D-12.3-001.
 
 The customer reviews the final offer and signs the credit contract with PSD2 SCA-grade,
 hardware-backed signing. It is triggered when the customer reviews the offer in the app
-after approval (UC-64 auto-band or PROC-39). SYS-14 issues the contract, SYS-16 archives it
+after approval (UC-64 auto-band or UC-66). SYS-14 issues the contract, SYS-16 archives it
 in the KYC vault (10-year retention), and disbursement starts under AML monitoring.
 
 ##### 2 Actor Brief Descriptions
@@ -1529,7 +645,7 @@ Tags the new credit exposure; post-acceptance monitoring.
 
 ##### 3 Preconditions
 
-- Approved decision (UC-64 auto-band or PROC-39).
+- Approved decision (UC-64 auto-band or UC-66).
 
 ##### 4 Basic Flow of Events
 
@@ -1538,7 +654,7 @@ Tags the new credit exposure; post-acceptance monitoring.
 3. SYS-14 issues the contract; SYS-16 files it in the KYC vault (10-year retention).
 4. Disbursement initiated to the customer account; AML monitoring tags the new credit exposure.
 
-> **Sequence diagram:** → Annex B §5 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §7 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -1597,12 +713,12 @@ pre-contractual information.
 **Performance (P):** N/A — no attested timing constraint for the signing step.
 
 **Supportability (S):** 10-year retention in SYS-16 per BaFin/GoBD; FIDO2-grade signing
-hardware (UC-22).
+hardware (PROC-47).
 
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-14, SYS-16 (10-year retention per BaFin/GoBD), SYS-11.
-- **Constrained by:** UC-22 (FIDO2), PROC-01 (records).
+- **Constrained by:** PROC-47 (FIDO2), PROC-01 (records).
 - **Rules / NFR:** CR-D-04.3-001 (reportable events), CR-D-10.2-001 (audit trail).
 - **Threats addressed:** MUC-01-analogue (account takeover at signing step — SCA required).
 - **NIST anchors:** PR.AA-01, AU.A-06.
@@ -1645,7 +761,7 @@ Watches arrears fraud patterns.
 3. Arrears view: if instalments missed, shows the arrears position and self-service cure options.
 4. All actions hit SYS-15 and return updated state.
 
-> **Sequence diagram:** → Annex B §6 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §8 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -1704,7 +820,7 @@ arrears view with self-service cure options.
 with a human-contact route when disabled.
 
 **Reliability (R):** Fail-safe stale-data guard; sensitive financial PII encrypted
-(UC-06); audit trail (CR-D-10.2-001).
+(PROC-43); audit trail (CR-D-10.2-001).
 
 **Performance (P):** N/A — no attested timing constraint for servicing actions.
 
@@ -1714,7 +830,7 @@ annex) — the servicing surface is designed to extend.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-15 (repayment schedules, arrears management, collections).
-- **Constrained by:** UC-17 (MFA), UC-06 (sensitive financial PII encryption).
+- **Constrained by:** PROC-45 (MFA), PROC-43 (sensitive financial PII encryption).
 - **Rules / NFR:** CR-D-10.2-001, CR-D-09.1-001 (records).
 - **Threats addressed:** MUC-01-analogue (session takeover → fraudulent early repayments), payment-fraud class (full set with PKG-D).
 - **NIST anchors:** PR.DS-01, AU.A-06.
@@ -1730,7 +846,7 @@ annex) — the servicing surface is designed to extend.
 1. Applicant inflates/stabilises declared income features or times account movements to maximise score.
 2. Organised variant: many applications probing decision boundaries.
 **Impact:** Bad debt booked on manipulated inputs; model drift masked as market change.
-**Mitigated by:** UC-64 ext. 1a (out-of-distribution flags → human path), SYS-11 fraud screening (UC-63 step 4), bias/drift monitoring pipeline (SYS-03), bureau cross-checks at PROC-39.
+**Mitigated by:** UC-64 ext. 1a (out-of-distribution flags → human path), SYS-11 fraud screening (UC-63 step 4), bias/drift monitoring pipeline (SYS-03), bureau cross-checks at UC-66.
 **NIST anchors:** DE.AE-02, GV.MT-01.
 
 #### MUC-C3-04 — Discriminatory Bias Exploitation / Harm
@@ -1742,7 +858,7 @@ annex) — the servicing surface is designed to extend.
 1. Protected-class proxies correlate with score; adverse impact concentrated in a group.
 2. Explanations (UC-65) surface the pattern publicly.
 **Impact:** Regulatory enforcement (AI Act Art. 26/GDPR Art. 22), reputational damage, remediation cost.
-**Mitigated by:** SYS-03 bias monitoring pipeline (Doc04 §1.1 attested), UC-61 (drift monitoring), UC-64 reason codes + UC-65 transparency, governance review (CR-D-09.x), BPR-D-12.3-001 oversight thresholds.
+**Mitigated by:** SYS-03 bias monitoring pipeline (Doc04 §1.1 attested), PROC-52 (drift monitoring), UC-64 reason codes + UC-65 transparency, governance review (CR-D-09.x), BPR-D-12.3-001 oversight thresholds.
 **NIST anchors:** MEASURE-2.7, GV.PO-P1.
 
 #### MUC-C3-05 — Explainability Gaming (spoofed reason codes)
@@ -1754,10 +870,10 @@ annex) — the servicing surface is designed to extend.
 1. Reason codes decoupled from actual model behaviour (cosmetic explanations hiding discriminatory factors).
 2. Audit trail shows plausible explanations inconsistent with model versions.
 **Impact:** Systemic compliance fraud — explanations exist but are false; worst-case discovery by a regulator.
-**Mitigated by:** UC-64 (reason codes generated in the model runtime, log-anchored to model version), PROC-39 ext. 1a (fail-closed on incomplete context), UC-08 (model tampering detection), immutable decision records (CR-D-10.2-001), quarterly access reviews (PROC-11).
+**Mitigated by:** UC-64 (reason codes generated in the model runtime, log-anchored to model version), UC-66 ext. 1a (fail-closed on incomplete context), CAP-08 (model tampering detection), immutable decision records (CR-D-10.2-001), quarterly access reviews (PROC-11).
 **NIST anchors:** PR.DS-01, AU.A-06, DE.CM-09.
 
-### 6B.2 PKG-A — Onboarding & KYC (6)
+### 4.3 PKG-A — Onboarding & KYC (6)
 
 | UC ID | Title | Primary Actor | Prio |
 |-------|-------|---------------|------|
@@ -1817,7 +933,7 @@ Files the KYC document set (STORE-08; 10-year retention per BaFin/GoBD).
 5. SYS-11 runs sanctions/PEP screening (UC-72); customer acknowledges OmniScore data use (UC-73) and files the tax self-certification (UC-74).
 6. Onboarding record completed; account activated; credentials issued under PSD2 SCA (SYS-02).
 
-> **Sequence diagram:** → Annex B §7 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §9 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -1890,7 +1006,7 @@ orchestration (UC-70..UC-74), activation and credential issuance.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-02 (mobile channel; PSD2 SCA via open-standard identity delegation; hardware-backed signing), SYS-16 (KYC document vault; 10-year retention per BaFin/GoBD), SYS-11 (fraud detection & AML/KYC), SYS-17 (customer 360); FLOW-11 (onboarding SYS-14 + SYS-17 → KYC/AML SYS-11: identity documents + screening); Doc19 CR-D-05.2-001 (10-year financial record retention).
-- **Constrained by:** PROC-10 (identity provisioning), UC-02 (encryption at rest), PROC-20 (data minimization review), PROC-21 (tiered retention).
+- **Constrained by:** PROC-10 (identity provisioning), PROC-41 (encryption at rest), PROC-20 (data minimization review), PROC-21 (tiered retention).
 - **Rules / NFR:** CR-D-05.2-001 (retention), CR-D-05.1-001 (minimization), CR-D-03.1-001 (unified identity + MFA), CR-D-01.1-001 (encryption at rest).
 - **Threats addressed:** MUC-01-analogue (session takeover during onboarding), MUC-C3-01 (manipulated declared data — the same data feeds OmniScore downstream, UC-64).
 - **NIST anchors:** PR.AA-01, PR.DS-01.
@@ -1942,7 +1058,7 @@ Owns KYC quality (SYS-16 owner); consumes remediation-queue metrics.
 4. Result (verified/failed + method) recorded immutably against the onboarding record (CR-D-10.2-001 discipline).
 5. A verified identity result unlocks the UC-71/UC-72 continuation.
 
-> **Sequence diagram:** → Annex B §8 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §10 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2010,7 +1126,7 @@ wallet integration (open-standard identity delegation attested for SYS-02).
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-02 (PSD2 SCA via open-standard identity delegation; hardware-backed signing); Doc04 §2.2 (SYS-18 open banking APIs terminate in a DMZ with PSD2-compliant eIDAS-qualified certificates); FLOW-11 (identity documents into KYC/AML).
-- **Constrained by:** PROC-10 (identity provisioning), UC-22 (FIDO2 authentication), UC-03 (transport security).
+- **Constrained by:** PROC-10 (identity provisioning), PROC-47 (FIDO2 authentication), PROC-42 (transport security).
 - **Rules / NFR:** CR-D-01.2-001 (transport + certificate validation), CR-D-03.1-001 (unified identity), CR-D-10.2-001 (immutable records).
 - **Threats addressed:** MUC-01-analogue (proofing-session hijack — SCA-bound, certificate-validated channel); synthetic identity is backstopped by screening (UC-72).
 - **NIST anchors:** PR.AA-01, PR.DS-02.
@@ -2060,7 +1176,7 @@ Owner of the vault (SYS-16); owns the document-class catalogue.
 4. Documents filed with retention metadata: account lifetime + 10 years (BaFin/GoBD — CR-D-05.2-001).
 5. Filing receipt logged against the onboarding record; SYS-11 screening consumes the set (FLOW-11).
 
-> **Sequence diagram:** → Annex B §9 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §11 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2132,7 +1248,7 @@ change.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-16 (KYC document vault; 10-year retention per BaFin/GoBD); Doc04 §2 STORE-08 (encryption with HSM-bound CMK; integrity hashing; account lifetime + 10 years); FLOW-11 (documents into KYC/AML screening).
-- **Constrained by:** UC-02 (encryption at rest), PROC-02 (HSM key lifecycle), PROC-21 (tiered retention), UC-33 (erasure interplay).
+- **Constrained by:** PROC-41 (encryption at rest), PROC-02 (HSM key lifecycle), PROC-21 (tiered retention), UC-33 (erasure interplay).
 - **Rules / NFR:** CR-D-05.2-001 (retention), CR-D-01.1-001 (encryption at rest), CR-D-01.3-001 (key custody), CR-D-05.3-001 (erasure discipline).
 - **Threats addressed:** MUC-01-analogue (hijacked session uploading malicious content — class validation at ingest + integrity hashing).
 - **NIST anchors:** PR.DS-01, PR.DS-P1.
@@ -2183,7 +1299,7 @@ Subject of the screening; informed of onboarding status.
 5. Disposition: true match → activation blocked + STR/CTR generation; false positive → documented disposition.
 6. Outcome filed to SYS-16 and anchored immutably to the onboarding record (CR-D-10.2-001).
 
-> **Sequence diagram:** → Annex B §10 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §12 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2252,7 +1368,7 @@ without flow change (CR-D-06.4-001 exit-strategy discipline).
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-11 (fraud detection & AML/KYC; sanctions screening; STR/CTR generation); FLOW-11 (Sanctions screening provider as subprocessor); Doc04 §1.1 SYS-16 (evidence vault).
-- **Constrained by:** PROC-23 (third-party processor audits), PROC-24 (vendor risk assessment), CAP-02 (SOC monitoring), UC-58 (immutable logs).
+- **Constrained by:** PROC-23 (third-party processor audits), PROC-24 (vendor risk assessment), CAP-02 (SOC monitoring), CAP-10 (immutable logs).
 - **Rules / NFR:** CR-D-06.1-001 (third-party risk incl. TPPs/providers), CR-D-06.3-001 (contractual security obligations), CR-D-06.4-001 (concentration + exit), CR-D-10.2-001 (immutable records).
 - **Threats addressed:** MUC-01-analogue (screening-result tampering — immutable anchoring), MUC-C3-01 (manipulated identity data degrading screening quality — document/bureau cross-checks at UC-70).
 - **NIST anchors:** DE.AE-02, AU.A-06.
@@ -2301,7 +1417,7 @@ Owns the transparency of the AI use described in the notice.
 4. Declined → manual path only (UC-63 ext. 5.1, Art. 22(3)).
 5. Withdrawal at any time → recorded; downstream automated scoring stops; documented retention exemptions still apply to kept records (CR-D-05.2-001 interplay).
 
-> **Sequence diagram:** → Annex B §11 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §13 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2313,7 +1429,7 @@ Trigger: step 2. Application proceeds on the manual path without automated scori
 ###### 5.2 <Alternate flow: Withdrawal mid-application>
 
 Trigger: post-acknowledgement withdrawal. Application rerouted to manual underwriting
-(PROC-39); no further automated scoring.
+(UC-66); no further automated scoring.
 
 ###### 5.3 <Alternate flow: Notice version update>
 
@@ -2368,7 +1484,7 @@ break; historical acknowledgements remain retrievable.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §2 credit-scores line (Art. 22 automated decision; "Right to human review (Art. 22)"); Doc04 §1.1 SYS-03 (credit scoring), SYS-02 (app channel); Doc19 CR-D-05.4-001 (transparency incl. scoring factors).
-- **Constrained by:** UC-63 (application consent record), PROC-01 (data subject rights), PROC-39 (human path).
+- **Constrained by:** UC-63 (application consent record), PROC-01 (data subject rights), UC-66 (human path).
 - **Rules / NFR:** CR-D-05.1-001 (minimization), CR-D-05.4-001 (scoring-factor transparency), CR-D-09.1-001 (governance documentation).
 - **Threats addressed:** MUC-C3-04 (bias harm — informed data subjects plus the human path are first-line mitigation), MUC-C3-05 (spoofed transparency — the notice version is log-anchored).
 - **NIST anchors:** GV.PO-P1, CT.DP-P2.
@@ -2412,7 +1528,7 @@ Owns the tax-reporting obligation and the re-certification process.
 4. Profile change events (e.g. address/residency change) open a re-certification task with an SLA.
 5. Certification status gates account activation — incomplete/stale blocks activation.
 
-> **Sequence diagram:** → Annex B §12 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §14 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2483,7 +1599,7 @@ Activation blocked while certification is missing or stale.
 - **Threats addressed:** MUC-01-analogue (hijacked session altering certifications — SCA session + change logging, CR-D-10.2-001).
 - **NIST anchors:** PR.DS-01, AU.A-06.
 
-### 6B.3 PKG-B — Digital Banking Core (6)
+### 4.4 PKG-B — Digital Banking Core (6)
 
 | UC ID | Title | Primary Actor | Prio |
 |-------|-------|---------------|------|
@@ -2535,7 +1651,7 @@ session-risk evaluation.
 4. Low risk → session established; elevated risk → step-up challenge (attested risk-based step-up).
 5. Session bound to the device (hardware-backed signing key) and handed to the product journeys.
 
-> **Sequence diagram:** → Annex B §13 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §15 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2603,7 +1719,7 @@ delegation on SYS-02.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-02 (PSD2 SCA mandatory: strong cryptographic key + biometrics; transaction signing; customer-set; risk-based step-up); §2 SYS-24 (managed identity service for digital channels); behavioural biometrics into SYS-11 (EU region, explicit consent, withdrawal deletes).
-- **Constrained by:** UC-70 (identity anchor for recovery), UC-17 (MFA discipline), CAP-02 (security event monitoring).
+- **Constrained by:** UC-70 (identity anchor for recovery), PROC-45 (MFA discipline), CAP-02 (security event monitoring).
 - **Rules / NFR:** CR-D-03.1-001 (unified identity + MFA), CR-D-03.2-001 (step-up for high-risk transactions), CR-D-01.2-001 (transport security), CR-D-10.1-001 (monitoring).
 - **Threats addressed:** MUC-01-analogue (credential theft / session takeover — SCA + risk-based step-up are the control).
 - **NIST anchors:** PR.AA-01, DE.AE-02.
@@ -2648,7 +1764,7 @@ Source of deep history (FLOW-13 nightly load, attested).
 4. Every view renders freshness markers where data is not live.
 5. Customer can select a transaction and start a dispute (UC-84).
 
-> **Sequence diagram:** → Annex B §14 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §16 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2713,7 +1829,7 @@ Views logged in journey telemetry (CR-D-10.1-001).
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-01 (CBS mainframe) via FLOW-02 (internet banking → CBS transaction path); SYS-13 (CDW) via FLOW-13 (customer + transaction data, nightly).
-- **Constrained by:** UC-75 (SCA session), UC-03 (transport security), UC-06 (field-level encryption of PII at rest).
+- **Constrained by:** UC-75 (SCA session), PROC-42 (transport security), PROC-43 (field-level encryption of PII at rest).
 - **Rules / NFR:** CR-D-01.2-001 (transport), CR-D-01.1-001 (encryption at rest), CR-D-10.1-001 (journey monitoring).
 - **Threats addressed:** MUC-01-analogue (hijacked session reading financial data — SCA + step-up on sensitive views).
 - **NIST anchors:** PR.DS-02, PR.DS-01.
@@ -2759,7 +1875,7 @@ scheme path.
 4. No flag → execution via the payments core; instant variant uses the instant scheme path when available, else standard SEPA with clear labelling.
 5. Confirmation + entry in history (UC-76); signing + screening evidence on the payment record.
 
-> **Sequence diagram:** → Annex B §15 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §17 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2827,7 +1943,7 @@ resists takeover (MUC-01-analogue).
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-02 (transaction signing), SYS-11 (transaction monitoring; FLOW-10 real-time streaming from CBS + Card Mgmt), SYS-01 (CBS mainframe; payments in production on-prem).
-- **Constrained by:** UC-75 (SCA session), UC-85 (limits), UC-90 (fraud alert loop), UC-58 (immutable logs).
+- **Constrained by:** UC-75 (SCA session), UC-85 (limits), UC-90 (fraud alert loop), CAP-10 (immutable logs).
 - **Rules / NFR:** CR-D-03.2-001 (step-up on high-risk transactions), CR-D-10.1-001 (24/7 monitoring), CR-D-10.2-001 (immutable records).
 - **Threats addressed:** MUC-01-analogue (authorised-push-payment fraud from a hijacked session — signing + behavioural signals), payment-fraud class (full loop lands with PKG-D/PKG-F: UC-84, UC-85, UC-90).
 - **NIST anchors:** PR.AA-01, DE.AE-02.
@@ -2872,7 +1988,7 @@ Fraud signals inform default states; card state changes feed fraud cases.
 4. Per-card limits view/edit; increases require SCA step-up (attested risk-based step-up).
 5. Changes confirmed with the authorisation-path state and logged immutably (CR-D-10.2-001).
 
-> **Sequence diagram:** → Annex B §16 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §18 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2983,7 +2099,7 @@ Screens executions like any payment (FLOW-10 stream).
 4. Failures (e.g. insufficient funds) follow the retry/notification policy — never silent.
 5. Customer views/edits/cancels; edits create a new signed mandate version.
 
-> **Sequence diagram:** → Annex B §17 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §19 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -3093,7 +2209,7 @@ Archive of periodic statements (retention metadata per CR-D-05.2-001).
 4. Periodic statements filed to SYS-16; download through the SCA session.
 5. Request/dispatch logged against the customer record (anti-exfiltration evidence).
 
-> **Sequence diagram:** → Annex B §18 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §20 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -3158,12 +2274,12 @@ for audits and data-subject requests).
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-13 (CDW; FLOW-13), SYS-16 (DMS), SYS-02 (app channel); Doc19 CR-D-05.4-001 (automated data export/portability incl. AI scoring factors).
-- **Constrained by:** UC-34 (data export compliance flow), UC-75 (SCA session), UC-58 (log evidence).
+- **Constrained by:** UC-34 (data export compliance flow), UC-75 (SCA session), CAP-10 (log evidence).
 - **Rules / NFR:** CR-D-05.4-001 (portability), CR-D-05.2-001 (retention), CR-D-10.2-001 (immutable records).
 - **Threats addressed:** MUC-01-analogue (mass export from a hijacked session — volume anomaly detection + step-up).
 - **NIST anchors:** PR.DS-01, DE.AE-02.
 
-### 6B.4 PKG-D — Payments & Open Banking (5)
+### 4.5 PKG-D — Payments & Open Banking (5)
 
 | UC ID | Title | Primary Actor | Prio |
 |-------|-------|---------------|------|
@@ -3214,7 +2330,7 @@ SCA ceremony for the consent (attested SCA discipline).
 4. Grant recorded at SYS-18 consent management; TPP receives the consent token.
 5. Revocation at any time in the app → token invalidated; TPP access cut; evidence retained (CR-D-10.2-001).
 
-> **Sequence diagram:** → Annex B §19 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §21 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -3329,7 +2445,7 @@ Consumes AIS access anomalies (SOC tooling attested).
 4. AIS access served strictly within customer-granted consents (UC-81); access monitored for rate, scope and anomaly patterns.
 5. Deviation → throttle/suspend path with human review.
 
-> **Sequence diagram:** → Annex B §20 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §22 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -3395,7 +2511,7 @@ semantics.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-18 (TPP onboarding + consent management; PSD2 SCA-compliant APIs; Head of Digital Channels ownership), SYS-25 (SOC tooling); Doc04 §2.2 (SYS-18 terminates in a DMZ with PSD2-compliant eIDAS-qualified certificates); FLOW-03 (TPPs third parties — inbound and outbound).
-- **Constrained by:** UC-81 (consent source), PROC-24 (vendor risk assessment), UC-57 (threat detection).
+- **Constrained by:** UC-81 (consent source), PROC-24 (vendor risk assessment), PROC-51 (threat detection).
 - **Rules / NFR:** CR-D-06.1-001 (third-party risk incl. TPPs), CR-D-06.3-001 (contractual obligations), CR-D-06.4-001 (concentration + exit), CR-D-10.1-001 (monitoring).
 - **Threats addressed:** MUC-01-analogue (stolen TPP credentials — certificate binding + anomaly monitoring).
 - **NIST anchors:** DE.CM-09, AU.A-06.
@@ -3443,7 +2559,7 @@ Screens the initiation in the real-time stream (FLOW-10 attested).
 4. Status callbacks report the outcome to the TPP.
 5. Evidence chain (consent, SCA, screening, commit) recorded on the payment record (CR-D-10.2-001).
 
-> **Sequence diagram:** → Annex B §21 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §23 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -3507,7 +2623,7 @@ Full evidence chain (consent, SCA, screening, commit) on the payment record.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-18 (PSD2 SCA-compliant APIs; consent management), SYS-02 (transaction signing), SYS-11 (transaction monitoring; FLOW-10 real-time), SYS-01 (payments core).
-- **Constrained by:** UC-81 (consent), UC-82 (TPP standing), UC-77 (execution path), UC-58 (immutable logs).
+- **Constrained by:** UC-81 (consent), UC-82 (TPP standing), UC-77 (execution path), CAP-10 (immutable logs).
 - **Rules / NFR:** CR-D-03.2-001 (step-up/SCA discipline), CR-D-10.1-001 (monitoring), CR-D-10.2-001 (immutable records).
 - **Threats addressed:** MUC-01-analogue (fraudulent initiations — SCA is the PSD2 control; behavioural signals assist), payment-fraud class (detection loop lands with UC-90).
 - **NIST anchors:** PR.AA-01, DE.AE-02.
@@ -3555,7 +2671,7 @@ Fraud case linkage and detection input.
 4. Fraud suspicion → SYS-11 case linkage + protective card actions (UC-78).
 5. Outcome communicated; case + evidence retained (CR-D-10.2-001, CR-D-05.2-001).
 
-> **Sequence diagram:** → Annex B §22 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §24 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -3620,7 +2736,7 @@ linkage.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-17 (CRM; complaint handling; customer 360), SYS-05 (card management; scheme-scope), SYS-20 (contact centre; call recording), SYS-11 (fraud platform).
-- **Constrained by:** UC-76 (transaction context), UC-78 (card state), PROC-40 (complaint interplay), UC-58 (log evidence).
+- **Constrained by:** UC-76 (transaction context), UC-78 (card state), UC-92 (complaint interplay), CAP-10 (log evidence).
 - **Rules / NFR:** CR-D-05.2-001 (retention), CR-D-10.2-001 (immutable records).
 - **Threats addressed:** MUC-01-analogue (fraudulent disputes from a hijacked session — SCA session + history checks), first-party misuse (evidence discipline + second reviewer).
 - **NIST anchors:** AU.A-06, DE.AE-02.
@@ -3664,7 +2780,7 @@ Risk signals inform thresholds and flag abusive change patterns.
 4. Approved change becomes effective on the execution path (payments core authoritative).
 5. Change signed and logged immutably (CR-D-10.2-001).
 
-> **Sequence diagram:** → Annex B §23 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §25 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -3733,7 +2849,7 @@ Limit-change history immutable (evidence grade).
 - **Threats addressed:** MUC-01-analogue (attacker raising limits after takeover — step-up + risk thresholds are the control).
 - **NIST anchors:** PR.AA-01, DE.AE-02.
 
-### 6B.5 PKG-E — Corporate & Treasury (4)
+### 4.6 PKG-E — Corporate & Treasury (4)
 
 | UC ID | Title | Primary Actor | Prio |
 |-------|-------|---------------|------|
@@ -3787,7 +2903,7 @@ Owns SYS-21 (attested); owns the corporate onboarding policy.
 4. Administrator creates delegated users with role templates (least privilege); each user gets own credentials — no sharing.
 5. Segregation-of-duties rules validated across the delegation graph before activation.
 
-> **Sequence diagram:** → Annex B §24 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §26 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -3901,7 +3017,7 @@ attested).
 4. Payment batches are view-only here; execution follows the UC-77/UC-83-class flows.
 5. Export limited to the user's delegation scope; export logged (CR-D-10.2-001).
 
-> **Sequence diagram:** → Annex B §25 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §27 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -3964,7 +3080,7 @@ All views/exports within delegation scope + logged.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-21 (cash management), SYS-08 (TMS; FX, money market, fixed income; real-time risk positions), SYS-01 (CBS; FLOW-19 position data to ALM/Risk/Treasury).
-- **Constrained by:** UC-86 (delegation scope), UC-75 (SCA discipline), UC-58 (log evidence).
+- **Constrained by:** UC-86 (delegation scope), UC-75 (SCA discipline), CAP-10 (log evidence).
 - **Rules / NFR:** CR-D-01.2-001 (transport), CR-D-03.3-001 (least privilege), CR-D-10.2-001 (immutable records).
 - **Threats addressed:** MUC-01-analogue (corporate session takeover → financial-structure exposure — SCA + scoped views).
 - **NIST anchors:** PR.DS-02, PR.AA-01.
@@ -4008,7 +3124,7 @@ Owns SYS-08 (attested); owns dealer-limit policy and the human review path.
 4. SYS-08 books the deal; risk positions update (real-time, attested).
 5. Confirmations to the customer + treasury ops; deal record immutable (CR-D-10.2-001).
 
-> **Sequence diagram:** → Annex B §26 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §28 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -4074,7 +3190,7 @@ fixed income — FX first).
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-08 (Treasury Management System; FX; real-time risk positions; Head of Treasury ownership), SYS-21 (corporate FX deals).
-- **Constrained by:** UC-75 (SCA), UC-86 (delegated authority), UC-58 (log evidence).
+- **Constrained by:** UC-75 (SCA), UC-86 (delegated authority), CAP-10 (log evidence).
 - **Rules / NFR:** CR-D-03.2-001 (step-up on deal confirmation), CR-D-10.2-001 (immutable records), CR-D-10.1-001 (deal-flow monitoring).
 - **Threats addressed:** MUC-01-analogue (fraudulent deals via hijacked corporate session — SCA + limits + immutable records).
 - **NIST anchors:** PR.AA-01, AU.A-06.
@@ -4125,7 +3241,7 @@ Owns SYS-07 (attested); owns issuance/examination policy.
 4. Documents presented; examined per UCP 600 (attested compliance basis).
 5. Payment or refusal per the examination outcome; the full chain is recorded (CR-D-10.2-001).
 
-> **Sequence diagram:** → Annex B §27 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §29 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -4190,18 +3306,18 @@ attested SYS-07 scope).
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-07 (Trade Finance System; letters of credit, guarantees, documentary collections; ICC UCP 600 compliance), SYS-06 (SWIFT segregated per SWIFT CSP 2024), SYS-11 (sanctions screening); FLOW-24 (LCs/guarantees to correspondent banks; secure correspondent-banking PKI + HSM-bound signing).
-- **Constrained by:** UC-72 (screening), UC-86 (corporate authority), UC-58 (log evidence).
+- **Constrained by:** UC-72 (screening), UC-86 (corporate authority), CAP-10 (log evidence).
 - **Rules / NFR:** CR-D-06.3-001 (correspondent third-party obligations), CR-D-10.2-001 (immutable records), CR-D-05.2-001 (retention).
 - **Threats addressed:** MUC-01-analogue (fraudulent LC instruction from a hijacked corporate session — SCA + delegated authority), documentary-fraud/sanctions-evasion class (SYS-11 screening gate before dispatch).
 - **NIST anchors:** PR.DS-02, DE.AE-02.
 
-### 6B.6 PKG-F — Fraud & Customer Service (4)
+### 4.7 PKG-F — Fraud & Customer Service (4)
 
 | UC ID | Title | Primary Actor | Prio |
 |-------|-------|---------------|------|
 | UC-90 | In-App Fraud Alert Confirm/Deny (SYS-11) | Customer (Retail) | CRITICAL |
 | UC-91 | Card Block via Contact Centre (SYS-20) | Customer (Retail) | CRITICAL |
-| PROC-40 | Complaint Filing & Handling (SYS-17) | Customer (Retail) | MEDIUM |
+| UC-92 | Complaint Filing & Handling (SYS-17) | Customer (Retail) | MEDIUM |
 | UC-93 | Secure Messaging | Customer (Retail) | MEDIUM |
 
 #### Use-Case: {UC-90} In-App Fraud Alert Confirm/Deny (SYS-11)
@@ -4243,7 +3359,7 @@ Escalation path for unresolved/complex fraud cases (SOC tooling attested).
 4. Customer denies (fraud) → transaction blocked + protective card/payment actions (UC-78) + fraud case opened.
 5. No response within the risk-tiered window → default-deny (fail-safe default).
 
-> **Sequence diagram:** → Annex B §28 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §30 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -4307,7 +3423,7 @@ Denies leave payment/card in a safe state.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-11 (fraud detection; transaction monitoring; FLOW-10 real-time streaming), SYS-02 (app channel), SYS-25 (SOC tooling).
-- **Constrained by:** UC-77 (screening path), UC-78 (protective actions), UC-83 (PIS loop), UC-57 (threat detection plane).
+- **Constrained by:** UC-77 (screening path), UC-78 (protective actions), UC-83 (PIS loop), PROC-51 (threat detection plane).
 - **Rules / NFR:** CR-D-10.1-001 (24/7 monitoring), BPR-D-04.1-001 (incident playbooks), CR-D-10.2-001 (case records).
 - **Threats addressed:** MUC-01-analogue (attacker dismissing their own fraud alerts — default-deny window + out-of-band confirmation).
 - **NIST anchors:** DE.AE-02, DE.CM-09.
@@ -4352,7 +3468,7 @@ Fraud case linkage when misuse is suspected.
 4. Confirmation read back; recorded call retained per policy.
 5. Fraud suspicion → SYS-11 case + reissue flow (UC-78 pattern).
 
-> **Sequence diagram:** → Annex B §29 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §31 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -4421,7 +3537,9 @@ Unblocking requires strict verification (asymmetric assurance).
 - **Threats addressed:** MUC-01-analogue (social engineering of the phone channel — verification protocol + recording + asymmetric block/unblock).
 - **NIST anchors:** PR.AA-01, AU.A-06.
 
-#### Use-Case: {PROC-40} Complaint Filing & Handling (SYS-17)
+#### Use-Case: {UC-92} Complaint Filing & Handling (SYS-17)
+
+> Re-adjudicated from PROC-40 to the UC lane per rubric v1.8 §5B rule 6 (human decision 2026-09-05).
 
 ##### 1 Brief Description
 
@@ -4460,13 +3578,13 @@ Owns the regulatory-escalation path (PROC-15/PROC-19 discipline).
 4. Outcome + response to the customer; evidence chain retained (CR-D-10.2-001).
 5. Unresolved/out-of-SLA or regulatory-relevant cases escalate to the Compliance Officer.
 
-> **Sequence diagram:** → Annex B §30 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §32 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
 ###### 5.1 <Alternate flow: Complaint contests an automated decision>
 
-Trigger: step 3 (Art. 22 contest). Linkage to UC-65/PROC-39 evidence + human re-review path.
+Trigger: step 3 (Art. 22 contest). Linkage to UC-65/UC-66 evidence + human re-review path.
 
 ###### 5.2 <Alternate flow: Complaint reveals a bias pattern>
 
@@ -4528,7 +3646,7 @@ CR-D-05.2-001.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-17 (managed CRM EU instance; customer 360 view; complaint handling), SYS-20 (contact centre channel; call recording).
-- **Constrained by:** UC-65 (explanation evidence), PROC-39 (human-decision records), UC-84 (dispute linkage), PROC-19 (regulator reporting path).
+- **Constrained by:** UC-65 (explanation evidence), UC-66 (human-decision records), UC-84 (dispute linkage), PROC-19 (regulator reporting path).
 - **Rules / NFR:** CR-D-05.2-001 (retention), CR-D-10.2-001 (immutable records), BPR-D-12.3-001 (human oversight/escalation interplay for AI-related complaints).
 - **Threats addressed:** MUC-C3-04 (discriminatory patterns surface first through complaints — the channel is wired to AI governance), MUC-C3-05 (complaint evidence is log-anchored and hard to spoof).
 - **NIST anchors:** GV.PO-P1, DE.AE-02.
@@ -4572,7 +3690,7 @@ Filing of sensitive attachments (STORE-08 envelope).
 4. Thread transcript retained in the CRM record per retention class.
 5. Channel rule surfaced in-thread: the bank never asks for credentials or SCA factors.
 
-> **Sequence diagram:** → Annex B §31 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §33 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -4646,7 +3764,7 @@ No credentials or SCA factors ever exchanged in-thread (channel rule).
 #### MUC-C3-02 — Training-Data Poisoning of OmniScore
 
 **Misactor:** Malicious insider (ML engineering) or compromised upstream data supplier.
-**Threatens:** UC-64 (score), UC-46 (secure training pipeline).
+**Threatens:** UC-64 (score), PROC-49 (secure training pipeline).
 **Preconditions:** Write/influence access to the training data flowing into STORE-03
 (OmniScore AI training data + explainability logs, EU cloud, immutable WORM for AI Act
 Art. 12 documentation — attested).
@@ -4658,8 +3776,8 @@ Art. 12 documentation — attested).
 **Impact:** Systematically skewed scores at scale; bias/drift signals masked as market
 change; systematic credit mispricing and AI Act data-governance breach.
 **Mitigated by:** SYS-03 bias + drift monitoring pipeline (out-of-family behaviour flags —
-UC-61), UC-46 secure AI training pipeline (provenance + integrity gates on training data),
-UC-08 model tampering detection, UC-21 AI model/training-data access control, STORE-03
+PROC-52), PROC-49 secure AI training pipeline (provenance + integrity gates on training data),
+CAP-08 model tampering detection, PROC-46 AI model/training-data access control, STORE-03
 immutable WORM documentation (attested).
 **NIST anchors:** DE.AE-02, MEASURE-2.7.
 
@@ -4678,22 +3796,282 @@ integration), or read access to training artefacts.
    set (GDPR-scale privacy harm).
 **Impact:** IP loss (model theft); privacy breach on training data (membership); regulatory
 exposure (GDPR Art. 5/32, AI Act).
-**Mitigated by:** UC-21 access control (inference API + training data), UC-06 field-level
+**Mitigated by:** PROC-46 access control (inference API + training data), PROC-43 field-level
 encryption of training datasets, GDPR-compliant granularity of reason codes (UC-64/UC-65 —
 minimum-necessary explanation surface), PROC-37 adversarial robustness testing, PROC-11
 quarterly access reviews.
 **NIST anchors:** PR.DS-01, DE.CM-09.
 
-### 6B.7 MUC-C3 inventory (OmniScore AI threat model)
+### 4.8 PKG-DS — Privacy & Data-subject UCs (2)
+
+| UC ID | Title | Primary Actor | Prio |
+|-------|-------|---------------|------|
+| UC-33 | Data Protection Officer Executes Data Erasure Request | Data Protection Officer | CRITICAL |
+| UC-34 | Data Subject Requests Data Export | Data Subject | HIGH |
+
+> **v3.0 (UC SEPARATION):** UC-33/UC-34 were the only genuine use cases among the former §6
+> compliance cards (PKG-D-05 stubs). Per human decision 2026-09-05 (rubric v1.8 §5B rule 6) they
+> stay in the UC lane and are grouped in this dedicated package, elevated from summary stubs to
+> fully-dressed form. Their rules (CR-D-05.3-001/BPR-D-05.3-001 erasure; CR-D-05.4-001/
+> BPR-D-05.4-001 export) are also indexed in §3 (PKG-D-05) with lane cards in
+> `Doc32_Process_Capability_Cards.md` (PROC-20/21/23 discipline, CAP-10 counterpart).
+
+#### Use-Case: {UC-33} Data Protection Officer Executes Data Erasure Request
+
+##### 1 Brief Description
+
+The Data Protection Officer executes cryptographic sharding-based erasure within 30 days of a
+GDPR erasure request or retention expiry, covering PII, AI training data contributions and model
+inference records (CR-D-05.3-001). It is triggered when a data-subject erasure request arrives
+(GDPR Art. 17(1), identity verified) or when the tiered retention schedule expires an item. The
+erasure resolves tension T-002: PII keys are destroyed while the DORA-mandated immutable log
+structure remains verifiable (CAP-10).
+
+##### 2 Actor Brief Descriptions
+
+###### 2.1 Data Protection Officer — Primary Actor:
+
+Owns the erasure decision and execution: verifies the request, determines the erasure scope and
+completes the erasure record.
+
+###### 2.2 OmniBank platform (system):
+
+Executes the cryptographic-sharding erasure (per-subject key destruction), backup/replication
+propagation, third-party notification scheduling and the completion log.
+
+###### 2.3 IT Operations Manager (Secondary):
+
+Supports the infrastructure and backup side of the erasure propagation.
+
+###### 2.4 Data Subject:
+
+Requester (GDPR Art. 17(1)); receives the completion confirmation.
+
+##### 3 Preconditions
+
+- Erasure request registered and requester identity verified (or retention expiry reached on the
+  policy path).
+- In-scope data locatable: PII, AI training data contributions and model inference records.
+
+##### 4 Basic Flow of Events
+
+1. Erasure request received and logged (GDPR Art. 17(1)); identity verified before any erasure action.
+2. DPO determines the erasure scope: PII, AI training data contributions and model inference records (CR-D-05.3-001).
+3. DPO screens the scope for legal-hold/retention conflicts (tiered retention schedule — PROC-21); non-conflicting items proceed.
+4. OmniBank platform executes the cryptographic-sharding erasure: per-subject material keys destroyed, ciphertext rendered unrecoverable (CR-D-05.3-001); cryptographic erase per the media sanitization standard (BPR-D-05.3-001).
+5. Erasure propagated to copies, replications and backups (GDPR Art. 17(2)); IT Operations Manager supports the backup side.
+6. Third parties (processors, AI model providers) informed of the erasure request within 72 hours (GDPR Art. 17(2)); compliance verified per the third-party audit discipline (PROC-23).
+7. Erasure completion record written to the sanitization audit trail (BPR-D-05.3-001); data subject receives confirmation.
+
+> **Sequence diagram:** → Annex B §1 (B_Sequence_Diagrams.md)
+
+##### 5 Alternative Flows
+
+###### 5.1 <Alternate flow: Identity verification failure>
+
+Trigger: step 1/2. Request suspended — no erasure is executed on an unverified identity; the
+requester is asked to complete verification and the 30-day clock resumes on success.
+
+###### 5.2 <Alternate flow: Legal-hold/retention conflict>
+
+Trigger: step 3. Statutory retention obligations (tiered retention policy — PROC-21) prevail for
+the conflicting data only; the non-conflicting scope is erased; the conflict and its grounds are
+documented in the erasure record and communicated to the data subject.
+
+###### 5.3 <Alternate flow: Data held by third parties>
+
+Trigger: step 6. Third-party notification issued (72-hour SLA per rule); erasure compliance at the
+third party verified within 60 days of request (PROC-23 audit discipline).
+
+##### 6 Subflows
+
+###### 6.1 <Subflow: Cryptographic sharding erasure>
+
+1. Per-subject material keys located in designated cryptographic custody.
+2. Keys destroyed — the ciphertext becomes unrecoverable while the hash-chained log structure
+   remains verifiable (T-002 resolution; CAP-10 discipline).
+
+###### 6.2 <Subflow: Erasure record>
+
+1. Completion record captures scope, method (cryptographic erase), timestamps and third-party
+   notifications (BPR-D-05.3-001 audit trail).
+
+##### 7 Key Scenarios
+
+###### 7.1 <Scenario: Erasure completed>
+
+1. Erasure record complete within 30 days; PII unrecoverable; log structure intact; third parties
+   notified and verified.
+
+###### 7.2 <Scenario: Partial erasure (conflict)>
+
+1. Non-conflicting scope erased; conflicting data retained per the statutory schedule; refusal
+   grounds documented and communicated.
+
+##### 8 Post-conditions
+
+###### 8.1
+
+Personal data in scope cryptographically erased (keys destroyed) within 30 days of the request.
+
+###### 8.2
+
+Erasure completion record on the audit trail; third-party notifications dispatched and verified.
+
+##### 9 Special Requirements (FURPS+)
+
+**Functional (F):** Request intake with identity verification, scope determination, key-destruction
+erasure, backup/replication propagation, third-party notification, completion record.
+
+**Usability (U):** Erasure confirmation returned to the data subject on completion.
+
+**Reliability (R):** Fail-closed — completion only when in-scope stores, copies and backups are
+covered; T-002 invariant holds (log integrity preserved while PII is unrecoverable).
+
+**Performance (P):** Erasure completed within 30 days; third parties notified within 72 hours (per
+rule CR-D-05.3-001).
+
+**Supportability (S):** Works across PII, AI training data contributions and inference records;
+interfaces with the tiered retention schedule (PROC-21) and third-party audits (PROC-23).
+
+##### 10 Security & Compliance Annex (AEGIS)
+
+- **Provenance:** [ATTESTED] Doc19 CR-D-05.3-001 verbatim ("Enable cryptographic sharding-based erasure within 30 days of request or retention expiry. Applies to PII, AI training data contributions, and model inference records. Resolves tension T-002"); BPR-D-05.3-001 (media sanitization standard — Clear, Purge, Destroy; cryptographic erase; sanitization documented for audit trail). Elevated from the Doc22 v2.3 §6 stub per UC SEPARATION (rubric v1.8 §5B rule 6, human decision 2026-09-05).
+- **Constrained by:** PROC-21 (tiered retention schedule), PROC-23 (third-party erasure audits), CAP-10 (immutable audit logs — T-002 counterpart).
+- **Rules / NFR:** CR-D-05.3-001, BPR-D-05.3-001.
+- **Objectives:** AG-D-05.3-001.
+- **Regulatory citations:** GDPR Art. 17(1) (right to erasure); GDPR Art. 17(2) (informing other controllers/processors — propagation to copies, replications and backups).
+- **Tension resolution:** T-002 — cryptographic sharding enables DORA immutable log retention while satisfying GDPR erasure. PII keys destroyed; log structure preserved.
+- **NIST anchors:** PR.DS-10 (CSF 2.0); CT.DM-P4, CT.DM-P5 (Privacy Framework) — per Doc20/NIST_ANCHORS.
+
+#### Use-Case: {UC-34} Data Subject Requests Data Export
+
+##### 1 Brief Description
+
+The data subject requests an export of their personal data in machine-readable format. The export
+covers personal data, AI model decisions, training data lineage and credit scoring factors
+(CR-D-05.4-001). It is triggered when the data subject submits an export request; the package is
+delivered within 30 days (per rule; GDPR Art. 20 data portability, with the Art. 15(3) copy right
+covering items outside Art. 20's portability scope).
+
+##### 2 Actor Brief Descriptions
+
+###### 2.1 Data Subject — Primary Actor:
+
+Submits the export request; receives the machine-readable package.
+
+###### 2.2 OmniBank platform (system):
+
+Assembles the export from live records, AI decision records, training-data lineage and scoring
+factors; generates standardized formats (JSON/CSV per BPR-D-05.4-001).
+
+###### 2.3 Data Protection Officer (Secondary):
+
+Verifies the request and approves the response package; ensures third-party data exclusion and
+scope correctness.
+
+##### 3 Preconditions
+
+- Requester identity verified.
+- The subject's records locatable: personal data, AI model decisions, training data lineage and
+  credit scoring factors.
+
+##### 4 Basic Flow of Events
+
+1. Data subject submits the export request (GDPR Art. 15(3) copy / Art. 20 data portability); request logged with timestamp.
+2. DPO verifies identity and determines the export scope: personal data, AI model decisions, training data lineage and credit scoring factors (CR-D-05.4-001).
+3. OmniBank platform assembles the export in standardized machine-readable formats (JSON/CSV, per BPR-D-05.4-001); third-party personal data is excluded from the package.
+4. Export delivered to the data subject within 30 days (per rule CR-D-05.4-001; GDPR Art. 20).
+5. Request/dispatch logged against the data-subject record.
+
+> **Sequence diagram:** → Annex B §2 (B_Sequence_Diagrams.md)
+
+##### 5 Alternative Flows
+
+###### 5.1 <Alternate flow: Identity verification failure>
+
+Trigger: step 2. Request suspended — no export is issued on an unverified identity; verification
+must complete before the package is assembled.
+
+###### 5.2 <Alternate flow: Third-party data in scope>
+
+Trigger: step 3. Records containing other data subjects' personal data are excluded or redacted;
+the remainder is delivered and the exclusions are noted to the requester.
+
+###### 5.3 <Alternate flow: Items outside portability scope>
+
+Trigger: step 4. Where items fall outside Art. 20's portability scope (e.g. derived scores or
+lineage not provided by the data subject), they are supplied under the Art. 15(3) copy right in
+the same machine-readable format.
+
+##### 6 Subflows
+
+###### 6.1 <Subflow: Scoring-factor package>
+
+1. Credit scoring factors drawn from the generated explanation/reason-code records (CR-D-05.4-001
+   scope: "Include AI model decisions, training data lineage, and credit scoring factors").
+2. Format matches the machine-readable requirement (JSON/CSV — BPR-D-05.4-001).
+
+###### 6.2 <Subflow: Third-party exclusion>
+
+1. Records scanned for third-party personal data before assembly.
+2. Excluded/redacted items recorded with the dispatch log.
+
+##### 7 Key Scenarios
+
+###### 7.1 <Scenario: Export delivered>
+
+1. Machine-readable package delivered within 30 days; dispatch logged against the data-subject
+   record.
+
+###### 7.2 <Scenario: Third-party exclusion>
+
+1. Package delivered with third-party data excluded; exclusions noted to the requester.
+
+##### 8 Post-conditions
+
+###### 8.1
+
+Export delivered in standardized machine-readable format within 30 days.
+
+###### 8.2
+
+Dispatch logged against the data-subject record (auditable).
+
+##### 9 Special Requirements (FURPS+)
+
+**Functional (F):** Export assembly across personal data, AI model decisions, training data lineage
+and credit scoring factors; JSON/CSV standardized formats; dispatch logging.
+
+**Usability (U):** Single request surface for the data subject; machine-readable output.
+
+**Reliability (R):** Complete scope per CR-D-05.4-001 — no silent omissions; third-party exclusion
+enforced before delivery.
+
+**Performance (P):** Export completed within 30 days (per rule CR-D-05.4-001).
+
+**Supportability (S):** Export model stays stable for audits and data-subject requests; feeds the
+UC-65 explanation package and the PROC-23 third-party audit discipline.
+
+##### 10 Security & Compliance Annex (AEGIS)
+
+- **Provenance:** [ATTESTED] Doc19 CR-D-05.4-001 verbatim ("Enable data export in machine-readable formats within regulatory SLAs (GDPR: 30 days). Include AI model decisions, training data lineage, and credit scoring factors."); BPR-D-05.4-001 (automated data lifecycle management; GDPR-compliant portability with standardized export formats JSON, CSV). Elevated from the Doc22 v2.3 §6 stub per UC SEPARATION (rubric v1.8 §5B rule 6, human decision 2026-09-05).
+- **Constrained by:** UC-63 (consent/declaration data), UC-65 (scoring-factor explanation records), PROC-22 (training-data lineage documentation), PROC-23 (third-party data audits).
+- **Rules / NFR:** CR-D-05.4-001, BPR-D-05.4-001.
+- **Objectives:** AG-D-05.4-001.
+- **Regulatory citations:** GDPR Art. 15(3) (copy of personal data undergoing processing); GDPR Art. 20 (data portability — structured, commonly used, machine-readable format).
+- **NIST anchors:** ALT-ANCHOR — no direct CSF 2.0 subcategory for portability (Doc20 §D-05.4); CT.DM-P1, CT.DM-P6 (Privacy Framework); ISO 27002:2022 A.5.34 (per Doc20 ALT-ANCHOR note).
+
+### 4.9 MUC-C3 inventory (OmniScore AI threat model)
 
 | MUC ID | Threat | Target UCs | Mitigations |
 |--------|--------|------------|-------------|
-| MUC-C3-01 | Application data crafted to game OmniScore | UC-63, UC-64, PROC-39 | Out-of-distribution flags → human path (UC-64 ext. 5.3); SYS-11 fraud screening (UC-63 step 4); bureau cross-checks (PROC-39); bias/drift pipeline |
-| MUC-C3-02 | Training-data poisoning of OmniScore | UC-64, UC-46 | SYS-03 bias+drift pipeline (UC-61); UC-46 secure training pipeline; UC-08 tampering detection; UC-21 access control; STORE-03 WORM |
-| MUC-C3-03 | Model inversion / membership inference | UC-64, UC-65 | UC-21 access control; UC-06 field-level encryption; reason-code granularity (UC-64/65); PROC-37 adversarial testing; PROC-11 access reviews |
-| MUC-C3-04 | Discriminatory bias exploitation / harm | UC-64, UC-65, PROC-40 | SYS-03 bias monitoring; UC-61 drift monitoring; BPR-D-12.1-001 bias testing; human path (PROC-39); complaint channel wired to governance (PROC-40) |
-| MUC-C3-05 | Explainability gaming (spoofed reason codes) | UC-64, UC-65, PROC-39 | In-runtime reason codes log-anchored to model version; UC-08; PROC-39 fail-closed on incomplete context; CR-D-10.2-001 immutable records; PROC-11 |
-| MUC-C3-06 | Model & training-data exfiltration (IP/customer-data theft) | UC-64, UC-46, PROC-22 | UC-21 access control + PROC-11 reviews; UC-06 encryption (STORE-03/STORE-10 HSM-bound CMK — attested); export-anomaly monitoring (UC-57); egress minimisation (CR-D-05.1-001) |
+| MUC-C3-01 | Application data crafted to game OmniScore | UC-63, UC-64, UC-66 | Out-of-distribution flags → human path (UC-64 ext. 5.3); SYS-11 fraud screening (UC-63 step 4); bureau cross-checks (UC-66); bias/drift pipeline |
+| MUC-C3-02 | Training-data poisoning of OmniScore | UC-64, PROC-49 | SYS-03 bias+drift pipeline (PROC-52); PROC-49 secure training pipeline; CAP-08 tampering detection; PROC-46 access control; STORE-03 WORM |
+| MUC-C3-03 | Model inversion / membership inference | UC-64, UC-65 | PROC-46 access control; PROC-43 field-level encryption; reason-code granularity (UC-64/65); PROC-37 adversarial testing; PROC-11 access reviews |
+| MUC-C3-04 | Discriminatory bias exploitation / harm | UC-64, UC-65, UC-92 | SYS-03 bias monitoring; PROC-52 drift monitoring; BPR-D-12.1-001 bias testing; human path (UC-66); complaint channel wired to governance (UC-92) |
+| MUC-C3-05 | Explainability gaming (spoofed reason codes) | UC-64, UC-65, UC-66 | In-runtime reason codes log-anchored to model version; CAP-08; UC-66 fail-closed on incomplete context; CR-D-10.2-001 immutable records; PROC-11 |
+| MUC-C3-06 | Model & training-data exfiltration (IP/customer-data theft) | UC-64, PROC-49, PROC-22 | PROC-46 access control + PROC-11 reviews; PROC-43 encryption (STORE-03/STORE-10 HSM-bound CMK — attested); export-anomaly monitoring (PROC-51); egress minimisation (CR-D-05.1-001) |
 
 > **Note (MUC-C3-06):** no canonical definition of MUC-C3-06 exists elsewhere in the corpus
 > (the MUC-C3 family was introduced in this document's §6B pilot); the row above records the
@@ -4701,76 +4079,85 @@ quarterly access reviews.
 > register later defines MUC-C3-06 differently, this row must be reconciled (P7 — human
 > arbiter).
 
-## 7. USE CASE METRICS SUMMARY
+## 5. USE CASE METRICS SUMMARY
 
 ### 5.1 Distribution by Priority
 
 | Priority | Count | Percentage | Example UCs |
 |----------|-------|------------|-------------|
-| CRITICAL | 32 | 51.6% | PROC-01 to PROC-19 |
-| HIGH | 19 | 30.6% | PROC-20 to PROC-33 |
-| MEDIUM | 4 | 6.5% | UC-22, PROC-18, PROC-23, UC-47 |
-| LOW | 1 | 1.6% | PROC-38 |
-| **TOTAL** | **62** | **100%** | — |
+| CRITICAL | 17 | 51.5% | UC-63, UC-64, UC-66, UC-67 |
+| HIGH | 11 | 33.3% | UC-65, UC-68, UC-73, UC-74 |
+| MEDIUM | 5 | 15.2% | UC-79, UC-80, UC-85, UC-92 |
+| **TOTAL** | **33** | **100%** | — |
 
-### 5.2 Distribution by Domain
+### 5.2 Distribution by Package
 
-| Domain | UCs | CRITICAL | HIGH | MEDIUM | LOW |
+| Package | UCs | CRITICAL | HIGH | MEDIUM | LOW |
 |--------|-----|----------|------|--------|-----|
-| D-01: Data Protection | 8 | 4 | 3 | 1 | 0 |
-| D-02: Vulnerability Management | 7 | 4 | 2 | 1 | 0 |
-| D-03: Access Control | 7 | 4 | 3 | 0 | 0 |
-| D-04: Incident Response | 8 | 5 | 2 | 1 | 0 |
-| D-05: Data Lifecycle | 6 | 4 | 1 | 1 | 0 |
-| D-06: Supply Chain | 5 | 3 | 2 | 0 | 0 |
-| D-07: Secure Development | 6 | 3 | 3 | 0 | 0 |
-| D-08: Human Factors | 4 | 2 | 1 | 1 | 0 |
-| D-09: Governance | 5 | 3 | 2 | 0 | 0 |
-| D-10: Monitoring & Audit | 6 | 4 | 2 | 0 | 0 |
+| PKG-C: Lending & OmniScore | 6 | 4 | 2 | 0 | 0 |
+| PKG-A: Onboarding & KYC | 6 | 4 | 2 | 0 | 0 |
+| PKG-B: Digital Banking Core | 6 | 2 | 2 | 2 | 0 |
+| PKG-D: Payments & Open Banking | 5 | 2 | 2 | 1 | 0 |
+| PKG-E: Corporate & Treasury | 4 | 2 | 2 | 0 | 0 |
+| PKG-F: Fraud & Customer Service | 4 | 2 | 0 | 2 | 0 |
+| PKG-DS: Privacy & Data-subject | 2 | 1 | 1 | 0 | 0 |
+| **TOTAL** | **33** | **17** | **11** | **5** | **0** |
+
+> The former "Distribution by Domain" (D-01..D-10) described the compliance-card population
+> removed in v3.0; that population is now indexed in §3 (Compliance Domain Index) with lane
+> cards in `Doc32_Process_Capability_Cards.md`.
 
 ### 5.3 Rules Coverage Matrix
 
-| Domain | Compliance Rules | UCs Covering | Best Practice Rules | UCs Covering |
-|--------|------------------|--------------|-------------------|--------------|
-| D-01 | 4 | 8 | 4 | 3 |
-| D-02 | 4 | 7 | 4 | 3 |
-| D-03 | 4 | 7 | 4 | 2 |
-| D-04 | 4 | 8 | 4 | 3 |
-| D-05 | 4 | 6 | 3 | 2 |
-| D-06 | 4 | 5 | 3 | 2 |
-| D-07 | 4 | 6 | 4 | 2 |
-| D-08 | 3 | 4 | 3 | 1 |
-| D-09 | 4 | 5 | 4 | 2 |
-| D-10 | 3 | 6 | 3 | 3 |
+| Domain | Compliance Rules | Best Practice Rules | Realised by |
+|--------|------------------|---------------------|-------------|
+| D-01 | 4 | 1 | Doc32 lane cards (§3.2) |
+| D-02 | 5 | 6 | Doc32 lane cards (§3.2) |
+| D-03 | 4 | 4 | Doc32 lane cards (§3.2) |
+| D-04 | 5 | 5 | Doc32 lane cards (§3.2) |
+| D-05 | 4 | 3 | Doc32 lane cards (§3.2) + UC-33/UC-34 (PKG-DS §4.8) |
+| D-06 | 4 | 5 | Doc32 lane cards (§3.2) |
+| D-07 | 4 | 4 | Doc32 lane cards (§3.2) |
+| D-08 | 3 | 4 | Doc32 lane cards (§3.2) |
+| D-09 | 4 | 4 | Doc32 lane cards (§3.2) |
+| D-10 | 4 | 5 | Doc32 lane cards (§3.2) |
+
+> Counts are distinct rule ids carried by the former §6 package cards (v2.3 ground truth);
+> BPR-D-12.x (AI-specific) are counted in their host domains. Per-rule realisation lives in the
+> §3.2 index and in the Doc32 cards' **Realises** field. Total distinct mentions across domains:
+> 41 CR / 41 BPR (rules shared across domains counted once per domain).
 
 ---
 
-## 8. TRACEABILITY CHAIN
+## 6. TRACEABILITY CHAIN
 
 ### 6.1 Regulation → Rule → UC Mapping
 
+> v3.0: rule lists unchanged; UC counts recomputed over the 33 catalog use cases
+> (§4 card annexes + PKG-DS). Compliance-rule realisation is indexed in §3 / Doc32.
+
 | Regulation | Rules | UCs |
 |------------|-------|-----|
-| GDPR | 12 (CR-D-01.1, CR-D-03.3, CR-D-04.2, CR-D-04.3, CR-D-04.4, CR-D-05.1, CR-D-05.2, CR-D-05.3, CR-D-05.4, CR-D-06.1, CR-D-06.3, CR-D-08.1, CR-D-08.2, CR-D-09.1, CR-D-09.2, CR-D-09.4, CR-D-10.3) | 18 |
-| CRA | 18 (CR-D-01.1, CR-D-01.2, CR-D-01.3, CR-D-01.4, CR-D-02.1, CR-D-02.2, CR-D-02.3, CR-D-02.4, CR-D-03.1, CR-D-03.2, CR-D-03.4, CR-D-04.1, CR-D-04.2, CR-D-04.3, CR-D-05.1, CR-D-05.3, CR-D-06.2, CR-D-07.1, CR-D-10.1, CR-D-10.2, CR-D-10.3) | 22 |
-| NIS 2 | 24 (CR-D-01.1, CR-D-02.1, CR-D-02.2, CR-D-03.1, CR-D-03.2, CR-D-03.3, CR-D-04.1, CR-D-04.2, CR-D-04.3, CR-D-04.4, CR-D-06.1, CR-D-06.3, CR-D-06.4, CR-D-07.2, CR-D-07.3, CR-D-07.4, CR-D-08.1, CR-D-08.2, CR-D-08.3, CR-D-09.1, CR-D-09.2, CR-D-09.3, CR-D-10.1, CR-D-10.2, CR-D-10.3) | 26 |
-| DORA | 29 (CR-D-01.1, CR-D-01.2, CR-D-01.3, CR-D-02.1, CR-D-02.2, CR-D-02.4, CR-D-03.1, CR-D-03.2, CR-D-03.3, CR-D-04.1, CR-D-04.2, CR-D-04.3, CR-D-04.4, CR-D-06.1, CR-D-06.3, CR-D-06.4, CR-D-07.2, CR-D-07.3, CR-D-07.4, CR-D-08.3, CR-D-09.1, CR-D-09.2, CR-D-09.3, CR-D-10.1, CR-D-10.2, CR-D-10.3) | 30 |
-| AI Act | 13 (CR-D-01.1, CR-D-01.4, CR-D-02.1, CR-D-02.4, CR-D-03.1, CR-D-04.3, CR-D-05.1, CR-D-05.2, CR-D-07.1, CR-D-08.2, CR-D-09.1, CR-D-09.2, CR-D-10.1, CR-D-10.2, CR-D-10.3) | 15 |
+GDPR12 (CR-D-01.1, CR-D-03.3, CR-D-04.2, CR-D-04.3, CR-D-04.4, CR-D-05.1, CR-D-05.2, CR-D-05.3, CR-D-05.4, CR-D-06.1, CR-D-06.3, CR-D-08.1, CR-D-08.2, CR-D-09.1, CR-D-09.2, CR-D-09.4, CR-D-10.3) | 25 |
+CRA18 (CR-D-01.1, CR-D-01.2, CR-D-01.3, CR-D-01.4, CR-D-02.1, CR-D-02.2, CR-D-02.3, CR-D-02.4, CR-D-03.1, CR-D-03.2, CR-D-03.4, CR-D-04.1, CR-D-04.2, CR-D-04.3, CR-D-05.1, CR-D-05.3, CR-D-06.2, CR-D-07.1, CR-D-10.1, CR-D-10.2, CR-D-10.3) | 29 |
+NIS 224 (CR-D-01.1, CR-D-02.1, CR-D-02.2, CR-D-03.1, CR-D-03.2, CR-D-03.3, CR-D-04.1, CR-D-04.2, CR-D-04.3, CR-D-04.4, CR-D-06.1, CR-D-06.3, CR-D-06.4, CR-D-07.2, CR-D-07.3, CR-D-07.4, CR-D-08.1, CR-D-08.2, CR-D-08.3, CR-D-09.1, CR-D-09.2, CR-D-09.3, CR-D-10.1, CR-D-10.2, CR-D-10.3) | 31 |
+DORA29 (CR-D-01.1, CR-D-01.2, CR-D-01.3, CR-D-02.1, CR-D-02.2, CR-D-02.4, CR-D-03.1, CR-D-03.2, CR-D-03.3, CR-D-04.1, CR-D-04.2, CR-D-04.3, CR-D-04.4, CR-D-06.1, CR-D-06.3, CR-D-06.4, CR-D-07.2, CR-D-07.3, CR-D-07.4, CR-D-08.3, CR-D-09.1, CR-D-09.2, CR-D-09.3, CR-D-10.1, CR-D-10.2, CR-D-10.3) | 31 |
+AI Act13 (CR-D-01.1, CR-D-01.4, CR-D-02.1, CR-D-02.4, CR-D-03.1, CR-D-04.3, CR-D-05.1, CR-D-05.2, CR-D-07.1, CR-D-08.2, CR-D-09.1, CR-D-09.2, CR-D-10.1, CR-D-10.2, CR-D-10.3) | 31 |
 
 ---
 
-## 9. STRATEGIC TENSION TRACEABILITY
+## 7. STRATEGIC TENSION TRACEABILITY
 
 | Tension ID | Type | Resolved By | UCs |
 |------------|------|-------------|-----|
 | T-001 | Temporal Conflict (24h notification) | PROC-15: Universal Incident Notification | PROC-15 |
-| T-002 | Requirement Conflict (Erasure vs Logs) | UC-33, UC-58: Cryptographic Sharding | UC-33, UC-58 |
+| T-002 | Requirement Conflict (Erasure vs Logs) | UC-33, CAP-10: Cryptographic Sharding | UC-33, CAP-10 |
 | T-003 | Frequency Mismatch (Assessment overlap) | PROC-34: IPSARA Unified Assessment | PROC-34 |
 | T-004 | Intensity Gap (Secure-by-default) | PROC-28: Secure-by-Design | PROC-28 |
 
 ---
 
-## 10. NEXT STEPS
+## 8. NEXT STEPS
 
 1. **Define Use Case Relationships (Doc 13a)** — Establish «include» and «extend» relationships between UCs
 2. **Define Use Case Variability (Doc 13b)** — Document specialization and alternative scenarios per regulation
@@ -4780,17 +4167,18 @@ quarterly access reviews.
 
 ---
 
-## 11. VERSION HISTORY
+## 9. VERSION HISTORY
 
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
+| 3.0 | 2026-09-05 | Executor (UC SEPARATION F1) | Lane-pure catalog per rubric v1.8 §5B rule 6: §6 replaced by the Compliance Domain Index (§3); 15 non-genuine UC cards re-laned to PROC-41..52/CAP-08..10 (full cards in Doc32); PROC-39/40 re-adjudicated to UC-66/92; PKG-DS added with UC-33/34 fully-dressed (§4.8); numbering, metadata and metrics corrected (33 UCs / 7 packages); Annex A/B pointers regenerated | High |
 | 2.1 | 2026-09-04 | PORT-PARITY-2 Executor (Phase 3 product-first pilot) | Added §6B Product Functional Use Cases (PKG-C Lending & OmniScore, 6 fully-dressed UCs UC-63..68) + MUC-C3-01/04/05 cards; compliance UCs PROC-01..62 (§6) preserved verbatim | High |
 | 2.2 | 2026-09-04 | PORT-PARITY-2 Executor (Phase 3 massification C3) | Added §6B.2–§6B.6 product packages PKG-A/B/D/E/F (25 fully-dressed UCs UC-69..93) + MUC-C3-02/03 detail cards + §6B.7 MUC-C3 inventory table; §6B.0 actor Drives updated; compliance UCs PROC-01..62 (§6) preserved verbatim | High |
 | 1.0 | 2026-04-28 | Compliance Lead | Initial creation — 62 UCs across 10 packages derived from 63 rules |
 
 ---
 
-## 12. DOCUMENT APPROVAL
+## 10. DOCUMENT APPROVAL
 
 | Role | Name | Signature | Date |
 |------|------|-----------|------|
@@ -4809,8 +4197,10 @@ quarterly access reviews.
 
 v2.2 → v2.3: non-technology UCs re-laned to PROC-*/CAP-* per human decision 2026-09-05 (rubric REALIZATION_CLASS_RUBRIC v1.3 §5B; registry `00_METHODOLOGY/validation/LANE_NAMING_CENSUS_v0.md`). Applied via `scripts/rename_lane_ids.py`.
 
+v2.3 → v3.0 (UC SEPARATION, 2026-09-05): 15 remaining non-genuine §6 `UC-*` cards re-laned in a single word-boundary pass — UC-02→PROC-41, UC-03→PROC-42, UC-06→PROC-43, UC-15→PROC-44, UC-17→PROC-45, UC-21→PROC-46, UC-22→PROC-47, UC-44→PROC-48, UC-46→PROC-49, UC-47→PROC-50, UC-57→PROC-51, UC-61→PROC-52, UC-08→CAP-08, UC-26→CAP-09, UC-58→CAP-10; PROC-39→UC-66 and PROC-40→UC-92 re-adjudicated back to the UC lane (rubric v1.8 §5B rule 6; numbers 39/40 retired, PROC numbering continues at 41). The PROC/CAP summary stubs no longer live in this catalog: §6 became the Compliance Domain Index (§3) and all full lane cards live in `Doc32_Process_Capability_Cards.md`.
+
 ---
 
 ## Lane Cards cross-reference
 
-The PROCESS and CAPABILITY lane cards for the ids re-laned in this catalogue (PROC-*/CAP-*, per `REALIZATION_CLASS_RUBRIC.md` v1.5 §5B/§5C) live in `Doc32_Process_Capability_Cards.md` (same IDs, one card + one Mermaid diagram each, with an articulation table binding every card to this catalogue and to the downstream documents).
+All PROCESS and CAPABILITY lane cards (50 PROC + 10 CAP, one card + one Mermaid diagram each, with an articulation table binding every card to this catalog and to the downstream documents) live in `Doc32_Process_Capability_Cards.md` (per `REALIZATION_CLASS_RUBRIC.md` v1.8 §5B rule 6 / §5C.3). This catalog holds use cases only: PKG-A..F (§4.2–§4.7) and PKG-DS (§4.8); the compliance domains PKG-D-01..D-10 are indexed in §3.

@@ -2,11 +2,12 @@
 document_id: AEGIS-P3-32
 title: Process & Capability Cards — Lane Pilot (Case_03)
 phase: 3
-version: 1.0
+version: 1.1
 created: 2026-09-05
 updated: 2026-09-05
 author: Executor
 status: ACTIVE
+case: Case_03_OmniBank_Financial
 inputs: [Doc22_Use_Cases_Catalog.md, Doc19_Rules_Catalog.md, ../../00_METHODOLOGY/PREPROCESSING_by_domain/CONTROLS/OWASP_SAMM/, ../../00_METHODOLOGY/PREPROCESSING_by_domain/CONTROLS/OWASP_ASVS/]
 outputs: []
 traceability: RULE → CAP → PROC → UC chain (REALIZATION_CLASS_RUBRIC.md v1.4 §5C)
@@ -19,8 +20,11 @@ related_documents: [Doc22_Use_Cases_Catalog.md, Doc19_Rules_Catalog.md]
 > (rubric `00_METHODOLOGY/REALIZATION_CLASS_RUBRIC.md` v1.4 §5C). Process cards follow
 > the NIST SP 800-218 (SSDF) practice/task shape; capability cards follow the C2M2 /
 > ArchiMate capability semantics. Traceability chain: **RULE → CAP → PROC → UC**.
-> These cards are companions to the catalogue cards in `Doc22_Use_Cases_Catalog.md`
-> (same IDs). Piloted set: 4 of 47 re-laned ids (registry: `LANE_NAMING_CENSUS_v0.md`).
+> Companion lane cards for the UC (TECHNOLOGY) catalogue `Doc22_Use_Cases_Catalog.md`.
+> Set: 50 PROC + 10 CAP cards (47 from the LANE NAMING campaign, registry `LANE_NAMING_CENSUS_v0.md`;
+> +15 from UC SEPARATION v1.1 — PROC-41..52 / CAP-08..10, derived faithfully from the former Doc22 §6
+> stubs). v1.1 removes the PROC-39/40 companion cards: per rubric v1.8 §5B rule 6 they were
+> re-adjudicated back to UC-66/UC-92 (fully-dressed use cases in Doc22 §4).
 
 ## PROC-10 — Identity and Access Manager Provisions User Identity
 
@@ -876,50 +880,302 @@ flowchart TD
     D1 -->|"no"| A4["3a. Annual comprehensive review — end"]
 ```
 
-## PROC-39 — Underwriter Reviews Borderline Application
+## PROC-41 — Security Architect Configures Data Encryption at Rest
+
+> Formerly UC-02 — re-laned per rubric v1.8 §5B rule 6 (UC SEPARATION, 2026-09-05).
 
 | Field | Content |
 |---|---|
-| Trigger | Work item lands in the underwriting queue (UC-64 borderline band, or manual path of UC-63 ext. 5.1). |
-| Activities | 1. Underwriter opens work item (application, score, reason codes, model version, confidence band). 2. Independent review; overrides only with recorded justification. 3. Decision recorded (approve/decline + mandatory reason code) — human decides per AI Act Art. 14. 4. Override-vs-score delta logged for AI-governance metrics. Fail-closed on missing context; manipulation indicators escalate to financial crime. |
-| Roles | Underwriter, Consumer Lending (Primary); SYS-14 Loan Origination (record owner); SYS-03 OmniScore; Head of AI Governance (metrics); Customer (subject). |
-| SLA / Timing | No attested SLA for review turnaround (FURPS+ P: N/A). |
-| Realises | BPR-D-12.3-001, CR-D-08.2-001, CR-D-10.1-001 |
-| Anchors | SAMM: G-EG-A (training and awareness — underwriter competence), G-PC-A (policy and standards — oversight thresholds) · ASVS: V7 (error handling and logging — decision records); note: human-oversight decision-making itself has no ASVS mapping. NIST anchors: PR.AA-05, DE.CM-09. |
-| Evidence | Immutable decision records with justification; AI-governance override-delta metrics; blocked work-item logs. |
+| Trigger | Rule activation (CR-D-01.1-001) requiring encryption of data at rest. |
+| Activities | 1. Encryption scope defined: personal data, financial records and AI training datasets. 2. AES-256 encryption configured for the in-scope stores. 3. AI System Administrator validates coverage of AI training datasets. 4. Configuration evidence recorded (verification of the built state). |
+| Roles | Security Architect (Primary); AI System Administrator (Secondary — AI dataset coverage). |
+| SLA / Timing | Implementation within 30 days of rule activation. |
+| Realises | CR-D-01.1-001 / AG-D-01.1-001, AG-D-05.2-001. |
+| Anchors | SAMM: O-EM-A (configuration hardening) · ASVS: V6 (stored cryptography). |
+| Evidence | Encryption configuration records; coverage reports per store type; implementation timestamps (activities derived from description + rules — former catalogue stub was a summary). |
+| Priority | CRITICAL. |
 
 ```mermaid
 flowchart TD
-    T["Trigger: work item in underwriting queue"] --> D1{"Model version + reason codes present?"}
-    D1 -->|"no"| B["BLOCKED — fail-closed"]
-    D1 -->|"yes"| A1["1. Independent review"]
-    A1 --> D2{"Manipulation indicators?"}
-    D2 -->|"yes"| ESC["Escalate to financial crime"]
-    D2 -->|"no"| A2["2. Decision + mandatory reason code (Art. 14)"]
-    A2 --> A3["3. Override delta logged — end"]
+    T["Trigger: rule activation (CR-D-01.1-001)"] --> A1["1. Define encryption scope: personal, financial, AI training data"]
+    A1 -->|"Security Architect"| A2["2. Configure AES-256 at rest"]
+    A2 -->|"AI System Administrator"| D1{"AI training datasets covered?"}
+    D1 -->|"no"| A2
+    D1 -->|"yes"| E["End: implemented ≤ 30 days — evidence recorded"]
 ```
 
-## PROC-40 — Complaint Filing & Handling (SYS-17)
+## PROC-42 — Security Administrator Enforces TLS 1.3 for Data in Transit
+
+> Formerly UC-03 — re-laned per rubric v1.8 §5B rule 6 (UC SEPARATION, 2026-09-05).
 
 | Field | Content |
 |---|---|
-| Trigger | Customer files a complaint (in-app or via SYS-20 contact centre) or an agent raises one on the customer's behalf. |
-| Activities | 1. Complaint filed with category, description, evidence. 2. Case created in SYS-17 with category-based SLA tracking. 3. Investigation with linked records (decisions, disputes, journeys); Art. 22 contests link to UC-65/PROC-39; bias patterns flagged to AI governance. 4. Outcome + response; evidence chain immutably anchored (CR-D-10.2-001). 5. Unresolved/out-of-SLA/regulatory cases escalate to Compliance Officer (PROC-19 path). |
-| Roles | Customer, Retail (Primary); SYS-17 CRM (case management); SYS-20 Contact centre (phone intake); Compliance Officer (regulatory escalation). |
-| SLA / Timing | Category-based SLAs; no attested SLA numbers (FURPS+ P: N/A); SLA breaches escalate automatically. |
-| Realises | CR-D-05.2-001, CR-D-10.2-001, BPR-D-12.3-001 |
-| Anchors | SAMM: O-IM-B (incident response — escalation handling) · ASVS: V7 (error handling and logging — evidence chain); note: complaint governance itself has no ASVS mapping. NIST anchors: GV.PO-P1, DE.AE-02. |
-| Evidence | Case records with outcomes; immutable evidence chains; systemic-pattern escalations to AI governance. |
+| Trigger | Rule activation (CR-D-01.2-001) for data-in-transit protection; new internal/external/API channel onboarding. |
+| Activities | 1. Inventory internal, external and API communication channels. 2. TLS 1.3 enforced on all channels; legacy protocol endpoints disabled. 3. HSTS and certificate pinning applied. 4. Channel coverage verified. |
+| Roles | Security Administrator (Primary); Network Engineer (Secondary — channel verification). |
+| SLA / Timing | Full enforcement within 60 days. |
+| Realises | CR-D-01.2-001 / AG-D-01.2-001, AG-D-05.4-001. |
+| Anchors | SAMM: O-EM-A (configuration hardening) · ASVS: V9 (communications). |
+| Evidence | TLS configuration scans per channel; HSTS/pinning configuration records; enforcement reports. |
+| Priority | CRITICAL. |
 
 ```mermaid
 flowchart TD
-    T["Trigger: complaint filed (app / SYS-20)"] --> A1["1. Case created in SYS-17"]
-    A1 --> A2["2. Investigation + evidence linkage"]
-    A2 --> D1{"Within category SLA?"}
-    D1 -->|"no"| A3["3. Auto-escalate to Compliance (PROC-19 path)"]
-    D1 -->|"yes"| A4["4. Outcome + response to customer"]
-    A3 --> E["End: evidence chain retained"]
-    A4 --> E
+    T["Trigger: rule activation / new channel"] --> A1["1. Inventory communication channels"]
+    A1 --> A2["2. Enforce TLS 1.3; disable legacy protocols"]
+    A2 --> A3["3. Apply HSTS + certificate pinning"]
+    A3 -->|"Network Engineer"| D1{"All channels covered?"}
+    D1 -->|"no"| A2
+    D1 -->|"yes"| E["End: full enforcement ≤ 60 days"]
+```
+
+## PROC-43 — Security Architect Implements Field-Level Encryption
+
+> Formerly UC-06 — re-laned per rubric v1.8 §5B rule 6 (UC SEPARATION, 2026-09-05).
+
+| Field | Content |
+|---|---|
+| Trigger | Rule activation for PII field protection (GDPR-C04 / CRA-C07 scope); new PII field or AI training dataset introduced. |
+| Activities | 1. PII fields and AI training datasets classified for field-level protection. 2. Field-level encryption implemented per GDPR-C04 and CRA-C07. 3. Store/schema changes applied. 4. Coverage verified against the data inventory. |
+| Roles | Security Architect (Primary); Database Administrator (Secondary — store changes). |
+| SLA / Timing | Implementation within 60 days. |
+| Realises | CR-D-01.1-001 / AG-D-01.1-001. |
+| Anchors | SAMM: O-OM-A (data protection) · ASVS: V6 (stored cryptography). |
+| Evidence | Field-encryption coverage lists; schema change records; verification reports. |
+| Priority | HIGH. |
+
+```mermaid
+flowchart TD
+    T["Trigger: new PII field / AI dataset"] --> A1["1. Classify fields for field-level encryption"]
+    A1 -->|"Security Architect"| A2["2. Implement field-level encryption (GDPR-C04, CRA-C07)"]
+    A2 -->|"Database Administrator"| A3["3. Apply store/schema changes"]
+    A3 --> D1{"Coverage complete?"}
+    D1 -->|"no"| A1
+    D1 -->|"yes"| E["End: implemented ≤ 60 days"]
+```
+
+## PROC-44 — Security Architect Generates SBOM for AI Model
+
+> Formerly UC-15 — re-laned per rubric v1.8 §5B rule 6 (UC SEPARATION, 2026-09-05).
+
+| Field | Content |
+|---|---|
+| Trigger | AI model release; dependency change. |
+| Activities | 1. SBOM generated for the AI model: dependencies, open-source components and model artifacts. 2. SBOM updated on every dependency change. 3. Maintained per release cycle. |
+| Roles | Security Architect (Primary); AI System Administrator (Secondary). |
+| SLA / Timing | SBOM generated on every model release; updated on dependency change. |
+| Realises | BPR-D-02.2-001, CR-D-06.2-001 / AG-D-06.2-002. |
+| Anchors | SAMM: I-SB-B (software dependencies) · SAMM-only with note: ASVS does not map (SBOM generation out of ASVS scope). |
+| Evidence | SBOM artefacts per model release; dependency-change update records. |
+| Priority | HIGH. |
+
+```mermaid
+flowchart TD
+    T["Trigger: model release / dependency change"] --> D1{"Change type"}
+    D1 -->|"release"| A1["1. Generate SBOM: dependencies, open-source, model artifacts"]
+    D1 -->|"dependency change"| A2["2. Update SBOM"]
+    A1 --> E["End: SBOM current per release"]
+    A2 --> E
+```
+
+## PROC-45 — Security Administrator Enforces MFA for Privileged Access
+
+> Formerly UC-17 — re-laned per rubric v1.8 §5B rule 6 (UC SEPARATION, 2026-09-05).
+
+| Field | Content |
+|---|---|
+| Trigger | Privileged, remote or AI-system access grant; high-risk transaction. |
+| Activities | 1. MFA enforced for all privileged access, remote access and AI system access. 2. Step-up authentication required for high-risk transactions. 3. Enforcement verified across identity providers. |
+| Roles | Security Administrator (Primary); AI Platform Administrator (Secondary — AI system access). |
+| SLA / Timing | MFA enforced within 30 days; step-up for high-risk actions immediate. |
+| Realises | CR-D-03.2-001, BPR-D-03.2-001 / AG-D-03.2-002. |
+| Anchors | SAMM: O-EM-A (configuration hardening) · ASVS: V2 (authentication). |
+| Evidence | MFA coverage reports per access type; step-up configuration records. |
+| Priority | CRITICAL. |
+
+```mermaid
+flowchart TD
+    T["Trigger: privileged/remote/AI access grant"] --> A1["1. Enforce MFA on the access type"]
+    A1 --> D1{"High-risk transaction?"}
+    D1 -->|"yes"| A2["2. Step-up authentication (immediate)"]
+    D1 -->|"no"| A3["3. Standard MFA session"]
+    A2 --> E["End: MFA enforced ≤ 30 days rollout"]
+    A3 --> E
+```
+
+## PROC-46 — AI Platform Administrator Manages AI Model Access
+
+> Formerly UC-21 — re-laned per rubric v1.8 §5B rule 6 (UC SEPARATION, 2026-09-05).
+
+| Field | Content |
+|---|---|
+| Trigger | AI platform access request or role change; monthly review cycle. |
+| Activities | 1. Access to AI model training data, inference endpoints and parameter changes managed with MFA and least privilege. 2. Monthly access review executed. 3. Parameter changes require dual approval. |
+| Roles | AI Platform Administrator (Primary); Security Administrator (Secondary). |
+| SLA / Timing | Access reviewed monthly; parameter changes require dual approval. |
+| Realises | CR-D-03.1-001, CR-D-03.2-001 / AG-D-03.2-002. |
+| Anchors | SAMM: O-EM-A (configuration hardening) · ASVS: V4 (access control). |
+| Evidence | Monthly access-review records; dual-approval logs for parameter changes. |
+| Priority | HIGH. |
+
+```mermaid
+flowchart TD
+    T["Trigger: access request / monthly review"] --> A1["1. Apply MFA + least privilege to AI platform access"]
+    A1 --> D1{"Parameter change?"}
+    D1 -->|"yes"| A2["2. Dual approval required"]
+    D1 -->|"no"| A3["3. Entitlement granted/adjusted"]
+    A2 --> A4["4. Monthly review — end"]
+    A3 --> A4
+```
+
+## PROC-47 — Security Administrator Implements FIDO2 Authentication
+
+> Formerly UC-22 — re-laned per rubric v1.8 §5B rule 6 (UC SEPARATION, 2026-09-05).
+
+| Field | Content |
+|---|---|
+| Trigger | FIDO2 rollout programme start; privileged-account onboarding. |
+| Activities | 1. FIDO2/WebAuthn MFA deployed for all user-facing applications. 2. Hardware security keys issued for privileged accounts. 3. Phased rollout per user population. |
+| Roles | Security Administrator (Primary); Identity and Access Manager (Secondary). |
+| SLA / Timing | Phased rollout over 90 days; phishing-resistant authentication for privileged within 60 days. |
+| Realises | BPR-D-03.2-001 / AG-D-03.2-002. |
+| Anchors | SAMM: O-EM-B (environment stream B) · ASVS: V2.2 (general authenticator security). |
+| Evidence | Rollout-phase records; hardware-key issuance register. |
+| Priority | MEDIUM. |
+
+```mermaid
+flowchart TD
+    T["Trigger: FIDO2 rollout programme"] --> A1["1. Deploy FIDO2/WebAuthn for user-facing apps"]
+    A1 --> D1{"Privileged account?"}
+    D1 -->|"yes"| A2["2. Hardware security key issued ≤ 60 days"]
+    D1 -->|"no"| A3["3. Standard phased enrolment"]
+    A2 --> E["End: rollout complete ≤ 90 days"]
+    A3 --> E
+```
+
+## PROC-48 — Release Manager Secures CI/CD Pipeline
+
+> Formerly UC-44 — re-laned per rubric v1.8 §5B rule 6 (UC SEPARATION, 2026-09-05).
+
+| Field | Content |
+|---|---|
+| Trigger | Every pipeline run; pipeline or ML-pipeline change. |
+| Activities | 1. Automated security gates executed on every pipeline run: SAST, DAST, SCA, secrets detection, IaC scanning. 2. ML pipeline security gates included. 3. Critical findings block deployment within the clock. |
+| Roles | Release Manager (Primary); Security Engineer (Secondary — gate configuration). |
+| SLA / Timing | Security gates on every pipeline run; critical findings block deployment within 1 hour. |
+| Realises | CR-D-07.3-001, BPR-D-07.3-001 / AG-D-07.3-002. |
+| Anchors | SAMM: I-SD-A (deployment process) · ASVS: V14 (configuration). |
+| Evidence | Pipeline gate execution logs; blocked-deployment records with timestamps. |
+| Priority | CRITICAL. |
+
+```mermaid
+flowchart TD
+    T["Trigger: pipeline run"] --> A1["1. Gates: SAST, DAST, SCA, secrets, IaC"]
+    A1 --> A2["2. ML pipeline security gates"]
+    A2 --> D1{"Critical finding?"}
+    D1 -->|"yes"| A3["3. Block deployment ≤ 1 hour"]
+    D1 -->|"no"| E["End: pipeline proceeds"]
+```
+
+## PROC-49 — AI ML Engineer Secures AI Training Pipeline
+
+> Formerly UC-46 — re-laned per rubric v1.8 §5B rule 6 (UC SEPARATION, 2026-09-05).
+
+| Field | Content |
+|---|---|
+| Trigger | Every training run; model artifact promotion. |
+| Activities | 1. Data validation executed on training inputs. 2. Model artifacts signed. 3. Artifact verification before deployment. 4. Deployment approval workflow executed. |
+| Roles | AI ML Engineer (Primary); Security Engineer (Secondary). |
+| SLA / Timing | Pipeline security gates on every training run; model artifacts signed and verified. |
+| Realises | CR-D-07.1-001, CR-D-07.3-001 / AG-D-07.2-002, AG-D-07.3-002. |
+| Anchors | SAMM: I-SD-A (deployment process) · ASVS: V1.1 (secure development lifecycle). |
+| Evidence | Training-run gate logs; model artifact signature records; approval workflow records. |
+| Priority | HIGH. |
+
+```mermaid
+flowchart TD
+    T["Trigger: training run / artifact promotion"] --> A1["1. Validate training data"]
+    A1 --> A2["2. Sign model artifacts"]
+    A2 --> A3["3. Verify artifacts before deployment"]
+    A3 --> D1{"Approval granted?"}
+    D1 -->|"yes"| E["End: signed + verified artifacts deployed"]
+    D1 -->|"no"| B["Blocked — no deployment"]
+```
+
+## PROC-50 — Security Engineer Scans Infrastructure as Code
+
+> Formerly UC-47 — re-laned per rubric v1.8 §5B rule 6 (UC SEPARATION, 2026-09-05).
+
+| Field | Content |
+|---|---|
+| Trigger | Every pull request touching infrastructure-as-code. |
+| Activities | 1. IaC scanned for vulnerabilities and misconfigurations using Checkov or equivalent. 2. Findings triaged pre-deployment. 3. High findings block merge. |
+| Roles | Security Engineer (Primary); Cloud Engineer (Secondary). |
+| SLA / Timing | IaC scanned on every pull request; High findings block merge. |
+| Realises | BPR-D-07.3-001 / AG-D-07.3-002. |
+| Anchors | SAMM: V-ST-A (scalable baseline) · ASVS: V14 (configuration). |
+| Evidence | Pull-request scan results; blocked-merge records. |
+| Priority | MEDIUM. |
+
+```mermaid
+flowchart TD
+    T["Trigger: pull request (IaC)"] --> A1["1. Scan IaC (Checkov or equivalent)"]
+    A1 --> D1{"High findings?"}
+    D1 -->|"yes"| A2["2. Block merge"]
+    D1 -->|"no"| E["End: merge proceeds — scan on every PR"]
+    A2 --> F["Fix, then rescan"]
+    F --> A1
+```
+
+## PROC-51 — SOC Manager Deploys AI-Powered Threat Detection
+
+> Formerly UC-57 — re-laned per rubric v1.8 §5B rule 6 (UC SEPARATION, 2026-09-05).
+
+| Field | Content |
+|---|---|
+| Trigger | Continuous operation (24/7); monthly detection-calibration cycle. |
+| Activities | 1. 24/7 continuous security monitoring operated across systems, networks and AI pipelines. 2. AI-powered threat detection operated including real-time model drift detection. 3. Anomalies escalated within the clock. 4. Detection calibrated monthly. |
+| Roles | SOC Manager (Primary); AI Security Analyst (Secondary). |
+| SLA / Timing | 24/7 monitoring; AI detection calibrated monthly; anomalies escalated within 5 minutes. |
+| Realises | CR-D-10.1-001, BPR-D-10.1-001, BPR-D-12.2-001 / AG-D-10.1-002. |
+| Anchors | SAMM: O-IM-A (incident detection) · ASVS: V7 (error handling and logging). |
+| Evidence | Monitoring coverage dashboards; calibration records; escalation logs with timestamps. |
+| Priority | CRITICAL. |
+
+```mermaid
+flowchart TD
+    T["Trigger: continuous 24/7 monitoring"] --> A1["1. Monitor systems, networks, AI pipelines"]
+    A1 --> A2["2. AI threat detection incl. real-time drift"]
+    A2 --> D1{"Anomaly?"}
+    D1 -->|"yes"| A3["3. Escalate ≤ 5 minutes"]
+    D1 -->|"no"| A1
+    A3 --> A4["4. Monthly calibration — end"]
+```
+
+## PROC-52 — SOC Analyst Monitors AI Model Performance Drift
+
+> Formerly UC-61 — re-laned per rubric v1.8 §5B rule 6 (UC SEPARATION, 2026-09-05).
+
+| Field | Content |
+|---|---|
+| Trigger | Hourly drift check; threshold breach. |
+| Activities | 1. AI model performance drift and data quality degradation monitored (hourly checks). 2. Automated retraining triggered within the clock of threshold breach. 3. Rollback procedures executed when retraining is insufficient. |
+| Roles | SOC Analyst (Primary); AI Operations Manager (Secondary). |
+| SLA / Timing | Drift detection hourly; automated retraining triggered within 4 hours of threshold breach. |
+| Realises | BPR-D-12.2-001, CR-D-10.1-001 / AG-D-10.1-002. |
+| Anchors | SAMM: O-IM-A (incident detection) · SAMM-only with note: ASVS does not map (AI model drift monitoring out of ASVS scope). |
+| Evidence | Hourly drift metrics; retraining-trigger records; rollback execution logs. |
+| Priority | HIGH. |
+
+```mermaid
+flowchart TD
+    T["Trigger: hourly drift check"] --> A1["1. Monitor performance drift + data quality"]
+    A1 --> D1{"Threshold breach?"}
+    D1 -->|"yes"| A2["2. Trigger automated retraining ≤ 4 hours"]
+    D1 -->|"no"| A1
+    A2 --> D2{"Retraining sufficient?"}
+    D2 -->|"no"| A3["3. Execute rollback — end"]
+    D2 -->|"yes"| E["End: model restored"]
 ```
 
 ## CAP-01 — Vulnerability Analyst Maintains Vulnerability Register
@@ -1004,7 +1260,7 @@ graph LR
 | Field | Content |
 |---|---|
 | Owner | AI Governance Lead (Primary); Data Protection Officer (Secondary). |
-| Span | AI traceability documentation: model cards, data sheets, AI decision logs and stakeholder transparency reports per IEEE 7000. Contributes: PROC-39 (override metrics), PROC-40 (bias-pattern escalation), CAP-05 (ISMS AI framework). |
+| Span | AI traceability documentation: model cards, data sheets, AI decision logs and stakeholder transparency reports per IEEE 7000. Contributes: UC-66 (override metrics), UC-92 (bias-pattern escalation), CAP-05 (ISMS AI framework). |
 | Maturity | PLANNED (1) — Scale A posture model v1.6; current/target pending P1 Folio VIII refresh + EvidenceItem bind |
 | Realises | CR-D-09.4-001, BPR-D-09.4-001 |
 | Anchors | SAMM: G-PC-A (policy and standards) · SAMM-only with note: ASVS does not map (AI traceability/documentation out of ASVS scope). |
@@ -1015,13 +1271,82 @@ graph LR
     CAP["CAP-07 AI Traceability Docs"] --> R1["CR-D-09.4-001 / BPR-D-09.4-001"]
     P1["Model cards + data sheets (IEEE 7000)"] --> CAP
     P2["AI decision logs + transparency reports"] --> CAP
-    CAP -->|"evidence for"| PROC39["PROC-39 / PROC-40"]
+    CAP -->|"evidence for"| PROC39["UC-66 / UC-92"]
 ```
 
 
+## CAP-08 — AI System Detects Model Tampering
+
+> Formerly UC-08 — re-laned per rubric v1.8 §5B rule 6 (UC SEPARATION, 2026-09-05).
+
+| Field | Content |
+|---|---|
+| Owner | Security Administrator (accountable for the standing detection ability); executed by the AI System (automated detection). |
+| Span | Standing automated detection of model tampering, adversarial attacks and unauthorized parameter modifications. Contributes: PROC-03 (model integrity validation on every model load), PROC-37 (adversarial robustness testing), PROC-51 (monitoring operations); detection ≤ 15 min, alert ≤ 5 min. |
+| Maturity | PLANNED (1) — Scale A posture model v1.6; current/target pending P1 Folio VIII refresh + EvidenceItem bind |
+| Realises | CR-D-01.4-001, BPR-D-12.4-001 / AG-D-01.4-001, AG-D-10.1-002. |
+| Anchors | SAMM: O-IM-A (incident detection) · ASVS: V7 (error handling and logging) — tamper alerts. |
+| Evidence | Tamper/adversarial detection alerts with timestamps; detection coverage reports; alert-delivery records. |
+| Priority | HIGH. |
+
+```mermaid
+graph LR
+    CAP["CAP-08 Model Tampering Detection"] -->|"realises"| R1["CR-D-01.4-001 / BPR-D-12.4-001"]
+    P1["PROC-03 integrity validation"] --> CAP
+    P2["PROC-37 adversarial testing"] --> CAP
+    P3["PROC-51 monitoring operations"] --> CAP
+    CAP -->|"alerts ≤ 5 min"| SEC["Security Administrator"]
+```
+
+## CAP-09 — IT Operations Manager Maintains Redundant Backup Systems
+
+> Formerly UC-26 — re-laned per rubric v1.8 §5B rule 6 (UC SEPARATION, 2026-09-05).
+
+| Field | Content |
+|---|---|
+| Owner | IT Operations Manager (Primary); Security Administrator (Secondary). |
+| Span | Standing redundant backup estate with automated failover across EU data centers under sovereignty controls. Contributes: PROC-14 (disaster-recovery failover path); quarterly backup verification, semi-annual restore testing and annual failover exercises. |
+| Maturity | PLANNED (1) — Scale A posture model v1.6; current/target pending P1 Folio VIII refresh + EvidenceItem bind |
+| Realises | CR-D-04.4-001, BPR-D-04.4-001 / AG-D-04.4-002. |
+| Anchors | SAMM: O-EM-A (environment hardening — resilient infrastructure) · SAMM-only with note: ASVS does not map (backup/failover resilience out of ASVS scope). |
+| Evidence | Quarterly backup verification records; semi-annual restore test reports; annual failover test records. |
+| Priority | CRITICAL. |
+
+```mermaid
+graph LR
+    CAP["CAP-09 Redundant Backup & Failover"] -->|"realises"| R1["CR-D-04.4-001 / BPR-D-04.4-001"]
+    P1["Quarterly backup verification"] --> CAP
+    P2["Semi-annual restore testing"] --> CAP
+    P3["Annual failover test — EU data centers"] --> CAP
+    CAP -->|"failover path"| PROC14["PROC-14 disaster recovery"]
+```
+
+## CAP-10 — Audit Manager Maintains Immutable Audit Logs
+
+> Formerly UC-58 — re-laned per rubric v1.8 §5B rule 6 (UC SEPARATION, 2026-09-05).
+
+| Field | Content |
+|---|---|
+| Owner | Audit Manager (Primary); Security Administrator (Secondary). |
+| Span | Standing immutable audit-log estate with PII data separation and AI system traceability; integrity via cryptographic sharding. Contributes: PROC-38 (audit trail reporting); T-002 interface: erasure executes via per-subject key destruction while the log structure stays verifiable (UC-33). |
+| Maturity | PLANNED (1) — Scale A posture model v1.6; current/target pending P1 Folio VIII refresh + EvidenceItem bind |
+| Realises | CR-D-10.2-001, BPR-D-10.2-001 / AG-D-10.2-002. |
+| Anchors | SAMM: O-OM-A (operational management — log integrity) · ASVS: V7 (error handling and logging). |
+| Evidence | Daily integrity verification records; retention proofs (minimum 5 years financial / 6 months AI inference); PII-separation configuration evidence. Resolves T-002. |
+| Priority | CRITICAL. |
+
+```mermaid
+graph LR
+    CAP["CAP-10 Immutable Audit Logs"] -->|"realises"| R1["CR-D-10.2-001 / BPR-D-10.2-001"]
+    P1["Cryptographic sharding integrity"] --> CAP
+    P2["PII separation + AI traceability"] --> CAP
+    P3["Daily integrity verification"] --> CAP
+    CAP -->|"T-002: key destruction erases PII"| UC33["UC-33 data erasure"]
+```
+
 ## Articulation with existing artefacts
 
-Per-card binding to the catalogue and the downstream documents. 'Formerly' preserves the pre-LANE-NAMING id (full registry: `00_METHODOLOGY/validation/LANE_NAMING_CENSUS_v0.md`). Ref counts are occurrences of the lane id in the P3 tree (excluding this doc).
+Per-card binding to the catalogue and the downstream documents. 'Formerly' preserves the pre-rename id (full registry: `00_METHODOLOGY/validation/LANE_NAMING_CENSUS_v0.md`; UC SEPARATION v1.1 rows anchor to the Doc22 §3.2 Compliance Domain Index). Ref counts are occurrences of the lane id in the P3 tree (excluding this doc).
 
 | Card | Formerly | Catalogue anchor | Downstream refs (doc: count) |
 |---|---|---|---|
@@ -1039,6 +1364,21 @@ Per-card binding to the catalogue and the downstream documents. 'Formerly' prese
 | CAP-06 | UC-54 | Doc22_Use_Cases_Catalog.md:861 | Doc22_Use_Cases_Catalog.md:1, Doc25_Architectural_Nodes.md:1, Doc26_Requirements_Allocation.md:1, Doc27_Compliance_Gates_Report.md:1, Doc29_Risk_Analysis.md:1, Doc30_Functional_Requirements.md:2 |
 | PROC-07 | UC-11 | Doc22_Use_Cases_Catalog.md:226 | Doc22_Use_Cases_Catalog.md:1, Doc25_Architectural_Nodes.md:1, Doc26_Requirements_Allocation.md:1, Doc27_Compliance_Gates_Report.md:1, Doc29_Risk_Analysis.md:1, Doc30_Functional_Requirements.md:2 |
 | CAP-07 | UC-55 | Doc22_Use_Cases_Catalog.md:874 | Doc22_Use_Cases_Catalog.md:1, Doc23_Use_Case_Relationships.md:2, Doc25_Architectural_Nodes.md:3, Doc26_Requirements_Allocation.md:1, Doc27_Compliance_Gates_Report.md:2, Doc29_Risk_Analysis.md:2, Doc30_Functional_Requirements.md:4, Doc31_Non_Functional_Requirements.md:3 |
+| PROC-41 | UC-02 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-01) | Doc22_Use_Cases_Catalog.md:21 |
+| PROC-42 | UC-03 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-01) | Doc22_Use_Cases_Catalog.md:13 |
+| PROC-43 | UC-06 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-01) | Doc22_Use_Cases_Catalog.md:21 |
+| PROC-44 | UC-15 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-02) | Doc22_Use_Cases_Catalog.md:6 |
+| PROC-45 | UC-17 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-03) | Doc22_Use_Cases_Catalog.md:28 |
+| PROC-46 | UC-21 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-03) | Doc22_Use_Cases_Catalog.md:20 |
+| PROC-47 | UC-22 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-03) | Doc22_Use_Cases_Catalog.md:15 |
+| PROC-48 | UC-44 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-07) | Doc22_Use_Cases_Catalog.md:24 |
+| PROC-49 | UC-46 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-07) | Doc22_Use_Cases_Catalog.md:18 |
+| PROC-50 | UC-47 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-07) | Doc22_Use_Cases_Catalog.md:7 |
+| PROC-51 | UC-57 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-10) | Doc22_Use_Cases_Catalog.md:20 |
+| PROC-52 | UC-61 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-10) | Doc22_Use_Cases_Catalog.md:24 |
+| CAP-08 | UC-08 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-01) | Doc22_Use_Cases_Catalog.md:23 |
+| CAP-09 | UC-26 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-04) | Doc22_Use_Cases_Catalog.md:12 |
+| CAP-10 | UC-58 | Doc22_Use_Cases_Catalog.md §3.2 (PKG-D-10) | Doc22_Use_Cases_Catalog.md:36 |
 | PROC-08 | UC-12 | Doc22_Use_Cases_Catalog.md:239 | Doc22_Use_Cases_Catalog.md:1, Doc23_Use_Case_Relationships.md:6, Doc25_Architectural_Nodes.md:1, Doc26_Requirements_Allocation.md:1, Doc27_Compliance_Gates_Report.md:1, Doc29_Risk_Analysis.md:1, Doc30_Functional_Requirements.md:6, Doc31_Non_Functional_Requirements.md:4 |
 | PROC-09 | UC-13 | Doc22_Use_Cases_Catalog.md:252 | Doc22_Use_Cases_Catalog.md:1, Doc23_Use_Case_Relationships.md:1, Doc25_Architectural_Nodes.md:2, Doc29_Risk_Analysis.md:2, Doc30_Functional_Requirements.md:2 |
 | PROC-10 | UC-16 | Doc22_Use_Cases_Catalog.md:301 | Doc22_Use_Cases_Catalog.md:5, Doc23_Use_Case_Relationships.md:2, Doc25_Architectural_Nodes.md:2, Doc26_Requirements_Allocation.md:1, Doc27_Compliance_Gates_Report.md:1, Doc29_Risk_Analysis.md:4, Doc30_Functional_Requirements.md:4 |
@@ -1070,12 +1410,10 @@ Per-card binding to the catalogue and the downstream documents. 'Formerly' prese
 | PROC-36 | UC-59 | Doc22_Use_Cases_Catalog.md:938 | Doc22_Use_Cases_Catalog.md:1, Doc23_Use_Case_Relationships.md:1, Doc26_Requirements_Allocation.md:1, Doc27_Compliance_Gates_Report.md:1, Doc29_Risk_Analysis.md:1, Doc30_Functional_Requirements.md:2 |
 | PROC-37 | UC-60 | Doc22_Use_Cases_Catalog.md:951 | Doc22_Use_Cases_Catalog.md:3, Doc23_Use_Case_Relationships.md:2, Doc27_Compliance_Gates_Report.md:1, Doc29_Risk_Analysis.md:2, Doc30_Functional_Requirements.md:4, Doc31_Non_Functional_Requirements.md:1 |
 | PROC-38 | UC-62 | Doc22_Use_Cases_Catalog.md:977 | Doc22_Use_Cases_Catalog.md:2, Doc25_Architectural_Nodes.md:3, Doc29_Risk_Analysis.md:1, Doc30_Functional_Requirements.md:2, Doc31_Non_Functional_Requirements.md:3, RICH_LINT_BASELINE.md:3 |
-| PROC-39 | UC-66 | Doc22_Use_Cases_Catalog.md:? | Doc22_Use_Cases_Catalog.md:26 |
-| PROC-40 | UC-92 | Doc22_Use_Cases_Catalog.md:? | Doc22_Use_Cases_Catalog.md:5 |
 
 ## Coverage
 
-47/47 cards present (4 pilot + 43 added). One-line titles:
+60/60 cards present (50 PROC + 10 CAP; 4 pilot + 43 LANE NAMING + 15 UC SEPARATION − 2 re-adjudicated to UC-66/UC-92). One-line titles:
 
 - PROC-01 — Data Subject Requests Data Encryption Status
 - PROC-02 — Cryptographic Officer Manages HSM Key Lifecycle
@@ -1115,8 +1453,18 @@ Per-card binding to the catalogue and the downstream documents. 'Formerly' prese
 - PROC-36 — Security Analyst Conducts Penetration Testing
 - PROC-37 — AI Security Analyst Tests AI Adversarial Robustness
 - PROC-38 — Audit Manager Generates Audit Trail Report
-- PROC-39 — Underwriter Reviews Borderline Application
-- PROC-40 — Complaint Filing & Handling (SYS-17)
+- PROC-41 — Security Architect Configures Data Encryption at Rest
+- PROC-42 — Security Administrator Enforces TLS 1.3 for Data in Transit
+- PROC-43 — Security Architect Implements Field-Level Encryption
+- PROC-44 — Security Architect Generates SBOM for AI Model
+- PROC-45 — Security Administrator Enforces MFA for Privileged Access
+- PROC-46 — AI Platform Administrator Manages AI Model Access
+- PROC-47 — Security Administrator Implements FIDO2 Authentication
+- PROC-48 — Release Manager Secures CI/CD Pipeline
+- PROC-49 — AI ML Engineer Secures AI Training Pipeline
+- PROC-50 — Security Engineer Scans Infrastructure as Code
+- PROC-51 — SOC Manager Deploys AI-Powered Threat Detection
+- PROC-52 — SOC Analyst Monitors AI Model Performance Drift
 - CAP-01 — Vulnerability Analyst Maintains Vulnerability Register
 - CAP-02 — SOC Analyst Monitors Security Events (pilot)
 - CAP-03 — Security Architect Maintains SBOM for Product
@@ -1124,3 +1472,6 @@ Per-card binding to the catalogue and the downstream documents. 'Formerly' prese
 - CAP-05 — CISO Maintains Unified ISMS
 - CAP-06 — IT Asset Manager Maintains Comprehensive Asset Inventory
 - CAP-07 — AI Governance Lead Maintains AI Traceability Documentation
+- CAP-08 — AI System Detects Model Tampering
+- CAP-09 — IT Operations Manager Maintains Redundant Backup Systems
+- CAP-10 — Audit Manager Maintains Immutable Audit Logs

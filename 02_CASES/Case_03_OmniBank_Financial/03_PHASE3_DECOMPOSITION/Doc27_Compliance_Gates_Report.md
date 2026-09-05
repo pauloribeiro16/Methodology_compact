@@ -82,7 +82,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-01 |
 | **Rules Verified** | CR-D-01.1-001, BPR-D-01.1-001 |
 | **Node Verified** | NODE-D-01-01 |
-| **UC Verified** | UC-02, UC-06 |
+| **UC Verified** | PROC-41, PROC-43 |
 | **Verification Method** | TEST |
 | **Pass Criteria** | AES-256 encryption confirmed on all personal/financial/AI data storage; field-level encryption confirmed for PII fields |
 | **Fail Criteria** | Unencrypted data at rest found; PII fields without field-level encryption |
@@ -100,7 +100,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-01 |
 | **Rules Verified** | CR-D-01.2-001, BPR-D-01.2-001 |
 | **Node Verified** | NODE-D-01-01 |
-| **UC Verified** | UC-03 |
+| **UC Verified** | PROC-42 |
 | **Verification Method** | TEST |
 | **Pass Criteria** | TLS 1.3 enforced on all internal/external/API communications; HSTS enabled; certificate pinning configured |
 | **Fail Criteria** | TLS 1.2 or earlier detected; HSTS not enabled; weak cipher suites in use |
@@ -136,7 +136,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-01 |
 | **Rules Verified** | CR-D-01.4-001, BPR-D-01.4-001 |
 | **Node Verified** | NODE-D-01-01.2 |
-| **UC Verified** | PROC-03, UC-08 |
+| **UC Verified** | PROC-03, CAP-08 |
 | **Verification Method** | TEST |
 | **Pass Criteria** | Integrity checksums validated on every model load; versioning in place; unauthorized modifications detected |
 | **Fail Criteria** | Models loaded without integrity check; version control missing; tampering not detected |
@@ -248,7 +248,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-03 |
 | **Rules Verified** | CR-D-03.2-001, BPR-D-03.2-001 |
 | **Node Verified** | NODE-D-03-01.1 |
-| **UC Verified** | UC-17, UC-22 |
+| **UC Verified** | PROC-45, PROC-47 |
 | **Verification Method** | TEST |
 | **Pass Criteria** | MFA enforced for all privileged/remote/AI access; FIDO2 supported for phishing-resistant authentication |
 | **Fail Criteria** | Privileged access without MFA; remote access without MFA; FIDO2 not supported |
@@ -358,7 +358,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-04 |
 | **Rules Verified** | CR-D-04.4-001 |
 | **Node Verified** | NODE-D-04-02.1 |
-| **UC Verified** | UC-26 |
+| **UC Verified** | CAP-09 |
 | **Verification Method** | DEMONSTRATE |
 | **Pass Criteria** | Redundant backups with automated failover; EU data center distribution; sovereignty controls |
 | **Fail Criteria** | Backups not redundant; no failover; data sovereignty not ensured |
@@ -526,7 +526,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-07 |
 | **Rules Verified** | CR-D-07.1-001, BPR-D-07.1-001 |
 | **Node Verified** | NODE-D-07-01 |
-| **UC Verified** | PROC-28, UC-46 |
+| **UC Verified** | PROC-28, PROC-49 |
 | **Verification Method** | INSPECT |
 | **Pass Criteria** | CRA secure-by-default standard applied; threat modeling in design; AI ethical design reviews conducted |
 | **Fail Criteria** | Secure-by-default not followed; threat modeling skipped; AI ethics not reviewed |
@@ -562,7 +562,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-07 |
 | **Rules Verified** | CR-D-07.3-001, BPR-D-07.3-001 |
 | **Node Verified** | NODE-D-07-01.2 |
-| **UC Verified** | UC-44, UC-44.1 |
+| **UC Verified** | PROC-48, PROC-48.1 |
 | **Verification Method** | TEST |
 | **Pass Criteria** | Security gates on every pipeline run; SAST/DAST/SCA/secrets/IaC all present; AI deployment gates with model signing and bias testing |
 | **Fail Criteria** | Gates missing; scans not comprehensive; AI deployment not gated |
@@ -730,7 +730,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-10 |
 | **Rules Verified** | CR-D-10.1-001, BPR-D-10.1-001, BPR-D-12.2-001 |
 | **Node Verified** | NODE-D-10-01 |
-| **UC Verified** | UC-57, UC-61 |
+| **UC Verified** | PROC-51, PROC-52 |
 | **Verification Method** | TEST |
 | **Pass Criteria** | 24/7 monitoring operational; AI threat detection calibrated monthly; anomalies escalated within 5 minutes |
 | **Fail Criteria** | Monitoring not 24/7; AI detection not calibrated; escalation too slow |
@@ -748,7 +748,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-10 |
 | **Rules Verified** | CR-D-10.2-001, BPR-D-10.2-001 |
 | **Node Verified** | NODE-D-10-02, NODE-CS-03 |
-| **UC Verified** | UC-58 |
+| **UC Verified** | CAP-10 |
 | **Verification Method** | ANALYZE |
 | **Pass Criteria** | Immutable logs confirmed; PII separation with access controls; cryptographic sharding for integrity; 5-year retention (financial), 6-month (AI inference) |
 | **Fail Criteria** | Logs mutable; PII not separated; crypto sharding not implemented; retention not met |
@@ -766,7 +766,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 | **Domain** | D-10 |
 | **Rules Verified** | BPR-D-12.2-001, CR-D-10.1-001 |
 | **Node Verified** | NODE-D-10-01.1 |
-| **UC Verified** | UC-61 |
+| **UC Verified** | PROC-52 |
 | **Verification Method** | ANALYZE |
 | **Pass Criteria** | Drift detection hourly; automated retraining triggered within 4h of threshold breach; rollback procedures tested |
 | **Fail Criteria** | Drift detection not hourly; automated retraining not triggered; rollback not tested |
