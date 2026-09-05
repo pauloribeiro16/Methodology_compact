@@ -34,6 +34,19 @@ related_documents: [Doc22_Use_Cases_Catalog.md, Doc19_Rules_Catalog.md]
 | Anchors | SAMM: O-EM-B (environment stream B) · ASVS: V2.2 (general authenticator security), V4.1 (access control). |
 | Evidence | Provisioning tickets with timestamps; MFA enrolment records; revocation logs. |
 
+```mermaid
+flowchart TD
+    T["Trigger: HR joiner/mover/leaver notification"] --> A1["1. IAM receives notification"]
+    A1 --> A2["2. Identity provisioned with role entitlements via enterprise SSO"]
+    A2 --> A3["3. MFA enrolment enforced"]
+    A3 --> E1["Provisioned ≤ 4h; MFA ≤ 24h"]
+    T --> D1{"Event type"}
+    D1 -->|"leaver"| A4["4. Entitlements revoked within clock"]
+    D1 -->|"mover"| A5["4a. Entitlements adjusted within clock"]
+    A4 --> E2["End: revocation log"]
+    A5 --> E2
+```
+
 ## PROC-28 — Software Development Manager Implements Secure-by-Design
 
 | Field | Content |
@@ -46,6 +59,20 @@ related_documents: [Doc22_Use_Cases_Catalog.md, Doc19_Rules_Catalog.md]
 | Anchors | SAMM: D-SA-A (architecture design) · SSDF PW.1 (design software with security in mind) · ASVS V1.1. |
 | Evidence | Sprint design-review records; ethical-review minutes; finding-closure tracker. |
 
+```mermaid
+flowchart TD
+    T["Trigger: sprint (design review) / AI feature intake"] --> D1{"AI feature?"}
+    D1 -->|"yes"| A1["1a. Ethical design review"]
+    D1 -->|"no"| A2
+    D1 -->|"every sprint"| A2["1b. Secure design review"]
+    A1 --> A2
+    A2 --> A3["2. Privacy/security-by-design requirements per CRA secure-by-default"]
+    A3 --> A4["3. Findings tracked to closure"]
+    A4 --> D2{"All findings closed?"}
+    D2 -->|"no"| A4
+    D2 -->|"yes"| E["End: release cleared"]
+```
+
 ## CAP-02 — SOC Analyst Monitors Security Events
 
 | Field | Content |
@@ -57,6 +84,14 @@ related_documents: [Doc22_Use_Cases_Catalog.md, Doc19_Rules_Catalog.md]
 | Anchors | SAMM: O-EM-A (environment management, stream A) · ASVS: V7 (logging) — monitoring outcomes. |
 | Evidence | Coverage rosters; detection/triage dashboards; drift and adversarial-alert reports. |
 
+```mermaid
+graph LR
+    CAP["CAP-02 SOC Monitoring (24/7)"] --> R1["CR-D-04.1-001 / BPR-D-04.1-001"]
+    P1["PROC-14/15/16 Incident lifecycle"] --> CAP
+    A1["AI anomaly detection: drift + adversarial"] --> CAP
+    C1["SOC competence — CAP-04"] --> CAP
+```
+
 ## CAP-04 — HR Manager Maintains Security Competence Program
 
 | Field | Content |
@@ -67,3 +102,12 @@ related_documents: [Doc22_Use_Cases_Catalog.md, Doc19_Rules_Catalog.md]
 | Realises | CR-D-08.2-001, BPR-D-08.2-001, BPR-D-12.3-001. |
 | Anchors | SAMM: G-EG-A/B (education & guidance) · ISO 27002:2022 A.6.3. |
 | Evidence | Certification registry (annual tracking); AI-oversight training completion before deployment; programme curricula. |
+```mermaid
+graph LR
+    CAP["CAP-04 Security Competence Program"] --> R1["CR-D-08.2-001 / BPR-D-08.2/12.3-001"]
+    P1["Certification registry (annual tracking)"] --> CAP
+    P2["AI oversight training before deployment"] --> CAP
+    P3["Privileged-role certification chain"] --> CAP
+    CAP -->|"enables"| PROC10["PROC-10 IAM provisioning"]
+```
+

@@ -35,6 +35,18 @@ related_documents: [Doc20_Use_Cases_Catalog.md, Doc18_Rules_Catalog.md]
 | Anchors | SAMM: G-PC-A (policy & compliance, stream A) · ASVS: V8 (data protection). |
 | Evidence | Ticket records; delivery receipts; audit log entry (PR.DS-10); RoPA update where new categories surface. |
 
+```mermaid
+flowchart TD
+    T["Trigger: verifiable DSAR received"] --> A1["1. DPO logs DSAR ticket"]
+    A1 --> A2["2. System retrieves all personal data"]
+    A2 --> A3["3. System assembles JSON + CSV + PDF export"]
+    A3 --> D1{"4. Third-party data present?"}
+    D1 -->|"yes"| A4["4a. DPO minimises third-party data"]
+    D1 -->|"no"| A5
+    A4 --> A5["5. System delivers export"]
+    A5 --> E["End: delivered within 30 days — GDPR Art. 12(3); audit log PR.DS-10"]
+```
+
 ## PROC-05 — Incident Notification (24h ENISA, 72h GDPR)
 
 | Field | Content |
@@ -46,6 +58,21 @@ related_documents: [Doc20_Use_Cases_Catalog.md, Doc18_Rules_Catalog.md]
 | Realises | CR-D-04.3-001 / SO-D-04.3-001. |
 | Anchors | SAMM: IR-B (incident response stream B) · ASVS: V7 (error & logging). |
 | Evidence | Submitted notifications; breach register entries; tabletop reports (NFR-17 cadence). |
+
+```mermaid
+flowchart TD
+    T["Trigger: confirmed security incident"] --> A1["1. Severity matrix applied — incident classified"]
+    A1 --> D1{"CRA-relevant? (active-exploit CVE)"}
+    D1 -->|"yes"| A2["2a. ENISA notification ≤ 24h"]
+    D1 -->|"no"| D2
+    D2{"Personal-data breach?"}
+    D2 -->|"yes"| A3["2b. CNPD notification ≤ 72h"]
+    D2 -->|"no"| A4
+    A2 --> A4["3. Breach register entry ≤ 24h post-detection"]
+    A3 --> A4
+    A4 --> A5["4. Quarterly tabletop keeps procedure rehearsed"]
+    A5 --> E["End: notifications submitted; register updated"]
+```
 
 ## PROC-09 — Pre-Launch Risk Assessment
 
@@ -59,6 +86,17 @@ related_documents: [Doc20_Use_Cases_Catalog.md, Doc18_Rules_Catalog.md]
 | Anchors | SAMM: D-TA-B (threat modelling) · ASVS: V1.1 (secure SDLC). |
 | Evidence | Signed risk assessments; risk register entries; launch approvals. |
 
+```mermaid
+flowchart TD
+    T["Trigger: feature with personal data or new attack surface enters release train"] --> D0{"New risk surface?"}
+    D0 -->|"no — bug fix only"| X["Out of scope (extension 3a)"]
+    D0 -->|"yes"| A1["1. DPIA + cybersecurity risk assessment"]
+    A1 --> A2["2. Risk register entry per high-risk finding"]
+    A2 --> D1{"3. DPO + Risk Owner sign-off"}
+    D1 -->|"approved"| E["End: launch approved; risks tracked"]
+    D1 -->|"not approved"| A1
+```
+
 ## CAP-01 — DPAs Binding Processors
 
 | Field | Content |
@@ -69,3 +107,12 @@ related_documents: [Doc20_Use_Cases_Catalog.md, Doc18_Rules_Catalog.md]
 | Realises | CR-D-06.3-001 / SO-D-06.3-001. |
 | Anchors | SAMM: G-SM-B (supplier security stream) · ISO 27002:2022 A.5.20 (last-resort reference). |
 | Evidence | Signed DPAs on file; annual review records; Art. 28 clause checklist per processor. |
+```mermaid
+graph LR
+    CAP["CAP-01 DPAs Binding Processors"] --> R1["CR-D-06.3-001 / SO-D-06.3-001"]
+    P1["Processor Due Diligence (Doc20 PROC-14)"] --> CAP
+    P2["DPA execution & signature"] --> CAP
+    P3["Annual DPA review cycle"] --> CAP
+    P4["GDPR Art. 28 clause library"] --> CAP
+```
+

@@ -34,6 +34,17 @@ related_documents: [Doc21_Use_Cases_Catalog.md, Doc18_Rules_Catalog.md]
 | Anchors | SAMM: IR-A (incident detection) · ASVS: V7 (error & logging). |
 | Evidence | Triage records; escalation tickets; false-positive closure log. |
 
+```mermaid
+flowchart TD
+    T["Trigger: security event on the event pipeline (eGate tamper / spoofing / console anomaly / AI drift)"] --> A1["1. SOC receives event"]
+    A1 --> A2["2. Triage against severity matrix"]
+    A2 --> D1{"3. Clearance decision"}
+    D1 -->|"false positive"| A3["3a. Close with rationale"]
+    D1 -->|"escalate"| A4["3b. Containment — PROC-06"]
+    A3 --> E["End: triage record; closure log"]
+    A4 --> E2["End: incident in containment flow"]
+```
+
 ## PROC-14 — Unified Impact Assessment (DPIA + FRIA)
 
 | Field | Content |
@@ -46,6 +57,17 @@ related_documents: [Doc21_Use_Cases_Catalog.md, Doc18_Rules_Catalog.md]
 | Anchors | SAMM: D-TA-B (threat assessment) · ASVS: V1.1 (secure SDLC). |
 | Evidence | Completed DPIA+FRIA dossier with dual outputs; sign-off record. |
 
+```mermaid
+flowchart TD
+    T["Trigger: prior to launch / annual / significant change"] --> A0["1. DPO initiates unified assessment"]
+    A0 --> A1["2-6. Shared sections A-E: system description, processing, necessity, risk identification, mitigations"]
+    A1 --> D1{"Regulatory outputs"}
+    D1 -->|"GDPR"| F1["Section F — DPIA (Art. 35(7))"]
+    D1 -->|"AI Act"| F2["Section F — FRIA (Art. 27)"]
+    F1 --> E["End: dual-output dossier + sign-off"]
+    F2 --> E
+```
+
 ## CAP-02 — Continuous Security Monitoring
 
 | Field | Content |
@@ -57,6 +79,16 @@ related_documents: [Doc21_Use_Cases_Catalog.md, Doc18_Rules_Catalog.md]
 | Anchors | SAMM: O-EM-A (environment management, stream A) · ASVS: V7 (logging) — monitoring outcomes. |
 | Evidence | 24/7 coverage rosters; monitoring dashboards; post-market AI metric reports. |
 
+```mermaid
+graph LR
+    CAP["CAP-02 Continuous Security Monitoring (SOC, 24/7)"] --> R1["CR-D-10.1-001 / BPR-D-10.4/5-001"]
+    P1["PROC-05 Detection & Triage"] --> CAP
+    P2["PROC-06 Containment"] --> CAP
+    P3["PROC-18 Authority Reporting"] --> CAP
+    T1["U.C.10.x fleet telemetry"] --> CAP
+    C1["SOC competence — CAP-07"] --> CAP
+```
+
 ## CAP-06 — Security Awareness Training
 
 | Field | Content |
@@ -67,3 +99,11 @@ related_documents: [Doc21_Use_Cases_Catalog.md, Doc18_Rules_Catalog.md]
 | Realises | CR-D-08.1-001, BPR-D-08.4-001 / PO-D-08.1-001..002. |
 | Anchors | SAMM: G-EG-A (education & guidance, stream A) · ISO 27002:2022 A.6.3. |
 | Evidence | Completion records; curriculum versions; annual review sign-off. |
+```mermaid
+graph LR
+    CAP["CAP-06 Security Awareness Training (annual)"] --> R1["CR-D-08.1-001 / BPR-D-08.4-001"]
+    P1["CAP-07 Role-specific training"] --> CAP
+    P2["CAP-10 Phishing simulation (quarterly)"] --> CAP
+    P3["HR delivery chain"] --> CAP
+```
+

@@ -2,7 +2,7 @@
 document_id: AEGIS-METHODOLOGY-REALIZATION-CLASS-RUBRIC
 title: AEGIS Realization Class Rubric (Phase 2 Rule Attribute)
 phase: Cross-phase
-version: 1.4
+version: 1.5
 created: 2026-09-05
 updated: 2026-09-05
 author: Executor
@@ -172,6 +172,24 @@ catalogue text.
 | Anchors | frozen referentials (SAMM practice first for CAPABILITY-class) |
 | Evidence | standing artefacts (registers, rosters, review records) — not one-pass tests |
 
+
+### §5C.4 Lane Card Diagrams
+
+Every lane card carries one inline Mermaid diagram, sourced faithfully from the
+catalogue card's Main Success Scenario and Extensions (same discipline as the
+Bike4All sequenceDiagrams):
+
+- **PROC cards → `flowchart TD`**: one node per activity (short label), role shifts
+  shown as edge labels where the executor changes, catalogue Extensions rendered as
+  decision branches, SLA noted on the terminal node. A process is a workflow — a
+  flowchart, not a sequenceDiagram (which is reserved for UC actor-system interaction).
+- **CAP cards → `graph LR`**: span/aggregation view — CAP node at the left, contributing
+  `PROC-*` / `UC-*` / competence nodes to the right, `Realises` RULE links as labelled
+  edges. A capability is not a flow; it is an aggregation (ArchiMate Strategy-layer
+  reading).
+- Diagrams are **derived views** of the catalogue content: when the catalogue card
+  changes, the diagram changes with it.
+
 ### §5C.3 Placement & scope rule
 
 Lane cards live in a per-case `DocNN_Process_Capability_Cards.md` at the Phase 3 root.
@@ -242,3 +260,4 @@ Divergence example: a rule ISO-anchored to A.8.10 (technological theme) can legi
 | 1.2 | 2026-09-05 | Orchestrator | Ontology application DEFERRED per human decision (documents-only scope): §4 storage table + Sync rule updated; Case_01 pilot touches Doc18, control_set.yaml, 12_Rules_Catalog.xlsx only |
 | 1.3 | 2026-09-05 | Orchestrator | §5B Lane Nomenclature added: UC-* reserved for TECHNOLOGY; PROC-NN / CAP-NN for PROCESS / CAPABILITY (human decision 2026-09-05; supersedes Case_01 Doc20 §6.1 ID-continuity freeze) |
 | 1.4 | 2026-09-05 | Orchestrator | §5C Lane Card Schemas added: PROC card (SSDF-style) and CAP card (C2M2/ArchiMate-style); traceability chain RULE → CAP → PROC → UC |
+| 1.5 | 2026-09-05 | Orchestrator | §5C.4 Lane Card Diagrams added: PROC → Mermaid flowchart TD (activities + decision branches); CAP → Mermaid graph LR (span + realises); content sourced faithfully from catalogue scenarios/extensions |

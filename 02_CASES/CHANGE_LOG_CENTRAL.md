@@ -21,6 +21,7 @@
 | Schemas | `REALIZATION_CLASS_RUBRIC.md` v1.4 §5C — Process card (SSDF-style: Trigger/Activities/Roles/SLA/Realises/Anchors/Evidence) + Capability card (C2M2/ArchiMate-style: Owner/Span/Maturity Scale A/Realises/Anchors/Evidence). Chain: RULE → CAP → PROC → UC |
 | Pilot | C1 `Doc32_Process_Capability_Cards.md` (PROC-01/05/09 + CAP-01) · C2 `Doc31_...` (PROC-05/14 + CAP-02/06) · C3 `Doc32_...` (PROC-10/28 + CAP-02/04). Content sourced faithfully from catalogue cards (rules/SLA/actors) + frozen SAMM/ASVS anchors; CAP maturity fields present, values to bind to EvidenceItems in next maturity refresh |
 | Verification | all card IDs resolve in the lane mappings; 3 gates v0.4 PASS (C1 gate gained `\| Maturity \|` schema-field waiver, same class as MAJOR-4) |
+| Diagrams | 12 Mermaid diagrams added (one per card): PROC → `flowchart TD` (activities + decision branches from catalogue Extensions); CAP → `graph LR` (span + realises). Rubric v1.5 §5C.4. Structural validation clean; 3 gates PASS |
 
 ---
 

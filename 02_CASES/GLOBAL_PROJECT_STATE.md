@@ -187,6 +187,7 @@ Methodology/
 - **Pilot:** 4 cards per case (C1 Doc32 · C2 Doc31 · C3 Doc32), content faithful to the
   catalogue cards + frozen SAMM/ASVS anchors; CAP maturity bound to Scale A, values
   deferred to next EvidenceItem refresh.
+- **Diagrams (v1.5 §5C.4):** one Mermaid diagram per lane card — PROC flowchart TD, CAP graph LR — 12/12 in the pilot docs; derived from catalogue scenarios/extensions.
 - **Remaining:** populate the other ~80 lane ids; bind maturity; KG reflection.
 
 ---
