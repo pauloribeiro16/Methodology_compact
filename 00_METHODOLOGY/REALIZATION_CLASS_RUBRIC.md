@@ -190,6 +190,21 @@ Bike4All sequenceDiagrams):
 - Diagrams are **derived views** of the catalogue content: when the catalogue card
   changes, the diagram changes with it.
 
+
+### §5C.5 UML Diagram Conventions (human decision 2026-09-05)
+
+- **Use case diagrams** (`Mermaid useCaseDiagram` — requires Mermaid ≥ v11.6; on older
+  renderers the source itself is readable): one **system-wide** diagram per case plus
+  one diagram **per package**. Actors come from the catalogue card's Primary Actor and
+  Stakeholders; UC titles are the ovals inside the package/system boundary; critical
+  Extensions become `include`/`extend` edges. Placement: `annexes/A_Use_Case_Diagrams.md`.
+- **Sequence diagrams are annex-only.** Every sequence diagram lives in
+  `annexes/B_Sequence_Diagrams.md` (one section per product UC card, ordered by id).
+  Catalogue cards keep a single pointer line — `**Sequence diagram:** → Annex B §N`.
+  Compliance PROC/CAP cards do NOT carry sequence diagrams at this stage; their
+  diagrams are the §5C.4 flowcharts.
+- Both are **derived views** of the catalogue cards: the card is the source of truth.
+
 ### §5C.3 Placement & scope rule
 
 Lane cards live in a per-case `DocNN_Process_Capability_Cards.md` at the Phase 3 root.
@@ -283,3 +298,4 @@ three ratios per case (`obj→ctrl coverage`, `ctrl→obj back-link coverage`,
 `uc→obj coverage`) plus an ordered gap list. It does not write.
 
 | 1.6 | 2026-09-05 | Orchestrator | §6C Traceability Audit Shape added: OBJ↔CTRL↔UC chain normative; standard ratios (obj→ctrl / ctrl→obj / uc→obj); AG-D treated as PO/SO alias in Case_03 (id-space note); `scripts/traceability_audit.py` read-only instrument |
+| 1.7 | 2026-09-05 | Orchestrator | §5C.5 UML diagram conventions added: useCaseDiagram (Mermaid ≥ v11.6) system-wide + per package; sequence diagrams are annex-only (Annex B per case), catalogs keep a 1-line pointer |
