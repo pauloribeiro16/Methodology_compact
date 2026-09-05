@@ -53,7 +53,7 @@ Independent verdict CLEAN-WITH-FINDINGS (`02_CASES/PORT_PARITY2_VERIFICATION_REP
 ## 5. P7 human-review queue (accumulated)
 
 - [ ] Orphan obligations: C3 10 · C2 14 PO/40 SO — being resolved by ALT-ANCHOR Fase 4 (verdicts LEGIT/MITIGADO/GAP; real GAPs return here)
-- [ ] verify_rich FAILs: C2 2 FAIL/6 PASS · C3 3 FAIL/5 PASS (honest baselines, findings queued)
+- [~] verify_rich FAILs — **PARTIALLY CLOSED 2026-09-05 (DERIVED-REFRESH)**: F5-C2-02 (stale 84/44 UCs claims) CLOSED; F5-C3-01 (63-rules claim + totals) CLOSED; F5-C2-04/C3-05 (`case:` frontmatter) CLOSED (10/10 docs per case). Still open: F5-C2-01 (25 orphan FRs — Volere wave pending), F5-C2-03 (FR-71/72 dup), F5-C3-02 (Doc31 NFR summary — P7), F5-C3-03 (BPR-D-12.1-001 allocation), F5-C3-04 (dangling UC-99), F5-C3-06 (5 raw citations)
 - [ ] D-07.2 coverage decision (4 orphan obligations C1, mitigated by BPR-D-07.2-001 N/A marker)
 - [ ] Phantom refs left untouched (PORT-PARITY-2 deliberate)
 - [ ] P1 dashboard: 4 upstream drifts (KG-vs-view) + 2 cosmetic items

@@ -14,6 +14,17 @@
 | Volere FR pilot (C2) | Case_02 `Doc29_Functional_Requirements.md`: new `Fit Criterion` column between Verification Method and Priority. 6 FRs from operator-aligned topics (FR-03/04/09/12/13/26) + 1 repeatability (FR-72 AI domain) received measurable thresholds (100%/30s/16min windows, schema validation, automated detection). 3 gates PASS unchanged. |
 | Out of scope | Ontologies, dashboards, folios, KG reflection, realisation_class tag waves C2/C3. Briefing pack for items 1–4 (P7 queue) delivered as `P7_BRIEFING_PACK_2026-09-05.md` for human decision. |
 
+## 1.1 2026-09-05 — DERIVED-REFRESH (Phase 3 derived docs brought to the current id space)
+
+| Item | Value |
+|------|-------|
+| C2 | Doc22 Relationships rebuilt v1.1 (73-UC space, PKG-7..12, 36 PROC refs; '84 UCs' claim gone); Doc23 v1.1 Lane Variants section; Doc27 v1.2 product branch (PKG-8..12 leaves) + lane branches; `case:` ×10 docs |
+| C3 | Doc23 v1.1 totals 93 + T46/P40/C7 + phantom UC-98..118 made explicit + product chains PKG-A..F; Doc24 v1.1 Lane Variants; Doc28 v1.1 §6A product branch + §6B lane branches (50 PROC/CAP refs); `case:` ×10 |
+| C1 | Verified — no stale claims, `case:` present; no changes needed |
+| Gates | 3× check_unmapped v0.4 PASS |
+
+---
+
 ## 1.0 2026-09-05 — LANE CARDS (schemas §5C + 12-card pilot)
 
 | Item | Value |

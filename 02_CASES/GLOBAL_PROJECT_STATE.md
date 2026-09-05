@@ -180,6 +180,18 @@ Methodology/
 
 ---
 
+## 4G. DERIVED-REFRESH (2026-09-05)
+
+- Phase 3 derived artefacts (relationships, variability, functional trees) updated to the
+  current UC/PROC/CAP id space: C2 Doc22 rebuilt (73-UC), Doc23 Lane Variants, Doc27
+  product+lane branches; C3 Doc23 totals 93 + phantoms explicit + PKG-A..F chains, Doc24
+  Lane Variants, Doc28 §6A/§6B product+lane branches; `case:` frontmatter 10/10 docs per
+  case (C2/C3), C1 verified clean.
+- Closes known-pattern FAILs F5-C2-02, F5-C3-01, F5-C2-04, F5-C3-05. Remaining F5 items
+  queued in the ledger (orphan FRs wave, Doc31 NFR summary P7, minor drifts).
+
+---
+
 ## 4F. LANE CARDS (2026-09-05)
 
 - **Schemas:** rubric v1.4 §5C — PROC card (SSDF-style) + CAP card (C2M2/ArchiMate-style);
