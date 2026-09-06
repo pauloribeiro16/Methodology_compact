@@ -48,6 +48,13 @@ C1 UC-01..40; C2 UC-01..36); registry filled for all 3 cases; SVGs re-rendered; 
 Known residual: 6 borderline UC titles (§5) unchanged — their ids are now the renumbered
 ones (C1 UC-07/UC-12 etc.); re-adjudication would be a NEW renumber if ever ratified.
 
+## 1D. IN EXECUTION — LEDGER-ZERO (2026-09-06) — phased closure of ALL open items
+
+Human: "resolver isso tudo de forma faseada". Plan: `02_CASES/LEDGER_ZERO_CAMPAIGN_2026-09-06.md`.
+**P7 decisions locked 2026-09-06:** (1) 6 borderline UC titles re-laned (C1 UC-07/12/13/16→PROC-18..21; C2 UC-30/36→CAP-11..12); (2) OBL-D-06.2-001 → Option A dual-duty documentado; (3) D-07.2 → Option B mitigação aceite; (4) phase2_ontology descongelada (enum + mirrors ×3); (5) MUC-C3-06 → decision gate em F2 (default: ratificar Doc22 §6B.7 como canónica).
+**Phase map of absorbed items:** §2 mirrors/ontology → F7 · §2 CAP maturity bind → F4 · §3 P7 queue (MUC-C3-06) → F2 · §4 C2 handoff remainder → F5 · §5 orphans OBL/D-07.2 → F2 · §5 verify_rich FAILs → F1 · §5 borderline 6 → F3 · §5 P1 dashboard drifts → F6 · §6 KG reflection → F8.
+**Progress:** F0 done — F1 next.
+
 ## 2. DEFERRED BY HUMAN DECISION (2026-09-05, documents-only scope) — Realization Class follow-ups
 
 Committed as `2948fb8` (rubric v1.2 + C1 tag wave, T17/P23/C6, 9 secondaries). Deferred:
