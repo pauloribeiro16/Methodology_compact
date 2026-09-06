@@ -13,7 +13,7 @@ traceability: AEGIS Class Model → RequirementAllocation, RuleAllocation, NodeA
 related_documents: 14_Architectural_Nodes.md, 13_Use_Cases_Catalog.md, 11_Rules_Catalog.md
 case_id: CASE-03-OMNIBANK
 case: Case_03_OmniBank_Financial
-complexity: Maximum (5 regulations, 38 sub-domains, 63 rules → 28 nodes)
+complexity: Maximum (5 regulations, 38 sub-domains, 78 rules → 28 nodes)
 ---
 
 # Requirements Allocation
@@ -36,9 +36,9 @@ The allocation follows the derivation formula: **Rule → Node → UC → FR/NFR
 
 | Metric | Value |
 |--------|-------|
-| **Total Rules** | 63 (38 CR + 25 BPR) |
-| **Rules Allocated** | 63/63 (100%) |
-| **Total Allocations** | 78 (some rules map to multiple nodes) |
+| **Total Rules** | 78 (38 CR + 40 BPR) |
+| **Rules Allocated** | 78/78 (100%) |
+| **Total Allocations** | 83 (some rules map to multiple nodes) |
 | **Nodes Used** | 28/28 (100%) |
 | **Cross-Track Dependencies** | 3 |
 
@@ -71,6 +71,7 @@ The allocation follows the derivation formula: **Rule → Node → UC → FR/NFR
 | BPR-D-02.2-001 | SBOM in SPDX and CycloneDX formats | NODE-D-06-02 | SBOM management in supply chain | TECHNOLOGY | — |
 | BPR-D-02.3-001 | Vulnerability management program with risk prioritization | NODE-D-02-01 | Part of vulnerability assessment platform | TECHNOLOGY | — |
 | BPR-D-02.4-001 | Annual TLPT per TIBER-EU methodology | NODE-D-02-02 | Implementation of CR-D-02.4 | PROCESS | — |
+| BPR-D-12.1-001 | AI bias testing per NIST AI RMF 2.0 (results in model cards) | NODE-D-02-02 | AI-specific bias testing, verified by GATE-D-02-04 | PROCESS | — |
 | BPR-D-12.4-001 | AI adversarial robustness testing per MITRE ATLAS | NODE-D-02-01.1 | AI vulnerability module | TECHNOLOGY | — |
 
 ### 3.3 D-03: Access Control
@@ -171,7 +172,6 @@ The allocation follows the derivation formula: **Rule → Node → UC → FR/NFR
 | BPR-D-10.1-001 | SIEM/SOAR with automated threat correlation | NODE-D-10-01 | Implementation of CR-D-10.1 | TECHNOLOGY | — |
 | BPR-D-10.2-001 | Centralized log management per NIST SP 800-92 | NODE-D-10-02 | Implementation of CR-D-10.2 | TECHNOLOGY | — |
 | BPR-D-10.3-001 | Penetration testing per OWASP Testing Guide v4 | NODE-D-02-02 | Implementation of CR-D-10.3 | PROCESS | — |
-| BPR-D-12.1-001 | AI lifecycle management per CRA-C20 (AI Act Art. 9) | NODE-D-08-01.1 | AI lifecycle control module | CAPABILITY | — |
 | BPR-D-12.2-001 | AI model monitoring for drift detection | NODE-D-10-01.1 | AI drift detection module | TECHNOLOGY | — |
 
 ---
@@ -195,16 +195,21 @@ Capability sub-requirements (CS) represent cross-track dependencies where PROCES
 | Domain | CR Rules | BPR Rules | Total | Allocated | Coverage |
 |--------|----------|-----------|-------|-----------|----------|
 | D-01 | 4 | 4 | 8 | 8 | 100% |
-| D-02 | 4 | 4 | 8 | 8 | 100% |
+| D-02 | 4 | 6 | 10 | 10 | 100% |
 | D-03 | 4 | 4 | 8 | 8 | 100% |
 | D-04 | 4 | 4 | 8 | 8 | 100% |
 | D-05 | 4 | 3 | 7 | 7 | 100% |
 | D-06 | 4 | 3 | 7 | 7 | 100% |
 | D-07 | 4 | 4 | 8 | 8 | 100% |
-| D-08 | 3 | 3 | 6 | 6 | 100% |
+| D-08 | 3 | 4 | 7 | 7 | 100% |
 | D-09 | 4 | 4 | 8 | 8 | 100% |
-| D-10 | 3 | 3 | 6 | 6 | 100% |
-| **TOTAL** | **38** | **25** | **63** | **63** | **100%** |
+| D-10 | 3 | 4 | 7 | 7 | 100% |
+| **TOTAL** | **38** | **40** | **78** | **78** | **100%** |
+
+> Note: the four AI-specific BPR-D-12.x rules are allocated inside their host-domain
+> sections per their control_set sub_domains — BPR-D-12.1-001 (D-02.4) and
+> BPR-D-12.4-001 (D-02.1) under D-02; BPR-D-12.3-001 (D-08.2) under D-08;
+> BPR-D-12.2-001 (D-10.1) under D-10.
 
 ### 5.2 Node Utilization
 
@@ -216,7 +221,7 @@ Capability sub-requirements (CS) represent cross-track dependencies where PROCES
 | NODE-D-02-01 | 4 | CR-D-02.1, CR-D-02.3, BPR-D-02.1, BPR-D-02.3 | HIGH |
 | NODE-D-02-01.1 | 1 | BPR-D-12.4 | LOW |
 | NODE-D-02-01.2 | 1 | CR-D-02.2 | LOW |
-| NODE-D-02-02 | 4 | CR-D-02.4, BPR-D-02.4, CR-D-10.3, BPR-D-10.3 | HIGH |
+| NODE-D-02-02 | 5 | CR-D-02.4, BPR-D-02.4, BPR-D-12.1, CR-D-10.3, BPR-D-10.3 | HIGH |
 | NODE-D-03-01 | 2 | CR-D-03.1, BPR-D-03.1 | MEDIUM |
 | NODE-D-03-01.1 | 2 | CR-D-03.2, BPR-D-03.2 | MEDIUM |
 | NODE-D-03-01.2 | 2 | CR-D-03.3, BPR-D-03.3 | MEDIUM |
@@ -236,7 +241,6 @@ Capability sub-requirements (CS) represent cross-track dependencies where PROCES
 | NODE-D-07-01.1 | 2 | CR-D-07.2, BPR-D-07.2 | MEDIUM |
 | NODE-D-07-01.2 | 2 | CR-D-07.3, BPR-D-07.3 | MEDIUM |
 | NODE-D-08-01 | 2 | CR-D-08.1, BPR-D-08.1 | MEDIUM |
-| NODE-D-08-01.1 | 1 | CR-D-08.2-001 (CR-D-08.2-001 (AI Act Art. 14 — human oversight) — human oversight) | LOW |
 | NODE-D-08-02 | 2 | CR-D-08.2, BPR-D-08.2 | MEDIUM |
 | NODE-D-08-03 | 2 | CR-D-08.3, BPR-D-08.3 | MEDIUM |
 | NODE-D-09-01 | 4 | CR-D-09.1, CR-D-09.3, BPR-D-09.1 | HIGH |
@@ -246,7 +250,7 @@ Capability sub-requirements (CS) represent cross-track dependencies where PROCES
 | NODE-D-10-01.1 | 1 | BPR-D-12.2 | LOW |
 | NODE-D-10-02 | 3 | CR-D-10.2, BPR-D-10.2 | HIGH |
 | NODE-CS-01 | 1 | CR-D-04.3 | LOW |
-| NODE-CS-02 | 1 | CR-D-02.1-001 (AI-C09, AI-C10), CR-D-09.1-001 (DORA-C38) | LOW |
+| NODE-CS-02 | 1 | CR-D-10.2-001 (AI-C09, AI-C10), CR-D-09.4-001 (DORA-C38) | LOW |
 | NODE-CS-03 | 2 | CR-D-05.3, CR-D-10.2 | MEDIUM |
 
 ---
@@ -300,9 +304,9 @@ Capability sub-requirements (CS) represent cross-track dependencies where PROCES
 
 | Check | Value | Threshold | Status |
 |-------|-------|-----------|--------|
-| Total rules (CR + BPR) | 63 | — | — |
-| Rules mapped to UCs | 63 | — | — |
-| Rules with node allocation | 63 | — | — |
+| Total rules (CR + BPR) | 78 | — | — |
+| Rules mapped to UCs | 78 | — | — |
+| Rules with node allocation | 78 | — | — |
 | Coverage | 100% | 100% | ✅ PASS |
 
 **SC1: PASS — Every rule maps to ≥1 UC, every UC maps to ≥1 node.**

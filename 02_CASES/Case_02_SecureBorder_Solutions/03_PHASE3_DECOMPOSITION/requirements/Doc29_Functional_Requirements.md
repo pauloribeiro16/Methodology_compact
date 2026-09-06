@@ -155,13 +155,13 @@ This document specifies **technology-agnostic functional requirements** for Secu
 | FR-73 | The system shall monitor AI accuracy continuously and alert at >1% degradation from baseline | UC-13 | NN/A, NN/A | CR-D-10.1-001 | TEST | CRITICAL | — |
 | FR-74 | The system shall conduct quarterly bias testing across demographic groups (age, gender, ethnicity) | PROC-20 | NN/A, NN/A | BPR-D-02.4-002 | TEST | Quarterly bias test covers age/gender/ethnicity; ≥95% confidence interval per group; report delivered within 30d | CRITICAL |
 | FR-75 | The system shall generate bias assessment reports with disparity metrics per demographic group | PROC-20 | NN/A, NN/A | CR-D-06.1-001 | INSPECT | HIGH | — |
-| FR-76 | The system shall provide explainability for each border control AI decision with confidence scores and contributing factors | UC-14 | NN/A | BPR-D-10.2-002 | TEST | 100% of border-control decisions ship explanation payload (factors + confidence); consumer UI renders within 2s p95 | HIGH |
+| FR-76 | The system shall provide explainability for each border control AI decision with confidence scores and contributing factors | UC-14 | NN/A | BPR-D-10.2-001 | TEST | 100% of border-control decisions ship explanation payload (factors + confidence); consumer UI renders within 2s p95 | HIGH |
 | FR-77 | The system shall detect and respond to AI-specific failures (false accept, false reject, model drift) within 15 minutes | PROC-21 | NN/A | BPR-D-04.5-001 | TEST | ≤15 min mean detection-to-response across 50 drill runs; 0 missed critical FA/FR/drift events in 90d window // HARD: provisional threshold pending drill expansion | CRITICAL |
 | FR-78 | The system shall execute AI incident response playbook for AI failures with documented procedures | PROC-21 | NN/A | CR-D-04.1-001 | DEMONSTRATE | CRITICAL | — |
 | FR-79 | The system shall conduct adversarial testing quarterly targeting biometric spoofing and adversarial attacks | PROC-22 | NN/A | BPR-D-02.4-001 | TEST | 1 red-team/quarter; spoof-rejection rate ≥99.5% on biometric probes; report delivered within 21d | HIGH |
 | FR-80 | The system shall version AI training datasets with lineage tracking and demographic representativeness metrics | UC-15 | NN/A, NN/A | CR-D-08.1-001 | INSPECT | HIGH | CSF: PR.AT-01 |
 | FR-81 | The system shall validate AI training data representativeness across Schengen demographic groups before model training | UC-15 | NN/A | CR-D-08.1-001 | ANALYZE | HIGH | CSF: PR.AT-01 |
-| FR-82 | The system shall generate AI explainability reports for each border control decision | UC-14 | NN/A | BPR-D-10.2-002 | INSPECT | 100% of FR-76 decisions have a persisted report; reports pass schema-validation; retention ≥10y | HIGH |
+| FR-82 | The system shall generate AI explainability reports for each border control decision | UC-14 | NN/A | BPR-D-10.2-001 | INSPECT | 100% of FR-76 decisions have a persisted report; reports pass schema-validation; retention ≥10y | HIGH |
 
 ### 3.7 Training & Awareness (TRN)
 

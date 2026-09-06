@@ -853,7 +853,7 @@ Gates are organized by domain and track, with clear pass/fail criteria and remed
 
 | SC | Description | Gates Verified | Status |
 |----|-------------|---------------|--------|
-| SC1 | Rule Coverage — Every rule maps to ≥1 UC | All 63 rules via gates | ✅ PASS |
+| SC1 | Rule Coverage — Every rule maps to ≥1 UC | All 78 rules via gates | ✅ PASS |
 | SC2 | Relationship Completeness — All UCs have relationships | 48 relationships defined | ✅ PASS |
 | SC3 | Detail Sufficiency — Complex UCs (NI=3) have detailed flows | Pending Iteration 2 | IN_PROGRESS |
 | SC4 | Variability Complete — All regulation-specific scenarios covered | 14 specializations defined | ✅ PASS |

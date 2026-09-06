@@ -4,7 +4,8 @@ verify_rich.py — Phase 3 Rich Mode structural checks, Case_03 (OmniBank Financ
 
 PORT-PARITY-2 block F5 port of Case_01's verify_rich.py, adapted to Case_03's
 real doc numbering (Doc22–Doc31; Rules_Catalog = Doc19 after the P2 renumbering)
-and id schemes (FR-NN 72, NFR-NN 12, UC-NN 62, GATE-D-XX-NN 40, rules
+and id schemes (FR-NN 72, NFR-NN 56 as per-category local ids NFR-01..NN
+within each Category section, UC-NN 62, GATE-D-XX-NN 40, rules
 CR/BPR-D-XX.Y-NNN 78 = 38 CR + 40 BPR incl. 4 D-12.x AI-specific):
 
   CHK-1  frontmatter completeness (8 corr-008 fields) on every DocNN_*.md
@@ -54,19 +55,27 @@ def read(p: Path) -> str:
 
 
 def parse_cards(doc: str, kind: str) -> dict[str, dict]:
-    """Case_03 card format: '#### FR-NN: Title' + Field/Value table."""
-    cards: dict[str, dict] = {}
-    current = None
+    """Case_03 card format: '#### FR-NN: Title' + Field/Value table.
+
+    NFR cards use per-category LOCAL ids (NFR-01..NN within each Category
+    section — Doc31 §2 declares the id scheme as `NFR-{Category}-{Number}`),
+    so NFR card keys are qualified with the card's Category field
+    ('CONF:NFR-01') to avoid cross-category key collisions. FR ids are
+    globally unique and stay unqualified."""
+    seq: list[tuple[str, dict]] = []
     for line in doc.splitlines():
         m = re.match(rf"^#### ({kind}-\d{{2,3}}): (.+)$", line)
         if m:
-            current = m.group(1)
-            cards[current] = {"title": m.group(2).strip(), "fields": {}}
+            seq.append((m.group(1), {"title": m.group(2).strip(), "fields": {}}))
             continue
-        if current:
+        if seq:
             fm_ = re.match(r"^\|\s*\*\*(.+?)\*\*\s*\|\s*(.+?)\s*\|", line)
             if fm_ and not fm_.group(1).startswith("Field"):
-                cards[current]["fields"][fm_.group(1)] = fm_.group(2)
+                seq[-1][1]["fields"][fm_.group(1)] = fm_.group(2)
+    cards: dict[str, dict] = {}
+    for cid, card in seq:
+        cat = card["fields"].get("Category", "")
+        cards[f"{cat}:{cid}" if cat and kind == "NFR" else cid] = card
     return cards
 
 

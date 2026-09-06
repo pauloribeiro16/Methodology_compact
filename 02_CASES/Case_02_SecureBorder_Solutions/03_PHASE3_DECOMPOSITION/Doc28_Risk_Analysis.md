@@ -221,7 +221,7 @@ This document presents the **security risk analysis** for SecureBorder Solutions
 | THR-SEC-01 × Operator | AST-09 (Operator Console) | Console → Referral API → Kiosk Fleet | E | ASVS V2.1 (auth) · SAMM EG-A | CR-D-03.1-001 | Operator impersonation |
 | THR-SEC-02 × Kiosk Agent | AST-04 (Kiosk Secure Element) | Kiosk → Border Control API | T | ASVS V6.2 (algorithms) · SAMM EG-A | CR-D-01.1-001 | Tampered kiosk crypto |
 | THR-IAM-01 × Insider | AST-03 (Privileged Account) | Admin Console → Audit Store | E | ASVS V4.1 (access control) · SAMM PC-B | CR-D-03.2-001 | Privilege escalation |
-| THR-DEV-01 × Supply-chain | Build Pipeline → Production | P | ASVS V14 (configuration) · SSDF PW.4 · SAMM SB-A | BPR-D-02.2-001 | Pipeline poisoning |
+| THR-DEV-01 × Supply-chain | Build Pipeline → Production | P | ASVS V14 (configuration) · SSDF PW.4 · SAMM SB-A | CR-D-07.3-001 | Pipeline poisoning |
 | THR-GOV-01 × Auditor | Doc repo → Approval workflow | R | ASVS V1.1 (secure SDLC) · SAMM G-SM-A | CR-D-09.1-001 | Tampered governance doc |
 | THR-AI-01 × Adversarial input | Inference API → Output | T | ASVS V5 (input validation) · SAMM V-ST-B | CR-D-02.1-001 | Model tampering |
 | THR-TRN-01 × Operator | Training Records Store | T | SAMM EG-A · ASVS V1.1 | CR-D-08.1-001 | Training bypass |

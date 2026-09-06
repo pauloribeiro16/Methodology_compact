@@ -65,9 +65,9 @@ The relationships follow UML Use Case modeling conventions with stereotypes:
 
 | Source UC | «include» Target | Purpose |
 |-----------|------------------|---------|
-| PROC-39: Configure Data Encryption | UC-25 (real-time risk scoring): Authenticate Administrator | Ensures only authenticated admins configure encryption |
-| PROC-41: Field-Level Encryption | UC-25 (real-time risk scoring): Authenticate Administrator | Ensures only authorized personnel access encryption configuration |
-| CAP-08: Detect Model Tampering | UC-25 (real-time risk scoring): Authenticate Administrator | Ensures anomaly alerts are authenticated |
+| PROC-39: Configure Data Encryption | UC-99: Authenticate Administrator | Ensures only authenticated admins configure encryption |
+| PROC-41: Field-Level Encryption | UC-99: Authenticate Administrator | Ensures only authorized personnel access encryption configuration |
+| CAP-08: Detect Model Tampering | UC-99: Authenticate Administrator | Ensures anomaly alerts are authenticated |
 
 **«refine» Relationships:**
 
@@ -115,8 +115,8 @@ The relationships follow UML Use Case modeling conventions with stereotypes:
 
 | Source UC | «include» Target | Purpose |
 |-----------|------------------|---------|
-| PROC-10: Provision Identity | UC-25 (real-time risk scoring): Authenticate HR Manager | Ensures HR manager is authenticated before provisioning |
-| PROC-43: Enforce MFA | UC-25 (real-time risk scoring): Authenticate Administrator | Ensures admin authentication before MFA enforcement |
+| PROC-10: Provision Identity | UC-99: Authenticate HR Manager | Ensures HR manager is authenticated before provisioning |
+| PROC-43: Enforce MFA | UC-99: Authenticate Administrator | Ensures admin authentication before MFA enforcement |
 | PROC-11: Quarterly Access Review | UC-103: Generate Access Report | Generates standardized access report for review |
 
 **«refine» Relationships:**
@@ -442,7 +442,7 @@ graph TD
     subgraph PKG-D-01["PKG-D-01: Data Protection"]
         UC02["PROC-39: Configure Encryption"]
         UC08["CAP-08: Detect Model Tampering"]
-        UC99["UC-25 (real-time risk scoring): Authenticate Admin"]
+        UC99["UC-99: Authenticate Admin"]
     end
 
     subgraph PKG-D-02["PKG-D-02: Vulnerability"]

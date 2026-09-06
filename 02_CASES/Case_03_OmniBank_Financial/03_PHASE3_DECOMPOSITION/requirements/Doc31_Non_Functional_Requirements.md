@@ -420,7 +420,7 @@ Every NFR includes:
 | **Target** | 100% of AI decisions logged with full traceability |
 | **Method** | INSPECT |
 | **Source UC** | CAP-10, PROC-38 |
-| **Source Rule** | AI-C09, AI-C10, DORA-C38 |
+| **Source Rule** | CR-D-10.2-001, CR-D-09.4-001 |
 | **Priority** | CRITICAL |
 
 ---
@@ -728,7 +728,7 @@ Every NFR includes:
 | **Target** | 100% of high-risk processing with completed DPIA |
 | **Method** | INSPECT |
 | **Source UC** | PROC-34.1 (DPIA) |
-| **Source Rule** | GDPR Art. 35 |
+| **Source Rule** | CR-D-09.2-001 |
 | **Priority** | CRITICAL |
 
 ---
@@ -760,7 +760,7 @@ Every NFR includes:
 | **Target** | 100% of high-risk AI decisions have human oversight |
 | **Method** | INSPECT |
 | **Source UC** | UC-49-AI |
-| **Source Rule** | AI Act Art. 14 |
+| **Source Rule** | CR-D-08.2-001, BPR-D-12.3-001 |
 | **Priority** | CRITICAL |
 
 ---
@@ -858,7 +858,7 @@ Every NFR includes:
 | **Target** | 100% of AI decisions logged with required attributes |
 | **Method** | INSPECT |
 | **Source UC** | CAP-10, PROC-38 |
-| **Source Rule** | AI-C09, AI-C10, DORA-C38 |
+| **Source Rule** | CR-D-10.2-001, CR-D-09.4-001 |
 | **Priority** | CRITICAL |
 
 ---
@@ -972,7 +972,7 @@ Every NFR includes:
 | **Target** | 100% of high-risk AI systems conformant |
 | **Method** | DEMONSTRATE |
 | **Source UC** | PROC-19, PROC-34.2, CAP-07 |
-| **Source Rule** | AI Act Art. 14, Art. 28, Art. 73 |
+| **Source Rule** | BPR-D-12.3-001, CR-D-06.1-001, CR-D-04.3-001 |
 | **Priority** | CRITICAL |
 
 ---

@@ -546,7 +546,7 @@ Relationships in Doc 13a (Use Case Relationships) will be updated:
 
 | Stop Condition | Status | Evidence |
 |----------------|--------|----------|
-| **SC1: Rule Coverage** | ✅ PASS | 63/63 rules mapped to UCs |
+| **SC1: Rule Coverage** | ✅ PASS | 78/78 rules mapped to UCs |
 | **SC2: Relationship Completeness** | ✅ PASS | 48 relationships defined; 0 orphan UCs |
 | **SC3: Detail Sufficiency** | ✅ PASS | Iteration 2 complete; complex UCs have detailed flows |
 | **SC4: Variability Complete** | ✅ PASS | 14 specializations covering all 5 regulations |
