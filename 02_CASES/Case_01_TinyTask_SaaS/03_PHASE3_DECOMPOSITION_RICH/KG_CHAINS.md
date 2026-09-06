@@ -118,7 +118,7 @@ Format: `Start node ID | hop1 [relation, confidence, source_location] | hop2 [..
 | 1 | `02_phase2_rules_rich_11_rules_catalog_cr_d_01_1_001` → `02_phase2_rules_rich_11_rules_catalog_posture_dual` | references | EXTRACTED | `§7.1 CR-D-01.1-001 fields 21-22` | `02_PHASE2_RULES_RICH/11_Rules_Catalog.md` |
 | 2 | `02_phase2_rules_rich_11_rules_catalog_posture_dual` → `concept_nist_csf_2_0` | references | EXTRACTED | `field 21` | `02_PHASE2_RULES_RICH/11_Rules_Catalog.md` |
 
-### CH-09: FR-29 (Universal Notification per KG) → UC-25 (RP-7)
+### CH-09: FR-29 (Universal Notification per KG) → UC-21 (RP-7)
 
 - **Pattern**: RP-7
 - **Tally**: EXTRACTED=1 / INFERRED=0
@@ -142,19 +142,19 @@ Format: `Start node ID | hop1 [relation, confidence, source_location] | hop2 [..
 |-----|-----------------|----------|------------|-----------------|-------------|
 | 1 | `02_phase2_rules_rich_11_rules_catalog_cr_d_01_3_001` → `02_phase2_rules_rich_11_rules_catalog_cr_d_01_1_001` | references | EXTRACTED | `§7.1 CR-D-01.3-001 field 10 Dependencies` | `02_PHASE2_RULES_RICH/11_Rules_Catalog.md` |
 
-### CH-09: FR-29 (Universal Notification per KG) → UC-25 → CR-D-04.3 (RP-7 god-nodes)
+### CH-09: FR-29 (Universal Notification per KG) → UC-21 → CR-D-04.3 (RP-7 god-nodes)
 
 - **Pattern**: RP-7
 - **Tally**: EXTRACTED=2 / INFERRED=0
 - **Spot-check (1st edge)**: ✗ FAIL — NOT FOUND "Doc 23 §3 row 79" in 03_PHASE3_DECOMPOSITION/requirements/23_Functional_Requirements.md
 - **Note**: Multi-doc: Doc 23 → Doc 13 → Doc 11. Cross-doc RP-7.
 
-**Chain**: `fr_29_universal_notification` | [references, EXTRACTED, `Doc 23 §3 row 79`] | `uc_25_universal_notification` | [references, EXTRACTED, `Doc 13 §5.5 (UC-25 Universal Incident Notification)`] | `02_phase2_rules_rich_11_rules_catalog_cr_d_04_3_001` | | 2 EXTRACTED / 0 INFERRED
+**Chain**: `fr_29_universal_notification` | [references, EXTRACTED, `Doc 23 §3 row 79`] | `uc_25_universal_notification` | [references, EXTRACTED, `Doc 13 §5.5 (UC-21 Universal Incident Notification)`] | `02_phase2_rules_rich_11_rules_catalog_cr_d_04_3_001` | | 2 EXTRACTED / 0 INFERRED
 
 | Hop | Source → Target | Relation | Confidence | Source Location | Source File |
 |-----|-----------------|----------|------------|-----------------|-------------|
 | 1 | `fr_29_universal_notification` → `uc_25_universal_notification` | references | EXTRACTED | `Doc 23 §3 row 79` | `03_PHASE3_DECOMPOSITION/requirements/23_Functional_Requirements.md` |
-| 2 | `uc_25_universal_notification` → `02_phase2_rules_rich_11_rules_catalog_cr_d_04_3_001` | references | EXTRACTED | `Doc 13 §5.5 (UC-25 Universal Incident Notification)` | `03_PHASE3_DECOMPOSITION/13_Use_Cases_Catalog.md` |
+| 2 | `uc_25_universal_notification` → `02_phase2_rules_rich_11_rules_catalog_cr_d_04_3_001` | references | EXTRACTED | `Doc 13 §5.5 (UC-21 Universal Incident Notification)` | `03_PHASE3_DECOMPOSITION/13_Use_Cases_Catalog.md` |
 
 ### CH-11: GATE-D-04-03 → Doc 16 §5B → CR-D-04.3 (RP-4)
 

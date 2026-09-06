@@ -260,3 +260,21 @@ rows, Doc23 v1.1 row pairing "U.C.10.1.1/PROC-24", Doc21 v1.0 release row "(44 U
   `U.C.2.8.1`→`PROC-09` (ids retired by LANE NAMING; re-anchored to the owning lane cards).
 - `Doc21` MUC-07 row references `U.C.2.4.2` (id never existed in C2's live catalog —
   Case_01-family reference); left verbatim, informational.
+
+## LEDGER-ZERO F3 append (2026-09-06) — Case_01 re-lane + compact renumber
+
+P7 decision 2026-09-06: 4 borderline compliance UCs re-laned (rubric v1.8 §5B rule 6):
+| Old UC | Title | New lane id |
+|---|---|---|
+| UC-07 | DoS Resilience | PROC-18 |
+| UC-11 | Authorisation / Least Privilege | PROC-19 |
+| UC-12 | Secure System Defaults | PROC-20 |
+| UC-16 | Fail-Safe Design | PROC-21 |
+
+Compact renumber (rubric v1.10 §5B rule 7, ascending, relative order preserved):
+| Old | New | Family |
+|---|---|---|
+| UC-01..06 | UC-01..06 (unchanged) | compliance |
+| UC-08, UC-09, UC-10, UC-13, UC-14, UC-15, UC-17 | UC-07, UC-08, UC-09, UC-10, UC-11, UC-12, UC-13 | compliance |
+| UC-18..40 | UC-14..36 (shift −4) | product |
+End state Case_01: 36 live UCs (13 compliance + 23 product) · PROC-01..21 · CAP-01.

@@ -2,9 +2,9 @@
 document_id: AEGIS-P3-32
 title: Process & Capability Cards — Lane Pilot (Case_01)
 phase: 3
-version: 1.2
+version: 1.3
 created: 2026-09-05
-updated: 2026-09-05
+updated: 2026-09-06
 author: Executor
 status: ACTIVE
 case: Case_01_TinyTask_SaaS
@@ -23,7 +23,7 @@ related_documents: [Doc20_Use_Cases_Catalog.md, Doc18_Rules_Catalog.md]
 > Since Doc20 v3.2 (UC SEPARATION, rubric v1.8 §5B rule 6) these are the ONLY lane
 > artefacts for the 18 re-laned ids — the catalogue holds UC cards only and maps the
 > packages to these cards via its §3.0 Compliance Domain Index. Piloted set: 4 of 18
-> re-laned ids, completed 18/18 (registry: `LANE_NAMING_CENSUS_v0.md`).
+> re-laned ids, completed 22/22 (registry: `LANE_NAMING_CENSUS_v0.md`).
 
 ## PROC-01 — Data Subject Access Request (DSAR)
 
@@ -152,7 +152,7 @@ flowchart TD
 | SLA / Timing | Per release: 0 critical findings at release; audit log per build. |
 | Realises | CR-D-02.1-001 / SO-D-02.1-001. |
 | Anchors | SAMM: I-SB-B (software dependencies, secure build) · ASVS: V14.2 (dependency). |
-| Evidence | Scan reports; CVSS+EPSS prioritisation records; SBOM (UC-17); build audit log (PR.DS-01). |
+| Evidence | Scan reports; CVSS+EPSS prioritisation records; SBOM (UC-13); build audit log (PR.DS-01). |
 
 ```mermaid
 flowchart TD
@@ -427,9 +427,103 @@ flowchart TD
 ```
 
 
+## PROC-18 — DoS Resilience
+
+> Formerly UC-07 — re-laned per rubric v1.8 §5B rule 6 (LEDGER-ZERO F3, P7 decision 2026-09-06).
+
+| Field | Content |
+|---|---|
+| Trigger | Application-layer DoS signature detected. |
+| Activities | 1. Apply rate-limit + CAPTCHA challenge to the offending source. 2. Engage upstream scrubbing for sustained attacks; volumetric DDoS at the edge escalates to the cloud provider SLA. 3. Restore service, preserve RTO/RPO targets, file post-mortem. |
+| Roles | Operations Lead (owner); cloud provider (edge volumetric SLA). |
+| SLA / Timing | Recovery < 24 h; availability ≥ 99.9 % monthly; chaos DoS test quarterly. |
+| Realises | CR-D-04.2-001 / SO-D-04.2-001. |
+| Anchors | NIST CSF: DE.CM-09, PR.DS-10, PR.IR-03 · PF: CT.DM-P10, PR.PO-P7. |
+| Evidence | Chaos DoS test reports; availability dashboards; published runbook; post-mortems. |
+
+```mermaid
+flowchart TD
+    T["Trigger: DoS signature detected"] --> A1["1. Rate-limit + CAPTCHA to source"]
+    A1 --> A2{"2. Sustained / volumetric?"}
+    A2 -->|"yes"| A3["Upstream scrubbing + provider SLA"]
+    A2 -->|"no"| A4["3. Restore, preserve RTO/RPO"]
+    A3 --> A4
+    A4 --> E["Post-mortem filed · SLA: recovery <24h"]
+```
+
+## PROC-19 — Authorisation / Least Privilege
+
+> Formerly UC-11 — re-laned per rubric v1.8 §5B rule 6 (LEDGER-ZERO F3, P7 decision 2026-09-06).
+
+| Field | Content |
+|---|---|
+| Trigger | Quarterly access review OR new role request. |
+| Activities | 1. Document the RBAC matrix against the role taxonomy. 2. Diff privileges against the previous quarter; flag privilege creep. 3. Deprovision access within 24 h of termination. |
+| Roles | CTO (role taxonomy owner); all staff (subjects); Auditor (review). |
+| SLA / Timing | Review quarterly; deprovisioning ≤ 24 h. |
+| Realises | CR-D-03.3-001 / SO-D-03.3-001. |
+| Anchors | NIST CSF: ID.AM-01, PR.AA-01, PR.AA-03 · PF: CT.PO-P1. |
+| Evidence | RBAC matrix versions; quarterly review records; deprovisioning tickets. |
+
+```mermaid
+flowchart TD
+    T["Trigger: quarterly review / new role"] --> A1["1. Document RBAC matrix"]
+    A1 --> A2["2. Diff privileges vs last quarter"]
+    A2 --> A3["3. Deprovision ≤24h of termination"]
+    A3 --> E["Postcondition: least privilege aligned"]
+```
+
+## PROC-20 — Secure System Defaults
+
+> Formerly UC-12 — re-laned per rubric v1.8 §5B rule 6 (LEDGER-ZERO F3, P7 decision 2026-09-06).
+
+| Field | Content |
+|---|---|
+| Trigger | New service deployed OR quarterly CIS review. |
+| Activities | 1. Run the CIS benchmark scan (target ≥ 95 % pass rate). 2. Document deviations, time-bound them, obtain security sign-off. 3. Re-evaluate the hardened baseline on every new service (dev environments → relaxed baseline). |
+| Roles | Operations Lead (owner); Lead Developer (service owners). |
+| SLA / Timing | CIS compliance ≥ 95 % quarterly; deviations time-bound. |
+| Realises | CR-D-03.4-001 / SO-D-03.4-001. |
+| Anchors | NIST CSF: GV.PO-01, GV.SC-03, PR.DS-10 · PF: CT.DP-P4, CT.PO-P4. |
+| Evidence | CIS scan reports; deviation register; security sign-offs. |
+
+```mermaid
+flowchart TD
+    T["Trigger: new service / CIS review"] --> A1["1. CIS scan ≥95% pass"]
+    A1 --> A2{"2. Deviations?"}
+    A2 -->|"yes"| A3["Document + time-bound + sign-off"]
+    A2 -->|"no"| A4["3. Baseline re-evaluated"]
+    A3 --> A4
+    A4 --> E["Postcondition: hardened defaults"]
+```
+
+## PROC-21 — Fail-Safe Design
+
+> Formerly UC-16 — re-laned per rubric v1.8 §5B rule 6 (LEDGER-ZERO F3, P7 decision 2026-09-06).
+
+| Field | Content |
+|---|---|
+| Trigger | Architecture review OR incident post-mortem. |
+| Activities | 1. Include the fail-safe checklist in every architecture review. 2. Inject failures quarterly via chaos testing. 3. Track fail-open incidents (target: 0 in the last 12 months); UI-level graceful degradation remains user-visible. |
+| Roles | CTO (architecture owner); Lead Developer. |
+| SLA / Timing | Chaos test quarterly; 0 fail-open incidents / 12 months. |
+| Realises | CR-D-04.1-001 / SO-D-04.1-001. |
+| Anchors | NIST CSF: DE.AE-02, DE.CM-01, DE.CM-09 · PF: CM.AW-P7. |
+| Evidence | Architecture review checklists; chaos test reports; incident records. |
+
+```mermaid
+flowchart TD
+    T["Trigger: arch review / post-mortem"] --> A1["1. Fail-safe checklist applied"]
+    A1 --> A2["2. Quarterly chaos test"]
+    A2 --> A3{"Fail-open?"}
+    A3 -->|"yes"| A4["Incident + redesign"]
+    A3 -->|"no"| E["0 fail-open / 12 months"]
+    A4 --> A2
+```
+
 ## Articulation with existing artefacts
 
-Per-card binding to the catalogue and the downstream documents. 'Formerly' preserves the pre-LANE-NAMING id (full registry: `00_METHODOLOGY/validation/LANE_NAMING_CENSUS_v0.md`). Ref counts are occurrences of the lane id in the P3 tree (excluding this doc). RENUMBER (2026-09-05, rubric v1.10 §5B rule 7): live UC references in the P3 tree now use flat `UC-01..UC-40` (registry `00_METHODOLOGY/validation/RENUMBER_REGISTRY_2026-09-05.md`); the 'Formerly' column and this table's PROC/CAP ids are unchanged.
+Per-card binding to the catalogue and the downstream documents. 'Formerly' preserves the pre-LANE-NAMING id (full registry: `00_METHODOLOGY/validation/LANE_NAMING_CENSUS_v0.md`). Ref counts are occurrences of the lane id in the P3 tree (excluding this doc). RENUMBER (2026-09-05, rubric v1.10 §5B rule 7): live UC references in the P3 tree now use flat `UC-01..UC-36` (registry `00_METHODOLOGY/validation/RENUMBER_REGISTRY_2026-09-05.md`); the 'Formerly' column and this table's PROC/CAP ids are unchanged.
 
 | Card | Formerly | Catalogue anchor | Downstream refs (doc: count) |
 |---|---|---|---|
@@ -451,8 +545,12 @@ Per-card binding to the catalogue and the downstream documents. 'Formerly' prese
 | PROC-15 | U.C.6.1.1 | Doc20 §3.0 Compliance Domain Index (PKG-TRN) | CORPUS_LINKAGE.md:1, Doc21_Use_Case_Relationships.md:2, NIST_ANCHORS.md:1, Doc26_Functional_Tree.md:1, Doc20_Use_Cases_Catalog.md:5, Doc22_Use_Case_Variability.md:1, Doc23_Architectural_Nodes.md:2, Doc27_Risk_Analysis.md:3, Doc24_Requirements_Allocation.md:2, Doc31_Non_Functional_Requirements.md:1, Doc29_Functional_Requirements.md:2, A_Use_Case_Diagrams.md:1, build_traceability_matrix_rich.py:3 |
 | PROC-16 | U.C.6.2.1 | Doc20 §3.0 Compliance Domain Index (PKG-TRN) | CORPUS_LINKAGE.md:1, Doc21_Use_Case_Relationships.md:1, NIST_ANCHORS.md:1, Doc26_Functional_Tree.md:1, Doc20_Use_Cases_Catalog.md:3, Doc23_Architectural_Nodes.md:2, Doc27_Risk_Analysis.md:3, Doc24_Requirements_Allocation.md:2, Doc31_Non_Functional_Requirements.md:1, Doc29_Functional_Requirements.md:2, build_traceability_matrix_rich.py:3 |
 | PROC-17 | U.C.6.3.1 | Doc20 §3.0 Compliance Domain Index (PKG-TRN) | RULE_FREEZE.md:1, CORPUS_LINKAGE.md:1, Doc21_Use_Case_Relationships.md:2, NIST_ANCHORS.md:1, Doc26_Functional_Tree.md:1, Doc20_Use_Cases_Catalog.md:4, Doc22_Use_Case_Variability.md:1, VALIDATOR_SPRINT6.md:1, SPRINT5_REPORT.md:1, Doc29_Functional_Requirements.md:2, build_traceability_matrix_rich.py:3 |
+| PROC-18 | UC-07 | Doc20 §3.0 register (PKG-SEC) | whole-case refs: 17 |
+| PROC-19 | UC-11 | Doc20 §3.0 register (PKG-IAM) | whole-case refs: 21 |
+| PROC-20 | UC-12 | Doc20 §3.0 register (PKG-IAM) | whole-case refs: 18 |
+| PROC-21 | UC-16 | Doc20 §3.0 register (PKG-DEV) | whole-case refs: 14 |
 
 ## Coverage
 
-18/18 cards present (4 pilot + 14 added): PROC-01 DSAR · PROC-02 Data Subject Rectification · PROC-03 Vulnerability-Free Release · PROC-04 Coordinated Vulnerability Disclosure · PROC-05 Incident Notification · PROC-06 Processing & Breach Records · PROC-07 Control Effectiveness Testing · PROC-08 Security by Design · PROC-09 Pre-Launch Risk Assessment · PROC-10 Annual Policy Review · PROC-11 Technical Documentation Maintenance · PROC-12 DPIA Pre-Launch · PROC-13 RoPA Maintenance · PROC-14 Processor Due Diligence · PROC-15 Annual Awareness Training · PROC-16 Role-Specific Training · PROC-17 Phishing Simulation · CAP-01 DPAs Binding Processors.
+22/22 cards present (4 pilot + 14 added): PROC-01 DSAR · PROC-02 Data Subject Rectification · PROC-03 Vulnerability-Free Release · PROC-04 Coordinated Vulnerability Disclosure · PROC-05 Incident Notification · PROC-06 Processing & Breach Records · PROC-07 Control Effectiveness Testing · PROC-08 Security by Design · PROC-09 Pre-Launch Risk Assessment · PROC-10 Annual Policy Review · PROC-11 Technical Documentation Maintenance · PROC-12 DPIA Pre-Launch · PROC-13 RoPA Maintenance · PROC-14 Processor Due Diligence · PROC-15 Annual Awareness Training · PROC-16 Role-Specific Training · PROC-17 Phishing Simulation · CAP-01 DPAs Binding Processors.
 

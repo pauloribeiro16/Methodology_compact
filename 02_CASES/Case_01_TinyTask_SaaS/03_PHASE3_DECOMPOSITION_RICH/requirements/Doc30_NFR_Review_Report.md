@@ -160,7 +160,7 @@ sprint4_note: "Fase de Especificação 4: review-report status bumped RECONCILED
 |----------|--------------|----------|
 | PROC-01 (DSAR) | NFR-PRIV-01, NFR-AVAIL-07 | ✅ Complete |
 | UC-01 (Erasure) | NFR-PRIV-02 | ✅ Complete |
-| UC-09 (Authentication) | 7 NFRs (CONF, INT, AVAIL, ACC) | ✅ Complete |
+| UC-08 (Authentication) | 7 NFRs (CONF, INT, AVAIL, ACC) | ✅ Complete |
 | U.C.2.7.1 (BC/DR) | 6 NFRs (AVAIL, INT) | ✅ Complete |
 | U.C.5.7.1 (Regulatory Notification) | 3 NFRs (PRIV, COMP) | ✅ Complete |
 
@@ -200,7 +200,7 @@ sprint4_note: "Fase de Especificação 4: review-report status bumped RECONCILED
 
 | Issue | Location | Description | Recommendation |
 |-------|----------|-------------|----------------|
-| **CONSIST-001** | Section 3.1 | NFR-CONF-07 mentions "DEV-03" but should also reference "IAM-02" | Add UC-09 to Source UC |
+| **CONSIST-001** | Section 3.1 | NFR-CONF-07 mentions "DEV-03" but should also reference "IAM-02" | Add UC-08 to Source UC |
 | **CONSIST-002** | Section 8.1 | MoSCoW counts don't sum to 46 (13+23+10=46) | ✅ Actually correct — no action needed |
 
 **Assessment:** 1 minor inconsistency — trivial fix

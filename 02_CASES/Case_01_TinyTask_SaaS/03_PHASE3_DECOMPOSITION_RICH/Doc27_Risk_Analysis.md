@@ -51,10 +51,10 @@ Risk Analysis covers operational risks (RISK-01..RISK-10) and threat models (THR
 
 | ID | Risk | D-sub | Likelihood | Impact | Inherent | Mitigation UC | Mitigation Gate | Residual | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |----|------|-------|:----------:|:------:|:--------:|---------------|-----------------|:--------:|-------|-----------------------|----------|----------|--------------|-----------|
-| RISK-01 | Unauthorized access to personal data via spoofing | D-03.2 | Medium | High | High | UC-10 (MFA) | GATE-CR-D-03.2-001 | Low | | | | | | |
-| RISK-02 | Insecure code reaches production (no SSDLC) | D-07.2 | Medium | High | High | PROC-08, UC-14 | (BPR-D-07.2-001) — BPR-anchored closure (P7 2026-09-06) | Low | | | | | | |
+| RISK-01 | Unauthorized access to personal data via spoofing | D-03.2 | Medium | High | High | UC-09 (MFA) | GATE-CR-D-03.2-001 | Low | | | | | | |
+| RISK-02 | Insecure code reaches production (no SSDLC) | D-07.2 | Medium | High | High | PROC-08, UC-11 | (BPR-D-07.2-001) — BPR-anchored closure (P7 2026-09-06) | Low | | | | | | |
 | RISK-03 | Exploit severity not contained post-detection | D-04.1 | Low | High | Medium | UC-06 | GATE-CR-D-04.1-001 | Low | | | | | | |
-| RISK-04 | DoS outage affects availability SLA | D-04.2 | Medium | High | High | UC-07 | GATE-CR-D-04.2-001 | Medium | | | | | | |
+| RISK-04 | DoS outage affects availability SLA | D-04.2 | Medium | High | High | PROC-18 | GATE-CR-D-04.2-001 | Medium | | | | | | |
 | RISK-05 | High-risk processing without DPIA | D-09.2 | Low | High | Medium | PROC-09, PROC-12 | GATE-CR-D-09.2-001 | Low | | | | | | |
 | RISK-06 | Processor without sufficient guarantees | D-06.1 | Medium | High | High | PROC-14 | GATE-CR-D-06.1-001 | Low | | | | | | |
 | RISK-07 | Incomplete erasure leaves residual PII | D-05.3 | Low | Critical | Medium | UC-01 | GATE-CR-D-05.3-001 | Low | | | | | | |
@@ -89,7 +89,7 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 **Description:** Threat actor gains unauthorized access to personal data by spoofing authentication credentials.
 **Scope:** All authentication flows.
 **Out of Scope:** Physical access threats.
-**Source:** UC-10 + GATE-CR-D-03.2-001
+**Source:** UC-09 + GATE-CR-D-03.2-001
 **NIST CSF Anchors:** CSF: PR.AA-01, PR.AA-03 | PF: —
 **Likelihood × Impact / Score:**
 - Likelihood: Medium.
@@ -115,7 +115,7 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 **Description:** Code with security defects reaches production due to absent or weak SSDLC.
 **Scope:** All production code releases.
 **Out of Scope:** Internal tooling.
-**Source:** PROC-08, UC-14 + BPR-D-07.2-001 — BPR-anchored closure (P7 2026-09-06)
+**Source:** PROC-08, UC-11 + BPR-D-07.2-001 — BPR-anchored closure (P7 2026-09-06)
 **NIST CSF Anchors:** CSF: PR.PS-01, PR.PS-02 | PF: —
 **Likelihood × Impact / Score:**
 - Likelihood: Medium.
@@ -167,7 +167,7 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 **Description:** Application-layer DoS causes outage exceeding availability SLA.
 **Scope:** Production APIs.
 **Out of Scope:** Edge DDoS (cloud SLA).
-**Source:** UC-07 + GATE-CR-D-04.2-001
+**Source:** PROC-18 + GATE-CR-D-04.2-001
 **NIST CSF Anchors:** CSF: DE.CM-09, PR.IR-03 | PF: CT.DM-P10
 **Likelihood × Impact / Score:**
 - Likelihood: Medium.
@@ -347,9 +347,9 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 ### THR-DP-01 — Spoofing identity at authentication [priority=MEDIUM, fields=12]
 
 **Description:** LINDDUN-Identifiability threat against D-01.1; mitigated via Mitigate via MFA + IdP (DN-08/09).
-**Scope:** D-sub D-01.1; UC-09 use case.
+**Scope:** D-sub D-01.1; UC-08 use case.
 **Out of Scope:** Out-of-scope threats documented in §3 (STRIDE + LINDDUN matrix).
-**Source:** UC-09 + D-01.1 + LINDDUN-Identifiability
+**Source:** UC-08 + D-01.1 + LINDDUN-Identifiability
 **NIST CSF Anchors:** CSF: per NFR catalogue | PF: per NIST_ANCHORS.md
 **Verification Criteria:**
 - Threat type: LINDDUN-Identifiability.
@@ -358,7 +358,7 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 **Verification Method:** INSPECT
 **Owner:** Operations Lead
 **Status:** TODO
-**Dependencies:** UC-09
+**Dependencies:** UC-08
 **Risk if not met:** M — mitigated via Mitigate via MFA + IdP (DN-08/09).
 **Affected Stakeholders:** Operations Lead, Lead Developer, Auditor
 
@@ -387,9 +387,9 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 ### THR-DP-03 — Disclosure in transit [priority=MEDIUM, fields=12]
 
 **Description:** LINDDUN-Disclosure threat against D-01.2; mitigated via Mitigate via TLS 1.2+ (DN-02).
-**Scope:** D-sub D-01.2; UC-09 use case.
+**Scope:** D-sub D-01.2; UC-08 use case.
 **Out of Scope:** Out-of-scope threats documented in §3 (STRIDE + LINDDUN matrix).
-**Source:** UC-09 + D-01.2 + LINDDUN-Disclosure
+**Source:** UC-08 + D-01.2 + LINDDUN-Disclosure
 **NIST CSF Anchors:** CSF: per NFR catalogue | PF: per NIST_ANCHORS.md
 **Verification Criteria:**
 - Threat type: LINDDUN-Disclosure.
@@ -398,7 +398,7 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 **Verification Method:** INSPECT
 **Owner:** Operations Lead
 **Status:** TODO
-**Dependencies:** UC-09
+**Dependencies:** UC-08
 **Risk if not met:** M — mitigated via Mitigate via TLS 1.2+ (DN-02).
 **Affected Stakeholders:** Operations Lead, Lead Developer, Auditor
 
@@ -507,9 +507,9 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 ### THR-DEV-05 — Malicious package in registry [priority=MEDIUM, fields=12]
 
 **Description:** STRIDE-Tampering threat against D-02.2; mitigated via Mitigate via SCA + pinned versions (DN-05).
-**Scope:** D-sub D-02.2; UC-14 use case.
+**Scope:** D-sub D-02.2; UC-11 use case.
 **Out of Scope:** Out-of-scope threats documented in §3 (STRIDE + LINDDUN matrix).
-**Source:** UC-14 + D-02.2 + STRIDE-Tampering
+**Source:** UC-11 + D-02.2 + STRIDE-Tampering
 **NIST CSF Anchors:** CSF: per NFR catalogue | PF: per NIST_ANCHORS.md
 **Verification Criteria:**
 - Threat type: STRIDE-Tampering.
@@ -518,7 +518,7 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 **Verification Method:** INSPECT
 **Owner:** Operations Lead
 **Status:** TODO
-**Dependencies:** UC-14
+**Dependencies:** UC-11
 **Risk if not met:** M — mitigated via Mitigate via SCA + pinned versions (DN-05).
 **Affected Stakeholders:** Operations Lead, Lead Developer, Auditor
 
@@ -527,9 +527,9 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 ### THR-DEV-06 — Stale firmware/OS [priority=MEDIUM, fields=12]
 
 **Description:** STRIDE-Elevation threat against D-02.2; mitigated via Mitigate via quarterly patch cycle (DN-06).
-**Scope:** D-sub D-02.2; UC-08 use case.
+**Scope:** D-sub D-02.2; UC-07 use case.
 **Out of Scope:** Out-of-scope threats documented in §3 (STRIDE + LINDDUN matrix).
-**Source:** UC-08 + D-02.2 + STRIDE-Elevation
+**Source:** UC-07 + D-02.2 + STRIDE-Elevation
 **NIST CSF Anchors:** CSF: per NFR catalogue | PF: per NIST_ANCHORS.md
 **Verification Criteria:**
 - Threat type: STRIDE-Elevation.
@@ -538,7 +538,7 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 **Verification Method:** INSPECT
 **Owner:** Operations Lead
 **Status:** TODO
-**Dependencies:** UC-08
+**Dependencies:** UC-07
 **Risk if not met:** M — mitigated via Mitigate via quarterly patch cycle (DN-06).
 **Affected Stakeholders:** Operations Lead, Lead Developer, Auditor
 
@@ -547,9 +547,9 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 ### THR-IAM-01 — Credential stuffing [priority=MEDIUM, fields=12]
 
 **Description:** STRIDE-Spoofing threat against D-03.1; mitigated via Mitigate via MFA + lockout (DN-08).
-**Scope:** D-sub D-03.1; UC-09 use case.
+**Scope:** D-sub D-03.1; UC-08 use case.
 **Out of Scope:** Out-of-scope threats documented in §3 (STRIDE + LINDDUN matrix).
-**Source:** UC-09 + D-03.1 + STRIDE-Spoofing
+**Source:** UC-08 + D-03.1 + STRIDE-Spoofing
 **NIST CSF Anchors:** CSF: per NFR catalogue | PF: per NIST_ANCHORS.md
 **Verification Criteria:**
 - Threat type: STRIDE-Spoofing.
@@ -558,7 +558,7 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 **Verification Method:** INSPECT
 **Owner:** Operations Lead
 **Status:** TODO
-**Dependencies:** UC-09
+**Dependencies:** UC-08
 **Risk if not met:** M — mitigated via Mitigate via MFA + lockout (DN-08).
 **Affected Stakeholders:** Operations Lead, Lead Developer, Auditor
 
@@ -567,9 +567,9 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 ### THR-IAM-02 — Privileged session hijack [priority=MEDIUM, fields=12]
 
 **Description:** STRIDE-Elevation threat against D-03.2; mitigated via Mitigate via FIDO2 + PAM (DN-09).
-**Scope:** D-sub D-03.2; UC-10 use case.
+**Scope:** D-sub D-03.2; UC-09 use case.
 **Out of Scope:** Out-of-scope threats documented in §3 (STRIDE + LINDDUN matrix).
-**Source:** UC-10 + D-03.2 + STRIDE-Elevation
+**Source:** UC-09 + D-03.2 + STRIDE-Elevation
 **NIST CSF Anchors:** CSF: per NFR catalogue | PF: per NIST_ANCHORS.md
 **Verification Criteria:**
 - Threat type: STRIDE-Elevation.
@@ -578,7 +578,7 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 **Verification Method:** INSPECT
 **Owner:** Operations Lead
 **Status:** TODO
-**Dependencies:** UC-10
+**Dependencies:** UC-09
 **Risk if not met:** M — mitigated via Mitigate via FIDO2 + PAM (DN-09).
 **Affected Stakeholders:** Operations Lead, Lead Developer, Auditor
 
@@ -587,9 +587,9 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 ### THR-IAM-03 — Privilege escalation via misconfig [priority=MEDIUM, fields=12]
 
 **Description:** STRIDE-Elevation threat against D-03.3; mitigated via Mitigate via RBAC + reviews (DN-10).
-**Scope:** D-sub D-03.3; UC-11 use case.
+**Scope:** D-sub D-03.3; PROC-19 use case.
 **Out of Scope:** Out-of-scope threats documented in §3 (STRIDE + LINDDUN matrix).
-**Source:** UC-11 + D-03.3 + STRIDE-Elevation
+**Source:** PROC-19 + D-03.3 + STRIDE-Elevation
 **NIST CSF Anchors:** CSF: per NFR catalogue | PF: per NIST_ANCHORS.md
 **Verification Criteria:**
 - Threat type: STRIDE-Elevation.
@@ -598,7 +598,7 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 **Verification Method:** INSPECT
 **Owner:** Operations Lead
 **Status:** TODO
-**Dependencies:** UC-11
+**Dependencies:** PROC-19
 **Risk if not met:** M — mitigated via Mitigate via RBAC + reviews (DN-10).
 **Affected Stakeholders:** Operations Lead, Lead Developer, Auditor
 
@@ -607,9 +607,9 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 ### THR-IAM-04 — Default credentials in production [priority=MEDIUM, fields=12]
 
 **Description:** STRIDE-Spoofing threat against D-03.4; mitigated via Mitigate via hardened baseline (DN-11).
-**Scope:** D-sub D-03.4; UC-12 use case.
+**Scope:** D-sub D-03.4; PROC-20 use case.
 **Out of Scope:** Out-of-scope threats documented in §3 (STRIDE + LINDDUN matrix).
-**Source:** UC-12 + D-03.4 + STRIDE-Spoofing
+**Source:** PROC-20 + D-03.4 + STRIDE-Spoofing
 **NIST CSF Anchors:** CSF: per NFR catalogue | PF: per NIST_ANCHORS.md
 **Verification Criteria:**
 - Threat type: STRIDE-Spoofing.
@@ -618,7 +618,7 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 **Verification Method:** INSPECT
 **Owner:** Operations Lead
 **Status:** TODO
-**Dependencies:** UC-12
+**Dependencies:** PROC-20
 **Risk if not met:** M — mitigated via Mitigate via hardened baseline (DN-11).
 **Affected Stakeholders:** Operations Lead, Lead Developer, Auditor
 
@@ -627,9 +627,9 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 ### THR-IAM-05 — Session token theft [priority=MEDIUM, fields=12]
 
 **Description:** STRIDE-Spoofing threat against D-03.1; mitigated via Mitigate via TLS + 30-min timeout (DN-02).
-**Scope:** D-sub D-03.1; UC-09 use case.
+**Scope:** D-sub D-03.1; UC-08 use case.
 **Out of Scope:** Out-of-scope threats documented in §3 (STRIDE + LINDDUN matrix).
-**Source:** UC-09 + D-03.1 + STRIDE-Spoofing
+**Source:** UC-08 + D-03.1 + STRIDE-Spoofing
 **NIST CSF Anchors:** CSF: per NFR catalogue | PF: per NIST_ANCHORS.md
 **Verification Criteria:**
 - Threat type: STRIDE-Spoofing.
@@ -638,7 +638,7 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 **Verification Method:** INSPECT
 **Owner:** Operations Lead
 **Status:** TODO
-**Dependencies:** UC-09
+**Dependencies:** UC-08
 **Risk if not met:** M — mitigated via Mitigate via TLS + 30-min timeout (DN-02).
 **Affected Stakeholders:** Operations Lead, Lead Developer, Auditor
 
@@ -647,9 +647,9 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 ### THR-IAM-06 — Orphaned account post-termination [priority=MEDIUM, fields=12]
 
 **Description:** LINDDUN-Link threat against D-03.3; mitigated via Mitigate via deprovision ≤24h (DN-10).
-**Scope:** D-sub D-03.3; UC-11 use case.
+**Scope:** D-sub D-03.3; PROC-19 use case.
 **Out of Scope:** Out-of-scope threats documented in §3 (STRIDE + LINDDUN matrix).
-**Source:** UC-11 + D-03.3 + LINDDUN-Link
+**Source:** PROC-19 + D-03.3 + LINDDUN-Link
 **NIST CSF Anchors:** CSF: per NFR catalogue | PF: per NIST_ANCHORS.md
 **Verification Criteria:**
 - Threat type: LINDDUN-Link.
@@ -658,7 +658,7 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 **Verification Method:** INSPECT
 **Owner:** Operations Lead
 **Status:** TODO
-**Dependencies:** UC-11
+**Dependencies:** PROC-19
 **Risk if not met:** M — mitigated via Mitigate via deprovision ≤24h (DN-10).
 **Affected Stakeholders:** Operations Lead, Lead Developer, Auditor
 
@@ -687,9 +687,9 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 ### THR-SEC-02 — DoS attack [priority=MEDIUM, fields=12]
 
 **Description:** STRIDE-DoS threat against D-04.2; mitigated via Mitigate via rate-limit + scrub (DN-13).
-**Scope:** D-sub D-04.2; UC-07 use case.
+**Scope:** D-sub D-04.2; PROC-18 use case.
 **Out of Scope:** Out-of-scope threats documented in §3 (STRIDE + LINDDUN matrix).
-**Source:** UC-07 + D-04.2 + STRIDE-DoS
+**Source:** PROC-18 + D-04.2 + STRIDE-DoS
 **NIST CSF Anchors:** CSF: per NFR catalogue | PF: per NIST_ANCHORS.md
 **Verification Criteria:**
 - Threat type: STRIDE-DoS.
@@ -698,7 +698,7 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 **Verification Method:** INSPECT
 **Owner:** Operations Lead
 **Status:** TODO
-**Dependencies:** UC-07
+**Dependencies:** PROC-18
 **Risk if not met:** M — mitigated via Mitigate via rate-limit + scrub (DN-13).
 **Affected Stakeholders:** Operations Lead, Lead Developer, Auditor
 
@@ -727,9 +727,9 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 ### THR-SEC-04 — Failed data restoration [priority=MEDIUM, fields=12]
 
 **Description:** STRIDE-DoS threat against D-04.4; mitigated via Mitigate via RTO/RPO drill (DN-15).
-**Scope:** D-sub D-04.4; UC-08 use case.
+**Scope:** D-sub D-04.4; UC-07 use case.
 **Out of Scope:** Out-of-scope threats documented in §3 (STRIDE + LINDDUN matrix).
-**Source:** UC-08 + D-04.4 + STRIDE-DoS
+**Source:** UC-07 + D-04.4 + STRIDE-DoS
 **NIST CSF Anchors:** CSF: per NFR catalogue | PF: per NIST_ANCHORS.md
 **Verification Criteria:**
 - Threat type: STRIDE-DoS.
@@ -738,7 +738,7 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 **Verification Method:** INSPECT
 **Owner:** Operations Lead
 **Status:** TODO
-**Dependencies:** UC-08
+**Dependencies:** UC-07
 **Risk if not met:** M — mitigated via Mitigate via RTO/RPO drill (DN-15).
 **Affected Stakeholders:** Operations Lead, Lead Developer, Auditor
 
@@ -767,9 +767,9 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 ### THR-SEC-06 — Incomplete forensic evidence [priority=MEDIUM, fields=12]
 
 **Description:** LINDDUN-Detectability threat against D-04.4; mitigated via Mitigate via WORM + retention (DN-29).
-**Scope:** D-sub D-04.4; UC-08 use case.
+**Scope:** D-sub D-04.4; UC-07 use case.
 **Out of Scope:** Out-of-scope threats documented in §3 (STRIDE + LINDDUN matrix).
-**Source:** UC-08 + D-04.4 + LINDDUN-Detectability
+**Source:** UC-07 + D-04.4 + LINDDUN-Detectability
 **NIST CSF Anchors:** CSF: per NFR catalogue | PF: per NIST_ANCHORS.md
 **Verification Criteria:**
 - Threat type: LINDDUN-Detectability.
@@ -778,7 +778,7 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 **Verification Method:** INSPECT
 **Owner:** Operations Lead
 **Status:** TODO
-**Dependencies:** UC-08
+**Dependencies:** UC-07
 **Risk if not met:** M — mitigated via Mitigate via WORM + retention (DN-29).
 **Affected Stakeholders:** Operations Lead, Lead Developer, Auditor
 
@@ -907,9 +907,9 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 ### THR-SUP-02 — Missing SBOM [priority=MEDIUM, fields=12]
 
 **Description:** LINDDUN-Detectability threat against D-06.2; mitigated via Mitigate via SBOM per release (DN-21).
-**Scope:** D-sub D-06.2; UC-17 use case.
+**Scope:** D-sub D-06.2; UC-13 use case.
 **Out of Scope:** Out-of-scope threats documented in §3 (STRIDE + LINDDUN matrix).
-**Source:** UC-17 + D-06.2 + LINDDUN-Detectability
+**Source:** UC-13 + D-06.2 + LINDDUN-Detectability
 **NIST CSF Anchors:** CSF: per NFR catalogue | PF: per NIST_ANCHORS.md
 **Verification Criteria:**
 - Threat type: LINDDUN-Detectability.
@@ -918,7 +918,7 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 **Verification Method:** INSPECT
 **Owner:** Operations Lead
 **Status:** TODO
-**Dependencies:** UC-17
+**Dependencies:** UC-13
 **Risk if not met:** M — mitigated via Mitigate via SBOM per release (DN-21).
 **Affected Stakeholders:** Operations Lead, Lead Developer, Auditor
 
@@ -967,9 +967,9 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 ### THR-DEV2-02 — SAST/DAST gap [priority=MEDIUM, fields=12]
 
 **Description:** STRIDE-Tampering threat against D-07.2; mitigated via Mitigate via CI/CD gates (DN-05/23).
-**Scope:** D-sub D-07.2; UC-14 use case.
+**Scope:** D-sub D-07.2; UC-11 use case.
 **Out of Scope:** Out-of-scope threats documented in §3 (STRIDE + LINDDUN matrix).
-**Source:** UC-14 + D-07.2 + STRIDE-Tampering
+**Source:** UC-11 + D-07.2 + STRIDE-Tampering
 **NIST CSF Anchors:** CSF: per NFR catalogue | PF: per NIST_ANCHORS.md
 **Verification Criteria:**
 - Threat type: STRIDE-Tampering.
@@ -978,7 +978,7 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 **Verification Method:** INSPECT
 **Owner:** Operations Lead
 **Status:** TODO
-**Dependencies:** UC-14
+**Dependencies:** UC-11
 **Risk if not met:** M — mitigated via Mitigate via CI/CD gates (DN-05/23).
 **Affected Stakeholders:** Operations Lead, Lead Developer, Auditor
 
@@ -1087,9 +1087,9 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 ### THR-AUD-01 — Log tampering [priority=MEDIUM, fields=12]
 
 **Description:** STRIDE-Repudiation threat against D-10.2; mitigated via Mitigate via WORM + SIEM (DN-29).
-**Scope:** D-sub D-10.2; UC-13 use case.
+**Scope:** D-sub D-10.2; UC-10 use case.
 **Out of Scope:** Out-of-scope threats documented in §3 (STRIDE + LINDDUN matrix).
-**Source:** UC-13 + D-10.2 + STRIDE-Repudiation
+**Source:** UC-10 + D-10.2 + STRIDE-Repudiation
 **NIST CSF Anchors:** CSF: per NFR catalogue | PF: per NIST_ANCHORS.md
 **Verification Criteria:**
 - Threat type: STRIDE-Repudiation.
@@ -1098,7 +1098,7 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 **Verification Method:** INSPECT
 **Owner:** Operations Lead
 **Status:** TODO
-**Dependencies:** UC-13
+**Dependencies:** UC-10
 **Risk if not met:** M — mitigated via Mitigate via WORM + SIEM (DN-29).
 **Affected Stakeholders:** Operations Lead, Lead Developer, Auditor
 

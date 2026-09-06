@@ -193,7 +193,7 @@ This Synthesis consolidates the Phase 3 Rich Mode outputs from Sprints 1, 2, and
 **Scope:** Cross-document highlight aggregating the most-impactful rule/UC/gate in this subdomain.
 **Out of Scope:** Other subdomains' highlights (covered by separate SYNTH-D-XX.X).
 **Source:** `RULE_FREEZE.md` + `CORPUS_LINKAGE.md` + `NIST_ANCHORS.md` + `KG_CHAINS.md`
-**Cross-references:** UC-13, FR-26, NFR-32, NFR-37, NODE-SYS-001/002, DN-29, GATE-CR-D-10.2-001
+**Cross-references:** UC-10, FR-26, NFR-32, NFR-37, NODE-SYS-001/002, DN-29, GATE-CR-D-10.2-001
 **Verification Criteria:**
 - Highlight cited from at least one UC + one FR/NFR + one NODE + one DN + one GATE.
 - Cross-doc consistency verified against 22_Traceability_Matrix.xlsx.
