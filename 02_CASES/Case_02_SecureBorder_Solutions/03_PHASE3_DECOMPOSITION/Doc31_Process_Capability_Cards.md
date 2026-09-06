@@ -2,9 +2,9 @@
 document_id: AEGIS-P3-31
 title: Process & Capability Cards — Lane Pilot (Case_02)
 phase: 3
-version: 1.2
+version: 1.3
 created: 2026-09-05
-updated: 2026-09-05
+updated: 2026-09-06
 author: Executor
 status: ACTIVE
 case: Case_02_SecureBorder_Solutions
@@ -226,7 +226,7 @@ flowchart TD
 | Field | Content |
 |---|---|
 | Owner | SH-INT-008 (SOC Manager). |
-| Span | Standing 24/7 unified SOC monitoring covering security + AI post-market metrics. Contributes: PROC-05 (triage), PROC-06 (containment), PROC-18 (authority reporting); UC-27..UC-30 fleet telemetry; SOC competence curriculum (CAP-07). |
+| Span | Standing 24/7 unified SOC monitoring covering security + AI post-market metrics. Contributes: PROC-05 (triage), PROC-06 (containment), PROC-18 (authority reporting); UC-27..CAP-11 fleet telemetry; SOC competence curriculum (CAP-07). |
 | Maturity | PLANNED (1) — Scale A posture model v1.6; current/target pending P1 Folio VIII refresh + EvidenceItem bind |
 | Realises | CR-D-10.1-001, BPR-D-10.4-001, BPR-D-10.5-001 / SO-D-10.1-001..003. |
 | Anchors | SAMM: O-EM-A (environment management, stream A) · ASVS: V7 (logging) — monitoring outcomes. |
@@ -238,7 +238,7 @@ graph LR
     P1["PROC-05 Detection & Triage"] --> CAP
     P2["PROC-06 Containment"] --> CAP
     P3["PROC-18 Authority Reporting"] --> CAP
-    T1["UC-27..UC-30 fleet telemetry"] --> CAP
+    T1["UC-27..CAP-11 fleet telemetry"] --> CAP
     C1["SOC competence — CAP-07"] --> CAP
 ```
 
@@ -965,7 +965,7 @@ flowchart TD
 | Field | Content |
 |---|---|
 | Trigger | Retraining cycle; or drift/bias finding from PROC-26 / adversarial result from PROC-22. |
-| Activities | 1. Train/retrain face-match/PAD models in EU-only training platform (segregated account, deny-by-default egress). 2. Evaluate candidate against accuracy/bias gates (PROC-19/PROC-20 linkage). 3. Package release: versioned registry entry, signature, SBOM. 4. Hand off to staged rollout (UC-31). No model reaches the fleet outside this path. |
+| Activities | 1. Train/retrain face-match/PAD models in EU-only training platform (segregated account, deny-by-default egress). 2. Evaluate candidate against accuracy/bias gates (PROC-19/PROC-20 linkage). 3. Package release: versioned registry entry, signature, SBOM. 4. Hand off to staged rollout (UC-30). No model reaches the fleet outside this path. |
 | Roles | SH-INT-005 (AI Gov) owns; ML engineering executes; constrained by UC-15 (training data) and CAP-03. |
 | SLA / Timing | Per training cycle. |
 | Realises | CR-D-05.1-001, CR-D-07.1-001, CR-D-06.2-001 (rules annex; no goal column for PKG-11 lane). |
@@ -979,7 +979,7 @@ flowchart TD
     D1 -->|"no"| R1["Rework: data/threshold changes"]
     D1 -->|"yes"| A3["3. Package: version + signature + SBOM"]
     R1 --> A1
-    A3 --> A4["4. Hand off to staged rollout (UC-31)"]
+    A3 --> A4["4. Hand off to staged rollout (UC-30)"]
     A4 --> E["End: signed release candidate"]
 ```
 
@@ -1178,9 +1178,54 @@ graph LR
 ```
 
 
+## CAP-11 — Offline/Failover Mode (Store-and-Forward Crossing Events)
+
+> Formerly UC-30 — re-laned per rubric v1.8 §5B rule 6 (LEDGER-ZERO F3, P7 decision 2026-09-06).
+
+| Field | Content |
+|---|---|
+| Owner | SH-INT-007 (Ops Lead). |
+| Span | Standing offline-resilience of the eGate fleet: alternate LTE/5G failover backhaul (SYS-06), encrypted on-kiosk store-and-forward queue with HSM-bound key class (SYS-04/SYS-09), restricted-mode lane handling, offline-window SLA reporting. Contributes: PROC-08 (DR & business continuity), CAP-02 (monitoring), UC-27 (heartbeat-loss detection), UC-34 (offline-window SLA reporting). |
+| Maturity | PLANNED (1) — Scale A posture model v1.6; current/target pending P1 Folio VIII refresh + EvidenceItem bind |
+| Realises | CR-D-04.4-001, CR-D-10.2-001, CR-D-01.1-001, CR-D-01.2-001. |
+| Anchors | NIST CSF: PR.DS-11, RC.RP-04, PR.DS-01 (no SAMM/ASVS capability anchor in the frozen catalogue — CSF-only note). |
+| Evidence | Offline-window SLA records; store-and-forward flush logs + completeness reconciliations; queue-integrity checks (MUC-C2-04); restricted-mode audit entries. |
+
+```mermaid
+graph LR
+    CAP["CAP-11 Offline/Failover Mode"] -->|"realises"| R["CR-D-04.4-001 · CR-D-10.2-001 · CR-D-01.1/01.2-001"]
+    S1["SYS-06 LTE/5G failover backhaul"] --> CAP
+    S2["SYS-04 + SYS-09 store-and-forward (HSM-bound)"] --> CAP
+    P1["PROC-08 DR & continuity"] --> CAP
+    P2["CAP-02 monitoring"] --> CAP
+    CAP -->|"SLA window"| U["UC-34 reporting"]
+```
+
+## CAP-12 — Watchlist Cache Sync (SYS-03 sFTP, HSM-Bound)
+
+> Formerly UC-33 — re-laned per rubric v1.8 §5B rule 6 (LEDGER-ZERO F3, P7 decision 2026-09-06).
+
+| Field | Content |
+|---|---|
+| Owner | SH-INT-007 (Ops Lead). |
+| Span | Continuous watchlist cache synchronisation between the government feed and the eGate kiosks: SYS-03 bilateral sFTP (HSM-bound decryption, DMZ termination, kiosk-subservice-only initiation), 1:1 mirrored encrypted cache (STORE-03) deleted on contract end. Contributes: UC-20 (watchlist check at the gate), UC-06 (least-privilege read endpoints), UC-12 (third-party boundary), PROC-17 (government relationship risk). |
+| Maturity | PLANNED (1) — Scale A posture model v1.6; current/target pending P1 Folio VIII refresh + EvidenceItem bind |
+| Realises | CR-D-01.1-001, CR-D-01.3-001, CR-D-05.2-001. |
+| Anchors | NIST CSF: PR.DS-01, PR.DS-02, PR.AA-05 (no SAMM/ASVS capability anchor in the frozen catalogue — CSF-only note). |
+| Evidence | Sync logs; cache integrity checks; version pins; contract-end deletion records. |
+
+```mermaid
+graph LR
+    CAP["CAP-12 Watchlist Cache Sync"] -->|"realises"| R["CR-D-01.1-001 · CR-D-01.3-001 · CR-D-05.2-001"]
+    S["SYS-03 bilateral sFTP (HSM-bound, DMZ)"] --> CAP
+    C["STORE-03 encrypted cache 1:1"] --> CAP
+    U["UC-20 watchlist check at gate"] --> CAP
+    P["PROC-17 government relationship risk"] --> CAP
+```
+
 ## Articulation with existing artefacts
 
-Per-card binding to the catalogue and the downstream documents. 'Formerly' preserves the pre-LANE-NAMING id (full registry: `00_METHODOLOGY/validation/LANE_NAMING_CENSUS_v0.md`). Ref counts are word-boundary occurrences of the lane id in the P3 tree (excluding this doc). **v1.1 (UC SEPARATION, 2026-09-05):** catalogue anchors re-pointed from the removed Doc21 stubs/rows to the new index sections (§7.0 Compliance Domain Index for PROC-01..22/CAP-01..10; §6.6 Lane Card Register for PROC-23..27), and all ref counts recomputed on the post-UC-SEPARATION tree. **v1.2 (RENUMBER, 2026-09-05, rubric v1.10 §5B rule 7):** live UC references in the P3 tree now use flat `UC-01..UC-36` (registry `00_METHODOLOGY/validation/RENUMBER_REGISTRY_2026-09-05.md`); the 'Formerly' column and this table's PROC/CAP ids are unchanged.
+Per-card binding to the catalogue and the downstream documents. 'Formerly' preserves the pre-LANE-NAMING id (full registry: `00_METHODOLOGY/validation/LANE_NAMING_CENSUS_v0.md`). Ref counts are word-boundary occurrences of the lane id in the P3 tree (excluding this doc). **v1.1 (UC SEPARATION, 2026-09-05):** catalogue anchors re-pointed from the removed Doc21 stubs/rows to the new index sections (§7.0 Compliance Domain Index for PROC-01..22/CAP-01..10; §6.6 Lane Card Register for PROC-23..27), and all ref counts recomputed on the post-UC-SEPARATION tree. **v1.2 (RENUMBER, 2026-09-05, rubric v1.10 §5B rule 7):** live UC references in the P3 tree now use flat `UC-01..UC-34` (registry `00_METHODOLOGY/validation/RENUMBER_REGISTRY_2026-09-05.md`); the 'Formerly' column and this table's PROC/CAP ids are unchanged.
 
 | Card | Formerly | Catalogue anchor | Downstream refs (doc: count) |
 |---|---|---|---|
@@ -1221,6 +1266,8 @@ Per-card binding to the catalogue and the downstream documents. 'Formerly' prese
 | PROC-25 | U.C.11.1.1 | Doc21 §6.6 Lane Card Register (product PROCs) | Doc21_Use_Cases_Catalog.md:6 |
 | PROC-26 | U.C.11.4.1 | Doc21 §6.6 Lane Card Register (product PROCs) | Doc21_Use_Cases_Catalog.md:8 |
 | PROC-27 | U.C.12.4.1 | Doc21 §6.6 Lane Card Register (product PROCs) | Doc21_Use_Cases_Catalog.md:7 |
+| CAP-11 | UC-30 | Doc21 §6.x package tables (PKG-10) | whole-case refs: 14 |
+| CAP-12 | UC-33 | Doc21 §6.x package tables (PKG-11) | whole-case refs: 7 |
 
 ## Coverage
 

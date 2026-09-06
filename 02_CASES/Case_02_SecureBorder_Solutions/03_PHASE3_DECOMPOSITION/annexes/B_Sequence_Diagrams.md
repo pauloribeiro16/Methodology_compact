@@ -13,7 +13,7 @@ source: Doc21_Use_Cases_Catalog.md (§6 product UC cards)
 
 # Annex B — Sequence Diagrams
 > **v1.2 (RENUMBER, 2026-09-05, rubric v1.10 §5B rule 7):** section ids re-labelled to flat
-> `UC-16..UC-36` (was `U.C.8.x.y`..`U.C.12.x.y`); old→new mapping strictly monotonic, so the
+> `UC-16..UC-34` (was `U.C.8.x.y`..`U.C.12.x.y`); old→new mapping strictly monotonic, so the
 > §1..§21 order is unchanged and Doc21's 21 sequence-diagram pointers remain 1:1.
 > Registry: `00_METHODOLOGY/validation/RENUMBER_REGISTRY_2026-09-05.md`.
 
@@ -135,7 +135,7 @@ sequenceDiagram
     KIOSK->>CON: Referral + reason class + queue token
     CON-->>OFFR: Ordered queue, officer claims item
     OFFR->>CON: Triage reason class, open work item
-    CON->>CON: Record state + queue telemetry (UC-36)
+    CON->>CON: Record state + queue telemetry (UC-34)
 ```
 
 ## §10 — Use-Case — {UC-25} Manual Identity Verification & Override (Reason Codes)
@@ -204,20 +204,7 @@ sequenceDiagram
     SOC->>SOC: Re-image from signed baseline or retire, log
 ```
 
-## §15 — Use-Case — {UC-30} Offline/Failover Mode (Store-and-Forward Crossing Events)
-
-```mermaid
-sequenceDiagram
-    participant KIOSK as "SYS-06/SYS-04 (Kiosk)"
-    participant SINK as "SYS-09 (Audit sink)"
-    participant OPS as "SH-INT-007 (Ops Lead)"
-    KIOSK->>KIOSK: Heartbeat loss -> failover -> restricted mode
-    KIOSK->>KIOSK: Queue events (encrypted, sequenced)
-    KIOSK->>SINK: On reconnect: ordered store-and-forward flush
-    SINK-->>OPS: Completeness reconciled, offline window logged
-```
-
-## §16 — Use-Case — {UC-31} Signed Model Rollout to Fleet (Staged)
+## §15 — Use-Case — {UC-30} Signed Model Rollout to Fleet (Staged)
 
 ```mermaid
 sequenceDiagram
@@ -230,7 +217,7 @@ sequenceDiagram
     KIOSK-->>AIG: Canary metrics -> ring gate (vs governed bounds)
 ```
 
-## §17 — Use-Case — {UC-32} Model Rollback
+## §16 — Use-Case — {UC-31} Model Rollback
 
 ```mermaid
 sequenceDiagram
@@ -243,20 +230,7 @@ sequenceDiagram
     AIG->>SOC: Link rollback to incident record
 ```
 
-## §18 — Use-Case — {UC-33} Watchlist Cache Sync (SYS-03 sFTP, HSM-Bound)
-
-```mermaid
-sequenceDiagram
-    participant SYS3 as "SYS-03 (Gov feed)"
-    participant CACHE as "STORE-03 (Isolated cache)"
-    participant KIOSK as "SYS-04 (Read endpoints)"
-    SYS3->>CACHE: sFTP batch to DMZ, HSM-bound decryption
-    CACHE->>CACHE: 1:1 mirror update (encrypted, HSM CMK)
-    KIOSK->>CACHE: Read via subservice endpoints only
-    CACHE-->>SYS3: Sync version logged, deletions propagated
-```
-
-## §19 — Use-Case — {UC-34} Kiosk Admin Configuration (TPM-Bound, Dual Control)
+## §17 — Use-Case — {UC-32} Kiosk Admin Configuration (TPM-Bound, Dual Control)
 
 ```mermaid
 sequenceDiagram
@@ -269,7 +243,7 @@ sequenceDiagram
     KIOSK-->>OPS: Applied, version recorded, drift watched
 ```
 
-## §20 — Use-Case — {UC-35} Audit Export for Authorities (WORM STORE-04)
+## §18 — Use-Case — {UC-33} Audit Export for Authorities (WORM STORE-04)
 
 ```mermaid
 sequenceDiagram
@@ -282,7 +256,7 @@ sequenceDiagram
     COMP->>COMP: Export recorded in audit chain
 ```
 
-## §21 — Use-Case — {UC-36} SLA & Fleet Status Dashboard
+## §19 — Use-Case — {UC-34} SLA & Fleet Status Dashboard
 
 ```mermaid
 sequenceDiagram

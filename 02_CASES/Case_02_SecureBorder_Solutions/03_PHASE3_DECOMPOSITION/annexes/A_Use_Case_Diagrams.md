@@ -21,7 +21,7 @@ reconciliation_note: v1.1 (UC SEPARATION, 2026-09-05) — PROC ovals/edges remov
 > ids where a sequencing/dependency note needs them.
 
 > **v1.2 (RENUMBER, 2026-09-05, rubric v1.10 §5B rule 7):** UC ovals re-labelled to flat ids
-> `UC-16..UC-36` (compliance lane UC-01..UC-15 lives in Doc21 §7; level-0 §5.1 domain labels
+> `UC-16..UC-34` (compliance lane UC-01..UC-15 lives in Doc21 §7; level-0 §5.1 domain labels
 > UC-DP..UC-TRN unchanged). Aliases (`UC811`-style) and filenames unchanged. SVGs re-rendered.
 > Registry: `00_METHODOLOGY/validation/RENUMBER_REGISTRY_2026-09-05.md`.
 
@@ -35,7 +35,7 @@ reconciliation_note: v1.1 (UC SEPARATION, 2026-09-05) — PROC ovals/edges remov
 ## 0. Scope and conventions
 
 Source of truth: `Doc21_Use_Cases_Catalog.md` — system-wide Level 0 diagram in
-§5.1, product functional use cases (UC-16..UC-36, PKG-8..12) in §6. This annex adds one
+§5.1, product functional use cases (UC-16..UC-34, PKG-8..12) in §6. This annex adds one
 diagram per product package (§2–§6) plus a compact system-wide view (§1).
 
 Conventions (mirroring Doc21 §5.1 syntax):
@@ -73,10 +73,10 @@ rectangle "PKG-9 Operator Referral Desk" {
 usecase "Operator Referral Desk\n(4 use cases)" as UC9
 }
 rectangle "PKG-10 Kiosk Fleet Operations" {
-usecase "Kiosk Fleet Operations\n(4 use cases)" as UC10
+usecase "Kiosk Fleet Operations\n(3 use cases)" as UC10
 }
 rectangle "PKG-11 AI Model Lifecycle" {
-usecase "AI Model Lifecycle\n(3 use cases)" as UC11
+usecase "AI Model Lifecycle\n(2 use cases)" as UC11
 }
 rectangle "PKG-12 Administration & Reporting" {
 usecase "Administration & Reporting\n(3 use cases)" as UC12
@@ -222,9 +222,9 @@ Primary: Border Officer. Stakeholders: SOC Manager (owns triage/clearance). No c
 
 ---
 
-## §4 — PKG-10: Kiosk Fleet Operations (4 use cases)
+## §4 — PKG-10: Kiosk Fleet Operations (3 use cases)
 
-Primary actor: **Operations Lead** (SH-INT-007) on UC-27/UC-28/UC-30;
+Primary actor: **Operations Lead** (SH-INT-007) on UC-27/UC-28 (CAP-11 Doc31, not drawn);
 **SOC Manager** (SH-INT-008) primaries UC-29. Stakeholders from the cards: Dev Lead
 (SH-INT-006, OTA co-signing), Airport Operator (SH-EXT-004, physical access). Explicit
 extension: heartbeat loss → offline/failover assessment (UC-27 §5.1). (The
@@ -242,7 +242,7 @@ rectangle "PKG-10 Kiosk Fleet Operations" {
 usecase "UC-27\nFleet Health Monitoring" as UC1021
 usecase "UC-28\nSigned OTA Firmware Update (Cosign, Staged)" as UC1031
 usecase "UC-29\nTamper Alert Response" as UC1041
-usecase "UC-30\nOffline/Failover Mode (Store-and-Forward)" as UC1051
+usecase "\nOffline/Failover Mode (Store-and-Forward)" as UC1051
 }
 OPS -- UC1021
 OPS -- UC1031
@@ -258,7 +258,7 @@ UC1051 .> UC1021 : <<extend>>
 ![PKG-10 Kiosk Fleet Operations use case diagram](svg/A_s4_pkg_10_kiosk_fleet_operations_4_use_case.svg)
 
 #### UC-27 — Fleet Health Monitoring
-Primary: Ops Lead. Stakeholders: SOC Manager (security-class anomalies). Extension: heartbeat loss → UC-30 assessment (drawn); tamper indicators → UC-29 appears in basic flow step 4, not an extension (not drawn).
+Primary: Ops Lead. Stakeholders: SOC Manager (security-class anomalies). Extension: heartbeat loss → CAP-11 assessment (Doc31, not drawn); tamper indicators → UC-29 appears in basic flow step 4, not an extension (not drawn).
 
 #### UC-28 — Signed OTA Firmware Update (Cosign, Staged)
 Primary: Ops Lead. Stakeholders: Dev Lead, SOC Manager. No cross-UC references in Alternative Flows.
@@ -266,17 +266,12 @@ Primary: Ops Lead. Stakeholders: Dev Lead, SOC Manager. No cross-UC references i
 #### UC-29 — Tamper Alert Response
 Primary: SOC Manager. Stakeholders: Ops Lead, Airport Operator. Trigger sources UC-27 / UC-26 appear in the trigger/precondition text (not drawn).
 
-#### UC-30 — Offline/Failover Mode (Store-and-Forward Crossing Events)
-Primary: Ops Lead. Stakeholders: SOC Manager (backhaul-loss detection). No cross-UC references in Alternative Flows.
-
 ---
 
-## §5 — PKG-11: AI Model Lifecycle (3 use cases)
+## §5 — PKG-11: AI Model Lifecycle (2 use cases)
 
-Primary actor: **AI Governance Lead** (SH-INT-005) on UC-31/UC-32;
-**Operations Lead** (SH-INT-007) primaries UC-33. Stakeholders from the cards: SOC
-Manager (rollback incident link, UC-32), National Border Authority (SH-EXT-003,
-watchlist sync, UC-33). **No Alternative Flows block in PKG-11 cross-references
+Primary actor: **AI Governance Lead** (SH-INT-005) on UC-30/UC-31;
+**Operations Lead** (SH-INT-007) and **National Border Authority** (SH-EXT-003) are stakeholders of CAP-12 (Doc31, not drawn). SOC Manager links to UC-31 (rollback incident). **No Alternative Flows block in PKG-11 cross-references
 another U.C.** — no dotted arrows. (The training/release lane card PROC-25 and the
 drift/bias review lane card PROC-26 — Doc31 — are no longer drawn here: §5C.5 UC ovals
 only; their stakeholder sets (Dev Lead, DPO, AI Market Surveillance Authority) belong to
@@ -290,38 +285,32 @@ actor "Operations Lead" as OPS
 actor "SOC Manager" as SOC
 actor "National Border Authority" as NBA
 rectangle "PKG-11 AI Model Lifecycle" {
-usecase "UC-31\nSigned Model Rollout to Fleet (Staged)" as UC1121
-usecase "UC-32\nModel Rollback" as UC1131
-usecase "UC-33\nWatchlist Cache Sync (SYS-03 sFTP, HSM-Bound)" as UC1151
+usecase "UC-30\nSigned Model Rollout to Fleet (Staged)" as UC1121
+usecase "UC-31\nModel Rollback" as UC1131
 }
 AIG -- UC1121
 AIG -- UC1131
-OPS -- UC1151
 SOC -- UC1131
-NBA -- UC1151
 @enduml
 ```
 
 ![PKG-11 AI Model Lifecycle use case diagram](svg/A_s5_pkg_11_ai_model_lifecycle_3_use_cases.svg)
 
-Lifecycle sequencing (preconditions/basic flow, not drawn): training/release packaging gate (PROC-25, Doc31) → UC-31 (rollout eligibility) → UC-32 (rollback arming); drift/bias review dispositions (PROC-26, Doc31) → retrain (PROC-25) or rollback (UC-32).
+Lifecycle sequencing (preconditions/basic flow, not drawn): training/release packaging gate (PROC-25, Doc31) → UC-30 (rollout eligibility) → UC-31 (rollback arming); drift/bias review dispositions (PROC-26, Doc31) → retrain (PROC-25) or rollback (UC-31).
 
-#### UC-31 — Signed Model Rollout to Fleet (Staged)
+#### UC-30 — Signed Model Rollout to Fleet (Staged)
 Primary: AI Governance Lead. Stakeholders: Ops Lead, SOC Manager. No cross-UC references in Alternative Flows.
 
-#### UC-32 — Model Rollback
+#### UC-31 — Model Rollback
 Primary: AI Governance Lead. Stakeholders: SOC Manager, Dev Lead. Extensions reference UC-29 path (cross-package, not drawn).
-
-#### UC-33 — Watchlist Cache Sync (SYS-03 sFTP, HSM-Bound)
-Primary: Ops Lead. Stakeholders: National Border Authority. No cross-UC references in Alternative Flows.
 
 ---
 
 ## §6 — PKG-12: Administration & Reporting (3 use cases)
 
-Primary actor: **Operations Lead** (SH-INT-007) on UC-34, UC-36;
-**National Border Authority** (SH-EXT-003) primaries UC-35. Stakeholders from the
-cards: second approver (CISO delegate or Security Engineer, UC-34 dual control),
+Primary actor: **Operations Lead** (SH-INT-007) on UC-32, UC-34;
+**National Border Authority** (SH-EXT-003) primaries UC-33. Stakeholders from the
+cards: second approver (CISO delegate or Security Engineer, UC-32 dual control),
 SOC Manager (config-drift alerts, audit export), Compliance Analyst and DPO (audit
 export), CISO and Airport Operator (dashboard). (The role-administration lane card
 PROC-27 — Doc31 — is no longer drawn here: §5C.5 UC ovals only.)
@@ -339,9 +328,9 @@ actor "SOC Manager" as SOC
 actor "CISO" as CISO
 actor "Airport Operator" as APT
 rectangle "PKG-12 Administration & Reporting" {
-usecase "UC-34\nKiosk Admin Configuration (Dual Control)" as UC1211
-usecase "UC-35\nAudit Export for Authorities (WORM STORE-04)" as UC1221
-usecase "UC-36\nSLA & Fleet Status Dashboard" as UC1231
+usecase "UC-32\nKiosk Admin Configuration (Dual Control)" as UC1211
+usecase "UC-33\nAudit Export for Authorities (WORM STORE-04)" as UC1221
+usecase "UC-34\nSLA & Fleet Status Dashboard" as UC1231
 }
 OPS -- UC1211
 OPS -- UC1231
@@ -358,14 +347,14 @@ APT -- UC1231
 
 ![PKG-12 Administration & Reporting use case diagram](svg/A_s6_pkg_12_administration_reporting_3_use_ca.svg)
 
-#### UC-34 — Kiosk Admin Configuration (TPM-Bound, Dual Control)
+#### UC-32 — Kiosk Admin Configuration (TPM-Bound, Dual Control)
 Primary: Ops Lead. Stakeholders: Second Approver, SOC Manager. No cross-UC references in Alternative Flows.
 
-#### UC-35 — Audit Export for Authorities (WORM STORE-04)
+#### UC-33 — Audit Export for Authorities (WORM STORE-04)
 Primary: National Border Authority. Stakeholders: Compliance Analyst, SOC Manager, DPO. No cross-UC references in Alternative Flows.
 
-#### UC-36 — SLA & Fleet Status Dashboard
-Primary: Ops Lead. Stakeholders: CISO, Airport Operator. Fed by UC-27/UC-30 telemetry (basic-flow/trigger text, not drawn).
+#### UC-34 — SLA & Fleet Status Dashboard
+Primary: Ops Lead. Stakeholders: CISO, Airport Operator. Fed by UC-27 and CAP-11 (Doc31) telemetry (not drawn).
 
 ---
 

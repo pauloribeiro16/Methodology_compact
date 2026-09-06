@@ -160,14 +160,14 @@ ROOT: SecureBorder Solutions Compliance Architecture
         └── L3: Security Engineer (NODE-ROLE-007)
 ```
 
-### 3.1 PRODUCT BRANCH (PKG-8..12 — GuardianGate product use cases, UC-16..UC-36)
+### 3.1 PRODUCT BRANCH (PKG-8..12 — GuardianGate product use cases, UC-16..UC-34)
 
 Additive branch per Doc21 v1.3 §6 (product-first restructure). Compliance use cases
 UC-01..UC-15 (47) remain realising the L1 branches above; the product journey is
 decomposed below.
 
 ```
-├── L1: GuardianGate Product — PKG-8..12 (26 UCs, UC-16..UC-36)
+├── L1: GuardianGate Product — PKG-8..12 (26 UCs, UC-16..UC-34)
 │   ├── L2: PKG-8 — Traveller eGate Journey (7)
 │   │   ├── UC-16  Scan Travel Document (MRZ + NFC chip)
 │   │   ├── UC-17  Capture Facial Biometric Sample
@@ -189,19 +189,19 @@ decomposed below.
 │   │   ├── UC-27 Fleet Health Monitoring
 │   │   ├── UC-28 Signed OTA Firmware Update (Cosign, Staged)
 │   │   ├── UC-29 Tamper Alert Response
-│   │   └── UC-30 Offline/Failover Mode (Store-and-Forward Crossing Events)
+│   │   └── CAP-11 Offline/Failover Mode (Store-and-Forward Crossing Events)
 │   │
 │   ├── L2: PKG-11 — AI Model Lifecycle (5)
 │   │   ├── PROC-25    Model Training & Release Packaging (EU-only, SYS-05) (formerly U.C.11.1.1)
-│   │   ├── UC-31 Signed Model Rollout to Fleet (Staged)
-│   │   ├── UC-32 Model Rollback
+│   │   ├── UC-30 Signed Model Rollout to Fleet (Staged)
+│   │   ├── UC-31 Model Rollback
 │   │   ├── PROC-26    Drift/Bias Monitoring & Review (formerly U.C.11.4.1)
-│   │   └── UC-33 Watchlist Cache Sync (SYS-03 sFTP, HSM-Bound)
+│   │   └── CAP-12 Watchlist Cache Sync (SYS-03 sFTP, HSM-Bound)
 │   │
 │   └── L2: PKG-12 — Administration & Reporting (4)
-│       ├── UC-34 Kiosk Admin Configuration (TPM-Bound, Dual Control)
-│       ├── UC-35 Audit Export for Authorities (WORM STORE-04)
-│       ├── UC-36 SLA & Fleet Status Dashboard
+│       ├── UC-32 Kiosk Admin Configuration (TPM-Bound, Dual Control)
+│       ├── UC-33 Audit Export for Authorities (WORM STORE-04)
+│       ├── UC-34 SLA & Fleet Status Dashboard
 │       └── PROC-27    User/Role Administration for Console (formerly U.C.12.4.1)
 ```
 
@@ -376,7 +376,7 @@ Functional Tree sections (FT-X.Y) are numbered against the L1/L2 decomposition g
 | Phase 1 AOs (sub-domain level, 07c §3) | 35 active | ✅ Complete |
 | Obligations (Phase 2) | 38 | ✅ Complete |
 | Rules (Phase 2) | 63 (38 CR + 25 BP) | ✅ Complete |
-| Use Cases (Phase 3) | 73 (47 compliance UC-01..UC-15 + 26 product UC-16..UC-36) + lane cards PROC-01..27, CAP-01..10 | ✅ Complete |
+| Use Cases (Phase 3) | 73 (47 compliance UC-01..UC-15 + 26 product UC-16..UC-34) + lane cards PROC-01..27, CAP-01..10 | ✅ Complete |
 | Architectural Nodes (Phase 3) | 27 | ✅ Complete |
 | Requirements Allocation (Phase 3) | 89 derivations | ✅ Complete |
 | Functional Requirements (Phase 3) | 72 | ✅ Complete |

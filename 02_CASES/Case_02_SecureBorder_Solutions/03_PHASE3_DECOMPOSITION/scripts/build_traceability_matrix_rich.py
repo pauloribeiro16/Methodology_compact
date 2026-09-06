@@ -205,7 +205,7 @@ def build_cover(wb, stats: Dict[str, object]) -> None:
         ("Source — Rules", "../02_PHASE2_RULES_RICH/control_set.yaml (63 controls: 38 CR + 25 BPR)"),
         ("Source — FR", "requirements/Doc29_Functional_Requirements.md (84 FRs)"),
         ("Source — NFR", "requirements/Doc30_Non_Functional_Requirements.md (56 NFRs)"),
-        ("Source — UC", "Doc21_Use_Cases_Catalog.md (flat UC-01..UC-36 id space, RENUMBER 2026-09-05)"),
+        ("Source — UC", "Doc21_Use_Cases_Catalog.md (flat UC-01..UC-34 id space, RENUMBER 2026-09-05)"),
         ("Source — Allocation", "Doc25_Requirements_Allocation.md"),
         ("Source — Gates", "Doc26_Compliance_Gates_Report.md"),
         ("Source — P2 graph", "../02_PHASE2_RULES_RICH/data/phase2_graph.json (278n/356l)"),

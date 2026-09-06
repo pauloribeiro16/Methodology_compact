@@ -2,9 +2,9 @@
 document_id: AEGIS-P3-13
 title: Use Cases Catalog
 phase: 3
-version: 1.6
+version: 1.7
 created: 2026-04-04
-updated: 2026-09-05
+updated: 2026-09-06
 author: System Architect
 status: DRAFT
 case: Case_02_SecureBorder_Solutions
@@ -56,7 +56,7 @@ This document defines the **security and privacy use cases** for SecureBorder So
 | completedBy | System Architect |
 | phase3Step | B1+B2+B3+B4 |
 | companyProfile | Medium-Large (450 employees), B2G/B2B, GDPR+CRA+NIS2+AI_Act |
-| totalUseCases | 36 (21 product §6, PKG-8..12 · 15 compliance §7, UC-DP..UC-TRN) |
+| totalUseCases | 34 (19 product §6, PKG-8..12 · 15 compliance §7, UC-DP..UC-TRN) |
 | categories | DP, SEC, IAM, DEV, GOV, AI, TRN |
 
 ---
@@ -212,7 +212,7 @@ AIMS -- UCAI
 
 ---
 
-## 6. PRODUCT FUNCTIONAL USE CASES (UC-16..UC-36, PKG-8..12) — GuardianGate product
+## 6. PRODUCT FUNCTIONAL USE CASES (UC-16..UC-34, PKG-8..12) — GuardianGate product
 
 > **v1.3 (PORT-PARITY-2 Phase 3 restructure, 2026-09-04).** This section models the
 > **GuardianGate product itself** as a normal software product: actor-goal use cases in
@@ -234,11 +234,11 @@ AIMS -- UCAI
 |-------------------------|---------------------|--------|
 | SH-EXT-002 (Traveler) | Primary product user: crosses the border via the eGate. | UC-16, UC-17..UC-19, UC-20, UC-22 |
 | SH-EXT-001 (Border Officer) | Human oversight: handles referrals, manual verification, overrides. | UC-21, UC-23..UC-26 (PKG-9) |
-| SH-INT-007 (Ops Lead) | Kiosk fleet operations (provisioning, health, OTA supervision, administration). | UC-27..UC-30 (PKG-10), UC-33, UC-34, UC-36 |
-| SH-INT-005 (AI Governance Lead) | AI model lifecycle oversight (training, rollout, rollback, drift/bias review). | UC-31, UC-32 (PKG-11) |
-| SH-INT-008 (SOC Manager) | Consumes security events raised by the journey (tamper, spoofing, lockouts); owns incident response paths. | UC-26, UC-29, UC-35 |
-| SH-EXT-003 (National Border Authority) | Data controller; requests and receives audit evidence exports. | UC-35 |
-| SYS-04 / SYS-06 (kiosk) | The product itself: Edge AI firmware + kiosk hardware acting for the actors above. | All UC-16..UC-36* |
+| SH-INT-007 (Ops Lead) | Kiosk fleet operations (provisioning, health, OTA supervision, administration). | UC-27..CAP-11 (PKG-10), CAP-12, UC-32, UC-34 |
+| SH-INT-005 (AI Governance Lead) | AI model lifecycle oversight (training, rollout, rollback, drift/bias review). | UC-30, UC-31 (PKG-11) |
+| SH-INT-008 (SOC Manager) | Consumes security events raised by the journey (tamper, spoofing, lockouts); owns incident response paths. | UC-26, UC-29, UC-33 |
+| SH-EXT-003 (National Border Authority) | Data controller; requests and receives audit evidence exports. | UC-33 |
+| SYS-04 / SYS-06 (kiosk) | The product itself: Edge AI firmware + kiosk hardware acting for the actors above. | All UC-16..UC-34* |
 
 ### 6.1 PKG-8 — Traveller eGate Journey (7)
 
@@ -1230,7 +1230,7 @@ watchlist or quality).
 2. Console presents the queue ordered by wait time and severity.
 3. Officer pulls the next work item; the token is claimed and marked in-service.
 4. Officer triages the reason class and proceeds to manual verification (UC-25) or dispatches the case to the manual lane.
-5. Queue telemetry (depth, wait time, state) is recorded for the SLA dashboard (UC-36).
+5. Queue telemetry (depth, wait time, state) is recorded for the SLA dashboard (UC-34).
 
 > **Sequence diagram:** → Annex B §9 (B_Sequence_Diagrams.md)
 
@@ -1261,7 +1261,7 @@ one work-up; the correlation is visible to SOC (CAP-02).
 
 ###### 6.2 <Subflow: Queue telemetry>
 
-1. Queue depth, wait time and state transitions feed the SLA dashboard (UC-36) and the audit chain.
+1. Queue depth, wait time and state transitions feed the SLA dashboard (UC-34) and the audit chain.
 
 ##### 7 Key Scenarios
 
@@ -1296,13 +1296,13 @@ automatically.
 
 **Performance (P):** N/A — no attested queue-latency constraint.
 
-**Supportability (S):** Telemetry feeds the SLA dashboard (UC-36) and SOC
+**Supportability (S):** Telemetry feeds the SLA dashboard (UC-34) and SOC
 correlation (CAP-02).
 
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-08 (console surface), SYS-09 (audit event sink); Doc03 §4 (referral desk operations); UC-21 §5.3 (intake throttling on overflow).
-- **Constrained by:** UC-21 (referral origin), PROC-05 (security events), CAP-02 (correlation), UC-36 (SLA telemetry).
+- **Constrained by:** UC-21 (referral origin), PROC-05 (security events), CAP-02 (correlation), UC-34 (SLA telemetry).
 - **Rules / NFR:** CR-D-10.1-001, CR-D-10.2-001.
 - **Threats addressed:** MUC-C2-05 (queue pressure as cover), MUC-07 (overflow as availability impact).
 - **NIST anchors:** DE.CM-01, DE.AE-02.
@@ -1493,7 +1493,7 @@ statistics feed officer training (CAP-08).
 ###### 6.1 <Subflow: Gate lock enforcement>
 
 1. Lock command issued via the mTLS management channel.
-2. Kiosk confirms the lock state; lock state is visible on the fleet dashboard (UC-36).
+2. Kiosk confirms the lock state; lock state is visible on the fleet dashboard (UC-34).
 
 ###### 6.2 <Subflow: Incident record>
 
@@ -1544,14 +1544,13 @@ PROC-05 SLA.
 - **Threats addressed:** MUC-07 (lane closure control), MUC-C2-01 (spoof containment), MUC-C2-04 (tamper containment).
 - **NIST anchors:** DE.AE-02, RS.MI-01, PR.IR-04.
 
-### 6.3 PKG-10 — Kiosk Fleet Operations (4)
+### 6.3 PKG-10 — Kiosk Fleet Operations (3)
 
 | UC ID | Title | Primary Actor | Prio |
 |-------|-------|---------------|------|
 | UC-27 | Fleet Health Monitoring | SH-INT-007 | HIGH |
 | UC-28 | Signed OTA Firmware Update (Cosign, Staged) | SH-INT-007 | CRITICAL |
 | UC-29 | Tamper Alert Response | SH-INT-008 | CRITICAL |
-| UC-30 | Offline/Failover Mode (Store-and-Forward Crossing Events) | SH-INT-007 | HIGH |
 
 #### Use-Case: {UC-27} Fleet Health Monitoring
 
@@ -1590,7 +1589,7 @@ Receives security-class events (tamper indicators, lock anomalies).
 ##### 4 Basic Flow of Events
 
 1. Units emit health telemetry (heartbeat + sensor state + firmware/model versions).
-2. Telemetry is aggregated; the dashboard shows fleet status per site/unit (feeds UC-36).
+2. Telemetry is aggregated; the dashboard shows fleet status per site/unit (feeds UC-34).
 3. Rules classify anomalies: maintenance-class vs security-class.
 4. Maintenance-class anomalies become Ops work orders; security-class anomalies raise SOC events (PROC-05), including tamper indicators (UC-29).
 5. Anomalies are correlated per unit/lane in the SIEM (CAP-02).
@@ -1601,8 +1600,8 @@ Receives security-class events (tamper indicators, lock anomalies).
 
 ###### 5.1 <Alternate flow: Heartbeat loss>
 
-Trigger: step 1, a unit greys out. Offline/failover state assessed (UC-30); site
-informed; availability window recorded for SLA (UC-36).
+Trigger: step 1, a unit greys out. Offline/failover state assessed (CAP-11); site
+informed; availability window recorded for SLA (UC-34).
 
 ###### 5.2 <Alternate flow: Sensor drift>
 
@@ -1652,12 +1651,12 @@ Availability windows on record for SLA reporting.
 **Performance (P):** N/A — no attested telemetry latency constraint.
 
 **Supportability (S):** SIEM retention per STORE-04/telemetry policy; feeds the SLA
-dashboard (UC-36).
+dashboard (UC-34).
 
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-06 (tamper-evident enclosure, LTE/5G failover), SYS-09/SYS-12 (SIEM + EDR telemetry); Doc04 §1.2 (vendor-managed private LTE/5G backhaul, outbound-only).
-- **Constrained by:** CAP-02 (continuous monitoring), PROC-05 (security events), UC-36 (SLA dashboard), UC-29 (tamper response).
+- **Constrained by:** CAP-02 (continuous monitoring), PROC-05 (security events), UC-34 (SLA dashboard), UC-29 (tamper response).
 - **Rules / NFR:** CR-D-10.1-001, CR-D-04.1-001, BPR-D-10.4-001.
 - **Threats addressed:** MUC-C2-04 (tamper indicators surface), MUC-07 (degradation detected early).
 - **NIST anchors:** DE.CM-01, DE.AE-02.
@@ -1893,129 +1892,14 @@ PROC-05 SLA).
 - **Threats addressed:** MUC-C2-04 (kiosk physical tamper / malware implant).
 - **NIST anchors:** DE.AE-02, RS.MI-01, RS.MA-01.
 
-#### Use-Case: {UC-30} Offline/Failover Mode (Store-and-Forward Crossing Events)
-
-##### 1 Brief Description
-
-When a kiosk loses its cloud/backhaul channel it enters offline mode: the unit first
-fails over to the alternate backhaul, and if that also fails it degrades to a restricted
-mode in which audit/crossing events are queued in the on-kiosk encrypted store and
-forwarded to the cloud audit sink once connectivity returns. It is triggered by heartbeat
-loss detected in fleet monitoring (UC-27). No crossing event is ever silently lost.
-
-##### 2 Actor Brief Descriptions
-
-###### 2.1 SH-INT-007 (Ops Lead) — Primary Actor:
-
-Monitors offline windows and decides on prolonged-outage handling.
-
-###### 2.2 SYS-06 (Kiosk hardware):
-
-Provides the alternate LTE/5G failover backhaul and the encrypted local store.
-
-###### 2.3 SYS-04 (Edge AI firmware):
-
-Buffers, sequences and flushes the event queue.
-
-###### 2.4 SYS-09 (Audit sink):
-
-Receives the forwarded events and reconciles completeness.
-
-###### 2.5 SH-INT-008 (SOC Manager):
-
-Engaged on prolonged outages or queue-integrity anomalies.
-
-##### 3 Preconditions
-
-- Unit enrolled and previously in service.
-- Loss of primary backhaul detected (heartbeat timeouts).
-
-##### 4 Basic Flow of Events
-
-1. Connectivity loss detected via heartbeat timeouts to SYS-01.
-2. Unit switches to the alternate LTE/5G backhaul if available.
-3. If still offline: unit enters restricted mode — watchlist-dependent release suspends to the manual lane; crossing/audit events (timestamp + outcome + node ID, no biometric content) queue in the encrypted local store.
-4. Queued events are encrypted (HSM-bound key class) and retained until the channel returns.
-5. On reconnection: store-and-forward flush to SYS-09 in strict order; completeness reconciled; the offline window is recorded for SLA (UC-36).
-
-> **Sequence diagram:** → Annex B §15 (B_Sequence_Diagrams.md)
-
-##### 5 Alternative Flows
-
-###### 5.1 <Alternate flow: Prolonged outage>
-
-Trigger: step 3, outage beyond the policy window. Unit moved to manual-lane-only; site
-and SOC informed; availability event handled (MUC-07).
-
-###### 5.2 <Alternate flow: Queue integrity anomaly on flush>
-
-Trigger: step 5, sequence gap or integrity failure. Flush halted; SOC engaged (possible
-tamper, MUC-C2-04).
-
-##### 6 Subflows
-
-###### 6.1 <Subflow: Ordered flush>
-
-1. FIFO ordering with monotonic sequence numbers per unit; duplicates dropped.
-
-###### 6.2 <Subflow: Completeness reconciliation>
-
-1. SYS-09 verifies a gap-free sequence per unit; any gap raises a security event.
-
-##### 7 Key Scenarios
-
-###### 7.1 <Scenario: Brief outage, zero loss>
-
-1. All events arrive in order after reconnection; no manual intervention.
-
-###### 7.2 <Scenario: Extended outage>
-
-1. Lane degrades gracefully to manual processing; the SLA report shows the evidenced
-offline window (UC-36).
-
-##### 8 Post-conditions
-
-###### 8.1
-
-Event stream complete and ordered in STORE-04; no silent data loss.
-
-###### 8.2
-
-Offline windows on record for SLA and incident review.
-
-##### 9 Special Requirements (FURPS+)
-
-**Functional (F):** Backhaul failover, encrypted local queueing, ordered store-and-
-forward, completeness reconciliation.
-
-**Usability (U):** N/A — automated; offline state visible on the fleet dashboard only.
-
-**Reliability (R):** No event loss within queue capacity; completeness verified on
-flush.
-
-**Performance (P):** N/A — no attested offline-window limit (policy threshold governs
-prolonged-outage handling).
-
-**Supportability (S):** Queue encrypted with the HSM-bound key class; offline windows
-reported for SLA accounting.
-
-##### 10 Security & Compliance Annex (AEGIS)
-
-- **Provenance:** [ATTESTED] Doc04 §1.1 SYS-06 (LTE/5G failover); Doc04 §2.2 FLOW-03 (audit event class: timestamp + decision outcome + edge node ID, no biometric data); Doc04 §2.1 STORE-05 (on-kiosk encrypted flash pattern, HSM-bound key). The store-and-forward queue behaviour itself is specified by this use case.
-- **Constrained by:** PROC-08 (DR & business continuity), CAP-02 (monitoring), UC-36 (SLA window reporting), UC-27 (detection).
-- **Rules / NFR:** CR-D-04.4-001, CR-D-10.2-001, CR-D-01.1-001, CR-D-01.2-001.
-- **Threats addressed:** MUC-07 (graceful degradation instead of lane failure), MUC-C2-04 (queue tamper caught by integrity check).
-- **NIST anchors:** PR.DS-11, RC.RP-04, PR.DS-01.
-
-### 6.4 PKG-11 — AI Model Lifecycle (3)
+### 6.4 PKG-11 — AI Model Lifecycle (2)
 
 | UC ID | Title | Primary Actor | Prio |
 |-------|-------|---------------|------|
-| UC-31 | Signed Model Rollout to Fleet (Staged) | SH-INT-005 | CRITICAL |
-| UC-32 | Model Rollback | SH-INT-005 | HIGH |
-| UC-33 | Watchlist Cache Sync (SYS-03 sFTP, HSM-Bound) | SH-INT-007 | HIGH |
+| UC-30 | Signed Model Rollout to Fleet (Staged) | SH-INT-005 | CRITICAL |
+| UC-31 | Model Rollback | SH-INT-005 | HIGH |
 
-#### Use-Case: {UC-31} Signed Model Rollout to Fleet (Staged)
+#### Use-Case: {UC-30} Signed Model Rollout to Fleet (Staged)
 
 ##### 1 Brief Description
 
@@ -2057,9 +1941,9 @@ Engaged on rollout anomalies or aborts.
 2. Each kiosk pulls the artefact over mTLS; the cosign signature is verified in the TPM and version/hash checked against the registry.
 3. Model version pinned per unit; canary units operate live crossings on the candidate.
 4. Ring promotion on canary metrics within governed bounds (drift monitoring PROC-26); otherwise auto-halt.
-5. Fleet-wide completion recorded; the previous version is retained for rollback (UC-32).
+5. Fleet-wide completion recorded; the previous version is retained for rollback (UC-31).
 
-> **Sequence diagram:** → Annex B §16 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §15 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2125,7 +2009,7 @@ documentation.
 - **Threats addressed:** MUC-C2-06 (OTA/model supply-chain implant).
 - **NIST anchors:** PR.DS-12, PR.PS-02, ID.IM-04.
 
-#### Use-Case: {UC-32} Model Rollback
+#### Use-Case: {UC-31} Model Rollback
 
 ##### 1 Brief Description
 
@@ -2155,7 +2039,7 @@ Opens the root-cause fix track.
 
 ##### 3 Preconditions
 
-- Previous version retained on the unit/registry (per UC-31 rollback arming).
+- Previous version retained on the unit/registry (per UC-30 rollback arming).
 - Trigger recorded (review finding, incident or aborted rollout).
 
 ##### 4 Basic Flow of Events
@@ -2166,7 +2050,7 @@ Opens the root-cause fix track.
 4. Rollback verified via health and drift metrics (PROC-26).
 5. Root-cause ticket opened; any re-release requires fresh packaging (PROC-25).
 
-> **Sequence diagram:** → Annex B §17 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §16 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2227,134 +2111,20 @@ review.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc04 §1.1 SYS-05 (model artefact registry); Doc04 §2.1 STORE-02 (model artefact retention: lifetime of model version).
-- **Constrained by:** UC-11 (AI model versioning & rollback), PROC-21 (AI incident response), UC-03 (rollback capability), UC-31 (retained previous version).
+- **Constrained by:** UC-11 (AI model versioning & rollback), PROC-21 (AI incident response), UC-03 (rollback capability), UC-30 (retained previous version).
 - **Rules / NFR:** CR-D-04.2-001, CR-D-04.4-001, BPR-D-07.1-002.
 - **Threats addressed:** MUC-C2-06 (containment), MUC-07 (service restoration).
 - **NIST anchors:** RS.MI-02, RC.RP-04.
-
-#### Use-Case: {UC-33} Watchlist Cache Sync (SYS-03 sFTP, HSM-Bound)
-
-##### 1 Brief Description
-
-The fleet's watchlist cache is synchronised from the government watchlist service: the
-bilateral sFTP feed delivers update batches to the DMZ, decryption is HSM-bound, and the
-isolated cache is readable only through the kiosk read endpoints. It is triggered by the
-feed schedule or a controller instruction; the cache mirrors the controller's data 1:1.
-The sync keeps the border-security feed fresh without ever widening the attack surface
-beyond the DMZ pattern.
-
-##### 2 Actor Brief Descriptions
-
-###### 2.1 SH-INT-007 (Ops Lead) — Primary Actor:
-
-Monitors sync health and staleness; escalates feed failures.
-
-###### 2.2 SYS-03 (Watchlist service):
-
-Government-supplied bilateral sFTP feed.
-
-###### 2.3 SYS-07 (HSM cluster):
-
-HSM-bound decryption and key material for the cache.
-
-###### 2.4 SYS-04 (Kiosk read endpoints):
-
-Consume the cache via the probe path only (FLOW-02).
-
-###### 2.5 SH-EXT-003 (National Border Authority):
-
-Controller of the watchlist data; defines policy and deletion.
-
-##### 3 Preconditions
-
-- Bilateral feed agreement active.
-- Cache partition isolated (STORE-03 controls).
-
-##### 4 Basic Flow of Events
-
-1. SYS-03 pushes the update batch over the bilateral sFTP feed to the DMZ segment.
-2. Session/decryption keys are bound to the SYS-07 HSM; only the kiosk subservice account can initiate sessions from the inside.
-3. The cache is updated in its isolated partition (encrypted, HSM-bound CMK) with 1:1 mirror semantics.
-4. Kiosks read the cache through the read endpoints only; the FLOW-02 probe path is unchanged.
-5. Sync result and cache version logged; controller-side deletions propagate per policy.
-
-> **Sequence diagram:** → Annex B §18 (B_Sequence_Diagrams.md)
-
-##### 5 Alternative Flows
-
-###### 5.1 <Alternate flow: Feed failure>
-
-Trigger: step 1. The previous cache is retained; crossing decisions continue on the
-last-good cache; sync alert to Ops. Cache flagged stale beyond the policy window →
-watchlist-dependent releases suspend to the manual lane.
-
-###### 5.2 <Alternate flow: Batch integrity failure>
-
-Trigger: step 2, decryption/integrity check fails. Batch rejected and re-requested; SOC
-informed (MUC-05).
-
-##### 6 Subflows
-
-###### 6.1 <Subflow: Staleness policy>
-
-1. Cache age monitored continuously; beyond the policy window the watchlist-dependent
-release path suspends to the manual lane.
-
-###### 6.2 <Subflow: End-of-contract deletion>
-
-1. Cache deleted per the SLA when the contract ends (per STORE-03 policy).
-
-##### 7 Key Scenarios
-
-###### 7.1 <Scenario: Fresh cache, isolation intact>
-
-1. Fleet decides on current watchlist data with the DMZ/HSM pattern unchanged.
-
-###### 7.2 <Scenario: Compromised feed resisted>
-
-1. HSM-bound decryption plus integrity checks block planted data (MUC-05).
-
-##### 8 Post-conditions
-
-###### 8.1
-
-Cache mirrored to the controller's state; sync audited.
-
-###### 8.2
-
-No watchlist data outside the isolated, encrypted partition.
-
-##### 9 Special Requirements (FURPS+)
-
-**Functional (F):** Scheduled sFTP ingest, HSM-bound decryption, isolated cache update,
-1:1 mirror with deletion propagation.
-
-**Usability (U):** N/A — automated operations workflow.
-
-**Reliability (R):** Last-good cache retained on feed failure; staleness window enforced.
-
-**Performance (P):** N/A — no attested sync cadence.
-
-**Supportability (S):** Retention per government policy (STORE-03); key lifecycle per
-SYS-07 (quarterly ceremonies).
-
-##### 10 Security & Compliance Annex (AEGIS)
-
-- **Provenance:** [ATTESTED] Doc04 §1.1 SYS-03 (bilateral sFTP feed, HSM-bound decryption); Doc04 §1.2 (DMZ termination; only the eGate kiosk subservice account initiates from the inside); Doc04 §2.1 STORE-03 (encrypted isolated cache, 1:1 mirror, deleted on contract end); Doc04 §2.2 FLOW-02.
-- **Constrained by:** UC-20 (watchlist check at the gate), UC-06 (least-privilege read endpoints), UC-12 (third-party boundary), PROC-17 (government relationship risk).
-- **Rules / NFR:** CR-D-01.1-001, CR-D-01.3-001, CR-D-05.2-001.
-- **Threats addressed:** MUC-05 (compromised integration), MUC-03 (injection / cross-tenant read).
-- **NIST anchors:** PR.DS-01, PR.DS-02, PR.AA-05.
 
 ### 6.5 PKG-12 — Administration & Reporting (3)
 
 | UC ID | Title | Primary Actor | Prio |
 |-------|-------|---------------|------|
-| UC-34 | Kiosk Admin Configuration (TPM-Bound, Dual Control) | SH-INT-007 | HIGH |
-| UC-35 | Audit Export for Authorities (WORM STORE-04) | SH-EXT-003 | HIGH |
-| UC-36 | SLA & Fleet Status Dashboard | SH-INT-007 | MEDIUM |
+| UC-32 | Kiosk Admin Configuration (TPM-Bound, Dual Control) | SH-INT-007 | HIGH |
+| UC-33 | Audit Export for Authorities (WORM STORE-04) | SH-EXT-003 | HIGH |
+| UC-34 | SLA & Fleet Status Dashboard | SH-INT-007 | MEDIUM |
 
-#### Use-Case: {UC-34} Kiosk Admin Configuration (TPM-Bound, Dual Control)
+#### Use-Case: {UC-32} Kiosk Admin Configuration (TPM-Bound, Dual Control)
 
 ##### 1 Brief Description
 
@@ -2395,7 +2165,7 @@ Receives configuration-drift alerts (UC-27).
 4. Configuration is dispatched over the mTLS management channel; the unit verifies and applies it, secure defaults preserved (UC-07).
 5. The applied version is recorded per unit; drift against the baseline is alerted (UC-27).
 
-> **Sequence diagram:** → Annex B §19 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §17 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2461,7 +2231,7 @@ retained.
 - **Threats addressed:** MUC-02 (rogue admin change), MUC-C2-04 (configuration-borne implant resisted).
 - **NIST anchors:** PR.AA-05, PR.AA-06, PR.PS-01.
 
-#### Use-Case: {UC-35} Audit Export for Authorities (WORM STORE-04)
+#### Use-Case: {UC-33} Audit Export for Authorities (WORM STORE-04)
 
 ##### 1 Brief Description
 
@@ -2507,7 +2277,7 @@ Source of the signature-chained records.
 4. Signed evidence bundle generated (signature-chained entries + integrity proof).
 5. Bundle delivered via the agreed secure channel; the export itself is recorded in the audit chain.
 
-> **Sequence diagram:** → Annex B §20 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §18 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2575,7 +2345,7 @@ PROC-18).
 - **Threats addressed:** MUC-04 (evidence tampering/exfiltration resisted), MUC-02 (uncontrolled extraction blocked by approval).
 - **NIST anchors:** PR.DS-11, PR.DS-12, DE.AE-03.
 
-#### Use-Case: {UC-36} SLA & Fleet Status Dashboard
+#### Use-Case: {UC-34} SLA & Fleet Status Dashboard
 
 ##### 1 Brief Description
 
@@ -2610,12 +2380,12 @@ Aggregates fleet and SLA counters.
 ##### 4 Basic Flow of Events
 
 1. Dashboard aggregates per-unit status and SLA counters.
-2. Uptime computed against the SLA target; breach windows annotated (offline windows from UC-30).
+2. Uptime computed against the SLA target; breach windows annotated (offline windows from CAP-11).
 3. Referral queue load and lock states surfaced (PKG-9 telemetry).
 4. Threshold breaches alert Ops/SOC.
 5. Periodic SLA reports archived for the B2G/B2B contracts.
 
-> **Sequence diagram:** → Annex B §21 (B_Sequence_Diagrams.md)
+> **Sequence diagram:** → Annex B §19 (B_Sequence_Diagrams.md)
 
 ##### 5 Alternative Flows
 
@@ -2675,7 +2445,7 @@ Periodic reports archived for contract and regulatory use.
 ##### 10 Security & Compliance Annex (AEGIS)
 
 - **Provenance:** [ATTESTED] Doc03 §4 BG-005 (99.99% uptime SLA target); Doc04 §1.2 (fleet backhaul telemetry basis); Doc04 §1.1 SYS-09 (aggregation).
-- **Constrained by:** CAP-02 (monitoring), PROC-08 (continuity), UC-27 (health source), UC-30 (offline windows).
+- **Constrained by:** CAP-02 (monitoring), PROC-08 (continuity), UC-27 (health source), CAP-11 (offline windows).
 - **Rules / NFR:** CR-D-10.1-001, BPR-D-10.4-001.
 - **Threats addressed:** MUC-07 (availability impact evidenced and alerted).
 - **NIST anchors:** DE.CM-01, GV.OV-03.
@@ -2712,7 +2482,7 @@ Periodic reports archived for contract and regulatory use.
   - Security & Compliance Annex (AEGIS): Provenance: [ATTESTED] Doc04 §1.1 SYS-05 (EU-only training, signed model artefact registry); Doc04 §1.2 (separate AWS account segregated from production, deny-by-default egress); SYS-11 (SBOM emission per release). Constrained by: PROC-19 (conformity assessment), PROC-20 (bias gates), UC-15 (training data management), CAP-03 (privacy/secure by design). Rules / NFR: CR-D-05.1-001, CR-D-07.1-001, CR-D-06.2-001. Threats addressed: MUC-C2-06 (poisoned artefact blocked at origin), MUC-02 (unauthorised model change). NIST anchors: PR.PS-06, GV.SC-04, ID.AM-08.
 - **PROC-26 — Drift/Bias Monitoring & Review** (PKG-11 · HIGH · Realises BPR-D-10.5-001, CR-D-10.1-001, BPR-D-02.4-001 · operational card: Doc31 §PROC-26)
   - Brief Description: AI Governance reviews continuous drift and bias telemetry for the deployed fleet: accuracy deltas, demographic bias indicators and threshold behaviour, per model version. It is triggered by the scheduled review cadence (quarterly bias testing, PROC-20) or by automated drift alerts (degradation beyond governed bounds, UC-13). The review turns post-market telemetry into dispositions: tune, retrain or roll back.
-  - Preconditions: Fleet telemetry flowing (UC-27). Model versions pinned and traceable (UC-31).
+  - Preconditions: Fleet telemetry flowing (UC-27). Model versions pinned and traceable (UC-30).
   - Post-conditions: Disposition on record with the supporting metrics. Metrics and reviews archived as post-market conformity evidence.
   - Special Requirements (FURPS+): Functional (F): Drift computation, alerting, bias review, disposition recording. Usability (U): Review dashboard per model version. Reliability (R): Real-time monitoring per the UC-13 SLA. Performance (P): N/A — no attested review-latency constraint. Supportability (S): Metrics retained as post-market monitoring evidence (AI_Act post-market obligations via UC-13).
   - Security & Compliance Annex (AEGIS): Provenance: [ATTESTED] Doc04 §1.1 SYS-09 (decision audit metadata, no biometric content); Doc03 §4 (BG-008 note: AI false-match-rate target moved to Phase 3 as a technical requirement). Constrained by: UC-13 (drift detection), PROC-20 (bias testing), PROC-21 (AI incidents), UC-18 (governed PAD thresholds). Rules / NFR: BPR-D-10.5-001, CR-D-10.1-001, BPR-D-02.4-001. Threats addressed: MUC-C2-06 (detection net for implanted/degraded models), MUC-02 (threshold tamper becomes visible). NIST anchors: DE.CM-01, DE.AE-02, GV.OV-02.
@@ -2936,27 +2706,27 @@ Periodic reports archived for contract and regulatory use.
 #### MUC-02 — Privilege Escalation to Override/Admin Rights
 
 **Misactor:** A-MIS-01 (External, after a foothold), A-MIS-02 (Malicious Insider).
-**Threatens:** PROC-27 (role admin), UC-34 (kiosk admin config), UC-25 (override rights).
+**Threatens:** PROC-27 (role admin), UC-32 (kiosk admin config), UC-25 (override rights).
 **Preconditions:** Initial foothold in the corporate VPC, or an insider with partial privileges.
 **Attack Flow:**
 1. Escalate role: self-assign override/admin entitlements in SYS-08.
 2. Use the gained rights to rubber-stamp approvals or push a rogue kiosk configuration.
 3. Goal: influence crossing decisions or fleet behaviour without attribution.
 **Impact:** Human oversight and fleet integrity voided at scale; configuration-borne implant of the high-risk AI system.
-**Mitigated by:** PROC-27 (SoD checks + quarterly review PROC-11), UC-34 (dual control on sensitive configuration), UC-06 (least privilege, CR-D-03.3-001), privileged-change alerting to SOC (CAP-02), immutable override logs (STORE-04).
+**Mitigated by:** PROC-27 (SoD checks + quarterly review PROC-11), UC-32 (dual control on sensitive configuration), UC-06 (least privilege, CR-D-03.3-001), privileged-change alerting to SOC (CAP-02), immutable override logs (STORE-04).
 **NIST anchors:** PR.AA-05, PR.AA-06, DE.CM-09.
 
 #### MUC-07 — Denial of Service on the Border Lane
 
 **Misactor:** A-MIS-01 (External Cyber Attacker).
-**Threatens:** UC-20 (gate release), UC-30 (lane availability), fleet availability targets (BG-005).
+**Threatens:** UC-20 (gate release), CAP-11 (lane availability), fleet availability targets (BG-005).
 **Preconditions:** Reachability of kiosk backhaul/cloud endpoints, or the ability to flood session intake (token starts, booked slots).
 **Attack Flow:**
 1. Flood the lane: session starts, LTE/5G backhaul saturation, or cloud endpoint exhaustion.
 2. Kiosks degrade or queue overflow forces intake throttling.
 3. Goal: close border lanes and damage the 99.99% SLA.
 **Impact:** Border lane downtime; B2G/B2B SLA penalties; NIS 2 significant-incident exposure.
-**Mitigated by:** PROC-06 (containment with DoS resilience), UC-30 (offline failover — the lane degrades gracefully instead of failing), UC-27 (early detection), UC-24 (intake throttling + SOC), UC-36 (SLA evidence). *(The §8.2 inventory row cites "U.C.2.4.2", which does not exist — the canonical mitigation ids are PROC-06/PROC-08; see massification report.)*
+**Mitigated by:** PROC-06 (containment with DoS resilience), CAP-11 (offline failover — the lane degrades gracefully instead of failing), UC-27 (early detection), UC-24 (intake throttling + SOC), UC-34 (SLA evidence). *(The §8.2 inventory row cites "U.C.2.4.2", which does not exist — the canonical mitigation ids are PROC-06/PROC-08; see massification report.)*
 **NIST anchors:** PR.IR-01, DE.CM-01, RS.MI-01.
 
 #### MUC-C2-04 — Kiosk Physical Tamper / Malware Implant
@@ -2975,14 +2745,14 @@ Periodic reports archived for contract and regulatory use.
 #### MUC-C2-06 — OTA / Model Supply-Chain Implant
 
 **Misactor:** A-MIS-C2-04 (Supply-Chain Implant), possibly with A-MIS-02 complicity.
-**Threatens:** UC-28 (firmware OTA), UC-31 (model rollout), the whole fleet.
+**Threatens:** UC-28 (firmware OTA), UC-30 (model rollout), the whole fleet.
 **Preconditions:** Write access to the build pipeline (SYS-11) or the model registry (SYS-05), a stolen/compromised signing identity, or a compromised upstream dependency.
 **Attack Flow:**
 1. Implant malicious code or a backdoored model into a release artefact.
 2. Sign it with the compromised identity so fleet-side verification passes.
 3. Goal: fleet-wide implant via the trusted update channel.
 **Impact:** Compromise of the high-risk AI system at fleet scale; mass crossing-fraud capability; CRA/AI_Act critical incident.
-**Mitigated by:** cosign signatures verified in the TPM (FLOW-04), CycloneDX SBOM checks (UC-09, CR-D-06.2-001), CI/CD gates (UC-10), staged rollout with canary auto-halt (UC-28, UC-31), rapid rollback (UC-32), HSM dual-control signing keys (SYS-07), drift/bias review as detection net (PROC-26).
+**Mitigated by:** cosign signatures verified in the TPM (FLOW-04), CycloneDX SBOM checks (UC-09, CR-D-06.2-001), CI/CD gates (UC-10), staged rollout with canary auto-halt (UC-28, UC-30), rapid rollback (UC-31), HSM dual-control signing keys (SYS-07), drift/bias review as detection net (PROC-26).
 **NIST anchors:** PR.DS-12, GV.SC-04, DE.AE-02.
 
 ## 9. DETAILED USE CASES
@@ -3396,7 +3166,7 @@ Periodic reports archived for contract and regulatory use.
 | 1.3 | 2026-09-04 | PORT-PARITY-2 Executor (Phase 3 product-first pilot) | Added §6 Product Functional Use Cases (PKG-8 Traveller eGate Journey, 7 fully-dressed UCs U.C.8.x.y) + §8 Misuse Cases (base MUC-01..08 instantiated + GuardianGate-specific MUC-C2-01..06, 4 pilot cards); compliance UCs U.C.1–7 preserved verbatim (former §6→§7, §7→§9; detail cards unchanged in §9); frontmatter inputs legacy→DocNN |
 | 1.4 | 2026-09-04 | PORT-PARITY-2 Executor (Phase 3 massification, C2) | §6 massified: PKG-9 Operator Referral Desk (U.C.9.1.1–9.5.1), PKG-10 Kiosk Fleet Operations (PROC-24–10.5.1), PKG-11 AI Model Lifecycle (PROC-25–11.5.1), PKG-12 Administration & Reporting (U.C.12.1.1–12.4.1) — 19 fully-dressed UCs, same template as §6.1; §6.0 Drives column updated to real package ranges; §8.3 detail cards completed with MUC-01, MUC-02, MUC-07, MUC-C2-04, MUC-C2-06; repaired orphaned v1.3 row (was appended at EOF, outside this table) |
 | 1.5 | 2026-09-05 | UC SEPARATION Executor | Lane-pure catalog per rubric v1.8 §5B rule 6 (catalog holds UC cards only): removed 5 PROC product stubs §6 (PROC-23..27 — fields preserved in new §6.6 Lane Card Register; full cards already in Doc31); removed 32 §7 lane rows → new §7.0 Compliance Domain Index + verbatim lane register (UC-TRN folded — 0 UCs); moved 5 §9 PROC detailed cards verbatim to Doc31 (§9 keeps U.C.1.2.1, U.C.3.3.1); metrics corrected to 36 UCs (21 product + 15 compliance); §5.1/annex A UC-ovals-only; annex B 26→21 sections (B.1 placeholder removed); sub-section numbering corrected (§7.x, §10.1, §11.1, §12.x, §13.x) |
-| 1.6 | 2026-09-05 | RENUMBER Executor | Flat renumber per rubric v1.10 §5B rule 7 (campaign `02_CASES/RENUMBER_CAMPAIGN_2026-09-05.md`): all 36 live UC ids flattened — 15 compliance §7 → UC-01..UC-15, 21 product §6 → UC-16..UC-36 (ascending natural); range/wildcard grammars re-anchored; registry `00_METHODOLOGY/validation/RENUMBER_REGISTRY_2026-09-05.md`. Historical "formerly"/version rows untouched |
+| 1.6 | 2026-09-05 | RENUMBER Executor | Flat renumber per rubric v1.10 §5B rule 7 (campaign `02_CASES/RENUMBER_CAMPAIGN_2026-09-05.md`): all 36 live UC ids flattened — 15 compliance §7 → UC-01..UC-15, 21 product §6 → UC-16..UC-34 (ascending natural); range/wildcard grammars re-anchored; registry `00_METHODOLOGY/validation/RENUMBER_REGISTRY_2026-09-05.md`. Historical "formerly"/version rows untouched |
 
 ---
 
@@ -3425,7 +3195,9 @@ v1.2 → v1.3: non-technology UCs re-laned to PROC-*/CAP-* per human decision 20
 
 v1.4 → v1.5 (UC SEPARATION, 2026-09-05): lane-pure catalog per rubric v1.8 §5B rule 6 — no id renames (the PROC/CAP full cards already existed in Doc31). The 5 product PROC stubs (PROC-23..27, ex-U.C.9.5.1/10.1.1/11.1.1/11.4.1/12.4.1) and the 32 §7 lane rows left the catalog into the §6.6 register / §7.0 index; the 5 §9 PROC detailed narratives moved verbatim to Doc31. Remaining UC ids unchanged: 21 product (U.C.8+) + 15 compliance (U.C.1–U.C.7 family).
 
-RENUMBER (v1.5 → v1.6, 2026-09-05, rubric v1.10 §5B rule 7): all live dotted UC ids flattened — compliance §7 (U.C.1–U.C.7 family, 15 UCs) → **UC-01..UC-15**; product §6 (U.C.8..12, 21 UCs) → **UC-16..UC-36**. The pre-RENUMBER ids quoted above in this Lane Naming section are historical provenance (kept verbatim). Registry: `00_METHODOLOGY/validation/RENUMBER_REGISTRY_2026-09-05.md`.
+RENUMBER (v1.6 → v1.7 (LEDGER-ZERO F3, 2026-09-06): 2 borderline product UCs re-laned per P7 decision 2026-09-06 — UC-30 Offline/Failover Mode → CAP-11, UC-33 Watchlist Cache Sync → CAP-12 (full C2M2 cards in Doc31; §6B register rows removed). Compact renumber: product UCs → UC-16..34 (34 live UCs = 15 compliance + 19 product).
+
+v1.5 → v1.6, 2026-09-05, rubric v1.10 §5B rule 7): all live dotted UC ids flattened — compliance §7 (U.C.1–U.C.7 family, 15 UCs) → **UC-01..UC-15**; product §6 (U.C.8..12, 21 UCs) → **UC-16..UC-34**. The pre-RENUMBER ids quoted above in this Lane Naming section are historical provenance (kept verbatim). Registry: `00_METHODOLOGY/validation/RENUMBER_REGISTRY_2026-09-05.md`.
 
 ---
 

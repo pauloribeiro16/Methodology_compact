@@ -33,7 +33,7 @@ No relationship below is invented; each is attested in one of those two document
 - **Compliance lane (UC-01..UC-15):** 47 UCs — data-subject rights, security operations,
   identity/access, secure development, governance, AI compliance, training. Re-laned
   ids now use PROC-01..22 and CAP-01..10 (formerly U.C.x.y.1).
-- **Product lane (UC-16..UC-36, PKG-8..12):** 26 UCs — the GuardianGate eGate product
+- **Product lane (UC-16..UC-34, PKG-8..12):** 26 UCs — the GuardianGate eGate product
   modelled as actor-goal use cases (§6 of Doc21).
 - **TOTAL: 73 UCs** (T36/P27/C10 in the catalogue; 63 controls: 38 CR + 25 BPR).
 - **Lane cards:** PROC-01..27 (process lane) and CAP-01..10 (capability lane),
@@ -119,28 +119,28 @@ starts); optional paths are `«extend»`.
 | UC-27 «precede» UC-28 (Signed OTA Firmware Update) — target units must be healthy | precede | Doc21 UC-28 §3 |
 | UC-27 tamper indicators «extend» UC-29 (Tamper Alert Response) | extend | Doc21 UC-27 §4 |
 | UC-29 «include» PROC-05 (detection/triage) and PROC-06 (containment incl. firmware quarantine) | include | Doc21 UC-29 §10 annex |
-| UC-27 offline state «extend» UC-30 (Offline/Failover store-and-forward) | extend | Doc21 UC-30 §1 |
-| UC-30 «include» PROC-08 (DR & business continuity) discipline | include | Doc21 UC-30 §10 annex |
+| UC-27 offline state «extend» CAP-11 (Offline/Failover store-and-forward) | extend | Doc21 CAP-11 §1 |
+| CAP-11 «include» PROC-08 (DR & business continuity) discipline | include | Doc21 CAP-11 §10 annex |
 
 ### 3.5 AI lifecycle (PKG-11)
 
 | Relationship | Type | Source |
 |---|---|---|
-| PROC-25 (Model Training & Release Packaging) «precede» UC-31 (Signed Model Rollout) | precede | Doc21 PROC-25 §1 (candidate becomes eligible for rollout) |
-| UC-31 «precede» UC-32 (Model Rollback arming — previous version retained) | precede | Doc21 UC-31 §4 |
-| PROC-26 (Drift/Bias Monitoring & Review, formerly U.C.11.4.1) «extend» UC-27 — consumes fleet telemetry | extend | Doc21 UC-31..UC-33 drift flow (fleet telemetry precondition) |
-| PROC-26 disposition «extend» PROC-25 (retrain) or UC-32 (rollback) | extend | Doc21 UC-31..UC-33 §4 (disposition: tune / retrain / rollback) |
+| PROC-25 (Model Training & Release Packaging) «precede» UC-30 (Signed Model Rollout) | precede | Doc21 PROC-25 §1 (candidate becomes eligible for rollout) |
+| UC-30 «precede» UC-31 (Model Rollback arming — previous version retained) | precede | Doc21 UC-30 §4 |
+| PROC-26 (Drift/Bias Monitoring & Review, formerly U.C.11.4.1) «extend» UC-27 — consumes fleet telemetry | extend | Doc21 UC-30..CAP-12 drift flow (fleet telemetry precondition) |
+| PROC-26 disposition «extend» PROC-25 (retrain) or UC-31 (rollback) | extend | Doc21 UC-30..CAP-12 §4 (disposition: tune / retrain / rollback) |
 | PROC-26 human bias review «include» PROC-20 (AI Bias Testing & Fairness) — fairness assessment basis | include | Doc31 PROC-26 card; Doc31 CAP-02 span |
-| UC-33 (Watchlist Cache Sync) «include» UC-20 — watchlist status is a gate decision input | include | Doc21 UC-20 §4 (watchlist input) |
+| CAP-12 (Watchlist Cache Sync) «include» UC-20 — watchlist status is a gate decision input | include | Doc21 UC-20 §4 (watchlist input) |
 
 ### 3.6 Administration & reporting (PKG-12)
 
 | Relationship | Type | Source |
 |---|---|---|
-| UC-34 (Kiosk Admin Configuration, dual control) «precede» fleet serving — baseline config before enrolment | precede | Doc21 UC-34 §1 |
-| UC-34 drift alerts «extend» UC-27 | extend | Doc21 UC-34 §4 |
-| UC-35 (Audit Export for Authorities) «extend» PROC-18 (Regulatory Notification & Cooperation) — evidence export on authority request | extend | Doc21 §6.0 (SH-EXT-003 requests audit evidence exports) |
-| UC-36 (SLA & Fleet Status Dashboard) «include» UC-24 queue telemetry, UC-27 fleet telemetry, UC-30 offline windows | include | Doc21 UC-24 §6.2, UC-27 §4, UC-30 §4 |
+| UC-32 (Kiosk Admin Configuration, dual control) «precede» fleet serving — baseline config before enrolment | precede | Doc21 UC-32 §1 |
+| UC-32 drift alerts «extend» UC-27 | extend | Doc21 UC-32 §4 |
+| UC-33 (Audit Export for Authorities) «extend» PROC-18 (Regulatory Notification & Cooperation) — evidence export on authority request | extend | Doc21 §6.0 (SH-EXT-003 requests audit evidence exports) |
+| UC-34 (SLA & Fleet Status Dashboard) «include» UC-24 queue telemetry, UC-27 fleet telemetry, CAP-11 offline windows | include | Doc21 UC-24 §6.2, UC-27 §4, CAP-11 §4 |
 | PROC-27 (User/Role Administration for Console) «precede» UC-23 — officer roles/entitlements before console session | precede | Doc21 UC-23 §2.4 (Ops administers via PROC-27) |
 
 ### 3.7 Compliance-side relationships (lane ids post-rename)

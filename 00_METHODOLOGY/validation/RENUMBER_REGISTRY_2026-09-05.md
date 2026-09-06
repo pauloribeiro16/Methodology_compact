@@ -278,3 +278,14 @@ Compact renumber (rubric v1.10 §5B rule 7, ascending, relative order preserved)
 | UC-08, UC-09, UC-10, UC-13, UC-14, UC-15, UC-17 | UC-07, UC-08, UC-09, UC-10, UC-11, UC-12, UC-13 | compliance |
 | UC-18..40 | UC-14..36 (shift −4) | product |
 End state Case_01: 36 live UCs (13 compliance + 23 product) · PROC-01..21 · CAP-01.
+
+## LEDGER-ZERO F3 append (2026-09-06) — Case_02 re-lane + compact renumber
+
+P7 decision 2026-09-06: 2 borderline product UCs re-laned (rubric v1.8 §5B rule 6):
+| Old UC | Title | New lane id |
+|---|---|---|
+| UC-30 | Offline/Failover Mode (Store-and-Forward Crossing Events) | CAP-11 |
+| UC-33 | Watchlist Cache Sync (SYS-03 sFTP, HSM-Bound) | CAP-12 |
+
+Compact renumber (rubric v1.10 §5B rule 7): product UC-31,32,34,35,36 → UC-30,31,32,33,34 (UC-16..29 unchanged; compliance UC-01..15 unchanged).
+End state Case_02: 34 live UCs (15 compliance + 19 product) · PROC-01..27 · CAP-01..12.
