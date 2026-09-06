@@ -52,7 +52,7 @@ Risk Analysis covers operational risks (RISK-01..RISK-10) and threat models (THR
 | ID | Risk | D-sub | Likelihood | Impact | Inherent | Mitigation UC | Mitigation Gate | Residual | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |----|------|-------|:----------:|:------:|:--------:|---------------|-----------------|:--------:|-------|-----------------------|----------|----------|--------------|-----------|
 | RISK-01 | Unauthorized access to personal data via spoofing | D-03.2 | Medium | High | High | UC-10 (MFA) | GATE-CR-D-03.2-001 | Low | | | | | | |
-| RISK-02 | Insecure code reaches production (no SSDLC) | D-07.2 | Medium | High | High | PROC-08, UC-14 | (BPR-D-07.2-001) | Low | | | | | | |
+| RISK-02 | Insecure code reaches production (no SSDLC) | D-07.2 | Medium | High | High | PROC-08, UC-14 | (BPR-D-07.2-001) — BPR-anchored closure (P7 2026-09-06) | Low | | | | | | |
 | RISK-03 | Exploit severity not contained post-detection | D-04.1 | Low | High | Medium | UC-06 | GATE-CR-D-04.1-001 | Low | | | | | | |
 | RISK-04 | DoS outage affects availability SLA | D-04.2 | Medium | High | High | UC-07 | GATE-CR-D-04.2-001 | Medium | | | | | | |
 | RISK-05 | High-risk processing without DPIA | D-09.2 | Low | High | Medium | PROC-09, PROC-12 | GATE-CR-D-09.2-001 | Low | | | | | | |
@@ -115,7 +115,7 @@ Detailed threat cards (17-field schema) fill in Fase de Especificação 5. Each 
 **Description:** Code with security defects reaches production due to absent or weak SSDLC.
 **Scope:** All production code releases.
 **Out of Scope:** Internal tooling.
-**Source:** PROC-08, UC-14 + BPR-D-07.2-001
+**Source:** PROC-08, UC-14 + BPR-D-07.2-001 — BPR-anchored closure (P7 2026-09-06)
 **NIST CSF Anchors:** CSF: PR.PS-01, PR.PS-02 | PF: —
 **Likelihood × Impact / Score:**
 - Likelihood: Medium.

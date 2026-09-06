@@ -3968,6 +3968,8 @@ Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 ### BPR-D-07.2-001 — Conduct SAST and DAST in CI/CD
 Type: CONTROL — BEST-PRACTICE (SHOULD, NI=2.0)
 
+> **P7 2026-09-06:** D-07.2/07.3/07.4/10.1 orphan obligations formally closed through this BPR (ASVS V3 CI/CD anchor) — BPR-anchored closure. The former "N/A marker" is withdrawn; no dedicated CRs exist by design.
+
 
 1. **Description:** This best-practice rule requires TinyTask to run static and dynamic
    application security testing as part of the delivery workflow. It applies OWASP

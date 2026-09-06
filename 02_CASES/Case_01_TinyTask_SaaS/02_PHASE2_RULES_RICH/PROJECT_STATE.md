@@ -39,7 +39,7 @@ phase2_dashboard_parity:
     - "../../../00_METHODOLOGY/00_VISUALISATIONS/Case_01/Case_01_P2_Dashboard.html"
     - "../../../00_METHODOLOGY/00_VISUALISATIONS/Case_01/build_case01_p2_dashboard.py"
   smoke: "12/12 dashboards PASS (10 prior + Case_01_P2_Dashboard.html)"
-  findings: "AUD-P2-005 — 4 obligations (D-07.2/3/4, D-10.1) are orphan (no CR addressing them; mitigated by BPR-D-07.2-001 with N/A marker). Carried from Sprint 6+ F-07."
+  findings: "AUD-P2-005 — RESOLVED (P7 2026-09-06, Option B): 4 obligations (D-07.2/3/4, D-10.1) formally closed via BPR-anchored closure through BPR-D-07.2-001 (ASVS V3 CI/CD anchor); former N/A marker withdrawn. Carried from Sprint 6+ F-07."
   stale_scalar_fixed: "total_obligations: 30 → 34 (Doc14 §3.1 canonical, post-Sprint 6+ fix)"
 ---
 

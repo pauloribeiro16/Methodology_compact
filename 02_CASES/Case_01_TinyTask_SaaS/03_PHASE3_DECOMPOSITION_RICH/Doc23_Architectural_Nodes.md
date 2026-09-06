@@ -67,7 +67,7 @@ This document consolidates all architectural nodes: Process (PROC), IT-System (T
 | NODE-SYS-009 | TECH | D-10.3 | Penetration testing platform | PROC-07 | — | | | | | | |
 | NODE-SYS-010 | TECH | D-01.1 | Encryption-at-rest (data store) | PROC-01 | — | | | | | | |
 | NODE-SYS-011 | TECH | D-01.2 | TLS terminator (data in transit) | UC-09 | — | | | | | | |
-| NODE-SYS-012 | TECH | D-07.2 | CI/CD pipeline (SAST/DAST integration) | UC-14 | CR-D-07.3-001 (F-S1-01) → BPR-D-07.2-001 | | | | | | |
+| NODE-SYS-012 | TECH | D-07.2 | CI/CD pipeline (SAST/DAST integration) | UC-14 | CR-D-07.3-001 (F-S1-01) → BPR-D-07.2-001 — BPR-anchored closure (P7 2026-09-06) | | | | | | |
 | NODE-SYS-013 | TECH | D-06.2 | SBOM generator (CycloneDX/SPDX) | UC-17 | — | | | | | | |
 | NODE-SYS-014 | TECH | D-09.4 | Records-of-Processing store | PROC-13 | — | | | | | | |
 | NODE-SYS-015 | TECH | D-04.4 | Backup & restore service | UC-08 | — | | | | | | |
@@ -85,13 +85,13 @@ This document consolidates all architectural nodes: Process (PROC), IT-System (T
 | NODE-PROC-005 | PROC | D-09.2 | Risk assessment process | PROC-09, PROC-12 | — | | | | | | |
 | NODE-PROC-006 | PROC | D-09.4 | RoPA maintenance process | PROC-13 | — | | | | | | |
 | NODE-PROC-007 | PROC | D-07.1 | Secure SDLC process | PROC-08 | — | | | | | | |
-| NODE-PROC-008 | PROC | D-07.2 | SAST/DAST execution process | UC-14 | CR-D-07.3-001 (F-S1-01) → BPR-D-07.2-001 | | | | | | |
+| NODE-PROC-008 | PROC | D-07.2 | SAST/DAST execution process | UC-14 | CR-D-07.3-001 (F-S1-01) → BPR-D-07.2-001 — BPR-anchored closure (P7 2026-09-06) | | | | | | |
 | NODE-PROC-009 | PROC | D-07.1 | Code review process | PROC-08 | — | | | | | | |
 | NODE-PROC-010 | PROC | D-07.1 | Secret management process | PROC-08 | — | | | | | | |
 | NODE-PROC-011 | PROC | D-06.1 | Processor due-diligence process | PROC-14 | — | | | | | | |
 | NODE-PROC-012 | PROC | D-06.3 | DPA lifecycle process | CAP-01 | — | | | | | | |
-| NODE-PROC-013 | PROC | D-07.2 | CI/CD security gate process | UC-14 | CR-D-07.3-001 (F-S1-01) → BPR-D-07.2-001 | | | | | | |
-| NODE-PROC-014 | PROC | D-07.2 | Change management process | UC-15 | CR-D-07.4-001 (F-S1-02) → BPR-D-07.2-001 | | | | | | |
+| NODE-PROC-013 | PROC | D-07.2 | CI/CD security gate process | UC-14 | CR-D-07.3-001 (F-S1-01) → BPR-D-07.2-001 — BPR-anchored closure (P7 2026-09-06) | | | | | | |
+| NODE-PROC-014 | PROC | D-07.2 | Change management process | UC-15 | CR-D-07.4-001 (F-S1-02) → BPR-D-07.2-001 — BPR-anchored closure (P7 2026-09-06) | | | | | | |
 | NODE-PROC-015 | PROC | D-02.2 | Patch deployment process | UC-15 | — | | | | | | |
 | NODE-PROC-016 | PROC | D-02.3 | Coordinated Vulnerability Disclosure process | PROC-04 | — | | | | | | |
 | NODE-PROC-017 | PROC | D-02.1 | Vulnerability scan process | PROC-03 | — | | | | | | |
@@ -122,11 +122,11 @@ This document consolidates all architectural nodes: Process (PROC), IT-System (T
 
 | Orphan ref (legacy) | Appears in | Closest freeze rule | Finding | Owner | Verification Criteria | Implementation Status | Priority | Stakeholders | Reporting |
 |---------------------|-----------|---------------------|---------|-------|-----------------------|----------|----------|--------------|-----------|
-| CR-D-07.3-001 | NODE-SYS-012, NODE-PROC-008, NODE-PROC-013 | BPR-D-07.2-001 (SAST/DAST) | F-S1-01 OPEN | | | | | | |
-| CR-D-07.4-001 | NODE-PROC-014 | BPR-D-07.2-001 | F-S1-02 OPEN | | | | | | |
+| CR-D-07.3-001 | NODE-SYS-012, NODE-PROC-008, NODE-PROC-013 | BPR-D-07.2-001 (SAST/DAST) | F-S1-01 OPEN — BPR-anchored closure (P7 2026-09-06) | | | | | | |
+| CR-D-07.4-001 | NODE-PROC-014 | BPR-D-07.2-001 | F-S1-02 OPEN — BPR-anchored closure (P7 2026-09-06) | | | | | | |
 | CR-D-10.1-001 | NODE-SYS-001 (SIEM) | CR-D-10.2-001 (Audit Logging) | F-S1-03 OPEN | | | | | | |
 
-See `RULE_FREEZE.md` §3.2 + §9 for full F-register.
+See `RULE_FREEZE.md` §3.2 + §9 for full F-register. **P7 2026-09-06:** the orphan obligations behind F-S1-01/F-S1-02 (D-07.2/07.3/07.4, plus D-10.1) are formally closed through `BPR-D-07.2-001` (ASVS V3 CI/CD anchor) — BPR-anchored closure; all "orphan → BPR-D-07.2-001" node Source lines above carry this closure.
 
 ---
 

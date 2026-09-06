@@ -159,6 +159,8 @@ Example: OBL-D-01.1-001
 
 **D-06 Summary:** 4 obligations | Avg NI: 3.000 | All mandatory | D-06.2 = CRA sole authority
 
+(P7 2026-09-06: dual-duty anchor — `OBL-D-06.2-001` is satisfied through the shared `BPR-D-02.2-001` PS.3/SBOM anchor, see Doc19.)
+
 ---
 
 ### D-07: Secure Development Obligations

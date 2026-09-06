@@ -398,6 +398,8 @@ All 38 sub-domains are covered by at least one compliance rule:
 | D-10.2 | CR-D-10.2-001 | BPR-D-10.2-001 | COVERED [TENSION RESOLVED] |
 | D-10.3 | CR-D-10.3-001 | BPR-D-10.3-001 | COVERED |
 
+> **D-06.2 note (P7 2026-09-06, Option A):** the D-06.2 PS.3/SBOM anchor lives in `BPR-D-02.2-001` (cross-domain reuse from D-02.2, deliberate per P7 decision 2026-09-06 + PORT-PARITY-2 verification); `OBL-D-06.2-001` is satisfied through this shared anchor; no dedicated `BPR-D-06.2-001` exists by design.
+
 ---
 
 ## 8. RULES BY SUB-DOMAIN DISTRIBUTION
@@ -450,6 +452,7 @@ Each sub-domain's rule density reveals where the regulatory burden concentrates.
 - **Highest density sub-domains (3 rules each):** D-02.4, D-08.2, D-09.1, D-09.2, D-10.1 — all AI Act + DORA overlap areas
 - **Lowest density sub-domains (1 rule each):** D-02.3, D-05.2, D-09.3, D-09.4 — single or dual regulation coverage
 - **Sole Authority sub-domains:** D-03.4 (CRA), D-05.4 (GDPR), D-06.2 (CRA) — if these regulations were excluded, these sub-domains would have zero regulatory mandate
+- **D-06.2 note (P7 2026-09-06, Option A):** the D-06.2 PS.3/SBOM anchor lives in `BPR-D-02.2-001` (cross-domain reuse from D-02.2, deliberate per P7 decision 2026-09-06 + PORT-PARITY-2 verification); `OBL-D-06.2-001` is satisfied through this shared anchor; no dedicated `BPR-D-06.2-001` exists by design.
 - **Tension-resolved sub-domains:** D-04.3 (T-001), D-05.3 (T-002), D-09.2 (T-003), D-07.1 (T-004), D-10.2 (T-002)
 
 ---

@@ -519,7 +519,7 @@ python lints/run_all_lints.py --case "TinyTask SaaS"
 | F-00a..F-00d | RESOLVED | UC format, counts reconciled, orphan check, stale 38-rule claim |
 | F-00e | RESOLVED | Uniform 17/12-field schema across 276 cards |
 | F-00f | CLOSED | `--rich` flag + `doc_path` param verified |
-| F-S1-01..03 | INFORMATIVELY-RESOLVED | Doc 14 orphan CR-D refs mapped in card Source field; P7 arbiter decision still PENDING for formal close |
+| F-S1-01..03 | INFORMATIVELY-RESOLVED | Doc 14 orphan CR-D refs mapped in card Source field; formally closed P7 2026-09-06 (Option B — BPR-anchored closure via BPR-D-07.2-001, AUD-P2-005 RESOLVED) |
 | F-S1-04..07 | INFORMATIVELY-REFERENCED | Doc 16 §4 explicitly carries orphan-ref table; P7 arbiter decision still PENDING |
 | F-S1-08 | CARRIED to follow-on contract | Doc 08 has 34 OBLs (post Sprint 6+ fix); Doc 11 has 30 CR — drift acknowledged |
 | **F-S1-09** | **STILL OPEN** | 14 Case_02 contamination nodes in Graphify KG pointing at Case_01 paths; **KG re-run needed** — out of Sprint 5 scope |

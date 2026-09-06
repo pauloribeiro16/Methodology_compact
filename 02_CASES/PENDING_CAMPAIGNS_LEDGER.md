@@ -53,7 +53,7 @@ ones (C1 UC-07/UC-12 etc.); re-adjudication would be a NEW renumber if ever rati
 Human: "resolver isso tudo de forma faseada". Plan: `02_CASES/LEDGER_ZERO_CAMPAIGN_2026-09-06.md`.
 **P7 decisions locked 2026-09-06:** (1) 6 borderline UC titles re-laned (C1 UC-07/12/13/16→PROC-18..21; C2 UC-30/36→CAP-11..12); (2) OBL-D-06.2-001 → Option A dual-duty documentado; (3) D-07.2 → Option B mitigação aceite; (4) phase2_ontology descongelada (enum + mirrors ×3); (5) MUC-C3-06 → decision gate em F2 (default: ratificar Doc22 §6B.7 como canónica).
 **Phase map of absorbed items:** §2 mirrors/ontology → F7 · §2 CAP maturity bind → F4 · §3 P7 queue (MUC-C3-06) → F2 · §4 C2 handoff remainder → F5 · §5 orphans OBL/D-07.2 → F2 · §5 verify_rich FAILs → F1 · §5 borderline 6 → F3 · §5 P1 dashboard drifts → F6 · §6 KG reflection → F8.
-**Progress:** F0 done — F1 next.
+**Progress:** F0 done (`d6c1333`) · F1 done (`4aecc0a`, verify_rich C2+C3 8/8) · F2 done 2026-09-06 (P7 ratifications paperwork: OBL Option A + D-07.2 Option B + MUC-C3-06 canonical + phantom-refs note ×3 RULE_FREEZE + §5 marks) — F3 next.
 
 ## 2. DEFERRED BY HUMAN DECISION (2026-09-05, documents-only scope) — Realization Class follow-ups
 
@@ -91,10 +91,10 @@ Independent verdict CLEAN-WITH-FINDINGS (`02_CASES/PORT_PARITY2_VERIFICATION_REP
 
 - [ ] UC-lane borderline titles (UC SEPARATION 2026-09-05; ids valid — re-laning = future id rename if ratified): C1 U.C.2.4.2 DoS Resilience, U.C.3.2.1 Authorisation/Least Privilege, U.C.3.3.1 Secure System Defaults, U.C.4.4.1 Fail-Safe Design (lean PROC); C2 U.C.10.5.1 Offline/Failover Mode, U.C.11.5.1 Watchlist Cache Sync (lean CAP)
 
-- [ ] Orphan obligations: C3 10 · C2 14 PO/40 SO — being resolved by ALT-ANCHOR Fase 4 (verdicts LEGIT/MITIGADO/GAP; real GAPs return here)
+- [x] Orphan obligations — **DONE 2026-09-06 (LEDGER-ZERO F2, P7 decision 2, Option A)**: OBL-D-06.2-001 (C3 SBOM/PS.3 orphan) closed via dual-duty anchor `BPR-D-02.2-001`, documented in C3 Doc19 §7/§8 + Doc20 §1 (+ Doc15/Doc17 pointers); no new rule. Remaining C3 9 / C2 14 PO/40 SO orphan verdicts stay queued under ALT-ANCHOR Fase 4 (real GAPs return here).
 - [x] verify_rich FAILs — **FULLY CLOSED 2026-09-05** (DERIVED-REFRESH + FR/NFR Phase B + F5 fixes 113ba05): F5-C2-01 (25 orphan FRs closed), F5-C2-03 (variants table suffix), F5-C2-02 (stale counts), F5-C3-01 (totals), F5-C3-02 (Doc31 56→12), F5-C3-03 (BPR-D-12.1-001), F5-C3-04 (UC-99→UC-25), F5-C3-06 (AI Act Art. 14→CR-D-08.2-001), F5-C2-04/C3-05 (`case:` frontmatter). All 10 known-pattern FAILs closed.
-- [ ] D-07.2 coverage decision (4 orphan obligations C1, mitigated by BPR-D-07.2-001 N/A marker)
-- [ ] Phantom refs left untouched (PORT-PARITY-2 deliberate)
+- [x] D-07.2 coverage decision — **DONE 2026-09-06 (LEDGER-ZERO F2, P7 decision 3, Option B)**: 4 orphan obligations C1 (OBL-D-07.2/07.3/07.4-001, OBL-D-10.1-001) formally closed via BPR-anchored closure through `BPR-D-07.2-001` (ASVS V3 CI/CD anchor); N/A marker withdrawn; Doc14/Doc18/Doc23/Doc27 + PROJECT_STATE audit row updated (AUD-P2-005 RESOLVED). No new rules.
+- [x] Phantom refs left untouched — **DONE 2026-09-06 (LEDGER-ZERO F2, briefing Item 4, ratified)**: all phantom reference lineages (F-01/F-03 PO-D-01.3-001/PG-D-01.3-001; the 2 PORT-PARITY-2 cross-case citations; C1 historical cleanup nodes) ratified as intentional/documented — see `00_METHODOLOGY/validation/P7_BRIEFING_PACK_2026-09-05.md` Item 4. Consolidated note added to RULE_FREEZE.md ×3. No further action.
 - [ ] P1 dashboard: 4 upstream drifts (KG-vs-view) + 2 cosmetic items
 - [x] Folio IV MATURITY column "—" debt — **DONE in `2f29a7d`** (gridMaturityClass retired; evidence_ids badge in EV column)
 - [x] Case_01 `NIST_ANCHORS.md` goals_anchored — **DONE in ALT-ANCHOR C3 write-back** (now 28/31, residual 3 deferred)

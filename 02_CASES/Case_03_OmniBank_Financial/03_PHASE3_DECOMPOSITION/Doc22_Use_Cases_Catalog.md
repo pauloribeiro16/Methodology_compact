@@ -4073,11 +4073,11 @@ UC-05 explanation package and the PROC-23 third-party audit discipline.
 | MUC-C3-05 | Explainability gaming (spoofed reason codes) | UC-04, UC-05, UC-06 | In-runtime reason codes log-anchored to model version; CAP-08; UC-06 fail-closed on incomplete context; CR-D-10.2-001 immutable records; PROC-11 |
 | MUC-C3-06 | Model & training-data exfiltration (IP/customer-data theft) | UC-04, PROC-47, PROC-22 | PROC-44 access control + PROC-11 reviews; PROC-41 encryption (STORE-03/STORE-10 HSM-bound CMK — attested); export-anomaly monitoring (PROC-49); egress minimisation (CR-D-05.1-001) |
 
-> **Note (MUC-C3-06):** no canonical definition of MUC-C3-06 exists elsewhere in the corpus
+> **Note (MUC-C3-06):** no canonical definition of MUC-C3-06 existed elsewhere in the corpus
 > (the MUC-C3 family was introduced in this document's §6B pilot); the row above records the
-> sixth threat class implied by the 01–05 set (model/data exfiltration). If the ambiguity
-> register later defines MUC-C3-06 differently, this row must be reconciled (P7 — human
-> arbiter).
+> sixth threat class implied by the 01–05 set (model/data exfiltration). P7 2026-09-06: the
+> model/training-data exfiltration definition and mitigation recorded here is ratified as the
+> canonical MUC-C3-06.
 
 ## 5. USE CASE METRICS SUMMARY
 

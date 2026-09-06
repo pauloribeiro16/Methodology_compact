@@ -127,6 +127,11 @@ Source: `02_PHASE2_RULES_RICH/10_Privacy_Security_Objectives.md` §3.1 (PO) and 
 
 > **Note on D-01.3:** No PO card exists for D-01.3 (key management is technology-only; F-01 carries).
 > Legacy `PO-D-01.3-001` references are intentional phantoms per F-03.
+>
+> **P7 2026-09-06:** all phantom reference lineages (F-01/F-03 PO-D-01.3-001/PG-D-01.3-001;
+> the 2 PORT-PARITY-2 cross-case citations; C1 historical cleanup nodes) are ratified as
+> intentional/documented — see `00_METHODOLOGY/validation/P7_BRIEFING_PACK_2026-09-05.md`
+> Item 4. No further action.
 
 ### §2.2 Security Operational Objectives (SO = 20)
 

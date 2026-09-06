@@ -141,6 +141,8 @@ Security objectives are derived from obligations related to vulnerability manage
 | AG-D-06.3-002 | Enforce contractual security obligations across all third-party relationships | OBL-D-06.3-001 | HIGH | HIGH | — | — | — |
 | AG-D-06.4-002 | Manage third-party concentration risk with documented exit strategies | OBL-D-06.4-001 | HIGH | HIGH | — | — | — |
 
+(P7 2026-09-06: dual-duty anchor — `OBL-D-06.2-001` is satisfied through the shared `BPR-D-02.2-001` PS.3/SBOM anchor, see Doc19.)
+
 ### 4.5 D-07: Secure Development (Security)
 
 | Objective ID | Objective Description | Source Obligations | Risk Profile | Priority | CSF Anchors | PF Anchors | AI RMF Anchors |

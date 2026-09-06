@@ -154,3 +154,9 @@ Verbatim count claims found by this port that **conflict with the frozen 78-cont
 - `../02_PHASE2_RULES_RICH/control_set.yaml` (v2.0, GENERATED FILE — source of truth Doc19 §4/§5)
 - `../02_PHASE2_RULES_RICH/Doc19_Rules_Catalog.md` (renumbered Rules Catalog)
 - Doc22–Doc31 + requirements/Doc30–Doc31 of this folder (census only; content untouched)
+
+---
+
+## §6 Phantom reference lineages (P7 ratification)
+
+**P7 2026-09-06:** all phantom reference lineages (F-01/F-03 PO-D-01.3-001/PG-D-01.3-001; the 2 PORT-PARITY-2 cross-case citations; C1 historical cleanup nodes) are ratified as intentional/documented — see `00_METHODOLOGY/validation/P7_BRIEFING_PACK_2026-09-05.md` Item 4. No further action.

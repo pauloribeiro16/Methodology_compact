@@ -120,7 +120,7 @@ Each of the 34 obligations maps to **at least 1** objective (PO or SO). Strict 1
 
 ### 3.3 CR-Rule-to-Obligation Mapping (OBL → CR)
 
-Each of the 34 obligations maps to **exactly 1** Compliance Rule in Doc 11 §4. The mapping is strict 1:1 by ID suffix. **Note:** 4 OBLs added in Fase de Especificação 6+ (D-07.2/3/4, D-10.1) reference CR-D-XX.X-001 placeholders that do not yet exist in Doc 11 §4 — these are F-07 cross-doc orphans awaiting Doc 11 additions in a follow-on contract (analogous to the F-01/F-03 phantom-PO situation for D-01.3).
+Each of the 34 obligations maps to **exactly 1** Compliance Rule in Doc 11 §4. The mapping is strict 1:1 by ID suffix. **Note:** 4 OBLs added in Fase de Especificação 6+ (D-07.2/3/4, D-10.1) reference CR-D-XX.X-001 placeholders that do not yet exist in Doc 11 §4 — these are F-07 cross-doc orphans awaiting Doc 11 additions in a follow-on contract (analogous to the F-01/F-03 phantom-PO situation for D-01.3). **P7 2026-09-06:** OBL-D-07.2-001, OBL-D-07.3-001, OBL-D-07.4-001 and OBL-D-10.1-001 are closed via BPR-anchored closure (P7 2026-09-06) — the orphan obligations are formally accepted as covered by `BPR-D-07.2-001` (ASVS V3 CI/CD anchor); no dedicated CRs will be added.
 
 | OBL ID | CR Rule | Status |
 |--------|---------|:------:|

@@ -133,3 +133,9 @@ The P3 DocNN docs still carry **stale rule counts** written before the P2 renumb
 - `../02_PHASE2_RULES_RICH/control_set.yaml` (v6.0, GENERATED FILE — source of truth Doc18 §4/§5/§9)
 - `../02_PHASE2_RULES_RICH/Doc18_Rules_Catalog.md` (§4 CR catalog 38 rules; §5 BPR catalog 25 rules)
 - Doc21–Doc30 of this folder (count-claims census only; content untouched)
+
+---
+
+## §6 Phantom reference lineages (P7 ratification)
+
+**P7 2026-09-06:** all phantom reference lineages (F-01/F-03 PO-D-01.3-001/PG-D-01.3-001; the 2 PORT-PARITY-2 cross-case citations; C1 historical cleanup nodes) are ratified as intentional/documented — see `00_METHODOLOGY/validation/P7_BRIEFING_PACK_2026-09-05.md` Item 4. No further action.
