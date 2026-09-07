@@ -48,6 +48,10 @@ C1 UC-01..40; C2 UC-01..36); registry filled for all 3 cases; SVGs re-rendered; 
 Known residual: 6 borderline UC titles (§5) unchanged — their ids are now the renumbered
 ones (C1 UC-07/UC-12 etc.); re-adjudication would be a NEW renumber if ever ratified.
 
+## 1F. DELIVERED — MASTER DASHBOARD FIX (2026-09-07) — radar + grafo + ambiguity widgets
+
+Human: «o radar não funciona, ambiguidades só na fase 1, nas outras fases também». Delivered: gerador estendido (maturity 6-axis CSF, ambiguity Doc09 + phase1_graph, graph.nodes/links completos, P2/P3 widgets) → JSON 2.6 MB; shell com vis-network@9 graph real (749 nós force-directed), radar hexagonal P1 + radares P2/P3, ambiguity widgets replicados P1↔P2↔P3; 17/17 smoke + test_master_dashboard.py 15/15; 3 screenshots radar+grafo.
+
 ## 1D. IN EXECUTION — LEDGER-ZERO (2026-09-06) — phased closure of ALL open items
 
 Human: "resolver isso tudo de forma faseada". Plan: `02_CASES/LEDGER_ZERO_CAMPAIGN_2026-09-06.md`.
