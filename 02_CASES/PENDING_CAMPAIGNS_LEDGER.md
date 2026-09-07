@@ -48,6 +48,10 @@ C1 UC-01..40; C2 UC-01..36); registry filled for all 3 cases; SVGs re-rendered; 
 Known residual: 6 borderline UC titles (§5) unchanged — their ids are now the renumbered
 ones (C1 UC-07/UC-12 etc.); re-adjudication would be a NEW renumber if ever ratified.
 
+## 1H. DELIVERED — MASTER DASHBOARD drill-down R5 (2026-09-07)
+
+Human: «quero que em todas as tabelas quando carregar num elemento ele me renderize toda a informação contida lá dentro em todas as páginas». Delivered: modal overlay CSS-only (sem deps novas); clicar em qualquer linha das 9 DataTables abre vista com todos os campos do objecto; ensureDT refactorado para novo contract `{title,key,render?}+objects` (preserva source objects para drill-down); UX: Copy JSON, ESC, backdrop; 9/9 OK em `test_master_drilldown.py`; 17/17 smoke + 15/15 master mantidos.
+
 ## 1G. DELIVERED — MASTER DASHBOARD widget fix R4 (2026-09-07)
 
 Human: «ainda existe muita coisa a falhar» (radar, ambiguities, frameworks, gates, etc.). Diagnóstico: 17 mismatches entre paths lidos pelo shell e paths emitidos pelo gerador. Fix R4: 14 correções no shell (paths errados + joins em listas), 3 acréscimos no gerador (`p2.last_updated`, `p3.gates_matrix`, `last_updated` no `data.meta`). Smoke 17/17, master 15/15, 9 screenshots full-page validados visualmente.
