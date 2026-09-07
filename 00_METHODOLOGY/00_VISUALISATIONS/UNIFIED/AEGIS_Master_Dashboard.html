@@ -5739,6 +5739,33 @@ table.plain tbody tr:last-child td { border-bottom: none; }
   border: 1px dashed var(--line); border-radius: var(--r-sm);
   background: var(--paper-2); margin-top: 14px;
 }
+
+/* =====================================================================
+   AEGIS DRILL-DOWN MODAL (R5)
+   ===================================================================== */
+.aegis-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 9999; align-items: center; justify-content: center; padding: 20px }
+.aegis-modal.open { display: flex }
+.aegis-modal-card { background: var(--paper); border-radius: var(--r-md, 10px); max-width: 760px; width: 100%; max-height: 85vh; display: flex; flex-direction: column; border: 1px solid var(--line); box-shadow: 0 12px 48px rgba(0,0,0,0.45); overflow: hidden }
+.aegis-modal-head { padding: 16px 20px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; background: linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%) }
+.aegis-modal-head .am-eyebrow { font-size: 10px; letter-spacing: 1.5px; color: var(--ink-soft); text-transform: uppercase; font-weight: 700 }
+.aegis-modal-head .am-title { margin: 4px 0 0 0; font-size: 16px; color: var(--ink); font-weight: 700; font-family: var(--mono, ui-monospace, Menlo, monospace) }
+.aegis-modal-head .am-close { background: transparent; border: 0; color: var(--ink-soft); cursor: pointer; font-size: 20px; line-height: 1; padding: 4px 8px; border-radius: 4px }
+.aegis-modal-head .am-close:hover { background: var(--paper-2); color: var(--ink) }
+.aegis-modal-body { padding: 18px 20px; overflow: auto; flex: 1 }
+.aegis-modal-body dl { margin: 0; display: grid; grid-template-columns: minmax(140px, 30%) 1fr; gap: 8px 16px }
+.aegis-modal-body dt { font-weight: 600; color: var(--ink); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; padding-top: 4px }
+.aegis-modal-body dd { margin: 0; color: var(--ink-soft); white-space: pre-wrap; word-break: break-word; font-size: 13px; line-height: 1.4 }
+.aegis-modal-body dd.array ul { margin: 4px 0 0 0; padding-left: 18px }
+.aegis-modal-body dd.array li { margin: 2px 0 }
+.aegis-modal-body dd.pre, .aegis-modal-body dd.large { font-family: var(--mono, ui-monospace, Menlo, monospace); font-size: 11px; max-height: 220px; overflow: auto; background: var(--paper-2); padding: 8px 10px; border-radius: 4px; margin-top: 4px; white-space: pre-wrap; border: 1px solid var(--line) }
+.aegis-modal-body dd.empty { color: var(--faint, var(--ink-soft)); font-style: italic }
+.aegis-modal-foot { padding: 10px 20px; border-top: 1px solid var(--line); display: flex; gap: 8px; justify-content: flex-end; background: var(--paper-2) }
+.aegis-modal-foot button { background: var(--paper); color: var(--ink); border: 1px solid var(--line); padding: 6px 14px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: 600; font-family: var(--sans, sans-serif) }
+.aegis-modal-foot button:hover { background: var(--accent); color: var(--paper); border-color: var(--accent) }
+/* Make all DataTables rows feel clickable */
+table.dt tbody tr { cursor: pointer }
+/* Highlight currently-open detail (set by JS when modal opens for a row) */
+table.dt tbody tr.am-selected { background: rgba(31,78,120,0.10) !important }
 </style>
 </head>
 <body>
@@ -6343,6 +6370,24 @@ table.plain tbody tr:last-child td { border-bottom: none; }
 <!-- =====================================================================
      SCRIPT
      ===================================================================== -->
+
+<!-- AEGIS Drill-down Modal (R5) — placed before the script so bindDetailModal can wire it -->
+<div id="aegis-detail-modal" class="aegis-modal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="aegis-modal-card">
+    <div class="aegis-modal-head">
+      <div>
+        <div class="am-eyebrow">AEGIS · Drill-down</div>
+        <h3 class="am-title">—</h3>
+      </div>
+      <button class="am-close" aria-label="Close" type="button">✕</button>
+    </div>
+    <div class="aegis-modal-body"></div>
+    <div class="aegis-modal-foot">
+      <button class="am-copy" type="button">Copy JSON</button>
+      <button class="am-close" type="button">Close</button>
+    </div>
+  </div>
+</div>
 <script>
 /* =====================================================================
    AEGIS · Master Dashboard — Shell controller
@@ -184028,6 +184073,32 @@ const MASTER_DATA = {
   var initialised = { p1: false, p2: false, p3: false, crosscase: false };
   var charts = {};           // canvas-id -> Chart instance
   var dts    = {};           // table-id  -> DataTable instance
+  var dtSources = {};        // table-id  -> array of source objects (parallel to rendered rows)
+  var TABLE_LABELS = {       // human-readable labels per table id for the modal eyebrow
+    "folio02-amb-table": "Ambiguity Register",
+    "folio05-rules-table": "Rules Catalog",
+    "folio06-obj-table": "Obligation → Objective Mappings",
+    "folio09-uc-table": "UC Catalog",
+    "folio10-proc-cap-table": "PROC / CAP Cards",
+    "folio11-req-table": "Requirements & Allocation",
+    "folio12-threat-table": "Threats & Compliance Gates",
+    "folio-p2-ambiguity-table": "Realization Ambiguity (P2)",
+    "folio-p3-threat-ambiguity-table": "Threat Ambiguity (P3)"
+  };
+  var FIELD_LABELS = {       // key -> human label, fallback = key
+    id: "ID", title: "Title", name: "Name", description: "Description",
+    package: "Package", lane: "Lane", requirements: "Requirements", priority: "Priority",
+    status: "Status", maturity: "Maturity", owner: "Owner", realises: "Realises",
+    anchors: "Anchors", evidence: "Evidence", trigger: "Trigger", activities: "Activities",
+    roles: "Roles", sla: "SLA / Timing", span: "Span", sub_domain: "Sub-domain",
+    regulation: "Regulation", provision: "Provision", ambiguity: "Ambiguity",
+    severity: "Severity", citation: "Citation", realization_class: "Realization Class",
+    source: "Source", ni: "NI", control: "Control", framework: "Framework",
+    anchor: "Anchor", confidence: "Confidence", stride: "STRIDE", impact: "Impact",
+    likelihood: "Likelihood", mitigation_uc: "Mitigation UC", mitigation_gate: "Mitigation Gate",
+    threat: "Threat", rule: "Rule", kind: "Kind", type: "Type",
+    ambiguous: "Ambiguous", noUcMitigation: "No UC Mitigation"
+  };
 
   // ----- Lib detection --------------------------------------------------
   function libsAvailable() {
@@ -184108,6 +184179,9 @@ const MASTER_DATA = {
   }
 
   // ----- DataTables -----------------------------------------------------
+  // R5: ensureDT now accepts the new contract (objects + {title,key,render} columns).
+  // Legacy contract (columns: [{title}], data: array-of-arrays) is still honoured but
+  // disables drill-down because no source object is preserved.
   function ensureDT(tableId, columns, data, opts) {
     var avail = libsAvailable();
     if (!avail.datatables) return null;
@@ -184119,15 +184193,145 @@ const MASTER_DATA = {
       delete dts[tableId];
       $tbl.find("tbody").empty();
     }
+    // ----- R5: detect new contract vs legacy, build cells & stash sources -----
+    var cells;
+    var sources;
+    if (!data) {
+      cells = []; sources = null;
+    } else if (data.length > 0 && Array.isArray(data[0])) {
+      // Legacy form: pre-built row arrays. No source objects available.
+      cells = data; sources = null;
+    } else {
+      // New form: array of source objects; columns = [{title, key, render?}, ...]
+      sources = data;
+      cells = sources.map(function (o) {
+        return columns.map(function (c) {
+          var v = (o == null) ? undefined : o[c.key];
+          if (typeof c.render === "function") {
+            try { v = c.render(o); } catch (e) { v = "[render error]"; }
+          }
+          if (v === undefined || v === null || v === "") v = "—";
+          return v;
+        });
+      });
+    }
+    dtSources[tableId] = sources;
     dts[tableId] = $tbl.DataTable(Object.assign({
-      data: data,
+      data: cells,
       columns: columns,
       pageLength: 10,
       lengthMenu: [10, 25, 50, 100],
       order: [],
       language: { search: "Filter:", info: "Showing _START_–_END_ of _TOTAL_", lengthMenu: "Show _MENU_" }
     }, opts || {}));
+    // ----- R5: wire row click (only when source objects are available) -----
+    if (sources) {
+      try {
+        dts[tableId].on("click", "tbody tr", function () {
+          var idx = dts[tableId].row(this).index();
+          var src = (dtSources[tableId] || [])[idx];
+          if (!src) return;
+          // Clear any prior highlight, then mark this row.
+          try {
+            dts[tableId].rows().nodes().toArray().forEach(function (n) { n.classList.remove("am-selected"); });
+          } catch (e) { /* swallow */ }
+          this.classList.add("am-selected");
+          showDetailModal(tableId, src);
+        });
+      } catch (e) { /* swallow — drill-down is a progressive enhancement */ }
+    }
     return dts[tableId];
+  }
+
+  // ----- R5: Drill-down modal --------------------------------------------
+  function showDetailModal(tableId, obj) {
+    var $m = document.getElementById("aegis-detail-modal");
+    if (!$m) return;
+    var label = TABLE_LABELS[tableId] || tableId;
+    var idLabel = (obj && (obj.id || obj.ID || obj.title)) || "(no id)";
+    $m.querySelector(".am-title").textContent = label + " · " + idLabel;
+    var $body = $m.querySelector(".aegis-modal-body");
+    $body.innerHTML = "";
+    if (!obj || typeof obj !== "object") {
+      var $p = document.createElement("p"); $p.textContent = "No data"; $body.appendChild($p);
+    } else {
+      var keys = Object.keys(obj);
+      if (!keys.length) {
+        var $p2 = document.createElement("p"); $p2.textContent = "(empty)"; $body.appendChild($p2);
+      } else {
+        var $dl = document.createElement("dl");
+        keys.forEach(function (k) {
+          var $dt = document.createElement("dt"); $dt.textContent = FIELD_LABELS[k] || k;
+          var $dd = document.createElement("dd");
+          var v = obj[k];
+          if (v === null || v === undefined || v === "") {
+            $dd.className = "empty"; $dd.textContent = "—";
+          } else if (Array.isArray(v)) {
+            $dd.className = "array";
+            var $ul = document.createElement("ul");
+            v.forEach(function (item) { var $li = document.createElement("li"); $li.textContent = String(item); $ul.appendChild($li); });
+            $dd.appendChild($ul);
+          } else if (typeof v === "object") {
+            $dd.className = "pre"; $dd.textContent = JSON.stringify(v, null, 2);
+          } else {
+            var s = String(v);
+            if (s.length > 200) { $dd.className = "pre"; $dd.textContent = s; }
+            else { $dd.textContent = s; }
+          }
+          $dl.appendChild($dt); $dl.appendChild($dd);
+        });
+        $body.appendChild($dl);
+      }
+    }
+    $m.dataset.currentJson = JSON.stringify(obj, null, 2);
+    $m.classList.add("open");
+    $m.setAttribute("aria-hidden", "false");
+  }
+
+  function hideDetailModal() {
+    var $m = document.getElementById("aegis-detail-modal");
+    if (!$m) return;
+    $m.classList.remove("open");
+    $m.setAttribute("aria-hidden", "true");
+    document.querySelectorAll("table.dt tbody tr.am-selected").forEach(function (n) {
+      n.classList.remove("am-selected");
+    });
+  }
+
+  function bindDetailModal() {
+    var $m = document.getElementById("aegis-detail-modal");
+    if (!$m || $m.dataset.bound === "1") return;
+    $m.dataset.bound = "1";
+    $m.addEventListener("click", function (e) { if (e.target === $m) hideDetailModal(); });
+    $m.querySelectorAll(".am-close").forEach(function (btn) {
+      btn.addEventListener("click", hideDetailModal);
+    });
+    var $copy = $m.querySelector(".am-copy");
+    if ($copy) {
+      $copy.addEventListener("click", function () {
+        var json = $m.dataset.currentJson || "";
+        var done = function () {
+          var $t = $copy.textContent;
+          $copy.textContent = "Copied ✓";
+          setTimeout(function () { $copy.textContent = $t; }, 1500);
+        };
+        var fallback = function () {
+          var ta = document.createElement("textarea");
+          ta.value = json; document.body.appendChild(ta); ta.select();
+          try { document.execCommand("copy"); } catch (e) {}
+          document.body.removeChild(ta);
+          done();
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(json).then(done, fallback);
+        } else {
+          fallback();
+        }
+      });
+    }
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") hideDetailModal();
+    });
   }
 
   function updateDT(tableId, data) {
@@ -184408,21 +184612,15 @@ const MASTER_DATA = {
         });
       }
     });
-    var tableRows = rows.map(function (r) {
-      return [
-        r.id || "--",
-        r.sub_domain || "--",
-        (r.title || "--").slice(0, 80),
-        r.realization_class || "--",
-        r.source || "--",
-        r.ni || "--"
-      ];
-    });
     var cols = [
-      { title: "Rule ID" }, { title: "Sub-domain" }, { title: "Title" },
-      { title: "Realization" }, { title: "Source" }, { title: "NI" }
+      { title: "Rule ID", key: "id" },
+      { title: "Sub-domain", key: "sub_domain" },
+      { title: "Title", key: "title", render: function (o) { return (o.title || "--").slice(0, 80); } },
+      { title: "Realization", key: "realization_class", render: function (o) { return o.realization_class || "--"; } },
+      { title: "Source", key: "source", render: function (o) { return o.source || "--"; } },
+      { title: "NI", key: "ni", render: function (o) { return o.ni || "--"; } }
     ];
-    ensureDT("folio-p2-ambiguity-table", cols, tableRows);
+    ensureDT("folio-p2-ambiguity-table", cols, rows);
     setText("#folio-p2-ambiguity-count", String(rows.length));
   }
 
@@ -184455,21 +184653,15 @@ const MASTER_DATA = {
         ambiguous: ambiguous
       });
     });
-    var tableRows = rows.map(function (r) {
-      return [
-        r.id || "--",
-        (r.title || "--").slice(0, 60),
-        r.stride || "--",
-        r.impact || "--",
-        r.mitigation_uc || "--",
-        r.ambiguous ? "<span class=\"chip\" style=\"background:var(--bad); color:#fff;\">AMBIGUOUS</span>" : "covered"
-      ];
-    });
     var cols = [
-      { title: "Threat ID" }, { title: "Title" }, { title: "STRIDE" },
-      { title: "Impact" }, { title: "Mitigation UC" }, { title: "Status", orderable: false }
+      { title: "Threat ID", key: "id", render: function (o) { return o.id || "--"; } },
+      { title: "Title", key: "title", render: function (o) { return (o.title || "--").slice(0, 60); } },
+      { title: "STRIDE", key: "stride", render: function (o) { return o.stride || "--"; } },
+      { title: "Impact", key: "impact", render: function (o) { return o.impact || "--"; } },
+      { title: "Mitigation UC", key: "mitigation_uc", render: function (o) { return o.mitigation_uc || "--"; } },
+      { title: "Status", key: "ambiguous", orderable: false, render: function (o) { return o.ambiguous ? "<span class=\"chip\" style=\"background:var(--bad); color:#fff;\">AMBIGUOUS</span>" : "covered"; } }
     ];
-    ensureDT("folio-p3-threat-ambiguity-table", cols, tableRows, {
+    ensureDT("folio-p3-threat-ambiguity-table", cols, rows, {
       columnDefs: [{ targets: 5, orderable: false }]
     });
     var ambCount = rows.filter(function (r) { return r.ambiguous; }).length;
@@ -184506,25 +184698,15 @@ const MASTER_DATA = {
     setText("#folio02-kpis [data-f2='cit']", cit.count !== undefined ? cit.count : "--");
     setText("#folio02-kpis [data-f2='cit_note']", "citations indexed");
 
-    var ambRows = arr(p1st.ambiguity_rows).map(function (r) {
-      return [
-        r.id || "--",
-        r.regulation || "--",
-        r.provision || "--",
-        r.ambiguity || "--",
-        r.severity || "--",
-        r.status || "--",
-        r.citation || "--"
-      ];
-    });
+    var ambRows = arr(p1st.ambiguity_rows);
     var ambCols = [
-      { title: "ID" },
-      { title: "Regulation" },
-      { title: "Provision" },
-      { title: "Ambiguity" },
-      { title: "Severity" },
-      { title: "Status" },
-      { title: "Citation" }
+      { title: "ID", key: "id" },
+      { title: "Regulation", key: "regulation" },
+      { title: "Provision", key: "provision" },
+      { title: "Ambiguity", key: "ambiguity" },
+      { title: "Severity", key: "severity" },
+      { title: "Status", key: "status" },
+      { title: "Citation", key: "citation" }
     ];
     ensureDT("folio02-amb-table", ambCols, ambRows);
     // severity + status filters
@@ -184629,24 +184811,19 @@ const MASTER_DATA = {
     // Rules table
     var rules = arr(p2.rules_sample);
     var rulesAll = arr(p2.rules_table);
-    var rulesRows = (rulesAll.length ? rulesAll : rules).map(function (r) {
-      return [
-        r.id || "--",
-        r.sub_domain || "--",
-        r.title || "--",
-        r.realization_class || "--",
-        r._heuristic ? "heuristic" : (p2.rc_source || "yaml"),
-        r.ni !== undefined ? r.ni : "--"
-      ];
-    });
+    var rulesRows = rulesAll.length ? rulesAll : rules;
     var rulesCols = [
-      { title: "ID" }, { title: "Sub-domain" }, { title: "Title" },
-      { title: "Realization" }, { title: "Source" }, { title: "NI" }
+      { title: "ID", key: "id" },
+      { title: "Sub-domain", key: "sub_domain" },
+      { title: "Title", key: "title" },
+      { title: "Realization", key: "realization_class" },
+      { title: "Source", key: "source", render: function (o) { return o._heuristic ? "heuristic" : (p2.rc_source || "yaml"); } },
+      { title: "NI", key: "ni", render: function (o) { return o.ni !== undefined ? o.ni : "—"; } }
     ];
     ensureDT("folio05-rules-table", rulesCols, rulesRows);
 
     // Sub-domain filter population
-    populateSelect("folio05-filter-sd", uniq(rulesRows.map(function (r) { return r[1]; })));
+    populateSelect("folio05-filter-sd", uniq(rulesRows.map(function (r) { return r.sub_domain || ""; })));
     bindSelectFilter("folio05-filter-sd",   1, "folio05-rules-table");
     bindSelectFilter("folio05-filter-rc",   3, "folio05-rules-table");
     bindSelectFilter("folio05-filter-src",  4, "folio05-rules-table");
@@ -184667,18 +184844,13 @@ const MASTER_DATA = {
     setText("#folio06-kpis [data-f6='map']", mappings.length || "--");
     setText("#folio06-kpis [data-f6='map_note']", "obligation→objective mappings");
 
-    var obRows = mappings.map(function (m) {
-      return [
-        m.control || "--",
-        m.framework || "--",
-        m.anchor || "--",
-        m.id || "--"
-      ];
-    });
+    var obRows = mappings;
     ensureDT("folio06-obj-table",
       [
-        { title: "Control" }, { title: "Framework" }, { title: "Anchor" },
-        { title: "ID" }
+        { title: "Control", key: "control" },
+        { title: "Framework", key: "framework" },
+        { title: "Anchor", key: "anchor" },
+        { title: "ID", key: "id" }
       ],
       obRows
     );
@@ -184770,26 +184942,19 @@ const MASTER_DATA = {
     setText("#folio09-kpis [data-f9='drill']", p3.drill_available ? "yes" : "—");
     setText("#folio09-kpis [data-f9='drill_note']", "drill-down enabled");
 
-    var ucRows = ucs.map(function (u) {
-      // Normalise package display to the short code (PKG-A) so the filter
-      // dropdown (also populated with short codes) can match exactly. The
-      // full title (e.g. "PKG-A — Onboarding & KYC") is still discoverable
-      // via the §4 catalog structure in the source documents.
-      var pkg = (u.package || "");
+    var ucRows = ucs;
+    function _ucPkgShort(u) {
+      var pkg = (u && u.package) || "";
       var pkgMatch = pkg.match(/^PKG-[A-Za-z0-9-]+/);
-      var pkgShort = pkgMatch ? pkgMatch[0] : "—";
-      return [
-        u.id || "--",
-        u.title || "--",
-        pkgShort,
-        u.lane || "UC",
-        u.drill ? "<span class=\"chip\">↗ drill</span>" : "—"
-      ];
-    });
+      return pkgMatch ? pkgMatch[0] : "—";
+    }
     ensureDT("folio09-uc-table",
       [
-        { title: "ID" }, { title: "Title" }, { title: "Package" },
-        { title: "Lane" }, { title: "Drill", orderable: false }
+        { title: "ID", key: "id" },
+        { title: "Title", key: "title" },
+        { title: "Package", key: "package", render: function (o) { return _ucPkgShort(o); } },
+        { title: "Lane", key: "lane", render: function (o) { return o.lane || "UC"; } },
+        { title: "Drill", key: "drill", orderable: false, render: function (o) { return o.drill ? "<span class=\"chip\">↗ drill</span>" : "—"; } }
       ],
       ucRows,
       { pageLength: 100, columnDefs: [{ targets: 4, orderable: false }] }
@@ -184815,26 +184980,21 @@ const MASTER_DATA = {
     setText("#folio10-kpis [data-f10='mat']", avgMat);
     setText("#folio10-kpis [data-f10='mat_note']", "average maturity");
 
-    var cardRows = allCards.map(function (cr) {
-      return [
-        cr.id || "--",
-        cr.title || "--",
-        cr.owner || "--",
-        cr.maturity !== undefined ? cr.maturity : "--",
-        cr.realises ? cr.realises.join(", ") : "--"
-      ];
-    });
+    var cardRows = allCards;
     ensureDT("folio10-proc-cap-table",
       [
-        { title: "ID" }, { title: "Title" }, { title: "Owner" },
-        { title: "Maturity" }, { title: "Realises" }
+        { title: "ID", key: "id" },
+        { title: "Title", key: "title" },
+        { title: "Owner", key: "owner" },
+        { title: "Maturity", key: "maturity", render: function (o) { return o.maturity !== undefined ? o.maturity : "--"; } },
+        { title: "Realises", key: "realises", render: function (o) { return (o.realises && o.realises.length) ? o.realises.join(", ") : "--"; } }
       ],
       cardRows,
       { pageLength: 100 }
     );
     populateSelect("folio10-filter-owner", owners);
-    bindSelectFilter("folio10-filter-lane",  null, "folio10-proc-cap-table", function (row) { return row[0] && row[0].indexOf("PROC-") === 0 ? "PROC" : (row[0] && row[0].indexOf("CAP-") === 0 ? "CAP" : ""); });
-    bindSelectFilter("folio10-filter-owner", null, "folio10-proc-cap-table", function (row) { return row[2] || ""; });
+    bindSelectFilter("folio10-filter-lane",  null, "folio10-proc-cap-table", function (row) { return row && row.id && row.id.indexOf("PROC-") === 0 ? "PROC" : (row && row.id && row.id.indexOf("CAP-") === 0 ? "CAP" : ""); });
+    bindSelectFilter("folio10-filter-owner", null, "folio10-proc-cap-table", function (row) { return (row && row.owner) || ""; });
     setText("#folio10-rows", cardRows.length);
 
     // Folio 11 — Requirements & Allocation
@@ -184853,27 +185013,26 @@ const MASTER_DATA = {
 
     var reqRows = [];
     frRows.forEach(function (r) {
-      reqRows.push([
-        "FR · " + (r.id || "--"),
-        r.title || "--",
-        r.source || "--",
-        r.priority || "--",
-        r.status || "—"
-      ]);
+      reqRows.push({
+        _kind: "FR",
+        _label: "FR · " + (r.id || "--"),
+        id: r.id, title: r.title, source: r.source, priority: r.priority, status: r.status
+      });
     });
     nfrRows.forEach(function (r) {
-      reqRows.push([
-        "NFR · " + (r.id || "--"),
-        r.title || "--",
-        r.source || "--",
-        r.priority || "--",
-        r.status || "—"
-      ]);
+      reqRows.push({
+        _kind: "NFR",
+        _label: "NFR · " + (r.id || "--"),
+        id: r.id, title: r.title, source: r.source, priority: r.priority, status: r.status
+      });
     });
     ensureDT("folio11-req-table",
       [
-        { title: "REQ ID" }, { title: "Title" },
-        { title: "Source" }, { title: "Priority" }, { title: "Status" }
+        { title: "REQ ID", key: "_label" },
+        { title: "Title", key: "title" },
+        { title: "Source", key: "source" },
+        { title: "Priority", key: "priority" },
+        { title: "Status", key: "status", render: function (o) { return o.status || "—"; } }
       ],
       reqRows
     );
@@ -184893,21 +185052,16 @@ const MASTER_DATA = {
     setGateTile("#folio12-gates [data-f12='g4']", "#folio12-gates [data-f12='g4_meta']", { status: (gPass + gPlan + gFail) === gTot && gTot > 0 ? "OK" : "--", note: gTot + " gates tracked" });
 
     var threats = arr(p3.threat_table);
-    var threatRows = threats.map(function (th) {
-      return [
-        th.id || "--",
-        th.stride || "--",
-        th.threat || th.title || "--",
-        th.mitigation_gate || "--",
-        th.likelihood || "--",
-        th.impact || "--",
-        th.mitigation_uc || "—"
-      ];
-    });
+    var threatRows = threats;
     ensureDT("folio12-threat-table",
       [
-        { title: "Threat ID" }, { title: "STRIDE" }, { title: "Title" },
-        { title: "Mitigation Gate" }, { title: "Likelihood" }, { title: "Impact" }, { title: "Mitigation UC" }
+        { title: "Threat ID", key: "id" },
+        { title: "STRIDE", key: "stride" },
+        { title: "Title", key: "threat", render: function (o) { return o.threat || o.title || "--"; } },
+        { title: "Mitigation Gate", key: "mitigation_gate" },
+        { title: "Likelihood", key: "likelihood" },
+        { title: "Impact", key: "impact" },
+        { title: "Mitigation UC", key: "mitigation_uc", render: function (o) { return o.mitigation_uc || "—"; } }
       ],
       threatRows
     );
@@ -185191,6 +185345,9 @@ const MASTER_DATA = {
     activatePhase: activatePhase,
     state: state
   };
+
+  // ----- R5: wire drill-down modal once --------------------------------
+  bindDetailModal();
 
   // ----- Boot -----------------------------------------------------------
   function detectLibs() {
