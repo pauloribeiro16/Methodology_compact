@@ -1,7 +1,7 @@
 # Central Change Log — AEGIS Methodology Implementation
 
 **Last Updated:** 2026-09-05
-**Version:** 7.6 (RENUMBER — flat 1..N lane ids, zero legacy: C3 UC 33→01..93→33 + PROC-41..52→39..50; C1 U.C.x.y.z flattened → UC-01..40; C2 → UC-01..36; rubric v1.10 §5B rule 7; registry RENUMBER_REGISTRY_2026-09-05; MERMAID RENDER FIX — all diagrams render-validated: 26 UC diagrams → PlantUML+SVG hybrid, rubric v1.9, mermaid check 192/192; UC SEPARATION — lane-pure use-case catalogs in 3 cases (rubric v1.8 §5B rule 6): C3 Doc22 v3.0 33 UCs + PKG-DS + PROC-39/40→UC-66/92; C1 Doc20 v3.2 23+17 UCs; C2 Doc21 v1.5 36 UCs; annex A UC-ovals-only 11/6/8 + annex B 23/21/33; audit 100/100/100; 6 borderline → P7; LANE CARDS — PROC/CAP card schemas + 12-card pilot; LANE NAMING — UC reserved to TECHNOLOGY; 102 UCs re-laned PROC/CAP, ~1.855 refs; OWASP threat×flow + Volere FR pilot; ALT-ANCHOR — UNMAPPED_* retired in 3 cases; 5 frozen referentials + generator + 3 gates v0.4 PASS; REALIZATION-CLASS — Case_01 P2 realization_class tag wave documents-only; PORT-PARITY-2 — cross-case content parity: corr-013 C3 renumber, C3 P1 v1.6 layer 749n/2054l, P2 waves C2+C3, P3 rich v0 C2+C3, dashboards 16/16 smoke)
+**Version:** 7.7 (MASTER DASHBOARD — single-file `AEGIS_Master_Dashboard.html` with 3-case × 3-phase + crosscase selector and 13 folios; data layer `scripts/build_master_dashboard_data.py` → `data/aegis_master_data.json` (103 UCs / 98 PROC / 23 CAP / 187 rules / 186 FR / 158 NFR); realization_class explicit yaml (C1) + documented heuristic (C2/C3); smoke 17/17 dashboards + 10 Playwright vistas match expected counts; screenshots in tests/screenshots/master_*.png; RENUMBER — flat 1..N lane ids, zero legacy: C3 UC 33→01..93→33 + PROC-41..52→39..50; C1 U.C.x.y.z flattened → UC-01..40; C2 → UC-01..36; rubric v1.10 §5B rule 7; registry RENUMBER_REGISTRY_2026-09-05; MERMAID RENDER FIX — all diagrams render-validated: 26 UC diagrams → PlantUML+SVG hybrid, rubric v1.9, mermaid check 192/192; UC SEPARATION — lane-pure use-case catalogs in 3 cases (rubric v1.8 §5B rule 6): C3 Doc22 v3.0 33 UCs + PKG-DS + PROC-39/40→UC-66/92; C1 Doc20 v3.2 23+17 UCs; C2 Doc21 v1.5 36 UCs; annex A UC-ovals-only 11/6/8 + annex B 23/21/33; audit 100/100/100; 6 borderline → P7; LANE CARDS — PROC/CAP card schemas + 12-card pilot; LANE NAMING — UC reserved to TECHNOLOGY; 102 UCs re-laned PROC/CAP, ~1.855 refs; OWASP threat×flow + Volere FR pilot; ALT-ANCHOR — UNMAPPED_* retired in 3 cases; 5 frozen referentials + generator + 3 gates v0.4 PASS; REALIZATION-CLASS — Case_01 P2 realization_class tag wave documents-only; PORT-PARITY-2 — cross-case content parity: corr-013 C3 renumber, C3 P1 v1.6 layer 749n/2054l, P2 waves C2+C3, P3 rich v0 C2+C3, dashboards 16/16 smoke)
 **Scope:** All Cases
 
 ---
@@ -26,6 +26,18 @@
 | Converted | 26 use-case diagrams (C1 11 · C2 6 + Doc21 §5.1 · C3 8) — fidelity verified (actors/ovals/edges 1:1 vs original Mermaid); visual spot-checks confirm stick figures, ovals, package boundary |
 | Repaired | 40 `;` → `,` in sequence messages (C2/C3 annex B); participant token `OFF` → `OFFR` (16 occurrences, C2); fence-join regression from the first fix pass repaired |
 | Verification | Mermaid render check **192/192 OK · 0 FAIL**; dashboards smoke 16/16; traceability audit 100/100/100; commit f3c62b9; report `02_CASES/MERMAID_RENDER_FIX_2026-09-05_REPORT.md` |
+
+## 2.0 2026-09-07 — MASTER DASHBOARD (single-file, 3 cases × 3 phases + crosscase)
+
+| Item | Value |
+|------|-------|
+| Shell | `00_METHODOLOGY/00_VISUALISATIONS/UNIFIED/AEGIS_Master_Dashboard.html` — standalone HTML, opens via file://, CDN (Chart.js 4 + jQuery 3 + DataTables 1.13 + Google Fonts), 13 folios across P1/P2/P3 + Cross-case folio |
+| Data layer | `scripts/build_master_dashboard_data.py` (stdlib-only, --dry-run / --inject flags) → `00_METHODOLOGY/00_VISUALISATIONS/data/aegis_master_data.json` (idempotent, schema documented in script docstring) |
+| Schema | meta + cases.{Case_01/02/03}.{profile, phases.P1/P2/P3, audit} + crosscase totals; flat aliases under P3 for the shell (`use_cases`, `proc_cards`, `cap_cards`, `requirements`, `threats`) |
+| Realization Class | C1 explicit yaml (17 TECH / 23 PROCESS / 6 CAP); C2 + C3 deterministic heuristic anchored to rubric v1.7 §8 (campaign commits 762c095/599a8ba/113ba05) with `rc_source = "yaml"\|"heuristic"\|"mixed"` provenance per case — `phase2_ontology.yaml` application remains on the P7 queue (ledger §2) |
+| Counts | C1: 36 UCs + 21 PROC + 1 CAP + 46 rules + 30 FR + 46 NFR · C2: 34 + 27 + 12 + 63 + 84 + 56 · C3: 33 + 50 + 10 + 78 + 72 + 56 |
+| Verification | 17/17 dashboards smoke PASS; 10 Playwright vistas (3 cases × 3 phases + 1 crosscase) — UC table rows match expected 36/34/33, PROC/CAP 22/39/60; 0 page errors; KPIs + DataTables populated; 10 screenshots in `tests/screenshots/master_*.png` |
+| Commits | pending |
 
 ## 1.6 2026-09-05 — UC SEPARATION (lane-pure use-case catalogs)
 

@@ -1,0 +1,5173 @@
+{
+ "meta": {
+  "generated_at": "2026-09-07T10:47:32",
+  "git_commit": "1ea38e4",
+  "warnings": []
+ },
+ "cases": {
+  "Case_01_TinyTask_SaaS": {
+   "profile": {
+    "tier": "Low",
+    "regulations": [
+     "GDPR",
+     "CRA"
+    ]
+   },
+   "phases": {
+    "P1": {
+     "status": {
+      "status": "complete",
+      "gate": "P1_PASS",
+      "completed_at": "2026-04-01"
+     },
+     "graph": {
+      "nodes": 456,
+      "links": 1412
+     },
+     "evidence_items": 0,
+     "evidence_capability_scale": 0,
+     "ontology_file": "02_CASES/Case_01_TinyTask_SaaS/00_COMMON/phase1_ontology.yaml"
+    },
+    "P2": {
+     "rules_total": 46,
+     "realization_class": {
+      "TECHNOLOGY": 17,
+      "PROCESS": 23,
+      "CAPABILITY": 6,
+      "other": 0
+     },
+     "rc_source": "yaml",
+     "rc_explicit": 46,
+     "rc_heuristic": 0,
+     "rules_sample": [
+      {
+       "id": "CR-D-01.1-001",
+       "realization_class": "TECHNOLOGY",
+       "_heuristic": false,
+       "sub_domain": "D-01.1"
+      },
+      {
+       "id": "CR-D-01.2-001",
+       "realization_class": "TECHNOLOGY",
+       "_heuristic": false,
+       "sub_domain": "D-01.2"
+      },
+      {
+       "id": "CR-D-01.3-001",
+       "realization_class": "TECHNOLOGY",
+       "_heuristic": false,
+       "sub_domain": "D-01.3"
+      },
+      {
+       "id": "CR-D-01.4-001",
+       "realization_class": "TECHNOLOGY",
+       "_heuristic": false,
+       "sub_domain": "D-01.4"
+      },
+      {
+       "id": "CR-D-02.1-001",
+       "realization_class": "PROCESS",
+       "_heuristic": false,
+       "sub_domain": "D-02.1"
+      }
+     ],
+     "rules_file": "02_CASES/Case_01_TinyTask_SaaS/02_PHASE2_RULES_RICH/control_set.yaml",
+     "tensions": [
+      "T-001",
+      "T-002",
+      "T-003",
+      "T-004"
+     ]
+    },
+    "P3": {
+     "catalog": {
+      "packages": [
+       "PKG-7",
+       "PKG-8",
+       "PKG-9",
+       "PKG-10",
+       "PKG-11",
+       "PKG-DP",
+       "PKG-SEC",
+       "PKG-IAM",
+       "PKG-DEV",
+       "PKG-GOV"
+      ],
+      "ucs": [
+       {
+        "id": "UC-14",
+        "title": "Sign Up & Account Creation",
+        "package": "PKG-7 Account & Access",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-15",
+        "title": "Login (email/password + optional SSO)",
+        "package": "PKG-7 Account & Access",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-16",
+        "title": "Password Reset & Recovery",
+        "package": "PKG-7 Account & Access",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-17",
+        "title": "Session Management (timeout, logout-everywhere)",
+        "package": "PKG-7 Account & Access",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-18",
+        "title": "Invite Member & Assign Role",
+        "package": "PKG-7 Account & Access",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-19",
+        "title": "Create Workspace",
+        "package": "PKG-8 Team & Task Core",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-20",
+        "title": "Create Project",
+        "package": "PKG-8 Team & Task Core",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-21",
+        "title": "Create Task",
+        "package": "PKG-8 Team & Task Core",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-22",
+        "title": "Assign Task",
+        "package": "PKG-8 Team & Task Core",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-23",
+        "title": "Change Task Status & Due Date",
+        "package": "PKG-8 Team & Task Core",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-24",
+        "title": "View Project Board (Kanban)",
+        "package": "PKG-8 Team & Task Core",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-25",
+        "title": "Comment on Task",
+        "package": "PKG-9 Collaboration",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-26",
+        "title": "@Mention & In-App Notification",
+        "package": "PKG-9 Collaboration",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-27",
+        "title": "Attach File to Task",
+        "package": "PKG-9 Collaboration",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-28",
+        "title": "Search & Filter Tasks",
+        "package": "PKG-9 Collaboration",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-29",
+        "title": "Activity Feed (recent events)",
+        "package": "PKG-9 Collaboration",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-30",
+        "title": "Mobile Sync (offline-first)",
+        "package": "PKG-10 Platform",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-31",
+        "title": "Stripe Checkout (Upgrade Plan)",
+        "package": "PKG-10 Platform",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-32",
+        "title": "Workspace Admin Console",
+        "package": "PKG-10 Platform",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-33",
+        "title": "Enterprise SSO",
+        "package": "PKG-10 Platform",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-34",
+        "title": "View My Account (data held)",
+        "package": "PKG-11 Self-Service",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-35",
+        "title": "Export My Data (GDPR portability)",
+        "package": "PKG-11 Self-Service",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-36",
+        "title": "Delete My Account / Workspace",
+        "package": "PKG-11 Self-Service",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-01",
+        "title": "D-05.3",
+        "package": "PKG-DP",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-02",
+        "title": "D-05.1",
+        "package": "PKG-DP",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-03",
+        "title": "D-05.2",
+        "package": "PKG-DP",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-04",
+        "title": "D-05.4",
+        "package": "PKG-DP",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-05",
+        "title": "D-02.2",
+        "package": "PKG-SEC",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-06",
+        "title": "D-04.1",
+        "package": "PKG-SEC",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-07",
+        "title": "D-04.4",
+        "package": "PKG-SEC",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-08",
+        "title": "D-03.1",
+        "package": "PKG-IAM",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-09",
+        "title": "D-03.2",
+        "package": "PKG-IAM",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-10",
+        "title": "D-10.2",
+        "package": "PKG-IAM",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-11",
+        "title": "D-07.2",
+        "package": "PKG-DEV",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-12",
+        "title": "D-02.2",
+        "package": "PKG-DEV",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-13",
+        "title": "D-06.2",
+        "package": "PKG-GOV",
+        "lane": "UC"
+       }
+      ],
+      "frontmatter_version": "3.4"
+     },
+     "lane_cards": {
+      "proc": [
+       {
+        "id": "PROC-01",
+        "title": "Data Subject Access Request (DSAR)",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-05",
+        "title": "Incident Notification (24h ENISA, 72h GDPR)",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-09",
+        "title": "Pre-Launch Risk Assessment",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-02",
+        "title": "Data Subject Rectification",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-03",
+        "title": "Vulnerability-Free Release",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-04",
+        "title": "Coordinated Vulnerability Disclosure",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-06",
+        "title": "Processing & Breach Records",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-07",
+        "title": "Control Effectiveness Testing",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-08",
+        "title": "Security by Design (SSDLC)",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-10",
+        "title": "Annual Policy Review",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-11",
+        "title": "Technical Documentation Maintenance",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-12",
+        "title": "DPIA Pre-Launch",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-13",
+        "title": "RoPA Maintenance",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-14",
+        "title": "Processor Due Diligence",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-15",
+        "title": "Annual Awareness Training",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-16",
+        "title": "Role-Specific Training",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-17",
+        "title": "Phishing Simulation",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-18",
+        "title": "DoS Resilience",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-19",
+        "title": "Authorisation / Least Privilege",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-20",
+        "title": "Secure System Defaults",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-21",
+        "title": "Fail-Safe Design",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       }
+      ],
+      "cap": [
+       {
+        "id": "CAP-01",
+        "title": "DPAs Binding Processors",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       }
+      ]
+     },
+     "annexes": {
+      "use_case_diagrams_plantuml": 11,
+      "svg_files": 11,
+      "sequence_diagrams": 23
+     },
+     "fr_nfr": {
+      "fr_ids": 30,
+      "nfr_ids": 46
+     },
+     "risks": {
+      "muc_ids": [
+       "MUC-01",
+       "MUC-02",
+       "MUC-03",
+       "MUC-04",
+       "MUC-05",
+       "MUC-06",
+       "MUC-07",
+       "MUC-08"
+      ],
+      "muc_count": 8
+     },
+     "gates": {
+      "verify_rich": {
+       "summary": "exit 0",
+       "pass": true
+      }
+     },
+     "use_cases": [
+      {
+       "id": "UC-14",
+       "title": "Sign Up & Account Creation",
+       "package": "PKG-7 Account & Access",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-15",
+       "title": "Login (email/password + optional SSO)",
+       "package": "PKG-7 Account & Access",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-16",
+       "title": "Password Reset & Recovery",
+       "package": "PKG-7 Account & Access",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-17",
+       "title": "Session Management (timeout, logout-everywhere)",
+       "package": "PKG-7 Account & Access",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-18",
+       "title": "Invite Member & Assign Role",
+       "package": "PKG-7 Account & Access",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-19",
+       "title": "Create Workspace",
+       "package": "PKG-8 Team & Task Core",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-20",
+       "title": "Create Project",
+       "package": "PKG-8 Team & Task Core",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-21",
+       "title": "Create Task",
+       "package": "PKG-8 Team & Task Core",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-22",
+       "title": "Assign Task",
+       "package": "PKG-8 Team & Task Core",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-23",
+       "title": "Change Task Status & Due Date",
+       "package": "PKG-8 Team & Task Core",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-24",
+       "title": "View Project Board (Kanban)",
+       "package": "PKG-8 Team & Task Core",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-25",
+       "title": "Comment on Task",
+       "package": "PKG-9 Collaboration",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-26",
+       "title": "@Mention & In-App Notification",
+       "package": "PKG-9 Collaboration",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-27",
+       "title": "Attach File to Task",
+       "package": "PKG-9 Collaboration",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-28",
+       "title": "Search & Filter Tasks",
+       "package": "PKG-9 Collaboration",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-29",
+       "title": "Activity Feed (recent events)",
+       "package": "PKG-9 Collaboration",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-30",
+       "title": "Mobile Sync (offline-first)",
+       "package": "PKG-10 Platform",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-31",
+       "title": "Stripe Checkout (Upgrade Plan)",
+       "package": "PKG-10 Platform",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-32",
+       "title": "Workspace Admin Console",
+       "package": "PKG-10 Platform",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-33",
+       "title": "Enterprise SSO",
+       "package": "PKG-10 Platform",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-34",
+       "title": "View My Account (data held)",
+       "package": "PKG-11 Self-Service",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-35",
+       "title": "Export My Data (GDPR portability)",
+       "package": "PKG-11 Self-Service",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-36",
+       "title": "Delete My Account / Workspace",
+       "package": "PKG-11 Self-Service",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-01",
+       "title": "D-05.3",
+       "package": "PKG-DP",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-02",
+       "title": "D-05.1",
+       "package": "PKG-DP",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-03",
+       "title": "D-05.2",
+       "package": "PKG-DP",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-04",
+       "title": "D-05.4",
+       "package": "PKG-DP",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-05",
+       "title": "D-02.2",
+       "package": "PKG-SEC",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-06",
+       "title": "D-04.1",
+       "package": "PKG-SEC",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-07",
+       "title": "D-04.4",
+       "package": "PKG-SEC",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-08",
+       "title": "D-03.1",
+       "package": "PKG-IAM",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-09",
+       "title": "D-03.2",
+       "package": "PKG-IAM",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-10",
+       "title": "D-10.2",
+       "package": "PKG-IAM",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-11",
+       "title": "D-07.2",
+       "package": "PKG-DEV",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-12",
+       "title": "D-02.2",
+       "package": "PKG-DEV",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-13",
+       "title": "D-06.2",
+       "package": "PKG-GOV",
+       "lane": "UC"
+      }
+     ],
+     "proc_cards": [
+      {
+       "id": "PROC-01",
+       "title": "Data Subject Access Request (DSAR)",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-05",
+       "title": "Incident Notification (24h ENISA, 72h GDPR)",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-09",
+       "title": "Pre-Launch Risk Assessment",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-02",
+       "title": "Data Subject Rectification",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-03",
+       "title": "Vulnerability-Free Release",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-04",
+       "title": "Coordinated Vulnerability Disclosure",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-06",
+       "title": "Processing & Breach Records",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-07",
+       "title": "Control Effectiveness Testing",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-08",
+       "title": "Security by Design (SSDLC)",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-10",
+       "title": "Annual Policy Review",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-11",
+       "title": "Technical Documentation Maintenance",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-12",
+       "title": "DPIA Pre-Launch",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-13",
+       "title": "RoPA Maintenance",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-14",
+       "title": "Processor Due Diligence",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-15",
+       "title": "Annual Awareness Training",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-16",
+       "title": "Role-Specific Training",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-17",
+       "title": "Phishing Simulation",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-18",
+       "title": "DoS Resilience",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-19",
+       "title": "Authorisation / Least Privilege",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-20",
+       "title": "Secure System Defaults",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-21",
+       "title": "Fail-Safe Design",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      }
+     ],
+     "cap_cards": [
+      {
+       "id": "CAP-01",
+       "title": "DPAs Binding Processors",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      }
+     ],
+     "requirements": {
+      "fr_ids": 30,
+      "nfr_ids": 46
+     },
+     "threats": [
+      "MUC-01",
+      "MUC-02",
+      "MUC-03",
+      "MUC-04",
+      "MUC-05",
+      "MUC-06",
+      "MUC-07",
+      "MUC-08"
+     ],
+     "drill_available": false
+    }
+   },
+   "audit": {
+    "obj_to_ctrl": {
+     "covered": 104,
+     "total": 104,
+     "pct": 100.0
+    },
+    "ctrl_to_obj": {
+     "covered": 46,
+     "total": 46,
+     "pct": 100.0
+    },
+    "uc_to_obj": {
+     "covered": 101,
+     "total": 101,
+     "pct": 100.0
+    }
+   }
+  },
+  "Case_02_SecureBorder_Solutions": {
+   "profile": {
+    "tier": "High",
+    "regulations": [
+     "GDPR",
+     "CRA",
+     "NIS 2",
+     "AI Act"
+    ]
+   },
+   "phases": {
+    "P1": {
+     "status": {
+      "status": "complete",
+      "gate": "P1_PASS",
+      "completed_at": "2026-04-01"
+     },
+     "graph": {
+      "nodes": 521,
+      "links": 1205
+     },
+     "evidence_items": 0,
+     "evidence_capability_scale": 0,
+     "ontology_file": "02_CASES/Case_02_SecureBorder_Solutions/00_COMMON/phase1_ontology.yaml"
+    },
+    "P2": {
+     "rules_total": 63,
+     "realization_class": {
+      "TECHNOLOGY": 9,
+      "PROCESS": 44,
+      "CAPABILITY": 10,
+      "other": 0
+     },
+     "rc_source": "heuristic",
+     "rc_explicit": 0,
+     "rc_heuristic": 63,
+     "rules_sample": [
+      {
+       "id": "CR-D-01.1-001",
+       "realization_class": "TECHNOLOGY",
+       "_heuristic": true,
+       "sub_domain": "D-01.1"
+      },
+      {
+       "id": "CR-D-01.2-001",
+       "realization_class": "TECHNOLOGY",
+       "_heuristic": true,
+       "sub_domain": "D-01.2"
+      },
+      {
+       "id": "CR-D-01.3-001",
+       "realization_class": "TECHNOLOGY",
+       "_heuristic": true,
+       "sub_domain": "D-01.3"
+      },
+      {
+       "id": "CR-D-01.4-001",
+       "realization_class": "PROCESS",
+       "_heuristic": true,
+       "sub_domain": "D-01.4"
+      },
+      {
+       "id": "CR-D-02.1-001",
+       "realization_class": "PROCESS",
+       "_heuristic": true,
+       "sub_domain": "D-02.1"
+      }
+     ],
+     "rules_file": "02_CASES/Case_02_SecureBorder_Solutions/02_PHASE2_RULES_RICH/control_set.yaml",
+     "tensions": [
+      "T-001",
+      "T-002",
+      "T-003",
+      "T-004",
+      "T-005",
+      "T-006",
+      "T-007",
+      "T-008",
+      "T-009"
+     ]
+    },
+    "P3": {
+     "catalog": {
+      "packages": [
+       "PKG-8",
+       "PKG-9",
+       "PKG-10",
+       "PKG-11",
+       "PKG-12"
+      ],
+      "ucs": [
+       {
+        "id": "UC-16",
+        "title": "Scan Travel Document (MRZ + NFC chip)",
+        "package": "PKG-8 — Traveller eGate Journey",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-17",
+        "title": "Capture Facial Biometric Sample",
+        "package": "PKG-8 — Traveller eGate Journey",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-18",
+        "title": "Liveness Detection (Presentation Attack Detection)",
+        "package": "PKG-8 — Traveller eGate Journey",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-19",
+        "title": "Face Match 1:1 Against Chip Portrait",
+        "package": "PKG-8 — Traveller eGate Journey",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-20",
+        "title": "Gate Decision & Release",
+        "package": "PKG-8 — Traveller eGate Journey",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-21",
+        "title": "Referral to Operator Desk",
+        "package": "PKG-8 — Traveller eGate Journey",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-22",
+        "title": "Traveller Privacy Notice & Consent Capture",
+        "package": "PKG-8 — Traveller eGate Journey",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-23",
+        "title": "Operator Console Session (SSO/FIDO2, Fail-Closed)",
+        "package": "PKG-9 — Operator Referral Desk",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-24",
+        "title": "Referral Queue Handling & Triage",
+        "package": "PKG-9 — Operator Referral Desk",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-25",
+        "title": "Manual Identity Verification & Override (Reason Codes)",
+        "package": "PKG-9 — Operator Referral Desk",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-26",
+        "title": "Incident Flag & Gate Lock",
+        "package": "PKG-9 — Operator Referral Desk",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-27",
+        "title": "Fleet Health Monitoring",
+        "package": "PKG-10 — Kiosk Fleet Operations",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-28",
+        "title": "Signed OTA Firmware Update (Cosign, Staged)",
+        "package": "PKG-10 — Kiosk Fleet Operations",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-29",
+        "title": "Tamper Alert Response",
+        "package": "PKG-10 — Kiosk Fleet Operations",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-30",
+        "title": "Signed Model Rollout to Fleet (Staged)",
+        "package": "PKG-11 — AI Model Lifecycle",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-31",
+        "title": "Model Rollback",
+        "package": "PKG-11 — AI Model Lifecycle",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-32",
+        "title": "Kiosk Admin Configuration (TPM-Bound, Dual Control)",
+        "package": "PKG-12 — Administration & Reporting",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-33",
+        "title": "Audit Export for Authorities (WORM STORE-04)",
+        "package": "PKG-12 — Administration & Reporting",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-34",
+        "title": "SLA & Fleet Status Dashboard",
+        "package": "PKG-12 — Administration & Reporting",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-01",
+        "title": "Right to Erasure (Cryptographic Sharding)",
+        "package": "PKG-12 — Administration & Reporting",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-02",
+        "title": "Vulnerability Scanning & Management",
+        "package": "PKG-12 — Administration & Reporting",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-03",
+        "title": "Patch Deployment (Signed OTA)",
+        "package": "PKG-12 — Administration & Reporting",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-04",
+        "title": "Multi-Factor Authentication",
+        "package": "PKG-12 — Administration & Reporting",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-05",
+        "title": "Biometric Enrollment",
+        "package": "PKG-12 — Administration & Reporting",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-06",
+        "title": "Least Privilege Access Enforcement",
+        "package": "PKG-12 — Administration & Reporting",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-07",
+        "title": "Secure Default Configuration",
+        "package": "PKG-12 — Administration & Reporting",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-08",
+        "title": "Human-in-the-Loop Override",
+        "package": "PKG-12 — Administration & Reporting",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-09",
+        "title": "Dependency Scanning & SBOM",
+        "package": "PKG-12 — Administration & Reporting",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-10",
+        "title": "CI/CD Security Gate",
+        "package": "PKG-12 — Administration & Reporting",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-11",
+        "title": "AI Model Versioning & Rollback",
+        "package": "PKG-12 — Administration & Reporting",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-12",
+        "title": "Third-Party Boundary Management",
+        "package": "PKG-12 — Administration & Reporting",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-13",
+        "title": "AI Accuracy Monitoring & Drift Detection",
+        "package": "PKG-12 — Administration & Reporting",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-14",
+        "title": "AI Explainability Reporting",
+        "package": "PKG-12 — Administration & Reporting",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-15",
+        "title": "AI Training Data Management",
+        "package": "PKG-12 — Administration & Reporting",
+        "lane": "UC"
+       }
+      ],
+      "frontmatter_version": "1.7"
+     },
+     "lane_cards": {
+      "proc": [
+       {
+        "id": "PROC-05",
+        "title": "Incident Detection & Triage",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-14",
+        "title": "Unified Impact Assessment (DPIA + FRIA)",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-01",
+        "title": "Data Subject Access Request (DSAR)",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-02",
+        "title": "Data Portability Export",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-03",
+        "title": "Biometric Breach Notification",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-04",
+        "title": "Data Minimization Review",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-06",
+        "title": "Incident Response & Containment",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-07",
+        "title": "Regulatory Notification (Unified 24h/72h)",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-08",
+        "title": "Disaster Recovery & Business Continuity",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-09",
+        "title": "Threat-Led Penetration Testing",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-10",
+        "title": "Border Officer Identity Lifecycle",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-11",
+        "title": "Access Rights Review",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-12",
+        "title": "Secure Code Review",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-13",
+        "title": "Change Management",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-15",
+        "title": "Risk Assessment & Management",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-16",
+        "title": "Compliance Audit & Reporting",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-17",
+        "title": "Vendor Risk Assessment",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-18",
+        "title": "Regulatory Notification & Cooperation",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-19",
+        "title": "AI Conformity Assessment",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-20",
+        "title": "AI Bias Testing & Fairness Assessment",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-21",
+        "title": "AI Incident Response",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-22",
+        "title": "AI Adversarial Testing",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-23",
+        "title": "Shift Handover & Referral Report",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-24",
+        "title": "Kiosk Provisioning & Enrolment (TPM-Bound Identity)",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-25",
+        "title": "Model Training & Release Packaging (EU-only, SYS-05)",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-26",
+        "title": "Drift/Bias Monitoring & Review",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-27",
+        "title": "User/Role Administration for Console",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       }
+      ],
+      "cap": [
+       {
+        "id": "CAP-02",
+        "title": "Continuous Security Monitoring",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "CAP-06",
+        "title": "Security Awareness Training",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "CAP-01",
+        "title": "RoPA Maintenance",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "CAP-03",
+        "title": "Privacy-by-Design Integration",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "CAP-04",
+        "title": "ISMS Maintenance",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "CAP-05",
+        "title": "Asset Inventory Management",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "CAP-07",
+        "title": "Role-Specific Security Training",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "CAP-08",
+        "title": "AI Competence Training",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "CAP-09",
+        "title": "Management Board Cybersecurity Training",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "CAP-10",
+        "title": "Phishing Simulation",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "CAP-11",
+        "title": "Offline/Failover Mode (Store-and-Forward Crossing Events)",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "CAP-12",
+        "title": "Watchlist Cache Sync (SYS-03 sFTP, HSM-Bound)",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       }
+      ]
+     },
+     "annexes": {
+      "use_case_diagrams_plantuml": 6,
+      "svg_files": 7,
+      "sequence_diagrams": 19
+     },
+     "fr_nfr": {
+      "fr_ids": 84,
+      "nfr_ids": 56
+     },
+     "risks": {
+      "muc_ids": [
+       "MUC-01",
+       "MUC-02",
+       "MUC-03",
+       "MUC-04",
+       "MUC-04-",
+       "MUC-05",
+       "MUC-06",
+       "MUC-07",
+       "MUC-07-",
+       "MUC-08",
+       "MUC-C2-01",
+       "MUC-C2-02",
+       "MUC-C2-03",
+       "MUC-C2-04",
+       "MUC-C2-05",
+       "MUC-C2-06"
+      ],
+      "muc_count": 16
+     },
+     "gates": {
+      "verify_rich": {
+       "summary": "8 checks, 0 FAIL, 8 PASS",
+       "pass": true
+      }
+     },
+     "use_cases": [
+      {
+       "id": "UC-16",
+       "title": "Scan Travel Document (MRZ + NFC chip)",
+       "package": "PKG-8 — Traveller eGate Journey",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-17",
+       "title": "Capture Facial Biometric Sample",
+       "package": "PKG-8 — Traveller eGate Journey",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-18",
+       "title": "Liveness Detection (Presentation Attack Detection)",
+       "package": "PKG-8 — Traveller eGate Journey",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-19",
+       "title": "Face Match 1:1 Against Chip Portrait",
+       "package": "PKG-8 — Traveller eGate Journey",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-20",
+       "title": "Gate Decision & Release",
+       "package": "PKG-8 — Traveller eGate Journey",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-21",
+       "title": "Referral to Operator Desk",
+       "package": "PKG-8 — Traveller eGate Journey",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-22",
+       "title": "Traveller Privacy Notice & Consent Capture",
+       "package": "PKG-8 — Traveller eGate Journey",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-23",
+       "title": "Operator Console Session (SSO/FIDO2, Fail-Closed)",
+       "package": "PKG-9 — Operator Referral Desk",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-24",
+       "title": "Referral Queue Handling & Triage",
+       "package": "PKG-9 — Operator Referral Desk",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-25",
+       "title": "Manual Identity Verification & Override (Reason Codes)",
+       "package": "PKG-9 — Operator Referral Desk",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-26",
+       "title": "Incident Flag & Gate Lock",
+       "package": "PKG-9 — Operator Referral Desk",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-27",
+       "title": "Fleet Health Monitoring",
+       "package": "PKG-10 — Kiosk Fleet Operations",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-28",
+       "title": "Signed OTA Firmware Update (Cosign, Staged)",
+       "package": "PKG-10 — Kiosk Fleet Operations",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-29",
+       "title": "Tamper Alert Response",
+       "package": "PKG-10 — Kiosk Fleet Operations",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-30",
+       "title": "Signed Model Rollout to Fleet (Staged)",
+       "package": "PKG-11 — AI Model Lifecycle",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-31",
+       "title": "Model Rollback",
+       "package": "PKG-11 — AI Model Lifecycle",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-32",
+       "title": "Kiosk Admin Configuration (TPM-Bound, Dual Control)",
+       "package": "PKG-12 — Administration & Reporting",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-33",
+       "title": "Audit Export for Authorities (WORM STORE-04)",
+       "package": "PKG-12 — Administration & Reporting",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-34",
+       "title": "SLA & Fleet Status Dashboard",
+       "package": "PKG-12 — Administration & Reporting",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-01",
+       "title": "Right to Erasure (Cryptographic Sharding)",
+       "package": "PKG-12 — Administration & Reporting",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-02",
+       "title": "Vulnerability Scanning & Management",
+       "package": "PKG-12 — Administration & Reporting",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-03",
+       "title": "Patch Deployment (Signed OTA)",
+       "package": "PKG-12 — Administration & Reporting",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-04",
+       "title": "Multi-Factor Authentication",
+       "package": "PKG-12 — Administration & Reporting",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-05",
+       "title": "Biometric Enrollment",
+       "package": "PKG-12 — Administration & Reporting",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-06",
+       "title": "Least Privilege Access Enforcement",
+       "package": "PKG-12 — Administration & Reporting",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-07",
+       "title": "Secure Default Configuration",
+       "package": "PKG-12 — Administration & Reporting",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-08",
+       "title": "Human-in-the-Loop Override",
+       "package": "PKG-12 — Administration & Reporting",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-09",
+       "title": "Dependency Scanning & SBOM",
+       "package": "PKG-12 — Administration & Reporting",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-10",
+       "title": "CI/CD Security Gate",
+       "package": "PKG-12 — Administration & Reporting",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-11",
+       "title": "AI Model Versioning & Rollback",
+       "package": "PKG-12 — Administration & Reporting",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-12",
+       "title": "Third-Party Boundary Management",
+       "package": "PKG-12 — Administration & Reporting",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-13",
+       "title": "AI Accuracy Monitoring & Drift Detection",
+       "package": "PKG-12 — Administration & Reporting",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-14",
+       "title": "AI Explainability Reporting",
+       "package": "PKG-12 — Administration & Reporting",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-15",
+       "title": "AI Training Data Management",
+       "package": "PKG-12 — Administration & Reporting",
+       "lane": "UC"
+      }
+     ],
+     "proc_cards": [
+      {
+       "id": "PROC-05",
+       "title": "Incident Detection & Triage",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-14",
+       "title": "Unified Impact Assessment (DPIA + FRIA)",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-01",
+       "title": "Data Subject Access Request (DSAR)",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-02",
+       "title": "Data Portability Export",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-03",
+       "title": "Biometric Breach Notification",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-04",
+       "title": "Data Minimization Review",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-06",
+       "title": "Incident Response & Containment",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-07",
+       "title": "Regulatory Notification (Unified 24h/72h)",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-08",
+       "title": "Disaster Recovery & Business Continuity",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-09",
+       "title": "Threat-Led Penetration Testing",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-10",
+       "title": "Border Officer Identity Lifecycle",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-11",
+       "title": "Access Rights Review",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-12",
+       "title": "Secure Code Review",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-13",
+       "title": "Change Management",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-15",
+       "title": "Risk Assessment & Management",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-16",
+       "title": "Compliance Audit & Reporting",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-17",
+       "title": "Vendor Risk Assessment",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-18",
+       "title": "Regulatory Notification & Cooperation",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-19",
+       "title": "AI Conformity Assessment",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-20",
+       "title": "AI Bias Testing & Fairness Assessment",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-21",
+       "title": "AI Incident Response",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-22",
+       "title": "AI Adversarial Testing",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-23",
+       "title": "Shift Handover & Referral Report",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-24",
+       "title": "Kiosk Provisioning & Enrolment (TPM-Bound Identity)",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-25",
+       "title": "Model Training & Release Packaging (EU-only, SYS-05)",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-26",
+       "title": "Drift/Bias Monitoring & Review",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-27",
+       "title": "User/Role Administration for Console",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      }
+     ],
+     "cap_cards": [
+      {
+       "id": "CAP-02",
+       "title": "Continuous Security Monitoring",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "CAP-06",
+       "title": "Security Awareness Training",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "CAP-01",
+       "title": "RoPA Maintenance",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "CAP-03",
+       "title": "Privacy-by-Design Integration",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "CAP-04",
+       "title": "ISMS Maintenance",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "CAP-05",
+       "title": "Asset Inventory Management",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "CAP-07",
+       "title": "Role-Specific Security Training",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "CAP-08",
+       "title": "AI Competence Training",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "CAP-09",
+       "title": "Management Board Cybersecurity Training",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "CAP-10",
+       "title": "Phishing Simulation",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "CAP-11",
+       "title": "Offline/Failover Mode (Store-and-Forward Crossing Events)",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "CAP-12",
+       "title": "Watchlist Cache Sync (SYS-03 sFTP, HSM-Bound)",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      }
+     ],
+     "requirements": {
+      "fr_ids": 84,
+      "nfr_ids": 56
+     },
+     "threats": [
+      "MUC-01",
+      "MUC-02",
+      "MUC-03",
+      "MUC-04",
+      "MUC-04-",
+      "MUC-05",
+      "MUC-06",
+      "MUC-07",
+      "MUC-07-",
+      "MUC-08",
+      "MUC-C2-01",
+      "MUC-C2-02",
+      "MUC-C2-03",
+      "MUC-C2-04",
+      "MUC-C2-05",
+      "MUC-C2-06"
+     ],
+     "drill_available": false
+    }
+   },
+   "audit": {
+    "obj_to_ctrl": null,
+    "ctrl_to_obj": {
+     "covered": 63,
+     "total": 63,
+     "pct": 100.0
+    },
+    "uc_to_obj": {
+     "covered": 88,
+     "total": 88,
+     "pct": 100.0
+    }
+   }
+  },
+  "Case_03_OmniBank_Financial": {
+   "profile": {
+    "tier": "Maximum",
+    "regulations": [
+     "GDPR",
+     "CRA",
+     "NIS 2",
+     "DORA",
+     "AI Act"
+    ]
+   },
+   "phases": {
+    "P1": {
+     "status": {
+      "status": "complete",
+      "gate": "P1_PASS",
+      "completed_at": "2026-04-01"
+     },
+     "graph": {
+      "nodes": 749,
+      "links": 2054
+     },
+     "evidence_items": 0,
+     "evidence_capability_scale": 0,
+     "ontology_file": "02_CASES/Case_03_OmniBank_Financial/00_COMMON/phase1_ontology.yaml"
+    },
+    "P2": {
+     "rules_total": 78,
+     "realization_class": {
+      "TECHNOLOGY": 10,
+      "PROCESS": 53,
+      "CAPABILITY": 15,
+      "other": 0
+     },
+     "rc_source": "heuristic",
+     "rc_explicit": 0,
+     "rc_heuristic": 78,
+     "rules_sample": [
+      {
+       "id": "CR-D-01.1-001",
+       "realization_class": "TECHNOLOGY",
+       "_heuristic": true,
+       "sub_domain": "D-01.1"
+      },
+      {
+       "id": "CR-D-01.2-001",
+       "realization_class": "TECHNOLOGY",
+       "_heuristic": true,
+       "sub_domain": "D-01.2"
+      },
+      {
+       "id": "CR-D-01.3-001",
+       "realization_class": "TECHNOLOGY",
+       "_heuristic": true,
+       "sub_domain": "D-01.3"
+      },
+      {
+       "id": "CR-D-01.4-001",
+       "realization_class": "PROCESS",
+       "_heuristic": true,
+       "sub_domain": "D-01.4"
+      },
+      {
+       "id": "CR-D-02.1-001",
+       "realization_class": "PROCESS",
+       "_heuristic": true,
+       "sub_domain": "D-02.1"
+      }
+     ],
+     "rules_file": "02_CASES/Case_03_OmniBank_Financial/02_PHASE2_RULES_RICH/control_set.yaml",
+     "tensions": [
+      "T-001",
+      "T-002",
+      "T-003",
+      "T-004",
+      "T-005"
+     ]
+    },
+    "P3": {
+     "catalog": {
+      "packages": [
+       "PKG-C",
+       "PKG-A",
+       "PKG-B",
+       "PKG-D",
+       "PKG-E",
+       "PKG-F",
+       "PKG-DS"
+      ],
+      "ucs": [
+       {
+        "id": "UC-03",
+        "title": "Apply for Consumer Credit",
+        "package": "PKG-C — Lending & OmniScore",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-04",
+        "title": "OmniScore Computes Credit Score",
+        "package": "PKG-C — Lending & OmniScore",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-05",
+        "title": "Customer Receives Score Explanation",
+        "package": "PKG-C — Lending & OmniScore",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-06",
+        "title": "Underwriter Reviews Borderline Application",
+        "package": "PKG-C — Lending & OmniScore",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-07",
+        "title": "Customer Accepts Offer & Contract Signed",
+        "package": "PKG-C — Lending & OmniScore",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-08",
+        "title": "Customer Manages Repayment & Arrears View",
+        "package": "PKG-C — Lending & OmniScore",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-09",
+        "title": "Open Account via Mobile App",
+        "package": "PKG-A — Onboarding & KYC",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-10",
+        "title": "eIDAS Identity Verification",
+        "package": "PKG-A — Onboarding & KYC",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-11",
+        "title": "KYC Document Upload & Vault Filing (SYS-16, 10y retention)",
+        "package": "PKG-A — Onboarding & KYC",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-12",
+        "title": "Sanctions & PEP Screening",
+        "package": "PKG-A — Onboarding & KYC",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-13",
+        "title": "OmniScore Consent & Data-Use Acknowledgement",
+        "package": "PKG-A — Onboarding & KYC",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-14",
+        "title": "Tax Residency Self-Certification (FATCA/CRS)",
+        "package": "PKG-A — Onboarding & KYC",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-15",
+        "title": "Login with PSD2 SCA",
+        "package": "PKG-B — Digital Banking Core",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-16",
+        "title": "View Balances & Transactions",
+        "package": "PKG-B — Digital Banking Core",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-17",
+        "title": "SEPA Transfer (incl. Instant)",
+        "package": "PKG-B — Digital Banking Core",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-18",
+        "title": "Manage Cards (block/limits)",
+        "package": "PKG-B — Digital Banking Core",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-19",
+        "title": "Standing Orders",
+        "package": "PKG-B — Digital Banking Core",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-20",
+        "title": "Statements & Export",
+        "package": "PKG-B — Digital Banking Core",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-21",
+        "title": "PSD2 Consent Grant/Revoke",
+        "package": "PKG-D — Payments & Open Banking",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-22",
+        "title": "TPP Onboarding & AIS Access (SYS-18)",
+        "package": "PKG-D — Payments & Open Banking",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-23",
+        "title": "PIS Payment Initiation with SCA",
+        "package": "PKG-D — Payments & Open Banking",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-24",
+        "title": "Payment Dispute & Chargeback",
+        "package": "PKG-D — Payments & Open Banking",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-25",
+        "title": "Payment Limits Management",
+        "package": "PKG-D — Payments & Open Banking",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-26",
+        "title": "Corporate Onboarding with Delegated Users (SYS-21)",
+        "package": "PKG-E — Corporate & Treasury",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-27",
+        "title": "Cash Management Dashboard",
+        "package": "PKG-E — Corporate & Treasury",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-28",
+        "title": "FX Deal Execution (SYS-08)",
+        "package": "PKG-E — Corporate & Treasury",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-29",
+        "title": "Trade Finance Letter of Credit (SYS-07, UCP 600)",
+        "package": "PKG-E — Corporate & Treasury",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-30",
+        "title": "In-App Fraud Alert Confirm/Deny (SYS-11)",
+        "package": "PKG-F — Fraud & Customer Service",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-31",
+        "title": "Card Block via Contact Centre (SYS-20)",
+        "package": "PKG-F — Fraud & Customer Service",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-32",
+        "title": "Complaint Filing & Handling (SYS-17)",
+        "package": "PKG-F — Fraud & Customer Service",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-33",
+        "title": "Secure Messaging",
+        "package": "PKG-F — Fraud & Customer Service",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-01",
+        "title": "Data Protection Officer Executes Data Erasure Request",
+        "package": "PKG-DS — Privacy & Data-subject UCs",
+        "lane": "UC"
+       },
+       {
+        "id": "UC-02",
+        "title": "Data Subject Requests Data Export",
+        "package": "PKG-DS — Privacy & Data-subject UCs",
+        "lane": "UC"
+       }
+      ],
+      "frontmatter_version": "3.1"
+     },
+     "lane_cards": {
+      "proc": [
+       {
+        "id": "PROC-10",
+        "title": "Identity and Access Manager Provisions User Identity",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-28",
+        "title": "Software Development Manager Implements Secure-by-Design",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-01",
+        "title": "Data Subject Requests Data Encryption Status",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-02",
+        "title": "Cryptographic Officer Manages HSM Key Lifecycle",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-03",
+        "title": "AI System Administrator Validates AI Model Integrity",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-04",
+        "title": "Security Officer Rotates Cryptographic Keys",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-05",
+        "title": "Security Operations Manager Scans for Vulnerabilities",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-06",
+        "title": "Security Operations Manager Deploys Critical Patches",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-07",
+        "title": "Security Analyst Coordinates Vulnerability Disclosure",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-08",
+        "title": "Penetration Tester Executes Threat-Led Penetration Testing",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-09",
+        "title": "AI Security Analyst Assesses AI Model Vulnerabilities",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-11",
+        "title": "Identity and Access Manager Conducts Quarterly Access Review",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-12",
+        "title": "Security Administrator Hardens System Configuration",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-13",
+        "title": "Identity and Access Manager Deprovisions User Access",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-14",
+        "title": "Business Continuity Manager Triggers Disaster Recovery",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-15",
+        "title": "Compliance Officer Executes Universal Incident Notification",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-16",
+        "title": "AI Operations Manager Recovers AI System after Failure",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-17",
+        "title": "SOC Analyst Investigates AI Model Anomaly",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-18",
+        "title": "Incident Response Team Conducts Tabletop Exercise",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-19",
+        "title": "Compliance Officer Reports AI Incident to Regulator",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-20",
+        "title": "Data Protection Officer Reviews Data Collection Minimization",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-21",
+        "title": "Compliance Officer Enforces Tiered Data Retention",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-22",
+        "title": "AI Data Engineer Manages AI Training Data Lifecycle",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-23",
+        "title": "Compliance Officer Audits Third-Party Data Processors",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-24",
+        "title": "Vendor Risk Manager Assesses ICT Third-Party Provider",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-25",
+        "title": "Procurement Manager Enforces Security Contract Terms",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-26",
+        "title": "Vendor Risk Manager Manages Vendor Exit",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-27",
+        "title": "Vendor Risk Manager Monitors AI Model Provider Performance",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-29",
+        "title": "Security Engineer Enforces Secure Coding Standards",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-30",
+        "title": "Change Advisory Board Approves Production Change",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-31",
+        "title": "Training Manager Delivers Security Awareness Training",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-32",
+        "title": "Board Secretary Coordinates Board Security Training",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-33",
+        "title": "Security Awareness Officer Conducts Phishing Simulation",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-34",
+        "title": "Compliance Manager Executes IPSARA Risk Assessment",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-35",
+        "title": "Compliance Manager Generates Regulatory Compliance Report",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-36",
+        "title": "Security Analyst Conducts Penetration Testing",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-37",
+        "title": "AI Security Analyst Tests AI Adversarial Robustness",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-38",
+        "title": "Audit Manager Generates Audit Trail Report",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-39",
+        "title": "Security Architect Configures Data Encryption at Rest",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-40",
+        "title": "Security Administrator Enforces TLS 1.3 for Data in Transit",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-41",
+        "title": "Security Architect Implements Field-Level Encryption",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-42",
+        "title": "Security Architect Generates SBOM for AI Model",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-43",
+        "title": "Security Administrator Enforces MFA for Privileged Access",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-44",
+        "title": "AI Platform Administrator Manages AI Model Access",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-45",
+        "title": "Security Administrator Implements FIDO2 Authentication",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-46",
+        "title": "Release Manager Secures CI/CD Pipeline",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-47",
+        "title": "AI ML Engineer Secures AI Training Pipeline",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-48",
+        "title": "Security Engineer Scans Infrastructure as Code",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-49",
+        "title": "SOC Manager Deploys AI-Powered Threat Detection",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "PROC-50",
+        "title": "SOC Analyst Monitors AI Model Performance Drift",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       }
+      ],
+      "cap": [
+       {
+        "id": "CAP-02",
+        "title": "SOC Analyst Monitors Security Events",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "CAP-04",
+        "title": "HR Manager Maintains Security Competence Program",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "CAP-01",
+        "title": "Vulnerability Analyst Maintains Vulnerability Register",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "CAP-03",
+        "title": "Security Architect Maintains SBOM for Product",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "CAP-05",
+        "title": "CISO Maintains Unified ISMS",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "CAP-06",
+        "title": "IT Asset Manager Maintains Comprehensive Asset Inventory",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "CAP-07",
+        "title": "AI Governance Lead Maintains AI Traceability Documentation",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "CAP-08",
+        "title": "AI System Detects Model Tampering",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "CAP-09",
+        "title": "IT Operations Manager Maintains Redundant Backup Systems",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       },
+       {
+        "id": "CAP-10",
+        "title": "Audit Manager Maintains Immutable Audit Logs",
+        "Owner": null,
+        "Trigger": null,
+        "Activities": null,
+        "Roles": null,
+        "SLA / Timing": null,
+        "Span": null,
+        "Maturity": null,
+        "Realises": null,
+        "Anchors": null,
+        "Evidence": null
+       }
+      ]
+     },
+     "annexes": {
+      "use_case_diagrams_plantuml": 8,
+      "svg_files": 8,
+      "sequence_diagrams": 33
+     },
+     "fr_nfr": {
+      "fr_ids": 72,
+      "nfr_ids": 56
+     },
+     "risks": {
+      "muc_ids": [
+       "MUC-01-",
+       "MUC-C2-05",
+       "MUC-C3",
+       "MUC-C3-01",
+       "MUC-C3-02",
+       "MUC-C3-03",
+       "MUC-C3-04",
+       "MUC-C3-05",
+       "MUC-C3-06"
+      ],
+      "muc_count": 9
+     },
+     "gates": {
+      "verify_rich": {
+       "summary": "8 checks, 0 FAIL, 8 PASS",
+       "pass": true
+      }
+     },
+     "use_cases": [
+      {
+       "id": "UC-03",
+       "title": "Apply for Consumer Credit",
+       "package": "PKG-C — Lending & OmniScore",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-04",
+       "title": "OmniScore Computes Credit Score",
+       "package": "PKG-C — Lending & OmniScore",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-05",
+       "title": "Customer Receives Score Explanation",
+       "package": "PKG-C — Lending & OmniScore",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-06",
+       "title": "Underwriter Reviews Borderline Application",
+       "package": "PKG-C — Lending & OmniScore",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-07",
+       "title": "Customer Accepts Offer & Contract Signed",
+       "package": "PKG-C — Lending & OmniScore",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-08",
+       "title": "Customer Manages Repayment & Arrears View",
+       "package": "PKG-C — Lending & OmniScore",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-09",
+       "title": "Open Account via Mobile App",
+       "package": "PKG-A — Onboarding & KYC",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-10",
+       "title": "eIDAS Identity Verification",
+       "package": "PKG-A — Onboarding & KYC",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-11",
+       "title": "KYC Document Upload & Vault Filing (SYS-16, 10y retention)",
+       "package": "PKG-A — Onboarding & KYC",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-12",
+       "title": "Sanctions & PEP Screening",
+       "package": "PKG-A — Onboarding & KYC",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-13",
+       "title": "OmniScore Consent & Data-Use Acknowledgement",
+       "package": "PKG-A — Onboarding & KYC",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-14",
+       "title": "Tax Residency Self-Certification (FATCA/CRS)",
+       "package": "PKG-A — Onboarding & KYC",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-15",
+       "title": "Login with PSD2 SCA",
+       "package": "PKG-B — Digital Banking Core",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-16",
+       "title": "View Balances & Transactions",
+       "package": "PKG-B — Digital Banking Core",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-17",
+       "title": "SEPA Transfer (incl. Instant)",
+       "package": "PKG-B — Digital Banking Core",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-18",
+       "title": "Manage Cards (block/limits)",
+       "package": "PKG-B — Digital Banking Core",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-19",
+       "title": "Standing Orders",
+       "package": "PKG-B — Digital Banking Core",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-20",
+       "title": "Statements & Export",
+       "package": "PKG-B — Digital Banking Core",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-21",
+       "title": "PSD2 Consent Grant/Revoke",
+       "package": "PKG-D — Payments & Open Banking",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-22",
+       "title": "TPP Onboarding & AIS Access (SYS-18)",
+       "package": "PKG-D — Payments & Open Banking",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-23",
+       "title": "PIS Payment Initiation with SCA",
+       "package": "PKG-D — Payments & Open Banking",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-24",
+       "title": "Payment Dispute & Chargeback",
+       "package": "PKG-D — Payments & Open Banking",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-25",
+       "title": "Payment Limits Management",
+       "package": "PKG-D — Payments & Open Banking",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-26",
+       "title": "Corporate Onboarding with Delegated Users (SYS-21)",
+       "package": "PKG-E — Corporate & Treasury",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-27",
+       "title": "Cash Management Dashboard",
+       "package": "PKG-E — Corporate & Treasury",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-28",
+       "title": "FX Deal Execution (SYS-08)",
+       "package": "PKG-E — Corporate & Treasury",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-29",
+       "title": "Trade Finance Letter of Credit (SYS-07, UCP 600)",
+       "package": "PKG-E — Corporate & Treasury",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-30",
+       "title": "In-App Fraud Alert Confirm/Deny (SYS-11)",
+       "package": "PKG-F — Fraud & Customer Service",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-31",
+       "title": "Card Block via Contact Centre (SYS-20)",
+       "package": "PKG-F — Fraud & Customer Service",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-32",
+       "title": "Complaint Filing & Handling (SYS-17)",
+       "package": "PKG-F — Fraud & Customer Service",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-33",
+       "title": "Secure Messaging",
+       "package": "PKG-F — Fraud & Customer Service",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-01",
+       "title": "Data Protection Officer Executes Data Erasure Request",
+       "package": "PKG-DS — Privacy & Data-subject UCs",
+       "lane": "UC"
+      },
+      {
+       "id": "UC-02",
+       "title": "Data Subject Requests Data Export",
+       "package": "PKG-DS — Privacy & Data-subject UCs",
+       "lane": "UC"
+      }
+     ],
+     "proc_cards": [
+      {
+       "id": "PROC-10",
+       "title": "Identity and Access Manager Provisions User Identity",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-28",
+       "title": "Software Development Manager Implements Secure-by-Design",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-01",
+       "title": "Data Subject Requests Data Encryption Status",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-02",
+       "title": "Cryptographic Officer Manages HSM Key Lifecycle",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-03",
+       "title": "AI System Administrator Validates AI Model Integrity",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-04",
+       "title": "Security Officer Rotates Cryptographic Keys",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-05",
+       "title": "Security Operations Manager Scans for Vulnerabilities",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-06",
+       "title": "Security Operations Manager Deploys Critical Patches",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-07",
+       "title": "Security Analyst Coordinates Vulnerability Disclosure",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-08",
+       "title": "Penetration Tester Executes Threat-Led Penetration Testing",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-09",
+       "title": "AI Security Analyst Assesses AI Model Vulnerabilities",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-11",
+       "title": "Identity and Access Manager Conducts Quarterly Access Review",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-12",
+       "title": "Security Administrator Hardens System Configuration",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-13",
+       "title": "Identity and Access Manager Deprovisions User Access",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-14",
+       "title": "Business Continuity Manager Triggers Disaster Recovery",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-15",
+       "title": "Compliance Officer Executes Universal Incident Notification",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-16",
+       "title": "AI Operations Manager Recovers AI System after Failure",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-17",
+       "title": "SOC Analyst Investigates AI Model Anomaly",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-18",
+       "title": "Incident Response Team Conducts Tabletop Exercise",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-19",
+       "title": "Compliance Officer Reports AI Incident to Regulator",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-20",
+       "title": "Data Protection Officer Reviews Data Collection Minimization",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-21",
+       "title": "Compliance Officer Enforces Tiered Data Retention",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-22",
+       "title": "AI Data Engineer Manages AI Training Data Lifecycle",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-23",
+       "title": "Compliance Officer Audits Third-Party Data Processors",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-24",
+       "title": "Vendor Risk Manager Assesses ICT Third-Party Provider",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-25",
+       "title": "Procurement Manager Enforces Security Contract Terms",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-26",
+       "title": "Vendor Risk Manager Manages Vendor Exit",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-27",
+       "title": "Vendor Risk Manager Monitors AI Model Provider Performance",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-29",
+       "title": "Security Engineer Enforces Secure Coding Standards",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-30",
+       "title": "Change Advisory Board Approves Production Change",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-31",
+       "title": "Training Manager Delivers Security Awareness Training",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-32",
+       "title": "Board Secretary Coordinates Board Security Training",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-33",
+       "title": "Security Awareness Officer Conducts Phishing Simulation",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-34",
+       "title": "Compliance Manager Executes IPSARA Risk Assessment",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-35",
+       "title": "Compliance Manager Generates Regulatory Compliance Report",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-36",
+       "title": "Security Analyst Conducts Penetration Testing",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-37",
+       "title": "AI Security Analyst Tests AI Adversarial Robustness",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-38",
+       "title": "Audit Manager Generates Audit Trail Report",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-39",
+       "title": "Security Architect Configures Data Encryption at Rest",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-40",
+       "title": "Security Administrator Enforces TLS 1.3 for Data in Transit",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-41",
+       "title": "Security Architect Implements Field-Level Encryption",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-42",
+       "title": "Security Architect Generates SBOM for AI Model",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-43",
+       "title": "Security Administrator Enforces MFA for Privileged Access",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-44",
+       "title": "AI Platform Administrator Manages AI Model Access",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-45",
+       "title": "Security Administrator Implements FIDO2 Authentication",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-46",
+       "title": "Release Manager Secures CI/CD Pipeline",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-47",
+       "title": "AI ML Engineer Secures AI Training Pipeline",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-48",
+       "title": "Security Engineer Scans Infrastructure as Code",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-49",
+       "title": "SOC Manager Deploys AI-Powered Threat Detection",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "PROC-50",
+       "title": "SOC Analyst Monitors AI Model Performance Drift",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      }
+     ],
+     "cap_cards": [
+      {
+       "id": "CAP-02",
+       "title": "SOC Analyst Monitors Security Events",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "CAP-04",
+       "title": "HR Manager Maintains Security Competence Program",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "CAP-01",
+       "title": "Vulnerability Analyst Maintains Vulnerability Register",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "CAP-03",
+       "title": "Security Architect Maintains SBOM for Product",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "CAP-05",
+       "title": "CISO Maintains Unified ISMS",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "CAP-06",
+       "title": "IT Asset Manager Maintains Comprehensive Asset Inventory",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "CAP-07",
+       "title": "AI Governance Lead Maintains AI Traceability Documentation",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "CAP-08",
+       "title": "AI System Detects Model Tampering",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "CAP-09",
+       "title": "IT Operations Manager Maintains Redundant Backup Systems",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      },
+      {
+       "id": "CAP-10",
+       "title": "Audit Manager Maintains Immutable Audit Logs",
+       "Owner": null,
+       "Trigger": null,
+       "Activities": null,
+       "Roles": null,
+       "SLA / Timing": null,
+       "Span": null,
+       "Maturity": null,
+       "Realises": null,
+       "Anchors": null,
+       "Evidence": null
+      }
+     ],
+     "requirements": {
+      "fr_ids": 72,
+      "nfr_ids": 56
+     },
+     "threats": [
+      "MUC-01-",
+      "MUC-C2-05",
+      "MUC-C3",
+      "MUC-C3-01",
+      "MUC-C3-02",
+      "MUC-C3-03",
+      "MUC-C3-04",
+      "MUC-C3-05",
+      "MUC-C3-06"
+     ],
+     "drill_available": false
+    }
+   },
+   "audit": {
+    "obj_to_ctrl": {
+     "covered": 42,
+     "total": 42,
+     "pct": 100.0
+    },
+    "ctrl_to_obj": {
+     "covered": 79,
+     "total": 79,
+     "pct": 100.0
+    },
+    "uc_to_obj": {
+     "covered": 107,
+     "total": 107,
+     "pct": 100.0
+    }
+   }
+  }
+ },
+ "crosscase": {
+  "uc_totals": {
+   "Case_01_TinyTask_SaaS": 36,
+   "Case_02_SecureBorder_Solutions": 34,
+   "Case_03_OmniBank_Financial": 33
+  },
+  "proc_totals": {
+   "Case_01_TinyTask_SaaS": 21,
+   "Case_02_SecureBorder_Solutions": 27,
+   "Case_03_OmniBank_Financial": 50
+  },
+  "cap_totals": {
+   "Case_01_TinyTask_SaaS": 1,
+   "Case_02_SecureBorder_Solutions": 12,
+   "Case_03_OmniBank_Financial": 10
+  },
+  "audit": {
+   "Case_01_TinyTask_SaaS": null,
+   "Case_02_SecureBorder_Solutions": null,
+   "Case_03_OmniBank_Financial": null
+  }
+ }
+}
