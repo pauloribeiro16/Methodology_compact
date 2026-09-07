@@ -11522,8 +11522,8 @@ table.plain tbody tr:last-child td { border-bottom: none; }
    --------------------------------------------------------------------- */
 const MASTER_DATA = {
  "meta": {
-  "generated_at": "2026-09-07T11:37:23",
-  "git_commit": "4145dc6",
+  "generated_at": "2026-09-07T13:08:18",
+  "git_commit": "08e0634",
   "warnings": []
  },
  "cases": {
@@ -52644,7 +52644,8 @@ const MASTER_DATA = {
         "attrs": {}
        }
       ]
-     }
+     },
+     "last_updated": "2026-09-07T13:08:18"
     },
     "P3": {
      "catalog": {
@@ -101982,7 +101983,8 @@ const MASTER_DATA = {
         "attrs": {}
        }
       ]
-     }
+     },
+     "last_updated": "2026-09-07T13:08:19"
     },
     "P3": {
      "catalog": {
@@ -178382,7 +178384,8 @@ const MASTER_DATA = {
         "attrs": {}
        }
       ]
-     }
+     },
+     "last_updated": "2026-09-07T13:08:19"
     },
     "P3": {
      "catalog": {
@@ -183977,11 +183980,28 @@ const MASTER_DATA = {
    "Case_02_SecureBorder_Solutions": null,
    "Case_03_OmniBank_Financial": null
   }
+ },
+ "gates_matrix": {
+  "case_01": {
+   "G1": "--",
+   "G2": "PLANNED",
+   "G3": "--",
+   "G4": "--"
+  },
+  "case_02": {
+   "G1": "FR-03",
+   "G2": "--",
+   "G3": "--",
+   "G4": "--"
+  },
+  "case_03": {
+   "G1": "NOT_APPLICABLE",
+   "G2": "--",
+   "G3": "--",
+   "G4": "--"
+  }
  }
-};
-;
-
-(function () {
+};(function () {
   "use strict";
 
   // ----- DOM handles ----------------------------------------------------
@@ -184553,9 +184573,14 @@ const MASTER_DATA = {
       if (fb) fb.style.display = "flex";
     }
 
-    var evi = (p1st.evidence_items);
-    var eviCells = arr(p1st.evidence_cells).length
-      ? arr(p1st.evidence_cells)
+    var evi = arr(p1st.maturity && p1st.maturity.evidence_cells).length;
+    var evCap = (p1st.maturity && p1st.maturity.function_coverage) ? Object.keys(p1st.maturity.function_coverage).length : 0;
+    var eviCells = arr(p1st.maturity && p1st.maturity.evidence_cells).length
+      ? arr(p1st.maturity && p1st.maturity.evidence_cells).map(function (cell) {
+          var fc = (p1st.maturity.function_coverage || {})[cell.function] || 0;
+          var pct = fc ? Math.min(100, Math.round(fc * 10)) : 0;
+          return { tier: cell.function, n: cell.id, cap: String(fc), pct: pct };
+        })
       : [
           { tier: "L1 · LIGHTWEIGHT",   n: "--", cap: "--", pct: 0 },
           { tier: "L2 · MINIMAL",      n: "--", cap: "--", pct: 0 },
@@ -184573,8 +184598,8 @@ const MASTER_DATA = {
     }).join("");
     setHTML("#folio03-evidence", eviHtml);
 
-    setText("#folio03-evidence-meta [data-f3='ev_items']", (evi !== undefined && evi !== null) ? evi : "--");
-    setText("#folio03-evidence-meta [data-f3='ev_cap']",    (p1st.evidence_capability_scale !== undefined) ? p1st.evidence_capability_scale : "--");
+    setText("#folio03-evidence-meta [data-f3='ev_items']", evi ? evi : "--");
+    setText("#folio03-evidence-meta [data-f3='ev_cap']",    evCap ? evCap : "--");
     setText("#folio03-evidence-meta [data-f3='ev_ont']",    p1st.ontology_file || "--");
 
     // Folio 4 — Graph view (vis-network; default scope = full)
@@ -184603,7 +184628,7 @@ const MASTER_DATA = {
 
     // Rules table
     var rules = arr(p2.rules_sample);
-    var rulesAll = arr(p2.rules);
+    var rulesAll = arr(p2.rules_table);
     var rulesRows = (rulesAll.length ? rulesAll : rules).map(function (r) {
       return [
         r.id || "--",
@@ -184628,53 +184653,57 @@ const MASTER_DATA = {
     setText("#folio05-rows", rulesRows.length);
 
     // Folio 6 — Obligations → Objectives
-    var ob = (p2.obligations) || {};
-    var po = (p2.privacy_objectives) || {};
-    var so = (p2.security_objectives) || {};
-    var mappings = arr(p2.obligation_mappings);
-    setText("#folio06-kpis [data-f6='ob']",  ob.total !== undefined ? ob.total : (mappings.length || "--"));
+    var ob = arr(p2.obligations);
+    var objectivesAll = arr(p2.objectives);
+    var poCount = objectivesAll.filter(function (o) { return (o.id || "").indexOf("PO-") === 0; }).length;
+    var soCount = objectivesAll.filter(function (o) { return (o.id || "").indexOf("SO-") === 0; }).length;
+    var mappings = arr(p2.mappings);
+    setText("#folio06-kpis [data-f6='ob']",  ob.length || "--");
     setText("#folio06-kpis [data-f6='ob_note']",  "obligations catalogued");
-    setText("#folio06-kpis [data-f6='po']",  po.total !== undefined ? po.total : "--");
+    setText("#folio06-kpis [data-f6='po']",  poCount || "--");
     setText("#folio06-kpis [data-f6='po_note']",  "privacy objectives");
-    setText("#folio06-kpis [data-f6='so']",  so.total !== undefined ? so.total : "--");
+    setText("#folio06-kpis [data-f6='so']",  soCount || "--");
     setText("#folio06-kpis [data-f6='so_note']",  "security objectives");
     setText("#folio06-kpis [data-f6='map']", mappings.length || "--");
     setText("#folio06-kpis [data-f6='map_note']", "obligation→objective mappings");
 
     var obRows = mappings.map(function (m) {
       return [
-        m.obligation_id || "--",
-        m.title || "--",
-        m.regulation || "--",
-        m.targets ? m.targets.join(", ") : "--",
-        m.confidence || "--"
+        m.control || "--",
+        m.framework || "--",
+        m.anchor || "--",
+        m.id || "--"
       ];
     });
     ensureDT("folio06-obj-table",
       [
-        { title: "Obligation ID" }, { title: "Title" }, { title: "Regulation" },
-        { title: "Maps to (PO/SO)" }, { title: "Confidence" }
+        { title: "Control" }, { title: "Framework" }, { title: "Anchor" },
+        { title: "ID" }
       ],
       obRows
     );
 
     // Folio 7 — Tensions & Posture
-    var tensions = arr(p2.tensions);
+    var tensions = arr(p2.tension_objects);
     setText("#folio07-kpis [data-f7='total']", tensions.length || "--");
     setText("#folio07-kpis [data-f7='total_note']", "active tensions");
     setText("#folio07-kpis [data-f7='high']", tensions.filter(function (t) { return t.severity === "HIGH"; }).length || "--");
     setText("#folio07-kpis [data-f7='high_note']", "high-severity items");
-    setText("#folio07-kpis [data-f7='posture']", p2.posture || "--");
-    setText("#folio07-kpis [data-f7='posture_note']", p2.posture_detail || "--");
+    var postureBand = (p2.posture && typeof p2.posture === "object") ? (p2.posture.maturity_band || p2.posture.target_band || "--") : (p2.posture || "--");
+    var postureDetail = (p2.posture && typeof p2.posture === "object") ? (p2.posture.target_band ? "target: " + p2.posture.target_band : "--") : "--";
+    setText("#folio07-kpis [data-f7='posture']", postureBand);
+    setText("#folio07-kpis [data-f7='posture_note']", postureDetail);
 
     if (tensions.length) {
       var tHtml = tensions.map(function (t) {
         var sev = (t.severity || "medium").toLowerCase();
+        var title = t.name || t.id || "--";
+        var detail = t.recommended_disposition || "--";
         return "<li class=\"tension-" + escapeHtml(sev) + "\">" +
           "<span class=\"pl-ix\">" + escapeHtml(t.id || "--") + "</span>" +
           "<div>" +
-            "<div class=\"pl-ttl\">" + escapeHtml(t.title || "--") + "</div>" +
-            "<div class=\"pl-dsc\">" + escapeHtml(t.detail || "--") + "</div>" +
+            "<div class=\"pl-ttl\">" + escapeHtml(title) + "</div>" +
+            "<div class=\"pl-dsc\">" + escapeHtml(detail) + "</div>" +
           "</div>" +
         "</li>";
       }).join("");
@@ -184693,9 +184722,10 @@ const MASTER_DATA = {
     var fw = arr(p2.frameworks);
     setText("#folio08-kpis [data-f8='links']", fw.length || "--");
     setText("#folio08-kpis [data-f8='links_note']", "linked dashboards");
-    setText("#folio08-kpis [data-f8='fw']",   fw.join(" + ") || "--");
+    setText("#folio08-kpis [data-f8='fw']",   fw.map(function (f) { return f.name || "--"; }).join(" + ") || "--");
     setText("#folio08-kpis [data-f8='fw_note']", "frameworks cross-linked");
-    setText("#folio08-kpis [data-f8='qn']",   (p2.qnrcs_resources || "--"));
+    var qnCount = arr(p2.qnrcs_resources).length;
+    setText("#folio08-kpis [data-f8='qn']",   qnCount ? (qnCount + " artefacts") : "--");
     setText("#folio08-kpis [data-f8='qn_note']", "QNRCS artefacts");
     setText("#folio08-kpis [data-f8='upd']",   p2.last_updated || "--");
     setText("#folio08-kpis [data-f8='upd_note']", "framework mapping timestamp");
@@ -184777,7 +184807,7 @@ const MASTER_DATA = {
     setText("#folio10-kpis [data-f10='proc_note']", "process cards");
     setText("#folio10-kpis [data-f10='cap']",  capCards.length  || "--");
     setText("#folio10-kpis [data-f10='cap_note']",  "capability cards");
-    var owners = uniq(allCards.map(function (c) { return c.owner || "—"; }));
+    var owners = uniq(allCards.map(function (c) { return c.owner || "—"; }).filter(function (o) { return o && o !== "—"; }));
     setText("#folio10-kpis [data-f10='own']",  owners.length || "--");
     setText("#folio10-kpis [data-f10='own_note']", "distinct owners");
     var mats = allCards.map(function (c) { return c.maturity; }).filter(function (v) { return typeof v === "number"; });
@@ -184808,57 +184838,76 @@ const MASTER_DATA = {
     setText("#folio10-rows", cardRows.length);
 
     // Folio 11 — Requirements & Allocation
-    var reqs = arr(p3.requirements);
-    var fr  = reqs.filter(function (r) { return r.type === "FR"; }).length;
-    var nfr = reqs.filter(function (r) { return r.type === "NFR"; }).length;
-    var tr  = reqs.filter(function (r) { return r.type === "TR"; }).length;
-    var tot = reqs.filter(function (r) { return r.allocated_to; }).length;
+    var reqsDict = (p3.requirements && typeof p3.requirements === "object") ? p3.requirements : {};
+    var frRows = arr(reqsDict.fr_table);
+    var nfrRows = arr(reqsDict.nfr_table);
+    var allocRows = arr(reqsDict.allocations);
+    var fr  = frRows.length;
+    var nfr = nfrRows.length;
+    var tr  = allocRows.length;
+    var tot = allocRows.length;
     setText("#folio11-req-counts [data-f11='fr']",  fr  || "--");
     setText("#folio11-req-counts [data-f11='nfr']", nfr || "--");
     setText("#folio11-req-counts [data-f11='tr']",  tr  || "--");
     setText("#folio11-req-counts [data-f11='tot']", tot || "--");
 
-    var reqRows = reqs.map(function (r) {
-      return [
-        r.id || "--",
-        r.type || "--",
+    var reqRows = [];
+    frRows.forEach(function (r) {
+      reqRows.push([
+        "FR · " + (r.id || "--"),
         r.title || "--",
-        r.allocated_to || "—",
-        r.source_rule || "—",
+        r.source || "--",
+        r.priority || "--",
         r.status || "—"
-      ];
+      ]);
+    });
+    nfrRows.forEach(function (r) {
+      reqRows.push([
+        "NFR · " + (r.id || "--"),
+        r.title || "--",
+        r.source || "--",
+        r.priority || "--",
+        r.status || "—"
+      ]);
     });
     ensureDT("folio11-req-table",
       [
-        { title: "REQ ID" }, { title: "Type" }, { title: "Title" },
-        { title: "Allocated to" }, { title: "Source Rule" }, { title: "Status" }
+        { title: "REQ ID" }, { title: "Title" },
+        { title: "Source" }, { title: "Priority" }, { title: "Status" }
       ],
       reqRows
     );
 
     // Folio 12 — Risks, Threats & Gates
-    var gates = (p3.gates) || {};
-    setGateTile("folio12-gates [data-f12='g1']", "folio12-gates [data-f12='g1_meta']", gates.G1);
-    setGateTile("folio12-gates [data-f12='g2']", "folio12-gates [data-f12='g2_meta']", gates.G2);
-    setGateTile("folio12-gates [data-f12='g3']", "folio12-gates [data-f12='g3_meta']", gates.G3);
-    setGateTile("folio12-gates [data-f12='g4']", "folio12-gates [data-f12='g4_meta']", gates.G4);
+    // gates (p3.gates) only has verify_rich.{summary,pass}; G1..G4 don't exist.
+    // Compute aggregate tiles from gates_table (40 rows): count passed/planned/failed.
+    var gatesTable = arr(p3.gates_table);
+    var gPass = gatesTable.filter(function (g) { return g.status === "PASS" || g.status === "PASSED"; }).length;
+    var gPlan = gatesTable.filter(function (g) { return g.status === "PLANNED"; }).length;
+    var gFail = gatesTable.filter(function (g) { return g.status === "FAIL" || g.status === "FAILED"; }).length;
+    var gTot  = gatesTable.length;
+    var summaryStatus = gPass === gTot && gTot > 0 ? "PASS" : (gFail > 0 ? "FAIL" : (gTot > 0 ? "PLANNED" : "--"));
+    setGateTile("#folio12-gates [data-f12='g1']", "#folio12-gates [data-f12='g1_meta']", { status: summaryStatus, note: gPass + " pass / " + gTot + " total" });
+    setGateTile("#folio12-gates [data-f12='g2']", "#folio12-gates [data-f12='g2_meta']", { status: gPlan > 0 ? "PLANNED" : "--", note: gPlan + " planned" });
+    setGateTile("#folio12-gates [data-f12='g3']", "#folio12-gates [data-f12='g3_meta']", { status: gFail > 0 ? "FAIL" : "--", note: gFail + " failed" });
+    setGateTile("#folio12-gates [data-f12='g4']", "#folio12-gates [data-f12='g4_meta']", { status: (gPass + gPlan + gFail) === gTot && gTot > 0 ? "OK" : "--", note: gTot + " gates tracked" });
 
-    var threats = arr(p3.threats);
+    var threats = arr(p3.threat_table);
     var threatRows = threats.map(function (th) {
       return [
         th.id || "--",
         th.stride || "--",
-        th.title || "--",
-        th.flow || "--",
+        th.threat || th.title || "--",
+        th.mitigation_gate || "--",
         th.likelihood || "--",
         th.impact || "--",
-        (th.linked_reqs || []).join(", ") || "--"
+        th.mitigation_uc || "—"
       ];
     });
     ensureDT("folio12-threat-table",
       [
         { title: "Threat ID" }, { title: "STRIDE" }, { title: "Title" },
-        { title: "Flow affected" }, { title: "Likelihood" }, { title: "Impact" }, { title: "Linked reqs" }
+        { title: "Mitigation Gate" }, { title: "Likelihood" }, { title: "Impact" }, { title: "Mitigation UC" }
       ],
       threatRows
     );
@@ -184890,19 +184939,36 @@ const MASTER_DATA = {
   }
 
   // ----- Cross-case Render ----------------------------------------------
+  // Derive KPI numbers from real case data (since data layer doesn't expose
+  // a `kpis` block — see renderCaseStats for the equivalent derivation).
+  function getCaseKpis(c) {
+    var p1 = (c && c.phases && c.phases.P1) || {};
+    var p2 = (c && c.phases && c.phases.P2) || {};
+    var p3 = (c && c.phases && c.phases.P3) || {};
+    return {
+      ucs:           arr(p3.use_cases).length,
+      proc:          arr(p3.proc_cards).length,
+      cap:           arr(p3.cap_cards).length,
+      rules:         (typeof p2.rules_total === "number") ? p2.rules_total : null,
+      req_allocated: arr((p3.requirements || {}).allocations).length,
+      ambiguities:   (p1.ambiguity && typeof p1.ambiguity.open === "number") ? p1.ambiguity.open : null
+    };
+  }
+
   function renderCrossCase(d) {
     var cases = ["case_01", "case_02", "case_03"];
     for (var i = 0; i < 3; i++) {
       var k = cases[i];
-      var ck = (d && d.cases && d.cases[k]) || {};
-      var kpi = ck.kpis || {};
+      var fullKey = resolveCaseKey(k);
+      var ck = (d && d.cases && d.cases[fullKey]) || {};
+      var kpi = getCaseKpis(ck);
       var prefix = "[data-f13='c" + (i + 1) + "_";
       setText("#folio13-kpi-compare .cc-col[data-c='" + k + "'] " + prefix + "ucs']",   kpi.ucs);
       setText("#folio13-kpi-compare .cc-col[data-c='" + k + "'] " + prefix + "proc']",  kpi.proc);
       setText("#folio13-kpi-compare .cc-col[data-c='" + k + "'] " + prefix + "cap']",   kpi.cap);
-      setText("#folio13-kpi-compare .cc-col[data-c='" + k + "'] " + prefix + "rules']", kpi.rules);
+      setText("#folio13-kpi-compare .cc-col[data-c='" + k + "'] " + prefix + "rules']", kpi.rules !== null ? kpi.rules : "--");
       setText("#folio13-kpi-compare .cc-col[data-c='" + k + "'] " + prefix + "req']",   kpi.req_allocated);
-      setText("#folio13-kpi-compare .cc-col[data-c='" + k + "'] " + prefix + "amb']",   kpi.ambiguities);
+      setText("#folio13-kpi-compare .cc-col[data-c='" + k + "'] " + prefix + "amb']",   kpi.ambiguities !== null ? kpi.ambiguities : "--");
       setText("#folio13-kpi-compare .cc-col[data-c='" + k + "'] " + prefix + "tier']",  get(ck, "profile.tier"));
       setText("#folio13-kpi-compare .cc-col[data-c='" + k + "'] " + prefix.replace("_", ".") + "_sub']", (ck.profile && arr(ck.profile.regulations).join(" + ")) || "--");
     }
@@ -184912,12 +184978,26 @@ const MASTER_DATA = {
     var tbody = document.querySelector("#folio13-gates-matrix tbody");
     if (tbody) {
       var gatesMatrix = (d && d.gates_matrix) || {};
+      // Per-case fallback: if top-level gates_matrix is empty, derive from
+      // p3.gates_table summary stats per case.
+      function deriveGate(c) {
+        var p3 = (c && c.phases && c.phases.P3) || {};
+        var tbl = arr(p3.gates_table);
+        if (!tbl.length) return "--";
+        var p = tbl.filter(function (g) { return g.status === "PASS" || g.status === "PASSED"; }).length;
+        var f = tbl.filter(function (g) { return g.status === "FAIL" || g.status === "FAILED"; }).length;
+        var pl = tbl.filter(function (g) { return g.status === "PLANNED"; }).length;
+        return p + "/" + tbl.length + " · " + pl + " pln · " + f + " fl";
+      }
+      var c01 = (d && d.cases && d.cases[resolveCaseKey("case_01")]) || {};
+      var c02 = (d && d.cases && d.cases[resolveCaseKey("case_02")]) || {};
+      var c03 = (d && d.cases && d.cases[resolveCaseKey("case_03")]) || {};
       tbody.innerHTML = gates.map(function (g, idx) {
         return "<tr>" +
           "<td>" + g + " · " + ["Context","Compliance","Realisation","Operation"][idx] + "</td>" +
-          "<td>" + escapeHtml(get(gatesMatrix, "case_01." + g) || "--") + "</td>" +
-          "<td>" + escapeHtml(get(gatesMatrix, "case_02." + g) || "--") + "</td>" +
-          "<td>" + escapeHtml(get(gatesMatrix, "case_03." + g) || "--") + "</td>" +
+          "<td>" + escapeHtml(get(gatesMatrix, "case_01." + g) || deriveGate(c01)) + "</td>" +
+          "<td>" + escapeHtml(get(gatesMatrix, "case_02." + g) || deriveGate(c02)) + "</td>" +
+          "<td>" + escapeHtml(get(gatesMatrix, "case_03." + g) || deriveGate(c03)) + "</td>" +
         "</tr>";
       }).join("");
     }

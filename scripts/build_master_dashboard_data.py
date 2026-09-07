@@ -1059,6 +1059,7 @@ def parse_p2(case, cfg, warn):
         "frameworks": list(FRAMEWORKS_REF),
         "qnrcs_resources": list(QNRCS_RESOURCES),
         "graph": p2_graph,
+        "last_updated": dt.datetime.now().isoformat(timespec="seconds"),
     }
 
 
@@ -1686,6 +1687,48 @@ def build(warn):
         "cap_totals": {c: len(data["cases"][c]["phases"]["P3"]["lane_cards"]["cap"]) for c in CASES},
         "audit": {c: data["cases"][c].get("audit") for c in CASES},
     }
+    # gates_matrix (top-level): per-case gate category summaries for Folio 13.
+    # Use the most-common status from p3.gates_table per case, split into the
+    # four AEGIS categories (Context/Compliance/Realisation/Operation) by
+    # matching the gate name prefix (GATE-CR- -> Compliance, GATE-PROC- ->
+    # Operation, GATE-CAP- -> Realisation, else Context).
+    def _categorise(g):
+        n = g.get("name", "")
+        if "CR-" in n or n.startswith("GATE-CR-"):
+            return "Compliance"
+        if n.startswith("GATE-PROC-") or "PROC" in n:
+            return "Operation"
+        if n.startswith("GATE-CAP-") or "CAP-" in n:
+            return "Realisation"
+        return "Context"
+    gm = {}
+    for case in CASES:
+        tbl = data["cases"][case]["phases"]["P3"].get("gates_table", [])
+        cats = {"Context": [], "Compliance": [], "Realisation": [], "Operation": []}
+        for g in tbl:
+            cats[_categorise(g)].append(g)
+        short = case.split("_")[0].lower() + "_" + case.split("_")[1]  # case_01
+        gm[short] = {}
+        for cat_name, rows in cats.items():
+            if not rows:
+                gm[short][cat_name] = "--"
+                continue
+            # Pick most-common status; PASS takes precedence if any.
+            statuses = [r.get("status", "--") for r in rows]
+            from collections import Counter
+            counts = Counter(statuses)
+            top = counts.most_common(1)[0][0]
+            gm[short][cat_name] = top
+    # Map category names to G1..G4 in the shell
+    data["gates_matrix"] = {
+        short: {
+            "G1": vals.get("Context", "--"),
+            "G2": vals.get("Compliance", "--"),
+            "G3": vals.get("Realisation", "--"),
+            "G4": vals.get("Operation", "--"),
+        }
+        for short, vals in gm.items()
+    }
     # audit rows properly per case key used in the report (Case_01 style)
     if audit_t:
         for case in CASES:
@@ -1696,11 +1739,37 @@ def build(warn):
 def inject(html_path, data):
     p = Path(html_path)
     t = p.read_text(encoding="utf-8")
-    placeholder = "/*__MASTER_DATA__*/null"
-    if placeholder not in t:
-        raise SystemExit(f"placeholder {placeholder} not found in {p}")
     blob = json.dumps(data, ensure_ascii=False, indent=1)
-    t = t.replace(placeholder, blob, 1)
+    placeholder = "/*__MASTER_DATA__*/null"
+    if placeholder in t:
+        t = t.replace(placeholder, blob, 1)
+    else:
+        # Already-injected state: replace the existing `const MASTER_DATA = {...};`
+        # block. Find the line "const MASTER_DATA = {" at top level (not inside a comment).
+        import re
+        m = re.search(r"^const MASTER_DATA = \{", t, re.M)
+        if not m:
+            raise SystemExit(f"placeholder {placeholder} and const MASTER_DATA block both missing in {p}")
+        start = m.start()
+        # Find the matching close: track brace depth starting at the opening brace.
+        depth = 0
+        i = start + len("const MASTER_DATA = ")
+        while i < len(t):
+            ch = t[i]
+            if ch == "{":
+                depth += 1
+            elif ch == "}":
+                depth -= 1
+                if depth == 0:
+                    end = i + 1
+                    break
+            i += 1
+        else:
+            raise SystemExit(f"could not find end of MASTER_DATA const block in {p}")
+        # Consume optional trailing semicolon or newline
+        while end < len(t) and t[end] in ";\n":
+            end += 1
+        t = t[:start] + "const MASTER_DATA = " + blob + ";" + t[end:]
     p.write_text(t, encoding="utf-8")
     return p
 

@@ -1,7 +1,7 @@
 {
  "meta": {
-  "generated_at": "2026-09-07T11:37:23",
-  "git_commit": "4145dc6",
+  "generated_at": "2026-09-07T13:08:18",
+  "git_commit": "08e0634",
   "warnings": []
  },
  "cases": {
@@ -41122,7 +41122,8 @@
         "attrs": {}
        }
       ]
-     }
+     },
+     "last_updated": "2026-09-07T13:08:18"
     },
     "P3": {
      "catalog": {
@@ -90460,7 +90461,8 @@
         "attrs": {}
        }
       ]
-     }
+     },
+     "last_updated": "2026-09-07T13:08:19"
     },
     "P3": {
      "catalog": {
@@ -166860,7 +166862,8 @@
         "attrs": {}
        }
       ]
-     }
+     },
+     "last_updated": "2026-09-07T13:08:19"
     },
     "P3": {
      "catalog": {
@@ -172454,6 +172457,26 @@
    "Case_01_TinyTask_SaaS": null,
    "Case_02_SecureBorder_Solutions": null,
    "Case_03_OmniBank_Financial": null
+  }
+ },
+ "gates_matrix": {
+  "case_01": {
+   "G1": "--",
+   "G2": "PLANNED",
+   "G3": "--",
+   "G4": "--"
+  },
+  "case_02": {
+   "G1": "FR-03",
+   "G2": "--",
+   "G3": "--",
+   "G4": "--"
+  },
+  "case_03": {
+   "G1": "NOT_APPLICABLE",
+   "G2": "--",
+   "G3": "--",
+   "G4": "--"
   }
  }
 }
