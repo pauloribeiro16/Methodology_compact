@@ -48,6 +48,10 @@ C1 UC-01..40; C2 UC-01..36); registry filled for all 3 cases; SVGs re-rendered; 
 Known residual: 6 borderline UC titles (§5) unchanged — their ids are now the renumbered
 ones (C1 UC-07/UC-12 etc.); re-adjudication would be a NEW renumber if ever ratified.
 
+## 1G. DELIVERED — MASTER DASHBOARD widget fix R4 (2026-09-07)
+
+Human: «ainda existe muita coisa a falhar» (radar, ambiguities, frameworks, gates, etc.). Diagnóstico: 17 mismatches entre paths lidos pelo shell e paths emitidos pelo gerador. Fix R4: 14 correções no shell (paths errados + joins em listas), 3 acréscimos no gerador (`p2.last_updated`, `p3.gates_matrix`, `last_updated` no `data.meta`). Smoke 17/17, master 15/15, 9 screenshots full-page validados visualmente.
+
 ## 1F. DELIVERED — MASTER DASHBOARD FIX (2026-09-07) — radar + grafo + ambiguity widgets
 
 Human: «o radar não funciona, ambiguidades só na fase 1, nas outras fases também». Delivered: gerador estendido (maturity 6-axis CSF, ambiguity Doc09 + phase1_graph, graph.nodes/links completos, P2/P3 widgets) → JSON 2.6 MB; shell com vis-network@9 graph real (749 nós force-directed), radar hexagonal P1 + radares P2/P3, ambiguity widgets replicados P1↔P2↔P3; 17/17 smoke + test_master_dashboard.py 15/15; 3 screenshots radar+grafo.
