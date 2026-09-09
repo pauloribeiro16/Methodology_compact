@@ -28,6 +28,7 @@ too, so they are valid SkillNet skills and vice-versa).
 |---|---|
 | `case-context-loader` | pre-flight of any case work — loads GLOBAL → case → phase state chain |
 | `doc-conventions` | before writing/editing any methodology document (IDs, frontmatter, citations) |
+| `writing-use-cases` | when drafting/reviewing UC cards or UC/sequence diagrams in any Phase 3 deliverable (Doc20/21/22, Doc31, Doc32, annexes A/B) |
 
 Install into ZCode: `bash scripts/install_skills.sh` (symlinks into `~/.zcode/skills/`;
 restart the session afterwards).

@@ -101,6 +101,7 @@ AEGIS repeatable workflows live as versioned skills in `skills/` (format: `SKILL
 **Mandatory invocation points:**
 - **Case work (pre-flight)** → `case-context-loader` — loads GLOBAL → case → phase state chain
 - **Writing/editing any methodology document** → `doc-conventions` — ID hierarchy corr-008, frontmatter, naming, citation rules
+- **Phase 3 UC work (drafting/reviewing UC cards or UC/sequence diagrams)** → `writing-use-cases` — Cockburn + RMAC + AEGIS Bike4All RUP 10-section + §10 schema
 
 **External skill hub (consumer):** search/download via the `skillnet` MCP server (registered **user-scope** in `~/.zcode/cli/config.json` → `mcp.servers.skillnet` so it's available across all workspaces) or `skillnet search|download` CLI. Search results carry the hub's 5-axis quality scores. **P7 rule:** external skills are third-party code+prompts — human approval before any enters the AEGIS workflow. `evaluate`/`create` deferred (needs LLM backend; see `skills/SKILLNET.md`).
 
@@ -116,7 +117,7 @@ MCP + agents + generic skills + commands = user-scope (available across projects
 | `~/.zcode/AGENTS.md` user defaults | user | `~/.zcode/AGENTS.md` |
 | `/dream`, `/case`, `/doc-check` commands | user | `~/.zcode/commands/*.md` |
 | `kg-reminder` + `brief` + `guard-protected-files` + `guard-bash` hooks | workspace | `<repo>/.zcode/config.json` |
-| `case-context-loader` + `doc-conventions` skills | user (symlink) | `~/.zcode/skills/...` → `repo/skills/...` |
+| `case-context-loader` + `doc-conventions` + `writing-use-cases` skills | user (symlink) | `~/.zcode/skills/...` → `repo/skills/...` |
 
 **PreToolUse guardrails (workspace):** `guard-protected-files.sh` denies `Write|Edit` on `00_METHODOLOGY/PREPROCESSING_by_domain/domains/**`, `kg/.../graph.json|graph.html`, and `.git/**`. `guard-bash.sh` denies a narrow set of destructive bash commands and always logs one JSON line per allowed call to `dream/STATE/bash_use.log` (consumed by `adoption_audit.py`). Both are workspace-scoped so the protection applies specifically to AEGIS work.
 
@@ -185,6 +186,7 @@ Before doing any work. Each item is a **tool-call contract** — the bracketed a
 - [ ] Session brief reviewed (auto-injected by `brief_hook.sh`; sentinel `__DREAM_HOOK_SENTINEL_*` visible in system-reminder)
 - [ ] Case work: case context loaded — auto-injected by `case_context_hook.sh` on SessionStart; or run `bash skills/case-context-loader/scripts/load_case_context.sh <case>` in this turn
 - [ ] Doc writing/editing: `doc-conventions` skill consulted (or its rules applied: `DocNN_Nome.md`, corr-008 IDs, frontmatter 8 fields)
+- [ ] Phase 3 UC work (UC cards or UC/sequence diagrams): `writing-use-cases` skill consulted (Cockburn template + RMAC elicitation + AEGIS §10 schema)
 - [ ] Read the relevant `PROJECT_STATE.md` chain (case root → phase root) for current status
 - [ ] If touching an ID-bearing doc (`SR-*`/`SO-*`/`RULE-*`/`REQ-*`/`D-XX.Y`): `scripts/kg.sh impact <ID>` MUST appear in this turn's tool calls; cross-checked `dependency_graph.yaml` and `grep -r`
 - [ ] If editing `00_VISUALISATIONS/**/*.html`: `python3 00_METHODOLOGY/00_VISUALISATIONS/tests/test_dashboards.py --only <basename>` MUST return exit 0 before commit
