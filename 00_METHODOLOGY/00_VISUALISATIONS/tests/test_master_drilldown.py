@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
-"""test_master_drilldown.py — R5 modal drill-down coverage.
+"""test_master_drilldown.py — R5 modal drill-down coverage + R6 full-card drill-down.
 
-For each of the 9 DataTables in the Master Dashboard, switch to the
-appropriate case + phase, click the first body row, wait for the modal
-to open, assert that:
-  - the modal element is .open
-  - .am-title contains the row's first-column ID text
-  - the modal body has at least 3 <dt> entries
-  - at least one <dd> has real (non-empty, non-`—`) content
-Then close with ESC and continue to the next table.
+R5 (existing): for each of the 9 DataTables in the Master Dashboard, click
+the first row, assert modal opens with at least 3 <dt> and a real <dd>.
+R6 (new): three targeted assertions for full-card drill-down:
+  - Case_03 P3 / folio09-uc-table — RUP sections rendered, Basic Flow numbered list
+  - Case_01 P2 / folio05-rules-table — numbered rule fields (1. Description etc.)
+  - Case_01 P1 / folio02-amb-table — Resolution section + ≥5 <dt>
 
-Also captures one screenshot of an open modal (Case_02 P2 first row of
-folio05-rules-table) to tests/screenshots/master_case_02_p2_drilldown.png.
+Also captures three R6 screenshots:
+  - master_drilldown_uc.png         (Case_03 P3 first UC)
+  - master_drilldown_rule.png       (Case_01 P2 first Rule)
+  - master_drilldown_ambiguity.png  (Case_01 P1 first Ambiguity)
 
 Run: python3 00_METHODOLOGY/00_VISUALISATIONS/tests/test_master_drilldown.py
 """
@@ -148,6 +148,100 @@ def open_modal_and_assert(page, case_key: str, phase: str, table_id: str) -> boo
     return True
 
 
+def open_and_assert_r6(page, case_key: str, phase: str, table_id: str,
+                        screenshot: str | None,
+                        h4_count_min: int = 1,
+                        section_titles_required: list[str] | None = None,
+                        body_must_contain: str | None = None,
+                        dt_count_min: int = 1,
+                        section_count_min: int = 1) -> bool:
+    """R6 — open first row, assert full-card drill-down renders sections.
+
+    Returns True on success.
+    """
+    page.evaluate(f"window.MASTER_DASHBOARD.activateCase('{case_key}')")
+    page.evaluate(f"window.MASTER_DASHBOARD.activatePhase('{phase}')")
+    # R6 — trigger an extra re-render so case-specific data flows into dtSources
+    try:
+        page.evaluate("window.MASTER_DASHBOARD.rerenderCurrent()")
+    except Exception as e:
+        print(f"  R6 debug rerenderCurrent err for {case_key}/{phase}: {e}")
+    page.wait_for_timeout(2500)
+    has_tbl = page.evaluate(f"document.getElementById('{table_id}') != null")
+    if not has_tbl:
+        print(f"  R6 FAIL {case_key}/{phase}/{table_id}: table not in DOM")
+        return False
+    if not has_tbl:
+        print(f"  R6 FAIL {case_key}/{phase}/{table_id}: table not in DOM")
+        return False
+    first_cell = page.evaluate(
+        f"""(() => {{
+            var tbl = document.getElementById('{table_id}');
+            if (!tbl) return null;
+            var tr = tbl.querySelector('tbody tr');
+            if (!tr) return null;
+            var td = tr.querySelector('td');
+            return td ? (td.textContent || '').trim() : null;
+        }})()"""
+    )
+    if not first_cell:
+        print(f"  R6 FAIL {case_key}/{phase}/{table_id}: no rows to click")
+        return False
+    clicked = page.evaluate(
+        f"""(() => {{
+            var tbl = document.getElementById('{table_id}');
+            var tr = tbl.querySelector('tbody tr');
+            if (!tr) return false;
+            tr.dispatchEvent(new MouseEvent('click', {{bubbles: true, cancelable: true}}));
+            return true;
+        }})()"""
+    )
+    if not clicked:
+        return False
+    try:
+        page.wait_for_selector("#aegis-detail-modal.open", timeout=12000)
+    except Exception as e:
+        print(f"  R6 FAIL {case_key}/{phase}/{table_id}: modal did not open ({e})")
+        return False
+    # Count <h4> in modal
+    h4_count = page.evaluate("document.querySelectorAll('#aegis-detail-modal .aegis-modal-body .am-section h4').length")
+    section_count = page.evaluate("document.querySelectorAll('#aegis-detail-modal .aegis-modal-body .am-section').length")
+    if h4_count < h4_count_min:
+        print(f"  R6 FAIL {case_key}/{phase}/{table_id}: only {h4_count} <h4> sections (expected >= {h4_count_min})")
+        return False
+    if section_count < section_count_min:
+        print(f"  R6 FAIL {case_key}/{phase}/{table_id}: only {section_count} .am-section blocks (expected >= {section_count_min})")
+        return False
+    if section_titles_required:
+        titles = page.evaluate(
+            "Array.from(document.querySelectorAll('#aegis-detail-modal .aegis-modal-body .am-section h4')).map(h => h.textContent)"
+        )
+        for req in section_titles_required:
+            if not any(req.lower() in (t or "").lower() for t in titles):
+                print(f"  R6 FAIL {case_key}/{phase}/{table_id}: missing section '{req}' in {titles}")
+                return False
+    if body_must_contain:
+        body_text = page.evaluate("document.querySelector('#aegis-detail-modal .aegis-modal-body').textContent || ''")
+        if body_must_contain.lower() not in body_text.lower():
+            print(f"  R6 FAIL {case_key}/{phase}/{table_id}: body missing '{body_must_contain}'")
+            return False
+    dt_count = page.evaluate("document.querySelectorAll('#aegis-detail-modal .aegis-modal-body dt').length")
+    if dt_count < dt_count_min:
+        print(f"  R6 FAIL {case_key}/{phase}/{table_id}: only {dt_count} <dt> entries (expected >= {dt_count_min})")
+        return False
+    if screenshot:
+        page.screenshot(path=str(SHOT_DIR / screenshot), full_page=False)
+    # Close
+    page.keyboard.press("Escape")
+    page.wait_for_timeout(300)
+    is_open = page.evaluate("document.getElementById('aegis-detail-modal').classList.contains('open')")
+    if is_open:
+        page.evaluate("document.querySelector('#aegis-detail-modal .am-close').click()")
+        page.wait_for_timeout(300)
+    print(f"  R6 OK   {case_key}/{phase}/{table_id}: {section_count} sections, {h4_count} h4, {dt_count} dt")
+    return True
+
+
 def main() -> int:
     with sync_playwright() as pw:
         b = pw.chromium.launch()
@@ -161,8 +255,49 @@ def main() -> int:
         page.wait_for_timeout(3500)
 
         ok = True
+        # R5 — drill-down coverage
         for case_key, phase, table_id in TABLES:
             if not open_modal_and_assert(page, case_key, phase, table_id):
+                ok = False
+
+        # R6 — full-card drill-down
+        r6_specs = [
+            # 1. Case_03 P3 / UC table — RUP-style sections + numbered Basic Flow
+            {
+                "case": "case_03", "phase": "p3", "tbl": "folio09-uc-table",
+                "screenshot": "master_drilldown_uc.png",
+                "h4_min": 1, "sections_min": 5,
+                "titles": ["Basic Flow"],
+                "body_contains": "1.",  # numbered list bullet
+                "dt_min": 1,
+            },
+            # 2. Case_01 P2 / Rules table — numbered rule fields
+            {
+                "case": "case_01", "phase": "p2", "tbl": "folio05-rules-table",
+                "screenshot": "master_drilldown_rule.png",
+                "h4_min": 3, "sections_min": 3,
+                "titles": ["1."],  # starts with "1. Description"
+                "body_contains": None,
+                "dt_min": 3,
+            },
+            # 3. Case_01 P1 / Ambiguity table — Resolution section + ≥5 <dt>
+            {
+                "case": "case_01", "phase": "p1", "tbl": "folio02-amb-table",
+                "screenshot": "master_drilldown_ambiguity.png",
+                "h4_min": 1, "sections_min": 2,  # Card + Resolution
+                "titles": ["Resolution", "Card"],
+                "body_contains": None,
+                "dt_min": 5,
+            },
+        ]
+        for spec in r6_specs:
+            if not open_and_assert_r6(page, spec["case"], spec["phase"], spec["tbl"],
+                                       spec["screenshot"],
+                                       h4_count_min=spec["h4_min"],
+                                       section_titles_required=spec["titles"],
+                                       body_must_contain=spec["body_contains"],
+                                       dt_count_min=spec["dt_min"],
+                                       section_count_min=spec.get("sections_min", 1)):
                 ok = False
 
         if errors:
@@ -171,13 +306,14 @@ def main() -> int:
                 print(f"  {e[:240]}")
             ok = False
 
-        print(f"\n{'OK' if ok else 'FAIL'} drilldown coverage ({sum(1 for _ in TABLES)} tables)")
+        print(f"\n{'OK' if ok else 'FAIL'} drilldown coverage ({len(TABLES)} R5 tables + {len(r6_specs)} R6 specs)")
         b.close()
         return 0 if ok else 2
 
 
 if __name__ == "__main__":
     try:
-        sys.exit(main())
+        rc = main()
     except KeyboardInterrupt:
         sys.exit(130)
+    sys.exit(rc)

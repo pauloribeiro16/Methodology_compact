@@ -1611,6 +1611,455 @@ def parse_lane_cards(case, cfg, warn):
 
 
 # ---------------------------------------------------------------------------
+# R6 — Full-card drill-down parsers (per-row "detail" blocks)
+# ---------------------------------------------------------------------------
+# Each parser reads the source corpus document and returns a dict
+# keyed by id -> {sections:[{title, body}], fields:{k:v}, diagram?:str}.
+# When a card is missing for an id, the value is None.
+# ---------------------------------------------------------------------------
+
+# Per-case P2 rule catalog filenames (used by parse_rule_cards)
+DOC_P2_RULES_CATALOG = {
+    "Case_01_TinyTask_SaaS": ("02_PHASE2_RULES_RICH", "Doc18_Rules_Catalog.md"),
+    "Case_02_SecureBorder_Solutions": ("02_PHASE2_RULES_RICH", "Doc18_Rules_Catalog.md"),
+    "Case_03_OmniBank_Financial": ("02_PHASE2_RULES_RICH", "Doc19_Rules_Catalog.md"),
+}
+
+
+def _split_md_sections(body, start_level=5):
+    """Split a markdown body at headings `start_level`..6 (#-counts).
+
+    Returns list of (level, heading_title, body_lines_after_heading).
+    The list is in document order; headings are kept inline with their content.
+    """
+    sections = []
+    cur_level, cur_title, cur_lines = None, None, []
+    for line in (body or "").split("\n"):
+        m = re.match(r"^(#{3,6})\s+(.*)$", line)
+        if m:
+            # Flush (use a snapshot copy to avoid aliasing)
+            if cur_level is not None:
+                sections.append((cur_level, cur_title, list(cur_lines)))
+            cur_level = len(m.group(1))
+            cur_title = m.group(2).strip()
+            cur_lines = []
+        else:
+            cur_lines.append(line)
+    if cur_level is not None:
+        sections.append((cur_level, cur_title, list(cur_lines)))
+    return sections
+
+
+def _strip_sequence_diagram_pointer(lines):
+    """Drop the standalone sequence-diagram pointer line that RUP cards carry."""
+    out = []
+    for ln in lines:
+        if re.match(r"^\s*>\s*\*\*Sequence diagram:\*\*", ln):
+            continue
+        out.append(ln)
+    return out
+
+
+def parse_uc_cards(case, cfg, warn):
+    """R6.1 — parse UC cards (fully-dressed RUP + compact §3 forms).
+
+    Returns {id: {sections:[{title, body}], fields:{}, diagram?:str} | None}.
+    """
+    text = read(f"{cfg['root']}/{cfg['catalog']}")
+    if not text:
+        warn.append(f"{case}: UC catalog missing for R6 parse ({cfg['catalog']})")
+        return {}
+    out = {}
+    # Split on #### Use-Case or #### UC-NN
+    blocks = re.split(r"(?m)^####\s+(.*)$", text)
+    # blocks: [pre, head1, body1, head2, body2, ...]
+    SECTION_TITLES_RUP = {
+        1: "Brief Description",
+        2: "Actor Brief Descriptions",
+        3: "Preconditions",
+        4: "Basic Flow",
+        5: "Alternative Flows",
+        6: "Subflows",
+        7: "Key Scenarios",
+        8: "Post-conditions",
+        9: "Special Requirements",
+        10: "Security & Compliance Annex",
+    }
+    i = 1
+    while i < len(blocks):
+        heading = blocks[i].strip()
+        body = blocks[i + 1] if i + 1 < len(blocks) else ""
+        i += 2
+        # Two heading grammars
+        m_rup = re.match(r"^Use-Case:\s*\{([^}]+)\}\s*(.+)?$", heading)
+        m_cmp = re.match(r"^(UC-\d+)\s+[—-]\s+(.+)$", heading)
+        if m_rup:
+            uc_id = m_rup.group(1).strip()
+            title = (m_rup.group(2) or "").strip()
+            body_lines = _strip_sequence_diagram_pointer(body.split("\n"))
+            # Drop the front-matter block (the id and title echo lines) if present
+            body_lines = [ln for ln in body_lines if not re.match(r"^\s*\*\*(Use-Case Id|Title|Primary Actor)\*\*", ln)]
+            # Walk sub-headings ##### N to build sections
+            sub = _split_md_sections("\n".join(body_lines), start_level=5)
+            sections = []
+            for lvl, h, lines in sub:
+                if lvl != 5:
+                    continue
+                # Strip leading "N " or "N.N " tokens
+                m_num = re.match(r"^(\d+)\.?\s*(.*)$", h)
+                if not m_num:
+                    continue
+                num = int(m_num.group(1))
+                ttl = SECTION_TITLES_RUP.get(num, m_num.group(2).strip() or h)
+                body_txt = "\n".join(lines).strip("\n")
+                if not body_txt.strip():
+                    continue
+                sections.append({"title": ttl, "body": body_txt})
+            out[uc_id] = {"sections": sections, "fields": {}, "title": title}
+        elif m_cmp:
+            uc_id = m_cmp.group(1).strip()
+            title = m_cmp.group(2).strip()
+            # Compact card — extract **Label:** value pairs and put rest in one "Card" section
+            fields = {}
+            leftover = []
+            for ln in body.split("\n"):
+                m_f = re.match(r"^\s*-\s+\*\*(.+?):\*\*\s*(.+?)\s*$", ln)
+                if m_f:
+                    fields[m_f.group(1).strip()] = m_f.group(2).strip()
+                else:
+                    leftover.append(ln)
+            leftover_txt = "\n".join(leftover).strip()
+            sections = []
+            if leftover_txt:
+                sections.append({"title": "Card", "body": leftover_txt})
+            out[uc_id] = {"sections": sections, "fields": fields, "title": title}
+    return out
+
+
+def parse_rule_cards(case, cfg, warn):
+    """R6.2 — parse Rule cards (1..18 numbered fields). C1/C2 only; C3 returns {}."""
+    out = {}
+    if case == "Case_03_OmniBank_Financial":
+        return out
+    rel = DOC_P2_RULES_CATALOG.get(case)
+    if not rel:
+        return out
+    text = read(f"{cfg['root']}/{rel[0]}/{rel[1]}")
+    if not text:
+        warn.append(f"{case}: rules catalog missing for R6 parse ({rel[0]}/{rel[1]})")
+        return out
+    # C1/C2 rule headings: ### CR-D-XX.X-NNN — Title  (8.N cards not present as ###)
+    blocks = re.split(r"(?m)^###\s+(CR-D-\d{2}\.\d+-\d+)\s+[—-]\s+([^\n]+)$", text)
+    i = 1
+    while i < len(blocks):
+        rid = blocks[i].strip()
+        title = blocks[i + 1].strip() if i + 1 < len(blocks) else ""
+        body = blocks[i + 2] if i + 2 < len(blocks) else ""
+        i += 3
+        # Numbered fields are at start-of-line "1. **Description**" etc.
+        sections = []
+        # Split body by numbered heading lines
+        chunks = re.split(r"(?m)^(\d+)\.\s+\*\*([^*]+?)\*\*", body)
+        # chunks: [pre, num1, label1, body1, num2, label2, body2, ...]
+        j = 1
+        while j < len(chunks):
+            num = chunks[j]
+            label = chunks[j + 1] if j + 1 < len(chunks) else ""
+            body_txt = chunks[j + 2] if j + 2 < len(chunks) else ""
+            j += 3
+            body_clean = body_txt.strip("\n").rstrip()
+            if not body_clean:
+                continue
+            sections.append({"title": f"{num}. {label.strip()}", "body": body_clean})
+        out[rid] = {"sections": sections, "fields": {}, "title": title}
+    return out
+
+
+def _detect_fr_doc(case, cfg, kind="fr"):
+    """Find the FR or NFR doc path for the case by content sniffing."""
+    p3 = cfg["p3_dir"]
+    root = cfg["root"]
+    req_dir = REPO / root / p3 / "requirements"
+    if not req_dir.exists():
+        return None
+    if kind == "fr":
+        pattern = re.compile(r"^####?\s*FR-", re.M)
+    else:
+        pattern = re.compile(r"^####?\s*NFR-", re.M)
+    # Prefer the file whose content matches
+    candidates = list(req_dir.glob("*.md"))
+    for p in candidates:
+        try:
+            t = p.read_text(encoding="utf-8", errors="ignore")
+        except Exception:
+            continue
+        if pattern.search(t):
+            return str(p.relative_to(REPO))
+    # Fall back to the conventional filename
+    fallback = {
+        "Case_01_TinyTask_SaaS": {"fr": f"{p3}/requirements/Doc29_Functional_Requirements.md",
+                                  "nfr": f"{p3}/requirements/Doc31_Non_Functional_Requirements.md"},
+        "Case_02_SecureBorder_Solutions": {"fr": f"{p3}/requirements/Doc29_Functional_Requirements.md",
+                                           "nfr": f"{p3}/requirements/Doc30_Non_Functional_Requirements.md"},
+        "Case_03_OmniBank_Financial": {"fr": f"{p3}/requirements/Doc30_Functional_Requirements.md",
+                                      "nfr": f"{p3}/requirements/Doc31_Non_Functional_Requirements.md"},
+    }
+    return fallback.get(case, {}).get(kind)
+
+
+def parse_req_cards(case, cfg, warn):
+    """R6.3 — parse FR / NFR cards. C1 fully dressed, C3 table rows, C2 rows only."""
+    out = {"fr": {}, "nfr": {}}
+    fr_rel = _detect_fr_doc(case, cfg, "fr")
+    nfr_rel = _detect_fr_doc(case, cfg, "nfr")
+    # FR
+    if fr_rel:
+        t = read(fr_rel)
+        if t:
+            if case == "Case_01_TinyTask_SaaS":
+                # Heading: ### FR-NN — Title [priority=..., fields=N]
+                # Capture id + the trailing bracket block + everything to next ###
+                blocks = re.split(r"(?m)^###\s+(FR-\d{1,3})\s+[—-]\s+(.*)$", t)
+                i = 1
+                while i < len(blocks):
+                    rid = blocks[i].strip()
+                    heading_rest = blocks[i + 1] if i + 1 < len(blocks) else ""
+                    body = blocks[i + 2] if i + 2 < len(blocks) else ""
+                    i += 3
+                    # heading_rest = "Title [priority=..., fields=N]" or just "Title"
+                    m_head = re.match(r"^([^\[]*?)\s*(\[[^\]]*\])?\s*$", heading_rest.strip())
+                    title = (m_head.group(1).strip() if m_head else heading_rest.strip())
+                    fields = {}
+                    leftover = []
+                    for ln in body.split("\n"):
+                        m_f = re.match(r"^\s*\*\*([^*]+?):\*\*\s*(.+?)\s*$", ln)
+                        if m_f:
+                            fields[m_f.group(1).strip()] = m_f.group(2).strip()
+                        else:
+                            leftover.append(ln)
+                    leftover_txt = "\n".join(leftover).strip()
+                    sections = []
+                    desc = fields.pop("Description", None)
+                    if desc:
+                        sections.append({"title": "Description", "body": desc})
+                    if leftover_txt:
+                        sections.append({"title": "Details", "body": leftover_txt})
+                    out["fr"][rid] = {"sections": sections, "fields": fields, "title": title}
+            elif case == "Case_03_OmniBank_Financial":
+                # Heading: #### FR-NN: Title + | Field | Value | table
+                blocks = re.split(r"(?m)^####\s+(FR-\d+):\s+([^\n]+)$", t)
+                i = 1
+                while i < len(blocks):
+                    rid = blocks[i].strip()
+                    title = blocks[i + 1].strip() if i + 1 < len(blocks) else ""
+                    body = blocks[i + 2] if i + 2 < len(blocks) else ""
+                    i += 3
+                    fields = {}
+                    for m in re.finditer(r"^\|\s*\*\*(.+?)\*\*\s*\|\s*(.+?)\s*\|\s*$", body, re.M):
+                        fields[m.group(1).strip()] = m.group(2).strip()
+                    desc = fields.get("FR Description", "")
+                    sections = []
+                    if desc:
+                        sections.append({"title": "FR Description", "body": desc})
+                    out["fr"][rid] = {"sections": sections, "fields": fields, "title": title}
+            # C2: rows only — leave empty (we still capture any heading-form FR)
+            blocks = re.split(r"(?m)^###\s+(FR-\d+)\s+[—-]\s+([^\n]+)$", t)
+            i = 1
+            while i < len(blocks):
+                rid = blocks[i].strip()
+                title = blocks[i + 1].strip() if i + 1 < len(blocks) else ""
+                body = blocks[i + 2] if i + 2 < len(blocks) else ""
+                i += 3
+                if rid not in out["fr"]:
+                    out["fr"][rid] = {"sections": [], "fields": {}, "title": title}
+    # NFR
+    if nfr_rel:
+        t = read(nfr_rel)
+        if t:
+            if case == "Case_01_TinyTask_SaaS":
+                blocks = re.split(r"(?m)^###\s+(NFR-\d{1,3})\s+[—-]\s+(.*)$", t)
+                i = 1
+                while i < len(blocks):
+                    rid = blocks[i].strip()
+                    heading_rest = blocks[i + 1] if i + 1 < len(blocks) else ""
+                    body = blocks[i + 2] if i + 2 < len(blocks) else ""
+                    i += 3
+                    m_head = re.match(r"^([^\[]*?)\s*(\[[^\]]*\])?\s*$", heading_rest.strip())
+                    title = (m_head.group(1).strip() if m_head else heading_rest.strip())
+                    fields = {}
+                    leftover = []
+                    for ln in body.split("\n"):
+                        m_f = re.match(r"^\s*\*\*([^*]+?):\*\*\s*(.+?)\s*$", ln)
+                        if m_f:
+                            fields[m_f.group(1).strip()] = m_f.group(2).strip()
+                        else:
+                            leftover.append(ln)
+                    leftover_txt = "\n".join(leftover).strip()
+                    sections = []
+                    desc = fields.pop("Description", None)
+                    if desc:
+                        sections.append({"title": "Description", "body": desc})
+                    if leftover_txt:
+                        sections.append({"title": "Details", "body": leftover_txt})
+                    out["nfr"][rid] = {"sections": sections, "fields": fields, "title": title}
+            elif case == "Case_03_OmniBank_Financial":
+                blocks = re.split(r"(?m)^####\s+(NFR-[\w-]+):\s+([^\n]+)$", t)
+                i = 1
+                while i < len(blocks):
+                    rid = blocks[i].strip()
+                    title = blocks[i + 1].strip() if i + 1 < len(blocks) else ""
+                    body = blocks[i + 2] if i + 2 < len(blocks) else ""
+                    i += 3
+                    fields = {}
+                    for m in re.finditer(r"^\|\s*\*\*(.+?)\*\*\s*\|\s*(.+?)\s*\|\s*$", body, re.M):
+                        fields[m.group(1).strip()] = m.group(2).strip()
+                    desc = fields.get("NFR Description") or fields.get("Description", "")
+                    sections = []
+                    if desc:
+                        sections.append({"title": "NFR Description", "body": desc})
+                    out["nfr"][rid] = {"sections": sections, "fields": fields, "title": title}
+    return out
+
+
+def parse_threat_cards(case, cfg, warn):
+    """R6.4 — parse RISK-NN (17 fields) and THR-... (12 fields) cards. C1 only rich."""
+    out = {}
+    if case != "Case_01_TinyTask_SaaS":
+        return out
+    paths = doc_p3_paths(case, cfg)
+    t = read(paths.get("risks"))
+    if not t:
+        warn.append(f"{case}: risks doc missing for R6 parse ({paths.get('risks')})")
+        return out
+    # Match both RISK-NN and THR-XXX-NN at ### level
+    blocks = re.split(r"(?m)^###\s+((?:RISK|THR)-[\w-]+)\s+[—-]\s+([^\n]+?)\s*\[", t)
+    i = 1
+    while i < len(blocks):
+        rid = blocks[i].strip()
+        title = blocks[i + 1].strip() if i + 1 < len(blocks) else ""
+        body = blocks[i + 2] if i + 2 < len(blocks) else ""
+        i += 3
+        fields = {}
+        leftover = []
+        for ln in body.split("\n"):
+            m_f = re.match(r"^\s*\*\*([^*]+?):\*\*\s*(.+?)\s*$", ln)
+            if m_f:
+                fields[m_f.group(1).strip()] = m_f.group(2).strip()
+            else:
+                leftover.append(ln)
+        leftover_txt = "\n".join(leftover).strip()
+        sections = []
+        desc = fields.pop("Description", None) or fields.pop("Threat", None)
+        if desc:
+            sections.append({"title": "Description", "body": desc})
+        if leftover_txt:
+            sections.append({"title": "Details", "body": leftover_txt})
+        out[rid] = {"sections": sections, "fields": fields, "title": title}
+    return out
+
+
+def parse_ambiguity_cards(case, cfg, warn):
+    """R6.5 — parse Doc09 ambiguity Card / Resolution blocks."""
+    out = {}
+    rel = f"{cfg['root']}/01_PHASE1_CONTEXT_RICH/{DOC_P1_AMBIGUITY}"
+    t = read(rel)
+    if not t:
+        warn.append(f"{case}: Doc09 missing for R6 parse")
+        return out
+    # Split on #### Card #N: ... and #### Resolution (per card N): ...
+    lines = t.split("\n")
+    cur_id = None
+    cur_id_value = None  # extracted clause id from heading (e.g. GDPR-CL23)
+    cur_card_body = []
+    cur_resolution = None
+    cur_res_body = []
+    cur_kind = None  # "card" or "resolution"
+
+    def flush():
+        nonlocal cur_id, cur_id_value, cur_card_body, cur_resolution, cur_res_body, cur_kind
+        if cur_id is not None:
+            card_text = "\n".join(cur_card_body).strip()
+            res_text = "\n".join(cur_res_body).strip()
+            sections = []
+            fields = {}
+            if card_text:
+                sections.append({"title": "Card", "body": card_text})
+            if res_text:
+                sections.append({"title": "Resolution", "body": res_text})
+            # Pull common bold-label lines into fields
+            for ln in (cur_card_body + cur_res_body):
+                m_f = re.match(r"^\s*-\s+\*\*(.+?):\*\*\s*(.+?)\s*$", ln)
+                if m_f:
+                    fields[m_f.group(1).strip()] = m_f.group(2).strip()
+            # Key by extracted clause id when present, else by ordinal "Card N"
+            key = cur_id_value if cur_id_value else f"Card {cur_id}"
+            out[key] = {"sections": sections, "fields": fields, "title": f"Card #{cur_id}: {cur_id_value or ''}".strip()}
+        cur_id = None
+        cur_id_value = None
+        cur_card_body = []
+        cur_res_body = []
+        cur_kind = None
+
+    card_re = re.compile(r"^####\s+Card\s*#(\d+):\s+(.+?)\s*$")
+    res_re = re.compile(r"^####\s+Resolution\s*(?:\(per card (\d+)\))?\s*:?\s*$")
+    for ln in lines:
+        m_c = card_re.match(ln)
+        if m_c:
+            flush()
+            cur_id = m_c.group(1)
+            cur_id_value = m_c.group(2).strip()
+            cur_kind = "card"
+            continue
+        m_r = res_re.match(ln)
+        if m_r:
+            # Switch to resolution for current card
+            cur_kind = "resolution"
+            continue
+        if cur_kind == "card":
+            cur_card_body.append(ln)
+        elif cur_kind == "resolution":
+            cur_res_body.append(ln)
+    flush()
+    return out
+
+
+def parse_lane_diagram(case, cfg, warn):
+    """R6.6 — extract mermaid block for each PROC/CAP card from the lane-cards doc."""
+    out = {}  # id -> diagram string
+    text = read(f"{cfg['root']}/{cfg['lane_cards']}")
+    if not text:
+        return out
+    lines = text.split("\n")
+    cur_id = None
+    in_mermaid = False
+    buf = []
+    for ln in lines:
+        m_p = re.match(r"^##\s+(PROC-\d+|CAP-\d+)\s+[—-]\s+", ln)
+        if m_p:
+            if cur_id and buf:
+                out[cur_id] = "\n".join(buf).strip("\n")
+            cur_id = m_p.group(1)
+            in_mermaid = False
+            buf = []
+            continue
+        if cur_id is None:
+            continue
+        if re.match(r"^```mermaid\s*$", ln):
+            in_mermaid = True
+            continue
+        if in_mermaid:
+            if re.match(r"^```\s*$", ln):
+                out[cur_id] = "\n".join(buf).strip("\n")
+                in_mermaid = False
+                buf = []
+                continue
+            buf.append(ln)
+    if cur_id and buf and cur_id not in out:
+        out[cur_id] = "\n".join(buf).strip("\n")
+    return out
+
+
+# ---------------------------------------------------------------------------
 # Build
 # ---------------------------------------------------------------------------
 def build(warn):
@@ -1640,6 +2089,57 @@ def build(warn):
                                         cat["ucs"], lane)
         maturity_dist = parse_maturity_distribution(lane)
         p3_graph = parse_p3_graph(case, cfg, warn, cat, lane)
+        # R6 — full-card drill-down details
+        uc_cards = parse_uc_cards(case, cfg, warn)
+        rule_cards = parse_rule_cards(case, cfg, warn)
+        req_cards = parse_req_cards(case, cfg, warn)
+        threat_cards = parse_threat_cards(case, cfg, warn)
+        ambiguity_cards = parse_ambiguity_cards(case, cfg, warn)
+        lane_diagrams = parse_lane_diagram(case, cfg, warn)
+        # Attach detail to each row (key by id)
+        # UC rows
+        for u in cat["ucs"]:
+            card = uc_cards.get(u["id"])
+            if card is not None:
+                u["detail"] = card
+            else:
+                u["detail"] = None
+        # Rule rows
+        for r in (req_full or []):  # placeholder, replaced below via p2.rules_table
+            pass
+        # Lane cards
+        LANE_FIELD_KEYS = ("Owner", "Trigger", "Activities", "Roles",
+                           "SLA / Timing", "Span", "Maturity", "Realises",
+                           "Anchors", "Evidence")
+        for kind in ("proc", "cap"):
+            for card_obj in lane.get(kind, []) or []:
+                card_detail = {
+                    "sections": [{"title": k, "body": str(card_obj.get(k) or "")}
+                                 for k in LANE_FIELD_KEYS if card_obj.get(k)],
+                    "fields": {},
+                    "title": card_obj.get("title", ""),
+                }
+                if card_obj.get("id") in lane_diagrams:
+                    card_detail["diagram"] = lane_diagrams[card_obj["id"]]
+                card_obj["detail"] = card_detail
+        # Ambiguity rows — id match
+        amb_keys = list(ambiguity_cards.keys())
+        for idx, a in enumerate(p1_amb := p1.get("ambiguity_rows") or []):
+            key = a.get("id")
+            card = ambiguity_cards.get(key) if key else None
+            if card is None and idx < len(amb_keys):
+                # Fallback: ordinal position match
+                card = ambiguity_cards.get(amb_keys[idx])
+            a["detail"] = card
+        # R6 — wire detail onto p2.rules_table, p3.fr/nfr/threat rows
+        for r in (p2.get("rules_table") or []):
+            r["detail"] = rule_cards.get(r.get("id")) if r.get("id") else None
+        for r in (req_full.get("fr_table") or []):
+            r["detail"] = req_cards["fr"].get(r.get("id")) if r.get("id") else None
+        for r in (req_full.get("nfr_table") or []):
+            r["detail"] = req_cards["nfr"].get(r.get("id")) if r.get("id") else None
+        for r in (threat_table or []):
+            r["detail"] = threat_cards.get(r.get("id")) if r.get("id") else None
         # Back-compat FR/NFR summary
         fr_nfr_legacy = parse_fr_nfr(case, cfg)
         p3 = {
