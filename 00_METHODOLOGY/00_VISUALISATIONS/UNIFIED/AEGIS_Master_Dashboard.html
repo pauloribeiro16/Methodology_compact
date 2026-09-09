@@ -5779,6 +5779,20 @@ table.plain tbody tr:last-child td { border-bottom: none; }
 .aegis-modal-body .am-kv { display: grid; grid-template-columns: 200px 1fr; gap: 4px 12px; margin-bottom: 8px }
 .aegis-modal-body .am-kv .am-k { color: var(--ink); font-weight: 600 }
 .aegis-modal-body .am-kv .am-v { color: var(--text) }
+/* R7.3 — modal mini-TOC + filter */
+.aegis-modal-head .am-toc { margin-top: 8px; max-height: 80px; overflow-y: auto; padding-right: 12px }
+.aegis-modal-head .am-toc ul { list-style: none; padding: 0; margin: 0; font-size: 11px }
+.aegis-modal-head .am-toc li { display: inline-block; margin: 2px 4px 2px 0 }
+.aegis-modal-head .am-toc a { color: var(--accent, #1f4e78); text-decoration: none; padding: 2px 6px; border: 1px solid var(--paper-2); border-radius: 3px }
+.aegis-modal-head .am-toc a:hover { background: var(--paper-2) }
+.aegis-modal-body .am-filter { width: 100%; padding: 8px 10px; border: 1px solid var(--paper-2); border-radius: 4px; font-size: 12px; margin-bottom: 12px; background: var(--paper) }
+.aegis-modal-body .am-filter:focus { outline: none; border-color: var(--accent, #1f4e78) }
+.aegis-modal-body .am-section[hidden] { display: none }
+.aegis-modal-body .am-no-matches { padding: 12px; color: var(--text-muted); font-style: italic; text-align: center }
+/* R7.4 — folio cross-dashboard link */
+.am-folio-crosslink { margin-top: 10px; padding: 6px 8px; font-size: 11px; color: var(--text-muted); border-top: 1px dashed var(--paper-2) }
+.am-folio-crosslink a { color: var(--accent, #1f4e78); text-decoration: none; font-weight: 600 }
+.am-folio-crosslink a:hover { text-decoration: underline }
 /* Make all DataTables rows feel clickable */
 table.dt tbody tr { cursor: pointer }
 /* Highlight currently-open detail (set by JS when modal opens for a row) */
@@ -5908,14 +5922,20 @@ table.dt tbody tr.am-selected { background: rgba(31,78,120,0.10) !important }
     </label>
     <div class="stats">rows: <strong id="folio02-rows">--</strong></div>
   </div>
-  <table class="dt" id="folio02-amb-table">
+<table class="dt" id="folio02-amb-table">
     <thead>
       <tr>
-        <th>ID</th><th>Regulation</th><th>Provision</th>
-        <th>Ambiguity</th><th>Severity</th><th>Status</th><th>Citation</th>
+        <th title="Unique ambiguity identifier">ID</th>
+        <th title="Source regulation (GDPR, CRA, NIS 2, DORA, AI Act)">Regulation</th>
+        <th title="Article / clause that introduces ambiguity">Provision</th>
+        <th title="Ambiguity">Ambiguity</th>
+        <th title="Severity (S1 = highest, S3 = lowest)">Severity</th>
+        <th title="OPEN or CLOSED ambiguity resolution state">Status</th>
+        <th title="Citation anchor (Article / paragraph)">Citation</th>
+        <th title="Ambiguity classification (semantic | normative | scope)">Type</th>
       </tr>
     </thead>
-    <tbody><tr><td colspan="7" class="empty-state" style="border:none;">No data injected yet.</td></tr></tbody>
+    <tbody><tr><td colspan="8" class="empty-state" style="border:none;">No data injected yet.</td></tr></tbody>
   </table>
 
   <!-- Folio 3 — Maturity & Evidence (radar + tiles) --------------------- -->
@@ -5978,6 +5998,7 @@ table.dt tbody tr.am-selected { background: rgba(31,78,120,0.10) !important }
     <div class="gp-ttl">No graph data for this scope</div>
     <div class="gp-sub">The case knowledge graph for this scope is empty. Switch scope or inject data.</div>
   </div>
+  <div class="am-folio-crosslink" id="folio04-crosslink">Open the full Knowledge Cascade in <code>UNIFIED/AEGIS_Dashboard.html</code> &rarr;</div>
 </section>
 
 <!-- =====================================================================
@@ -6025,12 +6046,18 @@ table.dt tbody tr.am-selected { background: rgba(31,78,120,0.10) !important }
   <table class="dt" id="folio05-rules-table" style="width:100%;">
     <thead>
       <tr>
-        <th>ID</th><th>Sub-domain</th><th>Title</th>
-        <th>Realization</th><th>Source</th><th>NI</th>
+        <th title="Unique rule identifier (e.g. CR-D-01.1-001)">ID</th>
+        <th title="Security sub-domain (D-XX.Y taxonomy)">Sub-domain</th>
+        <th title="Human-readable rule name">Title</th>
+        <th title="How the rule is realized: TECHNOLOGY (artefact), PROCESS (SOP), or CAPABILITY (standing ability)">Realization</th>
+        <th title="Where the rule was derived from: yaml explicit, heuristic-derived, or cross-link">Source</th>
+        <th title="Normative Intensity (0–4 scale)">NI</th>
+        <th title="Primary regulatory anchor (Article / clause)">Anchor</th>
       </tr>
     </thead>
-    <tbody><tr><td colspan="6" class="empty-state" style="border:none;">No data injected yet.</td></tr></tbody>
+    <tbody><tr><td colspan="7" class="empty-state" style="border:none;">No data injected yet.</td></tr></tbody>
   </table>
+  <div class="am-folio-crosslink" id="folio05-crosslink">Open the dedicated P2 dashboard &rarr;</div>
 
   <!-- Folio 6 — Obligations → Objectives -------------------------------- -->
   <h2 class="section-h pad-t-l">
@@ -6047,12 +6074,16 @@ table.dt tbody tr.am-selected { background: rgba(31,78,120,0.10) !important }
   <table class="dt" id="folio06-obj-table" style="width:100%;">
     <thead>
       <tr>
-        <th>Obligation ID</th><th>Title</th><th>Regulation</th>
-        <th>Maps to (PO/SO)</th><th>Confidence</th>
+        <th title="Source control identifier (e.g. NIST AI RMF GOVERN-1.1)">Control</th>
+        <th title="Framework short name (NIST CSF, NIST AI RMF, ISO 27001, …)">Framework</th>
+        <th title="Source article / clause anchor for the control">Anchor</th>
+        <th title="Mapping target identifier (PO- / SO- / RULE-)">ID</th>
+        <th title="Classification of the mapping target (PO | SO | RULE | other)">Type</th>
       </tr>
     </thead>
     <tbody><tr><td colspan="5" class="empty-state" style="border:none;">No data injected yet.</td></tr></tbody>
   </table>
+  <div class="am-folio-crosslink" id="folio06-crosslink">Open the dedicated P2 dashboard &rarr;</div>
 
   <!-- Folio 7 — Tensions & Posture -------------------------------------- -->
   <h2 class="section-h pad-t-l">
@@ -6072,6 +6103,7 @@ table.dt tbody tr.am-selected { background: rgba(31,78,120,0.10) !important }
       <div class="pl-dsc">No data injected — populated by <span class="mono">render(data)</span>.</div></div>
     </li>
   </ul>
+  <div class="am-folio-crosslink" id="folio07-crosslink">Open the dedicated P2 dashboard &rarr;</div>
 
   <!-- Folio 8 — Framework mapping --------------------------------------- -->
   <h2 class="section-h pad-t-l">
@@ -6106,6 +6138,7 @@ table.dt tbody tr.am-selected { background: rgba(31,78,120,0.10) !important }
       </div>
     </div>
   </div>
+  <div class="am-folio-crosslink" id="folio08-crosslink">Open dedicated framework dashboards &rarr;</div>
 
   <!-- Folio X — Realization-class radar (TECH / PROC / CAP shares) ----- -->
   <h2 class="section-h pad-t-l">
@@ -6132,7 +6165,15 @@ table.dt tbody tr.am-selected { background: rgba(31,78,120,0.10) !important }
         Rules where <span class="mono">realization_class</span> is unset, heuristic-derived, or otherwise uncertain — most often the C2/C3 generated control_sets.
       </p>
       <table class="plain" id="folio-p2-ambiguity-table" style="width:100%; font-size:11.5px;">
-        <thead><tr><th>Rule ID</th><th>Sub-domain</th><th>Title</th><th>Realization</th><th>Source</th><th>NI</th></tr></thead>
+        <thead><tr>
+          <th title="Unique rule identifier">Rule ID</th>
+          <th title="Security sub-domain (D-XX.Y)">Sub-domain</th>
+          <th title="Human-readable rule name">Title</th>
+          <th title="How the rule is realized (TECHNOLOGY | PROCESS | CAPABILITY)">Realization</th>
+          <th title="Derivation source (yaml | heuristic | cross-link)">Source</th>
+          <th title="Normative Intensity (0–4)">NI</th>
+          <th title="Ambiguity type (realization | attribution | coverage)">Type</th>
+        </tr></thead>
         <tbody></tbody>
       </table>
       <div class="aside" style="margin-top:6px;">
@@ -6174,11 +6215,17 @@ table.dt tbody tr.am-selected { background: rgba(31,78,120,0.10) !important }
   <table class="dt" id="folio09-uc-table" style="width:100%;">
     <thead>
       <tr>
-        <th>ID</th><th>Title</th><th>Package</th><th>Lane</th><th>Drill</th>
+        <th title="Use case identifier (UC-NN)">ID</th>
+        <th title="Human-readable use case name">Title</th>
+        <th title="Package code (PKG-XX)">Package</th>
+        <th title="Lane category (UC | PROC | CAP)">Lane</th>
+        <th title="STRIDE threats addressed by this UC">Threats</th>
+        <th title="Drill"></th>
       </tr>
     </thead>
-    <tbody><tr><td colspan="5" class="empty-state" style="border:none;">No data injected yet.</td></tr></tbody>
+    <tbody><tr><td colspan="6" class="empty-state" style="border:none;">No data injected yet.</td></tr></tbody>
   </table>
+  <div class="am-folio-crosslink" id="folio09-crosslink">Open the dedicated P3 dashboard &rarr;</div>
 
   <!-- Folio 10 — PROC/CAP Cards ----------------------------------------- -->
   <h2 class="section-h pad-t-l">
@@ -6204,11 +6251,17 @@ table.dt tbody tr.am-selected { background: rgba(31,78,120,0.10) !important }
   <table class="dt" id="folio10-proc-cap-table" style="width:100%;">
     <thead>
       <tr>
-        <th>ID</th><th>Title</th><th>Owner</th><th>Maturity</th><th>Realises</th>
+        <th title="Card identifier (PROC-NN | CAP-NN)">ID</th>
+        <th title="Card human-readable title">Title</th>
+        <th title="Accountable owner (role or team)">Owner</th>
+        <th title="Maturity tier (1..4)">Maturity</th>
+        <th title="Activities preview (first 50 chars)">Activities</th>
+        <th title="Realises"></th>
       </tr>
     </thead>
-    <tbody><tr><td colspan="5" class="empty-state" style="border:none;">No data injected yet.</td></tr></tbody>
+    <tbody><tr><td colspan="6" class="empty-state" style="border:none;">No data injected yet.</td></tr></tbody>
   </table>
+  <div class="am-folio-crosslink" id="folio10-crosslink">Open the dedicated P3 dashboard &rarr;</div>
 
   <!-- Folio 11 — Requirements & Allocation ----------------------------- -->
   <h2 class="section-h pad-t-l">
@@ -6225,12 +6278,18 @@ table.dt tbody tr.am-selected { background: rgba(31,78,120,0.10) !important }
   <table class="dt" id="folio11-req-table" style="width:100%;">
     <thead>
       <tr>
-        <th>REQ ID</th><th>Type</th><th>Title</th>
-        <th>Allocated to</th><th>Source Rule</th><th>Status</th>
+        <th title="Requirement identifier with prefix (FR-NN | NFR-NN)">REQ ID</th>
+        <th title="FR (functional) or NFR (non-functional)">Type</th>
+        <th title="Requirement human-readable title">Title</th>
+        <th title="First 60 chars of requirement description">Description</th>
+        <th title="Allocated UC/PROC/CAP identifier">Allocated to</th>
+        <th title="Source Rule"></th>
+        <th title="Lifecycle status (PROPOSED | ACCEPTED | IMPLEMENTED | VERIFIED)">Status</th>
       </tr>
     </thead>
-    <tbody><tr><td colspan="6" class="empty-state" style="border:none;">No data injected yet.</td></tr></tbody>
+    <tbody><tr><td colspan="7" class="empty-state" style="border:none;">No data injected yet.</td></tr></tbody>
   </table>
+  <div class="am-folio-crosslink" id="folio11-crosslink">Open the dedicated P3 dashboard &rarr;</div>
 
   <!-- Folio 12 — Risks, Threats & Gates --------------------------------- -->
   <h2 class="section-h pad-t-l">
@@ -6249,12 +6308,20 @@ table.dt tbody tr.am-selected { background: rgba(31,78,120,0.10) !important }
   <table class="dt" id="folio12-threat-table" style="width:100%;">
     <thead>
       <tr>
-        <th>Threat ID</th><th>STRIDE</th><th>Title</th>
-        <th>Flow affected</th><th>Likelihood</th><th>Impact</th><th>Linked reqs</th>
+        <th title="Threat identifier (THR-NN | RISK-NN)">Threat ID</th>
+        <th title="STRIDE category (S | T | R | I | D | E)">STRIDE</th>
+        <th title="Threat description (first 50 chars)">Threat</th>
+        <th title="Threat classification (spoofing | tampering | repudiation | info-disclosure | denial-of-service | elevation-of-privilege)">Type</th>
+        <th title="Threat human-readable title">Title</th>
+        <th title="Compliance gate that mitigates the threat">Mit. Gate</th>
+        <th title="Likelihood (LOW | MEDIUM | HIGH)">Likelihood</th>
+        <th title="Impact severity (LOW | MEDIUM | HIGH | CRITICAL)">Impact</th>
+        <th title="Mitigating Use Case identifier">Mit. UC</th>
       </tr>
     </thead>
-    <tbody><tr><td colspan="7" class="empty-state" style="border:none;">No data injected yet.</td></tr></tbody>
+    <tbody><tr><td colspan="9" class="empty-state" style="border:none;">No data injected yet.</td></tr></tbody>
   </table>
+  <div class="am-folio-crosslink" id="folio12-crosslink">Open the dedicated P3 dashboard &rarr;</div>
 
   <!-- Folio Y — Lane maturity radar + Threat ambiguity ---------------- -->
   <h2 class="section-h pad-t-l">
@@ -6281,7 +6348,15 @@ table.dt tbody tr.am-selected { background: rgba(31,78,120,0.10) !important }
         MUCs / STRIDE threats in <span class="mono">threat_table</span> that are not referenced by any UC (no <span class="mono">mitigation_uc</span> and no token match in UC titles).
       </p>
       <table class="plain" id="folio-p3-threat-ambiguity-table" style="width:100%; font-size:11.5px;">
-        <thead><tr><th>Threat ID</th><th>Title</th><th>STRIDE</th><th>Impact</th><th>Mitigation UC</th><th>Status</th></tr></thead>
+        <thead><tr>
+          <th title="Threat identifier">Threat ID</th>
+          <th title="Threat human-readable title">Title</th>
+          <th title="STRIDE category">STRIDE</th>
+          <th title="Likelihood (LOW | MEDIUM | HIGH)">Likelihood</th>
+          <th title="Impact severity">Impact</th>
+          <th title="Mitigation UC reference">Mitigation UC</th>
+          <th title="OPEN or COVERED status">Status</th>
+        </tr></thead>
         <tbody></tbody>
       </table>
       <div class="aside" style="margin-top:6px;">
@@ -202701,8 +202776,31 @@ const MASTER_DATA = {
     var label = TABLE_LABELS[tableId] || tableId;
     var idLabel = (obj && (obj.id || obj.ID || obj.title)) || "(no id)";
     $m.querySelector(".am-title").textContent = label + " · " + idLabel;
+    // R7.3 — remove any TOC previously injected in the modal head
+    var $head = $m.querySelector(".aegis-modal-head");
+    if ($head) {
+      var prevToc = $head.querySelector(".am-toc");
+      if (prevToc) prevToc.parentNode.removeChild(prevToc);
+    }
     var $body = $m.querySelector(".aegis-modal-body");
     $body.innerHTML = "";
+    // R7.3 — filter input (always present, wired later)
+    var $filter = document.createElement("input");
+    $filter.type = "search";
+    $filter.className = "am-filter";
+    $filter.placeholder = "Filter sections…";
+    $filter.setAttribute("aria-label", "Filter modal sections");
+    $body.appendChild($filter);
+    // No-matches notice (toggled by filter handler)
+    var $noMatches = document.createElement("div");
+    $noMatches.className = "am-no-matches";
+    $noMatches.textContent = "No matches";
+    $noMatches.style.display = "none";
+    $body.appendChild($noMatches);
+    // Buffers for filter wiring
+    var _flatPairs = []; // pairs of <dt>/<dd>
+    var _sections = []; // {el, title, body}
+    var _tocSections = []; // sections included in TOC (with >3 sections)
     if (!obj || typeof obj !== "object") {
       var $p = document.createElement("p"); $p.textContent = "No data"; $body.appendChild($p);
     } else {
@@ -202736,6 +202834,8 @@ const MASTER_DATA = {
               else { $dd.textContent = s; }
             }
             $dl.appendChild($dt); $dl.appendChild($dd);
+            // R7.3 — stash pair for filter
+            _flatPairs.push({ dt: $dt, dd: $dd, key: k, val: v });
           });
           $body.appendChild($dl);
         }
@@ -202755,22 +202855,24 @@ const MASTER_DATA = {
             $detailWrap.appendChild($dt2);
           }
           if (Array.isArray(detail.sections)) {
-            detail.sections.forEach(function (sec) {
+            detail.sections.forEach(function (sec, secIdx) {
               if (!sec || !sec.body) return;
               var $sec = document.createElement("div");
               $sec.className = "am-section";
-              if (sec.title) {
-                var $h = document.createElement("h4");
-                $h.textContent = sec.title;
-                $sec.appendChild($h);
-              }
+              $sec.setAttribute("data-am-section-idx", String(secIdx));
+              var $h = document.createElement("h4");
+              $h.textContent = sec.title || ("Section " + (secIdx + 1));
+              $h.setAttribute("data-am-section-h4", "1");
+              $sec.appendChild($h);
               $sec.appendChild(renderMarkdownToHTML(sec.body));
               $detailWrap.appendChild($sec);
+              _sections.push({ el: $sec, title: sec.title || "", body: sec.body || "" });
             });
           }
           if (detail.diagram) {
             var $dsec = document.createElement("div");
             $dsec.className = "am-section";
+            $dsec.setAttribute("data-am-section-idx", "diagram");
             var $dh2 = document.createElement("h4");
             $dh2.textContent = "Diagram (mermaid)";
             $dsec.appendChild($dh2);
@@ -202778,11 +202880,75 @@ const MASTER_DATA = {
             $pre.appendChild(document.createTextNode(detail.diagram));
             $dsec.appendChild($pre);
             $detailWrap.appendChild($dsec);
+            _sections.push({ el: $dsec, title: "Diagram (mermaid)", body: detail.diagram });
           }
           $body.appendChild($detailWrap);
         }
       }
     }
+    // R7.3 — wire filter input + build TOC (only when there are >3 sections)
+    if (_sections.length > 3) {
+      var $nav = document.createElement("nav");
+      $nav.className = "am-toc";
+      var $ul = document.createElement("ul");
+      _sections.forEach(function (s, i) {
+        var $li = document.createElement("li");
+        var $a = document.createElement("a");
+        $a.href = "#am-sec-" + i;
+        $a.textContent = (s.title || ("Section " + (i + 1)));
+        // give the target section an id for the anchor + scrollIntoView
+        s.el.setAttribute("id", "am-sec-" + i);
+        $a.addEventListener("click", function (ev) {
+          ev.preventDefault();
+          try {
+            s.el.scrollIntoView({ behavior: "smooth", block: "start" });
+          } catch (e) { s.el.scrollIntoView(); }
+        });
+        $li.appendChild($a);
+        $ul.appendChild($li);
+        _tocSections.push(s);
+      });
+      $nav.appendChild($ul);
+      // Insert TOC right after .am-title in modal head
+      var $title = $m.querySelector(".am-title");
+      if ($title && $title.parentNode) {
+        $title.parentNode.insertBefore($nav, $title.nextSibling);
+      } else if ($head) {
+        $head.appendChild($nav);
+      }
+    }
+    // Filter input handler
+    $filter.addEventListener("input", function () {
+      var q = ($filter.value || "").toLowerCase().trim();
+      var anySection = false;
+      _sections.forEach(function (s) {
+        var match = !q || (s.title || "").toLowerCase().indexOf(q) !== -1 || (s.body || "").toLowerCase().indexOf(q) !== -1;
+        if (match) { s.el.removeAttribute("hidden"); anySection = true; }
+        else { s.el.setAttribute("hidden", ""); }
+      });
+      var anyField = false;
+      _flatPairs.forEach(function (p) {
+        var v = p.val;
+        var vStr;
+        if (v === null || v === undefined) vStr = "";
+        else if (Array.isArray(v)) vStr = v.join(" ");
+        else if (typeof v === "object") vStr = JSON.stringify(v);
+        else vStr = String(v);
+        var match = !q || (p.key || "").toLowerCase().indexOf(q) !== -1 || vStr.toLowerCase().indexOf(q) !== -1;
+        var visible = !q || match;
+        p.dt.style.display = visible ? "" : "none";
+        p.dd.style.display = visible ? "" : "none";
+        if (visible) anyField = true;
+      });
+      // no-matches logic: only when there are sections to filter AND none matched
+      if (_sections.length) {
+        $noMatches.style.display = anySection ? "none" : "";
+      } else if (q) {
+        $noMatches.style.display = anyField ? "none" : "";
+      } else {
+        $noMatches.style.display = "none";
+      }
+    });
     $m.dataset.currentJson = JSON.stringify(obj, null, 2);
     $m.classList.add("open");
     $m.setAttribute("aria-hidden", "false");
@@ -203102,13 +203268,17 @@ const MASTER_DATA = {
         r.realization_class === "" ||
         r.realization_class === "other";
       if (isHeuristic) {
+        var ambType = !r.realization_class ? "unbound" :
+                      r.realization_class === "other" ? "cross-cut" :
+                      "heuristic-derived";
         rows.push({
           id: r.id,
           sub_domain: r.sub_domain,
           title: r.title,
           realization_class: r.realization_class || "(unset)",
           source: r.source || rcSource,
-          ni: r.ni
+          ni: r.ni,
+          _amb_type: ambType
         });
       }
     });
@@ -203118,7 +203288,8 @@ const MASTER_DATA = {
       { title: "Title", key: "title", render: function (o) { return (o.title || "--").slice(0, 80); } },
       { title: "Realization", key: "realization_class", render: function (o) { return o.realization_class || "--"; } },
       { title: "Source", key: "source", render: function (o) { return o.source || "--"; } },
-      { title: "NI", key: "ni", render: function (o) { return o.ni || "--"; } }
+      { title: "NI", key: "ni", render: function (o) { return o.ni || "--"; } },
+      { title: "Type", key: "_amb_type", render: function (o) { return o._amb_type || "—"; } }
     ];
     ensureDT("folio-p2-ambiguity-table", cols, rows);
     setText("#folio-p2-ambiguity-count", String(rows.length));
@@ -203148,6 +203319,7 @@ const MASTER_DATA = {
         id: t.id,
         title: t.threat || t.title,
         stride: t.stride,
+        likelihood: t.likelihood || t.like || "—",
         impact: t.impact,
         mitigation_uc: t.mitigation_uc || "—",
         ambiguous: ambiguous
@@ -203157,16 +203329,63 @@ const MASTER_DATA = {
       { title: "Threat ID", key: "id", render: function (o) { return o.id || "--"; } },
       { title: "Title", key: "title", render: function (o) { return (o.title || "--").slice(0, 60); } },
       { title: "STRIDE", key: "stride", render: function (o) { return o.stride || "--"; } },
+      { title: "Likelihood", key: "likelihood", render: function (o) { return o.likelihood || "—"; } },
       { title: "Impact", key: "impact", render: function (o) { return o.impact || "--"; } },
       { title: "Mitigation UC", key: "mitigation_uc", render: function (o) { return o.mitigation_uc || "--"; } },
       { title: "Status", key: "ambiguous", orderable: false, render: function (o) { return o.ambiguous ? "<span class=\"chip\" style=\"background:var(--bad); color:#fff;\">AMBIGUOUS</span>" : "covered"; } }
     ];
     ensureDT("folio-p3-threat-ambiguity-table", cols, rows, {
-      columnDefs: [{ targets: 5, orderable: false }]
+      columnDefs: [{ targets: 6, orderable: false }]
     });
     var ambCount = rows.filter(function (r) { return r.ambiguous; }).length;
     setText("#folio-p3-threat-ambiguity-count", String(ambCount));
     setText("#folio-p3-threat-ambiguity-total", String(rows.length));
+  }
+
+  // ----- R7.4 — cross-dashboard link resolver -------------------------
+  function folioCrosslinkHtml(caseKey, path) {
+    return "Open dedicated dashboard: <a href=\"" + path + "\" target=\"_self\">" + path + "</a> &rarr;";
+  }
+  function _caseShort(c) {
+    if (!c) return "case_01";
+    // state.caseKey is the short form ("case_01"); the Master API also stores
+    // the resolved full key on the case object — accept both.
+    if (typeof c.caseKey === "string" && c.caseKey.indexOf("case_") === 0) return c.caseKey;
+    // Derive from case id or name (e.g. "Case_01_TinyTask_SaaS" -> "case_01").
+    var n = c.id || c.name || "";
+    var m = n.match(/Case[_-]?0?(\d+)/i);
+    if (m) return "case_0" + m[1];
+    return "case_01";
+  }
+  function fillFolioCrosslinks(c) {
+    var short = _caseShort(c);
+    var caseNum = short.replace(/[^0-9]/g, "");
+    var caseNumInt = parseInt(caseNum, 10) || 1;
+    var p2Path = "../Case_0" + caseNumInt + "/Case_0" + caseNumInt + "_P2_Dashboard.html";
+    var p1Path = "../Case_0" + caseNumInt + "/Case_0" + caseNumInt + "_P1_Dashboard.html";
+    var mainPath = "../Case_0" + caseNumInt + "/Case_0" + caseNumInt + "_Dashboard.html";
+    // Folio 04 — graph view → unified AEGIS_Dashboard.html (Knowledge Cascade)
+    setHTML("#folio04-crosslink",
+      "Open the full Knowledge Cascade in <a href=\"../UNIFIED/AEGIS_Dashboard.html\" target=\"_self\">UNIFIED/AEGIS_Dashboard.html</a> &rarr;");
+    // Folio 05 — Rules Catalog → P2 dedicated dashboard
+    setHTML("#folio05-crosslink", folioCrosslinkHtml(short, p2Path));
+    // Folio 06 — Mappings → P2 dedicated dashboard
+    setHTML("#folio06-crosslink", folioCrosslinkHtml(short, p2Path));
+    // Folio 07 — Tensions → P2 dedicated dashboard
+    setHTML("#folio07-crosslink", folioCrosslinkHtml(short, p2Path));
+    // Folio 08 — Frameworks → multiple links
+    setHTML("#folio08-crosslink",
+      "Open dedicated framework dashboards: " +
+      "<a href=\"../UNIFIED/AEGIS_Dashboard.html\" target=\"_self\">NIST CSF cascade</a> · " +
+      "<a href=\"../GDPR/GDPR_Dashboard.html\" target=\"_self\">GDPR</a> · " +
+      "<a href=\"../CRA/CRA_Dashboard.html\" target=\"_self\">CRA</a> · " +
+      "<a href=\"../QNRCS/QNRCS_Reg756_2026_Dashboard.html\" target=\"_self\">QNRCS</a> &rarr;");
+    // Folio 09/10/11/12 — P3 cards → try P3 dedicated dashboard, fallback to main
+    var p3Path = "../Case_0" + caseNumInt + "/Case_0" + caseNumInt + "_P3_Dashboard.html";
+    setHTML("#folio09-crosslink", folioCrosslinkHtml(short, p3Path));
+    setHTML("#folio10-crosslink", folioCrosslinkHtml(short, p3Path));
+    setHTML("#folio11-crosslink", folioCrosslinkHtml(short, p3Path));
+    setHTML("#folio12-crosslink", folioCrosslinkHtml(short, p3Path));
   }
 
   // =====================================================================
@@ -203206,7 +203425,8 @@ const MASTER_DATA = {
       { title: "Ambiguity", key: "ambiguity" },
       { title: "Severity", key: "severity" },
       { title: "Status", key: "status" },
-      { title: "Citation", key: "citation" }
+      { title: "Citation", key: "citation" },
+      { title: "Type", key: "type", render: function (o) { return o.type || "—"; } }
     ];
     ensureDT("folio02-amb-table", ambCols, ambRows);
     // severity + status filters
@@ -203287,6 +203507,8 @@ const MASTER_DATA = {
     // Folio 4 — Graph view (vis-network; default scope = full)
     bindFolio04ScopeButtons();
     renderFolio04Graph(c, _folio04.scope || "full");
+    // R7.4 — cross-dashboard links
+    fillFolioCrosslinks(c);
   }
 
   // ----- Phase-2 Render -------------------------------------------------
@@ -203318,7 +203540,8 @@ const MASTER_DATA = {
       { title: "Title", key: "title" },
       { title: "Realization", key: "realization_class" },
       { title: "Source", key: "source", render: function (o) { return o._heuristic ? "heuristic" : (p2.rc_source || "yaml"); } },
-      { title: "NI", key: "ni", render: function (o) { return o.ni !== undefined ? o.ni : "—"; } }
+      { title: "NI", key: "ni", render: function (o) { return o.ni !== undefined ? o.ni : "—"; } },
+      { title: "Anchor", key: "anchors", render: function (o) { return (o.anchors && o.anchors.length) ? o.anchors[0] : "—"; } }
     ];
     ensureDT("folio05-rules-table", rulesCols, rulesRows);
 
@@ -203350,7 +203573,8 @@ const MASTER_DATA = {
         { title: "Control", key: "control" },
         { title: "Framework", key: "framework" },
         { title: "Anchor", key: "anchor" },
-        { title: "ID", key: "id" }
+        { title: "ID", key: "id" },
+        { title: "Type", key: "type", render: function (o) { return o.type || o.kind || "—"; } }
       ],
       obRows
     );
@@ -203405,6 +203629,8 @@ const MASTER_DATA = {
     // P2 radars & ambiguity widget
     renderMaturityRadarP2(c);
     renderP2RealizationAmbiguity(c);
+    // R7.4 — cross-dashboard links
+    fillFolioCrosslinks(c);
   }
 
   // ----- Phase-3 Render -------------------------------------------------
@@ -203454,10 +203680,11 @@ const MASTER_DATA = {
         { title: "Title", key: "title" },
         { title: "Package", key: "package", render: function (o) { return _ucPkgShort(o); } },
         { title: "Lane", key: "lane", render: function (o) { return o.lane || "UC"; } },
+        { title: "Threats", key: "threats_addressed", render: function (o) { return (o.threats_addressed && o.threats_addressed.length) ? o.threats_addressed.join(", ") : "—"; } },
         { title: "Drill", key: "drill", orderable: false, render: function (o) { return o.drill ? "<span class=\"chip\">↗ drill</span>" : "—"; } }
       ],
       ucRows,
-      { pageLength: 100, columnDefs: [{ targets: 4, orderable: false }] }
+      { pageLength: 100, columnDefs: [{ targets: 5, orderable: false }] }
     );
     populateSelect("folio09-filter-pkg", pkgs);
     bindSelectFilter("folio09-filter-lane", 3, "folio09-uc-table");
@@ -203487,6 +203714,10 @@ const MASTER_DATA = {
         { title: "Title", key: "title" },
         { title: "Owner", key: "owner" },
         { title: "Maturity", key: "maturity", render: function (o) { return o.maturity !== undefined ? o.maturity : "--"; } },
+        { title: "Activities", key: "Activities", render: function (o) {
+            var a = o.Activities || o.activities || "";
+            return a ? String(a).slice(0, 50) : "—";
+          } },
         { title: "Realises", key: "realises", render: function (o) { return (o.realises && o.realises.length) ? o.realises.join(", ") : "--"; } }
       ],
       cardRows,
@@ -203516,20 +203747,30 @@ const MASTER_DATA = {
       reqRows.push({
         _kind: "FR",
         _label: "FR · " + (r.id || "--"),
-        id: r.id, title: r.title, source: r.source, priority: r.priority, status: r.status
+        id: r.id, title: r.title, source: r.source, priority: r.priority, status: r.status, description: r.description
       });
     });
     nfrRows.forEach(function (r) {
       reqRows.push({
         _kind: "NFR",
         _label: "NFR · " + (r.id || "--"),
-        id: r.id, title: r.title, source: r.source, priority: r.priority, status: r.status
+        id: r.id, title: r.title, source: r.source, priority: r.priority, status: r.status, description: r.description
       });
     });
     ensureDT("folio11-req-table",
       [
         { title: "REQ ID", key: "_label" },
+        { title: "Type", key: "_kind", render: function (o) {
+            var idPrefix = (o.id || "").toUpperCase();
+            if (idPrefix.indexOf("FR-") === 0) return "FR";
+            if (idPrefix.indexOf("NFR-") === 0) return "NFR";
+            return o._kind || "—";
+          } },
         { title: "Title", key: "title" },
+        { title: "Description", key: "description", render: function (o) {
+            var d = o.description || "";
+            return d ? String(d).slice(0, 60) : "—";
+          } },
         { title: "Source", key: "source" },
         { title: "Priority", key: "priority" },
         { title: "Status", key: "status", render: function (o) { return o.status || "—"; } }
@@ -203557,7 +203798,14 @@ const MASTER_DATA = {
       [
         { title: "Threat ID", key: "id" },
         { title: "STRIDE", key: "stride" },
-        { title: "Title", key: "threat", render: function (o) { return o.threat || o.title || "--"; } },
+        { title: "Threat", key: "threat", render: function (o) {
+            var t = o.threat || "";
+            return t ? String(t).slice(0, 50) : "—";
+          } },
+        { title: "Type", key: "type", render: function (o) {
+            return o.type || (o.stride ? o.stride.charAt(0).toUpperCase() : "—");
+          } },
+        { title: "Title", key: "title", render: function (o) { return o.title || o.threat || "—"; } },
         { title: "Mitigation Gate", key: "mitigation_gate" },
         { title: "Likelihood", key: "likelihood" },
         { title: "Impact", key: "impact" },
@@ -203569,6 +203817,8 @@ const MASTER_DATA = {
     // P3 radar (lane maturity) + Threat ambiguity widget
     renderMaturityRadarP3(c);
     renderP3ThreatAmbiguity(c);
+    // R7.4 — cross-dashboard links
+    fillFolioCrosslinks(c);
   }
 
   function setGateTile(selStatus, selMeta, g) {
