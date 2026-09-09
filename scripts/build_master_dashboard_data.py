@@ -655,6 +655,763 @@ def parse_p3_graph(case, cfg, warn, catalog, lane):
 
 
 # ---------------------------------------------------------------------------
+# R8 — 12 new P1 parsers (consume Doc01..Doc14, Citation_Index, phase1_graph,
+# phase1_ontology). Each parser is robust to missing files: returns None and
+# appends to `warn` when the source is absent. All parsers are stdlib-only.
+# ---------------------------------------------------------------------------
+
+# Per-case P1 doc filenames (filenames differ across C1/C2/C3 for Doc12/13/14).
+DOC_P1_REGULATORY = "Doc08_Regulatory_Applicability.md"        # C1/C2/C3
+DOC_P1_STRUCTURED_COMPLIANCE = {                                  # renamed Doc11 (C3=Doc12)
+    "Case_01_TinyTask_SaaS": "Doc11_Structured_Compliance_Matrix.md",
+    "Case_02_SecureBorder_Solutions": "Doc11_Structured_Compliance_Matrix.md",
+    "Case_03_OmniBank_Financial": "Doc12_Structured_Compliance_Matrix.md",
+}
+DOC_P1_CLAUSE_MAPPING = "Doc10_Clause_Mapping_Matrix.md"          # all cases
+DOC_P1_DORA = {                                                   # only C3 has it
+    "Case_03_OmniBank_Financial": "Doc11_DORA_ICT_Risk_Framework.md",
+}
+DOC_P1_PROPORTIONALITY = {                                        # C1/C2=Doc12, C3=Doc13
+    "Case_01_TinyTask_SaaS": "Doc12_Proportionality_Profile.md",
+    "Case_02_SecureBorder_Solutions": "Doc12_Proportionality_Profile.md",
+    "Case_03_OmniBank_Financial": "Doc13_Proportionality_Profile.md",
+}
+DOC_P1_ADJUSTED_GOALS = {                                         # C1/C2=Doc13, C3=Doc14
+    "Case_01_TinyTask_SaaS": "Doc13_Adjusted_Goals.md",
+    "Case_02_SecureBorder_Solutions": "Doc13_Adjusted_Goals.md",
+    "Case_03_OmniBank_Financial": "Doc14_Adjusted_Goals.md",
+}
+DOC_P1_ORG_RACI = "Doc07_Org_Roles_RACI.md"
+DOC_P1_COMPANY_CONTEXT = "Doc03_Company_Context_Assessment.md"
+DOC_P1_THIRD_PARTY = "Doc06_ThirdParty_Landscape.md"
+DOC_P1_ARCHITECTURE = "Doc04_Architecture_DataInventory.md"
+DOC_P1_TENSIONS = {                                               # C1/C2=Doc15, C3=Doc16
+    "Case_01_TinyTask_SaaS": "Doc15_Strategic_Tensions_Report.md",
+    "Case_02_SecureBorder_Solutions": "Doc15_Strategic_Tensions_Report.md",
+    "Case_03_OmniBank_Financial": "Doc16_Strategic_Tensions_Report.md",
+}
+DOC_P1_CITATION_INDEX = "Citation_Index.md"
+
+
+def parse_regulations(case, cfg, warn):
+    """Doc08 — extract regs list + clause table.
+
+    Returns {regs, clauses:[{id,regulation,article,title,sub_domain}], total_clauses}
+    or None if Doc08 missing. Clauses parsed from
+    `| CLAUSE-NN | REG | Article NN | Title | D-XX.Y |` rows OR from the broader
+    Doc10 table grammar `| GDPR-C01 | Art. 5(1)(c) | D-05.1 ... |` (Article column).
+    When Doc08 has no clause rows, fall back to scanning Doc10_Clause_Mapping_Matrix.md.
+    """
+    rel = f"{cfg['root']}/01_PHASE1_CONTEXT_RICH/{DOC_P1_REGULATORY}"
+    t = read(rel)
+    if not t:
+        warn.append(f"{case}: {DOC_P1_REGULATORY} missing (parse_regulations)")
+        return None
+    fm = frontmatter(t)
+    out = {"regs": [], "clauses": [], "total_clauses": 0}
+    # applicable_regs from frontmatter (canonical) OR from H1/H2 list
+    regs_raw = fm.get("applicable_regs") or fm.get("regs") or ""
+    if isinstance(regs_raw, str) and regs_raw:
+        out["regs"] = [r.strip().strip("'\"") for r in re.split(r"[,;\[\]]", regs_raw) if r.strip()]
+    elif isinstance(regs_raw, list):
+        out["regs"] = regs_raw
+    if not out["regs"]:
+        # Fallback: scan body for "Applicability Result: ✅ APPLICABLE" or the
+        # `## 3. REGULATION-BY-REGULATION ...` H3 headings like "### 3.1 GDPR".
+        out["regs"] = sorted(set(m.group(1).strip() for m in re.finditer(
+            r"^###\s+\d+\.\d+\s+([A-Z][A-Za-z 0-9]+?)\s*\(", t, re.M)))
+    # Pull clauses from any markdown table with a CLAUSE-ID + REG + ARTICLE column.
+    seen = set()
+    # Shape A
+    for m in re.finditer(
+        r"^\|\s*(CLAUSE-\d+)\s*\|\s*([A-Z][A-Za-z 0-9]+)\s*\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|\s*([D]-\d{1,2}\.\d)\s*\|",
+        t, re.M):
+        cid, reg, art, title, sd = (s.strip() for s in m.groups())
+        if cid in seen: continue
+        seen.add(cid)
+        out["clauses"].append({"id": cid, "regulation": reg, "article": art,
+                               "title": title, "sub_domain": sd})
+    # Shape B (Doc10 / Doc08 mapping tables) — REG-CXX ids (GDPR-C01, CRA-C02, ...)
+    for m in re.finditer(
+        r"^\|\s*((?:GDPR|CRA|NIS2|DORA|AI[A_-]?ACT|NIS|CRA|NIS_2)[-_]C\d{1,3})\s*\|"
+        r"\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|",
+        t, re.M):
+        cid = m.group(1).strip().replace("NIS_2", "NIS2").replace("AI-ACT", "AIACT").replace("AI_ACT", "AIACT")
+        if cid in seen: continue
+        seen.add(cid)
+        article = m.group(2).strip()
+        rest = m.group(3).strip()
+        # Try to extract a D-XX.Y from the third column
+        sd_m = re.search(r"(D-\d{1,2}\.\d)", rest)
+        sub = sd_m.group(1) if sd_m else ""
+        # Derive regulation from cid prefix
+        reg = infer_regulation_from_clause_id(cid) or (m.group(1).split("-")[0].upper())
+        out["clauses"].append({"id": cid, "regulation": reg, "article": article,
+                               "title": rest[:120], "sub_domain": sub})
+    # Fallback: scan Doc10_Clause_Mapping_Matrix.md when Doc08 has no clause table
+    if not out["clauses"]:
+        doc10 = read(f"{cfg['root']}/01_PHASE1_CONTEXT_RICH/{DOC_P1_CLAUSE_MAPPING}")
+        if doc10:
+            for m in re.finditer(
+                r"^\|\s*((?:GDPR|CRA|NIS2|DORA|AIACT|AI-ACT|AI_ACT|NIS)[-_]C\d{1,3})\s*\|"
+                r"\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|",
+                doc10, re.M):
+                cid = m.group(1).strip()
+                article = m.group(2).strip()
+                rest = m.group(3).strip()
+                if cid in seen: continue
+                seen.add(cid)
+                sd_m = re.search(r"(D-\d{1,2}\.\d)", rest)
+                reg = infer_regulation_from_clause_id(cid) or cid.split("-")[0]
+                out["clauses"].append({"id": cid, "regulation": reg, "article": article,
+                                       "title": rest[:120],
+                                       "sub_domain": sd_m.group(1) if sd_m else ""})
+    out["total_clauses"] = len(out["clauses"])
+    if not out["clauses"]:
+        warn.append(f"{case}: parse_regulations: no clause rows extracted")
+    return out
+
+
+def parse_nist_controls(case, cfg, warn):
+    """Doc13/Doc14 §5 NIST Controls Mapping table — 38 sub-domains × 3 frameworks.
+
+    Returns {controls:[{framework,function,sub_domain,control_id,name,coverage}]}.
+    Coverage defaults to 1.0 when the corpus marks a control as in scope.
+    """
+    fname = DOC_P1_ADJUSTED_GOALS.get(case)
+    if not fname:
+        warn.append(f"{case}: adjusted goals filename unknown for {case}")
+        return None
+    rel = f"{cfg['root']}/01_PHASE1_CONTEXT_RICH/{fname}"
+    t = read(rel)
+    if not t:
+        warn.append(f"{case}: {fname} missing (parse_nist_controls)")
+        return None
+    out = {"controls": []}
+    # The §5 table has columns: Sub-Domain | Sub-Domain Name | Applicable Regs |
+    # NIST CSF 2.0 Controls | NIST PF 1.0 Controls | NIST AI RMF Controls
+    # Capture groups 1..4: sub, name, regs, csf, pf, ai
+    row_re = re.compile(
+        r"^\|\s*(D-\d{1,2}\.\d)\s*\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|"
+        r"\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|\s*$", re.M)
+    controls_seen = 0
+    for m in row_re.finditer(t):
+        sub, name, regs, csf, pf, ai = (s.strip() for s in m.groups())
+        # Skip header + separator rows
+        if sub.lower() == "sub-domain" or set(sub) <= {"-"}: continue
+        controls_seen += 1
+        for fw, raw in (("NIST CSF 2.0", csf), ("NIST PF 1.0", pf), ("NIST AI RMF", ai)):
+            if not raw or raw == "—": continue
+            # Strip duplicates / trailing punctuation and split on commas/semicolons
+            tokens = [tok.strip().rstrip(",").rstrip(";") for tok in re.split(r"[,;]", raw)]
+            # Some cells contain duplicates like "PR.PS-06; RS.MI-01, PR.PS-02, PR.PS-02"
+            tokens = [tok for tok in tokens if tok and tok != "—"]
+            seen_tok = set()
+            for tok in tokens:
+                # Reject semicolons leftover from OCR-style concatenations (e.g. "...; RS.MI-01")
+                # by keeping only those that look like NIST control ids (NN.LL-NN...)
+                clean = re.sub(r";\s*", "", tok).strip()
+                if not clean or clean in seen_tok: continue
+                if not re.match(r"^[A-Z]{2}\.[A-Z]{2}-\d", clean): continue
+                seen_tok.add(clean)
+                # Function code = first 2 letters before the dot
+                fn_code = clean.split(".")[0] if "." in clean else ""
+                out["controls"].append({
+                    "framework": fw,
+                    "function": fn_code,
+                    "sub_domain": sub,
+                    "control_id": clean,
+                    "name": name,
+                    "coverage": 1.0,
+                })
+    if not out["controls"]:
+        # Fallback: scan any table-like line that has a Sub-Domain column AND a
+        # column whose cells contain tokens like GV.RM-04, PR.DS-01, etc. This
+        # covers C1/C2 where §5 is not present but NIST anchors still appear
+        # in other tables (e.g. the §4 Track B Decision Trail includes NIST anchors
+        # in the implementation references column).
+        # Match a row that begins with | D-XX.Y ... and ends with |
+        for m in re.finditer(r"^\|\s*(D-\d{1,2}\.\d)[^|\n]*\|([^|\n]*(?:\|[^|\n]*)*)\|\s*$",
+                              t, re.M):
+            sub = m.group(1).strip()
+            row_text = m.group(0)
+            # Walk every cell looking for NIST control ids
+            seen_tok = set()
+            for tok in re.findall(r"\b([A-Z]{2}\.[A-Z]{2}-\d+(?:\.\d+)?)\b", row_text):
+                if tok in seen_tok: continue
+                seen_tok.add(tok)
+                fn = tok.split(".")[0]
+                # Guess framework from function prefix: GV/ID/PR/DE/RS/RC -> CSF;
+                # GV/ID/PR/CT/CM/PA -> PF (overlap with CSF); MANAGE/GOVERN/MEASURE -> AI.
+                fw = "NIST AI RMF" if fn in ("MANAGE", "GOVERN", "MEASURE") else "NIST CSF 2.0"
+                out["controls"].append({
+                    "framework": fw,
+                    "function": fn,
+                    "sub_domain": sub,
+                    "control_id": tok,
+                    "name": sub,
+                    "coverage": 1.0,
+                })
+            if seen_tok:
+                controls_seen += 1
+        if out["controls"]:
+            warn.append(f"{case}: parse_nist_controls: §5 absent — fell back to row-scan")
+    if not out["controls"]:
+        warn.append(f"{case}: parse_nist_controls: 0 controls extracted")
+    out["total"] = controls_seen
+    return out
+
+
+def parse_clause_mapping(case, cfg, warn):
+    """Doc10 — Clause Mapping Matrix (Markdown companion).
+
+    Returns {clauses:[{control,framework,sub_domain,weight:float}]}. Weight comes
+    from the NI (Normative Intensity) column when present.
+
+    The Doc10 grammar differs between C3 (8-column row with explicit NI col 8)
+    and C1/C2 (5-column row: Clause ID | Article | D-XX.X | obligated | brief).
+    """
+    rel = f"{cfg['root']}/01_PHASE1_CONTEXT_RICH/{DOC_P1_CLAUSE_MAPPING}"
+    t = read(rel)
+    if not t:
+        warn.append(f"{case}: {DOC_P1_CLAUSE_MAPPING} missing (parse_clause_mapping)")
+        return None
+    out = {"clauses": []}
+    # Per-row grammar (C3): 8 columns with NI at position 8
+    for m in re.finditer(
+        r"^\|\s*((?:GDPR|CRA|NIS2|DORA|AIACT|AI-ACT|AI_ACT|NIS)[-_]C\d{1,3})\s*\|"
+        r"\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|([^|]*?)\|([^|]*?)\|([^|]*?)\|([^|]*?)\|"
+        r"\s*([\d.]+)\s*\|",
+        t, re.M):
+        cid = m.group(1).strip()
+        if cid.upper().startswith("NIS_2"):
+            cid = "NIS2-" + cid.split("-", 1)[1]
+        article = m.group(2).strip()
+        sub_raw = m.group(3).strip()
+        sd_m = re.search(r"(D-\d{1,2}\.\d)", sub_raw)
+        sub = sd_m.group(1) if sd_m else ""
+        try:
+            ni = float(m.group(8).strip())
+            weight = round(min(1.0, ni / 3.0), 3)
+        except (ValueError, IndexError):
+            weight = 0.0
+        reg = infer_regulation_from_clause_id(cid) or cid.split("-")[0]
+        out["clauses"].append({
+            "control": cid,
+            "framework": reg,
+            "sub_domain": sub,
+            "article": article,
+            "weight": weight,
+        })
+        if len(out["clauses"]) >= 200:
+            break
+    # Per-row grammar (C1/C2): 5 columns — Clause ID | Article | D-XX.X | obligated | brief
+    if not out["clauses"]:
+        for m in re.finditer(
+            r"^\|\s*((?:GDPR|CRA|NIS2|DORA|AIACT|AI-ACT|AI_ACT|NIS)[-_]C\d{1,3})\s*\|"
+            r"\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|",
+            t, re.M):
+            cid = m.group(1).strip()
+            article = m.group(2).strip()
+            sub = m.group(3).strip()
+            reg = infer_regulation_from_clause_id(cid) or cid.split("-")[0]
+            out["clauses"].append({
+                "control": cid,
+                "framework": reg,
+                "sub_domain": sub,
+                "article": article,
+                "weight": 1.0,  # default when NI is not split into its own column
+            })
+            if len(out["clauses"]) >= 200:
+                break
+    if not out["clauses"]:
+        warn.append(f"{case}: parse_clause_mapping: no rows extracted")
+    return out
+
+
+def parse_dora(case, cfg, warn):
+    """Doc11_DORA_ICT_Risk_Framework.md (only C3).
+
+    Returns {articles:[{article,sub_domain,title,requirement}]}.
+    Skips silently (returns None) for C1/C2.
+    """
+    fname = DOC_P1_DORA.get(case)
+    if not fname:
+        return None
+    rel = f"{cfg['root']}/01_PHASE1_CONTEXT_RICH/{fname}"
+    t = read(rel)
+    if not t:
+        warn.append(f"{case}: {fname} missing (parse_dora)")
+        return None
+    out = {"articles": []}
+    # Match #### Art. NN — Title or #### Art. NN — Sub-section title
+    for m in re.finditer(r"^####\s+(Art\.\s*\d+(?:\([0-9a-z]+\))*)\s+[—:-]\s+([^\n]+)$", t, re.M):
+        article = m.group(1).strip()
+        title = m.group(2).strip()
+        out["articles"].append({
+            "article": article,
+            "sub_domain": "",
+            "title": title,
+            "requirement": title,
+        })
+    # Pull sub_domain from the first "**Primary sub-domain(s)** | ..." row in this block
+    if out["articles"]:
+        # Re-scan by block to find first sub-domain mention
+        blocks = re.split(r"(?m)^####\s+(Art\.\s*\d+(?:\([0-9a-z]+\))*)\s+[—:-]\s+([^\n]+)$", t)
+        i = 1
+        idx = 0
+        while i < len(blocks) and idx < len(out["articles"]):
+            body = blocks[i + 2] if i + 2 < len(blocks) else ""
+            sd_m = re.search(r"\*\*Primary sub-domain\(s\)\*\*\s*\|\s*\*\*([D]-\d{1,2}\.\d)\*\*", body)
+            if not sd_m:
+                sd_m = re.search(r"\|\s*\*\*(D-\d{1,2}\.\d)", body)
+            if sd_m:
+                out["articles"][idx]["sub_domain"] = sd_m.group(1)
+            i += 3
+            idx += 1
+    if not out["articles"]:
+        warn.append(f"{case}: parse_dora: no articles extracted")
+    return out
+
+
+def parse_proportionality(case, cfg, warn):
+    """Doc12/Doc13 Proportionality Profile — §4 tier table.
+
+    Returns {tiers:{RIGOROUS:int,STANDARD:int,SIMPLE:int,...}, per_subdomain:{D-XX.Y: tier}}.
+    C3 has a 13-column row; C1/C2 have a 5/6-column row with `Tier` col at index 3.
+    """
+    fname = DOC_P1_PROPORTIONALITY.get(case)
+    if not fname:
+        warn.append(f"{case}: proportionality filename unknown for {case}")
+        return None
+    rel = f"{cfg['root']}/01_PHASE1_CONTEXT_RICH/{fname}"
+    t = read(rel)
+    if not t:
+        warn.append(f"{case}: {fname} missing (parse_proportionality)")
+        return None
+    out = {"tiers": {}, "per_subdomain": {}}
+    # Row: | D-XX.Y Sub-domain name | I | P | Tier | ...
+    for m in re.finditer(
+        r"^\|\s*(D-\d{1,2}\.\d)\s+[^|]+\|\s*[A-Z_]+\s*\|\s*[A-Z_]+\s*\|\s*([A-Z]+)\s*\|",
+        t, re.M):
+        sd, tier = m.group(1), m.group(2).upper()
+        out["per_subdomain"][sd] = tier
+        out["tiers"][tier] = out["tiers"].get(tier, 0) + 1
+    # Fallback to frontmatter tier_distribution if no rows found
+    if not out["tiers"]:
+        fm = frontmatter(t)
+        td = fm.get("tier_distribution", {}) or {}
+        for k, v in td.items():
+            if isinstance(v, int) and k.upper() in ("RIGOROUS", "STANDARD", "LIGHTWEIGHT",
+                                                   "MINIMAL", "DEFERRED", "SIMPLE"):
+                out["tiers"][k.upper()] = v
+        # Also try the legacy frontmatter "tier_distribution:" flattened form
+        if not out["tiers"]:
+            for k, v in td.items():
+                if isinstance(v, int):
+                    out["tiers"][k.upper()] = v
+    # Last-ditch: pull from §3 Tier Assignment Summary table — | TIER | Count | Rationale |
+    if not out["tiers"]:
+        for m in re.finditer(r"^\|\s*\*?\*?(RIGOROUS|STANDARD|LIGHTWEIGHT|MINIMAL|DEFERRED|SIMPLE)\*?\*?\s*\|\s*\*?\*?(\d+)\*?\*?\s*\|",
+                              t, re.M):
+            tier = m.group(1).upper()
+            count = int(m.group(2))
+            out["tiers"][tier] = count
+        # Also build per_subdomain from §4 per-row "Tier" column (4th col)
+        for m in re.finditer(r"^\|\s*(D-\d{1,2}\.\d)[^|]*\|[^|]*\|[^|]*\|[^|]*\|\s*(RIGOROUS|STANDARD|LIGHTWEIGHT|MINIMAL|DEFERRED|SIMPLE)\s*\|",
+                              t, re.M):
+            sd, tier = m.group(1), m.group(2).upper()
+            out["per_subdomain"][sd] = tier
+    if not out["tiers"]:
+        warn.append(f"{case}: parse_proportionality: 0 tiers extracted")
+    return out
+
+
+def parse_posture_gaps(case, cfg, warn):
+    """CoverageGap nodes from phase1_graph.json (preferred) OR fallback to Doc15/Doc16.
+
+    Returns {gaps:[{id,function,sub_domain,severity,description,recommended_disposition}]}.
+    """
+    out = {"gaps": []}
+    g = glob_first(cfg["root"], "phase1_graph.json")
+    if g:
+        try:
+            gd = json.loads(read(g))
+            for n in gd.get("nodes", []) or []:
+                if (n.get("type") or "") != "CoverageGap": continue
+                attrs = n.get("attrs", {}) or {}
+                out["gaps"].append({
+                    "id": n.get("id") or attrs.get("id") or "",
+                    "function": attrs.get("function") or attrs.get("csf_function") or "",
+                    "sub_domain": attrs.get("sub_domain") or attrs.get("subdomain_id") or "",
+                    "severity": attrs.get("severity") or "MEDIUM",
+                    "description": attrs.get("description") or n.get("label") or "",
+                    "recommended_disposition": attrs.get("recommended_disposition") or attrs.get("disposition") or "",
+                })
+        except json.JSONDecodeError:
+            warn.append(f"{case}: phase1_graph.json unparsable in parse_posture_gaps")
+    if out["gaps"]:
+        return out
+    # Fallback: Doc15/Doc16 strategic tensions
+    fname = DOC_P1_TENSIONS.get(case)
+    if fname:
+        rel = f"{cfg['root']}/02_PHASE2_RULES_RICH/{fname}"
+        if not (REPO / rel).exists():
+            rel = f"{cfg['root']}/01_PHASE1_CONTEXT_RICH/{fname}"
+        t = read(rel)
+        if t:
+            for m in re.finditer(
+                r"^##\s+(T-[A-Z0-9-]+)\b\s*[—:-]?\s*([^\n]*)", t, re.M):
+                tid = m.group(1).strip()
+                title = m.group(2).strip()
+                out["gaps"].append({
+                    "id": tid, "function": "Cross-cutting", "sub_domain": "",
+                    "severity": "MEDIUM",
+                    "description": title,
+                    "recommended_disposition": "",
+                })
+            if out["gaps"]:
+                return out
+    warn.append(f"{case}: parse_posture_gaps: no gaps extracted")
+    return out if out["gaps"] else None
+
+
+def parse_stakeholders(case, cfg, warn):
+    """Doc07 — extract named roles (stakeholders) and their RACI activity assignments.
+
+    Returns {stakeholders:[{id,name,role,raci:{activity:R|A|C|I}}]}.
+    """
+    rel = f"{cfg['root']}/01_PHASE1_CONTEXT_RICH/{DOC_P1_ORG_RACI}"
+    t = read(rel)
+    if not t:
+        warn.append(f"{case}: {DOC_P1_ORG_RACI} missing (parse_stakeholders)")
+        return None
+    out = {"stakeholders": []}
+    # Heuristic 1: Section "## 2. Key Roles" with bullet list of role names.
+    # Many RACI docs use a table per role; we capture role names + their CISO/DPO/CRO aliases.
+    role_section = re.search(r"^##\s+2\.\s+Key Roles(.*?)(?=^##\s|\Z)", t, re.M | re.S)
+    if role_section:
+        body = role_section.group(1)
+        for m in re.finditer(r"^\s*-\s+\*\*([^*]+?)\*\*\s*[—:-]?\s*([^\n]*)", body, re.M):
+            role_name = m.group(1).strip()
+            role_desc = m.group(2).strip()
+            out["stakeholders"].append({
+                "id": f"ROLE-{len(out['stakeholders']) + 1:02d}",
+                "name": role_name,
+                "role": role_desc or role_name,
+                "raci": {},
+            })
+    # Heuristic 2: scan RACI matrices — | Activity | R1 | R2 | ... | — extract
+    # column headers as role names; row key as activity; cell value as RACI code.
+    # We pick the first such matrix.
+    raci_blocks = re.findall(
+        r"(?:RACI\|[^\n]*\n)((?:\|[^\n]*\n)+)", t)
+    if raci_blocks:
+        # Use the first block to add RACI mappings back to the existing stakeholders
+        block = raci_blocks[0]
+        lines = [ln for ln in block.strip().split("\n") if ln.strip().startswith("|")]
+        if len(lines) >= 3:
+            header = [c.strip() for c in lines[0].strip("|").split("|")]
+            # Identify role columns (anything containing CISO/DPO/CRO/CEO/etc.)
+            role_cols = []
+            for i, h in enumerate(header):
+                if i == 0:
+                    continue  # activity column
+                # match against stakeholder names
+                for s in out["stakeholders"]:
+                    short = s["name"].split("(")[0].strip()
+                    if short and (short[:6].lower() in h.lower() or h.lower().startswith(short[:4].lower())):
+                        role_cols.append((i, s["id"]))
+                        break
+            # Map activity rows
+            for ln in lines[2:]:
+                cells = [c.strip() for c in ln.strip("|").split("|")]
+                if not cells: continue
+                activity = cells[0]
+                if not activity: continue
+                for col_idx, stake_id in role_cols:
+                    if col_idx >= len(cells): continue
+                    code = cells[col_idx].strip().upper()
+                    if code in ("R", "A", "C", "I"):
+                        for s in out["stakeholders"]:
+                            if s["id"] == stake_id:
+                                s["raci"][activity] = code
+                                break
+    if not out["stakeholders"]:
+        warn.append(f"{case}: parse_stakeholders: 0 stakeholders extracted")
+    return out
+
+
+def parse_business_goals(case, cfg, warn):
+    """Doc03 Company Context — extract BG-NNN business goals.
+
+    Returns {goals:[{id,name,priority}]}.
+
+    C1 BG table: | BG-01 | name | description | HIGH | GDPR | metrics | ...
+    C2/C3: | BG-001 | name | priority | ...
+    """
+    rel = f"{cfg['root']}/01_PHASE1_CONTEXT_RICH/{DOC_P1_COMPANY_CONTEXT}"
+    t = read(rel)
+    if not t:
+        warn.append(f"{case}: {DOC_P1_COMPANY_CONTEXT} missing (parse_business_goals)")
+        return None
+    out = {"goals": []}
+    # Try 3-col grammar first (C2/C3): | BG-001 | name | priority |
+    for m in re.finditer(r"^\|\s*(BG-\d{2,3})\s*\|\s*([^|]+?)\s*\|\s*([A-Z]+)\s*\|", t, re.M):
+        out["goals"].append({
+            "id": m.group(1).strip(),
+            "name": m.group(2).strip()[:140],
+            "priority": m.group(3).strip(),
+        })
+        if len(out["goals"]) >= 30: break
+    # Fallback: capture any | BG-NN | ... | row, take col 2 as name and look for CRITICAL/HIGH/MEDIUM/LOW
+    if not out["goals"]:
+        for m in re.finditer(r"^\|\s*(BG-\d{2,3})\s*\|\s*([^|]+)", t, re.M):
+            name = m.group(2).strip()[:140]
+            pri = ""
+            for tok in ("CRITICAL", "HIGH", "MEDIUM", "LOW"):
+                if tok in name.upper():
+                    pri = tok
+                    break
+            out["goals"].append({
+                "id": m.group(1).strip(),
+                "name": name,
+                "priority": pri or "MEDIUM",
+            })
+            if len(out["goals"]) >= 30: break
+    if not out["goals"]:
+        warn.append(f"{case}: parse_business_goals: 0 BG rows extracted")
+    return out
+
+
+def parse_third_party(case, cfg, warn):
+    """Doc06 — extract vendor rows (cloud, hardware, SaaS sections).
+
+    Returns {vendors:[{id,name,type,data_processed,sbom_ref}]}.
+    """
+    rel = f"{cfg['root']}/01_PHASE1_CONTEXT_RICH/{DOC_P1_THIRD_PARTY}"
+    t = read(rel)
+    if not t:
+        warn.append(f"{case}: {DOC_P1_THIRD_PARTY} missing (parse_third_party)")
+        return None
+    out = {"vendors": []}
+    # Header pattern (Doc06 cloud section):
+    # | Provider | Service | Data Accessed | Region | Contract Basis | DPA | Art 28 | Exit |
+    for m in re.finditer(
+        r"^\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|", t, re.M):
+        a, b, c = (s.strip() for s in m.groups())
+        # Skip header / separator rows
+        if a.lower() in ("provider", "vendor", "---", ""): continue
+        if set(a) <= {"-", " "}: continue
+        # Heuristic: vendor name column is the first cell of a substantive row
+        if len(a) < 2 or len(a) > 200: continue
+        out["vendors"].append({
+            "id": f"V-{len(out['vendors']) + 1:03d}",
+            "name": a,
+            "type": b[:80],
+            "data_processed": c[:140],
+            "sbom_ref": "",
+        })
+        if len(out["vendors"]) >= 60: break
+    if not out["vendors"]:
+        warn.append(f"{case}: parse_third_party: 0 vendor rows extracted")
+    return out
+
+
+def parse_adjusted_goals(case, cfg, warn):
+    """Doc13/Doc14 Adjusted Goals — §5 NIST controls table OR §2 multi-reg table.
+
+    For sub-domains we synthesise a goal record {id:'AG-D-XX.Y', type:'PG'|'SG',
+    name, nist_anchors:[...], source:Doc13|Doc14}. Top 80.
+    """
+    fname = DOC_P1_ADJUSTED_GOALS.get(case)
+    if not fname:
+        warn.append(f"{case}: adjusted goals filename unknown for {case}")
+        return None
+    rel = f"{cfg['root']}/01_PHASE1_CONTEXT_RICH/{fname}"
+    t = read(rel)
+    if not t:
+        warn.append(f"{case}: {fname} missing (parse_adjusted_goals)")
+        return None
+    out = {"goals": []}
+    # §5 NIST Controls table (preferred — has explicit anchors)
+    for m in re.finditer(
+        r"^\|\s*(D-\d{1,2}\.\d)\s*\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|"
+        r"\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|",
+        t, re.M):
+        sub, name, regs, csf, pf, ai = (s.strip() for s in m.groups())
+        if sub.lower() == "sub-domain" or set(sub) <= {"-"}: continue
+        anchors = []
+        for raw in (csf, pf, ai):
+            if not raw or raw == "—": continue
+            for tok in re.split(r"[,;]", raw):
+                tok = re.sub(r";\s*", "", tok).strip().rstrip(",")
+                if tok and re.match(r"^[A-Z]{2}\.[A-Z]{2}-\d", tok):
+                    anchors.append(tok)
+        out["goals"].append({
+            "id": f"AG-{sub}",
+            "type": "AG",
+            "name": name[:120],
+            "sub_domain": sub,
+            "nist_anchors": anchors[:12],
+            "source": fname.replace("Doc", "Doc").replace(".md", ""),
+        })
+        if len(out["goals"]) >= 80: break
+    # Fallback: §2 multi-reg table if §5 was empty. Match `| D-XX.Y | name |` rows.
+    if not out["goals"]:
+        for m in re.finditer(r"^\|\s*(D-\d{1,2}\.\d)[^|\n]*\|([^|\n]+)", t, re.M):
+            sub = m.group(1).strip()
+            name = m.group(2).strip()[:120]
+            if sub.lower() == "sub-domain" or set(sub) <= {"-"}: continue
+            if name.startswith("—") or "`" in name[:5]:
+                # Skip rows whose second column is a SO-D-XX.Y code or em-dash
+                continue
+            out["goals"].append({
+                "id": f"PG-{sub}",
+                "type": "PG",
+                "name": name,
+                "sub_domain": sub,
+                "nist_anchors": [],
+                "source": fname.replace(".md", ""),
+            })
+            if len(out["goals"]) >= 80: break
+    if not out["goals"]:
+        warn.append(f"{case}: parse_adjusted_goals: 0 goals extracted")
+    return out
+
+
+def parse_citations_rows(case, cfg, warn):
+    """Citation_Index.md — extract citation rows.
+
+    Returns {citations:[{id,article,source_doc,referenced_by}]}.
+
+    Two layouts supported:
+      (a) C1: "## §2 GDPR Citations" + rows of form
+          `| Art. NN | N doc(s) | `domains/...` |`
+      (b) C2/C3: "## 2. GDPR Citations" + rows of form
+          `| GDPR Art. NN | `corpus/file.md` | Title |`
+          OR "## GDPR Citations" + same row format.
+    When the Citation_Index.md has no per-row tables (C3 MAX case), we fall
+    back to extracting Art. NN mentions from Doc09_Ambiguity_Register.md.
+    """
+    rel = f"{cfg['root']}/01_PHASE1_CONTEXT_RICH/{DOC_P1_CITATION_INDEX}"
+    t = read(rel)
+    if not t:
+        warn.append(f"{case}: {DOC_P1_CITATION_INDEX} missing (parse_citations_rows)")
+        return None
+    out = {"citations": []}
+    current_reg = ""
+    # Track regulation by walking §N Regulation Citations headings
+    lines = t.split("\n")
+    for line in lines:
+        # Regulation section heading: e.g. "## §2 GDPR Citations" or "## 2. GDPR Citations"
+        m_sec = re.match(r"^##\s+(?:§\d+|\d+\.)\s+([A-Za-z][A-Za-z0-9 _]*?)\s+Citations?\s*$", line)
+        if m_sec:
+            current_reg = m_sec.group(1).strip()
+            continue
+        m_sec2 = re.match(r"^##\s+([A-Z]{2,}[\w]*)\s+Citations?\s*$", line)
+        if m_sec2:
+            current_reg = m_sec2.group(1).strip()
+            continue
+        # Article row (C1 format): | Art. 32 | 5 doc(s) | `domains/...` |
+        m_art = re.match(r"^\|\s*(Art\.\s*\d+[a-z]?(?:\([0-9a-z]+\))*|Annex\s+[IVX]+(?:[^|]*?)?|Recital\s+\d+)\s*\|"
+                          r"\s*(\d+\s*doc\(s\)|[^|]*?)\s*\|\s*`?([^|`]+?)`?\s*\|",
+                          line)
+        if m_art:
+            article = m_art.group(1).strip()
+            count_txt = m_art.group(2).strip()
+            corpus_path = m_art.group(3).strip()
+            out["citations"].append({
+                "id": f"CIT-{len(out['citations']) + 1:03d}",
+                "regulation": current_reg or "?",
+                "article": article,
+                "source_doc": corpus_path[:120],
+                "referenced_by": count_txt[:120],
+            })
+            if len(out["citations"]) >= 200:
+                break
+            continue
+        # Reference row (C2/C3 format): | GDPR Art. 17 | `corpus/file.md` | Title |
+        m_ref = re.match(r"^\|\s*((?:GDPR|CRA|NIS\s?2|DORA|AI\s?Act)\s+Art\.\s*\d+[a-z]?(?:\([0-9a-z]+\))*|"
+                          r"Annex\s+[IVX]+(?:[^|]*?)?)\s*\|\s*`([^`]+)`\s*\|", line)
+        if m_ref:
+            article = m_ref.group(1).strip()
+            corpus_path = m_ref.group(2).strip()
+            # Derive regulation from article prefix
+            reg = "GDPR" if article.startswith("GDPR") else (
+                "CRA" if article.startswith("CRA") else (
+                    "NIS 2" if article.startswith("NIS") else (
+                        "DORA" if article.startswith("DORA") else (
+                            "AI Act" if article.startswith("AI") else current_reg or "?"))))
+            out["citations"].append({
+                "id": f"CIT-{len(out['citations']) + 1:03d}",
+                "regulation": reg,
+                "article": article,
+                "source_doc": corpus_path[:120],
+                "referenced_by": "",
+            })
+            if len(out["citations"]) >= 200:
+                break
+    # Fallback: Doc09_Ambiguity_Register.md (C3 MAX case)
+    if not out["citations"]:
+        doc09 = read(f"{cfg['root']}/01_PHASE1_CONTEXT_RICH/{DOC_P1_AMBIGUITY}")
+        if doc09:
+            seen = set()
+            for m in re.finditer(r"^\s*-\s*\*\*(?:Citation|Article|Provision|Anchor)\*\*\s*:?\s*([^\n]+)",
+                                  doc09, re.M):
+                txt = m.group(1)
+                art = re.search(r"Art\.\s*\d+[a-z]?(?:\([0-9a-z]+\))?", txt)
+                if not art: continue
+                a = art.group(0)
+                if a in seen: continue
+                seen.add(a)
+                out["citations"].append({
+                    "id": f"CIT-{len(out['citations']) + 1:03d}",
+                    "regulation": "—",
+                    "article": a,
+                    "source_doc": "Doc09_Ambiguity_Register",
+                    "referenced_by": txt[:120],
+                })
+                if len(out["citations"]) >= 100:
+                    break
+    if not out["citations"]:
+        warn.append(f"{case}: parse_citations_rows: 0 rows extracted")
+    return out
+
+
+def parse_architecture(case, cfg, warn):
+    """Doc04 — System inventory + data assets.
+
+    Returns {systems:[{id,name,trust_boundary,data_assets:[{id,classification}]}]}.
+    """
+    rel = f"{cfg['root']}/01_PHASE1_CONTEXT_RICH/{DOC_P1_ARCHITECTURE}"
+    t = read(rel)
+    if not t:
+        warn.append(f"{case}: {DOC_P1_ARCHITECTURE} missing (parse_architecture)")
+        return None
+    out = {"systems": []}
+    # SYS-NN rows: | SYS-01 | Core Banking System ... | Critical | Y |
+    for m in re.finditer(
+        r"^\|\s*(SYS-\d{1,3})\s*\|\s*([^|]+?)\s*\|", t, re.M):
+        sid = m.group(1).strip()
+        name = m.group(2).strip()[:120]
+        out["systems"].append({
+            "id": sid,
+            "name": name,
+            "trust_boundary": "Internal (EU)",
+            "data_assets": [],
+        })
+        if len(out["systems"]) >= 80: break
+    # Tag data assets: each system's data_assets list is left empty here —
+    # the dashboard table renders the system list only. (Doc04 has no clean
+    # per-system data-asset table; filling it would require synthesis that
+    # crosses the "no invented content" rule.)
+    if not out["systems"]:
+        warn.append(f"{case}: parse_architecture: 0 systems extracted")
+    return out
+
+
+# ---------------------------------------------------------------------------
 # P1 parser (extended)
 # ---------------------------------------------------------------------------
 def parse_p1(case, cfg, warn):
@@ -704,6 +1461,26 @@ def parse_p1(case, cfg, warn):
             "links": links_count if links_count is not None else len(graph_full.get("links", []) or []),
         },
     }
+    # R8 — call the 12 new P1 parsers. Each returns its dict OR None when the
+    # source file is missing/empty; we record None in the payload and add a
+    # warning so the dashboard can render an empty-state placeholder.
+    p1_extensions = {
+        "regulations":  parse_regulations(case, cfg, warn),
+        "nist_controls": parse_nist_controls(case, cfg, warn),
+        "clause_mapping": parse_clause_mapping(case, cfg, warn),
+        "dora":         parse_dora(case, cfg, warn),
+        "proportionality": parse_proportionality(case, cfg, warn),
+        "posture_gaps": parse_posture_gaps(case, cfg, warn),
+        "stakeholders": parse_stakeholders(case, cfg, warn),
+        "business_goals": parse_business_goals(case, cfg, warn),
+        "third_party":  parse_third_party(case, cfg, warn),
+        "adjusted_goals": parse_adjusted_goals(case, cfg, warn),
+        "citations_rows": parse_citations_rows(case, cfg, warn),
+        "architecture": parse_architecture(case, cfg, warn),
+    }
+    none_keys = sorted(k for k, v in p1_extensions.items() if v is None)
+    if none_keys:
+        warn.append(f"{case}: R8 P1 parsers returned None: {','.join(none_keys)}")
     return {
         "status": status.get("phase_1", status.get("phase_1_rich")),
         "graph": graph_payload,
@@ -716,6 +1493,19 @@ def parse_p1(case, cfg, warn):
         "citations": amb_data["citations"],
         "ambiguity_rows": amb_data["ambiguity_rows"],
         "maturity": maturity,
+        # R8 — 12 new P1 extension dicts (each None when source file missing)
+        "regulations": p1_extensions["regulations"],
+        "nist_controls": p1_extensions["nist_controls"],
+        "clause_mapping": p1_extensions["clause_mapping"],
+        "dora": p1_extensions["dora"],
+        "proportionality": p1_extensions["proportionality"],
+        "posture_gaps": p1_extensions["posture_gaps"],
+        "stakeholders": p1_extensions["stakeholders"],
+        "business_goals": p1_extensions["business_goals"],
+        "third_party": p1_extensions["third_party"],
+        "adjusted_goals": p1_extensions["adjusted_goals"],
+        "citations_rows": p1_extensions["citations_rows"],
+        "architecture": p1_extensions["architecture"],
     }
 
 

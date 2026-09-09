@@ -96,6 +96,69 @@ def main() -> int:
             page.wait_for_timeout(1500)
             page.screenshot(path=str(SHOT_DIR / f"master_{ck}_p3_full.png"), full_page=False)
 
+            # ----- R8 — P1 sub-tabs + new folios -----
+            page.evaluate("window.MASTER_DASHBOARD.activatePhase('p1')")
+            page.wait_for_timeout(800)
+            # 1) subtab-bar present with 4 buttons
+            sub_count = page.evaluate("document.querySelectorAll('#panel-p1 .sub-tab').length")
+            print(f"  {ck}/R8 sub-tab buttons: {sub_count}", "OK" if sub_count == 4 else "FAIL")
+            if sub_count != 4: ok = False
+            # 2) click each sub-tab and verify the matching sub-panel becomes .active
+            for letter in ("a", "b", "c", "d"):
+                page.evaluate(
+                    f"document.querySelector('#panel-p1 .sub-tab[data-sub=\"{letter}\"]').click()"
+                )
+                page.wait_for_timeout(400)
+                active = page.evaluate(
+                    f"document.querySelector('#panel-p1 .sub-panel[data-sub=\"{letter}\"]').classList.contains('active')"
+                )
+                ok_str = "OK" if active else "FAIL"
+                print(f"  {ck}/R8 sub-tab '{letter}' active: {ok_str}")
+                if not active: ok = False
+            # 3) expected folios per sub-panel
+            folio_checks = {
+                "b": "folio07-controls-table",
+                "c": "folio11-gaps-table",
+                "d": "folio14-goals-table",
+            }
+            for letter, fid in folio_checks.items():
+                page.evaluate(
+                    f"document.querySelector('#panel-p1 .sub-tab[data-sub=\"{letter}\"]').click()"
+                )
+                page.wait_for_timeout(400)
+                fid_present = page.evaluate(f"document.getElementById('{fid}') != null")
+                print(f"  {ck}/R8 folio {fid}: present={fid_present}", "OK" if fid_present else "FAIL")
+                if not fid_present: ok = False
+            # 4) widget counts per sub-tab
+            page.evaluate("document.querySelector('#panel-p1 .sub-tab[data-sub=\"b\"]').click()")
+            page.wait_for_timeout(800)
+            js_query = (
+                "(function(){var c=MASTER_DATA.cases['" + KEY_MAP[ck] + "'].phases.P1;"
+                "return {"
+                " controls: (c.nist_controls && c.nist_controls.controls) ? c.nist_controls.controls.length : 0,"
+                " gaps:     (c.posture_gaps && c.posture_gaps.gaps) ? c.posture_gaps.gaps.length : 0,"
+                " goals:    (c.adjusted_goals && c.adjusted_goals.goals) ? c.adjusted_goals.goals.length : 0"
+                "};})()"
+            )
+            counts = page.evaluate(js_query)
+            print(f"  {ck}/R8 controls={counts['controls']}, gaps={counts['gaps']}, goals={counts['goals']}")
+            # C3 should have many controls (>5); C1/C2 may have 0 (their Doc13 has no NIST table).
+            if ck == "case_03" and counts['controls'] < 5:
+                ok = False
+            if counts['gaps'] < 1: ok = False
+            if counts['goals'] < 1: ok = False
+
+            # ----- R8 — 3 screenshots per case (Overview / Controls / Ambiguity) -----
+            page.evaluate("document.querySelector('#panel-p1 .sub-tab[data-sub=\"a\"]').click()")
+            page.wait_for_timeout(800)
+            page.screenshot(path=str(SHOT_DIR / f"master_{ck}_p1_overview.png"), full_page=False)
+            page.evaluate("document.querySelector('#panel-p1 .sub-tab[data-sub=\"b\"]').click()")
+            page.wait_for_timeout(800)
+            page.screenshot(path=str(SHOT_DIR / f"master_{ck}_p1_controls.png"), full_page=False)
+            page.evaluate("document.querySelector('#panel-p1 .sub-tab[data-sub=\"c\"]').click()")
+            page.wait_for_timeout(800)
+            page.screenshot(path=str(SHOT_DIR / f"master_{ck}_p1_ambiguity.png"), full_page=False)
+
         if errors:
             print(f"\nFAIL errors observed ({len(errors)}):")
             for e in errors[:5]:

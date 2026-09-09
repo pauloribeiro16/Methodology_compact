@@ -23,6 +23,7 @@ Also captures screenshots:
 Run: python3 00_METHODOLOGY/00_VISUALISATIONS/tests/test_master_drilldown.py
 """
 from __future__ import annotations
+import re
 import sys
 from pathlib import Path
 from playwright.sync_api import sync_playwright
@@ -534,6 +535,54 @@ def main() -> int:
             ok = False
         if not assert_r7_crosslinks(page):
             ok = False
+
+        # R8 — controls table drill-down (Case_03 P1 folio07)
+        print("\n--- R8 — controls table drill-down (folio07) ---")
+        page.evaluate("window.MASTER_DASHBOARD.activateCase('case_03')")
+        page.evaluate("window.MASTER_DASHBOARD.activatePhase('p1')")
+        page.wait_for_timeout(800)
+        # Switch to sub-tab b (Controls & Mappings)
+        page.evaluate(
+            "document.querySelector('#panel-p1 .sub-tab[data-sub=\"b\"]').click()"
+        )
+        page.wait_for_timeout(700)
+        # Click first row of folio07-controls-table
+        ctrl_ok = page.evaluate(
+            """(() => {
+                var tbl = document.getElementById('folio07-controls-table');
+                if (!tbl) return {ok: false, reason: 'table not in DOM'};
+                var tr = tbl.querySelector('tbody tr');
+                if (!tr) return {ok: false, reason: 'no rows'};
+                tr.dispatchEvent(new MouseEvent('click', {bubbles: true, cancelable: true}));
+                return {ok: true};
+            })()"""
+        )
+        if not ctrl_ok.get("ok"):
+            print(f"  FAIL R8 controls click: {ctrl_ok.get('reason')}")
+            ok = False
+        else:
+            try:
+                page.wait_for_selector("#aegis-detail-modal.open", timeout=4000)
+                modal_text = page.evaluate(
+                    "(() => {var m = document.getElementById('aegis-detail-modal'); return m ? (m.textContent || '') : '';})()"
+                )
+                has_ctrl_id = bool(re.search(r"GV\.|PR\.|DE\.|RS\.|RC\.|MANAGE-|GOVERN-|MEASURE-", modal_text))
+                has_framework = "NIST" in modal_text
+                has_coverage = "1" in modal_text  # coverage is 1.0
+                print(f"  R8 modal ctrl_id={has_ctrl_id} framework={has_framework} coverage={has_coverage}")
+                if not (has_ctrl_id and has_framework):
+                    print("  FAIL R8: modal missing expected fields")
+                    ok = False
+                else:
+                    print("  R8 OK controls modal contains control_id/framework/coverage")
+            except Exception as e:
+                print(f"  FAIL R8 controls modal: {e}")
+                ok = False
+            # Close modal
+            page.evaluate(
+                "document.querySelectorAll('#aegis-detail-modal .am-close, #aegis-detail-modal [data-close]').forEach(function(b){b.click();})"
+            )
+            page.wait_for_timeout(300)
 
         if errors:
             print(f"\nFAIL errors observed ({len(errors)}):")
