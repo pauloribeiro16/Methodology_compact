@@ -125,15 +125,20 @@ Authoritative source: `REALIZATION_CLASS_RUBRIC.md` §5C.5 (human decision
   in annex A — their diagrams are the §5C.4 flowcharts in the lane-cards
   doc. Annex A packages are the catalog's UC packages (product plus any
   dedicated compliance-UC package).
+- **Catalogue gallery (rubric §5C.5 v1.11, 2026-09-10).** Each catalogue
+  embeds the system-wide + per-package diagrams as markdown images
+  referencing the same `annexes/svg/` files (`annexes/svg/...`, relative to
+  the catalogue) — derived views; edit the annex, then re-embed.
 
 ## §C Sequence Diagram Rules (annex B)
 
 Also from §5C.5:
 
-- **Mermaid `sequenceDiagram` only.** Every sequence diagram lives in
+- **Mermaid `sequenceDiagram` only.** Every sequence diagram is authored in
   `annexes/B_Sequence_Diagrams.md` (one section per product UC, ordered by
-  id). Catalogue cards keep a single pointer line —
-  `> **Sequence diagram:** → Annex B §N`.
+  id) — the editable source. Catalogue cards embed a verbatim derived copy
+  inline (rubric §5C.5 v1.11, 2026-09-10; supersedes the pointer line
+  `> **Sequence diagram:** → Annex B §N`).
 - **PROC/CAP cards do NOT carry sequence diagrams.** Their diagrams are the
   §5C.4 flowcharts.
 - **Render-validated, not structurally checked.** Every Mermaid block must

@@ -39,7 +39,7 @@ Authoritative source: `Methodology-main/03_REFERENCE_MATERIAL/P3_E2_Requirement_
 | 1 | Brief Description | One-paragraph summary of the goal and its value to the primary actor. |
 | 2 | Actors | Numbered sub-items — `2.1 Primary`, `2.2 System`, `2.3 Stakeholder`, … |
 | 3 | Preconditions | State the system must be in before the use case starts. |
-| 4 | Basic Flow of Events | Numbered steps; ends with `> **Sequence diagram:** → Annex B §N`. |
+| 4 | Basic Flow of Events | Numbered steps; followed by the card's embedded sequence diagram (derived verbatim copy; editable source: `annexes/B_Sequence_Diagrams.md` §N). |
 | 5 | Alternative Flows | Subitems `5.1 <Alternate flow: …>`, `5.2 …`; each opens with `Trigger:`. |
 | 6 | Subflows | Subitems `6.1 <Subflow: …>`, `6.2 …` — reusable fragments shared via `<<include>>`. |
 | 7 | Key Scenarios | Subitems `7.1 <Scenario: …>` — concrete instances that justify the card. |
@@ -92,7 +92,7 @@ Customer has a valid email address; not currently logged in.
 4. System creates the account and dispatches a verification email.
 5. Customer clicks the verification link.
 6. System marks the account as active.
-> **Sequence diagram:** → Annex B §14.
+**Sequence diagram** (derived copy — editable source: Annex B §14).
 
 **§5 Alternative Flows**
 - 5.1 *Email already in use.* Trigger: System detects duplicate. Step 3a:

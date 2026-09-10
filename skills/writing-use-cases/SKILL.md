@@ -60,13 +60,18 @@ artefact looks like so it can draft, review, and correct. It does not run code.
    "Click Submit", "Type username in U1", "Tab to password". Capture what
    the actor wants to achieve, not which widget they touch. UI details lock
    the implementation prematurely and bloat the text.
-7. **Use case diagrams are PlantUML + committed SVG** in
+7. **Diagrams are authored in the annexes; catalogues embed derived copies.**
+   Use case diagrams are PlantUML + committed SVG in
    `annexes/A_Use_Case_Diagrams.md`; sequence diagrams are Mermaid in
-   `annexes/B_Sequence_Diagrams.md` (one section per product UC). Use case
-   diagrams carry **UC ovals only** — `PROC-*`/`CAP-*` never appear as ovals
-   or actors in annex A (rubric §5C.5, human decision 2026-09-05). Mermaid
-   sequence diagrams must avoid `;` inside message text (use `,`) and never
-   name a participant `OFF` (collides with `autonumber off`).
+   `annexes/B_Sequence_Diagrams.md` (one section per product UC) — those
+   annexes are the editable sources. Catalogues carry an embedded gallery of
+   the UC diagrams and each product card embeds a verbatim copy of its
+   sequence diagram (rubric §5C.5 v1.11, human decision 2026-09-10 — edit
+   the annex, then re-embed byte-identical). Use case diagrams carry **UC
+   ovals only** — `PROC-*`/`CAP-*` never appear as ovals or actors (annex A
+   or gallery). Mermaid sequence diagrams must avoid `;` inside message
+   text (use `,`) and never name a participant `OFF` (collides with
+   `autonumber off`).
 8. **Process before diagram** (Machado/RMAC p1 slides 16–37): requirements
    elicitation interactive → onion-skin context → context diagram (actors
    only, no message flows yet) → one use case diagram per actor → orthogonal
@@ -115,7 +120,7 @@ Customer has a valid email address; not currently logged in.
 4. System creates the account and dispatches a verification email.
 5. Customer clicks the verification link.
 6. System marks the account as active.
-> **Sequence diagram:** → Annex B §14.
+**Sequence diagram** (derived copy — editable source: Annex B §14).
 
 **§10 Security & Compliance Annex (AEGIS)**
 - **Provenance:** [ATTESTED] Source: Doc12 §4.

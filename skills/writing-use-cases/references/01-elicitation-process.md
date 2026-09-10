@@ -84,9 +84,9 @@ natural language**. That keeps the client in the loop and the analyst honest
 about what is known. Move to numbered steps with pre/post-conditions only
 when the client no longer needs to read the text directly.
 
-AEGIS convention (rubric §5C.5): the textual body always ends with a single
-pointer line `> **Sequence diagram:** → Annex B §N` — the prose is the
-catalogue card; the sequence diagram is the annex-only view.
+AEGIS convention (rubric §5C.5 v1.11): the card's flow is followed by an
+embedded verbatim copy of its sequence diagram; the editable source lives in
+`annexes/B_Sequence_Diagrams.md` §N — edit there, then re-embed byte-identical.
 
 ## §F Worked Micro-Example — Place Order (slide 40)
 

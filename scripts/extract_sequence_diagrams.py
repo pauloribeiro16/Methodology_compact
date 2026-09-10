@@ -4,6 +4,13 @@ extract_sequence_diagrams.py — move inline sequenceDiagram blocks from the UC
 catalogs to `annexes/B_Sequence_Diagrams.md` (one per case), leaving a 1-line
 pointer in the catalogue card (rubric v1.7 §5C.5).
 
+WARNING (2026-09-10, rubric v1.11): catalogue cards now EMBED derived verbatim
+copies of their sequence diagrams (the pointer line is retired). Running this
+script with --apply on the current catalogues would STRIP those embedded copies
+and re-insert pointer lines, regressing the embed decision. The annexes remain
+the editable sources; embeds must stay byte-identical to them. Do not run
+against the post-v1.11 catalogues unless intentionally reverting the decision.
+
 Usage:
   python3 scripts/extract_sequence_diagrams.py <Case_01|Case_02|Case_03|all> [--apply]
 

@@ -2,9 +2,9 @@
 document_id: AEGIS-METHODOLOGY-REALIZATION-CLASS-RUBRIC
 title: AEGIS Realization Class Rubric (Phase 2 Rule Attribute)
 phase: Cross-phase
-version: 1.10
+version: 1.11
 created: 2026-09-05
-updated: 2026-09-05
+updated: 2026-09-10
 author: Executor
 status: ACTIVE
 ---
@@ -219,13 +219,22 @@ Bike4All sequenceDiagrams):
   false). One **system-wide** diagram per case plus one diagram **per package**; actors
   come from the catalogue card's Primary Actor and Stakeholders; UC cards are the ovals;
   critical Extensions become `<<include>>`/`<<extend>>`. Placement:
-  `annexes/A_Use_Case_Diagrams.md`.
-- **Sequence diagrams are annex-only.** Every sequence diagram lives in
-  `annexes/B_Sequence_Diagrams.md` (one section per product UC card, ordered by id).
-  Catalogue cards keep a single pointer line — `**Sequence diagram:** → Annex B §N`.
-  Compliance PROC/CAP cards do NOT carry sequence diagrams at this stage; their
-  diagrams are the §5C.4 flowcharts.
-- Both are **derived views** of the catalogue cards: the card is the source of truth.
+  `annexes/A_Use_Case_Diagrams.md`. Each catalogue additionally carries an **embedded
+  diagram gallery** (markdown images referencing the same `annexes/svg/` files) so the
+  catalogue is self-contained — v1.11 amendment, human decision 2026-09-10; the annex
+  remains the editable source.
+- **Sequence diagrams are authored annex-only** (v1.11 — human decision 2026-09-10
+  supersedes the "cards keep a single pointer line" rule). Every sequence diagram is
+  authored in `annexes/B_Sequence_Diagrams.md` (one section per product UC card, ordered
+  by id) — that annex is the **editable source**. Catalogue cards embed a **derived
+  verbatim copy** of their diagram inline (replacing the retired pointer line
+  `> **Sequence diagram:** → Annex B §N`); embedded copies must stay byte-identical to
+  the annex section. Annex B sections without a catalogue card (e.g. the Case_02
+  `U.C.10.5.1`/`U.C.11.5.1` orphans) stay annex-only. Compliance PROC/CAP cards do NOT
+  carry sequence diagrams at this stage; their diagrams are the §5C.4 flowcharts.
+- Both are **derived views** of the catalogue cards: the card is the source of truth for
+  content; the annex is the editable source for diagram code; catalogue embeds are
+  derived copies of both.
 - **Sequence diagrams — authoring rules (render-validated 2026-09-05):** `;` inside
   message/note text is a statement separator — use `,` instead; never name a
   participant token `OFF` (collides with the `autonumber off` keyword — use `OFFR`);
@@ -308,6 +317,7 @@ Divergence example: a rule ISO-anchored to A.8.10 (technological theme) can legi
 | 1.3 | 2026-09-05 | Orchestrator | §5B Lane Nomenclature added: UC-* reserved for TECHNOLOGY; PROC-NN / CAP-NN for PROCESS / CAPABILITY (human decision 2026-09-05; supersedes Case_01 Doc20 §6.1 ID-continuity freeze) |
 | 1.4 | 2026-09-05 | Orchestrator | §5C Lane Card Schemas added: PROC card (SSDF-style) and CAP card (C2M2/ArchiMate-style); traceability chain RULE → CAP → PROC → UC |
 | 1.5 | 2026-09-05 | Orchestrator | §5C.4 Lane Card Diagrams added: PROC → Mermaid flowchart TD (activities + decision branches); CAP → Mermaid graph LR (span + realises); content sourced faithfully from catalogue scenarios/extensions |
+| 1.11 | 2026-09-10 | Orchestrator | §5C.5 amended (human decision 2026-09-10): catalogues embed derived diagram views — UC-diagram gallery + verbatim inline sequence copies per card; annexes A/B remain the editable sources; pointer lines retired. (Rows 1.6–1.10 were recorded in GLOBAL_PROJECT_STATE, not here.) |
 
 ## §6C Traceability Audit Shape (normative)
 
