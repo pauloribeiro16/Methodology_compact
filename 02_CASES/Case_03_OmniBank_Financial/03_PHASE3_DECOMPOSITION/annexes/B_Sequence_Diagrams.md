@@ -22,6 +22,8 @@ status: ACTIVE
 >
 > **v2.1 (RENUMBER, 2026-09-05, rubric v1.10 §5B rule 7):** ids renumbered UC-01..33; §N order preserved (old→new mapping is ascending), Doc22 pointers remain 1:1.
 
+> **2026-09-10:** Catalogue cards now embed derived copies of these diagrams inline; this annex remains the editable source (rubric §5C.5 v1.11).
+
 ## §1 — Use-Case — {UC-01} Data Protection Officer Executes Data Erasure Request
 
 ```mermaid

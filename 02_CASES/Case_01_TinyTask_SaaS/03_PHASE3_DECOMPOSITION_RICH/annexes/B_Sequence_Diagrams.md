@@ -15,6 +15,8 @@ status: ACTIVE
 > **Render note:** Mermaid ≥ v11 recommended.
 > **RENUMBER note (2026-09-05):** section ids flattened to `UC-01..UC-36` (rubric v1.10 §5B rule 7); the 23 product sections map monotonically to UC-14..UC-36, so §1..§23 ordering and the Doc20 pointers are unchanged (registry `00_METHODOLOGY/validation/RENUMBER_REGISTRY_2026-09-05.md`).
 
+> **2026-09-10:** Catalogue cards now embed derived copies of these diagrams inline; this annex remains the editable source (rubric §5C.5 v1.11).
+
 ## §1 — Use-Case — {UC-14} Sign Up & Account Creation
 
 ```mermaid
