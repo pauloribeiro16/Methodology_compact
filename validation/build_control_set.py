@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 """
-AEGIS Control Set Generator — build_control_set.py (v1.0)
+AEGIS Control Set Generator — build_control_set.py (v1.1)
 Parses Doc18_Rules_Catalog.md and generates control_set.yaml.
 Standard library only.
+
+v1.1 (2026-09-05): emits `realization_class` (mandatory) and
+`realization_class_secondary` (optional; key omitted when the card renders
+`—`) parsed from Doc18 card fields 25/26 per REALIZATION_CLASS_RUBRIC.md.
 """
 
 import os
@@ -50,6 +54,9 @@ def parse_doc18():
         
         verif_method = "TEST"
         owner = "CTO + Lead Dev"
+
+        realization_class = ""
+        realization_class_secondary = None
         
         trace_legal = []
         ag_phase1 = ""
@@ -106,6 +113,14 @@ def parse_doc18():
             elif line.startswith("- ISO 27001:"):
                 i_val = line.split(":", 1)[1].strip()
                 iso_anchors = [x.strip() for x in i_val.split(",") if x.strip()]
+            elif line.startswith("25. **Realization Class:**"):
+                m_rc = re.match(r"25\. \*\*Realization Class:\*\* (\S+)", line)
+                if m_rc:
+                    realization_class = m_rc.group(1)
+            elif line.startswith("26. **Realization Class (Secondary):**"):
+                m_rcs = re.match(r"26\. \*\*Realization Class \(Secondary\):\*\* (\S+)", line)
+                if m_rcs and m_rcs.group(1) != "—":
+                    realization_class_secondary = m_rcs.group(1)
             elif line.startswith("- SSDF:"):
                 s_val = line.split(":", 1)[1].strip()
                 if s_val != "-":
@@ -115,6 +130,9 @@ def parse_doc18():
             m_sub = re.search(r"D-\d+\.\d+", rule_id)
             if m_sub:
                 subdomain = m_sub.group(0)
+
+        if not realization_class:
+            raise ValueError(f"{rule_id}: mandatory card field 25 (Realization Class) missing or empty")
 
         c_entry = {
             "id": rule_id,
@@ -148,6 +166,9 @@ def parse_doc18():
                 "owner": owner
             }
         }
+        c_entry["realization_class"] = realization_class
+        if realization_class_secondary:
+            c_entry["realization_class_secondary"] = realization_class_secondary
         controls.append(c_entry)
         
     data = {
